@@ -1,0 +1,41 @@
+<Configuration>
+   <Version label='alpha 0.1' />
+   <!-- ------------------------------------------------------------ -->
+   <Source name='declare'><![CDATA[
+<shader:true source='support.specular'>
+uniform vec4 fc_specular_color;
+uniform vec4 fc_specular;
+</shader:true>
+
+<shader:true source='support.specular.view'>
+uniform vec4 fc_specular_view_color;
+uniform vec4 fc_specular_view;
+</shader:true>
+
+<shader:true source='support.specular'>
+uniform sampler2D fs_specular;
+</shader:true>
+   ]]></Source>
+   <!-- ------------------------------------------------------------ -->
+   <Source name='main'><![CDATA[
+   //............................................................
+   // Calculate camera direction
+<shader:true source='support.specular|support.environment'>
+   vec3 cameraDirection = normalize(fc_camera_position - v_model_position.xyz);
+</shader:true>
+   //............................................................
+   // Calculate specular color
+<shader:true source='support.specular'>
+   vec3 reflectionDirection = normalize(reflect(fc_light_direction, v_normal));
+   float specularFactor = dot(cameraDirection, reflectionDirection);
+<shader:true source='support.specular.level&support.diffuse.dump'>
+   specularFactor *= normal.w;
+</shader:true>
+   specularFactor = max(specularFactor, fc_specular.x);
+   specularFactor = min(specularFactor, 1.0);
+   specularFactor = pow(specularFactor, fc_specular.y);
+   result.rgb += color.rgb * fc_specular_color.rgb * specularFactor;
+</shader:true>
+   ]]></Source>
+   <!-- ------------------------------------------------------------ -->
+</Configuration>

@@ -1,0 +1,34 @@
+<Configuration>
+   <Version label='alpha 0.1' />
+   <!-- ------------------------------------------------------------ -->
+   <!-- ------------------------------------------------------------ -->
+   <Source name='declare'><![CDATA[
+<shader:true source='support.instance'>
+uniform mat4 vc_model_matrix[<shader:write source='instance.count'/>];
+</shader:true>
+<shader:false source='support.instance'>
+uniform mat4 vc_model_matrix;
+</shader:false>
+
+<shader:true source='support.instance'>
+attribute float va_instance;
+</shader:true>
+attribute vec4 va_position;
+   ]]></Source>
+   <!-- ------------------------------------------------------------ -->
+   <Source name='main'><![CDATA[
+<shader:true source='support.instance'>
+   mat4 modelMat4 = vc_model_matrix[int(va_instance)];
+   vec4 modelPosition = va_position * modelMat4;
+</shader:true>
+<shader:false source='support.instance'>
+   vec4 modelPosition = va_position * vc_model_matrix;
+</shader:false>
+   modelPosition.w = 1.0;
+   // Calculate model position
+   v_model_position = modelPosition;
+   // Calculate proection position
+   gl_Position = modelPosition * vc_view_projection_matrix;
+   ]]></Source>
+   <!-- ------------------------------------------------------------ -->
+</Configuration>

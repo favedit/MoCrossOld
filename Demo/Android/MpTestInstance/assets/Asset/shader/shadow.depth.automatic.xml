@@ -1,0 +1,92 @@
+<Configuration>
+   <Version label='alpha 0.1' />
+   <!-- ------------------------------------------------------------ -->
+   <State name='fill_mode'   value='Fill'/>
+   <State name='cull_mode'   value='Front'/>
+   <State name='depth_mode'  value='Less'/>
+   <State name='depth_write' value='Y'/>
+   <State name='blend_mode'  value='Y' source='SourceAlpha' target='OneMinusSourceAlpha'/>
+   <State name='alpha_test'  value='N'/>
+   <!-- ------------------------------------------------------------ -->
+   <Specular name='shadow'   value='N'/>
+   <Specular name='lightmap' value='N'/>
+   <Specular name='fog'      value='N'/>
+   <!-- ------------------------------------------------------------ -->
+   <Const name='vc_model_matrix'           linker='Vertex.ModelMatrix'/>
+   <Const name='vc_view_projection_matrix' linker='Vertex.ModelMatrix'/>
+   <Const name='vc_camera_position'        linker='Vertex.ModelMatrix'/>
+   <Const name='vc_light_direction'        linker='Vertex.ModelMatrix'/>
+   <Const name='fc_camera_position'        linker='Vertex.ModelMatrix'/>
+   <Const name='fc_light_direction'        linker='Vertex.ModelMatrix'/>
+   <!-- ------------------------------------------------------------ -->
+   <Attribute name='va_instance' linker='Instance' format='Float1'/>
+   <Attribute name='va_position' linker='Position' format='Float4'/>
+   <Attribute name='va_coord'    linker='Coord'    format='Float2'/>
+   <!-- ------------------------------------------------------------ -->
+   <Sampler name='fs_diffuse'     linker='Diffuse'     source='PackDiffuse'/>
+   <!-- ------------------------------------------------------------ -->
+   <Source name='vertex' include='asset:global.shader'/>
+   <Source name='vertex'><![CDATA[
+uniform mat4 vc_model_mat4;
+uniform mat4 vc_mvp_mat4;
+
+attribute vec4 va_position;
+<shader:true source='vertex.attribute.coord'>
+attribute vec2 va_coord;
+</shader:true>
+
+varying vec4 v_model_position;
+<shader:true source='vertex.attribute.coord'>
+varying vec2 v_coord;
+</shader:true>
+
+void main(){
+   // Calculate position
+   v_model_position = va_position * vc_model_mat4;
+   gl_Position = va_position * vc_mvp_mat4;
+   // Set varying coord
+<shader:true source='vertex.attribute.coord'>
+   v_coord = va_coord;
+</shader:true>
+}
+   ]]></Source>
+   <!-- ------------------------------------------------------------ -->
+   <Source name='fragment'><![CDATA[
+<shader:true source='os.android'>
+precision mediump float;
+</shader:true>
+uniform vec4 fc_camera;
+
+varying vec4 v_model_position;
+<shader:true source='vertex.attribute.coord'>
+varying vec2 v_coord;
+</shader:true>
+
+<shader:true source='support.diffuse'>
+uniform sampler2D fs_diffuse;
+</shader:true>
+
+void main(){
+<shader:true source='support.diffuse'>
+   //vec4 color = texture2D(fs_diffuse, v_coord);
+   //if(color.a < 0.1){
+   //   discard;
+   //}
+</shader:true>
+   //............................................................
+   // Calculate distance
+   float depth = (v_model_position.z / v_model_position.w) * fc_camera.w;
+   depth = max(depth, 0.0);
+   depth = min(depth, 1.0);
+   //............................................................
+   // Color transform
+   vec4 result = vec4(depth, depth, depth, depth) * vec4(1.0, 256.0, 256.0 * 256.0, 256.0 * 256.0 * 256.0);
+   result = fract(result);
+   vec4 temp = result.yzww * vec4(1.0 / 256.0, 1.0 / 256.0, 1.0 / 256.0, 0.0);
+   result = result - temp;
+   //............................................................
+   // Return result
+   gl_FragColor = result;
+}
+   ]]></Source>
+</Configuration>

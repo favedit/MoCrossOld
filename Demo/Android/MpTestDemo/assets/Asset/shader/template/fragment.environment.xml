@@ -1,0 +1,32 @@
+<Configuration>
+   <Version label='alpha 0.1' />
+   <!-- ------------------------------------------------------------ -->
+   <Source name='declare'><![CDATA[
+<shader:true source='support.environment'>
+uniform vec4 fc_reflect_color;
+</shader:true>
+
+<shader:true source='support.environment'>
+uniform samplerCube fs_environment;
+</shader:true>
+
+<shader:true source='support.light'>
+uniform sampler2D fs_light;
+</shader:true>
+   ]]></Source>
+   <!-- ------------------------------------------------------------ -->
+   <Source name='main'><![CDATA[
+   //............................................................
+   // Calculate environment color
+<shader:true source='support.environment'>
+   vec3 reflectDirection = normalize(reflect(-cameraDirection, v_normal)); 
+   vec4 environmentColor = textureCube(fs_environment, reflectDirection); 
+<shader:true source='support.light'>
+   vec4 light = texture2D(fs_light, v_coord);
+   environmentColor *= light.g;
+</shader:true>
+   result.rgb *= environmentColor.rgb * fc_reflect_color.rgb;
+</shader:true>
+   ]]></Source>
+   <!-- ------------------------------------------------------------ -->
+</Configuration>
