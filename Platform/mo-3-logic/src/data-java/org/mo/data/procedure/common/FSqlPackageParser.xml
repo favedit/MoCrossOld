@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Config>
+
+<Resource name='package.list'>
+	SELECT OBJECT_NAME PACKAGE_NAME
+	FROM USER_OBJECTS
+	WHERE OBJECT_TYPE = 'PACKAGE' 
+	ORDER BY PACKAGE_NAME
+</Resource>
+
+<Resource name='package.head'>
+	SELECT TEXT
+	FROM USER_SOURCE
+	WHERE TYPE = 'PACKAGE' AND NAME='{name}'
+	ORDER BY LINE
+</Resource>
+
+<Resource name='package.body'>
+	SELECT TEXT
+	FROM USER_SOURCE
+	WHERE TYPE = 'PACKAGE BODY' AND NAME='{name}'
+	ORDER BY LINE
+</Resource>
+
+</Config>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Configuration>
+
+<Resource name='table.fields'>
+SELECT
+	TABLE_NAME,
+	COLUMN_ID,
+	COLUMN_NAME,
+	NULLABLE IS_NULL,
+	DATA_TYPE,
+	DATA_LENGTH,
+	DATA_SCALE
+FROM USER_TAB_COLS
+WHERE TABLE_NAME NOT LIKE '%$%'
+</Resource>
+
+<Resource name='packages.list'>
+SELECT
+	OBJECT_NAME PACKAGE_NAME 
+FROM USER_OBJECTS
+WHERE OBJECT_TYPE = 'PACKAGE'
+	AND OBJECT_NAME NOT LIKE '%_HI'
+</Resource>
+
+<Resource name='packages.source'>
+SELECT
+	NAME,
+	TYPE,
+	LINE,
+	TEXT
+FROM USER_SOURCE
+</Resource>
+
+<Resource name='package.source'>
+SELECT
+	NAME,
+	TYPE,
+	LINE,
+	TEXT
+FROM USER_SOURCE
+WHERE NAME = {package_name}
+</Resource>
+
+</Configuration>

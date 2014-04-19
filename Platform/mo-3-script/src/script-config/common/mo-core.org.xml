@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+
+   <!-- ============================================================ -->
+   <!-- BindConsole:线程绑定控制台                                   -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.core.bind.IBindConsole'
+         class = 'org.mo.core.bind.FBindConsole'
+         scope = 'global' />
+
+	<!-- ============================================================ -->
+	<!-- MonitorConsole:监视控制台                                    -->
+	<!--  P:priority - 线程高低                                       -->
+	<!--  I:initializeThread - 初始化开始线程                         -->
+	<!--  I:addDirectory - 增加监视配置目录                           -->
+	<!--  R:releaseThread - 释放线程                                  -->
+	<!-- ============================================================ -->
+	<Component
+			face  = 'org.mo.core.monitor.IMonitorConsole'
+			class = 'org.mo.core.monitor.FMonitorConsole'
+			scope = 'global'>
+		<Property name='priority'>2</Property>
+		<Initialize name='initializeThread'/>
+		<Initialize name='addDirectory'>
+			<Parameter>${home.config}/monitor</Parameter>
+		</Initialize>
+		<Release name='releaseThread'/>
+	</Component>
+
+	<!-- ============================================================ -->
+	<!-- VersionConsole:线程版本控制台                                -->
+	<!--  P:interval - 测试间隔                                       -->
+	<!--  P:priority - 线程高低                                       -->
+	<!--  P:workfile - 工作文件                                       -->
+	<!--  I:initialize - 初始化操作                                   -->
+	<!--  R:release - 释放操作                                        -->
+	<!-- ============================================================ -->
+	<Component
+			face  = 'org.mo.core.thread.version.IVersionConsole'
+			class = 'org.mo.core.thread.version.FVersionConsole'
+			scope = 'global' >
+		<Property name='interval'>1000</Property>
+		<Property name='priority'>1</Property>
+		<Property name='workfile'>${home.work}/version</Property>
+		<Initialize name='initialize'/>
+		<Release name='release'/>
+	</Component>
+
+	<!-- ==================================================== -->
+	<!-- Persistent                                           -->
+	<!-- ==================================================== -->
+	<Component
+			face  = 'org.mo.core.persistent.IPersistentConsole'
+			class = 'org.mo.core.persistent.FPersistentConsole'
+			scope = 'global'>
+		<Property name='path'>${home.work}/persistent</Property>
+		<Initialize name='initializeContext'/>
+		<Initialize name='initializePersistent'/>
+		<Release name='releasePersistent'/>
+	</Component>
+
+	<!-- ==================================================== -->
+	<!-- Parser                                               -->
+	<!-- ==================================================== -->
+	<Component
+			face  = 'org.mo.core.parser.IParserConsole'
+			class = 'org.mo.core.parser.FParserConsole'
+			scope = 'global'>
+		<Initialize name='register'>
+			<Parameter>java</Parameter>
+			<Parameter>org.mo.core.parser.java.FJavaParser</Parameter>
+		</Initialize>
+	</Component>
+
+	<!-- ==================================================== -->
+	<!-- Context                                              -->
+	<!-- ==================================================== -->
+	<Component
+			face  = 'org.mo.core.context.IContextConsole'
+			class = 'org.mo.core.context.FContextConsole'
+			scope = 'global' >
+		<Property name='language'>cn</Property>
+	</Component>
+
+	<!-- ==================================================== -->
+	<!-- Convert                                              -->
+	<!-- ==================================================== -->
+	<Component
+		face  = 'org.mo.core.convert.IConvertConsole'
+		class = 'org.mo.core.convert.FConvertConsole'
+		scope = 'global'/>
+
+</Config>

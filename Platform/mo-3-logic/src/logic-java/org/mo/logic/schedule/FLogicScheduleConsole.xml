@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Config>
+
+<Resource name='schedule.list'>
+SELECT
+   SCHEDULE_ID                                  SCHEDULE_ID,
+   OUID                                         TIME_ID,
+   LG_SCHEDULE_DI.Get_Over(SCHEDULE_ID)         OVER, 
+   LG_SCHEDULE_DI.Get_Begin_Date(SCHEDULE_ID)   BEGIN_DATE, 
+   LG_SCHEDULE_DI.Get_End_Date(SCHEDULE_ID)     END_DATE, 
+   LG_SCHEDULE_DI.Get_Status_Cd(SCHEDULE_ID)    SCHEDULE_STATUS,
+   TYPE_CD                                      TYPE_CD,
+   INTERVAL                                     INTERVAL,
+   DAY_FLAG                                     DAY_FLAG,
+   WEEK_FLAG                                    WEEK_FLAG,
+   MONTH_FLAG                                   MONTH_FLAG,
+   EXECUTE_TIME                                 EXECUTE_TIME
+FROM LG_SCHEDULE_TIME
+WHERE IS_VALID = 'Y'
+   AND LG_SCHEDULE_DI.Get_Group_Valid(SCHEDULE_ID) = 'Y'
+   AND STATUS_CD = 'P'
+   AND UPDATE_DATE &gt;= TO_DATE({begin_time}, 'YYYYMMDDHH24MISS')
+   AND UPDATE_DATE &lt; TO_DATE({end_time}, 'YYYYMMDDHH24MISS')
+ORDER BY SCHEDULE_ID 
+</Resource>
+
+</Config>

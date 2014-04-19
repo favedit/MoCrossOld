@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Config>
+
+<Resource name='sql.invlaid'>
+	SELECT OBJECT_NAME,
+           OBJECT_TYPE
+	FROM ALL_OBJECTS
+	WHERE OWNER = USER
+	   AND OWNER NOT IN ('SYS','SYSTEM')
+	   AND OBJECT_NAME NOT IN ('PAK_ALL_COMPILE')
+	   AND OBJECT_TYPE IN ('TYPE', 'TYPE BODY', 'VIEW', 'PACKAGE', 'PACKAGE BODY') 
+	   AND STATUS = 'INVALID'
+    ORDER BY LAST_DDL_TIME, OBJECT_ID
+</Resource>
+
+<Resource name='sql.invlaid.link'>
+	SELECT A.REFERENCED_NAME,
+           A.REFERENCED_TYPE 
+	FROM ALL_DEPENDENCIES A, USER_OBJECTS B
+	WHERE A.NAME = {invalid_name}
+	   AND A.TYPE = {invalid_type} 
+	   AND A.REFERENCED_NAME = B.OBJECT_NAME
+	   AND A.REFERENCED_TYPE = B.OBJECT_TYPE
+	   AND B.STATUS = 'INVALID'
+</Resource>
+
+<Resource name='sql.invalid.type'>
+	ALTER TYPE {invalid_name} COMPILE 
+</Resource>
+
+<Resource name='sql.invalid.view'>
+	ALTER VIEW {invalid_name} COMPILE 
+</Resource>
+
+<Resource name='sql.invalid.type.body'>
+	ALTER TYPE {invalid_name} COMPILE BODY 
+</Resource>
+
+<Resource name='sql.invalid.package'>
+	ALTER PACKAGE {invalid_name} COMPILE 
+</Resource>
+
+<Resource name='sql.invalid.package.body'>
+	ALTER PACKAGE {invalid_name} COMPILE BODY 
+</Resource>
+
+</Config>

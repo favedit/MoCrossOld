@@ -1,0 +1,111 @@
+#include "MoCmType.h"
+
+MO_NAMESPACE_BEGIN
+
+//============================================================
+// <T>判断字符串是否为数字。</T>
+//
+// @param pValue 字符串
+// @return 是否为数字
+//============================================================
+TBool R{type_name}::IsInteger(TCharC* pValue){
+   return RNumber<T{type_name}>::Is{sign_name}Integer<TChar>(pValue);
+}
+
+//============================================================
+// <T>解析十进制8位字符串为{type_label}。</T>
+//
+// @param pValue 十进制字符串
+// @return {type_label}
+//============================================================
+T{type_name} R{type_name}::Parse8(TChar8C* pValue){
+   return RNumber<T{type_name}>::Parse{sign_name}<TChar8>(pValue);
+}
+
+//============================================================
+// <T>解析十进制16位字符串为{type_label}。</T>
+//
+// @param pValue 十进制字符串
+// @return {type_label}
+//============================================================
+T{type_name} R{type_name}::Parse16(TChar16C* pValue){
+   return RNumber<T{type_name}>::Parse{sign_name}<TChar16>(pValue);
+}
+
+//============================================================
+// <T>解析十进制32位字符串为{type_label}。</T>
+//
+// @param pValue 十进制字符串
+// @return {type_label}
+//============================================================
+T{type_name} R{type_name}::Parse32(TChar32C* pValue){
+   return RNumber<T{type_name}>::Parse{sign_name}<TChar32>(pValue);
+}
+
+//============================================================
+// <T>解析十进制字符串为{type_label}。</T>
+//
+// @param pValue 十进制字符串
+// @return {type_label}
+//============================================================
+T{type_name} R{type_name}::Parse(TCharC* pValue){
+   return RNumber<T{type_name}>::Parse{sign_name}<TChar>(pValue);
+}
+
+//============================================================
+// <T>解析十进制字符串为{type_label}。</T>
+//
+// @param pValue 十进制字符串
+// @param defaultValue 默认内容
+// @return {type_label}
+//============================================================
+T{type_name} R{type_name}::Parse(TCharC* pValue, T{type_name} defaultValue){
+   return RNumber<T{type_name}>::Parse{sign_name}<TChar>(pValue, defaultValue);
+}
+
+//============================================================
+// <T>解析十六进制字符串为{type_label}。</T>
+//
+// @param pValue 十六进制字符串
+// @return {type_label}
+//============================================================
+T{type_name} R{type_name}::ParseHex(TCharC* pValue){
+   return RNumber<T{type_name}>::Parse{sign_name}Hex<TChar>(pValue);
+}
+
+//============================================================
+// <T>解析十六进制字符串为{type_label}。</T>
+//
+// @param pValue 十六进制字符串
+// @param defaultValue 默认内容
+// @return {type_label}
+//============================================================
+T{type_name} R{type_name}::ParseHex(TCharC* pValue, T{type_name} defaultValue){
+   return RNumber<T{type_name}>::Parse{sign_name}Hex<TChar>(pValue, defaultValue);
+}
+
+//============================================================
+// <T>从{type_label}解析到十进制字符串。</T>
+//
+// @param pBuffer 缓冲字符串
+// @param capacity 缓冲字符串容量
+// @param value {type_label}
+// @return 十进制字符串    
+//============================================================
+TCharC* R{type_name}::ToString(TChar* pBuffer, TInt capacity, T{type_name} value){
+   return RNumber<T{type_name}>::To{sign_name}String<TChar>(pBuffer, capacity, value);
+}
+
+//============================================================
+// <T>从{type_label}解析到十六进制字符串。</T>
+//
+// @param pBuffer 缓冲字符串
+// @param capacity 缓冲字符串容量
+// @param value {type_label}
+// @return 十六进制字符串    
+//============================================================
+TCharC* R{type_name}::ToHexString(TChar* pBuffer, TInt capacity, T{type_name} value){
+   return RNumber<T{type_name}>::ToHexString<TChar>(pBuffer, capacity, value);
+}
+
+MO_NAMESPACE_END

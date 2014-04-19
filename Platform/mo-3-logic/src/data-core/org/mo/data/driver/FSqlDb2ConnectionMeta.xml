@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Root>
+   <Driver>
+      <Class>com.ibm.db2.jcc.DB2Driver</Class>
+   </Driver>
+   <SQL>
+      <Info>
+         <Information>
+            SELECT BANNER AS INFORMATION
+            FROM V$VERSION
+         </Information>
+         <SysStat>
+            SELECT STATISTIC# STATISTIC, NAME, CLASS, VALUE
+            FROM V$SYSSTAT
+            ORDER BY STATISTIC#
+         </SysStat>
+         <Parameter>
+            SELECT NUM, NAME, TYPE, VALUE, ISDEFAULT, ISSES_MODIFIABLE, ISSYS_MODIFIABLE, ISMODIFIED, ISADJUSTED, DESCRIPTION, UPDATE_COMMENT
+            FROM V$PARAMETER
+            ORDER BY NUM
+         </Parameter>
+         <LogFile>
+            SELECT
+               A.GROUP#,
+               A.MEMBER,
+               B.BYTES,
+               B.THREAD#,
+               B.FIRST_CHANGE#,
+               B.FIRST_TIME,
+               B.STATUS,
+               A.STATUS
+            FROM V$LOGFILE A, V$LOG B
+            WHERE A.GROUP# = B.GROUP#
+            ORDER BY A.GROUP#, A.MEMBER
+         </LogFile>
+      </Info>
+      <Session>
+         <List>
+            SELECT SID, STATUS, USERNAME, SCHEMANAME, OSUSER, MACHINE, PROGRAM, SERIAL# SERIAL, COMMAND FROM V$SESSION
+            WHERE TYPE = 'USER'
+            ORDER BY SID
+         </List>
+         <Statistic>
+            SELECT A.STATISTIC#, B.CLASS, B.NAME, A.VALUE
+            FROM V$SESSTAT A, V$STATNAME B
+            WHERE A.SID = :1 AND A.STATISTIC# = B.STATISTIC#
+         </Statistic>
+         <SQL>
+            SELECT B.ADDRESS, B.HASH_VALUE, B.SQL_TEXT FROM V$OPEN_CURSOR A, V$SQLTEXT B
+            WHERE A.SID = :1 AND A.ADDRESS = B.ADDRESS AND A.HASH_VALUE = B.HASH_VALUE
+            ORDER BY B.ADDRESS, B.HASH_VALUE, B.COMMAND_TYPE, B.PIECE
+         </SQL>
+         <Object>
+            SELECT A.OBJECT, A.OWNER, A.TYPE, B.OBJECT_ID
+            FROM V$ACCESS A, ALL_OBJECTS B
+            WHERE A.OWNER = B.OWNER AND A.OBJECT = B.OBJECT_NAME AND A.TYPE = B.OBJECT_TYPE AND A.SID = :1  AND A.OWNER != 'PUBLIC'  AND A.OWNER != 'SYS'
+         </Object>
+         <Kill>ALTER SYSTEM KILL SESSION '{sid},{serir}'</Kill>
+      </Session>
+      <Lock>
+         <List>
+            SELECT
+               A.SID,
+               C.USERNAME,
+               C.OSUSER,
+               DECODE(A.TYPE, 'TM', B1.NAME, ''),
+               DECODE(A.TYPE, 'TM', B2.NAME, ''),
+               A.TYPE,
+               A.LMODE,
+               A.REQUEST,
+               A.CTIME,
+               A.BLOCK
+            FROM V$LOCK A, SYS.OBJ$ B1, SYS.USER$ B2, V$SESSION C
+            WHERE A.ID1 = B1.OBJ#(+) AND B1.OWNER# = B2.USER#(+) AND A.SID = C.SID  AND C.TYPE = 'USER'
+         </List>
+      </Lock>
+      <Space>
+         <Table>
+            SELECT
+               D.TABLESPACE_NAME,
+               NVL(U.BYTES, 0),
+               NVL(U.MAXBYTES, 0),
+               NVL(F.BYTES, 0),
+               D.STATUS
+            FROM DBA_TABLESPACES D,
+               (SELECT TABLESPACE_NAME, SUM(BYTES) BYTES, SUM(MAXBYTES) MAXBYTES
+                  FROM DBA_DATA_FILES GROUP BY TABLESPACE_NAME) U,
+               (SELECT TABLESPACE_NAME, SUM(BYTES) BYTES
+                  FROM DBA_FREE_SPACE GROUP BY TABLESPACE_NAME) F
+            WHERE
+               (D.EXTENT_MANAGEMENT != 'LOCAL' OR D.CONTENTS != 'TEMPORARY') AND
+               D.TABLESPACE_NAME = U.TABLESPACE_NAME(+) AND
+               D.TABLESPACE_NAME = F.TABLESPACE_NAME(+)
+            UNION ALL
+            SELECT
+               D.TABLESPACE_NAME,
+               NVL(U.BYTES, 0),
+               NVL(U.MAXBYTES, 0),
+               NVL(U.BYTES, 0) - NVL(F.BYTES, 0),
+               D.STATUS
+            FROM DBA_TABLESPACES D,
+               (SELECT TABLESPACE_NAME, SUM(BYTES) BYTES, SUM(MAXBYTES) MAXBYTES
+                  FROM DBA_TEMP_FILES GROUP BY TABLESPACE_NAME) U,
+               (SELECT TABLESPACE_NAME, SUM(BYTES_CACHED) BYTES
+                  FROM V$TEMP_EXTENT_POOL GROUP BY TABLESPACE_NAME) F
+            WHERE
+               D.EXTENT_MANAGEMENT = 'LOCAL' AND
+               D.CONTENTS = 'TEMPORARY' AND
+               D.TABLESPACE_NAME = U.TABLESPACE_NAME(+) AND
+               D.TABLESPACE_NAME = F.TABLESPACE_NAME(+)
+         </Table>
+         <Segment>
+            SELECT A.SEGMENT_NAME, A.OWNER, A.TABLESPACE_NAME, B.BYTES, NVL(C.HWMSIZE, 0), C.GETS, C.WAITS, A.STATUS
+            FROM DBA_ROLLBACK_SEGS A, DBA_SEGMENTS B, V$ROLLSTAT C
+            WHERE A.SEGMENT_NAME = B.SEGMENT_NAME AND B.SEGMENT_TYPE = 'ROLLBACK' AND A.SEGMENT_ID = C.USN(+)
+         </Segment>
+         <FileSpace>
+            SELECT
+               D.FILE_NAME,
+               D.TABLESPACE_NAME,
+               D.BYTES,
+               D.MAXBYTES,
+               SUM(S.BYTES),
+               V.STATUS
+            FROM DBA_DATA_FILES D, DBA_FREE_SPACE S, V$DATAFILE V
+            WHERE D.FILE_ID = S.FILE_ID (+) AND D.FILE_NAME = V.NAME
+            GROUP BY D.FILE_NAME, D.TABLESPACE_NAME, V.STATUS, D.BYTES, D.MAXBYTES
+            UNION ALL
+            SELECT
+               D.FILE_NAME,
+               D.TABLESPACE_NAME,
+               D.BYTES,
+               D.MAXBYTES,
+               D.BYTES - NVL(SUM(S.BYTES_CACHED), 0),
+               V.STATUS
+            FROM DBA_TEMP_FILES D, V$TEMP_EXTENT_POOL S, V$TEMPFILE V
+            WHERE D.FILE_ID = S.FILE_ID (+) AND D.FILE_NAME = V.NAME
+            GROUP BY D.FILE_NAME, D.TABLESPACE_NAME, V.STATUS, D.BYTES, D.MAXBYTES
+         </FileSpace>
+         <Directory>SELECT DIRECTORY_NAME, DIRECTORY_PATH FROM DBA_DIRECTORIES</Directory>
+      </Space>
+      <User>
+         <List>
+            SELECT USERNAME, USER_ID, CREATED
+            FROM ALL_USERS
+            ORDER BY USERNAME
+         </List>
+         <DbaUsers>
+            SELECT USERNAME, DEFAULT_TABLESPACE, TEMPORARY_TABLESPACE, PROFILE, CREATED, ACCOUNT_STATUS
+            FROM DBA_USERS
+            ORDER BY USERNAME
+         </DbaUsers>
+         <Profile>
+            SELECT
+               PROFILE,
+               MAX(DECODE(RESOURCE_NAME, 'SESSIONS_PER_USER', LIMIT, '')),
+               MAX(DECODE(RESOURCE_NAME, 'CPU_PER_SESSION', LIMIT, '')),
+               MAX(DECODE(RESOURCE_NAME, 'CONNECT_TIME', LIMIT, '')),
+               MAX(DECODE(RESOURCE_NAME, 'IDLE_TIME', LIMIT, '')),
+               MAX(DECODE(RESOURCE_NAME, 'LOGICAL_READS_PER_SESSION', LIMIT, '')),
+               MAX(DECODE(RESOURCE_NAME, 'PRIVATE_SGA', LIMIT, '')),
+               MAX(DECODE(RESOURCE_NAME, 'COMPOSITE_LIMIT', LIMIT, '')),
+               MAX(DECODE(RESOURCE_NAME, 'CPU_PER_CALL', LIMIT, '')),
+               MAX(DECODE(RESOURCE_NAME, 'LOGICAL_READS_PER_CALL', LIMIT, ''))
+            FROM DBA_PROFILES
+            GROUP BY PROFILE
+         </Profile>
+         <Role>
+            SELECT ROLE, PASSWORD_REQUIRED
+            FROM DBA_ROLES
+            ORDER BY ROLE
+         </Role>
+      </User>
+      <Table>
+         <List>
+            SELECT
+               OBJECT_NAME TABLE_NAME,
+               OBJECT_NAME || DECODE(SUBOBJECT_NAME , NULL, NULL, '.' || SUBOBJECT_NAME) DISPLAY_NAME
+            FROM ALL_OBJECTS
+            WHERE OWNER = {owner} AND OBJECT_TYPE = 'TABLE'
+            ORDER BY OBJECT_NAME
+         </List>
+         <InfoList>
+            SELECT
+               OBJECT_NAME TABLE_NAME,
+               SUBOBJECT_NAME,
+               OBJECT_ID,
+               DATA_OBJECT_ID,
+               OBJECT_TYPE,
+               TO_CHAR(CREATED, 'YYYYMMDDHH24MISS') CREATED,
+               TO_CHAR(LAST_DDL_TIME, 'YYYYMMDDHH24MISS') LAST_DDL_TIME,
+               TIMESTAMP,
+               DECODE(STATUS, 'VALID', 'Y', 'N') STATUS,
+               TEMPORARY,
+               GENERATED,
+               SECONDARY
+            FROM USER_OBJECTS
+            WHERE OBJECT_TYPE = 'TABLE'
+            ORDER BY OBJECT_NAME
+         </InfoList>
+         <Info>
+            SELECT
+               OBJECT_NAME TABLE_NAME,
+               SUBOBJECT_NAME,
+               OBJECT_ID,
+               DATA_OBJECT_ID,
+               OBJECT_TYPE,
+               TO_CHAR(CREATED, 'YYYYMMDDHH24MISS') CREATED,
+               TO_CHAR(LAST_DDL_TIME, 'YYYYMMDDHH24MISS') LAST_DDL_TIME,
+               TIMESTAMP,
+               DECODE(STATUS, 'VALID', 'Y', 'N') STATUS,
+               TEMPORARY,
+               GENERATED,
+               SECONDARY
+            FROM USER_OBJECTS
+            WHERE
+               OBJECT_TYPE = 'TABLE' AND
+               OBJECT_NAME = {table_name}
+            ORDER BY OBJECT_NAME
+         </Info>
+         <Data>
+            SELECT ROWIDTOCHAR(ROWID) ROW_ID, {table_name}.*
+            FROM {table_name}
+         </Data>
+         <Column>
+            <List>
+               SELECT
+                  COLUMN_NAME,
+                  COLUMN_NAME || '(' || DATA_LENGTH || ')' DISPLAY_NAME
+               FROM USER_TAB_COLUMNS
+               WHERE
+                  TABLE_NAME = {table_name}
+               ORDER BY COLUMN_ID
+            </List>
+            <InfoList>
+               SELECT
+                  C.COLUMN_ID,
+                  NVL(K.IS_KEY, 'N') IS_KEY,
+                  C.NULLABLE IS_NULL,
+                  NVL(K.IS_PUBLIC, 'Y') IS_PUBLIC,
+                  C.COLUMN_NAME,
+                  C.DATA_TYPE,
+                  C.DATA_LENGTH,
+                  C.DATA_DEFAULT
+               FROM USER_TAB_COLUMNS C,
+                  (SELECT IC.COLUMN_NAME, 'Y' IS_KEY, 'N' IS_PUBLIC
+                  FROM USER_INDEXES I, USER_IND_COLUMNS IC
+                  WHERE I.TABLE_NAME = {table_name} AND
+                     I.INDEX_NAME = IC.INDEX_NAME) K
+               WHERE C.TABLE_NAME = {table_name} AND
+                  C.COLUMN_NAME = K.COLUMN_NAME(+)
+               ORDER BY C.COLUMN_ID
+            </InfoList>
+         </Column>
+         <Constraint>
+            <PrimaryKey>
+               <Info>
+                  SELECT
+                     OWNER,
+                     CONSTRAINT_NAME,
+                     CONSTRAINT_TYPE,
+                     TABLE_NAME,
+                     SEARCH_CONDITION,
+                     R_OWNER,
+                     R_CONSTRAINT_NAME,
+                     DELETE_RULE,
+                     STATUS,
+                     DEFERRABLE,
+                     DEFERRED,
+                     VALIDATED,
+                     GENERATED,
+                     BAD,
+                     RELY,
+                     LAST_CHANGE,
+                     INDEX_OWNER,
+                     INDEX_NAME,
+                     INVALID,
+                     VIEW_RELATED
+                  FROM USER_CONSTRAINTS
+                  WHERE OWNER = {owner} AND
+                     TABLE_NAME = {table_name} AND
+                     CONSTRAINT_TYPE = 'P'
+               </Info>
+               <ColumnList>
+                  SELECT
+	                  C.INDEX_NAME,
+	                  IC.COLUMN_NAME
+                  FROM USER_CONSTRAINTS C, USER_INDEXES I, USER_IND_COLUMNS IC
+                  WHERE C.OWNER = {owner} AND
+                     C.TABLE_NAME = {table_name} AND
+                     C.CONSTRAINT_TYPE = 'P' AND
+                     C.INDEX_NAME = I.INDEX_NAME AND
+                     I.INDEX_NAME = IC.INDEX_NAME
+                  ORDER BY IC.COLUMN_POSITION
+               </ColumnList>
+            </PrimaryKey>
+            <ForeignKey>
+               <List>
+                  SELECT
+                     OWNER,
+                     CONSTRAINT_NAME,
+                     CONSTRAINT_TYPE,
+                     TABLE_NAME,
+                     SEARCH_CONDITION,
+                     R_OWNER,
+                     R_CONSTRAINT_NAME,
+                     DELETE_RULE,
+                     STATUS,
+                     DEFERRABLE,
+                     DEFERRED,
+                     VALIDATED,
+                     GENERATED,
+                     BAD,
+                     RELY,
+                     LAST_CHANGE,
+                     INDEX_OWNER,
+                     INDEX_NAME,
+                     INVALID,
+                     VIEW_RELATED
+                  FROM USER_CONSTRAINTS
+                  WHERE OWNER = {owner} AND
+                     TABLE_NAME = {table_name} AND
+                     CONSTRAINT_TYPE = 'R'
+               </List>
+            </ForeignKey>
+            <InfoList>
+               SELECT
+                  OWNER,
+                  CONSTRAINT_NAME,
+                  CONSTRAINT_TYPE,
+                  TABLE_NAME,
+                  SEARCH_CONDITION,
+                  R_OWNER,
+                  R_CONSTRAINT_NAME,
+                  DELETE_RULE,
+                  STATUS,
+                  DEFERRABLE,
+                  DEFERRED,
+                  VALIDATED,
+                  GENERATED,
+                  BAD,
+                  RELY,
+                  LAST_CHANGE,
+                  INDEX_OWNER,
+                  INDEX_NAME,
+                  INVALID,
+                  VIEW_RELATED
+               FROM USER_CONSTRAINTS
+               WHERE OWNER = {owner} AND
+                  TABLE_NAME = {table_name} AND
+                  CONSTRAINT_TYPE IN ('P', 'R')
+            </InfoList>
+         </Constraint>
+         <RenameSQL>ALERT TABLE {OldName} TO {NewName}</RenameSQL>
+         <TableColumnRename>ALERT TABLE {OldName} RENAME COLUMN {OldColName} {NewColName}</TableColumnRename>
+         <DeleteSQL>DROP TABLE {TableName}</DeleteSQL>
+      </Table>
+      <View>
+         <List>
+            SELECT
+               OBJECT_NAME VIEW_NAME,
+               OBJECT_NAME || DECODE(SUBOBJECT_NAME , NULL, NULL, '.' || SUBOBJECT_NAME) DISPLAY_NAME
+            FROM ALL_OBJECTS
+            WHERE OWNER = {owner} AND OBJECT_TYPE = 'VIEW'
+            ORDER BY OBJECT_NAME
+         </List>
+         <Data>SELECT * FROM {TableName}</Data>
+         <RenameSQL>ALERT TABLE {OldName} TO {NewName}</RenameSQL>
+         <TableColumnRename>ALERT TABLE {OldName} RENAME COLUMN {OldColName} {NewColName}</TableColumnRename>
+         <DeleteSQL>DROP TABLE {TableName}</DeleteSQL>
+      </View>
+      <Package>
+         <List>
+            SELECT
+               OBJECT_NAME PACKAGE_NAME,
+               OBJECT_NAME || DECODE(SUBOBJECT_NAME , NULL, NULL, '.' || SUBOBJECT_NAME) DISPLAY_NAME
+            FROM ALL_OBJECTS
+            WHERE OWNER = {owner} AND OBJECT_TYPE = 'PACKAGE'
+            ORDER BY OBJECT_NAME
+         </List>
+         <Info>
+            SELECT
+               OBJECT_NAME PACKAGE_NAME,
+               SUBOBJECT_NAME,
+               OBJECT_ID,
+               DATA_OBJECT_ID,
+               OBJECT_TYPE,
+               TO_CHAR(CREATED, 'YYYYMMDDHH24MISS') CREATED,
+               TO_CHAR(LAST_DDL_TIME, 'YYYYMMDDHH24MISS') LAST_DDL_TIME,
+               TIMESTAMP,
+               DECODE(STATUS, 'VALID', 'Y', 'N') STATUS,
+               TEMPORARY,
+               GENERATED,
+               SECONDARY
+            FROM USER_OBJECTS
+            WHERE
+               OBJECT_TYPE = 'PACKAGE' AND
+               OBJECT_NAME = {package_name}
+            ORDER BY OBJECT_NAME
+         </Info>
+         <Head>
+            <Source>
+               SELECT TEXT
+               FROM USER_SOURCE
+               WHERE TYPE = 'PACKAGE' AND NAME={package_name}
+               ORDER BY LINE
+            </Source>
+         </Head>
+         <Body>
+            <Source>
+               SELECT LINE, TEXT
+               FROM USER_SOURCE
+               WHERE TYPE = 'PACKAGE BODY' AND NAME={package_name}
+               ORDER BY LINE
+            </Source>
+         </Body>
+         <Data>SELECT * FROM {TableName}</Data>
+         <RenameSQL>ALERT TABLE {OldName} TO {NewName}</RenameSQL>
+         <TableColumnRename>ALERT TABLE {OldName} RENAME COLUMN {OldColName} {NewColName}</TableColumnRename>
+         <DeleteSQL>DROP TABLE {TableName}</DeleteSQL>
+      </Package>
+   </SQL>
+   <Error>
+      <ORA001>Database Connection Error</ORA001>
+   </Error>
+   <Info>
+   </Info>
+</Root>

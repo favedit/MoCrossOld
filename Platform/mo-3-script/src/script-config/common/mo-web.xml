@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+
+   <!-- ==================================================== -->
+   <!-- Form                                                 -->
+   <!-- ==================================================== -->
+   <Component
+         face      = 'org.mobj.web.core.form.IFormConsole'
+         class     = 'org.mobj.web.core.form.FFormConsole'
+         scope     = 'global' >
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- WebTreeConsole:树目录控制台                                  -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:storeInterval - 存储检查间隔                              -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!--  R:releaseInterrupt - 释放资源                               -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mobj.web.core.webtree.IWebTreeConsole'
+         class = 'org.mobj.web.core.webtree.FWebTreeConsole'
+         scope = 'global'>
+      <Property name='persistence'>web-tree</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='storeInterval'>10000</Property>
+      <Property name='workpath'>${home.web.config}/design.webtree</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+      <Release name='releaseInterrupt'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!--  SideBarConsole:设定控制台                                   -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mobj.web.core.sidebar.ISideBarConsole'
+         class = 'org.mobj.web.core.sidebar.FSideBarConsole'
+         scope = 'global' >
+      <Property name='persistence'>web-sidebar</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/design.sidebar</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+	</Component>	
+
+   <!-- ============================================================ -->
+   <!-- WebFormConsole:表单控制台                                    -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:storeInterval - 存储检查间隔                              -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!--  R:releaseInterrupt - 释放资源                               -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mobj.web.core.webform.IWebFormConsole'
+         class = 'org.mobj.web.core.webform.FWebFormConsole'
+         scope = 'global'>
+      <Property name='persistence'>web-form</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='storeInterval'>10000</Property>
+      <Property name='cacheTimeout'>10000</Property>
+      <Property name='workpath'>${home.web.config}/design.webform</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+      <Release name='releaseInterrupt'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- WebTemplateConsole:表单控制台                                    -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:storeInterval - 存储检查间隔                              -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!--  R:releaseInterrupt - 释放资源                               -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mobj.web.core.webtheme.IWebThemeConsole'
+         class = 'org.mobj.web.core.webtheme.FWebThemeConsole'
+         scope = 'global'>
+      <Property name='persistence'>web-theme</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='storeInterval'>10000</Property>
+      <Property name='workpath'>${home.web.config}/design.webtheme</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+      <Release name='releaseInterrupt'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- WebFormDatasetConsole:表单数据控制台                         -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mobj.web.core.webform.IWebFormDatasetConsole'
+         class = 'org.mobj.web.core.webform.FWebFormDatasetConsole'
+         scope = 'global'/>
+
+   <!-- ==================================================== -->
+   <!-- WebSession                                           -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.web.core.session.IWebSessionConsole'
+         class = 'org.mobj.web.core.session.FWebSessionConsole'
+         scope = 'global' >
+      <Property name='sessionClassName'>org.mobj.web.core.session.FWebSession</Property>
+      <Property name='interval'>10000</Property>
+      <Property name='timeout'>7200000</Property>
+      <Property name='memoryTimeout'>1200000</Property>
+      <Property name='workfile'>${home.work}/web.session/session.ser</Property>
+      <Property name='directory'>${home.work}/web.session/</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeResume'/>
+      <Release name='releaseInterrupt'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- WebMessage                                           -->
+   <!-- ==================================================== -->
+   <Component
+         face      = 'org.mobj.web.core.message.IWebMessageConsole'
+         class     = 'org.mobj.web.core.message.FWebMessageConsole'
+         scope     = 'global' >
+      <Property name='pageFatal'>fatal@/apl/message/WebMessage.wa</Property>
+      <Property name='pageError'>error@/apl/message/WebMessage.wa</Property>
+      <Property name='pageTimeout'>timeout@/apl/message/WebMessage.wa</Property>
+      <Property name='pageWarn'>warn@/apl/message/WebMessage.wa</Property>
+      <Property name='pageInfo'>info@/apl/message/WebMessage.wa</Property>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- WebProcess                                           -->
+   <!-- ==================================================== -->
+   <Component
+         face      = 'org.mobj.web.core.process.IWebProcessConsole'
+         class     = 'org.mobj.web.core.process.FWebProcessConsole'
+         scope     = 'global' >
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- WebAction                                            -->
+   <!-- ==================================================== -->
+   <Component
+         face      = 'org.mobj.web.core.action.IActionConsole'
+         class     = 'org.mobj.web.core.action.FActionConsole'
+         scope     = 'global' >
+      <Initialize name='addContext'>
+         <Parameter>/game</Parameter>
+         <Parameter>/game</Parameter>
+      </Initialize>
+      <Initialize name='addContext'>
+         <Parameter>/system</Parameter>
+         <Parameter>/system</Parameter>
+      </Initialize>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- WebService                                           -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.web.core.service.IServiceConsole'
+         class = 'org.mobj.web.core.service.FServiceConsole'
+         scope = 'global' >
+      <Property name='encoding'>UTF-8</Property>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- WebServlet                                           -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.web.core.servlet.IWebServletConsole'
+         class = 'org.mobj.web.core.servlet.FWebServletConsole'
+         scope = 'global' >
+      <Property name='encoding'>UTF-8</Property>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- WebCache                                             -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.web.core.cache.ICacheConsole'
+         class = 'org.mobj.web.core.cache.FCacheConsole'
+         scope = 'global' >
+      <Property name='workPath'>${home.web}</Property>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Format                                               -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.web.core.format.IFormatConsole'
+         class = 'org.mobj.web.core.format.FFormatConsole'
+         scope = 'global' >
+      <Property name='workPath'>${home.web.config}/web.format</Property>
+   </Component>
+
+	<!-- ============================================================ -->
+   <Component
+         face  = 'org.mobj.web.core.parser.js.IJavascriptHelper'
+         class = 'org.mobj.web.core.parser.js.FJavascriptHelper'
+         scope = 'global'/>
+
+   <!-- ==================================================== -->
+   <!-- WebUpload                                            -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.web.core.upload.IWebUploadConsole'
+         class = 'org.mobj.web.core.upload.FWebUploadConsole'
+         scope = 'global' >
+      <Property name='directory'>${home.work}/web.upload/</Property>
+      <Property name='encoding'>UTF-8</Property>
+   </Component>
+
+</Config>

@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Root>
+   <Driver>
+      <JDBCClass>org.postgresql.Driver</JDBCClass>
+      <DriverClass>jfa.com.db.drv.FDBDriverPostgreSQL</DriverClass>
+   </Driver>
+   <SQL>
+      <Database>
+         <Info>
+            SELECT
+               CURRENT_DATABASE() AS CURRENT_DATABASE,
+               CURRENT_SCHEMA() AS CURRENT_SCHEMA,
+               CURRENT_USER AS CURRENT_USER,
+               SESSION_USER AS SESSION_USER,
+               USER AS USER,
+               VERSION() AS VERSION
+         </Info>
+         <List>
+            SELECT DATNAME AS DATABASE_NAME
+            FROM PG_DATABASE
+            ORDER BY DATNAME
+            <INFO>
+               SELECT
+                  DATNAME AS DATABASE_NAME
+               FROM PG_TABLES
+               WHERE TABLEOWNER = {owner}
+            </INFO>
+         </List>
+      </Database>
+      <Table>
+         <Info>
+            SELECT
+               TABLENAME AS TABLE_NAME,
+               HASINDEXES AS HAS_INDEXES,
+               HASRULES AS HAS_RULES,
+               HASTRIGGERS AS HAS_TRIGGERS
+            FROM PG_TABLES
+            WHERE TABLEOWNER = {owner}
+               AND TABLENAME = {table_name}
+         </Info>
+         <List>
+            SELECT TABLENAME AS TABLE_NAME
+            FROM PG_TABLES
+            WHERE TABLEOWNER = {owner}
+            ORDER BY TABLENAME
+            <Info>
+               SELECT
+                  TABLENAME AS TABLE_NAME,
+                  HASINDEXES AS HAS_INDEXES,
+                  HASRULES AS HAS_RULES,
+                  HASTRIGGERS AS HAS_TRIGGERS
+               FROM PG_TABLES
+               WHERE TABLEOWNER = {owner}
+               ORDER BY TABLENAME
+            </Info>
+            <Info2>
+               SELECT
+                  TABLENAME AS TABLE_NAME,
+                  HASINDEXES AS HAS_INDEXES,
+                  HASRULES AS HAS_RULES,
+                  HASTRIGGERS AS HAS_TRIGGERS
+               FROM PG_TABLES
+               WHERE (SCHEMANAME = 'public') AND (TABLEOWNER = {owner})
+               ORDER BY TABLENAME
+            </Info2>
+         </List>
+         <Constraint>
+            <PrimaryKey>
+               <Fetch>
+                  SELECT
+                     CON.CONKEY AS KEY_COLUMN_IDS
+                  FROM PG_CONSTRAINT CON
+                  LEFT OUTER JOIN PG_CLASS CLS ON CON.CONRELID = CLS.OID
+                  WHERE (CON.CONTYPE = 'p') AND (CLS.RELNAME = {table_name})
+               </Fetch>
+            </PrimaryKey>
+         </Constraint>
+         <Column>
+            <List>
+               SELECT
+                  A.ATTNUM AS NUMBER,
+                  A.ATTNAME AS COLUMN_NAME
+               FROM PG_CLASS C, PG_ATTRIBUTE A
+               WHERE C.OID = A.ATTRELID
+                  AND (C.RELNAME = {table_name})
+                  AND (A.ATTNUM > 0)
+                  AND (A.ATTISDROPPED = FALSE)
+               ORDER BY A.ATTNUM
+               <Info>
+                  SELECT
+                     A.ATTNUM AS COLUMN_ID,
+                     A.ATTNAME AS COLUMN_NAME,
+                     T.TYPNAME AS DATA_TYPE,
+                     T.TYPLEN AS DATA_LENGTH,
+                     (A.ATTNOTNULL = FALSE) AS IS_NULL
+                  FROM PG_CLASS C, PG_ATTRIBUTE A, PG_TYPE T
+                  WHERE C.OID = A.ATTRELID
+                     AND A.ATTTYPID = T.OID
+                     AND (C.RELNAME = {table_name})
+                     AND (A.ATTNUM > 0)
+                     AND (A.ATTISDROPPED = FALSE)
+                  ORDER BY ATTNUM
+               </Info>
+            </List>
+         </Column>
+      </Table>
+      <View>
+         <List>
+            SELECT VIEWNAME AS VIEW_NAME
+            FROM PG_VIEWS
+            WHERE VIEWOWNER = {owner}
+            ORDER BY VIEWNAME
+            <INFO>
+               SELECT *
+               FROM PG_VIEWS
+               WHERE VIEWOWNER = {owner}
+            </INFO>
+         </List>
+         <SOURCE>
+            SELECT DEFINITION AS SOURCE
+            FROM PG_VIEWS
+            WHERE VIEWOWNER = {owner} AND
+               VIEWNAME = {view_name}
+         </SOURCE>
+      </View>
+      <Procedure>
+         <Info>
+            SELECT
+               P.PRONAME AS PROCEDURE_NAME,
+               P.PRONARGS AS PARAM_COUNT,
+               OIDVECTORTYPES(P.PROARGTYPES) AS PARAMS,
+               T .TYPNAME AS RETURN_TYPE,
+               P.PROSRC AS SOURCE,
+               S.USENAME AS OWNER_NAME,
+               L.LANNAME AS LANGUAGE_NAME,
+               P.PROISSTRICT,
+               P.PROVOLATILE
+            FROM PG_PROC P
+            LEFT OUTER JOIN PG_TYPE T ON P.PRORETTYPE = T .OID
+            LEFT OUTER JOIN PG_LANGUAGE L ON P.PROLANG = L.OID
+            LEFT OUTER JOIN PG_SHADOW S ON P.PROOWNER = S.USESYSID
+            WHERE P.PRONAME = {procedure_name}
+         </Info>
+         <List>
+            SELECT PRONAME AS PROCEDURE_NAME
+            FROM PG_PROC
+            GROUP BY PRONAME
+            ORDER BY UPPER(PRONAME)
+            <INFO>
+               SELECT s.usename, l.lanname, p.proisstrict AS Expr2, p.provolatile AS Expr1,
+               t .typname AS return_type, oidvectortypes(p.proargtypes) AS params,
+               p.PRONAME AS PROCEDURE_NAME, p.pronargs AS param_count,
+               p.prosrc AS source, p.*
+               FROM { oj pg_proc p LEFT OUTER JOIN
+               pg_type t ON p.prorettype = t .oid } LEFT OUTER JOIN
+               pg_language l ON p.prolang = l.oid LEFT OUTER JOIN
+               pg_shadow s ON p.proowner = s.usesysid
+            </INFO>
+         </List>
+         <SOURCE>
+            SELECT DEFINITION AS SOURCE
+            FROM PG_VIEWS
+            WHERE VIEWOWNER = {owner} AND
+               VIEWNAME = {view_name}
+         </SOURCE>
+      </Procedure>
+   </SQL>
+</Root>

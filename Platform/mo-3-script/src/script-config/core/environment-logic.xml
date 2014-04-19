@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+   
+   <Component
+         face  = 'org.mobj.eng.environment.IEnvironmentConsole'
+         class = 'org.mobj.eng.environment.FEnvironmentConsole'
+         scope = 'global' >
+      <Property name='persistence'>eng-environment</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/system.environment</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+   
+   	<Component
+         face  = 'org.mobj.eng.data.IDatabaseConsole'
+         class = 'org.mobj.eng.data.FDatabaseConsole'
+         scope = 'global'>
+      <Property name='default'>MOGM</Property>
+      <Initialize name='add'>
+         <Parameter>
+            <Component
+                  class = 'org.mobj.eng.data.FConnectionConsole'>
+               <Property name='name'>MOGM</Property>
+               <Property name='class'>org.mobj.com.data.driver.FSqlOracleConnection</Property>
+               <Property name='driver'>oracle.jdbc.driver.OracleDriver</Property>
+               <Property name='url'>jdbc:oracle:thin:@192.168.1.2:1521:YYIS</Property>
+               <Property name='user'>GAME</Property>
+               <Property name='password'>GAME</Property>
+               <Property name='initConnectionNumber'>1</Property>
+               <Property name='maxConnectionNumber'>8</Property>
+               <Property name='activeTimeLimit'>60000</Property>
+               <Property name='connectionTimeLimit'>600000</Property>
+               <Property name='retryCount'>10</Property>
+               <Property name='retryDelay'>10</Property>
+               <Property name='testSql'>SELECT 1 FROM DUAL</Property>
+               <Property name='testTime'>30000</Property>
+               <Property name='closeTimeLimit'>5000</Property>
+            </Component>
+         </Parameter>
+      </Initialize>
+      <Release name='releaseAll'/>
+   </Component>
+
+</Config>

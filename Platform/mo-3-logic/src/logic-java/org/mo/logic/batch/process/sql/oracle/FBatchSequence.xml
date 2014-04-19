@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Config>
+
+<Resource name='has.sequence'>
+	SELECT 1
+    FROM USER_SEQUENCES
+    WHERE SEQUENCE_NAME = {sequence_name}
+</Resource>
+
+<Resource name='create.sequence'>
+	CREATE SEQUENCE {sequence_name}
+    MINVALUE 1
+    MAXVALUE 999999999999999999999999999 
+    START WITH 1
+    INCREMENT BY 1 
+    CACHE 20
+</Resource>
+
+<Resource name='drop.sequence'>
+	DROP SEQUENCE {sequence_name}
+</Resource>
+
+</Config>

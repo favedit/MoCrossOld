@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+
+   <!-- ==================================================== -->
+   <!-- Property                                             -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.logic.property.ILogicPropertyConsole'
+         class = 'org.mobj.logic.property.FLogicPropertyConsole'
+         scope = 'global' >
+      <Property name='templateFace'>design.persistence.xmlface</Property>
+      <Property name='templateObject'>design.persistence.xmlobject</Property>
+      <Property name='persistence'>logic.property</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/logic.property</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Event Persistence                                    -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.logic.event.ILogicEventTypeConsole'
+         class = 'org.mobj.logic.event.FLogicEventTypeConsole'
+         scope = 'global' >
+      <Property name='templateFace'>design.persistence.xmlface</Property>
+      <Property name='templateObject'>design.persistence.xmlobject</Property>
+      <Property name='persistence'>logic.event</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/logic.event</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+  
+   <!-- ==================================================== -->
+   <!-- Event Persistence                                    -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.logic.store.IStoreConsole'
+         class = 'org.mobj.logic.store.FStoreConsole'
+         scope = 'global' >
+      <Property name='pathSystemConfig'>${home.web}/WEB-INF/svr/sys</Property>
+      <Property name='pathUserConfig'>${home.web}/WEB-INF/svr/usr</Property>
+      <Property name='pathSystemResource'>${home.web}/svr/sys</Property>
+      <Property name='pathUserResource'>${home.web}/svr/usr</Property>
+      <Property name='pathTemporary'>${home.web}/svr/tmp</Property>
+   </Component> 
+
+   <!-- ==================================================== -->
+   <!-- Schedule Persistence                                 -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.logic.schedule.ILogicScheduleGroupConsole'
+         class = 'org.mobj.logic.schedule.FLogicScheduleGroupConsole'
+         scope = 'global' >
+      <Property name='templateFace'>design.persistence.xmlface</Property>
+      <Property name='templateObject'>design.persistence.xmlobject</Property>
+      <Property name='persistence'>logic.schedule</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/logic.schedule</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Process Persistence                                  -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.logic.process.ILogicProcessConsole'
+         class = 'org.mobj.logic.process.FLogicProcessConsole'
+         scope = 'global' >
+      <Property name='templateFace'>design.persistence.xmlface</Property>
+      <Property name='templateObject'>design.persistence.xmlobject</Property>
+      <Property name='persistence'>logic.process</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/logic.process</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Project Persistence                                  -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.logic.project.ILogicProjectConsole'
+         class = 'org.mobj.logic.project.FLogicProjectConsole'
+         scope = 'global' >
+      <Property name='templateFace'>design.persistence.xmlface</Property>
+      <Property name='templateObject'>design.persistence.xmlobject</Property>
+      <Property name='persistence'>logic.project</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/logic.project</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+   
+   <!-- ==================================================== -->
+   <!-- Logic session console                                -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.logic.session.ILogicSessionConsole'
+         class = 'org.mobj.logic.session.FLogicSessionConsole'
+         scope = 'global' >
+   </Component>
+   
+   <!-- ==================================================== -->
+   <!-- Process Persistence                                  -->
+   <!-- ==================================================== -->
+	<Component
+			face  = 'org.mobj.logic.resource.ILogicResourceConsole'
+			class = 'org.mobj.logic.resource.FLogicResourceConsole'
+			deploy = 'start'
+			scope = 'global'>
+      	<Property name='directory'>${home.web.store}/resource</Property>
+      	<Property name='workpath'>${home.work}/data.resource/</Property>
+	</Component>
+
+   <!-- ==================================================== -->
+   <!-- Logic Email Console                                  -->
+   <!-- ==================================================== -->
+	<Component
+			face  = 'org.mobj.logic.event.handler.IMailEventHander'
+			class = 'org.mobj.logic.event.handler.FMailEventHander'
+			scope = 'global'>
+	</Component>
+
+   <!-- ==================================================== -->
+   <!-- Logic Email Console                                  -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.jfa.face.logic.calendar.ICalendarService'
+         class = 'org.mobj.jfa.face.logic.calendar.FCalendarService'
+         scope = 'global'>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Deploy Persistence                                -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.logic.deploy.IDeployConsole'
+         class = 'org.mobj.logic.deploy.FDeployConsole'
+         scope = 'global' >
+      <Property name='templateFace'>design.persistence.xmlface</Property>
+      <Property name='templateObject'>design.persistence.xmlobject</Property>
+      <Property name='persistence'>system.deploy</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/system.deploy</Property>
+      <!-- 数据集目录 -->
+      <Property name='datasetPath'>${home.web.config}/database.dataset</Property>
+      <!-- 建立单元路径 -->
+      <Property name='logicUnit'>${home.deploy.store}/logic/</Property>
+      <!-- 建立列表包头文件的路径 -->
+      <Property name='enum'>${home.deploy.store}/enum/</Property>
+      <!-- 建立用户视图的路径 -->
+      <Property name='installSqlViewUser'>${home.deploy.store}/view/install/</Property>
+      <!-- 卸载用户视图的路径 -->
+      <Property name='uninstallSqlViewUser'>${home.deploy.store}/view/uninstall/</Property>
+      <!-- 建立系统包的路径 -->
+      <Property name='installSqlSystem'>${home.deploy.store}/system/install/</Property>
+      <!-- 卸载系统包的路径 -->
+      <Property name='uninstallSqlSystem'>${home.deploy.store}/system/uninstall/</Property>
+      <!-- CSV文件建立表数据的路径 -->
+      <Property name='installDataTable'>${home.deploy.store}/data/</Property>
+      <!-- 建立类型包的路径 -->
+      <Property name='installSqlType'>${home.deploy.store}/type/install/</Property>
+      <!-- 卸载类型包的路径 -->
+      <Property name='uninstallSqlType'>${home.deploy.store}/type/uninstall/</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+   
+</Config>

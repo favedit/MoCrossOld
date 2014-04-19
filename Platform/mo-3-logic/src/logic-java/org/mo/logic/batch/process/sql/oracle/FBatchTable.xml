@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Config>
+
+<Resource name='query.foreign'>
+	SELECT
+		fk.TABLE_NAME,
+		fk.CONSTRAINT_NAME
+	FROM
+		USER_CONSTRAINTS pk,
+		USER_CONSTRAINTS fk
+	WHERE pk.TABLE_NAME = {table_name}
+		AND pk.CONSTRAINT_NAME = fk.R_CONSTRAINT_NAME
+</Resource>
+
+</Config>

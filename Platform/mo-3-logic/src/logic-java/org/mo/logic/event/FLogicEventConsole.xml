@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Configuration>
+
+<Resource name='event.list'>
+SELECT *
+FROM(
+   SELECT
+      OUID                                         OUID,
+      SERVER_ID                                    SERVER_ID,
+      SY_NETWORK_SERVER_DI.Get_Code(SERVER_ID)     SERVER_CODE,
+      GROUP_ID                                     GROUP_ID,
+      LG_EVENT_GROUP_DI.Get_Name(GROUP_ID)         GROUP_NAME,
+      TYPE_ID                                      TYPE_ID,
+      LG_EVENT_TYPE_DI.Get_Name(TYPE_ID)           TYPE_NAME,
+      STATUS_CD                                    STATUS_CD,
+      PRIORITY_CD                                  PRIORITY_CD,
+      LG_EVENT_TYPE_DI.Get_Process_Cd(TYPE_ID)     PROCESS_CD,
+      LG_EVENT_TYPE_DI.Get_Process_Invoke(TYPE_ID) PROCESS_INVOKE,
+      PROCESS_PERCENT                              PROCESS_PERCENT,
+      PROCESS_USER_ID                              PROCESS_USER_ID,
+      PM_USER_DI.Get_Name(PROCESS_USER_ID)         PROCESS_USER_NAME,
+      RECEIVE_USER_ID                              RECEIVE_USER_ID,
+      PM_USER_DI.Get_Name(RECEIVE_USER_ID)         RECEIVE_USER_NAME,
+      CREATE_USER_ID                               CREATE_USER_ID,
+      PM_USER_DI.Get_Name(CREATE_USER_ID)          CREATE_USER_NAME,
+      BEGIN_DATE                                   BEGIN_DATE,
+      END_DATE                                     END_DATE,
+      CREATE_DATE                                  CREATE_DATE,
+      LG_EVENT_GROUP_DI.Find_Config_Pack(GROUP_ID) GROUP_CONFIG,
+      LG_EVENT_TYPE_DI.Find_Config_Pack(TYPE_ID)   TYPE_CONFIG,
+      PARAMETERS                                   EVENT_CONFIG
+   FROM LG_EVENT
+   WHERE STATUS_CD='P'
+      AND LG_EVENT_GROUP_DI.Get_Is_Valid(GROUP_ID) = 'Y')
+WHERE SERVER_CODE = {server_code}
+</Resource>
+
+<Resource name='event.parameter'>
+SELECT
+   NAME,
+   TYPE_CD,
+   LINE_NUMBER,
+   DATA_VALUE
+FROM LG_EVENT_PARAMETER
+WHERE EVENT_ID={event_id}
+ORDER BY NAME, TYPE_CD, LINE_NUMBER
+</Resource>
+
+</Configuration>

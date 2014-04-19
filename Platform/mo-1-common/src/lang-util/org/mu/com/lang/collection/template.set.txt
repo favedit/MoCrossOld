@@ -1,0 +1,682 @@
+#ifndef __MO_CM_SET_H__
+#define __MO_CM_SET_H__
+
+#ifndef __MO_CM_RUNTIME_H__
+#include "MoCmRuntime.h"
+#endif // __MO_CM_RUNTIME_H__
+
+#ifndef __MO_CM_TYPE_H__
+#include "MoCmType.h"
+#endif // __MO_CM_TYPE_H__
+
+MO_NAMESPACE_BEGIN
+
+#define MO_SET_COMPSET_THRESHOLD 8
+
+//============================================================
+// <T>集合节点的定义。</T>
+//
+// @struct
+//============================================================
+template <typename N, typename V>
+struct SSetEntry{
+public:
+   // @attribute 关联指针
+   SSetEntry* linkPtr;
+   // @attribute 前一个指针
+   SSetEntry* priorPtr;
+   // @attribute 后一个指针
+   SSetEntry* nextPtr;
+   // @attribute 代码
+   N code;
+   // @attribute 内容
+   V value;
+public:
+   //------------------------------------------------------------
+   // <T>生成索引。</T>
+   MO_INLINE( TInt MakeIndex() ){
+      return (TInt)code;
+   }
+};
+
+//============================================================
+// <T>内存排序类。</T>
+//
+// @tool
+// @history 100318 MAOCY 创建
+//============================================================
+template <typename N, typename V>
+class RSet{
+public:
+   // 比较函数
+   typedef TInt (*HComparer)(const V source, const V target, TAny* pCondition);
+   // 入口对象
+   typedef SSetEntry<N, V> SEntry;
+public:
+   //------------------------------------------------------------
+   // <T>生成代码的索引。</T>
+   static MO_INLINE( TInt MakeIndex(N code, TInt size) ){
+      TInt value = (TInt)code;
+      TInt index = value % size;
+      if(index < 0){
+         index = -index;
+      }
+      return index;
+   }
+   //------------------------------------------------------------
+   // <T>扩充当前对象的哈希值数组。</T>
+   static void ResizeEntries(SEntry** ppEntries, TInt size, SEntry* pFirst){
+      // 循环取出旧的节点列表内容，移到新的节点列表上
+      TInt n = -1;
+      SEntry* pEntry = pFirst;
+      while(NULL != pEntry){
+         SEntry* nextPtr = pEntry->nextPtr;
+         // 将当前节点存储到新建的节点列表上去
+         TInt index = MakeIndex(pEntry->code, size);
+         pEntry->linkPtr = ppEntries[index];
+         ppEntries[index] = pEntry;
+         // 获得下一个节点指针
+         pEntry = nextPtr;
+      }
+   }
+private:
+   //------------------------------------------------------------
+   // <T>调整双向链表的头尾指针。</T>
+   static void AdjustHeadTail(SEntry*& h, SEntry*& t, SEntry* p1, SEntry* p2) {
+      if(p1 == h){
+         h = p2;
+      }else if(p2 == h){
+         h = p1;
+      }if(p1 == t){
+         t = p2;
+      }else if(p2 == t){
+         t = p1;
+      }
+   }
+   //------------------------------------------------------------
+   // <T>Set排序中指针交换。</T>
+   static void ItemSwap(SEntry*& h, SEntry*& t, SEntry* p1, SEntry* p2) {
+      SEntry* tmp;
+      if(p1 && p2 && p1 != p2) {
+         if(p1->nextPtr != p2 && p1->priorPtr != p2) {
+            AdjustHeadTail(h, t, p1, p2);
+            tmp = p1->nextPtr;
+            p1->nextPtr = p2->nextPtr;
+            p2->nextPtr = tmp;
+            if(p1->nextPtr){
+               p1->nextPtr->priorPtr = p1;
+            }
+            if(p2->nextPtr){
+               p2->nextPtr->priorPtr = p2;
+            }
+            tmp = p1->priorPtr;
+            p1->priorPtr = p2->priorPtr;
+            p2->priorPtr = tmp;
+            if(p1->priorPtr){
+               p1->priorPtr->nextPtr = p1;
+            }
+            if(p2->priorPtr){
+               p2->priorPtr->nextPtr = p2;
+            }
+         } else if(p1->nextPtr == p2) {
+            AdjustHeadTail(h, t, p1, p2);
+            p1->nextPtr = p2->nextPtr;
+            if(p1->nextPtr){
+               p1->nextPtr->priorPtr = p1;
+            }
+            p2->priorPtr = p1->priorPtr;
+            if(p2->priorPtr){
+               p2->priorPtr->nextPtr = p2;
+            }
+            p1->priorPtr = p2;
+            p2->nextPtr = p1;
+         } else {
+            tmp = p1;
+            p1 = p2;
+            p2 = tmp;
+            ItemSwap(h, t, p1, p2);
+         }
+      }
+   }
+public:
+   //------------------------------------------------------------
+   // <T>用于元素比较少的双向链表的插入排序。</T>
+   static void InsertSort(SEntry*& pHead, SEntry*& pTail, HComparer hComparer) {
+      if(pHead != pTail) {
+         for(SEntry* p = pHead->nextPtr; p != pTail->nextPtr; p = p->nextPtr) {
+            for(SEntry* pp = p; pp != pHead; /*pp = pp->priorPtr*/) {
+               if(hComparer(pp->code, pp->priorPtr->code) < 0) {
+                  ItemSwap(pHead, pTail, pp, pp->priorPtr);
+               } else {
+                  break;
+               }
+            }
+         }
+      }
+   }
+   //------------------------------------------------------------
+   // <T>用于元素比较多的双向链表的快速排序。</T>
+   static void QuickSort(SEntry*& pHead, SEntry*& pTail, HComparer hComparer){
+      if(pHead != pTail) {
+         V data = pHead->code;
+         SEntry* last = pHead;
+         for(SEntry* p = pHead->nextPtr; p != pTail->nextPtr; p = p->nextPtr) {
+            if(hComparer(p->code, data) < 0) {
+               last = last->nextPtr;
+               ItemSwap(pHead, pTail, last, p);
+               SEntry* tmp = last;
+               last = p;
+               p = tmp;
+            }
+         }
+         SEntry* tmp = pHead;
+         ItemSwap(pHead, pTail, tmp, last);
+         last = tmp;
+         if(last != pHead){
+            last = last->priorPtr;
+            QuickSort(pHead, last, hComparer);
+         }
+         if(tmp != pTail){
+            tmp = tmp->nextPtr;
+            QuickSort(tmp, pTail, hComparer);
+         }
+      }
+   }
+};
+
+//============================================================
+// <T>只读链表迭代器。</T>
+//
+// @tool
+//============================================================
+template <typename N, typename V>
+class TSetIteratorC{
+public:
+   typedef SSetEntry<N, V> SEntry;
+protected:
+   // @attribute 开始节点
+   const SEntry* _pFirst;
+   // @attribute 结束节点
+   const SEntry* _pLast;
+   // @attribute 当前节点
+   const SEntry* _pEntry;
+public:
+   //------------------------------------------------------------
+   // <T>构造只读链表迭代器。</T>
+   TSetIteratorC(){
+   }
+   //------------------------------------------------------------
+   // <T>构造只读链表迭代器。</T>
+   TSetIteratorC(const TSetIteratorC<N, V>& iterator){
+      _pFirst = iterator._pFirst;
+      _pLast = iterator._pLast;
+      _pEntry = iterator._pEntry;
+   }
+   //------------------------------------------------------------
+   // <T>构造只读链表迭代器。</T>
+   TSetIteratorC(const SEntry* pFirst, const SEntry* pLast, const SEntry* pEntry = NULL){
+      _pFirst = pFirst;
+      _pLast = pLast;
+      _pEntry = pEntry;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>获得当前位置的数据内容。</T>
+   MO_INLINE( const V& operator *() const ){
+      MO_ASSERT(_pEntry);
+      return _pEntry->value;
+   }
+   //------------------------------------------------------------
+   // <T>获得当前位置的数据内容。</T>
+   MO_INLINE( const V operator->() const ){
+      MO_ASSERT(_pEntry);
+      return _pEntry->value;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>当前节点是否含有数据。</T>
+   MO_INLINE( TBool IsEmpty() ){
+      return (NULL == _pEntry);
+   }
+   //------------------------------------------------------------
+   // <T>判断数据内容是否相等。</T>
+   MO_INLINE( TBool Equals(V value) ){
+      MO_ASSERT(_pEntry);
+      return _pEntry->value == value;
+   }
+   //------------------------------------------------------------
+   // <T>获得当前位置的数据代码。</T>
+   MO_INLINE( N Code() ){
+      MO_ASSERT(_pEntry);
+      return _pEntry->code;
+   }
+   //------------------------------------------------------------
+   // <T>获得当前位置的数据内容。</T>
+   MO_INLINE( const V ValueC() const ){
+      MO_ASSERT(_pEntry);
+      return _pEntry->value;
+   }
+   //------------------------------------------------------------
+   // <T>获得当前位置的数据内容。</T>
+   template <typename C>
+   MO_INLINE( C ValueC() const ){
+      MO_ASSERT(_pEntry);
+      return (C)_pEntry->value;
+   }
+   //------------------------------------------------------------
+   // <T>获得当前位置的数据内容。</T>
+   MO_INLINE( const V& Value() const ){
+      MO_ASSERT(_pEntry);
+      return _pEntry->value;
+   }
+   //------------------------------------------------------------
+   // <T>获得当前位置的数据内容。</T>
+   template <typename C>
+   MO_INLINE( const C& Value() const ){
+      MO_ASSERT(_pEntry);
+      return (const C&)_pEntry->value;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>判断是否存在下一个位置。</T>
+   MO_INLINE( TBool HasNext() ){
+      return (NULL == _pEntry) ? (NULL != _pFirst) : (NULL != _pEntry->nextPtr);
+   }
+   //------------------------------------------------------------
+   // <T>判断是否存在下一个位置。</T>
+   MO_INLINE( TBool HasPrior() ){
+      return (NULL == _pEntry) ? (NULL != _pFirst) : (NULL != _pEntry->priorPtr);
+   }
+   //------------------------------------------------------------
+   //<T>移动到下一个位置。</T>
+   MO_INLINE( TBool Next() ){
+      _pEntry = (NULL == _pEntry) ? _pFirst : _pEntry->nextPtr;
+      return (NULL != _pEntry);
+   }
+   //------------------------------------------------------------
+   // <T>移动到上一个位置。</T>
+   MO_INLINE( TBool Prior() ){
+      _pEntry = (NULL == _pEntry) ? _pFirst : _pEntry->priorPtr;
+      return (NULL != _pEntry);
+   }
+};
+
+//============================================================
+// <T>链表迭代器。</T>
+//
+// @tool
+//============================================================
+template <typename N, typename V>
+class TSetIterator{
+public:
+   typedef SSetEntry<N, V> SEntry;
+protected:
+   // @attribute 开始节点
+   SEntry* _pFirst;
+   // @attribute 结束节点
+   SEntry* _pLast;
+   // @attribute 当前节点
+   SEntry* _pEntry;
+public:
+   //------------------------------------------------------------
+   // <T>构造链表迭代器。</T>
+   TSetIterator(){
+      MO_CLEAR(_pFirst);
+      MO_CLEAR(_pLast);
+      MO_CLEAR(_pEntry);
+   }
+   //------------------------------------------------------------
+   // <T>构造链表迭代器。</T>
+   TSetIterator(const TSetIterator<N, V>& iterator){
+      _pFirst = iterator._pFirst;
+      _pLast = iterator._pLast;
+      _pEntry = iterator._pEntry;
+   }
+   //------------------------------------------------------------
+   // <T>构造链表迭代器。</T>
+   TSetIterator(SEntry* pFirst, SEntry* pLast, SEntry* pEntry){
+      _pFirst = pFirst;
+      _pLast = pLast;
+      _pEntry = pEntry;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>获得当前位置的数据内容。</T>
+   MO_INLINE( const V& operator *() const ){
+      MO_ASSERT(_pEntry);
+      return _pEntry->value;
+   }
+   //------------------------------------------------------------
+   // <T>获得当前位置的数据内容。</T>
+   MO_INLINE( const V operator->() const ){
+      MO_ASSERT(_pEntry);
+      return _pEntry->value;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>当前节点是否含有数据。</T>
+   MO_INLINE( TBool IsEmpty() ){
+      return (NULL == _pEntry);
+   }
+   //------------------------------------------------------------
+   // <T>判断数据内容是否相等。</T>
+   MO_INLINE( TBool Equals(V value) ){
+      MO_ASSERT(_pEntry);
+      return _pEntry->value == value;
+   }
+   //------------------------------------------------------------
+   // <T>获得当前位置的数据代码。</T>
+   MO_INLINE( N Code() ){
+      MO_ASSERT(_pEntry);
+      return _pEntry->code;
+   }
+   //------------------------------------------------------------
+   // <T>获得当前位置的数据内容。</T>
+   MO_INLINE( const V ValueC() const ){
+      MO_ASSERT(_pEntry);
+      return _pEntry->value;
+   }
+   //------------------------------------------------------------
+   // <T>获得当前位置的数据内容。</T>
+   template <typename C>
+   MO_INLINE( C ValueC() const ){
+      MO_ASSERT(_pEntry);
+      return (C)_pEntry->value;
+   }
+   //------------------------------------------------------------
+   // <T>获得当前位置的数据内容。</T>
+   MO_INLINE( V& Value() ){
+      MO_ASSERT(_pEntry);
+      return _pEntry->value;
+   }
+   //------------------------------------------------------------
+   // <T>获得当前位置的数据内容。</T>
+   template <typename C>
+   MO_INLINE( C& Value() ){
+      MO_ASSERT(_pEntry);
+      return (const C&)_pEntry->value;
+   }
+   //------------------------------------------------------------
+   // <T>设置当前位置的数据名称。</T>
+   MO_INLINE( void Set(const V& value) ){
+      MO_ASSERT(_pEntry);
+      _pEntry->value = value;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>判断是否存在下一个位置。</T>
+   MO_INLINE( TBool HasNext() ){
+      return (NULL == _pEntry) ? (NULL != _pFirst) : (NULL != _pEntry->nextPtr);
+   }
+   //------------------------------------------------------------
+   // <T>判断是否存在下一个位置。</T>
+   MO_INLINE( TBool HasPrior() ){
+      return (NULL == _pEntry) ? (NULL != _pFirst) : (NULL != _pEntry->priorPtr);
+   }
+   //------------------------------------------------------------
+   //<T>移动到下一个位置。</T>
+   MO_INLINE( TBool Next() ){
+      _pEntry = (NULL == _pEntry) ? _pFirst : _pEntry->nextPtr;
+      return (NULL != _pEntry);
+   }
+   //------------------------------------------------------------
+   // <T>移动到上一个位置。</T>
+   MO_INLINE( TBool Prior() ){
+      _pEntry = (NULL == _pEntry) ? _pFirst : _pEntry->priorPtr;
+      return (NULL != _pEntry);
+   }
+};
+
+//============================================================
+// <T>哈希集合对象。</T>
+//
+// @manager
+// @history 100427 MAOCY
+//============================================================
+template <typename N, typename V>
+class MSet{
+public:
+   // @type 比较函数
+   typedef TInt (*HComparer)(const V source, const V target, TAny* pCondition);
+   // @type 入口类型
+   typedef SSetEntry<N, V> SEntry;
+   // @type 只读迭代器
+   typedef TSetIteratorC<N, V> TIteratorC;
+   // @type 迭代器
+   typedef TSetIterator<N, V> TIterator;
+protected:
+   // @attribute 个数
+   TInt _count;
+   // @attribute 首指针
+   SEntry* _pFirst;
+   // @attribute 尾指针
+   SEntry* _pLast;
+   // @attribute 未使用指针
+   SEntry* _pFree;
+   // @attribute 入口总数
+   TInt _entryCount;
+   // @attribute 入口集合
+   SEntry** _ppEntries;
+public:
+   //------------------------------------------------------------
+   // <T>构造哈希集合对象。</T>
+   MSet(){
+      _count = 0;
+      MO_CLEAR(_pFirst);
+      MO_CLEAR(_pLast);
+      MO_CLEAR(_pFree);
+      _entryCount = 0;
+      MO_CLEAR(_ppEntries);
+   }
+   //------------------------------------------------------------
+   // <T>析构哈希集合对象。</T>
+   ~MSet(){
+      Release();
+   }
+protected:
+   //------------------------------------------------------------
+   // <T>创建一个入口对象。</T>
+   MO_INLINE( SEntry* InnerEntryCreate() ){
+      return MO_MEM_CREATE(SEntry);
+   }
+   //------------------------------------------------------------
+   // <T>删除一个入口对象。</T>
+   MO_INLINE( void InnerEntryDelete(SEntry* pEntry) ){
+      MO_MEM_DELETE(pEntry);
+   }
+   //------------------------------------------------------------
+   // <T>创建入口对象集合。</T>
+   MO_INLINE( SEntry** InnerEntriesAlloc(TInt size) ){
+      return (SEntry**)MO_MEM_ALLOC(sizeof(SEntry*) * size);
+   }
+   //------------------------------------------------------------
+   // <T>删除入口对象集合。</T>
+   MO_INLINE( void InnerEntriesFree(SEntry** ppEntries) ){
+      MO_MEM_FREE(ppEntries);
+   }
+   //------------------------------------------------------------
+   // <T>确保当前对象可以容纳指定大小的数据。</T>
+   // <P>当哈希表是旧表的8倍时开始扩充，扩大2倍。</P>
+   void EnsureSize(TInt size = MO_OBJECT_CAPACITY){
+      if(NULL == _ppEntries) {
+         // 生成哈希表
+         _entryCount = MO_LG_MAX(size, MO_OBJECT_CAPACITY);
+         _ppEntries = InnerEntriesAlloc(_entryCount);
+         RTypes<SEntry*>::Clear(_ppEntries, _entryCount);
+      } else if (size > (_entryCount << 3)) {
+         // 释放旧节点内存
+         InnerEntriesFree(_ppEntries);
+         // 扩充内存时处理
+         TInt capacity = _entryCount + ((MO_LG_MAX(_entryCount, size)) >> 1);
+         // 当总数大于节点列表长度8倍时，重新扩充节点列表
+         SEntry** ppEntries = InnerEntriesAlloc(capacity);
+         RTypes<SEntry*>::Clear(ppEntries, capacity);
+         // 循环取出旧的节点列表内容，移到新的节点列表上
+         SEntry* pEntry = _pFirst;
+         while(NULL != pEntry){
+            // 将当前节点存储到新建的节点列表上去
+            TInt index = pEntry->code % capacity;
+            pEntry->linkPtr = ppEntries[index];
+            ppEntries[index] = pEntry;
+            // 获得保存的下一个节点指针
+            pEntry = pEntry->nextPtr;
+         }
+         // 保存新的节点列表
+         _entryCount = capacity;
+         _ppEntries = ppEntries;
+      }
+   }
+{source_inner}
+{source_1}
+};
+
+//============================================================
+// <T>变长栈集合。</T>
+//
+// @tool
+//============================================================
+template <typename N, typename V>
+class TSet : public MSet<N, V>{
+public:
+   //------------------------------------------------------------
+   // <T>构造哈希集合对象。</T>
+   TSet(){
+      this->EnsureSize(MO_OBJECT_CAPACITY);
+   }
+   //------------------------------------------------------------
+   // <T>构造哈希集合对象。</T>
+   TSet(TInt capacity){
+      this->EnsureSize(capacity);
+   }
+   //------------------------------------------------------------
+   // <T>构造哈希集合对象。</T>
+   TSet(const MSet<N, V>& values){
+      this->Append(&values);
+   }
+   //------------------------------------------------------------
+   // <T>构造哈希集合对象。</T>
+   TSet(const TSet<N, V>& values){
+      this->Append(&values);
+   }
+};
+
+//============================================================
+// <T>变长堆集合。</T>
+//
+// @tool
+//============================================================
+template <typename N, typename V>
+class FSet :
+      public FFree,
+      public MSet<N, V>{
+public:
+   //------------------------------------------------------------
+   // <T>构造集合对象。</T>
+   FSet(){
+      this->EnsureSize(MO_OBJECT_CAPACITY);
+   }
+   //------------------------------------------------------------
+   // <T>构造集合对象。</T>
+   FSet(TInt capacity){
+      this->EnsureSize(capacity);
+   }
+   //------------------------------------------------------------
+   // <T>构造集合对象。</T>
+   FSet(const MSet<N, V>& set){
+      this->Append(&set);
+   }
+   //------------------------------------------------------------
+   // <T>构造集合对象。</T>
+   FSet(const FSet<N, V>& set){
+      this->Append(&set);
+   }
+};
+
+//============================================================
+// <T>哈希表对象。</T>
+//
+// @template
+// @type N 名称类型
+// @type V 内容类型
+// @param S 数据长度
+//============================================================
+template<typename N, typename V, TInt S>
+class TFixSet{
+public:
+   // @type 比较函数
+   typedef TInt (*HComparer)(const V source, const V target, TAny* pCondition);
+   // @type 入口类型
+   typedef SSetEntry<N, V> SEntry;
+   // @type 只读迭代器
+   typedef TSetIteratorC<N, V> TIteratorC;
+   // @type 迭代器
+   typedef TSetIterator<N, V> TIterator;
+protected:
+   // @attribute 个数
+   TInt _count;
+   // @attribute 首指针
+   SEntry* _pFirst;
+   // @attribute 尾指针
+   SEntry* _pLast;
+   // @attribute 未使用指针
+   SEntry* _pFree;
+   // @attribute 入口总数
+   TInt _entryCount;
+   // @attribute 入口集合
+   SEntry* _entries[S];
+   // @attribute 使用个数
+   TInt _allocCount;
+   // @attribute 内存数据
+   TByte _memory[sizeof(SEntry) * S];
+public:
+   //------------------------------------------------------------
+   // 初始化固定长度的哈希表
+   TFixSet(){
+   }
+   //------------------------------------------------------------
+   // 初始化固定长度的哈希表
+   TFixSet(const MSet<N, V>& set){
+      this->Append(&set);
+   }
+   //------------------------------------------------------------
+   // 初始化固定长度的哈希表
+   TFixSet(const TFixSet<N, V, S>& set){
+      this->Append(&set);
+   }
+protected:
+   //------------------------------------------------------------
+   // <T>创建一个入口对象。</T>
+   MO_INLINE( SEntry* InnerEntryCreate() ){
+      // 查看未使用节点中是否有自由节点
+      MO_ASSERT(_allocCount + 1 < S);
+      // 收集新节点
+      SEntry* pEntries = (SEntry*)_memory;
+      SEntry* pEntry = pEntries[_allocCount++];
+      return pEntry;
+   }
+   //------------------------------------------------------------
+   // <T>删除一个入口对象。</T>
+   MO_INLINE( void InnerEntryDelete(SEntry* pEntry) ){
+   }
+   //------------------------------------------------------------
+   // <T>创建入口对象集合。</T>
+   MO_INLINE( SEntry** InnerEntriesAlloc(TInt size) ){
+      return _entries;
+   }
+   //------------------------------------------------------------
+   // <T>删除入口对象集合。</T>
+   MO_INLINE( void InnerEntriesFree(SEntry** ppEntries) ){
+   }
+   //------------------------------------------------------------
+   // <T>确保当前对象可以容纳指定大小的数据。</T>
+   // <P>当哈希表是旧表的8倍时开始扩充，扩大2倍。</P>
+   void EnsureSize(TInt size){
+      MO_ASSERT(size < S);
+   }
+{source_inner}
+{source_2}
+};
+
+MO_NAMESPACE_END
+
+#endif // __MO_CM_SET_H__

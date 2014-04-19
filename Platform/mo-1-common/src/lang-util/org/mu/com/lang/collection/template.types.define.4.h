@@ -1,0 +1,20 @@
+//------------------------------------------------------------
+MO_DEF_TFIXARRAY(TFixBools,   TBool);
+MO_DEF_TFIXARRAY(TFixBytes,   TByte);
+MO_DEF_TFIXARRAY(TFixChars,   TChar);
+MO_DEF_TFIXARRAY(TFixChar8s,  TChar8);
+MO_DEF_TFIXARRAY(TFixChar16s, TChar16);
+MO_DEF_TFIXARRAY(TFixChar32s, TChar32);
+MO_DEF_TFIXARRAY(TFixInts,    TInt);
+MO_DEF_TFIXARRAY(TFixInt8s,   TInt8);
+MO_DEF_TFIXARRAY(TFixInt16s,  TInt16);
+MO_DEF_TFIXARRAY(TFixInt32s,  TInt32);
+MO_DEF_TFIXARRAY(TFixInt64s,  TInt64);
+MO_DEF_TFIXARRAY(TFixUints,   TUint);
+MO_DEF_TFIXARRAY(TFixUint8s,  TUint8);
+MO_DEF_TFIXARRAY(TFixUint16s, TUint16);
+MO_DEF_TFIXARRAY(TFixUint32s, TUint32);
+MO_DEF_TFIXARRAY(TFixUint64s, TUint64);
+MO_DEF_TFIXARRAY(TFixFloats,  TFloat);
+MO_DEF_TFIXARRAY(TFixDoubles, TDouble);
+MO_DEF_TFIXARRAY(TFixPtrs,    TAny*);

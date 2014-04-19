@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+
+	<!-- ============================================================ -->
+	<!-- MonitorConsole:监视控制台                                    -->
+	<!--  P:priority - 线程高低                                       -->
+	<!--  I:initializeThread - 初始化开始线程                         -->
+	<!--  I:addDirectory - 增加监视配置目录                           -->
+	<!--  R:releaseThread - 释放线程                                  -->
+	<!-- ============================================================ -->
+	<Component
+			face  = 'org.mobj.core.monitor.IMonitorConsole'
+			class = 'org.mobj.core.monitor.FMonitorConsole'
+			scope = 'global'>
+		<Property name='priority'>2</Property>
+		<Initialize name='initializeThread'/>
+		<Initialize name='addDirectory'>
+			<Parameter>${home.config}/monitor</Parameter>
+		</Initialize>
+		<Release name='releaseThread'/>
+	</Component>
+
+	<!-- ============================================================ -->
+	<!-- BindConsole:线程绑定控制台                                   -->
+	<!-- ============================================================ -->
+	<Component
+			face  = 'org.mobj.core.bind.IBindConsole'
+			class = 'org.mobj.core.bind.FBindConsole'
+			scope = 'global' />
+
+	<!-- ============================================================ -->
+	<!-- VersionConsole:线程版本控制台                                -->
+	<!--  P:interval - 测试间隔                                       -->
+	<!--  P:priority - 线程高低                                       -->
+	<!--  P:workfile - 工作文件                                       -->
+	<!--  I:initialize - 初始化操作                                   -->
+	<!--  R:release - 释放操作                                        -->
+	<!-- ============================================================ -->
+	<Component
+			face  = 'org.mobj.core.thread.version.IVersionConsole'
+			class = 'org.mobj.core.thread.version.FVersionConsole'
+			scope = 'global' >
+		<Property name='interval'>1000</Property>
+		<Property name='priority'>1</Property>
+		<Property name='workfile'>${home.work}/version</Property>
+		<Initialize name='initialize'/>
+		<Release name='release'/>
+	</Component>
+
+	<!-- ==================================================== -->
+	<!-- Persistent                                           -->
+	<!-- ==================================================== -->
+	<Component
+			face  = 'org.mobj.core.persistent.IPersistentConsole'
+			class = 'org.mobj.core.persistent.FPersistentConsole'
+			scope = 'global'>
+		<Property name='path'>${home.work}/persistent</Property>
+		<Initialize name='initializeContext'/>
+		<Initialize name='initializePersistent'/>
+		<Release name='releasePersistent'/>
+	</Component>
+
+	<!-- ==================================================== -->
+	<!-- Parser                                               -->
+	<!-- ==================================================== -->
+	<Component
+			face  = 'org.mobj.core.parser.IParserConsole'
+			class = 'org.mobj.core.parser.FParserConsole'
+			scope = 'global'>
+		<Initialize name='register'>
+			<Parameter>java</Parameter>
+			<Parameter>org.mobj.core.parser.java.FJavaParser</Parameter>
+		</Initialize>
+	</Component>
+
+	<!-- ==================================================== -->
+	<!-- Context                                              -->
+	<!-- ==================================================== -->
+	<Component
+			face  = 'org.mobj.core.context.IContextConsole'
+			class = 'org.mobj.core.context.FContextConsole'
+			scope = 'global' >
+		<Property name='language'>cn</Property>
+	</Component>
+
+	<!-- ==================================================== -->
+	<!-- Convert                                              -->
+	<!-- ==================================================== -->
+	<Component
+		face  = 'org.mobj.core.convert.IConvertConsole'
+		class = 'org.mobj.core.convert.FConvertConsole'
+		scope = 'global'/>
+
+</Config>

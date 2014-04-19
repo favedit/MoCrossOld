@@ -1,0 +1,282 @@
+protected:
+   //------------------------------------------------------------
+   // <T>查找指定名称的索引位置。</T>
+   MO_INLINE( SEntry* InnerFindByName(N name) const ){
+      // 数据存在时
+      if(_count > 0){
+         THashCode hash = MakeHashCode(name);
+         // 查找名称的索引位置
+         SEntry* pEntry = {entries}[hash % _entryCount];
+         while(NULL != pEntry){
+            if(pEntry->hash == hash){
+               if(name == pEntry->name){
+                  return pEntry;
+               }
+            }
+            pEntry = pEntry->nextPtr;
+         }
+      }
+      // 未找到时返回结果
+      return NULL;
+   }
+   //------------------------------------------------------------
+   // <T>查找指定名称的索引位置。</T>
+   MO_INLINE( SEntry* InnerFindByValue(V value) const ){
+      // 数据存在时
+      if(_count > 0){
+         TInt n = 0;
+         while(++n < _entryCount){
+            SEntry* pEntry = {entries}[n];
+            while(NULL != pEntry){
+               if(pEntry->value == value){
+                  return pEntry;
+               }
+               pEntry = pEntry->nextPtr;
+            }
+         }
+      }
+      // 未找到时返回结果
+      return NULL;
+   }
+   //------------------------------------------------------------
+   // <T>扩充当前对象的哈希值数组。</T>
+   void EntriesResize(SEntry** ppEntries, TInt size){
+      // 循环取出旧的节点列表内容，移到新的节点列表上
+      TInt n = -1;
+      while(++n < _entryCount){
+         SEntry* pEntry = {entries}[n];
+         while(NULL != pEntry){
+            // 保存当前节点的下一个节点指针
+            SEntry* pLink = pEntry->linkPtr;
+            // 将当前节点存储到新建的节点列表上去
+            TInt index = pEntry->code % size;
+            pEntry->linkPtr = ppEntries[index];
+            ppEntries[index] = pEntry;
+            // 获得保存的下一个节点指针
+            pEntry = pLink;
+         }
+      }
+   }
+public:
+   //------------------------------------------------------------
+   // <T>获得指定名称的数据内容。</T>
+   V operator[](N name){
+      SEntry* pEntry = InnerFindByName(name);
+      MO_ASSERT(pEntry);
+      return pEntry->value;
+   }
+   //------------------------------------------------------------
+   // <T>判断当前哈希表和指定哈希表中所有数据内容是否相等。</T>
+   TBool operator==(const MMap<N, V>& set) const{
+      return Equals(&set);
+   }
+   //------------------------------------------------------------
+   // <T>判断当前哈希表和指定哈希表中所有数据内容是否不相等。</T>
+   TBool operator!=(const MMap<N, V>& set) const{
+      return !Equals(&set);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>当前哈希集合对象是否为空。</T>
+   MO_INLINE( TBool IsEmpty() const ){
+      return (0 == _count);
+   }
+   //------------------------------------------------------------
+   // <T>获得数据个数。</T>
+   MO_INLINE( TInt Count() const ){
+      return _count;
+   }
+   //------------------------------------------------------------
+   // <T>获得只读迭代器。</T>
+   TIteratorC IteratorC(){
+      return TIteratorC(_pFirst, _pLast);
+   }
+   //------------------------------------------------------------
+   // <T>获得迭代器。</T>
+   TIterator Iterator(){
+      return TIterator(_pFirst, _pLast);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>判断指定名称是否存在。</T>
+   TBool Contains(N name) const{
+      return (NULL != InnerFindByName(name));
+   }
+   //------------------------------------------------------------
+   // <T>判断指定名称是否存在。</T>
+   TBool ContainsValue(V value) const{
+      return (NULL != InnerFindByValue(value));
+   }
+   //------------------------------------------------------------
+   // <T>判断当前哈希表和指定哈希集合表是否相等。</T>
+   TBool Equals(const MMap<N, V>* pMap) const{
+      MO_ASSERT(pMap);
+      // 比较数量
+      if(_count != pMap->Count()){
+         return EFalse;
+      }
+      // 比较所有项目
+      SEntry* pEntry = _pFirst;
+      TIteratorC iterator = pMap->IteratorC();
+      while(iterator.Next()){
+         N& name = iterator.Name();
+         SEntry* pEntry = InnerFindByName(name);
+         if(NULL == pEntry){
+            return EFalse;
+         }
+         if(!iterator.IsValue(pEntry->value)){
+            return EFalse;
+         }
+      }
+      return ETrue;
+   }
+   //------------------------------------------------------------
+   // <T>获得首位置的数据。</T>
+   V First() const{
+      return (NULL != _pFirst) ? _pFirst->value : NULL;
+   }
+   //------------------------------------------------------------
+   // <T>获得尾位置的数据。</T>
+   V Last() const{
+      return (NULL != _pLast) ? _pLast->value : NULL;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>获得指定名称的哈希值。</T>
+   THashCode MakeHashCode(N name) const{
+      return (THashCode)name;
+   }
+   //------------------------------------------------------------
+   // <T>获得指定名称的数据。</T>
+   V Find(N name) const{
+      SEntry* pEntry = InnerFindByName(name);
+      return (NULL != pEntry) ? pEntry->value : (V)NULL;
+   }
+   //------------------------------------------------------------
+   // <T>获得指定名称的数据。</T>
+   V Get(N name) const{
+      SEntry* pEntry = InnerFindByName(name);
+      MO_ASSERT(pEntry);
+      return pEntry->value;
+   }
+   //------------------------------------------------------------
+   // <T>获得指定名称的数据。</T>
+   V Get(N name, V value) const{
+      SEntry* pEntry = InnerFindByName(name);
+      return (NULL != pEntry) ? pEntry->value : value;
+   }
+   //------------------------------------------------------------
+   // <T>根据名称设置数据。</T>
+   void Set(N name, V value){
+      THashCode hash = MakeHashCode(name);
+      if(_count > 0){
+         TInt index = hash % _entryCount;
+         // 查找数据出现的位置
+         SEntry* pEntry = {entries}[index];
+         while(NULL != pEntry) {
+            if(pEntry->Hash == hash){
+               if(name->Equals(pEntry->name)){
+                  pEntry->value = value;
+                  return;
+               }
+            }
+            pEntry = pEntry->linkPtr;
+         }
+      }
+      // 检查是否需要扩展内存
+      EnsureSize(_count + 1);
+      // 如果名称不存在，创建新入口对象
+      SEntry* pAlloc = InnerEntryAlloc();
+      // 大小可能改变，重新计算索引位置
+      TInt allocIndex = hash % _entryCount;
+      pAlloc->hash = hash;
+      pAlloc->linkPtr = {entries}[allocIndex];
+      pAlloc->name = name;
+      pAlloc->value = value;
+      {entries}[allocIndex] = pAlloc;
+      // 追加到链表尾部
+      InnerEntryPush(pAlloc);
+   }
+   //------------------------------------------------------------
+   // <T>获得指定数据的名称。</T>
+   N Search(V value) const{
+      SEntry* pEntry = InnerFindByValue(value);
+      return (NULL != pEntry) ? pEntry->name : (N)NULL;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>接收源哈希表内的全部数据。</T>
+   void Assign(const MMap<N, V>* pMap){
+      MO_ASSERT(pMap);
+      Clear();
+      Append(pMap);
+   }
+   //------------------------------------------------------------
+   // <T>追加源哈希表内的全部数据。</T>
+   void Append(const MMap<N, V>* pMap){
+      MO_ASSERT(pMap);
+      TIteratorC iterator = pMap->IteratorC();
+      while(iterator.Next()){
+         Set(iterator.Name(), iterator.Value());
+      }
+   }
+   //------------------------------------------------------------
+   // <T>移除指定名称的数据。</T>
+   V Remove(N name){
+      THashCode hash = MakeHashCode(name);
+      TInt index = hash % _entryCount;
+      // 查找数据出现的位置
+      V value = NULL;
+      SEntry* pPrior = {entries}[index];
+      SEntry* pEntry = pPrior;
+      while(NULL != pEntry){
+         if(pEntry->hash == hash){
+            if(name->Equals(pEntry->name)){
+               value = pEntry->value;
+               if(pEntry == pPrior){
+                  // 当前对象是第一个对象时
+                  {entries}[index] = pEntry->linkPtr;
+               }else{
+                  // 当前对象不是第一个对象时
+                  pPrior->linkPtr = pEntry->linkPtr;
+               }
+               // 删除当前节点
+               EntryRemove(pEntry);
+               break;
+            }
+         }
+         pPrior = pEntry;
+         pEntry = pEntry->linkPtr;
+      }
+      return value;
+   }
+   //------------------------------------------------------------
+   // <T>复制对象到外部数组。</T>
+   TInt CopyTo(V* pBuffer, TInt capacity) const{
+      TInt count = MO_LG_MIN(_count, capacity);
+      if(count > 0){
+         TInt n = 0;
+         SEntry* pEntry = _pFirst;
+         while(NULL != pEntry){
+            pBuffer[n++] = pEntry->value;
+            pEntry = pEntry->nextPtr;
+         }
+      }
+      return count;
+   }
+   //------------------------------------------------------------
+   // <T>清空当前哈希表全部数据。</T>
+   void Clear(){
+      // 清空链表
+      InnerClear();
+      // 清空节点数组
+      RTypes<SEntry*>::Clear({entries}, _entryCount);
+   }
+   //------------------------------------------------------------
+   // <T>内部释放。</T>
+   void Release(){
+      // 释放链表
+      InnerRelease();
+      // 释放节点数组
+      InnerEntriesFree({entries});
+   }

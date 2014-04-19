@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Root>
+   <Driver>
+      <JDBCClass>com.microsoft.jdbc.sqlserver.SQLServerDriver</JDBCClass>
+      <DriverClass>jfa.com.db.drv.FDBDriverMSSQL</DriverClass>
+   </Driver>
+   <SQL>
+      <Database>
+         <Info>
+            SELECT
+               @@VERSION AS VERSION,
+               @@CONNECTIONS AS CONNECTIONS,
+               @@CPU_BUSY AS CPU_BUSY,
+               @@CURSOR_ROWS AS CURSOR_ROWS,
+               @@DATEFIRST AS DATEFIRST,
+               @@DBTS AS DBTS,
+               @@ERROR AS ERROR,
+               @@FETCH_STATUS AS FETCH_STATUS,
+               @@IDENTITY AS INFO_IDENTITY,
+               @@IDLE AS IDLE,
+               @@IO_BUSY AS IO_BUSY,
+               @@LANGID AS LANGID,
+               @@LANGUAGE AS LANGUAGE,
+               @@LOCK_TIMEOUT AS LOCK_TIMEOUT,
+               @@MAX_CONNECTIONS AS MAX_CONNECTIONS,
+               @@MAX_PRECISION AS MAX_PRECISION,
+               @@NESTLEVEL AS NESTLEVEL,
+               @@OPTIONS AS OPTIONS,
+               @@PACK_RECEIVED AS PACK_RECEIVED,
+               @@PACK_SENT AS PACK_SENT,
+               @@PACKET_ERRORS AS PACKET_ERRORS,
+               @@PROCID AS PROCID,
+               @@REMSERVER AS REMSERVER,
+               @@ROWCOUNT AS INFO_ROWCOUNT,
+               @@SERVERNAME AS SERVERNAME,
+               @@SERVICENAME AS SERVICENAME,
+               @@SPID AS SPID,
+               @@TEXTSIZE AS INFO_TEXTSIZE,
+               @@TIMETICKS AS TIMETICKS,
+               @@TOTAL_ERRORS AS TOTAL_ERRORS,
+               @@TOTAL_READ AS TOTAL_READ,
+               @@TOTAL_WRITE AS TOTAL_WRITE,
+               @@TRANCOUNT AS TRANCOUNT
+            </Info>
+         <List>
+            SELECT
+               DBID AS DATABASE_ID,
+               NAME AS DATABASE_NAME
+            FROM SYSDATABASES
+            ORDER BY DBID
+         </List>
+      </Database>
+      <Table>
+         <Info>
+            SELECT
+               NAME AS TABLE_NAME, ID AS TABLE_ID, XTYPE, UID, INFO, STATUS, BASE_SCHEMA_VER, REPLINFO,
+               PARENT_OBJ, CRDATE, FTCATID, SCHEMA_VER, STATS_SCHEMA_VER,
+               TYPE, USERSTAT, SYSSTAT, INDEXDEL, REFDATE, VERSION,
+               DELTRIG, INSTRIG, UPDTRIG, SELTRIG, CATEGORY, CACHE
+            FROM SYSOBJECTS
+            WHERE (XTYPE = 'U') AND NAME = {table_name}
+         </Info>
+         <List>
+            SELECT ID AS TABLE_ID, NAME AS TABLE_NAME
+            FROM SYSOBJECTS
+            WHERE (XTYPE = 'U')
+            ORDER BY NAME
+            <Info>
+               SELECT
+                  NAME AS TABLE_NAME, ID AS TABLE_ID, XTYPE, UID, INFO, STATUS, BASE_SCHEMA_VER, REPLINFO,
+                  PARENT_OBJ, CRDATE, FTCATID, SCHEMA_VER, STATS_SCHEMA_VER,
+                  TYPE, USERSTAT, SYSSTAT, INDEXDEL, REFDATE, VERSION,
+                  DELTRIG, INSTRIG, UPDTRIG, SELTRIG, CATEGORY, CACHE
+               FROM SYSOBJECTS
+               WHERE (XTYPE = 'U')
+               ORDER BY NAME
+            </Info>
+         </List>
+         <Constraint>
+            <PrimaryKey>exec sp_helpindex {table_name}</PrimaryKey>
+         </Constraint>
+         <Column>
+            <List>
+               SELECT c.NAME AS COLUMN_NAME
+               FROM SYSOBJECTS o,SYSCOLUMNS c
+               WHERE o.ID = c.ID
+                  AND o.name = {table_name}
+               ORDER BY COLORDER
+               <INFO><![CDATA[
+                  SELECT
+                     SYSCOLUMNS.COLORDER AS COLUMN_ID,
+                     SYSCOLUMNS.NAME AS COLUMN_NAME,
+                     SYSTYPES.NAME AS DATA_TYPE,
+                     SYSCOLUMNS.PREC AS DATA_LENGTH,
+                     SYSCOLUMNS.ISNULLABLE AS IS_NULL
+                  FROM sysobjects
+                     INNER JOIN SYSCOLUMNS ON SYSOBJECTS.ID = SYSCOLUMNS.ID
+                     INNER JOIN SYSTYPES ON SYSCOLUMNS.XTYPE = SYSTYPES.XTYPE
+                  WHERE (SYSOBJECTS.NAME = {table_name}) AND (SYSTYPES.XUSERTYPE < 256)
+                  ORDER BY SYSCOLUMNS.COLORDER
+               ]]></INFO>
+            </List>
+         </Column>
+         <Data>
+            SELECT *
+            FROM {table_name}
+         </Data>
+      </Table>
+      <SysTable>
+         <List>
+            SELECT
+               NAME AS TABLE_NAME, ID, XTYPE, UID, INFO, STATUS, BASE_SCHEMA_VER, REPLINFO,
+               PARENT_OBJ, CRDATE, FTCATID, SCHEMA_VER, STATS_SCHEMA_VER,
+               TYPE, USERSTAT, SYSSTAT, INDEXDEL, REFDATE, VERSION,
+               DELTRIG, INSTRIG, UPDTRIG, SELTRIG, CATEGORY, CACHE
+            FROM SYSOBJECTS
+            WHERE (XTYPE = 'S')
+            ORDER BY NAME
+         </List>
+      </SysTable>
+      <View>
+         <List>
+            SELECT
+               NAME AS VIEW_NAME, ID, XTYPE, UID, INFO, STATUS, BASE_SCHEMA_VER, REPLINFO,
+               PARENT_OBJ, CRDATE, FTCATID, SCHEMA_VER, STATS_SCHEMA_VER,
+               TYPE, USERSTAT, SYSSTAT, INDEXDEL, REFDATE, VERSION,
+               DELTRIG, INSTRIG, UPDTRIG, SELTRIG, CATEGORY, CACHE
+            FROM SYSOBJECTS
+            WHERE (XTYPE = 'V')
+            ORDER BY NAME
+         </List>
+      </View>
+   </SQL>
+</Root>

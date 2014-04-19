@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+
+   <!-- ==================================================== -->
+   <!-- Global                                               -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.eng.global.IGlobalConsole'
+         class = 'org.mobj.eng.global.FGlobalConsole'
+         scope = 'global' >
+      <Property name='workpath'>${home.work}/eng.global</Property>
+      <Initialize name='initializeResume'/>
+      <Release name='releaseInterrupt'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Global                                               -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.eng.cache.ICacheConsole'
+         class = 'org.mobj.eng.cache.FCacheConsole'
+         scope = 'global' >
+      <Property name='workpath'>${home.work}/eng.cache</Property>
+      <Property name='interval'>1000</Property>
+      <Initialize name='initializeConfig'/>
+      <Initialize name='initializeMonitor'/>
+      <Release name='release'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Template                                             -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.eng.template.ITemplateConsole'
+         class = 'org.mobj.eng.template.FTemplateConsole'
+         scope = 'global' >
+      <Property name='type'>xml</Property>
+      <Property name='output'>${home.source.data}/src/hw-data</Property>
+      <Property name='workpath'>${home.web.config}/system.template</Property>
+      <Property name='config'>${home.web.config}/system.module/system.template.xml</Property>
+      <Initialize name='initializeConfig'/>
+   </Component>
+   
+   <!-- ==================================================== -->
+   <!-- security                                             -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.eng.security.IPermissionConsole'
+         class = 'org.mobj.eng.security.FPermissionConsole'
+         scope = 'global' >
+         <Property name='interval'>1000</Property>
+         <Property name='count'>1000</Property>
+   </Component>
+   
+   <!-- ==================================================== -->
+   <!-- Template                                             -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.eng.template.ITemplateConfigConsole'
+         class = 'org.mobj.eng.template.FTemplateConfigConsole'
+         scope = 'global' >
+      <Property name='templateFace'>design.persistence.xmlface</Property>
+      <Property name='templateObject'>design.persistence.xmlobject</Property>
+      <Property name='persistence'>system.template</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/system.template</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- ListConsole:列表控制台                                       -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mobj.eng.list.IListConsole'
+         class = 'org.mobj.eng.list.FListConsole'
+         scope = 'global'>
+      <Property name='persistence'>eng-list</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/design.list</Property>
+      <Property name='cacheTimeout'>60000</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- ConfigConsole:设定控制台                                     -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mobj.eng.config.IConfigConsole'
+         class = 'org.mobj.eng.config.FConfigConsole'
+         scope = 'global' >
+      <Property name='persistence'>eng-config</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/system.config</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+	</Component>
+	
+   <!-- ============================================================ -->
+   <!-- ConfigConsole:设定控制台                                     -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mobj.eng.help.IHelpConsole'
+         class = 'org.mobj.eng.help.FHelpConsole'
+         scope = 'global' >
+      <Property name='persistence'>eng-help</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/system.help</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+	</Component>
+
+   <!-- ============================================================ -->
+   <!-- WebToolsConsole:设定控制台                                   -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mobj.web.core.webtools.IWebToolsConsole'
+         class = 'org.mobj.web.core.webtools.FWebToolsConsole'
+         scope = 'global' >
+      <Property name='persistence'>web-tools</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/design.webtools</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+	</Component>
+
+   <!-- ============================================================ -->
+   <!-- MailConsole:邮件控制台                                       -->
+   <!--  P:server - 邮件服务器和端口                                 -->
+   <!--  P:proxy - 代理服务器和端口                                  -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  P:storepath - 存储路径                                      -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mobj.eng.mail.IMailConsole'
+         class = 'org.mobj.eng.mail.FMailConsole'
+         scope = 'global'>
+      <Property name='server'>smtp.mail.yahoo.co.jp</Property>
+      <Property name='proxy'></Property>
+      <Property name='workpath'>${home.web.config}/eng.mail</Property>
+      <Initialize name='initializeConfig'/>
+      <Initialize name='initializeMonitor'/>
+      <Release name='release'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Entity                                               -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.eng.entity.IEntityConsole'
+         class = 'org.mobj.eng.entity.FEntityConsole'
+         scope = 'global' >
+      <Property name='CacheCount'>1000</Property>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Environment                                          -->
+   <!-- ==================================================== -->
+	<Component
+			face  = 'org.mobj.eng.culture.ICultureConsole'
+			class = 'org.mobj.eng.culture.FCultureConsole'
+			scope = 'global' >
+		<Initialize name='initializeConfig'>
+         <Parameter type='config'>
+				<Charset>utf-8</Charset>
+				<Country>
+					<Language>cn</Language>
+				</Country>
+         </Parameter>
+		</Initialize>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Track                                                -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.eng.tracker.ITrackerConsole'
+         class = 'org.mobj.eng.tracker.FTrackerConsole'
+         scope = 'global' >
+	</Component>
+
+   <!-- ==================================================== -->
+   <!-- Transfer                                                -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.eng.transfer.ITransferConsole'
+         class = 'org.mobj.eng.transfer.FTransferConsole'
+         scope = 'global' >
+      <Property name='persistence'>eng-transfer</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='storeInterval'>10000</Property>
+      <Property name='workpath'>${home.web.config}/eng.transfer</Property>
+      <Property name='pathTemporary'>${home.work}/web.transfer</Property>
+      <Property name='pathUpload'>${home.work}/web.transfer.upload</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+      <Release name='releaseInterrupt'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Translate Persistence                                -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.eng.translate.ITranslateConsole'
+         class = 'org.mobj.eng.translate.FTranslateConsole'
+         scope = 'global' >
+      <Property name='templateFace'>design.persistence.xmlface</Property>
+      <Property name='templateObject'>design.persistence.xmlobject</Property>
+      <Property name='persistence'>eng-translate</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/design.translate</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+   
+   <!-- ==================================================== -->
+   <!-- Persistence                                          -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.eng.persistence.IPersistenceConsole'
+         class = 'org.mobj.eng.persistence.FPersistenceConsole'
+         scope = 'global' >
+      <Property name='templateFace'>design.persistence.xmlface</Property>
+      <Property name='templateObject'>design.persistence.xmlobject</Property>
+      <Property name='persistence'>eng-persistence</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/design.persistence</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Validator                                            -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.eng.validator.IValidatorConsole'
+         class = 'org.mobj.eng.validator.FValidatorConsole'
+         scope = 'global' />
+
+
+   <Component
+         face  = 'org.mobj.eng.property.IPropertyConsole'
+         class = 'org.mobj.eng.property.FPropertyConsole'
+         scope = 'global' >
+      <Property name='Type'>system.property</Property>
+      <Property name='PreFix'>pty:</Property>
+      <Property name='Filter'>|</Property>
+      <Property name='AftFix'></Property>
+
+      <Initialize name='initializeRegister'/>
+   </Component>
+
+   <Component
+         face  = 'org.mobj.eng.alias.IAliasConsole'
+         class = 'org.mobj.eng.alias.FAliasConsole'
+         scope = 'global' >
+      <Property name='Type'>system.alias</Property>
+      <Property name='PreFix'>[</Property>
+      <Property name='Filter'>|</Property>
+      <Property name='AftFix'>]</Property>
+      
+      <Initialize name='initializeRegister'/>
+   </Component>
+
+   <Component
+      face  = 'org.mobj.eng.data.access.IDataAccessConsole'
+      class = 'org.mobj.eng.data.access.FDataAccessConsole'
+      scope = 'global' />
+
+   <!--<Component
+         face  = 'org.mobj.eng.data.xml.IXmlDataConsole'
+         class = 'org.mobj.eng.data.xml.FXmlDataConsole'
+         scope = 'global' >
+      <Property name='workpath'>${home.data}</Property>
+      <Property name='interval'>10</Property>
+
+      <Initialize name='initializeMonitor'/>
+   </Component>-->
+
+   <Component
+         face  = 'org.mobj.eng.event.IEventConsole'
+         class = 'org.mobj.eng.event.FEventConsole'
+         scope = 'global' >
+
+      <Property name='interval'>10</Property>
+      <Property name='priority'>4</Property>
+      <Property name='workpath'>${home.work}/system.monitor</Property>
+
+      <Initialize name='initializeThread'/>
+   </Component>
+
+   <!--<Component
+         face  = 'org.mobj.eng.list.IListConvert'
+         scope = 'global' >
+      <Proxy
+            face = 'org.mobj.eng.convert.IConvertConsole'
+            source = '${home.source.eng}' />
+   </Component>-->
+
+   <!-- ============================================================ -->
+   <!-- ListConsole:列表控制台                                       -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mobj.data.chart.IChartConsole'
+         class = 'org.mobj.data.chart.FChartConsole'
+         scope = 'global'>
+      <Property name='persistence'>design.chart</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/design.chart</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- ListConsole:列表控制台                                       -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mobj.eng.report.IReportConsole'
+         class = 'org.mobj.eng.report.FReportConsole'
+         scope = 'global'>
+      <Property name='persistence'>design.report</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/design.report</Property>
+      <Property name='storepath'>${home.web.config}/logic.report</Property>
+      <Property name='temppath'>${home.web}/ars/tmp</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+</Config>

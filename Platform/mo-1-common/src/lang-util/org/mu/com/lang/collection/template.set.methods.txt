@@ -1,0 +1,271 @@
+protected:
+   //------------------------------------------------------------
+   // <T>查找指定名称的入口对象。</T>
+   MO_INLINE( SEntry* InnerFindByName(N code) const ){
+      // 数据存在时
+      if(_count > 0){
+         // 查找名称的索引位置
+         TInt index = RSet<N, V>::MakeIndex(code, _entryCount);
+         SEntry* pEntry = {entries}[index];
+         while(NULL != pEntry){
+            if(pEntry->code == code){
+               return pEntry;
+            }
+            pEntry = pEntry->linkPtr;
+         }
+      }
+      // 未找到时返回结果
+      return NULL;
+   }
+   //------------------------------------------------------------
+   // <T>查找指定内容的入口对象。</T>
+   MO_INLINE( SEntry* InnerFindByValue(V value) const ){
+      // 数据存在时
+      if(_count > 0){
+         SEntry* pEntry = _pFirst;
+         while(NULL != pEntry){
+            if(pEntry->value == value){
+               return pEntry;
+            }
+            pEntry = pEntry->linkPtr;
+         }
+      }
+      // 未找到时返回结果
+      return NULL;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>获得指定代码的数据内容。</T>
+   const V operator[](N code) const{
+      SEntry* pEntry = InnerFindByName(code);
+      MO_ASSERT(pEntry);
+      return pEntry->value;
+   }
+   //------------------------------------------------------------
+   // <T>获得指定代码的数据内容。</T>
+   V operator[](N code){
+      SEntry* pEntry = InnerFindByName(code);
+      MO_ASSERT(pEntry);
+      return pEntry->value;
+   }
+   //------------------------------------------------------------
+   // <T>判断当前哈希集合和指定哈希集合中所有数据内容是否相等。</T>
+   TBool operator==(const MSet<N, V>& set) const{
+      return Equals(&set);
+   }
+   //------------------------------------------------------------
+   // <T>判断当前哈希集合和指定哈希集合中所有数据内容是否不相等。</T>
+   TBool operator!=(const MSet<N, V>& set) const{
+      return !Equals(&set);
+   }
+   //------------------------------------------------------------
+   // 追加一个链表到当前链表中。
+   void operator+=(const MSet<N, V>& set){
+      Append(&set);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>当前哈希集合对象是否为空。</T>
+   MO_INLINE( TBool IsEmpty() const ){
+      return (0 == _count);
+   }
+   //------------------------------------------------------------
+   // <T>获得数据个数。</T>
+   MO_INLINE( TInt Count() const ){
+      return _count;
+   }
+   //------------------------------------------------------------
+   // <T>获得只读迭代器。</T>
+   MO_INLINE( const TIteratorC IteratorC() const ){
+      return TIteratorC(_pFirst, _pLast);
+   }
+   //------------------------------------------------------------
+   // <T>获得迭代器。</T>
+   MO_INLINE( TIterator Iterator() ){
+      return TIterator(_pFirst, _pLast);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>判断指定名称是否存在。</T>
+   TBool Contains(N code) const{
+      return (NULL != InnerFindByName(code));
+   }
+   //------------------------------------------------------------
+   // <T>判断指定名称是否存在。</T>
+   TBool ContainsValue(V value) const{
+      return (NULL != InnerFindByValue(value));
+   }
+   //------------------------------------------------------------
+   // <T>判断当前哈希集合和指定哈希集合内容是否相等。</T>
+   TBool Equals(const MSet<N, V>* pSet) const{
+      MO_ASSERT(pSet);
+      // 比较数量
+      if(_count != pSet->Count()){
+         return EFalse;
+      }
+      // 比较所有项目
+      SEntry* pEntry = pSet->_pFirst;
+      while(NULL != pEntry){
+         N code = pEntry->code;
+         SEntry* pFind = this->InnerFindByName(code);
+         if(NULL == pFind){
+            return EFalse;
+         }
+         if(pFind->value != pEntry->value){
+            return EFalse;
+         }
+      }
+      return ETrue;
+   }
+   //------------------------------------------------------------
+   // <T>获得首位置的数据。</T>
+   V First() const{
+      return (NULL != _pFirst) ? _pFirst->value : NULL;
+   }
+   //------------------------------------------------------------
+   // <T>获得尾位置的数据。</T>
+   V Last() const{
+      return (NULL != _pLast) ? _pLast->value : NULL;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>获得指定代码的数据。</T>
+   V Find(N code) const{
+      SEntry* pEntry = InnerFindByName(code);
+      return (NULL != pEntry) ? pEntry->value : (V)NULL;
+   }
+   //------------------------------------------------------------
+   // <T>获得指定代码的数据。</T>
+   V Get(N code) const{
+      SEntry* pEntry = InnerFindByName(code);
+      MO_ASSERT(pEntry);
+      return pEntry->value;
+   }
+   //------------------------------------------------------------
+   // <T>获得指定代码的数据。</T>
+   V Get(N code, V value) const{
+      SEntry* pEntry = InnerFindByName(code);
+      return (NULL != pEntry) ? pEntry->value : value;
+   }
+   //------------------------------------------------------------
+   // <T>根据名称设置数据。</T>
+   void Set(N code, V value){
+      // 查找数据出现的位置
+      if(_count > 0){
+         TInt index = RSet<N, V>::MakeIndex(code, _entryCount);
+         SEntry* pEntry = {entries}[index];
+         while(NULL != pEntry) {
+            if(pEntry->code == code){
+               pEntry->value = value;
+               return;
+            }
+            pEntry = pEntry->linkPtr;
+         }
+      }
+      // 扩展内存
+      EnsureSize(_count + 1);
+      // 如果名称不存在，为新建节点检查内存
+      SEntry* pAlloc = InnerEntryAlloc();
+      // 大小可能改变，重新计算索引位置
+      TInt allocIndex = RSet<N, V>::MakeIndex(code, _entryCount);
+      pAlloc->linkPtr = {entries}[allocIndex];
+      pAlloc->code = code;
+      pAlloc->value = value;
+      {entries}[allocIndex] = pAlloc;
+      // 追加到链表尾部
+      InnerEntryPush(pAlloc);
+   }
+   //------------------------------------------------------------
+   // <T>获得指定数据的代码。</T>
+   N Search(V value) const{
+      SEntry* pEntry = InnerFindByValue(value);
+      return (NULL != pEntry) ? pEntry->code : (N)NULL;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>复制集合内的全部数据。</T>
+   void Assign(const MSet<N, V>* pSet){
+      MO_ASSERT(pSet);
+      Clear();
+      Append(pSet);
+   }
+   //------------------------------------------------------------
+   // <T>追加集合内的全部数据。</T>
+   void Append(const MSet<N, V>* pSet){
+      MO_ASSERT(pSet);
+      TIteratorC iterator = pSet->IteratorC();
+      while(iterator.Next()){
+         Set(iterator.Code(), iterator.Value());
+      }
+   }
+   //------------------------------------------------------------
+   // <T>使用排序器对集合对象进行排序</T>
+   void Sort(HComparer hComparer){
+      MO_ASSERT(hComparer);
+      if(this->_pFirst && this->_pLast && this->_count > 1) {
+         if(MO_SET_COMPSET_THRESHOLD > this->_count){
+            RSet<N, V>::InsertSort(this->_pFirst, this->_pLast, hComparer);
+         } else{
+            RSet<N, V>::QuickSort(this->_pFirst, this->_pLast, hComparer);
+         }
+      }
+   }
+   //------------------------------------------------------------
+   // <T>移除指定名称的数据。</T>
+   V Remove(N code){
+      V value = NULL;
+      if(_entryCount > 0){
+         TInt index = RSet<N, V>::MakeIndex(code, _entryCount);
+         // 查找数据出现的位置
+         SEntry* pPrior = {entries}[index];
+         SEntry* pEntry = pPrior;
+         while(NULL != pEntry){
+            if(pEntry->code == code){
+               value = pEntry->value;
+               if(pEntry == pPrior){
+                  // 当前对象是第一个对象时
+                  {entries}[index] = pEntry->linkPtr;
+               }else{
+                  // 当前对象不是第一个对象时
+                  pPrior->linkPtr = pEntry->linkPtr;
+               }
+               // 删除当前节点
+               InnerEntryRemove(pEntry);
+               break;
+            }
+            pPrior = pEntry;
+            pEntry = pEntry->linkPtr;
+         }
+      }
+      return value;
+   }
+   //------------------------------------------------------------
+   // <T>复制对象到外部数组。</T>
+   TInt CopyTo(V* pBuffer, TInt capacity) const{
+      TInt count = MO_LG_MIN(_count, capacity);
+      if(count > 0){
+         TInt n = 0;
+         SEntry* pEntry = _pFirst;
+         while(NULL != pEntry){
+            pBuffer[n++] = pEntry->value;
+            pEntry = pEntry->nextPtr;
+         }
+      }
+      return count;
+   }
+   //------------------------------------------------------------
+   // <T>清除资源。</T>
+   void Clear(){
+      // 清空链表
+      InnerClear();
+      // 清空节点数组
+      RTypes<SEntry*>::Clear({entries}, _entryCount);
+   }
+   //------------------------------------------------------------
+   // <T>释放所有资源。</T>
+   void Release(){
+      // 释放链表
+      InnerRelease();
+      // 释放节点数组
+      InnerEntriesFree({entries});
+   }

@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+
+   <!-- ============================================================ -->
+   <!-- LogicUnitConsole:列表控制台                                  -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mobj.data.logicunit.ILogicUnitConsole'
+         class = 'org.mobj.data.logicunit.FLogicUnitConsole'
+         scope = 'global'>
+      <Property name='persistence'>database.logicunit</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/database.logicunit</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- ListConsole:列表控制台                                       -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mobj.data.codelist.ICodeListConsole'
+         class = 'org.mobj.data.codelist.FCodeListConsole'
+         scope = 'global'>
+      <Property name='persistence'>database.codelist</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/database.codelist</Property>
+      <Property name='sourceSqlLogic'>${home}/sql/codelist</Property>
+      <Property name='enum'>${home.deploy.store}/enum/</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- DatasetConsole:数据集控制台                                  -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:sourcepath - 代码路径                                     -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  P:storepath - 存储路径                                      -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+	<Component
+         face  = 'org.mobj.data.dataset.IDatasetConsole'
+         class = 'org.mobj.data.dataset.FDatasetConsole'
+         scope = 'global'>
+      <Property name='persistence'>eng-dataset</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='sourcepath'>${home.source.data}</Property>
+      <Property name='workpath'>${home.web.config}/database.dataset</Property>
+      <Property name='storepath'>${home.web.config}/database.dataset.store</Property>
+      <!-- 建立单元路径 -->
+      <Property name='logicUnit'>${home.deploy.store}/logic/</Property>
+      <!-- 建立列表包头文件的路径 -->
+      <Property name='enum'>${home.deploy.store}/enum/</Property>
+      <!-- 建立用户视图的路径 -->
+      <Property name='installSqlViewUser'>${home.deploy.store}/view/install/</Property>
+      <!-- 卸载用户视图的路径 -->
+      <Property name='uninstallSqlViewUser'>${home.deploy.store}/view/uninstall/</Property>
+      <!-- 建立系统包的路径 -->
+      <Property name='installSqlSystem'>${home.deploy.store}/system/install/</Property>
+      <!-- 卸载系统包的路径 -->
+      <Property name='uninstallSqlSystem'>${home.deploy.store}/system/uninstall/</Property>
+      <!-- CSV文件建立表数据的路径 -->
+      <Property name='installDataTable'>${home.deploy.store}/data/</Property>
+      <!-- 建立类型包的路径 -->
+      <Property name='installSqlType'>${home.deploy.store}/type/install/</Property>
+      <!-- 卸载类型包的路径 -->
+      <Property name='uninstallSqlType'>${home.deploy.store}/type/uninstall/</Property>
+      <Property name='sourceLogic'>${home.source.sql}/logic/</Property>
+      <Property name='sourceHistoryLogic'>${home.source.sql}/logic.history/</Property>
+      <Property name='sourceLogicData'>${home.source.logic.data}</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- DatasetHelper                                        -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.data.dataset.IDatasetHelper'
+         class = 'org.mobj.data.dataset.FDatasetHelper'
+         scope = 'global'>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- DataInfo                                             -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.data.datainfo.IDataInfoConsole'
+         class = 'org.mobj.data.datainfo.FDataInfoConsole'
+         scope = 'global'>
+      <Property name='persistence'>eng-datainfo</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${home.web.config}/database.datainfo</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+	<Component
+         face  = 'org.mobj.data.procedure.IProcedureHelper'
+         class = 'org.mobj.data.procedure.FProcedureHelper'
+         scope = 'global'/>
+         
+   <!-- ==================================================== -->
+   <!-- 获取当前时间                                             -->
+   <!-- ==================================================== -->  
+    <Component
+			face  = 'org.mobj.data.date.IDataDateConsole'
+			class = 'org.mobj.data.date.FDataDateConsole'
+			scope = 'global'>
+		<Property name='interval'>1800000</Property>
+		<Initialize name='connect'/>
+	</Component>
+</Config>

@@ -1,0 +1,326 @@
+package org.mo.com.lang.generic;
+
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import org.mo.com.lang.FObject;
+import org.mo.com.lang.IObjects;
+import org.mo.com.lang.RArray;
+import org.mo.com.lang.RDump;
+import org.mo.com.lang.RHash;
+import org.mo.com.lang.RObject;
+
+//============================================================
+// <T>整数集合。</T>
+//============================================================
+public abstract class M{type_name}Set<V>
+      extends FObject
+      implements
+         IObjects<V>
+{
+   public static final int CAPACITY = 8;
+
+   // 类对象
+   protected Class<V> _class;
+
+   // 总数
+   protected int _count;
+
+   // 哈希集合
+   protected SHash{type_name}Entry[] _table;
+
+   // 内容集合
+   protected V[] _values;
+
+   //============================================================
+   // <T>构造整数集合。</T>
+   //
+   // @param clazz 类对象
+   //============================================================
+   public M{type_name}Set(Class<V> clazz){
+      _class = clazz;
+      ensureSize(CAPACITY);
+   }
+
+   //============================================================
+   // <T>构造整数集合。</T>
+   //
+   // @param clazz 类对象
+   // @param capacity 容量
+   //============================================================
+   public M{type_name}Set(Class<V> clazz,
+                          int capacity){
+      _class = clazz;
+      ensureSize(Math.max(capacity, CAPACITY));
+   }
+
+   //============================================================
+   // <T>重新改变入口集合缓冲大小。</T>
+   //============================================================
+   protected void innerResize(){
+      // 收集内存
+      int index = 0;
+      int length = _table.length;
+      SHash{type_name}Entry entry = null;
+      SHash{type_name}Entry next = null;
+      SHash{type_name}Entry[] memory = new SHash{type_name}Entry[length << 2];
+      // 重置链表
+      for(int n = 0; n < length; n++){
+         entry = _table[n];
+         while(null != entry){
+            index = (int)(entry.hash % memory.length);
+            next = entry.next;
+            entry.next = memory[index];
+            memory[index] = entry;
+            entry = next;
+         }
+         _table[n] = null;
+      }
+      // 保存内存
+      _table = memory;
+   }
+
+   //============================================================
+   // <T>移除数据修正处理。</T>
+   //
+   // @param index 索引
+   //============================================================
+   protected void innerRemoveFix(int index){
+      int length = _table.length;
+      for(int n = 0; n < length; n++){
+         SHash{type_name}Entry entry = _table[n];
+         while(entry != null){
+            if(entry.index > index){
+               entry.index--;
+            }
+            entry = entry.next;
+         }
+      }
+   }
+
+   //============================================================
+   // <T>判断是否为空。</T>
+   //
+   // @return 是否为空
+   //============================================================
+   public boolean isEmpty(){
+      return (_count == 0);
+   }
+
+   //============================================================
+   // <T>获得总数。</T>
+   //
+   // @return 总数
+   //============================================================
+   public int count(){
+      return _count;
+   }
+
+   //============================================================
+   // <T>获得内容内存。</T>
+   //
+   // @return 内容内存
+   //============================================================
+   public V[] memoryValues(){
+      return _values;
+   }
+
+   //============================================================
+   // <T>获得迭代器。</T>
+   //
+   // @return 迭代器
+   //============================================================
+   public Iterator<V> iterator(){
+      return new FIterator<V>(_values, 0, _count);
+   }
+
+   //============================================================
+   // <T>是否存在指定内容。</T>
+   //
+   // @param value 内容
+   // @return 是否存在
+   //============================================================
+   public boolean contains(V value){
+      return indexOf(value) != -1;
+   }
+
+   //============================================================
+   // <T>查找指定数据名称在集合中首次出现的位置。</T>
+   //
+   // @param name 数据名称
+   // @return 索引位置
+   //============================================================
+   public int indexOf(V value){
+      int hash = RHash.hash(value);
+      SHash{type_name}Entry entry = _table[hash % _table.length];
+      while(null != entry){
+         if((entry.hash == hash) && value.equals(_values[entry.index])){
+            return entry.index;
+         }
+         entry = entry.next;
+      }
+      return -1;
+   }
+
+   //============================================================
+   // <T>确保集合有指定大小的容量。</T>
+   //
+   // @param count 总数
+   //============================================================
+   @SuppressWarnings("unchecked")
+   public void ensureSize(int count){
+      if(null == _values){
+         // Create
+         int total = Math.max(CAPACITY, count);
+         _values = (V[])Array.newInstance(_class, total);
+         _table = new SHash{type_name}Entry[CAPACITY];
+      }else if(count > _values.length){
+         // Copy
+         int total = Math.max(CAPACITY, count + count);
+         V[] values = (V[])Array.newInstance(_class, total);
+         System.arraycopy(_values, 0, values, 0, _count);
+         _values = values;
+         // Resize table
+         if(count > (_table.length << 2)){
+            innerResize();
+         }
+      }
+   }
+
+   //============================================================
+   // <T>接收数据集合。</T>
+   //
+   // @param values 数据集合
+   //============================================================
+   public void assign(M{type_name}Set<V> values){
+      _count = values._count;
+      _class = values._class;
+      _values = RArray.copy(values._values, 0, values._count);
+      _table = values._table.clone();
+   }
+   
+   //============================================================
+   // <T>尾部追加一个数据内容。</T>
+   //
+   // @param value 数据内容
+   //============================================================
+   public void push(V value){
+      if(null == value){
+         throw new NullPointerException("value");
+      }
+      // Find
+      int hash = RHash.hash(value);
+      int index = hash % _table.length;
+      SHash{type_name}Entry entry = _table[index];
+      while(null != entry){
+         if(entry.hash == hash && value.equals(_values[entry.index])){
+            _values[entry.index] = value;
+            return;
+         }
+         entry = entry.next;
+      }
+      // Create
+      if(_count + 1 > _values.length){
+         ensureSize(_count + 1);
+         // Must recalculate index
+         index = hash % _table.length;
+      }
+      _table[index] = new SHash{type_name}Entry(hash, _count, _table[index]);
+      _values[_count++] = value;
+   }
+
+   //============================================================
+   // <T>移除指定内容的数据内容。</T>
+   //
+   // @param value 数据内容
+   // @return 数据内容
+   //============================================================
+   public V remove(V value){
+      if(null == value){
+         throw new NullPointerException("value");
+      }
+      // find
+      int index = -1;
+      int hash = RHash.hash(value);
+      int pos = hash % _table.length;
+      SHash{type_name}Entry prior = _table[pos];
+      SHash{type_name}Entry entry = prior;
+      while(null != entry){
+         if(entry.hash == hash && value.equals(_values[entry.index])){
+            index = entry.index;
+            if(entry == prior){
+               _table[pos] = entry.next;
+            }else{
+               prior.next = entry.next;
+            }
+            break;
+         }
+         prior = entry;
+         entry = entry.next;
+      }
+      // remove
+      if(-1 != index){
+         V old = _values[index];
+         // Fix hash entry
+         innerRemoveFix(index);
+         // Fix names/values
+         int move = _count - index - 1;
+         if(move > 0){
+            System.arraycopy(_values, index + 1, _values, index, move);
+         }
+         _values[--_count] = null;
+         return old;
+      }
+      return null;
+   }
+
+   //============================================================
+   // <T>压缩数据。</T>
+   //============================================================
+   public void compress(){
+      _values = RArray.sub(_class, _values, 0, _count);
+   }
+
+   //============================================================
+   // <T>获得对象集合。</T>
+   //
+   // @return 对象集合
+   //============================================================
+   public V[] toObjects(){
+      return RArray.sub(_class, _values, 0, _count);
+   }
+
+   //============================================================
+   // <T>清除全部数据内容。</T>
+   //============================================================
+   public void clear(){
+      RObject.clear(_table);
+      RObject.clear(_values);
+      _count = 0;
+   }
+
+   //============================================================
+   // <T>生成运行信息。</T>
+   //
+   // @param info 运行信息
+   // @return 运行信息
+   //============================================================
+   @Override
+   public TDumpInfo dump(TDumpInfo info){
+      RDump.dump(info, this);
+      info.append(" [ count=" + _count + " ]");
+      if(_count > 0){
+         info.append(" {\n");
+         int length = _table.length;
+         for(int n = 0; n < length; n++){
+            SHash{type_name}Entry entry = _table[n];
+            while(entry != null){
+               V value = _values[entry.index];
+               RDump.dump(info, {type_full}.toString(entry.hash), value);
+               entry = entry.next;
+            }
+         }
+         info.append("}");
+      }
+      return info;
+   }
+}

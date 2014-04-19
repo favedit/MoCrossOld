@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+
+   <!-- ============================================================ -->
+   <!-- MonitorConsole:监视控制台                                    -->
+   <!--  P:priority - 线程高低                                       -->
+   <!--  I:initializeThread - 初始化开始线程                         -->
+   <!--  I:addDirectory - 增加监视配置目录                           -->
+   <!--  R:releaseThread - 释放线程                                  -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mobj.logic.event.ILogicEventConsole'
+         class = 'org.mobj.logic.event.FLogicEventConsole'
+         deploy = 'start'
+         scope = 'global'>
+      <Property name='interval'>10000</Property>
+      <Initialize name='initialize'/>  
+      <Release name='release'/>  
+   </Component>
+
+   <Component
+         face  = 'org.mobj.logic.schedule.ILogicScheduleConsole'
+         class = 'org.mobj.logic.schedule.FLogicScheduleConsole'
+         deploy = 'start'
+         scope = 'global'>
+      <Property name='queryInterval'>60000</Property>
+      <Property name='executeInterval'>1000</Property>
+      <Initialize name='initializeThreads'/>  
+      <Release name='releaseThreads'/>  
+   </Component>
+
+   <Component
+         face  = 'org.mobj.logic.subscribe.ILogicSubscribeConsole'
+         class = 'org.mobj.logic.subscribe.FLogicSubscribeConsole'
+         deploy = 'stop'
+         scope = 'global'>
+      <Property name='interval'>60000</Property>
+      <Initialize name='initialize'/>  
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- File Recycle Console                                 -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.logic.recycle.IFileRecycleConsole'
+         class = 'org.mobj.logic.recycle.FFileRecycleConsole'
+         deploy = 'start'
+         scope = 'global'>
+      <Property name='interval'>3600000</Property>
+      <Initialize name='addDirectory'>
+         <Parameter>${home.work}/web.upload/</Parameter>
+      </Initialize>
+      <Initialize name='addDirectory'>
+         <Parameter>${home.web}/ars/tmp</Parameter>
+      </Initialize>
+      <Initialize name='refresh'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Logger Recycle Console                               -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mobj.logic.recycle.ILoggerRecycleConsole'
+         class = 'org.mobj.logic.recycle.FLoggerRecycleConsole'
+         deploy = 'start'
+         scope = 'global'>
+      <Property name='interval'>3600000</Property>
+      <Initialize name='initialize'/>
+      <Initialize name='refresh'/>
+   </Component>
+</Config>
