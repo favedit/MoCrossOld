@@ -154,7 +154,7 @@ TResult FInstanceRenderable::Setup(){
    //............................................................
    // ÉèÖÃ²ÄÖÊ
    _material = _renderable->Material();
-   _pTextures->AssignPointer(_renderable->Textures());
+   _pTextures->Assign(_renderable->Textures());
    MO_INFO("Build instance renderable. (type_name=%s, vertex_count=%d, index_count=%d, instance=%d)",
          (TCharC*)_typeName, vertexCount, indexCount, _instanceCount);
    return ESuccess;

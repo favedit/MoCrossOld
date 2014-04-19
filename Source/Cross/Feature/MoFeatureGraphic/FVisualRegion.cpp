@@ -122,7 +122,7 @@ TResult FVisualRegion::Process(){
    // 获取数据
    _inputLocker.Enter();
    if(!_pInputVisuals->IsEmpty()){
-      _pVisuals->AssignPointer(_pInputVisuals);
+      _pVisuals->Assign(_pInputVisuals);
    }
    _inputLocker.Leave();
    //............................................................
@@ -179,7 +179,7 @@ TResult FVisualRegion::Process(){
    // 输出结果
    _outputLocker.Enter();
    if(!_pVisuals->IsEmpty()){
-      _pOutputVisuals->AssignPointer(_pVisuals);
+      _pOutputVisuals->Assign(_pVisuals);
    }
    _outputLocker.Leave();
    return ESuccess;

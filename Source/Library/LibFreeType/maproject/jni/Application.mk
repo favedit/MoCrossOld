@@ -1,2 +1,2 @@
-APP_MODULES := MoFreeType
+APP_MODULES := LibFreeType
 APP_OPTIM   := release # debug/release

@@ -105,8 +105,8 @@ TResult FRenderVertexStreams::Assign(FRenderVertexStreams* pStreams){
    _vertexCount = pStreams->VertexCount();
    _instanceSize = pStreams->InstanceSize();
    _instanceCount = pStreams->InstanceCount();
-   _pBuffers->AssignPointer(pStreams->Buffers());
-   _pStreams->AssignPointer(pStreams->Streams());
+   _pBuffers->Assign(pStreams->Buffers());
+   _pStreams->Assign(pStreams->Streams());
    return ESuccess;
 }
 

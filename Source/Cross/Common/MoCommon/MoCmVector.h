@@ -620,7 +620,7 @@ public:
       // 检查参数
       Clear();
       // 复制内容
-      if((NULL != pValues != NULL) && (count >= 0)){
+      if((pValues != NULL) && (count >= 0)){
          InnerResize(count, EFalse, EFalse, EFalse);
          if((_pMemory != pValues) && (count > 0)){
             RTypes<T>::Copy(_pMemory, pValues, count);
@@ -640,7 +640,7 @@ public:
    }
    //------------------------------------------------------------
    // <T>接受一个数组指针到当前数组。</T>
-   MO_INLINE void AssignPointer(const MVector<T>* pValues){
+   MO_INLINE void Assign(const MVector<T>* pValues){
       if(pValues != NULL){
          Assign(pValues->MemoryC(), pValues->Count());
       }

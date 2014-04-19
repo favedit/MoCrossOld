@@ -14,12 +14,13 @@ LOCAL_CPPFLAGS         := $(MO_COMPILER_FLAG)
 LOCAL_CPP_EXTENSION    := .cpp
 #............................................................
 LOCAL_C_INCLUDES       := \
-   $(LOCAL_PATH)/../../../../Library/MoJpeg \
-   $(LOCAL_PATH)/../../../../Library/MoLzma \
-   $(LOCAL_PATH)/../../../../Library/MoFreeType \
+   $(LOCAL_PATH)/../../../../../Library/LibJpeg \
+   $(LOCAL_PATH)/../../../../../Library/LibLzma \
+   $(LOCAL_PATH)/../../../../../Library/LibFreeType \
    $(LOCAL_PATH)/../../../../Common/MoCommon \
    $(LOCAL_PATH)/../../../../Common/MoCore \
    $(LOCAL_PATH)/../../../../Common/MoMath \
+   $(LOCAL_PATH)/../../../../Feature/MoFeatureLogger \
    $(LOCAL_PATH)/../../../../Feature/MoFeatureInput \
    $(LOCAL_PATH)/../../../../Feature/MoFeatureGraphic \
    $(LOCAL_PATH)/../../../../Feature/MoFeatureParticle \
@@ -29,6 +30,10 @@ LOCAL_C_INCLUDES       := \
    $(LOCAL_PATH)/../../../../Engine/MoEngine \
    $(LOCAL_PATH)/../../../../Engine/MoEngine2d \
    $(LOCAL_PATH)/../../../../Engine/MoEngine3d \
+   $(LOCAL_PATH)/../../../../Engine/MoEngineFace \
+   $(LOCAL_PATH)/../../../../Engine/MoEngineRender \
+   $(LOCAL_PATH)/../../../../Platform/MoPlatformAndroid \
+   $(LOCAL_PATH)/../../../../Platform/MoPlatformOpenGLES2 \
 
 #............................................................
 LOCAL_SRC_FILES :=

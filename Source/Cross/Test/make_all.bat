@@ -1,12 +1,15 @@
 SET MO_DRIVER=E:
-SET MO_ROOT=%MO_DRIVER%\ZW-Mobile-Work
+SET MO_BUILD=NDK_DEBUG=0
+SET NDK_ROOT=D:\Studio\SDK\android-ndk
+
+SET MO_ROOT=%MO_DRIVER%\ZW-MoCross\Source
 %MO_DRIVER%
 
-CD   %MO_ROOT%\Cross\Library\MoFreeType\maproject\
+CD   %MO_ROOT%\Library\LibFreeType\maproject\
 
-CALL %MO_ROOT%\Cross\Library\MoLzma\maproject\make.bat
-CALL %MO_ROOT%\Cross\Library\MoJpeg\maproject\make.bat
-CALL %MO_ROOT%\Cross\Library\MoFreeType\maproject\make.bat
+CALL %MO_ROOT%\Library\LibLzma\maproject\make.bat
+CALL %MO_ROOT%\Library\LibJpeg\maproject\make.bat
+CALL %MO_ROOT%\Library\LibFreeType\maproject\make.bat
 
 CD   %MO_ROOT%\Cross\Test\
 
@@ -16,7 +19,6 @@ CALL %MO_ROOT%\Cross\Common\MoMath\maproject\make.bat
 
 CALL %MO_ROOT%\Cross\Feature\MoFeatureInput\maproject\make.bat
 CALL %MO_ROOT%\Cross\Feature\MoFeatureLogger\maproject\make.bat
-CALL %MO_ROOT%\Cross\Feature\MoFeatureInput\maproject\make.bat
 CALL %MO_ROOT%\Cross\Feature\MoFeatureGraphic\maproject\make.bat
 CALL %MO_ROOT%\Cross\Feature\MoFeatureParticle\maproject\make.bat
 CALL %MO_ROOT%\Cross\Feature\MoFeaturePhysics\maproject\make.bat

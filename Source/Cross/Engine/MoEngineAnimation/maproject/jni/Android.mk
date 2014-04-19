@@ -14,9 +14,9 @@ LOCAL_CPPFLAGS         := $(MO_COMPILER_FLAG)
 LOCAL_CPP_EXTENSION    := .cpp
 #............................................................
 LOCAL_C_INCLUDES       := \
-   $(LOCAL_PATH)/../../../../Library/MoJpeg \
-   $(LOCAL_PATH)/../../../../Library/MoLzma \
-   $(LOCAL_PATH)/../../../../Library/MoFreeType \
+   $(LOCAL_PATH)/../../../../../Library/LibJpeg \
+   $(LOCAL_PATH)/../../../../../Library/LibLzma \
+   $(LOCAL_PATH)/../../../../../Library/LibFreeType \
    $(LOCAL_PATH)/../../../../Common/MoCommon \
    $(LOCAL_PATH)/../../../../Common/MoCore \
    $(LOCAL_PATH)/../../../../Common/MoMath \

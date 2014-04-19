@@ -39,7 +39,7 @@ void FWorkerConsole::Shutdown(){
 void FWorkerConsole::FetchWorkers(FWorkerVector* pWorkers){
    // 放入等待的工作器
    _mutex.Enter();
-   pWorkers->AssignPointer(_pWorkers);
+   pWorkers->Assign(_pWorkers);
    _mutex.Leave();
 }
 

@@ -3,11 +3,8 @@ LOCAL_PATH := $(call my-dir)
 #------------------------------------------------------------
 include $(CLEAR_VARS)
 
-# MO_COMPILER_FLAG       := -g -D_MO_DEBUG -D_MO_ANDROID -D_MO_X86
 MO_COMPILER_FLAG       := -D_MO_ANDROID -D_MO_X86
-
 MO_COMPILER_FLAG       += -D__LINUX_CPL__ -DUNICODE -DFT2_BUILD_LIBRARY
-
 MO_COMPILER_FLAG       += $(MO_COMPILER_FLAG) \
    -I.. \
    -I../freetype/include \
@@ -40,7 +37,7 @@ MO_COMPILER_FLAG       += $(MO_COMPILER_FLAG) \
    -I../source/type42/ \
    -I../source/winfonts/ \
 
-LOCAL_MODULE           := MoFreeType
+LOCAL_MODULE           := LibFreeType
 LOCAL_ARM_MODE         := arm # thumb(2字节指令)/arm(4字节指令)
 LOCAL_CFLAGS           := $(MO_COMPILER_FLAG)
 LOCAL_CXXFLAGS         := $(MO_COMPILER_FLAG)

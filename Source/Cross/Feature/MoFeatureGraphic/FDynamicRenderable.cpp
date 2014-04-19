@@ -115,7 +115,7 @@ TResult FDynamicRenderable::Push(FRenderable* pRenderable){
    if(_renderables.IsEmpty()){
       _material = pRenderable->Material();
       _materialReference = pRenderable->MaterialReference();
-      _pTextures->AssignPointer(pRenderable->Textures());
+      _pTextures->Assign(pRenderable->Textures());
    }
    // 放入合并池
    _renderables.Push(pRenderable);

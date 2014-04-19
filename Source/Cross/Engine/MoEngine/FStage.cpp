@@ -116,13 +116,13 @@ TResult FStage::BuildRegion(FRenderRegion* pRegion){
    MO_ASSERT(pRegion);
    // 设置相机集合
    if(!_pViews->IsEmpty()){
-      pRegion->Views()->AssignPointer(_pViews);
+      pRegion->Views()->Assign(_pViews);
    }
    //............................................................
    // 设置光源集合
    pRegion->SetDirectionalLight(_directionalLight);
    if(!_pLights->IsEmpty()){
-      pRegion->Lights()->AssignPointer(_pLights);
+      pRegion->Lights()->Assign(_pLights);
    }
    return ESuccess;
 }
