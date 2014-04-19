@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\MoFeatureInput.h" />
+    <ClInclude Include="..\MoFiPublic.h">
+      <Filter>1-Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoFiCommon.h">
+      <Filter>2-Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoFiKeyboard.h">
+      <Filter>3-Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoFiMouse.h">
+      <Filter>3-Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoFiTouch.h">
+      <Filter>3-Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoFiInput.h">
+      <Filter>3-Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoInputFeature.h">
+      <Filter>3-Input</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="1-Public">
+      <UniqueIdentifier>{8a913ffc-cd0d-440e-a736-bbcebdc702ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2-Common">
+      <UniqueIdentifier>{2be0ee66-41a3-4553-8138-93994f3a1657}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3-Input">
+      <UniqueIdentifier>{f5ddc191-0382-4f60-b935-6a2b7545695a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3-Input\Keyboard">
+      <UniqueIdentifier>{481c51a3-f27c-45ea-9b25-f3bad6d06f80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3-Input\Mouse">
+      <UniqueIdentifier>{038246b6-1cf8-41b6-9c98-e6bdfce27e35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3-Input\Touch">
+      <UniqueIdentifier>{cf3480a7-3d78-4204-a3fd-eead8655acc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3-Input\Input">
+      <UniqueIdentifier>{3758d378-3992-4cbe-a382-6923a4d2d9d6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\MoFeatureInput.cpp" />
+    <ClCompile Include="..\FKeyboardDevice.cpp">
+      <Filter>3-Input\Keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FMouseDevice.cpp">
+      <Filter>3-Input\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTouchDevice.cpp">
+      <Filter>3-Input\Touch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FInputDevice.cpp">
+      <Filter>3-Input\Input</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

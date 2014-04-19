@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\MoFeatureLogger.h" />
+    <ClInclude Include="..\MoFlPublic.h">
+      <Filter>1-Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoFlCommon.h">
+      <Filter>2-Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoFlFile.h">
+      <Filter>3-Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoFlNet.h">
+      <Filter>3-Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoFlLogger.h">
+      <Filter>3-Logger</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="1-Public">
+      <UniqueIdentifier>{8a913ffc-cd0d-440e-a736-bbcebdc702ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2-Common">
+      <UniqueIdentifier>{2be0ee66-41a3-4553-8138-93994f3a1657}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3-Logger">
+      <UniqueIdentifier>{68b54909-4ede-43f7-a884-3915b8b40934}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3-Logger\File">
+      <UniqueIdentifier>{06492d4e-8299-4d4b-81de-6fa4762c2b30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3-Logger\Net">
+      <UniqueIdentifier>{c03a3fcc-f8f1-453f-a5a0-5b38be031584}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\MoFeatureLogger.cpp" />
+    <ClCompile Include="..\FBufferedLoggerWriter.cpp">
+      <Filter>3-Logger\File</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FLoggerModule.cpp">
+      <Filter>3-Logger\File</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetLoggerWriter.cpp">
+      <Filter>3-Logger\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetLoggerConsole.cpp">
+      <Filter>3-Logger\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FLoggerFeature.cpp">
+      <Filter>3-Logger</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
