@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="kUz7l5nphoLQmHJpI1pDlQ" name="database.logicunit.sqlTable" is_valid="Y" note="M#">
+<Source _uuid="UkXEuiB]uyUH4BuN2GOngg" is_valid="Y" note="M#">
+<![CDATA[CREATE TABLE `<jt:item source='$dataset.data_name' format='field'/>`
+(
+<jt:loop source='$fields' alias='field'>
+<jt:equals source='$field.data_type' value='RecordId'>
+   `<jt:item source='$field.data_name' format='field' last='`' rpad='30'/> BIGINT<jt:notEquals source='$field.is_null' value='Y'> NOT NULL</jt:notEquals><jt:equals source='$field.is_key' value='Y'> AUTO_INCREMENT PRIMARY KEY</jt:equals><jt:notEmpty source='$field.data_default'> DEFAULT <jt:item source='$field.data_default'/></jt:notEmpty><jt:position type='last' source='$field' elseValue=','/>
+</jt:equals>
+<jt:notEquals source='$field.data_type' value='RecordId'>
+   `<jt:item source='$field.data_name' format='field' last='`' rpad='30'/> <jt:item source='$field.data_type'/><jt:notEquals source='$field.is_null' value='Y'> NOT NULL</jt:notEquals><jt:equals source='$field.is_key' value='Y'> AUTO_INCREMENT PRIMARY KEY</jt:equals><jt:notEmpty source='$field.data_default'> DEFAULT <jt:item source='$field.data_default'/></jt:notEmpty><jt:position type='last' source='$field' elseValue=','/>
+</jt:notEquals>
+</jt:loop>
+) ENGINE=<jt:item source='$dataset.data_engine'/> DEFAULT CHARSET=utf8;
+<jt:loop source='$keys' alias='key'>
+<jt:equals source='$key.key_type' value='Foreign'>
+
+ALTER TABLE <jt:item source='$dataset.data_name' format='field'/> ADD CONSTRAINT <jt:item source='$dataset.data_alias' format='field'/>_FK_<jt:item source='$key.data_alias' format='field'/>
+      FOREIGN KEY (`<jt:item source='$key.data_name' format='field'/>`) REFERENCES <jt:item source='$key.refer_name' format='dump'/>(`OUID`);
+</jt:equals>
+</jt:loop>
+<jt:loop source='$keys' alias='key'>
+<jt:notEquals source='$key.key_type' value='Foreign'>
+<jt:equals source='$key.key_type' value='Unique'>
+<jt:notEquals source='$key.is_null' value='Y'>
+ALTER TABLE <jt:item source='$dataset.data_name' format='field'/>
+   ADD CONSTRAINT <jt:empty source='$dataset.data_alias' value='$dataset.data_name' elseValue='$dataset.data_alias' format='Upper'/>_UK_<jt:empty source='$key.data_alias' value='$key.data_name' elseValue='$key.data_alias' format='Upper'/> UNIQUE ( <jt:item source='$key.unique_names' format='field'/> )<jt:equals source='$dataset.config' value='logic'> USING INDEX TABLESPACE EUISDX</jt:equals>;
+</jt:notEquals>
+</jt:equals>
+</jt:notEquals>
+</jt:loop>
+]]>
+</Source>
+</Template>

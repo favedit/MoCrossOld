@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="T0VpVl0hRWY[mC4vxotHvw" name="business.catalog.process.define" label="M#12cn16业务流程定义" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="BS_CATALOG_PROCESS_DEFINE" data_alias="BS_CAT_PRC_DFN" data_logic="BS_CATALOG_PROCESS_DEFINE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="907rD1TQnZr5uJMXNNeslA" name="process_id" label="M#12cn14流程标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROCESS_ID" data_refer="business.catalog.process" />
+  <FieldBoolean _uuid="[0SwwXJfEx]klKXMFafetA" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" />
+  <FieldInteger _uuid="AkuTjKw7cJE1KuPBrYLvkg" name="process_order" label="M#12cn14处理顺序" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROCESS_ORDER" />
+  <FieldEnum _uuid="JEgLnvCHcS6IIIMrT9oUuw" name="examine_cd" label="M#12cn14审批类型" is_valid="Y" note="M#12cn226L = Level 级审\nS = Single 单审" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_CD" data_size="1" data_code="business.catalog.process.define.examine" />
+  <FieldInteger _uuid="oEjk1Yuc8BrHuUpuFGEgnw" name="role_id" label="M#12cn14角色标识" is_valid="Y" note="M#" is_unique="Y" is_store="Y" is_abstract="N" data_name="ROLE_ID" data_refer="person.role" />
+  <FieldDate _uuid="ckU5bi]AQ]inApOtYtD2kQ" name="create_date" label="M#12cn14创建日期" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_default="sysdate" />
+  <FieldContent _uuid="C0DLIMt]gx3m6D9iKpeTvA" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

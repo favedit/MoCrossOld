@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+   <!-- ============================================================ -->
+   <!-- DatabaseConsole: 数据库控制台                                -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.data.connector.IConnectorConsole'
+         class = 'org.mo.data.connector.FConnectorConsole'
+         scope = 'global'>
+      <Property name='persistence'>database.connector</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${application.space}/database.connector</Property>
+      <Property name='cacheTimeout'>60000</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+      <Release name='releaseAll'/>
+   </Component>
+   
+   <!-- ==================================================== -->
+   <!-- Synchronizer.Console                                 -->
+   <!-- 数据同步控制台                                       -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.data.synchronizer.ISynchronizerConsole'
+         class = 'org.mo.data.synchronizer.FSynchronizerConsole'
+         scope = 'global'>
+      <Property name='persistence'>database.synchronizer</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='process_interval'>10000</Property>
+      <Property name='workpath'>${application.space}/database.synchronizer</Property>
+      <Property name='cacheTimeout'>60000</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+      <Release name='releaseAll'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Statistics.Console                                   -->
+   <!-- 数据计算控制台                                       -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.data.statistics.IStatisticsConsole'
+         class = 'org.mo.data.statistics.FStatisticsConsole'
+         scope = 'global'>
+      <Property name='persistence'>database.statistics</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='process_interval'>60000</Property>
+      <Property name='workpath'>${application.space}/database.statistics</Property>
+      <Property name='cacheTimeout'>60000</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+      <Release name='releaseAll'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- LogicUnitConsole:列表控制台                                  -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.data.logicunit.ILogicUnitConsole'
+         class = 'org.mo.data.logicunit.FLogicUnitConsole'
+         scope = 'global'>
+      <Property name='persistence'>database.logicunit</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${application.space}/database.logicunit</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- ListConsole:列表控制台                                       -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.data.codelist.ICodeListConsole'
+         class = 'org.mo.data.codelist.FCodeListConsole'
+         scope = 'global'>
+      <Property name='persistence'>database.codelist</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${application.space}/database.codelist</Property>
+      <Property name='sourceSqlLogic'>${application.deploy}/sql/codelist</Property>
+      <Property name='enum'>${application.deploy}/enum/</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- DatasetConsole:数据集控制台                                  -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:sourcepath - 代码路径                                     -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  P:storepath - 存储路径                                      -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.data.dataset.IDatasetConsole'
+         class = 'org.mo.data.dataset.FDatasetConsole'
+         scope = 'global'>
+      <Property name='persistence'>eng-dataset</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='sourcepath'>${application.deploy}</Property>
+      <Property name='workpath'>${application.space}/database.dataset</Property>
+      <Property name='storepath'>${application.space}/database.dataset.store</Property>
+      <!-- 建立单元路径 -->
+      <Property name='logicUnit'>${application.deploy}/logic/</Property>
+      <!-- 建立列表包头文件的路径 -->
+      <Property name='enum'>${application.deploy}/enum/</Property>
+      <!-- 建立用户视图的路径 -->
+      <Property name='installSqlViewUser'>${application.deploy}/view/install/</Property>
+      <!-- 卸载用户视图的路径 -->
+      <Property name='uninstallSqlViewUser'>${application.deploy}/view/uninstall/</Property>
+      <!-- 建立系统包的路径 -->
+      <Property name='installSqlSystem'>${application.deploy}/system/install/</Property>
+      <!-- 卸载系统包的路径 -->
+      <Property name='uninstallSqlSystem'>${application.deploy}/system/uninstall/</Property>
+      <!-- CSV文件建立表数据的路径 -->
+      <Property name='installDataTable'>${application.deploy}/data/</Property>
+      <!-- 建立类型包的路径 -->
+      <Property name='installSqlType'>${application.deploy}/type/install/</Property>
+      <!-- 卸载类型包的路径 -->
+      <Property name='uninstallSqlType'>${application.deploy}/type/uninstall/</Property>
+      <Property name='sourceLogic'>${application.deploy}/logic/</Property>
+      <Property name='sourceHistoryLogic'>${application.deploy}/logic.history/</Property>
+      <Property name='sourceLogicData'>${application.deploy}</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <Component
+         face  = 'org.mo.data.dataset.IDatasetHelper'
+         class = 'org.mo.data.dataset.FDatasetHelper'
+         scope = 'global'>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- DataInfo                                             -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.data.datainfo.IDataInfoConsole'
+         class = 'org.mo.data.datainfo.FDataInfoConsole'
+         scope = 'global'>
+      <Property name='persistence'>eng-datainfo</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${application.space}/database.datainfo</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <Component
+         face  = 'org.mo.data.procedure.IProcedureHelper'
+         class = 'org.mo.data.procedure.FProcedureHelper'
+         scope = 'global'/>
+         
+   <!-- ==================================================== -->
+   <!-- 获取当前时间                                             -->
+   <!-- ==================================================== -->  
+    <Component
+         face  = 'org.mo.data.date.IDataDateConsole'
+         class = 'org.mo.data.date.FDataDateConsole'
+         scope = 'global'>
+      <Property name='interval'>1800000</Property>
+      <Initialize name='connect'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Data.Database.Console                                -->
+   <!-- 数据链接控制台                                       -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.data.database.IDataDatabaseConsole'
+         class = 'org.mo.data.database.FDataDatabaseConsole'
+         scope = 'global' >
+      <Property name='databaseDomainName'>domain</Property>
+      <Property name='databaseAnalysisName'>analysis</Property>
+      <Initialize name='initialize'/>
+   </Component>
+</Config>

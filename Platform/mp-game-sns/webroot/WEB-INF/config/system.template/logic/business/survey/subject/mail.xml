@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="IEMplR3C[3bTiEoEREc3pA" name="logic.business.survey.subject.mail" label="调查问卷" is_valid="Y" note="M#">
+  <Source _uuid="9Ux8ZeJiqPkCxk2ay5XurA" name="survey.head" label="调查问卷-通知标题" is_valid="Y" note="M#"><![CDATA[<jt:item source='$config.organization_label'/>邀您参加调查问卷！]]></Source>
+  <Source _uuid="l04YJwTplllZNrf56hWfug" name="survey.body" label="调查问卷-通知正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='问卷调查' alias='navigator_label'/>
+<jt:define source='eUIS2.0系统' alias='survey_context'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.organization_label'/>诚挚邀请您参与<jt:item source='$config.survey_label'/>。</TD></TR>
+   </TABLE>
+   <jt:notEmpty source='$config.note'>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.note' /></TD></TR>
+   </TABLE>
+   </jt:notEmpty>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD>调查范围:<jt:item source='$config.survey_type'/>。</TD></TR>
+   </TABLE>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD>问卷调查截止日期:<jt:timeSpan source='$config.end_date' type='date' format='YYYY-MM-DD'/></TD></TR>
+   </TABLE>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>点击这里开始参与调查</B></A></TD></TR>
+   </TABLE>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD>再次感谢您的积极参与，在参与调查过程中如遇到任何问题，可随时咨询<jt:item source='$config.organization_label'/>。</TD></TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Define _uuid="QUwT6]E5hRzBPRz8gx]Hig" name="mail_content_type" label="邮件类型" is_valid="Y" note="M#" value="Html" />
+  <Variable _uuid="Sk1wFC56S6qvDYZuIQOKvg" name="organization_label" label="组织名称" is_valid="Y" note="M#" />
+  <Variable _uuid="NkR4tbYnAfS]FdVwMALGog" name="survey_label" label="问卷名称" is_valid="Y" note="M#" />
+  <Variable _uuid="Gkg]1lb6pqCIJLEK9M8voA" name="survey_type" label="问卷类型范围" is_valid="Y" note="M#" />
+  <Variable _uuid="6U0C2ODUMPFVDzUTm0zlgw" name="end_date" label="结束时间" is_valid="Y" note="M#" />
+  <Variable _uuid="W0UttOXqtffKKw5ASqgIhw" name="redirect" label="url地址" is_valid="Y" note="M#" />
+  <Variable _uuid="O021d8scts5wBlqEBD9etg" name="note" label="备注(目的描述)" is_valid="Y" note="M#" />
+</Template>
+

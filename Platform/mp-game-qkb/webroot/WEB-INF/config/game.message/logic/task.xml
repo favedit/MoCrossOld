@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="TkSD3tp8Du6EWYNlr2Wpog" name="logic.task" label="任务系统" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" source_name="MoMgLogicTask" code="Ltk" full_code="LogicTask" display_index="45">
+  <Message _uuid="fE]0K8bB8bUCzk09QXEzmQ" name="accept.request" label="接受任务场景请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Accept" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0011" code_fix="Y">
+    <Item _uuid="gkBr9aBgXKNFKCcbOSkUiQ" name="taskTid" label="任务编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="2UMSQRX6UGtGS]WRIYO[tA" name="entityOid" label="接任务NPC实体对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+  </Message>
+  <Message _uuid="YUoDkfqvfYcbbTpdkCNtqw" name="accept.response" label="接受任务场景应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Accept" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0012" code_fix="N">
+    <Enum _uuid="40ZO10Pw2Nosa]54iwEqsA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="CUmDfJLP3L7nGmtQzSvwmw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="OUSCglL]eIzlCxvhCtjBpQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="dk7cKQ1zkHMhO4xHGJQMig" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="y0OSneH5yiAwQMDM0]3Tqg" name="acceptTaskType" label="接任务类型" is_valid="Y" note="M#" type="Enum" type_name="EGmAcceptType" is_collection="N" />
+    <Item _uuid="0UVsSuPjF9]Kxgmn5]NvjA" name="taskDetail" label="任务信息" is_valid="Y" note="M#" type="Object" type_name="SGsTask" is_collection="N" />
+  </Message>
+  <Message _uuid="BEQ3P5FyAVKq6xfWIDUjuQ" name="abandon.request" label="放弃任务场景请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Abandon" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0021" code_fix="Y">
+    <Item _uuid="BEyXUhwgR0xVBNVbcWVdrw" name="taskId " label="任务编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="ik4pkmrDaAMxhi[shC0Jlg" name="abandon.response" label="放弃任务场景应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Abandon" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0022" code_fix="N">
+    <Enum _uuid="vEcBxRKGfkWyTWmhKLpxsw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="zkHow1W2UIACADmzBm[PmQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="EEdKUc[01dxbJpfaomTanA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="Ik07XZps2w5]N[1x43UXrQ" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="NkgTg3LtYHoHg0rlUl7JpQ" name="taskId" label="任务编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="XUsYIf9yDN972Pg0DIjcnw" name="taskTid" label="任务模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="pEJZVHKNKAtnSrOoYKrQgw" name="finish.request" label="完成任务场景请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Finish" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0051" code_fix="Y">
+    <Item _uuid="W0nty]CtxQkcXBrPADnTmw" name="entityOid" label="实体对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="qE4CwJJ8StaHojR]T0d0uw" name="taskTid" label="任务标签" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="ZEnwMZq1haJnXcdvRyivhA" name="equipOid" label="装备对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+  </Message>
+  <Message _uuid="x0z6cFn4pORooaZWrRcimg" name="finish.response" label="完成任务场景应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Finish" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0052" code_fix="Y">
+    <Enum _uuid="80bYoZRaBZCy]8xJPWO5uA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="g0HuqaCoDivi0c]13ghmhQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="QUoHoG[KqyjXyTxScgIFow" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="9EWiXxQvs5sVIC]c68kCvg" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="6E1R]1e0fsM3Rq[eCFVJhQ" name="entityOid" label="实体对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="vEmpVvQiU]GLlS1F[TKhpg" name="taskId" label="任务编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="pEv6fwzoDh9Wdax27r0evA" name="taskTid" label="任务模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="oUhBhg3dYMm1BK6mBoeQlQ" name="finishDistanceFlag" label="远程完成类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTaskFinishTeleport" is_collection="N" />
+    <Item _uuid="WUffBayrK9fhcd6WftjRmg" name="finishSpecial" label="是否播放特效" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="JUt[3hFsv1EOlg7EWkS0tg" name="task.query.request" label="任务查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskQuery" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0053" code_fix="N">
+    <Item _uuid="mkeTpr0o6KsQq2fVEFmwmQ" name="taskId" label="任务编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="5UJMgdoo3EcTYDpBgNfLgg" name="task.query.response" label="任务查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskQuery" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0054" code_fix="N">
+    <Enum _uuid="SE6IG[kiARsAKu37xOLYhA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="mEVWZam[d3gPjHvaeZwCnQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="i0w74De0xm0Fga1oRSYHhw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="H05s]TPhwirp4CTOl6lZgQ" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="]0WgBZhzgxxEb23tx4Loqg" name="taskId" label="任务编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="X0CLJwf068ky[tErq2PZvA" name="label" label="任务标志" is_valid="Y" note="M#" type="String" is_collection="N" data_size="template.label.max-length" />
+    <Item _uuid="dUHNWwQiCGkevlVOb4J2mQ" name="summary" label="内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="template.note.max-length" />
+  </Message>
+  <Message _uuid="VUAa02Ur6qrSoqr[lGAQrA" name="task.list.request" label="任务列表查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskList" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0055" code_fix="N" />
+  <Message _uuid="5Eo9UscVpEhPVNW3HQgSsA" name="task.list.response" label="任务列表查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskList" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0056" code_fix="N">
+    <Item _uuid="vE5[fxpcuSUgi4NqEONkiA" name="taskList" label="任务列表" is_valid="Y" note="M#" type="Object" type_name="SGsTask" is_collection="Y" data_size="role.bag.task.max-count" />
+    <Enum _uuid="KEBFUYCVsKMQWezgKjykpg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="AEGcQVesCGaYp]IwYDMxhQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="yEG9H[Bksog[SslaPSVzhw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+  </Message>
+  <Message _uuid="rE[eJ94[]gxbhDHDrDYCkQ" name="task.trackset.request" label="任务跟踪设置请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskTrackSet" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0057" code_fix="N">
+    <Item _uuid="LkkxCOEK]0mlFY7k4rMVrQ" name="taskId" label="任务编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="IUkFdePT0E1HqZJc5QMErQ" name="trackFlag" label="跟踪标识" is_valid="Y" note="M#" type="Enum" type_name="EGmTrackFlag" is_collection="N" />
+  </Message>
+  <Message _uuid="pkC6x6xFToSRuvLAyVmzmA" name="task.trackset.response" label="添加任务跟踪回复" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskTrackSet" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0058" code_fix="N">
+    <Enum _uuid="502Bo1B1LcngGdc[]H[Igw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="vk011W8nnTi5B8bVCLs2rA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="EUSRPqa8WlqQtXhlhhf[lQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="T0O8nHO7G1gDfc9dVMRGlw" name="taskId" label="任务编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="GE5ydzEjVvaEDHjh[mXPkQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="fUKDvPKTXiYv59lxtq9vhA" name="trackFlag" label="跟踪标示" is_valid="Y" note="M#" type="Enum" type_name="EGmTrackFlag" is_collection="N" />
+  </Message>
+  <Message _uuid="0E5[63SDT41K1GEeIqjBoA" name="task.track.notify" label="任务跟踪通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskTrack" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0059" code_fix="N">
+    <Item _uuid="i0CSPU6RDFsl8UWhvdhxmA" name="task" label="状态信息" is_valid="Y" note="M#" type="Object" type_name="SGsTask" is_collection="N" />
+  </Message>
+  <Message _uuid="2kCc]35Q8tqmcYvyn77Npg" name="task.detail.request" label="任务谈话请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskDetail" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x005A" code_fix="N">
+    <Item _uuid="p0TfpBhCly8iqu1KbQUfoQ" name="taskTid" label="编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="LEQQVt0b7sfjA3PLRfSUjA" name="task.detail.response" label="任务谈话回复" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskDetail" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x005B" code_fix="N">
+    <Enum _uuid="bUpeXEJSoNv7Wx9DsCN6gQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="jkXTlyL]I0zvo2S1wGzHuw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="8URHdWdsSPWLuF7MGHZklg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="B05oXGkahM2AuUX2zghhpA" name="talkContentWrap" label="对话内容的集合" is_valid="Y" note="M#" type="Object" type_name="SGsTalkContentSet" is_collection="N" />
+    <Item _uuid="ykP6WoRu[Fve7gJgED7jvw" name="taskRewardWrap" label="奖励信息" is_valid="Y" note="M#" type="Object" type_name="SGsReward" is_collection="N" />
+  </Message>
+  <Message _uuid="8kh]06z]mIdvCPEqSaYfjw" name="task.acceptable.request" label="可接任务场景请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Acceptable" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x005C" code_fix="N" />
+  <Message _uuid="WkLvdOl]YLmhYHZoPzngsA" name="task.acceptable.response" label="可接任务场景应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Acceptable" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x005D" code_fix="N">
+    <Item _uuid="4UZe0Q7ZezUP0pOxif80hA" name="taskList" label="可接任务列表" is_valid="Y" note="M#" type="Object" type_name="SGsTask" is_collection="Y" data_size="64" />
+  </Message>
+  <Message _uuid="RUcxgQUibcileGufQyNvhw" name="task.directfinish.request" label="直接完成任务" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskFinishDirect" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x005E" code_fix="N">
+    <Enum _uuid="AkdI6iH30F22CLogWG0Drg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="GEMgWziu3sXD9ghSe0e5sw" name="demand" label="查询" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="3UIrvMOVZu4GYfChgey7gQ" name="accept" label="确定" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="A0obCJIBdrAH86TTg0QmjA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="9UbPvtHSSQuXT9PoMLN9hQ" name="taskId" label="任务编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="l0NDIPD[nf0SmHyjJnA4kQ" name="token" label="令牌" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="9U00CTIlh8t9ha91NUk]qw" name="task.directfinish.response" label="直接完成任务" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskFinishDirect" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x005F" code_fix="N">
+    <Enum _uuid="akKSL9T31Dy7mcOXcdYBqg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N">
+      <Member _uuid="DEfKy1TdqFJkti6sampbmA" name="Demand" label="查询" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="7UBDFXHRj3zVig]1[bQsqw" name="Accept" label="确定" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="fUTgzM8RJN64lzz]Pgtzlw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="2UGFh7Z7w64]iFtwaNK3qQ" name="ingotComplete" label="直接完成任务花费的元宝" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="a94c203a-1f54-48c3-99d0-9126d30d1815" name="taskId" label="任务编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="IkDLHOZZp5V4FzgV[ioVrg" name="task.finishdistance.notify" label="远程完成任务" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FinishDistance" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0060" code_fix="N">
+    <Item _uuid="3E47jTPeg5L1]Ry4jWBxiA" name="taskTid" label="任务编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="s0RrIS7fVSMh9aHLMPADug" name="talkContentWrap" label="对话内容的集合" is_valid="Y" note="M#" type="Object" type_name="SGsTalkContentSet" is_collection="N" />
+    <Item _uuid="sUUTjUQT1KToIWNQJQoxkw" name="taskRewardWrap" label="奖励信息" is_valid="Y" note="M#" type="Object" type_name="SGsReward" is_collection="N" />
+    <Item _uuid="eUDjJbK3laUYVe6Q7JePow" name="styleIconTid" label="样式图标模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="60v9bgXKE4fY7BK2XqF4jQ" name="actorTid" label="对话演员编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="7U5clH8yNJz7O]XbA8XElg" name="task.timeout.notify" label="任务超时通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskTimeout" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0061" code_fix="N">
+    <Item _uuid="]UVprarz9FiKmUUugiUQuw" name="taskId" label="任务编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="mUiJ9]X2vo02jIZzML]mjg" name="task.trackupdate.notify" label="任务跟踪更新" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskTrackUpdate" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0062" code_fix="N">
+    <Item _uuid="b07bQCac9ohbeMkonDM6pA" name="taskId" label="任务编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="4UEz8UmnWuVunO2INZd7tQ" name="statusCd" label="任务状态类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTaskStatus" is_collection="N" />
+    <Item _uuid="FE7K5kGzbgivyRNIf0Drtg" name="taskTrack" label="交任务跟踪" is_valid="Y" note="M#" type="Object" type_name="SGsTaskTrack" is_collection="N" />
+  </Message>
+  <Message _uuid="Fk]JaLUWNijCH[mgXyocrQ" name="reward.notify" label="任务奖励通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Reward" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0063" code_fix="N">
+    <Struct _uuid="4EwZiLsfv8rKurXV3sIXow" name="SItem" label="物品信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="80[a2KnjJPT3vRgsHj8yjw" name="label" label="名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="item.label.max-length" />
+      <Item _uuid="0UdQbOKG0TevMl6LRk2siw" name="overLapCount" label="叠加个数" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+    </Struct>
+    <Item _uuid="NEL[bYvRG1OC[LH5KRhNhw" name="currency" label="金钱" is_valid="Y" note="M#" type="Object" type_name="SGmCurrency" is_collection="N" />
+    <Item _uuid="PkyUtAh]NR6MJoJMnwL2vA" name="itemList" label="物品列表" is_valid="Y" note="M#" type="Object" type_name="SItem" is_collection="Y" data_size="item.itembagitem.max-count" />
+    <Item _uuid="bkXNU8kKbwQArNHJD0Dhsw" name="exp" label="经验" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="cEGSM6ro3A]92HnAOhlcpg" name="task.prop.notity" label="使用物品触发任务" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskProp" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0064" code_fix="N">
+    <Item _uuid="x0eX[Tf883Xwckgx2Lltmw" name="taskTid" label="任务模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="skXAm0IemnLi4vljsjw6lg" name="talkContentWrap" label="对话内容的集合" is_valid="Y" note="M#" type="Object" type_name="SGsTalkContentSet" is_collection="N" />
+    <Item _uuid="CEmMi2WAEkjhEl[EKpMfvw" name="taskRewardWrap" label="奖励信息" is_valid="Y" note="M#" type="Object" type_name="SGsReward" is_collection="N" />
+  </Message>
+  <Message _uuid="k0MUfnrP5TfFBqlh7IWypA" name="race.request" label="飞升请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Race" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0065" code_fix="Y">
+    <Enum _uuid="Bkwo[vbWzpYErOIO3WmRrA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="cUsw]oNVP51dmJkrHaHKlg" name="demand" label="查询" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="bk1NFoVz26ILzb6QyuB[kA" name="accept" label="确定" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="8kzJldy1WFeROw2fS2ZMnA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="J04NKZQz[I79vf]fe0bsvg" name="raceTid" label="种族编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="CElvHxcuFM6QJfuZLo0Ujg" name="race.response" label="飞升应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Race" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0066" code_fix="N">
+    <Enum _uuid="XEg[z9DyT6c[kyYE2a]VhA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="YkwB5CAtWWshLCj]WESpuA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="2EpXvAFcpg]QZv630kDasQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="U0JTwKleBNu5qY4AQVIuvw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Enum _uuid="3ElRbU3VZa4CF8QCgclSjQ" name="ESign" label="应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="[EMOQBjpbts1YrU7dvKmrw" name="demand" label="查询" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="rU96ML2UQ0MRtMB85tBVpg" name="accept" label="确定" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="1kn[zImc]ZgA7w5yyZvDow" name="signCd" label="应答" is_valid="Y" note="M#" type="Enum" type_name="ESign" is_collection="N" />
+    <Struct _uuid="okR9YfMKNfHif]O]UcBjmw" name="SSoar" label="飞升信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="3UqRB3O58d3S5Cca9DpVug" name="iconTid" label="飞升模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="2UwtYYiLftPfTGl5Markhw" name="intro" label="飞升模板简介" is_valid="Y" note="M#" type="String" is_collection="N" data_size="128" />
+      <Item _uuid="q0VuerLfxz]IUtUJdDx6hQ" name="information" label="飞升模板详细信息" is_valid="Y" note="M#" type="String" is_collection="N" data_size="1024" />
+      <Item _uuid="q0Qe6iHa9GhdqYYnrvU5tw" name="raceTid" label="种族编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="Yk2rR1Bpd1S6co0U]7iprg" name="frontWingStyleAtion" label="前层" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="Zk5LE[T0jLHL7Z9cWaE2ng" name="backWingStleAcion" label="后层" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="mkutCXW5ltjwk8fM3mesrw" name="raceAbilityRate" label="飞升能力" is_valid="Y" note="M#" type="Object" type_name="SGmRaceAbilityRate" is_collection="N" />
+    </Struct>
+    <Item _uuid="WkFBW]OsOmbS957PGCi0gQ" name="soarList" label="飞升信息列表" is_valid="Y" note="M#" type="Object" type_name="SSoar" is_collection="Y" data_size="3" />
+    <Item _uuid="j00zH[syrODzNeG[bkq1hw" name="recommendCamp" label="推荐阵营" is_valid="Y" note="M#" type="Enum" type_name="EGmRace" is_collection="N" />
+  </Message>
+  <Message _uuid="U0z4llAxx9cLMlqPUWZruw" name="gather.request" label="采集请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Gather" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0067" code_fix="Y">
+    <Enum _uuid="nEJV21KYWkoOTdBQAd2qkA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="S03cS1MsVfttG1Xx8Dc4tQ" name="demand" label="查询" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="fkQd4en[ZH1MiFhWn]jhkQ" name="accept" label="确定" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="TEDP3LKibcFLs4HbpuD0ug" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="rU952ZKnk7WBuIONEYdQrA" name="entityOid" label="NPC实体编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="hEE22pgEG820G6oi0eBHmQ" name="actorTid" label="演员模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="WEWZ3eE7wRCdEKUM5[2hjA" name="gather.response" label="采集应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Gather" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0068" code_fix="N">
+    <Enum _uuid="mUivVChTwZo6GDXwNBW7mQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="kkDt6MQC0e1v58OMGEsEhw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="J0ICaE3rOI0mtKd]yGTAkg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="wkfiVIxY]gOU5n[EUuTChw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="qkuuMs4kiVOWyLM7WmooiQ" name="mapTid" label="地图编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="kEijRQTWnqu6haiq2QGVhA" name="location" label="地图坐标" is_valid="Y" note="M#" type="Struct" type_name="SGmPoint3" is_collection="N" />
+    <Item _uuid="H0BySPAjkxEA3iARdG6Mjw" name="gatherInfo" label="采集语言" is_valid="Y" note="M#" type="String" is_collection="N" data_size="64" />
+    <Item _uuid="2ULheqBt]r1z6jwqI]KUow" name="secs" label="读秒时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="j0FBMJtZvPnZb]reg3FBtQ" name="task.website.request" label="收藏官网请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Website" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0069" code_fix="N">
+    <Enum _uuid="1URbrQMKNu26CJNq82Aqig" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="1EtZA2aSu9GdcWYz7rpRuw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="AU9ripzReYOD8uO3gtWxnQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="LkghOuSUMGjbhflrUakuog" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="U01cGChTACkxLdVgG45pgQ" name="task.website.response" label="收藏官网应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Website" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x006A" code_fix="N" />
+  <Message _uuid="[EuZHhv]3R[OtaGuUFcNtg" name="task.choice.notify" label="押镖任务消耗元宝弹框提示" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskChoice" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x006B" code_fix="N">
+    <Enum _uuid="y0Fvg2bL7TS9[rU]Z3xMuA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="50FWvX]Yim1pf1Hbpvj]hg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="BEp8lshTEX37yiobiok]sQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="1Erw8zhvJB5MAvpiTfBYqg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="xkxqVXvRSkoH[8NYh3bDvQ" name="currency" label="押镖任务刷新所需元宝" is_valid="Y" note="M#" type="Int16" is_collection="N" />
+  </Message>
+  <Message _uuid="QEYG2moDI[wz3W67JhJijQ" name="task.teleport.request" label="押镖任务完成传送请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Teleport" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x006C" code_fix="N">
+    <Enum _uuid="ZEXWpWxqg[aX2NQi8revjw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="]k]zn2sn7Z9nDhSsw874mw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="D0uLJbFAdXPgYzV1sXLKjg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="q0km[Y]4rcX8aTUrJP3[mw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="lkFNA68ZD9skMzbTwLvMhQ" name="actorTid" label="演员模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="QUyRbFQcZZUsJPoTnwezmg" name="task.teleport.response" label="押镖任务完成传送应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Teleport" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x006D" code_fix="N">
+    <Item _uuid="YkKsrQH3y8Iy5jEvzUrBkA" name="actorTid" label="演员模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="R0XS0PsVGBCpgIe4OBUJmQ" name="reward.dialog.notify" label="任务奖励特效字" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RewardDialog" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x006E" code_fix="N">
+    <Item _uuid="FEW6XZPbVZugxrv1a7AdpA" name="dialogContent" label="特效字内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="128" />
+  </Message>
+  <Message _uuid="TkYAxL6IgH9rjx6pYTChmA" name="task.map.track.notify" label="任务小地图追踪通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskMapTrack" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x006F" code_fix="N">
+    <Struct _uuid="f0fvFwdM9eAdQ4PsVBsvvA" name="SEntityTask" label="实体任务信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="ZkUdjAu1Y9S1iNj3oJWAog" name="mapTid" label="地图编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="WE0wgabqMk8MElIHtxjhqQ" name="entityOid" label="实体对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+      <Item _uuid="gkfJ68pDYAm6CKy4rG9Lmw" name="statusCd" label="任务状态类型" is_valid="Y" note="M#" type="Enum" type_name="EGmEntitySign" is_collection="N" />
+    </Struct>
+    <Item _uuid="b07CXuWQx7K1a6BSS]Qehw" name="entityTaskList" label="实体列表" is_valid="Y" note="M#" type="Object" type_name="SEntityTask" is_collection="Y" data_size="64" />
+  </Message>
+  <Message _uuid="AUM74ps1ie9xKW2EnsVYsg" name="task.royal.request" label="皇榜任务" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskRoyal" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0070" code_fix="N" />
+  <Message _uuid="dkoZftfuvY3MbRKmn]Xpig" name="task.royal.response" label="皇榜任务" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskRoyal" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0071" code_fix="N">
+    <Item _uuid="60uJ2RatgBi9CQ5tykQwlw" name="acceptCount" label="已接皇榜任务个数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+    <Item _uuid="nU5NZZXhFvwgT1]nY0SbkA" name="acceptMaxCount" label="可接皇榜任务总数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+    <Item _uuid="u0dHyQNSPNtuoqAf8N7tjw" name="refreshTime" label="刷新时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="r0nxZFMiqCwpL[VCEi1[mA" name="propCount" label="道具数量" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="3UOS]9mLbRy]8Gn6ZnnLng" name="propTid" label="道具模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="ac5bfedb-daad-4067-bf6d-c1bc6403c200" name="propDetail" label="道具详细信息" is_valid="Y" note="M#" type="Object" type_name="SGsItemToolTip" is_collection="N" />
+    <Item _uuid="ad6e2444-e99c-4bf0-8ba2-66c57f583093" name="royalRefreshCount" label="皇榜剩余免费刷新次数" is_valid="Y" note="M#" type="Uint8" is_collection="N" />
+  </Message>
+  <Message _uuid="rE7fEIMoQtNYYS33JNySvw" name="refresh.request" label="皇榜任务刷新请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Refresh" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0072" code_fix="N">
+    <Item _uuid="zEqYqsm9t9K[HfOQYGFAkQ" name="isUseMoney" label="是否使用元宝" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="HEHTkWeHJxzyiVlaOGeDmw" name="refresh.response" label="皇榜任务刷新应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Refresh" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0073" code_fix="N">
+    <Item _uuid="YUEE7AML3]ViaUJCgpchpw" name="taskSet" label="任务集合" is_valid="Y" note="M#" type="Object" type_name="SGsTaskSet" is_collection="N" />
+    <Item _uuid="8EI]owEo[0DzCrwlpNFztQ" name="refreshTime" label="刷新时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="2c4e4dd6-1f98-4d38-a1d9-570a710e7314" name="royalRefreshCount" label="剩余免费刷新皇榜次数" is_valid="Y" note="M#" type="Uint8" is_collection="N" />
+  </Message>
+  <Message _uuid="4Eb6j4QwjBFAsQDcSbxKgw" name="accept.task.royal.request" label="接受皇榜任务请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="AcceptTaskRoyal" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0074" code_fix="N">
+    <Item _uuid="oEEN]Mhu80EJ3Ii]Qkc]og" name="taskTid" label="任务模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="6Ej3nd31VcCiFO658wUHkg" name="accept.task.royal.response" label="接受皇榜任务应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="AcceptTaskRoyal" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0075" code_fix="N" />
+  <Message _uuid="LkV973eFZXqztwSLI9jvlg" name="finish.task.royal.request" label="完成皇榜任务请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FinishTaskRoyal" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0076" code_fix="N">
+    <Item _uuid="QETrnj9y6rNFbfLu8zAhtg" name="taskId" label="任务编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="xk]2nxxgM4rL6p3ztC3AlA" name="finish.task.royal.response" label="完成皇榜任务应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FinishTaskRoyal" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0077" code_fix="N">
+    <Item _uuid="DE2Pk4Nb0TpM]f]fFsiepQ" name="taskId" label="任务编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="30WgPPZfs[mFOM4qUUSpkw" name="finishDistanceFlag" label="远程完成类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTaskFinishTeleport" is_collection="N" />
+  </Message>
+  <Message _uuid="2E[BI3COhwjU6vaeebn0lQ" name="spend.money.refresh.request" label="使用元宝刷新皇榜任务请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="SpendMoneyRefresh" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0078" code_fix="N">
+    <Item _uuid="q0d3gLVjKLux5ZDNfB9crQ" name="spendMoney" label="消耗元宝" is_valid="Y" note="M#" type="Int16" is_collection="N" />
+  </Message>
+  <Message _uuid="zkwtf5PgXOVVnqy8LqKTng" name="spend.money.refresh.response" label="使用元宝刷新皇榜任务应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="SpendMoneyRefresh" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0079" code_fix="N" />
+  <Message _uuid="VUV7IjKj[fYukeeHtEw3qg" name="task.royal.icon.notify" label="皇榜任务图标通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TaskRoyalIcon" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x007A" code_fix="N">
+    <Enum _uuid="jkqkL4H5pL0aGJWpnNcLtA" name="EGmShowStatus" label="显示状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="2keAWNCa72N8TBcLZpW9nA" name="Yes" label="是" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="8kpkk9]qzB0iYntGz8DwvQ" name="No" label="否" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="ikobmf248BZyAFBngraIig" name="showStatus" label="显示状态" is_valid="Y" note="M#" type="Enum" type_name="EGmShowStatus" is_collection="N" />
+    <Item _uuid="8EZGZErmC4GKAv2vOyPFjQ" name="currentCount" label="当前数量" is_valid="Y" note="M#" type="Uint8" is_collection="N" />
+    <Item _uuid="BEAf5VDRGgaZqIPbXn[DlA" name="totalCount" label="总数量" is_valid="Y" note="M#" type="Uint8" is_collection="N" />
+    <Item _uuid="kEl8fxXEDTeewjmtDLpPkg" name="refreshTime" label="刷新剩余时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="CUKTlJ2i1qCxHicy98HanQ" name="escort.popui.notify" label="弹出押镖界面" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EscortPopUI" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x007B" code_fix="N">
+    <Item _uuid="r0[CQ6[mKFWNMwpRAz9nrw" name="gradeCd" label="押镖任务品级" is_valid="Y" note="M#" type="Enum" type_name="EGmTaskGrade" is_collection="N" />
+    <Item _uuid="CE3RF75tsQAXXNeP3GGpuQ" name="leftCount" label="任务剩余可接次数" is_valid="Y" note="M#" type="Int16" is_collection="N" />
+    <Item _uuid="d0BZpdbnEIima]rJHcRYqA" name="leftItem" label="剩余押镖令数量" is_valid="Y" note="M#" type="Int16" is_collection="N" />
+    <Item _uuid="UEOa84NmrXIRSI8t2nYCvQ" name="taskReward" label="任务奖励物品信息" is_valid="Y" note="M#" type="Object" type_name="SGsReward" is_collection="N" />
+    <Item _uuid="ukJbrXgbsB0FksIEHGKRig" name="taskTid" label="任务模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="OUkPXdM5OrAZoIzFq7D2mg" name="rewardPlus" label="奖励倍数" is_valid="Y" note="M#" type="Float" is_collection="N" />
+    <Item _uuid="QkdUSRaYrGtZ39iD4E[fvw" name="itemTid" label="押镖令TID" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="VUhCZr12GAXNiJeHTErAvg" name="spendMoney" label="一键橙镖消耗元宝" is_valid="Y" note="M#" type="Int16" is_collection="N" />
+  </Message>
+  <Message _uuid="gUQe8u2R2hY6hWYevJE1vg" name="escort.refresh.request" label="押镖刷新请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EscortRefresh" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x007C" code_fix="N">
+    <Item _uuid="REZrcVhahtYXT9nfITHxrg" name="costChoice" label="押镖任务是否弹出元宝消耗提示通知" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="0kGF9Wy2y2c3cI9CZD[llg" name="taskTid" label="任务ID" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="yE8fbCa3sX81FHVerfe0jg" name="isFullGrade" label="是否一键升级橙镖" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="F0EyayNBssndYB4KgWPCvA" name="escort.getui" label="获取押镖UI请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EscortGetUI" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x007D" code_fix="N">
+    <Item _uuid="]05GAh3bCNPHaasW57F2ig" name="taskTid" label="任务ID" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="AUR2[c0T4YNQKK5AFX3djA" name="gather.break.notify" label="打断采集通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GatherBreak" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x007E" code_fix="N" />
+  <Message _uuid="XUPE39M5usGufz2aCS7hhg" name="gather.break.request" label="采集打断请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GatherBreak" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x007F" code_fix="N" />
+</Group>
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="7Uq0CvWG4Vh4mOqrEXp[rw" name="develop.solution" label="M#12cn16解决方案定义" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="DP_SOLUTION" data_logic="DP_SOLUTION_DI" data_type="D">
+  <FieldString _uuid="0Uo0FqTXoofnz4SsLtiftA" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="DEwoeIRZMZakDCrTWgHOlw" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="zU6WHBc9RL2c6rsBsVjdng" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldContent _uuid="F0qwmRLq1Ln3w0Twmd7zsg" name="describe_note" label="M#12cn14项目描述" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DESCRIBE_NOTE" />
+  <FieldBoolean _uuid="wUDai0EvB3qNMuxEGFTegQ" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="'Y'" />
+  <FieldBoolean _uuid="L0PvP52JKbiDzTSy9mmxoQ" name="is_product" label="M#12cn14是否产品" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_PRODUCT" data_default="CP_BOOLEAN_EI.EFalse" />
+  <FieldInteger _uuid="dUvdXO8lpEB[0TPuKp0]jw" name="group_id" label="M#12cn13组标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GROUP_ID" data_refer="develop.project.group" />
+  <FieldInteger _uuid="RUWpBifWYsjgOvCSBaUSlA" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_refer="develop.project.type" />
+  <FieldEnum _uuid="M0Q6iPgkdQcqT60HCIUhlQ" name="status_cd" label="M#12cn14状态类型" is_valid="Y" note="M#12cn219C:启动\nP:计划\nI:实现\nM:维护" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="develop.project.status" />
+  <FieldEnum _uuid="gU]48eNK2gEisspDSQcxpA" name="scale_cd" label="M#12cn14规模类型" is_valid="Y" note="M#12cn261U:超大(500人以上)\nH:巨大(100人以上)\nL:大型(50人以上)\nM:中等(10人以上)\nS:小型(5人以上)\n" is_store="N" is_abstract="N" data_name="SCALE_CD" data_size="1" data_code="develop.project.scale" />
+  <FieldEnum _uuid="U0lHy22SuaF0xcORVlaJlA" name="profit_cd" label="M#12cn14营利类型" is_valid="Y" note="M#12cn210营利/非营利/全公摊" is_null="Y" is_store="Y" is_abstract="N" data_name="PROFIT_CD" data_size="1" data_code="develop.project.profit" />
+  <FieldContent _uuid="Q03fH4]CGCdZ2sZfxr3njw" name="business_case_note" label="M#12cn13企划案" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BUSINESS_CASE_NOTE" />
+  <FieldDate _uuid="XUnli9o8xsazYnDhnFFYgA" name="expect_begin_date" label="M#12cn16预期开始日期" is_valid="Y" note="M#12cn19预计项目启动时间。" is_null="Y" is_store="Y" is_abstract="N" data_name="EXPECT_BEGIN_DATE" />
+  <FieldDate _uuid="okjM]VPJ6G9rFNBCYCKBow" name="expect_end_date" label="M#12cn16预期完成日期" is_valid="Y" note="M#12cn19预期的项目完成日期" is_null="Y" is_store="Y" is_abstract="N" data_name="EXPECT_END_DATE" />
+  <FieldDate _uuid="rkHZt4ep8fAY]]wFihprow" name="begin_date" label="M#12cn14开始日期" is_valid="Y" note="M#12cn16项目开始时间" is_null="Y" is_store="Y" is_abstract="N" data_name="BEGIN_DATE" />
+  <FieldDate _uuid="p0qBhZzp6Pj0irMuCv3XlQ" name="end_date" label="M#12cn14完成日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="END_DATE" />
+  <FieldInteger _uuid="lUf3EV]Pwl2iLRwqME1Clw" name="principal_user_id" label="M#12cn15负责人标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRINCIPAL_USER_ID" data_alias="PCL_USR" data_refer="person.user" />
+  <FieldInteger _uuid="7krsRLdbq3YR8gVqBNvYvg" name="principal_role_id" label="M#12cn16负责角色标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRINCIPAL_ROLE_ID" data_refer="person.role" />
+  <FieldInteger _uuid="I0wciW]xFACwuHEST[tGjQ" name="idea_principal_user_id" label="M#12cn17建议负责人标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IDEA_PRINCIPAL_USER_ID" data_alias="IDA_PCL_USR" data_refer="person.user" />
+  <FieldContent _uuid="Ukr[gHuAMYBM[YKuKnZToA" name="range_summary_note" label="M#12cn14范围摘要" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RANGE_SUMMARY_NOTE" />
+  <FieldContent _uuid="bUkytDq25ZOLXoFaQWQOkQ" name="risk_note" label="M#12cn14风险描述" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RISK_NOTE" />
+  <FieldInteger _uuid="j0AWFi[CDuQNbEgzA1jIsw" name="estimates_manhour" label="M#12cn14估计工时" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ESTIMATES_MANHOUR" />
+  <FieldFloat _uuid="HEI3QNNe4AvYA6QmCcCRug" name="estimates_expenditure_amt" label="M#12cn14估计开支" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ESTIMATES_EXPENDITURE_AMT" />
+  <FieldFloat _uuid="60ofUgX9WiDoyYYKXtwovw" name="real_hour" label="M#12cn14实际工时" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REAL_HOUR" />
+  <FieldFloat _uuid="LEks1608MA24VBUr45kVqg" name="real_rate" label="M#12cn16剩余实际比率" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REAL_RATE" />
+  <FieldFloat _uuid="SkK5fKVjiVg]gFHAFZDLlA" name="remain_hour" label="M#12cn14剩余工时" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REMAIN_HOUR" />
+  <FieldInteger _uuid="rkI2]egeZG6CzSdv1[7UuA" name="create_user_id" label="M#12cn15创建者标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CREATE_USER_ID" data_refer="person.user" />
+  <FieldDate _uuid="nknWysoyDe8pAZUgetAzhg" name="create_date" label="M#12cn16项目创建时间" is_valid="Y" note="M#12cn227在系统上为项目创建记录的时间，不等同于项目的启动时间。" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_default="SYSDATE" />
+  <FieldContent _uuid="SkJ]]O]6pe2zE1noQlDTgg" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

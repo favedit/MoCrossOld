@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataWork _uuid="UkgZLTmBzbJAqSPibjdspw" name="logic.business.process.step.operate.config" label="M#12cn18业务阶段操作配置" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_BUSINESS_PRC_STP_OPT_CFG" data_alias="LG_BUS_PRC_STP_OPT_CFG" data_logic="LG_BUSINESS_PRC_STP_OPT_CFG_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="Work">
+  <FieldBoolean _uuid="LE]0b[J8OTSgYh4ky70MnQ" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldInteger _uuid="EEveRmoSsdSsll2g2cL]pw" name="operate_id" label="M#12cn16阶段操作标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OPERATE_ID" />
+  <FieldEnum _uuid="Vkr9Az5NN]eWsggHaHKpkA" name="apply_cd" label="M#12cn14申请类型" is_valid="Y" note="M#12cn214U=用户\nR=角色\nO=组织" is_null="Y" is_store="Y" is_abstract="N" data_name="APPLY_CD" data_size="1" data_code="logic.business.process.apply" />
+  <FieldInteger _uuid="skxVJPUEDWMHi4WCJPjLiA" name="apply_role_id" label="M#12cn15源角色标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="APPLY_ROLE_ID" data_alias="APL" data_refer="person.role" />
+  <FieldEnum _uuid="e0IUpfeAOkkmgGqZmsX3qA" name="examine_search_cd" label="M#12cn16审核搜索方式" is_valid="Y" note="M#12cn230C=Catalog 目录树查找\nL=Level   最近一级" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_SEARCH_CD" data_size="1" data_code="logic.business.process.step.config.search" />
+  <FieldInteger _uuid="xE]9ERxFwrZ0omPP3QvgqQ" name="search_role_id" label="M#12cn14查询角色" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SEARCH_ROLE_ID" />
+  <FieldString _uuid="dUhKRYZqlXm9rwng0Kuvog" name="callback" label="M#12cn12回调" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CALLBACK" data_size="2000" />
+  <FieldString _uuid="HUc5odkkYB0mAjGQHGkbtQ" name="parameter" label="M#12cn12参数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PARAMETER" data_size="2000" />
+  <FieldInteger _uuid="o0D9UzulmJSZzcLzQsfVjQ" name="process_order" label="M#12cn14处理顺序" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROCESS_ORDER" />
+  <FieldContent _uuid="tUBb5tkrYRHblXm0nO1yuQ" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataWork>
+

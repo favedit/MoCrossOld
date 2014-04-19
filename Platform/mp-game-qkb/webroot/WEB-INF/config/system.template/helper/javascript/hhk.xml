@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="EUALuhi3aTRkMXWXkKijow" name="helper.javascript.hhk" is_valid="Y" note="M#">
+  <Source _uuid="lUQhsPjCYTjb[VXKrJSSqA" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+<jt:loop source='$config' alias='space'>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="<jt:item source='$space.name'/>">
+		<param name="Local" value="src/javascript/space/<jt:item source='$space.name' format='path.lower'/>.html">
+		</OBJECT>
+</jt:loop>
+<!---------------------------------------------------------------------->
+<jt:loop source='$config' alias='space'>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="<jt:item source='$space.name'/>">
+		<param name="Local" value="src/javascript/space/<jt:item source='$space.name' format='path.lower'/>.html">
+		</OBJECT>
+		<jt:loop source='$space#Classes' alias='class'>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="<jt:item source='$class.name'/>">
+				<param name="Local" value="src/javascript/class/<jt:item source='$class.name'/>.html">
+				</OBJECT>
+				<jt:loop source='$class#Methods' alias='methods'>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="<jt:item source='$methods.name'/>">
+						<param name="Local" value="src/javascript/method/<jt:item source='$class.name'/>_<jt:item source='$methods.name'/>.html">
+						</OBJECT>
+				</jt:loop>
+		</jt:loop>
+</jt:loop>
+</UL>
+</BODY></HTML>]]></Source>
+</Template>
+

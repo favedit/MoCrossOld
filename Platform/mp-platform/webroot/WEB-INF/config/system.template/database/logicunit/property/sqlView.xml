@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="uUpzaGEPkNp3dBzx11rRpA" name="database.logicunit.sqlView" is_valid="Y" note="M#">
+  <Source _uuid="60]ZbPHhJJ80wmSY2jV0hw" is_valid="Y" note="M#"><![CDATA[CREATE OR REPLACE VIEW <jt:item source='$dataset.data_name' format='field'/>
+AS
+   SELECT
+<jt:Loop source='$fields' alias='field'>
+<jt:equals source='$field.is_property' value='N'>
+      <jt:item source='$field.data_name' format='field'/><jt:position source='$field' type='last' value='' elseValue=','/>
+</jt:equals>
+<jt:equals source='$field.is_property' value='Y'>
+<jt:equals source='$field.data_type' value='Integer'>
+      <jt:item source='$dataset.value_data_name' format='field'/>_DI.Get_Property_Integer(OUID, <jt:item source='$field.property_id' format='field'/>) <jt:item source='$field.data_name' format='field'/><jt:position source='$field' type='last' value='' elseValue=','/>
+</jt:equals>
+<jt:equals source='$field.data_type' value='Date'>
+      <jt:item source='$dataset.value_data_name' format='field'/>_DI.Get_Property_Date(OUID, <jt:item source='$field.property_id' format='field'/>) <jt:item source='$field.data_name' format='field'/><jt:position source='$field' type='last' value='' elseValue=','/>
+</jt:equals>
+<jt:equals source='$field.data_type' value='Boolean'>
+      <jt:item source='$dataset.value_data_name' format='field'/>_DI.Get_Property_Boolean(OUID, <jt:item source='$field.property_id' format='field'/>) <jt:item source='$field.data_name' format='field'/><jt:position source='$field' type='last' value='' elseValue=','/>
+</jt:equals>
+<jt:equals source='$field.data_type' value='Float'>
+      <jt:item source='$dataset.value_data_name' format='field'/>_DI.Get_Property_Float(OUID, <jt:item source='$field.property_id' format='field'/>) <jt:item source='$field.data_name' format='field'/><jt:position source='$field' type='last' value='' elseValue=','/>
+</jt:equals>
+<jt:equals source='$field.data_type' value='String'>
+      <jt:item source='$dataset.value_data_name' format='field'/>_DI.Get_Property_String(OUID, <jt:item source='$field.property_id' format='field'/>) <jt:item source='$field.data_name' format='field'/><jt:position source='$field' type='last' value='' elseValue=','/>
+</jt:equals>
+</jt:equals>
+</jt:Loop>
+   FROM <jt:item source='$dataset.parent_data_name' format='field'/>_DS
+   WHERE RECORD_CODE = '<jt:item source='$dataset.record_code' format='field'/>'
+   WITH READ ONLY]]></Source>
+</Template>

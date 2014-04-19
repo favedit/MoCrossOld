@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="fe56bc1f-14a2-4e89-b36a-f9dffb19dd09" name="database.connector" label="M#12cn16数据链接定义" is_valid="Y" note="M#" template="xmlobject" source="${export.logic.data.source}">
+   <Interface _uuid="39f09172-dfbb-4803-bcf9-c78375a28720" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#" class_name="org.mo.data.connector.common.XObjectFace">
+      <Attribute _uuid="ff937a94-896a-49df-9202-2c0ce0a4047f" name="code" label="M#12cn12代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="7511d83b-7ae1-40e9-998a-a1039066937e" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" />
+      <Attribute _uuid="b93a8e44-a75b-4734-830b-1cae093fcffe" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+      <Attribute _uuid="362eae66-af51-420d-b358-fbb7a02e4a8a" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" />
+      <Attribute _uuid="6903c935-d365-4f98-bd9a-1da5c14b3030" name="note" label="M#12cn12注释" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+   </Interface>
+   <Component _uuid="021c7ba1-247a-4708-bccd-eae8a7f5a4a4" name="Database" label="M#12cn12分组" is_valid="Y" note="M#" class_name="org.mo.data.connector.common.XDatabase" base_name="org.mo.data.connector.base.XBaseDatabase" inherits="IObject" />
+   <Component _uuid="cbf35b14-2ab2-4eb1-a6d0-4f922f9db5cb" name="Connection" label="M#12cn14数据链接" is_valid="Y" note="M#" class_name="org.mo.data.connector.common.XConnection" base_name="org.mo.data.connector.base.XBaseConnection" inherits="IObject">
+      <Attribute _uuid="0ac440a6-0bae-4b7f-9eda-5fff2fd5ac7c" name="passport" label="M#12cn12账号" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="8fd12249-0353-4405-a277-c09e1da01008" name="password" label="M#12cn12密码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="3e4cacd7-581a-4657-aeaf-41d9bda06e52" name="driver_name" label="M#12cn14驱动名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="fdc19d05-6882-4b21-b47a-040799a1c6e9" name="driver_class" label="M#12cn15驱动类名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="98211569-b6db-4466-96df-dd258b97738d" name="url" label="M#12cn14连接地址" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+</Persistence>

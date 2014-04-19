@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source is_valid="Y" note="M#"><![CDATA[-- ============================================================
+-- <T><jt:item source='$group.label'/>枚举定义。</T>
+--
+-- @version 1.0.1
+-- ============================================================
+<jt:loop source='$group' alias='enum' filter='$enum:name=Enum'>
+
+-- ============================================================
+-- <T><jt:item source='$enum.label'/>。</T>
+-- ============================================================
+E<jt:item source='$enum.name'/> = {
+<jt:loop source='$enum' alias='item'>
+   -- <jt:item source='$item.label'/>
+   <jt:item source='$item.name'/> = <jt:item source='$item.value'/>,
+</jt:loop>
+}
+</jt:loop>
+]]></Source>
+</Template>

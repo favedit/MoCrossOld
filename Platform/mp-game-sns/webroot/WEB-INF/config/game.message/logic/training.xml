@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="bkr7h2G4RtYDGqOVvWkjtg" name="logic.training" label="训练逻辑" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" source_name="MoMgLogicTraining" code="Ltr" full_code="LogicTraining" display_index="50">
+  <Message _uuid="qEg6ENuLKxz3hhPnMgHxow" name="training.fort.request" label="训练防御塔请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TrainingFort" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0001" code_fix="N">
+    <Item _uuid="XknAgKOlirBXTnoKIBbSjw" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="4kWgW[nf[HFhj9dI4TkItA" name="sessionId" label="登陆会话编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="80WNFnqgein[yoGy6tvTtQ" name="modeTid" label="模式模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="PUvY0GCizdMYJxSxc3aqug" name="trainingPlaceOwnerId" label="训练位所有者编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="gk0MqeXjTnRmBzi9wWEqtA" name="fortTid" label="防御塔NPC模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="m03eVBrAm0tZG4E4ZM8ZsQ" name="training.fort.response" label="训练防御塔应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TrainingFort" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Enum _uuid="rkBETFxW3nCT54ODSh4vuQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="K0ZyJD[dHOENHpisT3gunw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="I08LJfLhu3JD6f846s5ajA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="[Ek3uMTFEu0acPF5vZTXoA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="5EkJAjyxIAJj6OIzTedgjA" name="pointReiki" label="玩家灵气总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="ZEQjc3bnIa292M0BKZjChg" name="fortSet" label="防御塔集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleFortSet" is_collection="N" />
+    <Item _uuid="AU0OZhphj]e3BDDa[sl6vQ" name="updateTrainingPlaceSet" label="更新后的训练营位置集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleTrainingPlaceSet" is_collection="N" />
+  </Message>
+  <Message _uuid="DEiOtNqreHqnKLS1mIu0mw" name="training.fort.storage.query.request" label="训练塔存储查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="TrainingFortStorageQuery" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0003" code_fix="N">
+    <Item _uuid="qUs1nWxzpWN1o5lA]zD8kg" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="i0hM8Rst081QrPYISsGdog" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="vkDZkl4ek1JwjnBz7DXUhw" name="fortTid" label="训练的塔编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="9kLBi6gq1LELKxE6leY7nQ" name="modeTid" label="模式模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="k04M8j3vHHLCcWsB3bUfig" name="trainingPlaceOwnerId" label="训练位所有者编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="w0ybPMJTSQDc50Q6S4lPtQ" name="training.fort.storage.query.response" label="训练塔存储查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="TrainingFortStorageQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0004" code_fix="N">
+    <Enum _uuid="IEclLsUbbXz1Jm6X[vPKog" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="y0eV99tSJqkuVOcZbbnsrQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="UUDKtmx7gEsHe4REVndmgw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="4E[LtGJAUKKb1[822Tt6mg" name="NoFitablePlace" label="不是领主或者属臣，无法培养" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="]kT6vSF5tnz22qxn2HGCsg" name="NoEnoughPlace" label="没有足够的训练位" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="[0SqVy7R1gr6VN2TlFQJrQ" name="statusCd" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="]UeAepu4LDSNrCQTe8tSlg" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="xEu2AX6WZ9FKI]eXPJvpsw" name="modeTid" label="模式模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="pkU16B2QKsjZKfnBhJdDqw" name="FortTid" label="训练的塔的编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="ikjAaPdT2z98TXeA1QDrlA" name="trainingPlaceOwnerId" label="训练营所属者编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="JU9CCwCtQXBaU][T9zqTpQ" name="ownerTrainingCamp" label="训练位所有者的训练营信息" is_valid="Y" note="M#" type="Object" type_name="SGpRoleHome" is_collection="N" />
+    <Item _uuid="n0BhAuEAsvfAeewlx8mNiw" name="targetTrainingPlace" label="目标训练位" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTrainingPlace" is_collection="N" />
+  </Message>
+  <Message _uuid="]UAFFu[tn50v9XwMJcs7nw" name="training.fort.storage.request" label="训练防御塔请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="TrainingFortStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0005" code_fix="N">
+    <Item _uuid="FU[IdsD7yAhq[xvMDeSnvA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="FkeY]qcsN]7c0mep5Ui8mg" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="JUwlRchyp0uFcgJDEio9hg" name="pointReiki" label="灵气点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="KUlT9Z1[PEcQKd[tCw0OsA" name="updateFort" label="更新后的塔数据" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFort" is_collection="N" />
+    <Item _uuid="O0A]nKWG1XG1xnEUeAAplw" name="trainingPlaceOwnerId" label="训练营所有者编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="s0LV8rayvzcGFrTrGVZ6pQ" name="updateTrainingPlace" label="训练营位置" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTrainingPlace" is_collection="N" />
+  </Message>
+  <Message _uuid="tk]i2wTO2jh08IRtP9MNrw" name="training.fort.storage.response" label="训练防御塔应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="TrainingFortStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0006" code_fix="N">
+    <Enum _uuid="gktVBe3cf3[1cfn]QXjTkg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="rkvTcnEu1xxriWNjbSSqlg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="xEVbKIPxXnm2M]P6uiGjlw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="9ES3566ZjLEikkwgYfmWtw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="1UFAgw3YTpATYTgmSkdLhA" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="ZkS5v6TWAQy3FBA1]C1UjQ" name="pointReiki" label="玩家灵气总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="kEKbfTGPtR5trpFydv4qgw" name="fort" label="防御塔" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFort" is_collection="N" />
+    <Item _uuid="YUyCpOfSJuJLHb6]TREFog" name="trainingPlaceOwnerId" label="训练营所有者编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="j0aHSKuZheqjy5E0[tDzlg" name="updateTraningPlaceSet" label="训练营位置集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTrainingPlaceSet" is_collection="N" />
+  </Message>
+  <Message _uuid="ak7r9KYOw[nqZsX2n[Z[iw" name="training.place.unlock.request" label="训练位置解锁请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TrainingPlaceUnlock" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0007" code_fix="N">
+    <Item _uuid="o0a9fYjcevi2DaY7ZsZSvg" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="iE3HDfTz6Y0BpyCts3Mntg" name="sessionId" label="会话编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="D0AotuB1]rhqcSrMp7xelQ" name="trainingPlaceTid" label="训练位置模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="SUkTVFtt1XU[sIsJ5G79iA" name="training.place.unlock.response" label="训练位置解锁应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TrainingPlaceUnlock" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0008" code_fix="N">
+    <Enum _uuid="CEi1LwKdG1pQseULghFLhw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="]E6PwPwGry7sp9HQktyaiw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="TUJJQPj]u07yoNgj1zq4iw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="yEt7[ahWlnQRaivU4GZEsw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="EUXb0pn9mKe5hKHXNsIjiQ" name="pointCream" label="玩家精华点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="U0zEqwQF]1OaeDp9ZIzgnA" name="trainingPlaceSet" label="训练营位置集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleTrainingPlaceSet" is_collection="N" />
+  </Message>
+  <Message _uuid="b0UWvK2GALQLxa7QEW6GuA" name="training.place.unlock.storage.request" label="训练位置解锁请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="TrainingPlaceUnlockStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0009" code_fix="N">
+    <Item _uuid="E04wwYQdBgxHAIqUUl4EqA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="o0Owt89JX4HTnVT361DahQ" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="906Lfdbf7nS2qn]doqAatA" name="updatePointCream" label="更新角色精华点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="VE5HcJ9H9kY7o6Hdjbv6rw" name="updateTrainingPlaceSet" label="更新的训练营位置集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTrainingPlaceSet" is_collection="N" />
+  </Message>
+  <Message _uuid="kUzcX80pcpme8eHxpWOEkA" name="training.place.unlock.storage.response" label="训练位置解锁应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="TrainingPlaceUnlockStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x000A" code_fix="N">
+    <Enum _uuid="JkriVX[OFSwl29z37tGpoA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="t0gTJcta3h[2nWUhh4]wsg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="J0At8V00bNg4N97wonSNsQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="AU4V2M]kKRgP5rAxb0w0qQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="1EDTGA3eC[bdTOA3SAGkqA" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="zUCQKBj]4XqX7W9kzPrbsg" name="updatePointCream" label="更新角色精华点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="SEKRxtFUPFy6ds8zF3gupg" name="updateTrainingPlaceSet" label="更新的训练营位置集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTrainingPlaceSet" is_collection="N" />
+  </Message>
+  <Message _uuid="s0BjW8cmUhq]Jo]C9A[2tQ" name="training.place.request" label="请求训练营位置" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TrainingPlace" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x000B" code_fix="N">
+    <Item _uuid="Q0N8U7qYoZHEvuYlgpCBmQ" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="dUZ0WlBzuBcNRrTFLRkgpA" name="sessionId" label="会话编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="ZklJQ4[cY8CcevMWdeN6uQ" name="targetRoleId" label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="vUFIjaIMHjg2RutjVXztgw" name="training.place.response" label="训练营位置应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TrainingPlace" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000C" code_fix="N">
+    <Enum _uuid="GUor9XP14wpSNtFMElfenA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="k0O0oS6SmxWrz7VPa2aGng" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="vkGrtm1FhZV8tIsPm2Tjnw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="5k9]RUxg94bIM4hflLIBow" name="status" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="CUyizEsio7vcHglbnlg3ng" name="targetRoleId" label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="D0qfaT[1WDYE]M2xchIPkg" name="updateFortSet" label="更新后的塔数据集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleFortSet" is_collection="N" />
+    <Item _uuid="Z0[ovuVzdgnhi4Hxb[JYvw" name="trainingPlaceSet" label="训练营位置集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleTrainingPlaceSet" is_collection="N" />
+  </Message>
+  <Message _uuid="zEKj59rZNFgvi9of8TktpQ" name="training.place.storage.query.request" label="训练位置查询存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="TrainingPlaceStorageQuery" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x000D" code_fix="N">
+    <Item _uuid="s0qm4k8bPiGEzHfZRmHMrQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="80l3AYgRoZftSJ5Q]JNWmw" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="10SHR7is]PWnyQIcowv0sw" name="targetRoleId" label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="[kszTS7K31i5HfrZSkvSjQ" name="training.place.storage.query.response" label="训练位置查询存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="TrainingPlaceStorageQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x000E" code_fix="N">
+    <Enum _uuid="eEJvW7LdkJjO4NQftKOXgg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="ikFvXz6HXSr5SGAIjGAVqQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="yUo3fkU3g9m3Wl9t[qQyuQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="9UcqY9V0kOni3tNUA21unw" name="statusCd" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="0UtIYiXTWwK5r0b4lB1agw" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="bEWYtafMJL[yl4284SvtjQ" name="targetRoleId" label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="fkQlOjNk07PycQ6ZMQtWkA" name="limitLevel" label="受限级别" is_valid="Y" note="M#12cn214在此处为查找对象的训练营级别" type="Int32" is_collection="N" />
+    <Item _uuid="wkgVL[uYaXR1ynxGIWBqvQ" name="trainingPlaceSet" label="训练位置集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTrainingPlaceSet" is_collection="N" />
+  </Message>
+  <Message _uuid="705Tf0c960Sj7MSV7j4XhQ" name="training.place.storage.request" label="训练营位置存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="TrainingPlaceStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x000F" code_fix="N">
+    <Item _uuid="tkL4ryRVFxkyaF1iTiRejg" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="B0AStsmstbAzOwhAxIS8mw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="HUEIkN6GQ[TDa6tJnAnhvQ" name="targetRoleId" label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="Y0P5OlWalaZcjtXHenf1iw" name="updateFortSet" label="更新后的塔集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFortSet" is_collection="N" />
+    <Item _uuid="h0q[iV114i5046aXn8Twlg" name="updateTrainingPlaceSet" label="更新后的训练位集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTrainingPlaceSet" is_collection="N" />
+  </Message>
+  <Message _uuid="B0AYYKkh5nKSm0shr9kEhA" name="training.place.storage.response" label="训练营位置存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="TrainingPlaceStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0010" code_fix="N">
+    <Enum _uuid="2UNxvbbytEOfCtBa7PEMng" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="WUXUYzwk]B3mGS6Bzmzhgw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="EEo0M[E5b7YiBRf54Kl4tA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="tUg5d10h8rkFl0dYgulRsw" name="status" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="C0V3JIT09WqnFnELUyeUrg" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="dUNUxrDcAJbCxCJIfSSIjQ" name="targetRoleId" label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="lUNrBVcdIZP[[uckpjq2tQ" name="updateFortSet" label="更新后的塔集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFortSet" is_collection="N" />
+    <Item _uuid="CUdnuxGNNTEo8Oyt29]jrg" name="updatePlaceSet" label="更新后的训练位集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTrainingPlaceSet" is_collection="N" />
+  </Message>
+  <Message _uuid="9EON2]jlWg0yTLw6Gslzrg" name="training.skill.request" label="技能训练请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TrainingSkill" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0011" code_fix="N">
+    <Item _uuid="SUbHFWSDLvcfPG0LNBOjvA" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="YkInouz[fz4Tnx9pRFsUpg" name="sessionId" label="会话编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="okaN2MBHx7jOe9YwFFSLig" name="npcTid" label="虫子的编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="sUh5B4PtIvEVgt5L3qXGtw" name="skillTid" label="技能编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="40]qW0[2rhLp1PmioA53ow" name="propSet" label="物品集合" is_valid="Y" note="M#" type="Object" type_name="SGsRolePropSet" is_collection="N" />
+  </Message>
+  <Message _uuid="gU4scgUvtQyewucZzXIyhg" name="training.skill.response" label="训练技能应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TrainingSkill" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0012" code_fix="N">
+    <Enum _uuid="b0G70tJ5g55Tp40XyV7cuA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="M0kTyzx2fV1Mnwqn7ktmqQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="IUfpPHKox09eOVXNvDqzvg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="XE[[4V[Bj]JEJXlNMOE7lg" name="statusCd" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="PkcjQTgwcjheqM9wIPcThw" name="updateReiki" label="更新后的角色灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="oUW3qkwehCax]cC67CeRkA" name="updatePropSet" label="更新后的物品集合" is_valid="Y" note="M#" type="Object" type_name="SGsRolePropSet" is_collection="N" />
+    <Item _uuid="5kC8F6PFtyJCFpYYky8xjQ" name="updateFortSet" label="更新后的角色塔集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleFortSet" is_collection="N" />
+  </Message>
+  <Message _uuid="tkBghUb[Z2NhPqRxfX]hvw" name="training.skill.storage.request" label="训练技能存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="TrainingSkillStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0013" code_fix="N">
+    <Item _uuid="Yku4w5p8LWaHjVa9lxBVhw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="5EKiUB5FDRFNktEL8pfeiQ" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="nk2g5O83W[[SeepKAUzMhw" name="npcTid" label="虫子的编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="OUfAMqHl1R8P645zZJPtmw" name="skillTid" label="技能编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="NkifJbZg2FhmgspXSSiAhg" name="updateSkillLevel" label="更新后的技能级别" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="l03JqwA4A[kVPKqnSYGbsg" name="updateSkillExperience" label="更新后的技能经验" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="aUq[s5HStBcO]l]xobw3vw" name="updateReiki" label="更新后的角色灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="R0dXG2h[HoMq1UiOR5ZZsg" name="updatePropSet" label="更新后的物品集合" is_valid="Y" note="M#" type="Object" type_name="SGpRolePropSet" is_collection="N" />
+  </Message>
+  <Message _uuid="T06aPKBAAnLzc8kA4LyasA" name="training.skill.storage.response" label="训练技能存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="TrainingSkillStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0014" code_fix="N">
+    <Enum _uuid="Z0OCQY6NtJly[9FuQSF4vQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="skcXhOWt2XC6878T9[TDpg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="j0cNPdv9VfSBGW9dYBiQnA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="CEs5n3xpUEyDiiNa395UqQ" name="statusCd" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="skHHsbge2BHa[1Q[1fr3tg" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="iEINQcD3FFOu5z73UhkQmA" name="npcTid" label="虫子的编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="LU37wZslWl8]qP7awhZDpw" name="skillTid" label="技能编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="gkJ0zyQqGKJJVTutDaGmqg" name="updateSkillLevel" label="技能级别" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="dk9sefp2cfIjUwq95Futkw" name="updateSkillExperience" label="更新后的技能经验" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="Pk4WIDJErNHtWQjUqQh7oA" name="updateReiki" label="更新后的角色灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="jkToYUkMEq[SGRbkKCyLkw" name="updatePropSet" label="更新后的物品集合" is_valid="Y" note="M#" type="Object" type_name="SGpRolePropSet" is_collection="N" />
+  </Message>
+  <Message _uuid="gU9CZRZ]J8SIGxSI87tfrw" name="npc.skill.place.unlock.request" label="水晶位置开启请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="NpcSkillPlaceUnlock" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0015" code_fix="N">
+    <Item _uuid="[00oBbzN8A1ZkyylyeEkqA" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="zkM8llmb]18Ut1IAcjD5kw" name="sessionId" label="会话编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="D03PxCkUfNd1[qcdbZQXuw" name="fortTid" label="塔编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="bExbdjJX1tncWSfo6WsLog" name="skillTid" label="技能编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="ZEpbA1pAPpPo9PydowkDhQ" name="skillPlaceTid" label="水晶位置模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="skHQASUjAkSfnIFhxzH7hg" name="npc.skill.place.unlock.response" label="水晶位置开启应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="NpcSkillPlaceUnlock" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0016" code_fix="N">
+    <Enum _uuid="mkMpncXOAThxri]WOXqZqA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="MEwWsgdzXr4]GHXheWRuow" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="LErcke4]xWxpeIxieJWmtw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="lUDx[BsSL60xRLwCET6cvw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="XEOuOM0Xu68O2iNS51f3kw" name="pointCream" label="角色精华数量" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="60D6HRZQmR7pxzAH4UmthA" name="updateFortSet" label="更新后的角色塔集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleFortSet" is_collection="N" />
+  </Message>
+  <Message _uuid="E0wzJoeSK6x5mtxgwxm7tg" name="npc.skill.place.unlock.storage.request" label="水晶位置开启请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="NpcSkillPlaceUnlockStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0017" code_fix="N">
+    <Item _uuid="U0PjamlX4HcQNbIWGXcKhA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="VEgvRNQDWb07qPQWE9HRng" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="DUoG6KMFOyK4Kjl2Q37KhA" name="fortTid" label="塔编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="E01jLHiqwllFNdQftAuIgA" name="skillTid" label="技能编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="I07iWx9Q[o5XG7A6nbdLgw" name="updatePointCream" label="更新角色精华点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="ekVR1Nm8w9BOqiKBghEUlw" name="updateSkillPlaceTid" label="更新的水晶位置的编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="W0UOc1J9QnFX6Ma4Sa1oqQ" name="npc.skill.place.unlock.storage.response" label="水晶位置开启应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="NpcSkillPlaceUnlockStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0018" code_fix="N">
+    <Enum _uuid="DUqiSzNZRxtBUGFdVUCNjQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="gUs[LihTKa]grVLnF1gQqw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="skXi8uz10i5QuTNrAKc1ow" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="bUTGeXZ0RWoi4YR33tI4ug" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="m03WPWu53rBqn6POIHL3rQ" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="jUpHPcc6c4E]JhxzUwzQlg" name="fortTid" label="塔编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="gEAbEvYSOIkCciAbx]SpvQ" name="skillTid" label="技能编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="DksBhpqLVTMO0I9iUlMFqQ" name="updatePointCream" label="更新角色精华点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="[EHPvNF3CO1oc3IHi8JWoQ" name="udpateSkillPlaceTid" label="更新后的技能位置编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="ukLAPN2yggdXf[d8gxlEmw" name="retrieve.fort.request" label="取回训练中的塔请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RetrieveFort" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0019" code_fix="N">
+    <Item _uuid="M0nxAtuMRh3ZfEwsGwUApA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="Q0mkxhDeuk5wej7XgJGzrQ" name="fortTid" label="要取回的塔编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="5EvgXV1WkKMKlk6FMF1hnw" name="retrieve.fort.response" label="取回塔应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RetrieveFort" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x001A" code_fix="N">
+    <Enum _uuid="bUpxagTZwv54tn1WWTCZsQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="qkoahzhzoV9jrxWe7ur4qA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="8ExPYAN]E7xMnHSSX3t2sQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="h0vwlOjwox0bZezhOzfnmQ" name="statusCd" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="RUsNqCR51dd5f85HaC9[gA" name="updateFortSet" label="更新后的角色塔集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleFortSet" is_collection="N" />
+    <Item _uuid="dkADYwNRGyTwau]bQKT1qg" name="updateTrainingPlaceSet" label="更新后的角色训练位集合" is_valid="Y" note="M#12cn220塔集合和训练位集合不一定是同一个角色的！" type="Object" type_name="SGsRoleTrainingPlaceSet" is_collection="N" />
+  </Message>
+  <Message _uuid="gkDDFSskm64b4[LuJSUhlQ" name="retrieve.fort.storage.request" label="取回训练中的塔存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RetrieveFortStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x001B" code_fix="N">
+    <Item _uuid="Q0e[fHPTkLhMD[mh0X3ZiQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="0kzLR3rxK0dTQe3iEVp3iQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="SEagGEP8HhgDhO5LiAjxqA" name="updateFort" label="更新后的角色塔数据" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFort" is_collection="N" />
+    <Item _uuid="DEJPVf4w2CrbccmBu1ZQqQ" name="trainingPlaceOwnerId" label="训练位置所有者角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="DkotVkDroT1j6qcdz1HKug" name="updateTrainingPlace" label="更新后的角色训练位置集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTrainingPlace" is_collection="N" />
+  </Message>
+  <Message _uuid="DEI[6VolqBOdcVPrFYqLvA" name="retrieve.fort.storage.response" label="取回训练中的塔存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RetrieveFortStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x001C" code_fix="N">
+    <Item _uuid="hU95aqB0oR5zANlo7fm2uA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Enum _uuid="q0m7w[vyFJnsFfhOLRTuvQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="ZEnZiTe5C2QKteHuCVKbtw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="B0eAs5jWNw1f3nr9F]WKtw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="sE4fBI71uXUBthovIzWcvw" name="statusCd" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="gUkWEBg]8NbMxK1PG3znlQ" name="updateFort" label="更新后的塔数据" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFort" is_collection="N" />
+    <Item _uuid="h0e[3zVve]sTH1hwXQrrjA" name="trainingPlaceOwnerId" label="训练位所有者角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="JkGD]MyiPLRAdQGoYzNKjA" name="updateTrainingPlaceSet" label="更新后的训练位置集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTrainingPlaceSet" is_collection="N" />
+  </Message>
+  <Message _uuid="uk1f1JEEvO[JzoLUitKWnQ" name="retrieve.fort.storage.query.request" label="取回训练中的塔存储查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RetrieveFortStorageQuery" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x001D" code_fix="N">
+    <Item _uuid="Rkct5N0fY6OwGHbIR629uA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="d0UnyqTmZrLtPbGag1Ssrw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="VkyTNv9NgxIzo]eyH6YsmA" name="fortTid" label="训练中的塔编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="JUYq8SrtRKcECwK9R[6mnw" name="retrieve.fort.storage.query.response" label="取回训练中的塔存储查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RetrieveFortStorageQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x001E" code_fix="N">
+    <Enum _uuid="g002X0uPZlL3resHM2vrsg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="MkufvLloeDXcya1IKP1KkQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="3UT[GCxOAGy0Emi4IrhSjA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="PU0Od6TRUXv[qrn31xjkvg" name="statusCd" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="zUzP62jll2HPv42HDK5PoA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="4k7ubNblpjkxwGzbp2FMkQ" name="fortTid" label="训练中的塔编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="70depESwitDaiWwv2ukruA" name="trainingPlaceOwnerId" label="训练位置所有者角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="EUtghI2p5z6mbAnfNbNMrw" name="trainingPlace" label="指定Tid的训练位数据" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTrainingPlace" is_collection="N" />
+  </Message>
+  <Message _uuid="gUQulkzGeME2Prmfbf8Skg" name="remove.relationship.request" label="解除从属关系时结算训练结果" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RemoveRelationship" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x001F" code_fix="N">
+    <Item _uuid="W04EnbNEreSEB9hB[eqtjA" name="lairdId" label="领主编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="hkLh7IYq]v9AZNdP8moOoA" name="footmanId" label="属臣编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="kUBimu5v4dmGq[4Cjt[2ow" name="lairdTrainingCampLevel" label="领主的训练营级别" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="o0pXSlJMBzxsv8nZmvZvjw" name="footmanTrainingCampLevel" label="属臣训练营级别" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="dkLL1i792r8foePdBjPzlQ" name="lairdFortSet" label="领主的塔集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFortSet" is_collection="N" />
+    <Item _uuid="xETZjcdg0E]0yWEWnQnhtQ" name="footmanFortSet" label="属臣塔集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFortSet" is_collection="N" />
+    <Item _uuid="Y0nwmkV]b2QhonH[Ro7Ing" name="lairdTrainingPlaceSet" label="领主训练位集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTrainingPlaceSet" is_collection="N" />
+    <Item _uuid="TUcK2Ilat5K94tpViFcrpg" name="footmanTrainingPlaceSet" label="属臣训练位置集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTrainingPlaceSet" is_collection="N" />
+  </Message>
+  <Message _uuid="Vk9MJl4fC[hxEbEvNqzagA" name="remove.relationship.response" label="解除从属关系应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RemoveRelationship" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0020" code_fix="N">
+    <Enum _uuid="50xRsJ[oBSGeKbWBOR5gtg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="0kgdIQ0lN]dzMj0sJ3pvnw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="bkrM7hC3]sec9o4J54c2iw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="e0lW5[G75l0ThgikH6]ltg" name="statusCd" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="zEHQSIau8GC[4MTNIgjKlg" name="lairdId" label="领主编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="Y0ZOJg6t0yRqmvly0SPAhg" name="footmanId" label="属臣编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="f0nGWcBb2jXRJSxOKVwAuA" name="updateLairdFortSet" label="更新后的领主塔集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFortSet" is_collection="N" />
+    <Item _uuid="O0GF29xiLKzbE8ra7AVHuQ" name="updateFootmanFortSet" label="更新后的属臣塔集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFortSet" is_collection="N" />
+    <Item _uuid="sUzjRtv]LRcXcb8lOtpssA" name="updateLairdTrainingPlaceSet" label="更新后的领主训练位集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTrainingPlaceSet" is_collection="N" />
+    <Item _uuid="mUJ0MrWb6a]1exJiYl2Znw" name="updateFootmanTrainingPlaceSet" label="更新后的属臣训练位集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTrainingPlaceSet" is_collection="N" />
+  </Message>
+</Group>
+

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="lErw72Y5]Ik8PV05n7SXmQ" name="helper.design.webform.hhk" is_valid="Y" note="M#">
+  <Source _uuid="qENKN1]7mVg9KwQW1WYvhA" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+<jt:loop source='$config' alias='form'>
+	<jt:Equals source='$form._type' value='WebForm'>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="<jt:item source='$form.name'/>">
+			<param name="Local" value="src\design.webform\webform\<jt:item source='$form.name' format='path.lower'/>.html">
+			</OBJECT>
+		<jt:loop source='$form' alias='item'>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="<jt:item source='$form.name'/>.<jt:item source='$item.name'/>">
+				<param name="Local" value="src/design.webform/bulid/<jt:item source='$form.name' format='path.lower'/>.<jt:item source='$item.name' format='lower'/>.html">
+				</OBJECT>
+			<jt:loop source='$item' alias='toolbar'>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="<jt:item source='$form.name'/>.<jt:item source='$toolbar.name'/>">
+					<param name="Local" value="src/design.webform/bulid/<jt:item source='$form.name' format='path.lower'/>.<jt:item source='$toolbar.name' format='lower'/>.html">
+					</OBJECT>
+				<jt:loop source='$toolbar' alias='toolbuttonmenu'>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="<jt:item source='$form.name'/>.<jt:item source='$toolbuttonmenu.name'/>">
+						<param name="Local" value="src/design.webform/bulid/<jt:item source='$form.name' format='path.lower'/>.<jt:item source='$toolbuttonmenu.name' format='lower'/>.html">
+						</OBJECT>
+				</jt:loop>
+			</jt:loop>
+		</jt:loop>
+   </jt:Equals>
+   <jt:Equals source='$form._type' value='WebTable'>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="<jt:item source='$form.name'/>">
+			<param name="Local" value="src\design.webform\webform\<jt:item source='$form.name' format='path.lower'/>.html">
+			</OBJECT>
+		<jt:loop source='$form' alias='item'>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="<jt:item source='$form.name'/>.<jt:item source='$item.name'/>">
+				<param name="Local" value="src/design.webform/bulid/<jt:item source='$form.name' format='path.lower'/>.<jt:item source='$item.name' format='lower'/>.html">
+				</OBJECT>
+			<jt:loop source='$item' alias='toolbar'>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="<jt:item source='$form.name'/>.<jt:item source='$toolbar.name'/>">
+					<param name="Local" value="src/design.webform/bulid/<jt:item source='$form.name' format='path.lower'/>.<jt:item source='$toolbar.name' format='lower'/>.html">
+					</OBJECT>
+				<jt:loop source='$toolbar' alias='toolbuttonmenu'>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="<jt:item source='$form.name'/>.<jt:item source='$toolbuttonmenu.name'/>">
+						<param name="Local" value="src/design.webform/bulid/<jt:item source='$form.name' format='path.lower'/>.<jt:item source='$toolbuttonmenu.name' format='lower'/>.html">
+						</OBJECT>
+				</jt:loop>
+			</jt:loop>
+		</jt:loop>
+   </jt:Equals>
+</jt:loop>
+</UL>
+</BODY></HTML>]]></Source>
+</Template>
+

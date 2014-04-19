@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="j0t9qnSNfve9YdGM8FykvQ" name="web-tools" label="M#12cn15工具栏信息" is_valid="Y" note="M#" template="xmlobject" source="${export.web.web.source}">
+   <Interface _uuid="QUofxopvpyRdBzKwzO]TgA" name="IObject" label="M#12cn14对象接口" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.web.core.webtools.common.XObjectFace">
+      <Attribute _uuid="O0XCRJSAx9oxIrNncQdugw" name="name" label="M#12cn12名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="H0hw805dgobvQHJQy2aKog" name="_type" label="M#12cn12类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="30wfAlmOwEtqPsML4V1smA" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="nEQEMYwTvCZ0cGnHu3KEig" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" data_default="Y" />
+      <Attribute _uuid="lkU30fUmF1hGgSHpoAivmQ" name="note" label="M#12cn14注释信息" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" is_default="N" />
+   </Interface>
+   <Component _uuid="1kzYN2bhu3L0ZIhT]Snylw" name="MenuButton" label="M#12cn14按钮菜单" is_valid="Y" note="M#12jp15フィールド" class_name="org.mo.web.core.webtools.common.XMenuButton" base_name="org.mo.web.core.webtools.base.XBaseMenuButton" inherits="IObject,IIcon,IAction">
+      <Attribute _uuid="dEL6YWYpbbKt92GfxIkjig" name="data_name" label="M#12cn14数据名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+   <Component _uuid="QUg2D4Uya0E89k2Wakgegw" name="MenuButtonMenu" label="M#12cn13子菜单" is_valid="Y" note="M#12jp15フィールド" class_name="org.mo.web.core.webtools.common.XMenuButtonMenu" base_name="org.mo.web.core.webtools.base.XBaseMenuButtonMenu" inherits="IObject,IIcon,IAction">
+      <Attribute _uuid="KkbvAHTt77[Vl2P9ufX3hw" name="data_name" label="M#12cn14数据名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+   <Component _uuid="6kqQqEAkPq5t7XG5v[Btlw" name="MenuButtonSplit" label="M#12cn14菜单分割" is_valid="Y" note="M#12jp16データセット" class_name="org.mo.web.core.webtools.common.XMenuButtonSplit" base_name="org.mo.web.core.webtools.base.XBaseMenuButtonSplit" inherits="IObject">
+      <Attribute _uuid="J00kpYmWYqTf8VjlyDRihQ" name="service" label="M#12cn12服务" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+   <Component _uuid="DEH7aar2APPz0xGuKopRsA" name="MenuBar" label="M#12cn13菜单栏" is_valid="Y" note="M#" class_name="org.mo.web.core.webtools.common.XMenuBar" base_name="org.mo.web.core.webtools.base.XBaseMenuBar" inherits="IObject">
+      <Attribute _uuid="a0[JOL1aOq7Dw3DEZP9Qnw" name="width" label="M#12cn12宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="gE9FYWf4oAjufHUP]v[miw" name="height" label="M#12cn12高度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+   <Component _uuid="nE62bR80NKP9v4Bhg4L9sQ" name="ToolButtonText" label="M#12cn14按钮文本" is_valid="Y" note="M#12jp15フィールド" class_name="org.mo.web.core.webtools.common.XToolButtonText" base_name="org.mo.web.core.webtools.base.XBaseToolButtonText" inherits="IObject,IIcon,IAction">
+      <Attribute _uuid="OEaplLV7mHYMbyee8s[qnA" name="data_name" label="M#12cn14数据名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+   <Component _uuid="V0v7UmL4kCbWSDU]GeyapA" name="ToolButtonSplit" label="M#12cn12分割" is_valid="Y" note="M#12jp16データセット" class_name="org.mo.web.core.webtools.common.XToolButtonSplit" base_name="org.mo.web.core.webtools.base.XBaseToolButtonSplit" inherits="IObject">
+      <Attribute _uuid="AU8DxEa9TpPel0C5v11Pqw" name="service" label="M#12cn12服务" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+   <Component _uuid="[Ey7x]FNp2wS]s7SECESqg" name="ToolButtonMenu" label="M#12cn14菜单按钮" is_valid="Y" note="M#" class_name="org.mo.web.core.webtools.common.XToolButtonMenu" base_name="org.mo.web.core.webtools.base.XBaseToolButtonMenu" inherits="IObject,IIcon,IAction">
+      <Attribute _uuid="K0BCreqiVq5ojQNZs2QOvQ" name="service" label="M#12cn12服务" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+   <Component _uuid="aEUbyIa1X4k[V3vBx3jBhA" name="ToolBar" label="M#12cn13工具栏" is_valid="Y" note="M#" class_name="org.mo.web.core.webtools.common.XToolBar" base_name="org.mo.web.core.webtools.base.XBaseToolBar" inherits="IObject">
+      <Attribute _uuid="Okdwc0TLw79zCViLzmrYiA" name="width" label="M#12cn12宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="sEjUdwYk0iw99teni6wfow" name="height" label="M#12cn12高度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+   <Component _uuid="xEkUwn4YJmUseRy4]UG9uQ" name="ToolButton" label="M#12cn12按键" is_valid="Y" note="M#" class_name="org.mo.web.core.webtools.common.XToolButton" base_name="org.mo.web.core.webtools.base.XBaseToolButton" inherits="IObject,IIcon,IAction">
+      <Attribute _uuid="eUadHRMxZ7dBYEI4f6LvlQ" name="attributes" label="M#12cn14属性内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="tEKVcUSUlbDVvQ][463Bpw" name="type" label="M#12cn14按键类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="dU5WFFIhTfMTWkxCo0O[lw" name="disp_access" label="M#12cn14显示入口" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="KELD0vQTPkWukMReyEDxsA" name="hotkey" label="M#12cn12热键" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+   <Interface _uuid="XUB84Iqc8MTO5n]Rve3kgQ" name="IIcon" label="M#12cn14图标接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webtools.common.XIconFace">
+      <Attribute _uuid="L0T8YgEnk82Hw0f[FENqvw" name="icon" label="M#12cn12图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="1kyF04oZJz0NqKz2SUlJsQ" name="icon_disable" label="M#12cn14禁止图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Interface>
+   <Interface _uuid="BUHQzTJpPcYHM9Js2pb0pg" name="IAction" label="M#12cn14命令接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webtools.common.XActionFace">
+      <Attribute _uuid="Bksn5w1WZAKKHpiNCHLxgw" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="iE5PJEewr1h8dhugwLI9nA" name="page" label="M#12cn12页面" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Interface>
+</Persistence>

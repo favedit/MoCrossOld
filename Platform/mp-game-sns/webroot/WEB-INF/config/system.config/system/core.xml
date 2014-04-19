@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration _uuid="E0LkbT4y6Zm1EXOYZvsjkg" _type="Configuration" name="system.core" label="M#12cn15系统-核心" is_valid="Y" note="M#">
+  <Component _uuid="VkIYlAXADKaVXy[pl7Uxiw" _type="Component" name="loggerConsole" label="M#12cn14日志管理" is_valid="Y" note="M#" face="org.mobj.core.logging.ILoggerConsole" instance="org.mobj.core.logging.FLoggerConsole" scope="Global">
+    <Property _uuid="7kX]vTbMWPwUhGHLWMX5sA" _type="Property" name="interval" label="M#12cn14时间间隔" is_valid="Y" note="M#" data_value="10000" data_type="Integer" />
+    <Property _uuid="uEBWNw2tuP7gWOWK1BG]gQ" _type="Property" name="datetimeFormat" label="M#12cn14时间格式" is_valid="Y" note="M#" data_value="YYYY/MM/DD HH24:MI:SS" data_type="String" />
+    <Initialize _uuid="vkg7Fb7GmtbNO8hb4Y22ow" _type="Initialize" name="addFilter" label="M#12cn14过滤条件" is_valid="Y" note="M#">
+      <Parameter _uuid="KUbeRtU2eYtxIuFSIVufjg" _type="Parameter" name="dispatcherConsole" label="M#12cn13发报器" is_valid="Y" note="M#" data_value="org.mobj.core.aop.dispatcher.FDispatcherConsole" data_type="String" />
+    </Initialize>
+    <Initialize _uuid="uU0KuZz1or5dfBwrYQPymQ" _type="Initialize" name="addListener" label="M#12cn14添加监听" is_valid="Y" note="M#">
+      <Parameter _uuid="RUj0G3TqcCMFLSSC6nFJiQ" _type="Parameter" name="parameter" label="M#" is_valid="Y" note="M#">
+        <Component _uuid="eE8F53AkNc8lXsdi582wtg" _type="Component" name="fileLogListener" label="M#" is_valid="Y" note="M#" instance="org.mobj.core.logging.adopter.FFileLogListener">
+          <Initialize _uuid="hk492RBnk63M6nh0n]MQhA" _type="Initialize" name="setHandle" label="M#12cn14调试设定" is_valid="Y" note="M#">
+            <Parameter _uuid="a0vUusW6h[WSYt1FEPrntQ" _type="Parameter" name="debug" label="M#12cn12调试" is_valid="Y" note="M#" />
+            <Parameter _uuid="ZkLbRsZxCtdHVLBv76Havg" _type="Parameter" name="parameter" label="M#12cn12参数" is_valid="Y" note="M#">
+              <Component _uuid="QEZyHEelyIpGAShBaIpXpg" _type="Component" name="logHandle" label="M#" is_valid="Y" note="M#" instance="org.mobj.core.logging.common.FLogHandle">
+                <Property _uuid="e0Ve4ODUsNxLa6dv695qkA" _type="Property" name="bufferCount" label="M#12cn14缓冲数目" is_valid="Y" note="M#" data_value="100" data_type="Integer" />
+                <Property _uuid="w0iOR4fJq4B3lUc7ZsUbiw" _type="Property" name="bufferSize" label="M#12cn14缓冲大小" is_valid="Y" note="M#" data_value="16384" data_type="Integer" />
+                <Property _uuid="40ic8NuxrhBKALZrNwWdlg" _type="Property" name="lineSplitter" label="M#12cn14行分隔符" is_valid="Y" note="M#" data_value="\r\n\n" data_type="String" />
+                <Property _uuid="tkVcSlHa1BW2z9EHz2G4vA" _type="Property" name="path" label="M#12cn14输出路径" is_valid="Y" note="M#" data_value="${home.work}/core.log/" data_type="String" />
+                <Property _uuid="r0EZTWW4okFn]RdFwlOdqQ" _type="Property" name="partten" label="M#12cn16文件名称格式" is_valid="Y" note="M#" data_value="D-YYYY-MM-DD.log" data_type="String" />
+              </Component>
+            </Parameter>
+          </Initialize>
+          <Initialize _uuid="BUc0icBcPWtJp3xyNts1vQ" _type="Initialize" name="setHandle" label="M#12cn14信息设定" is_valid="Y" note="M#">
+            <Parameter _uuid="AEERH[8XD4JgVsCzS6TMnA" _type="Parameter" name="info" label="M#12cn12信息" is_valid="Y" note="M#" />
+            <Parameter _uuid="MkfTIKYLApNG[ykK2gE7mg" _type="Parameter" name="parameter" label="M#12cn12参数" is_valid="Y" note="M#">
+              <Component _uuid="dklCurYVwHuTWG6o[CNwkw" _type="Component" name="logHandle" label="M#" is_valid="Y" note="M#" instance="org.mobj.core.logging.common.FLogHandle">
+                <Property _uuid="90WJI3reLbXN6Dyl1eAYkQ" _type="Property" name="bufferCount" label="M#12cn14缓冲数目" is_valid="Y" note="M#" data_value="100" data_type="Integer" />
+                <Property _uuid="hE5QFVuijcGDW2TWoZw1jQ" _type="Property" name="bufferSize" label="M#12cn14缓冲大小" is_valid="Y" note="M#" data_value="16384" data_type="Integer" />
+                <Property _uuid="6UNhxg2]Ay8lhFj4a7QTvw" _type="Property" name="lineSplitter" label="M#12cn14行分隔符" is_valid="Y" note="M#" data_value="\r\n" data_type="String" />
+                <Property _uuid="E0dWSy9jVLZLdjtxfi0unA" _type="Property" name="path" label="M#12cn14输出路径" is_valid="Y" note="M#" data_value="${home.work}/core.log/" data_type="String" />
+                <Property _uuid="VkSq0kNdy1nO]EnsK78hrQ" _type="Property" name="partten" label="M#12cn16文件名称格式" is_valid="Y" note="M#" data_value="D-YYYY-MM-DD.log" data_type="String" />
+              </Component>
+            </Parameter>
+          </Initialize>
+          <Initialize _uuid="ZEbh4aSKTJuKEFaFhhGLrA" _type="Initialize" name="setHandle" label="M#12cn14警告设定" is_valid="Y" note="M#">
+            <Parameter _uuid="kkNnX4BZBjh]eqZ5Ccktsw" _type="Parameter" name="warn" label="M#12cn12警告" is_valid="Y" note="M#" data_type="String" />
+            <Parameter _uuid="vUk3Qpagy5sydXlnM]yTgg" _type="Parameter" name="parameter" label="M#12cn12参数" is_valid="Y" note="M#" data_type="String">
+              <Component _uuid="PkH02gBfIMDxD3ZCJp1llQ" _type="Component" name="logHandle" label="M#" is_valid="Y" note="M#" instance="org.mobj.core.logging.common.FLogHandle" scope="Global">
+                <Property _uuid="5kxkZiBoGcRE2Fn0pVUgqQ" _type="Property" name="bufferCount" label="M#12cn14缓冲数目" is_valid="Y" note="M#" data_value="100" data_type="Integer" />
+                <Property _uuid="30C]Q7G]rfP8wDTj0rETig" _type="Property" name="bufferSize" label="M#12cn14缓冲大小" is_valid="Y" note="M#" data_value="16384" data_type="Integer" />
+                <Property _uuid="ekCahtdm3[SodqG7Gheskw" _type="Property" name="lineSplitter" label="M#12cn14行分隔符" is_valid="Y" note="M#" data_value="\r\n" data_type="String" />
+                <Property _uuid="YEbsCNXa[gl2V4beZYlIlQ" _type="Property" name="path" label="M#12cn14输出路径" is_valid="Y" note="M#" data_value="${home.work}/core.log/" data_type="String" />
+                <Property _uuid="Rk7K7xM3Hu8Pjd[cONOqtw" _type="Property" name="partten" label="M#12cn16文件名称格式" is_valid="Y" note="M#" data_value="W-YYYY-MM-DD.log" data_type="String" />
+              </Component>
+            </Parameter>
+          </Initialize>
+          <Initialize _uuid="SUlcdXyadb1lGQuwg6phsQ" _type="Initialize" name="setHandle" label="M#12cn15错误设定 " is_valid="Y" note="M#">
+            <Parameter _uuid="sUZSsVbpzxX06DDACwYopw" _type="Parameter" name="error" label="M#12cn14逻辑错误" is_valid="Y" note="M#" data_type="String" />
+            <Parameter _uuid="LkK4EKPSbeVp5fei2dzyvA" _type="Parameter" name="parameter" label="M#12cn12参数" is_valid="Y" note="M#" data_type="String">
+              <Component _uuid="M0ItGExsGMdhAYkyglfHnQ" _type="Component" name="logHandle" label="M#" is_valid="Y" note="M#" instance="org.mobj.core.logging.common.FLogHandle" scope="Global">
+                <Property _uuid="qkyiLCMV4JSPmPLAmDPkqg" _type="Property" name="bufferCount" label="M#12cn14缓冲数目" is_valid="Y" note="M#" data_value="100" data_type="Integer" />
+                <Property _uuid="[ENSHAUY8LdeRGKXLXReiQ" _type="Property" name="bufferSize" label="M#12cn14缓冲大小" is_valid="Y" note="M#" data_value="16384" data_type="Integer" />
+                <Property _uuid="kEypa73Qy76pSEGpvpU5gQ" _type="Property" name="lineSplitter" label="M#12cn14行分隔符" is_valid="Y" note="M#" data_value="\r\n" data_type="String" />
+                <Property _uuid="3krvch4PRw4LwljtuSD6rg" _type="Property" name="path" label="M#12cn14输出路径" is_valid="Y" note="M#" data_value="${home.work}/core.log/" data_type="String" />
+                <Property _uuid="bkretN0lfllJv5chdkpbiA" _type="Property" name="partten" label="M#12cn16文件名称格式" is_valid="Y" note="M#" data_value="E-YYYY-MM-DD.log" data_type="String" />
+              </Component>
+            </Parameter>
+          </Initialize>
+          <Initialize _uuid="CUqQk37W2l[KHS[u0EpdoQ" _type="Initialize" name="setHandle" label="M#12cn16致命错误设定" is_valid="Y" note="M#">
+            <Parameter _uuid="1ExOL8xW2msG]WFMSh]Dkw" _type="Parameter" name="fatal" label="M#12cn14系统错误" is_valid="Y" note="M#" data_type="String" />
+            <Parameter _uuid="WkRiDklNKaCT0pCHcXt5jA" _type="Parameter" name="parameter" label="M#12cn12参数" is_valid="Y" note="M#" data_type="String">
+              <Component _uuid="gEWwjtWwcuJJHVTlPhPLnQ" _type="Component" name="logHandle" label="M#" is_valid="Y" note="M#" instance="org.mobj.core.logging.common.FLogHandle" scope="Global">
+                <Property _uuid="KEZLJq6SLlIqUgNnqygmsQ" _type="Property" name="BufferCount" label="M#12cn14缓冲数目" is_valid="Y" note="M#" data_value="100" data_type="Integer" />
+                <Property _uuid="SkrGGXpeXRuSpn2jGlCXtw" _type="Property" name="bufferSize" label="M#12cn14缓冲大小" is_valid="Y" note="M#" data_value="16384" data_type="Integer" />
+                <Property _uuid="gEFmhJcWpzbgO2VYk9GHlQ" _type="Property" name="lineSplitter" label="M#12cn14行分隔符" is_valid="Y" note="M#" data_value="\r\n" data_type="String" />
+                <Property _uuid="FUyQM4S3XTfIzIbKJKdNog" _type="Property" name="path" label="M#12cn14输出路径" is_valid="Y" note="M#" data_value="${home.work}/core.log/" data_type="String" />
+                <Property _uuid="CkOxEYusRciRLszPf4zbiA" _type="Property" name="partten" label="M#12cn16文件名称格式" is_valid="Y" note="M#" data_value="F-YYYY-MM-DD.log" data_type="String" />
+              </Component>
+            </Parameter>
+          </Initialize>
+        </Component>
+      </Parameter>
+    </Initialize>
+  </Component>
+  <Component _uuid="jE9qri9nlQRRSHxD3b7ZgA" _type="Component" name="monitorConsole" label="M#12cn15监视控制台" is_valid="Y" note="M#" face="org.mobj.core.monitor.IMonitorConsole" instance="org.mobj.core.monitor.FMonitorConsole" scope="Global">
+    <Property _uuid="8EF17rJB4YW[i6M1cXoIsw" _type="Property" name="priority" label="M#12cn14线程高低" is_valid="Y" note="M#" data_value="2" data_type="Integer" />
+    <Initialize _uuid="lkrz0zXPYaN3zLxGS9griQ" _type="Initialize" name="initializeThread" label="M#12cn17初始化开始线程" is_valid="Y" note="M#" />
+    <Initialize _uuid="]0dQKMQvHeydSvCW4]XpoA" _type="Initialize" name="addDirectory" label="M#12cn18添加监视配置目录" is_valid="Y" note="M#">
+      <Parameter _uuid="wEWurL3Rch9iIPL9F7Ugjw" _type="Parameter" name="parameter" label="M#12cn12参数" is_valid="Y" note="M#" data_value="${home.config}/monitor" data_type="String" />
+    </Initialize>
+    <Release _uuid="GEJ9FhJcH7G6jJuHQ4sckQ" _type="Release" name="releaseThread" label="M#12cn14释放线程" is_valid="Y" note="M#" />
+  </Component>
+  <Component _uuid="LE01]QKz2[S]aVBGopMypg" _type="Component" name="bindConsole" label="M#12cn17线程绑定控制台" is_valid="Y" note="M#" face="org.mobj.core.bind.IBindConsole" instance="org.mobj.core.bind.FBindConsole" scope="Global" />
+  <Component _uuid="gUfD3VnEtPh9fSKfLviapA" _type="Component" name="versionConsole" label="M#12cn17线程版本控制台" is_valid="Y" note="M#" face="org.mobj.core.thread.version.IVersionConsole" instance="org.mobj.core.thread.version.FVersionConsole" scope="Global">
+    <Property _uuid="2UI38Wu4VMRmKyJqHsV4pA" _type="Property" name="interval" label="M#12cn14测试间隔" is_valid="Y" note="M#" data_value="1000" data_type="Integer" />
+    <Property _uuid="7Ub0r3S30Zye[5iDOilyuw" _type="Property" name="priority" label="M#12cn14线程高低" is_valid="Y" note="M#" data_value="1" data_type="Integer" />
+    <Property _uuid="4kSEnUlaethMJK1kgM99qQ" _type="Property" name="workfile" label="M#12cn14工作文件" is_valid="Y" note="M#" data_value="${home.work}/version" data_type="String" />
+    <Initialize _uuid="XUpWLH3xsf9SvkRweeVNiA" _type="Initialize" name="initialize" label="M#12cn15初始化操作" is_valid="Y" note="M#" />
+    <Release _uuid="xk[jZUC3MPadaVL3PMNxmQ" _type="Release" name="release" label="M#12cn14释放操作" is_valid="Y" note="M#" />
+  </Component>
+  <Component _uuid="mE6x3eR63f]YopW1gDFprA" _type="Component" name="persistentConsole" label="M#12cn16持久化控制台" is_valid="Y" note="M#" face="org.mobj.core.persistent.IPersistentConsole" instance="org.mobj.core.persistent.FPersistentConsole" scope="Global">
+    <Property _uuid="5kYlwIx8ypxiQc7nhHl0gw" _type="Property" name="path" label="M#12cn14输出路径" is_valid="Y" note="M#" data_value="${home.work}/persistent" data_type="String" />
+    <Initialize _uuid="dEnWrDfPYom0jHu1FEXgpA" _type="Initialize" name="initializeContext" label="M#12cn15初始化文本" is_valid="Y" note="M#" />
+    <Initialize _uuid="EEMEcOMo8BH97WpEYE[dqw" _type="Initialize" name="initializePersistent" label="M#12cn15初始化持久" is_valid="Y" note="M#" />
+    <Release _uuid="bEGfLgKJR8ZDmNX3qvLVrQ" _type="Release" name="releasePersistent" label="M#12cn14释放操作" is_valid="Y" note="M#" />
+  </Component>
+  <Component _uuid="Ok8OdgqcVF]MnPPpSIthmA" _type="Component" name="parserConsole" label="M#12cn15解析控制台" is_valid="Y" note="M#" face="org.mobj.core.parser.IParserConsole" instance="org.mobj.core.parser.FParserConsole" scope="Global">
+    <Initialize _uuid="iUhw1inMj8ThjO6fxyC7tQ" _type="Initialize" name="register" label="M#12cn12注册" is_valid="Y" note="M#">
+      <Parameter _uuid="300a7iXYA9N1DkqBqzs8lQ" _type="Parameter" name="java" label="M#" is_valid="Y" note="M#" data_value="java" data_type="String" />
+      <Parameter _uuid="hU223ulj3HCybFOhgZEgtA" _type="Parameter" name="javaParser" label="M#" is_valid="Y" note="M#" data_value="org.mobj.core.parser.java.FJavaParser" data_type="String" />
+    </Initialize>
+  </Component>
+  <Component _uuid="sUJ8EHK[15LA4]0rNyd0pQ" _type="Component" name="contextConsole" label="M#12cn15文本控制台" is_valid="Y" note="M#" face="org.mobj.core.context.IContextConsole" instance="org.mobj.core.context.FContextConsole" scope="Global">
+    <Property _uuid="pU56y8AmVRBhBp[2aS75mg" _type="Property" name="language" label="M#12cn12语言" is_valid="Y" note="M#" data_value="cn" data_type="String" />
+  </Component>
+  <Component _uuid="vkgygz51ECrG3TAk4KABhg" _type="Component" name="convertConsole" label="M#12cn15转换控制台" is_valid="Y" note="M#" face="org.mobj.core.convert.IConvertConsole" instance="org.mobj.core.convert.FConvertConsole" scope="Global" />
+</Configuration>
+

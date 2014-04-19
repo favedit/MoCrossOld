@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="WUOGUBibhLWsXGxUyNJyiQ" name="logic.business.catalog.link" label="M#12cn16业务目录关联" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_BUSINESS_CATALOG_LINK" data_alias="LG_BUS_CAT_LNK" data_logic="LG_BUSINESS_CATALOG_LINK_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="ekH3FgMEaXYTrPmsU[JRsg" name="catalog_id" label="M#12cn14目录标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CATALOG_ID" data_alias="CAT" data_refer="logic.business.catalog" />
+  <FieldInteger _uuid="6kYwfI0WDRDc5fWbLxuXkw" name="node_id" label="M#12cn14节点标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NODE_ID" data_alias="NOD" data_refer="logic.business.catalog.node" data_uniques="target" />
+  <FieldEnum _uuid="Ckyc96vv5AvQvgh64GkFjg" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_size="1" data_default="'Y'" />
+  <FieldInteger _uuid="YkuXeuaphn4R566WNGvSkw" name="role_id" label="M#12cn14角色标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ROLE_ID" data_refer="person.role" data_uniques="target" />
+  <FieldEnum _uuid="BUIAO]XjCR4xNbO[NaSxmA" name="target_cd" label="M#12cn14目标类型" is_valid="Y" note="M#12cn243R=Role 角色用户\nJ=Job  角色岗位\nU=User 用户\nO=Org  组织" is_null="Y" is_store="Y" is_abstract="N" data_name="TARGET_CD" data_size="1" data_code="logic.business.catalog.link" data_uniques="target" />
+  <FieldInteger _uuid="C0huAZ525n4UvV7K71IGkg" name="target_id" label="M#12cn14目标标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TARGET_ID" data_uniques="target" />
+  <FieldEnum _uuid="w06pEWehB3KPXXKjSat7sg" name="mode_cd" label="M#12cn14审核方式" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MODE_CD" data_size="1" data_code="logic.business.examine.mode" />
+  <FieldTemplate _uuid="zkmt]DF1jyK4cMqeyRyXrw" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+</DataStore>
+

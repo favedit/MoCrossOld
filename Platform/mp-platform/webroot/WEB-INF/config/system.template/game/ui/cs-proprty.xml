@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template ads="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Source ads="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[using System.ComponentModel;
+using System.Drawing.Design;
+using MO.Common.Lang;
+using MO.Common.Content;
+using MO.Core.Forms.Geom;
+using MO.Design2d.Face.Common;
+using MO.Design2d.Face.Console;
+using MO.Design2d.Face.Design.Common;
+using MO.Design2d.Face.Design.Editor;
+
+namespace MO.Design2d.Face.Design.Base
+{
+   //============================================================
+   // <T><jt:item source='$class.label'/>控件声明。</T>
+   //============================================================
+   public class FUiBase<jt:item source='$class.name'/> : <jt:item source='$class.parent'/>
+   {
+      // 类型名称
+      public static string TYPE_NAME = "<jt:item source='$class.name'/>";
+<jt:loop source='$class' alias='property'>
+
+      // 字段声明
+<jt:equals source='$property.type' value='resource'>
+      protected SUiPicture _<jt:item source='$property.name' format='underline.word'/>Resource = new SUiPicture();
+</jt:equals>
+<jt:notEquals source='$property.type' value='resource'>
+      protected <jt:item source='$property.cs_type'/> _<jt:item source='$property.name' format='underline.word'/>;
+</jt:notEquals>
+</jt:loop>
+
+      //============================================================
+      // <T>构造<jt:item source='$class.label'/>控件。</T>
+      //============================================================
+      public FUiBase<jt:item source='$class.name'/>(FUiConsole console = null) : base(console){
+         _typeName = TYPE_NAME;
+      }
+<jt:loop source='$class' alias='property'>
+
+<jt:equals source='$property.type' value='resource'>
+      //============================================================
+      // <T>获得或设置前景资源编号。</T>
+      //============================================================
+      [Category("<jt:item source='$property.group'/>")]
+      [Browsable(true)]
+      [Editor(typeof(FUiResourceEditor), typeof(UITypeEditor))]
+      [DefaultValue("")]
+      [Description("<jt:item source='$property.label'/>编号")]
+      public SUiPicture <jt:item source='$property.name' format='underline.word.first.upper'/>Resource{
+         get { return _<jt:item source='$property.name' format='underline.word'/>Resource; }
+         set { _<jt:item source='$property.name' format='underline.word'/>Resource.Assign(value); }
+      }
+</jt:equals>
+<jt:notEquals source='$property.type' value='resource'>
+      //============================================================
+      // <T>获得或设置<jt:item source='$property.label'/>字段(<jt:item source='$property.name' format='underline.word.first.upper'/>)。</T>
+      //============================================================
+      [Category("<jt:item source='$property.group'/>")]
+      [Browsable(true)]
+<jt:equals source='$property.type' value='bool|int|uint|string|color'>
+      [DefaultValue("")]
+</jt:equals>
+<jt:equals source='$property.type' value='enum'>
+      [DefaultValue(<jt:item source='$property.cs_type'/>.<jt:item source='$property.default'/>)]
+</jt:equals>
+      [Description("<jt:item source='$property.label'/>")]
+      public <jt:item source='$property.cs_type'/> <jt:item source='$property.name' format='underline.word.first.upper'/>{
+         get{ return _<jt:item source='$property.name' format='underline.word'/>; }
+         set{ _<jt:item source='$property.name' format='underline.word'/> = value; }
+      }
+</jt:notEquals>
+</jt:loop>
+
+      //============================================================
+      // <T>加载设置信息。</T>
+      //
+      // @param xconfig 设置信息
+      //============================================================
+      public override void OnLoadConfig(FXmlNode xconfig){
+         base.OnLoadConfig(xconfig);
+<jt:loop source='$class' alias='property'>
+<jt:equals source='$property.type' value='bool|int|uint|string'>
+         _<jt:item source='$property.name' format='underline.word'/> = xconfig.Get<jt:item source='$property.full_type'/>("<jt:item source='$property.name'/>", <jt:item source='$property.default'/>);
+</jt:equals>
+<jt:equals source='$property.type' value='enum'>
+         _<jt:item source='$property.name' format='underline.word'/> = (<jt:item source='$property.cs_type'/>)REnum.ToValue(typeof(<jt:item source='$property.cs_type'/>), xconfig.Get("<jt:item source='$property.name'/>", "<jt:item source='$property.default'/>"));
+</jt:equals>
+<jt:equals source='$property.type' value='color'>
+         _<jt:item source='$property.name' format='underline.word'/> = RUiUtil.ParseColorFromString(xconfig.Get("<jt:item source='$property.name'/>", "<jt:item source='$property.default'/>"));
+</jt:equals>
+<jt:equals source='$property.type' value='resource'>
+         _<jt:item source='$property.name' format='underline.word'/>Resource.LoadConfig(xconfig, "<jt:item source='$property.name'/>");
+</jt:equals>
+</jt:loop>
+      }
+
+      //============================================================
+      // <T>存储设置信息。</T>
+      //
+      // @param xconfig 设置信息
+      //============================================================
+      public override void OnSaveConfig(FXmlNode xconfig){
+         base.OnSaveConfig(xconfig);
+<jt:loop source='$class' alias='property'>
+<jt:equals source='$property.type' value='bool|int|uint|string'>
+         xconfig.SetNvl("<jt:item source='$property.name'/>", _<jt:item source='$property.name' format='underline.word'/>, <jt:item source='$property.default'/>);
+</jt:equals>
+<jt:equals source='$property.type' value='enum'>
+         if(_<jt:item source='$property.name' format='underline.word'/> != <jt:item source='$property.cs_type'/>.<jt:item source='$property.default'/>) {
+            xconfig.SetNvl("<jt:item source='$property.name'/>", REnum.ToString(typeof(<jt:item source='$property.cs_type'/>), _<jt:item source='$property.name' format='underline.word'/>));
+         }
+</jt:equals>
+<jt:equals source='$property.type' value='color'>
+         xconfig.SetNvl("<jt:item source='$property.name'/>", RUiUtil.FormatColorToString(_<jt:item source='$property.name' format='underline.word'/>));
+</jt:equals>
+<jt:equals source='$property.type' value='resource'>
+         _<jt:item source='$property.name' format='underline.word'/>Resource.SaveConfig(xconfig, "<jt:item source='$property.name'/>");
+</jt:equals>
+</jt:loop>
+      }
+   }
+}
+]]></Source>
+</Template>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="9kQajg5OsijxLQvGAw]Wnw" name="logic.business.LF_AS_AT.mail" label="考勤管理" is_valid="Y" note="M#">
+  <Define _uuid="z0PRq8hF6OcH6l6pr3SplQ" name="mail_content_type" label="邮件类型" is_valid="Y" note="M#" value="Html" />
+  <Source _uuid="NE99VmV6nkMdUNMJLJxVpQ" name="remind.head" label="提醒-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【考勤管理】<jt:item source='$config.to_user_labels'/>您好，请审核[<jt:item source='$config.begin_date'/>]-[<jt:item source='$config.end_date'/>]期间的所属员工考勤。]]></Source>
+  <Source _uuid="lENnfcQ90stuUXvGeYcIng" name="remind.body" label="提醒-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='考勤管理 → 审核' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><FONT COLOR='#336699'>请审核[<jt:item source='$config.begin_date'/>]-[<jt:item source='$config.end_date'/>]期间的所属员工考勤，<FONT color="#d8571d">审核截至日期为[<jt:item source='$config.examine_end_date'/>]</FONT>，谢谢支持我们的工作。</FONT></TD></TR>
+     <TR><TD><FONT COLOR='#336699'>审核地址为：</FONT><A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#d8571d'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><B><FONT color="#336699">系统提示：</font></B></TD></TR>
+     <TR><TD style="padding-left:20"><FONT color="#336699">1、请各相关负责人务必在截至日期之前审核。</font></TD></TR>
+     <TR><TD style="padding-left:20"><FONT color="#336699">2、如过了审核截至日期未审核，则按实际考勤数据出报表。</font></B></TD></TR>
+     <TR><TD style="padding-left:20"><FONT color="#336699">3、考勤全部基础数据来源于前台打卡系统。</font><br></TD></TR>
+   </TABLE>
+   </TD></TR>
+   <TR><TD style='padding:0 20;'>
+   </TD></TR>
+   <TR><TD style='padding:0 20;'>
+   </TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="Z04XNGCicw48pQf5BG1zvA" name="not.activated.card.remind.head" label="公卡未激活邮件提醒-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【考勤管理】 <jt:item source='$config.to_user_labels'/>您好，请及时激活以下职员工卡。]]></Source>
+  <Source _uuid="n0ayctAYYB5u2iL0qkkRhw" name="not.activated.card.remind.body" label="公卡未激活邮件提醒-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='考勤管理 → 工卡未激活提醒' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><FONT COLOR='336699'>请及时登录eUIS系统【<A href="http://192.168.41.191/apl/login/Login.wa"><B style='color:#d8571d'>点击登录</B></A>】，激活以下职员工卡。</FONT></TD></TR>
+     <TR><TD></TD></TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.user_lists'>
+      <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>工卡未激活职员列表：</B>
+      <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' width='80' align="center">工号</td>
+         <TD class='ItemHead' width='100' align="center">姓名</td>
+         <TD class='ItemHead' width='80' align="center">员工类型</td>
+         <TD class='ItemHead' width='80' align="center">在职状态</td>
+         <TD class='ItemHead' width='120' align="center">入职日期</td>
+         <TD class='ItemHead' align="center">所属部门</td>
+      </TR>
+      <jt:loop source='$parameter.user_lists' alias='user_info'>
+         <TR>
+            <TD class='ItemData' align="left" width='80'><jt:item source='$user_info.WORK_NUMBER'/></td>
+            <TD class='ItemData' align="left" width='100'><jt:item source='$user_info.USER_LABEL'/></td>
+            <TD class='ItemData' align="center" width='80'><jt:item source='$user_info.TYPE_LABEL'/></td>
+            <TD class='ItemData' align="center" width='80'><jt:item source='$user_info.SERVICE_LABEL'/></td>
+            <TD class='ItemData' align="center" width='120'><jt:item source='$user_info.ENTRY_DATE'/></td>
+            <TD class='ItemData' align="left"><jt:item source='$user_info.ORG_LABEL'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _u2uid="Z04XNGCicw48pQf5BG1zvA" name="leave.warn.head" label="考勤异常提醒-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【考勤管理】 <jt:item source='$config.to_user_labels'/>您好，您好，下列员工的考勤出现异常。]]></Source>
+  <Source _u2uid="n0ayctAYYB5u2iL0qkkRhw" name="leave.warn.body" label="考勤异常提醒-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='考勤管理 → 考勤异常提醒' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'><jt:item source='$config.to_user_labels'/>您好，下列员工的考勤出现异常，请及时确认员工是否在职，以便于考勤准确结算。</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><FONT COLOR='336699'></FONT></TD></TR>
+     <TR><TD></TD></TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.user_lists'>
+      <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>考勤异常员工列表：</B>
+      <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' align="center">序号</td>
+         <TD class='ItemHead' align="center">工号</td>
+         <TD class='ItemHead' align="center">姓名</td>
+         <TD class='ItemHead' align="center">所属部门</td>
+         <TD class='ItemHead' align="center">未打卡天数</td>
+      </TR>
+      <jt:loop source='$parameter.user_lists' alias='user_info'>
+         <TR>
+            <TD class='ItemData' align="center" ><jt:item source='$user_info.SEQ'/></td>
+            <TD class='ItemData' align="center" ><jt:item source='$user_info.WORK_NUMBER'/></td>
+            <TD class='ItemData' align="center" ><jt:item source='$user_info.USER_LABEL'/></td>
+            <TD class='ItemData' align="center" ><jt:item source='$user_info.ORG_LABEL'/></td>
+            <TD class='ItemData' align="center" ><jt:item source='$user_info.UNCARD_DAYS'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

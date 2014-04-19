@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+
+   <!-- ==================================================== -->
+   <!-- Data.Synchronizer.Console                            -->
+   <!-- 数据同步控制台                                       -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'com.zqinet.logic.monitor.console.IServerMonitorConsole'
+         class = 'com.zqinet.logic.monitor.console.FServerMonitorConsole'
+         scope = 'global' >
+      <!-- ============================================================ -->
+      <!-- 游戏服务器监视 (10.207.139.17)                               -->
+      <!-- ============================================================ -->
+      <Initialize name='register'>
+         <Parameter>
+            <Component class = 'com.zqinet.logic.monitor.service.FGameServerMonitor'>
+               <Property name='valid'>1</Property>
+               <Property name='info'>G017</Property>
+               <Property name='url'>http://s6.app100695610.qqopenapp.com/monitor/process.php</Property>
+               <Property name='interval'>20000</Property>
+               <Property name='servers'>
+                  s2:gp:/mogameproxy|s2:gg:/mogamegate|s2:gs:/mogamescene
+                  s6:gp:/mogameproxy|s6:gg:/mogamegate|s6:gs:/mogamescene
+               </Property>
+            </Component>
+         </Parameter>
+      </Initialize>
+      <!-- ============================================================ -->
+      <!-- 游戏服务器监视 (10.207.248.160)                               -->
+      <!-- ============================================================ -->
+      <Initialize name='register'>
+         <Parameter>
+            <Component class = 'com.zqinet.logic.monitor.service.FGameServerMonitor'>
+               <Property name='valid'>1</Property>
+               <Property name='info'>G160</Property>
+               <Property name='url'>http://s2.app100695610.qqopenapp.com/monitor/process.php</Property>
+               <Property name='interval'>20000</Property>
+               <Property name='servers'>
+                  s2:gm:/mogamedomain|s2:gl:/mogamelogin|s2:gb:/mogamebattle|s2:gr:/mogamestorage|s2:gc:/mogamechat|s2:go:/mogamelogger
+                  s6:gm:/mogamedomain|s6:gl:/mogamelogin|s6:gb:/mogamebattle|s6:gr:/mogamestorage|s6:gc:/mogamechat|s6:go:/mogamelogger
+               </Property>
+            </Component>
+         </Parameter>
+      </Initialize>
+      <!-- ============================================================ -->
+      <!-- 游戏服务器监视 (10.207.250.246)                              -->
+      <!-- ============================================================ -->
+      <Initialize name='register'>
+         <Parameter>
+            <Component class = 'com.zqinet.logic.monitor.service.FGameServerMonitor'>
+               <Property name='valid'>1</Property>
+               <Property name='info'>G246</Property>
+               <Property name='url'>http://s5.app100695610.qqopenapp.com/monitor/process.php</Property>
+               <Property name='interval'>600000</Property>
+               <Property name='servers'>root:syn:java -cp /synchronizer|root:sts:java -cp /statistics</Property>
+            </Component>
+         </Parameter>
+      </Initialize>
+   </Component>
+
+</Config>

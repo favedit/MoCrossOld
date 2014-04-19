@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="Gk8yCCPHsOmC8yuvcqhGkQ" name="helper.design.webtree.hhk" is_valid="Y" note="M#">
+  <Source _uuid="hkxhchGiR[ALhE]sQYT2pA" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+<jt:loop source='$config' alias='treeview'>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="<jt:item source='$treeview.name'/>">
+		<param name="Local" value="src\design.webtree\webtree\<jt:item source='$treeview.name' format='path.lower'/>.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="<jt:item source='$treeview.data_name'/>">
+		<param name="Local" value="src\design.webtree\webtree\<jt:item source='$treeview.name' format='path.lower'/>.html">
+		</OBJECT>
+</jt:loop>
+
+</UL>
+</BODY></HTML>]]></Source>
+</Template>
+

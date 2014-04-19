@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="ykfPv4la0gQauRpcSM9yoQ" name="game.share" label="游戏共享" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" source_name="MoMgStructShare" code="Sms" full_code="StructShare" display_index="27" include_heads="game.core" project_name="/Common/MoMessage" project_code="Mg">
+  <Entity _uuid="M0DtMhJeYDSM8viDEMj3oA" name="GsClientUser" label="客户账号信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="SUrCAYqI09QlDgV7BrmamQ" name="code" label="代码" is_valid="Y" note="M#" type="String" is_collection="N" data_size="80" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="r0nOEuq4oGb4cyYb1w97gg" name="label" label="标签" is_valid="Y" note="M#" type="String" is_collection="N" data_size="64" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="qEujxxczatn0f0prnjI4gA" name="sexCd" label="性别类型" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="YUnYTHmucX1joVPXIQCjqA" name="iconUrl" label="小头像地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.face.url.max-length" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Wk2XpyIhpZqnWsJFf6t7hg" name="headUrl" label="大头像地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.face.url.max-length" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="skHMEQEvFA3lxT5siU1QpQ" name="GsClientUserSet" label="客户帐号信息集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="]kVfcrd3Vs]WkrPBH6k9tw" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsClientUser" is_collection="Y" data_size="role.friend.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="4U98JGFBx8mdiF9j39PVnw" name="GsClientCode" label="客户代码" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="W0DmPlp4EFPWWicFXFseog" name="code" label="代码" is_valid="Y" note="M#" type="String" is_collection="N" data_size="80" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="pkZRaHGHOicErMMO1CGfpQ" name="GsClientCodeSet" label="客户代码集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="GUZFUftSQ2OfVcldJXLatw" name="items" label="项目集合" is_valid="Y" note="M#" type="String" type_name="SGsClientCode" is_collection="Y" data_size="512" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="dUdqfXgXh3K9tl7sEKtWpQ" name="GsAccountDetail" label="账号详细信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="00sp[QLOqcxRiqlzdBSFjQ" name="accountId" label="账号编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="JEZo0TAGZfS4McYYOqWLpQ" name="passport" label="通行证" is_valid="Y" note="M#" type="Object" type_name="SGmPassport" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="8kPeQMGYXYjywOQSa95fhA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="VUEp3LOuRvlBA7lk[G3wqQ" name="loginHost" label="上次登录主机" is_valid="Y" note="M#" type="String" is_collection="N" data_size="20" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="JEIETXmo2iB[Iqgw9yzwqA" name="loginDate" label="上次登录时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="]UQdiFtZGLTnGCYhYfPzjQ" name="GsAccount" label="账号信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="OUKCLbYSIae9kMrncUVsnQ" name="detail" label="详细信息" is_valid="Y" note="M#" type="Object" type_name="SGsAccountDetail" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="0UUZSIt1SCfxgaCKY7Xbvw" name="GsTerrorKing" label="恐怖大王" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="G0YUInmqkWFHTV3jeF4wlg" name="fareRate" label="恐怖怨念" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="1UxDPAw9MUOlK9q7oBrXlw" name="GsGlobal" label="全局信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="GEhmMu2O0iLx8vmJQ35DmA" name="terrorKing" label="恐怖大王" is_valid="Y" note="M#" type="Object" type_name="SGsTerrorKing" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="dkCNkioY2FYOkMaShvAaiw" name="serverTime" label="服务器时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="eUCyD95XYID4rAXwwNxaug" name="GsRoleHome" label="角色家园" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="QUoyYXphNgqXMGEvka1]iA" name="homeCd" label="家园类型" is_valid="Y" note="M#" type="Enum" type_name="EGmHome" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="805d1qF9SEglsrY7NHEduw" name="level" label="级别" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Uk0meUavWJ6wPN49LN5IqQ" name="flag" label="标志" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="zECb9HShNBO5bVQjoymhkg" name="GsRoleHomeSet" label="角色家园集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="fk2z]iitwQXdxYZQS8c7nw" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleHome" is_collection="Y" data_size="role.home.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="gk2Qr3TUbC6qY0xUJYpLuw" name="GsRoleHomeWorker" label="角色家园工人" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="rEoeq[PfOcsZ13ke2y9CiA" name="homeWorkerTid" label="家园工人模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="nUhuF4QA5Pe4TNIxrb4pvQ" name="activationCd" label="激活类型" is_valid="Y" note="M#" type="Enum" type_name="EGmHomeWorkerActivation" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="cUNZBKu0]1QodtB]CNijng" name="endDate" label="结束日期时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="L0qwP8SkTWl3gZeHBjgDnA" name="GsRoleHomeWorkerSet" label="角色家园工人集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="tk6J38TeIeDd90lSDWskig" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleHomeWorker" is_collection="Y" data_size="role.home.worker.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="H0QU[LadLd[4NR1rVs2OpQ" name="GsRoleProp" label="角色道具" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="uEXWUvZ8mL9VRTgw5w9epw" name="propTid" label="道具模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="ikmY]cgjqdGNAsMrShw3gQ" name="count" label="总数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="KElsZtAHNVuVcHl0aD3pqQ" name="GsRolePropSet" label="角色道具集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="2Uy6EkRNC2KZ05gOTtZ7uA" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleProp" is_collection="Y" data_size="role.prop.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="fkWJEWyODgmCOu]BoYtJmA" name="GsRoleSlaveRoom" label="奴隶营房间" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="Z0pbsX8LPQjRXwBSXXKGrw" name="slaveRoomTid" label="奴隶房间模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="6kakZU3iwW3G5mtO5fSTuA" name="level" label="级别" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="Akya1H9dFIUt0SjWHci3hg" name="GsRoleSlaveRoomSet" label="奴隶营房间" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="o0eDAIwryicdBomijAEipQ" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveRoom" is_collection="Y" data_size="role.slave.room.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="VE3Ktzpu9gd9U8wPUHBVkg" name="GsRoleSlave" label="角色奴隶" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="50ORwJLabt[EKyoLQSP8tQ" name="npcTid" label="角色模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="WkorOeSFarxMoPE0KEznvw" name="level" label="角色等级" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="bknpRs3euBqomSvZ8skEnw" name="count" label="总数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="u0YYXnYD]v4zJgET8wl0gA" name="GsRoleSlaveSet" label="角色奴隶集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="wUnEhVHxvfgwesDiYGy0nQ" name="items" label="项目集合 " is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlave" is_collection="Y" data_size="role.slave.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="vkxJdWzO8bKUeRrbXTo3tA" name="GsRoleTrainingPlace" label="角色训练营位置" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="u0qfNXLEsnh5ydjCjG69nQ" name="placeTid" label="训练营位置模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="IkUm9XJ6]hJR9d[PAGRGhQ" name="activationCd" label="位置激活类型" is_valid="Y" note="M#" type="Enum" type_name="EGmPlaceActivation" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="J0G794A8BD5Vj9mqlM49kg" name="userId" label="使用者编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="HEDahjTqFVl9vJ1vdkKovQ" name="userLabel" label="使用者名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="64" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="iE7VlXtPCLoNqfpIVqRwkg" name="npcTid" label="角色模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="IkL2lwtPITdbxDwnbT]rgw" name="npcLevel" label="放置的塔的级别" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="zEFQi4ul7RNDG8XybOuBnw" name="endDate" label="结束日期时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="40xLhORzlZm0RvoiC3HsgQ" name="GsRoleTrainingPlaceSet" label="角色训练营位置集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="O0rITlr3WmHWxB6im3RXnw" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleTrainingPlace" is_collection="Y" data_size="role.training.place.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="e0u3BcNOakY1t6PtR3HHoA" name="GsSkillPlace" label="训练水晶位置" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="gEN7JYkIdnTvqRl0FGaDrQ" name="skillPlaceTid" label="水晶位置模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="nEcq0LHIeVWPWHzJAtIkhQ" name="activationCd" label="位置激活类型" is_valid="Y" note="M#" type="Enum" type_name="EGmPlaceActivation" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="n0Wee8e]3NKYpLdF3lbkpA" name="GsSkillPlaceSet" label="训练水晶位置集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="bEn1PSwmGduvOvYasjgYpQ" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsSkillPlace" is_collection="Y" data_size="role.training.place.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="GEVzv[mK13SoDlEkKWgaoQ" name="GsFortLinkEquipId" label="塔关联装备编号" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="pkDfE]hXxQkr360lCKwWlw" name="equipId" label="塔编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="v0gG73nmx90FHKO9WwmShw" name="GsNpcSkill" label="NPC技能" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="E09E9pyUkNwvP1CP7cshtQ" name="skillTid" label="技能模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="KUKSeUCjRnrBfdazsaHNnQ" name="level" label="等级" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="cEZ60jjRJmrb]egsbMzMsQ" name="experience" label="技能经验" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="H0VnBBdmeFkn9dBVA[ProQ" name="crystalPlaceSet" label="水晶位置集合" is_valid="Y" note="M#" type="Object" type_name="SGsSkillPlaceSet" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="[EHZ7gt8b[PfZHoy83Ezug" name="invalidDate" label="失效时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="0UXYtUlSpFqi9K[fFPQJvQ" name="statusCd" label="技能状态" is_valid="Y" note="M#" type="Enum" type_name="EGmRoleSkillActivation" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="HEg5ZwDgCTaAIaMkzfnmjw" name="modiflyLevel" label="修改技能等级" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="V0Rr2jmE16kyTXp7a8UYqg" name="GsNpcSkillSet" label="NPC技能集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="e00y6x0HhILnrqC3PJssuw" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsNpcSkill" is_collection="Y" data_size="npc.skill.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="DUquSSMNpHnLwkHT14QOjA" name="GsRoleFort" label="角色防御塔" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="10px8eOB32fsMZXfZZkKrA" name="id" label="塔编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="rkwKTC1XPgTbBDAwW34Ong" name="fortTid" label="防御塔模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="XU4IZIQyg73Gao1ie8]cuA" name="level" label="防御塔级别" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="V00dd[RWhN2R4zIc2FsQmw" name="activationCd" label="激活状态" is_valid="Y" note="M#" type="Enum" type_name="EGmFortActivation" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="vEKxjolnmlMroJAomRWipA" name="experience" label="经验" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="sU3q0kYKCaUWWpQrY[FOuw" name="hp" label="生命值" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="rU]W4VMaqzYK[5KxaccqiQ" name="mp" label="魔法值" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="B0tOQswoCAL5UYxiDafTvA" name="moveSpeed" label="移动速度" is_valid="Y" note="M#" type="Float" is_collection="N" property_id="8" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="V04dWf55ySsYCPUNqm2sgA" name="attackPower" label="防御力" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="9" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="cE[4ZNv]ibh5i65TfAauqQ" name="defensePower" label="防御力" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="10" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="7EpRckKxF3oxZJxvJUJgkw" name="distanceMin" label="最小攻击距离" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="11" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="5E5vtgx]yg01jfgyaKk7sQ" name="distanceMax" label="最大攻击距离" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="12" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="NU49UdHXNNAdK2rrcgi2hw" name="attackSpeed" label="攻击速度" is_valid="Y" note="M#" type="Float" is_collection="N" property_id="13" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="w03aeIgcX0z5wiWpGBCFiw" name="hitRate" label="命中率" is_valid="Y" note="M#" type="Float" is_collection="N" property_id="14" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="BUX3Y7JrgMZEetYzkgEZjg" name="skillSet" label="技能集合" is_valid="Y" note="M#" type="Object" type_name="SGsNpcSkillSet" is_collection="N" property_id="15" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="IkTukmlHVGlsYteCJIkjhQ" name="trainingPlaceOwnerId" label="使用的训练位所有者编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="16" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="2UYRAa4e]p7mcPfL1DsFkg" name="trainingPlaceOwnerLabel" label="使用的训练位所有者名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="template.label.max-length" property_id="17" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="pk0[CMgFtnM3EepcCYjljA" name="flag" label="标志" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="18" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="rEwcOog6eJWqRDZmyf9lhg" name="linkEquipSet" label="关联装备集合" is_valid="Y" note="M#" type="Object" type_name="SGsFortLinkEquipId" is_collection="Y" data_size="8" property_id="19" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="4E1wrGtS2PztQ7Zn3ruYuA" name="modiflyHp" label="修改生命值" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="20" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="tELC3SCMMOG8QwtX]QmxnA" name="modiflyMp" label="修改魔法值" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="21" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="U0K9Oh22Ktd]F5ozAvMwmg" name="modiflyMoveSpeed" label="修改移动速度" is_valid="Y" note="M#" type="Float" is_collection="N" property_id="22" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="E0zkQpshI73zsaTFR8Pzjg" name="modiflyAttackPower" label="修改防御力" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="23" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="YkahFoITR648UR[Q9HeBvw" name="modiflyDefensePower" label="修改防御力" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="24" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="t0LaGol5lXBBlH4PAdt4sw" name="modiflyDistanceMin" label="修改最小攻击距离" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="25" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="3UDOjpUh3HMw]I0TlA5Tjw" name="modiflyDistanceMax" label="修改最大攻击距离" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="26" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="qEenYAPh[3f21NMAFy6cjA" name="modiflyAttackSpeed" label="修改攻击速度" is_valid="Y" note="M#" type="Float" is_collection="N" property_id="27" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="HUVbmMNC6TN3PYJTgPD5rA" name="modiflyHitRate" label="修改命中率" is_valid="Y" note="M#" type="Float" is_collection="N" property_id="28" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="kElmEnEZ2vcjKx81T0QPkQ" name="GsRoleFortSet" label="角色防御塔集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="]Uy7am[[AljVGV]o7f4ipA" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleFort" is_collection="Y" data_size="role.fort.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="0UqANEMmnEdN8Jg4myEblw" name="GsRoleMap" label="角色地图" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="IEUXPPp2sOANULbiSCZZnw" name="mapTid" label="地图模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="80WaNwQqdABc1HlTEywSlA" name="activationCd" label="激活类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMapActivation" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="6k4bCWwHkEYwAL[xtga4jg" name="fortCount" label="防御塔个数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="rkR]OPaSvwG70qY3MBZBmQ" name="finishCd" label="完成类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTokenDefense" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="A0qDQ]QJhz]mVvayPCkFpQ" name="finishCount" label="完成次数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="kkpaH83UmoW31p73]j6mtQ" name="maxDifficultyCd" label="最大难度级别" is_valid="Y" note="M#" type="Enum" type_name="EGmMapDifficulty" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="]0sq2RPxTGLQMqxzUEylkg" name="flag" label="标志" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="G0P]ZpdWgUUmwjdVdgt2iw" name="GsRoleMapSet" label="角色地图集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="LkR35]FfhRgkvtWWc3CWuw" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleMap" is_collection="Y" data_size="role.map.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="8E9n5YI]Gr0H9qkAvM8Bsg" name="GsRoleEmbattle" label="角色布阵" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="YU[]aB5GLkxIM4JqHhUhqQ" name="cellX" label="格子横坐标位置" is_valid="Y" note="M#" type="Int16" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Ik0HNEj4[Eb2y2ccCDnXug" name="cellY" label="格子纵坐标位置" is_valid="Y" note="M#" type="Int16" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="wkaXHe46cTIjaSqNXuHRkg" name="npcTid" label="角色模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="rEicgmbqjFnoI1UqnmlYvw" name="npcLevel" label="角色等级" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="kkup8cFeQ1iDvESG8G4ovQ" name="GsRoleEmbattleSet" label="角色布阵集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="uEce0L4AuPdzTCDEVONdtw" name="mapTid" label="布阵地图模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="n0VD14GtDXspHIVxqfzaqQ" name="grade" label="布阵评分" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="6Uzpv9grnPr7zDkpKphDng" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattle" is_collection="Y" data_size="role.embattle.place.max-count" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="bU8ngXITW92DO44rUPrSuQ" name="GsRoleEmbattleCell" label="布阵单元格" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="UUgAqlI6Iwa3CG6yiGmmhQ" name="value" label="内容" is_valid="Y" note="M#" type="Uint8" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="wk1efzpYDdbVkIxIU8Wpsw" name="GsRoleEmbattleCellSet" label="布阵单元格集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="EEZ[YNrHgH8RUKvFPmt5qA" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleCell" is_collection="Y" data_size="map.cell.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="60YF4KAerGLCirJlALAKjw" name="GsRoleEmbattlePlace" label="角色布阵放置信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="REnYhSt9LCtEzx6dlg2AqQ" name="cellCd" label="格子类型" is_valid="Y" note="M#" type="Enum" type_name="EGmEmbattleCell" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="e0mmbShCrxrjRxrjzjwklg" name="placeCd" label="可放置" is_valid="Y" note="M#" type="Enum" type_name="EGmEmbattlePlace" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="R0Eafe5vB7nVjN[JpavEmw" name="position" label="位置" is_valid="Y" note="M#" type="Object" type_name="SGmPoint2" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="50JON6fXDMryRCYMU2eUuw" name="linkTid" label="关联模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="2EIBq]eO3rpalZIPy4Rfng" name="linkLevel" label="关联级别" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="tUYO10qwnHmQEth8TBkLnQ" name="GsRoleEmbattlePlaceSet" label="角色布阵放置集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="OkWy9p1LF8xiuKbadUGznw" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattlePlace" is_collection="Y" data_size="map.entity.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="yUSVONuwYzewrgMS3[jJrA" name="GsRoleEmbattleEntity" label="布阵实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="C04XUBymSpuyYu9ZEbhasA" name="position" label="位置" is_valid="Y" note="M#" type="Object" type_name="SGmPoint2" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="REyN4UACuuUmDUf]LJlbpQ" name="typeCd" label="类型" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="CEv19IqiwpOdRqJCFuHKjQ" name="linkTid" label="关联模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="hEzMOF4W[n5HHnknBwLgpw" name="linkLevel" label="关联级别" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="NE8BlrTKjS3xFsdR1d2zvQ" name="GsRoleEmbattleEntitySet" label="布阵实体集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="DkxzHXFdJw6cJeQrBITMhQ" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleEntity" is_collection="Y" data_size="map.entity.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="tkMmh]jDvwg[zDsgNv9utw" name="GsRoleEmbattleMap" label="布阵地图" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="K0RdbnoCi4QX9P8rQa8Rvw" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="o0NqV7psnuTAokJMHZFSqg" name="mapLevel" label="地图级别" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="P06fA6hlFQhK8CDlhAEBgg" name="size" label="大小" is_valid="Y" note="M#" type="Struct" type_name="SGmFloatSize2" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="xU7VXoLUCRjXABrYazuzpA" name="cellSize" label="格子大小" is_valid="Y" note="M#" type="Struct" type_name="SGmFloatSize2" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="F0x8lpwg[PMTe8[OC2b4qQ" name="cellCount" label="格子个数" is_valid="Y" note="M#" type="Struct" type_name="SGmInt32Size2" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="J0ZpccUh4RIAPs8YeIxMgw" name="grade" label="布阵评分" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="z0hNK7fxLjkcd11M7BmJvA" name="experience" label="经验" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="zUPTdGHdRfRqkRWPe0eTiw" name="durability" label="耐久度" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="8" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="dkg7ZTG1mB6Auqg1U5Livw" name="pointPlace" label="改造点" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="9" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="xkY6mTg42aZ]t8Xskmj1oA" name="embattledCd" label="是否布过阵" is_valid="Y" note="M#" type="Enum" type_name="EGmMapEmbattled" is_collection="N" property_id="10" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="REl0cpWLDGaKTBPsjGvwuA" name="cellSet" label="格子集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleCellSet" is_collection="N" property_id="11" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="80whE2uoLik7OmwkCpKcig" name="entitySet" label="实体集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleEntitySet" is_collection="N" property_id="12" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="1ENx89cOdvMg19JuXp5Sjw" name="GsRoleTask" label="角色任务" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="tEloGBi[i6yI1gh[2gUCjw" name="taskTid" label="任务模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="60W2sTtxMSua5RfvXoQciQ" name="status" label="任务状态" is_valid="Y" note="M#" type="Enum" type_name="EGmTaskStatus" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="iU2o]UGa0eJke4zCsj8slQ" name="parameter1" label="参数一" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="EkrqftMq]2FA0FJg]s1kog" name="parameter2" label="参数二" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="gEF6ZMmBp7s[zHKLlsR4hw" name="parameter3" label="参数三" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="2EDQe[ZHC2C9BWt1KQ09jg" name="GsRoleTaskSet" label="角色任务集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="hEbX8HbKaMNIwbWvq7BSrQ" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleTask" is_collection="Y" data_size="role.task.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="VUvOzignmg]xXziBAl8Xqg" name="GsMapRaidWaveFeature" label="出兵波系数特性" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="K0I9dmGP9UsO3Ed1[D]sqw" name="propertyCd" label="波系数特性" is_valid="Y" note="M#" type="Enum" type_name="EGmMapWaveProperty" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="pEO7jC0ElOj18XsQIlNhgA" name="propertyValue" label="影响值" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="RkkUxqrRIMsPLBY2uVcsoQ" name="GsMapRaidWaveFeatureSet" label="出兵波系数特性集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="0U9l0b2zfeARQNEiJQuGqQ" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsMapRaidWaveFeature" is_collection="Y" data_size="16" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="10AJP3m9Xv]8rh7BoqUXjw" name="GsMapRaidNpc" label="诱捕地图出兵" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="909AZnCdJpdCHm9wFtn3vg" name="raidBirthPointId" label="出兵点编号" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Q0eD5Xv3YH29t8YSSYmznQ" name="npcTid" label="出兵NPC模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Q01jurAEvJ8Ta40WfRYkuQ" name="npcLevel" label="出兵NPC等级" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="LUl5VAJosyP4bwZIBm5agA" name="npcStartTick" label="出兵NPC间隔事件" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="h0QiFp6RVxi74QiXv]ifsg" name="canCatch" label="能否被捕捉" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Y0W1KMZcKWLTLjz6npWArQ" name="dropBagTid" label="出兵NPC可能调出箱子的模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="]EUmn2wbKPuZkPLyZEByrA" name="dropProp" label="掉落道具" is_valid="Y" note="M#" type="Object" type_name="SGsRoleProp" is_collection="Y" data_size="16" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="LE9tUnXNqmo7LmOUqJvxqw" name="GsMapRaidNpcSet" label="诱捕地图出兵集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="8ExayCvSuMjLKlZdmKWUpQ" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsMapRaidNpc" is_collection="Y" data_size="64" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="]UTursYhY4QlpiUq[q[fvQ" name="GsMapRaidWave" label="诱捕地图出兵波数集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="O0pFHqaCGZtFv[9xwBv5nA" name="raidTid" label="地图出兵模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="P0V8tpnKuBT6LERp6zCzqA" name="raidTriggerTime" label="出兵触发时间" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="00wjf3MPDcCHrEBG16r9og" name="raidWaveFeatureSet" label="出兵波系数特性集合" is_valid="Y" note="M#" type="Object" type_name="SGsMapRaidWaveFeatureSet" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="SUmIHE7fslimsIk0KVlOuA" name="mapRaidNpsSet" label="诱捕地图出兵集合" is_valid="Y" note="M#" type="Object" type_name="SGsMapRaidNpcSet" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="Tkv3XeX42id984W68ny2mg" name="GsMapRaidWaveSet" label="诱捕地图出兵波数集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="[kicAJ5HfSXQ4pRtcj0rjQ" name="mapTid" label="地图模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="30dZWjJFPyZqQzARJLhOlw" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsMapRaidWave" is_collection="Y" data_size="256" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="iUp7NoHy14B5nOnTYwXLgw" name="GsRoleDetail" label="角色详细" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="AUeEDBP0oNLygC5ilqbhmQ" name="accoutCode" label="角色的账号名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="80" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="bkWUNiNR5ZK5SPtKZl5fiQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="pE1w5d8Ye[CnfnqsboKjpQ" name="playerTid" label="玩家角色编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="3UlDpIRINBfOjLKpdCCarA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Ak4YBDnKw[ETIttSiyXPkg" name="label" label="标签" is_valid="Y" note="M#" type="String" is_collection="N" data_size="template.label.max-length" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="lE0BQXGYb4tpgOkT2ilnrQ" name="sexCd" label="性别类型" is_valid="Y" note="M#" type="Enum" type_name="EGmSex" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="JEjDaEYlx]FZv44A8GhRqw" name="iconUrl" label="小头像地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.face.url.max-length" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="0k]XCPDozIOd[opp00Vysw" name="headUrl" label="大头像地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.face.url.max-length" property_id="8" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="9UebjXP[oeANWBbl5gN2qw" name="level" label="等级" note="M#" type="Int32" is_collection="N" property_id="9" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="p0WV5bdH5445ktxg1Y2ngQ" name="experience" label="经验" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="10" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="f0Vca8b]lEDNjv7W0Opplw" name="pointOverlord" label="统治点" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="11" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="2Eof3atZnf69AaS2JsBYgg" name="pointProsperity" label="繁荣点" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="12" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="ikExxbuM63[GNx[5obMZmw" name="pointFire" label="天火点" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="13" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="rUxeQAxVEPgPGatlp]hFuw" name="pointReiki" label="灵气点" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="14" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="AUghAFoqanU[QX5tOdG3jA" name="pointCream" label="精华点" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="15" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="MkZBlTppr9DjrrTH6y[Qvw" name="embattleGrade" label="角色的布阵评分" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="16" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Hk82ciS5u]w9rPI7Tcixow" name="tokenDefense1BindCount" label="1级诱敌动员令绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="17" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Hkmq6ho5iVOjeNeywdlyuQ" name="tokenDefense2BindCount" label="2级诱敌动员令绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="18" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="U0Z99geseihHcKboao9qig" name="tokenDefense3BindCount" label="3级诱敌动员令绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="19" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="CEjBiQD29eduxhjh4RMCmQ" name="tokenDefense1UnbindCount" label="1级诱敌动员令非绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="20" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="GUndUEMB1ifSao32IITStw" name="tokenDefense2UnbindCount" label="2级诱敌动员令非绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="21" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="rkd0RRb8]]uE6iPe5c8qug" name="tokenDefense3UnbindCount" label="3级诱敌动员令非绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="22" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="VkvvWGSdXtS]ikQgOvW[vw" name="tokenRaid1UnbindCount" label="1级突袭动员令非绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="23" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="IkjGQ6P4Ke4IUtZHKwa]vw" name="tokenRaid2UnbindCount" label="2级突袭动员令非绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="24" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Qk2bvQ[AnzxgTqPIZyIRkg" name="tokenRaid3UnbindCount" label="3级突袭动员令非绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="25" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="TUmvRTV2PJEf7fiosRZ4sA" name="tokenRaid1BindCount" label="1级突袭动员令绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="26" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="RU46csVFKV6YD06JOrnhgw" name="tokenRaid2BindCount" label="2级突袭动员令绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="27" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="qEWBSqc2bvj[tjENQZwVmg" name="tokenRaid3BindCount" label="3级突袭动员令绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="28" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="jUer0w5L6]rjTym3TMd5qg" name="lastEnterMapTid" label="最后进入诱敌地图的模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="29" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="qE[T]25j7o2K1ZmPCqC9pg" name="godSkill" label="神技" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="30" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="J05aCtdveGOWgZ6foO[Qhw" name="isCurrentBottle" label="是否有漂流瓶" is_valid="Y" note="M#" type="Enum" type_name="EGmCurrentBottleVisible" is_collection="N" property_id="31" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="lk0A[hNblQ[KA78IbZ4atw" name="freeLotteryCount" label="可以免费翻牌的次数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="32" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="NUvtaNaamSs8KGX17TpXjw" name="embattleMapTid" label="玩家当前使用的布阵地图编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="33" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="I0]q9sESFlF2m4VKOMzJjg" name="isBeenRaid" label="是否被突袭过" is_valid="Y" note="M#" type="Enum" type_name="EGmBeenRaid" is_collection="N" property_id="34" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="gk463zOj3fwy[eH7gvpTnQ" name="GsRolePublic" label="角色公众" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="]Uipp1ZteojjHJX0FSWViw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="j0T0PjFMJdN1mc3zd1oKmw" name="playerTid" label="玩家天神模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="NknkCgHcbBcxWQ1QbFqvmA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EGmRoleStatus" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Tk82tQvY]p]lF3m6rdx7iA" name="label" label="标签" is_valid="Y" note="M#" type="String" is_collection="N" data_size="template.label.max-length" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="k0eyz1WooDhP3jM1zuy5rA" name="sexCd" label="性别类型" is_valid="Y" note="M#" type="Enum" type_name="EGmSex" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="pkz0506U0nsT3Qb0lVUNgA" name="accountCode" label="角色账户名" is_valid="Y" note="M#" type="String" is_collection="N" data_size="80" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="s05KxwutnbHKRKcjHTM3hg" name="iconUrl" label="小头像地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.face.url.max-length" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="h0vliCzxqf4]obTTgzLCuQ" name="headUrl" label="大头像地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.face.url.max-length" property_id="8" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="EU6pHboVoUbKfMPSB9thsQ" name="level" label="等级" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="9" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Rk0xjGCtsUF3UM0hJ6Ujlg" name="experience" label="经验" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="10" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="c0uMgg]zz[FbP7KeTh13iQ" name="pointOverlord" label="统治点" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="11" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Mk246Vwz2AsAbEfP9bcNiA" name="pointProsperity" label="繁荣点" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="12" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="r0X0I0lFt5EbWgUCrVaTlA" name="pointFire" label="天火点" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="13" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="nEcOQ3ixVDbRUg3cPoWDhg" name="communityRelation" label="社交关系" is_valid="Y" note="M#" type="Enum" type_name="EGmCommunityRelation" is_collection="N" property_id="14" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="fEQXkRx8973avpTem[sylg" name="overlordRelation" label="统治所属关系" is_valid="Y" note="M#" type="Enum" type_name="EGmOverlordRelation" is_collection="N" property_id="15" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="9Ub7XjkVLIAAZQ0PjwVFpQ" name="occupyStatus" label="占领状态" is_valid="Y" note="M#" type="Enum" type_name="EGmOccupyStatus" is_collection="N" property_id="16" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="b0q[1]A]lwzPJg7eDLLYrA" name="escapeEndDate" label="逃逸时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" property_id="17" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="JEfoznyjnFv5YZZYW5uLhA" name="overlordContribution" label="统治力贡献值" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="18" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="4UQH4fVQshaRSxXGj2Uzkw" name="taxReiki" label="纳贡灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="19" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="ekpFEm9OoLTCZD7x2JXogg" name="butterflyWhCnt" label="蝴蝶仓产出物品数量" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="20" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="9EGtl[mwm8]vYnkRuY8avQ" name="molestCount" label="剩余可调戏次数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="21" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="nUhGF51cjV2bqcji6IIDgA" name="GsRoleFriendSet" label="角色好友集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="yUo1VwanqBKxBJcOspo4tQ" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRolePublic" is_collection="Y" data_size="role.friend.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="b0jWwUuarsZnUdL2f226sA" name="GsRoleCompetitorSet" label="角色对手集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="]E3t5oqsnVuks9NoVfLwtA" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRolePublic" is_collection="Y" data_size="role.competitor.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="lUzP1poBt]8S]Ve4GGtgjA" name="GsRoleOfflineMessage" label="角色离线消息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="U0lE9tzK1BAOPVud2Rjmjw" name="typeCd" label="离线消息类型" is_valid="Y" note="M#" type="Enum" type_name="EGmOfflineMessageType" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="okrhT[6Mvq8FFsp3l3w]rA" name="time" label="离线消息时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="dUX[SnqK02lTEMOWMKsNoQ" name="faceRoleId" label="头像角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="6UqDo4VMqy4nZJH]M8PHpg" name="faceLevel" label="头像等级" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="mEp5Y2neV4tQB[NlCw9cmg" name="faceUrl" label="头像地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.face.url.max-length" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="cUUMa8xhuLwfKFVgFbIFnQ" name="parameter1" label="消息参数一" is_valid="Y" note="M#" type="String" is_collection="N" data_size="32" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="3kiqCL0yzPFlnupFH]27nw" name="parameter2" label="消息参数二" is_valid="Y" note="M#" type="String" is_collection="N" data_size="32" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="rk9CGIFhwTueFyUn8LEHqQ" name="parameter3" label="消息参数三" is_valid="Y" note="M#" type="String" is_collection="N" data_size="32" property_id="8" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="dklwiBN4dgwQlmwdEkbdtA" name="parameter4" label="消息参数四" is_valid="Y" note="M#" type="String" is_collection="N" data_size="32" property_id="9" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="50KDTd01rhD6UBsJF7yogg" name="GsRoleOfflineMessageSet" label="角色离线消息集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="V0qgJ[J3uj2VZjT9hfoNng" name="hasNew" label="有新消息" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="bUH5lsbu2XSlY7mqnP3wkw" name="newCount" label="新消息数量" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="ikNuPmL3F1CymizH2Xk5vw" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleOfflineMessage" is_collection="Y" data_size="role.offline.message.max-count" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="i0rQu3TIL7o83koeYQ]]mw" name="GsRoleTutorial" label="角色新手指导" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="8EU8lYpVUAMU[vi87lPcpQ" name="tutorialTid" label="进行的新手指导模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="VUNzNvdd2WV3zLwTAYbSoQ" name="currentStep" label="当前进行步骤" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="CEpcWcLkcVy97V0h4fvTrg" name="statusCd" label="指导状态" is_valid="Y" note="M#" type="Enum" type_name="EGmRoleTutorialStatus" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="jEroOBHOVSrGncoHLa0WjQ" name="GsRoleTutorialSet" label="角色新手引导集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="70m364rXJxdCb8XbSVEDhg" name="ignoreTutorial" label="是否跳过所有新手引导" is_valid="Y" note="M#" type="Enum" type_name="EGmIgnoreRoleTutorial" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="kkpa0QtKyIrhqVs4xzsytQ" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleTutorial" is_collection="Y" data_size="role.tutorial.max-count" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="EkYKXDUcLZ[[iOaPOVlsow" name="GsRoleMessage" label="角色公告消息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="2kCRd]sBjAtlhQ4xs2ROpA" name="messageCd" label="公告类型" is_valid="Y" note="M#" type="Enum" type_name="EGmRoleMessage" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="hEzlV[2deSucCTrt22nLtg" name="messageEventCd" label="消息内容类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMessageEvent" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="BUel0OxwTtNF3JwfKy9crw" name="messageInfo" label="消息内容：如果是玩家消息则为空" is_valid="Y" note="M#" type="String" is_collection="N" data_size="400" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="g0vcNsNXL9fCbJ7]8fRrjA" name="parameter1" label="参数1" is_valid="Y" note="M#" type="String" is_collection="N" data_size="32" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="]E3dwL4MupoKeqBXrBqhrQ" name="parameter2" label="参数2" is_valid="Y" note="M#" type="String" is_collection="N" data_size="32" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="kk4CBRoApYrHFuueNwhxrw" name="parameter3" label="参数3" is_valid="Y" note="M#" type="String" is_collection="N" data_size="32" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="zEd44zhz0F13IMdK1o2[sg" name="GsRoleMessageSet" label="公告消息集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="B0cbf1uZXH5gzhRSIlFYpQ" name="items" label="公告数据" is_valid="Y" note="M#" type="String" type_name="SGsRoleMessage" is_collection="Y" data_size="128" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="JUAChp2Ub86zxV02ZDphmw" name="GsRoleEquipSkill" label="装备技能" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="[kb97DaUIGsEq[xIOfIOrQ" name="id" label="技能编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="mUE4PfZZQ1l6zpR7pcb1iA" name="skillTid" label="技能编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="PkV1XKvPVWYE9UmgU3M]uw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EGmEquipSkillStatus" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="UEVwZcYa27JZTR77wqcLpg" name="GsRoleEquipSkillSet" label="装备技能集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="d0ilSsBuuOBc9Kb0yX6psg" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEquipSkill" is_collection="Y" data_size="role.equip.skill.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="70YoNXiq5SX93jF7VE7]oA" name="GsRoleEquip" label="角色装备" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="DUHwpyaw88rbWtWwb0j7kA" name="id" label="编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="CUwZEb891PjOOCgSf3Dugw" name="equipTid" label="装备的模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="s0WQDCixpU3HN1PJHSIPgA" name="level" label="等级" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="dEdeSeB4PxROutBnw05UvQ" name="experience" label="经验" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="uEGVqsiEN3xMqVQ1s1xQqQ" name="linkFortId" label="关联塔编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="w0x6J7qdgjGrTphldxjBjQ" name="slotCd" label="位置" is_valid="Y" note="M#" type="Enum" type_name="EGmEquipPlace" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="SUQLvOH3cMijginSrvSjlA" name="skills" label="装备技能集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEquipSkillSet" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="DkdzX[WD7rcPyiiADlCCtw" name="GsRoleEquipSet" label="角色装备集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="JUByVnEsbkqVU7zSDbsPpQ" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEquip" is_collection="Y" data_size="role.equip.max-cout" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="90NTb6t9H1WpeSDG2RKWjg" name="GsMolestInfo" label="玩家被调戏消息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="OkNeQGHj1[58R]fbe09Thw" name="molestTid" label="调戏类型编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="D0vLy4M68VN]wObFoZd2lA" name="sponsorId" label="发起者编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Ik7F9F4bZuIwD7AEo7h6uA" name="sponsorLabel" label="发起者名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="64" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="TUG7WBgX9sV2oBerwpgbpw" name="receipientId" label="接受者编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="]EdTxoKnFUbdTHTTpMd8qw" name="receipientLabel" label="接受者名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="64" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="C0tI4f3SAel0Z660OZlppw" name="occurTime" label="发生时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="aEdnNzHyKUZnpFmHUvsZlQ" name="GsPlayer" label="玩家信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="TUSm8IKjBpKzgUyFgyZTuQ" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="cE]gayiEF2riYX[FuqEwsQ" name="sessionId" label="会话编号" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="9EUCUi5R5VtZ6e9neX[Arw" name="detail" label="详细信息" is_valid="Y" note="M#" type="Object" type_name="SGsRoleDetail" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="tkkQrjNBRZ9llrKqVcaSuw" name="homeSet" label="家园集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleHomeSet" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="AUFsQLH8iRau5eiDH2heoQ" name="homeWorkerSet" label="家园工人集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleHomeWorkerSet" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="OkY1Bpqx5gZxdUpx3sYDhw" name="propSet" label="道具集合" is_valid="Y" note="M#" type="Object" type_name="SGsRolePropSet" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="aEyO65Tkx6bYQQiwB2zYgQ" name="fortSet" label="防御塔集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleFortSet" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="ZEhKRFBcpnnIttufXF3diQ" name="trainingPlaceSet" label="训练营位置集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleTrainingPlaceSet" is_collection="N" property_id="8" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="XkOYjvc92[HGNnXsKojkkA" name="slaveRoomSet" label="奴隶营房间集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveRoomSet" is_collection="N" property_id="9" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="k0nPYpej2utvpufKzIY2kQ" name="slaveSet" label="奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" property_id="10" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="CkUEaQ9GmsETvIOMdULqmQ" name="mapSet" label="地图集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleMapSet" is_collection="N" property_id="11" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="cE0L2pPjDhBvcBQJNidqjA" name="equipSet" label="装备集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEquipSet" is_collection="N" property_id="12" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="30PPqB4HeEWU5O5VAUFBnA" name="embattleSet" label="布阵集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleSet" is_collection="N" property_id="13" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="]EuUsczZ[N]i1ladw7kiiQ" name="taskSet" label="任务集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleTaskSet" is_collection="N" property_id="14" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="kk85O38dyilpESUrgHJomw" name="raidSet" label="突袭集合" note="M#" type="Object" type_name="SGsRoleRaidSet" is_collection="N" property_id="15" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="DETihpIPzBwTpEuADXxqqw" name="footmanSet" label="角色仆从集合" note="M#" type="Object" type_name="SGsRoleFootmanSet" is_collection="N" property_id="16" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="U0pg6cq0ghs2bguZtKuOmA" name="friendSet" label="好友集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleFriendSet" is_collection="N" property_id="17" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="UUwUWMWVSyUix8p3pOMyrQ" name="competitorSet" label="对手集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleCompetitorSet" is_collection="N" property_id="18" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="zUSfQtu3orUcnLRFpxL5qg" name="offlineMessageSet" label="离线消息集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleOfflineMessageSet" is_collection="N" property_id="19" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="V0sUodkH2EJJY[[Yhjtrtg" name="tutorialSet" label="新手引导集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleTutorialSet" is_collection="N" property_id="20" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="JkKyw5NYTALAMCSDbDgBrw" name="roleMessageSet" label="角色的通知消息集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleMessageSet" is_collection="N" property_id="21" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="30lECp0PIvlHYXa9y03ppg" name="giftVisibelCd" label="礼物可见" is_valid="Y" note="M#" type="Enum" type_name="EGmGiftVisibel" is_collection="N" property_id="22" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="GkLagR[svOKsf3kRMX88sg" name="selectedHeroCd" label="是否选择过英雄状态" is_valid="Y" note="M#" type="Enum" type_name="EGmSelectedHero" is_collection="N" property_id="23" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="yUGgNiokvomsHCII4YPXmw" name="molestInfoSet" label="玩家被调戏信息集合" is_valid="Y" note="M#" type="Object" type_name="SGsMolestInfo" is_collection="Y" data_size="8" property_id="24" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="Ekuz71QNkx[qYbXFfzorqg" name="GsRole" label="角色详细信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="]0Kck6cd9UVtZZD]bnghgw" name="detail" label="详细信息" is_valid="Y" note="M#" type="Object" type_name="SGsRoleDetail" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="NU0qajR5VVuPtiNKiTx4qg" name="GsPlayerSet" label="玩家角色集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="Gkq7knO5ueNob6EFmnc4uQ" name="items" label="项目集合" is_valid="Y" note="M#" type="Set" type_name="SGsPlayer" is_collection="Y" data_size="role.list.entry.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="3kXC4zq7C1ue6GPZNjWpug" name="GsOverlordRankEntry" label="统治力排行项" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="w0DNYPPLt2J8]PQpkVvVhg" name="rankIndex" label="排行位置" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="nkXx1wxJ49fGGfbM]Lo4qg" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="hU8Sfi12U122B]egkF02hA" name="roleLevel" label="角色等级" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="gk0A4DjaOifsSmRvrWyrmQ" name="rolePointOverlord" label="角色统治力" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="lk0pPinJdIDfsoeWwABqrg" name="roleName" label="角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="TEYhgewsUIAfZNdg8SY2rw" name="roleFaceURL" label="角色头像地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.face.url.max-length" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="S0h]3BQ0iGsgpuSpkhudog" name="GsOverlordRank" label="统治力排行" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="AUerujoLHN4mjal]aonzsw" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsOverlordRankEntry" is_collection="Y" data_size="clinet.rank.entry.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="BEA9uubiOaUbtgVJSbGGtQ" name="GsTradeSlave" label="交易奴隶" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="dEVGxVhHNcvc8tYg8YoQgw" name="billId" label="拍卖单编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="[E9y5cT1LnfKn6rVC9sJkg" name="billStatus" label="拍卖单状态" is_valid="Y" note="M#" type="Enum" type_name="EGmBillStatus" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="[0w4jBmKhgrpLY[OS1TwqA" name="sellerRoleId" label="卖方角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="LUptkAoXD3y6Ld7JarH[hA" name="sellerRoleLevel" label="卖方角色等级" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="nUSV]PMd5fp9tzjGYXvipQ" name="sellerRoleLabel" label="卖方角色标签" is_valid="Y" note="M#" type="String" is_collection="N" data_size="template.label.max-length" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="d0Yjbwqcm0VZCmjFO4Tqrg" name="sellerRoleIconUrl" label="角色小头像地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.face.url.max-length" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="P09GPVcgCjpvbuS33IDshg" name="slaveType" label="奴隶类型" is_valid="Y" note="M#" type="Enum" type_name="EGmNpcEnemy" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="DUkxFVt[80o9ww8xt6]XtQ" name="slave" label="奴隶" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlave" is_collection="N" property_id="8" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="SEr1S37wBr8HkHrNGZR9lA" name="tax" label="税" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="9" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="vU]SpUonAiqZYPBAt3cwiw" name="priceType" label="货币类型" is_valid="Y" note="M#" type="Enum" type_name="EGmCurrency" is_collection="N" property_id="10" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="yUiPtKZIJUXdJ40XpxDkjA" name="slaveUnitPrice" label="奴隶单价" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="11" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="xUBq2jsDY1peYlffxnH5gw" name="isFriendDiscount" label="是否好友打折" is_valid="Y" note="M#" type="Enum" type_name="EGmDiscount" is_collection="N" property_id="12" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="30zR]s5CoAa1e5G2ernVkw" name="dateSellType" label="贩卖日期类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMarketSellType" is_collection="N" property_id="13" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="u0XruAMdhkw88hJfoJmdlQ" name="endTime" label="过期时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" property_id="14" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="]0Q]vf9FngNNGzvmHB7Nuw" name="GsTradeSlaveSet" label="交易奴隶集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="0E4Gst65yJBrEdthgeekpg" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsTradeSlave" is_collection="Y" data_size="200" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="5URPQthTBqjrGXL0kM6ouA" name="GsMapToken" label="地图令牌" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="NUAzHdXCrVhIvAFPLZF[jg" name="tokenType" label="令牌类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMapTokenType" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="mEURhB68hlvHzKemCvp4pw" name="tokenTid" label="令牌模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="5EiulPPkhuto8I8v1Ht]ig" name="count" label="令牌数量" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="FEy9qra8Ge96Ut9V2ax7sw" name="GsMapTokenSet" label="地图令牌集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="tkLgZDdVVWHChD52wKEovg" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsMapToken" is_collection="Y" data_size="16" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="j06MFtH9XP57XxUyMEjZsw" name="GsServerInfo" label="服务器信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="sEobtT1oIS0f5IDj]gNzsQ" name="host" label="主机IP" is_valid="Y" note="M#" type="String" is_collection="N" data_size="20" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="70h70pNlKI1UOfV9XsxEqg" name="port" label="主机端口" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="Rk[q2qFOSr2pg5dcYlAyhQ" name="GsRoomInfo" label="房间信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="[0zigxy79]WCVfxgsgyCkg" name="roomId" label="房间编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="eEvJtnvoeVju7To6fY[TmA" name="createRoomRole" label="房主信息" is_valid="Y" note="M#" type="Object" type_name="SGsRolePublic" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="dUCWSLu1Iskg0FCri7cInw" name="battleType" label="战斗地图类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMapType" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="MUnjvio5]g4RQdqIvtpOjA" name="selectType" label="选择地图的模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="wEW5]NnrwkZDZzYPGbzEgw" name="GsRoomInfoSet" label="房间信息集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="FkhYNnjFYtjcll4zKi0gjw" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoomInfo" is_collection="Y" data_size="100" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="EUNtOmWepbKmmIN6g8itlg" name="GsRoomRoleSet" label="房间角色集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="wEzNHNHFLNE]zs8ZAQo4hQ" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRolePublic" is_collection="Y" data_size="room.role.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="JUaLG5utGvRyBrhbK3j3kg" name="GsCardEntity" label="卡牌实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="lkpe]VdioeERY98GgQcsng" name="entityCd" label="实体类型" is_valid="Y" note="M#" type="Enum" type_name="EGmAward" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="1kTSqguWu4hXsxN2hbv7pA" name="entityId" label="实体编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="AUEcTtFLiosLB6lV9EmruQ" name="entityCount" label="实体数量" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="hUMFX[v8ptOgikdJFCWwng" name="index" label="第几次翻出" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="EEnz0U4M6GFZsVcVVMgxlg" name="GsCardEntitySet" label="卡牌实体集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="3Ejx7nkbm[ZRVJZtwey9uQ" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsCardEntity" is_collection="Y" data_size="16" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="okp41oeLxiNGqVjagjszrQ" name="GsMapRankRole" label="地图排序角色" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="]UaC]3VaXA0Wxzrub75Njw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="TUyfJGQjC9Y9dAqS[KWzhQ" name="roleLabel" label="角色标签" is_valid="Y" note="M#" type="String" is_collection="N" data_size="template.label.max-length" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="ZEeLJ[y2g7Htq19IRqEIsA" name="roleLevel" label="角色级别" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="3kc9Qbuap3NbHO2udok[nA" name="roleUrl" label="角色地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.face.url.max-length" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="7kr07eklb6ZO]sH4PoZNvg" name="spendTick" label="花费时刻" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="WkHVhf6yGlWGd4UL1ZdLgQ" name="GsMapRankLevel" label="地图级别排序" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="iEoqRXD]lDB[RG5rvxqmrg" name="difficultyCd" label="困难类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMapDifficulty" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="AkPAycOONd3UWNBe2]A1mw" name="tokenCd" label="令牌类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTokenDefense" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="0UAkgpXdT0dx4JHisqJMjQ" name="roles" label="角色集合" is_valid="Y" note="M#" type="Object" type_name="SGsMapRankRole" is_collection="Y" data_size="map.rank.level.role.max-count" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="wEihMQgvEN15WnDgcQu0lA" name="GsMapRank" label="地图排序" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="u0pEW8[s5Irp1FBmW5dzqg" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="fksRRU2hZU0vXr6n4UCvsg" name="levels" label="地图排行集合" is_valid="Y" note="M#" type="Object" type_name="SGsMapRankLevel" is_collection="Y" data_size="map.rank.level.max-count" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="Wkvfu5JhtBOH2OFq]4u]lw" name="GsRoleGift" label="角色礼物" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="ekFvTsUFOK8mGYA[U0DlgQ" name="giftId" label="礼物编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="JUtRw5xaIzhlnTEfFetutA" name="giftTid" label="礼品模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="REqVt6UggmepYngbf8sgsA" name="giftItemTid" label="礼品物品模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="y0gn122G88e1k6A][w3cmg" name="giftTypeCd" label="礼物类型" is_valid="Y" note="M#" type="Enum" type_name="EGmGiftType" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="z083]ozX3hwwAC6Vt5DphA" name="propTid" label="道具模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="H0GRZmSb0jL9BrepWOGPsA" name="amount" label="数量" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="2U6j1EWxTgjNbCCA9ywElw" name="time" label="时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="Jkmt4gYbLLEfA8G0bS8Gjg" name="GsRoleGiftSet" label="角色礼物集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="0k8NQd1EufFV3RHYM71tig" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleGift" is_collection="Y" data_size="role.gift.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="SUoQCxf7LgDKk1wKw6Fvuw" name="GsAchievementCondition" label="成就条件" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="[0zCh8BojZzFZ[[9ilHemw" name="conditionTid" label="条件模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="c0Iu7lzHZpzMYstAAICOoA" name="currentValue" label="当前数量" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="N01gUWDxGVZbYzBs1gGIow" name="GsAchievementConditionSet" label="成就条件集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="dUFimFJ7nN2OzK8nk5D1qA" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsAchievementCondition" is_collection="Y" data_size="role.achievement.condition.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="X0qFWxVYg3GoSFqX[sLxhQ" name="GsAchievement" label="成就" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="Okt5]fLwjT8OwrynysR]mQ" name="achievementTid" label="成就模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="[kFHZbxUJti6MxHK1qX]tw" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EGmAchievementStatus" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="sUaABOtw1]oE5bEBBps8uA" name="conditions" label="条件集合" is_valid="Y" note="M#" type="Object" type_name="SGsAchievementConditionSet" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="TE4Qe5IlsCDUcZnLt2TMlQ" name="GsAchievementSet" label="成就集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="ZkY]u0GCndRXj3lZTm81rw" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsAchievement" is_collection="Y" data_size="role.achievement.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="KkpneGUpkj5P[eLpbYlMpQ" name="GsAchievementGroup" label="角色成就分组" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="eUzRFs4kCBAotYGmKtGvgQ" name="groupTid" label="分组模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="AE5nmu5KoySKNIoz[ljFqQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EGmAchievementGroupStatus" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="dE4CFI[ioAenoNfvq3tDug" name="achievementSet" label="成就集合" is_valid="Y" note="M#" type="Object" type_name="SGsAchievementSet" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="mESMQ[5]86drPM6hLDa0nw" name="rewardStatusCd" label="奖励领取状态" is_valid="Y" note="M#" type="Enum" type_name="EGmAchievementGroupRewardStatus" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="zEol8[LPmYQXzmbpG[uLsA" name="GsAchievementGroupSet" label="角色成就分组集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="OEFUMH9[2RIrfa2225vpkg" name="pointCount" label="成就点个数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="UkwuNuOPmIJmBS8LowHLkQ" name="pointTotal" label="成就点总数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="aEM1j7TDDKwSwEVZQjVFog" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsAchievementGroup" is_collection="Y" data_size="role.achievement.group.max-count" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="k0hF8DP32fqxZKzvwJOohw" name="GsRoleCount" label="计数信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="C0JtQpP7LY]sqcOJvHyWrw" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmCountType" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="h0va5SUi[ntNlhIT42yRnA" name="actionCd" label="命令类型" is_valid="Y" note="M#" type="Enum" type_name="EGmCountAction" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="a0OWEa3bYzIAGNLtcOaomQ" name="linkTid" label="关联模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="oUjDpviuFWglesLBN[cCvw" name="linkLevel" label="关联级别" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="ZUcWvFZzpPqFWeWtBmayoQ" name="linkCount" label="关联数量" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="qkyNpfNPVKG5L8ws8cpblA" name="GsRoleCountSet" label="角色计数集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="GkXxbgAy7tMgaoPXP]Vfrw" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleCount" is_collection="Y" data_size="role.count.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="2kt8bTbALc4pqebHIr8Wgg" name="GsRoleRank" label="角色排名数据" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="fkwDvAvLofLzA0cbdVXRrg" name="index" label="角色排名" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="N0eRgADMoKIxnDODb3Vhrw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="AkZfb5[1PQ4qBVOJC50rnQ" name="roleName" label="角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="64" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="lkP]Uc05tcJ2uNp3EvG7sg" name="level" label="角色级别" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="qExI84[B]q[CsDIAvjsdlA" name="headUrl" label="角色头像地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="400" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="OUMOz3JP[OGm4Uqbu5XlnQ" name="iconUrl" label="小头像地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="400" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="sUr4BpA4yelPMt5C[Z3gsQ" name="rankValue" label="排名数据" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="30baiz8eyXrD2yGlNGzFuA" name="GsRoleRankSet" label="角色排名数据集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="MUok2om0bgK]yX9xGPvMgQ" name="items" label="排名数据内容" is_valid="Y" note="M#" type="Object" type_name="SGsRoleRank" is_collection="Y" data_size="128" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="xU9l1eOs2r[PNs7qBVwauw" name="GsWarehouseGrid" label="仓库格子" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="p0rOtl]XeQer5QlTXf1OtQ" name="gridTid" label="格子模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="gEVsbWPWgGr4TxRmTfoHlQ" name="activationCd" label="激活状态" is_valid="Y" note="M#" type="Enum" type_name="EGmWarehouseGridActivation" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="CkiXkId1AkZrIDXE6kQXrg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EGmWarehouseGridStatus" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="HURFd6z3T3d1PLgAGf5KgQ" name="propTid" label="道具编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="8UyL6FV1VQ03[56t1[iZtw" name="propCount" label="道具数量" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="RUqndUmj59w5bIuNkBQElg" name="GsWarehouseGridSet" label="仓库格子集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="ZksE7RNaht]7F6QAEYYTsg" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsWarehouseGrid" is_collection="Y" data_size="warehouse.grid.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="nkZtLe8IePnr1gNIIw2Xmw" name="GsEmbattleRaidNpc" label="布阵突袭角色信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="YENOLwcAS4o6MPgrUiXAmw" name="npcTid" label="角色模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="eEBasZjK5sDg[pxhxhQAmg" name="level" label="级别" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="hEM]E32UhPFrTIo6XijZmQ" name="count" label="个数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="jUnPK4gyB4MZ7hWOXcnUqA" name="GsEmbattleRaidNpcSet" label="布阵突袭角色集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="r0uv82faNyCvAR]jE[Uvkw" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsEmbattleRaidNpc" is_collection="Y" data_size="role.raid.npc.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="xkKi9395qdqpSPGnjd4ehg" name="GsEmbattleRaid" label="布阵突袭信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="BkkSZ[eVK5x3haZnq7WqpA" name="raidId" label="突袭编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="yUQEqyXPp7w6Ra6fLIXnkw" name="raidTokenCd" label="突袭牌子类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTokenRaid" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="ZE[lPljArQCi2]QJF2F3pw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Ok4s]Wsauos3Re4xBpz1kg" name="roleLabel" label="角色标签" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="a0GbK]NWITWLGzClKRrQtA" name="roleLevel" label="角色级别" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="4UFy[dwNUhc3pVM6nT1dsg" name="roleUrl" label="角色地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.face.url.max-length" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="OkMpW2emslRx69RMVKDutA" name="npcSet" label="角色集合" is_valid="Y" note="M#" type="Object" type_name="SGsEmbattleRaidNpcSet" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="Ek[5X4V8KEJbfVzrfCVtlA" name="GsEmbattleRaidSet" label="布阵突袭集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="ckU76v3VnIMHJ2U2GrZ7lA" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsEmbattleRaid" is_collection="Y" data_size="role.raid.count.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="hEoyaVyYeC6ybDbiAK2woA" name="GsEmbattleRaidEntity" label="突袭实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="E0KIyXj1OLG2M]YZXo2ygg" name="typeCd" label="类型" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="eUL1uLDHw5U7KrgkVzW3uA" name="tick" label="间隔" is_valid="Y" note="M#" type="Float" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="R0b4hAyezAyThKZXbA]qhw" name="birthTid" label="出生点模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="xUu3h2FTkiR]9GwjZ9Xhtg" name="linkTid" label="关联模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="CUOhM17FhG]ByLdsZ9Y3jQ" name="linkLevel" label="关联级别" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="z0PV0FdZ5bLusEG2cD68ow" name="linkCount" label="关联个数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="uU0Lv9WZuk2qyd6CTknXlQ" name="canCatch" label="能否被捕捉" is_valid="Y" note="M#" type="Enum" type_name="EGmNpcCanCatch" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="605p9Lh1fMiN92boQi9XhQ" name="GsEmbattleRaidEntitySet" label="突袭实体集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="50jXUzJVyafsce3tnyUriQ" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsEmbattleRaidEntity" is_collection="Y" data_size="embattle.raid.entity.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="o0PbggfBLzJM5LFM9][Pig" name="GsEmbattleRaidResult" label="布阵突袭结果" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="xkrDE4HnbRRPmSfKAvNiiw" name="level" label="级别" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="V0Llhna]WVuf9pRp9MHHiQ" name="experience" label="经验" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="gUBx8jODyaBSx8pklF85tQ" name="validIntervalTick" label="有效间隔时间" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="K092yqaJfh7z4zJc[MIXow" name="GsAward" label="奖励实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="dU9fhnRrfEheskVBYhc4jQ" name="awardCd" label="奖励类型" is_valid="Y" note="M#" type="Enum" type_name="EGmAward" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="qU]WIsc9oDqZ7ALdYdzpqw" name="awardId" label="奖励编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="bkyBk14tez]iYHPmkV0wpA" name="awardCount" label="奖励数量" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="o0C]CRd3Nuc3sQjttw[JrQ" name="GsAwardSet" label="奖励集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="Z0jd9jOmfic3Q[5i1fCruw" name="items" label="项目集合" is_valid="Y" note="M#" type="String" type_name="SGsAward" is_collection="Y" data_size="16" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="aEqv84]Erj0uyFGiwEgTsQ" name="GsSignatureHistory" label="签到记录" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="xkNuOdLMWbANJKGZs5x]kQ" name="day" label="天数" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="v0Tv5AmwH05OtdwwFi7DmQ" name="statusCd" label="签到状态" is_valid="Y" note="M#" type="Enum" type_name="EGmSignatureStatus" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="Rkm[DSQqeSIn8GmQTtQdiQ" name="GsSignatureHistorySet" label="签到历史" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="oUrdiTld1kQGOWJI1zu0qA" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsSignatureHistory" is_collection="Y" data_size="role.signature.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="PU5Ngqs22EAK8Cc7KxYOoA" name="GsSignature" label="签到" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="sURY24yjt8dLUzMyeMiJkA" name="dayOfMonth" label="当月天数" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="bEYks49K8Mon7QuVP5gdog" name="curDay" label="当天" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="J09HEgAaRKAKe4JiaRVfuw" name="reSignatureAmount" label="总共补签次数" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="P0Ovc0G7lQpb3EyriKDlow" name="reSignatureCount" label="剩余补签次数" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="HUV7ykEElFftP8XvVuLclQ" name="levelCd" label="签到进度" is_valid="Y" note="M#" type="Enum" type_name="EGmSignatureLevel" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="UkzSjNUTpf2Sw4551U1wgg" name="levelStatusCd" label="签到的进度状态" is_valid="Y" note="M#" type="Enum" type_name="EGmSignatureLevelStatus" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="ZUCaiF7s[JAmWHATJIb7og" name="historys" label="历史" is_valid="Y" note="M#" type="Object" type_name="SGsSignatureHistorySet" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="m0O0xMQ3Z7D5de[[6[fggA" name="GsEmbattleEntityTid" label="布阵实体模板编号" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="Eke32r2wTO1cVS4hBkj8pw" name="fortTid" label="塔模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="3E0AE5dnb4mXWU1SUFMFpQ" name="GsRoleEmbattleMapEx" label="布阵地图扩展" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="K0GItMIkPpZrgVoyzh]xvg" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="fUxjt3h7DvTeEpR6IB]Csg" name="useFortSet" label="塔编号" is_valid="Y" note="M#" type="Object" type_name="SGsEmbattleEntityTid" is_collection="Y" data_size="6" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="qEdNKcwtLvkQ6bY]E60sig" name="GsRoleEmbattleMapExSet" label="布阵地图扩展集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="x0f41Saf4BQaXnjnbXoSog" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleMapEx" is_collection="Y" data_size="32" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="pU7faxrKW]wzaNVBtUkIjg" name="GsStoreItem" label="商城商店物品" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="aky4tkJhW6jnF3bhfs8YnA" name="tid" label="商城商品编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="10HqVObSOOOV13CFIZyMqQ" name="itemCd" label="物品类型" is_valid="Y" note="M#" type="Enum" type_name="EGmReward" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="E05CPLFBgN6Gu0l8s2KosA" name="itemTid" label="物品编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="8EDHf8D9OMFYOR0CdTOvpQ" name="itemLabel" label="商品名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="32" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="EU[x4tog2M9vaik6xAmfng" name="itemCount" label="物品数量" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="2Exe95mIy[K[amErK4sEpQ" name="displayIndex" label="显示序号" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="CEv9DIv8bGwQEV[APUNtkw" name="currencyCd" label="货币类型" is_valid="Y" note="M#" type="Enum" type_name="EGmCurrency" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="j0[y[aUEaWTVRagTZbRFiA" name="price" label="价格" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="8" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="7EddKR6Lt[gYAWV7mNTlng" name="discount" label="折扣" is_valid="Y" note="M#" type="Float" is_collection="N" property_id="9" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="ZENvcXYP5V]hx4RH40l]oA" name="GsStore" label="商城商店数据" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="xE9Hol0[X90[rZbyeFVWrQ" name="index" label="显示序号" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="f0fneEFi03RXoxvZAOpMiQ" name="storeTid" label="商店编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="kkSESRDeebWuoBCtzYMMnw" name="storeName" label="商店名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="64" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="yURC4nY2cMXbe4r9nl4OvQ" name="itemSet" label="商店物品集合" is_valid="Y" note="M#" type="Object" type_name="SGsStoreItem" is_collection="Y" data_size="1024" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="Jke0aX]KcQghQqEc4Az3hw" name="GsStoreSet" label="商城商店集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="E0sxZXyByYeur]KTk8mMhw" name="items" label="商店集合" is_valid="Y" note="M#" type="Object" type_name="SGsStore" is_collection="Y" data_size="16" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+</Group>
+

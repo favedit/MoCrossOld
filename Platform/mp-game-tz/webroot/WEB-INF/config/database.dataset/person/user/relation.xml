@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="ekxVt4NowjOL16UfUQ9jsA" name="person.user.relation" label="M#12cn17用户-人员关系" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="PM_USER_RELATION" data_alias="PM_USER_REL" data_logic="PM_USER_RELATION_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="c0PPtC5NhPFclZcMSPW5pA" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="USER_ID" data_refer="person.user" />
+  <FieldEnum _uuid="okYKLTdivB02MrB8RJ3noQ" name="type_cd" label="M#12cn14关系类型" is_valid="Y" note="M#12cn220同事/父亲/母亲/儿子/女儿/姐妹/兄弟" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="person.user.relation.type" />
+  <FieldInteger _uuid="tEIjn[zUczhh6WAxL[2Kiw" name="relation_user_id" label="M#12cn15关系人标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="RELATION_USER_ID" data_refer="person.user" />
+  <FieldBoolean _uuid="tUaTDvk19]ZHNtxpuZ6Zgg" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="'Y'" />
+</DataStore>
+

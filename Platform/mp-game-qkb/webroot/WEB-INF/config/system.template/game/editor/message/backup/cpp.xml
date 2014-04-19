@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define _uuid="]E[MIOeUo79dXfu13d2wsA" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source _uuid="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[
+//============================================================
+// <T><jt:item source='$message.label'/>消息定义。</T>
+//
+// @struct
+//============================================================
+class TNm<jt:item source='$message.source_name'/> : public TNetMessage{
+protected:
+<jt:loop source='$message' alias='field'>
+   // @property <jt:item source='$field.label'/>
+   T<jt:item source='$field.type'/> _<jt:item source='$field.name'/><jt:notEmpty source='$field.data_size'>[<jt:item source='$field.data_size'/>]</jt:notEmpty>;
+</jt:loop>
+public:
+   //------------------------------------------------------------
+   // <T>构造消息。</T>
+   TNm<jt:item source='$message.source_name'/>(){
+      Initialize();
+   }
+public:
+   //------------------------------------------------------------
+   // <T>初始化信息。</T>
+   void Initialize(){
+      TNetMessage::Initialize();
+      _head.code = ENetMessage_<jt:item source='$message.code'/>;
+<jt:loop source='$message' alias='field'>
+<jt:equals source='$field.type' value='Char|Byte|Int16|Int32|Int64|Uint16|Uint32|Uint64|TFloat|TDouble'>
+      _<jt:item source='$field.name'/> = 0;
+</jt:equals>
+</jt:loop>
+   }
+public:
+   //------------------------------------------------------------
+   // <T>复制信息。</T>
+   void operator=(const TNm<jt:item source='$message.source_name'/> message){
+      Assign(message);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>复制信息。</T>
+   void Assign(const TNm<jt:item source='$message.source_name'/>& message){
+   }
+public:
+<jt:loop source='$message' alias='field'>
+   //------------------------------------------------------------
+   // <T>获得<jt:item source='$field.label'/>信息</T>
+   T<jt:item source='$field.type'/><jt:equals source='$field.type' value='NetString'>&</jt:equals> <jt:item source='$field.name' format='class'/>(){
+      return _<jt:item source='$field.name'/>;
+   };
+   //------------------------------------------------------------
+   // <T>设置<jt:item source='$field.label'/>信息</T>
+   void Set<jt:item source='$field.name' format='class'/>(T<jt:item source='$field.type'/><jt:equals source='$field.type' value='NetString'>&</jt:equals> value){
+      _<jt:item source='$field.name'/> = value;
+   };
+</jt:loop>
+public:
+   //------------------------------------------------------------
+   // <T>序列化信息到数据流。</T>
+   TSize Serialize(TAny* pMemory, TSize size){
+      // 序列化消息
+      TByte* pPtr = (TByte*)pMemory;
+      TSize offset = _head.Serialize(pMemory, size);
+<jt:loop source='$message' alias='field'>
+      // 序列化<jt:item source='$field.label'/>
+<jt:equals source='$field.type' value='Char|Byte|Int16|Int32|Int64|Uint16|Uint32|Uint64'>
+      *(T<jt:item source='$field.type'/>*)(pPtr + offset) = _<jt:item source='$field.name'/>;
+      offset += sizeof(T<jt:item source='$field.type'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='NetString'>
+      offset += _<jt:item source='$field.name'/>.Serialize(pPtr + offset, size - offset);
+</jt:equals>
+</jt:loop>
+      // 设置消息长度
+      *(TUint32*)pMemory = offset;
+      return offset;
+   }
+   //------------------------------------------------------------
+   // <T>反序列化数据流到信息。</T>
+   TSize Unserialize(TAny* pMemory, TSize size){
+      // 反序列化消息
+      TByte* pPtr = (TByte*)pMemory;
+      TSize offset = _head.Unserialize(pMemory, size);
+<jt:loop source='$message' alias='field'>
+      // 反序列化<jt:item source='$field.label'/>
+<jt:equals source='$field.type' value='Char|Byte|Int16|Int32|Int64|Uint16|Uint32|Uint64'>
+      _<jt:item source='$field.name'/> = *(T<jt:item source='$field.type'/>*)(pPtr + offset);
+      offset += sizeof(T<jt:item source='$field.type'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='NetString'>
+      offset += _<jt:item source='$field.name'/>.Unserialize(pPtr + offset, size - offset);
+</jt:equals>
+</jt:loop>
+      return offset;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>重置信息。</T>
+   TBool Reset(){
+<jt:loop source='$message' alias='field'>
+<jt:equals source='$field.type' value='Char|Byte|Int16|Int32|Int64|Uint16|Uint32|Uint64'>
+      _<jt:item source='$field.name'/> = 0;
+</jt:equals>
+<jt:equals source='$field.type' value='NetString'>
+      _<jt:item source='$field.name'/>.Reset();
+</jt:equals>
+</jt:loop>
+   }
+};
+]]></Source>
+</Template>

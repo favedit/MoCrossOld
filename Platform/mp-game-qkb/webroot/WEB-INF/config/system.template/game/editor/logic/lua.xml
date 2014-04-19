@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T><jt:item source='$processor.label'/>。</T>
+//
+// @version 1.0.2
+// @auto 代码器管理的自动代码，如需修改请在手动修改标出的地方修改。
+//============================================================
+#ifndef __MO_<jt:item source='$project.code' format='upper'/>_<jt:item source='$processor.code' format='upper'/>_H__
+#define __MO_<jt:item source='$project.code' format='upper'/>_<jt:item source='$processor.code' format='upper'/>_H__
+
+#ifndef __MO_<jt:item source='$project.code' format='upper'/>_CORE_H__
+#include "Mo<jt:item source='$project.code' format='class'/>Core.h"
+#endif // __MO_<jt:item source='$project.code' format='upper'/>_CORE_H__
+
+// @manual (Include.Begin)
+//------------------------------------------------------------
+<jt:empty source='$processor.source_include'>
+//------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$processor.source_include'>
+<jt:item source='$processor.source_include'/>//------------------------------------------------------------
+</jt:notEmpty>
+// @manual (Include.End)
+
+MO_NAMESPACE_BEGIN
+
+// @manual (Logic.Begin)
+//------------------------------------------------------------
+<jt:empty source='$processor.source_logic'>
+//------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$processor.source_logic'>
+<jt:item source='$processor.source_logic'/>//------------------------------------------------------------
+</jt:notEmpty>
+// @manual (Logic.End)
+
+//============================================================
+// <T><jt:item source='$processor.label'/>。</T>
+//============================================================
+class <jt:item source='$processor.source_name'/> : public FConsole{
+public:
+   <jt:item source='$processor.source_name'/>();
+   MO_ABSTRACT( ~<jt:item source='$processor.source_name'/>() );
+public:
+   TBool OnProcessBefore(TNetRouter* pRouter);
+   TBool OnProcessAfter(TNetRouter* pRouter, TBool resultCd);
+public:
+<jt:loop source='$processor' alias='method' filter='$method.type=SM'>
+   TBool <jt:item source='$method.name'/>(TNetRouter* pRouter, TNm<jt:item source='$method.full_code'/>& message);
+</jt:loop>
+public:
+<jt:loop source='$processor' alias='method' filter='$method.type=OM'>
+<jt:notEmpty source='$method.source_target'>
+   TBool <jt:item source='$method.name'/>(TNetRouter* pRouter);
+</jt:notEmpty>
+</jt:loop>
+public:
+   // @manual (ProcessorLogic.Begin)
+   //------------------------------------------------------------
+<jt:empty source='$processor.source_processor_logic'>
+   //------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$processor.source_processor_logic'>
+<jt:item source='$processor.source_processor_logic'/>//------------------------------------------------------------
+</jt:notEmpty>
+   // @manual (ProcessorLogic.End)
+public:
+   TBool RegisterAllProcessors();
+};
+//------------------------------------------------------------
+typedef RSingleton<<jt:item source='$processor.source_name'/>> R<jt:item source='$processor.source_name' removeFirst='F'/>;
+
+MO_NAMESPACE_END
+
+#endif // __MO_<jt:item source='$project.code' format='upper'/>_<jt:item source='$processor.code' format='upper'/>_H__
+]]></Source>
+</Template>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="OUNrtpzT974HEsqhkOssog" name="develop.finance.expense" label="M#12cn17项目-支出信息" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="DP_FINANCE_EXPENSE" data_alias="DP_FIN_EXP" data_logic="DP_FINANCE_EXPENSE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="Nk5G7EzzbSbuS[dpqPvNqw" name="project_id" label="M#12cn14项目标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PJT" data_refer="develop.project" data_uniques="expense" />
+  <FieldInteger _uuid="vkcFHwxBP[w3E7wlXDtysQ" name="expense_id" label="M#12cn14支出标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="EXPENSE_ID" data_alias="EXP" data_refer="business.finance.expense" data_uniques="expense" />
+  <FieldBoolean _uuid="xkC2hJjsDl57GblXXdgutg" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#12cn213Y = 有效\nN = 无效" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldFloat _uuid="nULKWlWO3SsUylWHWupJiA" name="cash_amt" label="M#12cn12金额" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CASH_AMT" />
+  <FieldFloat _uuid="N0h8jw90DFoN6cESZuVpsA" name="total_amt" label="M#12cn13总金额" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TOTAL_AMT" />
+  <FieldDate _uuid="TUsK71]NpR0f1leE5fCYkw" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_default="SYSDATE" />
+</DataStore>
+

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="SkUeNSIwUq2U9CElp3gXuQ" name="logic.person.LF_TR_MG.mail" label="培训管理" is_valid="Y" note="M#">
+  <Source _uuid="]0A[DC42lzz8g79IPUUtpw" name="mail.send.training.head" label="邮件发送培训计划-邮件标题" is_valid="Y" note="M#"><![CDATA[培训通知：<jt:item source='$config.title'/>]]></Source>
+  <Source _uuid="kkSfxDn3CVEMsEpA5Vb4lQ" name="mail.send.training.body" label="邮件发送培训计划-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='西游记-需求管理 → 需求邮件通知' alias='navigator_label'/>
+<HTML>
+<HEAD>
+<TITLE>eUIS</TITLE>
+<META http-equiv='content-type' content='text/html; charset=utf-8'/>
+<META http-equiv='content-language' content='zh-cn'/>
+<STYLE type='text/css'>
+/* CSS Document */
+.body{
+margin:0 auto;
+width:1073px;
+padding:0;
+cursor:default;
+overflow-x:hidden;
+}
+.bodyContent{
+   padding-left:20px;
+   padding-right:20px;
+   background-color:#FFFFFF;
+}
+.content_top{
+   width:100%;
+   height:35px;
+}
+a{
+   text-decoration: none ;
+}
+.table{
+   margin: 0px;
+   border-top-width: 0px;
+   border-right-width: 0px;
+   border-bottom-width: 0px;
+   border-left-width: 0px;
+}
+.title_center_bg{
+   width:100%;
+   height:36;
+   border-top-style:solid;
+   border-top-color:#cccccc;
+   border-top-width:1px;
+}
+.title_left_bg{
+   height:36;
+}
+.title_right_bg{
+   height:36;
+}
+.title_bottom{
+   width:100%;
+   height:11;
+   vertical-align:bottom;
+   border-bottom:1px solid #cccccc;
+   font-size:xx-small;
+}
+.title_bottom_line{
+   width:100%;
+   height:9;
+   vertical-align:bottom;
+   border-bottom:1px solid #cccccc;
+   border-right:1px dotted #cccccc;
+   font-size:xx-small;
+}
+.title_bottom_left{
+   height:11;
+}
+.title_bottom_right{
+   height:11;
+}
+.content_height{
+   height:29px;
+}
+.content_title_icon1{
+   width:20px;
+   padding-left:5px;
+}
+.content_title_icon2{
+   width:20px;
+   padding-left:35px;
+}
+.content_title{
+   padding-left:5px;
+   font-size:15px;
+   font-family:"宋体";
+   font-weight:bolder;
+   color:#32659A;
+}
+.content_l_r_line{
+border-left:1px solid #cccccc;
+border-right:1px solid #cccccc;
+}
+.Help_SubSpan{
+   height:1;
+   padding-left:40px;
+   padding-right:40px;
+   padding-top:1px;
+   padding-bottom:1px;
+}
+.Help_SubLine{
+   height:1px;
+   border-bottom:1px dotted #999999;
+   padding-top:1px;
+   padding-bottom:1px;
+}
+/* 导航栏 CSS */
+
+.navigation_span{
+   padding-left:18px;
+   font-weight:bold;
+   color:#E7F9FD;
+   font-size:14px;
+   text-align:left;
+}
+.help_title_A{
+   font-family:"宋体";
+   font-size:14px;
+   font-weight:bolder;
+   color:#E7F9FD;
+   text-align:left;
+   text-decoration: none;
+   padding-bottom: 4px;
+   white-space: nowrap;
+}
+.help_title_A:hover{
+   text-decoration:underline;
+}
+.navigation_td{
+   color:#FFFFFF;
+   padding-left:70px;
+   text-align:left;
+}
+/* 主页面 CSS */
+
+TD {
+   font-family:'NSimSun';
+   font-size: 9pt;
+}
+.NavTitle {
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-weight: bold;
+	font-size: 14px;
+	color: #FFFFFF;
+}
+.NavText {
+	color: #19497A;
+}
+.BodyText {
+   margin: 0px;
+   padding: 0px;
+}
+.ItemHead {
+   padding:3 8;
+   height:20;
+   background-color:#dceffe;
+   border:#9fc5ea;
+   font-weight:bolder;
+}
+.ItemData {
+   padding:3 8;
+   background-color:#edf7ff;
+}
+.HelpHead {
+   padding-top:10px;
+   padding-left:40px;
+}
+.HelpLine {
+   padding-left:40px;
+   padding-right:40px;
+}
+.SpanTopEuis{
+  font-family:'Times New Roman', Times, serif;
+  font-size:16px;
+  color:#33709c; 
+  font-weight:bold; 
+}
+.PreSyl{
+  font-family:"宋体";
+  font-size:12px;
+}
+</STYLE>
+</HEAD>
+<BODY style="margin:0 auto;padding:0;cursor:default;">
+<table cellpadding="0" cellspacing="0" border="0" width="1007" align="center">
+<tr><td>
+<!-- begin - end ---------------------------------------->
+<table cellpadding="0" cellspacing="0" border="0" width="100%" style="padding-top:3px; padding-bottom:2px;">
+<tr>
+<td align="left" valign="middle" style="padding-left:10px;"><img src="<jt:context/>/apl/login/help/images/logo.gif" border="0"/></td>
+<td>
+  <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+      <td style="padding-right:13px" align="right">
+        <a href="<jt:context/>/apl/login/Login.wa"><SPAN class="SpanTopEuis">LIN<FONT COLOR="red">E</FONT>KONG <FONT COLOR="red">e</FONT>UIS</SPAN></a>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding-right:8px; padding-top:14px" align="right" valign="bottom">
+      <table cellpadding="0" cellspacing="0" border="0">
+      <tr>
+      <td style="padding-right:10px;padding-bottom:10px;"><a href="<jt:context/>/apl/login/Login.wa"><SPAN class="SpanTopEuis">信息管理平台</SPAN></a></td>
+      </tr>
+      </table>
+     </td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<!-- logo - end ---------------------------------------->
+<!-- Title - begin ---------------------------------------->
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="660">
+<tr valign="top">
+<td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+      <td style="padding-left:10px;"><img src="<jt:context/>/apl/login/help/images/topleft.gif" /></td>
+      <td background="<jt:context/>/apl/login/help/images/topcenter.gif" width="80%" align="center">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+	<td class="navigation_td">
+<img src="<jt:context/>/apl/login/help/images/004_25.gif"><span id="title_name" class="navigation_span"><jt:item source='$navigator_label'/></span>
+           </td>
+         </tr>
+         </table>
+      </td>
+      <td background="<jt:context/>/apl/login/help/images/topcenter.gif" width="100%" align="right" style="color:#dedadb"></td>
+      <td align="right" style="padding-right:10px;"><img src="<jt:context/>/apl/login/help/images/topright.gif"/></td>
+  </tr>
+  <tr><td height="10px"></td></tr>
+</table>
+<TABLE class='BodyText' width="100%">
+<TR><TD style='padding-left:20px;padding-top:6px;'>
+<jt:notEmpty source='$config.to_user_labels'><FONT COLOR='#336699'><B>TO：<jt:item source='$config.to_user_labels'/></B></FONT><BR/></jt:notEmpty>
+<jt:notEmpty source='$config.cc_user_labels'><FONT COLOR='#336699'><B>CC：<jt:item source='$config.cc_user_labels'/></B></FONT><BR/></jt:notEmpty>
+<jt:notEmpty source='$config.fr_user_label'><FONT COLOR='#336699'><B>FR：<jt:item source='$config.fr_user_label'/></B></FONT></jt:notEmpty></TD>
+</TR>
+</TABLE>
+<!-- Title - end ------------------------------------------>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'><FONT COLOR='#336699'>收件人：</FONT><jt:item source='$config.receiver'/></TD></TR>
+<TR><TD colspan="2">
+<hr style="border-bottom:dotted #999999;" size=1px;/>
+</TD></TR>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD>
+       <PRE><FONT COLOR='336699'><jt:item source='$config.context'/></FONT></PRE>
+     </TD></TR>
+     <TR><TD></TD></TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.link_lists'>
+      <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>需求列表：</B>
+      <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+	   <TR>
+	      <TD class='ItemHead' width='50%' align='center'>需求名称</TD>
+	      <TD class='ItemHead' width='50%' align='center'>操作</TD>
+	   </TR>
+	   <jt:loop source='$parameter.link_lists' alias='require'>
+	     <TR>
+	        <TD width="50%" class='ItemData' align='center'><jt:item source='$require.code'/>（<jt:item source='$require.label'/>）</TD>
+	        <TD width="50%" class='ItemData' align='center'><jt:notEmpty source='$require.redirect'><A target="_blank" href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$require.redirect'/>"><B style='color:#d8571d'>查看</B></A></jt:notEmpty></TD>
+	     </TR>
+	   </jt:loop>
+	   </TABLE>
+   </jt:notEmpty>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

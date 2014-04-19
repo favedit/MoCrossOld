@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebForm _uuid="k0vZP0VZB1VO6FkL0YI5vA" name="system.logic.process.ProcessForm" label="M#12cn19系统业务-流程表单" is_valid="Y" note="M#" disp_fetch="Y" disp_search="Y" disp_lov="Y" disp_zoom="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" disp_print="Y" style_refer="logic.process.ControlStyle" dataset="logic.process" edit_insert="Y" edit_update="Y" edit_delete="Y" edit_copy="Y">
+  <Template _uuid="eUCNMRlgX5gWbdAbxWbKjA" name="basicTemplate" label="M#12cn14基本模板" is_valid="Y" note="M#" template_name="system.logic.process.BasicTemplate" />
+  <ToolBar _uuid="6km]0JX1FtjOovz9qddqig" name="toolBar" label="M#12cn13工具栏" is_valid="Y" note="M#" width="100%" height="24">
+    <ToolButton _uuid="KUICVO]CTtcW1y4RDLmwrw" name="saveButton" label="M#12cn12保存" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#tools.save" icon_disable="#tools.saveDisable" hotkey="F8" action="doSave()" />
+    <ToolButton _uuid="9UBTtN74TsFKLiYrHeXdpw" name="deleteButton" label="M#12cn12删除" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#tools.delete" icon_disable="#tools.deleteDisable" hotkey="F6" action="doDelete()" />
+    <ToolButtonSplit _uuid="JUA4ufABwiHhSGikCz8Tuw" name="split1Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="205C0]s3qJ81sp2IgUPutA" name="insertCondition" label="M#12cn14新建条件" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#logic.process.condition" page="insert@#/logic/process/Process.wa" attributes="_type=ProcessCondition\nsel_type=component\nform_name=system.logic.process.ProcessConditionForm" />
+    <ToolButtonSplit _uuid="mU1ejOnxbp5FnxfoWjp0jA" name="split2Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="U0IIsRqwEQ7fmXV4OkvAkw" name="insertTask" label="M#12cn14新建任务" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#logic.process.task" page="insert@#/logic/process/Process.wa" attributes="_type=Task\nsel_type=component\nform_name=system.logic.process.TaskForm" />
+    <ToolButtonSplit _uuid="L0yN4LWMvLTwWfQGl472iA" name="split9Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="WkxQ9cRh6JWskul2Z69WtQ" name="insertProcessConfig" label="M#12cn16新建流程设置" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#logic.process.config" page="insert@#/logic/process/Process.wa" attributes="_type=ProcessConfig\nsel_type=component\nform_name=system.logic.process.ProcessConfigForm" />
+    <ToolButtonSplit _uuid="UUPcz6DK9RWdOp0DtO0moQ" name="split4Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="0UmDqIIJsoawvd5GsJCTiQ" name="sortButton" label="M#12cn12排序" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#tools.sort" page="sort@#/logic/process/Process.wa" attributes="sel_type=component" />
+    <ToolButtonMenu _uuid="d0jo0A4aXzIlhSAdtH4JoQ" name="insertConditionButton" label="M#12cn14新建条件" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_delete="Y" icon="tool.insert" />
+  </ToolBar>
+  <Memo _uuid="LkG8cGiYkkkmpcSZg4PRpg" name="note" label="M#12cn12备注" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_lov="N" disp_zoom="N" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" style_label="label" data_fetch="N" data_name="NOTE" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" valid_require="N" edit_overflow="N" />
+</WebForm>
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebForm _uuid="S0MhzWkTlk5lv8i0hQ4qkQ" name="system.environment.PropertyForm" label="M#12cn17环境-属性表单" is_valid="Y" note="M#" style_refer="system.environment.ControlStyle" edit_insert="Y" edit_update="Y">
+  <DataAction _uuid="0Um24kV9W0nUkMXOi[JQjQ" name="insertAction" label="M#12cn14新建处理" is_valid="Y" note="M#" service="insert@system.environment" />
+  <DataAction _uuid="MkR]kH]Ibc35rQxZQSJRiQ" name="updateAction" label="M#12cn14保存处理" is_valid="Y" note="M#" service="update@system.environment" />
+  <DataAction _uuid="GUWEsuTBA6teHI5f9dS]vQ" name="deleteAction" label="M#12cn14删除处理" is_valid="Y" note="M#" service="delete@system.environment" />
+  <DataAction _uuid="BU3W2RfXYaGbtM2NTuPHkA" name="sortAction" label="M#12cn14排序处理" is_valid="Y" note="M#" service="sort@system.environment" />
+  <ToolBar _uuid="JkDohkmDXSjKla2rpXasiw" name="toolBar" label="M#12cn13工具栏" is_valid="Y" note="M#" width="100%" height="24">
+    <ToolButton _uuid="A0tnYix4tJyRhLlMjJUomA" name="saveButton" label="M#12cn12保存" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="tool.save" icon_disable="tool.saved" hotkey="F8" action="doSave()" />
+    <ToolButton _uuid="80eXO6kJ8uRPs[[WfG6BoQ" name="deleteButton" label="M#12cn12删除" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_update="Y" disp_delete="Y" icon="tool.delete" icon_disable="tool.deleted" hotkey="F6" action="doDelete()" attributes="sel_type=component" />
+    <ToolButtonSplit _uuid="aE5gG3HHDnesCuYWakL6rg" name="spilt" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="r0XDwOrddBnI]JT9akIIug" name="insertButton" label="M#12cn14新建变量" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#system.environment.variable" page="insert@#/system/environment/Environment.wa" attributes="form_name=system.environment.VariableForm\nsel_type=component\n_type=Variable" />
+  </ToolBar>
+  <Select _uuid="akyMMdt7Jn76trRVWgIKhw" name="componentType" label="M#12cn12类型" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" nowrap="Y" data_name="_TYPE" data_default="Property" valid_insert="Y" valid_update="Y" valid_delete="Y" valid_require="Y" edit_refer="system.environment.ComponentType" />
+  <Check _uuid="YEifPq2k[RHCPJ31CkuIpA" name="isValid" label="M#12cn13有效性" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" data_name="IS_VALID" data_default="Y" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" />
+  <Select _uuid="7UCVRGcBR5u6HPXw0MjCvg" name="dataType" label="M#12cn14数据类型" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" data_name="DATA_TYPE" data_default="String" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" edit_refer="system.environment.DataType" />
+  <Edit _uuid="ikBbUew0Ohd2BFF1psD8ow" name="name" label="M#12cn12名称" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" style_edit="editWide" data_name="NAME" edit_insert="Y" edit_update="Y" label_icon="#common.require" valid_insert="Y" valid_update="Y" valid_require="Y" />
+  <Edit _uuid="hk30p0IBFd8n4cWUO]nHuw" name="label" label="M#12cn12标签" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" style_edit="editWide" data_name="LABEL" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" />
+  <Memo _uuid="IEOCd[IPL8GjsMisZ3F]mg" name="dataValue" label="M#12cn14数据内容" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" data_name="DATA_VALUE" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" edit_overflow="N" />
+  <Edit _uuid="d0fI4dMX2MGzRUl4mNFwvw" name="dataHint" label="M#12cn14数据提示" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_update="Y" disp_delete="Y" style_edit="editMax" data_name="DATA_HINT" valid_insert="Y" valid_update="Y" />
+  <Memo _uuid="v0up8cEalvsLClnT5m0vkA" name="note" label="M#12cn12注释" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" style_edit="memoMax" data_name="NOTE" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" edit_overflow="N" />
+</WebForm>
+

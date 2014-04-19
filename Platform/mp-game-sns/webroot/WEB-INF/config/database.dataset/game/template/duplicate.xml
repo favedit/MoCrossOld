@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="NU1vH736V18Jht8PwlDQgA" name="game.template.duplicate" label="M#12cn12副本" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_DUPLICATE" data_alias="GM_TPL_DUC" data_logic="GM_TPL_DUPLICATE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="PUZb3dZparunmUsmABDTuQ" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="FUPXmDv[3gRX5XqHX6nmgw" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="4EdtZyFH2bkZtqzmmfAAlg" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="]0r1mRw8NgNFLp2NDfEQmg" name="label" label="M#12cn12标签" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldInteger _uuid="R0Ka605TwN9RntDZVh5GtA" name="map_group_tid" label="M#12cn17地图组模板编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MAP_GROUP_TID" data_alias="MAP_GPT" data_refer="game.template.map.group" />
+  <FieldEnum _uuid="L02IG1RqgDELhczd1AVCow" name="duplicate_type_cd" label="M#12cn14副本类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DUPLICATE_TYPE_CD" data_size="1" data_code="game.template.duplicate.type" />
+  <FieldEnum _uuid="lUNlVmtkAYjfgBWdtFP2iw" name="duplicate_detail_type_cd" label="M#12cn14副本细分" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DCT_DETAIL_TYPE_CD" data_size="1" data_code="game.template.duplicate.detail.type" />
+  <FieldInteger _uuid="kEA]oqtM6hEKxLJlN9KXgw" name="enter_count_limit" label="M#12cn18副本进入次数限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ENTER_COUNT_LIMIT" />
+  <FieldEnum _uuid="aE[FcFg8ADiB[BgMMsRxuw" name="reset_type_cd" label="M#12cn16副本重置类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RESET_TYPE_CD" data_size="1" data_code="game.template.duplicate.reset.type" />
+  <FieldBoolean _uuid="eUHAwmuiuI0FVfzRD8AThA" name="activity_open_able" label="M#12cn16是否活动开启" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ACTIVITY_OPEN_ABLE" />
+  <FieldInteger _uuid="qUrzsbA3m2zTU8Kgyy3sow" name="activity_tid" label="M#12cn16活动模板编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ACTIVITY_TID" data_alias="ACT" data_refer="game.template.schedule" />
+  <FieldEnum _uuid="70JaBaRoNlz4cQrHrlSduQ" name="duplicate_team_cd" label="M#12cn16是否可以组队" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DUPLICATE_TEAM_CD" data_size="1" data_code="game.template.duplicate.enter.team" />
+  <FieldInteger _uuid="XUXL[EFltl2o22xvhlnFiA" name="player_count_min" label="M#12cn16副本人数下限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PLAYER_COUNT_MIN" />
+  <FieldInteger _uuid="d0zIzqjuMubkB7V[zAQ7lA" name="player_count_max" label="M#12cn16副本人数上限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PLAYER_COUNT_MAX" />
+  <FieldInteger _uuid="GUpMTQ4qiWZvDkz4RsAutw" name="map_continued_time" label="M#12cn16副本持续时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MAP_CONTINUED_TIME" />
+  <FieldInteger _uuid="hEQB1]VwmZmJnMTVhqK]uA" name="resurrect_map_tid" label="M#12cn14复活地图" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RESURRECT_MAP_TID" data_alias="RST_MAP_TID" data_refer="game.template.map" />
+  <FieldString _uuid="E0kL8th3NyqlP3uIyXR[nQ" name="resurrect_coordinate" label="M#12cn17复活地图的坐标" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RESURRECT_COORDINATE" data_size="200" />
+  <FieldInteger _uuid="jkaklb]iL]UA44fOaFwHgg" name="duplicate_picture_tid" label="M#12cn16副本显示图片" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DUPLICATE_PICTURE_TID" data_alias="DUP_PIC" data_refer="game.template.style.resource" />
+  <FieldBoolean _uuid="NkhmwvBsEopTLdvhG5yruQ" name="duplicate_reward_able" label="M#12cn17是否有通过奖励" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DUPLICATE_REWARD_ABLE" />
+  <FieldBoolean _uuid="sUdiObMR6oR3Rl83xNNtmw" name="duplicate_into_hangup_able" label="M#12cn210是否进入副本提示挂机" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DUPLICATE_INTO_HGP_ABLE" />
+  <FieldString _uuid="tkaMfDi6SFIKLgDxVPcwnA" name="guardian_durable" label="M#12cn15防御物血量" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GUARDIAN_DURABLE" data_size="200" />
+  <FieldString _uuid="UEIE8wM1v[OEs2ZLeBSAmg" name="guardian_coordinate" label="M#12cn15防御物坐标" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GUARDIAN_COORDINATE" data_size="200" />
+  <FieldBoolean _uuid="AUkHU6kJHMCNY8Sc[xSvlg" name="spend_money_able" label="M#12cn18是否可以元宝翻牌" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SPEND_MONEY_ABLE" />
+  <FieldInteger _uuid="nEZr48uWaAfMxQ7HensfkQ" name="open_card_cost_base" label="M#12cn16元宝消耗基数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OPEN_CARD_COST_BASE" />
+  <FieldBoolean _uuid="PUwZWf3[EdTUTGwOsj5snA" name="quick_challenge_able" label="M#12cn18是否可以快速挑战" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="QUICK_CHALLENGE_ABLE" />
+  <FieldTemplate _uuid="RU0TDNXDJpqUmOg25TO5qw" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

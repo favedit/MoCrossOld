@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="BERMlem3Om[Sv1Fi[[]8mA" name="system.translate" label="M#12cn14系统翻译" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="SY_TRANSLATE" data_logic="SY_TRANSLATE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="dataset.store" data_type="D">
+  <FieldString _uuid="LUhc5ipZB5j0GZMVRD0uoQ" name="code" label="M#12cn14代码编号" is_valid="Y" note="M#" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="200" />
+  <FieldEnum _uuid="rkpj5kKg4rAM[mQh0]KYlQ" name="type_cd" label="M#12cn14代码类型" is_valid="Y" note="M#12cn246P=PLSQL\nJ=JAVA\nS=JavaScript\nE=Java Server Page" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="system.translate.code" />
+  <FieldInteger _uuid="ZUUJkbtY]oPs]XPSvUE4iQ" name="group_id" label="M#12cn14分组标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="GROUP_ID" />
+  <FieldInteger _uuid="hEgnNMtYMzLyGXwYcBW]iA" name="list_id" label="M#12cn14列表标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LIST_ID" />
+  <FieldEnum _uuid="bkyixbQuvOGZ5xUerpv2mQ" name="status_cd" label="M#12cn14翻译状态" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="system.translate.status" />
+  <FieldString _uuid="CU6zTz]tEwydER[V5gvSrw" name="content" label="M#12cn12内容" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CONTENT" data_size="4000" />
+  <FieldInteger _uuid="JktuggZMEndksokKVZbbsA" name="update_user_id" label="M#12cn15更新者标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="UPDATE_USER_ID" data_refer="person.user.company" />
+  <FieldDate _uuid="FUCdL2D]Z2Zv73KwEM2jsg" name="update_date" label="M#12cn14更新时间" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="UPDATE_DATE" data_default="SYSDATE" />
+  <FieldInteger _uuid="Q04Bwov[hKz0bYR7qXs5hg" name="create_user_id" label="M#12cn15创建者标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CREATE_USER_ID" data_refer="person.user.company" />
+  <FieldDate _uuid="zkDGIGPHlNIItocIURHYgA" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_type="Date" data_default="SYSDATE" />
+  <FieldContent _uuid="okHfQY4IfBhbkNoG97W4sA" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" />
+</DataStore>
+

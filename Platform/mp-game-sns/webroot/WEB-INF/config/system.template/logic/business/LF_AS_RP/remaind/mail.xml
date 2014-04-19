@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template aa="pEJJpeb]eYRjuPBc69vfsg" name="logic.business.LF_AS_RP.remaind.mail" label="招聘面试" is_valid="Y" note="M#">
+  <Variable _uuid="tEvdiFVz7f77KdcQGGmFqw" name="ORDER_REDIRECT" label="url地址" is_valid="Y" note="M#12cn15url地址" />
+  <Variable _uuid="tEvdiFVz7f77KdcQGGmFqw" name="INT_DP_REDIRECT" label="url地址" is_valid="Y" note="M#12cn15url地址" />
+  <Variable _uuid="tEvdiFVz7f77KdcQGGmFqw" name="INT_HR_REDIRECT" label="url地址" is_valid="Y" note="M#12cn15url地址" />
+  <Variable _uuid="tEvdiFVz7f77KdcQGGmFqw" name="OPERATE_REDIRECT" label="url地址" is_valid="Y" note="M#12cn15url地址" />
+  <Source aa="fks7Egy3dbl3C7Cmgf9ZjA" name="remaind.head" label="HR日报-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【招聘面试】 <jt:item source='$config.to_user_labels'/>您好，请您及时确认以下信息并登录系统进行相关操作。]]></Source>
+  <Source aa="SUA4WU2e9CBFi5VWtSnEjw" name="remaind.body" label="HR日报-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='招聘面试 → 待操作提醒' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'><jt:item source='$config.to_user_labels'/>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><FONT COLOR='#336699'>请您及时确认以下信息并登录系统进行相关操作。</FONT></TD></TR>
+   </TABLE>  
+      <jt:notEmpty source='$parameter.ord_lists'>
+      <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'><jt:item source='$config.interview_date'/>以下人员等待您去预约：<br><br>
+      &nbsp;&nbsp;&nbsp;<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.order_redirect'/>"><B style='color:#FE5A00'>点击这里</B></A>进行预约</B>
+      <BR><BR>
+      <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' align="center">应聘者</td>
+         <TD class='ItemHead' align="center">应聘部门</td>
+         <TD class='ItemHead' align="center">应聘岗位</td>
+         <TD class='ItemHead' align="center">当前阶段</td>
+         <TD class='ItemHead' align="center">联系电话</td>
+      </TR>
+      <jt:loop source='$parameter.ord_lists' alias='ord_list'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$ord_list.USER_LABEL'/></TD>
+            <TD class='ItemData' align="center"><jt:item source='$ord_list.ORG_LABEL'/></TD>
+            <TD class='ItemData' align="center"><jt:item source='$ord_list.JOB_LABEL'/></TD>
+            <TD class='ItemData' align="center"><jt:item source='$ord_list.STAGE_LABEL'/></TD>
+            <TD class='ItemData' align="center"><jt:item source='$ord_list.MOBILE_PHONE'/></TD>
+         </TR>
+      </jt:loop>
+      </TABLE>
+      
+   </jt:notEmpty>
+      <jt:notEmpty source='$parameter.int_lists'>
+      <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'><jt:item source='$config.interview_date'/>如果下列人员已经面试完毕，请您及时登录系统填写面试评价信息：
+      <jt:notEmpty source='$config.int_dp_redirect'>
+      <br><br>
+      &nbsp;&nbsp;&nbsp;<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.int_dp_redirect'/>"><B style='color:#FE5A00'>部门面试官请点击这里</B></A><br><br></jt>
+      </jt:notEmpty>
+      <jt:notEmpty source='$config.int_hr_redirect'>
+      &nbsp;&nbsp;&nbsp;<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.int_hr_redirect'/>"><B style='color:#FE5A00'>人事面试官请点击这里</B></A></B>
+      <BR><BR>
+      </jt:notEmpty>
+      <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' align="center">应聘者</td>
+         <TD class='ItemHead' align="center">应聘部门</td>
+         <TD class='ItemHead' align="center">应聘岗位</td>
+         <TD class='ItemHead' align="center">当前阶段</td>
+      </TR>
+      <jt:loop source='$parameter.int_lists' alias='int_list'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$int_list.USER_LABEL'/></TD>
+            <TD class='ItemData' align="center"><jt:item source='$int_list.ORG_LABEL'/></TD>
+            <TD class='ItemData' align="center"><jt:item source='$int_list.JOB_LABEL'/></TD>
+            <TD class='ItemData' align="center"><jt:item source='$int_list.STAGE_LABEL'/></TD>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.ope_lists'>
+      <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'><jt:item source='$config.interview_date'/>下列人员已经面试完毕，请您及时操作(注：如不及时操作，系统将无法进行复试或者审核)：<br><br>
+      &nbsp;&nbsp;&nbsp;<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.operate_redirect'/>"><B style='color:#FE5A00'>点击这里</B></A>进行操作</B>
+      <BR><BR>
+      <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' align="center">应聘者</td>
+         <TD class='ItemHead' align="center">应聘部门</td>
+         <TD class='ItemHead' align="center">应聘岗位</td>
+         <TD class='ItemHead' align="center">当前阶段</td>
+      </TR>
+      <jt:loop source='$parameter.ope_lists' alias='ope_list'>
+         <TR>
+            <TD class='ItemData' align="center" height='16'><jt:item source='$ope_list.user_label'/></TD>
+            <TD class='ItemData' align="center" height='16'><jt:item source='$ope_list.org_label'/></TD>
+            <TD class='ItemData' align="center" height='16'><jt:item source='$ope_list.job_label'/></TD>
+            <TD class='ItemData' align="center" height='16'><jt:item source='$ope_list.stage_label'/></TD>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

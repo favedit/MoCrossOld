@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="gUdRQkmzRF4drof0ldoiqg" name="mysql.java.entity.org" is_valid="Y" note="M#">
+  <Define _uuid="7knfAQW6PDkdhgXGS4vCnA" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Define _uuid="QEQUr[EgWpWvv7sgRBlFmQ" name="type_from" is_valid="Y" note="M#" value="bool|int|float|date|char|string|mstring|enum|set|stream" />
+  <Define _uuid="DEEONeWRiZIZ][q12IsNuw" name="type_to" is_valid="Y" note="M#" value="Boolean|Integer|Float|Date|String|String|FMultiString|String|String|String" />
+  <Source _uuid="503TgDiEEKCV2BBoQu4hjA" is_valid="Y" note="M#"><![CDATA[package <Item source='$dataset.logic_package'/>.base;
+
+import org.mobj.com.lang.FMultiString;
+import org.mobj.com.lang.IStringMap;
+import org.mobj.com.lang.RString;
+import org.mobj.com.lang.face.AName;
+import org.mobj.core.aop.RComponentManager;
+import org.mobj.eng.entity.FEntity;
+import org.mobj.eng.entity.IEntity;
+<Loop source='$fields' order='asc' alias='field'>
+<NotEmpty source='$field.data_refer'>
+import org.mobj.mylife.data.I<Item format='word.class' source='$field.data_refer'/>Logic;
+</NotEmpty>
+</Loop>
+
+public class F<Item source='$dataset.class_name'/>Entity extends FEntity
+      implements IEntity{
+
+   private static final long serialVersionUID = 1L;
+
+<Loop source='$fields' order='asc' alias='field'>
+   @AName("<Item format='upper' source='$field.name'/>")
+<Equals source='$field.type' value="mstring">
+   protected FMultiString _<Item source='$field.name' format='method'/> = new FMultiString();
+</Equals>
+<NotEquals source='$field.type' value="mstring">
+   protected String _<Item format='method' source='$field.name'/>;
+</NotEquals>
+<NotEmpty source='$field.data_refer'>
+
+   protected static I<Item format='word.class' source='$field.data_refer'/>Logic _<Item format='method' source='$field.name' removeLast='_id'/>Logic;
+</NotEmpty>
+
+</Loop>
+   static{
+<Loop source='$fields' order='asc' alias='field'>
+<NotEmpty source='$field.data_refer'>
+      _<Item format='method' source='$field.name' removeLast='_id'/>Logic = RComponentManager.find(I<Item format='word.class' source='$field.data_refer'/>Logic.class);
+</NotEmpty>
+</Loop>
+   }
+
+<Loop source='$fields' order='asc' alias='field'>
+<Equals source='$field.type' value="mstring">
+   public String get<Item format='class' source='$field.name' />(){
+      return _<Item source='$field.name' format='method'/>.get();
+   }
+
+   public void set<Item format='class' source='$field.name' />(String value){
+      _<Item source='$field.name' format='method'/>.set(value);
+   }
+
+   public String pack<Item format='class' source='$field.name' />(){
+      return _<Item format='method' source='$field.name'/>.pack().toString();
+   }
+
+   public void unpack<Item format='class' source='$field.name' />(String pack){
+      _<Item format='method' source='$field.name'/>.unpack(pack);
+   }
+
+</Equals>
+<NotEquals source='$field.type' value="mstring">
+<NotEmpty source='$field.data_refer'>
+   public F<Item format='word.class' source='$field.data_refer'/>Entity get<Item format='class' source='$field.name' removeLast='_id'/>(){
+      return _<Item format='method' source='$field.name' removeLast='_id'/>Logic.get(_<Item format='method' source='$field.name'/>);
+   }
+
+</NotEmpty>
+   public String get<Item format='class' source='$field.name' />(){
+      return _<Item format='method' source='$field.name'/>;
+   }
+
+   public void set<Item format='class' source='$field.name' />(String value){
+      _<Item format='method' source='$field.name'/> = value;
+   }
+
+
+</NotEquals>
+</Loop>
+   public String innerGet(String name){
+      if(RString.isEmpty(name)){
+         return null;
+<Loop source='$fields' order='asc' alias='field'>
+      }else if("<Item format='lower' source='$field.name'/>".equalsIgnoreCase(name)){
+         return get<Item format='class' source='$field.name' />();
+</Loop>
+<Loop source='$fields' order='asc' alias='field'>
+<NotEmpty source='$field.data_refer'>
+      }else if(name.startsWith("<Item format='lower' source='$field.name' removeLast='_id'/>.")){
+         IEntity entity = get<Item format='class' source='$field.name' removeLast='_id'/>();
+         if(null != entity){
+            return entity.innerGet(name.substring(<Length source='$field.name' removeLast='id'/>));
+         }
+</NotEmpty>
+</Loop>
+      }
+      return null;
+   }
+
+   public void innerSet(String name, String value){
+      name = RString.nvl(name).toLowerCase();
+      if(RString.isEmpty(name)){
+         return;
+<Loop source='$fields' order='asc' alias='field'>
+      }else if("<Item format='lower' source='$field.name'/>".equals(name)){
+         set<Item format='class' source='$field.name' />(value);
+</Loop>
+      }
+   }
+
+   public void innerLoadRow(IStringMap row){
+<Loop source='$fields' order='asc' alias='field'>
+<True source='$field.is_store'>
+      if(row.contains("<Item format='lower' source='$field.name'/>")){
+<Equals source='$field.type' value='bool|int|char|string'>
+         set<Item format='class' source='$field.name' />(row.get("<Item format='lower' source='$field.name'/>"));
+</Equals>
+<Equals source='$field.type' value='mstring'>
+         _<Item source='$field.name' format='method'/>.unpack(row.get("<Item format='lower' source='$field.name'/>"));
+</Equals>
+      }
+</True>
+</Loop>
+   }
+
+   public void innerSaveRow(IStringMap row){
+<Loop source='$fields' order='asc' alias='field'>
+<True source='$field.is_store'>
+<Equals source='$field.type' value='bool|int|char|string'>
+      if(RString.isNotEmpty(get<Item format='class' source='$field.name' />())){
+         row.set("<Item format='lower' source='$field.name'/>", get<Item format='class' source='$field.name' />());
+      }
+</Equals>
+<Equals source='$field.type' value='mstring'>
+      String <Item source='$field.name' format='method'/> = _<Item source='$field.name' format='method'/>.pack().toString();
+      if(RString.isNotEmpty(<Item source='$field.name' format='method'/>)){
+         row.set("<Item format='lower' source='$field.name'/>", <Item source='$field.name' format='method'/>);
+      }
+</Equals>
+</True>
+</Loop>
+   }
+
+   public void innerLoadValue(IStringMap row){
+<Loop source='$fields' order='asc' alias='field'>
+      if(row.contains("<Item format='lower' source='$field.name'/>")){
+         set<Item format='class' source='$field.name' />(row.get("<Item format='lower' source='$field.name'/>"));
+      }
+</Loop>
+   }
+
+   public void innerSaveValue(IStringMap row){
+<Loop source='$fields' order='asc' alias='field'>
+      row.set("<Item format='lower' source='$field.name'/>", get<Item format='class' source='$field.name' />());
+</Loop>
+   }
+
+}]]></Source>
+</Template>
+

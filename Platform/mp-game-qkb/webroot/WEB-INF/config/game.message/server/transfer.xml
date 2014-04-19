@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="m01jniu]ad9W3YkuruS4kg" name="server.transfer" label="网络传输" is_valid="Y" note="M#" is_server="Y" is_server_cpp="N" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" source_name="MoMgServerTransfer" code="Sts" full_code="ServerTransfer" display_index="01">
+  <Message _uuid="U0YP42[cnabjaexblKUvmg" name="connect.request" label="链接请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Connect" is_udp="N" message_type="Request" is_session="N" is_manage="N" source_type="STS" target_type="STS" code_value="0x0001" code_fix="N">
+    <Item _uuid="Mkc5VqRasuL7Lq]ybB]arQ" name="type" label="类型" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="yUvpm1JPDUgCMAsNvhBhqA" name="id" label="编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="[0zIe0yNxFogwBLm[ouAhw" name="host" label="主机名称" is_valid="Y" note="M#" type="String" type_cd="C" is_collection="N" data_size="MO_NET_HOST_LENGTH" />
+    <Item _uuid="c0jfyXk]n9Gj50O8g9LNog" name="port" label="端口" is_valid="Y" note="M#" type="Uint16" type_cd="C" />
+  </Message>
+  <Message _uuid="tEVhlnBVMPKTUQQ38cXatw" name="connect.response" label="链接应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Connect" is_udp="N" message_type="Response" is_session="N" is_manage="N" source_type="STS" target_type="STS" code_value="0x0002" code_fix="N">
+    <Enum _uuid="tkwS02eHl6UDUEocrncrnw" name="EStatus" label="状态" is_valid="Y" note="M#">
+      <Member _uuid="ikrfQrNNEPg8gWTygw74rQ" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="eE7son4CgUn1r0PNBiJFqw" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="P0PdxiaR02JYw]iMfZYypg" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_cd="C" type_name="EStatus" is_collection="N" />
+    <Item _uuid="gEV0xYOwbkZ2GrbInPsVrw" name="type" label="类型" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="d0JAs8wtMDgT6LsPPJusqA" name="id" label="编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="VU3Qim0ELhAUHgYEIC93mw" name="host" label="主机" is_valid="Y" note="M#" type="String" is_collection="N" data_size="MO_NET_HOST_LENGTH" />
+    <Item _uuid="KkO6DJ2uHKKF]3unkjHytg" name="port" label="端口" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+    <Item _uuid="IU4zN40gFRirXREIQjjKmg" name="flag" label="标志" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+    <Item _uuid="zEfXzBYq[cRwM17qx8tHlQ" name="createDateTime" label="创建时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+  </Message>
+  <Message _uuid="oUWNd8DF2EbXotzvCDaXjQ" name="disconnect.request" label="断开链接请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Disconnect" is_udp="N" message_type="Request" is_session="N" is_manage="N" source_type="STS" target_type="STS" code_value="0x0003" code_fix="N">
+    <Item _uuid="skuGNleuW958g7XscsRqvw" name="socketTarget" label="端口目标" is_valid="Y" note="M#" type="Struct" type_name="SNetSocketTarget" is_collection="N" />
+    <Item _uuid="i0BBUZh9K3zE7eXyB29qvw" name="type" label="类型" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="uk3AXIUaPSy6h6R9b3ANuQ" name="host" label="主机" is_valid="Y" note="M#" type="String" is_collection="N" data_size="MO_NET_HOST_LENGTH" />
+    <Item _uuid="tEIrYcuLbeISB79L1l2YvQ" name="port" label="端口" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+  </Message>
+  <Message _uuid="a04NIYw4uuM4GT4Gc4IDqw" name="disconnect.response" label="断开链接应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Disconnect" is_udp="N" message_type="Response" is_session="N" is_manage="N" source_type="STS" target_type="STS" code_value="0x0004" code_fix="N">
+    <Enum _uuid="UEYZgYPVI6c52zkR2WWwsw" name="EStatus" label="状态" is_valid="Y" note="M#">
+      <Member _uuid="f0qBfb]nBfYrOm5qPDZ0kQ" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="WkH4WirjBbciyf8IdWkVoA" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="KkQNuMiPA9SkLxHUfvw0jg" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_cd="C" type_name="EStatus" is_collection="N" />
+    <Item _uuid="00OvnX08[uVjJ9LVNGq2lg" name="type" label="类型" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="MEZf2[L9]EI]tjEKgsJFuQ" name="host" label="主机" is_valid="Y" note="M#" type="String" is_collection="N" data_size="MO_NET_HOST_LENGTH" />
+    <Item _uuid="30UT1jyE7rujTRgnsEAXgw" name="port" label="端口" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+  </Message>
+  <Message _uuid="aU7n43[sVPeIon3TBkzlvA" name="disconnect.notify" label="断开链接通知" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Disconnect" is_udp="N" message_type="Notify" is_session="N" is_manage="N" source_type="STS" target_type="STS" code_value="0x0005" code_fix="N">
+    <Item _uuid="Q034iZLCDjIMfc[ldS4SuQ" name="host" label="主机" is_valid="Y" note="M#" type="String" is_collection="N" data_size="MO_NET_HOST_LENGTH" />
+    <Item _uuid="U0fTHM1n5LaGPkBdLqdEtw" name="port" label="端口" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+  </Message>
+  <Message _uuid="Y0tswuD2m0HqFfxas2[psg" name="connect.notify" label="链接通知" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Connect" is_udp="N" message_type="Notify" is_session="N" is_manage="N" source_type="STS" target_type="STS" code_value="0x0006" code_fix="N">
+    <Item _uuid="y0xx6ANiJooyHJ6UvJoUsQ" name="host" label="主机" is_valid="Y" note="M#" type="String" is_collection="N" data_size="MO_NET_HOST_LENGTH" />
+    <Item _uuid="TE]]Vi5vCMc6CW5wMXe6gA" name="port" label="端口" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+    <Item _uuid="9E9fQTLpzJ]i8FURDreCrg" name="flag" label="标识" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+  </Message>
+  <Message _uuid="g0IgCXWS6oYDhhZRB[IXmg" name="udp.connect.request" label="广播链接请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="UdpConnect" is_udp="N" message_type="Request" is_session="N" is_manage="N" source_type="STS" target_type="STS" code_value="0x0007" code_fix="N">
+    <Item _uuid="hklreJPwza21remwu1Ivsg" name="clientId" label="客户端编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="G09EQfiIjbuAgUHoMwx6og" name="port" label="端口" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+    <Item _uuid="Vk2RH98UmfAQmH8]HvzsuQ" name="udpPort" label="广播端口" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+  </Message>
+  <Message _uuid="eELK[lwpr7e4C3cvgG4vtA" name="udp.connect.response" label="广播链接应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="UdpConnect" is_udp="N" message_type="Response" is_session="N" is_manage="N" source_type="STS" target_type="STS" code_value="0x0008" code_fix="N">
+    <Enum _uuid="BEB6igQSqi7GBWMGU]xVlA" name="EStatus" label="状态" is_valid="Y" note="M#">
+      <Member _uuid="N0VWPLK6oQdK2B5dkhrkiQ" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="pk5HE7bi0UVRo1De6bbfoQ" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="VEmPFQuJCUptOPjM2InCoA" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="TU5bpjxL4OdP4BMOiuR1mg" name="clientId" label="客户端编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="J0a[OEG0ZtqgV0PZn0fgrA" name="udp.idle.notify" label="广播空闲通知" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="UdpIdle" is_udp="N" message_type="Notify" is_session="N" is_manage="N" source_type="STS" target_type="STS" code_value="0x0009" code_fix="N" />
+</Group>
+

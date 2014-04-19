@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="KE[w]qHd2ZLOO39OhXKNhA" name="helper.design.webform.buildWebTableList" is_valid="Y" note="M#">
+  <Source _uuid="nkB617BSIOVG6X0AqFzthw" is_valid="Y" note="M#"><![CDATA[<!-- HTML Begin ------------------------------------------->
+<HTML>
+<HEAD>
+<META http-equiv='Content-Type' content='text/html;charset=GB2312'>
+<TITLE>Help - Define列表'/></TITLE>
+<LINK rel="stylesheet" href='<jt:item source='$root_path'/>/acs/control.css' type="text/css" media="all"/>
+<LINK rel="stylesheet" href='<jt:item source='$root_path'/>/acs/lang_cn.css' type="text/css" media="all"/>
+<LINK rel="stylesheet" href='<jt:item source='$root_path'/>/acs/site_cn.css' type="text/css" media="all"/>
+<SCRIPT language='javascript' src='<jt:item source='$root_path'/>/ajs/mobj.js'></SCRIPT>
+<SCRIPT>
+function _load(){
+	//RGlobal.setContext('cn', '..', '');
+}
+</SCRIPT>
+</HEAD>
+
+<BODY onload='_load()' style='padding:0;margin:0'>
+<TABLE width='100%' height='100%' border='0' cellspacing='0' cellpadding='0'>
+<TR><TD valign='top'>
+
+<!-- Title Begin ------------------------------------------>
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='3'>
+<TR>
+	<TD width='220' bgcolor='#000000' align='center' valign='top' class='navTitle'>LIN<FONT color='#FF6A6A'>E</FONT>KONG <FONT color='#FF6A6A'>e</FONT>UIS HELP</TD>
+	<TD bgcolor='#3399FF' align='right' valign='bottom' class='navText'>
+		相关内容
+		<SELECT>
+			<OPTION value='1'>--------------------</OPTION>
+		</SELECT>
+	</TD>
+</TR>
+<TR height='1'>
+	<TD bgcolor='#FFFFFF'></TD>
+	<TD bgcolor='#FFFFFF'></TD>
+</TR>
+<TR height='1'>
+	<TD bgcolor='#000000'></TD>
+	<TD bgcolor='#3399FF'></TD>
+</TR>
+</TABLE>
+<!-- Title End -------------------------------------------->
+
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='12'>
+<TR><TD>(<jt:item source='$root_path'/>)
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+<TR>
+	<TD valign='bottom' class='headTitle'>Define列表</TD>
+	<TD align='right' valign='bottom'>version:1.0.0</TD>
+</TR>
+<TR><TD colspan='2'><HR></TD></TR>
+<TR><TD colspan='2'>
+	Define列表
+</TD></TR>
+</TABLE>
+<BR>
+<TABLE width='100%' bgcolor='#666666' border='0' cellspacing='0' cellpadding='2'>
+<jt:loop source='$defines' alias='define'>
+	<TR bgcolor='#F8F8F8'>
+		<TD width='300' style='padding-left:20'>
+			<A class='listElement' href='<jt:item source='$path'/>/<jt:item source='$define.path'/>/<jt:item source='$define.file_name'/>.html'><jt:item source='$define.name'/></A>
+		</TD>
+		<TD>[ <FONT color='green'><jt:item source='$define.name'/></FONT> ]</TD>
+	</TR>
+</jt:loop>
+</TABLE>
+</TD></TR>
+</TABLE>
+]]></Source>
+</Template>

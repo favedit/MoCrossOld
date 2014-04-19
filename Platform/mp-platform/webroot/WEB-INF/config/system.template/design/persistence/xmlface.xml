@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="DErArTtDnZPbBoEuGK2dlw" name="design.persistence.xmlface" is_valid="Y" note="M#">
+  <Define _uuid="m0u7H[[Ffzf4kKkS5OeRhA" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source _uuid="nEJkhrGqttEQ2Nb05NgVqA" is_valid="Y" note="M#"><![CDATA[package <jt:Item source='$interface.class_name' format='class.package'/>;
+
+import org.mo.com.xml.IXmlObject;
+
+//============================================================
+// <T><jt:Item source='$interface.label'/>对象的XML节点基类。</T>
+//============================================================
+public interface <jt:Item source='$interface.class_name' format='class.name'/>
+      extends <jt:hasItem source='$imports' notValue='IXmlObject'>
+<jt:loop source='$imports' alias='import'>
+         <jt:item source='$import.class_name' format='class.name'/><jt:position source='$import' type='last' elseValue=','/>
+</jt:loop></jt:hasItem>
+{
+   // 名称定义
+   String NAME = "<jt:Item source='$interface.name'/>";
+<jt:loop source='$attributes' order='asc' alias='attribute'>
+
+   // <jt:Item source="$attribute.label"/>的名称定义
+   String PTY_<jt:Item format='upper' source='$attribute.name'/> = "<jt:Item source='$attribute.name'/>";
+</jt:loop>
+<jt:loop source='$attributes' order='asc' alias='attribute'>
+<jt:True source='$attribute.is_abstract'>
+
+   //============================================================
+   // <T>获得<jt:Item source="$attribute.label"/>的内容。</T>
+   //
+   // @return <jt:Item source="$attribute.label"/>
+   //============================================================
+   <jt:Item source="$attribute.type"/> get<jt:Item format='class' source='$attribute.name' />();
+
+   //============================================================
+   // <T>设置<jt:Item source="$attribute.label"/>的内容。</T>
+   //
+   // @param value <jt:Item source="$attribute.label"/>
+   //============================================================
+   void set<jt:Item format='class' source='$attribute.name' />(<jt:Item source="$attribute.type"/> value);
+
+</jt:True>
+<jt:False source='$attribute.is_abstract'>
+<jt:Equals source='$attribute.type' value="MultiString">
+
+   //============================================================
+   // <T>获得<jt:Item source="$attribute.label"/>的内容。</T>
+   //
+   // @return <jt:Item source="$attribute.label"/>
+   //============================================================
+   public String get<jt:Item format='class' source='$attribute.name' />();
+
+   //============================================================
+   // <T>设置<jt:Item source="$attribute.label"/>的内容。</T>
+   //
+   // @param value <jt:Item source="$attribute.label"/>
+   //============================================================
+   void set<jt:Item format='class' source='$attribute.name' />(String value);
+</jt:Equals>
+<jt:NotEquals source='$attribute.type' value="MultiString">
+
+   //============================================================
+   // <T>获得<jt:Item source="$attribute.label"/>的内容。</T>
+   //
+   // @return <jt:Item source="$attribute.label"/>
+   //============================================================
+   <jt:Item source="$attribute.type"/> get<jt:Item format='class' source='$attribute.name' />();
+
+   //============================================================
+   // <T>设置<jt:Item source="$attribute.label"/>的内容。</T>
+   //
+   // @param value <jt:Item source="$attribute.label"/>
+   //============================================================
+   void set<jt:Item format='class' source='$attribute.name' />(<jt:Item source="$attribute.type"/> value);
+</jt:NotEquals>
+</jt:False>
+</jt:loop>
+}]]></Source>
+</Template>

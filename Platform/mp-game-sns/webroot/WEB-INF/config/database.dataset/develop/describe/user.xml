@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="NUORQbFQxERF[cVnZ5mevQ" name="develop.describe.user" label="M#12cn16项目人员关联" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="DP_DESCRIBE_USER" data_alias="DP_DES_USR" data_logic="DP_DESCRIBE_USER_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldBoolean _uuid="VU5PN3bpAxfRpfLqnoxNpw" name="is_valid" label="M#12cn12有效" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldInteger _uuid="j0evXfmw63tFG60Xup3Vvg" name="project_id" label="M#12cn14项目标识" is_valid="Y" note="M#12cn14项目标识" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" data_uniques="USR" />
+  <FieldInteger _uuid="mkTXReA0eJ]6mAy05La1iw" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#12cn14用户标识" is_store="Y" is_abstract="N" data_name="USER_ID" data_alias="USR" data_refer="person.user" data_uniques="USR" />
+  <FieldBoolean _uuid="OUhYlK0kx[UKGJJ11MDPsg" name="is_default" label="M#12cn12默认" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_DEFAULT" />
+  <FieldEnum _uuid="8kjAWEXrMFrPwrsiCXNOsA" name="type_cd" label="M#12cn14关联方式" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="develop.describe.user.type" />
+  <FieldEnum _uuid="ZkqVHEKIAvnRHFf]sh]Kuw" name="examine_publish_cd" label="M#12cn16发布审核类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_PUBLISH_CD" data_size="1" data_code="develop.describe.user.examine.publish" />
+  <FieldEnum _uuid="hEOGtEF3FLZngsLeql1Puw" name="examine_forward_cd" label="M#12cn16转发审核类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_FORWARD_CD" data_size="1" data_code="develop.describe.user.examine.forward" />
+  <FieldEnum _uuid="okLc77Y6qFck2c0BdpuRuA" name="examine_confirm_cd" label="M#12cn16确认审核类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_CONFIRM_CD" data_size="1" data_code="develop.describe.user.examine.confirm" />
+  <FieldString _uuid="1UUjOBzaq13]wNlD4L3kjA" name="mails" label="M#12cn12邮件" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MAILS" data_size="400" />
+  <FieldDate _uuid="xkKh8BQFnEJLKTrHsX26lQ" name="enter_date" label="M#12cn14加入日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ENTER_DATE" />
+  <FieldDate _uuid="fEv60xrpnwRxroM7N9faiA" name="leave_date" label="M#12cn14离开日期" is_valid="Y" note="M#12cn14离开日期" is_null="Y" is_store="Y" is_abstract="N" data_name="LEAVE_DATE" />
+  <FieldTemplate _uuid="6kGxdUtpPJ0NG[CxP2Sklw" name="describe" label="M#12cn14描述模块" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

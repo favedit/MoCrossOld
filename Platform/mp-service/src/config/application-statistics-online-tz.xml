@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+   <!-- 系统工作路径 -->
+   <Define name='application'>/root/mo-analysis</Define>
+   <Define name='application.config'>${application}/config</Define>
+
+   <Define name='platform.root'>${application}/analysis</Define>
+   <Define name='platform.config'>${application}/analysis/config</Define>
+
+   <Define name='resource.root'>${application}</Define>
+   <Define name='resource.config'>${application}/Configuration</Define>
+
+   <Define name='http.root'>http://localhost/analysis</Define>
+   <Define name='http.resource'>http://localhost/analysis/ars</Define>
+   <Define name='http.config'>http://localhost/analysis/config</Define>
+   
+   <Define name='engine.config'>${application}/webroot/WEB-INF/config</Define>
+
+   <!-- 包含：系统设定 -->
+   <Include>${application.config}/common/define.xml</Include>
+   <Include>${application.config}/common/mo-core.xml</Include>
+   <Include>${application.config}/common/mo-engine.xml</Include>
+   <Include>${application.config}/common/mo-data.xml</Include>
+
+   <!-- 包含：系统环境 -->
+   <Include>${application.config}/environment-online-tz/statistics.xml</Include>
+</Configuration>

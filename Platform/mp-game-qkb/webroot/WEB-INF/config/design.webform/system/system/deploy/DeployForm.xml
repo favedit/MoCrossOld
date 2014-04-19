@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebForm _uuid="CUP]hr4IeRFYFS2e8tOPsQ" name="system.system.deploy.DeployForm" label="M#12cn14部署管理" is_valid="Y" note="M#" disp_fetch="Y" disp_search="Y" disp_lov="Y" disp_zoom="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" disp_print="Y" style_refer="logic.system.ControlStyle" edit_copy="Y" edit_insert="Y" edit_update="Y" edit_delete="Y">
+  <Template _uuid="b0J55ovzn5PfP3FaKJXgpA" name="basicTemplate" label="M#12cn14基本模板" is_valid="Y" note="M#" template_name="system.system.deploy.BasicTemplate" />
+  <ToolBar _uuid="skWANVummtWuD8jPoCRQmw" name="toolbar" label="M#12cn13工具栏" is_valid="Y" note="M#" hebing="N">
+    <ToolButtonSplit _uuid="Nkec20Jr7SkAwLHSf87wpA" name="split10Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="E0L]fhwuvHfeql3aDR3uqA" name="insertProcessButton" label="M#12cn14新建处理" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#system.deploy.process" page="insert@#/system/deploy/Deploy.wa" attributes="_type=Process\nsel_type=component\nform_name=system.system.deploy.ProcessForm" />
+    <ToolButtonSplit _uuid="aUQHXveIuGvjf6CXeamMvA" name="split1Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="mkQv1KmQK7LxLN6228hZow" name="sortButton" label="M#12cn12排序" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#tools.sort" page="sort@#/system/deploy/Deploy.wa" attributes="sel_type=component" />
+    <ToolButtonSplit _uuid="JkHriSY]IjuPgzZuXorZmQ" name="split2Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="MUxppmCn3yBVE4hVstNxhg" name="executeButton" label="M#12cn12执行" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#system.deploy.execute" page="execute@#/system/deploy/Deploy.wa" attributes="sel_type=component" />
+  </ToolBar>
+  <Select _uuid="R0TLyC056OmPw1PkDtzLtQ" name="deployType" label="M#12cn14部署类型" is_valid="Y" note="M#" disp_search="Y" disp_lov="Y" disp_zoom="N" disp_insert="Y" disp_update="Y" disp_delete="Y" disp_print="Y" data_fetch="Y" data_name="DEPLOYTYPE" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" label_position="left" edit_refer="system.system.deploy.TypeType" edit_check="N" />
+  <Memo _uuid="zkOvvSa0XQZBl88Hj5Fvvg" name="node" label="M#12cn14描述信息" is_valid="Y" note="M#" disp_search="Y" disp_lov="Y" disp_zoom="N" disp_insert="Y" disp_update="Y" disp_delete="Y" disp_print="Y" style_refer="control" style_edit="memoWide" data_name="NODE" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" label_position="left" edit_overflow="N" />
+</WebForm>
+

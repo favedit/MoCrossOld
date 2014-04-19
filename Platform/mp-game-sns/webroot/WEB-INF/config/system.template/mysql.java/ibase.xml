@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="[kvDmgL0gxA5DGfDN[QaqQ" name="mysql.java.ibase" is_valid="Y" note="M#">
+  <Define _uuid="M0]PWnbstzYG7QSeq8hrjg" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Define _uuid="ukHO5lcu4tsya9]tkPBGuw" name="type_from" is_valid="Y" note="M#" value="INTEGER|DATE|CHAR|STRING" />
+  <Define _uuid="OEuAaYY1x]]qWUACjl2ltw" name="type_to" is_valid="Y" note="M#" value="Integer|Date|String|String" />
+  <Define _uuid="[kksnMwJ5J1PxheOdDm5tw" name="key_from" is_valid="Y" note="M#" value="P|U|F" />
+  <Define _uuid="XUh]YvgM7Aa2PdCjQKHxiQ" name="key_to" is_valid="Y" note="M#" value="Primary|Unique|Foreign" />
+  <Define _uuid="ykDoYS4XxJOfP2Qg7RsXug" name="key_default" is_valid="Y" note="M#" value="None" />
+  <Define _uuid="uEOJ14f5bnReAvgWlI5Npg" name="empty_from" is_valid="Y" note="M#" value="X" />
+  <Define _uuid="YE1db3nW2aRT6SkPHTicpw" name="empty_to" is_valid="Y" note="M#" value="false" />
+  <Define _uuid="e0gyiECmVSFMGUg1az1Wkg" name="empty_default" is_valid="Y" note="M#" value="true" />
+  <Source _uuid="5EA8g1xxviXaQkMxlu0guQ" is_valid="Y" note="M#"><![CDATA[package <Item source='$dataset.logic_package'/>.base;
+
+import org.mobj.eng.entity.IEntityDao;
+
+public interface I<Item source='$dataset.class_name'/>Base&lt;E extends F<Item source='$dataset.class_name'/>Entity&gt; extends
+      IEntityDao&lt;E&gt;{
+
+<Loop source='$fields' alias='field'>
+<NotEquals source='$field.name' value="ouid">
+<True source='$field.is_unique'>
+   E getBy<Item source='$field.name' format='class'/>(String <Item source='$field.name' format='method'/>);
+
+</True>
+</NotEquals>
+</Loop>
+}]]></Source>
+</Template>
+

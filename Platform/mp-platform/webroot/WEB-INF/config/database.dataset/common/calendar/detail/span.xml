@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="KkL9k]QWOPxf3S[ddGQKrw" name="common.calendar.detail.span" label="M#12cn14日历时段" is_valid="Y" note="M#" data_name="CM_CALENDAR_DETAIL_SPAN" data_alias="CM_CLD_DTL_SPAN" data_logic="CM_CALENDAR_DETAIL_SPAN_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="xUEO7EgSyA3go41SlfgWnQ" name="calendar_id" label="M#12cn14日历标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CALENDAR_ID" data_alias="CLD" data_type="Integer" data_refer="common.calendar" index_names="day" />
+  <FieldInteger _uuid="CkcuX2q34ryzjtVI3eCvqA" name="period_id" label="M#12cn14期间标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PERIOD_ID" data_alias="PRD" data_refer="common.calendar.period" />
+  <FieldInteger _uuid="u0en8EQEQET0lIMOUvvksw" name="detail_day_id" label="M#12cn15详细天标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="DETAIL_DAY_ID" data_alias="DTL_DAY" data_refer="common.calendar.detail.day" />
+  <FieldBoolean _uuid="6EKsutqS[]vL[Jl4oWLNjg" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldEnum _uuid="t0fotQv9fVEld4yfZOklsQ" name="type_cd" label="M#12cn12类型" is_valid="Y" note="M#12cn213W=Work\nR=Rest" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="common.calendar.span.type" />
+  <FieldDate _uuid="AkIpLjVCLg]EEu4312voiQ" name="record_date" label="M#12cn14记录日期" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="RECORD_DATE" data_type="Date" index_names="day" />
+  <FieldDate _uuid="CETPv75Vc9AvBqXOZJJIsg" name="begin_time" label="M#12cn14开始时间" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="BEGIN_TIME" data_type="Date" />
+  <FieldDate _uuid="LUqNRKVRSNw5aiJ5JT0akg" name="end_time" label="M#12cn14结束时间" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="END_TIME" data_type="Date" />
+  <FieldInteger _uuid="YUuvdcGYq2FWni5tEXGuiQ" name="week_id" label="M#12cn13周标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="WEEK_ID" data_alias="WEK" data_refer="common.calendar.week" />
+  <FieldInteger _uuid="OE]z9csermKi5Crdnfgwjw" name="day_id" label="M#12cn13日标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="DAY_ID" data_alias="DAY" data_refer="common.calendar.day" />
+  <FieldContent _uuid="3UjDMjCRiVwR9VyJdXr8rw" name="note" label="M#12cn12注释" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

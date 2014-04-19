@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="okMn98zHjwwU39DfWeu9uQ" name="logic.command" label="游戏GM指令" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" source_name="MoMgLogicCommand" code="Lcd" full_code="LogicCommand" display_index="52">
+  <Message _uuid="dkuBF5b]F0wtWWM4w3perQ" name="game.command.request" label="游戏GM指令请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="GameCommand" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0001" code_fix="N">
+    <Item _uuid="rk0bLIQvAfpHG]oesEwYjQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="jkZskB[2nPXM3gePmF]]gg" name="command" label="命令" is_valid="Y" note="M#" type="String" is_collection="N" data_size="manager.command.string-max-length" />
+  </Message>
+  <Message _uuid="SUkbLsAbz]m3h2bAko]IoA" name="role.property.response" label="更变玩家属性应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RoleProperty" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Enum _uuid="s0MAKN]K6QS7tJ6vsQQqqA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="u0P4DM9MDp2VWdn5AhMghw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="ck1[R7SGUPZOda2Q99yhsA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="Q01il17ApOpFP9xOeUkJpA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="7EAm1gezVX62Fjt0Xh62gA" name="changeType" label="改变玩家属性类型" is_valid="Y" note="M#" type="Enum" type_name="EGmManagerChangeRoleProperty" is_collection="N" />
+    <Item _uuid="eEI7LVUsuWhUGp6rKr4rgQ" name="lastValue" label="改变后的属性值" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="HUQOMoHLthyfbQiOolrxrQ" name="updateBuilding" label="更新的建筑" is_valid="Y" note="M#" type="Object" type_name="SGsRoleHome" is_collection="N" />
+  </Message>
+  <Message _uuid="pEo0PxVcgzjQlRDXFAvThw" name="role.property.storage.request" label="更变玩家属性存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RolePropertyStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0003" code_fix="N">
+    <Item _uuid="tkd[CJI7KJDzWHKmJmfgig" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="nE[yXRYDYTO[Djyo4asfmA" name="changeTpye" label="改变玩家属性类型" is_valid="Y" note="M#" type="Enum" type_name="EGmManagerChangeRoleProperty" is_collection="N" />
+    <Item _uuid="6UiP3Q8OT6JnJHEPkq4ekg" name="lastValue" label="改变后属性值" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="uUn3Ui9TpuK2uV7JIFGrgQ" name="updateBuilding" label="更新的建筑" is_valid="Y" note="M#" type="Object" type_name="SGpRoleHome" is_collection="N" />
+  </Message>
+  <Message _uuid="]kp]yoDap]JsNbs]CjkghQ" name="role.property.storage.response" label="更变玩家属性存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RolePropertyStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0004" code_fix="N">
+    <Enum _uuid="FkBt9bGEyuRBmkLFmp81iA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="TUaSASmmf9Z9PHlpB9tQjg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="WUzHsgq9meuZarEeea52qQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="VEQUauvB9CO346yxS2iLog" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="z0fTuYlsA1]h]dNe1qQJsg" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="hEP3wdC0wTuDlsd8rK5Frw" name="changeType" label="改变玩家属性类型" is_valid="Y" note="M#" type="Enum" type_name="EGmManagerChangeRoleProperty" is_collection="N" />
+    <Item _uuid="8E4]owkHNGG0KTLHiGbGlQ" name="lastValue" label="改变后的属性值" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="pExJH7KzQNwdK4fQPOUPmw" name="updateBuilding" label="更新的建筑" is_valid="Y" note="M#" type="Object" type_name="SGpRoleHome" is_collection="N" />
+  </Message>
+  <Message _uuid="V0No4xxQ7[N9oFf]ZTxasA" name="add.slave.response" label="添加奴隶应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="AddSlave" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0005" code_fix="N">
+    <Enum _uuid="2kIo5onb0Xap35DBUpigmw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="[0frFbKHr0bbLd92GLhmlA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="dkD6O6EiX]JeBLsq2s[WlQ" name="Success_SlaveRoomTooSmall" label="添加失败，奴隶营太小" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="qEjXxBHL[sDjQsrF2zfInA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="i0Wc8]nBwY]N3vIqfQlFmw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="uEUUaRRphtxAXAle9eqmqg" name="slaveSet" label="奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+  </Message>
+  <Message _uuid="h0kt30llP[si8hRo9ClsnQ" name="add.slave.storage.request" label="添加奴隶请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AddSlaveStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0006" code_fix="N">
+    <Item _uuid="QkU841BuHJ3yw9qcJgA1ig" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="S0yshWs1PzIVdbpnZfHNnQ" name="updateSlave" label="更新奴隶" is_valid="Y" note="M#" type="Object" type_name="SGpRoleSlave" is_collection="N" />
+  </Message>
+  <Message _uuid="7UMJxyE1NQwXnMyirnT0hw" name="add.slave.storage.response" label="添加奴隶应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AddSlaveStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0007" code_fix="N">
+    <Enum _uuid="I0q54KsgyF6[DL]lBMF2gw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="z0h]zW06MkMdkPIOdPkqsg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="0kXRh50Vnm8NtugkPSMujg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="x0cG2k[IDUrsLdD9dTtegQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="pU0ysZgMrcEwdH3[7VrfvQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="oEx31BfBTgRxhyJnVGYjhQ" name="updateSlave" label="更新奴隶" is_valid="Y" note="M#" type="Object" type_name="SGpRoleSlave" is_collection="N" />
+  </Message>
+  <Message _uuid="lUCjpOjtFi2a6z3yI3EMrA" name="add.friend.response" label="添加好友应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="AddFriend" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0008" code_fix="N">
+    <Enum _uuid="ik9sqO3DgQEkIzE3xwtfmA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="r0[igO8Qg7b2VnOnyDVMpQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="QEomaGdc2Ybw8vMnWSfHhA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="eEbfbVud811XAbwZA2Gukw" name="Failure_AlreadyAdd" label="改玩家已经是你的好友" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="M0Wu[[JSKRZO5yD]]GWSgg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="YkX6UcIOAKIxyN[PmUxqnQ" name="friendDetail" label="好友详细" is_valid="Y" note="M#" type="Object" type_name="SGsRolePublic" is_collection="N" />
+  </Message>
+  <Message _uuid="BkEbOvKC2EgQQI0COKKSjg" name="add.friend.storage.request" label="添加玩家请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AddFriendStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0009" code_fix="N">
+    <Item _uuid="l04LUKndgCTcXf5zaDvEkQ" name="source" label="角色编来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="M0sfik2cIvCAi0b[badaqw" name="friendRoleId" label="好友角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="[EQxgcyx55lUvOeZ6nnIvA" name="add.friend.storage.response" label="添加好友应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AddFriendStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x000A" code_fix="N">
+    <Enum _uuid="P0lWWrZpzP6Sc32Q]B03jg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="dkf6aHhFOjlh2OEzWwswnQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="l0oRdC3cYiHAjqM87MXWqA" name="Success_AlreadyAdd" label="操作失败，已经添加的好友" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="1UH006PKZhMKBazANOSKnA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="bkk6M4cHeUxtjqg6O5drlg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="mEOsgAWLblu4cuXVZLztvg" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="jE7elMJW5cLBfXqfUKpIuw" name="friendDetail" label="好友详细" is_valid="Y" note="M#" type="Object" type_name="SGpRolePublic" is_collection="N" />
+  </Message>
+  <Message _uuid="SEemQVN1T2gQ1kMHo8kYiA" name="add.footman.response" label="添加一个仆从应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="AddFootman" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000B" code_fix="N">
+    <Enum _uuid="KESNynA2WRC4UiOdHi]osg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="Q05aAOWt5W[NOFU8sqpJoQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="sULMLiCeK[tMTA5REJ6Trg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="NUNzqI]Kuj1MXi43L6uehA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="WES6wQrpYK4ACRA4qVVDuQ" name="footmanDetail" label="仆从详细" is_valid="Y" note="M#" type="Object" type_name="SGsRolePublic" is_collection="N" />
+  </Message>
+  <Message _uuid="4kFK93EXDZKVzb4gCZfNjg" name="add.footman.storage.request" label="添加一个仆从请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AddFootmanStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x000C" code_fix="N">
+    <Item _uuid="l0QgVNBR915AX7utttxuhA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="NUSkh8g8sq4Jt[dkdutHog" name="footman" label="仆从" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFootman" is_collection="N" />
+  </Message>
+  <Message _uuid="Bk[xYj9[weaXmOKtepxvkg" name="add.footman.storage.response" label="添加一个仆从应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AddFootmanStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x000D" code_fix="N">
+    <Enum _uuid="N0q92GnleFR]qhz2W3m1sg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="405Hv902CNDzxcy2H]ECnA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="X04zP]BIk1AnJ831b11Mnw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="SUwZn2rLWXr7Nw1oZ392qA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="6EEKHTH[APSKIFSwDtE9rg" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="K0Nyr7IVm8FF0fig[SqUrQ" name="footman" label="仆从" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFootman" is_collection="N" />
+    <Item _uuid="pk9SynWkrQodcILe8aZRoA" name="footmanDetail" label="仆从详细" is_valid="Y" note="M#" type="Object" type_name="SGpRolePublic" is_collection="N" />
+  </Message>
+  <Message _uuid="gElAkX[AP7NPHwZ55[hdjA" name="clear.worker.time.response" label="清除工人工作时间应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ClearWorkerTime" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000E" code_fix="N">
+    <Enum _uuid="ykSHw9Ytq3ggjLG[sfFHig" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="9kNgxNXOiMklszyiJvyTog" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="s0y[BaoeMIC5NkBrblfFsg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="x0kTLFx29Z0vENrlj0T0mA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="AUBPjC7XI[laI3PV9gXzjQ" name="command.error.response" label="指令错误应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="CommandError" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000F" code_fix="N">
+    <Enum _uuid="SU4XFDxPhGQHkx3KjODfkw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="1Unqr1]leSwzmIgSDluzog" name="InvalidCommand" label="无效的指令" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="A0gLpiTnKWeugI6WdJg4rg" name="ErrorCommandparameter" label="错误的命令参数" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="10eHOb5IsS7[8NFRLGfSkw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="JU9tdIBXyex4ZTnFat7NlA" name="add.prop.response" label="添加道具应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="AddProp" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0010" code_fix="N">
+    <Enum _uuid="[kItSNtlmJGIAPKfRMB0hg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="9kkAIdlyEurNzXaaosdtpA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="jEZExFbsbhwML[Cq1Nqhrw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="TUyOWiGIOYHaGjjj]kzUnQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="BE]KlvZT4DApwlY4FXxAmg" name="propSet" label="道具集合" is_valid="Y" note="M#" type="Object" type_name="SGsRolePropSet" is_collection="N" />
+  </Message>
+  <Message _uuid="P0oJrDY17OYMthrFKIOUig" name="add.prop.storage.request" label="添加道具请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AddPropStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0011" code_fix="N">
+    <Item _uuid="L0kYCKrgGXA407IeYTYhtQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="bkunCP2z3yUQQB6E8i5TlA" name="updateProp" label="更新物品" is_valid="Y" note="M#" type="Object" type_name="SGpRoleProp" is_collection="N" />
+  </Message>
+  <Message _uuid="CEBv3Xm0xCucOagE0nLmgw" name="add.prop.storage.response" label="添加道具应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AddPropStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0012" code_fix="N">
+    <Enum _uuid="rE]mmQSEWi4ktVXoPP0tiA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="cUjEvch4wrKbWk1mHEy3gQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="XEB9PoZhhgA092jk8[r8mg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="pkiNa6TferEbrZPBUCiNiA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="EUVjmUalwEdvi3mcc[KHvQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="0EeEuvhXjpZ3L]ZT9Pl]ig" name="updateProp" label="更新物品" is_valid="Y" note="M#" type="Object" type_name="SGpRoleProp" is_collection="N" />
+  </Message>
+  <Message _uuid="GUYZiy6x3ofArKuwNR7BtA" name="open.map.response" label="开启地图应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="OpenMap" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0013" code_fix="N">
+    <Enum _uuid="W0PbH9u6dwlGuPYQfjWzgg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="10NU4NB2]MH3ejFi]iqOjw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="qk[SkigKMVPIliyQGe9zlA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="M0ESVOek]Ut7JiCDvbUOhA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="KkIU[KC3GAKour1wVcn6hQ" name="mapSet" label="地图集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleMapSet" is_collection="N" />
+  </Message>
+  <Message _uuid="k0RHYoUzl5DECw9ooev8rg" name="open.map.storage.request" label="开启地图请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="OpenMapStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0014" code_fix="N">
+    <Item _uuid="WUGRxehlJC73lokbTg]sgQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="SkjonMkufhTwee3z]sAtgg" name="updateMapSet" label="更新地图集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleMapSet" is_collection="N" />
+  </Message>
+  <Message _uuid="809mY4ztYI2m5Y9YaDgbhg" name="open.map.storage.response" label="开启地图应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="OpenMapStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0015" code_fix="N">
+    <Enum _uuid="uUZRTsFGxxHgUzkzgb03kQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="2EDApWSsoK4OPuYTyA]Akw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="EkJSzBEIZLm1UhiSC6u8qA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="t0yP8dUb90IVj7SvVnLFqA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="DE7HzX10T2VZUdueuVIakg" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="7EZshzv]AhbmGKM[sslAiw" name="updateMapSet" label="更新地图集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleMapSet" is_collection="N" />
+  </Message>
+  <Message _uuid="0Ea4]N4Zd[KGpSHKpjZvhw" name="active.home.building.response" label="激活家园所有建筑" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ActiveHomeBuilding" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0016" code_fix="N">
+    <Enum _uuid="xkJZM1jRQrJ0Qgw4r6IHng" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="GkKVsaqkAZEi10C5n5Gujg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="hUpg2izfGsCVfO4nCItohA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="bE2VprY7p[q8Y9EPvE3Ypw" name="statusCd" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="J0Q1[JWgg2L]H4KlcEUevw" name="roleHomeSet" label="角色家园集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleHomeSet" is_collection="N" />
+  </Message>
+  <Message _uuid="I0ygjWb]AHxGiRZEt93NkA" name="active.home.building.storage.request" label="激活家园建筑存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ActiveHomeBuildingStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0017" code_fix="N">
+    <Item _uuid="M0]kPm5igpwzvcEYSIkjgg" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="G0jasH9d3kPDRO]pBeUuuQ" name="updateHomeSet" label="更新的家园建筑集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleHomeSet" is_collection="N" />
+  </Message>
+  <Message _uuid="ZkmT7i6g[cWzFTUkYRLhpQ" name="active.home.building.storage.response" label="激活家园建筑存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ActiveHomeBuildingStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0018" code_fix="N">
+    <Enum _uuid="M0guLCMzTYWCdjy09zCKuA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="KUL[kkLTYhW8MgrEFNQEuw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="2kIgLMCuQAVv7GTCjBMvlw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="dUM9mwKCDYFnFUMqU5I8mw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="DkmTweOHujC2Hf9ol8OUuw" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="I0wKgCxBDUecD05NkqtPuw" name="updateHomeSet" label="更新的家园集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleHomeSet" is_collection="N" />
+  </Message>
+  <Message _uuid="VENYyTDFUry6Fgnr9zmXpQ" name="active.all.fort.response" label="激活所有塔应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ActiveAllFort" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0019" code_fix="N">
+    <Enum _uuid="c01djUSiUgp1HgYO0A9mhw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="jkuerEgWS6lRa8wVB4wVrQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="w0qp5oQaKhEIs0oNn23zrg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="sExxYkDziYSvg50jg9Kahw" name="status" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="4ELSIMy9gR2VLy4[eqHDtQ" name="udpateRoleFort" label="更新的角色塔集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleFortSet" is_collection="N" />
+  </Message>
+  <Message _uuid="7EfRQQ2qM2KhRosDd70Inw" name="active.all.fort.storage.request" label="激活所有塔存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ActiveAllFortStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x001A" code_fix="N">
+    <Item _uuid="nUaHPkehN7a54f6X2O8OhA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="m0[gbEUkR83Z94d3s0X3vQ" name="updateRoleFortSet" label="更新的角色塔集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFortSet" is_collection="N" />
+  </Message>
+  <Message _uuid="7USzy9RTpmu]AErURmAThw" name="active.all.fort.storage.response" label="激活所有塔存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ActiveAllFortStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x001B" code_fix="N">
+    <Enum _uuid="[0UFq2C2zFbreMY[NjQgvA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="sU8Jzef1v78lI0VxIgJcjQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="Q0cDBynfTBXTzSQBvI1fuA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="DkQr[ueoj]NPwdQLMdeYhQ" name="status" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="wkCEuRgBx8hDNZ]g4wl1jw" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="Sko0p[Qe8KoKCm2jAcZing" name="updateRoleFortSet" label="更新的角色塔集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFortSet" is_collection="N" />
+  </Message>
+  <Message _uuid="eECzFywV0dN4b9YDsuEkgA" name="upgrade.fort.response" label="塔升级应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="UpgradeFort" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x001C" code_fix="N">
+    <Enum _uuid="xEgtdYfccQ4dE2AMiR8drQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="pkFjfH[sI7uQcNucXUp]kw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="GkDC9l1veCITUnMpNEEBhg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="A0H3vtfEN9QCWS9NmdI0rg" name="status" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="nUi2NnrUl0iaHrtalcQ1vw" name="updateRoleFortSet" label="更新后的角色塔集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleFortSet" is_collection="N" />
+  </Message>
+  <Message _uuid="tUDNl]8AyN1SSzYfvklMjQ" name="upgrade.fort.storage.request" label="升级塔存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="UpgradeFortStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x001D" code_fix="N">
+    <Item _uuid="yUioGEyEFZ0QUuGtyIsDtg" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="PECj0Bzrj5kBKNGGMDQxuw" name="isExist" label="升级的塔是否存在" is_valid="Y" note="M#" type="Bool" is_collection="N" />
+    <Item _uuid="EUSJkT]LaKdud0PlMN5Dtw" name="updateRoleFort" label="更新后的角色塔集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFort" is_collection="N" />
+  </Message>
+  <Message _uuid="DEzs15J[8ujYIogNcQFelg" name="upgrade.fort.storage.response" label="塔升级存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="UpgradeFortStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x001E" code_fix="N">
+    <Enum _uuid="wUH8pz83qXE2NXqRwtk4tA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="C0n4O95UdEiG[uhncWUmpg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="I0VFpbkqiEPZrHwe8tB0kw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="Z00bvjPtmlyU1x9dVy5uhw" name="status" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="oEW7fvXaqCBZkpGGO0YpjA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="ikC6Nphl2xDkg8[DjcNMmw" name="updateRoleFort" label="更新后的角色塔集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFort" is_collection="N" />
+  </Message>
+  <Message _uuid="5EkXp[YacL[qZ7v5YP4XuA" name="upgrade.home.building.response" label="升级家园建筑应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="UpgradeHomeBuilding" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x001F" code_fix="N">
+    <Enum _uuid="tEHk8Bgh6HoYU1q5sCu8jA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="LEL3rEmp8j[uhnJ5sdKIvQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="z0Bc9Fi]gilI00Bsj4XerA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="8UvNbbQsuXF[wxiUe6mOjg" name="status" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="x0PiVe2XbnDRZtGR9vMmgQ" name="updateHomeSet" label="更新后的角色家园集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleHomeSet" is_collection="N" />
+    <Item _uuid="XUJYZuuyKcE35axyuU]hgQ" name="updateRoleDetail" label="更新后的角色数据" is_valid="Y" note="M#" type="Object" type_name="SGsRoleDetail" is_collection="N" />
+  </Message>
+  <Message _uuid="]0p]bex84JYBDPwyX0Yptw" name="upgrade.home.building.storage.request" label="升级家园建筑存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="UpgradeHomeBuildingStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0020" code_fix="N">
+    <Item _uuid="DEwdApFXfyVLOrqfBNgDrQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="gkkygXlCBt7Mlv2XWwGIog" name="isExist" label="升级的建筑是否存在" is_valid="Y" note="M#" type="Bool" is_collection="N" />
+    <Item _uuid="gkLopdIQoboWYIaFsuP7kA" name="updateRoleHome" label="更新后的角色家园集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleHome" is_collection="N" />
+  </Message>
+  <Message _uuid="rUr9LgtIeQzd0]jjtCepkA" name="upgrade.home.building.storage.response" label="升级家园建筑存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="UpgradeHomeBuildingStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0021" code_fix="N">
+    <Enum _uuid="UEMIKak39EHGuNGd99DGqA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="pUmOZSLrAxkLG]1xwTwbgw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="rki0iaV5hq[ohhpkR2Nmhw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="skSYIsSEy8eZwlvWumAKrQ" name="status" label="消息状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="REgnIN[tx21]W3b84VeUvA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="YEi3q5i5EhOryHG6Xx6QgQ" name="updateRoleHome" label="更新后的角色家园集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleHome" is_collection="N" />
+    <Item _uuid="nEzbImgw3Q9VOiqx3kdzuA" name="updateRoleDetail" label="更新后的角色数据" is_valid="Y" note="M#" type="Object" type_name="SGpRoleDetail" is_collection="N" />
+  </Message>
+  <Message _uuid="H0qiTQIatTW76iV9RBEDnA" name="add.equipment.response" label="添加装备应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="AddEquipment" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0022" code_fix="N">
+    <Enum _uuid="nUQAd7DMc2P]jZV9hM7Uuw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="kU8O9I4Wg3FoDqOoJMtEvg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="AUM7HkAJSkRUrlmk1Xf2hg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="XUcu]S6rO4a2R[KoM8gasA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="aEcuBBXb4OTIRmmWbXDOiQ" name="equipSet" label="装备集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEquipSet" is_collection="N" />
+  </Message>
+  <Message _uuid="rkLE8Lw[02]FwZSfwDwtjg" name="add.equipment.storage.requset" label="添加装备存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AddEquipmentStorage" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0023" code_fix="N">
+    <Item _uuid="dk1OmQ81bHxncSnjTrXpng" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="uEAtLg3kmKK1GW48A7ONhw" name="updateEquip" label="更新的装备" is_valid="Y" note="M#" type="Object" type_name="SGpRoleEquip" is_collection="N" />
+  </Message>
+  <Message _uuid="dEKSJO1qRsvCg9FIQX41oA" name="add.equipment.storage.response" label="添加装备存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AddEquipmentStorage" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0024" code_fix="N">
+    <Enum _uuid="6UdFShpWaU8uWzu[AANOgA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="pUZTEjyBSjprofiIT8Z6gA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="0UBhe4aYtw]gjKjsK2H1pA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="rkQTokaPr3uwGMd0ZQcUmA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="aE]bPLBp0Eqo8yOgP43Skw" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="60Mi]YOEVm0mP[jBWX13nw" name="updateEquip" label="更新的装备" is_valid="Y" note="M#" type="Object" type_name="SGpRoleEquip" is_collection="N" />
+  </Message>
+</Group>
+

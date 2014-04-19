@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="PEUM9q3X6KoVau0FfXh[iQ" name="eng-export" label="M#12cn14导出定义" is_valid="Y" note="M#" template="xmlobject" source="${export.core.engine.source}">
+   <Component _uuid="E0c7WutRAb4ECgo1LHyCpw" name="ExportExcel" label="M#12cn17导出Excel" is_valid="Y" note="M#" class_name="org.mo.eng.export.common.XExportExcel" base_name="org.mo.eng.export.base.XBaseExportExcel" inherits="IObject">
+      <Attribute _uuid="s0tZMpPVbSUXxE0s5GeSog" name="fileName" label="M#12cn14文件名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="FEjAltimp2PpB[]C4whmng" name="template" label="M#12cn12模板" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Interface _uuid="XkLXGt2gytyidwtQpetkjQ" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#" class_name="org.mo.eng.export.common.XObjectFace">
+      <Attribute _uuid="E0y2IaG5QXF8h4jHJ5FfvA" name="name" label="M#12cn12名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="IkOawk1ZyK9qBgk8Oz]Csg" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="lkbCPukuIOSgUVcGPQMsvA" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="BUslPzjcRGZJ9S2YYPOeoQ" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="PUqTaeO[vH7ZD5Z2nxBShQ" name="hide_code" label="M#12cn13列代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Interface>
+   <Component _uuid="Lk]EFn49kZKQE]jNbwogjA" name="Date" label="M#12cn12常量" is_valid="Y" note="M#" class_name="org.mo.eng.export.common.XDate" base_name="org.mo.eng.export.base.XBaseDate" inherits="IObject">
+      <Attribute _uuid="IkqOCSmZ]DbZKe2itL4oig" name="data_value" label="M#12cn13数据值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="8ExxZjr[zNKgTC74ozEBpg" name="Sql" label="M#12cn17sql文存储框" is_valid="Y" note="M#" class_name="org.mo.eng.export.common.XSql" base_name="org.mo.eng.export.base.XBaseSql" inherits="IObject" />
+</Persistence>

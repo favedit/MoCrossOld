@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="WkBNhFedmEfzNZ6jvMRkiA" name="logic.business.process.proxy.mail" label="代理审核设置邮件提醒" is_valid="Y" note="M#">
+  <Define _uuid="IEvYybw7IHlQATTOEDi2vw" name="mail_content_type" label="邮件类型" is_valid="Y" note="M#" value="Html" />
+  <Variable _uuid="Zknqu]W3lzhdxW44wrljjw" name="to_user_label" label="收件人名称" is_valid="Y" note="M#" />
+  <Variable _uuid="ikfSTNYyX1HTckBWJVSBhA" name="examine_user_label" label="审核人名称" is_valid="Y" note="M#" />
+  <Variable _uuid="zEwPCogrRvW45AQBW1A7gQ" name="business_label" label="业务名称" is_valid="Y" note="M#" />
+  <Source _uuid="MUqueM7qCCHOEdlvnNEEsg" name="set.head" label="设置代理-邮件标题" is_valid="Y" note="M#"><![CDATA[<jt:item source='$config.examine_user_label'/>将您设置为<jt:item source='$config.business_label'/>的代理审核者。]]></Source>
+  <Source _uuid="FUBa3Qre8MK5rf0qWdVghA" name="set.body" label="设置代理-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='代理审核' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD>  <jt:item source='$config.examine_user_label'/>将您设置为<jt:item source='$config.business_label'/>的代理审核者,请及时登录系统到OA组件-代理审核模块进行审核。
+</TD></TR>
+   </TABLE>
+    <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="1UFCe2q6rYNjKz9hN]cJvg" name="cancel.head" label="取消代理-邮件标题" is_valid="Y" note="M#"><![CDATA[<jt:item source='$config.examine_user_label'/>取消了您的<jt:item source='$config.business_label'/>代理审核者的身份。]]></Source>
+  <Source _uuid="5kV8AyE9axuxBI5IrUJyuA" name="cancel.body" label="取消代理-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='代理审核' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+     您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD>  <jt:item source='$config.examine_user_label'/>取消了您的<jt:item source='$config.business_label'/>代理审核者的身份。
+</TD></TR>
+   </TABLE>
+    <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

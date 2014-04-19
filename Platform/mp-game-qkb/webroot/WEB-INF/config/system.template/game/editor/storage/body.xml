@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template ads="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define ads="]E[MIOeUo79dXfu13d2wsA" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source ads="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T><jt:item source='$group.label'/>消息类型定义。</T>
+//
+// @enum
+//============================================================
+#include "MoMgStructPublic.h"
+#include "<jt:item source='$group.source_name'/>.h"
+
+MO_NAMESPACE_BEGIN
+
+<jt:loop source='$group' alias='entity' filter='$entity:name=Entity'>
+//============================================================
+// <T>获得当前结构体的大小。</T>
+//
+// @return 消息大小
+//============================================================
+TSize S<jt:item source='$entity.name'/>::Capacity(){
+   // 序列化消息
+   TSize capacity = 0;
+<jt:loop source='$entity' alias='field'>
+<jt:true source='$field.is_collection'>
+   capacity += <jt:item source='$field.name'/>.Capacity();
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Enum|Struct'>
+   capacity += sizeof(<jt:item source='$field.type_name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Char|Byte|Int16|Int32|Int64|Uint16|Uint32|Uint64|Float|Double|TimeTick|TimeSpan|DateTime'>
+   capacity += sizeof(T<jt:item source='$field.type'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='String|Object|Types'>
+   capacity += <jt:item source='$field.name'/>.Capacity();
+</jt:equals>
+</jt:false>
+</jt:loop>
+   return capacity;
+}
+
+//============================================================
+// <T>复制指定对象信息到自己内部。</T>
+//
+// @param value 指定对象
+//============================================================
+void S<jt:item source='$entity.name'/>::Assign(S<jt:item source='$entity.name'/>& value){
+<jt:loop source='$entity' alias='field'>
+<jt:true source='$field.is_collection'>
+   this-><jt:item source='$field.name'/>.Assign(value.<jt:item source='$field.name' format='upper.first'/>());
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Char|Byte|Int16|Int32|Int64|Uint16|Uint32|Uint64|Float|Double|TimeTick|TimeSpan|DateTime|Enum|Struct'>
+   this-><jt:item source='$field.name'/> = value.<jt:item source='$field.name' format='upper.first'/>();
+</jt:equals>
+<jt:equals source='$field.type' value='String|Object|Types'>
+   this-><jt:item source='$field.name'/>.Assign(value.<jt:item source='$field.name' format='upper.first'/>());
+</jt:equals>
+</jt:false>
+</jt:loop>
+}
+
+//============================================================
+// <T>序列化信息到结构体。</T>
+//
+// @param pMemory 内存指针
+// @param size 内存大小
+// @return 序列化后大小
+//============================================================
+TInt S<jt:item source='$entity.name'/>::Serialize(TAny* pMemory){
+   // 序列化消息
+   TByte* pPtr = (TByte*)pMemory;
+   TSize offset = 0;
+<jt:loop source='$entity' alias='field'>
+   // 序列化<jt:item source='$field.label'/>
+<jt:true source='$field.is_collection'>
+   offset += <jt:item source='$field.name'/>.Serialize(pPtr + offset);
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Enum'>
+   *(<jt:item source='$field.type_name'/>*)(pPtr + offset) = <jt:item source='$field.name'/>;
+   offset += sizeof(<jt:item source='$field.type_name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Struct'>
+   *(<jt:item source='$field.type_name'/>*)(pPtr + offset) = <jt:item source='$field.name'/>;
+   offset += sizeof(<jt:item source='$field.type_name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Char|Byte|Int16|Int32|Int64|Uint16|Uint32|Uint64|Float|Double|TimeTick|TimeSpan|DateTime'>
+   *(T<jt:item source='$field.type'/>*)(pPtr + offset) = <jt:item source='$field.name'/>;
+   offset += sizeof(T<jt:item source='$field.type'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='String|Object|Types'>
+   offset += <jt:item source='$field.name'/>.Serialize(pPtr + offset);
+</jt:equals>
+</jt:false>
+</jt:loop>
+   return offset;
+}
+
+//============================================================
+// <T>反序列化数据流到结构体。</T>
+//
+// @param pMemory 内存指针
+// @param size 内存大小
+// @return 序列化后大小
+//============================================================
+TInt S<jt:item source='$entity.name'/>::Unserialize(TAnyC* pMemory){
+   // 反序列化消息
+   TByteC* pPtr = (TByteC*)pMemory;
+   TSize offset = 0;
+<jt:loop source='$entity' alias='field'>
+   // 反序列化<jt:item source='$field.label'/>
+<jt:true source='$field.is_collection'>
+   offset += <jt:item source='$field.name'/>.Unserialize(pPtr + offset);
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Enum'>
+   <jt:item source='$field.name'/> = *(<jt:item source='$field.type_name'/>*)(pPtr + offset);
+   offset += sizeof(<jt:item source='$field.type_name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Struct'>
+   <jt:item source='$field.name'/> = *(<jt:item source='$field.type_name'/>*)(pPtr + offset);
+   offset += sizeof(<jt:item source='$field.type_name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Char|Byte|Int16|Int32|Int64|Uint16|Uint32|Uint64|Float|Double|TimeTick|TimeSpan|DateTime'>
+   <jt:item source='$field.name'/> = *(T<jt:item source='$field.type'/>*)(pPtr + offset);
+   offset += sizeof(T<jt:item source='$field.type'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='String|Object|Types'>
+   offset += <jt:item source='$field.name'/>.Unserialize(pPtr + offset);
+</jt:equals>
+</jt:false>
+</jt:loop>
+   return offset;
+}
+
+//============================================================
+// <T>获得内部消息。</T>
+//
+// @return 执行是否成功
+//============================================================
+TCharC* S<jt:item source='$entity.name'/>::Track(TChar* pTrack, TSize capacity, TInt level){
+   // 获得当前信息
+   TFsTrack track;
+<jt:loop source='$entity' alias='field'>
+   track.AppendRepeat(MO_DUMP_INDENT, level);
+<jt:true source='$field.is_collection'>
+   if(<jt:item source='$field.name'/>.IsEmpty()){
+      track.Append(" => [<jt:item source='$field.type' rpad='12'/>] <jt:item source='$field.name'/> = [empty]\n");
+   }else{
+<jt:equals source='$field.type' value='Struct'>
+      TFsTrack dump;
+      TInt count = <jt:item source='$field.name'/>.Count();
+      TInt loop = MO_MIN(MO_TRACK_ITEMS_MAXCOUNT, count);
+      track.AppendFormat(" => [<jt:item source='$field.type' rpad='12'/>] <jt:item source='$field.name'/> = [count=%d]\n", count);
+      for(TInt n=0; n<loop; n++){
+         track.AppendRepeat(MO_DUMP_INDENT, level + 1);
+         track.AppendFormat("[%d]:\n", n);
+         track.Append(<jt:item source='$field.name'/>.Get(n).Track(dump.Memory(), dump.Size(), level + 2));
+      }
+</jt:equals>
+<jt:equals source='$field.type' value='Object'>
+      TFsTrack dump;
+      TInt count = <jt:item source='$field.name'/>.Count();
+      TInt loop = MO_MIN(MO_TRACK_ITEMS_MAXCOUNT, count);
+      track.AppendFormat(" => [<jt:item source='$field.type' rpad='12'/>] <jt:item source='$field.name'/> = [count=%d]\n", count);
+      for(TInt n=0; n<count; n++){
+         track.AppendRepeat(MO_DUMP_INDENT, level + 1);
+         track.AppendFormat("[%d]:\n", n);
+         track.Append(<jt:item source='$field.name'/>.Get(n).Track(dump.Memory(), dump.Size(), level + 2));
+      }
+</jt:equals>
+      if(loop < count){
+         track.AppendRepeat(MO_DUMP_INDENT, level + 1);
+         track.Append("...\n");
+      }
+   }
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Char|Byte|Int8|Int32|Int64|Uint8|Uint32|Uint64|TimeTick|TimeSpan|DateTime|Enum'>
+   track.AppendFormat(" => [<jt:item source='$field.type' rpad='12'/>] <jt:item source='$field.name'/> = 0x%08X(%d)\n", <jt:item source='$field.name'/>, <jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Int16|Uint16'>
+   track.AppendFormat(" => [<jt:item source='$field.type' rpad='12'/>] <jt:item source='$field.name'/> = 0x%04X(%d)\n", <jt:item source='$field.name'/>, <jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Float|Double'>
+   track.AppendFormat(" => [<jt:item source='$field.type' rpad='12'/>] <jt:item source='$field.name'/> = %f\n", <jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   if(<jt:item source='$field.name'/>.IsEmpty()){
+      track.Append(" => [<jt:item source='$field.type' rpad='12'/>] <jt:item source='$field.name'/> = 0:\"\"\n");
+   }else{
+      track.AppendFormat(" => [<jt:item source='$field.type' rpad='12'/>] <jt:item source='$field.name'/> = %d:\"%s\"\n", <jt:item source='$field.name'/>.Length(), <jt:item source='$field.name'/>.MemoryC());
+   }
+</jt:equals>
+<jt:equals source='$field.type' value='Struct'>
+   track.AppendFormat(" => [<jt:item source='$field.type_name' rpad='12'/>] <jt:item source='$field.name'/> = [%s]\n", TFs<jt:item source='$field.type_name' removeFirst='S'/>(<jt:item source='$field.name'/>).Format());
+</jt:equals>
+<jt:equals source='$field.type' value='Object'>
+   {
+      TFsTrack dump;
+      track.Append(" => [<jt:item source='$field.type' rpad='12'/>] <jt:item source='$field.name'/>\n");
+      track.Append(<jt:item source='$field.name'/>.Track(dump.Memory(), dump.Size(), level + 1));
+   }
+</jt:equals>
+</jt:false>
+</jt:loop>
+   MO_LIB_STRCPY(pTrack, capacity, track.MemoryC());
+   return pTrack;
+}
+
+</jt:loop>
+
+MO_NAMESPACE_END
+
+]]></Source>
+</Template>

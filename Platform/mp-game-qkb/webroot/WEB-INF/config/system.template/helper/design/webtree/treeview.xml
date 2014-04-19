@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="5kGaPZU[x1CRpigQLW2auA" name="helper.design.webtree.treeview" is_valid="Y" note="M#">
+  <Source _uuid="PUUrT20bVzOVdLkSXE0GiA" is_valid="Y" note="M#"><![CDATA[<jt:include source='helper.title'/>
+
+<jt:include source='helper.navBegin'/>
+	<A href='#home'><IMG src='<jt:item source='$path'/>/ars/icon/tools/home.gif' align='absmiddle'> 主页</A> 
+	<A href='../List.html'><IMG src='<jt:item source='$path'/>/ars/icon/tools/next.gif' align='absmiddle'> 数据集列表</A> 
+	<IMG src='<jt:item source='$path'/>/ars/icon/tools/next.gif' align='absmiddle'> <jt:item source='$config.label'/> (<jt:item source='$config.name'/>)
+<jt:include source='helper.navEnd'/>
+
+<!-- Head Begin ------------------------------------------->
+<TABLE width='100%' border='0' cellspacing='8' cellpadding='0'>
+<TR>
+	<TD class='headTitle'><jt:item source='$config.name' format='upper'/></TD>
+	<TD align='right' valign='bottom' class='headVersion'>version:1.0.0</TD>
+</TR>
+<TR><TD colspan='2'>
+	<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+		<TR height='1' bgcolor='#999999'><TD></TD></TR>
+		<TR height='1' bgcolor='#000000'><TD></TD></TR>
+	</TABLE>
+</TD></TR>
+<TR><TD colspan='2'>
+	<B><jt:item source='$config.label' format='html'/></B><BR>
+	<jt:item source='$config.note' format='html'/>
+</TD></TR>
+</TABLE>
+<!-- Head End --------------------------------------------->
+
+<!-- Body Begin ------------------------------------------->
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='12'>
+<TR><TD>
+
+<!-- Dataset Begin ---------------------------------------->
+<TABLE width='100%' bgcolor='#666666' border='0' cellspacing='1' cellpadding='2'>
+<TR bgcolor='#dddddd' align='center'>
+	<TD class='fieldTitle'>节点名称</TD>
+	<TD class='fieldTitle'>有效性</TD>
+	<TD class='fieldTitle'>中文名称</TD>
+	<TD class='fieldTitle'>组件类型</TD>
+	<TD class='fieldTitle'>中文说明</TD>
+</TR>
+<jt:loop source='$config' alias='field'>
+<TR bgcolor='#F8F8F8'>
+	<TD width='180' style='padding-left:16'>
+		<A href='../field/<jt:item source='$config.name' format='path.lower'/>.<jt:item source='$treenode.name' format='lower'/>.html'>
+			<IMG src='<jt:item source='$path'/>/ars/icon/design/webtree/<jt:item source='$treenode:name' removeFirst='treenode' format='lower'/>.gif' align='absmiddle'>
+		</A>
+		<A href='#<jt:item source='$treenode.data_name'/>'>
+			<jt:item source='$treenode.name'/>
+		</A>
+	</TD>
+	<TD width='40' align='center'><jt:item source='$treenode.is_null'/></TD>
+	<TD width='80'><jt:item source='$treenode:name' removeFirst='Field'/></TD>
+	<TD width='50'><jt:item source='$treenode.type'/></TD>
+	<TD><jt:item source='$field.label'/></TD>
+</TR>
+</jt:loop>
+</TABLE>
+<BR>
+<!-- Dataset End ------------------------------------------>
+
+<!-- Details Begin ---------------------------------------->
+<jt:loop source='$config' alias='field'>
+<BR>
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='2'>
+<TR bgcolor='#FFFFFF'>
+	<TD bgcolor='#FFFFF0' style='border:1 solid #CCCCCC' class='listElementTitle'>
+		<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+			<TR>
+				<TD>
+					<A name='<jt:item source='$field.data_name'/>'></A>
+					<IMG src='<jt:item source='$path'/>/ars/icon/tools/nl1.gif' align='absmiddle'>
+					<jt:item source='$field.data_name'/> [ <jt:item source='$field.label'/> ]
+				</TD>
+				<TD align='right'>
+					<A href='#top'><IMG src='<jt:item source='$path'/>/ars/icon/tools/top.gif' align='absmiddle'></A> 
+					<A href='../field/<jt:item source='$config.name' format='path.lower'/>.<jt:item source='$field.name' format='lower'/>.html'>
+						<IMG src='<jt:item source='$path'/>/ars/icon/tools/detail.gif' align='absmiddle'>
+					</A>
+				</TD>
+			</TR>
+		</TABLE>
+	</TD>
+</TR>
+<TR>
+	<TD style='padding-left:30'>
+		<TABLE width='100%' border='0' cellspacing='0' cellpadding='2'>
+		<TR>
+			<TD bgcolor='#dddddd' width='120'>节点名称</TD>
+			<TD>
+				<IMG src='<jt:item source='$path'/>/ars/icon/design/webtree/<jt:item source='$treenode:name' removeFirst='treenode' format='lower'/>.gif' align='absmiddle'> 
+				<jt:item source='$treenode.name'/>
+			</TD>
+		</TR>
+		<TR>
+			<TD bgcolor='#dddddd' class='fieldTitle'>中文名称</TD>
+			<TD><jt:item source='$field.label'/></TD>
+		</TR>
+		<TR>
+			<TD bgcolor='#dddddd' class='fieldTitle'>有效性</TD>
+			<TD bgcolor='#FFFFFF'><jt:item source='$field.is_valid'/></TD>
+		</TR>
+		<TR>
+			<TD bgcolor='#dddddd' class='fieldTitle'>数据类型</TD>
+			<TD bgcolor='#FFFFFF'><jt:item source='$treenode:name' removeFirst='Field'/></TD>
+		</TR>
+		<TR>
+			<TD bgcolor='#dddddd' class='fieldTitle'>中文说明</TD>
+			<TD bgcolor='#FFFFFF'><jt:item source='$treenode.note'/></TD>
+		</TR>
+		</TABLE>
+	</TD>
+</TR>
+</TABLE>
+
+</jt:loop>
+<!-- Details End ------------------------------------------>
+
+</TD></TR>
+</TABLE>
+<!-- Body End --------------------------------------------->
+
+<jt:include source='helper.footer'/>]]></Source>
+</Template>
+

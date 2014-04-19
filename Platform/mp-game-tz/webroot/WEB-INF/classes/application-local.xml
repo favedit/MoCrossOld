@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+   <!-- 应用定义 -->
+   <Define name='application'>D:/ZW-Platform-Work</Define>
+   <Define name='application.name'>mp-game-tz</Define>
+   <Define name='application.root'>${application}/${application.name}</Define>
+   <Define name='application.deploy'>${application.root}/deploy</Define>
+   <Define name='application.web'>${application.root}/webroot</Define>
+   <Define name='application.config'>${application.web}/WEB-INF/classes</Define>
+   <Define name='application.space'>${application.web}/WEB-INF/config</Define>
+   <Define name='application.temp'>${application}/mt-temp/${application.name}</Define>
+
+   <!-- 导出路径 -->
+   <Define name='game.export.server'>D:/ZW-TZ-Server.WK</Define>
+   <Define name='game.export.client'>D:/ZW-TZ-Client.WK</Define>
+   <Define name='game.export.tools'>D:/ZW-TZ-Tools.WK</Define>
+   <Define name='game.export.platform'>D:/ZW-TZ-Platform.WK</Define>
+
+   <!-- 包含：系统设定 -->
+   <Include>${application.config}/common/define.xml</Include>
+   <Include>${application.config}/common/core.xml</Include>
+   <Include>${application.config}/common/engine.xml</Include>
+   <Include>${application.config}/common/data.xml</Include>
+   <Include>${application.config}/common/web.xml</Include>
+   <Include>${application.config}/common/web-face.xml</Include>
+
+   <!-- 包含：游戏设定 -->
+   <Include>${application.config}/game/face.xml</Include>
+   <Include>${application.config}/game/editor.xml</Include>
+   <Include>${application.config}/game/service.xml</Include>
+
+   <!-- 包含：环境设定 -->
+   <Include>${application.config}/environment/local/environment.xml</Include>
+</Configuration>

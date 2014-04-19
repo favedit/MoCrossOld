@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="8EhtCJ7vjLIv3[6W2Yejlw" name="logic.person.user" label="M#12cn18[用户信息发布]" note="M#" is_valid="Y">
+  <Type _uuid="NkJCWkgA1JK64zaJoaNQmw" name="probation.deploy" label="M#12cn19人力资源-转正发布" note="M#" is_valid="N">
+    <TypeEvent _uuid="Zkzae6R4uOPraz]TAXBHmA" name="formal.deploy" label="M#12cn14转正发布" note="M#" is_valid="Y" event_group_name="logic.person.user" event_type_name="formal.deploy" priority_cd="M" />
+    <Schedule _uuid="mUza9k8bmAfFwf9Gn8OUkg" name="deploy.day.sync" label="M#12cn14计划同步" note="M#" is_valid="Y" begin_date="20090901155216" end_date="20990101000000">
+      <Day _uuid="pErgeH]NeUOkzWDTRWlMmQ" name="syncDay" label="M#12cn14按天执行" note="M#12cn16用户转正发布" is_valid="Y" execute_time="20090718020000" statue_cd="P" type_cd="D" interval="1" update_date="20090918155354" />
+    </Schedule>
+  </Type>
+  <Type _uuid="[EPTuFKpDdZvKIgmBDTHiQ" name="birthday.remind.deploy" label="M#12cn211人力资源-生日个人提醒" note="M#" is_valid="N">
+    <TypeEvent _uuid="6U1PS6]wULEE4tg]WN3big" name="birthday.remind.deploy" label="M#12cn16生日个人提醒" note="M#" is_valid="Y" event_group_name="logic.person.user" event_type_name="birthday.remind.deploy" priority_cd="M" />
+    <Schedule _uuid="jU3xnIXMekYiqvtO[Wofjg" name="birthday.remind.sync" label="M#12cn14计划同步" note="M#" is_valid="Y" begin_date="20090901155216" end_date="20990101000000">
+      <Day _uuid="VEF3[oPMO9CYlZh[6GPigQ" name="birthdayPersonSync" label="M#12cn14按天执行" note="M#" is_valid="Y" execute_time="20100112150736" statue_cd="P" type_cd="D" interval="1" />
+    </Schedule>
+  </Type>
+  <Type _uuid="eEyqojPtp4zuNaYGFyR2tA" name="birthday.superior.remind.deploy" label="M#12cn211人力资源-生日上级提醒" note="M#" is_valid="N">
+    <TypeEvent _uuid="J0iTwbAUPYb5Xfq7PJRltA" name="birthday.superior.remind.deploy" label="M#12cn16生日上级提醒" note="M#" is_valid="Y" event_group_name="logic.person.user" event_type_name="birthday.superior.remind.deploy" priority_cd="M" />
+    <Schedule _uuid="2EdW3s2FfY]M5o]J[NL[gw" name="birthday.superior.remind.sync" label="M#12cn14计划同步" note="M#" is_valid="Y" begin_date="20010111191615" end_date="20990118191638">
+      <Day _uuid="BESD2ua4cVkmGpvfQmedrw" name="birthdaySuperiorSync" label="M#12cn14按天执行" note="M#" is_valid="Y" execute_time="20100112150436" statue_cd="P" type_cd="D" interval="1" />
+    </Schedule>
+  </Type>
+  <Type _uuid="7UH4Xh[UDoQ11q]z5JT3pg" name="formal.remind" label="M#12cn212人力资源-转正提醒管理员" note="M#" is_valid="Y">
+    <TypeEvent _uuid="GEVTlaw3AUui0XyrBx9ypw" name="formal.remind" label="M#12cn14转正提醒" note="M#" is_valid="Y" event_group_name="logic.person.user" event_type_name="formal.remind" priority_cd="M" />
+    <Schedule _uuid="Xkgt5uWVoLlKUODuM5[xgQ" name="deploy.week.sync" label="M#12cn14按周执行" note="M#" is_valid="Y" begin_date="20090101145549" end_date="20990101000000">
+      <Week _uuid="7ER5QQELPNg6KfK24FWNig" name="syncWeek" label="M#12cn17每周星期一执行" note="M#" is_valid="Y" execute_time="20000101070000" statue_cd="P" type_cd="E" interval="1" day_flag="1000000" />
+    </Schedule>
+  </Type>
+  <Type _uuid="60V4W0gRrWICoAx3u3jKpQ" name="birthday.manager.remind" label="M#12cn212人力资源-生日管理员提醒" note="M#" is_valid="Y">
+    <TypeEvent _uuid="VkGbkfL8[Vq5xMFidNTong" name="birthday.manager.remind" label="M#12cn12提醒" note="M#" is_valid="Y" event_group_name="logic.person.user" event_type_name="birthday.manager.remind" priority_cd="M" />
+    <Schedule _uuid="VEcKwPccsE5gH6tbV3gEng" name="deploy.month.day.sync" label="M#12cn17每月的某天同步" note="M#" is_valid="Y" begin_date="20090101202324" end_date="20991201202326">
+      <MonthDay _uuid="z0rm[U6X0NzoyvsbnRB6tA" name="syncMonthDay" label="M#12cn12同步" note="M#" is_valid="Y" execute_time="20100426070000" statue_cd="P" type_cd="M" interval="1" day_flag="0000000000000000000000000010000" month_flag="111111111111" update_date="20100426202707" />
+    </Schedule>
+  </Type>
+  <Type _uuid="hkxI2OF]tk3OBTpc8qCiug" name="contract.status" label="M#12cn211人力资源-监视合同状态" note="M#" is_valid="Y">
+    <TypeEvent _uuid="ekmlmr6fuHQFZFPv[33ogA" name="contract.status" label="M#12cn16修改合同状态" note="M#" is_valid="Y" event_group_name="logic.person.user" event_type_name="contract.status" priority_cd="H" />
+    <Schedule _uuid="DEji]ai1eY062uM[64iiqw" name="modifyStatus" label="M#12cn16修改合同状态" note="M#" is_valid="Y" begin_date="20090101000000" end_date="20990720000000">
+      <Day _uuid="iEES[1nL8MMZwZg]xZI2uQ" name="modifyDay" label="M#12cn14按天执行" note="M#" is_valid="Y" execute_time="20100701000000" statue_cd="P" type_cd="D" interval="1" />
+    </Schedule>
+  </Type>
+  <Type _uuid="rE]LWJ7eC0tk1pOmavrfoA" name="contract.renewal.remaind" label="M#12cn211人力资源-合同续签提醒" note="M#" is_valid="Y">
+    <TypeEvent _uuid="T0gMfglDMIFF3WlPdjTNqA" name="user.reamaind" label="M#12cn18合同续签提醒事件" note="M#" is_valid="Y" event_group_name="logic.person.user" event_type_name="contract.renewal.week" priority_cd="H" />
+    <Schedule _uuid="2EBARmsPxa[DsASC9gOetQ" name="contract.renewal.remaind" label="M#12cn15每周一提醒" note="M#" is_valid="Y" begin_date="20080328154915" end_date="22220728000000">
+      <Week _uuid="BEcByI7e7KcO43PB0X1Png" name="week1" label="M#12cn15每周一执行" note="M#" is_valid="Y" execute_time="20100528030000" statue_cd="P" type_cd="E" interval="1" day_flag="1000000" update_date="20100725155108" />
+    </Schedule>
+  </Type>
+</Group>
+

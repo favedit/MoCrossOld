@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="8knzls4MxKE8G]V3q5anqA" name="person.user.company" label="M#12cn17用户-公司信息" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="PM_USER_COMPANY" data_alias="PM_USR_CMP" data_logic="PM_USER_COMPANY_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="gUBGSDaI]YpFlbrDQgBduQ" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#" is_unique="Y" is_store="Y" is_abstract="N" data_name="USER_ID" data_type="Integer" data_refer="person.user" />
+  <FieldInteger _uuid="bEqtoQpAy2[hadH14jsFiw" name="organization_id" label="M#12cn14组织标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ORGANIZATION_ID" data_refer="person.organization" />
+  <FieldInteger _uuid="kkjjBfYQbPbicMjlfGeSgA" name="duty_level_id" label="M#12cn14职级标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DUTY_LEVEL_ID" data_refer="person.duty.level" />
+  <FieldInteger _uuid="Y0j4DW7iITAL6qvG6Yp]sg" name="duty_id" label="M#12cn14职位标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DUTY_ID" data_refer="person.duty" />
+  <FieldInteger _uuid="LkDu5LfazQsRqH1CAGmOnA" name="job_id" label="M#12cn14岗位标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="JOB_ID" data_refer="person.duty.job" />
+  <FieldInteger _uuid="w0wTvPzEWExYdKMwsbESsA" name="calendar_id" label="M#12cn14日历标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CALENDAR_ID" data_refer="common.calendar" />
+  <FieldString _uuid="6EqxlOVaTAUjuodh997EvA" name="work_number" label="M#12cn12工号" is_valid="Y" note="M#" is_null="Y" is_unique="Y" is_store="Y" is_abstract="N" data_name="WORK_NUMBER" data_size="10" />
+  <FieldString _uuid="8kcrTL0glSk[QBmq7iaipQ" name="english_name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ENGLISH_NAME" data_size="80" />
+  <FieldEnum _uuid="]UOk3Ss4wcWCrxqRqXW8gA" name="type_cd" label="M#12cn14员工类型" is_valid="Y" note="M#12cn211正式/试用/实习/临时" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_type="Enum" data_size="1" data_code="person.user.work" />
+  <FieldEnum _uuid="1Ul37rV2dhHDP7[NTnLtrA" name="service_cd" label="M#12cn14在职状态" is_valid="Y" note="M#12cn18在职/离职/退休" is_null="Y" is_store="Y" is_abstract="N" data_name="SERVICE_CD" data_size="1" data_code="person.user.company.service" />
+  <FieldString _uuid="r0oY79n9gq3nWhkhhRm9ng" name="extension" label="M#12cn13分机号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EXTENSION" data_size="8" />
+  <FieldString _uuid="wkQaMTZY9d4MWg5oSpgikg" name="mail" label="M#12cn16公司内网邮箱" is_valid="Y" note="M#" is_null="Y" is_unique="Y" is_store="Y" is_abstract="N" data_name="MAIL" data_type="String" data_size="100" />
+  <FieldString _uuid="yUzDu[trXQofx99Uxo3zhQ" name="external_mail" label="M#12cn16公司外网邮箱" is_valid="Y" note="M#" is_null="Y" is_unique="Y" is_store="Y" is_abstract="N" data_name="EXTERNAL_MAIL" data_size="100" />
+  <FieldDate _uuid="tUre460ug7JIzyWGjeSuhA" name="entry_date" label="M#12cn14入职日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="ENTRY_DATE" data_type="Date" />
+  <FieldDate _uuid="kkds2huhwL0qchYwwKSGng" name="leave_date" label="M#12cn14离职日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LEAVE_DATE" />
+  <FieldContent _uuid="z0]YM09rltr]1EvZebCGmg" name="leave_reason" label="M#12cn14离职原因" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LEAVE_REASON" />
+  <FieldBoolean _uuid="r0R6FnxMSzdjCNEmWuS]hA" name="is_probation" label="M#12cn14是否转正" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="Y" data_name="IS_PROBATION" />
+  <FieldDate _uuid="O0kiimvPOaOGS]A1u]U4jQ" name="test_date" label="M#12cn14试用日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TEST_DATE" />
+  <FieldDate _uuid="xU6Gkc9B3x3bfuFvDrMUkg" name="probation_date" label="M#12cn14转正日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="Y" data_name="PROBATION_DATE" />
+  <FieldDate _uuid="VENMtReTO[XIhBL9fcGgrg" name="begin_date" label="M#12cn16年假开始日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BEGIN_DATE" />
+  <FieldTimeSpan _uuid="CEA8lt9A8ZOBHUWIUKL0qA" name="vacation_initial_ts" label="M#12cn14初始年假" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="VACATION_INITIAL_TS" />
+  <FieldFloat _uuid="3UKHTToysLcZD342YStLuA" name="vacation_initial" label="M#12cn14初始年假" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="VACATION_INITIAL" />
+  <FieldTimeSpan _uuid="Ykzkd0BO6GP4rNDi[4vYkg" name="vacation_actual_ts" label="M#12cn14实际年假" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="VACATION_ACTUAL_TS" />
+  <FieldFloat _uuid="NEaccns5zNhRMSvaHI[cvQ" name="vacation_actual" label="M#12cn14实际年假" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="VACATION_ACTUAL" />
+  <FieldInteger _uuid="MU9WOlSAEfYJo8JPWqgTqA" name="door_card_number" label="M#12cn13门卡号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DOOR_CARD_NUMBER" />
+  <FieldContent _uuid="EEq29]0IseO8sEOr09N2rw" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

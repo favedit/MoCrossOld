@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="gEMjKMMECnGUZqtzDM9GvA" name="logic.person.LF_AS_VT.mail" label="假期管理" is_valid="Y" note="M#">
+  <Define _uuid="HEi6fQTUIXZTfugnzHvgpQ" name="mail_content_type" label="邮件类型" is_valid="Y" note="M#" value="Html" />
+  <Variable _uuid="k0y5ea8sCz1[B9wu552CnQ" name="user_full_label" label="申请人" is_valid="Y" note="M#" />
+  <Variable _uuid="yU5qznf5krgHZV8qwNrzsg" name="phone_number" label="联系电话" is_valid="Y" note="M#" />
+  <Variable _uuid="G0APrR1Bmp5qZAJffjuxug" name="org_label" label="所属部门" is_valid="Y" note="M#" />
+  <Variable _uuid="5Uj4Gblszl[Zj6samomdtQ" name="begin_date" label="开始时间" is_valid="Y" note="M#" />
+  <Variable _uuid="L0JScOjvTml0X9rkjDIong" name="end_date" label="结束时间" is_valid="Y" note="M#" />
+  <Variable _uuid="0EirC31sbnp[E9SWfY1VnA" name="create_date" label="申请时间" is_valid="Y" note="M#" />
+  <Variable _uuid="9EgYR3aPDmq8GTqeKEeQmg" name="reason_note" label="请假原因" is_valid="Y" note="M#" />
+  <Variable _uuid="WEx1M9p]QcIVupCKUrO]rw" name="examine_user_id" label="审核者编号" is_valid="Y" note="M#" />
+  <Variable _uuid="d0[3OpdG2I2uewooeZO5ig" name="examine_user_label" label="审核者名称" is_valid="Y" note="M#" />
+  <Variable _uuid="v0llqQz[XV9H8DSAOBPMlg" name="examine_note" label="审核原因" is_valid="Y" note="M#" />
+  <Variable _uuid="gkOMyC0YSU87lFhQ62ILrQ" name="type_label" label="假期类型" is_valid="Y" note="M#" />
+  <Variable _uuid="xUYM49q19]Ose8lZexESvQ" name="redirect" label="url地址" is_valid="Y" note="M#" />
+  <Variable _uuid="FEJHVab4nPVvj4nldsadkA" name="user_mail" label="申请者邮件" is_valid="Y" note="M#" />
+  <Variable _uuid="pU]vOyeD1rp6qRGd][jCjQ" name="work_number" label="工号" is_valid="Y" note="M#" />
+  <Variable _uuid="oErD]SAWSyxbYlaxI9TUqw" name="company_label" label="公司名称" is_valid="Y" note="M#" />
+  <Source _uuid="vEURDJyiSPg6JzKFltTejQ" name="extend.notify.head" label="延期通知-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【年假延期申请】 <jt:item source='$config.to_user_labels'/>您好，<jt:item source='$config.user_full_label'/>申请年假延期请审核。]]></Source>
+  <Source _uuid="5EP1tuzfV9sxoHLxxBzSgA" name="extend.notify.body" label="延期通知-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='假期管理 → 年假延期审核通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><FONT COLOR='#336699'><jt:item source='$config.user_full_label'/>申请年假延期，请您审核。</FONT></TD></TR>
+      <TR><TD><FONT COLOR='#336699'>审核地址为：</FONT><A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#d8571d'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>申请者信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+   <TR>
+      <TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.user_full_label'/> (<jt:item source='$config.work_number'/>)</TD>
+      <TD class='ItemHead' width='15%'>邮件</TD>
+      <TD class='ItemData'><A href='mailto:<jt:item source='$config.user_mail'/>'><jt:item source='$config.user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>公司</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.company_label'/></TD>
+      <TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.phone_number'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.org_label'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>年假</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.available_ts'/></TD>
+      <TD class='ItemHead' width='15%'>剩余年假</TD>
+      <TD class='ItemData'><jt:item source='$config.remain_vacation'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>年假开始日期</TD>
+      <TD width="30%" class='ItemData'><jt:timeSpan source='$config.begin_date' type='date' format='YYYY-MM-DD' /></TD>
+      <TD class='ItemHead' width='15%'>年假结束日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.end_date' type='date' format='YYYY-MM-DD'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>申请年假延期信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+   <TR>
+      <TD class='ItemHead' width='15%'>延期原因</TD>
+      <TD colspan="4" class='ItemData'><Pre class="PreSyl"><jt:item source='$config.extend_note'/></Pre></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="2EusP9grl9Swm49jabqRlQ" name="extend.pass.head" label="延期审核通过-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【请假申请】 <jt:item source='$config.user_full_label'/>您好，申请年假延期已经审核通过。]]></Source>
+  <Source _uuid="cEvBb4sGolp3940cXohIgg" name="extend.pass.body" label="延期审核通过-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='假期管理 → 假期审核通过通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><FONT COLOR='336699'>申请年假延期审核通过。</FONT></TD></TR>
+   </TABLE>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>年假延期申请信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+   <TR>
+      <TD class='ItemHead' width='15%'>年假</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.available_ts'/></TD>
+      <TD class='ItemHead' width='15%'>剩余年假</TD>
+      <TD class='ItemData'><jt:item source='$config.remain_vacation'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>年假开始日期</TD>
+      <TD width="30%" class='ItemData'><jt:timeSpan source='$config.begin_date' type='date' format='YYYY-MM-DD' /></TD>
+      <TD class='ItemHead' width='15%'>年假结束日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.end_date' type='date' format='YYYY-MM-DD'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="BEay0ME6hVKGqVjh7[dPlw" name="extend.pass.cc.head" label="抄送延期审核通过-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【请假申请】 <jt:item source='$config.to_user_labels'/>您好，<jt:item source='$config.user_full_label'/>申请的年假延期已经审核通过，请您查看。]]></Source>
+  <Source _uuid="y0ZM9qq3zOX9Q6qA66Sxiw" name="extend.pass.cc.body" label="抄送延期审核通过-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='假期管理 → 假期审核通过通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><FONT COLOR='336699'><jt:item source='$config.user_full_label'/>申请的年假延期已审核通过。</FONT></TD></TR>
+   </TABLE>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>申请者信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+   <TR>
+      <TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.user_full_label'/> (<jt:item source='$config.work_number'/>)</TD>
+      <TD class='ItemHead' width='15%'>邮件</TD>
+      <TD class='ItemData'><A href='mailto:<jt:item source='$config.user_mail'/>'><jt:item source='$config.user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>公司</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.company_label'/></TD>
+      <TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.phone_number'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.org_label'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>年假延期申请信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+   <TR>
+      <TD class='ItemHead' width='15%'>年假</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.available_ts'/></TD>
+      <TD class='ItemHead' width='15%'>剩余年假</TD>
+      <TD class='ItemData'><jt:item source='$config.remain_vacation'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>年假开始日期</TD>
+      <TD width="30%" class='ItemData'><jt:timeSpan source='$config.begin_date' type='date' format='YYYY-MM-DD' /></TD>
+      <TD class='ItemHead' width='15%'>年假结束日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.end_date' type='date' format='YYYY-MM-DD'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>延期原因</TD>
+      <TD colspan="4" class='ItemData'><Pre class="PreSyl"><jt:item source='$config.extend_note'/></Pre></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+   <jt:notEmpty source='$parameter.examine_lists'>
+      <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>审核信息：</B>
+      <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">审核状态</td>
+         <TD class='ItemHead' width='80' align="center">审核者</td>
+         <TD class='ItemHead' width='170' align="center">审核角色</td>
+         <TD class='ItemHead' align="center">审核原因</td>
+         <TD class='ItemHead' width='180' align="center">审核时间</td>
+      </TR>
+      <jt:loop source='$parameter.examine_lists' alias='examine_list'>
+         <TR>
+            <TD class='ItemData' align="center" width='60'><jt:item source='$examine_list.status_label'/></TD>
+            <TD class='ItemData' align="center" width='80'><jt:item source='$examine_list.examine_user_label'/></TD>
+            <TD class='ItemData' align="left" width='170'><jt:item source='$examine_list.examine_role_label'/></TD>
+            <TD class='ItemData' align="left"><Pre class="PreSyl"><jt:item source='$examine_list.examine_note'/></Pre></TD>
+            <TD class='ItemData' align="center" width='180'><jt:item source='$examine_list.examine_date'/></TD>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="TkN6HlPK6ERcNlAz83C[jg" name="remain.examine.head" label="提醒待审核-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【请假申请】 <jt:item source='$config.to_user_labels'/>您好，假期待审核通知，请您查看。]]></Source>
+  <Source _uuid="XEItplWTxXQGJxtBeumujw" name="remain.examine.body" label="提醒待审核-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='假期管理 → 假期待审核通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><FONT COLOR='336699'>共【<jt:item source='$config.rest_count'/>】条假期需要您审核，为了避免因不及时审核所导致的员工考勤结算数据不准确，请您务必于【<jt:item source='$config.end_date'/>】之前审核。</FONT></TD></TR>
+      <TR><TD><FONT COLOR='#336699'>审核地址为：</FONT><A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#d8571d'>请点击这里</B></A></TD></TR>
+   </TABLE>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="DE]DbKnznbXKH2ldF480iw" name="extend.fail.head" label="延期审核取消-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【年假延期申请】 <jt:item source='$config.user_full_label'/>您好，申请年假延期审核未通过。]]></Source>
+  <Source _uuid="z0C[hst40QwYlz7yZ6rumg" name="extend.fail.body" label="延期审核取消-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='假期管理 → 年假延期审核未通过通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><FONT COLOR='#336699'>申请年假延期审核未通过。</FONT></TD></TR>
+   </TABLE>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'><jt:item source='$config.type_label'/>审核信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+   <TR>
+      <TD class='ItemHead' width='15%'>审核者</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.examine_user_label'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>审核原因</TD>
+      <TD colspan="4" class='ItemData'><Pre class="PreSyl"><jt:item source='$config.examine_note'/></Pre></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>申请年假延期信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+   <TR>
+      <TD class='ItemHead' width='15%'>年假</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.available_ts'/></TD>
+      <TD class='ItemHead' width='15%'>剩余年假</TD>
+      <TD class='ItemData'><jt:item source='$config.remain_vacation'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>年假开始日期</TD>
+      <TD width="30%" class='ItemData'><jt:timeSpan source='$config.begin_date' type='date' format='YYYY-MM-DD' /></TD>
+      <TD class='ItemHead' width='15%'>年假结束日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.end_date' type='date' format='YYYY-MM-DD'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>延期原因</TD>
+      <TD colspan="4" class='ItemData'><Pre class="PreSyl"><jt:item source='$config.extend_note'/></Pre></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="yEleOT367B6UaJVWSXYkqw" name="extend.cancel.head" label="延期取消-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【请假申请】 <jt:item source='$config.to_user_labels'/>您好，<jt:item source='$config.user_full_label'/>取消了年假延期申请。]]></Source>
+  <Source _uuid="a0ai]KBDNNPL5XkfIjWqmg" name="extend.cancel.body" label="延期取消-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='假期管理 → 申请者取消请假通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><FONT COLOR='#336699'><jt:item source='$config.user_full_label'/>取消了年假延期申请。</FONT></TD></TR>
+      <TR><TD></TD></TR>
+   </TABLE>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>申请者信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+   <TR>
+      <TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.user_full_label'/> (<jt:item source='$config.work_number'/>)</TD>
+      <TD class='ItemHead' width='15%'>邮件</TD>
+      <TD class='ItemData'><A href='mailto:<jt:item source='$config.user_mail'/>'><jt:item source='$config.user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>公司</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.company_label'/></TD>
+      <TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.phone_number'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.org_label'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>申请年假延期信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+   <TR>
+      <TD class='ItemHead' width='15%'>年假</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.available_ts'/></TD>
+      <TD class='ItemHead' width='15%'>剩余年假</TD>
+      <TD class='ItemData'><jt:item source='$config.remain_vacation'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>年假开始日期</TD>
+      <TD width="30%" class='ItemData'><jt:timeSpan source='$config.begin_date' type='date' format='YYYY-MM-DD' /></TD>
+      <TD class='ItemHead' width='15%'>年假结束日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.end_date' type='date' format='YYYY-MM-DD'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>延期原因</TD>
+      <TD colspan="4" class='ItemData'><Pre class="PreSyl"><jt:item source='$config.extend_note'/></Pre></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="[khx1yQqxIWT[C30yrMkpA" name="extend.revoke.head" label="延期撤销-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【请假申请】 <jt:item source='$config.user_full_label'/>您好，管理员已经撤销了您的年假延期申请。]]></Source>
+  <Source _uuid="FUUnTs9LLRpS3gdmqszkqA" name="extend.revoke.body" label="延期撤销-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='假期管理 → 管理员撤销通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><FONT COLOR='#336699'>管理员撤销了您的年假延期申请。</FONT></TD></TR>
+      <TR><TD></TD></TR>
+   </TABLE>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>请<jt:item source='$config.type_label'/>信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+   <TR>
+      <TD class='ItemHead' width='15%'>年假</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.available_ts'/></TD>
+      <TD class='ItemHead' width='15%'>剩余年假</TD>
+      <TD class='ItemData'><jt:item source='$config.remain_vacation'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>年假开始日期</TD>
+      <TD width="30%" class='ItemData'><jt:timeSpan source='$config.begin_date' type='date' format='YYYY-MM-DD' /></TD>
+      <TD class='ItemHead' width='15%'>年假结束日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.end_date' type='date' format='YYYY-MM-DD'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>延期原因</TD>
+      <TD colspan="4" class='ItemData'><Pre><jt:item source='$config.reason_note'/></Pre></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>撤销备注</TD>
+      <TD colspan="4" class='ItemData'><Pre class="PreSyl"><jt:item source='$config.note'/></Pre></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

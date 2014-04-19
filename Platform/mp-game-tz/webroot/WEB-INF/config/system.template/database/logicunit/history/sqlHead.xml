@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="LE6F1y9VMdTskxAGvX6ylw" name="database.logicunit.history.sqlHead" is_valid="Y" note="M#">
+  <Source _uuid="7k]wPT0ivOl9km67BLE8iw" is_valid="Y" note="M#"><![CDATA[-------------------------------------------
+-- <jt:item source='$dataset.name' format='upper'/>
+--
+-- Copyright 2008 Microbject Corporation. All Rights Reserved.
+-- 模板版本: 1.01
+---------+----+---------------------------------------------
+-- 日期   作者 描述信息
+---------+----+---------------------------------------------
+------------------------------------------------------------
+
+DEFINE DF_LOGIC            = '<jt:item source='$dataset.name'/>';
+DEFINE DF_VIEW_OLD         = '<jt:item source='$dataset.data_name'/>';
+DEFINE DF_VIEW             = '<jt:item source='$dataset.data_name'/>_HV';
+DEFINE DF_DATASET          = '<jt:item source='$dataset.data_name'/>_HS';
+DEFINE DF_PACKAGE          = '<jt:item source='$dataset.data_name'/>_HI';
+
+--========================================================--
+-- 视图定义区
+--========================================================--
+PROMPT Deploy view: &DF_VIEW;
+
+CREATE OR REPLACE VIEW &DF_VIEW AS
+SELECT
+   OUHD,
+<jt:loop source='$fields' alias='field'>
+   <jt:item source='$field.data_name' format='field'/><jt:position source='$field' type='last' elseValue=','/>
+</jt:loop>
+FROM &DF_DATASET
+<jt:Equals source='$dataset.is_specialize' value='Y'>
+WHERE OBJ_TYPE LIKE '&LG_NAME%'
+</jt:Equals>
+<jt:Equals source='$dataset.is_generalize' value='Y'>
+WHERE OBJ_TYPE LIKE '&LG_NAME%'
+</jt:Equals>
+WITH READ ONLY;
+
+--========================================================--
+-- 公共数据接口
+--========================================================--
+PROMPT Deploy Interface: &DF_PACKAGE;
+
+-- Package define begin ------------------------------------
+CREATE OR REPLACE PACKAGE &DF_PACKAGE IS
+
+--========================================================--
+-- 静态定义区
+--========================================================--
+LG_NAME                    CONSTANT VARCHAR2(<jt:Length source='$dataset.name'/>) := '&DF_LOGIC';
+PK_NAME                    CONSTANT VARCHAR2(<jt:Length source='$dataset.data_name' add='3'/>) := '&DF_PACKAGE';
+DS_NAME                    CONSTANT VARCHAR2(<jt:Length source='$dataset.data_name' add='3'/>) := '&DF_DATASET';
+VW_NAME                    CONSTANT VARCHAR2(<jt:Length source='$dataset.data_name' add='3'/>) := '&DF_VIEW';
+
+------------------------------------------------------------
+FD_OUHD                    CONSTANT VARCHAR2(4) := 'OUHD';
+<jt:loop source='$fields' alias='field'>
+FD_<jt:item source='$field.data_name' format='field' rpad='23'/> CONSTANT VARCHAR2(<jt:length source='$field.data_name'/>) := '<jt:item source='$field.data_name' format='field'/>';
+</jt:loop>
+
+--========================================================--
+-- 基本功能函数区
+--========================================================--
+
+------------------------------------------------------------
+-- 将打包字符串的内容解包，按照名称放入一个记录对象中。
+--
+-- @param params_ 打包字符串
+-- @return 记录对象
+FUNCTION To_Record(
+      params_              IN     VARCHAR2
+   ) RETURN &DF_VIEW%ROWTYPE;
+
+------------------------------------------------------------
+-- 将打包字符串的内容解包，按照名称和一个指定的记录对象进行合并操作。
+-- 如果打包字符串中含有某项，就会覆盖记录对象上对应的内容。
+--
+-- @param params_ 打包字符串
+-- @param rec_ 记录对象
+PROCEDURE To_Record(
+      params_              IN     VARCHAR2,
+      rec_                 IN OUT &DF_VIEW%ROWTYPE);
+
+------------------------------------------------------------
+-- 将记录对象中所有字段数据打包成一个字符串。
+--
+-- @param rec_ 记录对象
+-- @return 打包字符串
+FUNCTION To_Params(
+      rec_                 IN     &DF_VIEW%ROWTYPE
+   ) RETURN VARCHAR2;
+
+------------------------------------------------------------
+-- 查询当前数据集中是否含有指定的编号。
+--
+-- @param object_id_ 对象的编号
+-- @return TRUE：含有<BR/>FALSE：不含有
+FUNCTION Contains(
+      object_id_           IN     &DF_VIEW..OUID%TYPE
+   ) RETURN BOOLEAN;
+
+------------------------------------------------------------
+-- 查询当前数据集中是否含有指定的编号。
+-- <L>若存在则返回被查询的记录对象。</L>
+-- <L>如果记录不存在，则产生记录不存在的例外。</L>
+--
+-- @param object_id_ 对象编号
+-- @return 记录对象
+-- @see CP_MESSAGE.Raise_No_Record
+FUNCTION Get(
+      object_id_           IN     &DF_VIEW..OUID%TYPE
+   ) RETURN &DF_VIEW%ROWTYPE;
+
+------------------------------------------------------------
+-- 查询当前数据集中是否含有指定的编号。
+-- 该查询不会发生例外，查询完后，可以根据存在标志判断当前记录是否存在。
+-- <L>若存在则返回被查询的记录对象。</L>
+--
+-- @param object_id_ 对象编号
+-- @param exists_ 存在标志
+-- @return 记录对象
+FUNCTION Find(
+      object_id_           IN     &DF_VIEW..OUID%TYPE,
+      exists_              IN OUT BOOLEAN
+   ) RETURN &DF_VIEW%ROWTYPE;
+
+------------------------------------------------------------
+-- 根据记录编号查找一条记录，将记录的所有字段数据打包成一个字符串。
+--
+-- @param object_id_ 对象编号
+-- @return 打包字符串
+FUNCTION Pack(
+      object_id_           IN     &DF_VIEW..OUID%TYPE
+   ) RETURN VARCHAR2;
+
+------------------------------------------------------------
+-- 获得当前数据集对应的序列的编号。
+--
+-- @return 序列的编号
+FUNCTION Current_Id
+   RETURN INTEGER;
+
+------------------------------------------------------------
+-- 获得当前数据集对应的序列的下一个编号。
+--
+-- @return 序列的编号
+FUNCTION Next_Id
+   RETURN INTEGER;
+
+--========================================================--
+-- 数据处理区
+--========================================================--
+
+------------------------------------------------------------
+-- 在数据集内新建一条记录。
+--
+-- @param logic_ 业务逻辑
+-- @param rec_ 记录对象
+-- @param check_ 检查标志
+PROCEDURE Do_Insert(
+      logic_               IN OUT VARCHAR2,
+      action_              IN OUT VARCHAR2,
+      rec_                 IN OUT &DF_VIEW_OLD%ROWTYPE);
+
+--========================================================--
+-- 查找函数定义区
+--========================================================--
+
+<jt:loop source='$fields' alias='field' filter='$field.is_unique=Y'>
+------------------------------------------------------------
+-- 根据<jt:item source='$field.label'/>(<C><jt:item source='$field.data_name' format='upper'/></C>)查找当前记录的编号。
+--
+-- @param <jt:item source='$field.data_name' format='Lower'/>_ <jt:item source='$field.label'/>
+-- @return <jt:item source='$field.label'/>
+FUNCTION Get_Id_By_<jt:item source='$field.data_name' format='db.func'/>(
+      <jt:item source='$field.data_name' format='Lower'/>_                IN     &DF_VIEW..<jt:item source='$field.data_name'/>%TYPE
+   ) RETURN &DF_VIEW..OUID%TYPE;
+
+</jt:loop>
+<jt:loop source='$fields' alias='field' filter='$field.is_key!=Y'>
+------------------------------------------------------------
+-- 根据记录的编号查找<jt:item source='$field.label'/>(<C><jt:item source='$field.data_name'/></C>)的数据内容。
+--
+-- @param object_id_ 记录的编号
+-- @return <jt:item source='$field.label'/>
+FUNCTION Get_<jt:item source='$field.data_name' format='db.func'/>(
+      object_id_           IN     &DF_VIEW..OUID%TYPE
+   ) RETURN &DF_VIEW..<jt:item source='$field.data_name'/>%TYPE;
+
+<jt:Equals source='$field.type' value='enum'>
+------------------------------------------------------------
+-- 根据记录的编号查找<jt:item source='$field.label'/>(<C><jt:item source='$field.data_name'/></C>)的显示内容。
+--
+-- @param object_id_ 记录的编号
+-- @return <jt:item source='$field.label'/>
+FUNCTION Get_<jt:item source='$field.data_name' removeLast='_Cd' format='db.func'/>_Label(
+      object_id_           IN     &DF_VIEW..OUID%TYPE
+   ) RETURN VARCHAR2;
+
+</jt:Equals>
+</jt:loop>
+END &DF_PACKAGE;
+-- Package define End --------------------------------------
+/
+SHOW ERROR]]></Source>
+</Template>
+

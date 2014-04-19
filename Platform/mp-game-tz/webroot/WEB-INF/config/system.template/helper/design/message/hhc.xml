@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template asd="oU1HrXz1TnqU8wJo0iXPtg" name="helper.design.message.hhc" is_valid="Y" note="M#">
+  <Source asd="LkrtYqHDKRCjoY[NwJbTgg" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+  <param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+  <LI><OBJECT type="text/sitemap">
+	<param name="Name" value="简介">
+  </OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap">
+        <param name="Name" value="介绍">
+	    <param name="Local" value="src/design.message/introduction.html">
+    </OBJECT>
+  </UL>
+</UL>
+<UL>
+  <LI><OBJECT type="text/sitemap">
+      <param name="Name" value="目录">
+	  <param name="Local" value="src/design.message/rightGroupList.html">
+  </OBJECT>
+  <jt:loop source='$config' alias='messageGroup'>
+    <jt:Equals source='$messageGroup._type' value='Group'>
+      <UL>
+	    <LI><OBJECT type="text/sitemap">
+		    <param name="Name" value="<jt:item source='$messageGroup.name'/> (<jt:item source='$messageGroup.label'/>)">
+		    <param name="Local" value="src/design.message/<jt:item source='$messageGroup.file_path' format='lower'/>/home.html">
+		    <PARAM NAME="ImageNumber" value="1">
+		</OBJECT>
+		<jt:loop source='$messageGroup' alias='groupChild'>
+		  <UL>
+			<LI><OBJECT type="text/sitemap">
+		      <param name="Name" value="<jt:item source='$groupChild.name'/> (<jt:item source='$groupChild.label'/>)">
+		      <param name="Local" value="src/design.message/<jt:item source='$groupChild.file_path' format='lower'/>.html">
+		      <jt:Equals source='$groupChild._type' value='Message'>
+		        <PARAM NAME="ImageNumber" value="25">
+		      </jt:Equals>
+		      <jt:Equals source='$groupChild._type' value='Enum'>
+		        <PARAM NAME="ImageNumber" value="27">
+		      </jt:Equals>
+		      <jt:Equals source='$groupChild._type' value='Type'>
+		        <PARAM NAME="ImageNumber" value="13">
+		      </jt:Equals>
+		      <jt:Equals source='$groupChild._type' value='Struct'>
+		        <PARAM NAME="ImageNumber" value="39">
+		      </jt:Equals>
+		    </OBJECT>
+		    <jt:loop source='$groupChild' alias='groupChild1'>
+              <UL>
+			    <LI><OBJECT type="text/sitemap">
+			      <param name="Name" value="<jt:item source='$groupChild1.name'/> (<jt:item source='$groupChild1.label'/>)">
+			      <param name="Local" value="src/design.message/<jt:item source='$groupChild1.file_path' format='lower'/>.html">
+			      <jt:Equals source='$groupChild1._type' value='Item'>
+			        <PARAM NAME="ImageNumber" value="41">
+			      </jt:Equals>
+			      <jt:Equals source='$groupChild1._type' value='Enum'>
+			        <PARAM NAME="ImageNumber" value="27">
+			      </jt:Equals>
+			      <jt:Equals source='$groupChild1._type' value='Struct'>
+			        <PARAM NAME="ImageNumber" value="39">
+			      </jt:Equals>
+			      <jt:Equals source='$groupChild1._type' value='Member'>
+			        <PARAM NAME="ImageNumber" value="28">
+			      </jt:Equals>
+			    </OBJECT>
+			    <jt:loop source='$groupChild1' alias='groupChild2'>
+                  <UL>
+                    <LI><OBJECT type="text/sitemap">
+		              <param name="Name" value="<jt:item source='$groupChild2.name'/> (<jt:item source='$groupChild2.label'/>)">
+		              <param name="Local" value="src/design.message/<jt:item source='$groupChild2.file_path' format='lower'/>.html">
+		              <jt:Equals source='$groupChild2._type' value='Item'>
+		                <PARAM NAME="ImageNumber" value="41">
+		              </jt:Equals>
+		              <jt:Equals source='$groupChild2._type' value='Member'>
+		                <PARAM NAME="ImageNumber" value="28">
+		              </jt:Equals>
+		            </OBJECT>
+                  </UL>
+                </jt:loop>
+			  </UL>
+			</jt:loop>  
+		  </UL>
+		</jt:loop>
+      </UL>
+    </jt:Equals>
+  </jt:loop>
+</UL>
+</BODY></HTML>]]></Source>
+</Template>
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="NU1vH736V18Jht8PwlDQgA" name="game.template.shop.item" label="M#12cn15商城-物品" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_SHOP_ITEM" data_alias="GM_TPL_SHP_ITM" data_logic="GM_TPL_SHOP_ITEM_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="PUZb3dZparunmUsmABDTuQ" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="FUPXmDv[3gRX5XqHX6nmgw" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="4EdtZyFH2bkZtqzmmfAAlg" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="]0r1mRw8NgNFLp2NDfEQmg" name="label" label="M#12cn12标签" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldInteger _uuid="d0znkGytuxZ4jgBHpnWDuw" name="shop_tid" label="M#12cn14商城编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SHOP_TID" data_alias="SHP" data_refer="game.template.shop" />
+  <FieldEnum _uuid="REnNzoLY3CDa[8PI]pDylg" name="type_cd" label="M#12cn14商城类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="game.template.shop.type" />
+  <FieldEnum _uuid="okWd6FmsIeXesh3FL]kuug" name="item_cd" label="M#12cn14物品类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ITEM_CD" data_size="1" data_code="game.template.item" />
+  <FieldInteger _uuid="6UeGDturkZHmEAhlRzl4rA" name="item_tid" label="M#12cn16物品模板编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="ITEM_TID" />
+  <FieldInteger _uuid="00rHyZb]R1inSb9Yh9Qmpw" name="item_quality_tid" label="M#12cn14物品品质" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="ITEM_QUALITY_TID" data_alias="IQT" data_refer="game.template.item.quality" />
+  <FieldEnum _uuid="m0N3cYrzoTrNMry[i3XlhA" name="item_bind_cd" label="M#12cn16物品绑定类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ITEM_BIND_CD" data_size="1" data_code="game.template.item.bind" />
+  <FieldEnum _uuid="90YDX6QPTsixpDz2rjTokA" name="catalog1_cd" label="M#12cn16商城一级目录" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CATALOG1_CD" data_size="1" data_code="game.template.shop.catalog1" />
+  <FieldEnum _uuid="uU9QIyLeQe657IdW9[mIlA" name="catalog2_cd" label="M#12cn16商城二级目录" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CATALOG2_CD" data_size="1" data_code="game.template.shop.catalog2" />
+  <FieldEnum _uuid="CUrQO9AvE442qd7sDGhZoA" name="catalog3_cd" label="M#12cn16商城三级目录" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CATALOG3_CD" data_size="1" data_code="game.template.shop.catalog3" />
+  <FieldString _uuid="LUWfrtW5s9KpFR6EBcTmsA" name="currency_origin" label="M#12cn16基本货币原价" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CURRENCY_ORIGIN" data_size="40" />
+  <FieldString _uuid="pk7XQPbUSoEgu1eYPNcUkA" name="currency" label="M#12cn16基本货币现价" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CURRENCY" data_size="40" />
+  <FieldEnum _uuid="R0iaob[PBG73hB3ruSiQiA" name="currency_cd" label="M#12cn16基本货币类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CURRENCY_CD" data_size="1" data_code="game.template.currency" />
+  <FieldInteger _uuid="TUQjOhhxIlUnO3OT6kEHqg" name="currency_origin_value" label="M#12cn16其他货币原价" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CURRENCY_ORIGIN_VALUE" />
+  <FieldInteger _uuid="B0dgx6bCHdmlpb]b7suXrg" name="currency_value" label="M#12cn16其他货币现价" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CURRENCY_VALUE" />
+  <FieldEnum _uuid="iEj9XyReK3HcPwSYgT0ToA" name="sale_cd" label="M#12cn14销售类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SALE_CD" data_size="1" data_code="game.template.shop.sale" />
+  <FieldEnum _uuid="M0yCHN3j2GlZNwSKRlPIpw" name="sale_status_cd" label="M#12cn14销售状态" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SALE_STATUS_CD" data_size="1" data_code="game.template.sale.status" />
+  <FieldInteger _uuid="dUTHOef4VcN1CmQPL5b3tQ" name="limit_count" label="M#12cn16购买数量限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_COUNT" />
+  <FieldInteger _uuid="RUIKSQkGo3GLoQqzuNwuqw" name="refresh_count" label="M#12cn14刷新数量" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REFRESH_COUNT" />
+  <FieldInteger _uuid="U0RWKW5Gh2snT1T9WocynQ" name="refresh_interval_ts" label="M#12cn14刷新间隔" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REFRESH_INTERVAL_TS" />
+  <FieldEnum _uuid="VEge]CDkYOahD[IVunLylQ" name="valid_cd" label="M#12cn14有效方式" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="VALID_CD" data_size="1" data_code="game.template.shop.valid" />
+  <FieldDate _uuid="kEIZ4qB8LoxxnBVDzcpBvw" name="valid_begin_date" label="M#12cn16有效开始时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="VALID_BEGIN_DATE" />
+  <FieldDate _uuid="w0A3GxGpM[Bfe[pOTAeplw" name="valid_end_date" label="M#12cn16有效结束时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="VALID_END_DATE" />
+  <FieldEnum _uuid="l0mLohD1FoXYojiJeM60ig" name="item_shop_classify" label="M#12cn212GM工具专用商城道具分类" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ITEM_SHOP_CLASSIFY" data_size="2" data_code="game.template.tool.item.shop.classify" />
+  <FieldTemplate _uuid="RU0TDNXDJpqUmOg25TO5qw" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

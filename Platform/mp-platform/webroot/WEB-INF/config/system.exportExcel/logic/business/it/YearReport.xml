@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="dkHovHGCFGi5iUgDG[Fdow" name="logic.business.it.YearReport" label="工作日志-年报" is_valid="Y" fileName="reportLog(Year)[${QUERY_DATE}].xls" template="logic.business.it.yearReport">
+  <Sql _uuid="MElo6LnJSCq29G4J4pfWog" name="log_list" label="年报列表" is_valid="Y"><![CDATA[SELECT DATE_INFO.MONTH_DATE MONTH_DATE,
+       DATE_INFO.BEGIN_DATE,
+       DATE_INFO.END_DATE,
+       BS_IT_LOG_DI.Get_Status_Count(null, null, DATE_INFO.BEGIN_DATE, DATE_INFO.END_DATE) TOAL_WORK_NUM,
+       BS_IT_LOG_DI.Get_Status_Count(null, 'C', DATE_INFO.BEGIN_DATE, DATE_INFO.END_DATE) COMPLETED_NUM,
+       BS_IT_LOG_DI.Get_Status_Count(null, 'U', DATE_INFO.BEGIN_DATE, DATE_INFO.END_DATE) UNCOMLPLETED_NUM,
+       BS_IT_LOG_DI.Get_Status_Count(null, 'P', DATE_INFO.BEGIN_DATE, DATE_INFO.END_DATE) PROCESS_NUM,
+       BS_IT_LOG_DI.Get_Status_Count(null, 'O', DATE_INFO.BEGIN_DATE, DATE_INFO.END_DATE) OBSERVE_NUM
+ FROM (SELECT MONTH_DATE,
+              CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY') || '-' || MONTH_DATE || '-01') BEGIN_DATE,
+              LAST_DAY(CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY')|| '-' || MONTH_DATE)) END_DATE
+            FROM (SELECT ROWNUM AS MONTH_DATE FROM DUAL CONNECT BY LEVEL <= 12) MONTH_DATE_INFO) DATE_INFO]]></Sql>
+  <Sql _uuid="40[Z1OoW6tL7LAr5UGWvuA" name="type_list" label="类型统计列表" is_valid="Y"><![CDATA[SELECT TYPE_INFO.* FROM
+ (SELECT BS_IT_LOG_DI.Get_Status_Count(OUID, 'C', CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY') || '-' || '01-01'), LAST_DAY(CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY')|| '-12'))) TYPE_COMPLETED_NUM,
+        BS_IT_LOG_DI.Get_Status_Count(OUID, 'U', CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY') || '-' || '01-01'), LAST_DAY(CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY')|| '-12'))) TYPE_UNCOMLPLETED_NUM,
+        BS_IT_LOG_DI.Get_Status_Count(OUID, 'P', CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY') || '-' || '01-01'), LAST_DAY(CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY')|| '-12'))) TYPE_PROCESS_NUM,
+        BS_IT_LOG_DI.Get_Status_Count(OUID, 'O', CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY') || '-' || '01-01'), LAST_DAY(CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY')|| '-12'))) TYPE_OBSERVE_NUM, 
+        BS_IT_LOG_DI.Get_Type_Count(OUID, CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY') || '-' || '01-01'), LAST_DAY(CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY')|| '-12'))) TYPE_NUM,
+        LABEL TYPE_NAME 
+        FROM BS_IT_LOG_TYPE WHERE IS_VALID = 'Y') TYPE_INFO WHERE　TYPE_INFO.TYPE_NUM　!= 0]]></Sql>
+  <Sql _uuid="TUzZVI2kZstUdUzgLHBXrw" name="date_config" label="当前时间" is_valid="Y"><![CDATA[SELECT  TO_CHAR(CP_DATE.PARSE('${QUERY_DATE}'), 'YYYY') NOW_DATE FROM DUAL]]></Sql>
+</ExportExcel>
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebForm _uuid="okWJuXW2a]L8]tJwucgQhQ" name="system.project.ModuleForm" label="M#12cn19系统-测试模块表单" is_valid="Y" note="M#" disp_fetch="Y" disp_search="Y" disp_lov="Y" disp_zoom="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" disp_print="Y" style_refer="logic.process.ControlStyle" dataset="project.module" edit_insert="Y" edit_update="Y" edit_delete="Y" edit_copy="Y">
+  <Template _uuid="30CDPjPP8rjjrf7MKz0lsw" name="basicTemplate" label="M#12cn14基本模板" is_valid="Y" note="M#" template_name="system.project.BasicTemplate" />
+  <ToolBar _uuid="3kyCHauDfVYeQm8PxCP2jw" name="toolBar" label="M#12cn13工具栏" is_valid="Y" note="M#" width="100%" height="24" hebing="N">
+    <ToolButtonSplit _uuid="WEazGXGBheZcXkL17yBviw" name="split3Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="1UkdKBogAzdMD3uMxe7xug" name="insertButton" label="M#12cn15新建功能点" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#logic.project.point" page="insert@#/logic/project/Project.wa" attributes="_type=Point\nsel_type=component\nform_name=system.project.module.PointForm" />
+    <ToolButtonSplit _uuid="2kCBqzOycVPceGL9xiv]jg" name="split4Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="4U2fxCdi2L9[6w4y7P59rw" name="sortButton" label="M#12cn12排序" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#tools.sort" page="sort@#/logic/project/Project.wa" attributes="sel_type=component" />
+  </ToolBar>
+  <Select _uuid="G0ec0zElmLKSekbRcVYGug" name="statusCd" label="M#12cn14模块状态" is_valid="Y" note="M#" disp_search="Y" disp_lov="Y" disp_zoom="N" disp_insert="Y" disp_update="Y" disp_delete="Y" disp_print="Y" data_fetch="Y" data_name="STATUS_CD" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" label_position="left" edit_refer="{project.module.status}" edit_check="N" />
+  <Split _uuid="RkdoSEvF]Qfbj077nAfJuA" name="split" label="M#12cn14描述信息" is_valid="Y" note="M#" icon="ctl.radios" disp_type="H" />
+  <Memo _uuid="iEaUV7qQ9Zio9VgailwXlw" name="note" label="M#12cn12备注" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_lov="N" disp_zoom="N" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" style_label="label" style_edit="memoWide" data_name="NOTE" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" edit_overflow="N" />
+</WebForm>
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="o0purkfcGQp[h85XV365tg" name="eng-config" label="M#12cn14组件配置" is_valid="Y" note="M#" template="xmlobject" source="${export.core.engine.source}">
+   <Interface _uuid="vEHNpYFLQLb0RTVAQLnKhA" name="IObject" label="M#12cn14对象接口" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.eng.config.common.XObjectFace">
+      <Attribute _uuid="qUPxFtuKCrfJzZtnVgKNvQ" name="name" label="M#12cn12名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="6Ee]fqxASWHxtU6clxFLhw" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="ZE[Gk5owODpOFs5]b[MsrA" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" data_default="Y" />
+      <Attribute _uuid="QkjNMqlxOOFndsGlQmiTsg" name="note" label="M#12cn14注释信息" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" is_default="N" />
+   </Interface>
+   <Component _uuid="KEMosGp2LGoeEiGEsqsLtA" name="Initialize" label="M#12cn15初始化方法" is_valid="Y" note="M#12jp15フィールド" class_name="org.mo.eng.config.common.XInitialize" base_name="org.mo.eng.config.base.XBaseInitialize" inherits="IObject" />
+   <Component _uuid="oEIAyT5GcDb4PfyQ[137sw" name="Release" label="M#12cn14释放方法" is_valid="Y" note="M#12jp16データセット" class_name="org.mo.eng.config.common.XRelease" base_name="org.mo.eng.config.base.XBaseRelease" inherits="IObject" />
+   <Component _uuid="YUPLExL6akVRmxmsZiEDjg" name="Property" label="M#12cn12属性" is_valid="Y" note="M#" class_name="org.mo.eng.config.common.XProperty" base_name="org.mo.eng.config.base.XBaseProperty" inherits="IObject,IProperty" />
+   <Component _uuid="DEK1RaGp[n9eUd][V6M7qA" name="Component" label="M#12cn12组件" is_valid="Y" note="M#" class_name="org.mo.eng.config.common.XComponent" base_name="org.mo.eng.config.base.XBaseComponent" inherits="IObject,IComponent" />
+   <Component _uuid="ektkch3dNXbGTVWMCjpMpg" name="Include" label="M#12cn12包含" is_valid="Y" note="M#" class_name="org.mo.eng.config.common.XInclude" base_name="org.mo.eng.config.base.XBaseInclude" inherits="IObject,IProperty" />
+   <Component _uuid="7k5bWegqv8dpW1DjH8]aog" name="Configuration" label="M#12cn12配置" is_valid="Y" note="M#" class_name="org.mo.eng.config.common.XConfiguration" base_name="org.mo.eng.config.base.XBaseConfiguration" inherits="IObject" />
+   <Component _uuid="201l7lOA1w48Pu[noD5Xkw" name="Config" label="M#12cn14配置设置" is_valid="Y" note="M#" class_name="org.mo.eng.config.common.XConfig" base_name="org.mo.eng.config.base.XBaseConfig" inherits="IObject,IComponent" />
+   <Component _uuid="3kbq1UKmrenE4nQ33FXMqw" name="Parameter" label="M#12cn12参数" is_valid="Y" note="M#" class_name="org.mo.eng.config.common.XParameter" base_name="org.mo.eng.config.base.XBaseParameter" inherits="IObject,IProperty" />
+   <Component _uuid="SExEk9hlH3kCMAEUOADKkw" name="WebService" label="M#12cn15WEB服务" is_valid="Y" note="M#" class_name="org.mo.eng.config.common.XWebService" base_name="org.mo.eng.config.base.XBaseWebService" inherits="IObject,IComponent" />
+   <Component _uuid="FUvE3pu274Kd2y3gXV3vmA" name="WebServlet" label="M#12cn15WEB传输" is_valid="Y" note="M#" class_name="org.mo.eng.config.common.XWebServlet" base_name="org.mo.eng.config.base.XBaseWebServlet" inherits="IObject,IComponent" />
+   <Component _uuid="wEBROP1o1E2NrkVrX91xnw" name="Action" label="M#12cn12命令" is_valid="Y" note="M#" class_name="org.mo.eng.config.common.XAction" base_name="org.mo.eng.config.base.XBaseAction" inherits="IObject,IAction" />
+   <Component _uuid="ZUTTLwerSoBJJkVS2FulrQ" name="Actions" label="M#12cn14命令集合" is_valid="Y" note="M#" class_name="org.mo.eng.config.common.XActions" base_name="org.mo.eng.config.base.XBaseActions" inherits="IObject,IAction" />
+   <Component _uuid="qkjOmG5KCFco3VuqS5MFtg" name="Components" label="M#12cn14组件集合" is_valid="Y" note="M#" class_name="org.mo.eng.config.common.XComponents" base_name="org.mo.eng.config.base.XBaseComponents" inherits="IObject,IComponent" />
+   <Interface _uuid="zUNzIO2jQkCSOSlZ8wYWiA" name="IAction" label="M#12cn14命令接口" is_valid="Y" note="M#" class_name="org.mo.eng.config.common.XActionFace">
+      <Attribute _uuid="[k6GFZb3Uzv2qpGAafOyuA" name="uri" label="M#12cn14地址链接" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="cUkX4Zgk9ps6nNIXaBCQgA" name="face" label="M#12cn14实现接口" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Interface>
+   <Interface _uuid="XEbwq[RILcRAVuFVIUKlnw" name="IComponent" label="M#12cn14控件接口" is_valid="Y" note="M#" class_name="org.mo.eng.config.common.XComponentFace">
+      <Attribute _uuid="ykqvgiHuZiMaK3VZsEn8ig" name="face" label="M#12cn14接口名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="9kyMxhZSRHuUWnh3vdvlpw" name="instance" label="M#12cn14实体名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="ykIZrfNG3rOg8CHxte]Xhg" name="scope" label="M#12cn14有效范围" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Interface>
+   <Interface _uuid="bUWBxIbiKvYtPaq3iwmnlQ" name="IProperty" label="M#12cn14属性接口" is_valid="Y" note="M#" class_name="org.mo.eng.config.common.XPropertyFace">
+      <Attribute _uuid="jUKT1wAOvzl8GuDxgkY0sQ" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="EUrHrINe3kdvGoCiSlWXsQ" name="data_type" label="M#12cn14数据类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Interface>
+</Persistence>

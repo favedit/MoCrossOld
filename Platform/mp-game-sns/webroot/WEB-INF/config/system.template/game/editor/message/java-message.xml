@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template ads="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define ads="]E[MIOeUo79dXfu13d2wsA" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source ads="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T><jt:item source='$group.label'/>消息定义。</T>
+//
+// @enum
+//============================================================
+package mo.ms.<jt:item source='$group.full_code' format='lower'/>
+{
+   import mo.cm.lang.*;
+   import mo.cm.stream.*;
+   import mo.cr.message.*;
+   import mo.ms.common.*;
+   import mo.ms.geom.*;
+   import mo.ms.enum.*;
+   import mo.ms.entity.*;
+
+   //============================================================
+   // <T><jt:item source='$message.label'/>消息。</T>
+   //============================================================
+   public class F<jt:item source='$group.code'/><jt:item source='$message.code'/><jt:item source='$message.message_type'/> extends FNetMessage implements INetObject
+   {
+      // 名称
+      public static const NAME:String = "<jt:item source='$group.code'/><jt:item source='$message.code'/><jt:item source='$message.message_type'/>";
+
+      // 类型
+      public static const TYPE:int = ENetMessageType.<jt:item source='$message.message_type'/>;
+
+      // 代码
+      public static const CODE:int = ENetMessageGroup.<jt:item source='$group.full_code'/> + <jt:item source='$message.code_value'/>;
+
+      // 版本
+      public static const VERSION:int = <jt:item source='$message.version'/>;
+
+<jt:loop source='$message' alias='enum' filter='$enum:name=Enum'>
+<jt:loop source='$enum' alias='field'>
+      public static const <jt:item source='$enum.name'/>_<jt:item source='$field.name'/>:int = <jt:item source='$field-position'/>;
+
+</jt:loop>
+</jt:loop>
+<jt:loop source='$message' alias='field' filter='$field:name=Item'>
+      // <T><jt:item source='$field.label'/>(<jt:item source='$field.type'/><jt:notEmpty source='$field.type_name'>/<jt:item source='$field.type_name'/></jt:notEmpty>)。</T>
+<jt:true source='$field.is_collection'>
+<jt:true source='$field.struct_inner'>
+      public var <jt:item source='$field.name'/>:FNetObjects = new FNetObjects(F<jt:item source='$group.code'/><jt:item source='$message.code'/><jt:item source='$message.message_type'/><jt:item source='$field.type_name' removeFirst='S'/>, <jt:item source='$field.data_size_length'/>);
+</jt:true>
+<jt:false source='$field.struct_inner'>
+      public var <jt:item source='$field.name'/>:FNetObjects = new FNetObjects(<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size_length'/>);
+</jt:false>
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Int8|Int16|Int32|Int64'>
+      public var <jt:item source='$field.name'/>:int;
+</jt:equals>
+<jt:equals source='$field.type' value='Enum|Uint8|Uint16|Uint32|Uint64'>
+      public var <jt:item source='$field.name'/>:uint;
+</jt:equals>
+<jt:equals source='$field.type' value='Float|Double'>
+      public var <jt:item source='$field.name'/>:Number;
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+      public var <jt:item source='$field.name'/>:String;
+</jt:equals>
+<jt:equals source='$field.type' value='Type|Set|Struct|Object'>
+      public var <jt:item source='$field.name'/>:<jt:item source='$field.type_name'/> = new <jt:item source='$field.type_name'/>();
+</jt:equals>
+</jt:false>
+
+</jt:loop>
+      //============================================================
+      // <T>构造消息的实例对象。</T>
+      //
+      // @return 实例对象
+      //============================================================
+      public function F<jt:item source='$group.code'/><jt:item source='$message.code'/><jt:item source='$message.message_type'/>(){
+         head.name = NAME;
+         head.type = TYPE;
+         head.code = CODE;
+         head.version = VERSION;
+      }
+<jt:loop source='$message' alias='field' filter='$field:name=Item'>
+<jt:true source='$field.is_collection'>
+
+      //============================================================
+      // <T>获得<jt:item source='$field.label'/>个数。</T>
+      //
+      // @return 个数
+      //============================================================
+      public function get <jt:item source='$field.name'/>Count():int{
+         return <jt:item source='$field.name'/>.count;
+      }
+
+      //============================================================
+      // <T>获得<jt:item source='$field.label'/>指定索引位置的对象。</T>
+      //
+      // @param index 索引位置
+      // @return 对象
+      //============================================================
+<jt:true source='$field.struct_inner'>
+      public function <jt:item source='$field.name'/>Get(p:int):F<jt:item source='$group.code'/><jt:item source='$message.code'/><jt:item source='$message.message_type'/><jt:item source='$field.type_name' removeFirst='S'/>{
+         return <jt:item source='$field.name'/>.get(p) as F<jt:item source='$group.code'/><jt:item source='$message.code'/><jt:item source='$message.message_type'/><jt:item source='$field.type_name' removeFirst='S'/>;
+      }
+</jt:true>
+<jt:false source='$field.struct_inner'>
+      public function <jt:item source='$field.name'/>Get(p:int):<jt:item source='$field.type_name'/>{
+         return <jt:item source='$field.name'/>.get(p) as <jt:item source='$field.type_name'/>;
+      }
+</jt:false>
+</jt:true>
+</jt:loop>
+
+      //============================================================
+      // <T>序列化数据部分到输入流中。</T>
+      //
+      // @param output 输入流
+      //============================================================
+      public override function serializeData(output:IOutput):void{
+<jt:loop source='$message' alias='field' filter='$field:name=Item'>
+         // 序列化<jt:item source='$field.label'/>
+<jt:true source='$field.is_collection'>
+         <jt:item source='$field.name'/>.serialize(output);
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Bool|Enum|Int8|Int16|Int32|Int64|Uint8|Uint16|Uint32|Uint64|Float|Double|String'>
+         output.write<jt:item source='$field.type'/>(<jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Type|Set|Struct|Object'>
+         <jt:item source='$field.name'/>.serialize(output);
+</jt:equals>
+</jt:false>
+</jt:loop>
+      }
+
+      //============================================================
+      // <T>从输出流中反序列化数据部分。</T>
+      //
+      // @param input 输出流
+      //============================================================
+      public override function unserializeData(input:IInput):void{
+<jt:loop source='$message' alias='field' filter='$field:name=Item'>
+         // 反序列化<jt:item source='$field.label'/>
+<jt:true source='$field.is_collection'>
+         <jt:item source='$field.name'/>.unserialize(input);
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Bool|Enum|Int8|Int16|Int32|Int64|Uint8|Uint16|Uint32|Uint64|Float|Double|String'>
+         <jt:item source='$field.name'/> = input.read<jt:item source='$field.type'/>();
+</jt:equals>
+<jt:equals source='$field.type' value='Type|Set|Struct|Object'>
+         <jt:item source='$field.name'/>.unserialize(input);
+</jt:equals>
+</jt:false>
+</jt:loop>
+      }
+
+      //============================================================
+      // <T>重置内容。</T>
+      //============================================================
+      public override function reset():void{
+         super.reset();
+<jt:loop source='$message' alias='field' filter='$field:name=Item'>
+         // 重置<jt:item source='$field.label'/>内容
+<jt:true source='$field.is_collection'>
+         <jt:item source='$field.name'/>.reset();
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Enum|Int8|Int16|Int32|Int64|Uint8|Uint16|Uint32|Uint64|Float|Double'>
+         <jt:item source='$field.name'/> = 0;
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+         <jt:item source='$field.name'/> = null;
+</jt:equals>
+<jt:equals source='$field.type' value='Type|Set|Struct|Object'>
+         <jt:item source='$field.name'/>.reset();
+</jt:equals>
+</jt:false>
+</jt:loop>
+      }
+   }
+}
+]]></Source>
+</Template>

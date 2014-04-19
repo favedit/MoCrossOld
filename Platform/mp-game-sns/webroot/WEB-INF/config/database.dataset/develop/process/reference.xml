@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid2="tUNNus9CjIETd9FniV[yhw" name="develop.project.reference" label="M#12cn14相互参考" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="DP_PROJECT_REFERENCE" data_alias="DP_PROJECT_REF" data_logic="DP_PROJECT_REFERENCE_DI" parent_name="dataset.store">
+  <FieldBoolean _uuid2="r0gWC7YTx0WBXD2zQyARnQ" name="is_valid" label="M#12cn12有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="'Y'" />
+  <FieldEnum _uuid2="gkwfHq[aSqjhpb0vsFAjvA" name="type_cd" label="M#12cn17被参考对象类型" is_valid="Y" note="M#12cn230P:项目\nM:里程碑\nI:周期\nR:流程\nT:任务\nO:其他" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="develop.project.reference.type" />
+  <FieldInteger _uuid2="qE]lsYV6Xxt0B0tctrZMpA" name="object_id" label="M#12cn17被参考对象标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="OBJECT_ID" />
+  <FieldContent _uuid2="nk7jGMx9Y0[do3ASPegUkw" name="object_label" label="M#12cn17被参考对象名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OBJECT_LABEL" />
+  <FieldEnum _uuid2="gkwfHq[aSqjhpb0vsFAjsA" name="refer_type_cd" label="M#12cn16参考对象类型" is_valid="Y" note="M#12cn230P:项目\nM:里程碑\nI:周期\nR:流程\nT:任务\nO:其他" is_store="Y" is_abstract="N" data_name="REFER_TYPE_CD" data_size="1" data_code="develop.project.reference.type" />
+  <FieldInteger _uuid2="XEmrpZ8FZzXsqqhwcjzTjw" name="refer_object_id" label="M#12cn16参考对象标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="REFER_OBJECT_ID" />
+  <FieldContent _uuid2="90pgDKBBRTqbX6giPxtMow" name="refer_object_label" label="M#12cn16参考对象名称" is_valid="Y" note="M#12cn227由于参考类型的不同，查询比较困难，这里是一个冗余数据。" is_null="Y" is_store="Y" is_abstract="N" data_name="REFER_OBJECT_LABEL" />
+  <FieldDate _uuid2="2UMIS]tUuqBwnjl4EHdXmw" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#12cn14创建时间" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_default="SYSDATE" />
+  <FieldContent _uuid2="OkL23pm[gc4h]sZxNu8JoQ" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

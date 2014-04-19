@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="3E30UvDs0pT50ZlVchOzlw" name="logic.business.period.group.period" label="M#12cn19业务期间-小组期间" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_BUSINESS_PERIOD_GRP_PER" data_alias="LG_BUS_GRP_PER" data_logic="LG_BUSINESS_PERIOD_GRP_PER_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="oE5hUmkQ7jnSmxEXxSZdpA" name="business_id" label="M#12cn14业务标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BUSINESS_ID" data_refer="logic.business" data_uniques="link,code" group="N" />
+  <FieldInteger _uuid="m0ebZ7nGIcGh8DFzxkPelQ" name="group_id" label="M#12cn14小组标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="GROUP_ID" data_refer="logic.business.period.group" data_uniques="link" />
+  <FieldInteger _uuid="kESffP1tdlk8EWLW9IEimg" name="period_id" label="M#12cn14期间标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PERIOD_ID" data_refer="logic.business.period" data_uniques="link" group="N" />
+  <FieldBoolean _uuid="[kYuz7YfyUU8]ep[5tWYlA" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" group="N" />
+  <FieldString _uuid="OETWti85m5WljXWr4vCoig" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="100" data_uniques="code" group="N" />
+  <FieldString _uuid="gUVEm3eK]KWbC1dEyoAVqg" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="100" group="N" />
+  <FieldContent _uuid="9E[hKKwh[j]AcXg[ERENug" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" group="N" />
+  <FieldTemplate _uuid="x0ldfC8PyHOFvjT4JYaajA" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="fEV8clhqasyMfV6G6z[khA" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

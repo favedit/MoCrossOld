@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="MERPvNgAbhRiR3aUIMD7ig" name="game.template.task.part.limit" label="M#12cn16任务部分条件" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_TASK_PART_LIMIT" data_alias="GM_TPL_TSK_PRT_LMT" data_logic="GM_TPL_TASK_PART_LIMIT_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="fEmOyxNDhc7lnirF6HDrig" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="RUSsXbQaIyAaTqJqhUoAnQ" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldInteger _uuid="F0FB[0ieM409uHt6MXbwvA" name="task_tid" label="M#12cn16任务模板编号" note="M#" is_store="Y" is_abstract="N" data_name="TASK_TID" data_alias="TSK" data_refer="game.template.task" />
+  <FieldInteger _uuid="BEhtfX0xBlLfoKiZPRSxmw" name="task_part_tid" label="M#12cn18任务部分模板编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TASK_PART_TID" data_alias="TPT" data_refer="game.template.task.part" />
+  <FieldInteger _uuid="hEz6Fhvnk5mb34ahv2zksw" name="task_part_limit_group_tid" label="M#12cn211任务部分限制组模板编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TASK_PART_LIMIT_GROUP_TID" data_alias="PLG" data_refer="game.template.task.part.limit.group" />
+  <FieldEnum _uuid="jkoOyDDCyJKvHXbBPXmahg" name="track_cd" label="M#12cn14跟踪类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TRACK_CD" data_size="3" data_code="game.template.task.track" />
+  <FieldEnum _uuid="Q0fNcJ5IqtlVhiFB[Uiopw" name="type_cd" label="M#12cn14限制类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="2" data_code="game.template.task.limit" />
+  <FieldString _uuid="MkuKbNdg]qNVxlYhVDwZjQ" name="parameter1" label="M#12cn13参数1" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PARAMETER1" data_size="200" />
+  <FieldString _uuid="sEcvaRCVRznO0v62finqlA" name="parameter2" label="M#12cn13参数2" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PARAMETER2" data_size="200" />
+  <FieldString _uuid="TE[YZc4bmr6NZqgBWJFynw" name="parameter3" label="M#12cn13参数3" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PARAMETER3" data_size="200" />
+  <FieldString _uuid="zE42xOixkhOxqnfzBFZ9rQ" name="parameter4" label="M#12cn13参数4" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PARAMETER4" data_size="200" />
+  <FieldString _uuid="T0B]gfiW5fUYjeejgzY0jA" name="parameter5" label="M#12cn13参数5" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PARAMETER5" data_size="200" />
+  <FieldTemplate _uuid="qkUjOFWQBBg5ASooUkAOsg" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

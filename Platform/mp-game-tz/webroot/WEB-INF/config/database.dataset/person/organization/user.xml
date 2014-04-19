@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="ckzxP7ImKK4Oc2AeEg59hg" name="person.organization.user" label="M#12cn16组织人员关联" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="PM_ORGANIZATION_USER" data_alias="PM_ORG_USR" data_logic="PM_ORGANIZATION_USER_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="c0]8ET91y[8RddVE9pIVrA" name="organization_id" label="M#12cn14组织标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="ORGANIZATION_ID" data_alias="ORG" data_refer="person.organization" data_uniques="link" />
+  <FieldInteger _uuid="KUEvFIS0fXwvUMAXvInAuw" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="USER_ID" data_alias="USR" data_refer="person.user" data_uniques="link" />
+  <FieldBoolean _uuid="Yky6fuVnmAw3YoLSrsuDtg" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#12cn212标识组织联结人员是否有效" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="'Y'" />
+  <FieldBoolean _uuid="G02GE05NQ9aYrybdYhgnjQ" name="is_principal" label="M#12cn15是否负责人" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_PRINCIPAL" data_default="CP_BOOLEAN_EI.EFalse" />
+  <FieldEnum _uuid="TUh6kYCzvkjLM9aat]Ntpg" name="type_cd" label="M#12cn14担任类型" is_valid="Y" note="M#12cn230默认/兼职\n???check检查如果职位选了则担任类型必须选" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="person.user.organization.link" />
+  <FieldInteger _uuid="FU5XhSAcg7QqRQs3jhRdgA" name="display_order" label="M#12cn14显示顺序" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DISPLAY_ORDER" data_type="Integer" />
+  <FieldDate _uuid="uEMQLW0rQGauvi6ljG4TtQ" name="create_date" label="M#12cn14创建日期" is_valid="Y" note="M#12cn19组织属性的创建时间" is_store="Y" data_name="CREATE_DATE" data_type="Date" data_default="SYSDATE" />
+  <FieldContent _uuid="YkE4[852BopolKeyhLJtsA" name="note" label="M#12cn12备注" is_valid="Y" note="M#12cn15属性的注释" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

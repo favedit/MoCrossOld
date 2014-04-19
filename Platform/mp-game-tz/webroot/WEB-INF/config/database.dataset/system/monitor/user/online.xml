@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataView _uuid="MkTL9wQr0EbPOKHbNm2rgg" name="system.monitor.user.online" label="M#12cn18当前在线人员列表" is_valid="Y" note="M#" data_from="SELECT\n   PM_ORGANIZATION_DI.Find_Main_Org_Label_By_User(USER_ID) ORGANIZATION_LABEL,\n   PM_USER_DI.Get_Full_Label(USER_ID) USER_LABEL,\n   ACTIVE_DATE\nFROM SY_SESSION\nWHERE ACTIVE_DATE &gt; SYSDATE - (1/48)">
+  <FieldString _uuid="MkUyZoHNiEorgvslPRQXkA" name="organization_label" label="M#12cn14组织名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ORGANIZATION_LABEL" />
+  <FieldString _uuid="ukDQA97sO[FhzfG4bpnZsw" name="user_label" label="M#12cn14用户名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="USER_LABEL" />
+  <FieldString _uuid="50rPXixUzDQzi15II1AjlQ" name="action_date" label="M#12cn18最后一次登录时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ACTION_DATE" />
+</DataView>
+

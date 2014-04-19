@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="oU1HrXz1TnqU8wJo0iXPtg" name="helper.design.webform.hhc" is_valid="Y" note="M#">
+  <Source _uuid="LkrtYqHDKRCjoY[NwJbTgg" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="简介">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="关于">
+			<param name="Local" value="src/design.webform/list.html">
+			</OBJECT>
+		</UL>
+</UL>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="表单">
+		<param name="Local" value="src/design.webform/bulidWebFormlist.html">
+		</OBJECT>
+
+	<UL>
+<jt:loop source='$config' alias='webform'>
+  <jt:Equals source='$webform._type' value='WebForm'>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="<jt:item source='$webform.name'/> (<jt:item source='$webform.label'/>)">
+		<param name="Local" value="src/design.webform/bulidAllList/<jt:item source='$webform.name' format='path.lower'/>.html">
+		</OBJECT>
+		<UL>
+		<jt:loop source='$webform' alias='item'>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="<jt:item source='$item.name'/> (<jt:item source='$item.label'/>)">
+				<param name="Local" value="src/design.webform/attribute/<jt:item source='$webform.name' format='path.lower'/>.<jt:item source='$item.name' format='lower'/>.html">
+				</OBJECT>
+				<UL>
+				<jt:loop source='$item' alias='toolbar'>
+					<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="<jt:item source='$toolbar.name'/> (<jt:item source='$toolbar.label'/>)">
+					<param name="Local" value="src/design.webform/attribute/<jt:item source='$webform.name' format='path.lower'/>.<jt:item source='$toolbar.name' format='lower'/>.html">
+					</OBJECT>
+					<UL>
+					<jt:loop source='$toolbar' alias='toolbuttonmenu'>
+						<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="<jt:item source='$toolbuttonmenu.name'/> (<jt:item source='$toolbuttonmenu.label'/>)">
+						<param name="Local" value="src/design.webform/attribute/<jt:item source='$webform.name' format='path.lower'/>.<jt:item source='$toolbuttonmenu.name' format='lower'/>.html">
+						</OBJECT>
+					</jt:loop>
+					</UL>
+				</jt:loop>
+				</UL>
+		</jt:loop>
+		</UL>
+ </jt:Equals>
+</jt:loop>
+	</UL>
+</UL>
+	<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="表格">
+		<param name="Local" value="src/design.webform/buildWebTableList.html">
+		</OBJECT>
+			<UL>
+<jt:loop source='$config' alias='webtable'>
+  <jt:Equals source='$webtable._type' value='WebTable'>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="<jt:item source='$webtable.name'/> (<jt:item source='$webtable.label'/>)">
+		<param name="Local" value="src/design.webform/bulidAllList/<jt:item source='$webtable.name' format='path.lower'/>.html">
+		</OBJECT>
+		<UL>
+		<jt:loop source='$webtable' alias='item'>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="<jt:item source='$item.name'/> (<jt:item source='$item.label'/>)">
+				<param name="Local" value="src/design.webform/attribute/<jt:item source='$webtable.name' format='path.lower'/>.<jt:item source='$item.name' format='lower'/>.html">
+				</OBJECT>
+				<UL>
+				<jt:loop source='$item' alias='toolbar'>
+					<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="<jt:item source='$toolbar.name'/> (<jt:item source='$toolbar.label'/>)">
+					<param name="Local" value="src/design.webform/attribute/<jt:item source='$webtable.name' format='path.lower'/>.<jt:item source='$toolbar.name' format='lower'/>.html">
+					</OBJECT>
+					<UL>
+					<jt:loop source='$toolbar' alias='toolbuttonmenu'>
+						<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="<jt:item source='$toolbuttonmenu.name'/> (<jt:item source='$toolbuttonmenu.label'/>)">
+						<param name="Local" value="src/design.webform/attribute/<jt:item source='$webtable.name' format='path.lower'/>.<jt:item source='$toolbuttonmenu.name' format='lower'/>.html">
+						</OBJECT>
+					</jt:loop>
+					</UL>
+				</jt:loop>
+				</UL>
+		</jt:loop>
+		</UL>
+  </jt:Equals>
+</jt:loop>
+	</UL>	
+</BODY></HTML>]]></Source>
+</Template>
+

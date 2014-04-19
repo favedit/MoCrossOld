@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="IEFNN9jwEWOHcmla66MktQ" name="logic.person" label="业务-人员" is_valid="Y" code="person" type_cd="P">
+  <List _uuid="Tkxcze]cC8wvYoBDeFjbig" name="user" label="员工信息" is_valid="Y" type_cd="P">
+    <Translate _uuid="8EOXTofzgX7tzK4[v2nQsg" name="mailCheck" label="邮箱检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="您输入的{0}格式不正确，请核对后再输；正确的邮箱格式为：@符号之前是字母或者字母和数字的组合，\n结尾是com|gov|net|com.cn|edu.cn。[用户工号：{1}]" />
+    <Translate _uuid="NU1c5]zQd23kT2NdsfXFvw" name="idNumberCheck" label="身份证检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="您输入的{0}格式不正确，请核对后再输；正确的身份证长度必须是15位或者18位，如果是15位，必须都是数字；\n如果是18位，最后一位可以是字母。[用户编号：{1}， 用户名称：{2}]" />
+    <Translate _uuid="j0F9dOus8L6i1oZTQON6gw" name="telephoneCheck" label="电话号码检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="您输入的{0}格式不正确，请核对后再输；正确的格式是：010-12345678或者01052467891。[用户工号：{1}]。" />
+    <Translate _uuid="wU3l511z7lLKIBBq8y[EuA" name="mobileCheck" label="手机号码检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="您输入的{0}格式不正确，请核对后再输；正确的格式是：135XXXXXXXX。[用户工号：{1}]" />
+    <Translate _uuid="okWMYdA786GqwSpFATRziw" name="digit" label="数字检查" is_valid="Y" type_cd="P" status_cd="A" zh_content="{0}必须是数字。" />
+    <Translate _uuid="7UMS[DjCUBsE6PlKCrOaoQ" name="organizationsAndDutyCheck" label="组织职务检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="职务有值的情况下，组织必须有值。[工号：{0}， 组织：{1}， 职务：{2}]" />
+    <Translate _uuid="Mkk[3d00mddEwJIZ]1IskA" name="exist" label="存在性检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="您输入的{0}不存在。" />
+    <Translate _uuid="wUAf6G5t3oSdyp6tU79pog" name="consistence" label="一致性检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="{0}和{1}上提供的信息不一致，是否继续？[用户编号：{1}， 用户名称：{2}]" />
+    <Translate _uuid="Sk0b8CMNWEdFxnz9ObbNuw" name="passwordCheck" label="密码检查" is_valid="Y" type_cd="P" status_cd="A" create_user_code="360" zh_content="您输入的{0}不对，请核对后再输。" />
+    <Translate _uuid="Vkh2j2FzvAu34RWtbAeJhg" name="duplicate" label="记录重复检查" is_valid="Y" type_cd="P" status_cd="A" create_user_code="360" zh_content="{0}为{1}的记录已经存在。" />
+    <Translate _uuid="[Eaw]s833cB5Cfzz2UR3mQ" name="exceedSysdate" label="超出当前日期" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="{0}不能超过当前日期。[用户编号：{1}， 用户名称：{2}]" />
+    <Translate _uuid="WEhURJ236o5DzCcIS4wdgg" name="lengthCheck" label="长度检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="{0}的长度不能超过{1}位。[工号：{2}， {0}：{3}]。" />
+    <Translate _uuid="zEoUN]ws6tDBCWIMkdM2uw" name="dataChange" label="数据状态改变时" is_valid="Y" type_cd="P" status_cd="A" content="0" create_user_code="360" update_date="20090422134734" zh_content="确定要将{0}改为{1}？[工号：{2}]" />
+    <Translate _uuid="REduRjaZY5QgMkdDTaP5uA" name="nameCheck" label="名称合法性检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="{0}的格式不正确，不能含有“；”等字符。[用户编号：{1}， 用户名称：{2}]" />
+    <Translate _uuid="g0SIjgMm9Q5XYdXU9eDXmg" name="linkCheck" label="用户关联信息检查" is_valid="Y" type_cd="P" status_cd="A" content="用户和{0}个{1}有关联，不能进行删除。" create_user_code="360" zh_content="用户和{0}个{1}有关联，不能进行删除。[用户编号：{2}]" />
+    <Translate _uuid="wkk6J3Nh8S9dyt7a5Svrpg" name="linkOrganizationCheck" label="关联组织检查" is_valid="Y" type_cd="P" status_cd="A" content="用户{0}没有被关联到任何组织上，只有关联到组织上后才能进行该操作。" create_user_code="360" zh_content="用户【{0}】没有被关联到任何组织上，只有关联到组织上后才能进行该操作，请与管理员联系。【用户编号：{1}】" />
+    <Translate _uuid="mkY3bpEbHjs93kSqW8Lhvw" name="inOrganizationChcek" label="是否在某个组织下检查" is_valid="Y" type_cd="P" status_cd="A" content="指定组织下没有角色为{0}的审核用户，请与管理员联系。" create_user_code="360" zh_content="拥有【{0}】的审核用户所在组织未关联到组织目录，请与管理员联系。" />
+    <Translate _uuid="DUHUofChRgL2fG2fMzZ1sA" name="organizationCheck" label="组织检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="组织名称不存在。[工号：{0}， 组织名称：{1}]。" />
+    <Translate _uuid="2kHmiswIHBxyC[DE4jXTpA" name="dutyCheck" label="职务检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="职务名称不存在。[工号：{0}， 职务名称：{1}]。" />
+    <Translate _uuid="2kR7bN3xf]ZmRX3D8qOZuw" name="organizationConfig" label="组织配置" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="在组织配置里， 有多个名称相同的组织存在。[工号：{0}， 组织名称：{1}]" />
+    <Translate _uuid="q0mQ2Aqm]7Ab]IVdhonMhg" name="dutyConfig" label="职务检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="在职务配置里， 有多个名称相同的职务存在。[工号：{0}， 职务名称：{1}]" />
+    <Translate _uuid="5kGSKv[rzSaNDBO8ZDBakQ" name="floatCheck" label="浮点数值检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="{0}不合法，合法的数据只能含有数字和小数点。[工号：{1}， {0}：{2}]" />
+    <Translate _uuid="wkNbi79vGd4FBgi38lyWog" name="firstCareerDateCheck" label="第一次工作时间检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="第一次工作时间格式不对，正确的格式为 2008-08-08或者2008-8-8 等。[工号：{0}， 第一次工作时间：{1}]" />
+    <Translate _uuid="wkjW6sn62J5ERbC68FjRhQ" name="DateCheck" label="日期检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="{0} 格式不对，正确的格式为 2008-08-08或者2008-8-8 等。[工号：{1}， {0}：{2}]" />
+    <Translate _uuid="6ESRKELS3mDMkrvFd]][qA" name="extensionCheck" label="分机检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content="您输入的【{0}】格式不正确，请核对后再输。【{0}】不能含有数字以外的其它字符，[工号：{1}， 分机：{2}]。" />
+    <Translate _uuid="zEEqINxlRI0spNq5XZ0xiQ" name="passportReset" label="账号重置提示" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content="账号重置成功。\n新登录账号：{0}，新登录密码：{1}。" />
+    <Translate _uuid="yU8G8vHAoPutPl4QKKbAgg" name="emptyCheck" label="数据为空检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content="{0}没有输入，如果不输入，{0}将取当前系统时间：{1}，是否继续？" />
+    <Translate _uuid="LEsR0hhvu3mMDG7qgnB1ow" name="statusCheck" label="状态检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content="确定要将用户改为&lt;font color=red&gt;【{0}】&lt;/font&gt;？\n&lt;font color=red&gt;用户名称：{1}，用户工号：{2}&lt;/font&gt;。\n是否继续？\n" />
+    <Translate _uuid="skyqOPNskaEZl2di6UN4kQ" name="retirementCheck" label="退休检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content=" 请核实该员工的以下信息：\n  员工工号：【{0}】          员工姓名：【{1}】\n  入职日期：【{2}】    转正日期：【{3}】\n  确定要将【{1}】从【{4}】转为【退休】？【退休日期】为【{5}】\n  退休后该员工的所有服务将会取消。" />
+    <Translate _uuid="eUntP[h0NM6uk61SI5xSuw" name="leaveCheck" label="离职检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content=" 请核实该员工的以下信息：\n  员工工号：【{0}】          员工姓名：【{1}】\n  入职日期：【{2}】    转正日期：【{3}】\n  确定要将【{1}】从【{4}】转为【离职】？【离职日期】为【{5}】\n  离职后该员工的所有服务将会取消。" />
+    <Translate _uuid="U06FNnkIKqlwIKGy7NVxpw" name="formalCheck" label="转正检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content=" 请核实该员工的以下信息：\n  员工工号：【{0}】          员工姓名：【{1}】\n  入职日期：【{2}】    转正日期：【{3}】\n  确定要将【{1}】从【{4}】转为【正式】？转正后该员工将获得所有的系统服务。\n\n" />
+    <Translate _uuid="2kqXsDM6qeKNNfglNo55uw" name="practiseToProbationCheck" label="实习到试用检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content=" 请核实该员工的以下信息：\n  员工工号：【{0}】          员工姓名：【{1}】\n  入职日期：【{2}】\n  确定要将【{1}】从【{4}】转为【试用】？" />
+    <Translate _uuid="fkYDGe2XJcsRAHE8g6dHsg" name="formalToProbationCheck" label="正式到试用检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content=" 请核实该员工的以下信息：\n  员工工号：【{0}】          员工姓名：【{1}】\n  入职日期：【{2}】    转正日期：【{3}】\n  确定要将【{1}】从【{4}】转为【试用】？转为试用后该员工将失去所有的系统服务。" />
+    <Translate _uuid="Pk6oHTPoVx6j]MIvqkVujw" name="probationToPractiseCheck" label="试用到实习检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content=" 请核实该员工的以下信息：\n  员工工号：【{0}】          员工姓名：【{1}】\n  入职日期：【{2}】\n  确定要将【{1}】从【{3}】转为【实习】？" />
+    <Translate _uuid="h0BDBYrty3s56L5ZmaLOvg" name="formalToPractiseCheck" label="正式到实习检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content=" 请核实该员工的以下信息：\n  员工工号：【{0}】          员工姓名：【{1}】\n  入职日期：【{2}】    转正日期：【{3}】\n  确定要将【{1}】从【{4}】转为【实习】？转为实习后该员工将失去所有的系统服务。" />
+    <Translate _uuid="YU8MqCRfpLE9GxdOzN9FmQ" name="workNumberCheck" label="工号检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content="工号{0}不合法。正确的工号应该只包含数字，字母和“-”。" />
+    <Translate _uuid="AUZoynT0LXcYpj8jzgnjiA" name="typeCheck" label="员工类型检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0185" zh_content="“{1}”不是正确的员工类型（工号：【{0}】）。" />
+    <Translate _uuid="YUJPrgNX4FobE9gQgR6Pmg" name="serviceCheck" label="员工状态" is_valid="Y" type_cd="P" status_cd="A" content="1" zh_content="“{1}”不是正确的员工状态（工号：【{0}】）。" />
+    <Translate _uuid="1UB62y6OKqjX3QbbMcgguw" name="typeEmptyCheck" label="类型为空" is_valid="Y" type_cd="P" status_cd="A" content="1" zh_content="员工类型不能为空(工号：【{0}】)。" />
+    <Translate _uuid="SkdUkEUZIsDCOZ4u9DyBjg" name="serviceEmptyCheck" label="员工状态为空" is_valid="Y" type_cd="P" status_cd="A" content="1" zh_content="员工状态不能为空（工号：【{0}】）。" />
+    <Translate _uuid="OEMT521NdeHbyGA0Hnyshg" name="worknumEmptyCheck" label="检查工号是否为空" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="导入文件工号不能为空。【数据行数：{0}】" />
+    <Translate _uuid="wk6apDsfFOXB6]6gg]ptpg" name="emptyCheck" label="检查是否为空" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="{0}不能为空。【工号：{1}】" />
+    <Translate _uuid="Jk43uw4oo9CEXJkNxp[Ivg" name="idNumberColonCheck" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="工号为【{0}】用户身份证填写时，必须以冒号开头。" />
+    <Translate _uuid="SklmXGdexh736sksR07dng" name="worknumRepeat" label="工号重复" is_valid="Y" type_cd="P" status_cd="A" content="1" zh_content="输入的工号已经存在。（例如：0001 与 001 是相同工号）" />
+  </List>
+  <List _uuid="YkPz5Jun6g7SY9DjObzKhg" name="user.company.rest" label="休假信息" is_valid="Y" type_cd="P">
+    <Translate _uuid="wket5qoezzJHNmZ7vxpLsQ" name="time.length" label="检查请假时间必须大于限制时间" is_valid="Y" type_cd="P" status_cd="A" content="this" create_user_code="391" zh_content="请假时长必须大于{0}分钟。" />
+    <Translate _uuid="8UMC][v1y4[kkIOhlqSRkQ" name="time.after" label="检查请假的结束时间必须大于开始时间" is_valid="Y" type_cd="P" status_cd="A" content="THIS" create_user_code="391" zh_content="请假的开始时间必须小于结束时间。" />
+    <Translate _uuid="qkCg7y05wRl29qdb1xFuvA" name="user.work.type" label="检查用户是否转正" is_valid="Y" type_cd="P" status_cd="A" content="this" create_user_code="391" zh_content="必须是正式员工才可以申请年假。" />
+    <Translate _uuid="ZUzk[jmd1NNzdxKgMn5GsA" name="user.work.status" label="检查用户是否为在职" is_valid="Y" type_cd="P" status_cd="A" content="this" create_user_code="391" zh_content="必须在职员工才可以申请年假。" />
+    <Translate _uuid="AEMVIZ19k4RtrH5lW0wxlw" name="user.cancel" label="检查记录是否被申请者取消" is_valid="Y" type_cd="P" status_cd="A" content="this" create_user_code="391" zh_content="{0}已经取消了该次申请。" />
+    <Translate _uuid="nEFI8]OSvyihBvQJcwr7lg" name="time.repeat" label="申请时间重复" is_valid="Y" type_cd="P" status_cd="A" content="this" create_user_code="391" zh_content="您已经申请过【{0}】至【{1}】的{2}。" />
+    <Translate _uuid="sUbEjUbmYVUkMcKXe6lSiQ" name="use.sick.prore" label="请假一天以上出示病假证明" is_valid="Y" type_cd="P" status_cd="A" content="this" create_user_code="391" zh_content="请病假一天以上必须同意病假规约。" />
+    <Translate _uuid="rU0ujhQlWDAka0sX3lr0ow" name="continue.sick.prore" label="请病假连续三天内请病假时间超过一天必须出示病假证明" is_valid="Y" type_cd="P" status_cd="A" content="THIS" create_user_code="391" zh_content="连续三个工作日内，请病假累计时长超过8小时必须出示病假证明。" />
+    <Translate _uuid="60E7NvXG5hslXLF912F0rg" name="vacation.limit" label="请年假不能超出限定的时间范围" is_valid="Y" type_cd="P" status_cd="A" content="this" create_user_code="391" zh_content="请年假时长必须在({0})天内。" />
+    <Translate _uuid="6UHIqYc]XG87MyXWS2XTmQ" name="vacation.use.out" label="无年假可用" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="391" zh_content="剩余年假为0。" />
+    <Translate _uuid="qkJo0FI4]QqxesqJoY[zjA" name="vacation.exceed" label="申请年假大于剩余年假" is_valid="Y" type_cd="P" status_cd="A" content="THIS" create_user_code="391" zh_content="申请年假必须小于剩余年假。" />
+    <Translate _uuid="5EnOUlDCkltXGxHq346uvA" name="vacation.used" label="年假已经被使用不能进行更新操作" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="时间为【{0}】-【{1}】的年假，已经被使用，不能进行更新操作。" />
+    <Translate _uuid="rEos8XqtCuLNEdJ]BwEcvQ" name="invalid.begin.end.time" label="请假时间无效请假时间无效【开始时间必须小于结束时间】！" is_valid="Y" note="1、开始时间=结束时间\n2、没有绑定日历\n3、休息日请假" type_cd="P" status_cd="A" content="this" create_user_code="391" zh_content="请假时间无效【开始时间必须小于结束时间】。" />
+    <Translate _uuid="5EWpKeaUpDuGQalqV22AtA" name="user.not.link.calendar" label="请假时间无效【您没有绑定工作日历】" is_valid="Y" type_cd="P" status_cd="A" content="user.not.link.calendar" create_user_code="0213" zh_content="请假时间无效【您没有绑定工作日历】。" />
+    <Translate _uuid="tkO1t13cYZ3Opj4OJfeeiA" name="rest.date.is.work.date" label="请假时间无效【请假时间必须为工作日】" is_valid="Y" type_cd="P" status_cd="A" content="rest.date.is.work.date." create_user_code="0213" zh_content="请假时间无效【请假时间必须为工作日】。" />
+    <Translate _uuid="[0psaopZ4zlxD47qLhMviA" name="already.approval" label="检查该申请已经过直属上司的审核，不能做取消操作" is_valid="Y" type_cd="P" status_cd="A" content="THIS" create_user_code="391" zh_content="直属上级已经审核完毕，不能取消。" />
+    <Translate _uuid="0UJx12KEX6oaJX5X2axrvA" name="repeat.approval" label="重覆审核" is_valid="Y" type_cd="P" status_cd="A" content="this" create_user_code="391" zh_content="不能重复审核。" />
+    <Translate _uuid="T0f8iiC9bmZ1FopRijZhoQ" name="check.revoke" label="检查是否撤销" is_valid="Y" type_cd="P" status_cd="A" content="this" create_user_code="391" zh_content="管理员已经撤销了该记录。" />
+    <Translate _uuid="Rk166oWdOoRSqcI]REn]hQ" name="datetime.after" label="结束时间必须大于开始时间" is_valid="Y" type_cd="P" status_cd="A" content="this" create_user_code="391" zh_content="结束时间必须大于开始时间。" />
+    <Translate _uuid="mkwcwpGvYARhFGwnLx7xkg" name="role.config" label="假期审核角色配置不正确" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="391" zh_content="假期审核角色未配置，请联系管理员。" />
+    <Translate _uuid="8E0eH1vRciGN72wLyLjLhA" name="organization.link.catalog.config" label="组织管理业务目录配置" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="391" zh_content="用户所属组织与业务目录未配置，请联系管理员。" />
+    <Translate _uuid="Xk0yDwSOoHSEkpvF89hCnw" name="final.examine.exist" label="最终审核者存在" is_valid="Y" type_cd="P" status_cd="A" content="1" zh_content="假期最终审核者未配置，请联系管理员。" />
+    <Translate _uuid="4E[PozGQXhWt0NAhkUHvrg" name="rest.exists" label="假期记录是否存在" is_valid="Y" type_cd="P" status_cd="A" content="1" zh_content="假期的{0}类型已经关联了【{1}】条记录，不能删除。" />
+    <Translate _uuid="SkfVBxg00aD7S2xU]WA8kw" name="examin.fail.note" label="检查审核未通过必须填写原因" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="审核原因不能为空。" />
+    <Translate _uuid="8kwO]oeTfJYavXYDZfq5mw" name="vacation.user.exists" label="检查用户是否已经在假期表中存在" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="用户【{0} 工号：{1}】的初始年假已经使用过，不能再做修改。" />
+    <Translate _uuid="G04Fd0PpV2xZclaARC26lQ" name="manager.role.exist" label="检查管理员是挂载业务目录树上" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="您没有权限进行撤销操作。" />
+    <Translate _uuid="ekrs7OdL9MjW5u3PFkpgiA" name="sick.warn" label="申请病假显示警告" is_valid="Y" type_cd="P" status_cd="A" content="this" create_user_code="391" zh_content="有效开始时间： {0}\n 有效结束时间： {1}\n 请假时长： {2}\n 是否继续？" />
+    <Translate _uuid="nk4tNzKTwTEDNlec[NEAmw" name="sick.prove.warn" label="申请假期显示的出示病历证明警告" is_valid="Y" type_cd="P" status_cd="A" content="this" create_user_code="391" zh_content="有效开始时间： {0}\n 有效结束时间： {1}\n 请假时长： {2}\n 是否继续？" />
+    <Translate _uuid="c0[AYVmRBt6nFCYkM5[LvQ" name="revoke.warn" label="撤销操作" is_valid="Y" type_cd="P" status_cd="A" content="THIS" create_user_code="391" zh_content="确定撤销操作？" />
+    <Translate _uuid="qU6jcapsysCziMt1dCYAhA" name="vacation.warn" label="申请年假显示的警告" is_valid="Y" type_cd="P" status_cd="A" content="this" create_user_code="391" zh_content="有效开始时间： {0}       \n 有效结束时间： {1}\n 请假时长： {2}\n 是否继续？" />
+    <Translate _uuid="jUkfIreCSamQPZxn80VmjQ" name="casual.warn" label="申请事假显示的警告" is_valid="Y" type_cd="P" status_cd="A" content="this" create_user_code="391" zh_content="有效开始时间： {0}\n 有效结束时间： {1}\n 请假时长： {2}\n 是否继续？" />
+    <Translate _uuid="5ER6k59StbnH[eYoR2HDgg" name="marriage.warn" label="申请婚假显示警告" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="有效开始日期： {0}\n 有效结束日期： {1}\n 请假时长： {2}\n 是否继续？" />
+    <Translate _uuid="20[Vnc1P1bUac6T]8ItMlQ" name="mourning.warn" label="申请丧假显示警告" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="有效开始时间： {0}       \n 有效结束时间： {1}\n 请假时长： {2}\n 是否继续？" />
+    <Translate _uuid="]EEI0rnHUSOhWDp2K0truA" name="maternity.warn" label="申请生育产假显示的警告" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="有效开始日期： {0}\n 有效结束日期： {1}\n 请假时长： {2}\n 是否继续？" />
+    <Translate _uuid="D0jnUj8oNkPDJHQDZeOfow" name="nursing.warn" label="申请哺乳假显示的警告" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="有效开始日期： {0}\n 有效结束日期： {1}\n 请假时长： {2}\n 是否继续？" />
+    <Translate _uuid="3kWL0]CNgj1pRXr[uWK3nA" name="miscarriage.warn" label="申请流产假显示的警告" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="有效开始日期： {0}\n 有效结束日期： {1}\n 请假时长： {2}\n 是否继续？" />
+    <Translate _uuid="i0GPD8CCKPFn0SCuF2ygow" name="visit.warn" label="申请产检假显示的警告" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="有效开始日期： {0}\n 有效结束日期： {1}\n 请假时长： {2}\n 是否继续？" />
+    <Translate _uuid="CkkLdpgAyqe[uj3U1OWxkw" name="paternity.warn" label="申请陪产假显示的警告" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="有效开始日期： {0}\n 有效结束日期： {1}\n 请假时长： {2}\n 是否继续？" />
+    <Translate _uuid="5kRxtZWuJZEzERcsaGsfkw" name="use.marriage.prore" label="出示婚假证明" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="请婚假时需同意向人事行政部提交结婚登记复印件。" />
+    <Translate _uuid="dUAdghNawEpv9AGIYbJkjA" name="limit.time.length" label="请假时长超出" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="请假时长{0}，系统允许的请假时长{1}。" />
+    <Translate _uuid="9EdNV9b]POJUnMs8Ms95uQ" name="marriage.limit.times" label="请婚假次数" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="婚假在初婚时享受。" />
+    <Translate _uuid="5UCNwVKkigwdqJwOZSZ4mg" name="id.number.empty" label="身份证不能为空" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="身份证为空，请联系管理员。" />
+    <Translate _uuid="zEepvXx5qwG]Z3Q2hAlbnQ" name="gender.female" label="必须女员工可请产假" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="您不能申请产假。" />
+    <Translate _uuid="r0JRokju[VKl2fToFNW1sw" name="gender.male" label="必须是男员工才可以请陪产假" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="必须是男员工才可以申请陪产假。" />
+    <Translate _uuid="nkMQ1e5aQ2EFOer2saI3jg" name="agree.nursing" label="婴儿不满一周岁" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="必须同意婴儿不满一周岁，才可请哺乳假。" />
+    <Translate _uuid="BE[JetRPGj94l9BKrGhvqw" name="agree.visit" label="妊娠第四个月起作产前检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content=" 同意妊娠第四个月起作产前检查。\n \n" />
+    <Translate _uuid="xE138OvNqlIPV9JAd14dkw" name="approval.update.warn" label="管理员更新时的警告" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="请确认请假信息！\n 有效开始时间： {0}       \n 有效结束时间： {1}\n 以前请假时长： {2}\n 现在剩余时长： {3}\n 是否继续？" />
+    <Translate _uuid="Z0QEn2whOoxKtJ]GZ16tlg" name="approval.update.time.frame" label="管理员更新操作时检查时间范围" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="更新的时间必须在原有时间范围内。\n 原来时间：{0} -- {1}\n 当前时间：{2} -- {3}" />
+    <Translate _uuid="NUyzQ2[yFJ4cZepoQ82RoQ" name="nursing.day.times" label="哺乳假每天请假次数只限一次" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="哺乳假每天请假只限一次。" />
+    <Translate _uuid="YEsvnSQuEkL94XtkeRDLkQ" name="visit.month.times" label="每月享受一次产检假" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="每月只能享受一次产检假。" />
+    <Translate _uuid="70mUSf46[9cnHYgQpKXvhw" name="paternity.use.out" label="陪产假用完" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="陪产假已经用完，不能申请。" />
+    <Translate _uuid="9kwmnmABikv]tjYj8HWclw" name="gender.empty" label="检查性别是否为空" is_valid="Y" type_cd="P" status_cd="A" content="1" zh_content="{0}的性别为空，婚假及产假无法使用，请联系管理员。" />
+    <Translate _uuid="XUwO8AJtAOfQgBogGd26sg" name="birthday.empty" label="检查出生日期是否为空" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="{0}的出生日期为空，婚假及产假无法使用，请联系管理员。" />
+    <Translate _uuid="vkfbmJOfTwRjOb0ORMZ]ug" name="message.unaudited" label="假期未审核消息" is_valid="Y" note="待确认" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="假期申请未审核" />
+    <Translate _uuid="jkLKXYnZCmY9CBYXHVrGoQ" name="message.unaudited.extend" label="年假延期未审核消息" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="年假延期未审核" />
+    <Translate _uuid="1Eq]hAWgxVLuwotHAiWatg" name="available.ts.frame" label="可用的年假时长" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="减少{0}小时，已超出可用的剩余年假范围。" />
+    <Translate _uuid="lUZAw]iINBQITzQ9XQsdvg" name="parent.record.empty" label="父编号不能为空" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="父编号不能为空。" />
+    <Translate _uuid="CEznwi]QraFYb9iegIDwgw" name="vacation.record.exists" label="用户的年假记录不存在" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="姓名 {0}【 工号{1}】，没有代码编号【OUID={2}】的年假记录。" />
+    <Translate _uuid="gkaI9zYpyjKMxKlSCtIikA" name="is.apply.rest" label="假期已经用完，您不允许申请假期。" is_valid="Y" type_cd="P" status_cd="A" content="is.apply.rest" create_user_code="0213" zh_content="{0}您已经用完，系统不允许继续申请{0}。" />
+    <Translate _uuid="k0BzJnHmprcswb2J8QUupg" name="marriage.not.apply" label="不允许婚假" is_valid="Y" type_cd="P" status_cd="A" content="marriage.not.apply。" create_user_code="0213" zh_content="您已经申请过{0}～{1}婚假，不允许您再次申请婚假。" />
+  </List>
+  <List _uuid="V0euHJhXM6EG1brshEk]hw" name="user.link.duty" label="人员-关联职位" is_valid="Y" type_cd="P" code="user.link.duty">
+    <Translate _uuid="lEp]nCkY9zmf8lsHRwagjQ" name="not.null" label="不能为空" is_valid="Y" type_cd="P" status_cd="A" create_user_code="213" update_user_code="213" zh_content="{0}不能为空。" />
+    <Translate _uuid="DECY48rU7YtKevpKW3kKqA" name="not.is.link" label="没有关联" is_valid="Y" type_cd="P" status_cd="A" content="aa" create_user_code="213" update_user_code="213" zh_content="{0}没有与{1}关联。" />
+    <Translate _uuid="U0NLz9pSeOIKihc7Wxx6hg" name="check.same.link" label="检查相同普通关联" is_valid="Y" type_cd="P" status_cd="A" content="a" create_user_code="213" update_user_code="213" zh_content="担任类型与{0}关联{1}的担任类型不一致，{0}关联{1}的担任类型为{2}类型！" />
+    <Translate _uuid="aEJKbKxbQsAkAR2KcCqliQ" name="check.same.type.duty" label="检查相同类型的职务" is_valid="Y" type_cd="P" status_cd="A" content="a" zh_content="{0}在{1}只能担任一个全职职位,已担任的职位名称为{2}。" />
+  </List>
+  <List _uuid="hkDG1PBhXvB6dTuRi3Z[jg" name="user.link.organization" label="人员-关联组织" is_valid="Y" type_cd="P">
+    <Translate _uuid="cU80Sl4C7fM52dumdlxRiQ" name="not.null" label="不能为空" is_valid="Y" type_cd="P" status_cd="A" content="s" zh_content="{0}不能为空。" />
+    <Translate _uuid="ZEU[7K]l3NYb8kHJfNYRpQ" name="cancel.duty" label="取消职位" is_valid="Y" type_cd="P" status_cd="A" content="dd" zh_content="是否取消{0}在{1}中担当的所有职位？" />
+    <Translate _uuid="UUROZX5vu7Z03967Abuaog" name="not.is.link" label="没有关联" is_valid="Y" type_cd="P" status_cd="A" content="ww" create_user_code="213" zh_content="{0}没有与{1}关联。" />
+    <Translate _uuid="i01g8tGY49RAoZipfGhmpA" name="org.principal.one" label="组织负责人唯一" is_valid="Y" type_cd="P" status_cd="A" content="aa" create_user_code="0213" zh_content="{0}负责人唯一（已有负责人：【{1}】）。" />
+  </List>
+  <List _uuid="Kk6jyu8Z7EQZBVR9yvHrpg" name="organization.catalog" label="组织-目录关联" is_valid="Y" type_cd="P" code="catalog">
+    <Translate _uuid="1EURY12R6PnVVKouzRs8lg" name="organizationLinkCatalog" label="组织关联目录" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="您所在的【{0}】组织没有被关联到任何目录上，只有关联到目录上的组织才为有效组织，请与管理员联系。" />
+    <Translate _uuid="50tRk27Qc[QsHue3muFzgw" name="move.node.self.exist" label="存在将目录节点移动到本节点" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="391" zh_content="不能将目录节点移到本节点。" />
+    <Translate _uuid="9EIFza3PoK[ukEIv1O[Vsg" name="move.node.child.exist" label="存在将目录节点移动到本节点的子节点" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="391" zh_content="不能将目录节点移到本节点下的子节点。" />
+  </List>
+  <List _uuid="KEFfvISaNMA7xKsIbxfZjQ" name="recruit.duty" label="公司岗位" is_valid="Y" type_cd="P" code="duty">
+    <Translate _uuid="pE5Qzso49McNrTtLDfvonQ" name="check.cancel" label="检查是否取消" is_valid="Y" type_cd="P" status_cd="A" content="申请的{0}职位目前处于{1}状态，不能进行取消操作。" create_user_code="360" zh_content="该【岗位】已经处于取消状态，不能再进行当前操作，如有问题，请联系管理员。\n" />
+    <Translate _uuid="JU2UmnunSEYGGRvKkKQijQ" name="check.revoke" label="撤销检查" is_valid="Y" type_cd="P" status_cd="A" content="目前该职位处于{0}状态，不能进行此操作。" create_user_code="360" zh_content="该【岗位】已经处于撤销状态，不能再进行当前操作，如有问题，请联系管理员。\n" />
+    <Translate _uuid="h0nM[5QsZXzEJ1frj5dlnQ" name="check.approval" label="是否可以进行审批" is_valid="Y" type_cd="P" status_cd="A" content="该申请已经被{0}取消，不能进行审批。" create_user_code="360" zh_content="该【岗位】目前不处于待审核/确认状态，不能进行审核/确认操作，如有问题，请联系管理员。\n出现如上描述现象可能有如下原因之一：\n1.该岗位已经被申请者取消申请。\n2.该岗位已经被管理员撤销。\n3.该岗位已经被您审核/确认过。" />
+    <Translate _uuid="3U57oWxMzWABGymfjEFnng" name="check.confirm.user.exist" label="确认用户存在性" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="岗位确认者在岗位业务配置目录中不存在，请与管理员联系。" />
+    <Translate _uuid="]0Yap2WRdF103AxUSQh9lA" name="check.final.user.exist" label="最终审核者存在性" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="岗位最终审核者在岗位业务配置目录中不存在，请与管理员联系。" />
+    <Translate _uuid="sEqX1KKFKhI4t3L3aUlCnw" name="check.duty.exist" label="检查岗位是否存在" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="该岗位已经在岗位表中存在，不能申请名称相同的岗位，如有疑问，请与管理员联系。" />
+    <Translate _uuid="hUQxy5GfcyxK4vitYJglkQ" name="check.examine.refuse" label="审批拒绝" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="如果不同意，必须填写【审核意见】。如有疑问，请与管理员联系。" />
+    <Translate _uuid="5U6VAdshpFNAemuOsLrhnQ" name="message.remain.examine" label="未审核信息" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" update_date="20090904161749" zh_content="待审核岗位" />
+    <Translate _uuid="skd8cyDM8sx04CYaDxgtvA" name="message.remain.examine.confirm" label="未确认岗位信息" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" update_date="20090904162044" zh_content="待确认岗位" />
+    <Translate _uuid="MEFWSVNO23in8i9PUwYYjA" name="message.remain.examine.last" label="复审未审核信息" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" update_date="20090904162732" zh_content="复审待审核岗位" />
+  </List>
+  <List _uuid="jEpHCno2PNW9SlsVrRk4mw" name="recruit.resume" label="招聘-简历" is_valid="Y" type_cd="P">
+    <Translate _uuid="GUT3O1qDYQu3dDGvsDuClw" name="check.order.user.exist" label="预约者检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="预约者在业务配置目录中不存在，请与管理员联系。" />
+    <Translate _uuid="l0uOgBgph7grWuTbcXDLlw" name="check.sign.user.exist" label="签到者检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="签到者在业务配置目录中不存在，请与管理员联系。" />
+    <Translate _uuid="i0XEA7E9yf8hwACs9MCZuw" name="check.cancel" label="检查是否取消" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="该【简历】已经处于取消状态，不能再进行当前操作，如有问题，请联系管理员。\n" />
+    <Translate _uuid="AU00osaS4slCYEWBaJVSvQ" name="check.revoke" label="检查是否撤销" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="该【简历】已经处于撤销状态，不能再进行当前操作，如有问题，请联系管理员。\n" />
+    <Translate _uuid="DkmVXGC3R0gZZYYuJxk0jw" name="check.confirm" label="检查是否可以进行确认" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="该【简历】目前不处于待确认状态，不能进行确认操作，如有问题，请联系管理员。\n出现如上描述现象可能有如下原因之一：\n1.该简历已经被申请者取消申请。\n2.该简历已经被管理员撤销。\n3.该简历已经被您确认过。" />
+    <Translate _uuid="ik0wea3KGvmUdduN5BIsgA" name="check.order" label="检查是否重复预约" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="该【应聘人员简历】目前不处于待预约状态，不能进行预约操作，如有问题，请联系管理员。\n出现如上描述现象可能有如下原因之一：\n1.该应聘人员简历已经被简历登记者取消。\n2.该应聘人员简历已经被管理员撤销。\n3.该应聘人员简历已经被您确认过。" />
+    <Translate _uuid="AUyHvMWjtdLmbQI2[rUPmQ" name="check.sign" label="检查是否重复签到" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="该【应聘人员简历】目前不处于待签到状态，不能进行签到操作，如有问题，请联系管理员。\n出现如上描述现象可能有如下原因之一：\n1.该应聘人员简历已经被简历登记者取消。\n2.该应聘人员简历已经被管理员撤销。\n3.该应聘人员简历已经被您确认过。" />
+    <Translate _uuid="wE[0gG3CWk00JmmMiF8cig" name="check.confirm.user.exist" label="确认用户存在性" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="简历确认者在业务配置目录中不存在，请与管理员联系。" />
+    <Translate _uuid="oUS1jdtjJPV1rxSZ2rezkw" name="check.idNumber" label="检查身份证合法性" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="您输入的【{0}】不正确，请核对后再输；正确的【{0}】必须是15位或者18位，如果是15位，必须都是数字；\n如果是18位，最后一位可以是字母。" />
+    <Translate _uuid="mU4F0VSM57NzsNRuhnanqg" name="check.phone" label="检查电话号码合法性" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="您输入的【{0}】格式不正确，请核对后再输；正确的格式是：010-12345678或者01052467891。" />
+    <Translate _uuid="1UHme4xG7mHnBAody8TJoQ" name="check.mobile" label="检查移动电话合法性" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="您输入的【{0}】格式不正确，请核对后再输；正确的格式是：135XXXXXXXX。" />
+    <Translate _uuid="BUZtQx88nUQ7WCZFdgBDug" name="check.mail" label="检查邮箱合法性" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="您输入的【{0}】格式不正确，请核对后再输；正确的邮箱格式为：@符号之前是字母或者字母和数字的组合，\n结尾是com|gov|net|com.cn|edu.cn。" />
+    <Translate _uuid="oUK4y8MiLvhAbAASVuaHiw" name="check.valid.date" label="检查是否有效时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content="【{0}】不能大于系统日期。" />
+    <Translate _uuid="JU3nHqYruScIi7MMZo[xgA" name="check.date.empty" label="检查日期是否为空" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content="【{0}】不能为空。" />
+    <Translate _uuid="l0JO1PT9YGQKQKkRyfHcnQ" name="message.remain.confirm" label="待确认简历信息" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content="未确认" />
+    <Translate _uuid="Y0ejwjyQiwZD72sL69BagQ" name="check.update" label="检查是否可以进行更新操作" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" update_date="20091127120232" zh_content="该【简历】已经处于确认，不能再进行当前操作，如有问题，请联系管理员。\n" />
+    <Translate _uuid="2EW6gWFOeN9sKhOHa8VYig" name="message.remain.order" label="未预约简历信息" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="未预约" />
+    <Translate _uuid="0EUy3lKhRxiVxZBqC[NviQ" name="message.remain.sign" label="待签到简历信息" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="待签到" />
+    <Translate _uuid="Tk1VGFQFVF]47[9m64m0kQ" name="check.update.operate" label="【{0}】的简历已被需求关联，不可以进行修改" is_valid="Y" type_cd="P" status_cd="A" content="check.update.operate" zh_content="【{0}】的简历已被需求关联，不可以进行修改。" />
+    <Translate _uuid="]0SewC[IpW1oq9e[F1u7jA" name="check.null" label="姓名：{0}【联系电话：{1}】的简历，{2}列不能为空，请重新填写。" is_valid="Y" type_cd="P" status_cd="A" content="check.null." zh_content="在导入文件的第【{1}】行，{0}列不能为空，请重新填写。" />
+    <Translate _uuid="rETV02yAqH8saINUkwblkQ" name="check.code.list.value" label="姓名：{0}【联系电话：{1}】的简历，{2}列没有找到对应的值，请重新填写。" is_valid="Y" type_cd="P" status_cd="A" content="check.code.list.value" zh_content="在导入文件的第【{1}】行，{0}列没有找到对应的值，请重新填写。" />
+    <Translate _uuid="LEY8lNVzpeFfu1aBxOd3mg" name="check.same.resume" label="姓名：{0}【性别：{1}，联系电话：{2}】的简历已经存在，请重新填写。" is_valid="Y" type_cd="P" status_cd="A" content="check.same.resume." zh_content="姓名：{0}【性别：{1}，联系电话：{2}】的简历已经存在，请重新填写。" />
+  </List>
+  <List _uuid="t0tJT2T[GRA5dlIP3ZVAmg" name="recruit.require" label="招聘-需求管理" is_valid="Y" type_cd="P">
+    <Translate _uuid="70nqMZCG5vdtTecXI]tWqw" name="check.final.user.exist" label="最终审核用户存在性" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="需求最终审核者在业务配置目录中不存在，请与管理员联系。" />
+    <Translate _uuid="sUsWbTvokXhSKkluUYnohg" name="check.cancel" label="检查是否取消" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="该【招聘需求】已经处于取消状态，不能再进行当前操作，如有问题，请联系管理员。\n" />
+    <Translate _uuid="k0DN3vAvsO28EM40vRPjgA" name="check.revoke" label="检查是否撤销" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="该【招聘需求】已经处于撤销状态，不能再进行当前操作，如有问题，请联系管理员。\n" />
+    <Translate _uuid="SEV7kwWh6]2tsgSXdG7amg" name="check.approval" label="检查是否可以进行审批" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="该【招聘需求】目前不处于待审核状态，不能进行审核操作，如有问题，请联系管理员。\n出现如上描述现象可能有如下原因之一：\n1.该招聘需求已经被申请者取消申请。\n2.该招聘需求已经被管理员撤销。\n3.该招聘需求已经被您审核过。" />
+    <Translate _uuid="BUBV9q73pkoiUuEIm1EVsw" name="check.date.after" label="检查结束日期是否大于开始日期" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="【{0}】的开始日期不能大于结束日期。" />
+    <Translate _uuid="uEH2BwQZB00GTLDB3KYFmQ" name="check.beginDate.after" label="检查开始日期是否大于当前日期" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="【{0}】的开始日期不能小于当前日期。" />
+    <Translate _uuid="UULj[wiWzncwijQaFZclvA" name="check.update" label="检查此时是否能更新" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="该需求目前处于【审核状态】中，不能进行更新操作，如有疑问，请与管理员联系。" />
+    <Translate _uuid="g0cVXfKken6rwDKD8kk3mA" name="message.remain.examine" label="待审核信息" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content="待审核招聘需求" />
+    <Translate _uuid="aEREUExrwax]yy6l1giIqA" name="message.remain.examine.confirm" label="未确认岗位信息" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content="待确认需求" />
+    <Translate _uuid="ZEHwOMLr[0VH4c]]0C9]ow" name="message.remain.examine.last" label="复审未审核信息" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content="复审待审核需求" />
+    <Translate _uuid="vkqzsalSkautLR7JeR97hg" name="check.person.cancel" label="检查是否可以进行取消操作" is_valid="Y" type_cd="P" status_cd="A" content="check.person.cancel" create_user_code="213" zh_content="该申请，审核人员已经审核，您不可以进行取消操作，如想取消请联系管理员。" />
+    <Translate _uuid="qUWqBNaUeR515ICouCJEvg" name="check.examine.repeat.operate" label="检查审核者审核操作重复" is_valid="Y" type_cd="P" status_cd="A" content="check.examine.repeat.operate" create_user_code="0213" zh_content="您已经审核【{0}】，不可以再进行【{1}】操作。" />
+    <Translate _uuid="CE6dLNmzYJrw0hkqCiYAhA" name="check.full" label="检查是否招满" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="部门为【{0}】【{1}】申请的招聘需求现已经招满。" />
+    <Translate _uuid="4UXmzTHVt0AbKxCX2c24pQ" name="check.job.user.count" label="预招人数必须小于等于修改之前的预招人数【{0}人】并且大于等于已招人数【{1}人】。" is_valid="Y" type_cd="P" status_cd="A" content="check.job.user.count" create_user_code="213" zh_content="预招人数必须大于等于已招人数【{1}人】。" />
+    <Translate _uuid="9kxiTrzV8vFMmwvDwZ32lQ" name="check.last.revoke" label="终审者撤销提示" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="【{0}】【部门：{1}】申请的招聘需求现已经招满，不能进行废除操作，请与人事确认情况。" />
+  </List>
+  <List _uuid="UUKtnB]RIufG9br6y8a4jw" name="recruit.process" label="招聘-流程" is_valid="Y" type_cd="P">
+    <Translate _uuid="HkkAIf9r3P4XgFFIBSlzjw" name="check.final.user.exist" label="最终审核用户存在检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="招聘流程最终审核者在业务配置目录中不存在，请与管理员联系。" />
+    <Translate _uuid="TUh1w7MN5WANAc4NYqVgnQ" name="check.approval" label="检查是否可以进行审批" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="360" zh_content="该【招聘-面试者】目前不处于待审核状态，不能进行审核操作，如有问题，请联系管理员。\n出现如上描述现象可能有如下原因之一：\n1.该招聘者简历已经被登记者取消。\n2.该招聘者简历已经被管理员撤销。\n3.该招聘-面试者已经被您审核过。" />
+    <Translate _uuid="wk5SIYL3CgxJoA[q1EL3qg" name="message.remain.examine.department" label="面试评价信息" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content="待面试评价信息" />
+    <Translate _uuid="v0FzKm9gsrj4uZ2uV[hZoQ" name="message.remain.examine.hr" label="面试评价" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content="待评价面试信息" />
+    <Translate _uuid="10GAMDyKrfIer1]YZ7sfiA" name="message.remain.examine.manager" label="面试审核信息" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content="待审核面试信息" />
+    <Translate _uuid="SEpP[neRX8EecfRdQ8aLsQ" name="message.remain.examine.final" label="面试备档信息" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0360" zh_content="待备档面试信息" />
+    <Translate _uuid="DkOekvYji[EV4c]WlIvfiQ" name="check.delete.able" label="检查可删除" is_valid="Y" type_cd="P" status_cd="A" content="you cannot delete this link because it has be in process" create_user_code="0185" zh_content="该简历（应聘者：{0}）已经开始进行面试，不能删除该关联。" />
+    <Translate _uuid="ukViEC3d5P]SFN]Pjzv5gQ" name="check.appraise.in.examine" label="检查面试结果正在审核" is_valid="Y" type_cd="P" status_cd="A" content="{0}'s interview result has been in examine." create_user_code="0185" zh_content="{0}的面试结果正在审核中。" />
+    <Translate _uuid="i0gCTeuLQazJpW]RYUOslw" name="check.close.able" label="检查关闭的前置条件" is_valid="Y" type_cd="P" status_cd="A" content="you must send this interview result to the examiner before close it." create_user_code="0185" zh_content="{0}的面试结果还没有审核，请先进行确认评价操作。" />
+    <Translate _uuid="6UNzAoIPQJKcGVWYdHL9tw" name="check.fail.reason" label="失败时检查原因是否填写" is_valid="Y" type_cd="P" status_cd="A" content="you must input the resean." create_user_code="0185" zh_content="请填写预约信息来注明失败原因。" />
+  </List>
+  <List _uuid="5E3LcySvqaw344sdOBErsA" name="attendance" label="人事管理-考勤管理" is_valid="Y" type_cd="P">
+    <Translate _uuid="[U7CLgd5CV0dgRznVHW1nA" name="late.absenteeism.a" label="迟到旷工" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="迟到({0})记旷工({1})小时；" />
+    <Translate _uuid="W0ALTEOztC[r3tfrrbGlmA" name="late.absenteeism.b" label="迟到旷工" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="迟到({0})记旷工({1})小时；" />
+    <Translate _uuid="ZEzjvZAH0FZ8qZaD89u3rQ" name="leave.absenteeism.a" label="早退旷工" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="早退({0})记旷工({1})小时；" />
+    <Translate _uuid="vE9EeQtln8DjODIYnTEWpA" name="leave.absenteeism.b" label="早退旷工" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="早退({0})记旷工({1})小时；" />
+    <Translate _uuid="QEtTFdDUBiWzE[I9mL6Spw" name="rest.description" label="考勤假期说明" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="请{0}({1})-{2}；" />
+    <Translate _uuid="k0bPYsft7XO1Hl2DuHoxoA" name="late.ts" label="迟到时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="迟到({0})；" />
+    <Translate _uuid="Gk]mhSs5eAGmbIC7HIGyig" name="leave.ts" label="早退时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="早退({0})；" />
+    <Translate _uuid="G07nILtaE9qlFQf2AZebvg" name="examin.note.empty" label="审核原因不能为空" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="审核原因不能为空。" />
+    <Translate _uuid="iEJTgOaUntoTIM8N2EK9gQ" name="message.unaudited" label="考勤未审核消息" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="考勤未审核人数" />
+    <Translate _uuid="SkTBWEcWIgcw3HqJBqkGlw" name="late.number.note" label="迟到次数说明" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="迟到{0}至{1}分钟({2})次；" />
+    <Translate _uuid="JERn4jT6CYq16J4BnSUTqA" name="leave.number.note" label="早退次数说明" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="早退{0}至{1}分钟({2})次；" />
+    <Translate _uuid="UUcysPelqOGtFKRoijyrng" name="absenteeism.info" label="旷工信息" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="旷工{0}；" />
+    <Translate _uuid="iU[Up8Tvuq[n8OuIVeJgjg" name="card.cord.empty" label="卡片代码不能为空" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="卡号不能为空。" />
+    <Translate _uuid="4UMK4[2UVnhxy[ccLPixrA" name="card.used" label="卡片被使用" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="该卡号已被{0}使用。" />
+    <Translate _uuid="Uk3TC4PvaCSOaHqFzsHtrg" name="period.range.invalid" label="期间结束月份必须大于期间开始月份" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="期间结束月份必须大于期间开始月份。" />
+    <Translate _uuid="I0Zi5MfoGWsuA1l5m8nivQ" name="period.range.repeat" label="期间范围已经存在" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="期间范围已经存在。" />
+    <Translate _uuid="hEUHU]XxCnDsVxEADwCdmg" name="begin.date.empty" label="开始时间不能为空" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="开始时间不能为空。" />
+    <Translate _uuid="GUaC[KmtK2eNZd]rwRmdmw" name="end.date.empty" label="结束时间不能为空" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="结束时间不能为空。" />
+    <Translate _uuid="L0HoGdIwmOGmv9Tzy1JvgA" name="sign.hint" label="加班时长图标说明" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="考勤时长超过{0}小时。" />
+    <Translate _uuid="EUXKVggxspiUcDGfjfOVpw" name="is.examine" label="已经审核过" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="该记录已经审核。" />
+    <Translate _uuid="wEFveapO2Dh0GkuLp3Xfjw" name="timeEmptyCheck" label="打开时间不能为空" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="打卡时间不能为空。【数据行数：{0}， 工号：{1}】" />
+    <Translate _uuid="b0hBpJvqEkFizk10SR9vkg" name="dateFormatChcek" label="时间格式不正确" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="打卡时间格式不正确。【数据行数：{0}，工号：{1}，正确格式为：2010-01-01 09:00】" />
+    <Translate _uuid="J01IonbYFb4Eme9bONRzng" name="linkCheck" label="用户与卡关联检查" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="工号【{0}】的用户没有激活卡。【数据行数：{1}】" />
+  </List>
+  <List _uuid="nEaMQ53TSEqWNa9bAF3qog" name="recruit.interview" label="招聘面试" is_valid="Y" type_cd="P">
+    <Translate _uuid="[0jqpVNgI[WX7hi4LtnZhg" name="order.remain" label="待预约" is_valid="Y" type_cd="P" status_cd="A" content="order.remain" create_user_code="213" zh_content="待预约" />
+    <Translate _uuid="jUXnIPoZSzgye9[Wk04GmA" name="sign.remain" label="待签到" is_valid="Y" type_cd="P" status_cd="A" content="sign.remain" create_user_code="213" zh_content="待签到" />
+    <Translate _uuid="i0ibFxCSuQAaN19EyZHcpA" name="department.examine.remain" label="用人部门待面试" is_valid="Y" type_cd="P" status_cd="A" content="department.examine.remain" create_user_code="213" zh_content="用人部门待面试" />
+    <Translate _uuid="PUstvfCkWwe7rYQgmyuXsw" name="hr.examine.remain" label="HR待面试" is_valid="Y" type_cd="P" status_cd="A" content="hr.examine.remain" zh_content="HR待面试" />
+    <Translate _uuid="wkiza0lBEpstLnUIWgEJmQ" name="hr.operate.remain" label="HR待处理" is_valid="Y" type_cd="P" status_cd="A" content="hr.operate.remain" create_user_code="213" zh_content="HR待处理" />
+  </List>
+  <List _uuid="5Eu[m7kujRBlSdAA8VBMgQ" name="LF_TR_MG" label="培训管理" is_valid="Y" type_cd="P">
+    <Translate _uuid="xUmKpBMTpKUvewxlE0[jjg" name="plan.url" label="期次关联培训计划" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="1003" zh_content="&lt;A class='Message_Link' href=&quot;javascript:goNotify(null,'logic.person.training.manage.PlanForm','update','{0}',\nnull,null)&quot;&gt;&lt;B&gt;{1}&lt;/B&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;{2}&lt;/A&gt;&lt;BR/&gt;" />
+  </List>
+</Group>
+

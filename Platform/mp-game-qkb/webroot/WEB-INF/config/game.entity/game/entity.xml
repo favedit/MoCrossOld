@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="nUeUh3mZF8ghwVBS7cWZkA" name="game.entity" label="实体定义" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" source_name="MoMgStructEntity" code="Sen" full_code="StructEntity" display_index="26" include_heads="game.core\ngame.template" project_name="/Common/MoDefineEntity" project_code="MgEt">
+  <EntityTemplate _uuid="YkgRxxvOglkuymuz5kjHmw" name="GmCharacterEntityTemplate" label="角色实体模板" is_valid="Y" note="M#">
+    <Item _uuid="70NrVE0LwPEft6WE2tIJiA" name="styleActionSet" label="样式动作集合" is_valid="Y" note="M#" type="Object" type_name="SGmStyleActionSet" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="BUlRy3Tad4T3sPkh0581uQ" name="buffSet" label="BUFF集合" is_valid="Y" note="M#" type="Object" type_name="SGmCharacterBuffSet" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </EntityTemplate>
+  <EntityTemplate _uuid="7khTIIBNfM]Yul6smOaIjw" name="GmPlayerEntityTemplate" label="玩家实体模板" is_valid="Y" note="M#">
+    <Item _uuid="10PS[EmwHg30C6URkkkcrQ" name="roleLid" label="角色关联编号" is_valid="Y" note="M#" type="Type" type_name="TLinkId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="b0ybhHcAXBQYkqRmWfJzpA" name="clientLid" label="客户关联编号" is_valid="Y" note="M#" type="Type" type_name="TLinkId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="akNa2Y6xo0TAwYv1nBYCnQ" name="playerFlags" label="玩家标志" is_valid="Y" note="M#" type="Set" type_name="TGmPlayerFlagSet" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="IkhFP4HQ5MxTzfoGZHssqA" name="playerStatus" label="玩家状态" is_valid="Y" note="M#" type="Enum" type_name="EGmPlayerStatus" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </EntityTemplate>
+  <EntityTemplate _uuid="5ETyWBVQABEYtXNX47GDnQ" name="GmPetEntityTemplate" label="宠物实体模板" is_valid="Y" note="M#">
+    <Item _uuid="ik3aukqsUn[rwfXcqXm8nQ" name="roleLid" label="角色关联编号" is_valid="Y" note="M#" type="Type" type_name="TLinkId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="OUdWJkQZbvk7wewmEJLvtw" name="petTid" label="宠物模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="t0UHEV9S66Jjk4zmmzn1iQ" name="petLid" label="宠物关联编号" is_valid="Y" note="M#" type="Type" type_name="TLinkId" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="fkTEy8[jXCoZR3oJRDZztg" name="fidelity" label="忠诚" is_valid="Y" note="M#" type="Struct" type_name="SGmPower32" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="YU[CGuoM8V0KcSscxpdSiA" name="life" label="寿命" is_valid="Y" note="M#" type="Struct" type_name="SGmPower32" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="dErA7bq7BmFN3Hb[zPWGnA" name="itgAttackPhysical" label="物攻资质" is_valid="Y" note="M#" type="Struct" type_name="SGmPower32" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="v0Ge[xFba[TigH0pW8Q9nw" name="itgDefencePhysical" label="物防资质" is_valid="Y" note="M#" type="Struct" type_name="SGmPower32" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="20v7xmCR7lkRkcW]xijMqg" name="itgHp" label="气血资质" is_valid="Y" note="M#" type="Struct" type_name="SGmPower32" is_collection="N" property_id="8" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="tk57zwQWVVX1xFTGkApypA" name="itgMagic" label="法力资质" is_valid="Y" note="M#" type="Struct" type_name="SGmPower32" is_collection="N" property_id="9" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="1UGEPKgSLD8MTFZ0Wm75tw" name="itgMobility" label="速度资质" is_valid="Y" note="M#" type="Struct" type_name="SGmPower32" is_collection="N" property_id="10" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="s0uiU9udw92Y2Gr99qAUmQ" name="itgDodge" label="躲闪资质" is_valid="Y" note="M#" type="Struct" type_name="SGmPower32" is_collection="N" property_id="11" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </EntityTemplate>
+  <EntityTemplate _uuid="m0Rzxpx5L2z0X64fZdJKsA" name="GmRideEntityTemplate" label="坐骑实体模板" is_valid="Y" note="M#">
+    <Item _uuid="40pv6v]raCYqt6PDVt[]nw" name="rideTid" label="坐骑模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </EntityTemplate>
+  <EntityTemplate _uuid="gE1F1K2FWtw2yfLLvugZgA" name="GmNpcEntityTemplate" label="NPC实体模板" is_valid="Y" note="M#" />
+  <EntityTemplate _uuid="xkxfqRBcc7PTG967hP3Rgw" name="GmBattleEntityTemplate" label="战斗实体模板" is_valid="Y" note="M#">
+    <Item _uuid="G0v2A]]gi6GlAWnV0HS0qA" name="battleId" label="战斗编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="ek6vTeMBQZM8qLb7I3DfgQ" name="battleOid" label="战斗对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="ckuJI8YS4GFYtaGr8SL]rw" name="battleLid" label="战斗关联编号" is_valid="Y" note="M#" type="Type" type_name="TLinkId" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="RU8PGHre9NpHeffJyxUGsQ" name="battleFieldTid" label="战场模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="k0u6E]9O[[v37PsttRdvng" name="matrixTid" label="阵法模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="ckA0QmH92hMvb3hK2Mrypg" name="stanceTid" label="站位模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </EntityTemplate>
+  <EntityTemplate _uuid="R0M]xGXEPoXpIgsdMkP1iw" name="GmCarEntityTemplate" label="镖车模板" is_valid="Y" note="M#">
+    <Item _uuid="MUnNlX6bR3S[X5[B]1JdhQ" name="roleLid" label="角色链接ID" is_valid="Y" note="M#" type="Type" type_name="TLinkId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="bU57NX7qJAmEnHWv44hrig" name="carLid" label="镖车链接ID" is_valid="Y" note="M#" type="Type" type_name="TLinkId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="60NshxTAwduuzga9g7tLhw" name="grade" label="品级" is_valid="Y" note="M#" type="Enum" type_name="EGmTaskGrade" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </EntityTemplate>
+  <EntityTemplate _uuid="QkXa2lrEJI7kErz0G0P9iQ" name="GmImageEntityTemplate" label="镜像实体模板" is_valid="Y" note="M#">
+    <Item _uuid="GkoKrFgr7Ehdql9joLvVlw" name="skillSet" label="技能集合" is_valid="Y" note="M#" type="Object" type_name="SGmImageSkillSet" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="5kvkEvwADtcnb[WVbhlctg" name="imageType" label="镜像类型" is_valid="Y" note="M#" type="Enum" type_name="EGmImageType" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </EntityTemplate>
+  <Entity _uuid="LUjxAPyFllQfgcAIdC72oA" name="GmEntity" label="实体" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y">
+    <Item _uuid="vU3MJWpQ9Ox5V[3pgmw5tg" name="id" label="编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="8" />
+    <Item _uuid="LUjKQPNr3]aY7LYc7PkUnA" name="linkId" label="关联编号" is_valid="Y" note="M#" type="Type" type_name="TLinkId" is_collection="N" property_id="9" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="3Uwokh]F]PJOvhYCxPThhA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EGmEntityStatus" is_collection="N" property_id="10" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="GkNx[2lu7K4Fr6BQjGaSgQ" name="flags" label="标志" is_valid="Y" note="M#" type="Set" type_name="TGmEntityFlagSet" is_collection="N" property_id="11" />
+    <Item _uuid="dk9OHZDR96SnQdzr0s2xvg" name="processCount" label="处理次数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="12" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="xEyb5gj9HHWkcMbYGwn8nQ" name="processTicks" label="处理时刻集合" is_valid="Y" note="M#" type="DateTime" type_name="TDateTime" is_collection="Y" data_size="memory.object.process.max-count" property_id="13" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <ItemTemplate _uuid="yErGCV7v]Dy8mjLMI[Omvw" name="entityTemplate" label="实体属性模板" is_valid="Y" note="M#" entity_name="GpEntityTemplate" />
+  </Entity>
+  <Entity _uuid="lU8]J]vH]j5Zhd0AC71zgQ" name="GmMpEntity" label="地图实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmEntity">
+    <Item _uuid="RkbI96QJdR09EvEyWIB1hQ" name="presents" label="当前标志" is_valid="Y" note="M#" type="Set" type_name="TGmEntityMapPresentSet" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="IEjulK2XB1Cy7ge]KARPnQ" name="lineTid" label="分线模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="u06HCcFMN8yn5QFw4E0osQ" name="mapLid" label="地图关联编号" is_valid="Y" note="M#" type="Type" type_name="TLinkId" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="LE[XXaIr3hcrEjq]1clMpg" name="location" label="坐标" is_valid="Y" note="M#" type="Struct" type_name="SGmPoint3" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="3kqDcP]vs4rNUSGHCnxMlQ" name="directionCd" label="方向" is_valid="Y" note="M#" type="Enum" type_name="EGmDirection" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="9kmgLEr[orWjKGdy[BpjhQ" name="cellId" label="单元格编号" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="kUHQbgIgt15VnUSGcMLigA" name="GmMpStillEntity" label="地图静态实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmMpEntity">
+    <Item _uuid="]0Dy2r]2TySsGud2u]5rng" name="styleActionSet" label="样式动作集合" is_valid="Y" note="M#" type="Object" type_name="SGmStyleActionSet" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="IURdrYf6CNJkbDw1Ddf5kg" name="GmMpItemEntity" label="地图物品信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmMpStillEntity">
+    <Item _uuid="4UB6d9vchVd8T]3kQ4E9ug" name="buyCurrency" label="买入价格" is_valid="Y" note="M#" type="Struct" type_name="SGmCurrency" is_collection="N" property_id="1" />
+    <Item _uuid="LkV7O3DtgL943taM9Qk6rQ" name="sellCurrency" label="卖出价格" is_valid="Y" note="M#" type="Struct" type_name="SGmCurrency" is_collection="N" property_id="2" />
+  </Entity>
+  <Entity _uuid="40Ptmkm4B4tlT1c0V0bXkg" name="GmMpSpriteEntity" label="地图精灵信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmMpEntity">
+    <ItemTemplate _uuid="M0iOVAeoHy]hfi6TcR9qkw" name="spriteTempalte" label="精灵属性模板" is_valid="Y" note="M#" entity_name="GpSpriteTempalte" />
+    <Item _uuid="80jOpIpG[g45YkCYeIy]pg" name="sceneSize" label="屏幕大小" is_valid="Y" note="M#" is_server="N" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" type="Struct" type_name="SGmSize" is_collection="N" property_id="2" is_persistence="N" />
+    <Item _uuid="[kjYrdR[ADhETZsxhH6dnw" name="goalMapId" label="最终地图编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="3" />
+    <Item _uuid="y0E0E5oA3VGpQs2NJXYQjQ" name="goalLocation" label="最终目标" is_valid="Y" note="M#" is_server="N" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" type="Struct" type_name="SGmPoint3" is_collection="N" property_id="4" is_persistence="N" />
+    <Item _uuid="i04QlnD8ZtKiKH0S4hkBgg" name="goalDirection" label="最终方向" is_valid="Y" note="M#" type="Uint16" is_collection="N" property_id="5" />
+    <Item _uuid="g06rWntTPkqlBLPXoEaVoA" name="targetLocation" label="目标位置" is_valid="Y" note="M#" is_server="N" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" type="Struct" type_name="SGmPoint3" is_collection="N" property_id="6" is_persistence="N" />
+    <Item _uuid="U07WZc7[pA9BxGf6Wxbvhw" name="targetDirection" label="目标方向" is_valid="Y" note="M#" type="Uint16" is_collection="N" property_id="7" />
+    <Item _uuid="WUxe]czGRr8DebxL1oN5lQ" name="followLinks" label="跟随关联" is_valid="Y" note="M#" type="Object" type_name="SGmSpriteFollowEntityLinks" is_collection="N" property_id="8" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="5k9q]5XsqmcDe2uYt7wwrQ" name="tailLinks" label="尾随列表" is_valid="Y" note="M#" type="Object" type_name="SGmSpriteTailEntityLinks" is_collection="N" property_id="9" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="DkfAzdHrLeDzFsl7JqOXkg" name="findWayMapTid" label="寻路目标地图" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="10" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="KU[cLU]tLmnLgRXOLHLPtA" name="findWayLocation" label="寻路目标坐标" is_valid="Y" note="M#" type="Struct" type_name="SGmPoint3" is_collection="N" property_id="11" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="NEIARoPZo02xz3ixpMXWkg" name="aStarSet" label="尋路" is_valid="Y" note="M#" type="Object" type_name="SGmAStarSet" is_collection="N" property_id="12" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="kUaM5Ngql[3ZEH02E]eWjw" name="starLocation" label="尋路目標" is_valid="Y" note="M#" type="Struct" type_name="SGmPoint3" is_collection="N" property_id="13" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="wUcRhCb1I2GDiXqfdOcAow" name="mapPathTid" label="寻路包模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="14" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="30i]AjMtQGKZxoe0jo68uw" name="GmMpCharacterEntity" label="地图角色信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmMpSpriteEntity">
+    <ItemTemplate _uuid="qUEq7BL6d4qbQDxQUM]Tuw" name="characterTemplate" label="角色模板" is_valid="Y" note="M#" entity_name="GpCharacterTemplate" />
+    <ItemTemplate _uuid="mUoKzoFAOsy5VLeyxwMhoA" name="characterEntityTemplate" label="角色实体模板" is_valid="Y" note="M#" entity_name="GmCharacterEntityTemplate" />
+  </Entity>
+  <Entity _uuid="okFIcWu6WWWJuhFEUbEJsQ" name="GmMpPlayerEntity" label="地图玩家信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmMpCharacterEntity">
+    <ItemTemplate _uuid="h0L8Rz[ZUlOr7dlfeRJNnw" name="playerEntityTemplate" label="玩家实体模板" is_valid="Y" note="M#" entity_name="GmPlayerEntityTemplate" />
+    <Item _uuid="oUe40RKdC[RmZs5Mz6H9qQ" name="priorLocation" label="上次移动位置" is_valid="Y" note="M#" is_server="N" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" type="Struct" type_name="SGmPoint3" is_collection="N" property_id="2" is_persistence="N" />
+    <Item _uuid="S0HWzd1MWE76]dLrMmsLiA" name="priorDateTime" label="上次移动时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" property_id="3" />
+    <Item _uuid="akYJWvJdWDzXE[DmVKEyuA" name="offlineLineId" label="离线线编号" is_valid="Y" note="M#" type="Uint16" is_collection="N" property_id="4" />
+    <Item _uuid="RUQ0LgWYZ5GjrcStYSSTpw" name="offlineMapId" label="离线地图编号" is_valid="Y" note="M#" type="Uint16" is_collection="N" property_id="5" />
+    <Item _uuid="u0HTApi8dmVhoI2LrHe8iA" name="offlineLocation" label="离线位置" is_valid="Y" note="M#" is_server="N" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" type="Struct" type_name="SGmPoint3" is_collection="N" property_id="6" is_persistence="N" />
+    <Item _uuid="iEZoptxZ0kxNYwvxahA8kA" name="offlineDirection" label="离线方向" is_valid="Y" note="M#" type="Uint16" is_collection="N" property_id="7" />
+    <Item _uuid="5EJ0XS2PZVBwdmin6wh4kA" name="offlineStatus" label="离线状态" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="8" />
+    <Item _uuid="TEk[3MfdHdDNEvP85Mc1nA" name="battleStep" label="战斗步长" is_valid="Y" note="M#" type="Float" is_collection="N" property_id="9" />
+    <Item _uuid="4Ene1S5fa7TV8Nm77C]2hw" name="battleStepCurrent" label="战斗当前步长" is_valid="Y" note="M#" type="Float" is_collection="N" property_id="10" />
+    <Item _uuid="nk9NVwZCR5cUtJiY4a[viA" name="battleRate" label="遇怪率" is_valid="Y" note="M#" type="Float" is_collection="N" property_id="11" />
+    <Item _uuid="p0Th5w45XCujnaQ2]VCWvw" name="battleRateInc" label="遇怪率调整" is_valid="Y" note="M#" type="Float" is_collection="N" property_id="12" />
+    <Item _uuid="MUn4hPyfY72eQBgMno2wrA" name="battelRateCurrent" label="当前遇怪率" is_valid="Y" note="M#" type="Float" is_collection="N" property_id="13" />
+    <Item _uuid="B0RVKqEHodlP3tdlG627tw" name="dieTime" label="死亡时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="14" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="qkF9Po9qJO]aLQLZc]MsnA" name="meditationTime" label="开始冥想时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" property_id="15" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="AkNPn0LMDFMvHEDvBRHAhw" name="mindAndBodyEntityOid" label="双修目标实体编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" property_id="16" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="tkj2eItKHHRCyi8Q12AQhA" name="broadcastCount" label="广播次数" is_valid="Y" note="M#" type="Uint16" is_collection="N" property_id="17" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="EUwgGFmGyMQ35rpavxwung" name="enterSandTime" label="进入沙滩时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" property_id="18" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="XUioGNVZQoq9S]gCTCDLuQ" name="sandInterationTime" label="沙滩互动时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" property_id="19" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="60yuBjBacH2K6tXKW64Ekw" name="carLinkId" label="镖车链接" is_valid="Y" note="M#" type="Type" type_name="TLinkId" is_collection="N" property_id="20" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="aU8M[7PwMFO[MCP]A71rng" name="interactionOrder" label="互动命令" is_valid="Y" note="M#" type="Enum" type_name="EGmSandInteration" is_collection="N" property_id="21" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="EUyuWnE5UsZUbBiXDhx0hg" name="sceneUp" label="上方点" is_valid="Y" note="M#" type="Struct" type_name="SGmPoint3" is_collection="N" property_id="23" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="4UKBn6FK]WEnjpjjFN70pQ" name="sceneDown" label="下方点" is_valid="Y" note="M#" type="Struct" type_name="SGmPoint3" is_collection="N" property_id="25" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="UEBfYYaeHK[a3jBnmH6VuA" name="screenScene" label="屏幕坐标" is_valid="Y" note="M#" type="Struct" type_name="SGmPoint3" is_collection="N" property_id="27" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="AUVaMUmjI2pLMR7DIhXIkw" name="startFishingTime" label="开始钓鱼时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" property_id="29" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="TUffsbRT6SBJn0dKyZu1hw" name="GmMpPetEntity" label="地图宠物信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmMpCharacterEntity">
+    <ItemTemplate _uuid="9U1[1w5dovn325V2aND1vQ" name="petEntityTemplate" label="宠物实体模板" is_valid="Y" note="M#" entity_name="GmPetEntityTemplate" />
+  </Entity>
+  <Entity _uuid="wkUJO3AuNJteCyc8iW0Qlg" name="GmMpRideEntity" label="地图坐骑实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmMpCharacterEntity">
+    <ItemTemplate _uuid="mUWV0[QbVqGKLgRcSnxZuQ" name="rideEntityTemplate" label="坐骑实体模板" is_valid="Y" note="M#" entity_name="GmRideEntityTemplate" />
+  </Entity>
+  <Entity _uuid="NEsIVQxkBDxk1]bDuPfAtg" name="GmMpNpcEntity" label="地图角色定义" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmMpCharacterEntity">
+    <ItemTemplate _uuid="2ENBfyXF8I6GypEdkWhimQ" name="npcEntityTemplate" label="NPC实体模板" is_valid="Y" note="M#" entity_name="GmNpcEntityTemplate" />
+    <Item _uuid="]0r]c0piizieeherM[Xbrw" name="actorFactoryTid" label="角色工厂编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="2" />
+    <Item _uuid="PEkRDv4]hKvpMole6Xalmg" name="actorTid" label="演员编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="3" />
+    <Item _uuid="5UJNYYQY4H76CmLCJP9Ogw" name="npcTid" label="角色模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="4" />
+    <Item _uuid="S0msUTC4XXKcikrfXjZ3vg" name="birthLocation" label="出生点" is_valid="Y" note="M#" is_server="N" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" type="Struct" type_name="SGmPoint3" is_collection="N" property_id="5" is_persistence="N" />
+    <Item _uuid="z0nV213[keBGyMFGYcB4tQ" name="birthDirection" label="出生方向" is_valid="Y" note="M#" type="Uint16" is_collection="N" property_id="6" />
+    <Item _uuid="xU7]]5W3VRLj0cuktm39qA" name="trackIndex" label="轨迹索引" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="7" />
+    <Item _uuid="HEbJz6nTbOE0bqK9hj0Htw" name="trackDelay" label="轨迹延迟" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="8" />
+    <Item _uuid="9EyEDgYYbteB53G53FSjng" name="storeTypeCd" label="商店类型" is_valid="Y" note="M#" type="Enum" type_name="EGmStoreType" is_collection="N" property_id="9" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="b0hzP5xbfbLduvElk44olg" name="pageTypeCd" label="分页类型" is_valid="Y" note="M#" type="Set" type_name="TGmPageTypeSet" is_collection="N" property_id="10" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="QENMPJKoM8GPx[480xDVug" name="goodsList" label="商品列表" is_valid="Y" note="M#" is_server="N" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" type="Object" type_name="SGmCharacterGoods" is_collection="Y" data_size="npc.goods.max-count" property_id="11" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="jke8lFYclQwVen4CT3sRtA" name="issueTaskList" label="发布任务列表" is_valid="Y" note="M#" type="Object" type_name="SGmCharacterIssueTask" is_collection="Y" data_size="npc.issue.task.max-count" property_id="12" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="4Esrm8dh5EI6FO8UA70cpw" name="goodsPageList" label="商品分页列表" is_valid="Y" note="M#" type="Object" type_name="SGmCharacterGoodsPage" is_collection="Y" data_size="page.max-count" property_id="13" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="h0LBv2y7JhQ8GaJqYEKonQ" name="lastGossipTime" label="上次说话时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" property_id="14" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="2kI4SPQJAPSbdo67Toq8rw" name="lastMoveTime" label="上次移动时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" property_id="15" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="n0m1n9n9OnyvfYMXpaqCoA" name="challengedCount" label="被挑战次数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="16" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="PkfkDOd]KBRpDJjYYa03lw" name="deathCount" label="死亡次数" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="17" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="6kGRTkG3ZBk2]UVKie[xvg" name="bossBattleDataList" label="boss战斗数据列表" is_valid="Y" note="M#" type="Object" type_name="SGmBossBattleData" is_collection="Y" data_size="1024" property_id="18" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="JE8KtE]yuYcdePyksGLVqQ" name="refreshTid" label="刷新模板ID" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="19" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Y0UrcnTEwPT4dJCFammehQ" name="isTreasure" label="是否是挖宝怪物" is_valid="Y" note="M#" type="Bool" is_collection="N" property_id="20" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="q0rx5gWLSbyBxH78z[T[iQ" name="treasureTime" label="出生时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" property_id="21" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="00gJ2BVBxuxScLmKLIIlnA" name="statueId" label="雕像ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="22" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="A0xpIxlO2ednMLCGcxa2oA" name="gatherRoleId" label="正在采集的人" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" property_id="23" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="Ikaw]cm18BzZczYRP16NpQ" name="GmBtEntity" label="战斗实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmEntity">
+    <Item _uuid="hE7OmeQEC47oZ4j[]Z8JuQ" name="presents" label="当前标志" is_valid="Y" note="M#" type="Set" type_name="TGmEntityBattlePresentSet" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="bUkMnBptT1wBG6WtHNrTrQ" name="battleLid" label="战场关联编号" is_valid="Y" note="M#" type="Type" type_name="TLinkId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="i0aiqpt4APEvnn86RtENnw" name="battleFieldTid" label="战场模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="3" />
+    <Item _uuid="UUpbMVBq6cY0AIPjKJNevQ" name="battleGroupCd" label="战斗分组" is_valid="Y" note="M#" type="Enum" type_name="EGmBattleGroup" is_collection="N" property_id="4" />
+    <Item _uuid="pEsaqksfDELJYFyCWgylvQ" name="matrixTid" label="阵型模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="5" />
+    <Item _uuid="BUhPnEXErvIYagzRF]bkgg" name="stanceTid" label="站位模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="6" />
+    <Item _uuid="Jkiqvo6prxJJRmwFMzBduw" name="stanceIndex" label="站位索引" is_valid="Y" note="M#" type="Uint8" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="u06GqEiGd2GhcJ9oh3lang" name="lineId" label="分线编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="8" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="80kKxd5h6D0BAcNY6ZBGrw" name="location" label="位置" is_valid="Y" note="M#" type="Struct" type_name="SGmPoint3" is_collection="N" property_id="9" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="fEDp9u5wPZkzqzL7w[qbqw" name="directionCd" label="方向" is_valid="Y" note="M#" type="Enum" type_name="EGmDirection" is_collection="N" property_id="10" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="[0BU9nKv5VT5[5Pl5qYLgg" name="GmBtStillEntity" label="静态实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmBtEntity" />
+  <Entity _uuid="s0qGyhNJcZNQ3wEKMrChrQ" name="GmBtSpriteEntity" label="精灵实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmBtEntity">
+    <ItemTemplate _uuid="EEYvI7FmbfaJVzrmW5MPsQ" name="spriteTempalte" label="精灵属性模板" is_valid="Y" note="M#" entity_name="GpSpriteTempalte" />
+  </Entity>
+  <Entity _uuid="c0WdzlpA0E5C4SxNjctVvg" name="GmBtCharacterEntity" label="角色实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmBtSpriteEntity">
+    <ItemTemplate _uuid="0EOHx2NwymTvspyiAWv9sg" name="characterTemplate" label="角色模板" is_valid="Y" note="M#" entity_name="GpCharacterTemplate" />
+    <ItemTemplate _uuid="yUhlFVxwthZWBb4kavAgqg" name="characterEntityTemplate" label="角色实体模板" is_valid="Y" note="M#" entity_name="GmCharacterEntityTemplate" />
+    <Item _uuid="xE294ngUPjGSIDRs9rJ0rg" name="actionOrderCd" label="行动指令" is_valid="Y" note="M#" type="Enum" type_name="EGmBattleOrder" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="a0IG2SG]me8qrhbuBmrVnQ" name="actionEntityLid" label="行动实体编号" is_valid="Y" note="M#" type="Type" type_name="TLinkId" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="J0yApGNme3dKNos0wDO9lA" name="actionSkillOid" label="行动技能对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="uEgpHqJinBRLd4JngxEAlA" name="actionPetOid" label="操作宠物对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Ek3H5lRWMERagdrKShiliA" name="actionItemOid" label="操作物品对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="[kE8AnxkxoxQGgMlh8pCng" name="hurtRate" label="伤害比例" is_valid="Y" note="M#" type="Float" is_collection="N" property_id="8" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="fEziC48z4kUD2vmrfEEgoQ" name="deadRound" label="死亡回合" is_valid="Y" note="M#" type="Uint8" is_collection="N" property_id="9" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="rEaVudnd661lB]Ve[x9SkQ" name="killerLid" label="致死实体链接编号" is_valid="Y" note="M#" type="Type" type_name="TLinkId" is_collection="N" property_id="10" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="ekIEXxA3FiEq9d7UZ2lNtQ" name="GmBtPlayerEntity" label="战斗玩家实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmBtCharacterEntity">
+    <ItemTemplate _uuid="u0h6mXQsEi[VwYHSBhXbiw" name="playerEntityTemplate" label="玩家实体模板" is_valid="Y" note="M#" entity_name="GmPlayerEntityTemplate" />
+    <Item _uuid="Dk2X3BoTgXNo5aBprxsLkw" name="damageValue" label="伤害值" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="A0126KXPZTr[2Igfpk9Msg" name="bearValue" label="承受伤害值" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="YEYpS8z5cuQusVOmfHsXgg" name="maxValue" label="最大伤害" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="VUftSZfEkl7wohC7T7Rxrg" name="roundDamageValue" label="本回合伤害" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="EU9XanxClZ0uYfZLchcrqw" name="roundLimitList" label="回合物品冷却列表" is_valid="Y" note="M#" type="Object" type_name="SGmRoundLimit" is_collection="Y" data_size="128" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="nkYr[SISkqs]JjlUZRdxkA" name="GmBtPetEntity" label="战斗宠物实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmBtCharacterEntity">
+    <ItemTemplate _uuid="e0grAR4ml]hC]TBtxMbblw" name="petEntityTemplate" label="宠物实体模板" is_valid="Y" note="M#" entity_name="GmPetEntityTemplate" />
+  </Entity>
+  <Entity _uuid="r02ON5gm1xriyT8cm6GTkQ" name="GmBtRideEntity" label="战斗坐骑实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmBtCharacterEntity">
+    <ItemTemplate _uuid="bEAUHemc7][PpR1HBs6anQ" name="rideEntityTemplate" label="坐骑实体模板" is_valid="Y" note="M#" entity_name="GmRideEntityTemplate" />
+  </Entity>
+  <Entity _uuid="BUJ3F7cXuKLeB9r5rMWCgQ" name="GmBtNpcEntity" label="战斗角色实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmBtCharacterEntity">
+    <ItemTemplate _uuid="GES3tBkJMgx]rr1f6IMNgw" name="npcEntityTemplate" label="NPC实体模板" is_valid="Y" note="M#" entity_name="GmNpcEntityTemplate" />
+    <Item _uuid="k0XeIQquXRhzlbgcZUjmuA" name="npcPackageTid" label="NPC包模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="2" />
+    <Item _uuid="g00y3rFZ1jvnuU7[n2U0pg" name="npcTid" label="NPC模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="3" />
+    <Item _uuid="0UPa]EJvAyov4L5arcPYhw" name="areaStarLevel" label="星级" is_valid="Y" note="M#" type="Uint8" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="ZE9Mse2uqubK7oO3hopljg" name="skillList" label="技能列表" is_valid="Y" note="M#" type="Object" type_name="SGmSkill" is_collection="Y" data_size="npc.skill.max-count" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="t0RVoMJ6mNfJ98C5osvagw" name="captureCount" label="捕捉次数" is_valid="Y" note="M#" type="Uint16" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="RE9Kc1lrwOCjugz15vIjhg" name="battleAIList" label="战斗AI列表" is_valid="Y" note="M#" type="Object" type_name="SGmBattleAI" is_collection="Y" data_size="32" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="IEI[gzfR0Kjo37iaSjSvgg" name="isTalk" label="是否说话" is_valid="Y" note="M#" type="Bool" is_collection="N" property_id="8" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="KENEPs1z2I3b7l2t9R3IiA" name="talkContent" label="说话内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" property_id="9" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="pUx92rwSN1fFCuQDCbfJlQ" name="isMainBody" label="是否是主体" is_valid="Y" note="M#" type="Bool" is_collection="N" property_id="10" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="P0b7HOR2zw5tQa2]Zs]Wtg" name="sceneEntityOid" label="场景实体编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" property_id="11" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="f0XYT5Dw9Zyqc0]K[hmBqg" name="existRound" label="已存在回合数" is_valid="Y" note="M#" type="Uint16" is_collection="N" property_id="12" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="p03AEtBBp4yekNoe0xmetA" name="GmMpCarEntity" label="镖车实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" is_final="N" parent_name="GmMpCharacterEntity">
+    <ItemTemplate _uuid="O03vlqfRPaGOEZF0Emg9nw" name="carEntityTemplate" label="镖车实体模板" is_valid="Y" note="M#" entity_name="GmCarEntityTemplate" />
+  </Entity>
+  <Entity _uuid="WEBvIY3NBVvVHWn6w]E0gQ" name="GmBtImageEntity" label="战斗镜像实体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" is_final="N" parent_name="GmBtCharacterEntity">
+    <ItemTemplate _uuid="aUczJstyOCk2xE2fq8x0lQ" name="imageEntityTemplate" label="镜像实体模板" is_valid="Y" note="M#" entity_name="GmImageEntityTemplate" />
+  </Entity>
+</Group>
+

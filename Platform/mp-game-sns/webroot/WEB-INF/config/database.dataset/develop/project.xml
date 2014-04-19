@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="7Uq0CvWG4Vh4mOqrEXp[rw" name="develop.project" label="M#12cn14项目定义" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="DP_PROJECT" data_alias="DP_PRJ" data_logic="DP_PROJECT_DI" parent_name="template.store" data_type="D">
+  <FieldBoolean _uuid="wUDai0EvB3qNMuxEGFTegQ" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldInteger _uuid="RUWpBifWYsjgOvCSBaUSlA" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_alias="TYP" data_refer="develop.project.type" />
+  <FieldString _uuid="0Uo0FqTXoofnz4SsLtiftA" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="DEwoeIRZMZakDCrTWgHOlw" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="zU6WHBc9RL2c6rsBsVjdng" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldContent _uuid="F0qwmRLq1Ln3w0Twmd7zsg" name="describe_note" label="M#12cn14项目描述" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DESCRIBE_NOTE" />
+  <FieldBoolean _uuid="L0PvP52JKbiDzTSy9mmxoQ" name="is_product" label="M#12cn14是否产品" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_PRODUCT" data_default="CP_BOOLEAN_EI.EFalse" />
+  <FieldEnum _uuid="M0Q6iPgkdQcqT60HCIUhlQ" name="status_cd" label="M#12cn14状态类型" is_valid="Y" note="M#12cn265P = 计划 (Plan)\nS = 启动 (Start)\nM = 维护 (Maintenance)\nF = 完成 (Finish)" is_null="Y" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="develop.project.status" />
+  <FieldEnum _uuid="gU]48eNK2gEisspDSQcxpA" name="scale_cd" label="M#12cn14规模类型" is_valid="Y" note="M#12cn3115U = 超大(500人以上) (Ultra)\nH = 巨大(100人以上) (Huge)\nL = 大型(50人以上)  (Large)\nM = 中等(10人以上)  (Middle)\nS = 小型(5人以上)   (Small)\n" is_null="Y" is_store="N" is_abstract="N" data_name="SCALE_CD" data_size="1" data_code="develop.project.scale" />
+  <FieldEnum _uuid="U0lHy22SuaF0xcORVlaJlA" name="profit_cd" label="M#12cn14营利类型" is_valid="Y" note="M#12cn253P = 营利   (Profit)\nL = 公摊   (Pool)\nN = 非营利 (Nonprofit)" is_null="Y" is_store="Y" is_abstract="N" data_name="PROFIT_CD" data_size="1" data_code="develop.project.profit" />
+  <FieldDate _uuid="XUnli9o8xsazYnDhnFFYgA" name="expect_begin_date" label="M#12cn16预期开始日期" is_valid="Y" note="M#12cn19预计项目启动时间。" is_null="Y" is_store="Y" is_abstract="N" data_name="EXPECT_BEGIN_DATE" />
+  <FieldDate _uuid="okjM]VPJ6G9rFNBCYCKBow" name="expect_end_date" label="M#12cn16预期完成日期" is_valid="Y" note="M#12cn19预期的项目完成日期" is_null="Y" is_store="Y" is_abstract="N" data_name="EXPECT_END_DATE" />
+  <FieldDate _uuid="rkHZt4ep8fAY]]wFihprow" name="begin_date" label="M#12cn14开始日期" is_valid="Y" note="M#12cn16项目开始时间" is_null="Y" is_store="Y" is_abstract="N" data_name="BEGIN_DATE" />
+  <FieldDate _uuid="p0qBhZzp6Pj0irMuCv3XlQ" name="end_date" label="M#12cn14完成日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="END_DATE" />
+  <FieldInteger _uuid="lUf3EV]Pwl2iLRwqME1Clw" name="principal_user_id" label="M#12cn15负责人标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRINCIPAL_USER_ID" data_alias="PCL_USR" data_refer="person.user" />
+  <FieldTemplate _uuid="kkKfW3[K6bTG8ynEZ1uYkw" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

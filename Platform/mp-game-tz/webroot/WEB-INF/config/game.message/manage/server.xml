@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="EUgIqWtX0JD5Utf8PM4giQ" name="manage.server" label="管理服务器" is_valid="Y" note="M#" is_server="Y" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" source_name="MoMgManageServer" code="Msr" full_code="ManageServer" display_index="61">
+  <Message _uuid="IEmWlFoWydWBbPo[uAXxuw" name="server.list.request" label="服务器状态查询请求" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="ServerList" is_udp="N" message_type="Request" is_session="N" is_manage="N" source_type="CLT" target_type="GDM" code_value="0x0001" code_fix="N" />
+  <Message _uuid="m0UGt42SkxX[A8x2xClXjg" name="server.list.response" label="服务器状态查询应答" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="ServerList" is_udp="N" message_type="Response" is_session="N" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Struct _uuid="CE8r88fF]WC]goA6iPRkqw" name="SStatus" label="客户端数目" is_valid="Y" note="M#">
+      <Item _uuid="6keRRGEALrJGrhdPHGbdtg" name="type" label="类型" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="]0fkVgpmxDpZJpbrE]qFmg" name="name" label="名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+      <Item _uuid="PUycRS5YUS9K[SGMXH4MpQ" name="clientCount" label="客户端数目" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="ukviEw[BHBtDWsu3g62zrg" name="loadFactor" label="负载率" is_valid="Y" note="M#" type="Float" is_collection="N" />
+    </Struct>
+    <Item _uuid="502ktqz42RlITO2tAptcsA" name="statusList" label="客户端数目实体列表" is_valid="Y" note="M#" type="Object" type_name="SStatus" is_collection="Y" data_size="20" />
+  </Message>
+</Group>
+

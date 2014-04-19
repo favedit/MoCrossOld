@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CsvImport _uuid="bE98s2HnzOtNCDmBrBtPtQ" name="logic.person.user.export.birthday" label="职员管理-生日CSV信息" is_valid="Y">
+  <Columns _uuid="lEs4nKb]gk4[TFkxgR13pg" name="Columns" label="列集合" is_valid="Y">
+    <Column _uuid="s0PVG]N6G9tMC61yV]dluQ" name="work_number" label="工号" is_valid="Y" data_name="WORK_NUMBER" />
+    <Column _uuid="cUijiKu4hMyrbVpqBxxDmQ" name="user_label" label="姓名" is_valid="Y" data_name="USER_LABEL" />
+    <Column _uuid="s0prhZlECsVTkhWepIv0gw" name="gender_cd" label="性别" is_valid="Y" data_name="GENDER_CD" />
+    <Column _uuid="H0B]mGHGgVRvh1[l1muNsw" name="type_cd" label="员工类型" is_valid="Y" data_name="TYPE_CD" />
+    <Column _uuid="yk9vtA[ol4P2unJTVfP9qQ" name="month_birthday" label="生日月份" is_valid="Y" data_name="MONTH_BIRTHDAY" />
+    <Column _uuid="zkSgNU3CzarjrO1M7w8Xmw" name="birthday" label="生日日期" is_valid="Y" data_name="BIRTHDAY" />
+    <Column _uuid="901E1vPEf]MSIzaUvBRXqA" name="entry_date" label="入职日期" is_valid="Y" data_name="ENTRY_DATE" />
+    <Column _uuid="kUWuM49Zv1[2YqhDagwruA" name="organization_label" label="部门" is_valid="Y" data_name="ORGANIZATION_LABEL" />
+    <Column _uuid="KkGyJqUdmkril9elUHSMgw" name="main_job" label="主岗位" is_valid="Y" data_name="MAIN_JOB" />
+  </Columns>
+  <Export _uuid="CkRxr82WT43xklEPz4ndmg" name="sql" label="生日" is_valid="Y" sql="SELECT WORK_NUMBER,\n       USER_LABEL,\n       GENDER_CD,\n       TYPE_CD,\n       SERVICE_CD,\n       TO_CHAR(BHDATE, 'MM') MONTH_BIRTHDAY,\n       TO_CHAR(BHDATE, 'YYYY-MM-DD') BIRTHDAY,\n       ORGANIZATION_LABEL,\n       MAIN_JOB,\n       TO_CHAR(ENTRY_DATE, 'YYYY-MM-DD') ENTRY_DATE\nFROM (SELECT WORK_NUMBER,\n         PM_USER_DI.GET_FULL_LABEL(USER_ID) USER_LABEL,\n         PM_USER_SEX_EI.DECODE_LABEL(PM_USER_DI.Get_Gender_Cd(USER_ID)) GENDER_CD,\n         PM_USER_WORK_EI.DECODE_LABEL(TYPE_CD) TYPE_CD,\n         PM_USER_SERVICE_EI.DECODE_LABEL(SERVICE_CD) SERVICE_CD,\n         PM_USER_DI.GET_BIRTHDAY(USER_ID) BHDATE,\n         PM_ORGANIZATION_DI.FIND_MAIN_ORGANIZATION_LABEL(USER_ID) ORGANIZATION_LABEL,\n         PM_DUTY_JOB_DI.Get_Label(PM_DUTY_JOB_USER_DI.Get_Main_Job_By_User_Id(USER_ID)) MAIN_JOB,\n         ENTRY_DATE\n      FROM PM_USER_COMPANY\n      WHERE PM_USER_COMPANY_DI.Is_Valid_Staff(USER_ID) = 'Y')\nWHERE TO_CHAR(BHDATE, 'MM') &gt;= TO_CHAR(CP_DATE.Parse('${BEGIN_DATE}'), 'MM')\n    AND TO_CHAR(BHDATE, 'MM') &lt;= TO_CHAR(CP_DATE.Parse('${END_DATE}'), 'MM')\nORDER BY WORK_NUMBER" display_command="N" display_command_tag="N" display_head="N" display_head_tag="N" display_label="Y" display_label_tag="N" display_valid="N" display_valid_tag="N" is_open="N" export_name="eUIS-职员管理-生日[${SETTLEMENT_BEGIN_DATE}-${SETTLEMENT_END_DATE}]" export_charset="GB18030" disp_data_start_tag="N" disp_data_end_tag="N" dataset_parameters="SELECT\n   TO_CHAR(CP_DATE.Parse('${BEGIN_DATE}'), 'YYYYMM') SETTLEMENT_BEGIN_DATE,\n   TO_CHAR(CP_DATE.Parse('${END_DATE}'), 'YYYYMM') SETTLEMENT_END_DATE\nFROM DUAL" />
+</CsvImport>
+

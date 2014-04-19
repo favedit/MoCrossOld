@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="bkqKIn[JJWbRI5qAvCT8lg" name="logic.vip" label="会员系统" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" source_name="MoMgLogicVip" code="Lvp" full_code="LogicVip" display_index="60">
+  <Message _uuid="gEMxw9F][xX9ec5oIg[xtQ" name="vip.query.request" label="会员信息查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="VipQuery" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0001" code_fix="N" />
+  <Message _uuid="kEjixLS1v0rH]SiZKpHxsA" name="vip.query.response" label="会员信息查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="VipQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Item _uuid="I0sXm3uxy1KxkneWtBLonQ" name="vipInfo" label="会员信息" is_valid="Y" note="M#" type="Object" type_name="SGsVipInfo" is_collection="N" />
+  </Message>
+  <Message _uuid="oEjT[My2HiE]B][qc3O1iA" name="gift.query.request" label="礼包查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GiftQuery" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0003" code_fix="N" />
+  <Message _uuid="REVyPXX935uVct8[A7qUug" name="gift.query.response" label="礼包查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GiftQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0004" code_fix="N">
+    <Item _uuid="pE5lxOfMrlUdBTnMYkvgqA" name="giftSet" label="礼包集合" is_valid="Y" note="M#" type="Object" type_name="SGsVipGift" is_collection="Y" data_size="16" />
+    <Item _uuid="RU03gE0MH713RKvGVXMymQ" name="giftGetFlag" label="礼包领取标志" is_valid="Y" note="M#" type="Set" type_name="TGmVipReceiveSet" is_collection="N" />
+  </Message>
+  <Message _uuid="cEt2b3X]ywpQIdt14HvBrg" name="get.gift.request" label="领取礼包请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetGift" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0005" code_fix="N">
+    <Item _uuid="IUeFIq6N4lY8wTaGhbjHrw" name="giftCd" label="礼包类型" is_valid="Y" note="M#" type="Enum" type_name="EGmVipReceive" is_collection="N" />
+  </Message>
+  <Message _uuid="yELG2PvPe10]ZNpGH0j4mw" name="get.gift.response" label="领取礼包应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetGift" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0006" code_fix="N">
+    <Enum _uuid="AUKrdDVTQIfXjozQqs2Ovg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="Y03B0y2qT5ywymwyWRLChA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="KEu]w3tBcGQ0LLNtYUrgsg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="2ECAJc71eq6RBXbSqOrjrA" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="5EWhnkPxMTSRG4ovOo[Tmw" name="giftCd" label="礼包类型" is_valid="Y" note="M#" type="Enum" type_name="EGmVipReceive" is_collection="N" />
+  </Message>
+  <Message _uuid="HUsojNdPuKgRQ355zBpniA" name="lock.request" label="加锁请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Lock" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0007" code_fix="N">
+    <Item _uuid="Xklo9bOsrgbCGuETHJPPkA" name="questionOne" label="问题一" is_valid="Y" note="M#" type="Enum" type_name="EGmCodeQuestions" is_collection="N" />
+    <Item _uuid="U0i3ni8dSNzzMZp9oWA6mg" name="answerOne" label="回答一" is_valid="Y" note="M#" type="String" is_collection="N" data_size="50" />
+    <Item _uuid="nEUoMVBafQ86HKsyivzRhA" name="questionTwo" label="问题二" is_valid="Y" note="M#" type="Enum" type_name="EGmCodeQuestions" is_collection="N" />
+    <Item _uuid="4EwddBDJBPUf4Y57Cb]8jA" name="answerTwo" label="回答二" is_valid="Y" note="M#" type="String" is_collection="N" data_size="50" />
+    <Item _uuid="ekh7jZJdJ9giyxD3KKasng" name="password" label="密码" is_valid="Y" note="M#" type="String" is_collection="N" data_size="10" />
+  </Message>
+  <Message _uuid="4kyeXGOCW2i[e]grsIachA" name="lock.response" label="加锁应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Lock" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0008" code_fix="N" />
+  <Message _uuid="ekxUtKmeBwXPazgg3nMijQ" name="unlock.request" label="解除锁定请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Unlock" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0009" code_fix="N">
+    <Item _uuid="2Evvt[LKE8KQTnouXknvug" name="password" label="密码" is_valid="Y" note="M#" type="String" is_collection="N" data_size="10" />
+  </Message>
+  <Message _uuid="E0lSUreFFMBMlyJIQuNhgw" name="unlock.response" label="解锁应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Unlock" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000A" code_fix="N" />
+  <Message _uuid="WkoVgbEwBgnht643HftCiA" name="change.password.request" label="修改密码请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ChangePassword" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x000B" code_fix="N">
+    <Item _uuid="3U2POd95KaStgGUEwY6TkQ" name="oldPassword" label="旧密码" is_valid="Y" note="M#" type="String" is_collection="N" data_size="10" />
+    <Item _uuid="8E]OEHhCmbolDEnDe6O3lg" name="newPassword" label="新密码" is_valid="Y" note="M#" type="String" is_collection="N" data_size="10" />
+  </Message>
+  <Message _uuid="VkCRJ]YqVpmQMq1agX0gvw" name="change.password.response" label="修改密码应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ChangePassword" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000C" code_fix="N" />
+  <Message _uuid="l0G3[WKCfTjJsLqAYmNepw" name="delete.password.request" label="删除密码请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DeletePassword" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x000D" code_fix="N">
+    <Item _uuid="jkS0FPsrGZeLIyEZbLRtlA" name="questionOne" label="问题一" is_valid="Y" note="M#" type="Enum" type_name="EGmCodeQuestions" is_collection="N" />
+    <Item _uuid="AkVZ][9sQLhaw9bKwsu7qw" name="answerOne" label="回答一" is_valid="Y" note="M#" type="String" is_collection="N" data_size="50" />
+    <Item _uuid="]ULkhHj2HO1hdYndlXDQpA" name="questionTwo" label="问题二" is_valid="Y" note="M#" type="Enum" type_name="EGmCodeQuestions" is_collection="N" />
+    <Item _uuid="bkFZncOzgQQ4zwFFMaq[kw" name="answerTwo" label="回答二" is_valid="Y" note="M#" type="String" is_collection="N" data_size="50" />
+  </Message>
+  <Message _uuid="j0ib5ZFCLUxgz27KjKsGhw" name="delete.password.response" label="删除密码应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DeletePassword" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000E" code_fix="N" />
+  <Message _uuid="S0wF2iNAsWYwRQggt23Vmw" name="code.password.query.request" label="二级密码查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="CodePasswordQuery" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x000F" code_fix="N" />
+  <Message _uuid="P0QIbt1[tkSRSYOm2GqDhQ" name="code.password.query.response" label="二级密码查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="CodePasswordQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0010" code_fix="N">
+    <Item _uuid="X0HEc3ZELXmSuBNs0dPyuQ" name="questionOne" label="问题一" is_valid="Y" note="M#" type="Enum" type_name="EGmCodeQuestions" is_collection="N" />
+    <Item _uuid="4kaHInyhAuPVY8lEUywCpQ" name="questionTwo" label="问题二" is_valid="Y" note="M#" type="Enum" type_name="EGmCodeQuestions" is_collection="N" />
+  </Message>
+  <Message _uuid="uEwsIMjmlBBX2Ej2HOgpsg" name="vip.gift.get.notify" label="会员礼包领取通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="VipGiftGet" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0011" code_fix="N" />
+</Group>
+

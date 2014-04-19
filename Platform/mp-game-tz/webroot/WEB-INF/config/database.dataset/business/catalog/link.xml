@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="jkEQe4TwnblBeJHPITRlow" name="business.catalog.link" label="M#12cn16业务目录关联" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="BS_CATALOG_LINK" data_alias="BS_CAT_LNK" data_logic="BS_CATALOG_LINK_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="nk92sZ76B4BQN3zAB7qrtw" name="catalog_id" label="M#12cn14目录标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CATALOG_ID" data_refer="business.catalog" />
+  <FieldInteger _uuid="EkddV0zEjdG5sb9nV]dirg" name="node_id" label="M#12cn14节点标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="NODE_ID" data_refer="business.catalog.node" data_uniques="link" />
+  <FieldEnum _uuid="JEVapI4maJ3mknaW13Fesg" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_size="1" data_default="'Y'" />
+  <FieldEnum _uuid="E0ulpzm9zHAaP20n5ADOnQ" name="target_type_cd" label="M#12cn14目标类型" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TARGET_TYPE_CD" data_alias="TG_TYP_CD" data_size="1" data_uniques="link" />
+  <FieldInteger _uuid="cUd41U]qBe3Eb7bDQWtRjQ" name="target_id" label="M#12cn14目标标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TARGET_ID" data_uniques="link" />
+  <FieldInteger _uuid="KEI3hkQL[JWej5Jx7lXYnQ" name="target_link_id" label="M#12cn16目标关联标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TARGET_LINK_ID" data_uniques="link" />
+  <FieldEnum _uuid="3E]yGDOEkcKSo0q3UixPhA" name="examine_cd" label="M#12cn14审核方式" is_valid="Y" note="M#12cn16AND/OR" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_CD" data_size="1" />
+  <FieldInteger _uuid="x0BJ6a1Ky2O79EZbbqD2lw" name="create_user_id" label="M#12cn15创建者标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CREATE_USER_ID" data_refer="person.user" />
+  <FieldDate _uuid="4EVYo4IWI2bwq[hpktDRpA" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_default="SYSDATE" />
+</DataStore>
+

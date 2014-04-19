@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebForm _uuid="jE]xH7OKASCGTi4HzlYvsA" name="system.logic.event.GroupForm" label="M#12cn215系统-事件分组表单（页面设置）" is_valid="Y" note="M#" disp_fetch="Y" disp_search="Y" disp_lov="Y" disp_zoom="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" disp_print="Y" style_refer="logic.process.ControlStyle" dataset="logic.event.group" edit_copy="Y" edit_insert="Y" edit_update="Y" edit_delete="Y">
+  <Template _uuid="r0ifNsc5qoGFDkc[Tr7DoA" name="basicTemplate" label="M#12cn14基本模板" is_valid="Y" note="M#" template_name="system.logic.event.group.BasicTemplate" />
+  <ToolBar _uuid="KUt[VcwizPD9SRoZlEWKhw" name="toolBar" label="M#12cn13工具栏" is_valid="Y" note="M#" width="100%" height="24">
+    <ToolButtonSplit _uuid="2UsrSWZLZ[PMz6IpDwWshw" name="split3Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="ak0j]EabWU6DVuKzvHDMiQ" name="insertTypeButton" label="M#12cn14新建类型" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#logic.event.type" page="insert@#/logic/event/Event.wa" attributes="_type=Type\nsel_type=component\nform_name=system.logic.event.TypeForm" />
+    <ToolButtonSplit _uuid="kknvqsICVpbFHSgUzok]nw" name="split4Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="UkpsH85rPyQdbvob9lIKhg" name="insertConfig" label="M#12cn16新建分组设置" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#logic.event.groupConfig" page="insert@#/logic/event/Event.wa" attributes="_type=GroupConfig\nsel_type=component\nform_name=system.logic.event.GroupConfigForm" />
+    <ToolButtonSplit _uuid="l0hCH5dTy]b2iOeoS3mflQ" name="split5Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="5kloeowqHBa4R]JRkNYAhA" name="sortButton" label="M#12cn12排序" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#tools.sort" page="sort@#/logic/event/Event.wa" attributes="sel_type=collection" />
+    <ToolButtonSplit _uuid="mEASaFN4LKmb73bn[AoKrw" name="split6Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="Pk2gosUp]ldHZUka7M[vog" name="synEventButton" label="M#12cn12提交" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#tools.commit" page="syncEvent@#/logic/event/Event.wa" attributes="sel_type=collection" />
+  </ToolBar>
+  <Edit _uuid="iEK5CdecStsAd[8CZHQAng" name="name" label="M#12cn12名称" is_valid="Y" note="M#" disp_search="Y" disp_lov="Y" disp_zoom="N" disp_insert="Y" disp_update="Y" disp_delete="Y" disp_print="Y" style_label="label" style_edit="editWide" data_fetch="Y" data_name="NAME" edit_insert="Y" valid_insert="Y" valid_update="Y" valid_require="Y" label_position="left" />
+  <Memo _uuid="7EE5EPHOEr4OAQGRF06YtQ" name="note" label="M#12cn12备注" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_zoom="N" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" style_label="label" data_name="NOTE" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" edit_overflow="N" />
+</WebForm>
+

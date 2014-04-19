@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="V07QnA]lKzeLq6prN0PdoA" name="game.template.buff" label="M#12cn14BUFF" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_BUFF" data_alias="GM_TPL_BUF" data_logic="GM_TPL_BUFF_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="k07a5H[Ij2oLUkZtMNqWkg" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="Yk8QusNaoXOaeeTsCV9elA" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="kEAkdJZyFIdxSe4g4mPAqA" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="100" />
+  <FieldString _uuid="zUhp0kRM[RYPgRwtHXDajg" name="label" label="M#12cn12标签" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" data_size="100" />
+  <FieldInteger _uuid="eEKa][F9OgMy2zWdac0wgg" name="style_icon_tid" label="M#12cn15小图标编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STYLE_ICON_TID" data_alias="STL_ICN" data_refer="game.template.style.icon" />
+  <FieldInteger _uuid="w0[i4Wy5EpWZ6lEvTFcNlQ" name="style_effect_hit_tid" label="M#12cn18特效编号（击中）" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STYLE_EFFECT_HIT_TID" data_alias="STY_EFT_HIT" data_refer="game.template.style.effect" />
+  <FieldInteger _uuid="gEG6oF9ro8KsmOPzC5oOoA" name="style_effect_continued_tid" label="M#12cn14持续特效" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STYLE_EFFECT_CONTINUED_TID" data_alias="STY_EFT_CTD" data_refer="game.template.style.effect" />
+  <FieldEnum _uuid="IknfCyBirLixPsJC2KvxmQ" name="positive_negative_cd" label="M#12cn15增益/损益" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="POSITIVE_NEGATIVE_CD" data_size="1" data_code="game.template.benefit.effect" />
+  <FieldString _uuid="uU1ksQCyKi8SFNuFkHVGqg" name="clear_cd" label="M#12cn18BUFF清除类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CLEAR_CD" data_size="200" />
+  <FieldEnum _uuid="2kGayEms6gN0zZdT1rovow" name="action_cd" label="M#12cn14自动类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ACTION_CD" data_size="1" data_code="game.template.action.type" />
+  <FieldEnum _uuid="SUstVa[jdHI1Wbae1FJ4vA" name="continued_cd" label="M#12cn18BUFF持续类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CONTINUED_CD" data_size="1" data_code="game.template.buff.continued" />
+  <FieldString _uuid="kkaBtE2EaESIPs8bQBbhgw" name="limit_cd" label="M#12cn14限制类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_CD" data_size="200" />
+  <FieldEnum _uuid="0UQ3LFoWGkGxhF9trbxQgA" name="limit_map_cd" label="M#12cn14地图限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_MAP_CD" data_size="1" data_code="game.template.limit.map" />
+  <FieldInteger _uuid="xUS02G4LIzqDctgCwOsStw" name="limit_map_parameter" label="M#12cn16地图限制参数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_MAP_PARAMETER" />
+  <FieldString _uuid="v0vmVO266noG0Hp4Cqjmqw" name="limit_metiers_cd" label="M#12cn14门派限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_METIERS_CD" data_size="200" />
+  <FieldString _uuid="NUZJL[b5Pk3g5Z65qrH3qw" name="limit_races_cd" label="M#12cn14种族限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_RACES_CD" data_size="200" />
+  <FieldString _uuid="0E7KXiOq1fV5hdGwtMzEjg" name="limit_metiers_target_cd" label="M#12cn16目标门派限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_METIERS_TARGET_CD" data_size="200" />
+  <FieldString _uuid="rUXwXQtOou99JwUcEjplgw" name="limit_genders_target_cd" label="M#12cn16目标性别限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_GENDERS_TARGET_CD" data_size="200" />
+  <FieldString _uuid="EEhuCWYSsoUeJ5H8koc0kw" name="limit_races_target_cd" label="M#12cn16目标种族限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_RACES_TARGET_CD" data_size="200" />
+  <FieldString _uuid="rEz7wQHvw[htved6mYHZiw" name="limit_genders_cd" label="M#12cn14性别限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_GENDERS_CD" data_size="200" />
+  <FieldEnum _uuid="[06JqUnHZZUGWGosYIF2vQ" name="battle_cd" label="M#12cn18战斗/非战斗限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BATTLE_CD" data_size="1" data_code="game.template.skill.battle" />
+  <FieldString _uuid="TEmvTJx[FuiHrap1Nki2pg" name="limit_choice_cd" label="M#12cn14选择限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_CHOICE_CD" data_size="200" />
+  <FieldInteger _uuid="SE4Xe[BZGKPpYPnTes41rA" name="buff_group_tid" label="M#12cn17所属buff组" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="BUFF_GROUP_TID" data_alias="BUF_GRP" data_refer="game.template.buff.group" />
+  <FieldBoolean _uuid="XEivi[Tw6GcYx0brcfKPpg" name="is_superposition_time" label="M#12cn16是否叠加时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_SUPERPOSITION_TIME" />
+  <FieldString _uuid="y04]yyhPBlzdG3g75y88uw" name="parameter1" label="M#12cn15清除参数1" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PARAMETER1" data_size="200" />
+  <FieldString _uuid="10VumKUK]Vn7M1pDZLANuA" name="parameter2" label="M#12cn15清除参数2" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PARAMETER2" data_size="200" />
+  <FieldInteger _uuid="h0e46iqzaSgniowKLY4plw" name="buff_effect_icon_tid" label="M#12cn210BUFF效果图标编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BUFF_EFFECT_ICON_TID" data_alias="BUF_EFT_ICN" data_refer="game.template.style.icon" />
+  <FieldTemplate _uuid="s0wavWkZ0cQ9g9VHMWV1pQ" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

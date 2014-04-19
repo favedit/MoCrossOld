@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="PUZF3sNvIBNikNUdkyjgog" name="game.template.skill.buff" label="M#12cn16技能BUFF" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_SKILL_BUFF" data_alias="GM_TPL_SKL_BUF" data_logic="GM_TPL_SKILL_BUFF_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="AUkIWaxZxsR6PfjXGEDBmw" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="80Q1[7Vy7jp5BEi1qB[0tw" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldInteger _uuid="80dSem4zIawKtpFku7zRhg" name="skill_tid" label="M#12cn16技能模板编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="SKILL_TID" data_alias="SKL" data_refer="game.template.skill" />
+  <FieldInteger _uuid="yUANd00prwiDsTjnZg5whg" name="skill_level_tid" label="M#12cn16技能等级编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="SKILL_LEVEL_TID" data_alias="SLT" data_refer="game.template.skill.level" />
+  <FieldInteger _uuid="lUZKHaa19kg5S72VSPKLrQ" name="buff_tid" label="M#12cn18BUFF模板编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="BUFF_TID" data_alias="BUF" data_refer="game.template.buff" />
+  <FieldInteger _uuid="h08uxprd4n9hGW]HbWQ8uw" name="buff_level_tid" label="M#12cn18BUFF级别编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="BUFF_LEVEL_TID" data_alias="BLT" data_refer="game.template.buff.level" />
+  <FieldEnum _uuid="RUtPg2pvPe0m5UrlsE6Ksg" name="effect_target_cd" label="M#12cn16使用目标类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EFFECT_TARGET_CD" data_size="1" data_code="game.template.buff.effect.target" />
+  <FieldFloat _uuid="9UYnX0XTKpgz33KvzBudjQ" name="probability" label="M#12cn12几率" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROBABILITY" />
+  <FieldTemplate _uuid="2E0KeNnjQANOMxQ6B0nwug" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

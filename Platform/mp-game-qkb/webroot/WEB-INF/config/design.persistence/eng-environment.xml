@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="D0qfWlV5DARz7XUYrsyZkw" name="eng-environment" label="M#12cn14环境定义" is_valid="Y" note="M#" template="xmlobject" source="${home.source.eng}">
+  <Interface _uuid="OkEcgKufjW5neSEnS]pZvg" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#12jp16オブジェクト">
+    <Attribute _uuid="E03bPpQVDe[JWJH35Iz6lQ" name="name" label="M#12cn12名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="5075YAozBA1[a]baTiHNqg" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="qkAWMSCdPWJ9CuHjw5T6jQ" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" data_default="Y" />
+    <Attribute _uuid="t07J8fJf]7DBfQV]dXO5rA" name="note" label="M#12cn14注释信息" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" is_default="N" />
+  </Interface>
+  <Component _uuid="rUhLxwrOpJXn]bt5V40QlA" name="Environment" label="M#12cn14环境对象" is_valid="Y" note="M#12jp16データセット" class_name="org.mo.eng.environment.common.XEnvironment" base_name="org.mo.eng.environment.base.XBaseEnvironment" inherits="IObject" />
+  <Component _uuid="u0nymGYnIgUicZIcq]uqnw" name="Property" label="M#12cn12属性" is_valid="Y" note="M#" class_name="org.mo.eng.environment.common.XProperty" base_name="org.mo.eng.environment.base.XBaseProperty" inherits="IObject">
+    <Attribute _uuid="IEaM]823yaHGpXTfkk8zgA" name="data_type" label="M#12cn14数据类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="O0Z3fUX7]7tH9WQIas58rw" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="o0E8UlR1raTFnGpZ1s7PnQ" name="data_hint" label="M#12cn14数据提示" is_valid="Y" note="M#" type="String" is_config="Y" is_default="N" />
+  </Component>
+  <Component _uuid="[0oNKbLQ9WVBgxv1]eKkpQ" name="Variable" label="M#12cn12变量" is_valid="Y" note="M#" class_name="org.mo.eng.environment.common.XVariable" base_name="org.mo.eng.environment.base.XBaseVariable" inherits="IObject">
+    <Attribute _uuid="lU5KFlvnzdSqW8R3h8w9lA" name="server" label="M#12cn12服务" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="N0wl8rzitJ6nuekW909Ynw" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="HEQp8zcwBpE68ESUp6WBpg" name="data_hint" label="M#12cn14数据提示" is_valid="Y" note="M#" type="String" is_config="Y" is_default="N" />
+  </Component>
+</Persistence>
+

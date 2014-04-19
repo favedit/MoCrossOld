@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebTemplate _uuid="qUKMTnuQrla0[588Hebvkw" name="system.logic.event.EventResultList" label="M#12cn16事件结果列表" is_valid="Y" note="M#">
+  <Template _uuid="[k433QrpBA7zVel259N2nA" name="objectTemplate" label="M#" is_valid="Y" note="M#" template_name="logic.template.WebGrid" />
+  <ColumnEdit _uuid="CEcXYu7HEjkj1WdX8sdltQ" name="toUserNote" label="M#12cn13接收者" is_valid="Y" note="M#" disp_search="Y" disp_lov="Y" disp_list="Y" disp_size="Y" disp_drag="Y" disp_print="Y" width="350" style_refer="columnEditWide" data_fetch="Y" data_name="TO_USER_NOTE" edit_zoom="N" edit_copy="Y" data_value="LG_EVENT_DI.Get_To_User_Note(OUID)" />
+  <ColumnSelect _uuid="EUciR23Pw6fYXlEX[diBnQ" name="result" label="M#12cn12结果" is_valid="Y" note="M#" disp_search="Y" disp_lov="Y" disp_list="Y" disp_size="Y" disp_drag="Y" disp_print="Y" data_fetch="Y" data_name="RESULT" edit_zoom="N" data_value="LG_EVENT_DI.Get_Result(OUID)" edit_refer="{logic.event.result}" />
+  <ColumnCalendar _uuid="SEjXPrEkd91AJw6NSQTklg" name="endDate" label="M#12cn14执行时间" is_valid="Y" note="M#" disp_search="Y" disp_lov="Y" disp_list="Y" disp_size="Y" disp_drag="Y" disp_print="Y" width="160" data_fetch="Y" data_name="END_DATE" edit_zoom="N" edit_copy="Y" edit_format="YYYY-MM-DD HH24:MI:SS" />
+  <ColumnEdit _uuid="WkjhP9XtGmzCVZFe56npkQ" name="typeLabel" label="M#12cn12类型" is_valid="Y" note="M#" disp_search="Y" disp_lov="Y" disp_list="Y" disp_size="Y" disp_drag="Y" disp_print="Y" data_fetch="Y" data_name="TYPE_LABEL" edit_zoom="N" data_value="LG_EVENT_TYPE_DI.Get_Label(TYPE_ID)" />
+  <ColumnEdit _uuid="60CrAUk1sQh2sWLaCxUVrw" name="netWork" label="M#12cn12网络" is_valid="Y" note="M#" disp_search="Y" disp_list="Y" disp_auto="Y" disp_size="Y" disp_drag="Y" disp_print="Y" data_fetch="Y" data_name="NETWORK" edit_zoom="N" data_value="SY_NETWORK_DI.Get_Label(NETWORK_ID)" />
+</WebTemplate>
+

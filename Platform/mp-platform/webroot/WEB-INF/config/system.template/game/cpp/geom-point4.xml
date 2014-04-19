@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template ads="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Source ads="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[
+//============================================================
+// <T>四维<jt:item source='$label'/>坐标。</T>
+//============================================================
+struct MO_CM_DECLARE S<jt:item source='$type_name'/>Point4{
+public:
+   <jt:item source='$type'/> x;
+   <jt:item source='$type'/> y;
+   <jt:item source='$type'/> z;
+   <jt:item source='$type'/> w;
+public:
+   //------------------------------------------------------------
+   // <T>构造三维<jt:item source='$label'/>坐标。</T>
+   S<jt:item source='$type_name'/>Point4(){
+      x = <jt:item source='$default'/>;
+      y = <jt:item source='$default'/>;
+      z = <jt:item source='$default'/>;
+      w = <jt:item source='$default'/>;
+   }
+   //------------------------------------------------------------
+   // <T>构造三维<jt:item source='$label'/>坐标。</T>
+   S<jt:item source='$type_name'/>Point4(<jt:item source='$type'/> value){
+      x = value;
+      y = value;
+      z = value;
+      w = value;
+   }
+   //------------------------------------------------------------
+   // <T>构造三维<jt:item source='$label'/>坐标。</T>
+   S<jt:item source='$type_name'/>Point4(<jt:item source='$type'/> px, <jt:item source='$type'/> py, <jt:item source='$type'/> pz, <jt:item source='$type'/> pw){
+      x = px;
+      y = py;
+      z = pz;
+      w = pw;
+   }
+   //------------------------------------------------------------
+   // <T>构造三维<jt:item source='$label'/>坐标。</T>
+   S<jt:item source='$type_name'/>Point4(const S<jt:item source='$type_name'/>Point4& value){
+      x = value.x;
+      y = value.y;
+      z = value.z;
+      w = value.w;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>判断是否相等。</T>
+   MO_INLINE TBool operator==(const S<jt:item source='$type_name'/>Point4& value){
+      return (x == value.x) && (y == value.y) && (z == value.z) && (w == value.w);
+   }
+   //------------------------------------------------------------
+   // <T>判断是否不相等。</T>
+   MO_INLINE TBool operator!=(const S<jt:item source='$type_name'/>Point4& value){
+      return (x != value.x) || (y != value.y) || (z != value.z) || (w != value.w);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void operator=(<jt:item source='$type'/> value){
+      x = value;
+      y = value;
+      z = value;
+      w = value;
+   }
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void operator=(const S<jt:item source='$type_name'/>Point4& value){
+      x = value.x;
+      y = value.y;
+      z = value.z;
+      w = value.w;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>相加处理。</T>
+   MO_INLINE void operator+=(<jt:item source='$type'/> value){
+      x += value;
+      y += value;
+      z += value;
+      w += value;
+   }
+   //------------------------------------------------------------
+   // <T>相加处理。</T>
+   MO_INLINE void operator+=(const S<jt:item source='$type_name'/>Point4& value){
+      x += value.x;
+      y += value.y;
+      z += value.z;
+      w += value.w;
+   }
+   //------------------------------------------------------------
+   // <T>相减处理。</T>
+   MO_INLINE void operator-=(<jt:item source='$type'/> value){
+      x -= value;
+      y -= value;
+      z -= value;
+      w -= value;
+   }
+   //------------------------------------------------------------
+   // <T>相减处理。</T>
+   MO_INLINE void operator-=(const S<jt:item source='$type_name'/>Point4& value){
+      x -= value.x;
+      y -= value.y;
+      z -= value.z;
+      w -= value.z;
+   }
+   //------------------------------------------------------------
+   // <T>相乘处理。</T>
+   MO_INLINE void operator*=(<jt:item source='$type'/> value){
+      x *= value;
+      y *= value;
+      z *= value;
+      w *= value;
+   }
+   //------------------------------------------------------------
+   // <T>相除处理。</T>
+   MO_INLINE void operator/=(<jt:item source='$type'/> value){
+      x /= value;
+      y /= value;
+      z /= value;
+      w /= value;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>判断内容是否为空。</T>
+   MO_INLINE TBool IsEmpty(){
+      return (x == <jt:item source='$default'/>) && (y == <jt:item source='$default'/>) && (z == <jt:item source='$default'/>) && (w == <jt:item source='$default'/>);
+   }
+   //------------------------------------------------------------
+   // <T>设置全部数据内容。</T>
+   MO_INLINE void SetAll(<jt:item source='$type'/> value = <jt:item source='$default'/>){
+      x = value;
+      y = value;
+      z = value;
+      w = value;
+   }
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void Set(<jt:item source='$type'/> xValue, <jt:item source='$type'/> yValue){
+      x = xValue;
+      y = yValue;
+   }
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void Set(<jt:item source='$type'/> xValue, <jt:item source='$type'/> yValue, <jt:item source='$type'/> zValue){
+      x = xValue;
+      y = yValue;
+      z = zValue;
+   }
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void Set(<jt:item source='$type'/> xValue, <jt:item source='$type'/> yValue, <jt:item source='$type'/> zValue, <jt:item source='$type'/> wValue){
+      x = xValue;
+      y = yValue;
+      z = zValue;
+      w = wValue;
+   }
+   //------------------------------------------------------------
+   // <T>接收数据内容。</T>
+   MO_INLINE void Assign(const S<jt:item source='$type_name'/>Point4& value){
+      x = value.x;
+      y = value.y;
+      z = value.z;
+      w = value.w;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>相加处理。</T>
+   MO_INLINE void Add(<jt:item source='$type'/> value){
+      x += value;
+      y += value;
+      z += value;
+      w += value;
+   }
+   //------------------------------------------------------------
+   // <T>相加处理。</T>
+   MO_INLINE void Add(const S<jt:item source='$type_name'/>Point4& value){
+      x += value.x;
+      y += value.y;
+      z += value.z;
+      w += value.w;
+   }
+   //------------------------------------------------------------
+   // <T>相减处理。</T>
+   MO_INLINE void Sub(<jt:item source='$type'/> value){
+      x -= value;
+      y -= value;
+      z -= value;
+      w -= value;
+   }
+   //------------------------------------------------------------
+   // <T>相减处理。</T>
+   MO_INLINE void Sub(const S<jt:item source='$type_name'/>Point4& value){
+      x -= value.x;
+      y -= value.y;
+      z -= value.z;
+      w -= value.w;
+   }
+   //------------------------------------------------------------
+   // <T>获得最小点处理。</T>
+   MO_INLINE void MergeMin(const S<jt:item source='$type_name'/>Point4& source, const S<jt:item source='$type_name'/>Point4& target){
+      x = MO_LIB_MIN(source.x, target.x);
+      y = MO_LIB_MIN(source.y, target.y);
+      z = MO_LIB_MIN(source.z, target.z);
+      w = MO_LIB_MIN(source.w, target.w);
+   }
+   //------------------------------------------------------------
+   // <T>获得最大点处理。</T>
+   MO_INLINE void MergeMax(const S<jt:item source='$type_name'/>Point4& source, const S<jt:item source='$type_name'/>Point4& target){
+      x = MO_LIB_MAX(source.x, target.x);
+      y = MO_LIB_MAX(source.y, target.y);
+      z = MO_LIB_MAX(source.z, target.z);
+      w = MO_LIB_MAX(source.w, target.w);
+   }
+public:
+<jt:equals source='$type_name' value='Float|Double'>
+   //------------------------------------------------------------
+   // <T>获得绝对值。</T>
+   <jt:item source='$type'/> Absolute(){
+      return sqrt((x * x) + (y * y) + (z * z) + (w * w));
+   }
+   //------------------------------------------------------------
+   // <T>单位化处理。</T>
+   MO_INLINE void Normalize(){
+      <jt:item source='$type'/> value = Absolute();
+      if(value != <jt:item source='$default'/>){
+         x /= value;
+         y /= value;
+         z /= value;
+         w /= value;
+      }
+   }
+   //------------------------------------------------------------
+   // <T>获得距离。</T>
+   MO_INLINE <jt:item source='$type'/> Distance(const S<jt:item source='$type_name'/>Point4& value){
+      <jt:item source='$type'/> cx = x - value.x;
+      <jt:item source='$type'/> cy = y - value.y;
+      <jt:item source='$type'/> cz = z - value.z;
+      <jt:item source='$type'/> cw = w - value.w;
+      return sqrt((cx * cx) + (cy * cy) + (cz * cz) + (cw * cw));
+   }
+</jt:equals>
+   //------------------------------------------------------------
+   // <T>重置数据。</T>
+   MO_INLINE void Reset(){
+      x = <jt:item source='$default'/>;
+      y = <jt:item source='$default'/>;
+      z = <jt:item source='$default'/>;
+      w = <jt:item source='$default'/>;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>序列化数据内容到输出流。</T>
+   void Serialize(IDataOutput* pOutput){
+      pOutput->Write<jt:item source='$type_name'/>(x);
+      pOutput->Write<jt:item source='$type_name'/>(y);
+      pOutput->Write<jt:item source='$type_name'/>(z);
+      pOutput->Write<jt:item source='$type_name'/>(w);
+   }
+<jt:equals source='$type_name' value='Int'>
+   //------------------------------------------------------------
+   // <T>序列化数据内容到输出流。</T>
+   void Serialize16(IDataOutput* pOutput){
+      pOutput->WriteInt16((TInt16)x);
+      pOutput->WriteInt16((TInt16)y);
+      pOutput->WriteInt16((TInt16)z);
+      pOutput->WriteInt16((TInt16)w);
+   }
+</jt:equals>
+   //------------------------------------------------------------
+   // <T>从输入流反序列化数据内容。</T>
+   void Unserialize(IDataInput* pInput){
+      x = pInput->Read<jt:item source='$type_name'/>();
+      y = pInput->Read<jt:item source='$type_name'/>();
+      z = pInput->Read<jt:item source='$type_name'/>();
+      w = pInput->Read<jt:item source='$type_name'/>();
+   }
+<jt:equals source='$type_name' value='Int'>
+   //------------------------------------------------------------
+   // <T>从输入流反序列化数据内容。</T>
+   void Unserialize16(IDataInput* pInput){
+      x = pInput->ReadInt16();
+      y = pInput->ReadInt16();
+      z = pInput->ReadInt16();
+      w = pInput->ReadInt16();
+   }
+</jt:equals>
+public:
+   TBool Parse(TCharC* pValue);
+   TCharC* Format(TChar* pBuffer, TInt capacity);
+   TCharC* ToString(TChar* pBuffer, TInt capacity);
+};
+]]></Source>
+</Template>

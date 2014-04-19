@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="8E1v]OUxSLqvIV5[I[0tlQ" name="database.logicunit.history.sqlBody" is_valid="Y" note="M#">
+  <Source _uuid="rEUG9aG3ZH8oIx[mjTqdmg" is_valid="Y" note="M#"><![CDATA[------------------------------------------------------------
+-- <jt:item source='$dataset.name' format='upper'/>
+--
+-- Copyright 2008 Microbject Corporation. All Rights Reserved.
+-- 模板版本: 1.01
+---------+----+---------------------------------------------
+-- 日期   作者 描述信息
+---------+----+---------------------------------------------
+------------------------------------------------------------
+DEFINE DF_LOGIC            = '<jt:item source='$dataset.name'/>';
+DEFINE DF_VIEW_OLD         = '<jt:item source='$dataset.data_name'/>';
+DEFINE DF_VIEW             = '<jt:item source='$dataset.data_name'/>_HV';
+DEFINE DF_DATASET          = '<jt:item source='$dataset.data_name'/>_HS';
+DEFINE DF_PACKAGE          = '<jt:item source='$dataset.data_name'/>_HI';
+DEFINE DF_SEQUENCE         = '<jt:item source='$dataset.data_name'/>_HQ';
+
+--========================================================--
+-- 公共数据接口(实现部分)
+--========================================================--
+PROMPT Deploy Interface Implements: &DF_PACKAGE;
+
+-- Package define begin ------------------------------------
+CREATE OR REPLACE PACKAGE BODY &DF_PACKAGE IS
+
+--========================================================--
+-- Public Function
+--========================================================--
+
+------------------------------------------------------------
+FUNCTION To_Record(
+      params_              IN     VARCHAR2
+   ) RETURN &DF_VIEW%ROWTYPE
+IS
+   rec_                    &DF_VIEW%ROWTYPE;
+BEGIN
+   To_Record(params_, rec_);
+   RETURN rec_;
+END To_Record;
+
+------------------------------------------------------------
+PROCEDURE To_Record(
+      params_              IN     VARCHAR2,
+      rec_                 IN OUT &DF_VIEW%ROWTYPE)
+IS
+   ptr_                    INTEGER;
+   name_                   VARCHAR2(40);
+   value_                  VARCHAR2(2000);
+BEGIN
+   CP_PACK.Reset(ptr_);
+   WHILE CP_PACK.Next_Value(params_, ptr_, name_, value_) LOOP
+      name_ := UPPER(name_);
+<jt:loop source='$fields' alias='field'>
+      <jt:position source='$field' type='first' elseValue='ELS'/>IF name_ = '<jt:item source='$field.data_name' format='field'/>' THEN
+         rec_.<jt:item source='$field.data_name' format='field'/> := CP_<jt:item source='$field.type' format='db.object'/>.Parse(value_);
+</jt:loop>
+      END IF;
+   END LOOP;
+END To_Record;
+
+------------------------------------------------------------
+FUNCTION To_Params(
+      rec_                 IN     &DF_VIEW%ROWTYPE
+   ) RETURN VARCHAR2
+IS
+   params_                 VARCHAR2(20000);
+BEGIN
+   CP_PACK.Clear(params_);
+<jt:loop source='$fields' alias='field'>
+   CP_PACK.Add(params_, '<jt:item source='$field.data_name' format='field'/>', rec_.<jt:item source='$field.data_name' format='field'/>);
+</jt:loop>
+   RETURN params_;
+END To_Params;
+
+------------------------------------------------------------
+FUNCTION Contains(
+      object_id_           IN     &DF_VIEW..OUID%TYPE
+   ) RETURN BOOLEAN
+IS
+   result_                 BOOLEAN;
+   temp_                   INTEGER;
+   CURSOR cur_ IS
+      SELECT 1
+      FROM &DF_VIEW
+      WHERE OUID = object_id_;
+BEGIN
+   OPEN cur_;
+   FETCH cur_ INTO temp_;
+   result_ := cur_%FOUND;
+   CLOSE cur_;
+   RETURN result_;
+END Contains;
+
+------------------------------------------------------------
+FUNCTION Get(
+      object_id_           IN     &DF_VIEW..OUID%TYPE
+   ) RETURN &DF_VIEW%ROWTYPE
+IS
+   rec_                    &DF_VIEW%ROWTYPE;
+   CURSOR cur_ IS
+      SELECT *
+      FROM &DF_VIEW
+      WHERE OUID = object_id_;
+BEGIN
+   OPEN cur_;
+   FETCH cur_ INTO rec_;
+   IF cur_%NOTFOUND THEN
+      CP_MESSAGE.Raise_No_Record(LG_NAME, object_id_);
+   END IF;
+   CLOSE cur_;
+   RETURN rec_;
+END Get;
+
+------------------------------------------------------------
+FUNCTION Find(
+      object_id_           IN     &DF_VIEW..OUID%TYPE,
+      exists_              IN OUT BOOLEAN
+   ) RETURN &DF_VIEW%ROWTYPE
+IS
+   rec_                    &DF_VIEW%ROWTYPE;
+   CURSOR cur_ IS
+      SELECT *
+      FROM &DF_VIEW
+      WHERE OUID = object_id_;
+BEGIN
+   OPEN cur_;
+   FETCH cur_ INTO rec_;
+   exists_ := cur_%FOUND;
+   CLOSE cur_;
+   RETURN rec_;
+END Find;
+
+------------------------------------------------------------
+FUNCTION Pack(
+      object_id_          IN     &DF_VIEW..OUID%TYPE
+   ) RETURN VARCHAR2
+IS
+   exist_                  BOOLEAN;
+   rec_                    &DF_VIEW%ROWTYPE;
+BEGIN
+   rec_ := Find(object_id_, exist_);
+   IF exist_ THEN
+      RETURN To_Params(rec_);
+   END IF;
+   RETURN NULL;
+END Pack;
+
+------------------------------------------------------------
+FUNCTION Lock_Record(
+      object_id_           IN     &DF_VIEW..OUID%TYPE,
+      object_version_      IN     &DF_VIEW..OVER%TYPE
+   ) RETURN &DF_VIEW%ROWTYPE
+IS
+   rec_                    &DF_VIEW%ROWTYPE;
+   CURSOR cur_ IS
+      SELECT *
+      FROM &DF_VIEW
+      WHERE OUID = object_id_
+      FOR UPDATE NOWAIT;
+BEGIN
+   OPEN cur_;
+   FETCH cur_ INTO rec_;
+   IF cur_%FOUND THEN
+      IF rec_.OVER != object_version_ THEN
+         CP_MESSAGE.Raise_Lock_Record(LG_NAME, object_id_, object_version_);
+      END IF;
+   ELSE
+      CP_MESSAGE.Raise_No_Record(LG_NAME, object_id_);
+   END IF;
+   CLOSE cur_;
+   RETURN rec_;
+END Lock_Record;
+
+------------------------------------------------------------
+FUNCTION Current_Id
+   RETURN INTEGER
+IS
+   id_                        INTEGER;
+   CURSOR cur_ IS
+      SELECT &DF_SEQUENCE..Currval
+      FROM DUAL;
+BEGIN
+   OPEN cur_;
+   FETCH cur_ INTO id_;
+   CLOSE cur_;
+   RETURN id_;
+END Current_Id;
+
+------------------------------------------------------------
+FUNCTION Next_Id
+   RETURN INTEGER
+IS
+   id_                        INTEGER;
+   CURSOR cur_ IS
+      SELECT &DF_SEQUENCE..Nextval
+      FROM DUAL;
+BEGIN
+   OPEN cur_;
+   FETCH cur_ INTO id_;
+   CLOSE cur_;
+   RETURN id_;
+END Next_Id;
+
+--========================================================--
+-- Public Procedure
+--========================================================--
+
+------------------------------------------------------------
+PROCEDURE Do_Insert(
+      logic_               IN OUT VARCHAR2,
+      action_              IN OUT VARCHAR2,
+      rec_                 IN OUT &DF_VIEW_OLD%ROWTYPE)
+IS
+   execute_                BOOLEAN := TRUE;
+BEGIN
+<jt:loop source='$fields' alias='field'>
+</jt:loop>
+   INSERT INTO &DF_DATASET(
+      OUHD,
+      OUHD_ACTION,
+      OUHD_DATE,
+<jt:loop source='$fields' alias='field'>
+      <jt:item source='$field.data_name' format='field'/><jt:position source='$field' type='last' value=')' elseValue=','/>
+</jt:loop>
+   VALUES(
+      Next_Id,
+      action_,
+      SYSDATE,
+<jt:loop source='$fields' alias='field'>
+      rec_.<jt:item source='$field.data_name' format='field'/><jt:position source='$field' type='last' value=');' elseValue=','/>
+</jt:loop>
+EXCEPTION
+   WHEN DUP_VAL_ON_INDEX THEN
+      CP_MESSAGE.Raise_Duplicate_Record(LG_NAME, rec_.OUID);
+END Do_Insert;
+
+--========================================================--
+-- Public Get Function
+--========================================================--
+
+<jt:loop source='$fields' alias='field' filter='$field.is_unique=Y'>
+------------------------------------------------------------
+FUNCTION Get_Id_By_<jt:item source='$field.data_name' format='db.func'/>(
+      <jt:item source='$field.data_name' format='Lower'/>_                IN     &DF_VIEW..<jt:item source='$field.data_name'/>%TYPE
+   ) RETURN &DF_VIEW..OUID%TYPE
+IS
+   result_                 &DF_VIEW..OUID%TYPE;
+BEGIN
+   SELECT OUID INTO result_ FROM &DF_VIEW WHERE <jt:item source='$field.data_name' format='Upper'/>=<jt:item source='$field.data_name' format='Lower'/>_;
+   RETURN result_;
+END Get_Id_By_<jt:item source='$field.data_name' format='db.func'/>;
+
+</jt:loop>
+<jt:loop source='$fields' alias='field' filter='$field.is_key!=Y'>
+------------------------------------------------------------
+FUNCTION Get_<jt:item source='$field.data_name' format='db.func'/>(
+      object_id_           IN     &DF_VIEW..OUID%TYPE
+   ) RETURN &DF_VIEW..<jt:item source='$field.data_name' format='field'/>%TYPE
+IS
+   result_                 &DF_VIEW..<jt:item source='$field.data_name' format='field'/>%TYPE;
+BEGIN
+   SELECT <jt:item source='$field.data_name' format='field'/> INTO result_ FROM &DF_VIEW WHERE OUID = object_id_;
+   RETURN result_;
+END Get_<jt:item source='$field.data_name' format='db.func'/>;
+
+<jt:equals source='$field.type' value='enum'>
+------------------------------------------------------------
+FUNCTION Get_<jt:item source='$field.data_name' removeLast='_Cd' format='db.func'/>_Label(
+      object_id_           IN     &DF_VIEW..OUID%TYPE
+   ) RETURN VARCHAR2
+IS
+BEGIN
+   RETURN CM_CODE_DI.Find_Label('<jt:item source='$field.data_code'/>', Get_<jt:item source='$field.data_name' format='db.func'/>(object_id_));
+END Get_<jt:item source='$field.data_name' removeLast='_Cd' format='db.func'/>_Label;
+
+</jt:equals>
+</jt:loop>
+END &DF_PACKAGE;
+-- Package define End --------------------------------------
+/
+SHOW ERROR]]></Source>
+</Template>
+

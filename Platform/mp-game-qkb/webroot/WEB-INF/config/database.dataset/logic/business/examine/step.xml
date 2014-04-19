@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="kUJgSZeeoZeRSMbpUH91lg" name="logic.business.examine.step" label="M#12cn16业务审核阶段" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_BUSINESS_EXAMINE_STEP" data_alias="LG_BUS_EXM_STP" data_logic="LG_BUSINESS_EXAMINE_STEP_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="c0A]zbnextJXxr0pwRDajw" name="relation_id" label="M#12cn14关联标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="RELATION_ID" data_refer="logic.business.catalog.process" index_names="record,examine" />
+  <FieldInteger _uuid="jEwOxtjxYCZBhw3tgCPAvw" name="record_id" label="M#12cn14记录标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="RECORD_ID" index_names="record,examine" />
+  <FieldInteger _uuid="B0V68DoBmWur08xSmWwFjg" name="business_id" label="M#12cn14业务标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="BUSINESS_ID" data_alias="BUS" data_refer="logic.business" />
+  <FieldInteger _uuid="7UjBRJApt7uLL0T48kQbng" name="examine_type_id" label="M#12cn16审核类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="EXAMINE_TYPE_ID" data_alias="EXM_TYP" data_refer="logic.business.examine.type" />
+  <FieldInteger _uuid="AUD6whnQnfedlh]fi49asA" name="catalog_id" label="M#12cn14目录标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CATALOG_ID" data_alias="CAT" data_refer="logic.business.catalog" />
+  <FieldInteger _uuid="W0y2txziOzJgOkOjnvbGgQ" name="node_id" label="M#12cn14节点标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NODE_ID" data_refer="logic.business.catalog.node" />
+  <FieldInteger _uuid="DUTJrIuBLKCXsFnYhcJfjw" name="process_type_id" label="M#12cn16流程类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PROCESS_TYPE_ID" data_alias="PRC_TYP" data_refer="logic.business.process.type" />
+  <FieldInteger _uuid="f0Xhi6wf]yWuBycLFYUGrw" name="process_step_id" label="M#12cn16流程阶段标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PROCESS_STEP_ID" data_alias="PRC_STP" data_refer="logic.business.process.step" />
+  <FieldInteger _uuid="DkKgkjCBF6crItyno4FgkA" name="process_id" label="M#12cn15审核流标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PROCESS_ID" data_alias="PRC" data_refer="logic.business.process" />
+  <FieldInteger _uuid="kEZK3lip6G5W2jVu9rV[sw" name="batch_id" label="M#12cn14批次标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BATCH_ID" data_alias="BAT" data_refer="logic.business.examine.batch" />
+  <FieldEnum _uuid="cUhorqxX[fH5kySV1p9JnA" name="status_cd" label="M#12cn14审核状态" is_valid="Y" note="M#12cn222A=App\nR=Refuse\nU=Unapp" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="logic.business.examine.step.status" />
+  <FieldInteger _uuid="Qkgl60nqvTxb7w[eas43tA" name="apply_user_id" label="M#12cn15申请者标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="APPLY_USER_ID" data_alias="APP_USR" data_refer="person.user" />
+  <FieldInteger _uuid="l0skP[w8pLieZkkz[XYdhw" name="examine_user_id" label="M#12cn15审批者标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_USER_ID" data_refer="person.user" index_names="examine" />
+  <FieldInteger _uuid="SUUCnWNV9Yu6eSLsgRTEgg" name="examine_role_id" label="M#12cn16审批角色标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_ROLE_ID" data_refer="person.role" />
+  <FieldDate _uuid="dEpvs416NHShGuebaSmQjg" name="examine_date" label="M#12cn14审批日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_DATE" />
+  <FieldContent _uuid="iEW5jfseZzdeaqNrNEuZqA" name="examine_note" label="M#12cn14审批意见" is_valid="Y" note="M#12cn211对审批的一些建设性意见" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_NOTE" />
+  <FieldEnum _uuid="rkx2[elXkYu[SIsvw7qnhA" name="operate_cd" label="M#12cn14操作类型" is_valid="Y" note="M#12cn257R=Remain\nA=Approve\nR=Refuse\nU=Unapprove\nC=Cancel\nV=Revoke" is_store="Y" is_abstract="N" data_name="OPERATE_CD" data_size="1" data_code="logic.business.examine.operate" />
+  <FieldInteger _uuid="F0h0eZJwvbhvEwzNKIh2hg" name="operate_user_id" label="M#12cn15操作者标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OPERATE_USER_ID" data_refer="person.user" />
+  <FieldTemplate _uuid="CET19J7qFJ0GoURnKbrZjg" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="Nkz[oZIARPN20goFiKamvA" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

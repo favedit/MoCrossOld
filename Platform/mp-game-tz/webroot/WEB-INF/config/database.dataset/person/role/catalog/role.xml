@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="0UVmMCfhGGy6tyq4P]DDrg" name="person.role.catalog.role" label="M#12cn19人员-角色关联目录" is_valid="Y" note="M#12cn230该数据集是实现角色和目录之间的关联\n角色和目录之间是多对多\n" access_insert="Y" access_update="Y" access_delete="Y" data_name="PM_ROLE_CATALOG_ROLE" data_alias="PM_ROL_CAT_ROL" data_logic="PM_ROLE_CATALOG_ROLE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="CkVTF1uJt1PHeJgy4iebvw" name="catalog_id" label="M#12cn14目录标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CATALOG_ID" data_refer="person.role.catalog" data_uniques="link" />
+  <FieldInteger _uuid="20pTV6NVQG5RdVipwf]Ggw" name="type_id" label="M#12cn16角色类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_refer="person.role.type" />
+  <FieldInteger _uuid="okoa51ClX4n6U]SKKl9Eug" name="role_id" label="M#12cn14角色标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="ROLE_ID" data_refer="person.role" data_uniques="link" />
+  <FieldBoolean _uuid="CUbhSTlSoLKn8G04507]hQ" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="'Y'" />
+  <FieldDate _uuid="r0sOrPYUHfd6pVUtERhvvg" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_default="SYSDATE" />
+</DataStore>
+

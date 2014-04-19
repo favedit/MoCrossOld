@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="lErw72Y5]Ik8PV05n7SXmQ" name="helper.design.webform.hhk" is_valid="Y" note="M#">
+  <Source _uuid="qENKN1]7mVg9KwQW1WYvhA" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+<jt:loop source='$config' alias='messageGroup'>
+ <jt:Equals source='$messageGroup._type' value='Group'>
+   <LI><OBJECT type="text/sitemap">
+	  <param name="Name" value="<jt:item source='$messageGroup.name'/>">
+	  <param name="Local" value="src/design.message/<jt:item source='$messageGroup.file_path' format='lower'/>/home.html">
+	  <PARAM NAME="ImageNumber" value="1">
+	</OBJECT>
+	<jt:loop source='$messageGroup' alias='groupChild'>
+	  <LI><OBJECT type="text/sitemap">
+	    <param name="Name" value="<jt:item source='$messageGroup.name'/>.<jt:item source='$groupChild.name'/>">
+	    <param name="Local" value="src/design.message/<jt:item source='$groupChild.file_path' format='lower'/>.html">
+	    <jt:Equals source='$groupChild._type' value='Message'>
+	      <PARAM NAME="ImageNumber" value="25">
+	    </jt:Equals>
+	    <jt:Equals source='$groupChild._type' value='Enum'>
+	      <PARAM NAME="ImageNumber" value="27">
+	    </jt:Equals>
+	    <jt:Equals source='$groupChild._type' value='Type'>
+	      <PARAM NAME="ImageNumber" value="13">
+	    </jt:Equals>
+	    <jt:Equals source='$groupChild._type' value='Struct'>
+	      <PARAM NAME="ImageNumber" value="39">
+	    </jt:Equals>
+	  </OBJECT>
+	  <jt:loop source='$groupChild' alias='groupChild1'>
+	    <LI><OBJECT type="text/sitemap">
+		   <param name="Name" value="<jt:item source='$messageGroup.name'/>.<jt:item source='$groupChild.name'/>.<jt:item source='$groupChild1.name'/>">
+		   <param name="Local" value="src/design.message/<jt:item source='$groupChild1.file_path' format='lower'/>.html">
+		   <jt:Equals source='$groupChild1._type' value='Item'>
+		     <PARAM NAME="ImageNumber" value="41">
+		   </jt:Equals>
+		   <jt:Equals source='$groupChild1._type' value='Enum'>
+		     <PARAM NAME="ImageNumber" value="27">
+		   </jt:Equals>
+		   <jt:Equals source='$groupChild1._type' value='Struct'>
+		     <PARAM NAME="ImageNumber" value="39">
+		   </jt:Equals>
+		   <jt:Equals source='$groupChild1._type' value='Member'>
+		     <PARAM NAME="ImageNumber" value="28">
+		   </jt:Equals>
+		 </OBJECT>
+		 <jt:loop source='$groupChild1' alias='groupChild2'>
+         <LI><OBJECT type="text/sitemap">
+	      <param name="Name" value="<jt:item source='$messageGroup.name'/>.<jt:item source='$groupChild.name'/>.<jt:item source='$groupChild1.name'/>.<jt:item source='$groupChild2.name'/>">
+	      <param name="Local" value="src/design.message/<jt:item source='$groupChild2.file_path' format='lower'/>.html">
+	      <jt:Equals source='$groupChild2._type' value='Item'>
+	        <PARAM NAME="ImageNumber" value="41">
+	      </jt:Equals>
+	      <jt:Equals source='$groupChild2._type' value='Member'>
+	        <PARAM NAME="ImageNumber" value="28">
+	      </jt:Equals>
+	      </OBJECT>
+       </jt:loop>
+	  </jt:loop>  
+	</jt:loop>
+ </jt:Equals>
+</jt:loop>
+</UL>
+</BODY></HTML>]]></Source>
+</Template>
+

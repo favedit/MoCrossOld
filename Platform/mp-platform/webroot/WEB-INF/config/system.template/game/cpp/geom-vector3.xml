@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template ads="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Source ads="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[
+//============================================================
+// <T>三维<jt:item source='$label'/>矢量。</T>
+//============================================================
+struct MO_CM_DECLARE S<jt:item source='$type_name'/>Vector3{
+public:
+   <jt:item source='$type'/> x;
+   <jt:item source='$type'/> y;
+   <jt:item source='$type'/> z;
+public:
+   //------------------------------------------------------------
+   // <T>构造三维<jt:item source='$label'/>矢量。</T>
+   S<jt:item source='$type_name'/>Vector3(){
+      x = <jt:item source='$default'/>;
+      y = <jt:item source='$default'/>;
+      z = <jt:item source='$default'/>;
+   }
+   //------------------------------------------------------------
+   // <T>构造三维<jt:item source='$label'/>矢量。</T>
+   S<jt:item source='$type_name'/>Vector3(<jt:item source='$type'/> value){
+      x = value;
+      y = value;
+      z = value;
+   }
+   //------------------------------------------------------------
+   // <T>构造三维<jt:item source='$label'/>矢量。</T>
+   S<jt:item source='$type_name'/>Vector3(<jt:item source='$type'/> xValue, <jt:item source='$type'/> yValue, <jt:item source='$type'/> zValue){
+      Set(xValue, yValue, zValue);
+   }
+   //------------------------------------------------------------
+   // <T>构造三维<jt:item source='$label'/>矢量。</T>
+   S<jt:item source='$type_name'/>Vector3(const S<jt:item source='$type_name'/>Point3& source, const S<jt:item source='$type_name'/>Point3& target){
+      Set(source, target);
+   }
+<jt:equals source='$type_name' value='Float|Double'>
+   //------------------------------------------------------------
+   // <T>构造三维<jt:item source='$label'/>矢量。</T>
+   S<jt:item source='$type_name'/>Vector3(const S<jt:item source='$type_name'/>Point3& source, const S<jt:item source='$type_name'/>Point3& target, TBool normalize){
+      Set(source, target, normalize);
+   }
+</jt:equals>
+public:
+   //------------------------------------------------------------
+   // <T>判断是否相等。</T>
+   MO_INLINE TBool operator==(const S<jt:item source='$type_name'/>Vector3& value){
+      return (x == value.x) && (y == value.y) && (z == value.z);
+   }
+   //------------------------------------------------------------
+   // <T>判断是否不相等。</T>
+   MO_INLINE TBool operator!=(const S<jt:item source='$type_name'/>Vector3& value){
+      return (x != value.x) || (y != value.y) || (z != value.z);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void operator=(<jt:item source='$type'/> value){
+      x = value;
+      y = value;
+      z = value;
+   }
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void operator=(const S<jt:item source='$type_name'/>Vector3& value){
+      x = value.x;
+      y = value.y;
+      z = value.z;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>相加处理。</T>
+   MO_INLINE void operator+=(<jt:item source='$type'/> value){
+      Add(value);
+   }
+   //------------------------------------------------------------
+   // <T>相加处理。</T>
+   MO_INLINE void operator+=(const S<jt:item source='$type_name'/>Vector3& value){
+      Add(value);
+   }
+   //------------------------------------------------------------
+   // <T>相减处理。</T>
+   MO_INLINE void operator-=(<jt:item source='$type'/> value){
+      Sub(value);
+   }
+   //------------------------------------------------------------
+   // <T>相减处理。</T>
+   MO_INLINE void operator-=(const S<jt:item source='$type_name'/>Vector3& value){
+      Sub(value);
+   }
+   //------------------------------------------------------------
+   // <T>相乘处理。</T>
+   MO_INLINE void operator*=(<jt:item source='$type'/> value){
+      Mul(value);
+   }
+   //------------------------------------------------------------
+   // <T>相除处理。</T>
+   MO_INLINE void operator/=(<jt:item source='$type'/> value){
+      Div(value);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>设全部置内容。</T>
+   MO_INLINE void SetAll(<jt:item source='$type'/> value){
+      x = value;
+      y = value;
+      z = value;
+   }
+   //------------------------------------------------------------
+   // <T>设置内容。</T>
+   MO_INLINE void Set(<jt:item source='$type'/> xValue, <jt:item source='$type'/> yValue){
+      x = xValue;
+      y = yValue;
+   }
+   //------------------------------------------------------------
+   // <T>设置内容。</T>
+   MO_INLINE void Set(<jt:item source='$type'/> xValue, <jt:item source='$type'/> yValue, <jt:item source='$type'/> zValue){
+      x = xValue;
+      y = yValue;
+      z = zValue;
+   }
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void Set(const S<jt:item source='$type_name'/>Point3& source, const S<jt:item source='$type_name'/>Point3& target){
+      x = target.x - source.x;
+      y = target.y - source.y;
+      z = target.z - source.z;
+   }
+<jt:equals source='$type_name' value='Float|Double'>
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void Set(const S<jt:item source='$type_name'/>Point3& source, const S<jt:item source='$type_name'/>Point3& target, TBool normalize){
+      x = target.x - source.x;
+      y = target.y - source.y;
+      z = target.z - source.z;
+      if(normalize){
+         Normalize();
+      }
+   }
+</jt:equals>
+   //------------------------------------------------------------
+   // <T>接收数据内容。</T>
+   MO_INLINE void Assign(const S<jt:item source='$type_name'/>Vector3& value){
+      x = value.x;
+      y = value.y;
+      z = value.z;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>相加处理。</T>
+   MO_INLINE void Add(<jt:item source='$type'/> xValue, <jt:item source='$type'/> yValue, <jt:item source='$type'/> zValue){
+      x += xValue;
+      y += yValue;
+      z += zValue;
+   }
+   //------------------------------------------------------------
+   // <T>相加处理。</T>
+   MO_INLINE void Add(const S<jt:item source='$type_name'/>Vector3& value){
+      x += value.x;
+      y += value.y;
+      z += value.z;
+   }
+   //------------------------------------------------------------
+   // <T>相减处理。</T>
+   MO_INLINE void Sub(<jt:item source='$type'/> xValue, <jt:item source='$type'/> yValue, <jt:item source='$type'/> zValue){
+      x -= xValue;
+      y -= yValue;
+      z -= zValue;
+   }
+   //------------------------------------------------------------
+   // <T>相减处理。</T>
+   MO_INLINE void Sub(const S<jt:item source='$type_name'/>Vector3& value){
+      x -= value.x;
+      y -= value.y;
+      z -= value.z;
+   }
+   //------------------------------------------------------------
+   // <T>相乘处理。</T>
+   MO_INLINE void Mul(<jt:item source='$type'/> xValue, <jt:item source='$type'/> yValue, <jt:item source='$type'/> zValue){
+      x *= xValue;
+      y *= yValue;
+      z *= zValue;
+   }
+   //------------------------------------------------------------
+   // <T>相乘处理。</T>
+   MO_INLINE void Mul(const S<jt:item source='$type_name'/>Vector3& value){
+      x *= value.x;
+      y *= value.y;
+      z *= value.z;
+   }
+   //------------------------------------------------------------
+   // <T>相乘处理。</T>
+   MO_INLINE S<jt:item source='$type_name'/>Vector3 MulToVector3(<jt:item source='$type'/> value){
+      return S<jt:item source='$type_name'/>Vector3(x * value, y * value, z * value);
+   }
+   //------------------------------------------------------------
+   // <T>相除处理。</T>
+   MO_INLINE void Div(<jt:item source='$type'/> xValue, <jt:item source='$type'/> yValue, <jt:item source='$type'/> zValue){
+      x /= xValue;
+      y /= yValue;
+      z /= zValue;
+   }
+   //------------------------------------------------------------
+   // <T>相除处理。</T>
+   MO_INLINE void Div(const S<jt:item source='$type_name'/>Vector3& value){
+      x /= value.x;
+      y /= value.y;
+      z /= value.z;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>获得最小点处理。</T>
+   MO_INLINE void MergeMin(const S<jt:item source='$type_name'/>Vector3& source, const S<jt:item source='$type_name'/>Vector3& target){
+      x = MO_LIB_MIN(source.x, target.x);
+      y = MO_LIB_MIN(source.y, target.y);
+      z = MO_LIB_MIN(source.z, target.z);
+   }
+   //------------------------------------------------------------
+   // <T>获得最大点处理。</T>
+   MO_INLINE void MergeMax(const S<jt:item source='$type_name'/>Vector3& source, const S<jt:item source='$type_name'/>Vector3& target){
+      x = MO_LIB_MAX(source.x, target.x);
+      y = MO_LIB_MAX(source.y, target.y);
+      z = MO_LIB_MAX(source.z, target.z);
+   }
+<jt:equals source='$type_name' value='Float|Double'>
+   //------------------------------------------------------------
+   // <T>获得绝对值。</T>
+   MO_INLINE <jt:item source='$type'/> Absolute() const{
+      return sqrt((x * x) + (y * y) + (z * z));
+   }
+   //------------------------------------------------------------
+   // <T>单位化处理。</T>
+   MO_INLINE void Normalize(){
+      <jt:item source='$type'/> value = Absolute();
+      if(value != <jt:item source='$default'/>){
+         x /= value;
+         y /= value;
+         z /= value;
+      }
+   }
+   //------------------------------------------------------------
+   // <T>向量点乘</T>
+   MO_INLINE <jt:item source='$type'/> DotPoint3(S<jt:item source='$type_name'/>Point3& value){
+      return (x * value.x) + (y * value.y) + (z * value.z);
+   }
+   //------------------------------------------------------------
+   // <T>点乘(内积)。</T>
+   MO_INLINE void Cross(const S<jt:item source='$type_name'/>Vector3& value){
+      <jt:item source='$type'/> xValue = (y * value.z) - (z * value.y);
+      <jt:item source='$type'/> yValue = (z * value.x) - (x * value.z);
+      <jt:item source='$type'/> zValue = (x * value.y) - (y * value.x);
+      x = xValue;
+      y = yValue;
+      z = zValue;
+   }
+   //------------------------------------------------------------
+   // <T>点乘(内积)。</T>
+   MO_INLINE void Cross(S<jt:item source='$type_name'/>Vector3& output, const S<jt:item source='$type_name'/>Vector3& input){
+      output.x = (y * input.z) - (z * input.y);
+      output.y = (z * input.x) - (x * input.z);
+      output.z = (x * input.y) - (y * input.x);
+   }
+   //------------------------------------------------------------
+   // <T>叉乘(外积)。</T>
+   MO_INLINE void Multiply(const S<jt:item source='$type_name'/>Vector3& value){
+   }
+   //------------------------------------------------------------
+   // <T>计算夹角。</T>
+   <jt:item source='$type'/> Angle(const S<jt:item source='$type_name'/>Vector3& value){
+      <jt:item source='$type'/> result = (x * value.x) + (y * value.y) + (z * value.z);
+      result /= Absolute();
+      result /= value.Absolute();
+      return acos(result);
+   }
+</jt:equals>
+   //------------------------------------------------------------
+   // <T>重置数据。</T>
+   MO_INLINE void Reset(){
+      x = <jt:item source='$default'/>;
+      y = <jt:item source='$default'/>;
+      z = <jt:item source='$default'/>;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>序列化数据内容到输出流。</T>
+   void Serialize(IDataOutput* pOutput){
+      pOutput->Write<jt:item source='$type_name'/>(x);
+      pOutput->Write<jt:item source='$type_name'/>(y);
+      pOutput->Write<jt:item source='$type_name'/>(z);
+   }
+<jt:equals source='$type_name' value='Int'>
+   //------------------------------------------------------------
+   // <T>序列化数据内容到输出流。</T>
+   void Serialize16(IDataOutput* pOutput){
+      pOutput->WriteInt16((TInt16)x);
+      pOutput->WriteInt16((TInt16)y);
+      pOutput->WriteInt16((TInt16)z);
+   }
+</jt:equals>
+   //------------------------------------------------------------
+   // <T>从输入流反序列化数据内容。</T>
+   void Unserialize(IDataInput* pInput){
+      x = pInput->Read<jt:item source='$type_name'/>();
+      y = pInput->Read<jt:item source='$type_name'/>();
+      z = pInput->Read<jt:item source='$type_name'/>();
+   }
+<jt:equals source='$type_name' value='Int'>
+   //------------------------------------------------------------
+   // <T>从输入流反序列化数据内容。</T>
+   void Unserialize16(IDataInput* pInput){
+      x = pInput->ReadInt16();
+      y = pInput->ReadInt16();
+      z = pInput->ReadInt16();
+   }
+</jt:equals>
+public:
+   TBool Parse(TCharC* pValue);
+   TCharC* Format(TChar* pBuffer, TInt capacity);
+   TCharC* ToString(TChar* pBuffer, TInt capacity);
+};
+]]></Source>
+</Template>

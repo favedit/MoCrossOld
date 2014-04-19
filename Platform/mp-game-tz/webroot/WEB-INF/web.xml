@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
+
+   <display-name>mobj</display-name>
+   <description>mircobject</description>
+
+   <jsp-config>
+      <jsp-property-group>
+         <display-name>JSPConfiguration</display-name>
+         <url-pattern>*.jsp</url-pattern>
+         <el-ignored>true</el-ignored>
+         <page-encoding>UTF-8</page-encoding>
+         <scripting-invalid>false</scripting-invalid>
+         <include-coda></include-coda>
+      </jsp-property-group>
+   </jsp-config>
+
+   <!-- Context Listener -->
+   <listener>
+      <listener-class>org.mo.web.protocol.listener.FHttpContextListener</listener-class>
+   </listener>
+
+   <!-- Filter -->
+   <filter>
+      <filter-name>encode</filter-name>
+      <filter-class>org.mo.web.protocol.filter.FCharacterEncodingFilter</filter-class>
+      <init-param>
+         <param-name>encode</param-name>
+         <param-value>UTF-8</param-value>
+      </init-param>
+   </filter>
+
+   <filter-mapping>
+      <filter-name>encode</filter-name>
+      <url-pattern>/*</url-pattern>
+   </filter-mapping>
+
+   <!-- Servlet -->
+   <servlet>
+      <servlet-name>mobj.servlet</servlet-name>
+      <servlet-class>org.mo.web.core.servlet.FWebServletProcess</servlet-class>
+   </servlet>
+
+   <servlet>
+      <servlet-name>mobj.servlet.action</servlet-name>
+      <servlet-class>org.mo.web.core.action.servlet.FActionServlet</servlet-class>
+   </servlet>
+
+   <servlet>
+      <servlet-name>mobj.servlet.service</servlet-name>
+      <servlet-class>org.mo.web.core.service.servlet.FServiceServlet</servlet-class>
+   </servlet>
+
+   <!-- Servlet Mapping -->
+   <servlet-mapping>
+      <servlet-name>mobj.servlet</servlet-name>
+      <url-pattern>*.wv</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>mobj.servlet.action</servlet-name>
+      <url-pattern>*.wa</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>mobj.servlet.action</servlet-name>
+      <url-pattern>*.wp</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>mobj.servlet.service</servlet-name>
+      <url-pattern>*.ws</url-pattern>
+   </servlet-mapping>
+
+</web-app>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="t0aJ7JoYfK0SBPkieU[1uQ" name="logic.person.user.company.rest" label="M#12cn14假期发布" note="M#" is_valid="Y">
+  <Type _uuid="L0EQOCW5InD7Z9skM7k5kg" name="vacation.deploy" label="M#12cn19假期管理-年假发布" note="M#" is_valid="Y">
+    <TypeEvent _uuid="R0IsDnu0QiWDweT]ayFisA" name="vacation.deploy" label="M#12cn14年假发布" note="M#" is_valid="Y" event_group_name="logic.person.user.company.rest" event_type_name="vacation.deploy" priority_cd="L" />
+    <Schedule _uuid="r095U0Xk6MQHVvT7yyzemg" name="deploy.day.sync" label="M#12cn14计划同步" note="M#" is_valid="Y" begin_date="20090101163109" end_date="20200101163109">
+      <Day _uuid="Y0rhpZc38cJ2aLRHl2yOqw" name="syncDay" label="M#12cn14按天执行" note="M#12cn14年假发布" is_valid="Y" execute_time="20090705030000" statue_cd="P" type_cd="D" interval="1" update_date="20090705163324" />
+    </Schedule>
+  </Type>
+  <Type _uuid="vEbOWHWcmN]vfu94fNzXng" name="remain.examine.rest.remain" label="M#12cn214假期管理-提醒待审核邮件通知" note="M#" is_valid="Y">
+    <TypeEvent _uuid="iUNi5wVP0qep0ziF[0SJiA" name="remain.examine.rest.remain" label="M#12cn19提醒待审核邮件通知" note="M#" is_valid="Y" event_group_name="logic.person.user.company.rest" event_type_name="remain.examine.rest.remain" priority_cd="L" />
+    <Schedule _uuid="VUhgXsN5kwRYSvALINxhrg" name="remain.examine" label="M#12cn14提醒计划" note="M#" is_valid="Y" begin_date="20090101163109" end_date="20200101163109">
+      <Day _uuid="aUkl2e8Z[jHarshuUGUQjA" name="remainDay" label="M#12cn14按天执行" note="M#12cn14年假发布" is_valid="Y" execute_time="20000101060000" statue_cd="P" type_cd="D" interval="1" update_date="20090705163324" />
+    </Schedule>
+  </Type>
+</Group>
+

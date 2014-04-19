@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="o0e]aXFD0qL0d3DTF4nUsA" name="database.codelist" label="M#12cn16数据列表定义" is_valid="Y" note="M#" template="xmlobject" source="${home.source.data}">
+  <Interface _uuid="AElVPtJE6nklVkvgpa62jw" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#">
+    <Attribute _uuid="d0ue1ecblZNe1IyqfZtguw" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="yE8iQXNWFsejScAG[cRfkA" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+    <Attribute _uuid="dEQd1FxRh[eA4hF3DWm0hg" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" />
+    <Attribute _uuid="uU3eIwx[aq8Gm]LBjNmUgQ" name="note" label="M#12cn12注释" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+  </Interface>
+  <Component _uuid="ZU7L4qO9mv]WTIgQxnLRgA" name="Space" label="M#12cn14命名空间" is_valid="Y" note="M#" class_name="org.mo.data.codelist.common.XSpace" base_name="org.mo.data.codelist.base.XBaseSpace" inherits="IObject" />
+  <Component _uuid="PEWmLLLs4sStyhaj1P0XlA" name="CodeList" label="M#12cn14代码列表" is_valid="Y" note="M#" class_name="org.mo.data.codelist.common.XCodeList" base_name="org.mo.data.codelist.base.XBaseCodeList" inherits="IObject">
+    <Attribute _uuid="907L9rf14nGZF5TxCdmMjg" name="data_name" label="M#12cn14数据名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="nkjQdUDOJMykRsWwoalvqA" name="data_default" label="M#12cn13默认值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+  </Component>
+  <Component _uuid="Fkvj0v[XAkcmMm9Xvv4LtQ" name="Code" label="M#12cn12代码" is_valid="Y" note="M#" class_name="org.mo.data.codelist.common.XCode" base_name="org.mo.data.codelist.base.XBaseCode" inherits="IObject">
+    <Attribute _uuid="ZUeoK9gI9GOioTHL0aL8mA" name="type" label="M#12cn12类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="hkCbRSHMfBJwbTwPErTQnQ" name="data_name" label="M#12cn14数据名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="RUEAMm6nbU0WOH5BecDwoA" name="data_type" label="M#12cn14数据类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="00ktXF8RMBWDBMbl37T]jw" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="NkTwexn[D4lDGVFI9a]HkA" name="disp_order" label="M#12cn14显示顺序" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+  </Component>
+</Persistence>
+

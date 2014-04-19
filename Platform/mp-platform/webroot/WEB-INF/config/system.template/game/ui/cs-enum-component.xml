@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template ads="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Source ads="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[using MO.Common.Lang;
+
+namespace MO.Design2d.Face.Design.Common
+{
+   //============================================================
+   // <T>控件集合声明。</T>
+   //============================================================
+   public enum EUiComponent : int
+   {
+      // 字段声明
+      None,
+<jt:loop source='$classes' alias='class'>
+
+      // <jt:item source='$class.label'/>字段声明
+      <jt:item source='$class.name'/>,
+</jt:loop>
+   }
+
+   //============================================================
+   // <T>控件集合声明工具类。</T>
+   //============================================================
+   public class REnumUiComponent
+   {
+      //============================================================
+      // <T>根据从字符串获得枚举内容。</T>
+      //
+      // @param value 字符串
+      // @return 枚举内容
+      //============================================================
+      public static EUiComponent Parse(string value) {
+         switch (value) {
+<jt:loop source='$classes' alias='class'>
+            case "<jt:item source='$class.name'/>":
+               return EUiComponent.<jt:item source='$class.name'/>;
+</jt:loop>
+         }
+         throw new FFatalException("Unknown component source.");
+      }
+
+      //============================================================
+      // <T>根据枚举内容获得字符串。</T>
+      //
+      // @param value 枚举内容
+      // @return 字符串
+      //============================================================
+      public static string ToString(EUiComponent value) {
+         switch (value) {
+            case EUiComponent.None:
+               return "left";
+<jt:loop source='$classes' alias='class'>
+            case EUiComponent.<jt:item source='$class.name'/>:
+               return "<jt:item source='$class.name'/>";
+</jt:loop>
+         }
+         throw new FFatalException("Unknown component value.");
+      }
+   }
+}
+]]></Source>
+</Template>

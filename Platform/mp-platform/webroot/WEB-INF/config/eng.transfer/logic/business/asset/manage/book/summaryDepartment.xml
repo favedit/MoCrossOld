@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CsvImport _uuid="W0YDlVMjcqfNozG6zlBthw" name="logic.business.asset.manage.book.summaryDepartment" label="部门借阅统计" is_valid="Y" head_lines="1">
+  <Columns _uuid="GEaP[jeBt8o4HuE7XZfooQ" name="Columns" label="列集合" is_valid="Y">
+    <Column _uuid="KEgWjsa]3vMyOomWOWTHsg" name="rownum" label="编号" is_valid="Y" data_name="ROWNUM" />
+    <Column _uuid="iUGWnmMJXegaFpvlrcfSjA" name="organization_label" label="组织" is_valid="Y" data_name="ORGANIZATION_LABEL" />
+    <Column _uuid="5UpRUxvo5LPreUJOo4lntg" name="lend_count" label="借阅总数量" is_valid="Y" data_name="LEND_COUNT" />
+    <Column _uuid="EE7m2dtxbPH5ht6UAShjpQ" name="begin_date" label="开始日期" is_valid="Y" data_name="BEGIN_DATE" />
+    <Column _uuid="s04ghQ]xYPLuSqchrIprhg" name="end_date" label="结束日期" is_valid="Y" data_name="END_DATE" />
+  </Columns>
+  <Export _uuid="uEu8cR0dEqBa4HAnuC7hpg" name="sql" label="图书-部门借阅统计" is_valid="Y" sql="SELECT ROWNUM,\n  PM_ORGANIZATION_DI.Get_Label(ORG_ID) ORGANIZATION_LABEL,\n  LEND_COUNT,\n  BEGIN_DATE,\n  END_DATE\nFROM\n  (SELECT \n      PM_ORGANIZATION_DI.Find_Main_Organization_By_User(USER_ID) ORG_ID,\n      COUNT(*) LEND_COUNT,\n      TO_CHAR(MIN(BEGIN_DATE), 'YYYY-MM-DD') BEGIN_DATE,\n      TO_CHAR(MAX(END_DATE), 'YYYY-MM-DD') END_DATE\n   FROM BS_ASSET_ORDER_PB_BK\n   WHERE LEND_CD IN ('R','E','C')\n      AND BEGIN_DATE IS NOT NULL\n   GROUP BY PM_ORGANIZATION_DI.Find_Main_Organization_By_User(USER_ID))\nORDER BY LEND_COUNT DESC" display_command="N" display_command_tag="N" display_head="N" display_head_tag="N" display_label="Y" display_label_tag="N" display_valid="N" display_valid_tag="N" is_open="N" export_name="eUIS-图书管理-部门借阅统计报表[${SETTLEMENT_DATE}]" export_charset="GB18030" disp_data_start_tag="N" disp_data_end_tag="N" dataset_parameters="SELECT\n   TO_CHAR(SYSDATE, 'YYYYMMDD') SETTLEMENT_DATE\nFROM DUAL" />
+</CsvImport>
+

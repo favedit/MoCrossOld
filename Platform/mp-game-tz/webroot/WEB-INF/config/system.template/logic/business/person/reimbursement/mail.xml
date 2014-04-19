@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="mk4LYuBBotOZcukRlAwBkg" name="logic.business.person.reimbursement.mail" label="报销单的审批" is_valid="Y" note="M#">
+  <Define _uuid="5U]l1LW[VvtG4EMA]XYYpA" name="mail_content_type" label="邮件类型" is_valid="Y" note="M#" value="Html" />
+  <Variable _uuid="sUym2jUWAGNgDnNj3X06kw" name="user_full_label" label="申请人" is_valid="Y" note="M#" />
+  <Variable _uuid="qUt91rqdP7UKKN[Grm[euA" name="phone_number" label="联系电话" is_valid="Y" note="M#" />
+  <Variable _uuid="mERGHyzAZNZ8tVTPbTMVtg" name="org_label" label="所属部门" is_valid="Y" note="M#" />
+  <Variable _uuid="AUWrh04R6WnjpWdnPohpkA" name="begin_date" label="开始时间" is_valid="Y" note="M#" />
+  <Variable _uuid="4ElKfBGm7BptOl5I[4xCiQ" name="end_date" label="结束时间" is_valid="Y" note="M#" />
+  <Variable _uuid="oU01cLpxY9kuEGeFlCZIvw" name="create_date" label="申请时间" is_valid="Y" note="M#" />
+  <Variable _uuid="[08yTqn7LEKXlQXRYLRQvg" name="examine_user_label" label="审核者" is_valid="Y" note="M#" />
+  <Variable _uuid="U0nPaaLSYVrn]UqxKxd[iQ" name="type_label" label="批次类型名称" is_valid="Y" note="M#" />
+  <Source _uuid="kUc8FjueKmpsx1T7kG9ugA" name="notify.head" label="通知-邮件标题" is_valid="Y" note="M#"><![CDATA[<jt:item source='$config.examin_user_label'/>同学你好,<jt:item source='$config.user_full_label'/>同学审核已完毕的<jt:item source='$config.type_label'/>单，请审核！]]></Source>
+  <Source _uuid="SkJdpzLVmGfxLHmwhnoGqQ" name="notify.body" label="通知-邮件正文" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="Content-Language" content="en-us" />
+<SCRIPT language='javascript' src='<jt:item source='$path'/>
+<style type="text/css">
+<!--
+.STYLE1 {color: #CC0066}
+-->
+</style>
+/ajs/mobj.js'></SCRIPT>
+<style type="text/css" media="screen">
+   body {
+      margin: 0px;
+      padding: 0px;
+   }
+   * #BodyImposter {
+      color: #666;
+      background: #fff;
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+   }
+   * #BodyImposter dd,
+   * #BodyImposter dt,
+   * #BodyImposter li,
+   * #BodyImposter p,
+   * #BodyImposter td {
+      font-size: 12px;
+      line-height: 1.5em;
+      font-family: Helvetica, Arial, sans-serif;
+   }
+   * #BodyImposter dl,
+   * #BodyImposter p,
+   * #BodyImposter ol,
+   * #BodyImposter ul {
+      margin: 0em 0em 1em 0em;
+   }
+   * #BodyImposter img {
+      border: 0px;
+   }
+   * #BodyImposter small {
+      font-size: 10px;
+      line-height: 1.3em;
+   }
+   * #BodyImposter ol {
+      padding-left: 1em;
+   }
+   * #Primary ul {
+      padding-left: 1em;
+      padding-right: 1em;
+   }
+   * #BodyImposter ol li {
+      margin: 0px;
+      padding: 0px;
+   }
+   * #BodyImposter ul li {
+      background: url("img/bullet.gif") no-repeat 0em 0.5em;
+      padding: 0px 0px 0px 8px;
+      margin: 0px;
+   list-style: none;
+   }
+
+   * #BodyImposter h1,
+   * #BodyImposter h2 {
+      color: #c96;
+      background: #fff;
+      font-family: Helvetica, Arial, sans-serif;
+      font-weight: bold;
+      line-height: normal;
+      margin: 0.75em 0em;
+      padding: 0px;
+   }
+   * #Masthead h1 {
+      font-size: 28px;
+      color: #fff;
+      background: #945620;
+   }
+   * #Primary h2 {
+      font-size: 18px;
+   }
+   * #Tertiary h2 {
+      font-size: 14px;
+   }
+   * #Box {
+      width: 100%;
+      text-align: left;
+   }
+   * #Content {
+      margin: 0px auto;
+      text-align: left;
+   }
+   * #Content td#Primary {
+      width: 550px;
+   }
+   * #Content td#Primary img {
+      border: 6px solid #e0e0e0;
+      float: right;
+      margin: 5px 0px 10px 15px;
+   }
+   * #Helpful table {
+      color: #c2c2c2;
+      background: #fff;
+      margin: 0px auto;
+   }
+   * #Helpful p {
+      width: 550px;
+      margin: 0px auto;
+      padding: 0px 20px;
+      text-align: left;
+   }
+   * #Legal {
+      padding: 20px 0px;
+   }
+   * #Legal table {
+      color: #bb9979;
+      background: #e0bc7e;
+      margin: 0px auto;
+   }
+   * #Legal p {
+      width: 550px;
+      margin: 0px auto;
+      padding: 0px 20px;
+      text-align: left;
+   }
+   * #Masthead {
+      padding: 20px 0px;
+   }
+   * #Masthead table {
+      color: #fff;
+      background: #945620;
+      margin: 0px auto;
+   }
+   * #Masthead h1,
+   * #Masthead p {
+      width: 550px;
+      margin: 0px auto;
+      padding: 0px 20px;
+      text-align: left;
+   }
+   * #Masthead p {
+      font-size: 14px;
+   }
+   * #Masthead p #Date {
+      float: right;
+   }
+   * #Tertiary {
+      padding: 20px 0px;
+   }
+   * #Tertiary table {
+      color: #e1c0a0;
+      background: #c96;
+      margin: 0px auto;
+   }
+   * #Tertiary h2 {
+      color: #fff;
+      background: #c96;
+      padding: 0em 0em 0.5em 0em;
+   }
+   * #Tertiary h2,
+   * #Tertiary p {
+      width: 550px;
+      margin: 0px auto;
+      padding: 0px 20px;
+      text-align: left;
+   }
+   * #Helpful,
+   * #Legal,
+   * #Masthead,
+   * #Tertiary {
+      width: 100%;
+      text-align: left;
+   }
+   .td{
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: normal;
+      text-decoration: none;
+      text-align:center;
+      background-color: #e7f6fd;
+      border: 1px solid #96d4ee;
+      padding-top: 2px;
+      padding-right: 0px;
+      padding-bottom: 0px;
+      padding-left: 0px;
+   }
+   .td_text{
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: normal;
+      text-decoration: none;
+      text-align:left;
+      background-color: #e7f6fd;
+      border: 1px solid #96d4ee;
+      padding-top: 2px;
+      padding-right: 0px;
+      padding-bottom: 1px;
+      padding-left: 0px;
+   }
+</style>
+</head>
+<body>
+<div id="BodyImposter">
+  <div id="Box">
+   <table id="left" cellspacing="0" cellpadding="15" width="576">
+      <tr>
+         <td colspan="2" id="Primary" style="font-family: Helvetica, Arial, sans-serif;">
+            <h2>
+              <jt:item source='$config.examin_user_label'/>同学你好：</h2>
+            <table width="706" cellspacing="0" cellpadding="5">
+               <tr>
+                  <td width="14" align="left"> </td>
+                  <td width="520" align="left">
+                  从
+                 <jt:item source='$config.begin_date_year'/>年<jt:item source='$config.begin_date_month'/>月<jt:item source='$config.begin_date_day'/>日到<jt:item source='$config.end_date_year'/>年<jt:item source='$config.end_date_month'/>月<jt:item source='$config.end_date_day'/>日的所有<jt:item source='$config.type_label'/>，我已经审批核对，请你审批。</td>
+               </tr>
+           </table>
+            <br />
+            <p> <jt:item source='$config.type_label'/>批次信息如下：</p>
+	        <table width="90%" height="210">
+			   <tr>
+                  <td  class="td" width="96">批次编号</td>
+				  <td  class="td_text" width="183" align="center">
+			          <jt:item source='$config.ouid'/>
+	              </td>
+			   </tr>
+               <tr>
+                  <td  class="td" width="96">批次类型</td>
+                  <td  class="td_text" width="183"> 
+                      <jt:item source='$config.type_label'/>
+                 </td>
+                  <td  class="td" width="143">批次代码</td>
+                  <td  class="td_text" width="193"> 
+                 <jt:item source='$config.name'/></td>
+               </tr>
+               <tr>
+                  <td class="td">批次名称</td>
+                  <td class="td" colspan="3"> 
+                      <jt:item source='$config.label'/>
+                  </td>
+               </tr>
+			   <tr>
+                  <td  class="td" width="96">开始日期</td>
+                  <td  class="td_text" width="183"> 
+                 <jt:item source='$config.begin_date_year'/>年<jt:item source='$config.begin_date_month'/>月<jt:item source='$config.begin_date_day'/>日</td>
+                  <td  class="td" width="143">结束日期</td>
+                  <td  class="td_text" width="193"> 
+                 <jt:item source='$config.end_date_year'/>年<jt:item source='$config.end_date_month'/>月<jt:item source='$config.end_date_day'/>日</td>
+               </tr>
+			   <tr>
+                  <td  class="td">备注</td>
+                  <td  class="td_text"  height="80" colspan="3"> 
+                 <jt:item source='$config.note'/></td>
+               </tr>
+           </table>
+	<br/>
+	<p>   该批次的c各种费用统计总合如下：</p>
+            <table width="90%" height="100">
+               <tr>
+                  <td width="238" align="left"  class="td" ><div align="center"><strong>饭费金额总合</strong></div></td>
+                  <td  class="td_text" width="285" align="center"> 
+                 <jt:item source='$config.meal_fee'/></td>
+                  <td  class="td" width="96" align="center"><div align="center">元</div></td>
+               </tr>
+               <tr>
+                  <td width="238" align="left"  class="td"><div align="center"><strong>车费金额总合</strong></div></td>
+                  <td  class="td_text" width="285" align="center"> 
+                 <jt:item source='$config.bus_fee'/></td>
+                  <td  class="td" width="96" align="center"><div align="center">元</div></td>
+               </tr>
+			   <tr>
+                  <td width="238" align="left"  class="td"><div align="center"><strong>通讯费金额总合</strong></div></td>
+                  <td  class="td_text" width="285" align="center"> 
+                 <jt:item source='$config.communication_fee'/></td>
+                  <td  class="td" width="96" align="center"><div align="center">元</div></td>
+               </tr>
+			   <tr>
+                  <td width="238" align="left"  class="td"><div align="center"><strong>购置费金额总合</strong></div></td>
+                  <td  class="td_text" width="285" align="center"> 
+                 <jt:item source='$config.purchase_fee'/></td>
+                  <td  class="td" width="96" align="center"><div align="center">元</div></td>
+               </tr>
+			   <tr>
+                  <td width="238" align="left"  class="td"><div align="center"><strong>住宿费金额总合</strong></div></td>
+                  <td  class="td_text" width="285" align="center"> 
+                 <jt:item source='$config.accommodation_fee'/></td>
+                  <td  class="td" width="96" align="center"><div align="center">元</div></td>
+               </tr>
+			   <tr>
+                  <td width="238" align="left"  class="td"><div align="center"><strong>其他费用金额总合</strong></div></td>
+                  <td  class="td_text" width="285" align="center"> 
+                 <jt:item source='$config.other_fee'/></td>
+                  <td  class="td" width="96" align="center"><div align="center">元</div></td>
+               </tr>
+           </table>
+            <p>&nbsp;</p>
+            <table width="637" cellspacing="0" cellpadding="5">
+			   <tr>
+                  <td colspan="2" align="left">看<jt:item source='$config.type_name'/>详细请点击这里：<A href='http://192.168.41.43:88/eUIS/apl/logic/form/WebForm.wa?do=redirect&redirect=<jt:item source='$config.redirect'/>'>详细</A></td>
+               </tr>
+			   <tr>
+                  <td colspan="2" align="right"> </td>
+               </tr>
+			   <tr>
+                  <td width="366" align="right"> </td>
+                  <td width="239" align="left">发信者：
+                 <jt:item source='$config.user_full_label'/></td>
+               </tr>
+               <tr>
+                  <td align="right"> </td>
+                  <td align="left">****年**月**日</td>
+               </tr>
+           </table>
+            <h2>帮助</h2>
+            <table width="264" cellspacing="0" cellpadding="5">
+               <tr>
+                  <td width="17" align="right"> </td>
+                  <td colspan="3" align="left">※如有问题请及时联系，联系信息如下：</td>
+               </tr>
+               <tr>
+                  <td colspan="2" rowspan="4" align="right">        </td>
+                  <td width="68" align="left"><jt:item source='$config.type_name'/>负责人：</td>
+                 <td width="146" align="center">                   <div align="center">
+                   <jt:item source='$config.user_full_label'/>                 
+                 </div></td>
+               </tr>
+			   <tr>
+                  <td width="68" align="left">电话号码：</td>
+                 <td width="146" align="center">                   <div align="center">
+                   <jt:item source='$config.user_tel'/>                 
+                 </div></td>
+               </tr>
+			   <tr>
+                  <td width="68" align="left">QQ：</td>
+                 <td width="146" align="center">                   <div align="center">
+                   <jt:item source='$config.user_qq'/>                 
+                 </div></td>
+               </tr>
+			   <tr>
+                  <td width="68" align="left">MSN：</td>
+                 <td width="146" align="center">                   <div align="center">
+                   <jt:item source='$config.user_msn'/>                 
+                 </div></td>
+               </tr>
+            </table>
+            <table width="688" cellspacing="0" cellpadding="5">
+               <tr>
+                  <td width="406"> </td>
+               </tr>
+               <tr>
+                  <td height="28">祝您一切顺利！</td>
+               </tr>
+			   <tr>
+                  <td><div align="right" class="STYLE1">
+                    <input type="submit" name="Submit" value="同意">
+                  </div></td>
+                  <td width="260">                    <div align="right" class="STYLE1">
+                    <input type="submit" name="Submit2" value="不同意">                 
+                  </div></td>
+               </tr>
+        </table>         
+        <p>&nbsp;</p>        </td>
+      </tr>
+	  <tr>
+        <td colspan="2" align="left"></td>
+        <td width="31" align="center"></td>
+      </tr>
+        <tr>
+          <td width="527" id="Primary" style="font-family: Helvetica, Arial, sans-serif;">&nbsp;</td>
+          <td width="118" id="Primary" style="font-family: Helvetica, Arial, sans-serif;">&nbsp;</td>
+      </tr>
+	  <tr>
+        <td colspan="2" align="left"></td>
+        <td width="31" align="center"></td>
+      </tr>
+        <tr>      </tr>
+    </table>
+   </div>
+</div>
+</body>
+</html>]]></Source>
+</Template>
+

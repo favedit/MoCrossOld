@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="IkoOF1MtJ4DvGdFlSjRkjw" name="game.logger" label="游戏日志服务器" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" source_name="MoMgGameLogger" code="Glo" full_code="GameLogger" display_index="39">
+  <Message _uuid="yEcFRv[zQ0VBr]]2L[KTgg" name="echo.request" label="应答请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="Echo" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSR" code_value="0x0001" code_fix="N">
+    <Item _uuid="0E2nq2iy6R2XCznBHuLnng" name="id" label="编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="Vkq8DEonCgr7ij4BV]j1rw" name="datatime" label="时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="f0Panc8owcZ0Qy6YRoUtqw" name="data" label="数据内容" is_valid="Y" note="M#" type="Bytes" is_collection="N" data_size="16384" />
+  </Message>
+  <Message _uuid="YkXQv1YFrl0WCgkEZIAstA" name="echo.response" label="应答回应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="Echo" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Item _uuid="WUjoVpQhojOMGnZgDlkUsQ" name="id" label="编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="9Es6[ZMC]XoBiQ0TvU1zlg" name="datetime" label="时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="xkEJFJo4gC]SQsEmIcrCsg" name="data" label="数据内容" is_valid="Y" note="M#" type="Bytes" is_collection="N" data_size="16384" />
+  </Message>
+  <Message _uuid="7E0WfzWyJcKHmpYB47Yrrg" name="register.request" label="注册请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Register" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GLO" target_type="GPX" code_value="0x0003" code_fix="N">
+    <Item _uuid="gELfIs[sfTU0UZ3sDR3xqQ" name="id" label="编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" data_default="0" />
+    <Item _uuid="lUm7[U[1Fnr8]ImxwD4Tlw" name="name" label="名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="skREto5r[ZU[WqGTCIhyuw" name="host" label="主机地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="WUGYOmLg8jXrva0IPqj6mg" name="port" label="端口" is_valid="Y" note="M#" type="Uint16" is_collection="N" data_default="0" />
+  </Message>
+  <Message _uuid="VkTALtypRtDjN7SkOZkPmQ" name="register.response" label="注册应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Register" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GPX" target_type="GLO" code_value="0x0004" code_fix="N">
+    <Enum _uuid="CUcYi6oXai5I7MA2PZednw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="gkgHVUf[9J6K3OLx8]YJow" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="AEwQrMk5zWaoTr20200buQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="K0Th0BZMNeo8ddKcMAURnQ" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+</Group>
+

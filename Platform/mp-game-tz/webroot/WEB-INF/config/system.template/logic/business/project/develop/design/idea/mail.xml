@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="WkaXpfeTRnR9UkEOSrwzjQ" name="logic.business.project.develop.design.idea.mail" label="建议管理" is_valid="Y" note="M#12cn14建议管理">
+  <Define _uuid="GEX39W9FmX0XIWUel0dRgw" name="mail_content_type" label="邮件类型" is_valid="Y" note="M#" value="Html" />
+  <Variable _uuid="X0q3IRyasM28jN8xGwJ2rQ" name="to_user_label" label="收件人" is_valid="Y" note="M#" />
+  <Variable _uuid="fk2lzf5R78boWrIdM83Skg" name="create_date" label="提出日期" is_valid="Y" note="M#" />
+  <Variable _uuid="fEmweFXgHJ5VRe5omgIgsw" name="project_label" label="项目名称" is_valid="Y" note="M#" />
+  <Variable _uuid="HkZDHKHswVzJ0]OnItmQhw" name="title" label="标题" is_valid="Y" note="M#" />
+  <Variable _uuid="LE0DiW]c2GuUHzseyuvggw" name="reply_note" label="回复内容" is_valid="Y" note="M#" />
+  <Source _uuid="nE1FzxJYOEIDS4NCKELKoQ" name="reply.head" label="建议关闭-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][建议回复] <jt:item source='$config.to_user_label'/>您好, 新的感谢信。]]></Source>
+  <Source _uuid="x06]LJqMCCYRRAIAeZEqsQ" name="reply.body" label="建议回复-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='建议管理 → 建议回复通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.user_full_label'/> 首先谢谢您的参与！</TD></TR>
+      <TR><TD>感谢您的宝贵意见，我们会尽快对您的建议进行处理，一旦有了处理结果，我们会在第一时间通知您。</TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>回复内容如下</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+       <TD width='1px' bgcolor='#0165CA'></TD><TD colspan="4" class='ItemData'><jt:item source='$config.reply_note'/></TD>
+   </TR>
+   </TABLE>
+   <B style='color:#014d99'>您的建议信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>项目名称</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.project_label' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>建议日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.create_date' type='date' format='YYYY-MM-DD'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>标题</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.title'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="CUwMrVqfmPtsdxQcp8SfnA" name="close.head" label="建议关闭-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][建议回复] <jt:item source='$config.to_user_label'/>你好, 建议最新处理结果。]]></Source>
+  <Source _uuid="mE00uAHS7GJODWCVFCtbmg" name="close.body" label="建议关闭-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='建议管理 → 建议回复通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.user_full_label'/> 首先谢谢您的参与！</TD></TR>
+      <TR><TD>    您的【建议】我们已经认真的阅读，并进行了初步的采纳，希望您以后继续支持我们的工作，及时对我们中作中的任何问题
+      给予指正，以便以后能更好的为您服务。</TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>回复内容如下</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD colspan="4" class='ItemData'><jt:item source='$config.reply_note'/></TD>
+   </TR>
+   </TABLE>
+   <B style='color:#014d99'>您的建议信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>项目名称</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.project_label' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>建议日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.create_date' type='date' format='YYYY-MM-DD'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>标题</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.title'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

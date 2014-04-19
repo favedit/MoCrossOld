@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T><jt:item source='$group.label'/>枚举定义。</T>
+//
+// @version 1.0.1
+// @auto 代码器管理的代码，如需修改请在手动修改标出的地方修改。
+//============================================================
+#include "<jt:item source='$group.source_name'/>.h"
+
+MO_NAMESPACE_BEGIN
+<jt:loop source='$group' alias='enum' filter='$enum:name=Enum'>
+<jt:true source='$enum.is_set'>
+
+//============================================================
+// <T>获得数据容量。</T>
+//
+// @return 格式化字符串
+//============================================================
+TSize T<jt:item source='$enum.name'/>Set::Capacity(){
+   return sizeof(T<jt:item source='$enum.set_data_type_cd'/>);
+}
+
+//============================================================
+// <T>接受对方数据内容。</T>
+//
+// @param set 集合对象
+//============================================================
+void T<jt:item source='$enum.name'/>Set::Assign(T<jt:item source='$enum.name'/>Set& set){
+   _value = set.Get();
+}
+
+//============================================================
+// <T>接受对方数据内容。</T>
+//
+// @param set 集合对象
+//============================================================
+void T<jt:item source='$enum.name'/>Set::Parse(TCharC* pValue){
+   _value = 0;
+   TFsStringToken token(pValue, ',');
+   TInt count = token.Count();
+   for(TInt n = 0; n < count; n ++){
+      TFsCode code = token.Get(n);
+<jt:loop source='$enum' alias='member'>
+      if(code.Equals("<jt:item source='$member.name'/>")){
+         SetBit(E<jt:item source='$enum.name'/>_<jt:item source='$member.name'/>);
+         continue;
+      }
+</jt:loop>
+   }
+}
+
+//============================================================
+// <T>接受对方数据内容。</T>
+//
+// @param set 集合对象
+//============================================================
+void T<jt:item source='$enum.name'/>Set::ParseValue(TCharC* pValue){
+   _value = 0;
+   TFsStringToken token(pValue, ',');
+   TInt count = token.Count();
+   for(TInt n = 0; n < count; n ++){
+      TFsCode code = token.Get(n);
+<jt:loop source='$enum' alias='member'>
+      if(code.Equals("<jt:item source='$member.value'/>")){
+         SetBit(E<jt:item source='$enum.name'/>_<jt:item source='$member.name'/>);
+         continue;
+      }
+</jt:loop>
+   }
+}
+
+//============================================================
+// <T>获得格式化字符串。</T>
+//
+// @param pValue 字符串
+// @param capacity 数据长度
+// @return 格式化字符串
+//============================================================
+TChar* T<jt:item source='$enum.name'/>Set::ToString(TChar* pValue, TSize capacity){
+   TStringRefer text(pValue, capacity);
+<jt:loop source='$enum' alias='member'>
+   text.Append(GetBit(E<jt:item source='$enum.name'/>_<jt:item source='$member.name'/>) ? "<jt:item source='$member.flag'/>" : "_");
+</jt:loop>
+   return pValue;
+}
+
+//============================================================
+// <T>获得格式化字符串。</T>
+//
+// @return 格式化字符串
+//============================================================
+TFsText T<jt:item source='$enum.name'/>Set::ToString(){
+   TFsText text;
+   ToString(text.Memory(), text.Size());
+   return text;
+}
+</jt:true>
+
+//============================================================
+// <T>根据字符串获得<jt:item source='$enum.label'/>枚举类。</T>
+//
+// @param pValue 字符串
+// @return 枚举类
+//============================================================
+E<jt:item source='$enum.name'/> REnum<jt:item source='$enum.name'/>::Parse(TCharC* pValue){
+   // 判断是否需要解析
+   if(RInt::IsInteger(pValue)){
+      return (E<jt:item source='$enum.name'/>)RInt::Parse(pValue);
+   }
+   // 获得枚举值
+   TFsText text = pValue;
+<jt:loop source='$enum' alias='member'>
+   // 判断是否<jt:item source='$member.label'/>
+   if(text.Equals("<jt:item source='$member.name'/>")){
+      return E<jt:item source='$enum.name'/>_<jt:item source='$member.name'/>;
+   }
+</jt:loop>
+   MO_STATIC_FATAL("Unknown enum value. (enum=E<jt:item source='$enum.name'/>, value=%s)", pValue);
+   return (E<jt:item source='$enum.name'/>)0;
+}
+
+//============================================================
+// <T>根据代码获得<jt:item source='$enum.label'/>枚举类。</T>
+//
+// @param pCode 代码
+// @return 枚举类
+//============================================================
+E<jt:item source='$enum.name'/> REnum<jt:item source='$enum.name'/>::ParseCode(TCharC* pCode){
+   TFsText text = pCode;
+<jt:loop source='$enum' alias='member'>
+<jt:notEmpty source='$member.code'>
+   // 判断是否<jt:item source='$member.label'/>
+   if(text.Equals("<jt:item source='$member.code'/>")){
+      return E<jt:item source='$enum.name'/>_<jt:item source='$member.name'/>;
+   }
+</jt:notEmpty>
+</jt:loop>
+   MO_STATIC_FATAL("Unknown enum value. (enum=E<jt:item source='$enum.name'/>, code=%s)", pCode);
+   return (E<jt:item source='$enum.name'/>)0;
+}
+
+//============================================================
+// <T>根据<jt:item source='$enum.label'/>枚举类获得代码。</T>
+//
+// @param value 枚举类
+// @return 代码
+//============================================================
+TCharC* REnum<jt:item source='$enum.name'/>::ToCode(E<jt:item source='$enum.name'/> value){
+<jt:loop source='$enum' alias='member'>
+<jt:notEmpty source='$member.code'>
+   // 获得<jt:item source='$member.label'/>
+   if(E<jt:item source='$enum.name'/>_<jt:item source='$member.name'/> == value){
+      return "<jt:item source='$member.code'/>";
+   }
+</jt:notEmpty>
+</jt:loop>
+   return "Unknown";
+}
+
+//============================================================
+// <T>根据<jt:item source='$enum.label'/>枚举类获得字符串。</T>
+//
+// @param value 枚举类
+// @return 字符串
+//============================================================
+TCharC* REnum<jt:item source='$enum.name'/>::ToString(E<jt:item source='$enum.name'/> value){
+<jt:loop source='$enum' alias='member'>
+   // 获得<jt:item source='$member.label'/>
+   if(E<jt:item source='$enum.name'/>_<jt:item source='$member.name'/> == value){
+      return "<jt:item source='$member.name'/>";
+   }
+</jt:loop>
+   return "Unknown";
+}
+</jt:loop>
+
+MO_NAMESPACE_END
+]]></Source>
+</Template>

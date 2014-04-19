@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="oEj2YPzjgHPDRgPVpstSmg" name="web-sidebar" label="M#12cn15分割栏信息" is_valid="Y" note="M#" template="xmlobject" source="${home.source.web}">
+  <Interface _uuid="xUMn7qrTRqlDDt8dEc8itQ" name="Component" label="M#12cn14组件接口" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.web.core.sidebar.common.XComponentFace">
+    <Attribute _uuid="Skaje1hiO]cyRKLwsQoMlA" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="S03HBxLgOJ3KixTsYxWiuQ" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+    <Attribute _uuid="BUX[ABXVCqgRHm0L1zYalg" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="4UMwJwJ[mgToyCe8eLRpow" name="note" label="M#12cn12注释" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+  </Interface>
+  <Interface _uuid="uUwlEzLiYoFxKbP8AQ06tQ" name="Control" label="M#12cn14控件接口" is_valid="Y" note="M#12jp16コントロール" class_name="org.mo.web.core.sidebar.common.XControlFace" inherits="Component">
+    <Attribute _uuid="u00nW14xocb[aDT2kHNZrg" name="color" label="M#12cn12颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="qUE0lRBymZJhpBbJlGBVow" name="hint" label="M#12cn15状态栏提示" is_valid="Y" note="M#12cn15状态栏提示" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="xUuJtQKFz[bHPvA1DaKvmQ" name="style_refer" label="M#12cn14控件样式" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="FEsj9zBPJFnxDH0FD0cMrg" name="style_label" label="M#12cn14标签样式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="pEPa3P7MbTlaEMH[Q7yLvg" name="style_edit" label="M#12cn14编辑样式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="GEzmp2Q7KwV5WV3Ahtmlrw" name="heigh" label="M#12cn12高度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="gU5Y6tdwNM02WwrqlMBRng" name="width" label="M#12cn12宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="7k54qBV0UuEPlamKSKbtpQ" name="icon" label="M#12cn12图片" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+  <Component _uuid="QE1D4ymz7jcyQNSqLKw0rw" name="SideButton" label="M#12cn14分割按键" is_valid="Y" note="M#" class_name="org.mo.web.core.sidebar.common.XSideButton" base_name="org.mo.web.core.sidebar.base.XBaseSideButton" inherits="Control" />
+  <Component _uuid="fERe7HFJ6G6iKWrywURCjQ" name="SideBar" label="M#12cn13分割栏" is_valid="Y" note="M#" class_name="org.mo.web.core.sidebar.common.XSideBar" base_name="org.mo.web.core.sidebar.base.XBaseSideBar" inherits="Control" />
+</Persistence>
+

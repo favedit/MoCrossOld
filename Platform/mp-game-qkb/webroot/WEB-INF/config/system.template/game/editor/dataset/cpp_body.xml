@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="uUpzaGEPkNp3dBzx11rRpA" name="database.logicunit.sqlView" is_valid="Y" note="M#">
+  <Source _uuid="60]ZbPHhJJ80wmSY2jV0hw" is_valid="Y" note="M#"><![CDATA[#include "Mo<jt:Item source='$dataset.data_group'/>Dataset.h"
+
+#ifndef __MO_COMMON_H__
+#include <MoCommon.h>
+#endif // __MO_COMMON_H__
+
+MO_NAMESPACE_BEGIN
+
+//============================================================
+// <T>重置数据信息。</T>
+//============================================================
+void SRow<jt:Item source='$dataset.data_name' format='class'/>::Reset(){
+   nativeLinked = EFalse;
+   // 重置原始数据
+<jt:Loop source='$fields' alias='field'>
+<jt:equals source='$field.type' value='Boolean'>
+   _<jt:Item source='$field.data_name' format='method'/> = EFalse;
+</jt:equals>
+<jt:equals source='$field.type' value='RecordId|Char|Integer|Long|Date|DateTime'>
+   _<jt:Item source='$field.data_name' format='method'/> = 0;
+</jt:equals>
+<jt:equals source='$field.type' value='Float|Double'>
+   _<jt:Item source='$field.data_name' format='method'/> = 0.0f;
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   _<jt:Item source='$field.data_name' format='method'/>.Reset();
+</jt:equals>
+</jt:Loop>
+   // 重置当前数据
+<jt:Loop source='$fields' alias='field'>
+<jt:equals source='$field.type' value='Boolean'>
+   <jt:Item source='$field.data_name' format='method'/> = EFalse;
+</jt:equals>
+<jt:equals source='$field.type' value='RecordId|Char|Integer|Long|Date|DateTime'>
+   <jt:Item source='$field.data_name' format='method'/> = 0;
+</jt:equals>
+<jt:equals source='$field.type' value='Float|Double'>
+   <jt:Item source='$field.data_name' format='method'/> = 0.0f;
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   <jt:Item source='$field.data_name' format='method'/>.Reset();
+</jt:equals>
+</jt:Loop>
+}
+
+//============================================================
+// <T><C><jt:Item source='$dataset.label'/></C>定义。</T>
+//============================================================
+TInt TDs<jt:Item source='$dataset.data_name' format='class'/>::LOGIC_CODE = EGmRecord_<jt:Item source='$dataset.data_name' format='class'/>;
+TCharC* TDs<jt:Item source='$dataset.data_name' format='class'/>::LOGIC_NAME = "<jt:Item source='$dataset.data_name' format='class'/>";
+TCharC* TDs<jt:Item source='$dataset.data_name' format='class'/>::DATA_NAME = "<jt:Item source='$dataset.data_name' format='field'/>";
+TCharC* TDs<jt:Item source='$dataset.data_name' format='class'/>::DATA_FIELDS =
+<jt:loop source='$fields' alias='field'>
+<jt:equals source='$field.type' value='RecordId|Boolean|Integer|Long|Float|Double|Char|String'>
+      "`<jt:item source='$field.data_name' format='field'/>`<jt:position type='last' source='$field' elseValue=','/>"
+</jt:equals>
+<jt:equals source='$field.type' value='Time|Date|DateTime'>
+      "DATE_FORMAT(`<jt:item source='$field.data_name' format='field'/>`, '" MO_SQL_DATETIME_CHG_FORMAT "') <jt:item source='$field.data_name' format='field'/><jt:position type='last' source='$field' elseValue=','/>"
+</jt:equals>
+</jt:loop>;
+TCharC* TDs<jt:Item source='$dataset.data_name' format='class'/>::DATA_FIELDS_STATEMENT =
+<jt:loop source='$fields' alias='field'>
+      "`<jt:item source='$field.data_name' format='field'/>`<jt:position type='last' source='$field' elseValue=','/>"
+</jt:loop>;
+FStorageDatasetMeta* TDs<jt:Item source='$dataset.data_name' format='class'/>::_pMeta = NULL;
+
+//============================================================
+// <T>创建<C><jt:Item source='$dataset.label'/></C>数据集对象。</T>
+//============================================================
+void TDs<jt:Item source='$dataset.data_name' format='class'/>::Create(){
+   _pMeta = MO_CREATE(FStorageDatasetMeta);
+   _pMeta->SetLogicCode(LOGIC_CODE);
+   _pMeta->SetLogicName(LOGIC_NAME);
+   _pMeta->SetDataName(DATA_NAME);
+   _pMeta->SetDataFields(DATA_FIELDS);
+   _pMeta->Setup();
+}
+
+//============================================================
+// <T>释放<C><jt:Item source='$dataset.label'/></C>数据集对象。</T>
+//============================================================
+void TDs<jt:Item source='$dataset.data_name' format='class'/>::Release(){
+}
+
+//============================================================
+// <T>构造<C><jt:Item source='$dataset.label'/></C>数据集对象。</T>
+//============================================================
+TDs<jt:Item source='$dataset.data_name' format='class'/>::TDs<jt:Item source='$dataset.data_name' format='class'/>(){
+   _pLogicName = LOGIC_NAME;
+   _pDataName = DATA_NAME;
+   _pDataFields = DATA_FIELDS;
+}
+
+//============================================================
+// <T>构造<C><jt:Item source='$dataset.label'/></C>数据集对象。</T>
+//
+// @param [in] pConnection 数据链接
+//============================================================
+TDs<jt:Item source='$dataset.data_name' format='class'/>::TDs<jt:Item source='$dataset.data_name' format='class'/>(ISqlConnection* pConnection) : TDatasetLogic(pConnection){
+   _pLogicName = LOGIC_NAME;
+   _pDataName = DATA_NAME;
+   _pDataFields = DATA_FIELDS;
+}
+
+//============================================================
+// <T>析构<C><jt:Item source='$dataset.label'/></C>数据集对象。</T>
+//============================================================
+TDs<jt:Item source='$dataset.data_name' format='class'/>::~TDs<jt:Item source='$dataset.data_name' format='class'/>(){
+}
+
+//============================================================
+// <T>填充数据到<C><jt:Item source='$dataset.label'/></C>单元。</T>
+//
+// @param [in] pEntity 要填充的单元
+// @param [in] ppValues 字段内容数组
+// @param [in] count 字段个数
+//============================================================
+void TDs<jt:Item source='$dataset.data_name' format='class'/>::Fill(TAny* pEntity, TChar** ppValues, TInt count){
+   SRow<jt:Item source='$dataset.data_name' format='class'/>* pTarget = (SRow<jt:Item source='$dataset.data_name' format='class'/>*)pEntity;
+   pTarget->nativeLinked = ETrue;
+<jt:loop source='$fields' alias='field'>
+   // 设置<jt:Item source='$field.label'/>
+<jt:equals source='$field.type' value='RecordId'>
+   pTarget->Set<jt:Item source='$field.data_name' format='class'/>(RInt64::ParseNvl(ppValues[<jt:Item source='$field-position'/>]), ETrue);
+</jt:equals>
+<jt:equals source='$field.type' value='Boolean'>
+   pTarget->Set<jt:Item source='$field.data_name' format='class'/>(RBool::ParseNvl(ppValues[<jt:Item source='$field-position'/>]), ETrue);
+</jt:equals>
+<jt:equals source='$field.type' value='Integer'>
+   pTarget->Set<jt:Item source='$field.data_name' format='class'/>(RInt32::ParseNvl(ppValues[<jt:Item source='$field-position'/>]), ETrue);
+</jt:equals>
+<jt:equals source='$field.type' value='Long'>
+   pTarget->Set<jt:Item source='$field.data_name' format='class'/>(RInt64::ParseNvl(ppValues[<jt:Item source='$field-position'/>]), ETrue);
+</jt:equals>
+<jt:equals source='$field.type' value='Float'>
+   pTarget->Set<jt:Item source='$field.data_name' format='class'/>(RFloat::ParseNvl(ppValues[<jt:Item source='$field-position'/>]), ETrue);
+</jt:equals>
+<jt:equals source='$field.type' value='Double'>
+   pTarget->Set<jt:Item source='$field.data_name' format='class'/>(RDouble::ParseNvl(ppValues[<jt:Item source='$field-position'/>]), ETrue);
+</jt:equals>
+<jt:equals source='$field.type' value='Date|DateTime'>
+   pTarget->Set<jt:Item source='$field.data_name' format='class'/>(RDateTime::ParseNvl(ppValues[<jt:Item source='$field-position'/>], MO_SQL_DATETIME_GET_FORMAT), ETrue);
+</jt:equals>
+<jt:equals source='$field.type' value='Char|String'>
+   pTarget->Set<jt:Item source='$field.data_name' format='class'/>(ppValues[<jt:Item source='$field-position'/>], ETrue);
+</jt:equals>
+</jt:loop>
+}
+
+//============================================================
+// <T>获得当前记录编号。</T>
+//
+// @return 记录编号
+//============================================================
+TRecordId TDs<jt:Item source='$dataset.data_name' format='class'/>::CurrentId(){
+   return _pMeta->CurrentId();
+}
+
+//============================================================
+// <T>获得下一个记录编号。</T>
+//
+// @return 记录编号
+//============================================================
+TRecordId TDs<jt:Item source='$dataset.data_name' format='class'/>::NextId(){
+   return _pMeta->NextId();
+}
+
+//============================================================
+// <T>接收选取SQL文。</T>
+//
+// @param [in,out] pSql SQL文
+//============================================================
+void TDs<jt:Item source='$dataset.data_name' format='class'/>::SqlAssignSelect(MSql* pSql){
+   pSql->Clear();
+   SqlAppendSelect(pSql);
+}
+
+//============================================================
+// <T>追加选取SQL文。</T>
+//
+// @param [in,out] pSql SQL文
+//============================================================
+void TDs<jt:Item source='$dataset.data_name' format='class'/>::SqlAppendSelect(MSql* pSql){
+   pSql->Append("SELECT ");
+   pSql->Append(DATA_FIELDS);
+   pSql->Append(" FROM ");
+   pSql->Append(DATA_NAME);
+}
+
+//============================================================
+// <T>接收新建SQL文。</T>
+//
+// @param [in,out] pSql SQL文
+//============================================================
+void TDs<jt:Item source='$dataset.data_name' format='class'/>::SqlAssignInsert(MSql* pSql, SRow<jt:Item source='$dataset.data_name' format='class'/>& entity, TRecordId recordId){
+   pSql->Assign("INSERT INTO <jt:Item source='$dataset.data_name' format='field'/>(");
+   if(0 != recordId){
+      pSql->Append("`OUID`,");
+   }
+   pSql->Append("`OVLD`,");
+<jt:loop source='$fields' alias='field'>
+<jt:notEquals source='$field.data_name' value='OUID|OVLD|CREATE_USER_ID|CREATE_DATE|UPDATE_USER_ID|UPDATE_DATE'>
+   pSql->Append("`<jt:item source='$field.data_name' format='field'/>`,");
+</jt:notEquals>
+</jt:loop>
+   pSql->Append("`CREATE_USER_ID`,`CREATE_DATE`,`UPDATE_USER_ID`,`UPDATE_DATE`) VALUES(");
+   if(0 != recordId){
+      pSql->AppendFormat("%" MO_FMT_INT64 ",", recordId);
+   }
+   pSql->Append("1,");
+<jt:loop source='$fields' alias='field'>
+<jt:notEquals source='$field.data_name' value='OUID|OVLD|CREATE_USER_ID|CREATE_DATE|UPDATE_USER_ID|UPDATE_DATE'>
+   // 设置<jt:Item source='$field.label'/>
+<jt:equals source='$field.type' value='RecordId'>
+   pSql->AppendFormat("%" MO_FMT_INT64 ",", entity.<jt:Item source='$field.data_name' format='method'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Boolean'>
+   pSql->AppendBoolean(entity.<jt:Item source='$field.data_name' format='method'/>);
+   pSql->Append(',');
+</jt:equals>
+<jt:equals source='$field.type' value='Integer'>
+   pSql->AppendInteger(entity.<jt:Item source='$field.data_name' format='method'/>);
+   pSql->Append(',');
+</jt:equals>
+<jt:equals source='$field.type' value='Long'>
+   pSql->AppendFormat("%" MO_FMT_INT64 ",", entity.<jt:Item source='$field.data_name' format='method'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Float'>
+   pSql->AppendFormat("%f,", entity.<jt:Item source='$field.data_name' format='method'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='DateTime'>
+   if(entity.<jt:Item source='$field.data_name' format='method'/> > 0){
+      pSql->AppendFormat("'%s',", TFsDateTime(entity.<jt:Item source='$field.data_name' format='method'/>).Format(MO_SQL_DATETIME_SET_FORMAT));
+   }else{
+      pSql->Append("NULL,");
+   }
+</jt:equals>
+<jt:equals source='$field.type' value='Char|String'>
+   pSql->AppendString(entity.<jt:Item source='$field.data_name' format='method'/>);
+   pSql->Append(',');
+</jt:equals>
+</jt:notEquals>
+</jt:loop>
+   // 设置更新时间
+   pSql->AppendInt(entity.createUserId);
+   pSql->Append(",NOW(),");
+   pSql->AppendInt(entity.updateUserId);
+   pSql->Append(",NOW())");
+}
+
+//============================================================
+// <T>接收更新SQL文。</T>
+//
+// @param [in,out] pSql SQL文
+//============================================================
+TBool TDs<jt:Item source='$dataset.data_name' format='class'/>::SqlAssignUpdate(MSql* pSql, SRow<jt:Item source='$dataset.data_name' format='class'/>& entity, TRecordId recordId){
+   TBool changed = EFalse;
+   // 设置记录编号
+   if(0 == recordId){
+      recordId = entity.ouid;
+   }
+   // 生成命令内容
+   pSql->Assign("UPDATE <jt:Item source='$dataset.data_name' format='field'/> SET ");
+<jt:loop source='$fields' alias='field'>
+<jt:notEquals source='$field.data_name' value='OUID|CREATE_USER_ID|CREATE_DATE|UPDATE_USER_ID|UPDATE_DATE'>
+   // 设置<jt:Item source='$field.label'/>
+   if(entity.Is<jt:Item source='$field.data_name' format='class'/>Changed()){
+<jt:equals source='$field.type' value='RecordId'>
+      pSql->AppendFormat("`<jt:Item source='$field.data_name' format='field'/>`=%" MO_FMT_INT64 ",", entity.<jt:Item source='$field.data_name' format='method'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Boolean'>
+      pSql->Append("`<jt:Item source='$field.data_name' format='field'/>`=");
+      pSql->AppendBoolean(entity.<jt:Item source='$field.data_name' format='method'/>);
+      pSql->Append(',');
+</jt:equals>
+<jt:equals source='$field.type' value='Integer'>
+      pSql->Append("`<jt:Item source='$field.data_name' format='field'/>`=");
+      pSql->AppendInteger(entity.<jt:Item source='$field.data_name' format='method'/>);
+      pSql->Append(',');
+</jt:equals>
+<jt:equals source='$field.type' value='Long'>
+      pSql->AppendFormat("`<jt:Item source='$field.data_name' format='field'/>`=%" MO_FMT_INT64 ",", entity.<jt:Item source='$field.data_name' format='method'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Float'>
+      pSql->AppendFormat("`<jt:Item source='$field.data_name' format='field'/>`=%f,", entity.<jt:Item source='$field.data_name' format='method'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='DateTime'>
+      if(entity.<jt:Item source='$field.data_name' format='method'/> > 0){
+         pSql->AppendFormat("`<jt:Item source='$field.data_name' format='field'/>`='%s',", TFsDateTime(entity.<jt:Item source='$field.data_name' format='method'/>).Format(MO_SQL_DATETIME_SET_FORMAT));
+      }else{
+         pSql->Append("`<jt:Item source='$field.data_name' format='field'/>`=NULL,");
+      }
+</jt:equals>
+<jt:equals source='$field.type' value='Char|String'>
+      pSql->Append("`<jt:Item source='$field.data_name' format='field'/>`=");
+      pSql->AppendString(entity.<jt:Item source='$field.data_name' format='method'/>);
+      pSql->Append(',');
+</jt:equals>
+      changed = ETrue;
+   }
+</jt:notEquals>
+</jt:loop>
+   // 设置更新时间
+   pSql->AppendFormat("UPDATE_DATE=NOW() WHERE OUID=%" MO_FMT_INT64, recordId);
+   return changed;
+}
+
+//============================================================
+// <T>接收删除SQL文。</T>
+//
+// @param [in,out] pSql SQL文
+//============================================================
+void TDs<jt:Item source='$dataset.data_name' format='class'/>::SqlAssignDelete(MSql* pSql, TRecordId recordId){
+   _pSql->AssignFormat("DELETE FROM <jt:Item source='$dataset.data_name' format='field'/> WHERE OUID=%" MO_FMT_INT64, recordId);
+}
+
+//============================================================
+// <T>根据标识查找<C><jt:Item source='$dataset.label'/></C>单元。</T>
+//
+// @param [in] id 单元编号
+// @param [in,out] <jt:Item source='$dataset.data_name' format='method'/> 单元对象
+// @return
+//    <L value='ETrue'>成功</L>
+//    <L value='EFalse'>失败</L>
+//============================================================
+TBool TDs<jt:Item source='$dataset.data_name' format='class'/>::Find(TRecordId recordId, SRow<jt:Item source='$dataset.data_name' format='class'/>& entity){
+   TBool result = EFalse;
+   if(_pConnection->IsSupport(ESqlFlag_Statement)){
+      // 获得声明
+      FMySqlConnection* pSqlConnection = (FMySqlConnection*)_pConnection;
+      FDatasetStatement* pStatement = pSqlConnection->FindStatement(LOGIC_CODE, EDatasetStatement_Find);
+      if(NULL == pStatement){
+         // 生成命令
+         _pSql->Clear();
+         _pSql->Append("SELECT ");
+         _pSql->Append(DATA_FIELDS_STATEMENT);
+         _pSql->Append(" FROM ");
+         _pSql->Append(DATA_NAME);
+         _pSql->Append(" WHERE OUID=?");
+         // 创建声明
+         FDatasetStatementFind* pFindStatement = MO_CREATE(FDatasetStatementFind);
+         pFindStatement->SetCode(LOGIC_CODE);
+         pFindStatement->SetSql(_pSql->MemoryC());
+         pSqlConnection->RegisterStatement(pFindStatement);
+         pStatement = pFindStatement;
+      }
+      // 注册参数
+      pStatement->BindParam(EColumn_Ouid, &recordId, FIELD_TYPE_LONGLONG, sizeof(TRecordId));
+      // 注册列
+<jt:loop source='$fields' alias='field'>
+<jt:equals source='$field.type' value='Boolean'>
+      pStatement->BindColumn(EColumn_<jt:Item source='$field.data_name' format='class'/>, &entity.<jt:Item source='$field.data_name' format='method'/>, FIELD_TYPE_TINY, sizeof(TInt8));
+</jt:equals>
+<jt:equals source='$field.type' value='Integer|Enum|Set'>
+      pStatement->BindColumn(EColumn_<jt:Item source='$field.data_name' format='class'/>, &entity.<jt:Item source='$field.data_name' format='method'/>, FIELD_TYPE_LONG, sizeof(TInt32));
+</jt:equals>
+<jt:equals source='$field.type' value='Float'>
+      pStatement->BindColumn(EColumn_<jt:Item source='$field.data_name' format='class'/>, &entity.<jt:Item source='$field.data_name' format='method'/>, FIELD_TYPE_FLOAT, sizeof(TFloat));
+</jt:equals>
+<jt:equals source='$field.type' value='Double'>
+      pStatement->BindColumn(EColumn_<jt:Item source='$field.data_name' format='class'/>, &entity.<jt:Item source='$field.data_name' format='method'/>, FIELD_TYPE_DOUBLE, sizeof(TDouble));
+</jt:equals>
+<jt:equals source='$field.type' value='RecordId|Long|TimeSpan'>
+      pStatement->BindColumn(EColumn_<jt:Item source='$field.data_name' format='class'/>, &entity.<jt:Item source='$field.data_name' format='method'/>, FIELD_TYPE_LONGLONG, sizeof(TInt64));
+</jt:equals>
+<jt:equals source='$field.type' value='Time|Date|DateTime'>
+      MYSQL_TIME <jt:Item source='$field.data_name' format='method'/>Dt;
+      RType<MYSQL_TIME>::Clear(&<jt:Item source='$field.data_name' format='method'/>Dt);
+      pStatement->BindColumn(EColumn_<jt:Item source='$field.data_name' format='class'/>, &<jt:Item source='$field.data_name' format='method'/>Dt, FIELD_TYPE_DATETIME, sizeof(MYSQL_TIME));
+</jt:equals>
+<jt:equals source='$field.type' value='Char|String|Content'>
+      pStatement->BindColumn(EColumn_<jt:Item source='$field.data_name' format='class'/>, entity.<jt:Item source='$field.data_name' format='method'/>.Memory(), FIELD_TYPE_VAR_STRING, entity.<jt:Item source='$field.data_name' format='method'/>.Size());
+</jt:equals>
+</jt:loop>
+      // 执行处理
+      result = pStatement->Execute();
+      if(result){
+<jt:loop source='$fields' alias='field'>
+<jt:equals source='$field.type' value='Time|Date|DateTime'>
+         entity.<jt:Item source='$field.data_name' format='method'/> = RMysqlUtil::ConvertNativeToDateTime(<jt:Item source='$field.data_name' format='method'/>Dt);
+</jt:equals>
+<jt:equals source='$field.type' value='Char|String'>
+         entity.<jt:Item source='$field.data_name' format='method'/>.Fix();
+</jt:equals>
+</jt:loop>
+      }
+   }else{
+      // 生成命令
+      SqlAssignSelect(_pSql);
+      _pSql->AppendFormat(" WHERE OUID=%" MO_FMT_INT64, recordId);
+      // 查询数据
+      result = _pConnection->Find(_pSql->MemoryC(), this, &entity);
+   }
+   _pMeta->Process(ESqlProcess_Find);
+   return result;
+}
+
+//============================================================
+// <T>在<C><jt:Item source='$dataset.label'/></C>数据集中，新建<C><jt:Item source='$dataset.label'/></C>单元。</T>
+//
+// @param [in] id 单元编号
+// @param [in,out] <jt:Item source='$dataset.data_name' format='method'/> 单元对象
+// @return
+//    <L value='ETrue'>成功</L>
+//    <L value='EFalse'>失败</L>
+//============================================================
+TBool TDs<jt:Item source='$dataset.data_name' format='class'/>::InsertSync(SRow<jt:Item source='$dataset.data_name' format='class'/>& entity, TRecordId recordId){
+   // 生成命令内容
+   SqlAssignInsert(_pSql, entity, recordId);
+   // 执行命令内容
+   TInt effectCount = _pConnection->ExecuteInsertSql(_pSql->MemoryC(), entity.ouid);
+   if(0 == effectCount){
+      MO_DEBUG_WARN("Insert dataset record failure. (data_name=%s, sql=%s)", "<jt:Item source='$dataset.data_name' format='class'/>", _pSql->MemoryC());
+   }
+   _pMeta->Process(ESqlProcess_Insert);
+   return (effectCount > 0);
+}
+
+//============================================================
+// <T>在<C><jt:Item source='$dataset.label'/></C>数据集中，新建<C><jt:Item source='$dataset.label'/></C>单元。</T>
+//
+// @param [in] id 单元编号
+// @param [in,out] <jt:Item source='$dataset.data_name' format='method'/> 单元对象
+// @return
+//    <L value='ETrue'>成功</L>
+//    <L value='EFalse'>失败</L>
+//============================================================
+TBool TDs<jt:Item source='$dataset.data_name' format='class'/>::InsertAnsy(SRow<jt:Item source='$dataset.data_name' format='class'/>& entity, TRecordId recordId, ESqlLevel levelCd, HSqlConnectionCommandInvoker invoker, TAny* pParams){
+   // 设置记录编号
+   if(0 == recordId){
+      recordId = _pMeta->NextId();
+   }
+   // 生成命令内容
+   if(ESqlLevel_Check == levelCd){
+      _pSql->Clear();
+   }else{
+      SqlAssignInsert(_pSql, entity, recordId);
+      entity.ouid = recordId;
+   }
+   // 执行命令内容
+   SAnsySql sql;
+   sql.metaPtr = _pMeta;
+   sql.processCd = ESqlProcess_Insert;
+   sql.levelCd = levelCd;
+   sql.recordId = recordId;
+   sql.sqlPtr = _pSql->MemoryC();
+   sql.invoker = invoker;
+   sql.paramsPtr = pParams;
+   _pMeta->Process(ESqlProcess_Insert);
+   return _pConnection->ExecuteAnsySql(&sql);
+}
+
+//============================================================
+// <T>在<C><jt:Item source='$dataset.label'/></C>数据集中，根据编号更新<C><jt:Item source='$dataset.label'/></C>单元。</T>
+//
+// @param [in] id 单元编号
+// @param [in,out] <jt:Item source='$dataset.data_name' format='method'/> 单元对象
+// @return
+//    <L value='ETrue'>成功</L>
+//    <L value='EFalse'>失败</L>
+//============================================================
+TBool TDs<jt:Item source='$dataset.data_name' format='class'/>::UpdateSync(TRecordId recordId, SRow<jt:Item source='$dataset.data_name' format='class'/>& entity){
+   // 检查记录编号
+   if(0 == recordId){
+      MO_ERROR("Update dataset record id is invalid. (data_name=%s, record_id=%" MO_FMT_INT64 ")", "<jt:Item source='$dataset.data_name' format='class'/>", recordId);
+      return EFalse;
+   }
+   // 生成命令内容
+   TBool changed = SqlAssignUpdate(_pSql, entity, recordId);
+   if(!changed){
+      return EFalse;
+   }
+   // 执行命令内容
+   TInt effectCount = _pConnection->ExecuteSql(_pSql->MemoryC());
+   if(0 == effectCount){
+      MO_DEBUG_WARN("Update dataset record is not exists. (data_name=%s, record_id=%" MO_FMT_INT64 ")", "<jt:Item source='$dataset.data_name' format='class'/>", recordId);
+   }
+   _pMeta->Process(ESqlProcess_Update);
+   return (effectCount > 0);
+}
+
+//============================================================
+// <T>在<C><jt:Item source='$dataset.label'/></C>数据集中，根据编号更新<C><jt:Item source='$dataset.label'/></C>单元。</T>
+//
+// @param [in] id 单元编号
+// @param [in,out] <jt:Item source='$dataset.data_name' format='method'/> 单元对象
+// @return
+//    <L value='ETrue'>成功</L>
+//    <L value='EFalse'>失败</L>
+//============================================================
+TBool TDs<jt:Item source='$dataset.data_name' format='class'/>::UpdateAnsy(TRecordId recordId, SRow<jt:Item source='$dataset.data_name' format='class'/>& entity, ESqlLevel levelCd, HSqlConnectionCommandInvoker invoker, TAny* pParams){
+   // 检查记录编号
+   if(0 == recordId){
+      MO_ERROR("Update dataset record id is invalid. (data_name=%s, record_id=%" MO_FMT_INT64 ")", "<jt:Item source='$dataset.data_name' format='class'/>", recordId);
+      return EFalse;
+   }
+   // 生成命令内容
+   if(ESqlLevel_Check == levelCd){
+      _pSql->Clear();
+   }else{
+      TBool changed = SqlAssignUpdate(_pSql, entity, recordId);
+      if(!changed){
+         return EFalse;
+      }
+   }
+   // 执行命令内容
+   SAnsySql sql;
+   sql.metaPtr = _pMeta;
+   sql.processCd = ESqlProcess_Update;
+   sql.levelCd = levelCd;
+   sql.recordId = recordId;
+   sql.sqlPtr = _pSql->MemoryC();
+   sql.invoker = invoker;
+   sql.paramsPtr = pParams;
+   _pMeta->Process(ESqlProcess_Update);
+   return _pConnection->ExecuteAnsySql(&sql);
+}
+
+//============================================================
+// <T>在<C><jt:Item source='$dataset.label'/></C>数据集中，根据编号删除<C><jt:Item source='$dataset.label'/></C>单元。</T>
+//
+// @param [in] id 单元编号
+// @return
+//    <L value='ETrue'>成功</L>
+//    <L value='EFalse'>失败</L>
+//============================================================
+TBool TDs<jt:Item source='$dataset.data_name' format='class'/>::DeleteSync(TRecordId recordId){
+   // 检查记录编号
+   if(0 == recordId){
+      MO_ERROR("Delete dataset record id is invalid. (data_name=%s, record_id=%" MO_FMT_INT64 ")", "<jt:Item source='$dataset.data_name' format='class'/>", recordId);
+      return EFalse;
+   }
+   // 执行命令
+   TBool result = EFalse;
+   if(_pConnection->IsSupport(ESqlFlag_Statement)){
+      // 获得声明
+      FMySqlConnection* pSqlConnection = (FMySqlConnection*)_pConnection;
+      FDatasetStatement* pStatement = pSqlConnection->FindStatement(LOGIC_CODE, EDatasetStatement_Delete);
+      if(NULL == pStatement){
+         // 生成命令
+         _pSql->Assign("DELETE FROM <jt:Item source='$dataset.data_name' format='field'/> WHERE OUID=?");
+         // 创建声明
+         FDatasetStatementDelete* pDeleteStatement = MO_CREATE(FDatasetStatementDelete);
+         pDeleteStatement->SetCode(LOGIC_CODE);
+         pDeleteStatement->SetSql(_pSql->MemoryC());
+         pSqlConnection->RegisterStatement(pDeleteStatement);
+         pStatement = pDeleteStatement;
+      }
+      // 注册参数
+      pStatement->BindParam(EColumn_Ouid, &recordId, FIELD_TYPE_LONGLONG, sizeof(TRecordId));
+      // 执行处理
+      result = pStatement->Execute();
+   }else{
+      // 生成命令内容
+      SqlAssignDelete(_pSql, recordId);
+      // 执行命令内容
+      TInt effectCount = _pConnection->ExecuteSql(_pSql->MemoryC());
+      if(0 == effectCount){
+         MO_DEBUG_WARN("Delete dataset record is not exists. (data_name=%s, record_id=%" MO_FMT_INT64 ")", "<jt:Item source='$dataset.data_name' format='class'/>", recordId);
+      }
+      result = (effectCount > 0);
+   }
+   _pMeta->Process(ESqlProcess_Delete);
+   return result;
+}
+
+//============================================================
+// <T>在<C><jt:Item source='$dataset.label'/></C>数据集中，根据编号删除<C><jt:Item source='$dataset.label'/></C>单元。</T>
+//
+// @param [in] id 单元编号
+// @return
+//    <L value='ETrue'>成功</L>
+//    <L value='EFalse'>失败</L>
+//============================================================
+TBool TDs<jt:Item source='$dataset.data_name' format='class'/>::DeleteAnsy(TRecordId recordId, ESqlLevel levelCd, HSqlConnectionCommandInvoker invoker, TAny* pParams){
+   // 检查记录编号
+   if(0 == recordId){
+      MO_ERROR("Delete dataset record id is invalid. (data_name=%s, record_id=%" MO_FMT_INT64 ")", "<jt:Item source='$dataset.data_name' format='class'/>", recordId);
+      return EFalse;
+   }
+   // 生成命令内容
+   if(ESqlLevel_Check == levelCd){
+      _pSql->Clear();
+   }else{
+      SqlAssignDelete(_pSql, recordId);
+   }
+   // 执行命令内容
+   SAnsySql sql;
+   sql.metaPtr = _pMeta;
+   sql.processCd = ESqlProcess_Delete;
+   sql.levelCd = levelCd;
+   sql.recordId = recordId;
+   sql.sqlPtr = _pSql->MemoryC();
+   sql.invoker = invoker;
+   sql.paramsPtr = pParams;
+   _pMeta->Process(ESqlProcess_Delete);
+   return _pConnection->ExecuteAnsySql(&sql);
+}
+
+MO_NAMESPACE_END
+]]></Source>
+</Template>

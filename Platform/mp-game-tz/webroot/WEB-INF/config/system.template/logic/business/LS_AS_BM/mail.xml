@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="q0TWX0Ja7eL3WHm7tnakow" name="logic.business.LS_AS_BM.mail" label="图书管理" is_valid="Y" note="M#">
+  <Define _uuid="kUS9CRr0iskieEzQAQvZmQ" name="mail_content_type" label="邮件类型" is_valid="Y" note="M#" value="Html" />
+  <Variable _uuid="WE]hRIoh7ZYkvIKoS]Y7hA" name="user_full_label" label="借阅者" is_valid="Y" note="M#" />
+  <Variable _uuid="j0JP4ze672L7cOKXDLR]kQ" name="org_label" label="所属部门" is_valid="Y" note="M#" />
+  <Variable _uuid="HEkXtHXalV3fWiS]6U4dmw" name="expect_begin_date" label="借阅日期" is_valid="Y" note="M#" />
+  <Variable _uuid="ekmwOeVTVWDpEc0JvAYCtQ" name="expect_end_date" label="预计归还日期" is_valid="Y" note="M#" />
+  <Variable _uuid="PkY5hP1a3z5[IaWdpmQbpw" name="label" label="书名" is_valid="Y" note="M#" />
+  <Variable _uuid="jUrjGTX4o2kCtfLr5EDRpQ" name="name" label="英文名称" is_valid="Y" note="M#" />
+  <Variable _uuid="N01IRZQxcjgGlgXpfqg7kw" name="model_label" label="图书类型" is_valid="Y" note="M#" />
+  <Variable _uuid="Kkasnfza5Cmb1cxO[u0qgQ" name="user_mail" label="申请者邮件" is_valid="Y" note="M#" />
+  <Variable _uuid="oEGuZcefGn1hXvkW0aymiA" name="work_number" label="工号" is_valid="Y" note="M#" />
+  <Variable _uuid="dkt07MhBVAWiRK4uGm61rw" name="company_label" label="公司名称" is_valid="Y" note="M#" />
+  <Variable _uuid="X0FESKkA]dSU1VDvQjbCmA" name="author" label="作者" is_valid="Y" note="M#" />
+  <Variable _uuid="8U9KjMSDaPYEPtNwhlVSvg" name="publisher" label="出版社" is_valid="Y" note="M#12cn19PUBLISHER" />
+  <Variable _uuid="UEss15craV3ijzGwV]8unA" name="publish_date" label="出版日期" is_valid="Y" note="M#12cn212PUBLISH_DATE" />
+  <Variable _uuid="UUTgfbZKKAsce6vzsv7hhw" name="page_count" label="图书页数" is_valid="Y" note="M#12cn210PAGE_COUNT" />
+  <Variable _uuid="qk1onocy94Yl7b20uWsZuw" name="purchase_amt" label="价格" is_valid="Y" note="M#12cn212PURCHASE_AMT" />
+  <Source _uuid="WEi0ZTTOg2YysJDiOV[amQ" name="remind.head" label="提醒-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][图书借阅] <jt:item source='$config.to_user_labels'/>您好，您借阅的《<jt:item source='$config.label'/>》图书，请于【<jt:timeSpan source='$config.expect_end_date' type='date' format='YYYY-MM-DD'/>】前归还，欢迎借阅。]]></Source>
+  <Source _uuid="NkgcETfZao]Bl]mOPTYvgw" name="remind.body" label="提醒-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='图书管理 → 归还提醒' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD>您借阅的《<jt:item source='$config.label'/>》图书，请于【<jt:timeSpan source='$config.expect_end_date' type='date' format='YYYY-MM-DD'/>】前归还，欢迎借阅。</TD></TR>
+      <TR><TD></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>借阅信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>借阅日期</TD>
+      <TD width="30%" class='ItemData'><jt:timeSpan source='$config.expect_begin_date' type='date' format='YYYY-MM-DD'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>预计归还日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.expect_end_date' type='date' format='YYYY-MM-DD'/></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.user_full_label'/> (<jt:item source='$config.work_number'/>)</TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>公司</TD>
+      <TD class='ItemData'><jt:item source='$config.company_label'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.org_label'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+   <B style='color:#014d99'>图书信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>图书类型</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.model_label'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>代码</TD>
+      <TD class='ItemData'><jt:item source='$config.code'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>书名</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.label'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>英文名称</TD>
+      <TD class='ItemData'><jt:item source='$config.name'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>作者</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.author'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>出版社</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.publisher'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>出版日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.publish_date' type='date' format='YYYY-MM-DD'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>价格</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.purchase_amt'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>图书页数</TD>
+      <TD class='ItemData'><jt:item source='$config.page_count'/></TD>
+   </TR>
+   </TABLE>
+   <BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

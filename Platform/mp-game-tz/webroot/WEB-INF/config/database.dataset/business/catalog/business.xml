@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="jkmZRaK2CYHOei2ka[2KjQ" name="business.catalog.business" label="M#12cn16目录业务关联" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="BS_CATALOG_BUSINESS" data_alias="BS_CAT_BUS" data_logic="BS_CATALOG_BUSINESS_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="80Tj9Prnr19Eg09mmtXpmw" name="catalog_id" label="M#12cn14目录标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CATALOG_ID" data_refer="business.catalog" />
+  <FieldInteger _uuid="RUQlGzlBDd3z7lyYYJUshw" name="business_id" label="M#12cn14业务标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="BUSINESS_ID" data_refer="system.business" data_uniques="business" />
+  <FieldString _uuid="uErg69q344PeBll6]aSLrg" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CODE" data_size="80" data_uniques="business" />
+  <FieldEnum _uuid="gUs6ExklR[UVn4YvuvUqrw" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_size="1" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldBoolean _uuid="NklPfbYcXQZcPfi[MGykrQ" name="is_default" label="M#12cn14是否默认" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_DEFAULT" data_default="CP_BOOLEAN_EI.EFalse" />
+  <FieldDate _uuid="x0WxoVXpd7vrxFuV8fHtlg" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_default="SYSDATE" />
+  <FieldContent _uuid="PknH1Um[15o8x9sf1uSEnw" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

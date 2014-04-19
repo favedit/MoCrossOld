@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CsvImport _uuid="X0ftJTPMMz7fotYu8]oZiQ" name="logic.evaluation.period.user.score" label="绩效-期间报表CSV信息" is_valid="Y">
+  <Columns _uuid="OkXzFr4zjGHZOBQWl6isrw" name="Columns" label="列集合" is_valid="Y">
+    <Column _uuid="z0wdHeTY9BmzSQxRnw5Lkw" name="recordId" label="记录编号" is_valid="Y" data_name="ROWNUM" />
+    <Column _uuid="hkTkGqP9IsEArtdWTZVtog" name="periodLabel" label="期间名称" is_valid="Y" data_name="PERIOD_LABEL" />
+    <Column _uuid="FUgzF8bUG3oZfwkMfsyehw" name="work_number" label="工号" is_valid="Y" data_name="WORK_NUMBER" />
+    <Column _uuid="TU2azUZRYm105CWlJ1TIgQ" name="userLabel" label="人员名称" is_valid="Y" data_name="USER_LABEL" />
+    <Column _uuid="HEZbmwQkzVO1ibrbDKddtA" name="department" label="所属部门" is_valid="Y" data_name="DEPARTMENT" />
+    <Column _uuid="y0H52wejSujXtK0LnOZStw" name="duty" label="职位" is_valid="Y" data_name="DUTY" />
+    <Column _uuid="O0slazadnE8IWx4jiR6Jhg" name="job" label="岗位" is_valid="Y" data_name="JOB" />
+    <Column _uuid="F03urGEO6emSAqRe[PTcjg" name="indicatorScore" label="指标得分" is_valid="Y" data_name="INDICATOR_SCORE" />
+    <Column _uuid="GkC6r8niVG9mwnK006[RhA" name="performanceScore" label="效率得分" is_valid="Y" data_name="PERFORMANCE_SCORE" />
+    <Column _uuid="XULJGzRnOr[iTt5xnXFgmQ" name="summaryScore" label="总得分" is_valid="Y" data_name="SUMMARY_SCORE" />
+    <Column _uuid="EEQ0GlN1H6eAbNHCd7tJuA" name="ranking" label="名次" is_valid="Y" data_name="RANKING" />
+    <Column _uuid="jUXAnW6x3X5fFTITZIF8jQ" name="recordDate" label="记录日期" is_valid="Y" data_name="RECORD_DATE" />
+  </Columns>
+  <Export _uuid="uEltcXhksC3jXixPqTNyog" name="sql" label="绩效-期间报表" is_valid="Y" sql="SELECT NEWVIEW.*,\n       ROWNUM\nFROM (\n   SELECT\n      OUID,\n      SCORE SUMMARY_SCORE,\n      TO_CHAR(RECORD_DATE,'YYYY-MM-DD') RECORD_DATE,\n      PERIOD_ID,\n      EV_PERIOD_DI.Get_Label(PERIOD_ID) PERIOD_LABEL,\n      PM_USER_COMPANY_DI.Get_Work_Number_By_User_Id(USER_ID) WORK_NUMBER,\n      PM_USER_DI.Get_Full_Label(USER_ID) USER_LABEL,\n      PM_ORGANIZATION_DI.Get_Label(PM_ORGANIZATION_DI.Find_Main_Organization_By_User(USER_ID)) DEPARTMENT,\n      PM_DUTY_DI.Get_Label(PM_DUTY_JOB_DI.Get_Duty_Id(PM_DUTY_JOB_USER_DI.Get_Main_Job_By_User_Id(USER_ID))) DUTY,\n      PM_DUTY_JOB_DI.Get_Label(PM_DUTY_JOB_USER_DI.Get_Main_Job_By_User_Id(USER_ID)) JOB,\n      EV_SCORE_PERFORMANCE_DI.Get_Performance_Score(PERIOD_ID,USER_ID) PERFORMANCE_SCORE,\n      EV_SCORE_SUMMARY_DI.Get_Score_Ranking(OUID) RANKING\n  FROM\n      EV_SCORE_SUMMARY\n WHERE\n      PERIOD_ID = ${OUID}\n) NEWVIEW" display_command="N" display_command_tag="N" display_head="N" display_head_tag="N" display_label="Y" display_label_tag="N" display_valid="N" display_valid_tag="N" is_open="N" export_name="eUIS-考勤管理-月报[${SETTLEMENT_BEGIN_DATE}-${SETTLEMENT_END_DATE}]" export_charset="GB18030" disp_data_start_tag="N" disp_data_end_tag="N" dataset_parameters="SELECT\n   TO_CHAR(CP_DATE.Parse('${BEGIN_DATE}'), 'YYYYMMDD') SETTLEMENT_BEGIN_DATE,\n   TO_CHAR(CP_DATE.Parse('${END_DATE}'), 'YYYYMMDD') SETTLEMENT_END_DATE\nFROM DUAL" />
+</CsvImport>
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="akvI9Lnnkxv2jF02Xjj0lw" name="person.user.friend" label="M#12cn17用户-好友列表" is_valid="Y" note="M#12cn245唯一键可以反过来吗？？不能\n查看好友时是通过user_id还是frend_id\n是两条记录" access_insert="Y" access_update="Y" access_delete="Y" data_name="PM_USER_FRIEND" data_alias="USE_FRI" data_logic="PM_USER_FRIEND_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="hkCBlwhsek[19sEW2uqboQ" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="USER_ID" data_refer="person.user" data_uniques="link" />
+  <FieldInteger _uuid="yEXLng9PxlkPmVlCKr48oQ" name="friend_id" label="M#12cn14好友标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="FRIEND_ID" data_refer="person.user" data_uniques="link" />
+  <FieldEnum _uuid="BEVvDiT]JI6Gcw[aqLnbiA" name="type_cd" label="M#12cn12类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="person.user.friend.type" />
+  <FieldEnum _uuid="E0uVAFzWjpFDMww4ZmppnQ" name="status_cd" label="M#12cn12状态" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="person.user.friend.status" />
+  <FieldInteger _uuid="tEbXfT21XnGEHxqTwNAQnw" name="group_id" label="M#12cn15好友组标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GROUP_ID" data_refer="person.user.friend.group" />
+  <FieldInteger _uuid="Wkny6vVyGzH6zBChQNfHng" name="type_id" label="M#12cn16好友类型标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_ID" />
+  <FieldContent _uuid="8kUuNIEILVN0sDfXap9zqg" name="friend_alias" label="M#12cn14好友别称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FRIEND_ALIAS" />
+  <FieldContent _uuid="y0cfujgXCIo6]D4rTvkLsA" name="friend_note" label="M#12cn14好友留言" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FRIEND_NOTE" />
+  <FieldDate _uuid="RknqEJlqH1uaH4gjzcR6lg" name="friend_date" label="M#12cn14好友时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FRIEND_DATE" />
+  <FieldInteger _uuid="TUJqCKL7lDRM1IpekXeVjw" name="display_order" label="M#12cn14显示顺序" is_valid="Y" note="M#12cn214如果没填显示时以创建时间显示" is_null="Y" is_store="Y" is_abstract="N" data_name="DISPLAY_ORDER" />
+  <FieldDate _uuid="FUEU5kIP3ecSOYmY[iCZrw" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_default="SYSDATE" />
+</DataStore>
+

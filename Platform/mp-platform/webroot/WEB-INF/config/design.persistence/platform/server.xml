@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="993fc61f-cc52-416d-ae71-d14c3c962125" name="platform.server" label="M#12cn19游戏平台服务器定义" is_valid="Y" note="M#" template="xmlobject" source="${export.logic.platform.source}">
+   <Interface _uuid="e6d40a99-a67f-4d11-89ca-ea73f9b6b23d" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#" class_name="org.mo.platform.server.common.XObjectFace">
+      <Attribute _uuid="0f2d4cc3-1c44-47d4-a609-72d0227d406a" name="code" label="M#12cn12代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="63762ccc-5db2-4846-b6c8-394f7b109962" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" />
+      <Attribute _uuid="a2ec88dc-3647-4b6c-b8e5-f5feb34415e7" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+      <Attribute _uuid="9b219c20-9796-4009-916d-b0ba0e1f0d0e" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" />
+      <Attribute _uuid="961c50ce-8a5a-40e9-b7b0-faece13bb4a7" name="note" label="M#12cn12注释" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+   </Interface>
+   <Component _uuid="ee729981-b44f-437b-b89d-1fe28c52e3a5" name="Server" label="M#12cn13服务器" is_valid="Y" note="M#" class_name="org.mo.platform.server.common.XServer" base_name="org.mo.platform.server.base.XBaseServer" inherits="IObject">
+      <Attribute _uuid="6ca661fe-fc68-49bf-84d9-2b45518f49d6" name="host" label="M#12cn14主机名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="0b7e6c29-d900-4533-8f05-0779000d756d" name="port" label="M#12cn14主机端口" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="d157d9aa-18c4-447b-b32f-e45f951ccf48" name="user" label="M#12cn12用户" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="01c49af7-81bf-4695-aa61-35f7aad76a08" name="flag" label="M#12cn12标志" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="8fec52e9-f735-4fea-a5a6-f8a1c73ae320" name="path" label="M#12cn12路径" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="c308a448-6998-4b3a-bd42-cb02493b3a0a" name="server_id" label="M#12cn15服务器编号" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="153814df-0123-4e2d-90bf-1046b16e79b8" name="package_url" label="M#12cn16资源来源地址" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="8f7c1cf8-54b2-41f1-b24c-17a980144d79" name="package_name" label="M#12cn14资源名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="71cf181c-b119-4338-9a4e-dc2d16732206" name="client_port" label="M#12cn14对外端口" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" data_default="8081" />
+      <Attribute _uuid="633ffedd-40b8-4c0e-98d6-e4ff511e0b40" name="database_passport" label="M#12cn16数据库用户名" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" data_default="game" />
+      <Attribute _uuid="3c0fe3e8-bdca-4ae0-b5f3-31b6ac959fa9" name="database_password" label="M#12cn15数据库密码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" data_default="game" />
+      <Attribute _uuid="e338a012-7453-4ee7-afce-87081c2b73e9" name="database_host" label="M#12cn17数据库连接地址" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" data_default="10.66.1.16" />
+      <Attribute _uuid="a99d1474-080c-4ac4-ab25-6c0912588f1c" name="database_port" label="M#12cn17数据库连接端口" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" data_default="1026" />
+      <Attribute _uuid="57dc25cf-f205-403b-9279-499fc55f4abf" name="admin_email" label="M#12cn15管理员邮箱" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="2eca7618-d0e4-4e9a-9147-ae4d9da65661" name="Process" label="M#12cn14代码列表" is_valid="Y" note="M#" class_name="org.mo.platform.server.common.XProcess" base_name="org.mo.platform.server.base.XBaseProcess" inherits="IObject">
+      <Attribute _uuid="2ca149b1-c59b-4a55-ba81-5ccd0c337770" name="user" label="M#12cn12用户" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" data_default="root" />
+      <Attribute _uuid="7e24638d-af94-4994-a4f1-365ba956098b" name="flag" label="M#12cn12标志" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="ece63008-ee2f-4c8d-b915-f686b3d665db" name="option_wait" label="M#12cn14等待设置" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="86a82d52-df85-4097-8d8f-b209f77d1e63" name="command" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="ab5de3bf-f413-493b-b796-3d841412bd33" name="stop_flag" label="M#12cn14关闭标志" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="d8c5364d-2b25-4d26-9440-1698941ac783" name="host" label="M#12cn14进程地址" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" data_default="127.0.0.1" />
+      <Attribute _uuid="9f45d52c-44fa-46c7-b83f-fc5ac3ba466b" name="port" label="M#12cn12端口" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+</Persistence>

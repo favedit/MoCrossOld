@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+   <!-- 设置映射定义 -->
+   <Config
+      name       = 'Action'
+      class      = 'org.mo.web.core.action.common.XAopAction'
+      collection = 'org.mo.web.core.action.common.XAopActionCollection' />
+
+   <Config
+      name       = 'Actions'
+      class      = 'org.mo.web.core.action.common.XAopActions'
+      collection = 'org.mo.web.core.action.common.XAopActionsCollection' />
+
+   <Config
+      name       = 'WebService'
+      class      = 'org.mo.web.core.service.common.XAopService'
+      collection = 'org.mo.web.core.service.common.XAopServiceCollection' />
+
+   <Config
+      name       = 'WebServlet'
+      class      = 'org.mo.web.core.servlet.common.XAopServlet'
+      collection = 'org.mo.web.core.servlet.common.XAopServletCollection' />
+      
+   <!-- 导出路径定义 -->
+   <Define name='export.core.engine.source'>${application}/mo-2-core/src/engine-java</Define>
+   <Define name='export.logic.data.source'>${application}/mo-3-logic/src/data-java</Define>
+   <Define name='export.logic.logic.source'>${application}/mo-3-logic/src/logic-java</Define>
+   <Define name='export.logic.platform.source'>${application}/mo-3-logic/src/platform-java</Define>
+   <Define name='export.web.web.source'>${application}/mo-4-web/src/web-java</Define>
+   <Define name='export.game.develop.editor'>${application}/mo-gm-develop/src/editor-java</Define>
+   <Define name='export.game.core.source'>${application}/mo-zq-game/src/core-java</Define>
+</Config>

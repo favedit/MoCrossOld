@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="vk4gpGmVZuoQkt8]QTI3lg" name="develop.progress.process" label="M#12cn14项目流程" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="DP_PROGRESS_PROCESS" data_alias="DP_PRG_PRC" data_logic="DP_PROGRESS_PROCESS_DI" parent_name="template.store" data_type="D">
+  <FieldBoolean _uuid="M0bWN6cNgx6RXp6]sj87sQ" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" />
+  <FieldInteger _uuid="wUBIKsRUY23h1]SL5Jnjsw" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_alias="TYP" data_refer="develop.progress.process.type" />
+  <FieldInteger _uuid="r01ZOd7EH4shgqhW[UU6nQ" name="project_id" label="M#12cn14项目标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldInteger _uuid="]knU8Er4QJhUNcc8kCy]iQ" name="module_id" label="M#12cn14模块标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MODULE_ID" data_alias="MOD" data_refer="develop.describe.module" />
+  <FieldEnum _uuid="1EOHuinCrAHcNJ4TP9K7hg" name="status_cd" label="M#12cn14状态类型" is_valid="Y" note="M#12cn224I:无效\nS:开始\nO:打开\nF:完成\nD:延期" is_null="Y" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="develop.progress.process.status" />
+  <FieldString _uuid="VUI3btWguKU[Bw]RqchQqw" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#12cn14英文名称" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_type="String" data_size="80" />
+  <FieldContent _uuid="EU3sDIoT9m0jE]Um5Kz5lg" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#12cn14中文名称" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" data_type="Content" />
+  <FieldInteger _uuid="SEot7dQosHvOnOj9hG22pQ" name="principal_user_id" label="M#12cn15负责人标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRINCIPAL_USER_ID" data_alias="PRC_USR" data_refer="person.user" />
+  <FieldEnum _uuid="hESu9yZHpY98bzLsg3fGrw" name="stage_cd" label="M#12cn12阶段" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STAGE_CD" data_size="1" data_code="develop.progress.process.stage" />
+  <FieldEnum _uuid="1E1ntSwko1p7[H6xTl5Mvw" name="priority_cd" label="M#12cn13优先级" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRIORITY_CD" data_size="1" data_code="develop.progress.process.priority" />
+  <FieldEnum _uuid="KE]d1gl3g3kje]nRjQ]ApQ" name="importance_cd" label="M#12cn13重要度" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IMPORTANCE_CD" data_size="1" data_code="develop.progress.process.importance" />
+  <FieldEnum _uuid="40Epv2TVJntHZ3gEBIZ[gg" name="difficulty_cd" label="M#12cn12难度" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DIFFICULTY_CD" data_size="1" data_code="develop.progress.process.difficulty" />
+  <FieldDate _uuid="4ksStatvu]ww4kwC]zgXkw" name="expect_begin_date" label="M#12cn16预期开始时间" is_valid="Y" note="M#12cn210预期的流程开始时间。" is_null="Y" is_store="Y" is_abstract="N" data_name="EXPECT_BEGIN_DATE" />
+  <FieldDate _uuid="9kuq9qHjZAAsZ1EyKljtrA" name="expect_end_date" label="M#12cn16预期完成时间" is_valid="Y" note="M#12cn211预期的流程的结束时间。" is_null="Y" is_store="Y" is_abstract="N" data_name="EXPECT_END_DATE" />
+  <FieldDate _uuid="BET]fGulA7rGt08sX9whow" name="begin_date" label="M#12cn16实际开始时间" is_valid="Y" note="M#12cn18流程实际开始时间" is_null="Y" is_store="Y" is_abstract="N" data_name="BEGIN_DATE" />
+  <FieldDate _uuid="FE[X5PcTH9Czy1jWVCIRmQ" name="end_date" label="M#12cn16实际完成时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="END_DATE" />
+  <FieldFloat _uuid="REpaMQ7bSoAENh3EEwybvg" name="estimate_workload" label="M#12cn15预估工作量" is_valid="Y" note="M#12cn14小时单位" is_null="Y" is_store="Y" is_abstract="N" data_name="ESTIMATE_WORKLOAD" />
+  <FieldFloat _uuid="ckX9bDqO[IaHmxdxWnZukg" name="workload" label="M#12cn15实际工作量" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="WORKLOAD" />
+  <FieldFloat _uuid="T06yvVE43SfSCg9uchajlQ" name="real_hour" label="M#12cn14实际工时" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REAL_HOUR" />
+  <FieldFloat _uuid="H0beSobYCNdMbNJVf5SYpQ" name="real_rate" label="M#12cn14实际比率" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REAL_RATE" />
+  <FieldFloat _uuid="fEAecGDgEnVa[0ctO]vkog" name="remain_hour" label="M#12cn14剩余工时" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REMAIN_HOUR" />
+  <FieldInteger _uuid="eER13kcEc2Jp2Z]A1IiUhg" name="examine_user_id" label="M#12cn16审核用户标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_USER_ID" data_alias="EXM_USR" data_refer="person.user" />
+  <FieldContent _uuid="uUawThXvLnrPsMb]HZ8AoA" name="summary_note" label="M#12cn14总结信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SUMMARY_NOTE" />
+  <FieldTemplate _uuid="tUJd6AuZK5LzeFvk]eBwiQ" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

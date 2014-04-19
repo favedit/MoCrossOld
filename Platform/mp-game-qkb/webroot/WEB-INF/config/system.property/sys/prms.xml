@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Root>
+   <Sql>
+      <Catalog>
+         <NodeList>
+            SELECT n.NODE_ID, n.NODE_TYPE, n.DISP_NAME, n.DISP_LABEL, n.ICON_ID, n.CHILD_COUNT, n.HINT
+            FROM DOC_CATALOG_LINK l, DOC_CATALOG_NODE n
+            WHERE l.PARENT_NODE_ID={parent_node_id}
+               AND l.NODE_ID=n.NODE_ID
+               AND n.IS_VALID='Y'
+            ORDER BY l.DISP_ORDER
+         </NodeList>
+      </Catalog>
+   </Sql>
+</Root>

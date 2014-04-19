@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid2="R0uaHZi9ipD7ZWCxnsasqQ" name="system.template" label="M#12cn14模板信息" is_valid="Y" note="M#12jp13リスト" template="xmlobject" source="${home.source.eng}">
+  <Interface _uuid2="ukv8kpjAN0xvGAo4GhAxsw" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.eng.template.common.XObjectFace">
+    <Attribute _uuid2="mkfu3uGypjZOhDXRwZ2AnQ" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid2="gEiWFGfNbQOoIMd4mR8EiQ" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid2="j0ENgojyf5VoqCIjIIdIlA" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid2="DUarM6Vr1lPzlGQ3i7]NoQ" name="note" label="M#12cn12注释" is_valid="Y" note="M#12jp12注釈" type="MultiString" is_store="Y" is_config="Y" is_default="N" />
+  </Interface>
+  <Component _uuid2="RkeZgjlbs2VxpcRC7xE8iw" name="Template" label="M#12cn14模板名称" is_valid="Y" note="M#" class_name="org.mo.eng.template.common.XTemplate" base_name="org.mo.eng.template.base.XBaseTemplate" inherits="IObject" />
+  <Component _uuid2="bEgFAG5Pp5plk67fEPeTmQ" name="Source" label="M#12cn14模板代码" is_valid="Y" note="M#" class_name="org.mo.eng.template.common.XSource" base_name="org.mo.eng.template.base.XBaseSource" inherits="IObject" />
+  <Component _uuid2="JkYhT[BVAVR9qdivFjCJpQ" name="Define" label="M#12cn14模板定义" is_valid="Y" note="M#" class_name="org.mo.eng.template.common.XDefine" base_name="org.mo.eng.template.base.XBaseDefine" inherits="IObject">
+    <Attribute _uuid2="s0pyWbkbTVvf9SKD8hlWsQ" name="value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid2="CURJeLIJ653AzUhaUlKgoQ" name="Variable" label="M#12cn14模板变量" is_valid="Y" note="M#" class_name="org.mo.eng.template.common.XVariable" base_name="org.mo.eng.template.base.XBaseVariable" inherits="IObject" />
+</Persistence>
+

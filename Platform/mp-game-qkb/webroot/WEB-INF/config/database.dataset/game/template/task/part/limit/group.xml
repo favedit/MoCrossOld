@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="60pkB2tuiKbT]OENVSJrkg" name="game.template.task.part.limit.group" label="M#12cn18任务部分条件分组" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_TASK_PART_LIMIT_GRP" data_alias="GM_TPL_TSP_PLG" data_logic="GM_TPL_TASK_PART_LIMIT_GRP_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="VEf0lzZsQxh[LMU4FZ3ugA" name="project_id" label="M#12cn14项目代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="mUHvJTXQZRWDor1TCN5Agw" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="A0[rAaj5gQeQ]vM0Gzsdsw" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="200" />
+  <FieldString _uuid="i0xvl]tARy93yl6MXuWauQ" name="label" label="M#12cn12标题" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" data_size="200" />
+  <FieldEnum _uuid="r0dzeM6C3EiyFzo0iil8vg" name="target_cd" label="M#12cn14目标类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TARGET_CD" data_size="1" data_code="game.template.task.reward.target" />
+  <FieldEnum _uuid="AUbJgpRj]0MXt6AdQ5ockQ" name="profession_cd" label="M#12cn14目标职业" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROFESSION_CD" data_size="1" data_code="game.template.profession" />
+  <FieldEnum _uuid="]EoF250D]04]gXsTPfioiw" name="race_cd" label="M#12cn14目标种族" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RACE_CD" data_size="20" data_code="game.template.race" />
+  <FieldEnum _uuid="IUfopsxa4ExNNfQx1cZEvA" name="gender_cd" label="M#12cn14目标性别" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GENDER_CD" data_size="1" data_code="game.template.gender" />
+  <FieldInteger _uuid="v0xukqkcr2tJXWOxJuzTqw" name="task_tid" label="M#12cn16任务模板编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TASK_TID" data_alias="TSK" data_refer="game.template.task" />
+  <FieldInteger _uuid="mUOMa3QBAMt8SGxOrwnAvg" name="task_part_tid" label="M#12cn12部分" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TASK_PART_TID" />
+  <FieldEnum _uuid="n0k3UzfBHQr1SHvPkyUumw" name="stage_cd" label="M#12cn14阶段类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STAGE_CD" data_size="1" data_code="game.template.task.stage" />
+  <FieldInteger _uuid="N01h]Gwtp52OKCCkwcRghA" name="talk_bag_tid" label="M#12cn13对话包" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TALK_BAG_TID" data_alias="TKB" data_refer="game.template.talk.bag" />
+  <FieldInteger _uuid="D0w3aH5rikq41bLZ3pcBsg" name="actor_tid" label="M#12cn12演员" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ACTOR_TID" data_alias="ACT" data_refer="game.template.actor" />
+  <FieldInteger _uuid="zUmb[GnsHJXFkmah2c4Avw" name="task_part_reward_group_tid" label="M#12cn15对应奖励组" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TASK_PART_REWARD_GROUP_TID" data_alias="PRG" data_refer="game.template.task.part.reward.group" />
+  <FieldInteger _uuid="[ECQmc4G7zOIkpSehgPbkA" name="task_part_limit_group_tid" label="M#12cn15后值条件组" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TASK_PART_LIMIT_GROUP_TID" data_alias="PLG" data_refer="game.template.task.part.limit.group" />
+  <FieldTemplate _uuid="s0HgfPo7uZppCra9Jr87uw" name="describe" label="M#12cn14模板编号" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

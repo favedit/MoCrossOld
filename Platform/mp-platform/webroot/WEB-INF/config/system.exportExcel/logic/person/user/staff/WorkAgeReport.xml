@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="ZksbAazozkjIsi7sFgTypA" name="logic.person.user.staff.WorkAgeReport" label="人力资源-工龄统计" is_valid="Y" fileName="人力资源-工龄统计[${BEGIN_DATE}].xls" template="logic.person.user.staff.WorkAgeReport.xls">
+  <Sql _uuid="dEyi7qW2QRW6XCuGbZ44rg" name="user_list" label="工龄统计" is_valid="Y"><![CDATA[SELECT
+   CT_DATE,
+   PM_USER_COMPANY_DI.Get_Work_Period_Count_By_Date(CT_DATE, 0, 1) YEAR1,
+   PM_USER_COMPANY_DI.Get_Work_Period_Count_By_Date(CT_DATE, 1, 3) YEAR2,
+   PM_USER_COMPANY_DI.Get_Work_Period_Count_By_Date(CT_DATE, 3, 5) YEAR3,
+   PM_USER_COMPANY_DI.Get_Work_Period_Count_By_Date(CT_DATE, 5, '') YEAR4
+FROM (SELECT TRUNC(SYSDATE) CT_DATE FROM DUAL)]]></Sql>
+  <Sql _uuid="R0hbanA4xiWlIT1qWlO1oQ" name="info" label="信息" is_valid="Y"><![CDATA[SELECT '${BEGIN_DATE}' BEGIN_DATE FROM DUAL]]></Sql>
+</ExportExcel>
+

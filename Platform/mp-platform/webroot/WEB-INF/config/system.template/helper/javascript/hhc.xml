@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="VUupps8Eec3ALGnzo6TJkQ" name="helper.javascript.hhc" is_valid="Y" note="M#">
+  <Source _uuid="eUB5iHLybtjCu1uGSzXoug" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="简介">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="关于">
+			<param name="Local" value="cnt/javascript/index.mht">
+			</OBJECT>
+		</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="语言参考">
+		<param name="Local" value="src/javascript/index.html">
+		</OBJECT>
+	<UL>
+<jt:loop source='$config' alias='space'>
+	<LI> <OBJECT type="text/sitemap">
+		<jt:equals source='$space.name' value='lang'><param name="Name" value="基本语言包 [Language]"></jt:equals>
+		<jt:equals source='$space.name' value='base'><param name="Name" value="抽象接口包 [Base]"></jt:equals>
+		<jt:equals source='$space.name' value='core'><param name="Name" value="服务组件包 [Core]"></jt:equals>
+		<jt:equals source='$space.name' value='ctl.form'><param name="Name" value="表单控件包 [Form]"></jt:equals>
+		<jt:equals source='$space.name' value='ctl.table'><param name="Name" value="表格控件包 [Table]"></jt:equals>
+		<jt:equals source='$space.name' value='ctl.toolbar'><param name="Name" value="工具条控件包 [Toolbar]"></jt:equals>
+		<jt:equals source='$space.name' value='ctl.tree'><param name="Name" value="树目录控件包 [TreeView]"></jt:equals>
+		<jt:equals source='$space.name' value='ctl.window'><param name="Name" value="窗口组件包 [Window]"></jt:equals>
+		<param name="Local" value="src/javascript/space/<jt:item source='$space.name' format='path.lower'/>.html">
+		</OBJECT>
+	<UL>
+<jt:loop source='$space#Classes' alias='class'>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="<jt:item source='$class.name'/>">
+			<param name="Local" value="src/javascript/class/<jt:item source='$class.name'/>.html">
+			</OBJECT>
+			<UL>
+<jt:loop source='$class#Methods' alias='methods'>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="<jt:item source='$methods.name'/>">
+					<param name="Local" value="src/javascript/method/<jt:item source='$class.name'/>_<jt:item source='$methods.name'/>.html">
+					</OBJECT>
+</jt:loop>
+			</UL>
+</jt:loop>
+		</UL>
+</jt:loop>
+	</UL>
+</UL>
+</BODY></HTML>]]></Source>
+</Template>
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="a0hsAtrQNQkOxT6wPdGhlw" name="logic.business.operate.detail" label="M#12cn14业务操作" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_BUSINESS_OPERATE_DETAIL" data_alias="LG_BUS_OPT_DTL" data_logic="LG_BUSINESS_OPERATE_DETAIL_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="5U2[QoE70xYoZAoQTlCcqg" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_alias="TYP" data_refer="logic.business.operate.type" />
+  <FieldInteger _uuid="SkeEWKHjMfuc0BcYnto2sg" name="record_id" label="M#12cn14记录标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="RECORD_ID" />
+  <FieldEnum _uuid="LEVc2KeDiCQGOkTidB[arg" name="type_cd" label="M#12cn14操做类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" />
+  <FieldEnum _uuid="fkuo9wr4X5EaArnWeu7TpQ" name="begin_status_cd" label="M#12cn15变更前状态" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BEGIN_STATUS_CD" data_size="1" />
+  <FieldEnum _uuid="rEvMPCv3XkiFSBZEEyOkpw" name="end_status_cd" label="M#12cn15变更后状态" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="END_STATUS_CD" data_size="1" />
+  <FieldEnum _uuid="pk8RqgIEQ2LGpOHqDOvdhA" name="operate_cd" label="M#12cn14操作类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OPERATE_CD" data_size="1" data_code="logic.business.operate.type" />
+  <FieldInteger _uuid="AUWKj1f33aBOOKblF7cciA" name="operate_user_id" label="M#12cn15操做人标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OPERATE_USER_ID" data_alias="OPT_USR" data_refer="person.user" />
+  <FieldDate _uuid="xkmsoFvD1vghFlUOMgsyqQ" name="operate_date" label="M#12cn14操做日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OPERATE_DATE" data_default="SYSDATE" />
+  <FieldContent _uuid="hEIzkrWsUKcJ1aSQ0PO6qQ" name="operate_note" label="M#12cn14操做备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OPERATE_NOTE" />
+  <FieldContent _uuid="pkqO9299rGFOPRujnBQghw" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+  <FieldTemplate _uuid="gER7Ad3zu6ZqXgIKxl2Anw" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+</DataStore>
+

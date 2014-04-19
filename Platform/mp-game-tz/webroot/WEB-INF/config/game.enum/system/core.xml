@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="Kk9E4E0ghubOcM9rEoPJsg" name="system.core" label="系统核心" is_valid="Y" note="M#" is_server="N" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" source_name="MoCrConstant" code_name="Constant" full_code="Constant" display_index="11" project_name="/Common/MoCore" project_code="Cr" is_include="N">
+  <Constant _uuid="CER5Zshvby3xosSwwwa7oQ" name="template.name.max-length" label="模版标签最大长度" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" type_cd="Uint32" code="MO_CR_TPL_NAME_MAXLEN" value="64" />
+  <Constant _uuid="gkt7ps066nABAtRdtC7]qw" name="template.label.max-length" label="模版标签最大长度" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" type_cd="Uint32" code="MO_CR_TPL_LABEL_MAXLEN" value="64" />
+  <Constant _uuid="5ET3go1BpdIkM4e89bShig" name="template.note.max-length" label="模版内容最大长度" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" type_cd="Uint32" code="MO_CR_TPL_NOTE_MAXLEN" value="1024" />
+  <Constant _uuid="5kZBJc4viJ5gQYp49OwImQ" name="memory.object.process.max-count" label="内存对象处理最大个数" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" type_cd="Uint32" code="MO_CR_MEMORY_OBJECT_PROCESS_MAXCNT" value="16" />
+  <Enum _uuid="CkEpjuHO4cV7xDjtO4JSkQ" name="NetProtocol" label="网络包协议" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_count="N" enum_data_type_cd="Uint32" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="6UTlNX6Ro0x70QAjehMonQ" name="Unknown" label="位置" is_valid="Y" note="M#" value="0x00" />
+    <Item _uuid="Hk60wDUbYebyGjqS9ZMRiw" name="Data" label="数据" is_valid="Y" note="M#" value="0x01" />
+    <Item _uuid="fEfeZ3CmOKXndSdbXj8oqQ" name="Message" label="消息" is_valid="Y" note="M#" value="0x03" />
+    <Item _uuid="fU5lshJ3OdjT0atXzB[utQ" name="Router" label="路由" is_valid="Y" note="M#" value="0x07" />
+    <Item _uuid="TUUya]OU7SSMfpCnXIpjgQ" name="Transfer" label="传输" is_valid="Y" note="M#" value="0x0F" />
+    <Item _uuid="tUgf6164VRotge7N9xWcnQ" name="Package" label="数据包" is_valid="Y" note="M#" value="0x1F" />
+  </Enum>
+  <Enum _uuid="RkpGDfsXskj83OEW3n8LgQ" name="NetSign" label="网络包标志" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_count="N" enum_data_type_cd="Uint32" is_set="Y" set_data_type_cd="Uint32">
+    <Item _uuid="wk6BYlkj[8JmNBidnPBDuQ" name="Unknown" label="未知" is_valid="Y" note="M#" />
+    <Item _uuid="R0DSFfoBHmXn0DZdH9U]tw" name="Valid" label="有效" is_valid="Y" note="M#" />
+    <Item _uuid="okLgcDK]QelLTEn6nCZIgQ" name="Client" label="客户" is_valid="Y" note="M#" />
+    <Item _uuid="sU[peKV]tH6m7VMQEYLcrQ" name="Debug" label="调试" is_valid="Y" note="M#" />
+    <Item _uuid="aUZYSQmUBr2ZjfxcfTXjow" name="Analysis" label="分析" is_valid="Y" note="M#" />
+    <Item _uuid="K0m5pQak7u[5RtsdUBGRqA" name="Track" label="跟踪" is_valid="Y" note="M#" />
+  </Enum>
+  <Enum _uuid="bEbR7L8yPTuvWQYFa[yngA" name="NetMessage" label="消息类型" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_count="N" enum_data_type_cd="Uint32" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="4kgdmVgEB7XePHUCmkxqpw" name="Unknown" label="未知" is_valid="Y" note="M#" />
+    <Item _uuid="rU1pBpote53e2BN2ZNkhig" name="Request" label="请求" is_valid="Y" note="M#" />
+    <Item _uuid="rUq]IyeuegFcQVDDz50Hsw" name="Response" label="应答" is_valid="Y" note="M#" />
+    <Item _uuid="GkUInky55X1vlIqzVE4niw" name="Notify" label="通知" is_valid="Y" note="M#" />
+  </Enum>
+  <Enum _uuid="H0ekO1fn8ofixTdSnpqAgA" name="NetMessageSign" label="消息标志" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_count="N" enum_data_type_cd="Uint32" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="L0dlZKZGbIqJsGBy4UZ0vA" name="Unknown" label="未知" is_valid="Y" note="M#" />
+    <Item _uuid="GEDns2gWjWZy9nFr8P2zpQ" name="Tcp" label="TCP支持" is_valid="Y" note="M#" />
+    <Item _uuid="Jk6bYD8lDPLX67C[ASx5kA" name="Udp" label="UDP支持" is_valid="Y" note="M#" />
+    <Item _uuid="BEM70iq[]3ddHOy2Gx1ouw" name="Thread" label="线程支持" is_valid="Y" note="M#" />
+  </Enum>
+  <Enum _uuid="10MswMVVp6h1bFg[lBeSqw" name="NetMessageService" label="网络消息服务类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_count="N" enum_data_type_cd="Uint32" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="Skw88UQyAmdIXaYuZgklng" name="Logic" label="逻辑" is_valid="Y" note="M#" />
+    <Item _uuid="RUVyqTooi6k8iYS4NftDhA" name="Login" label="登录" is_valid="Y" note="M#" />
+    <Item _uuid="b08JvU1]R3OO9IidxaSxlg" name="Refresh" label="刷新" is_valid="Y" note="M#" />
+  </Enum>
+  <Enum _uuid="]0bjneuJ3LNljss85[Nvlg" name="NetTerminal" label="网络终端" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_count="Y" enum_data_type_cd="Uint32" is_set="N" set_data_type_cd="Uint32" is_code="Y">
+    <Item _uuid="dUgf07CuAZMZi[PSq0xFrw" name="Unknown" label="未知" is_valid="Y" note="M#" code="UNK" />
+    <Item _uuid="M0HrBHnvqVeZRH9DSQcDkQ" name="Client" label="客户端" is_valid="Y" note="M#" code="CLT" />
+    <Item _uuid="eklBIzvuem]POqJes5dhrA" name="ServerTransfer" label="服务器传输" is_valid="Y" note="M#" code="STS" />
+    <Item _uuid="mkhS6D6XUyt4jqCf8kVWtA" name="GlobalTransfer" label="全局传输" is_valid="Y" note="M#" code="ATS" />
+    <Item _uuid="ekF2yrZ82sQYsII8UGuitA" name="GlobalProxy" label="全局代理" is_valid="Y" note="M#" code="APX" />
+    <Item _uuid="ZElWLbpULqQ50u[M4blFlw" name="GlobalDomain" label="全局主域" is_valid="Y" note="M#" code="ADM" />
+    <Item _uuid="1Uk3ZIl2i4RZqvN9ozIqsQ" name="GlobalLogin" label="全局登陆" is_valid="Y" note="M#" code="ALG" />
+    <Item _uuid="JUGqKtpCmD2[DQj6al[utQ" name="GlobalGate" label="全局网关" is_valid="Y" note="M#" code="AGT" />
+    <Item _uuid="wUT8sXB2a[7Eikz5K6Zelw" name="GlobalStorage" label="全局存储" is_valid="Y" note="M#" code="ASR" />
+    <Item _uuid="q0xB5]YE5q4Dqy4Ze2jYgQ" name="GameProxy" label="游戏代理" is_valid="Y" note="M#" code="GPX" />
+    <Item _uuid="LENUVF2FA1weZbE11fKBtA" name="GameDomain" label="游戏主域" is_valid="Y" note="M#" code="GDM" />
+    <Item _uuid="[0zEDgsA0dQif1k3dHl9nQ" name="GameGate" label="游戏网关" is_valid="Y" note="M#" code="GGT" />
+    <Item _uuid="EkE3J6QXmyMTTdbFRyBHtA" name="GameLogin" label="游戏登录" is_valid="Y" note="M#" code="GLG" />
+    <Item _uuid="E0NJ3pOaQsWxbxcWKRuKgA" name="GameScene" label="游戏场景" is_valid="Y" note="M#" code="GSC" />
+    <Item _uuid="2UMS48GALNTUxiOrWagZoA" name="GameBattle" label="游戏战斗" is_valid="Y" note="M#" code="GBT" />
+    <Item _uuid="Y0QF8pKES]wUedMHzAZrjw" name="GameStorage" label="游戏存储" is_valid="Y" note="M#" code="GSR" />
+    <Item _uuid="U0tU1O0l[RU2Qd80qhlMjQ" name="GameChat" label="游戏聊天" is_valid="Y" note="M#" code="GCT" />
+    <Item _uuid="iEb3VuiATP6IbTSmfCSkqQ" name="GameLogger" label="游戏日志" is_valid="Y" note="M#" code="GLO" />
+    <Item _uuid="1k5HUIgNOUM47AUZECFatA" name="GameWebInterface" label="外网对接服务器" is_valid="Y" note="M#" code="GWI" />
+  </Enum>
+  <Enum _uuid="rU1yWCbuENIsUH5jMsQClA" name="NetRouterFlag" label="路由标志" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_count="N" enum_data_type_cd="Uint32" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="yUhsGHOUXzuuf2ArduzZuw" name="Valid" label="有效" is_valid="Y" note="M#" />
+    <Item _uuid="uk0b[sNOb8fJ8Ey[rkvJvQ" name="Disconnect" label="断开链接" is_valid="Y" note="M#" />
+  </Enum>
+  <Enum _uuid="A0W7bCxzS1gyob4K73VXqQ" name="CrAllocMode" label="收集模式" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_count="N" enum_data_type_cd="Uint32" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="R0rOY]rHjMavL8UKQkEgig" name="Create" label="动态创建" is_valid="Y" note="M#" />
+    <Item _uuid="PkojtTN[KpJqhggR04OctQ" name="Link" label="静态链接" is_valid="Y" note="M#" />
+  </Enum>
+  <Enum _uuid="c0[nKUmJjXrqpEd]HP6hjQ" name="GmObjectStatus" label="对象状态" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="nUCdKFPVT5VZkgfrda5puA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="Sk49]jOOBSv6ohX118kOoQ" name="Valid" label="有效" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="A0ZaONjYVVZ79PT2GI3djg" name="Active" label="激活" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="hUsNgOltCST6YMwv1RF4lQ" name="Frozen" label="冻结" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="dUoEEVjmG2eDL]l7gHvsnw" name="GmObjectChange" label="更改更新" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="C0gorXSF2DcTxIWFdlxMgw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="Wk4xCTPrW289HUksahHHuw" name="Unchanged" label="未更改" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="KkC4hu[Yq]xR8KgClAZojg" name="Create" label="创建" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="zkLsjNWMN]5713DXyYnCiA" name="Delete" label="删除" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="Wk1leXqbZoBk32[[2CnMow" name="Change" label="更改" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="9U7c3fbYgrqyxupC[tYTjg" name="Receive" label="获得" is_valid="Y" note="M#" value="5" />
+  </Enum>
+  <Enum _uuid="hk9K84771sAySZHVeRxOgg" name="GmObjectFlag" label="对象标志" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="3kbT8bpBZ8]u39Vqql8Tnw" name="Create" label="创建" is_valid="Y" note="M#" flag="C" value="0" />
+    <Item _uuid="ZEe7lsa3R8WzRiPuBY33vA" name="Valid" label="有效" is_valid="Y" note="M#" flag="V" value="1" />
+    <Item _uuid="9k7]Rlrtc5VxDaI41l1ttw" name="Lock" label="锁定" is_valid="Y" note="M#" flag="L" value="2" />
+  </Enum>
+</Group>
+

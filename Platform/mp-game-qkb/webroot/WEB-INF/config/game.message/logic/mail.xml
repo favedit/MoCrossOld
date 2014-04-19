@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="WkBJKnhLcpvj]q9r[H0sgg" name="logic.mail" label="邮件系统" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" source_name="MoMgLogicMail" code="Lml" full_code="LogicMail" display_index="51">
+  <Message _uuid="IkBTXA0Hz1JAXWLQdSJKng" name="query.end" label="邮件查询结束" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="QueryEnd" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GDM" code_value="0x0001" code_fix="N">
+    <Item _uuid="j0fesLFqTF8tGP1gmAPcvg" name="mailId" label="邮件Id" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="]UG]qtHf2P9TbMlMqpdrqg" name="friend.list.requset" label="好友列表查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FriendList" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0002" code_fix="N" />
+  <Message _uuid="eU9LOQ78LcJTpsaJzKMGmA" name="friend.list.response" label="好友列表查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FriendList" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0003" code_fix="N">
+    <Enum _uuid="MUBROjjZVwCu5G8ZSuHHsw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="[UhyuZu0RBHQWyoylqGhow" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="R0s7pUV[Xb6xDiQz9zSyhQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Struct _uuid="nUKlmKmivVzyTDuY9OBhmw" name="SFriend" label="好友结构" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="BkxDNYdYJHtaPxcHFtRqpw" name="id" label="编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+      <Item _uuid="e0zdA[kGuMn7VKe9pIVdiQ" name="label" label="名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+      <Item _uuid="j04UMeLFx9JmiRhWefPwmw" name="onLineCd" label="在线状态" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    </Struct>
+    <Item _uuid="ME2cUmOMjKd8AdmqdUtLhw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="W0kCzi1qB49qHmXwuh0tpQ" name="friendList" label="好友列表" is_valid="Y" note="M#" type="Object" type_name="SFriend" is_collection="Y" data_size="role.friend.max-count" />
+  </Message>
+  <Message _uuid="BEUEInkR12ahlfpN5VVyhQ" name="send.mail.request" label="发送邮件请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="SendMail" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0004" code_fix="N">
+    <Item _uuid="[kz1fONeqy3FUgiry36nmw" name="mailTypeCd" label="邮件类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+    <Item _uuid="bE5t7YwsRqFIM8rKkonlgg" name="societyMail" label="帮会邮件" is_valid="Y" note="M#" type="Object" type_name="SGsSocietymail" is_collection="N" />
+    <Item _uuid="IEdBvYn05LRbeRsN3YGMkw" name="normalMail" label="普通邮件" is_valid="Y" note="M#" type="Object" type_name="SGsNormalMail" is_collection="N" />
+  </Message>
+  <Message _uuid="zkXQp5j2xqXYdMqRIeOMtw" name="send.normal.mail.domain.request" label="发送普通邮件主域请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SendNormalMailDomain" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0005" code_fix="N">
+    <Item _uuid="W0gqEKv4ReljhD9y8fRrrQ" name="sendRoleId" label="发件人角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="a03h7410yh2EiaG[rm3vjw" name="normalMail" label="普通邮件" is_valid="Y" note="M#" type="Object" type_name="SGsNormalMail" is_collection="N" />
+  </Message>
+  <Message _uuid="0kAXJ5cfrVLI5px4Fdx3sg" name="send.society.mail.domain.request" label="发送帮会邮件主域请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SendSocietyMailDomain" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0006" code_fix="N">
+    <Item _uuid="90dkO9YpOS04]dkEsEPyhQ" name="sendRoleId" label="发件人角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="JUSZ4m3q1euEjmwH[SYIqg" name="societyMail" label="帮会邮件" is_valid="Y" note="M#" type="Object" type_name="SGsSocietymail" is_collection="N" />
+  </Message>
+  <Message _uuid="gk4WMd3BiCS2cQCWZLKtrg" name="send.normal.mail.storage.request" label="发送普通邮件存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SendNormalMailStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0007" code_fix="N">
+    <Item _uuid="20kXko1v4Wyloxi9V1r8qw" name="sendRoleId" label="发件人角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="x0xnBky9D1un5isdNtvkoQ" name="normalMail" label="普通邮件" is_valid="Y" note="M#" type="Object" type_name="SGsNormalMail" is_collection="N" />
+  </Message>
+  <Message _uuid="mEKrSJiAoQUbw1fUwu]FuA" name="send.society.mail.storage.request" label="发送帮会邮件存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SendSocietyMailStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0008" code_fix="N">
+    <Item _uuid="M0Agzv1ZKQYbF6tSmlv5pA" name="sendRoleId" label="发件人角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="EUBqGOpjakZ8]nKjCTCLpw" name="roleItems" label="收件人" is_valid="Y" note="M#" type="Object" type_name="SGmReceiveItems" is_collection="N" />
+    <Item _uuid="o0DRUQHAuo0QJabOKa3Elg" name="societyMail" label="帮会邮件" is_valid="Y" note="M#" type="Object" type_name="SGsSocietymail" is_collection="N" />
+  </Message>
+  <Message _uuid="fEKgcwcUIdzhxBnzCOIJrA" name="send.normal.mail.storage.response" label="发送普通邮件存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SendNormalMailStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x0009" code_fix="N">
+    <Enum _uuid="7kVqPtyzJQVQETj2tvCcng" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="RES2hR8hIiinWjqVuh7gqQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="1EPHdgesdTP[z8b36KBtrg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="lkXLpgSe2jOz3eOK6SiwrA" name="RecieverIsNotExist" label="收件人不存在" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="eEJKob]Ltsu2DOYThcNRnw" name="SenderIsNotExist" label="发件人不存在" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="HEls3gUDNJtUSO5FfZiRmg" name="BoxFull" label="邮箱已满" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="y09eMhOx6RhaoYb][WUeqQ" name="mailWrap" label="邮件" is_valid="Y" note="M#" type="Object" type_name="SGmMailWrap" is_collection="N" />
+    <Item _uuid="[kyvrEXX0TxD5byRaw]rtg" name="statusCd" label="发送状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="Wk5k49x7PYX9EssIaEamig" name="send.society.mail.storage.response" label="发送帮会邮件存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SendSocietyMailStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x000A" code_fix="N">
+    <Enum _uuid="jkYqEw]xE94PtqAhLQrvoA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="OkxEf01ch20TskxgCOd6hA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="lURIf2rzLnzV1SzyD9Tsgg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="l0Sox8nyPYRaORTZ7V4GlQ" name="SenderIsNotExist" label="发件人不存在" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="Z0qcpth[dZgPBTYcv3odjA" name="BoxFull" label="邮箱已满" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="O0uqUnA9plWBTVAbFaJ4ig" name="sendRoleId" label="发件人角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="p0EEk0lHnb8[d3d1Si3lng" name="wrapList" label="邮件列表" is_valid="Y" note="M#" type="Object" type_name="SGmMailWrap" is_collection="Y" data_size="society.member.max-count" />
+    <Item _uuid="00XCNSSY5dMsLmk0g24mqQ" name="deleteMail" label="删除邮件" is_valid="Y" note="M#" type="Object" type_name="SGmDeleteMailInfo" is_collection="Y" data_size="society.member.max-count" />
+    <Item _uuid="p07kkYsgMLOqEgnVjIBasA" name="statusCd" label="发送状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="JU3V3Edfta]j7XzOlPK6mw" name="send.normal.mail.domain.response" label="发送普通邮件主域应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SendNormalMailDomain" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x000B" code_fix="N">
+    <Enum _uuid="sk4m11JDa]L7WEkHAtoZvA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="okOvweLB[xAWxkWWG2mfuw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="bEcaAvvW2]1GxHqwCYJGsA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="Nk6SbcKJ1RT3PbI5w[LPgQ" name="RecieverIsNotExist" label="收件人不存在" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="7kh5xuY7qY2i96IoCG[2nw" name="SenderIsNotExist" label="发件人不存在" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="Bkd]9bNX9cS0U[HmIRv8gw" name="BoxFull" label="邮箱已满" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="PEb2MbnQexwy5W]]cKprkQ" name="mailWrap" label="邮件" is_valid="Y" note="M#" type="Object" type_name="SGmMailWrap" is_collection="N" />
+    <Item _uuid="JUtGvqbIkEZxcxoxo46Tug" name="statusCd" label="发送状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="tEh1QXas7tsUaJ3s7OxcgA" name="send.society.mail.domain.response" label="发送帮会邮件主域应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SendSocietyMailDomain" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x000C" code_fix="N">
+    <Enum _uuid="xEIpvIrn4rnbGAc9Wx]zqg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="3UB1[mdEi7dA7JYQG6waqw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="s0h1ep1RAPyCIIPO9oAoqA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="t0bpnFUr4e1njSy5GFr[hA" name="SenderIsNotExist" label="发件人不存在" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="V0jiCDgoVxnkrMeDOy9prg" name="BoxFull" label="邮箱已满" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="xEXV6abbay0KBDyFg4pNgQ" name="sendRoleId" label="发件人角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="akOm6416IWfjJ9FZW3YhjA" name="wrapList" label="邮件列表" is_valid="Y" note="M#" type="Object" type_name="SGmMailWrap" is_collection="Y" data_size="society.member.max-count" />
+    <Item _uuid="skRzlh4oS5nzITRud[0tlg" name="deleteMail" label="删除邮件" is_valid="Y" note="M#" type="Object" type_name="SGmDeleteMailInfo" is_collection="Y" data_size="society.member.max-count" />
+    <Item _uuid="ZU2FkQDxByHgiuJhnHdXrQ" name="statusCd" label="发送状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="fU3UUalANvb8lXh[kqLqgg" name="send.mail.response" label="发送邮件响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="SendMail" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000D" code_fix="N">
+    <Enum _uuid="b0q6GPBWHMApjQuqd8VSiA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="LUif[jY4PDFG6KFdIJS[qQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="vUGCHxgKG7F4Fwn1zbl7pA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="oEm6WoXO3iuqSEtbeI0unA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="]U1r550XD83ei1h66Nwavg" name="mailTypeCd" label="邮件的类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+  </Message>
+  <Message _uuid="FEnZIwwZ3flQfpjq[7rLmA" name="delete.mail.request" label="删除邮件请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DeleteMail" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x000E" code_fix="N">
+    <Struct _uuid="AEmUpxz5j3q4eefAzbEclA" name="SMailId" label="角色编号结构" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="0ET87pVsZ9ISNNYN4aCQpg" name="mailId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+      <Item _uuid="QEs4uLcRjXe86SQlZZH[iw" name="mailTypeCd" label="邮件类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+    </Struct>
+    <Item _uuid="Mk[sQSvjx6kfZsl6BoUBgw" name="mailTypeCd" label="删除邮件的类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+    <Item _uuid="9EsBdXPT3vyCdw0VRUQktQ" name="deleteMailList" label="删除邮件列表" is_valid="Y" note="M#" type="Object" type_name="SMailId" is_collection="Y" data_size="mail.system.max-count" />
+  </Message>
+  <Message _uuid="7EfPRfv0XSh0R0YQoFsWhA" name="delete.mail.domian.request" label="删除邮件主域请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DeleteMailDomian" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x000F" code_fix="N">
+    <Item _uuid="7UsGcuV9TgOVWOS8vmkXkA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="NUhrfSTGH[IdO87IR51TuQ" name="mailTypeCd" label="删除邮件的类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+    <Item _uuid="skTN1TkwrnUVe1F2Jznfhw" name="deleteMailList" label="删除邮件列表" is_valid="Y" note="M#" type="Object" type_name="SGmMailId" is_collection="Y" data_size="mail.system.max-count" />
+  </Message>
+  <Message _uuid="jEu1Ok9IKdH0bc]IwmKCjw" name="delete.mail.storage.request" label="删除邮件存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DeleteMailStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0010" code_fix="N">
+    <Item _uuid="vUcieM]wLVqiuYj9lk6Irg" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="HEaAuXnt128DX5hNCkftiw" name="mailTypeCd" label="删除邮件的类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+    <Item _uuid="s01CTa]RICNklJ9I[sNDoA" name="deleteMailList" label="删除邮件列表" is_valid="Y" note="M#" type="Object" type_name="SGmMailId" is_collection="Y" data_size="mail.system.max-count" />
+  </Message>
+  <Message _uuid="gknRRaVFLP5t6BDe78bpuQ" name="delete.mail.storage.response" label="删除邮件存储通知响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DeleteMailStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x0011" code_fix="N">
+    <Enum _uuid="kUqysMWgSewMVre]o7ADrQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="w0CknkyQmPwLHteWkvezrA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="jEiU5CebQU7mTG3ohaKBpg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="6kvSpNBqe6t2DtWkoh1ZpQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="N0QvxFn0JvdGMh1GkEzanw" name="mailTypeCd" label="删除邮件的类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+    <Item _uuid="9EU9X2BJjhZgyqo9enBBsQ" name="deleteMailList" label="删除邮件列表" is_valid="Y" note="M#" type="Object" type_name="SGmMailId" is_collection="Y" data_size="mail.system.max-count" />
+    <Item _uuid="rE4BNo96u[Tda4yfvCnYiQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="gEyhBUbtM6NrthD4ezfIig" name="delete.mail.domian.response" label="删除邮件主域应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DeleteMailDomian" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0012" code_fix="N">
+    <Enum _uuid="EEmyEPLSo2TsSA0o[yIauw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="cUwQjYo9t2Bdk[16IsMYrw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="ukaREYKoGKdbo[VmfPU1og" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="nkc1ifTpBLAHdopnJ6jxgA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="kk26vyB]xDdpn1XAzAkbsA" name="mailTypeCd" label="删除邮件的类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+    <Item _uuid="hEjROAod7mxz2TaUMDz[vA" name="deleteMailList" label="删除邮件列表" is_valid="Y" note="M#" type="Object" type_name="SGmMailId" is_collection="Y" data_size="mail.system.max-count" />
+    <Item _uuid="2kgKNtmAGVMkYgx1FzXQrg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="Gk55XBdH6m[vSsuTShT0kQ" name="delete.mail.response" label="删除邮件响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DeleteMail" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0013" code_fix="N">
+    <Struct _uuid="4kgVvUKez1LJSft1XQsWtg" name="SMailId" label="邮件编号结构体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="R0RVnmJcEPHIHKTqZZ[alw" name="mailId" label="邮件编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+      <Item _uuid="AU9V]IZKNLfqbM04OHhltw" name="mailType" label="邮件类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+    </Struct>
+    <Enum _uuid="qk2rISGEPBqVrRsqh7Ucvg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="8UYkCww]F[0tTCia]8FGjg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="6094MS1XQWXWDkCSJeJSkw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="[0Ms3[A1nF]kcLrSC3yjmA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="D0XryFx1JlbSryNlxwZ2nA" name="deleteMailList" label="删除邮件列表" is_valid="Y" note="M#" type="Object" type_name="SMailId" is_collection="Y" data_size="mail.system.max-count" />
+    <Item _uuid="Q0DpTXc[Xqgaf8eNb7DojA" name="mailTypeCd" label="删除邮件的类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+  </Message>
+  <Message _uuid="E0bbDFtpsj7T[Y1CSsO0gw" name="mail.list.query.request" label="邮件列表查询" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="MailListQuery" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0014" code_fix="N" />
+  <Message _uuid="00bZHShLc0cq[dnRqYZjhA" name="mail.list.query.response" label="邮件列表查询响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="MailListQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0015" code_fix="N">
+    <Enum _uuid="I0ZRDnyecR0EIRofuY0Xjw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="qkinTBRfiBjkdrZE[x2hgA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="HU4Zwt]yVZIMBFquj7iBiw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Struct _uuid="EEL3lYfPw1bDvgdOZni5nA" name="SMail" label="邮件信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="nU6KR7XVo1gJfQ6Tfb4jvg" name="mailId" label="邮件编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+      <Item _uuid="w0PbeHQkwZIn]lC1b8ZHiA" name="typeCd" label="邮件类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+      <Item _uuid="p0xk1OIbJ6Ty3HLLDxYhgw" name="readFlag" label="阅读标志" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+      <Item _uuid="cE0JqtlUQuAleYngOa98rw" name="isAttachment" label="是否有附件" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+      <Item _uuid="eUt6bzT1vxCGyvDCVyVnhw" name="senderLabel" label="发件人姓名" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+      <Item _uuid="WUnq9zCTnKjsxBGB19iZmQ" name="theme" label="主题" is_valid="Y" note="M#" type="String" is_collection="N" data_size="mail.theme.max-count" />
+      <Item _uuid="U0N4bFfVCUAWPsgF64LXkQ" name="overTime" label="剩余时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    </Struct>
+    <Item _uuid="60JDZ[uGj3VjCBYTaKArtg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="kUvuqvlJG0lsvGr9LtDOsg" name="mailList" label="邮件列表" is_valid="Y" note="M#" type="Object" type_name="SMail" is_collection="Y" data_size="80" />
+  </Message>
+  <Message _uuid="dEc48WHwj5wPMnX3LIPKlw" name="mail.look.up.request" label="邮件查看" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="MailLookUp" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0016" code_fix="N">
+    <Item _uuid="hU6A9RNJuLhjv7hEoJjBiQ" name="mailId" label="邮件编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="G0m5BmTxepkNRXIYf3a0hw" name="mail.lool.up.response" label="邮件查看响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="MailLookUp" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0017" code_fix="N">
+    <Struct _uuid="I0M8jlPK1cT3P3XiXLHMmA" name="SOtherCUrrency" label="其他货币类型结构" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="VU7rZqC17JjuOG[6Tt8Atg" name="currencyCd" label="货币类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailCurrency" is_collection="N" />
+      <Item _uuid="wEvrr97RdfYh]Do]VHoRng" name="value" label="数值" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    </Struct>
+    <Enum _uuid="jE3RWGtEhYn1U4k9qRvqvg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="E0w9TnEDtv7XrziMthoVpA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="KkOrNWo0fd]m52m5tmYirA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="tUabKFxrTqBESgQMEo[LiA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="TkAfdk5]E6rEL]Bk2CxOuw" name="typeCd" label="邮件类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+    <Item _uuid="a0Cz4siGJZ2iBRft3On6kA" name="mailId" label="邮件编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="6UPylqf3wy1Uz7nttW8qnQ" name="senderLabel" label="发件人姓名" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    <Item _uuid="PUmbe]uQiu[tri9vuQcgiA" name="theme" label="主题" is_valid="Y" note="M#" type="String" is_collection="N" data_size="mail.theme.max-count" />
+    <Item _uuid="D0HP6mMnmGq5MsNV1OL3uQ" name="content" label="内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="mail.content.max-length" />
+    <Item _uuid="W0G4]isPMBN8jPrKFsyGkw" name="isAttachment" label="是否有附件" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="u03BV0LcvdrhXIa]XSs1sQ" name="currencyCd" label="货币类型" is_valid="Y" note="M#" type="Enum" type_name="EGmCurrency" is_collection="N" />
+    <Item _uuid="nkeKod1FuX2OLrPsx[FfmA" name="currencyValue" label="货币数量" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="fEVJebZIT2z]Erq4q3IXng" name="overTime" label="剩余时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="oEyM7Vd2js]XRWxisHwCrQ" name="otherCurrency" label="其他货币类型" is_valid="Y" note="M#" type="Object" type_name="SOtherCUrrency" is_collection="Y" data_size="other.currency.count" />
+    <Item _uuid="vE3DFnANbh2L3IFwjK8BgA" name="itemToolTipList" label="物品tollTip链表" is_valid="Y" note="M#" type="Object" type_name="SGsItemToolTip" is_collection="Y" data_size="5" />
+  </Message>
+  <Message _uuid="GkoahjFV3Hq3tpm36cB3sw" name="modify.mail.read.type.domain.notify" label="更改邮件阅读类型主域通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ModifyMailReadTypeDomain" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0018" code_fix="N">
+    <Item _uuid="hkooHAC1lEzga2GvXVm4mg" name="mailId" label="邮件编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="7UnUi6q0YKMFmuwxD2kkow" name="modify.mail.read.type.storage.notify" label="更改邮件阅读类型存储通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ModifyMailReadTypeStorage" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0019" code_fix="N">
+    <Item _uuid="Hk]kJzxPUQ9VqxcqOo]fvg" name="mailId" label="邮件编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="0ECRZ89ZXy1ceJNI1tOOhg" name="extract.attachment.request" label="提取附件请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ExtractAttachment" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x001A" code_fix="N">
+    <Struct _uuid="hkQY[5qbajOG7pbsEYPfsA" name="SMailId" label="邮件编号结构体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="5kmT4qbxcpT]J54kClR3qA" name="mailId" label="邮件编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    </Struct>
+    <Item _uuid="LEONjthgo0nXKWgHgCIYkA" name="typeCd" label="邮件的类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+    <Item _uuid="IUjv3PNdMOdSswqirwhUkA" name="mailIdList" label="邮件编号列表" is_valid="Y" note="M#" type="Object" type_name="SMailId" is_collection="Y" data_size="mail.system.max-count" />
+  </Message>
+  <Message _uuid="okAxvgsFUeM9IgaAbbettQ" name="extract.attachment.domain.request" label="提取附件主域通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ExtractAttachmentDomain" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x001B" code_fix="N">
+    <Item _uuid="mkDybdjePCjy64h3giqrpg" name="typeCd" label="邮件的类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+    <Item _uuid="jk2JTEgSS3ArWG42WtRJiA" name="attachmentList" label="附件列表" is_valid="Y" note="M#" type="Object" type_name="SGmAttachmentWrap" is_collection="Y" data_size="mail.system.max-count" />
+    <Item _uuid="tUHd0hrWF9WfRg6RVHgmpg" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="eUPI98rjTtMvhfUyk4Bmhg" name="extract.attachment.storage.request" label="提取附件存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ExtractAttachmentStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x001C" code_fix="N">
+    <Item _uuid="s0LDQI1tRdzEWX7Uleifmw" name="typeCd" label="邮件的类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+    <Item _uuid="uE]1l1TKAK7Z6ssh[mKPjw" name="attachmentList" label="附件列表" is_valid="Y" note="M#" type="Object" type_name="SGmAttachmentWrap" is_collection="Y" data_size="mail.system.max-count" />
+    <Item _uuid="IknwLyGOcS[hATodpDeTvA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="oUWleciX1LW[tEuIJ3J2pw" name="extract.attachment.storage.response" label="提取附件存储响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ExtractAttachmentStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x001D" code_fix="N">
+    <Enum _uuid="F0nkWDOcbhcHv6WG]DeEsg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="UkpQWuk6UktKIeeRyRp3ug" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="UEcBk6gFUN5n4UfsZHd1mA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="FU[yFrq2gEFB0]oeD5jEtw" name="typeCd" label="邮件的类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+    <Item _uuid="vUIEnfX9BP3RsCMTDVBAvA" name="attachmentList" label="附件列表" is_valid="Y" note="M#" type="Object" type_name="SGmAttachmentWrap" is_collection="Y" data_size="mail.system.max-count" />
+    <Item _uuid="w0jfMO7yY1WqdnePYA2jlQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="vUblyPgQDnx0UeqK9x9WjQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="Rk1aUXVcmr9AEbaYEGLDhg" name="extract.attachment.domain.response" label="提取附件响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ExtractAttachmentDomain" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x001E" code_fix="N">
+    <Enum _uuid="t0fKJp492dwtGBqHKNcNtg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="[UopgJkFGofWOhWgye1Asw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="70kfBojEivbtRRYLds3bmQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="F0U6UkDFnrl6rpo5EueYpg" name="typeCd" label="邮件的类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+    <Item _uuid="g0PFHPvRLvpYBYEWibW8gw" name="attachmentList" label="附件列表" is_valid="Y" note="M#" type="Object" type_name="SGmAttachmentWrap" is_collection="Y" data_size="mail.system.max-count" />
+    <Item _uuid="pU5szNxl]JLIFH0p2YbQlQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="NkuQU8iIF8zAbNAnYGAjkA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="]UMpvB1hIJUtf8YoBHxcpA" name="extract.attachment.response" label="提取附件响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ExtractAttachment" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x001F" code_fix="N">
+    <Struct _uuid="tkCwWWL1zTqrjIyKIr3ymA" name="SMail" label="邮件结构体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="SEwlWGpLqz5wkZtq1UzFpw" name="mailId" label="邮件编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+      <Item _uuid="6U1OKbArxxGr[lVdDGUhlA" name="overTime" label="过期时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    </Struct>
+    <Enum _uuid="eUR]TslWA6fEisD0yWMDrg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="yEK18zj46bfBESKDI[F0ig" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="0kaLiW1LwHb1xXwMqhbNgA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="Bk6HCUq1HLRkCS]1Fafgng" name="typeCd" label="邮件的类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+    <Item _uuid="0k88GZRjKzZLtH8pudv9lA" name="mailIdList" label="邮件编号列表" is_valid="Y" note="M#" type="Object" type_name="SMail" is_collection="Y" data_size="mail.system.max-count" />
+    <Item _uuid="Mk69NO5mOqugUFuyrcljtg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="L05UAW5TtX4M4duDGmm6oA" name="receive.mail.notify" label="接受邮件通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ReceiveMail" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0020" code_fix="N">
+    <Item _uuid="vEObt5OaPwXtFsrkJ8gRlA" name="typeCd" label="邮件类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMailType" is_collection="N" />
+    <Item _uuid="m0nOK1l[39GI3mgIaLObtQ" name="mailId" label="邮件编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="f0]1fhUSiFvk1jhGar]Tug" name="theme" label="主题" is_valid="Y" note="M#" type="String" is_collection="N" data_size="mail.theme.max-count" />
+    <Item _uuid="xkTkDPd6AV2XG]wUjkUQmQ" name="content" label="内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="mail.content.max-length" />
+    <Item _uuid="F0EPrm2xz29lIncoz47bvA" name="isAttachment" label="是否有附件" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="YEX]L759aRmR8e0aFaFXoA" name="sendLabel" label="发件人名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    <Item _uuid="YEHVm1NEBfULqmNHDtVDkg" name="overTime" label="过期时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="akmcL2Gmo3igZOhPWI7Asg" name="isRead" label="是否已阅" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="8Evl0OJq6b2oeVQi0tuUvQ" name="gm.tools.system.mail.scene.notify" label="GM工具系统邮件场景通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="GmToolsSystemMailScene" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0021" code_fix="N">
+    <Item _uuid="IEny4LAqV]WvPOwphZ9wlA" name="mailInfo" label="邮件信息" is_valid="Y" note="M#" type="Object" type_name="SGmSystemMail" is_collection="Y" data_size="per.process.gm.mail.max-count" />
+    <Item _uuid="o0[hJI3qB9d469jWErqWoQ" name="deleteMail" label="删除邮件" is_valid="Y" note="M#" type="Object" type_name="SGmDeleteMailInfo" is_collection="Y" data_size="per.process.gm.mail.max-count" />
+  </Message>
+  <Message _uuid="qESYx0CFb[x69g2aYUBTgA" name="gm.tools.system.mail.domain.notify" label="GM工具系统邮件主域通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="GmToolsSystemMailDomain" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x0022" code_fix="N">
+    <Item _uuid="Q0ArlbxneoYTQk]C4JbHrQ" name="mailInfo" label="邮件" is_valid="Y" note="M#" type="Object" type_name="SGmSystemMail" is_collection="Y" data_size="per.process.gm.mail.max-count" />
+    <Item _uuid="s07r[JqfFBCTiC8HX6NumA" name="deleteMail" label="删除邮件" is_valid="Y" note="M#" type="Object" type_name="SGmDeleteMailInfo" is_collection="Y" data_size="per.process.gm.mail.max-count" />
+  </Message>
+  <Message _uuid="7ktppoNqCS2xJ6HUoMiRuw" name="send.system.template.mail.domain.request" label="发送系统模板邮件主域请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SendSystemTemplateMailDomain" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0023" code_fix="N">
+    <Item _uuid="70MXv0ltfN5f6CkX5M[Cuw" name="mailInfo" label="邮件信息" is_valid="Y" note="M#" type="Object" type_name="SGmSystemMail" is_collection="N" />
+  </Message>
+  <Message _uuid="8Egm2]db0aJFBhlq[AwIhA" name="send.system.template.mail.storage.request" label="发送系统模板邮件存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SendSystemTemplateMailStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0024" code_fix="N">
+    <Item _uuid="8U1rQU1n]ZajvqEuJyTmsw" name="mailInfo" label="邮件信息" is_valid="Y" note="M#" type="Object" type_name="SGmSystemMail" is_collection="N" />
+  </Message>
+  <Message _uuid="5Eq3nG0naysf0hH[Yezipw" name="send.system.template.mail.storage.response" label="发送系统模板邮件存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SendSystemTemplateMailStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x0025" code_fix="N">
+    <Item _uuid="]UpjaKSUF4B5byfQmKFVoQ" name="mailInfo" label="邮件信息" is_valid="Y" note="M#" type="Object" type_name="SGmSystemMail" is_collection="N" />
+    <Item _uuid="tEo4MEZ6Rb03UnxiCCJilw" name="deleteMailId" label="删除邮件编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="tkqXZ5kGUuKnZ5nyY9I9iA" name="send.system.template.mail.domain.response" label="发送系统模板邮件主域响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SendSystemTemplateMailDomain" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0026" code_fix="N">
+    <Item _uuid="nkyNV8mmCxpTJS]c8OX5uQ" name="mailInfo" label="邮件信息" is_valid="Y" note="M#" type="Object" type_name="SGmSystemMail" is_collection="N" />
+    <Item _uuid="b0F6uczDcgdQWLOTpDOaoA" name="deleteMailId" label="删除邮件编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="FEw3LpJ5LDEmgmQ9ErKGiA" name="role.login.unread.mail.notify" label="玩家登陆未读邮寄通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RoleLoginUnreadMail" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0027" code_fix="N" />
+  <Message _uuid="cEn0WUCNvJTbq7kCDlsgpQ" name="send.mail.message.unlock.scene.notify" label="发送邮件消息解锁场景通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SendMailMessageUnlockScene" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0028" code_fix="N">
+    <Item _uuid="YU4o5aCAkthL2V8rEf4elQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="20cn6Rs4tutn3u3jMBfgnw" name="login.send.gm.mail.storage.notify" label="登陆服务器发送GM邮件存储通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="LoginSendGmMailStorage" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GLG" target_type="GSR" code_value="0x0029" code_fix="N">
+    <Item _uuid="TErbqNBb5dc6py2B95ifsA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+</Group>
+

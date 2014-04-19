@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="Mk[cyBlpKN4jxPxs2WN9iQ" name="logic.process" label="M#12cn14业务流程" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_PROCESS" data_logic="LG_PROCESS_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="TUTxMVs0x8pE6gC7BBvTjA" name="group_id" label="M#12cn14分组标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="GROUP_ID" data_refer="logic.process.group" />
+  <FieldInteger _uuid="]Uqt]B2y4X4sGzKwjHHJjA" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_store="Y" data_name="TYPE_ID" data_type="Integer" data_refer="logic.process.type" />
+  <FieldString _uuid="oE3DR1Cw5fo73FM9LnpvnA" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="NAME" data_size="40" />
+  <FieldContent _uuid="20npUiANcfQ1FUglW9JEjg" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldEnum _uuid="nUj]zEt6ZW[wG[zkGnoKug" name="status_cd" label="M#12cn14任务状态" is_valid="Y" note="M#12cn225S=开始\nP=通过\nF=未通过\nD=延期\nC=取消" is_null="Y" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="logic.process.status" />
+  <FieldDate _uuid="2014[trV86lvZI0P7T[8jQ" name="begin_date" label="M#12cn16执行开始时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="BEGIN_DATE" data_type="Date" />
+  <FieldDate _uuid="t0A0pAdQcDMZA8dmbX9njQ" name="real_end_date" label="M#12cn16实际结束时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="REAL_END_DATE" />
+  <FieldDate _uuid="h0sqhXlPYmSDqG79htPBog" name="expect_end_date" label="M#12cn16预计结束时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EXPECT_END_DATE" data_alias="EXP_END_DATE" data_type="Date" />
+  <FieldInteger _uuid="NUXNyUObCRgWldqU7mu]lQ" name="process_user_id" label="M#12cn15发起者标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROCESS_USER_ID" data_type="Integer" data_refer="person.user" />
+  <FieldInteger _uuid="]kukeKuWwPZu[BaCm3CRiQ" name="receive_user_id" label="M#12cn15接收者标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RECEIVE_USER_ID" data_refer="person.user" />
+  <FieldDate _uuid="D0V]a5g7F7RCzjwifMlcgQ" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_type="Date" data_default="SYSDATE" />
+  <FieldContent _uuid="z0LYb]rvq7uPrwSjlWn5vA" name="parameters" label="M#12cn12参数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PARAMETERS" />
+  <FieldContent _uuid="n0dC0cEUPFwNQGfx0sEhrA" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" />
+</DataStore>
+

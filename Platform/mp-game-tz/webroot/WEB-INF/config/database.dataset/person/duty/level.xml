@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="AUrj6cajuAN5xwwtmYg2kA" name="person.duty.level" label="M#12cn14职级信息" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="PM_DUTY_LEVEL" data_alias="PM_DTY_LVL" data_logic="PM_DUTY_LEVEL_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldBoolean _uuid="cEPQDiX6I7xAzgrbgHbUqg" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldInteger _uuid="QEhE3K3WA[WZPoFOvQd]rQ" name="group_id" label="M#12cn14分组标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GROUP_ID" data_refer="person.duty.level.group" />
+  <FieldString _uuid="3E]UdJkxasdTzl1HilmSjg" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="1k9keV7[G0pRdtlqglv]tA" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#12cn19组织类型的英文名称" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_type="String" data_size="40" />
+  <FieldContent _uuid="mkCbioLxryyAAurm2B1Smg" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#12cn19组织类型的中文名称" is_store="Y" is_abstract="N" data_name="LABEL" data_type="Content" />
+  <FieldInteger _uuid="dkZ[4QWEkoncc3tLFYPOmg" name="icon_id" label="M#12cn14图片标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="ICON_ID" data_type="Integer" data_refer="common.icon" />
+  <FieldInteger _uuid="lEaMQFZNoTsyHdEaWvcHrA" name="level_number" label="M#12cn12级别" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LEVEL_NUMBER" />
+  <FieldInteger _uuid="DEyYXJCRTFqDAa967D1Spw" name="display_order" label="M#12cn14显示顺序" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="DISP_ORDER" data_type="Integer" />
+  <FieldTemplate _uuid="r00BsZe4FpESTeSmRH3xhg" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="uEV8vFdZAG2jATVAAmbHoA" name="note" label="M#12cn12备注" is_valid="Y" note="M#12cn17组织类型的注释" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

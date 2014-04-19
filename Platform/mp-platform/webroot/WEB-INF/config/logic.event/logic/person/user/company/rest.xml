@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="BU5MEDFyHNvUYQWL6bDauw" name="logic.person.user.company.rest" label="M#12cn19人事管理-假期管理" note="M#" is_valid="Y">
+  <GroupConfig _uuid="KU6blthpxP8HPc22xutJlA" name="smtp_host" label="M#12cn15邮件服务器" note="M#" is_valid="Y" data_value="${logic.mail|smtp_host}" />
+  <GroupConfig _uuid="ZEceu8MaNaV5urxdmhS5lg" name="smtp_port" label="M#12cn17邮件服务器端口" note="M#" is_valid="Y" data_value="${logic.mail|smtp_port}" />
+  <GroupConfig _uuid="N0xP20rrn5PVuDHpndJ6qA" name="smtp_user" label="M#12cn14邮件帐户" note="M#" is_valid="Y" data_value="${logic.mail|smtp_user}" />
+  <GroupConfig _uuid="00d2vyqDBvCaIghDsvVJiA" name="smtp_password" label="M#12cn16邮件帐户密码" note="M#" is_valid="Y" data_value="${logic.mail|smtp_password}" />
+  <GroupConfig _uuid="w06AaPE80YCuzSO82rKDqA" name="smtp_authentic" label="M#12cn14邮件认证" note="M#" is_valid="Y" data_value="${logic.mail|smtp_authentic}" />
+  <GroupConfig _uuid="WUmBTRdc2VPQsiDnaHAcgA" name="from_user" label="M#12cn13发送者" note="M#" is_valid="Y" data_value="${logic.mail|from_user}" />
+  <Type _uuid="f0T64PqPbxMcbe9WuntTsg" name="notify" label="M#12cn14休假通知" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="CErYYzHeN]voplutiTm3mw" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="notify.head@logic.person.user.company.rest.mail" />
+    <TypeConfig _uuid="8EsrnIJU6Sqy1liz6dGRgQ" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="notify.body@logic.person.user.company.rest.mail" />
+    <Property _uuid="ZE09dnJCbTfwjZclMoNBpg" name="begin_date" label="M#12cn14开始时间" note="M#" is_valid="N" data_type_cd="D" data_require="N" />
+    <Property _uuid="m073AKkKGoxi7Fmwv8Mahw" name="end_date" label="M#12cn14结束时间" note="M#" is_valid="N" data_type_cd="D" data_require="N" />
+  </Type>
+  <Type _uuid="zUwgx0a76Qzw]kBj4ogplA" name="cancel" label="M#12cn17申请者取消通知" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="fE9Z8ytUQVHYWA2h[[Nlsw" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="cancel.head@logic.person.user.company.rest.mail" />
+    <TypeConfig _uuid="WEBJS3U5rMxyD4N58hRbow" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="cancel.body@logic.person.user.company.rest.mail" />
+  </Type>
+  <Type _uuid="hUXXmc3xU4N2yUEbeeK]gw" name="examine.pass" label="M#12cn14审核通过" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="K0yYhexrQEQ]51rvQOyinA" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="pass.head@logic.person.user.company.rest.mail" />
+    <TypeConfig _uuid="akMtqr0]chOhkey8Znv6ng" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="pass.body@logic.person.user.company.rest.mail" />
+  </Type>
+  <Type _uuid="n0XxsJCpY4zs4qZxayE9vw" name="rest.examine.pass.cc" label="M#12cn18审核通过抄送邮件" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="mEj4gXXIirA2Mby7tfxzrQ" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="pass.cc.head@logic.person.user.company.rest.mail" />
+    <TypeConfig _uuid="HE9WuMpdnms8pnjGaJvtlw" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="pass.cc.body@logic.person.user.company.rest.mail" />
+  </Type>
+  <Type _uuid="e0K8SxQLZ28PgyF3cliwuA" name="examine.fail" label="M#12cn14审核取消" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="IEM9xSaE1HqZGTs08XxNoQ" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="fail.head@logic.person.user.company.rest.mail" />
+    <TypeConfig _uuid="P01cqtzrUcY24qzV]Odgjw" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="fail.body@logic.person.user.company.rest.mail" />
+  </Type>
+  <Type _uuid="WEhejy9EhARaalcvhlxTnw" name="vacation.deploy" label="M#12cn14年假部署" note="M#12cn214logic_\nparams_" is_valid="Y" process_cd="P" process_invoke="PM_USER_COMPANY_VACATION_DI.Do_Deploy_Vacation" />
+  <Type _uuid="yU4jPb3VDnR3N7x9RWh]sw" name="revoke" label="M#12cn14撤销通知" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="HUWGNqZFNsxPVl9u4aOcpA" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="revoke.head@logic.person.user.company.rest.mail" />
+    <TypeConfig _uuid="o0igu9TNPUT[p]4sFWRzmQ" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="revoke.body@logic.person.user.company.rest.mail" />
+  </Type>
+  <Type _uuid="Rkw8sxO2JUT5Q4HKqgcPtA" name="copy" label="M#12cn14复制通知" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="YkDBjLY4KGcABH2QkEdplA" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="copy.head@logic.person.user.company.rest.mail" />
+    <TypeConfig _uuid="LkGTNTJdHKk53pXr6buLsQ" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="copy.body@logic.person.user.company.rest.mail" />
+  </Type>
+  <Type _uuid="dE9n2aJiO8kKadW6DSDGjw" name="extend.notify" label="M#12cn14延期通知" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="n0e[prlClqEGfIop7MMzhA" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="extend.notify.head@logic.person.LF_AS_VT.mail" />
+    <TypeConfig _uuid="BEDwvDgmbMvYYuo2qtd2hg" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="extend.notify.body@logic.person.LF_AS_VT.mail" />
+  </Type>
+  <Type _uuid="0EW2okbFKWs7]AbCL4HRlg" name="extend.cancel" label="M#12cn14延期取消" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="t0IP4UxARv6kCOsq6JKwqw" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="extend.cancel.head@logic.person.LF_AS_VT.mail" />
+    <TypeConfig _uuid="10SrGliDLDIrzKjHoirLmQ" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="extend.cancel.body@logic.person.LF_AS_VT.mail" />
+  </Type>
+  <Type _uuid="cUamAbHaZvNj1s]wXsWdhg" name="extend.examine.pass" label="M#12cn16延期审核通过" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="V0GFrhzp3nfFcrxm1kOkqQ" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="extend.pass.head@logic.person.LF_AS_VT.mail" />
+    <TypeConfig _uuid="UUyS0Ox[1I8JLivdRXHLpA" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="extend.pass.body@logic.person.LF_AS_VT.mail" />
+  </Type>
+  <Type _uuid="JUIqtjHrgr7oxy5zYaIhiA" name="extend.examine.fail" label="M#12cn16延期审核失败" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="oUixUpTym9leWEhAwSWoig" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="extend.fail.head@logic.person.LF_AS_VT.mail" />
+    <TypeConfig _uuid="XkzHtEp]X5TJxCV3UTgCkQ" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="extend.fail.body@logic.person.LF_AS_VT.mail" />
+  </Type>
+  <Type _uuid="9ET[o8oh9eKCv6TynaKhtA" name="extend.revoke" label="M#12cn14延期撤销" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="5Uzt1V80IMhNnqMqA26qvQ" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="extend.revoke.head@logic.person.LF_AS_VT.mail" />
+    <TypeConfig _uuid="ykafZTgMiiPEKmSKPWKGjg" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="extend.revoke.body@logic.person.LF_AS_VT.mail" />
+  </Type>
+  <Type _uuid="bkR1UB[mSwQOAGrA9bHLoA" name="extend.examine.pass.cc" label="M#12cn210延期审核通过抄送邮件" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="V0WQ]MTGQGu[KnFIvD0xhw" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="extend.pass.cc.head@logic.person.LF_AS_VT.mail" />
+    <TypeConfig _uuid="[UH4hKgO74Al0AM8R4[Nqg" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="extend.pass.cc.body@logic.person.LF_AS_VT.mail" />
+  </Type>
+  <Type _uuid="7Uika2HN1OJMWY7DBz[ElA" name="remain.examine.rest" label="M#12cn17提醒待审核邮件" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="jUdavLAsazu4bLML[DhylA" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="remain.examine.head@logic.person.LF_AS_VT.mail" />
+    <TypeConfig _uuid="yEoSwSC57I75[EOFxT2tjA" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="remain.examine.body@logic.person.LF_AS_VT.mail" />
+  </Type>
+  <Type _uuid="k0tdEeItNPwCi1NPlHMnlA" name="remain.examine.rest.remain" label="M#12cn19提醒待审核邮件通知" note="M#" is_valid="Y" process_cd="P" process_invoke="PM_USER_COMPANY_REST_DI.Do_Send_Remind_Exam_Rest_Mail" />
+</Group>
+

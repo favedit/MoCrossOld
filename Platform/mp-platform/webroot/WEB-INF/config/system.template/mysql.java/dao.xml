@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="w0FybWEUhsu2LRVAQ8Cfhw" name="mysql.java.dao" is_valid="Y" note="M#">
+  <Define _uuid="JUY[amlAaCiAcWH7]u9cmg" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Define _uuid="OkHd3VQFmt6h12enVglljA" name="type_from" is_valid="Y" note="M#" value="bool|int|date|char|string|mstring" />
+  <Define _uuid="cEQ54lpyc8uY9yxR6ZkKkg" name="type_to" is_valid="Y" note="M#" value="Boolean|Integer|Date|String|String|MultiString" />
+  <Define _uuid="4EiTw8Q[DeRF3aei6sBikA" name="key_from" is_valid="Y" note="M#" value="P|U|F" />
+  <Define _uuid="BUdELele7v1p1DaM1tzuvw" name="key_to" is_valid="Y" note="M#" value="Primary|Unique|Foreign" />
+  <Define _uuid="r0mcZzVfkL29qUK89caZpA" name="key_default" is_valid="Y" note="M#" value="None" />
+  <Define _uuid="1E016kyNqBHIQ3m28D5AtQ" name="empty_from" is_valid="Y" note="M#" value="X" />
+  <Define _uuid="I08]dxl34xH[lQhy05yGoA" name="empty_to" is_valid="Y" note="M#" value="false" />
+  <Define _uuid="j0rmpdRiCXPrSyzs1h1Yqw" name="empty_default" is_valid="Y" note="M#" value="true" />
+  <Source _uuid="U0126]aiLfU8hoQHFmKZkA" is_valid="Y" note="M#"><![CDATA[package <Item source='$dataset.logic_package'/>.base;
+
+import org.mobj.eng.entity.FEntityDao;
+import org.mobj.eng.entity.face.AField;
+import org.mobj.eng.entity.face.AFieldAccess;
+import org.mobj.eng.entity.face.ATable;
+import org.mobj.eng.entity.face.EFieldKey;
+import org.mobj.eng.entity.face.EFieldType;
+import org.mobj.eng.entity.info.ISqlFieldInfo;
+import org.mobj.eng.entity.info.ISqlTableInfo;
+
+public class F<Item source='$dataset.class_name'/>Dao&lt;E extends F<Item source='$dataset.class_name'/>Entity&gt;
+      extends FEntityDao&lt;E&gt;{
+
+   @ATable(name="<Item format='upper' source='$dataset.data_name'/>")
+   public static ISqlTableInfo TABLE;
+
+<Loop source='$fields' order='asc' alias='field'>
+<True source='$field.is_store'>
+   @AField(name="<Item format='upper' source='$field.name'/>", type=EFieldType.<Convert source="$field.type" from="$type_from" to="$type_to"/>, key=EFieldKey.<Convert source="$field.is_key" from="$key_from" to="$key_to" default="$key_default"/>, empty=<Convert source="$field.is_null" from="$empty_from" to="$empty_to" default="$empty_default"/>)
+   @AFieldAccess(insert = true, update = true, delete = false)
+   public static ISqlFieldInfo <Item format='upper' source='$field.name'/>;
+
+</True>
+</Loop>
+
+   public F<Item source='$dataset.class_name'/>Dao(){
+   }
+
+<Loop source='$fields' alias='field'>
+<NotEquals source='$field.name' value="ouid">
+<True source='$field.is_unique'>
+   public E getBy<Item source='$field.name' format='class'/>(String <Item source='$field.name' format='method'/>){
+      return get(F<Item source='$dataset.class_name'/>Entity.<Item source='$field.name' format='upper'/>, <Item source='$field.name' format='method'/>);
+   }
+
+</True>
+</NotEquals>
+</Loop>
+
+}]]></Source>
+</Template>
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project _uuid="OEHrAnN1IbT5qd11pvcdpw" name="game.gate" label="游戏网关服务器" is_valid="Y" note="M#" source_name="MoGameGate" group="Game" code="Ggt" full_code="GameGate">
+  <Processor _uuid="xE0RpNJSrDb7[vtcePfEtw" name="logic.login" label="登录管理器" is_valid="Y" note="M#" has_module="N" code="LoginLogic" head_name="MoGgtLoginLogic" source_name="FLoginLogicProcessor">
+    <Function _uuid="7EIERmEqPnCp4oCqquyUkg" name="OnConnectLoginResponse" label="连接登录服务器应答" is_valid="Y" note="M#" type="OM" code="Response" full_code="LlgConnectLoginResponse" source_from="GameLogin" source_target="GameGate" is_session="N" is_manage="N" />
+    <Function _uuid="H0IeWqSON[8t5wqUXmptiA" name="OnConnectProxyResponse" label="连接代理服务器应答" is_valid="Y" note="M#" type="OM" code="Response" full_code="LlgConnectProxyResponse" source_from="GameProxy" source_target="GameGate" is_session="N" is_manage="N" />
+    <Function _uuid="eU[yRgK7cMxY5sDQX2Nwrg" name="OnRoleLoginGateRequest" label="角色登录网关服务器" is_valid="Y" note="M#" type="OM" code="Request" full_code="LlgRoleLoginGateRequest" source_from="ClientPlayer" source_target="GameGate" is_session="N" is_login="N" is_login_role="N" is_manage="N" />
+  </Processor>
+  <Processor _uuid="WUMBHQA]7FbQICbyf8tunw" name="manage.game" label="游戏管理器" is_valid="Y" note="M#" logic_name="manage.game.gate" has_module="N" code="ServerManage" head_name="MoGgtGameManage" source_name="FGameManageProcessor">
+    <Function _uuid="Ok0nSK1GncIyqFAhradfjQ" name="OnSessionListRequest" label="查询网关服务器客户端" is_valid="Y" note="M#" type="OM" code="Request" full_code="MgtSessionListRequest" source_from="ClientPlayer" source_target="GameGate" is_session="N" is_manage="Y" />
+    <Function _uuid="AEFybTgFXmvOFXuT7JWlqg" name="OnSessionQueryRequest" label="会话查询请求" is_valid="Y" note="M#" type="OM" code="Request" full_code="MgtSessionQueryRequest" source_from="ClientPlayer" source_target="GameGate" is_session="N" is_login="N" is_login_role="N" is_manage="Y" />
+  </Processor>
+  <Processor _uuid="UEtPalA1tskblMAKmWGflA" name="logic.logger" label="日志管理器" is_valid="Y" note="M#" has_module="N" code="LoggerLogic" head_name="MoGgtLoggerLogic" source_name="FLoggerLogicProcessor" />
+</Project>
+

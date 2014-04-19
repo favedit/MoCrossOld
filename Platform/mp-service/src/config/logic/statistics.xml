@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+
+   <!-- ============================================================ -->
+   <!-- Logic.Status.Statistics                                      -->
+   <!-- 状态统计器                                                   -->
+   <!--  P:calculate_interval - 计算分钟间隔                         -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'com.zqinet.logic.analysis.status.ILogicStatusStatistics'
+         class = 'com.zqinet.logic.analysis.status.FLogicStatusStatistics'
+         scope = 'single'>
+      <Property name='calculate_interval'>10</Property>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- Logic.Order.Statistics                                       -->
+   <!-- 订单统计器                                                   -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'com.zqinet.logic.analysis.order.ILogicOrderStatistics'
+         class = 'com.zqinet.logic.analysis.order.FLogicOrderStatistics'
+         scope = 'single'>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- Logic.Consume.Statistics                                     -->
+   <!-- 消费统计器                                                   -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'com.zqinet.logic.analysis.consume.ILogicConsumeStatistics'
+         class = 'com.zqinet.logic.analysis.consume.FLogicConsumeStatistics'
+         scope = 'single'>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- Logic.Task.Statistics                                        -->
+   <!-- 任务统计器                                                   -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'com.zqinet.logic.analysis.task.ILogicTaskStatistics'
+         class = 'com.zqinet.logic.analysis.task.ILogicTaskStatistics'
+         scope = 'single'>
+   </Component>
+   
+   <!-- ============================================================ -->
+   <!-- Logic.mail.Statistics                                        -->
+   <!-- 邮件统计器                                                   -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'com.zqinet.logic.analysis.mail.ILogicMailStatistics'
+         class = 'com.zqinet.logic.analysis.mail.FLogicMailStatistics'
+         scope = 'single'>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- Logic.Char.Statistics                                        -->
+   <!-- 聊天统计器                                                   -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'com.zqinet.logic.analysis.chat.ILogicChatStatistics'
+         class = 'com.zqinet.logic.analysis.chat.FLogicChatStatistics'
+         scope = 'single'>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- Logic.Alarm.Statistics                                       -->
+   <!-- 报警统计器                                                   -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'com.zqinet.logic.analysis.alarm.ILogicAlarmStatistics'
+         class = 'com.zqinet.logic.analysis.alarm.FLogicAlarmStatistics'
+         scope = 'single'>
+   </Component>
+
+</Config>

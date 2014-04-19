@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CsvImport _uuid="rEZ4dXJ50SP9tfubyH6Dlg" name="logic.person.user.company.rest.mourning" label="假期-丧假CSV信息" is_valid="Y" head_lines="1">
+  <Columns _uuid="50v]tGACmJQMgY3S7nQZjA" name="Columns" label="列集合" is_valid="Y">
+    <Column _uuid="UkPxfYX7nvJ5JRfT9nSjlA" name="record_id" label="编号" is_valid="Y" data_name="RECORD_ID" is_require="Y" />
+    <Column _uuid="IEFW2ymQg2xqP1sCexLOhg" name="organization_label" label="部门名称" is_valid="Y" data_name="ORGANIZATION_LABEL" is_require="Y" />
+    <Column _uuid="3kwbpGla1mcLlokLG7LIhg" name="work_number" label="工号" is_valid="Y" data_name="work_number" is_require="Y" />
+    <Column _uuid="sUyc8nCi3IGhH8QHZXaDsw" name="user_full_label" label="姓名" is_valid="Y" data_name="user_full_label" is_require="Y" />
+    <Column _uuid="7UrYRfRNrzwO8CtJtvuhlQ" name="entry_date" label="入职日期" is_valid="Y" data_name="entry_date" is_require="Y" />
+    <Column _uuid="PkWIK4lX[ESrIX3o1vn7qQ" name="total_times" label="请假次数" is_valid="Y" data_name="TOTAL_TIMES" is_require="Y" />
+    <Column _uuid="mEBhOpTbuPg9RW5WJva4ow" name="total_time" label="累计时间" is_valid="Y" data_name="total_time" is_require="Y" />
+  </Columns>
+  <Export _uuid="G0RD0Oy0oLDRp53RrE94jw" name="sql" label="事假" is_valid="Y" sql="SELECT ROWNUM RECORD_ID,\n       ORGANIZATION_ID,\n       ORGANIZATION_LABEL,\n       WORK_NUMBER,\n       USER_FULL_LABEL,\n       ENTRY_DATE,\n       TOTAL_TIMES,\n       TOTAL_TIME\n  FROM (SELECT ROWNUM RECORD_ID,\n               PM_ORGANIZATION_DI.Find_Main_Organization_By_User(USER_ID) ORGANIZATION_ID,\n               PM_ORGANIZATION_DI.Get_Label(PM_ORGANIZATION_DI.Find_Main_Organization_By_User(USER_ID)) ORGANIZATION_LABEL,\n               PM_USER_COMPANY_DI.Get_Work_Number_By_User_Id(USER_ID) WORK_NUMBER,\n               PM_USER_DI.Get_Full_Label(USER_ID) USER_FULL_LABEL,\n               TO_CHAR(ENTRY_DATE, 'YYYY-MM-DD') ENTRY_DATE,\n               PM_USER_COMPANY_REST_DI.Get_Summaries_Times('MO',\n                                                           USER_ID,\n                                                           '${BEGIN_DATE}',\n                                                           '${END_DATE}') TOTAL_TIMES,\n               PM_USER_COMPANY_REST_DI.Format_Time_Span_By_Time(PM_USER_COMPANY_REST_DI.Get_Summaries_Apply_Time('MO',USER_ID,'${BEGIN_DATE}', '${END_DATE}')) TOTAL_TIME\n          FROM PM_USER_COMPANY\n         ORDER BY ORGANIZATION_ID)\n" display_command="N" display_head="N" display_label="Y" display_valid="N" is_open="N" export_name="丧假报表{YYMMDD-HH24MI}" />
+</CsvImport>
+

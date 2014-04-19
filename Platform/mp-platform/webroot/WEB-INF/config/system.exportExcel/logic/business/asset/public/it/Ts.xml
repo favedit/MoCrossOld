@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="r0SX7Y1qho]cMqceVIvwgA" name="logic.business.asset.public.it.Ts" label="it资产-台式机报表" is_valid="Y" note="eUIS-Asset-Report-TS[{YYYY-MM-DD}].xls" fileName="eUIS-IT资产-台式机财务报表[${REPORT_MONTH}].xls" template="logic.business.asset.public.it.ts.xls">
+  <Sql _uuid="9Ufd7Z2Fm4OBrWn6Xdtsqg" name="asset_list" label="获得台式机列表" is_valid="Y"><![CDATA[SELECT
+      OUID,
+      STATUS_CD,
+      CODE ASSET_CODE,
+      BS_ASSET_MODEL_GROUP_DI.Get_Label(BS_ASSET_MODEL_DI.Get_Group_Id(BS_ASSET_DI.Get_Model_Id(ASSET_ID))) ASSET_LABEL,
+      '套' UNIT,
+      CM_CODE_DI.Find_Label('business.asset.detail.obtain',OBTAIN_CD) OBTAIN_LABEL,
+      1 ASSET_COUNT,
+      PURCHASE_AMT,
+      TRANS_DATE TRANS_DATE_DATE,
+      TO_CHAR(TRANS_DATE, 'YYYY-MM-DD') TRANS_DATE,
+      BS_ASSET_LINK_DETAIL_DI.Get_Using_Tag_Org_Lab_By_Ast(OUID, TO_DATE('${REPORT_DATE}', 'YYYYMMDDHH24MISS')) ORG_LABEL,
+      BS_ASSET_LINK_DETAIL_DI.Get_Using_Location_Note_By_Ast(OUID,TO_DATE('${REPORT_DATE}', 'YYYYMMDDHH24MISS')) LOCATION_NOTE,
+      BS_VENDOR_DI.Get_Label(VENDOR_ID) VENDOR_LABEL,
+      BS_ASSET_DETAIL_DETAIL_DI.Get_Config_Note_By_Type_Label(OUID, 'CPU') CPU,
+      BS_ASSET_DETAIL_DETAIL_DI.Get_Config_Note_By_Type_Label(OUID, '内存') MEMORY,
+      BS_ASSET_DETAIL_DETAIL_DI.Get_Config_Note_By_Type_Label(OUID, '硬盘') HARD_DISK,
+      BS_ASSET_DETAIL_DETAIL_DI.Get_Config_Note_By_Type_Label(OUID, '显卡') VGA_CARD,
+      BS_ASSET_LINK_DETAIL_DI.Get_Using_Tag_Usr_Lab_By_Ast(OUID,TO_DATE('${REPORT_DATE}', 'YYYYMMDDHH24MISS')) USER_LABEL,
+      TO_CHAR(BS_ASSET_LINK_DETAIL_DI.Get_Using_Release_Date_By_Ast(OUID,TO_DATE('${REPORT_DATE}', 'YYYYMMDDHH24MISS')), 'YYYY-MM-DD') RELEASE_DATE,
+      DETAIL_NOTE
+FROM (SELECT
+         OUID,
+         CODE,
+         STATUS_CD,
+         TRANS_DATE,
+         BS_ASSET_MODEL_GROUP_DI.Get_Label(BS_ASSET_MODEL_DI.Get_Group_Id(BS_ASSET_DI.Get_Model_Id(ASSET_ID))) ASSET_LABEL,
+         VENDOR_ID,
+         PURCHASE_AMT,
+         OBTAIN_CD,
+         ASSET_ID,
+         DETAIL_NOTE
+   FROM BS_ASSET_DETAIL_PB_IT
+   WHERE TO_CHAR(TRANS_DATE, 'YYYYMM') <= TO_CHAR(TO_DATE('${REPORT_DATE}', 'YYYYMMDDHH24MISS'), 'YYYYMM')
+      AND IS_VALID = 'Y'
+      AND OBTAIN_CD = 'P')
+WHERE ASSET_LABEL = '台式机'
+   AND (BS_ASSET_LINK_DETAIL_DI.Get_Fin_Month_Report_Vis(OUID, STATUS_CD, TRANS_DATE, TO_DATE('${REPORT_DATE}', 'YYYYMMDDHH24MISS')) = 'Y'
+      OR TO_CHAR(TRANS_DATE, 'YYYYMM') = TO_CHAR(TO_DATE('${REPORT_DATE}', 'YYYYMMDDHH24MISS'), 'YYYYMM'))
+ORDER BY OUID]]></Sql>
+  <Sql _uuid="z0DY6nT9gMK5[Nqz8nylkQ" name="count_config" label="统计信息" is_valid="Y"><![CDATA[SELECT
+   CP_DATE.Format_Label(NVL(TO_DATE('${REPORT_DATE}', 'YYYYMMDDHH24MISS'), SYSDATE), 'YYYYMM') REPORT_DATE,
+   BEFORE_COUNT,
+   BEFORE_AMT,
+   MONTH_COUNT,
+   MONTH_AMT,
+   RELS_COUNT,
+   RELS_AMT,
+   ((BEFORE_COUNT + MONTH_COUNT) - RELS_COUNT) BALANCE_COUNT,
+   ((BEFORE_AMT + MONTH_AMT) - RELS_AMT) BALANCE_AMT
+FROM (SELECT
+         BS_ASSET_DETAIL_PB_IT_DI.Get_Fine_Mon_Rep_Befor_Count(CP_DATE.Parse(NVL('${REPORT_DATE}', TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'))), '台式机') BEFORE_COUNT,
+         BS_ASSET_DETAIL_PB_IT_DI.Get_Fine_Mon_Rep_Befor_Amt(CP_DATE.Parse(NVL('${REPORT_DATE}', TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'))), '台式机') BEFORE_AMT,
+         BS_ASSET_DETAIL_PB_IT_DI.Get_Fine_Mon_Rep_Count(CP_DATE.Parse(NVL('${REPORT_DATE}', TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'))), '台式机') MONTH_COUNT,
+         BS_ASSET_DETAIL_PB_IT_DI.Get_Fine_Mon_Rep_Amt(CP_DATE.Parse(NVL('${REPORT_DATE}', TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'))), '台式机') MONTH_AMT,
+         BS_ASSET_DETAIL_PB_IT_DI.Get_Fine_Mon_Rep_Rels_Count(CP_DATE.Parse(NVL('${REPORT_DATE}', TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'))), '台式机') RELS_COUNT,
+         BS_ASSET_DETAIL_PB_IT_DI.Get_Fine_Mon_Rep_Rels_Amt(CP_DATE.Parse(NVL('${REPORT_DATE}', TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'))), '台式机') RELS_AMT
+      FROM DUAL)]]></Sql>
+</ExportExcel>
+

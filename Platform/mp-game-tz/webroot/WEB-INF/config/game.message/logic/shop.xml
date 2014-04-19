@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="lEsY]JY4lUPP1JYpG[DQqA" name="logic.shop" label="商城系统" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" source_name="MoMgLogicShop" code="Lsp" full_code="LogicShop" display_index="53">
+  <Message _uuid="JEC[Qznhl1LK8lC7hIdtng" name="shop.query.request" label="商城信息查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ShopQuery" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0001" code_fix="N">
+    <Item _uuid="DER]UxYW8O0F2M[RcM]osQ" name="currentPanicList" label="当前抢购列表" is_valid="Y" note="M#" type="Object" type_name="SGmShopBuyLimit" is_collection="Y" data_size="shop.panic.max-count" />
+  </Message>
+  <Message _uuid="lUoHsp[9bPiiPlTDz2TMjA" name="shop.query.response" label="商城信息查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ShopQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x0002" code_fix="N">
+    <Item _uuid="IUJsGYoiLkyCTUSFMPAeqw" name="itemList" label="商品列表" is_valid="Y" note="M#" type="Object" type_name="SGpShop" is_collection="Y" data_size="shop.item.max-count" />
+  </Message>
+  <Message _uuid="U0RGapg5JSHNc0x62a0osA" name="shop.buy.request" label="商城购买请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="ShopBuy" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GDM" code_value="0x0003" code_fix="N">
+    <Item _uuid="4ELBfKwO6xDrxVIOVrUslw" name="itemOid" label="物品对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="3010X1Uw9RHpvZNNDNaTkQ" name="count" label="数量" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+  </Message>
+  <Message _uuid="6UxAnFRk4k5KbpWkuAEupg" name="shop.buy.response" label="商城购买应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="ShopBuy" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x0004" code_fix="N">
+    <Enum _uuid="okeOnGy9nD]lQtOOG[McoA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="6EEn3YjOFbQRUj9fdcF3nA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="tkXbmEAqszGal5lJaI9MnA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="g0P49mCpkUI]wCPe5QQeiw" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="XkIqi8zOLHo08SqFpgiQqw" name="shopType" label="商店类型" is_valid="Y" note="M#" type="Enum" type_name="EGmShopType" is_collection="N" />
+  </Message>
+  <Message _uuid="JUA3r[FX5Tmwg[kxu4C1mA" name="shop.buy.scene.request" label="商城购买场景请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ShopBuyScene" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0005" code_fix="N">
+    <Item _uuid="IE8TDrh4wEsRDAky3i60nA" name="shopItemTid" label="商城商品模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="mUCdHekz]IGm3NlJ356RjQ" name="count" label="数量" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+    <Item _uuid="wkwvpUdD2Q[zqsWhGUS0nQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="n0N7UXSLf4zU3QV[1p9Ghw" name="buyCurrency" label="购买价格" is_valid="Y" note="M#" type="Struct" type_name="SGmCurrency" is_collection="N" />
+    <Item _uuid="wE5yjmKGcvudAt9h4BxjqA" name="shopId" label="商城商品编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="ckt]MkyUthaF]Inzovu9iQ" name="shop.buy.scene.response" label="商城购买场景应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ShopBuyScene" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0006" code_fix="N">
+    <Enum _uuid="dk]B3z5KIkuXwhKww3Q8vw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="4UwqiH9ZUQwadKmmtgEdqQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="W00mSY[N]ilwxfC]WV8xtw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="rUkyVLuyihiT9q2][14zvw" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="oU7basJOcziRz7lSBNEVlQ" name="shopItemId" label="商城商品编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="r0c9eUspP1m4DA1WkaQ1gw" name="count" label="数量" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+    <Item _uuid="ekA7oH4rFNK65sIR9kfKiQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="5knmwwKoexrcA5vmWmO2uQ" name="shopId" label="商城商品编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="zEcL]4LpVn6vAD2YnxkxoA" name="shop.buy.storage.notify" label="商城购买存储通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ShopBuyStorage" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0007" code_fix="N">
+    <Item _uuid="b0Wh2]QuF2sSHVuje]tygQ" name="item" label="商品对象" is_valid="Y" note="M#" type="Object" type_name="SGpShop" is_collection="N" />
+  </Message>
+  <Message _uuid="lEx9ecuTTg2t9Bcd28kaog" name="shop.player.query.request" label="玩家查询商城物品请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="ShopPlayerQuery" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GDM" code_value="0x0008" code_fix="N" />
+  <Message _uuid="s00CGN03ddxFQdupe7VUtg" name="shop.player.query.response" label="玩家查询商城物品应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="ShopPlayerQuery" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x0009" code_fix="N">
+    <Item _uuid="bki]Fmu9t7nZDfQeQCvvnw" name="itemList" label="物品列表" is_valid="Y" note="M#" type="Object" type_name="SGsShopItem" is_collection="Y" data_size="shop.item.max-count" />
+  </Message>
+  <Message _uuid="f0w5MoA1nep1LiCNhOh4uw" name="shop.buy.success.notify" label="购买成功通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ShopBuySuccess" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x000A" code_fix="N">
+    <Item _uuid="y08in4PoZlhmRv4L7WpMlw" name="itemCd" label="物品类型" is_valid="Y" note="M#" type="Enum" type_name="EGmItem" is_collection="N" />
+    <Item _uuid="Sk0pZhwxMgBm1R]aIxb[pQ" name="shopItemTid" label="商城物品模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="LkiYwoXgvv3OYSHL8UDbmg" name="count" label="已购买数量" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+    <Item _uuid="skZrMl]pgFYd1AGaeU0Fjg" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="VkyoD1][KOT06ONBv13asg" name="shop.refresh.storage.notify" label="商城刷新存储服务器通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ShopRefreshStorage" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x000B" code_fix="N">
+    <Item _uuid="XERt9Pqa4B14HWW0][Bhrg" name="item" label="信息" is_valid="Y" note="M#" type="Object" type_name="SGmShopBuyLimit" is_collection="N" />
+  </Message>
+  <Message _uuid="1khxkotjMpDqD4zxf2OQng" name="shop.refresh.domain.notify" label="商城刷新主域服务器通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ShopRefreshDomain" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x000C" code_fix="N">
+    <Item _uuid="jUKElFcIbF7GiPGw7d3AoQ" name="item" label="信息" is_valid="Y" note="M#" type="Object" type_name="SGmShopBuyLimit" is_collection="N" />
+  </Message>
+  <Message _uuid="S08xdfcMpFSnYdTmQNdyvw" name="shop.query.scene.notify" label="商城信息场景服务器通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ShopQueryScene" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x000D" code_fix="N">
+    <Item _uuid="k0z[ooistvYfj]ORCQbwiQ" name="itemList" label="商品列表" is_valid="Y" note="M#" type="Object" type_name="SGpShop" is_collection="Y" data_size="shop.item.max-count" />
+  </Message>
+  <Message _uuid="Tk]JHpsv13dET6YnzhIngA" name="shop.open.scene.notify" label="商城打开场景通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ShopOpenScene" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x000E" code_fix="N">
+    <Item _uuid="ikGjBK4QYqLeK3Q5vCs]jQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="M0[BwBXLTqYBIdwnBZU7kw" name="tz.shop.buy.domain.notify" label="天战商城购买主域通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="TzShopBuyDomain" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x000F" code_fix="N">
+    <Item _uuid="hUSjnWyNuIYt1MKVZvunvg" name="shopItemId" label="购买项目" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="SUIy[e40Gxrm[HjbGiqNlw" name="count" label="数量" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="s0x5[FKe53lNseEjk]QKkA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="XkSIj4vN58c8oXtbGWHFkw" name="price" label="单价 折扣前" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+  </Message>
+  <Message _uuid="2UYGkLSYW]FIuWOVtpmYmQ" name="tz.shop.buy.scene.notify" label="天战商城购买场景通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="TzShopBuyScene" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0010" code_fix="N">
+    <Item _uuid="PESWT]WJQ2KjgF]qVyl2hg" name="shopItemId" label="购买项目ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="Qk]3j7]zkhu76y7c9[GDkQ" name="count" label="数量" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="I0i24DeKRku17tMaKPNHgw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="WUm4xGHFLcYwiQUGa]dMuA" name="price" label="单价 折扣前" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+  </Message>
+  <Message _uuid="M0wLrO7OR9EsdXbLCKbuhA" name="shop.buy.player.notify" label="玩家购买通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ShopBuyPlayer" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0011" code_fix="N">
+    <Item _uuid="lk4Tsc6USHX8iwhRjQ87qA" name="shopItemTid" label="商城物品编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="w079VXJOwMfX1XU6eEG3qA" name="count" label="数量" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+  </Message>
+</Group>
+

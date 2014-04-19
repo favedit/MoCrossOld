@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="LE5qHEsXI8]dQ8Y1tKd9ow" name="game.template.box.item" label="M#12cn14宝箱物品" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_BOX_ITEM" data_alias="GM_TPL_BOX_ITM" data_logic="GM_TPL_BOX_ITEM_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="]Ud8gNZK1c1McSzqosELgw" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="r0VBUtxnCh]TffshoFVgrg" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldInteger _uuid="TkqTerajEeeb0OoGL8OFrg" name="box_tid" label="M#12cn16宝箱模板编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BOX_TID" data_refer="game.template.box" />
+  <FieldEnum _uuid="5kouX2FK[u8MsrQwkbZjiQ" name="item_type_cd" label="M#12cn14物品类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ITEM_TYPE_CD" data_size="2" data_code="game.template.item" />
+  <FieldInteger _uuid="C0joWjUOjaygAaSwilG2pw" name="item_tid" label="M#12cn14物品编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ITEM_TID" data_refer="game.template.prop" />
+  <FieldEnum _uuid="PES2w54VnfpFhTMdJDgwmA" name="bind_cd" label="M#12cn14绑定类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BIND_CD" data_size="1" data_code="game.template.item.bind" />
+  <FieldFloat _uuid="h0bvXJ1mou[Q6Uw3uXn5ig" name="rate" label="M#12cn12概率" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RATE" />
+  <FieldInteger _uuid="lkuLKwn38HlG7H6CNWe8qg" name="item_quality_tid" label="M#12cn14物品品质" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ITEM_QUALITY_TID" data_refer="game.template.item.quality" />
+  <FieldInteger _uuid="v0y29sTX1[QXMv30OL6ivw" name="count" label="M#12cn14物品数量" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="COUNT" />
+  <FieldBoolean _uuid="QUwOoP1zsDohpxTdtijPsg" name="show_able" label="M#12cn14是否展示" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SHOW_ABLE" />
+  <FieldTemplate _uuid="T0xOQJVFic20]UFQLeO2kQ" name="describe" label="M#12cn14描述模版" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

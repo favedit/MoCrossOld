@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="QUgO9g2NTmxKTosUDhqahQ" name="logic.subscribe.type.event" label="M#12cn17订阅-类型事件" is_valid="Y" note="M#" data_name="LG_SUBSCRIBE_TYPE_EVENT" data_alias="LG_SUB_TYP_EVE" data_logic="LG_SUBSCRIBE_TYPE_EVENT_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="V0vOV4wLBXxh]yU2eP]6kg" name="action_id" label="M#12cn16类型动作标识" is_valid="Y" note="M#" is_store="Y" data_name="ACTION_ID" data_alias="ACT" data_refer="logic.subscribe.type.action" />
+  <FieldInteger _uuid="5U5Eg28Lit4xNf]9PgY2qA" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_store="Y" data_name="TYPE_ID" data_alias="TYP" data_refer="logic.subscribe.type" />
+  <FieldInteger _uuid="b0QfSN4Iw[xkm0iAw4t[gA" name="event_group_id" label="M#12cn16事件分组标识" is_valid="Y" note="M#" is_store="Y" data_name="EVENT_GROUP_ID" data_alias="EVE_GRP" data_refer="logic.event.group" />
+  <FieldInteger _uuid="JE2MxZlUYjXTbyhv[5pFlw" name="event_type_id" label="M#12cn16事件类型标识" is_valid="Y" note="M#" is_store="Y" data_name="EVENT_TYPE_ID" data_alias="EVE_TYP" data_type="Integer" data_refer="logic.event.type" />
+  <FieldEnum _uuid="6k0aoXKyQ2Xmg9SXQdFnlA" name="priority_cd" label="M#12cn13优先级" is_valid="Y" note="M#12cn2141=高级\n5=中级\n9=低级" is_store="Y" data_name="PRIORITY_CD" data_type="Enum" data_size="1" data_code="logic.event.priority" />
+  <FieldString _uuid="xkLMBLDH5KGx0y8fkhE0uw" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="NAME" data_size="40" />
+  <FieldContent _uuid="C0F04lV2ofVpOejz4RdOig" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldString _uuid="mkQK84W3yOoByPfuUVLChA" name="parameters" label="M#12cn12参数" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="PARAMETERS" data_size="2000" />
+  <FieldDate _uuid="AEWgNdWPzX7PAnKRYbuioA" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_default="SYSDATE" />
+  <FieldContent _uuid="Z0A3zyKUOCrTFR5BqYlKvg" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" />
+</DataStore>
+

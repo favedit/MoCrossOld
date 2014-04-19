@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="p0fsgKeS[fbg1sLJjAKJlQ" name="game.template.equip.destroy" label="M#12cn14装备分解" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_EQUIP_DESTROY" data_alias="GM_TPL_EQP_DSR" data_logic="GM_TPL_EQUIP_DESTROY_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="WEQr2wNpYwx]Uu2iRPu7sg" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="TEE74fBPaa]W1t9EhwJtrQ" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldInteger _uuid="9UNGFLmbmhSYjW[J[IGRpw" name="equip_level" label="M#12cn14装备等级" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EQUIP_LEVEL" />
+  <FieldInteger _uuid="EErau2NjnQAZ4znOKjv7lw" name="item_quality_tid" label="M#12cn18物品品级模板编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="ITEM_QUALITY_TID" data_alias="IQT" data_refer="game.template.item.quality" />
+  <FieldInteger _uuid="gkZu]4Ed2nclYasIi1Sbmg" name="prop_tid" label="M#12cn19分解后道具模板编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PROP_TID" data_alias="PRP" data_refer="game.template.prop" />
+  <FieldInteger _uuid="uUFcY9Ak9vhR8NrUBCTFoQ" name="prop_count_min" label="M#12cn18分解后数量最小值" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROP_COUNT_MIN" />
+  <FieldInteger _uuid="vE3aJLQyXpOAVkl9aS1Thg" name="prop_count_max" label="M#12cn18分解后数量最大值" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROP_COUNT_MAX" />
+  <FieldString _uuid="OEvymshFYIalrAABn6EMiw" name="spend_currency" label="M#12cn14消耗货币" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SPEND_CURRENCY" data_size="40" />
+  <FieldTemplate _uuid="00lZnm7spQrdEBioiTX1oQ" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

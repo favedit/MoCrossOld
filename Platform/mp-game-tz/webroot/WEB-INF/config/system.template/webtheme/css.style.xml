@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="D0Rkwb9r5kO8zmHXE]VhqQ" name="webtheme.css.style" is_valid="Y" note="M#">
+  <Source _uuid="PEnz9uDV5GlhFPPL7LlAmg" is_valid="Y" note="M#"><![CDATA[<jt:loop source='$package' alias='control'>
+<jt:equals source='$control.type' value='Control'> 
+/* ------------------------------------------------------ *
+ * <jt:item source='$control.name' rpad='43'/>            *
+ * ------------------------------------------------------ */
+<jt:loop source='$control' alias='part'>
+.<jt:item source='$control.name'/>_<jt:item source='$part.name'/>
+   {
+<jt:loop source='$part' alias='attribute'>
+<jt:equals source='$attribute.type' value='attribute'>
+   <jt:item source='$attribute.name'/>: <jt:item source='$attribute.value'/>;
+</jt:equals> 
+<jt:equals source='$attribute.type' value='filter'>
+   filter:<jt:item source='$attribute.filters'/>;
+</jt:equals>
+</jt:loop>
+   }
+</jt:loop>
+</jt:equals> 
+</jt:loop>]]></Source>
+</Template>
+

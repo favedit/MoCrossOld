@@ -1,0 +1,1485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="u09HhwYrsZqLOGHToKdsvQ" name="game.core" label="游戏核心" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" source_name="MoMgEnumCore" code="Egr" code_name="GmCore" full_code="EnumCore" display_index="25" project_name="/Common/MoMessage" project_code="Mg" is_include="Y">
+  <Enum _uuid="8Eo60NnnLPlMajR[o7GasQ" name="GmServerStatus" label="服务器状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" is_set="N" is_code="N">
+    <Item _uuid="nUZxYLddPv9eYrORIFMPjQ" name="Offline" label="离线" is_valid="Y" note="M#" />
+    <Item _uuid="AU1GwRmzIbkx71KjIStViA" name="Online" label="在线" is_valid="Y" note="M#" />
+  </Enum>
+  <Enum _uuid="pkLvA3JpeoqFHrHNucJUvQ" name="GmServerFlag" label="服务器标志" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" is_set="N" is_code="N">
+    <Item _uuid="b0yXM7Hc]UF4x8xI89W8jA" name="None" label="无" is_valid="Y" note="M#" />
+    <Item _uuid="gE[8ozpp7YJ[T7yNsDPLnA" name="New" label="新服" is_valid="Y" note="M#" />
+    <Item _uuid="lUrXwRj7GJeCHTJD93AfnQ" name="Recommend" label="推荐" is_valid="Y" note="M#" />
+  </Enum>
+  <Enum _uuid="Q0UG0bw7gIDW6CiCDwl9og" name="GmAccountStatus" label="账号状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="fEFC5AuhaIR9KOzEAKxkhw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+  </Enum>
+  <Enum _uuid="2kN]cwqXM]K[X2Q9Q9mRrw" name="GmAccountFlag" label="账号标志" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="e07QHg5C46]NNOX9HagLng" name="Valid" label="有效" is_valid="Y" note="M#" flag="V" value="0" />
+    <Item _uuid="qkRbmJJeeq[BzFuKraeDkA" name="Lock" label="锁定" is_valid="Y" note="M#" flag="L" value="1" />
+  </Enum>
+  <Enum _uuid="cU6nEskOt]NSe]Auz5dSkQ" name="GmAccountTransfer" label="账号传输" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="c0]5b5RQP5tUTEMFktGymw" name="Detail" label="详细" is_valid="Y" note="M#" flag="D" value="0" />
+  </Enum>
+  <Enum _uuid="wEndgtSO]OdXUemENLtMgg" name="GmRoleStatus" label="角色状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="dUU5C60oTYqs]eLQakRSjg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="jUeuTS5cSSyLInwT]rFpkA" name="Offline" label="离线" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="IEazu[6dbshT]xxcb]KsrQ" name="Online" label="在线" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="D0PaBPqTCvPovOLmeKPfpg" name="Delete" label="删除" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="K0CtR7db7RJrCtE8GDvJgQ" name="Freezing" label="冻结" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="D0O[WgVRNo[zk3b9MxSHvg" name="Activation" label="激活" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="8EiTMKEBB8rcdiFUqcz2hA" name="DataError" label="数据错误" is_valid="Y" note="M#" value="6" />
+  </Enum>
+  <Enum _uuid="ZUADepJ9bZR47aspa]tvhA" name="GmRoleTransfer" label="角色传输" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="aE27U1TuLZUZbVuYfdR[sw" name="Item" label="物品" is_valid="Y" note="M#" flag="I" value="0" />
+    <Item _uuid="Kkow0s48By5ifLQH4YWkgg" name="Bag" label="包裹" is_valid="Y" note="M#" flag="G" value="1" />
+    <Item _uuid="M0uiLQrYTVCUqlHXhUenjQ" name="Prop" label="道具" is_valid="Y" note="M#" flag="P" value="2" />
+    <Item _uuid="Z0BxlR]6dt[]Bk[8PGXUlg" name="Equip" label="装备" is_valid="Y" note="M#" flag="E" value="3" />
+    <Item _uuid="MEcicK[jAho2vi6HZIuVjg" name="Book" label="心法" is_valid="Y" note="M#" flag="B" value="4" />
+    <Item _uuid="nkqhqDFRI5iRgYlkIcDQsg" name="Skill" label="技能" is_valid="Y" note="M#" flag="S" value="5" />
+    <Item _uuid="MU]SlMhYEHovMce5]fTikQ" name="Ride" label="坐骑" is_valid="Y" note="M#" flag="R" value="6" />
+    <Item _uuid="Ek]]bOH3S3s[xARmFpBwtA" name="Pet" label="宠物" is_valid="Y" note="M#" flag="E" value="7" />
+    <Item _uuid="NkF]UnkYf8S1njYgRB[YqA" name="Task" label="任务" is_valid="Y" note="M#" flag="T" value="8" />
+    <Item _uuid="UU1Ut76HwFknJRcn3FmuiA" name="Friend" label="好友" is_valid="Y" note="M#" flag="F" value="9" />
+    <Item _uuid="20XHwm]AbQo8P8LaWfqUjQ" name="Recently" label="最近联系人" is_valid="Y" note="M#" value="10" />
+    <Item _uuid="X0UO329QqKT4ZZUW1E9prA" name="Mail" label="邮件" is_valid="Y" note="M#" flag="M" value="11" />
+    <Item _uuid="BUUBQYnC7kYnuegw38HliQ" name="Practice" label="修炼" is_valid="Y" note="M#" flag="P" value="12" />
+    <Item _uuid="PETlG1dXWAGzQQ2x03TxhQ" name="Buff" label="buff" is_valid="Y" note="M#" value="13" />
+    <Item _uuid="EUcrUxVD6fAjhxSTobo1vA" name="Title" label="称号" is_valid="Y" note="M#" value="14" />
+  </Enum>
+  <Enum _uuid="hUqD]VyrAJ7qMn8eOcimpA" name="GmLoginMode" label="登录模式" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="4E0RZ9626nS0tcTN0Q8Gtg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="NEuMU3333di8MjVHnrtwrA" name="Create" label="创建方式" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="5Uir9pTuXYioiyiRNUHvgg" name="Link" label="关联方式" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="5k4qivkIzB4FNUrHgnm2tA" name="GmLoginCheck" label="登录检查" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="SUAF8PDxiFIbPSulR9Vbvw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="CE17BLLeD75VvjEqVju3pA" name="Account" label="账号" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="UkuqLtK8oRqGvdsdqUNntw" name="Role" label="角色" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="c0e5Xaeh6FpqCaQETe8Mrw" name="GmLoginResult" label="登录结果" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="iUximfCXCUDZDtMc0IZtvQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="eUyuMb5U8MIrePjWCh[djw" name="PassportEmpty" label="通行证为空" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="xkHNJ8XQCxwHTvD0xtaEmQ" name="PassportNoExists" label="通行证不存在" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="ykLeb4iPh]TuxB0wvVqvng" name="PasswordEmpty" label="密码为空" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="90dEjTfa6fHeFan7r3gXiQ" name="PasswordInvalid" label="密码不正确" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="ckCWuLbpe4eOQ2LL11nHng" name="Pass" label="通过" is_valid="Y" note="M#" value="5" />
+  </Enum>
+  <Enum _uuid="Y0HHtsXwzkWDBRPZmZZmgw" name="GmLoginConnect" label="登录连接" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="cU2fU2mWiSDPrNy[J0Dspw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="tEahUIH8d3oSpbvwlAdTrQ" name="Able" label="允许" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="TEcnRHBjZToXjGH9GUvCpA" name="Repeat" label="重复" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="5kDj1Mb1J9i0Rp5lAMm[jw" name="Disable" label="禁止" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="s0RTT6Pb0p5oV7G2PKxkiQ" name="GmBattleOrder" label="战斗指令类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="BkvHSN[mXefAwl3eA1b7hw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="UUjHJSKw0GKbLMXPtOxFpg" name="AttackPhysical" label="物攻" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="Jk]FPCJUNpL04tHg5CtmnQ" name="AttackMagic" label="法攻" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="[Ui7YsV3ypt96Kz0yZWLrQ" name="Special" label="特技" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="EUTePdTmg8Tyl5y1Ej97vA" name="Talisman" label="法宝" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="LEC3gFmxH[awJ1Kt9BLNgQ" name="Item" label="道具" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="k05WmjifIxH3wb5cdnDomw" name="Defense" label="防御" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="MEDTAYoHhJzM[iR7ksWpkA" name="Protect" label="保护" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="FUGC9W0utPldM[4Ypx0WlA" name="PetSummon" label="召唤" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="CElAHVtLuzGmv7L[Vyhpiw" name="PetDisband" label="招还" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="NUZyNglC3WCFTm5U3SPaqg" name="PetCapture" label="捕捉" is_valid="Y" note="M#" value="10" />
+    <Item _uuid="40WG0fero[mKB6Cd6mN]rw" name="Escape" label="逃跑" is_valid="Y" note="M#" value="11" />
+    <Item _uuid="Ok1r7mOXOa7OAcpqsdDnuA" name="Automatic" label="自动" is_valid="Y" note="M#" value="12" />
+  </Enum>
+  <Enum _uuid="eEyqE6EgeTmdD]QfYn4ulg" name="GmBattleMember" label="战斗成员类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="tUL7sJ7SkebRUoSIV9P7hQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="00hr4QkvhDIhMsGTKcCDsQ" name="Player" label="玩家" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="qEKd9K1r347wKbRgNaQWlg" name="Actor" label="演员" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="70ylg1qOCX5TUOxw4RiVvw" name="Npc" label="角色" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="fElkbpKfAruLyUSWJJ4]pg" name="GmBattleEventAction" label="战斗事件命令类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="5EdYhf[Tbwu[i75]0RlOtA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="5EWqfQtbPHcY]]IDayerhg" name="Move" label="移动" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="CkRgznupxgW2YDGyNhCNpw" name="Attack" label="攻击" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="30ntYqhp6bs]ONlOITu3gg" name="Bear" label="受击" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="i0lUKyXeM]zBbWh4ByNvmw" name="Death" label="死亡" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="iUTTE[AfYZPjjd9s3U4YlA" name="Fly" label="打飞" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="XUBgMqVcyLWAhA7MAsITsA" name="Magic" label="施法" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="IkuJXGHG7KieYimaq5arqw" name="Rebirth" label="复活" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="I0EQrcNP1atboHfWHI1ehA" name="AddEntity" label="添加实体" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="q0Kh[HdOiwf4nwhhfV9mmw" name="RemoveEntity" label="删除实体" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="qEvetvQTTDxEtgbdjH5WkQ" name="Flee" label="逃跑" is_valid="Y" note="M#" value="10" />
+    <Item _uuid="aE2JgPRPdtbkLvT5xFFWjg" name="FleeFail" label="逃跑失败" is_valid="Y" note="M#" value="11" />
+    <Item _uuid="6k71XSaDt1SN3dxAkq6zkQ" name="Dodge" label="躲闪" is_valid="Y" note="M#" value="12" />
+    <Item _uuid="OU2EOy5JhnnsB3Ii6WZDnQ" name="ShowWord" label="显示文字" is_valid="Y" note="M#" value="13" />
+    <Item _uuid="XkRuFrn63RDn6hGAH6gxhQ" name="ShowMessage" label="提示信息" is_valid="Y" note="M#" value="14" />
+    <Item _uuid="d0BZJbUSi7r9Q5wV]m]Rpw" name="ChatContent" label="聊天内容" is_valid="Y" note="M#" value="15" />
+  </Enum>
+  <Enum _uuid="AUyY[kYhKXG2F99z9rVBkg" name="GmBattleEventEffect" label="战斗事件影响类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="v0ODlUUk38eQvXiPaFWppA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="50qeolCYE2Z]Or2dD6BOsA" name="Property" label="属性影响" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="hkfZDBpYirXrFJirqYlRvQ" name="Stealth" label="隐身" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="ykZE8UpgzpoQ0I8hQAluhg" name="Buff" label="设置buff" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="00M02[]wotJnol24lP7ftQ" name="GmBattleEvent" label="战斗事件类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="6kTO6AxUWN]2McFhW91Lsg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="bEX6P5U3fO7ramcXb9JcvQ" name="Begin" label="开始" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="M0Ptcl]UtxD0ftHjP8vvqA" name="Before" label="前处理" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="uEaJeqFS80qei9F6vLRekw" name="After" label="后处理" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="rUQe72nUVoOUTxYO1JekkA" name="End" label="结束" is_valid="Y" note="M#" value="4" />
+  </Enum>
+  <Enum _uuid="gErYx[Yz5hHW20KGzdv6mA" name="GmBattleSpan" label="战斗时段类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="ZkGWKzrHuytpPnWpyytXmA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="wUUjn6ghYYz4B2uPvNihgg" name="Begin" label="开始" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="O0fVflz6YGUWZ3jiojtbrA" name="Move" label="移动" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="gkvVZhnvCRPcegNFBgvklw" name="Skill" label="施法" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="3ESoAhlkfi2EPIBLEo50ng" name="Battle" label="攻防" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="VUXAIjfrLF5nX[IkXTIjsg" name="Bear" label="受法" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="8UaOvAmTfsQlJz5kqn8Hrw" name="Back" label="撤回" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="hEOIcpdmHo9pfdCl6rsehg" name="End" label="结束" is_valid="Y" note="M#" value="7" />
+  </Enum>
+  <Enum _uuid="]USPbonNB76T7G8WPjwlpg" name="GmBattleStep" label="战斗步骤类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="SkqT[T5]5ZZ2[q0aOVQ4hA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="1kxxmEZSV8GD9kAVhMF1og" name="Action" label="行动" is_valid="Y" note="M#" value="1" />
+  </Enum>
+  <Enum _uuid="ZkvZZhrv[BqXDK0y8tlQtg" name="GmBattleStepStatus" label="战斗步骤状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="u0QB[LU]M[gTWAspomf]qQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+  </Enum>
+  <Enum _uuid="kECSw2Gi1mWikR3Np5tEuA" name="GmBattleStepFlag" label="战斗步骤标志" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="8UpFCYk]XJGeAkDeaTdKkA" name="Valid" label="有效" is_valid="Y" note="M#" flag="V" value="0" />
+  </Enum>
+  <Enum _uuid="J0g76F5b1yK1oAjrqdPiiw" name="GmBattleRound" label="战斗回合类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="7EYaS[rHzpT[]QGfj[xUpw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="TUYhWoe7snkOEwYRMFhKmg" name="Begin" label="开始" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="HkESazbak7mSqC2StoVNhg" name="End" label="结束" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="]UZLY1]XncQtgPdSUEIDmA" name="GmBattleRoundStatus" label="战斗回合状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="ZU1NhKe6wtFiHc6mgt4lvg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+  </Enum>
+  <Enum _uuid="2EWD7oYJvXDLQgYYA7H0qQ" name="GmBattleRoundFlag" label="战斗回合标志" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="JkroSnwirXnWYgBRBIHLtg" name="Valid" label="有效" is_valid="Y" note="M#" flag="V" value="0" />
+  </Enum>
+  <Enum _uuid="QE9CVw[r]01oGsiR]jXggg" name="GmBattleStance" label="战斗站位类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="Ukr7yE6pIJkAUbIUy3z]tg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="3U2SN4tM[hy[tYiYygz1rQ" name="Player" label="玩家" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="gEGvNvphj19c7UY6kD0Wng" name="Monster" label="怪物" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="yEWADo3R8zZ7NWhG3XLSsQ" name="Pet" label="宠物" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="uUt1hJI7Ed9M[guCLRxijQ" name="GmBattleStanceStatus" label="战斗站位状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="DUOAnSade5Cu]YbBxU1roQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="WUAQOwTrD]B3m6qdqeDCqw" name="Dead" label="死亡" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="sUttvBoFeuSUbTzGg5R[sw" name="Leave" label="离开" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="JE8Pl3LU65utWH78tSF9rA" name="Battle" label="战斗" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="UEye9]lNUgT1keyn5DGWgA" name="GmBattleStanceFlag" label="战斗站位标志" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="z0BRUiGMqBWQEBPRDYdOlQ" name="Valid" label="有效" is_valid="Y" note="M#" flag="V" value="0" />
+    <Item _uuid="K0C3NELr4rfrZXoJc2FpiQ" name="Ready" label="准备好" is_valid="Y" note="M#" flag="R" value="1" />
+    <Item _uuid="FE3OyUqJciuSdzUBJw3ihQ" name="Initiator" label="发起人" is_valid="Y" note="M#" flag="I" value="2" />
+  </Enum>
+  <Enum _uuid="g0OIFz9Dxh5vZIp]56H1rQ" name="GmBattleGroup" label="战斗分组类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="Y" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="HkIeHwGzX4J5bT54[iQWhA" name="View" label="观战方" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="RUnp0WUvwvCNW1YcgZdatw" name="Side1" label="右下方" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="a0N[gmCHhEr9mL]27ZFPlQ" name="Side2" label="左上方" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="ZE8Q1YmR8G7uNIusQ35jlQ" name="Control" label="控制方" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="WUMAlmwl5XWXE8nUFaGBrA" name="GmBattleGroupStatus" label="战斗分组状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="KUkJfvBd[T7Oa8Bd[L]ykw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="50m6XUseNPbcArgpX5Guhw" name="Leaved" label="已经离开" is_valid="Y" note="M#" value="1" />
+  </Enum>
+  <Enum _uuid="[EvDAWz88t4ZPrphBm2prA" name="GmBattleGroupFlag" label="战斗分组标志" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="lEWRtvQu5UIA7HRk4uHSgw" name="Valid" label="有效" is_valid="Y" note="M#" flag="V" value="0" />
+    <Item _uuid="tEv30DSjm2FAGPQsH[B3qA" name="MemberFull" label="满员" is_valid="Y" note="M#" value="1" />
+  </Enum>
+  <Enum _uuid="ckLIm1mBxo5z1sdO1gJQsQ" name="GmBattle" label="战斗类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="uEFouok0pn]YRi[K0FGoqg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="10EFaWrNVI327Vk0WM2RgQ" name="Monster" label="遇怪" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="W0oarIqnMEz2UI500p]mjA" name="Challenge" label="挑战" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="T0aRQZfiNaMoiQpgwYELpg" name="Pk" label="对战" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="gEGpH[c3v1acLsmZOHdkkg" name="Robbery" label="劫镖" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="80QBX54FZE]XgApzAj2EpA" name="Duel" label="切磋" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="mUkPxnQZNxEsBDZet7eFtA" name="Tournament" label="竞技场" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="rEza3SV6bKPR2qpfNgHCiQ" name="SocietyBattle" label="帮战" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="o0KCgM5DQgV5ezHdC[B[oQ" name="Arena" label="擂台" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="AktZCOdoqxZDWVU7TdDtoQ" name="MetierArena" label="师门竞技" is_valid="Y" note="M#" value="9" />
+  </Enum>
+  <Enum _uuid="ZEJN1XBRj0]N3hVZmlCUmQ" name="GmBattleAction" label="战斗命令" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="aU39sHPMFbr2l36VN9Jsgg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="PUghdEdhBfGoZPmXJn80lw" name="Player" label="玩家" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="Tk399cv5tuRMeTO7d2]BnA" name="Pet" label="宠物" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="cUK47jRjgeHzS8KHMMBbgA" name="GmBattleStatus" label="战斗状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="lkJu1XoOAxcAVnVskENZow" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="hEx9m[XgSwYuRtCF4wFWtA" name="Close" label="关闭" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="YEKA]YLjhQn5KhuNwcX4qQ" name="Open" label="打开" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="7EJ2nNB95fLNXyeOXruviw" name="Battle" label="战斗" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="IE4q1S6reWORO290[Pe7sA" name="Finish" label="结束" is_valid="Y" note="M#" value="4" />
+  </Enum>
+  <Enum _uuid="9ES54rqfMb5S4cLITmQuow" name="GmBattleFlag" label="战斗标志" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="5Evu[63hHB0wFIRRhi38rA" name="Valid" label="有效" is_valid="Y" note="M#" flag="V" value="0" />
+  </Enum>
+  <Enum _uuid="a0DedjjVJN2S8vcb6FrpoQ" name="GmBattleProcess" label="战斗处理" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="z0D3nl6XsdQ5N9Nq]FNngw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="IEeGpSRIChiAiTn5tzZ0qw" name="BattleBegin" label="战斗开始" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="Gk4qNkKCa]GYn]SPf7W5nQ" name="RoundBegin" label="回合开始" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="T0cHT63PTPjIAF]3a6mqgA" name="StepBegin" label="步骤开始" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="pkQMpP8gtIX5dWNTjfJdgQ" name="SpanBegin" label="时段开始" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="HU4hxLDYRW]1IRqgFUGHtg" name="SpanEnd" label="时段结束" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="PU4urQnylsOwR427]oeSpA" name="StepEnd" label="步骤结束" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="0E]4wO0Z2ZJzwsTvWjNmhw" name="RoundEnd" label="回合结束" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="NkTMT]9F4kMIPwlz9a0Blw" name="BattleEnd" label="战斗结束" is_valid="Y" note="M#" value="8" />
+  </Enum>
+  <Enum _uuid="fUmjrZzz5GNLgfnJIHhHnQ" name="GmTradePart" label="交易部分类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="8Ugjj56noxSk[YQVVNwStQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="r08V8QQHIg2TPHINa6d]rQ" name="Source" label="来源" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="Z0NQHJKgqFVI63BiemjWtA" name="Target" label="目标" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="5EwJaoXG8oTU[K66mIq6mA" name="GmTradePartFlag" label="交易部分标志" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="I0cUv0MURFvR[yDByWd3jw" name="Valid" label="有效" is_valid="Y" note="M#" flag="V" value="0" />
+  </Enum>
+  <Enum _uuid="a0or1YjUCss[VNH4T]DXkw" name="GmTradePartStatus" label="交易部分状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="akritUF8bJHi2CWk965Dtg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+  </Enum>
+  <Enum _uuid="gE6PxlV4uXqbpNMGNsYYrA" name="GmTrade" label="交易类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="JEw09GGLBZoLKAuoIaOjgw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="ZketsqrKCvarOU0DhMMPqw" name="Npc" label="NPC" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="H0xP3Mf1NFpnegcrxsyzmw" name="Player" label="玩家" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="dEMZLIjylwvqh[d[dHwMsw" name="Store" label="商城" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="804whuzoXE78XtbCu4XCpw" name="GmTradeStatus" label="交易状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="7EDyZqj5qSdMiYsF66hdmA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+  </Enum>
+  <Enum _uuid="EUA5Xj2zpfH7zEzDj5Exow" name="GmTradeFlag" label="交易标志" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="0UUGE8MnAXcbnwuVN20iqA" name="Valid" label="有效" is_valid="Y" note="M#" flag="V" value="0" />
+  </Enum>
+  <Enum _uuid="8kPQ3t7ctBMS3OrmSBietQ" name="GmTradeMode" label="交易模式" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="UETLvrLVge70XYBRPqYdgA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="H0wxdo9RBxeogO[lN8OKsg" name="Buy" label="买" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="UUOQmoO0jkbfRey0JNNWgw" name="Sell" label="卖" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="ukpxKuP9MOATgNO4NMEAmQ" name="BuyBack" label="回购" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="sU9xuf1Wd3Fe[sBCFyF7nA" name="GmTradeAction" label="交易动作" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="ck[4ZMTuF]Ni6f40BFEjog" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="M0FxdrinWwTw]gOnxPqVpg" name="Lock" label="锁定" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="UE1[DqSM8oY[BVqjnDBcvw" name="Confirm" label="确认" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="0kjKHkl]L829TL2WR2SigQ" name="CancelTrade" label="取消交易" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="ck7ezLjdc1lvln2VOJalqg" name="CancelLock" label="取消锁定" is_valid="Y" note="M#" value="4" />
+  </Enum>
+  <Enum _uuid="d01s7FxS1sflmREJprkxig" name="GmTaskTrack" label="任务跟踪类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="gUz2H0DK1oJxHq1dse[thQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="okV69a1vq04hVdeSQ83Nng" name="Kill" label="杀死" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="LkcXXrMPCQkMedB1bXMYog" name="Collect" label="购买收集" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="3kXPqIJeJybVxKWHQ]1Ohg" name="Talk" label="对话" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="rUgdzbeSwvcG5yz40tLfmg" name="WearEquip" label="穿戴装备" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="cEIXYTN48SPU71FFMmdUsQ" name="UseItem" label="使用物品" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="W09mO]0yq1u9k3iTQPFLpA" name="Deliver" label="交付" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="pkvzpWP4xP[0W0KzV[]HrA" name="Challenge" label="挑战" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="2EdOUoJSzeeaUEYp]JVxrg" name="Catch" label="扑捉" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="fUI[ZJlnLJuaBYsS5dGegg" name="GoUpTo" label="前往" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="O03kcuyyZ50g]WyhJaS3rA" name="GoUseProp" label="前往某地使用某物品" is_valid="Y" note="M#" value="10" />
+    <Item _uuid="y036[3zkkbaaugZVogNLhw" name="GoWearEquip" label="前往某地使用某装备" is_valid="Y" note="M#" value="11" />
+    <Item _uuid="xUs67slDyyL8f[Nu3o1vgQ" name="Give" label="给予" is_valid="Y" note="M#" value="12" />
+    <Item _uuid="AkSrIB71lSLjUw8v6zwJmQ" name="Escort" label="护送" is_valid="Y" note="M#" value="13" />
+    <Item _uuid="705Y4tTGlbWMsWUCzUk5nQ" name="WithoutTrack" label="不跟踪" is_valid="Y" note="M#" value="14" />
+    <Item _uuid="zE6nRGw1yLOZRqSH2httoQ" name="Skill" label="提升技能等级" is_valid="Y" note="M#" value="21" />
+    <Item _uuid="P0hphxs3pEXz3W7gAqcIiA" name="Level" label="提升等级" is_valid="Y" note="M#" value="22" />
+    <Item _uuid="AUZhjKgDXIuC3BtfdiUZvQ" name="Soaring" label="飞升" is_valid="Y" note="M#" value="41" />
+    <Item _uuid="1kkAsHMvXPosW3XPjHKang" name="Gather" label="采集" is_valid="Y" note="M#" value="61" />
+    <Item _uuid="ZkqCfdN]6ADEUJ95eYPonQ" name="Buy" label="购买" is_valid="Y" note="M#" value="81" />
+    <Item _uuid="DEIopgWXfbMzCYvexD7ttg" name="Fighting" label="战斗场数" is_valid="Y" note="M#" value="82" />
+    <Item _uuid="b0ONA[9iU89fyjiutb4vrQ" name="Get" label="获得" is_valid="Y" note="M#" value="101" />
+    <Item _uuid="8UGkxuT3DQu9eLOhwD5fuA" name="FavoritesWebsite" label="收藏网址" is_valid="Y" note="M#" value="121" />
+    <Item _uuid="zUI]yX7XNmwNIDsh69mDpA" name="PetGrow" label="宠物成长" is_valid="Y" note="M#" value="122" />
+    <Item _uuid="0kyCTPewa[xsZEUP5PyQtA" name="AcceptNPC" label="接取NPC" is_valid="Y" note="M#" value="141" />
+    <Item _uuid="p0EMcfHeWo0lelAHRmavvg" name="Chuck" label="赶走" is_valid="Y" note="M#" value="161" />
+    <Item _uuid="LkCzUeHGNikj[cyt9meQkg" name="Lesson" label="教训" is_valid="Y" note="M#" value="162" />
+    <Item _uuid="FknBVi6YLYTOOafq0qKoqA" name="Beat" label="击败" is_valid="Y" note="M#" value="163" />
+    <Item _uuid="5EXQFUzPVUy]G3cRHfVtgQ" name="StrengthenEquip" label="强化装备" is_valid="Y" note="M#" value="179" />
+    <Item _uuid="LE3Qlj9g8Z6h6EOM2kGouw" name="CostMoney" label="消费元宝" is_valid="Y" note="M#" value="166" />
+    <Item _uuid="YUbTBibmSXE1pLJQSjpAsg" name="MountsUpgrade" label="坐骑升星" is_valid="Y" note="M#" value="167" />
+    <Item _uuid="ckl0PrqleirOSDk2zhvqmw" name="MountsEvolution" label="坐骑进阶" is_valid="Y" note="M#" value="168" />
+    <Item _uuid="IEJd3uoVC4IdA94Xzk1yuA" name="HaveFaction" label="拥有帮会" is_valid="Y" note="M#" value="169" />
+    <Item _uuid="M0qGGqfP]Y2UrV526ob0vQ" name="FactionDevote" label="帮会贡献" is_valid="Y" note="M#" value="170" />
+    <Item _uuid="pUPlXZXpaStak1ZUZcM2ow" name="PlusFriends" label="添加好友" is_valid="Y" note="M#" value="171" />
+    <Item _uuid="2URHLg9HcUj3D7EaBW4lkg" name="EquipAppraisal" label="鉴定装备" is_valid="Y" note="M#" value="173" />
+    <Item _uuid="K0QxKwRKEHbz88R1kP9Bow" name="MosaicGem" label="镶嵌宝石" is_valid="Y" note="M#" value="174" />
+    <Item _uuid="Z0QRYCwbgeUyccv9CDr0oA" name="GemMerge" label="合成物品" is_valid="Y" note="M#" value="176" />
+    <Item _uuid="t0YEIheZiJ]l6rDTDsEWtg" name="EquipCast" label="铸造装备" is_valid="Y" note="M#" value="178" />
+    <Item _uuid="QkW6Hk3FCI[43YosCayrlA" name="EverydayStreng" label="每日强化" is_valid="Y" note="M#" value="165" />
+    <Item _uuid="50BMNWJBI3OayKbRtDdupQ" name="MountsGrade" label="坐骑指定星级" is_valid="Y" note="M#" value="181" />
+    <Item _uuid="QU[LV]7NbAMJ0ZW6MYnklg" name="PetCulture" label="宠物培养" is_valid="Y" note="M#" value="182" />
+    <Item _uuid="cED6HoCi]jk]wh4F3beCmw" name="KillMonster" label="杀怪收集" is_valid="Y" note="M#" value="184" />
+    <Item _uuid="YkpYPG3ivO5dT32teWr2jQ" name="ClearanceMaze" label="通关副本" is_valid="Y" note="M#" value="201" />
+    <Item _uuid="ok2VPsEag18wt1my5MdDqQ" name="EquipTotalGrade" label="装备总星级" is_valid="Y" note="M#" value="202" />
+    <Item _uuid="k05Eeb6lxh3wK94Byx0IgA" name="TrackFail" label="任务失败" is_valid="Y" note="M#" value="203" />
+    <Item _uuid="iUHiisJUk8f2Caq3R6n]lw" name="SnatchGoods" label="夺回物品" is_valid="Y" note="M#" value="221" />
+    <Item _uuid="t0a3IgHjDw9GDRw6kSKKvQ" name="PetSkill" label="宠物学习技能" is_valid="Y" note="M#" value="241" />
+    <Item _uuid="8kTXjFaaRc[qVwGI9KdetA" name="PetPotential" label="宠物提升资质" is_valid="Y" note="M#" value="242" />
+    <Item _uuid="q0cSUu1gSeDbmS9PxRnFlw" name="ProduceCollect" label="制作收集" is_valid="Y" note="M#" value="243" />
+    <Item _uuid="f0aIYapmTmRVxOh]W8]fsg" name="DungeonKill" label="副本杀怪" is_valid="Y" note="M#" value="261" />
+    <Item _uuid="VEufP3mT28RBsL2DZFTXiA" name="Damage" label="破坏" is_valid="Y" note="M#" value="262" />
+    <Item _uuid="XkgAusTwQhIxz7Tl9LEsmw" name="KillNoMap" label="杀怪无地图" is_valid="Y" note="M#" value="263" />
+    <Item _uuid="4EK59GObgYlxHD[kW1tdjw" name="OpenListUI" label="打开皇榜UI界面" is_valid="Y" note="M#" value="281" />
+    <Item _uuid="YEDEFVkHcRN7s3DLuYuAjg" name="BuyReward" label="显示奖励追踪" is_valid="Y" note="M#" value="302" />
+    <Item _uuid="[UKJZzJFK3Mfkq9EfzU4vQ" name="GiveBirthEgg" label="孵化宠物蛋" is_valid="Y" note="M#" value="321" />
+    <Item _uuid="bkAQwA63UrZPEOt9fvMyhA" name="RankUpGetRide" label="进阶得坐骑" is_valid="Y" note="M#" value="322" />
+    <Item _uuid="A09yJSTVj24dlvyy6dZwhQ" name="Toumament" label="乾坤斗法" is_valid="Y" note="M#" value="341" />
+    <Item _uuid="gE8QFrdmFYsBwjJ6D5uCpw" name="Arena" label="群雄逐鹿" is_valid="Y" note="M#" value="342" />
+    <Item _uuid="SkL11BC0MuCFPXwvwui8hQ" name="Arenarank" label="擂台竞技" is_valid="Y" note="M#" value="343" />
+    <Item _uuid="GUSX0mgSJi[afNzmguDrvA" name="EliminateWorldBoss" label="除妖降魔" is_valid="Y" note="M#" value="344" />
+    <Item _uuid="SkHaXtdBkdzVwUpOFMk5mg" name="Ninecirles" label="九界伏魔" is_valid="Y" note="M#" value="345" />
+    <Item _uuid="WE2Vh68A8s8SGLSv[A8Inw" name="ChongZhi" label="首冲元宝" is_valid="Y" note="M#" value="361" />
+    <Item _uuid="JEgE[wHgJ[tNcp0y3WTlkA" name="LevelKill" label="等级杀怪" is_valid="Y" note="M#" value="381" />
+    <Item _uuid="MEEXPKqYVRIjFHaGceRDlw" name="SoarOpera" label="飞升操作" is_valid="Y" note="M#" value="401" />
+    <Item _uuid="GU7xcM9la7nfYybSr50dng" name="WorshipStatues" label="拜摸雕像" is_valid="Y" note="M#" value="16" />
+    <Item _uuid="pEkCbnoac9DKEmIm4Vr5iQ" name="TeamKill" label="组队击杀" is_valid="Y" note="M#" value="23" />
+    <Item _uuid="2EgDTYctWhPpwV3WG5V0hQ" name="TeamCollected" label="组队采集" is_valid="Y" note="M#" value="24" />
+    <Item _uuid="BUcqtlCMBXuu8C7y[j9Tqg" name="TeamUseItems" label="组队使用物品" is_valid="Y" note="M#" value="25" />
+    <Item _uuid="k0z2GBbqQoIN0NyldnjXvA" name="TeamDialogue" label="组队对话" is_valid="Y" note="M#" value="26" />
+    <Item _uuid="qUYbGuluoN1KIe3KsgBNhg" name="TeamFlowers" label="组队种花" is_valid="Y" note="M#" value="27" />
+    <Item _uuid="N0vxhhIK6jlabQuEIBqBhA" name="WongStandings" label="完成一次皇榜" is_valid="Y" note="M#" value="28" />
+    <Item _uuid="DUhMow18rNybLrX0ra3nkg" name="NextDayLanding" label="再次登录" is_valid="Y" note="M#" value="421" />
+    <Item _uuid="GkuQnQ2X8PdqTDgOYJJxjA" name="NextDayReceive" label="次日登录领奖追踪" is_valid="Y" note="M#" value="422" />
+    <Item _uuid="AEWyVXExu]HpAtcEXisbuQ" name="Landing" label="登录" is_valid="Y" note="M#" value="423" />
+    <Item _uuid="2ESW5J9SW]ArJR1[zTlUoQ" name="FirstDart" label="首次押镖" is_valid="Y" note="M#" value="441" />
+  </Enum>
+  <Enum _uuid="kkO4EDny2x21FXcOOVOGlQ" name="GmTaskTrigger" label="任务触发" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="1E37PvyjsUuZgvms6SqXlQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="w0]gH7TwWL49683UKjXOiA" name="Line" label="分线" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="UkgK5]VmW]527cXXa][ngQ" name="Map" label="地图" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="]knfjeLR0tYKq3WF1C1VrA" name="Area" label="区域" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="PUTyUFIjtsJ6R1Spg4busg" name="Actor" label="演员" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="VEjG5gVlLHhs]OmA224wjA" name="Level" label="等级" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="fk][sZvIoDgDg]St74FVsA" name="Task" label="任务" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="wUVCSqSOnRJNEwmGkeYGkw" name="CompleteRingTask" label="当前完成环任务次数" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="YkRtfgQl4A18KRt[x3Prlg" name="TodayCompleteTaskCount" label="当天完成环任务限制" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="PU83BztR5iBPDHj1c5TYkA" name="TaskMutex" label="任务互斥" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="mE]EzEHcmTX7i[IGRMz9mw" name="GroupMutex" label="组互斥" is_valid="Y" note="M#" value="10" />
+    <Item _uuid="ok0Kef41Pyz7DrIQNX]qpA" name="Faction" label="帮会" is_valid="Y" note="M#" value="11" />
+  </Enum>
+  <Enum _uuid="60w5eu]Psbj]oDlhZM3dlA" name="GmTaskLimit" label="任务条件" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="SUmf3lx4zIIzmMGM1U84ow" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="2UyGU3Fp3oFdEo[2SlIOnw" name="Level" label="等级" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="bUB6qBzYebsW6DPhHil]uQ" name="Experience" label="经验" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="1U6N4mS[EHdRt8hr]8NxpA" name="Currency" label="货币" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="NEtloet8GwvK4Oas9L9Siw" name="Property" label="属性" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="b0Z1rl8qOzQAyGnCJcf]iA" name="Prop" label="可购买的道具" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="3EAo3fdWfoA2rik9JA1hmg" name="Equip" label="装备" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="NkDPILTQ[0HJDla4JQGJrg" name="Pet" label="扑捉宠物" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="OkF3tXrFbUJPcO25zk]4ow" name="Ride" label="坐骑" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="7kbz4VwwLZP[PIeyiDO2tQ" name="Book" label="心法" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="wkpWcXIQQHfFEBB2S2EavQ" name="Skill" label="技能" is_valid="Y" note="M#" value="10" />
+    <Item _uuid="ukzb04rMgLqKCA6Z5[HUvg" name="Buff" label="BUFF" is_valid="Y" note="M#" value="11" />
+    <Item _uuid="UUBTwcN3qUhQQ8L]6eDdqQ" name="Task" label="任务" is_valid="Y" note="M#" value="12" />
+    <Item _uuid="wEnddNbHVEpjnS93J61Ykg" name="TaskMutex" label="任务互斥" is_valid="Y" note="M#" value="13" />
+    <Item _uuid="D07bP22FDhaunoQF69Upqw" name="TaskPipe" label="任务管道" is_valid="Y" note="M#" value="14" />
+    <Item _uuid="PkHoNHT343KBL]mW5IHyqg" name="TaskPipeMutex" label="任务互斥管道" is_valid="Y" note="M#" value="15" />
+    <Item _uuid="v0yDeQpq]ZqAe6AUXWLNtA" name="Talk" label="对话" is_valid="Y" note="M#" value="16" />
+    <Item _uuid="LUfvPHLZpBE85HH3XZ3ckw" name="Challenge" label="挑战" is_valid="Y" note="M#" value="17" />
+    <Item _uuid="V0m5GKV39OhOFn]Tpi0vsw" name="Kill" label="击杀" is_valid="Y" note="M#" value="18" />
+    <Item _uuid="X0IRf2M4EetUIhCsCCYwqw" name="Pk" label="对战" is_valid="Y" note="M#" value="19" />
+    <Item _uuid="bUSPyv0RCSSkO02SBiJNlA" name="Escort" label="押镖" is_valid="Y" note="M#" value="20" />
+    <Item _uuid="yE]Zd9a9vwrO3myGAcNRiQ" name="Line" label="分线" is_valid="Y" note="M#" value="21" />
+    <Item _uuid="JkJnpC7zV2m0nKdXNQDgpg" name="Map" label="地图" is_valid="Y" note="M#" value="22" />
+    <Item _uuid="uU8RbLi]vveXAx0BmAbNhg" name="Area" label="区域" is_valid="Y" note="M#" value="23" />
+    <Item _uuid="ukCHsjdBUo1TCMCT4MYZuw" name="Special" label="已完成" is_valid="Y" note="M#" value="24" />
+    <Item _uuid="dEv4I9Hbxq[XMTacMKsBjg" name="Metier" label="职业" is_valid="Y" note="M#" value="25" />
+    <Item _uuid="YUKidU1HjHPoqAS6FahOjw" name="Protect" label="保护NPC" is_valid="Y" note="M#" value="26" />
+    <Item _uuid="kk3aYmzmjhPx1e[Puz4Ipg" name="Messager" label="送信" is_valid="Y" note="M#" value="27" />
+    <Item _uuid="oEm]PRjd5Mw6WmUu8bi[lA" name="WearEquip" label="检查装备" is_valid="Y" note="M#" value="28" />
+    <Item _uuid="cUBAYQDxtXt3zn30dcPtjg" name="UseItem" label="使用物品" is_valid="Y" note="M#" value="29" />
+    <Item _uuid="qU2cKXk4DxCqc0QdxCGCuA" name="Checkfunction" label="检查功能" is_valid="Y" note="M#" value="30" />
+    <Item _uuid="f0YgHMQloUOMSh7uvtLVlw" name="Gender" label="性别" is_valid="Y" note="M#" value="31" />
+    <Item _uuid="0USbd6fXvvF5RW15FD9pvQ" name="Give" label="给予" is_valid="Y" note="M#" value="32" />
+    <Item _uuid="10xrmcXQKlFcLWsIPEvLgg" name="Item" label="物品" is_valid="Y" note="M#" value="33" />
+    <Item _uuid="zEWUrIiY8FYVghSS4tDTiA" name="Race" label="种族限制" is_valid="Y" note="M#" value="34" />
+    <Item _uuid="FkBf1I6MEGszZymIdn1LhA" name="Gather" label="采集" is_valid="Y" note="M#" value="35" />
+    <Item _uuid="UkdWym8Z4[TDF0xFCmNFuw" name="CompleteRingTask" label="当前完成环任务次数" is_valid="Y" note="M#" value="36" />
+    <Item _uuid="kERc6HEDEuy7zkU4KpYitw" name="TodayCompleteTaskCount" label="当天完成环任务限制" is_valid="Y" note="M#" value="37" />
+    <Item _uuid="c0]JRrfao9dWU8M1rDuhoA" name="Fighting" label="战斗场数" is_valid="Y" note="M#" value="38" />
+    <Item _uuid="xkAdpaoTbL9JRkMVAPb]tQ" name="MallProps" label="商城购买" is_valid="Y" note="M#" value="39" />
+    <Item _uuid="tkfLaB0LdlMJuczJfy0Gpg" name="PerfectMetierTask" label="完美师门任务" is_valid="Y" note="M#" value="40" />
+    <Item _uuid="SkxRjFRtBCUcHyaSPaLYlA" name="PerfectJuntoTask" label="完美帮派任务" is_valid="Y" note="M#" value="41" />
+    <Item _uuid="pURvP[AewDJImQTrop9Emg" name="FactionDevote" label="帮派贡献" is_valid="Y" note="M#" value="42" />
+    <Item _uuid="8E1jHR5nZiIuwjVv2I[kpg" name="FavoritesWebsite" label="收藏官网" is_valid="Y" note="M#" value="43" />
+    <Item _uuid="wEy9n1zp8YSUUQZGGOKLmg" name="WearPet" label="宠物成长" is_valid="Y" note="M#" value="44" />
+    <Item _uuid="10Ted0uaqTYYny8S0NlmoA" name="HaveFaction" label="拥有帮会" is_valid="Y" note="M#" value="45" />
+    <Item _uuid="6UOzgJ98CA7[FsLKtsokpw" name="GroupMutex" label="组互斥" is_valid="Y" note="M#" value="46" />
+    <Item _uuid="xkv0myR36Z5up46CRpnKng" name="PromoteGrade" label="提升等级" is_valid="Y" note="M#" value="47" />
+    <Item _uuid="xE2N4CMrFdcdZmxkcvd[oQ" name="CostMoney" label="消费元宝" is_valid="Y" note="M#" value="48" />
+    <Item _uuid="cU9EmjjhFk1MYwJpMteOpA" name="StrongEquip" label="每日强化" is_valid="Y" note="M#" value="49" />
+    <Item _uuid="r02BQ1QfElyKxUOungSlrw" name="MountsUpgrade" label="坐骑升星" is_valid="Y" note="M#" value="50" />
+    <Item _uuid="CEGzmdr5EI7qp8fdXL]LrA" name="MountsEvolution" label="坐骑进阶" is_valid="Y" note="M#" value="51" />
+    <Item _uuid="tkcwTecGhike2ksYw5[[nA" name="PlusFriends" label="添加好友" is_valid="Y" note="M#" value="52" />
+    <Item _uuid="PEwTla4a6yHpEA]IqjBopQ" name="DailyTreasure" label="每日寻宝" is_valid="Y" note="M#" value="53" />
+    <Item _uuid="r0suY1pbzrRaY5swSlxLow" name="Chuck" label="赶走" is_valid="Y" note="M#" value="54" />
+    <Item _uuid="60wI7EN5rRVHvgminnAHoQ" name="Lesson" label="教训" is_valid="Y" note="M#" value="55" />
+    <Item _uuid="8Ult0ENEb4Mp[b6JrdqNmA" name="Beat" label="击败" is_valid="Y" note="M#" value="56" />
+    <Item _uuid="I0kRKq2VBx0JTx]FfYJ3pQ" name="WearDailyPet" label="宠物培养" is_valid="Y" note="M#" value="57" />
+    <Item _uuid="eERSD03n7GxrpXSjqE2KjA" name="EquipAppraisal" label="装备鉴定" is_valid="Y" note="M#" value="58" />
+    <Item _uuid="A0W]Yc9udcmTLpdy]Tfkqg" name="GemMerge" label="物品合成" is_valid="Y" note="M#" value="59" />
+    <Item _uuid="XUOLsWcJlIYdaoXkTnj1hw" name="MosaicGem" label="镶嵌宝石" is_valid="Y" note="M#" value="60" />
+    <Item _uuid="XkbvSD99]nEDKD2cdZLKmw" name="EquipCast" label="装备铸造" is_valid="Y" note="M#" value="61" />
+    <Item _uuid="5kuvigBcNCN7qMrfy9FIlg" name="GetPet" label="获得宠物" is_valid="Y" note="M#" value="62" />
+    <Item _uuid="70DbiF[A7U4XulpBmyRblQ" name="Equipstrong" label="装备强化" is_valid="Y" note="M#" value="63" />
+    <Item _uuid="AUOH]nq61JrSWhqr4ALqhQ" name="MountsGrade" label="坐骑指定星级" is_valid="Y" note="M#" value="64" />
+    <Item _uuid="lEvLqI5nx27wyHY1Uz8hsQ" name="ClearanceMaze" label="通关副本" is_valid="Y" note="M#" value="65" />
+    <Item _uuid="[Ehoboxkr5aCg9fGKzxivg" name="EquipTotalGrade" label="装备总星级" is_valid="Y" note="M#" value="66" />
+    <Item _uuid="Tkz9kbxzz]VkfzN3iJ5Gow" name="KillProp" label="杀怪收集的道具" is_valid="Y" note="M#" value="67" />
+    <Item _uuid="Q0GYo5ELO5ElerVQgzVhkg" name="SnatchGoods" label="挑战夺回" is_valid="Y" note="M#" value="68" />
+    <Item _uuid="S0T[mv9gfiWn6WvGz16omg" name="PetSkill" label="宠物学习技能" is_valid="Y" note="M#" value="69" />
+    <Item _uuid="3k5mTK6jd17JHvkMOIQbqg" name="PetPotential" label="宠物提升资质" is_valid="Y" note="M#" value="70" />
+    <Item _uuid="ykw9lWAu]881j4C5CnswkQ" name="ProduceCollect" label="制作收集" is_valid="Y" note="M#" value="71" />
+    <Item _uuid="00j4Se0T2XwgHZWKdOC0ng" name="Damage" label="破坏" is_valid="Y" note="M#" value="72" />
+    <Item _uuid="AER3BPHQHRu4NFpvv2bkmg" name="BuyReward" label="显示奖励限制" is_valid="Y" note="M#" value="73" />
+    <Item _uuid="]kR[rK2yS9VXZ50byoAFkw" name="Toumament" label="乾坤斗法" is_valid="Y" note="M#" value="74" />
+    <Item _uuid="X0JYN76A0ESqPXKn37vslw" name="Arena" label="群雄逐鹿" is_valid="Y" note="M#" value="75" />
+    <Item _uuid="xUEx27RU]7EW[D1Fwi8LiQ" name="Arenarank" label="擂台竞技" is_valid="Y" note="M#" value="76" />
+    <Item _uuid="4ERcbSVf760zotH2ymYFlg" name="Killmonster" label="除妖降魔" is_valid="Y" note="M#" value="77" />
+    <Item _uuid="d0u3mmCK8nMDV5VpJmSsrg" name="Ninecirles" label="九界伏魔" is_valid="Y" note="M#" value="78" />
+    <Item _uuid="c0[dTdCXi3OoCxDKM1g4iA" name="ChongZhi" label="首冲元宝" is_valid="Y" note="M#" value="79" />
+    <Item _uuid="Ykgw5vmQSKY82b16d80HlQ" name="LevelKill" label="等级杀怪" is_valid="Y" note="M#" value="80" />
+    <Item _uuid="X0tle[8EwHYJwWI6lRejlg" name="SoarOperat" label="飞升操作" is_valid="Y" note="M#" value="81" />
+    <Item _uuid="WkisAiWtjt4YzIk0]P4Kmw" name="WorshipStatues" label="拜摸雕像" is_valid="Y" note="M#" value="82" />
+    <Item _uuid="CU1toBlvZe9w00]ZPioauw" name="TeamLimit" label="组队人数限制" is_valid="Y" note="M#" value="83" />
+    <Item _uuid="nEBjH7g3ZHx91afY2fE[mg" name="TeamKill" label="组队击杀" is_valid="Y" note="M#" value="84" />
+    <Item _uuid="2UFtOqQtyKS8juZn7U04oA" name="TeamCollected" label="组队采集" is_valid="Y" note="M#" value="85" />
+    <Item _uuid="VklWGb34nm[DpCgWEpn8rA" name="TeamUseItems" label="组队使用物品" is_valid="Y" note="M#" value="86" />
+    <Item _uuid="ekYB7tcaw4C7mymmrcphpA" name="TeamDialogue" label="组队对话" is_valid="Y" note="M#" value="87" />
+    <Item _uuid="1kMWs7vy0DW[vhu[J]NKsQ" name="TeamFlowers" label="组队种花" is_valid="Y" note="M#" value="88" />
+    <Item _uuid="qkGVc2itJNoeQC8UJobflQ" name="WongStandings" label="完成皇榜任务" is_valid="Y" note="M#" value="89" />
+    <Item _uuid="pkZhh0PYOSSDGPty34i5sw" name="NextDayLanding" label="再次登录" is_valid="Y" note="M#" value="90" />
+    <Item _uuid="QE]nm315Nfv9VRLZmXZ8kw" name="Landing" label="登录" is_valid="Y" note="M#" value="91" />
+    <Item _uuid="h0RKzZdaiWMu8lrWp5UZsw" name="MallEquip" label="商城购买装备" is_valid="Y" note="M#" value="92" />
+    <Item _uuid="sE]ThK5Nnrzkimweq9YLsA" name="AChargeDart" label="完成一次押镖" is_valid="Y" note="M#" value="93" />
+  </Enum>
+  <Enum _uuid="EEVJ3qA[n]kMpPfI8LeLtw" name="GmTaskReward" label="任务奖励" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="[0JMhUIAGQePVkLjp0wskw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="7kELl4pXU1f268kHYh31gA" name="Experience" label="经验" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="AU5QNaKyRjGpuKjujoAqtg" name="Currency" label="货币" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="X0xaLIWJE6SIJl24vK6coQ" name="Prop" label="道具" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="ikLMlLHoXjTR7T36l2bmtA" name="Equip" label="装备" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="5EXgHFGCyXtXXnY2yD5hsA" name="Pet" label="宠物" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="w0Av8kiaDdoA2z18XOTWsA" name="Ride" label="坐骑" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="bkkB2t0xhEvWXcQBr[0CrQ" name="Property" label="属性" is_valid="Y" note="M#" value="10" />
+    <Item _uuid="mUFyUlw4ad3i3sdBSxv5qw" name="Level" label="级别" is_valid="Y" note="M#" value="11" />
+    <Item _uuid="nUtpXf2A2GSaxgaIb2]rqw" name="Metier" label="职业" is_valid="Y" note="M#" value="12" />
+    <Item _uuid="Kk8HKUw[TYaucpnK]BCYig" name="Battle" label="战斗" is_valid="Y" note="M#" value="13" />
+    <Item _uuid="FUEZ96VenNH6d9U0tcE7uA" name="Buff" label="BUFF" is_valid="Y" note="M#" value="14" />
+    <Item _uuid="[0mBWOT4CbP]m0L7FFfumw" name="Time" label="时代" is_valid="Y" note="M#" value="15" />
+    <Item _uuid="xEfr6NQ052qQ74gc4pBKsw" name="BothItem" label="获得全部物品包" is_valid="Y" note="M#" value="16" />
+    <Item _uuid="UUaPMwQ98lUmrU]PjuvUqg" name="OneItem" label="获得单个物品包" is_valid="Y" note="M#" value="17" />
+    <Item _uuid="j0MvQS31iEA]OPeqxopwjA" name="DeductionItem" label="扣除物品包" is_valid="Y" note="M#" value="18" />
+    <Item _uuid="80rOVXN[FGt6ulgGpuLAiQ" name="Meditation" label="真元" is_valid="Y" note="M#" value="19" />
+    <Item _uuid="T08rhPvby]oOHRKHsFDqig" name="PetExperience" label="宠物经验" is_valid="Y" note="M#" value="20" />
+    <Item _uuid="9UWwkeAKu7sbgWGsJ0x5pQ" name="LevelAward" label="等级奖励" is_valid="Y" note="M#" value="21" />
+    <Item _uuid="fkYZSU[Rg78I0IQE7QYkrQ" name="FactionDevote" label="帮派贡献" is_valid="Y" note="M#" value="22" />
+    <Item _uuid="ykkrw8Sh1K27M1dL4wSKuA" name="MartialDevote" label="门派贡献" is_valid="Y" note="M#" value="23" />
+    <Item _uuid="E02PWb20KbTY[cJYUCOTsg" name="Capital" label="帮派资金" is_valid="Y" note="M#" value="24" />
+    <Item _uuid="4k1FQyEPYDxeg2WtmIWpkw" name="ProsperityDegree" label="帮派繁荣度" is_valid="Y" note="M#" value="25" />
+    <Item _uuid="EkSib]o3CFmPY6ynJ]oViA" name="FigureEffects" label="人物特效" is_valid="Y" note="M#" value="26" />
+    <Item _uuid="t0Z2WGZ3kpFmlXW8eKeIhg" name="SceneEffects" label="场景特效" is_valid="Y" note="M#" value="27" />
+    <Item _uuid="G0x8ZkCNLUDbpvokormxnA" name="DialogEffects" label="对话特效" is_valid="Y" note="M#" value="28" />
+    <Item _uuid="mk7yffewZE4zPDdWS5rjuw" name="Move" label="自动移动（公车）" is_valid="Y" note="M#" value="29" />
+    <Item _uuid="jkaxEIzHkm0wxJEXDbLphA" name="Teleport" label="传送" is_valid="Y" note="M#" value="30" />
+    <Item _uuid="aE]Gu8JAmiGOVjTwrfU9mQ" name="Race" label="种族" is_valid="Y" note="M#" value="31" />
+    <Item _uuid="30vuRzEBygR01t]vGzKVvA" name="HideActor" label="隐藏某演员" is_valid="Y" note="M#" value="32" />
+    <Item _uuid="KEqi0T05te7U18oRgRIagA" name="DisplayActor" label="显示某演员" is_valid="Y" note="M#" value="33" />
+    <Item _uuid="hEZ1Xvy]FsfW3w4VE4OyqA" name="UpdatePersonal" label="刷出自己可见的演员" is_valid="Y" note="M#" value="34" />
+    <Item _uuid="T0W2r3agx6xOJ016dWHlhA" name="UpdateAll" label="刷出所有可见的演员" is_valid="Y" note="M#" value="35" />
+    <Item _uuid="AkZoZMQxLIbTYBMGBal4oQ" name="ChangeStyleAction" label="改变某演员的样式" is_valid="Y" note="M#" value="36" />
+    <Item _uuid="gUNa2ixdXFagtD17QouutQ" name="ProfessionReward" label="按照职业奖励装备" is_valid="Y" note="M#" value="37" />
+    <Item _uuid="l0XvNrROYZVBZlk0McSjiw" name="OpenExcalibur" label="开启神剑" is_valid="Y" note="M#" value="38" />
+    <Item _uuid="DkgwvQ48vqyqKO2Gg5sRlA" name="SwordSoul" label="剑魂" is_valid="Y" note="M#" value="39" />
+    <Item _uuid="4EQGtL5v11Z8gOPMyFAQjQ" name="DragonBallGather" label="获得龙珠" is_valid="Y" note="M#" value="40" />
+  </Enum>
+  <Enum _uuid="T0fiqRN9MXufCQt2JQhzvQ" name="GmTaskContentFlag" label="任务内容标志" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="mkpGyTFgwgvAWtaIAhJ9nA" name="Valid" label="有效" is_valid="Y" note="M#" flag="V" value="0" />
+    <Item _uuid="U0UL[FMl6mfOKpI2VOdHmA" name="Finished" label="完成" is_valid="Y" note="M#" flag="F" value="1" />
+  </Enum>
+  <Enum _uuid="zUzLg7vtVBD0Vq]]w[qYuQ" name="GmTask" label="任务类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="IEqtCUxUv1XooaFaC4pkqQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="l0uBtzBd[CcpJTAIvj5]gw" name="Maintask" label="主线" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="Wk493eRMsEmORze6u8QOjw" name="Extensiontask" label="支线任务" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="W0Oc63wI[M4ig2PuFdCKnQ" name="Actibitytask" label="活动" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="90byrdLdSFcPaKeTC[A9lQ" name="Profession" label="门派任务" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="akKTzItx33PCCfhu4eVDlA" name="Societytype" label="帮会任务" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="cUzH]2w739zrPnKe5D6AsQ" name="Dailytask" label="日常" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="ckaQxFmyU685jJIog]KzvA" name="Ringtask" label="修身任务" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="c0AmexHUdIbWBGSTVE0njQ" name="EscortMoney" label="押镖" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="m0F9FnjEi0Jyuq54k[xPug" name="RoyalList" label="皇榜" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="]UbvD]ASIJsz3qHkWKxxrA" name="TreasureMap" label="宝物平妖任务" is_valid="Y" note="M#" value="10" />
+    <Item _uuid="P0YZ4izH71BAw28fr[RPpw" name="Trial" label="除魔" is_valid="Y" note="M#" value="11" />
+    <Item _uuid="pk94Rkl1SDYuC3ZaTsFYmA" name="Ghost" label="捉鬼" is_valid="Y" note="M#" value="12" />
+    <Item _uuid="2U[kNpwwYNFoXwqOKHrOsQ" name="Adventuretask" label="试炼" is_valid="Y" note="M#" value="13" />
+    <Item _uuid="i0[KgJIeQl1uInGZLzm1uA" name="Convoy" label="护送中" is_valid="Y" note="M#" value="14" />
+    <Item _uuid="Vkvy8rVVQi5i8T3X8LYGlA" name="FiyTask" label="飞升任务" is_valid="Y" note="M#" value="15" />
+    <Item _uuid="AUp]5]2dYo5k[O9LLNflsA" name="Help" label="帮助" is_valid="Y" note="M#" value="16" />
+    <Item _uuid="MEC12tyWo2Vi3]5Koe[tlw" name="TaskFriends" label="好友任务" is_valid="Y" note="M#" value="17" />
+    <Item _uuid="VE4qRlKv]ziSDgLbn[G9og" name="Thetreasurempap" label="宝图" is_valid="Y" note="M#" value="18" />
+  </Enum>
+  <Enum _uuid="rU0LMVWUrwm8YRtwim]qgA" name="GmTaskTalk" label="对话角色" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="sUTbDzB4UbxGlKk2jagJiA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="skXtViIaK3YpPkfu5w15hw" name="Actor" label="演员" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="RUZHDLYVF8l4j6o19B7Gmw" name="Player" label="玩家" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="SEgL1b3TZ67zx5nKU9lvjA" name="GmTaskTalkRole" label="任务对话演员" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="VEUBZjEggRVR0GVspDL1lg" name="Actor" label="演员" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="wk2cybgqVBZ6d]ylbcJinw" name="Player" label="玩家" is_valid="Y" note="M#" value="1" />
+  </Enum>
+  <Enum _uuid="UEMNjCYvDG5F7T7IuzKTuw" name="GmTaskStatus" label="任务状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="9UqSbWFNBqw4D5Fy7[gZsw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="TkF9by74VGRxtBnIRFIkrg" name="Process" label="处理" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="p04UumJMljd49f8kiSmonA" name="Achievable" label="完成可" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="jUcW9SFmzrMFbb0vSx9epQ" name="Finished" label="完成" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="GUdKt51CANoIHyRuH39Yjw" name="Abandon" label="放弃" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="JkO0TyKPNRENe]b6]maPlQ" name="Failed" label="失败" is_valid="Y" note="M#" value="5" />
+  </Enum>
+  <Enum _uuid="lELO42yMouawTEQBLj3vqA" name="GmTaskFlag" label="任务标志" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="J0vky3sDvgQffsj27PhIpw" name="Valid" label="有效" is_valid="Y" note="M#" flag="V" value="0" />
+    <Item _uuid="PE6swPpULkpCTiR6pjHRgQ" name="Finished" label="完成" is_valid="Y" note="M#" flag="F" value="1" />
+    <Item _uuid="C0sRTTyTKmat5HLJ94wagQ" name="Track" label="跟踪" is_valid="Y" note="M#" flag="T" value="2" />
+  </Enum>
+  <Enum _uuid="DUBw84WzfpYIQufVHFeGuQ" name="GmTaskStage" label="任务阶段" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="[UGWrxUadQscYz0vW8tCrw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="4EdiMHXsjo1gq9oBdtRQlg" name="Accept" label="接受任务" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="PEbYEgx046qpq2mDDV3Rpw" name="Finish" label="完成任务" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="XE[zvc5aF1fSwLkln1VZug" name="Deliver" label="交付任务" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="ckBkNY9ua4]q1IcFta1qnA" name="GmTaskShare" label="任务共享" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="aUKOS5XUNNsC1O[W27B8pQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="bUeJMr7ZWJFJI0l4YivLtg" name="Team" label="队伍" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="80Bj]xRrjzCd3gF3fT53nA" name="Player" label="玩家" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="Ok03SYhPYQRbGO7ycgATiQ" name="GmIssueTaskStatus" label="发布任务状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="QkrVAz9TQ57iqvZRjXHtig" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="uEaeIX3PG6NkZeMz3c5[sw" name="Acceptable" label="可接取" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="7E54[LqhkWe6hhDchF6euw" name="Process" label="处理中" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="4Ue4xa6LxoIgaiz0UOxIvg" name="Achievable" label="可完成" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="SENw43qUBJq2VvUiSSYRkA" name="Conduct" label="进行中" is_valid="Y" note="M#" value="4" />
+  </Enum>
+  <Enum _uuid="U0FQzPoBQ452YtUtwDUWkA" name="GmFriendRelation" label="好友关系类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="yU6MUU6vx7yKo1sdJ[sCmw" name="Unknown" label="未知" is_valid="Y" note="M#" flag="U" value="0" />
+    <Item _uuid="SEJO[ZIB2]PaHTGWk]g8pA" name="Friend" label="好友" is_valid="Y" note="M#" flag="F" value="1" />
+    <Item _uuid="1UPYSjOj2WHQPOUFLCibjw" name="Blacklist" label="黑名单" is_valid="Y" note="M#" flag="B" value="2" />
+    <Item _uuid="eUx5zvmJ5sDD]biKCtMBiQ" name="Enemy" label="仇人" is_valid="Y" note="M#" flag="E" value="3" />
+    <Item _uuid="9UEEcI[BBG3N81bf2webiw" name="Recentlyconnected" label="最近联系人" is_valid="Y" note="M#" flag="R" value="4" />
+    <Item _uuid="AEb4ow8C6mnzVs5O[[jErA" name="Couples" label="夫妻" is_valid="Y" note="M#" flag="C" value="5" />
+  </Enum>
+  <Enum _uuid="r0Tmn14M2BoBvgAQUCedtA" name="GmChat" label="聊天类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="o0aqU[vuuLGDnW3KL1sQrA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="N0qtgkFOs3nRlK2kPnu0gw" name="Channel" label="频道" is_valid="Y" note="M#" value="1" />
+  </Enum>
+  <Enum _uuid="S05gY7Ufie5Nb2suZNx9iA" name="GmChatChannel" label="聊天频道" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="]kOUQgJ]2iPU6xtuKojIsQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="dkZAkj3G5APLo0c1Q5dktw" name="Private" label="个人" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="OUzZlktim0pn5RrXeeRtpw" name="Scene" label="当前" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="CUevJuT4GbMFOtgKA7caoA" name="World" label="世界" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="6kVNGU16MgrMAGWpjU]dqg" name="Team" label="队伍" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="i0oJXH8CzMPJiQysjRfLhA" name="Group" label="帮会" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="EErbvDihKNfvvjwWJd44ug" name="Party" label="门派" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="YUOSbdeVsFwynlbbsGMnqA" name="Horn" label="喇叭" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="pkGoROr0RQACER2lFANglA" name="System" label="系统" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="m0XtNMyN1ZEcP6znNOvNiA" name="Trade" label="交易" is_valid="Y" note="M#" value="10" />
+  </Enum>
+  <Enum _uuid="ukTK9J7XESfEgopHK4Pajg" name="GmTaskActor" label="交接允许/禁止" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="e0WBvZsS1Nlg2etRPjNGsA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="K0Ljv80UUk6NnLCJ997GrA" name="Allow" label="允许" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="AEV8AeMxJh5ROpH4DDUFnQ" name="Forbid" label="禁止" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="5EjEjz]ZHbWsOXN]9Ymuqg" name="GmTaskReceive" label="交接允许/禁止" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="r0SkgpLiWrkK6jZfF]foiw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="UU5wU1UIQJF6DCqydMfqpQ" name="Allow" label="允许" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="UUTBr[BNLp1QcT4sBh2bjg" name="Forbid" label="禁止" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="Jkcpb[b9eapcQAyy7bCnug" name="GmType" label="私人频道类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="30yHPVhwuYyarp8nFVpLgQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="NEkvykWi]yhND2JBkt25gw" name="Form" label="私聊" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="RUoKutQsIlLWuzVBQYtNsw" name="Channel" label="密聊" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="IErLbEV9N[8JLkHX]z]uvA" name="GmRoleAttribute" label="角色属性" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32">
+    <Item _uuid="Gk04j6GXJtJFyVOR54iPiw" name="MoConHpCoe" label="体质影响气血上限系数" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="5krmiC8qCcQXblsEPBO6oQ" name="MoHpAddVal" label="气血上限附加值" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="4ksGW4wMsTphsIL2O5aZjQ" name="MoMagMpCoe" label="魔力影响魔法上限系数" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="mkjHA[YrFz[gfvnPzP6WgA" name="MoMpAddVal" label="魔法上限附加值" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="z0Ldz9nR0uMR1oxZ9JvqpA" name="MoLevEpCoe" label="等级影响体力上限系数" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="AEZxgCh0rlTpq6ydVwAqnQ" name="MoEpAddVal" label="体力上限附加值" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="ZkJisasugMHR9CXW9V6gpQ" name="MoEpRecCoe" label="体力上限影响体力恢复速度系数" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="cE1lnPm5atrtbmcXRsOKiQ" name="MoEpRecAddVal" label="体力恢复速度附加值" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="zUHb8gc08yrJwlO21dwDmw" name="MoLevLpCoe" label="等级影响活力上限系数" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="[ErK3Mq13[z4wXp]8H[Arg" name="MoLpAddVal" label="活力上限附加值" is_valid="Y" note="M#" value="10" />
+    <Item _uuid="[k8XCNlQn2WQTPsaiGacrQ" name="MoLpRecCoe" label="活力上限影响活力恢复速度系数" is_valid="Y" note="M#" value="11" />
+    <Item _uuid="4ElXxPGMEskrZ2z3yQDFpA" name="MoLpRecAddVal" label="活力恢复速度附加值" is_valid="Y" note="M#" value="12" />
+    <Item _uuid="YkqNE5SEzoUlha[BlFaWqA" name="MoStrPreCoe" label="力量影响精准系数" is_valid="Y" note="M#" value="13" />
+    <Item _uuid="OEEFz9hBGrrRauFCYUJauQ" name="MoPreAddVal" label="精准附加值" is_valid="Y" note="M#" value="14" />
+    <Item _uuid="TUtau1JzP0CWHB405CQJrA" name="MoStrPhyAttCoe" label="力量影响物攻系数" is_valid="Y" note="M#" value="15" />
+    <Item _uuid="gUgYev8HDh3gAtMJhwJurQ" name="MoPhyAttAddVal" label="物攻附加值" is_valid="Y" note="M#" value="16" />
+    <Item _uuid="dkJv8hb]FwaC]zAed45diQ" name="MoStaPhyDefCoe" label="耐力影响物防系数" is_valid="Y" note="M#" value="17" />
+    <Item _uuid="y0DtGi[OWzKnyGQOnwxguw" name="MoPhyDefAddVal" label="物防附加值" is_valid="Y" note="M#" value="18" />
+    <Item _uuid="oEPg3cSu5m[hMfqsr3YhmQ" name="MoConSpeCoe" label="体质影响速度系数" is_valid="Y" note="M#" value="19" />
+    <Item _uuid="eE2Zr5OLfGooE9aq0rbQmw" name="MoStrSpeCoe" label="力量影响速度系数" is_valid="Y" note="M#" value="20" />
+    <Item _uuid="gkH9B2gZRRWQkzZ]6UTskg" name="MoStaSpeCoe" label="耐力影响速度系数" is_valid="Y" note="M#" value="21" />
+    <Item _uuid="g05AUF95KcSbXKeIpiUfhQ" name="MoAgiSpeCoe" label="敏捷影响速度系数" is_valid="Y" note="M#" value="22" />
+    <Item _uuid="ekliexrEUoYn5dUajfTXiQ" name="MoSpeAddAvl" label="速度附加值" is_valid="Y" note="M#" value="23" />
+    <Item _uuid="ykCPZk2fYpWopuWvyvHciw" name="MoAgiDodCoe" label="敏捷影响躲闪系数" is_valid="Y" note="M#" value="24" />
+    <Item _uuid="tktNN6h6mJomz6sBFs3Niw" name="MoDodAddAvl" label="躲闪附加值" is_valid="Y" note="M#" value="25" />
+    <Item _uuid="Ck7k7HLfHmd5kR3]2beChg" name="MoConMagAttCoe" label="体质影响法攻系数" is_valid="Y" note="M#" value="26" />
+    <Item _uuid="jEePdIfa24S2aMzsJ2[djw" name="MoMagMagAttCoe" label="魔力影响法攻系数" is_valid="Y" note="M#" value="27" />
+    <Item _uuid="NUST]qVs1xvWcsCMWKqotg" name="MoStrMagAttCoe" label="力量影响法攻系数" is_valid="Y" note="M#" value="28" />
+    <Item _uuid="eU8vTPYZkl]m7z0KcQT1hQ" name="MoStaMagAttCoe" label="耐力影响法攻系数" is_valid="Y" note="M#" value="29" />
+    <Item _uuid="zEnUJ4OBC1CazgHQya4rsg" name="MoMagAttAddAvl" label="法攻附加值" is_valid="Y" note="M#" value="30" />
+    <Item _uuid="5EEXuTVbpVOF0DChZkFjiw" name="MoConMagDefCoe" label="体质影响法防系数" is_valid="Y" note="M#" value="31" />
+    <Item _uuid="[0wboHtH01Eu[NTWv3KtvQ" name="MoMagMagDefCoe" label="魔力影响法防系数" is_valid="Y" note="M#" value="32" />
+    <Item _uuid="aUcgAGRbVeP9NZUuHi8Xjw" name="MoStrMagDefCoe" label="力量影响法防系数" is_valid="Y" note="M#" value="33" />
+    <Item _uuid="OETWpQ3bY6l]t6]uYORMvw" name="MoStaMagDefCoe" label="耐力影响法防系数" is_valid="Y" note="M#" value="34" />
+    <Item _uuid="a0ewZrO7h6UXl5ys[l47tw" name="MoMagDefAddAvl" label="法防附加值" is_valid="Y" note="M#" value="35" />
+    <Item _uuid="20ZxYcIbTnoCyNGSlPbYjg" name="StConHpCoe" label="体质影响气血上限系数" is_valid="Y" note="M#" value="36" />
+    <Item _uuid="mUCGw7KujVXQI0gng2]Osg" name="StHpAddVal" label="气血上限附加值" is_valid="Y" note="M#" value="37" />
+    <Item _uuid="G0EkkBUSdzg[MevG6o4ogw" name="StMagMpCoe" label="魔力影响魔法上限系数" is_valid="Y" note="M#" value="38" />
+    <Item _uuid="PUhxj9AcPiTuF7XGnY8JtA" name="StMpAddVal" label="魔法上限附加值" is_valid="Y" note="M#" value="39" />
+    <Item _uuid="CkdlnoKCkShT7qM3Ccr5ug" name="StLevEpCoe" label="等级影响体力上限系数" is_valid="Y" note="M#" value="40" />
+    <Item _uuid="SUREgOMz[Zke2hdkqu0dsQ" name="StEpAddVal" label="体力上限附加值" is_valid="Y" note="M#" value="41" />
+    <Item _uuid="pk9SH9mH8gzmfjD8JCirnw" name="StEpRecCoe" label="体力上限影响体力恢复速度系数" is_valid="Y" note="M#" value="42" />
+    <Item _uuid="hUavkO9nRCtOtndtUtFAvQ" name="StEpRecAddVal" label="体力恢复速度附加值" is_valid="Y" note="M#" value="43" />
+    <Item _uuid="YkCrn2IhITZCrbqohNzRkA" name="StLevLpCoe" label="等级影响活力上限系数" is_valid="Y" note="M#" value="44" />
+    <Item _uuid="lUOAcgJ3i]l8M1pl3cihpw" name="StLpAddVal" label="活力上限附加值" is_valid="Y" note="M#" value="45" />
+    <Item _uuid="2UnYajI1g1[FEEP5ElGbiQ" name="StLpRecCoe" label="活力上限影响活力恢复速度系数" is_valid="Y" note="M#" value="46" />
+    <Item _uuid="zk2I7fJJyhJGSdgGm3idrQ" name="StLpRecAddVal" label="活力恢复速度附加值" is_valid="Y" note="M#" value="47" />
+    <Item _uuid="lkeVJrlfxiTvpvDb5s85kw" name="StStrPreCoe" label="力量影响精准系数" is_valid="Y" note="M#" value="48" />
+    <Item _uuid="oEPngeLBPTvQxvj5yleHjg" name="StPreAddVal" label="精准附加值" is_valid="Y" note="M#" value="49" />
+    <Item _uuid="ikOCqON09Yv]459GC5zavw" name="StStrPhyAttCoe" label="力量影响物攻系数" is_valid="Y" note="M#" value="50" />
+    <Item _uuid="H00WG]aAx1MkDerY1xD0tw" name="StPhyAttAddVal" label="物攻附加值" is_valid="Y" note="M#" value="51" />
+    <Item _uuid="lUONRFy]eEpaPDC1ZwXmtw" name="StStaPhyDefCoe" label="耐力影响物防系数" is_valid="Y" note="M#" value="52" />
+    <Item _uuid="q0aZp6oic3[tCujzs8Ddmg" name="StPhyDefAddVal" label="物防附加值" is_valid="Y" note="M#" value="53" />
+    <Item _uuid="1kF1ZwLhQPCjmdJNWfUzoQ" name="StConSpeCoe" label="体质影响速度系数" is_valid="Y" note="M#" value="54" />
+    <Item _uuid="SkTh5m8TbQp4b3sM[sCCtQ" name="StStrSpeCoe" label="力量影响速度系数" is_valid="Y" note="M#" value="55" />
+    <Item _uuid="SUyA6qhZdKoWVLYVKxjLog" name="StStaSpeCoe" label="耐力影响速度系数" is_valid="Y" note="M#" value="56" />
+    <Item _uuid="P0e1uT4j8B0q1IWNYl8[lA" name="StAgiSpeCoe" label="敏捷影响速度系数" is_valid="Y" note="M#" value="57" />
+    <Item _uuid="BUN0Mr4k6R2aqBEafZPLhA" name="StSpeAddAvl" label="速度附加值" is_valid="Y" note="M#" value="58" />
+    <Item _uuid="xE34FRsxtbiCqG[3GM5[lw" name="StAgiDodCoe" label="敏捷影响躲闪系数" is_valid="Y" note="M#" value="59" />
+    <Item _uuid="207hptxYn3rrCMVTcZBxmg" name="StDodAddAvl" label="躲闪附加值" is_valid="Y" note="M#" value="60" />
+    <Item _uuid="zEZvsnUKB7Afalmm5y61rg" name="StConMagAttCoe" label="体质影响法攻系数" is_valid="Y" note="M#" value="61" />
+    <Item _uuid="zEHPoYFhXhygYLYQrDjumQ" name="StMagMagAttCoe" label="魔力影响法攻系数" is_valid="Y" note="M#" value="62" />
+    <Item _uuid="XkkEkkCUk8LYwJuYLbWbgg" name="StStrMagAttCoe" label="力量影响法攻系数" is_valid="Y" note="M#" value="63" />
+    <Item _uuid="f0p47XzFLaghBb7]zyrkvg" name="StStaMagAttCoe" label="耐力影响法攻系数" is_valid="Y" note="M#" value="64" />
+    <Item _uuid="uE424NMfe6xPdNLSVVVmmA" name="StMagAttAddAvl" label="法攻附加值" is_valid="Y" note="M#" value="65" />
+    <Item _uuid="wUtv6ujL[7RVTghmjjtgng" name="StConMagDefCoe" label="体质影响法防系数" is_valid="Y" note="M#" value="66" />
+    <Item _uuid="VkfuxI15Koxjqe8k2TKXrQ" name="StMagMagDefCoe" label="魔力影响法防系数" is_valid="Y" note="M#" value="67" />
+    <Item _uuid="k0gzbofGdG1M1NQ5lLcfoQ" name="StStrMagDefCoe" label="力量影响法防系数" is_valid="Y" note="M#" value="68" />
+    <Item _uuid="uEXqDpd4m5mNm7YserJ5ig" name="StStaMagDefCoe" label="耐力影响法防系数" is_valid="Y" note="M#" value="69" />
+    <Item _uuid="wkQ7qn2dV3QvBLcTUVcBhQ" name="StMagDefAddAvl" label="法防附加值" is_valid="Y" note="M#" value="70" />
+    <Item _uuid="k0JPObA1aFWzTa6kmtjLsQ" name="DeConHpCoe" label="体质影响气血上限系数" is_valid="Y" note="M#" value="71" />
+    <Item _uuid="x0QTDre4PXzXFlvRQwTykw" name="DeHpAddVal" label="气血上限附加值" is_valid="Y" note="M#" value="72" />
+    <Item _uuid="akz4EgUxqPMcG17hZQeHvg" name="DeMagMpCoe" label="魔力影响魔法上限系数" is_valid="Y" note="M#" value="73" />
+    <Item _uuid="V0Uvrp3igkzGipJ1GrbCuA" name="DeMpAddVal" label="魔法上限附加值" is_valid="Y" note="M#" value="74" />
+    <Item _uuid="QUuHndGWHGxqvJBH0T8HiA" name="DeLevEpCoe" label="等级影响体力上限系数" is_valid="Y" note="M#" value="75" />
+    <Item _uuid="pEkBhwtIwYRTkAjHMGy]kQ" name="DeEpAddVal" label="体力上限附加值" is_valid="Y" note="M#" value="76" />
+    <Item _uuid="B0tDs[X8VSBIrrFgY[Jmug" name="DeEpRecCoe" label="体力上限影响体力恢复速度系数" is_valid="Y" note="M#" value="77" />
+    <Item _uuid="kkDHe7KbJIExngBqAiq8mQ" name="DeEpRecAddVal" label="体力恢复速度附加值" is_valid="Y" note="M#" value="78" />
+    <Item _uuid="KUwXzX0Iyb2]EfaEFsFLvQ" name="DeLevLpCoe" label="等级影响活力上限系数" is_valid="Y" note="M#" value="79" />
+    <Item _uuid="7Ef2wZ7[05WFx1VadIN9nw" name="DeLpAddVal" label="活力上限附加值" is_valid="Y" note="M#" value="80" />
+    <Item _uuid="UkpphIHI8ihOO87gjjVHhw" name="DeLpRecCoe" label="活力上限影响活力恢复速度系数" is_valid="Y" note="M#" value="81" />
+    <Item _uuid="RkJNPL5eB8e[ckyD]KgnjQ" name="DeLpRecAddVal" label="活力恢复速度附加值" is_valid="Y" note="M#" value="82" />
+    <Item _uuid="1EtROaF57QWCScXie02Hjw" name="DeStrPreCoe" label="力量影响精准系数" is_valid="Y" note="M#" value="83" />
+    <Item _uuid="RE]S83PTU]ma7cf10aOuhg" name="DePreAddVal" label="精准附加值" is_valid="Y" note="M#" value="84" />
+    <Item _uuid="DUqPgQaHvCntxlNo97SXgQ" name="DeStrPhyAttCoe" label="力量影响物攻系数" is_valid="Y" note="M#" value="85" />
+    <Item _uuid="OEWEcrsEJkx07zgtgp[Jow" name="DePhyAttAddVal" label="物攻附加值" is_valid="Y" note="M#" value="86" />
+    <Item _uuid="OEeAhgyBXNWoe9NhRusSvg" name="DeStaPhyDefCoe" label="耐力影响物防系数" is_valid="Y" note="M#" value="87" />
+    <Item _uuid="pkVA0r3GbPM1HZUnH8bpig" name="DePhyDefAddVal" label="物防附加值" is_valid="Y" note="M#" value="88" />
+    <Item _uuid="WkbUjYIuW0nKlTbxjWfnhA" name="DeConSpeCoe" label="体质影响速度系数" is_valid="Y" note="M#" value="89" />
+    <Item _uuid="s0ANS2]GIL]r5CboEkvbjA" name="DeStrSpeCoe" label="力量影响速度系数" is_valid="Y" note="M#" value="90" />
+    <Item _uuid="OU61BhbljaB3EyusJohJmQ" name="DeStaSpeCoe" label="耐力影响速度系数" is_valid="Y" note="M#" value="91" />
+    <Item _uuid="r0YrpYDeMm9tL5qu1zFHig" name="DeAgiSpeCoe" label="敏捷影响速度系数" is_valid="Y" note="M#" value="92" />
+    <Item _uuid="D0PfapA9XBUFJ3f8n15lqw" name="DeSpeAddAvl" label="速度附加值" is_valid="Y" note="M#" value="93" />
+    <Item _uuid="AE46gPxBPKQDVqW9srRHuQ" name="DeAgiDodCoe" label="敏捷影响躲闪系数" is_valid="Y" note="M#" value="94" />
+    <Item _uuid="zUsaRU4XM5JSzDKykOfKoA" name="DeDodAddAvl" label="躲闪附加值" is_valid="Y" note="M#" value="95" />
+    <Item _uuid="TUmmiAJffbQUBjx2vfzvrw" name="DeConMagAttCoe" label="体质影响法攻系数" is_valid="Y" note="M#" value="96" />
+    <Item _uuid="g0Wc2dVvGVMvUsZ1Dv[rpQ" name="DeMagMagAttCoe" label="魔力影响法攻系数" is_valid="Y" note="M#" value="97" />
+    <Item _uuid="8kdBSI0DbFYu3HUqRC4qlQ" name="DeStrMagAttCoe" label="力量影响法攻系数" is_valid="Y" note="M#" value="98" />
+    <Item _uuid="iE7RaXIlnmBMasDKjUDCjw" name="DeStaMagAttCoe" label="耐力影响法攻系数" is_valid="Y" note="M#" value="99" />
+    <Item _uuid="HU73pTWfGvRmiYBPopYKjQ" name="DeMagAttAddAvl" label="法攻附加值" is_valid="Y" note="M#" value="100" />
+    <Item _uuid="CksuITOPJ3HYb1QnUfDPkw" name="DeConMagDefCoe" label="体质影响法防系数" is_valid="Y" note="M#" value="101" />
+    <Item _uuid="d0jlCf2slyyYjs[SL7Xvtg" name="DeMagMagDefCoe" label="魔力影响法防系数" is_valid="Y" note="M#" value="102" />
+    <Item _uuid="KUb0eFCpjD4gQM]isWl6qg" name="DeStrMagDefCoe" label="力量影响法防系数" is_valid="Y" note="M#" value="103" />
+    <Item _uuid="VkhqrPs6ctTkNAFHeqgrgQ" name="DeStaMagDefCoe" label="耐力影响法防系数" is_valid="Y" note="M#" value="104" />
+    <Item _uuid="RkUIXNlmAd]3IGn2tGzYgQ" name="DeMagDefAddAvl" label="法防附加值" is_valid="Y" note="M#" value="105" />
+    <Item _uuid="bkuyxw8rP]IYBZLo]96MgA" name="ImConHpCoe" label="体质影响气血上限系数" is_valid="Y" note="M#" value="106" />
+    <Item _uuid="K0zok3iUAVX9QW8bwGlHog" name="ImHpAddVal" label="气血上限附加值" is_valid="Y" note="M#" value="107" />
+    <Item _uuid="4kdcYQqjIlL1bJnHs5eWqw" name="ImMagMpCoe" label="魔力影响魔法上限系数" is_valid="Y" note="M#" value="108" />
+    <Item _uuid="cE[s2YUVEpVohAtHOHAHmg" name="ImMpAddVal" label="魔法上限附加值" is_valid="Y" note="M#" value="109" />
+    <Item _uuid="x0S6EtqmW0e60MEZ]jd4kA" name="ImLevEpCoe" label="等级影响体力上限系数" is_valid="Y" note="M#" value="110" />
+    <Item _uuid="mkYFc18SgfPqMMeuM8borw" name="ImEpAddVal" label="体力上限附加值" is_valid="Y" note="M#" value="111" />
+    <Item _uuid="g0sqX9JebKDdLgtcgizMjw" name="ImEpRecCoe" label="体力上限影响体力恢复速度系数" is_valid="Y" note="M#" value="112" />
+    <Item _uuid="AUw7lR6bK2rphLi84Kd1jQ" name="ImEpRecAddVal" label="体力恢复速度附加值" is_valid="Y" note="M#" value="113" />
+    <Item _uuid="J0d0l79nZScxTeQc4]SLnA" name="ImLevLpCoe" label="等级影响活力上限系数" is_valid="Y" note="M#" value="114" />
+    <Item _uuid="CEIyWeWwG3B9pwx72PpYhQ" name="ImLpAddVal" label="活力上限附加值" is_valid="Y" note="M#" value="115" />
+    <Item _uuid="lkP9ltOG2YpKoBriY3[mlg" name="ImLpRecCoe" label="活力上限影响活力恢复速度系数" is_valid="Y" note="M#" value="116" />
+    <Item _uuid="q0lXYmOmTXbD4HlUR41PtQ" name="ImLpRecAddVal" label="活力恢复速度附加值" is_valid="Y" note="M#" value="117" />
+    <Item _uuid="AUZ[Ax8KmA8siuAHRygpsQ" name="ImStrPreCoe" label="力量影响精准系数" is_valid="Y" note="M#" value="118" />
+    <Item _uuid="ykEw1IDoNHD[6qo7wSaokA" name="ImPreAddVal" label="精准附加值" is_valid="Y" note="M#" value="119" />
+    <Item _uuid="JUhQe5HUkogilF2rD1VJvg" name="ImStrPhyAttCoe" label="力量影响物攻系数" is_valid="Y" note="M#" value="120" />
+    <Item _uuid="TE[iOS]l823U91GYu4m2tA" name="ImPhyAttAddVal" label="物攻附加值" is_valid="Y" note="M#" value="121" />
+    <Item _uuid="]0xxpWkrSlvNQ1hjidR1vg" name="ImStaPhyDefCoe" label="耐力影响物防系数" is_valid="Y" note="M#" value="122" />
+    <Item _uuid="GER4]OTZNV3mJaALjvZXnQ" name="ImPhyDefAddVal" label="物防附加值" is_valid="Y" note="M#" value="123" />
+    <Item _uuid="FUNvevJosSsKtRwtVh6yqQ" name="ImConSpeCoe" label="体质影响速度系数" is_valid="Y" note="M#" value="124" />
+    <Item _uuid="7EMZE30ZfmVvl0gje8]Tlw" name="ImStrSpeCoe" label="力量影响速度系数" is_valid="Y" note="M#" value="125" />
+    <Item _uuid="tEEKZS7KkmX2KhL4U0fcow" name="ImStaSpeCoe" label="耐力影响速度系数" is_valid="Y" note="M#" value="126" />
+    <Item _uuid="]0cKWZLQ0j9pzhH6k]]Fhg" name="ImAgiSpeCoe" label="敏捷影响速度系数" is_valid="Y" note="M#" value="127" />
+    <Item _uuid="DU5J1RTzgAZFYW8pH8GukA" name="ImSpeAddAvl" label="速度附加值" is_valid="Y" note="M#" value="128" />
+    <Item _uuid="lkkV57vWg5y]8UVycSlutg" name="ImAgiDodCoe" label="敏捷影响躲闪系数" is_valid="Y" note="M#" value="129" />
+    <Item _uuid="KExulYvG1gNfCZTPOWIXpg" name="ImDodAddAvl" label="躲闪附加值" is_valid="Y" note="M#" value="130" />
+    <Item _uuid="nUXeokH3hfkregXzriSqhQ" name="ImConMagAttCoe" label="体质影响法攻系数" is_valid="Y" note="M#" value="131" />
+    <Item _uuid="iUOWzg22QmPdnTwLFfPopw" name="ImMagMagAttCoe" label="魔力影响法攻系数" is_valid="Y" note="M#" value="132" />
+    <Item _uuid="107YYrfJ0M5sFFNs06TsqQ" name="ImStrMagAttCoe" label="力量影响法攻系数" is_valid="Y" note="M#" value="133" />
+    <Item _uuid="rEcZ01YhessKi[oAuLoWlA" name="ImStaMagAttCoe" label="耐力影响法攻系数" is_valid="Y" note="M#" value="134" />
+    <Item _uuid="IEeOXc8aEAj[js4Z1OR3jQ" name="ImMagAttAddAvl" label="法攻附加值" is_valid="Y" note="M#" value="135" />
+    <Item _uuid="Rk]w6YY2qAofAmyPWf47gA" name="ImConMagDefCoe" label="体质影响法防系数" is_valid="Y" note="M#" value="136" />
+    <Item _uuid="9kwo7g6ZPBs]79CRNAc5hA" name="ImMagMagDefCoe" label="魔力影响法防系数" is_valid="Y" note="M#" value="137" />
+    <Item _uuid="sEqQvyzascbs[rm1jyQSgg" name="ImStrMagDefCoe" label="力量影响法防系数" is_valid="Y" note="M#" value="138" />
+    <Item _uuid="ykqZWpkQkFbcP14ySTqXow" name="ImStaMagDefCoe" label="耐力影响法防系数" is_valid="Y" note="M#" value="139" />
+    <Item _uuid="fED8IaFj2lsyfc1r6d8Ivw" name="ImMagDefAddAvl" label="法防附加值" is_valid="Y" note="M#" value="140" />
+  </Enum>
+  <Enum _uuid="10uqekPNaKq0s4XZ8wvioA" name="GmTaskTalkGroup" label="对话组类型" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="G0UzqZVb79Bw6bY2kl44sw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="nEx1rHMiynBk0tzvFNDlhw" name="Default" label="默认" is_valid="Y" note="M#" value="1" />
+  </Enum>
+  <Enum _uuid="kkgGlVit6K7uZblnimmunw" name="GmTalkRole" label="对话角色" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="CE1jRfyhcVL[o9sO9SGmhw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="P0O4Lo[0DDVcfbULHJBPvg" name="Actor" label="演员" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="CU0VBNLg8t6lB7Q6jMS5iQ" name="Player" label="玩家" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="dkcZ56JWwD1gzpwrDbd]uA" name="GmTrackType" label="任务跟踪" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="gU0BYmss2ivO9J]R0mD5jg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="lUSx0OdIwqNkk5R88NxghQ" name="Yes" label="追踪" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="]k0tXE1qj3hDSvxt4O[3gg" name="No" label="不追踪" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="PEJ3XndSs]KpC4TaEMsztQ" name="GmTaskForm" label="任务形式" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="okYgP57]82dqPhDBrSL9lw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="1Et5xmGZijC5F40NldaTqg" name="Dialogue" label="对话" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="bkkf4W[ogplxcVZSr28Gvw" name="Kill" label="杀怪" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="uEdzGl85wbFhHcJD9cLlmg" name="Challenge" label="挑战" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="T03416kmmtVtMiZ4XMPTpQ" name="Collect" label="收集" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="AUotki3FJwSPOWY]sZT9oQ" name="WearEquip" label="检查装备" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="YE6FqW6HmUo1bEO[zOsbtw" name="UseItem" label="使用物品" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="kE]LF37ZLxslsazxwULijg" name="Checkfunction" label="检查功能" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="YUUE]DFVMVnbmM0a62kduw" name="Pet" label="扑捉" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="FUNNejYdpajX1OyAboyijQ" name="GiveItem" label="交付" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="60u6wzPW9CBjSaqxKz]HhQ" name="Gather" label="采集" is_valid="Y" note="M#" value="10" />
+  </Enum>
+  <Enum _uuid="6EZ[CuA]tUPlirkzepDPsg" name="GmTaskDifficulty" label="任务难度" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="D0x3d4Q[[8VEst[CLgQTiA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="hECGJjWcBq2TV4sc]so0jQ" name="Difficulty1" label="1星难度" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="WUrRtDtHqarKfjSi]4nspw" name="Difficulty2" label="2星难度" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="BkGSNkrmPxGwBg6dz34uvA" name="Difficulty3" label="3星难度" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="ZESAIm37rNPoQnA6aOZ[nQ" name="GmTaskAbandon" label="放弃类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="zUgDVXQnf2ka2rngRmt0lg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="6EylYtgej2Ooy4AvGJfAjw" name="Yes" label="可放弃" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="E0Q79WHbXs1pLRf0E0ytug" name="No" label="不可放弃" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="AkqghWASy]DGapwIMLOvvA" name="GmTaskRedo" label="重做类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="cEqf80j[g[1BKxH0ruIjvQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="uEFX2ngpuUtKB[gsUNNmsA" name="Yes" label="可重做" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="[k[AtsMTqVVvDj6xmeAInw" name="No" label="不可重做" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="eUwQXkbVXIdHirxfOtsRjw" name="GmTaskDestroy" label="销毁类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="QkMojaeYzI]HRmb1t3UJlw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="OkoIwPb[GXNF8I1LQehpjA" name="Yes" label="销毁奖励" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="JUKUPJitVRIMtWp[JOISsA" name="No" label="不销毁奖励" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="[E83bgKHKJkwpeqvPnYyrw" name="GmTaskRepeat" label="能否重复" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="JUbkYB2gXBVqKOBgJk]YgA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="vkRMrXn8t5BwQGdtjZsEnw" name="Yes" label="可重复" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="OUdvSj3vWN7iZaWdv]09lg" name="No" label="不可重复" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="kEFp]84NM2v[NDqTe]egkw" name="GmTaskReset" label="重置类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="3kAhdGqRKrLQ9yz8aomQkw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="rk4LztDHvx9h6KHNoE8Smw" name="Yes" label="任务重置" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="nEXPEhBX1JwC[UZehvazgw" name="No" label="任务不能重置" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="B0qIMmO4RzEFCU7QEeTPjQ" name="GmTaskDisplayAccept" label="可接任务显示" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="mkBY8Jykif0[t94kEqN8qA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="J0S7OPq]DDyGpwFVBBb0nA" name="Yes" label="可接任务显示" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="pET[dS5ozPP[G0]xg0wHug" name="No" label="可接任务不显示" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="I0IrZ]m8Kpjgxsqzmj4qrg" name="GmTaskDisplaySign" label="可接标志显示" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="60u[llcc9izbz7pbAQ4chQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="aEanrLUffFiNNIN6M3GFrQ" name="Yes" label="可接任务标志显示" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="i0LWC0wpQTUrd8Lx8GRYmw" name="No" label="可接任务标志不显示" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="[E[dznMxGYLuNb9J2sY9mg" name="GmTaskFinishTeleport" label="远程完成类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="S08nLxOHP6VgOVKbXP1GsQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="40B[DdYzPiVJWQx4RyYTkw" name="Yes" label="远距离可完成" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="Sk0OcHyLVGFpFZT2sXIQjg" name="No" label="远距离不可完成" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="jk7NjNfqn0tFpX3BGukwiQ" name="GmTaskFinishAuto" label="自动完成类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="jkQk47L5LPOIbTCqo4cLpA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="eEA3G5tju5zlsxre676BnA" name="Yes" label="接取交付全自动" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="QUC2sutwylAUHSk2[rSygg" name="No" label="不可自动完成" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="G00R7i0bXXzrKoxCLac3gA" name="AutomaticAccess" label="只能自动接取" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="P0SheGZFPxJtduLD]5TWug" name="AutomaticDeliver" label="只能自动交付" is_valid="Y" note="M#" value="4" />
+  </Enum>
+  <Enum _uuid="TUuwY8BF32cR3OlhNK5Tig" name="GmTaskLimitTeam" label="限制组队类型" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="U0QCwokfpv]NthXMPSlJuw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="OkSONJ3arfdBIrbwjHMIpg" name="Restricted" label="受限制" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="EURX6Wxki0[vB30pdSkkrA" name="Unrestricted" label="不受限制" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="ikHFkDxiuR2dqk78nPoTnA" name="GmTaskRewardAssign" label="分配类型" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="K0FiQuv4EX47mfTjeLBEvA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="lUBvGGO4K83NiG2bachutw" name="One" label="一个" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="JEPo79mYr70Sr810B4FniQ" name="Both" label="全部" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="cUUuQWrPhJmt86Mwtbj2hA" name="Custom" label="自定" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="G0TuC]4bqSwN0Bn2m]RXoQ" name="GmTaskRewardTarget" label="目标类型" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="hUbsdESiBH6bv1ckEl93ng" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="DkYbMkMzFXScNOkZLjEWmQ" name="Team" label="全队" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="Gk35ua]SRIlnen813OTxjQ" name="Member" label="队员" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="aUCBd38tGziH]Rt8tmM9rw" name="Leader" label="队长" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="O0rZmtVbZHdX6SGyfkUMtA" name="Player" label="玩家" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="cU3KSuaRMeBH3t9GolpFlQ" name="pet" label="宠物" is_valid="Y" note="M#" value="5" />
+  </Enum>
+  <Enum _uuid="uUszzDAaVLuCCXGnp]4vtw" name="GmTaskRewardProfession" label="目标职业" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="dUdTbUc15Em[Su512pV5iA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="ZkF6GfnB1]YNB06jkniJnw" name="Unlimit" label="不限制" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="nkF0YD5Kv[7JIBsBd0jFhQ" name="None" label="无职业" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="kEAlb[LtSj5WAWl]Zff[vQ" name="Warrior" label="火武门" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="eEO2yNmDjU7jjXoKUTQOsA" name="Mega" label="水晶宫" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="60aanFM92mW9nJ5Fnr]Diw" name="Priest" label="神木居" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="0ko9vWQJHnd7MoBDn[9ptA" name="Warlock" label="天机阁" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="pUYrUZYU[YSSlJkAOspggA" name="Have" label="有职业" is_valid="Y" note="M#" value="7" />
+  </Enum>
+  <Enum _uuid="f0YL5cIHV67kxdXC0LxxsA" name="GmTaskRewardRace" label="目标种族" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="r03ViuJjpUQVKLMZuvFVuw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="d0qz]qGMWrGGFgP7YsPNhQ" name="Unlimit" label="不限制" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="7EU0A9Gy3njWVx4rhLzNqQ" name="Human" label="凡人" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="xkLOSFntrq9BnN4MPwIxpA" name="Fairy" label="尊族" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="ZkegreIQ9QlcyUINua]Lrg" name="Evil" label="魔族" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="JE6j9]RJgPfSRji[W7zFkA" name="Protoss" label="仙族" is_valid="Y" note="M#" value="5" />
+  </Enum>
+  <Enum _uuid="a0ygg8Hkb86luKUSNsD[pQ" name="GmAcceptType" label="接任务类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="w0z]lopqQ7T4EFoXvQCpoQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="h02zsbN1uFmHJa14p[I8sg" name="ManualAccept" label="手动接取" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="90RJ0ayP9HjGb5iW9qv7pg" name="AutoAccept" label="自动接取" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="NkyuJ7tTUO0S7HQY0yNYiw" name="AutoPrompt" label="自动提示" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="YkW9CdtASHi3ilGctOUunQ" name="GmTalkTime" label="时间" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="GUUtv1I3t2Wq5m77]HuatQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="bEYVcizZ19XdWz49Lu]8qQ" name="Day" label="白天" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="6U[iOF4CKtx2Oj4zsg5ksA" name="Night" label="夜晚" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="a0651gJ1tBDcBBzXYVIwgA" name="GmTalkGroup" label="对话组分类" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="UkpLpfBNmf[mLpdztjvfoQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="UUCKO4Fmv83EvOhzt[D3jA" name="Common" label="普通对话" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="R0SZrHbN2nPqMbyti6mSgA" name="Task" label="任务对话" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="dk[gw1cQMB1tv34tMqruhQ" name="GmCurrency" label="货币" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="50dq9olpikNAkIjdEnWNjQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="OUcbooZrc5gk9hoqtDnvjQ" name="GangContribution" label="帮贡" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="50XvgO1FpK21TDZo9vVglg" name="Point" label="点券" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="fE0RH[f1oQFZrkdEFfuHtg" name="Gold" label="金币" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="vEr[nFiM]SZxoXOZ9jV9kg" name="BindGold" label="绑定金币" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="8UIrXYQ8BOAymh9yBSO1jw" name="Money" label="元宝" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="I0Ohf6KtZbIupPzXLbNKsg" name="BindMoney" label="礼金" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="JEy54sTbPf18GAH0]Hgxkg" name="DouFaPoint" label="斗法积分" is_valid="Y" note="M#" value="7" />
+  </Enum>
+  <Enum _uuid="2EVj01B5skXfLFXwjYBVlA" name="GmActorFunction" label="演员功能" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="BUML0wnzCDejZOy7F[OOrw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="oEbXG[j7V[cN499Wibq8sw" name="Openwarehouse" label="打开仓库" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="HkYoMP1grIJmeAaczq]vtg" name="Double" label="双倍" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="ike2v8dr6ckHvRJkWMKroQ" name="Escort" label="护送" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="ME44cYFe0kkZjDCx51SBpQ" name="Protec" label="押镖" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="bU2mrXerecvIgB5FwxGZjg" name="Group" label="申请帮会" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="nkSNOUrXZsbXnBFVqPC5hg" name="Washpoint" label="洗点" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="PESrTKifaflVe5jZuRNtuw" name="PetWarehouse" label="宠物仓库" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="O0mtzNqbQLfWCXuz2[FSiA" name="Talk" label="对话" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="HUeP9oguQETksb[ZFVSDog" name="Battle" label="战斗" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="wkmz6iCj7ow3mHIzovowoQ" name="Packs" label="礼包" is_valid="Y" note="M#" value="10" />
+    <Item _uuid="LUR7I5CtvG[Jm4KAhUYttw" name="OperationReward" label="领取运营奖励" is_valid="Y" note="M#" value="11" />
+    <Item _uuid="MUJceCZT8wQair3hEflFuw" name="TournamentEnter" label="个人竞技" is_valid="Y" note="M#" value="12" />
+    <Item _uuid="NkmRKrFYS4qcjnQmvTEYlQ" name="TournamentShop" label="竞技积分商店" is_valid="Y" note="M#" value="13" />
+    <Item _uuid="CEAnvzO8[fsv6CTdymHGng" name="EnterGang" label="进入帮会家园" is_valid="Y" note="M#" value="14" />
+    <Item _uuid="Pk1W2QqORRc30wYwfCxVhA" name="OpenActivationCode" label="打开激活码兑换" is_valid="Y" note="M#" value="15" />
+    <Item _uuid="iUiN3jH6FgPAolYefqeGgg" name="FightActor" label="挑战" is_valid="Y" note="M#" value="16" />
+    <Item _uuid="M0CmcvBkKDorKq9IVqUaoQ" name="NewYearGift" label="领取礼包" is_valid="Y" note="M#" value="17" />
+    <Item _uuid="Sk6yNpNeY8vaRs523[zltA" name="FastChallenge" label="快速挑战" is_valid="Y" note="M#" value="18" />
+    <Item _uuid="HU4zYIYQ3PHN[GG1qJfJlg" name="Weding" label="我要结婚" is_valid="Y" note="M#" value="19" />
+    <Item _uuid="WU0IFKnezt[LWYk[wIhotQ" name="Divorce" label="我要离婚" is_valid="Y" note="M#" value="20" />
+    <Item _uuid="skl6D1SWWKRvHxSXNu2Xtw" name="WedingGift" label="婚姻送礼" is_valid="Y" note="M#" value="21" />
+  </Enum>
+  <Enum _uuid="B0m5YZsVViZq9wJ1iB2bgA" name="GmProfession" label="目标职业" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="VUwrYVtWrlbTRqr97XcMuA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="VUTIkuj0O97Ir5bhed63lA" name="Unlimit" label="不限制" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="L0[g62amrRz2JQsH1dFYgA" name="None" label="无职业" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="1EMc[L0Iv7[KQFpo5Z8tkA" name="Warrior" label="火武门" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="ZkiIVGV4KVsIMZvevPVxtw" name="Mega" label="水晶宫" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="2kpck0ewy98AFuE4aQ5jmA" name="Priest" label="神木居" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="KkQXHTUrrqWu72000[efnw" name="Warlock" label="天机阁" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="T03xY0EWUJdxBtRFvmrrlA" name="Have" label="有职业" is_valid="Y" note="M#" value="7" />
+  </Enum>
+  <Enum _uuid="kUO29VIdJNjX[]6vjokwsA" name="GmTrackFlag" label="是否追踪" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="ekCjAA6Gi2sIzo0gGBDPog" name="No" label="没有被追踪" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="O02v5f9NvwrWYa3s4uT4pw" name="Yes" label="追踪" is_valid="Y" note="M#" value="1" />
+  </Enum>
+  <Enum _uuid="uEOfsE3cj4FhjrXo9aeXgg" name="GmTradeItemIncCd" label="玩家交易物品增加类型" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="0UxvjxEQdJfr3GLeTh5vog" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="MU3s4gkaYrogOutYI8vSiw" name="CountInc" label="数量增加" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="xk7lMe0d7jchhFh30IIBvA" name="CreatInc" label="新建增加" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="]EZA1lRCNDhzl2SabAadjA" name="AllInc" label="全部" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="kUSKn1xn1Ic[s4TO5aoauQ" name="GmTalkType" label="对话类型" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="0UcGKWRFUFB7q]Px[Akclg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="rkdFribedh[nU8Lvyetnvw" name="Normal" label="正常对话" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="T0J021KeFaWeKa1tfVbnkA" name="Task" label="任务对话" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="70H34jvfMR[SbvFsh[7Oig" name="GmTeamMemberFlag" label="组队成员标志" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="AUT]Gz64M8scAss3kZn5lw" name="Valid" label="有效" is_valid="Y" note="M#" flag="V" value="0" />
+    <Item _uuid="DEEWH032zlASnQGaX0crig" name="Follow" label="跟随" is_valid="Y" note="M#" flag="F" value="2" />
+    <Item _uuid="yUff[]s[soJDOzRV3wcjmg" name="Leave" label="暂离" is_valid="Y" note="M#" flag="E" value="3" />
+    <Item _uuid="pEV3pFRjWo4hDXz72GqChA" name="Back" label="归队中" is_valid="Y" note="M#" flag="B" value="4" />
+    <Item _uuid="RkfNwrKIHG7Qplyl]vPbjQ" name="Offline" label="离线" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="j0g6kXAOmRHRnyVi4lNLnA" name="Leader" label="队长（仅限客户端用！服务器这个值无意义！！)" is_valid="Y" note="M#" value="5" />
+  </Enum>
+  <Enum _uuid="gktFLJPVhrlEqrNAd2brqA" name="GmTeamMemberAction" label="组队成员命令" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="40[A8P0wpTM9ABSGzzczjg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="qU1exg6z3fn3KLLPqzfYvQ" name="Invite" label="邀请" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="EENVF35E0YyNJBgNojm6gg" name="Kick" label="踢出" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="DEbPWkAtf6h1nDBnmNAUiQ" name="Leave" label="暂离" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="m0uVhP[OZT[PjlaCT]DWmA" name="Switch" label="转交" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="l0oRAm784HSjlixOdrurrw" name="Back" label="回归" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="ykVy1OnXRvv2zN7]M2eWgw" name="OffOnline" label="掉线" is_valid="Y" note="M#" value="6" />
+  </Enum>
+  <Enum _uuid="G0I[AiHgiOifoXvslDHlkw" name="GmTeamAction" label="组队命令" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="ZE0HsOVcsFciF1dchevIhw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="eU9SIAHqyPLJDgnALqVwvQ" name="Create" label="创建" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="40bZpPuLY]FWd[sB[XmHow" name="Update" label="更新" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="skjUPwVopyVY2Pc5mWiRjw" name="Dissolve" label="解散" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="fUVfsZjrAqF7fSm1Y9KLqg" name="OffOnline" label="掉线" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="LkuoRkPc5B3AzXF15aL5qg" name="ClearRoleTeamID" label="清空队伍ID" is_valid="Y" note="M#" value="5" />
+  </Enum>
+  <Enum _uuid="eEgwygM7mBHxnHDSFbHAmg" name="GmSocietyFunction" label="功能类型" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="LUnhHD0e]1flh35BMCe3iQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="QUl[bi6Fhzm5fq0QQtZegQ" name="Changeplacard" label="修改宣言" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="Q0i97mNetPpmvqWeg[HJpQ" name="ChangeManifesto" label="修改公告" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="R0YcrTB[]Ov3FmziBhjitA" name="Approvein" label="批准入帮" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="2UCtSkNoqr1DA4nRPlWctQ" name="Refusein" label="拒绝入帮" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="N0]uNM8oqV[hk2j4fLzQjA" name="Clearlist" label="清空列表" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="GkqnHs5niip6o5Q[lI[Tpw" name="Invitein" label="邀请入帮" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="]koDV]kTqW2ogc[K586cpQ" name="Kickout" label="踢出帮会" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="Dk5R6ayTgzp]5tjMjLDSuQ" name="Dissolve" label="解散帮会" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="o0oIZmH8aUIF[Flcesakqw" name="Quit" label="退出帮会" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="o0X00aIamiZ8oDCSYvYznQ" name="AppointSecondleader" label="任命副帮主" is_valid="Y" note="M#" value="10" />
+    <Item _uuid="eUIDlQZ3mx7AuUclrdo[pw" name="AppointThirdleader" label="任命堂主" is_valid="Y" note="M#" value="11" />
+    <Item _uuid="p09J8u2sSXTCiz2ajjainQ" name="AppointMember" label="任命帮众" is_valid="Y" note="M#" value="12" />
+    <Item _uuid="aUCeJSE1btskwB8r2Pi8qg" name="Resign" label="辞去职位" is_valid="Y" note="M#" value="13" />
+    <Item _uuid="bk9XdNQzc7l]ywIlwXHLhw" name="Demise" label="传位" is_valid="Y" note="M#" value="14" />
+    <Item _uuid="Wk0RquNfqHejtDZeijz0kA" name="PromoteLevel" label="升级帮会" is_valid="Y" note="M#" value="15" />
+    <Item _uuid="a0sVI1EKM8158Zfw6I9dpw" name="PromoteBadge" label="升级帮徽" is_valid="Y" note="M#" value="16" />
+    <Item _uuid="[EhaA5925PmPl1eymh7IrA" name="EnlistCityWar" label="帮战报名" is_valid="Y" note="M#" value="17" />
+    <Item _uuid="]0j5O0Lr0nncIiXD9gymkA" name="ImpeachFirstLeader" label="弹劾帮主" is_valid="Y" note="M#" value="18" />
+    <Item _uuid="OUui4vt]R1ktbioe2ub6qg" name="SocietyMail" label="帮会邮件" is_valid="Y" note="M#" value="19" />
+  </Enum>
+  <Enum _uuid="AkExdC49keZJ6XV3Qxp1ug" name="GmSocietySpendType" label="社会组织创建消耗" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="[EtHFaxPuPNpbCg8TcDttw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="F0LMU1I32Y18bzcD7jiDjw" name="Currency" label="货币" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="s0ouOjnLGbGVbjUDGygugg" name="Capital" label="帮会资金" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="NUDXXKEiemfQ7KjN5pUStA" name="Prop" label="道具" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="FU10]gkcT9E0GBJNNsFfnw" name="GmFunctionStatus" label="帮会功能状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="NEv18ebnlL]BFIb1h2g5hg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="WE1y]U0rNRDzd]nrdjfEnw" name="Yes" label="开启" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="K0sKOD9DpTMcJ2eHFRC5qg" name="No" label="未开启" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="MUwV5PkEfxLVsESyPBjNng" name="GmSocietyAction" label="帮会操作命令" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="9Ep[SMTroQQR0ZywHWeghA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="tU8e5unmIET8Z9Vskuu3rQ" name="AppendMember" label="添加成员" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="xkSvW1p4l4MvapT7mB]7mw" name="RemoveMember" label="删除成员" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="iU8RcWMqSD7qdKByBBdEuw" name="CreateSociety" label="创建帮会" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="I0oXJ2WHyc8VqlUeE3pIuQ" name="DeleteSociety" label="删除帮会" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="ikDijWMXk5IhjdLqYdR1jg" name="AppendApplyMember" label="添加申请成员" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="v04[4Ktew3RYtXsSunNCvg" name="RemoveApplyMember" label="删除申请成员" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="k02iuRw5GH]lw0x1[WKolg" name="ClearApplyMember" label="清空申请成员" is_valid="Y" note="M#" value="7" />
+  </Enum>
+  <Enum _uuid="7UY1kzY6yvl3klQq7i9NuA" name="GmSocietyPost" label="帮会成员类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="VkjGWY6JkLRIbfLOFr5XgQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="REuPNImrr]sEcrCFtliagg" name="CommonMember" label="帮会普通成员" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="kk23wVFT]Q[yI1saVDN2hA" name="GovernMember" label="帮会会长" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="xElwE9oTeEdnwlzg8hu0sw" name="GmSocietyPositionType" label="成员类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="2Es1jQS6vUhTYLzmekg2tA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="fEjzLsk5Vqaa8hh1H6I2vQ" name="FirstLeader" label="帮主" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="NU25u6N6]NAlXKdUtLxzrQ" name="Secondleader" label="副帮主" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="]kYWNpnICWUfdbQgdiupoQ" name="Thirdleader" label="堂主" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="3EnS8gdfb04PE45B[ysQpg" name="Member" label="帮众" is_valid="Y" note="M#" value="4" />
+  </Enum>
+  <Enum _uuid="L0zHsWciCwFw20OsNXgYqg" name="GmSocietyType" label="社会组织类型" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="AUHIdLMU4wygAlKi0Yilhw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="PEli8hxPI]jJTXqx75zKkA" name="Society" label="帮会" is_valid="Y" note="M#" value="1" />
+  </Enum>
+  <Enum _uuid="Q00JeC48F8ARmRcOPiTOjw" name="GmSocietyHome" label="帮会家园状态" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="]k3ZqqfcVbwZIn5u3h4FsQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="nkJJIDuNwrLn3Auhrz8ziQ" name="Yes" label="开启" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="v0d1dTfg3uVpRNzKQmrImQ" name="No" label="未开启" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="cksDI1jRfDSp0UxIY7[xmQ" name="GmSocietyChangeType" label="帮会信息修改类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="dEC[ai0wuhuqK5SqxYw6gA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="]konuzeUpeH0OnhWbjrBmg" name="ChangePlacard" label="修改公告" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="rkH82IsV4zU]mnbUNUyQjg" name="ChangeManifesto" label="修改宣言" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="hk0e89dq2erGZSb[TGtrmw" name="LevelUp" label="升级" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="rUyM6enUI4YoGjwfDI1urg" name="Contribute" label="帮贡捐献" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="h0ya1dA7OuaWaOODqut5mw" name="BadgeChange" label="更改帮徽" is_valid="Y" note="M#" value="5" />
+  </Enum>
+  <Enum _uuid="MkEiCVJSqzImfjlb89Txlg" name="GmMailType" label="邮件类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="mEa2WZjvtaSK9]jok8Xktg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="U0gXPrYiMuOUZeEphpDfrg" name="System" label="系统" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="kUHmDrQtazUovIBcHP[xig" name="Normal" label="普通邮件" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="9UoTFNzzBy]]PN6OJlhSjQ" name="Society" label="帮会邮件" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="I0gclFrQ7kHgdE62jVs0tg" name="GmTaskTrackFlag" label="可否被跟踪" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="n0C[Lv0[MoQTiqSYOz5hnQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="RE7qR0CyZCQNkd9Yk0dNrA" name="Yes" label="可以跟踪" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="sUIyYVZtchsliaMIDaxglQ" name="No" label="不可被跟踪" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="lklrwgHYneBUA5Rh91IVoA" name="GmMailOperateType" label="邮件操作类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="T0qJmW1]OJ1gVRwz0W21oQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="RU5gI1IN]7shhSWrBUv9sQ" name="One" label="单个" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="3kmYHsLdiDygH3jFECKigw" name="System" label="系统邮件" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="CUlhfFL6sH[GU8f3Eqz9pw" name="Normal" label="普通邮件" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="L0WvDjr6iGaw1QCpr]aXoA" name="Society" label="帮会邮件" is_valid="Y" note="M#" value="4" />
+  </Enum>
+  <Enum _uuid="VUVlGVNExNz78Mjn7sa8kw" name="GmTalkRequestMessageCD" label="发送谈话请求类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="QEvgulUG6OdduOPkdF7Lkg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="]0B4Z4yjDNCmEm0Q[S8qsw" name="ClickNPC" label="点击NPC时" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="jU8AdeAfDMG8qoPneh6ThA" name="TrackNPC" label="寻路到NPC" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="U0Ff0eEmpkrBtHZSbGw7tQ" name="Accept" label="接受按钮点击" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="4kBAdufMA78ksCgRKAabqg" name="Finish" label="完成按钮点击" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="dU9K2YrudXA8qqqw5raluw" name="ButtonSearch" label="任务查询按钮" is_valid="Y" note="M#" value="5" />
+  </Enum>
+  <Enum _uuid="gUp4sw[Wbq9HLkC4NFZfqg" name="GmStoreType" label="商店类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="X0Fg2zaSM]Yl5r]5gwRRuQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="BEQu1HV72hJuYG2rGf13kA" name="WeaponMarchant" label="武器商" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="M0Jk3jQEqYaXFM[UqphslQ" name="ArmorMarchant" label="防具商" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="l0eUsBiBFmk7tbxmfViwnQ" name="JewelryMarchant" label="首饰商" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="h0raY2MsD5G[swaQjKDJpg" name="MedicMarchant" label="药品商" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="o0gYwjDjQx3C157neTI7sw" name="OtherMarchant" label="杂货商" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="V0e6b7D3wYsj2cMKZ9AvsQ" name="PetMarchant" label="宠物商" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="6krVngiMmy9p7uyHMAt[vw" name="RideMarchant" label="坐骑商" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="UkVqG9N3h]8xtMBVs76Wrw" name="MartialMarchant" label="门贡商" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="cUtvx0we6vwYt4zkPO[6tw" name="CarryMarchant" label="随身商店" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="b0QE3E581Uv6ZKvrEjQEmg" name="SocietyMarchant" label="帮贡商" is_valid="Y" note="M#" value="11" />
+    <Item _uuid="R0N2HuCSWE7qWHMnJYt9sw" name="PersonalTournamentMarchant" label="斗法积分兑换" is_valid="Y" note="M#" value="12" />
+    <Item _uuid="FU8JHpU372yB0]XV6vopkQ" name="SocietyTournamentMarchant" label="逐鹿积分兑换" is_valid="Y" note="M#" value="13" />
+    <Item _uuid="EU[zpdSXgmbJ8h3tIEjIjw" name="GoldMarchant" label="金银商" is_valid="Y" note="M#" value="14" />
+    <Item _uuid="EUx37uQsweiC]1OJUk2fmg" name="AbyssMarchant" label="深渊商店" is_valid="Y" note="M#" value="15" />
+    <Item _uuid="[krtfEz5pIqAin5RXhjKvg" name="GemMarchant" label="灵石商" is_valid="Y" note="M#" value="16" />
+  </Enum>
+  <Enum _uuid="GkWR4XucZfxfwCLIIVMsrA" name="GmPageType" label="分页类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="jUsriz[k3ALA4eX0wCSSiQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="6U4hOIgkp5tWy[8UQXCOmQ" name="Item" label="物品" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="6k9dr]lR2QxIgJ5mS7vHnQ" name="HPMedic" label="血药" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="nkd13IU0aEpBA7DKWzt1gA" name="MPMedic" label="蓝药" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="Z0RjhCt4Ta5ez0nRRukKpQ" name="Other" label="其它" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="gEgUnbZCJW80Kw1vTgFbjA" name="Helmet" label="帽子" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="7EeI3KdNuxy5]RFroVNGqg" name="Armor" label="铠甲" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="[Uq6RKS3vkgtaot4X7N2kA" name="Bracer" label="护腕" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="OUjP[[MOalzKQuNyLsPklA" name="Belt" label="腰带" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="cUHqp4XI[6u2TZOgp2S1rA" name="Boots" label="靴子" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="nkqiOzICmVVLgQ5DDI9WiA" name="Warrior" label="火武门" is_valid="Y" note="M#" value="10" />
+    <Item _uuid="MEW[vm]FetuwdHfak54Ymw" name="Mega" label="水晶宫" is_valid="Y" note="M#" value="11" />
+    <Item _uuid="gECen7PXad]RE5m3uM2Jhg" name="Priest" label="神木居" is_valid="Y" note="M#" value="12" />
+    <Item _uuid="LUxgZckE]Z1]p5jkGrqyuw" name="Warlock" label="天机阁" is_valid="Y" note="M#" value="13" />
+    <Item _uuid="WUpEt4rpEki97vMu0su2nA" name="Necklace" label="项链" is_valid="Y" note="M#" value="14" />
+    <Item _uuid="gk5[xhI9yj4hOdtb489zuA" name="Ring" label="戒指" is_valid="Y" note="M#" value="15" />
+    <Item _uuid="mEh7x4rtRQv02[tZQeVbow" name="BuyBack" label="回购" is_valid="Y" note="M#" value="18" />
+    <Item _uuid="tEVNkU]fwfkACXaTxTr1gQ" name="Leggings" label="护腿" is_valid="Y" note="M#" value="16" />
+    <Item _uuid="Q0P[KR]6mLtg1WOsATdOig" name="Talisman" label="护符" is_valid="Y" note="M#" value="17" />
+    <Item _uuid="00Tzrk4NJoer0xKk01sQsA" name="ChrismasActivePage" label="圣诞活动兑换分页" is_valid="Y" note="M#" value="19" />
+    <Item _uuid="00Qx7kwM7Xi0bBrtp1bsnw" name="medal" label="徽章" is_valid="Y" note="M#" value="20" />
+    <Item _uuid="sUbI7eZvbZVDFiFpxWddlw" name="ActivityExchange" label="活动兑换" is_valid="Y" note="M#" value="21" />
+    <Item _uuid="RUrNbEVXB73zpHVW14pPow" name="CastingExchange" label="铸具兑换" is_valid="Y" note="M#" value="22" />
+    <Item _uuid="QUssat0U[NrmfxEznGEoow" name="BasicPetSkill" label="初级宠物技能" is_valid="Y" note="M#" value="23" />
+    <Item _uuid="OksnWFpUNqwwTbxBVuR7nQ" name="AdvancePetSkill" label="高级宠物技能" is_valid="Y" note="M#" value="24" />
+    <Item _uuid="eEJqWh11g6][9[Y[PFO4nQ" name="LuckyCion" label="好运币" is_valid="Y" note="M#" value="25" />
+    <Item _uuid="7ksx]JDSJAhqynBdJ4LxvQ" name="DragonBoatFastival" label="端午节" is_valid="Y" note="M#" value="26" />
+  </Enum>
+  <Enum _uuid="vEkcU]WY6V0fnWF3S5jEig" name="GmWasteType" label="消耗类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="9UXRhvmgOqY2blrbu[QYpA" name="Umknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="c0KgkJb5CeH5gJJsaUwHhA" name="WasteEverytime" label="每次消耗" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="10h]ExUnkJlQQTvSpeiVhw" name="WasteSuccess" label="成功时消耗" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="Hk6KSm82xdbZP26c[[kGgw" name="GmSpecialHornType" label="特效喇叭类型" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="zU]SiYGVMJ]IazLO8of2sQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="NUnZUgBpwkfMprTT0OX4mw" name="Love" label="爱情喇叭" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="j0YtoenCwpIaCOwnoY6clw" name="SmalHorn" label="小喇叭" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="r0HPtnIUtfQyBhKMjJxAvg" name="GmRepairType" label="修理类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="ykQuxhjyOYButcSRCLWEvg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="h0y02t1QvJAFMf]MwJhkqA" name="Single" label="单个修理" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="Kk]6TMMp6g1uoQAvRB0Kig" name="All" label="全部修理" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="xENWRd0ZG[n6m9ShEzJLsg" name="GmBuyType" label="购买类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="eE7rcgheoi7Cx5QmWvB9jA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="SU]GEc658hjTs7I41dGDqQ" name="Bind" label="绑定" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="]k0tsfsMMOw4JMX0U2DToQ" name="Unbind" label="非绑定" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="3UzRwyMvZs4PMnRly]aDuA" name="GmInterface" label="页面" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="0U7BkeMZVD90jUAa62XksQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="2EsPu98flqOAKBL2zwAktQ" name="Battle" label="战斗界面" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="nE3dodMWQatZ17yPNpt0qA" name="Login" label="登陆界面" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="SkQuzgQqSZVCyoMUSpZGsQ" name="MainUI" label="主界面" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="]UEybKrwVa]D7hqhUdI3ig" name="Icon" label="图标界面" is_valid="Y" note="M#" value="4" />
+  </Enum>
+  <Enum _uuid="R0rrzmpAOQ7hCoJCfL9Shw" name="GmTaskSource" label="任务来源" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="fUNVIDp[FUfVFWJAnWddoQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="v0Zhm9IBywDUgeFbwuAjkA" name="Task" label="任务" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="wkUIcVNYUfej[qQadYuQtw" name="TaskGroup" label="任务组" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="L0hlMuRMMYUdlnM[IRBkhA" name="GmBattleLeave" label="战斗退出状态" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="2Uq8urgQoqyT[DrxRhMlkg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="gU52D]tza2czYmnBemFAtw" name="Death" label="死亡" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="jUH8DtolAnMxLH[1v36wiA" name="Flee" label="逃跑" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="m0DE4jbtLJUNnoONusCFmA" name="GmBuyCurrency" label="其他货币类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="vUqIDh4WNQ9ANchRo787qQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="FUI6gpvJeM5ZlURwf7gftA" name="Tribute" label="帮贡" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="Y0fhilTix7DYJzGzV5zZlA" name="SectTribute" label="门贡" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="iU3ArpxsyO0Btx4c2bRptQ" name="PersonalTournamentIntegral" label="斗法积分" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="lEwu4wa]hvRSBV[WC4A7hg" name="SocietyTournamentIntegral" label="逐鹿积分" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="OUIKs4etulvZznsN8p4MuA" name="Exp" label="经验" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="w08gL]wnbL[rsyHDuVIBhQ" name="Crystal" label="真元" is_valid="Y" note="M#" value="6" />
+  </Enum>
+  <Enum _uuid="DEhaXKSlJh[JIDy[uUFRjA" name="GmItemBindStatus" label="绑定状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="aki6xj9N10j50XTEtbrKvQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="CUM7]GebpqwZk4Br6hDxtg" name="Bind" label="已绑定" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="JkDrY0OVh9nebOm1VHbTlw" name="UnBind" label="未绑定" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="SE43hhWX5C6Y3JB1P]PFpw" name="GmRecomType" label="推荐类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="ZU]PqyDc1ieKrAMTO3dfqw" name="Balance" label="平衡型" is_valid="Y" note="M#" value="0" />
+  </Enum>
+  <Enum _uuid="pkS0ARHLdY]SHUKRvIYplg" name="GmNpcFunction" label="NPC作用" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="3k3liU]O]8BBlJ9SKxK8iQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="lELvQUgfNA6ZM9MTfvNhrg" name="FunctionNpc" label="功能npc" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="EkqBCQfnQptRWwGKZdj8qw" name="BattleNpc" label="战斗npc" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="REfvPmckNHuGhpJFNqbKtQ" name="GmAlpha" label="支持透明度" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="nkNWwblrlnjBSuHwBAAlqQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="gktr1Mi06wrtMUtuxB7koA" name="Enable" label="支持透明度" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="h0YldWRqVgfzbhlO4dCosA" name="Disable" label="不支持透明度" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="CkzXxKPb2WLX5oTjtGYxmw" name="GmConfirmSell" label="出售提示" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="CEF63cSems4Cn6ZlK3PXqA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="Jk3uKgeLLiRBC]gtTpLntA" name="Yes" label="提示" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="vkqjy8Q5e2CHTB5TlKcmmQ" name="No" label="不提示" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="FEEWNOvbCa4WlEMVK8rrug" name="GmTaskContinue" label="自动后续" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="8kIxwmr1sf[IL6lZhk8tgQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="xU4kbSChpzLQHJmSWsxfng" name="Yes" label="自动弹出后续" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="S0wG0O6yDTQjOvM5GGKggg" name="No" label="不弹出后续" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="TkX17ic8s6J[a0xGhonMlQ" name="GmTaskFinishDirect" label="直接完成" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="LktbmF8wJ6hOwxKSu5M7kw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="MULTbmY65tAP9ioJNPibjg" name="Yes" label="可以直接完成" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="wkdpgdlyudIAlCyotSf2oA" name="No" label="不可以直接完成" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="GkdSdHnHAeczXn9ukCwbgQ" name="GmTaskAutoPath" label="自动寻路" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="90raKTkwQrmBNVy1SU88nw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="bElywViQSBX4Q[ww1mXYgw" name="Yes" label="拥有新手自动寻路" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="1E]FAKA1E3gpfbSdcS3xmQ" name="No" label="没有自动寻路。" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="[06gIRCoJFXdzZPIOwFklA" name="GmResource" label="资源类型" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="tUK[SbYWxg03uqxAijTIhQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="o01AYSk]ILei0l]Je]9nlg" name="Picture" label="图片" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="Ek4SR6I8[GT]Mevrxeasng" name="Animation" label="动画" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="G0]QZqH989V[ff4yuUwrng" name="Swf" label="swf特效" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="LEShyIddsM6seyHvKYs0ow" name="Music" label="音乐" is_valid="Y" note="M#" value="4" />
+  </Enum>
+  <Enum _uuid="504PHQbbGWZlW]816Oc5mw" name="GmBattleLimitType" label="战斗限制" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="pkIMEeRVYmanalsC5MRWvg" name="LevelDownLimit" label="等级下限" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="yE7e6XYawOf6EGXV2J[]uQ" name="Task" label="任务" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="vkeecC2LS]n[BnygZEKxlw" name="Time" label="时间" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="pkakC6hDEl9jj]diyHANoA" name="MemberCountMax" label="人数上限" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="50N9vW066gJm7gmE34NVvQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="IE8k]6xXjKoROzc7bKJXpw" name="LevelUpLimit" label="等级上限" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="OET8uZN4BOXGQww4nUePtg" name="MemberCountMin" label="人数下限" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="qkZMxIMAl3MZab9UbHMOuQ" name="ScheduleLimit" label="计划限制" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="SkBGn3PZycIzn5gW4GbFiw" name="OwnProp" label="拥有道具" is_valid="Y" note="M#" value="8" />
+  </Enum>
+  <Enum _uuid="F0Ag6]dBDQLvqZejh1WRvw" name="GmMeridianPartType" label="修炼部分类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="50qdXdWM65uiqHYjlotuiw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="bUzZQd901[wwBLpfhId7kg" name="Meridians" label="经脉" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="u0AfMz0LCpJfDylaY2UGuQ" name="Heart" label="炼心" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="uk5shWKMUqyr2rP2TsQZmA" name="God" label="融神" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="vUNJ3HabJMaPHdzHqJLphQ" name="GmActorType" label="演员类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="q0lpfSSluEh0NXBTj75[uQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="LkhEk96CH4lujH5sxyVYiw" name="FunctionActor" label="功能NPC" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="pEU77WwVAZYIgLFnZWYGrg" name="MerchantActor" label="商店NPC" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="SEUVfBZ6TOxLaBzvZgBNgw" name="NormalActor" label="普通NPC" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="[0JHQqfyqYkH6Nmx[kmftA" name="BattleActor" label="战斗NPC" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="XkWAeBTdgr2qtn3ure3KjA" name="GatherActor" label="采集NPC" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="VU2BiYdK00Xs4EKRcF4SjQ" name="InitiativeMonster" label="明雷" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="I0F]zfae1Irtl725Uk1shg" name="Block" label="阻挡" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="U0PDESBGztM9XLVJQLEOug" name="FieldElite" label="野外精英" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="]0zQxefiI0sOZfAI8yhzoA" name="FieldBoss" label="野外BOSS" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="IUrmjxBXfFM9PNitJg40oA" name="ArenaPkRule" label="擂台竞技规则" is_valid="Y" note="M#" value="10" />
+  </Enum>
+  <Enum _uuid="mUZvtwAhyBnVWq9RWFwirQ" name="GmRewardObject" label="奖励对象" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="7E40lYC4WQt4D4kBUc2fqw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="1ktgzgOfdafVxPdGUXrolw" name="Pet" label="宠物" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="P0qs3raJoTM9L8kapfwlsA" name="Player" label="玩家" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="80[yf[Nzf9kDqpt3NPG3jQ" name="GmGodType" label="融神类型" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="z0WswesxR[yDaqeIwzGEhA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="xUTUOL[Mqq5BwjLTyNLlpg" name="Dragon" label="青龙" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="zkKQpZ[mJHa5MWGMWBo2nw" name="Tiger" label="白虎" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="uExG2FkKNBp4UEaruBq4sw" name="Bird" label="朱雀" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="ok6OKOb7HBF2I3[SQ2RCgQ" name="Tortoise" label="玄武" is_valid="Y" note="M#" value="4" />
+  </Enum>
+  <Enum _uuid="wEG5xlD6raZjRWYm5D]XmA" name="GmAttackManner" label="攻击方式" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="g04wP5h]SFuYe5Q2zKNGmw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="pULwDhoamXJnj253QCVAtg" name="CommonAttack" label="普通攻击" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="v0INzkjd4pHf7OsmIwoQvQ" name="MagicAttack" label="法术攻击" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="ZkcRYGS7Twyeu8tpUJXUnQ" name="Defense" label="防御" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="HE0ZlzEwqXhMhVWbZbDOtw" name="GmTalkSource" label="对话来源" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="8EIgf0fEH4yOOXsKqdRzvg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="DUoE8sAtoHqDl[D0M2SxoA" name="Actor" label="演员" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="QkutIIX1xAPT95vkjbqfhQ" name="Player" label="玩家" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="GE4o7Ra[Lpn6Go8UpYjKjQ" name="GmPracticePartType" label="修炼部分类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="pEqz[]LGdDRpwJsecIQeoQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="CEz0lKPZ[ybERDkjb3zFjg" name="Meridians" label="经脉" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="1Uwk3ciXnW2SHxYcWBK[jg" name="Heart" label="炼心" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="gEJmZ84GinLF1zuA[Oc1ow" name="God" label="融神" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="D0idi[7nYJUuywyGnjnHiA" name="GmNoticeStatus" label="公告状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="ekD]uvwoVAQK]T9OMRmvlw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="o0JHe[FpdPhkt8HmUmq5gg" name="InQueueing" label="队列中" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="]0NcsQeOGyTjPeE30izLmA" name="InRunning" label="运行中" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="1k57Prjpz]THACUiaX6ZjQ" name="Ended" label="已结束" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="EUApudR7[7mMfulkxHzpsw" name="GmNoticePriority" label="公告优先级" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="iUeqqWG]yEPZVR7117DDrw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="qEWOkwBacOCakAD0aPNxiw" name="Low" label="低" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="c08es71mXO8pMd5pO9e9pw" name="Middle" label="中" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="Hk2uKHhZTiBXaF3zVYUrgg" name="High" label="高" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="PUPiwSZ4THZnoIdm[zw5jQ" name="GmMailNotifyStyleSet" label="邮件模式" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32">
+    <Item _uuid="W0SVL5mJJn9057nj7shUmg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="x05keJtD6Wqlv9NvQ1v4iQ" name="AppendixMail" label="有附件邮件" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="kUZIEBbETR8LRpSWJH63nw" name="NoAppendixMail" label="无有附件邮件" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="DUusMIkkNheCQGPePxuunQ" name="GmMailNotifyStyle" label="邮件模式" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="tUnJPQNful]bvW3vi6mioA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="x0V6CAsNfC[SkM60qwmyrg" name="AppendixMail" label="有附件邮件" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="dEQxxUCa591w7i3GtsxqjA" name="NoAppendixMail" label="无有附件邮件" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="DUpufDpPm6pEWsZt0cx]gw" name="GmNotifyScope" label="通知范围" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="Ukk6sjKfqrL0eb8lomB]pw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="1UZgLWeAEt44M1oz0N6ovA" name="Server" label="服务器" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="Akg21sD71eU66t0mVfJ2hQ" name="Client" label="客户端" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="UUfRHwpL0QJ[qJ9V1L]7ug" name="GmNotifyLevel" label="通知级别" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="]UJZkX[Bx4b6WxDuxTKasA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="rEg8FaW7OK0sXLy9Vr61gQ" name="Print" label="打印" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="0U1n3JluazS1XpUVD3zLkQ" name="Info" label="提示" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="9kGfB95YBM9IefsmcosJsw" name="Warn" label="警告" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="tUiqWePi0VGkdY8gvQfZsw" name="Error" label="错误" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="5Ufi53eoG8IUH1DmQ0bdiA" name="Fatal" label="例外" is_valid="Y" note="M#" value="5" />
+  </Enum>
+  <Enum _uuid="XEQvs5BuAzmWGdBbmcjCrA" name="GmTaskFinishDeliver" label="是否弹出给予UI" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="ykVNwSaNv88vqltV1[[rlA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="VETeZ5gmveLmBiabit2ouQ" name="Yes" label="弹出给予框" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="EkxVkvYwSxp[DrQ[2VDKng" name="No" label="不弹出给予框" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="zUtQZmOeUhCuQARokLcFtQ" name="GmPracticeType" label="修炼类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="eUgykGiKuaf9BXXFSFwrqg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="VULAk5T2doONkhYPeIdVsg" name="Channel" label="经脉" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="HkPvRj[1A[zrjAv0IRgRig" name="Heart" label="炼心" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="n0yzZcYN7odSpSL3t8GziA" name="Spirit" label="融神" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="OkVP3KeoKL5wLpGBn3HsvQ" name="GmMapFinish" label="完成方式" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="t0VDvRcCJ]RV29RtZ0Wttg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="yEJ5E7wpFMk2OxprH]CVhw" name="Npc" label="指定NPC" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="u0g7daMl9sxtOZVsFt4[vw" name="Monster" label="清怪" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="aEez8fAOPdrfVD7klByjhA" name="Task" label="任务" is_valid="Y" note="M#" value="3" />
+  </Enum>
+  <Enum _uuid="zEcn[uFAoXxWFzOZJMBRgQ" name="GmMapArea" label="区域类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="EU]ou2WxfFhiMnNySElFhw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="7klSlxpNQ7]06pcDKKYfmA" name="Normal" label="正常" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="c0ZkNV5WaUNZ5kvf]K6dtA" name="Block" label="阻挡" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="VEN]r[O6CFRsii8opOQygQ" name="GmMapBlock" label="区域阻挡" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="SErYLDQ4nkn3WjdKpO[FsQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="SkGqW6ZZNrKyLNK[WHeZrg" name="Enable" label="启用" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="6kgX8FfMVd38vpZD25x1hQ" name="Disable" label="禁用" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="C0hKBrkCHSEeUqhBESjNlw" name="GmMapLimit" label="限制类型" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="t0HTKkls]HFDE1CNzMORtg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="9kvKfvcx12CPuTUAbYhgrg" name="Level" label="级别" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="mEwe4WEW8qda8EIqYaHdmw" name="Task" label="任务" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="e08VcaE10HTof8lxmxbEsg" name="GmShopType" label="商店类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="3E3B]IHgLh0SRVhnELCFvA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="XELA3ej6urX4ikjO7ZPskw" name="Shop" label="元宝商城" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="QECJ4KFTneqdWO3Hg[rdqQ" name="PanicShop" label="抢购专区" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="L0CqKEnCIcfpP[[hQoSyrw" name="GmShopCatalog1" label="商城一级目录" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="A0fjD[oIUCo[TRhEvxH0rQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="90M4sEaUTD[YNkOcZmH6oQ" name="Promotion" label="活动热销" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="ekFcQxSJAztftF[5ECIovA" name="Common" label="常用道具" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="W01PMpNnFGtWdY90rb4gsw" name="DrugBuff" label="药品BUFF" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="]UYWn2OV2NqMnFXJEjfnvg" name="Pethorse" label="宠物坐骑" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="7kDbx2ZU91o9]9JVXpQzhw" name="Strengthen" label="装备强化" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="Lked[02IplaGcKzu3wdZkw" name="PointArea" label="礼金专区" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="x0KzTeYa1nYxwCqE5CxLnA" name="VipArea" label="VIP专区" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="ZUkOmjxKvwAtOu2MzcNgjA" name="WingCostume" label="羽翼时装" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="E09tAdGudvC8EIGhNieXmw" name="Activity" label="活动专区" is_valid="Y" note="M#" value="9" />
+  </Enum>
+  <Enum _uuid="rk[UECRNPzVjILslhbsyuw" name="GmShopCatalog2" label="商城二级目录" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="VkKsYjeFLAtQH7VLg7ykrg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+  </Enum>
+  <Enum _uuid="k0HbB9iEfjQ54u1GzDRlgA" name="GmShopCatalog3" label="商城三级目录" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="b07BioukjeSnk2TCy]lRrQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+  </Enum>
+  <Enum _uuid="0UQ4SVy1IdNYfWb]a4ignQ" name="GmShopSale" label="销售类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="W0mj3xJFg0aSa79BgteMiA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="7UKGtvGsOWKLOmXR]WhIjw" name="New" label="新品上市" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="2UfwRKbL1LMbt7azl2N]pw" name="Hot" label="热销商品" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="IkeGkSlrvqO1xHAZdqIKhQ" name="Activity" label="活动商品" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="]0WfTCHhUYkBaj6]6HGchw" name="Limit" label="限购商品" is_valid="Y" note="M#" value="4" />
+  </Enum>
+  <Enum _uuid="vk9hJHj6tCd7nDSag3kqig" name="GmShopValid" label="商城有效方式" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="cUHl09uf8lNQlSD2O3j3ng" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="kkZnbaGz[W[w6QC6Sjpisg" name="Day" label="日" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="T0T8aomYIyuAzxgQvbBDtw" name="Week" label="周" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="006r]Y7bIXwuwg2yauaLjA" name="Month" label="月" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="PUsqsIzFopB70[SLr12NjA" name="Year" label="年" is_valid="Y" note="M#" value="4" />
+  </Enum>
+  <Enum _uuid="wkkOTL7xSBHxgySuLC7uuA" name="GmMapGroupLimit" label="限制类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="kEZ7TjG4]Q5Q5i0cKcLFoA" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="10w97GjWmyyaTNDf3c1OoA" name="Level" label="级别" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="QEmxfVBPEYMFxmDsOr2tow" name="Task" label="任务" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="6UB32cvBvgRqnHus5I1shA" name="CombatPowerLimit" label="战力限制" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="Lk1BHVE14XaW1QZAkJ[inA" name="PropLimit" label="道具限制" is_valid="Y" note="M#" value="4" />
+  </Enum>
+  <Enum _uuid="Rk3uCj2cc[UZeldgQiM5qQ" name="GmDungeonTaskLimit" label="副本任务限制" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="Hk7PoJ]CMsLMGRpTeaA5lQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="nUC[4FtkAd8NieRX]OEruw" name="Complete" label="完成" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="DEfjohlCYCFdC47[lheguw" name="Unfinished" label="未完成" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="5kFqpDfFVvU5weNIXgjYuA" name="GmScheduleSpan" label="时间类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="90ZnTP2VsxMbfyIKg0ulqg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="CE7OBUauRZBRTr9kIG2AiA" name="Year" label="年" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="GUDh5EJchp3KogjDEwi[nQ" name="Month" label="月" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="ZkxMRuj2mnuf27QQZPSXlg" name="Week" label="周" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="H0wf9XmOGJLDlkwTGfFgvA" name="Day" label="日" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="lkwgO[tjO2uDTGjGs7IUuw" name="Special" label="特殊" is_valid="Y" note="M#" value="5" />
+  </Enum>
+  <Enum _uuid="VEGZURM5nSzVGpIiw18ioQ" name="GmPanicShopItemStatus" label="抢购物品状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="]UMXvBRzsAacc0qEJxrkrQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="90MfiXgIXYBurxEv7MyAkA" name="Panicing" label="抢购中" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="X07qP0QHg2tqYNLQWjMrsg" name="Free" label="闲置中" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="z0SrzDq7]uBVBjnOzVQjrg" name="GmSaleStatus" label="销售状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="LELb4aJ7xffgJrCnb3Pyow" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="Q031vHaHzHzXbIM1ZJ4cgA" name="InSale" label="上架" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="FUaB7vMTjBCEdtksCirPhw" name="OffSale" label="下架" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="CUDaviaLmzd1mIqjyMVCpg" name="GmPracticeLevelType" label="修炼级别类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="dExTHD5rewPHgDQTOUUklQ" name="GovernorChannel" label="督脉" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="YUqslkDLONEMb0Sv]]p1tw" name="ConceptionChannel" label="任脉" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="eUZ8bKMgmR[vqEAWSW8jsQ" name="ChongChannel" label="冲脉" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="9E[qTj79YcN53NM4CCF7ng" name="YinLinkChannel" label="阴维" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="HkCuxlom9Lv5QigCv5dFhQ" name="BeltChannel" label="带脉" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="VkhQ7gzQyRy]SMFX49ZVuQ" name="YangLinkChannel" label="阳维" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="[UPQV29eldhPEJ4h6seQmg" name="YinHeelChannel" label="阴跷" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="d0]xSV4FjFvkqk8QQx96nQ" name="YangHeelChannel" label="阳跷" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="lkk4H1UezZOS8GDFjLlKhA" name="EyeLeft" label="眼（左）" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="dEK]wO1zgU2jj7jUmi[wog" name="EyeRight" label="眼（右）" is_valid="Y" note="M#" value="10" />
+    <Item _uuid="wk3paa]2]IPtzhhig[5qkg" name="EarLeft" label="耳（左）" is_valid="Y" note="M#" value="11" />
+    <Item _uuid="9Ee[hYg[p77Xaan9b]o2qA" name="EarRight" label="耳（右）" is_valid="Y" note="M#" value="12" />
+    <Item _uuid="8EtyyVbIyG]PFQxd4hAntw" name="NoseLeft" label="鼻（左）" is_valid="Y" note="M#" value="13" />
+    <Item _uuid="70WvVZ9yKLV0]TlNvwyslQ" name="NoseRight" label="鼻（右）" is_valid="Y" note="M#" value="14" />
+    <Item _uuid="y0vx2LOdtjaOQ3Vcw3[Psw" name="Nozzle" label="口" is_valid="Y" note="M#" value="15" />
+    <Item _uuid="UEPpLc9cDy]G3]05X]Qzhg" name="BlueDragon" label="青龙" is_valid="Y" note="M#" value="16" />
+    <Item _uuid="BEgRiAFOR5FgOLRbkGKHug" name="WhiteTiger" label="白虎" is_valid="Y" note="M#" value="17" />
+    <Item _uuid="fkGEcwJcQRdYotX[xUPbkw" name="Rosefinch" label="朱雀" is_valid="Y" note="M#" value="18" />
+    <Item _uuid="kUhX[DLZnoJP3garPw2Vng" name="Basaltic" label="玄武" is_valid="Y" note="M#" value="19" />
+    <Item _uuid="[kL98Bj3IctYqd7dWzUarg" name="ZhuJiBody" label="筑基之体" is_valid="Y" note="M#" value="20" />
+    <Item _uuid="O06QoRLCAtKs2B5qrUowmA" name="LingXuBody" label="灵虚之体" is_valid="Y" note="M#" value="21" />
+    <Item _uuid="6k50nQhtAdgUGwpSNFGrow" name="JieDanBody" label="结丹之体" is_valid="Y" note="M#" value="22" />
+    <Item _uuid="g0A4fMKXn0gWlH0rXXHJpQ" name="YuanYingBody" label="元婴之体" is_valid="Y" note="M#" value="23" />
+    <Item _uuid="LUEBST43jiinJpPPd17ulQ" name="KongMingBody" label="空冥之体" is_valid="Y" note="M#" value="24" />
+    <Item _uuid="s0PGhbZCRK4[7gfrCMRusw" name="DuJieBody" label="渡劫之体" is_valid="Y" note="M#" value="25" />
+    <Item _uuid="v0MMq8VJa7EDLyTquqqvpg" name="DaChengBody" label="大乘之体" is_valid="Y" note="M#" value="26" />
+    <Item _uuid="7E]6MUHEp1OPifrAfR1opw" name="ShangXianBody" label="上仙之体" is_valid="Y" note="M#" value="27" />
+    <Item _uuid="AEYkJsg0Hf9Hp9hmVZiatw" name="ZhenXianBody" label="真仙之体" is_valid="Y" note="M#" value="28" />
+    <Item _uuid="30PNbt9kUTPHsOaskyhPiw" name="TianXianBody" label="天仙之体" is_valid="Y" note="M#" value="29" />
+    <Item _uuid="GUrZP222pdrqtuSRjfC1qQ" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="Ikji1yZtlQ63lRDPFC5vgg" name="JiaoStar" label="角宿" is_valid="Y" note="M#" value="30" />
+    <Item _uuid="y02FkZgElHcroy2hqbq5kQ" name="KangStar" label="亢宿" is_valid="Y" note="M#" value="31" />
+    <Item _uuid="t0qWah63yoWF442opcOwvA" name="DiStar" label="氐宿" is_valid="Y" note="M#" value="32" />
+    <Item _uuid="GE[vAZnqqXoRbC39jTIJhA" name="FangStar" label="房宿" is_valid="Y" note="M#" value="33" />
+    <Item _uuid="WkVIHcxFff8aaU3lrqvyqA" name="XinStar" label="心宿" is_valid="Y" note="M#" value="34" />
+    <Item _uuid="6U8N6tXZAjHsGmjQ4CP2vw" name="WeiStar" label="尾宿" is_valid="Y" note="M#" value="35" />
+    <Item _uuid="TE0[dVsJgEkwuUUeYzyotw" name="QiStar" label="箕宿" is_valid="Y" note="M#" value="36" />
+    <Item _uuid="bEddigOvwQj7qAFDBeFcqg" name="KuiStar" label="奎宿" is_valid="Y" note="M#" value="37" />
+    <Item _uuid="gUt5jg2bfvpGMhEoTD5LgA" name="LouStar" label="娄宿" is_valid="Y" note="M#" value="38" />
+    <Item _uuid="YEIlznscY7Dcd5Qm5CNpmA" name="WeiXiuStar" label="胃宿" is_valid="Y" note="M#" value="39" />
+    <Item _uuid="T0ceYvWn3ZN4]9c2T8Fhsg" name="AngStar" label="昴宿" is_valid="Y" note="M#" value="40" />
+    <Item _uuid="AUU8l7JZ6WfZKfK4GQ0AkQ" name="BiStar" label="毕宿" is_valid="Y" note="M#" value="41" />
+    <Item _uuid="0kTTXQkMR9ERqHBk0[9IoQ" name="ZiStar" label="觜宿" is_valid="Y" note="M#" value="42" />
+    <Item _uuid="u0XG[vRFgI8CG2uDioRLrQ" name="CanStar" label="参宿" is_valid="Y" note="M#" value="43" />
+    <Item _uuid="[0917yYX9JFfBcazzvW9lg" name="JingStar" label="井宿" is_valid="Y" note="M#" value="44" />
+    <Item _uuid="J0wW7yB[gDVK0MlSs[v4pw" name="GuiStar" label="鬼宿" is_valid="Y" note="M#" value="45" />
+    <Item _uuid="70TRML]Wih[W5oLsF7hqjw" name="LiuStar" label="柳宿" is_valid="Y" note="M#" value="46" />
+    <Item _uuid="[UC9kh[ytwJL[L8uIZRxmw" name="XingStar" label="星宿" is_valid="Y" note="M#" value="47" />
+    <Item _uuid="hUG8Blp]gY[DGBTrWuMrkA" name="ZhangStar" label="张宿" is_valid="Y" note="M#" value="48" />
+    <Item _uuid="XkzMX1H00TeyIfa9dR4Zng" name="YiStar" label="翼宿" is_valid="Y" note="M#" value="49" />
+    <Item _uuid="IkvuF2DY9d81GkiHfWATjw" name="ZhenStar" label="轸宿" is_valid="Y" note="M#" value="50" />
+    <Item _uuid="]EzzVyMp]AT]d02zWYF7nw" name="DouStar" label="斗宿" is_valid="Y" note="M#" value="51" />
+    <Item _uuid="FEq]yXcBZrpyeSuAqUVTgQ" name="NiuStar" label="牛宿" is_valid="Y" note="M#" value="52" />
+    <Item _uuid="YkLZCodfQQRHRQYT9U1TsA" name="NvStar" label="女宿" is_valid="Y" note="M#" value="53" />
+    <Item _uuid="KEfINyh1[rr[0m1GnSD[tg" name="XuStar" label="虚宿" is_valid="Y" note="M#" value="54" />
+    <Item _uuid="OEM1Xdny9KqaY2v97MHHlQ" name="DangerStar" label="危宿" is_valid="Y" note="M#" value="55" />
+    <Item _uuid="mUezh7yVtVQN6XJ[]7Utvw" name="ShiStar" label="室宿" is_valid="Y" note="M#" value="56" />
+    <Item _uuid="BEManPn3IwxPxd91knK4gw" name="BiXiuStar" label="壁宿" is_valid="Y" note="M#" value="57" />
+  </Enum>
+  <Enum _uuid="IUgd6wmhd37j66fw5RGAoA" name="GmGangWelfare" label="帮会福利操作类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="mUGrFnX3dFcYJ]JlEVjsjA" name="SeeWelfare" label="查看福利" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="vESkMdXjvB0YL1AnFGcKng" name="ReceiveWelfare" label="领取福利" is_valid="Y" note="M#" value="2" />
+  </Enum>
+  <Enum _uuid="nkPmtpm4fGpLJxp5K6matQ" name="GmRoleProperty" label="角色属性" is_valid="Y" note="M#" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32">
+    <Item _uuid="9kzFl78KZ2gZ1]tNLHX]pg" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="2U]mRJMyUEsBuhcN8Db7jQ" name="PkValue" label="PK值" is_valid="Y" note="M#" value="1" />
+  </Enum>
+  <Enum _uuid="wE4kl9kUtu]j7qJMkEJ7hg" name="GmRoleFlag" label="角色标志" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="Y" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="m0ASIZixwXmMdgwL9Umlkw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="5EE]xfMKJtH6[qoM1n0wlw" name="Battle" label="战斗中" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="[kYFbIgGLxjR7Q[Byhdvhg" name="Trade" label="交易中" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="uUR8gu9rsH1KkgGSNF[ytQ" name="TradeAsk" label="交易请求确认中" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="z06UE9WrNzOvrQShZ7H0tw" name="EntityTrade" label="npc交易中" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="PklQre2lb[]vWHyqHECrng" name="Talk" label="谈话中" is_valid="Y" note="M#" value="5" />
+    <Item _uuid="MkGI]x3dya5ubWDAv2w1hg" name="DisEncounter" label="关闭遇怪" is_valid="Y" note="M#" value="6" />
+    <Item _uuid="oErTydUVQzEErrWLM[feng" name="Escort" label="押镖" is_valid="Y" note="M#" value="7" />
+    <Item _uuid="nUT7Ixx]kp3CArvIDa9QkQ" name="DisTrade" label="拒绝交易" is_valid="Y" note="M#" value="8" />
+    <Item _uuid="xEGyXHXkFynXevd6r5[RiA" name="ChangeLock" label="更改锁" is_valid="Y" note="M#" value="9" />
+    <Item _uuid="AE]M5ujdyxHUDLbefqEUnw" name="Society" label="帮会中" is_valid="Y" note="M#" value="10" />
+    <Item _uuid="tUMwH18jl8lqKKjmjqbzoQ" name="DoubleExpFreeze" label="双倍经验冻结中" is_valid="Y" note="M#" value="11" />
+    <Item _uuid="8E3]ilVfZlf14Ah7uoierQ" name="AutoBattle" label="自动战斗中" is_valid="Y" note="M#" value="12" />
+    <Item _uuid="8ECyEODpH2hw0YolkveWjQ" name="OnHook" label="挂机中" is_valid="Y" note="M#" value="13" />
+    <Item _uuid="sEon8Nq]Y3bhGmxFzBLjrw" name="Convoy" label="护送中" is_valid="Y" note="M#" value="14" />
+    <Item _uuid="L05UPsfFCTvGUgs[TURunA" name="Robbery" label="被打劫过" is_valid="Y" note="M#" value="15" />
+    <Item _uuid="hUWrzabgiaQevxmBt[w2tw" name="Gag" label="禁言" is_valid="Y" note="M#" value="16" />
+    <Item _uuid="90UkD3ecxC3MS7kXYbOntg" name="Tournament" label="竞技中" is_valid="Y" note="M#" value="17" />
+    <Item _uuid="cUykSJbi9z[sM[88yDEyuw" name="WatchBattle" label="观战中" is_valid="Y" note="M#" value="18" />
+    <Item _uuid="4EGiu6tIXRr51YbAiL3ujg" name="FirstLogin" label="首次登陆" is_valid="Y" note="M#" value="19" />
+    <Item _uuid="Y0wfZ2afNYmlMIa6JxjtuQ" name="BattleEnter" label="进入战斗中" is_valid="Y" note="M#" value="20" />
+    <Item _uuid="LkH5RHQDrt6PaXFQeFJXrQ" name="CodeLocking" label="二级密码锁定中" is_valid="Y" note="M#" value="21" />
+    <Item _uuid="t0oUrg0ErQbsCPHkAlERpA" name="IsSetUpCode" label="是否设置二级密码" is_valid="Y" note="M#" value="22" />
+    <Item _uuid="eEQTfzBmD8P[wsowagMapw" name="NewerGuideExitCopyFlag" label="退出副本引导标志" is_valid="Y" note="M#" value="23" />
+    <Item _uuid="fE]C0JXZdzy84dNdmHh4ig" name="Offline" label="离线" is_valid="Y" note="M#" value="24" />
+    <Item _uuid="vkbCS55obtIJlf7l12QWvQ" name="weding" label="结婚" is_valid="Y" note="M#" value="25" />
+  </Enum>
+  <Enum _uuid="Tkk2nwyRG2y0oMWhdHnUjg" name="GmSandInteration" label="沙滩互动类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" is_count="N" enum_data_type_cd="Uint8" is_set="N" set_data_type_cd="Uint32" is_code="N">
+    <Item _uuid="s0UwjPxF9Mh9[ppNA]H1mw" name="Unknown" label="未知" is_valid="Y" note="M#" value="0" />
+    <Item _uuid="I0g[32pYEkRYgMlyZhUdjw" name="Cover" label="埋沙" is_valid="Y" note="M#" value="1" />
+    <Item _uuid="KEhw69aA3qjIq9bx7nIXsw" name="Daub" label="抹油" is_valid="Y" note="M#" value="2" />
+    <Item _uuid="Skl5b2c2[cWQBkLHia79gA" name="Drink" label="交杯酒" is_valid="Y" note="M#" value="3" />
+    <Item _uuid="tUlNkF2QWfE[fGXb2TLOoQ" name="BeCover" label="被埋沙" is_valid="Y" note="M#" value="4" />
+    <Item _uuid="N0JM0DW28uh72SZjcd7brQ" name="BeDaub" label="被抹油" is_valid="Y" note="M#" value="5" />
+  </Enum>
+</Group>
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="rEROJqqv9ygtmbf11Q2Nsg" name="game.template.actor" label="M#12cn12演员" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_ACTOR" data_alias="GM_TPL_ATR" data_logic="GM_TPL_ACTOR_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="OEsLzhCl3WqD3mp7iUQ3pw" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="p0eKDDlVhqVcgh2o79wrhQ" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="4UsqESBv1C42WLVi8xaymA" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldString _uuid="lEZyrrrqGfPsufU6fqKHjA" name="label" label="M#12cn12标签" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" data_size="200" />
+  <FieldInteger _uuid="P0ndV0KhOo1KXpFrRTZkrg" name="npc_tid" label="M#12cn17NPC模板编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="NPC_TID" data_alias="NPC" data_refer="game.template.npc" />
+  <FieldInteger _uuid="SkbyjLpezGZDafmj55Myvg" name="npc_level" label="M#12cn15NPC等级" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NPC_LEVEL" />
+  <FieldInteger _uuid="Ik[3mKiV7ssOi1eUAaJrkw" name="map_tid" label="M#12cn14地图编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="MAP_TID" data_alias="MAP" data_refer="game.template.map" />
+  <FieldString _uuid="0EntWrjjzJnXVcmnNp7ouQ" name="initial_coordinate" label="M#12cn13出生地" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="INITIAL_COORDINATE" data_size="80" />
+  <FieldString _uuid="hEmGOyPxW[f0BuuYt7QjlQ" name="location" label="M#12cn14地图坐标" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LOCATION" data_size="80" />
+  <FieldEnum _uuid="]0JniWiSWAdN47qqNGvQiw" name="direction_cd" label="M#12cn14地图方向" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DIRECTION_CD" data_size="1" data_code="game.template.direction" />
+  <FieldInteger _uuid="IEXyg[KUghjsINygzFGblw" name="talk_bag_tid" label="M#12cn13对话包" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TALK_BAG_TID" data_alias="TLK_BAG" data_refer="game.template.talk.bag" />
+  <FieldEnum _uuid="]EcH8yJxsJ6EBzF7EXO0tA" name="actor_type_cd" label="M#12cn14演员类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ACTOR_TYPE_CD" data_size="2" data_code="game.template.actor.type" />
+  <FieldEnum _uuid="1U3[fkEccdAThcHj0U0ruQ" name="store_type_cd" label="M#12cn14商店类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STORE_TYPE_CD" data_size="2" data_code="game.template.store.type" />
+  <FieldInteger _uuid="7Exa]AH4fB2q0KxPRqOCnQ" name="limit_challenge_count" label="M#12cn16挑战人数限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_CHALLENGE_COUNT" />
+  <FieldInteger _uuid="6kfUpZenE0P8jREy2qF0ow" name="limit_challenge_level" label="M#12cn16挑战等级限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_CHALLENGE_LEVEL" />
+  <FieldEnum _uuid="IkWGY7iSAyzm4ZAyzjxYpw" name="npc_function_cd" label="M#12cn15NPC作用" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NPC_FUNCTION_CD" data_size="1" data_code="game.template.npc.function" />
+  <FieldEnum _uuid="ukBujetogdc8e71zgDYQgA" name="title_display_cd" label="M#12cn16是否显示称号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TITLE_DISPLAY_CD" data_size="1" data_code="game.template.title.display" />
+  <FieldString _uuid="v0uNqR9OO0GQUSltPrHUiA" name="title" label="M#12cn12称号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TITLE" data_size="200" />
+  <FieldEnum _uuid="uUUu[ETJj]8H[gXLhMuOrg" name="picture_display_cd" label="M#12cn16是否显示图片" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PICTURE_DISPLAY_CD" data_size="1" data_code="game.template.picture.display" />
+  <FieldInteger _uuid="90QCLfbCCUhH6ZDSNYpipA" name="picture_tid" label="M#12cn14图片编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PICTURE_TID" data_alias="PCT" data_refer="game.template.style.resource" />
+  <FieldInteger _uuid="70pGrfr311Fml9K]TQ0RoQ" name="actor_talk_interval" label="M#12cn18演员说话间隔时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ACTOR_TALK_INTERVAL" />
+  <FieldInteger _uuid="xUljs]PFhUy[fOy]KZnaig" name="gossip_bag_tid" label="M#12cn15闲谈包编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GOSSIP_BAG_TID" data_alias="GRS_BAG" data_refer="game.template.gossip.bag" />
+  <FieldEnum _uuid="UUwS3Mk[F33knrV1VofTkA" name="move_type_cd" label="M#12cn14移动类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MOVE_TYPE_CD" data_size="1" data_code="game.template.move.type" />
+  <FieldInteger _uuid="4kfdKe0nMbGGAoQjOT3vug" name="coordinate_bag_tid" label="M#12cn15坐标包编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="COORDINATE_BAG_TID" data_alias="CDT_BAG_TID" data_refer="game.template.coordinate.bag" />
+  <FieldInteger _uuid="fUsK4ZFZVNCz5T46Tm]wtg" name="move_range" label="M#12cn14移动范围" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MOVE_RANGE" />
+  <FieldInteger _uuid="BkQY4T1JqOpjbiUfrZ5zsg" name="move_frequency" label="M#12cn14移动频率" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MOVE_FREQUENCY" />
+  <FieldInteger _uuid="7UMAgoIdwp47UA7qHzBAuw" name="shortest_move" label="M#12cn16最短移动距离" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SHORTEST_MOVE" />
+  <FieldInteger _uuid="vkjmS20Bik77nKxc64zahQ" name="gather_tid" label="M#12cn16采集模板编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GATHER_TID" data_alias="GTR" data_refer="game.template.gather" />
+  <FieldInteger _uuid="00JKlOzM2]H7lGiPL4S6pQ" name="limit_challenged_count" label="M#12cn17被挑战次数限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_CHALLENGED_COUNT" />
+  <FieldInteger _uuid="gUVHHSU2YAXXjdwEBVcOtg" name="limit_death_count" label="M#12cn16死亡次数限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_DEATH_COUNT" />
+  <FieldString _uuid="CEOaTD72zfdyiWYzsZ0Lgw" name="block_notify" label="M#12cn14阻挡通知" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BLOCK_NOTIFY" data_size="200" />
+  <FieldInteger _uuid="fUolAkxELlqQ]rZRM0YiqA" name="refresh_interval_time" label="M#12cn16刷新间隔时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REFRESH_INTERVAL_TIME" />
+  <FieldInteger _uuid="Wk17bb7pETTyzvu58]tflw" name="displayorder" label="M#12cn14显示顺序" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DISPLAYORDER" />
+  <FieldBoolean _uuid="HUJ4mh0V6VZkvl5]5p7hnQ" name="is_boss" label="M#12cn16是否BOSS" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_BOSS" />
+  <FieldInteger _uuid="40H6ZKTOq5eLTXmaFFeTnA" name="refresh_actor_tid" label="M#12cn17消失后刷新演员" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REFRESH_ACTOR_TID" data_alias="REATR_TID" data_refer="game.template.actor" />
+  <FieldEnum _uuid="iEJyy7[]luBmAFNWUPM9vQ" name="initial_display" label="M#12cn14初始显示" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="INITIAL_DISPLAY" data_size="1" data_code="game.template.initial.display" />
+  <FieldBoolean _uuid="8U54Y5VGo5JzAgF[W8nliA" name="is_display_in_area_map" label="M#12cn19是否在区域地图显示" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_DISPLAY_IN_AREA_MAP" />
+  <FieldEnum _uuid="d0GYl]WRlqA]hZ]WzafwjQ" name="actor_monster_type_cd" label="M#12cn14怪物类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ACTOR_MONSTER_TYPE_CD" data_size="2" data_code="game.template.actor.monster.type" />
+  <FieldBoolean _uuid="mkLSB64lw8PPuBoGciATig" name="unseen_after_battle" label="M#12cn18战斗后是否不可见" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="UNSEEN_AFTER_BATTLE" />
+  <FieldInteger _uuid="YEgPuCKveTIIgn4iOQnIlA" name="limit_kill_count" label="M#12cn14杀死次数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_KILL_COUNT" />
+  <FieldTemplate _uuid="tkytyj83VCbWDBkhUdBihQ" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

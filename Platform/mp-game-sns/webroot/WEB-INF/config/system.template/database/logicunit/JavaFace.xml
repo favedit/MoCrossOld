@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="bkHdHCweBIDiXLsh3kaGgw" name="database.logicunit.JavaFace" is_valid="Y" note="M#">
+  <Define _uuid="GEBn50E]]8npy6nevwthpQ" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Define _uuid="30kfry]8UOvbfMR84KSxnw" name="type_from" is_valid="Y" note="M#" value="Boolean|Date|Float|Integer|Long|String" />
+  <Define _uuid="EUVwI[T[OP[XjL2eSNXNgg" name="type_to" is_valid="Y" note="M#" value="boolean|Date|int|int|long|String" />
+  <Source _uuid="Ck24O]yVQagQlB56H7wRtw" is_valid="Y" note="M#"><![CDATA[/*
+ * @(#)I<jt:item source='$package.name' format='class'/>.java
+ *
+ * Copyright 2008 microbject, All Rights Reserved.
+ *
+ */
+package org.mobj.logic.data;
+
+import org.mobj.com.data.FSqlFunction;
+import org.mobj.com.data.FSqlProcedure;
+import org.mobj.data.logicunit.common.ILogicUnit;
+
+/**
+ * <T>数据库逻辑包(<jt:item source='$package.name'/>)的代理对象接口</T>
+ *
+ * @author MAOCY
+ * @version 1.0.1
+ */
+public interface I<jt:item source='$package.name' format='class'/>
+      extends ILogicUnit{
+
+<jt:loop source='$methods' alias='method' filter='$method.has_unknown=N'>
+<jt:equals source='$method.type' value='function'>
+   /**
+<jt:item source='$method#Description:text' format='java.help'/>
+    * 
+<jt:loop source='$method#Parameters' alias='parameter'>
+    * @param <jt:item source='$parameter.name' format='method'/> <jt:item source='$parameter.description'/>
+</jt:loop>
+    * @return <jt:item source='${$method#Return}.description'/>
+    */
+   FSqlFunction <jt:item source='$method.name' format='method'/>(<jt:hasItem source='$method#Parameters' notValue=');'>
+<jt:loop source='$method#Parameters' alias='parameter'>
+         Object <jt:item source='$parameter.name' format='method'/><jt:position source='$parameter' type='last' value=');' elseValue=','/>
+</jt:loop></jt:hasItem>
+</jt:equals>
+<jt:equals source='$method.type' value='procedure'>
+   /**
+<jt:item source='$method#Description:text' format='java.help'/>
+    * 
+<jt:loop source='$method#Parameters' alias='parameter'>
+    * @param <jt:item source='$parameter.name' format='method'/> <jt:item source='$parameter.description'/>
+</jt:loop>
+    */
+   FSqlProcedure <jt:item source='$method.name' format='method'/>(<jt:hasItem source='$method#Parameters' notValue=');'>
+<jt:loop source='$method#Parameters' alias='parameter'>
+         Object <jt:item source='$parameter.name' format='method'/><jt:position source='$parameter' type='last' value=');' elseValue=','/>
+</jt:loop></jt:hasItem>
+</jt:equals>
+
+</jt:loop>
+   /**
+    * <T>在数据集内新建一条记录</T>
+    *
+    * @param logic_ 业务逻辑
+    * @param params_ 打包字符串
+    */
+   FSqlProcedure doInsert(
+         Object logic,
+         Object params);
+
+   /**
+    * <T>根据记录的编号修改一条记录</T>
+    *
+    * @param logic_ 业务逻辑
+    * @param params_ 打包字符串
+    */
+   FSqlProcedure doUpdate(
+         Object logic,
+         Object params);
+
+   /**
+    * <T>根据记录的编号和数据集同步一条记录</T>
+    * <UL>
+    * <L>如果指定的记录不存在，进行新建处理。</L>
+    * <L>如果指定的记录存在，进行更新处理。</L>
+    * </UL>
+    *
+    * @param logic_ 业务逻辑
+    * @param params_ 打包字符串
+    */
+   FSqlProcedure doSync(
+         Object logic,
+         Object params);
+
+   /**
+    * <T>根据记录的编号删除一条记录</T>
+    *
+    * @param logic_ 业务逻辑
+    * @param params_ 打包字符串
+    */
+   FSqlProcedure doDelete(
+         Object logic,
+         Object params);
+
+}]]></Source>
+</Template>
+

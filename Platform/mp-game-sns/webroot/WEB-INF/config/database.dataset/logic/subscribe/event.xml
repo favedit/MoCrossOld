@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="9kF]6i6RFf9sQIbBfQWnjg" name="logic.subscribe.event" label="M#12cn15订阅-事件" is_valid="Y" note="M#" data_name="LG_SUBSCRIBE_EVENT" data_alias="LG_SUB_EVE" data_logic="LG_SUBSCRIBE_EVENT_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="X0FGFogI5V6BCz7BfOajug" name="subscribe_action_id" label="M#12cn16订阅动作标识" is_valid="Y" note="M#" is_store="Y" data_name="SUBSCRIBE_ACTION_ID" data_alias="SUB_ACT" data_refer="logic.subscribe.action" data_uniques="event" />
+  <FieldInteger _uuid="FU2N3cX0Ox7M33roK497ug" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#12cn13接收者" is_store="Y" is_abstract="N" data_name="USER_ID" data_refer="person.user" data_uniques="link" />
+  <FieldInteger _uuid="FU]XkIGN]0f0CRTZn0pYpQ" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_store="Y" data_name="TYPE_ID" data_refer="logic.subscribe.type" data_uniques="link" />
+  <FieldInteger _uuid="0EC0SSNP8EFHfUjEumABmw" name="link_id" label="M#12cn14关联标识" is_valid="Y" note="M#" is_store="Y" data_name="LINK_ID" data_uniques="link" />
+  <FieldInteger _uuid="1EH2fdM32bh3964JHKQloA" name="action_id" label="M#12cn16订阅动作标识" is_valid="Y" note="M#" is_store="Y" data_name="ACTION_ID" data_refer="logic.subscribe.type.action" data_uniques="link" />
+  <FieldInteger _uuid="4U79gT8ccuTHtd6XOI8PtQ" name="event_id" label="M#12cn18类型动作事件标识" is_valid="Y" note="M#" is_store="Y" data_name="EVENT_ID" data_alias="EVE" data_refer="logic.subscribe.type.event" data_uniques="event,link" />
+  <FieldString _uuid="G0q3Xqslhi1TutcxnSiMoQ" name="parameters" label="M#12cn12参数" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="PARAMETERS" data_size="2000" />
+  <FieldDate _uuid="VkMePf6TjMW]tezvrS6FkA" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_default="SYSDATE" />
+</DataStore>
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="skkVuJk4Ugy1y3DXJJzurg" name="helper.database.dataset.hhk" is_valid="Y" note="M#">
+  <Source _uuid="YEIjVI8mVRHLvtXg0rFghA" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+<jt:loop source='$config' alias='dataset'>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="<jt:item source='$dataset.name'/>">
+		<param name="Local" value="src\database.dataset\dataset\<jt:item source='$dataset.name' format='path.lower'/>.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="<jt:item source='$dataset.data_name'/>">
+		<param name="Local" value="src\database.dataset\dataset\<jt:item source='$dataset.name' format='path.lower'/>.html">
+		</OBJECT>
+</jt:loop>
+
+</UL>
+</BODY></HTML>]]></Source>
+</Template>
+

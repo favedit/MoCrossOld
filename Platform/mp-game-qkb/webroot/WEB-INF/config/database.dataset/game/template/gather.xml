@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="NU1vH736V18Jht8PwlDQgA" name="game.template.gather" label="M#12cn12采集" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_GATHER" data_alias="GM_TPL_GTR" data_logic="GM_TPL_GATHER_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="PUZb3dZparunmUsmABDTuQ" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="4EdtZyFH2bkZtqzmmfAAlg" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="]0r1mRw8NgNFLp2NDfEQmg" name="label" label="M#12cn12标签" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldString _uuid="g06KjaApRIQnz433LeXtlQ" name="gather_info" label="M#12cn14采集信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GATHER_INFO" data_size="200" />
+  <FieldInteger _uuid="W0YrsrO2OaW7vGmEhv[7oA" name="actor_tid" label="M#12cn14演员编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ACTOR_TID" data_alias="ACR" data_refer="game.template.actor" />
+  <FieldEnum _uuid="1ENgA63Ac2TD[uoKQLr[jA" name="task_look_cd" label="M#12cn14任务可见" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TASK_LOOK_CD" data_size="1" data_code="game.template.task.visible" />
+  <FieldInteger _uuid="M0hcnACz4hr4vZd9sEc0ig" name="task_tid" label="M#12cn14任务编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TASK_TID" data_alias="TSK" data_refer="game.template.task" />
+  <FieldEnum _uuid="0EfMnec3EZ7UmtwewUf3kw" name="collect_schedule_cd" label="M#12cn14采集计划" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="COLLECT_SCHEDULE_CD" data_size="1" data_code="game.template.collect.schedule" />
+  <FieldInteger _uuid="QUtg5lmiH4oFqmG77UcDnQ" name="schedule_tid" label="M#12cn14计划编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SCHEDULE_TID" data_alias="SDL" data_refer="game.template.schedule" />
+  <FieldInteger _uuid="tUnRbn[pvoUVr1h8ehOOhw" name="collect_time_begin" label="M#12cn16采集时间下限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="COLLECT_TIME_BEGIN" />
+  <FieldInteger _uuid="I0ovA7fut9XsB7clXiQ8qQ" name="collect_time_end" label="M#12cn16采集时间上限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="COLLECT_TIME_END" />
+  <FieldInteger _uuid="6EPMqq]mz]AelMFZxfn9hQ" name="collect_count" label="M#12cn14采集次数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="COLLECT_COUNT" />
+  <FieldEnum _uuid="eUzMYlP1Qe7GZ]nEwXhzrQ" name="refresh_type_cd" label="M#12cn14是否刷新" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REFRESH_TYPE_CD" data_size="1" data_code="game.template.gather.refresh" />
+  <FieldEnum _uuid="q0qYhBs]8xsMVavXnN0fkA" name="span_cd" label="M#12cn16刷新时间类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SPAN_CD" data_size="1" data_code="game.template.gather.span" />
+  <FieldDate _uuid="1UPZiKIAGqTAx][[5Xgzog" name="refresh_date" label="M#12cn14刷新时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REFRESH_DATE" />
+  <FieldString _uuid="]kIv5fA[4[43n7fdb3r5rw" name="refresh_range" label="M#12cn14刷新范围" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REFRESH_RANGE" data_size="100" />
+  <FieldTemplate _uuid="RU0TDNXDJpqUmOg25TO5qw" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

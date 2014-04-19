@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="CknoBDIESpk[9tnyounmsw" name="logic.person.recruit.duty.mail" label="公司职位" is_valid="Y" note="M#12cn14公司职位">
+  <Define _uuid="C0zrrmTacph2ZZICpsvOgw" name="mail_content_type" label="邮件类型" is_valid="Y" note="M#" value="Html" />
+  <Variable _uuid="OEgjupKsIrmlYvILV8bmpw" name="user_full_label" label="申请人" is_valid="Y" note="M#" />
+  <Variable _uuid="GkrU9v65IfmSJoQi4[dRlA" name="company_label" label="公司名称" is_valid="Y" note="M#" />
+  <Variable _uuid="GEDTuvyOmJwo2T3K1f2wlA" name="organization_label" label="所属" is_valid="Y" note="M#" />
+  <Variable _uuid="Z0lgrqyrkiXhi[eRCLFznQ" name="user_work_number" label="申请者工号" is_valid="Y" note="M#" />
+  <Variable _uuid="kEAHnt2ThQMG92yu1oJQmg" name="phone_number" label="联系电话" is_valid="Y" note="M#" />
+  <Variable _uuid="o0[7317Zns2HrStIQqQcjg" name="user_mail" label="申请者邮箱" is_valid="Y" note="M#" />
+  <Variable _uuid="6EiJR5aPS4KS24gBfwjalA" name="duty_label" label="岗位名称" is_valid="Y" note="M#" />
+  <Variable _uuid="5E[Que0g9zDhcPWXBzwtjA" name="duty_describe" label="岗位描述" is_valid="Y" note="M#" />
+  <Variable _uuid="Yk8VFnurJhhGabzsfBjjuw" name="create_date" label="申请时间" is_valid="Y" note="M#" />
+  <Variable _uuid="DEnTOmtVylU51FlVXvPgjA" name="examine_user_label" label="审核者名称" is_valid="Y" note="M#" />
+  <Variable _uuid="ZUlADYf9y4uEuRtg8oRTgQ" name="redirect" label="url地址" is_valid="Y" note="M#" />
+  <Source _uuid="g0Ul0edKVy1MxgbPer0Nig" name="pass.head" label="审核通过-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][岗位申请] <jt:item source='$config.to_user_labels'/>您好，您申请的岗位已经审核通过。]]></Source>
+  <Source _uuid="W0R4nOIj2PklE3MsSTVSmw" name="pass.body" label="审核通过-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='岗位管理 → 新岗位审核结果' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD>您申请的如下岗位审核已通过。</TD></TR>
+      </TABLE><BR>
+   <B style='color:#014d99'>新岗位信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>岗位名称</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.duty_label' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>申请日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.create_date' type='date' format='YYYY-MM-DD'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>岗位描述</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.duty_describe'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="U0MXqDR9bobPOqQPqsTQnw" name="fail.head" label="审核未通过-邮件标题" is_valid="Y" note="M#"><![CDATA[<jt:item source='$config.user_full_label'/>您好，您申请的岗位审核未通过！]]></Source>
+  <Source _uuid="EU]rDqukYjjLFYpRBjP1oQ" name="fail.body" label="审核未通过-邮件内容" is_valid="Y" note="M#"><![CDATA[<jt:define source='岗位管理 → 新岗位审核结果alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.user_full_label'/> 您好，您申请的新岗位审核未通过。</TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>审核信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>审核意见</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.examine_note' /></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>备注</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.note'/></TD>
+   </TR>
+   </TABLE><BR>
+   <B style='color:#014d99'>新岗位信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>岗位名称</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.duty_label' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>申请日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.create_date' type='date' format='YYYY-MM-DD'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>岗位描述</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.duty_describe'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="rEEK3HduY[UHkogIhB4epQ" name="feedback.head" label="审核回馈-邮件标题" is_valid="Y" note="M#"><![CDATA[恭喜<jt:item source='$config.user_full_label'/>，审核已通过！]]></Source>
+  <Source _uuid="RkxkTW3to5NR1AbmbpednQ" name="feedback.body" label="审核回馈-邮件内容" is_valid="Y" note="M#"><![CDATA[<jt:define source='岗位管理 → 新岗位审核结果alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.user_full_label'/> 您好，您申请的新岗位审核已通过。</TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>新岗位信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>岗位名称</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.duty_label' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>申请日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.create_date' type='date' format='YYYY-MM-DD'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>岗位描述</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.duty_describe'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="VExFE3Gb1Qo]sa5QXxyUhg" name="revoke.head" label="申请取消-邮件标题" is_valid="Y" note="M#" />
+  <Source _uuid="UkBSiFnNcbYSRfMMED6Xgg" name="revoke.body" label="申请取消-邮件内容" is_valid="Y" note="M#" />
+  <Source _uuid="Y0gna[ghepmhkOhUQsLwig" name="examineNotify.head" label="邮件审核通知-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][岗位申请] <jt:item source='$config.to_user_labels'/>您好，<jt:item source='$config.user_full_label'/>申请新岗位：<jt:item source='$config.type_label'/>请审核。]]></Source>
+  <Source _uuid="kEas1mGxpzOIZ32nBLFsvA" name="examineNotify.body" label="邮件审核通知-邮件内容" is_valid="Y" note="M#"><![CDATA[<jt:define source='岗位管理 → 新岗位审核通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.user_full_label'/> 申请新岗位，请审核。</TD></TR>
+      <TR><TD>审核地址为：<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>申请者信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.user_full_label'/>（<jt:item source='$config.user_work_number'/>） </TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>邮箱</TD>
+      <TD class='ItemData'><A href='mailto:<jt:item source='$config.user_mail'/>'><jt:item source='$config.user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>公司</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.company_label'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.phone_number'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.organization_label'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+   <B style='color:#014d99'>新岗位信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>岗位名称</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.duty_label' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>申请日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.create_date' type='date' format='YYYY-MM-DD'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>岗位描述</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.duty_describe'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="b0YVAXNUmG5FJEJctcnHgA" name="confirmNotify.head" label="岗位确认通知-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][岗位申请] <jt:item source='$config.to_user_labels'/>您好，<jt:item source='$config.user_full_label'/>申请新岗位，请确认。]]></Source>
+  <Source _uuid="OkQMdkLyXsQOTkJm7RgWmw" name="confirmNotify.body" label="岗位确认通知-邮件内容" is_valid="Y" note="M#"><![CDATA[<jt:define source='岗位管理 → 新岗位确认通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.user_full_label'/> 申请新岗位,请确认。</TD></TR>
+      <TR><TD>审核地址为：<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>申请者信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.user_full_label'/>（<jt:item source='$config.user_work_number'/>） </TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>邮箱</TD>
+      <TD class='ItemData'><A href='mailto:<jt:item source='$config.user_mail'/>'><jt:item source='$config.user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>公司</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.company_label'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.phone_number'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.organization_label'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+   <B style='color:#014d99'>新岗位信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>岗位名称</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.duty_label' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>申请日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.create_date' type='date' format='YYYY-MM-DD'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>岗位描述</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.duty_describe'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="Tk[WHc5cEug6L89YSR5prQ" name="copy.head" label="岗位申请-邮件抄送标题" is_valid="Y" note="M#"><![CDATA[恭喜<jt:item source='$config.user_full_label'/>，申请的新岗位审核已通过！]]></Source>
+  <Source _uuid="6EWp2UPaUt1S7X4TldEstA" name="copy.body" label="岗位申请-邮件抄送内容" is_valid="Y" note="M#"><![CDATA[<jt:define source='岗位管理 → 岗位审核通过通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   恭喜以下新岗位审核已通过：
+   <B style='color:#014d99'>申请者信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.user_full_label'/>（<jt:item source='$config.user_work_number'/>） </TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>邮箱</TD>
+      <TD class='ItemData'><A href='mailto:<jt:item source='$config.user_mail'/>'><jt:item source='$config.user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>公司</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.company_label'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.phone_number'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.organization_label'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+   <B style='color:#014d99'>新岗位信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>岗位名称</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.duty_label' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>申请日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.create_date' type='date' format='YYYY-MM-DD'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>岗位描述</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.duty_describe'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

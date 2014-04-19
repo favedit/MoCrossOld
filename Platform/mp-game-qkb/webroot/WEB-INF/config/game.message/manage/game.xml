@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="z0jLqwGWBkFOVmoQPr7jow" name="manage.game" label="管理游戏" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" source_name="MoMgManageGame" code="Mgm" full_code="ManageGame" display_index="79">
+  <Message _uuid="WUYmG8tu29lA[S3dDkWcoQ" name="gm.command.request" label="管理员命令请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GmCommand" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GDM" code_value="0x0001" code_fix="N">
+    <Item _uuid="50s9jQSet63yXOZZUpwwig" name="type" label="类型" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="F0Bhu84cUvWIo8cLVy6[uQ" name="parameter" label="命令参数" is_valid="Y" note="M#" type="String" is_collection="N" data_size="32" />
+    <Item _uuid="FURxcRO]P8H51Z3Z35rAmA" name="parameterSecond" label="命令参数2" is_valid="Y" note="M#" type="String" is_collection="N" data_size="32" />
+    <Item _uuid="0UZGsWsevwmfj84czuT]gQ" name="parameterThird" label="命令参数3" is_valid="Y" note="M#" type="String" is_collection="N" data_size="32" />
+    <Item _uuid="CkC2PuRs9Ohl[nHhPQYOqQ" name="parameterFourth" label="命令参数4" is_valid="Y" note="M#" type="String" is_collection="N" data_size="32" />
+    <Item _uuid="UEFKvwzjHZIGs[B6nLFskA" name="parameterFifth" label="命令参数5" is_valid="Y" note="M#" type="String" is_collection="N" data_size="32" />
+  </Message>
+  <Message _uuid="Jkl8wxRH3pPq0LeqzYIOpw" name="gm.command.response" label="管理员命令应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GmCommand" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Enum _uuid="fUBDyPI0i29bgUEK[D7Ikw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="X03gc0LAo5w4WCcZdvS2vA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="LkJnDYs8gd8EhveN02]gsg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="c0neh98TW9zyLFsCFGbjkA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="bUH]b8zfG8TBXTHiQaaymQ" name="role.update.battle.notify" label="角色信息场景更新通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleUpdateBattle" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GBT" code_value="0x0003" code_fix="N">
+    <Item _uuid="3kGZvylVcHS[TKMLHGybtA" name="type" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmCommand" is_collection="N" />
+    <Item _uuid="m0ATa8vfoUuvkwe]9Cwujw" name="parameter" label="命令参数" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="U0yApa5HqNSrnkadjD09mg" name="parameterSecond" label="命令参数2" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="Ykuwi1ZPfYhCeNBrz9H7pQ" name="role.update.scene.notify" label="角色信息场景更新通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleUpdateScene" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0004" code_fix="N">
+    <Item _uuid="3kqzi3GMTtevf]XZjHUMmg" name="type" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmCommand" is_collection="N" />
+    <Item _uuid="yEnmYPDWr0Qra5SGoS2AiQ" name="parameter" label="命令参数" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="BkKyzzNzH9p1yLpmsQ1AgA" name="parameterSecond" label="命令参数2" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="0e40f002-8670-472f-99b1-bb3f1c7d09a6" name="parameterThird" label="命令参数3" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="f2ab6956-36a0-4856-911b-b0aacaabdd20" name="parameterFourth" label="命令参数4" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="26186cf6-e5d7-4fa2-8bc0-7f1c785fe729" name="parameterFifth" label="命令参数5" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="m0fTHs10hBXy9cuZfpuHmg" name="role.transport.scene.request" label="角色传送场景请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleTransportScene" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0005" code_fix="N">
+    <Item _uuid="F0VEGh5uAlmvuPQXa3Zwjw" name="mapId" label="地图模板编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="80j]TImkpwXX]a30lRDhtQ" name="location" label="位置" is_valid="Y" note="M#" type="Struct" type_name="SGmPoint3" is_collection="N" />
+    <Item _uuid="2UN6hM1pZW3E8aQ7CLKzuw" name="direction" label="方向" is_valid="Y" note="M#" type="Enum" type_name="EGmDirection" is_collection="N" />
+  </Message>
+  <Message _uuid="30gvJW3h73gQq4hZ0nilvg" name="role.transport.scene.response" label="角色传送场景应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleTransportScene" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0006" code_fix="N">
+    <Enum _uuid="tEWsLtzTnkgGGl89iqHKkw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="mkun61GphlWu5J]vQhRMiQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="wEdOwnKYUhUyQgwgy[4Bkg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="[EaaClBVq]9QClnn1psckQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="CkSdP00irpWK3ZoiGKdVqw" name="open.skill.scene.notify" label="打开技能场景通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="OpenSkillScene" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0007" code_fix="N">
+    <Item _uuid="5kCYTyJ9LpdtlYJhdhJDmw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="skG9BBUg9TX]j5856CruiQ" name="increase.prop.notify" label="新增道具通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="IncreaseProp" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0008" code_fix="N">
+    <Item _uuid="[k6wMz[DaCdX3lyWouJYvQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="YUyg1ZlFFKf8gvlvT4oDvg" name="tid" label="模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="4EAibrmpKfK]xlYcyqzOnw" name="count" label="数量" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="0EncnlBMzBGasEAor[sJjQ" name="bindCd" label="绑定类型" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="RkhsmsQVe0JfUZ6nKhmcsQ" name="increas.equip.notify" label="新增装备通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="IncreaseEquip" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0009" code_fix="N">
+    <Item _uuid="FkOZ[Iv1BdXhCfnLxi[fgQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="B0hR3badJegH7MUMfr2GuA" name="tid" label="模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="AUJq3FWxczkUtjZa[6JyqQ" name="bindCd" label="绑定类型" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="jk4O3mxT7r48wP9vSwN9uQ" name="quality" label="品质" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+    <Item _uuid="rUswhhqDSf3cCyGnRq]miw" name="starLevel" label="星级" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+    <Item _uuid="ZktN3J4Bw3BzrUVKo68ipw" name="count" label="数量" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="lkHH5NTeAGAK1rpMEt6mlg" name="use.all.bag.notify" label="开启所有可用包裹" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="UseAllBag" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x000A" code_fix="N">
+    <Item _uuid="J0TvubW]eTYenBhWaIKRhw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+</Group>
+

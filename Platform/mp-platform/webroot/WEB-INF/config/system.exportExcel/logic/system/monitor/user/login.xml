@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="9UK]JdKZGBxW[GACNQH2pg" name="logic.system.monitor.user.login" label="登录统计" is_valid="Y" fileName="reportLogin(Month)[{YYYY-MM-DD}].xls" template="logic.system.monitor.user.login">
+  <Date _uuid="c0zYf67IjTjf3eZaJR2wtw" name="mothsList" label="月统计列表" is_valid="Y" data_value="1" />
+  <Sql _uuid="f0Iqso2OwUHoFCd4MLR6qQ" name="login_list" label="sql" is_valid="Y"><![CDATA[SELECT MOTHS_CD || '月'  MOTHS_CD,
+       MOTHS_LOGIN_NUMBER,
+       NOW_MOTH_ACT_NUM,
+       MOTHS_LOGIN_NUMBER,
+       MOTHS_ACTIVATION_NUMBER,
+       EFFECTIVE_DAYS,
+       (B.MOTHS_ACTIVATION_NUMBER - B.MOTHS_LOGIN_NUMBER) MOTHS_UNACTIVATION_NUMBER,
+       (decode(B.MOTHS_ACTIVATION_NUMBER, 0, 0,
+           round(B.MOTHS_LOGIN_NUMBER / B.MOTHS_ACTIVATION_NUMBER, 2))) LOGIN_SITUATION
+  FROM (SELECT A.*,
+               PM_USER_LOGIN_DI.Get_Activation_Number(END_DATE) MOTHS_ACTIVATION_NUMBER,
+               PM_USER_LOGIN_DI.Get_Month_Active_Number(BEGIN_DATE, END_DATE) NOW_MOTH_ACT_NUM,
+               PM_USER_LOGIN_DI.Get_Login_Person_Number(BEGIN_DATE, END_DATE) MOTHS_LOGIN_NUMBER,
+               CP_TIME_SPAN.Format_Day_By_Calendar(CM_CALENDAR_DI.Calculate_Work_Length(CM_CALENDAR_DI.Get_Id_By_Code('WK'),
+                                                                                                BEGIN_DATE,
+                                                                                                END_DATE),'90') EFFECTIVE_DAYS
+          FROM(SELECT MOTHS_CD,
+                       CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY') || '-' || MOTHS_CD || '-01') BEGIN_DATE,
+                       LAST_DAY(CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY') || '-' || MOTHS_CD)) END_DATE
+                  FROM (SELECT ROWNUM AS MOTHS_CD FROM DUAL CONNECT BY LEVEL <= 12)) A) B]]></Sql>
+  <Sql _uuid="OkPK1XGUsJy28meSIlQJqA" name="count_config" label="总统计信息" is_valid="Y"><![CDATA[SELECT
+   TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'),'YYYY')  QUERY_DATE,
+   (SELECT COUNT(*) FROM PM_USER WHERE STATUS_CD = 'A' AND LOGIN_TYPE = 'P' AND PM_USER_COMPANY_DI.Is_Valid_Staff_In_Date(OUID, NVL(CP_DATE.Parse('${QUERY_DATE}'), SYSDATE)) = 'Y') ||')' TOAL_ACTIVATION_NUMBER,
+   (SELECT COUNT(*) FROM PM_USER WHERE PM_USER_COMPANY_DI.Is_Valid_Staff_In_Date(OUID, NVL(CP_DATE.Parse('${QUERY_DATE}'), SYSDATE)) = 'Y') ||')' TOAL_PERSON_NUMBER ,
+(SELECT COUNT(*) FROM (SELECT OUID, ACTIVE_DATE FROM SY_SESSION WHERE STATUS_CD = 'C') WHERE TRUNC(ACTIVE_DATE) = TRUNC(SYSDATE)) ||')' ONLINE_NUMBER
+FROM DUAL]]></Sql>
+</ExportExcel>
+

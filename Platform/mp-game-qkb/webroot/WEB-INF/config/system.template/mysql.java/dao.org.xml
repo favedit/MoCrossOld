@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="kEwq2zpouyDs67JH82jToA" name="mysql.java.dao.org" is_valid="Y" note="M#">
+  <Define _uuid="YkPpOEflHQ1g7g4EqSeurQ" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Define _uuid="5EXgqrjvv3zCDXyodmFFnw" name="type_from" is_valid="Y" note="M#" value="bool|int|date|char|string|mstring" />
+  <Define _uuid="t0wAs36]gdag6SogNkb9gQ" name="type_to" is_valid="Y" note="M#" value="Boolean|Integer|Date|String|String|String" />
+  <Define _uuid="6kiHFKN9[eOOruStrFOOmQ" name="key_from" is_valid="Y" note="M#" value="P|U|F" />
+  <Define _uuid="qEfLw5oZ2VSu4HxUFY1amg" name="key_to" is_valid="Y" note="M#" value="Primary|Unique|Foreign" />
+  <Define _uuid="okpWThxnAfL7fY09Zp[Hjw" name="key_default" is_valid="Y" note="M#" value="None" />
+  <Define _uuid="]Uvt1nURTCaQDaHK0SdQpA" name="empty_from" is_valid="Y" note="M#" value="X" />
+  <Define _uuid="R0q[cyRXB4Ar6pSIi4eSpg" name="empty_to" is_valid="Y" note="M#" value="false" />
+  <Define _uuid="RU6rvJKfGC9jhT7]OR9Bgw" name="empty_default" is_valid="Y" note="M#" value="true" />
+  <Source _uuid="tEuvmKqsgf5T[7SdG]1jgQ" is_valid="Y" note="M#"><![CDATA[package <Item source='$dataset.logic_package'/>.base;
+
+import org.mobj.com.collection.FDataset;
+import org.mobj.com.collection.FRow;
+import org.mobj.com.data.FSql;
+import org.mobj.com.lang.IStringMap;
+import org.mobj.com.lang.RString;
+import org.mobj.com.validator.RStringValidator;
+import org.mobj.eng.data.common.FSqlSearchFields;
+import org.mobj.eng.entity.FBaseDao;
+import org.mobj.eng.entity.IEntity;
+import org.mobj.eng.entity.face.AField;
+import org.mobj.eng.entity.face.AFieldAccess;
+import org.mobj.eng.entity.face.ATable;
+import org.mobj.eng.entity.face.EFieldKey;
+import org.mobj.eng.entity.face.EFieldType;
+import org.mobj.eng.entity.info.ISqlFieldInfo;
+import org.mobj.eng.entity.info.ISqlTableInfo;
+
+public class F<Item source='$dataset.class_name'/>Dao extends FBaseDao implements
+      I<Item source='$dataset.class_name'/>Base{
+
+   @ATable(name="<Item format='upper' source='$dataset.data_name'/>")
+   public static ISqlTableInfo TABLE;
+
+<Loop source='$fields' order='asc' alias='field'>
+<True source='$field.is_store'>
+   @AField(name="<Item format='upper' source='$field.name'/>", type=EFieldType.<Convert source="$field.type" from="$type_from" to="$type_to"/>, key=EFieldKey.<Convert source="$field.is_key" from="$key_from" to="$key_to" default="$key_default"/>, empty=<Convert source="$field.is_null" from="$empty_from" to="$empty_to" default="$empty_default"/>)
+   @AFieldAccess(insert = true, update = true, delete = false)
+   public static ISqlFieldInfo FLD_<Item format='upper' source='$field.name'/>;
+
+</True>
+</Loop>
+
+   public F<Item source='$dataset.class_name'/>Dao(){
+      initialize("<Item format='upper' source='$dataset.data_name'/>");
+   }
+
+   public F<Item source='$dataset.class_name'/>Entity[] doFetch(String logic,
+                                 FSqlSearchFields fields){
+      FSql sql = new FSql();
+      sql.append("SELECT ");
+<Loop source='$fields' alias='field'>
+<True source='$field.is_store'>
+         sql.append("<NotEquals source='$field:position' value='0'>,</NotEquals><Item format='upper' source='$field.data_name'/>");
+</True>
+</Loop>
+      sql.append(" FROM <Item format='upper' source='$dataset.data_name'/>");
+      if(null != fields){
+         fields.buildSearchSql(sql);
+         fields.buildOrderSql(sql);
+      }
+      FDataset dataset = sqlFetch(sql);
+      if(null != dataset){
+         int count = dataset.count();
+         F<Item source='$dataset.class_name'/>Entity[] result = new F<Item source='$dataset.class_name'/>Entity[count];
+         for(int n=0; n&lt;count; n++){
+            F<Item source='$dataset.class_name'/>Entity entity = new F<Item source='$dataset.class_name'/>Entity();
+            entity.innerLoadRow(dataset.get(n));
+            result[n] = entity;
+         }
+         return result;
+      }
+      return null;
+   }
+
+   public IEntity[] doFetchRow(String logic,
+                               FSqlSearchFields fields){
+      return doFetch(logic, fields);
+   }
+
+   public F<Item source='$dataset.class_name'/>Entity doDelete(String logic,
+                                      int ouid){
+      return doDelete(logic, null, ouid);
+   }
+
+   public IEntity doDeleteRow(String logic,
+                              IStringMap row,
+                              int ouid){
+      F<Item source='$dataset.class_name'/>Entity entity = new F<Item source='$dataset.class_name'/>Entity();
+      entity.innerLoadValue(row);
+      return doDelete(logic, entity, ouid);
+   }
+
+   public F<Item source='$dataset.class_name'/>Entity doInsert(String logic,
+                                      F<Item source='$dataset.class_name'/>Entity entity){
+      String ouid = Integer.toString(_pool.nextId());
+      entity.setOuid(ouid);
+      // Find
+      if(onInsertBefore(logic, entity)){
+         // Delete
+         FSql sql = new FSql();
+         sql.append("INSERT INTO <Item format='upper' source='$dataset.data_name'/>(");
+<Loop source='$fields' alias='field'>
+<True source='$field.is_store'>
+         sql.append("<NotEquals source='$field:position' value='0'>,</NotEquals><Item format='upper' source='$field.data_name'/>");
+</True>
+</Loop>
+         sql.append(") VALUES(");
+<Loop source='$fields' alias='field'>
+<True source='$field.is_store'>
+         <NotEquals source='$field:position' value='0'>sql.append(",");</NotEquals>
+<Equals source='$field.data_name' value="ouid">
+         sql.appendFieldInteger(_pool.nextIdString());
+</Equals>
+<NotEquals source='$field.data_name' value="ouid">
+<Equals source='$field.type' value="mstring">
+         sql.appendField<Convert source='$field.type' from='$type_from' to='$type_to'/>(entity.pack<Item format='class' source='$field.name'/>());
+</Equals>
+<NotEquals source='$field.type' value="mstring">
+         sql.appendField<Convert source='$field.type' from='$type_from' to='$type_to'/>(entity.get<Item format='class' source='$field.name'/>());
+</NotEquals>
+</NotEquals>
+</True>
+</Loop>
+         sql.append(")");
+         sqlExecute(sql);
+         onDeleteAfter(logic, entity);
+         _pool.doInsert(ouid, entity);
+      }
+      return entity;
+   }
+
+   public IEntity doInsertRow(String logic,
+                              IStringMap row){
+      F<Item source='$dataset.class_name'/>Entity entity = prepare(logic);
+      entity.innerLoadValue(row);
+      return doInsert(logic, entity);
+   }
+
+   public F<Item source='$dataset.class_name'/>Entity doUpdate(String logic,
+                                      F<Item source='$dataset.class_name'/>Entity entity){
+      return doUpdate(logic, entity, -1);
+   }
+
+   public F<Item source='$dataset.class_name'/>Entity doUpdate(String logic,
+                                      F<Item source='$dataset.class_name'/>Entity entity,
+                                      int ouid){
+      // Check
+      String souid = null;
+      if(-1 != ouid){
+         souid = Integer.toString(ouid);
+      }else{
+         souid = entity.getOuid();
+      }
+      RStringValidator.checkEmpty(souid, "OUID");
+      // Find
+      F<Item source='$dataset.class_name'/>Entity entityOld = get(ouid);
+      if(null != entityOld){
+         if(onUpdateBefore(logic, entityOld, entity)){
+            // Delete
+            FSql sql = new FSql();
+            sql.append("UPDATE <Item format='upper' source='$dataset.data_name'/> SET ");
+<Loop source='$fields' alias='field'>
+<True source='$field.is_store'>
+            sql.append("<NotEquals source='$field:position' value='0'>,</NotEquals><Item format='upper' source='$field.data_name'/>=");
+<Equals source='$field.type' value="mstring">
+            sql.appendField<Convert source='$field.type' from='$type_from' to='$type_to'/>(entity.pack<Item format='class' source='$field.name'/>());
+</Equals>
+<NotEquals source='$field.type' value="mstring">
+            sql.appendField<Convert source='$field.type' from='$type_from' to='$type_to'/>(entity.get<Item format='class' source='$field.name'/>());
+</NotEquals>
+</True>
+</Loop>
+            sql.append(" WHERE OUID=", souid);
+            sqlExecute(sql);
+            onUpdateAfter(logic, entity);
+            _pool.doUpdate(souid, entity);
+         }
+      }
+      return entity;
+   }
+
+   public IEntity doUpdateRow(String logic,
+                              IStringMap row,
+                              int ouid){
+      F<Item source='$dataset.class_name'/>Entity entity = new F<Item source='$dataset.class_name'/>Entity();
+      entity.innerLoadValue(row);
+      return doUpdate(logic, entity, ouid);
+   }
+
+   public F<Item source='$dataset.class_name'/>Entity get(int ouid){
+      return get(Integer.toString(ouid));
+   }
+
+   public F<Item source='$dataset.class_name'/>Entity get(String ouid){
+      if(RString.isEmpty(ouid)){
+         return null;
+      }
+      int oid = Integer.parseInt(ouid);
+      F<Item source='$dataset.class_name'/>Entity entity = (F<Item source='$dataset.class_name'/>Entity) _pool.get(oid);
+      if(null == entity){
+         FSql sql = new FSql();
+         sql.append("SELECT * FROM <Item format='upper' source='$dataset.data_name'/> WHERE OUID=", ouid);
+         FRow row = sqlFind(sql);
+         if(null != row){
+            entity = new F<Item source='$dataset.class_name'/>Entity();
+            entity.innerLoadRow(row);
+            _pool.set(oid, entity);
+         }
+      }
+      return entity;
+   }
+
+   public F<Item source='$dataset.class_name'/>Entity doDelete(String logic,
+                                      F<Item source='$dataset.class_name'/>Entity entity){
+      return doDelete(logic, entity, -1);
+   }
+
+   public F<Item source='$dataset.class_name'/>Entity doDelete(String logic,
+                                      F<Item source='$dataset.class_name'/>Entity entity,
+                                      int ouid){
+      // Check
+      String souid = null;
+      if(-1 != ouid){
+         souid = Integer.toString(ouid);
+      }else{
+         souid = entity.getOuid();
+      }
+      RStringValidator.checkEmpty(souid, "OUID");
+      // Find
+      F<Item source='$dataset.class_name'/>Entity entityOld = get(souid);
+      if(null != entityOld){
+         if(onDeleteBefore(logic, entityOld, entity)){
+            // Delete
+            FSql sql = new FSql();
+            sql.append("DELETE FROM <Item format='upper' source='$dataset.data_name'/> WHERE OUID=", souid);
+            sqlExecute(sql);
+            onDeleteAfter(logic, entityOld);
+            _pool.doDelete(souid, entity);
+         }
+      }
+      return entityOld;
+   }
+
+   protected void onDeleteAfter(String logic,
+                                F<Item source='$dataset.class_name'/>Entity entity){
+   }
+
+   protected boolean onDeleteBefore(String logic,
+                                    F<Item source='$dataset.class_name'/>Entity before,
+                                    F<Item source='$dataset.class_name'/>Entity after){
+      return true;
+   }
+
+   protected void onInsertAfter(String logic,
+                                F<Item source='$dataset.class_name'/>Entity entity){
+   }
+
+   protected boolean onInsertBefore(String logic,
+                                    F<Item source='$dataset.class_name'/>Entity entity){
+      return true;
+   }
+
+   protected void onUpdateAfter(String logic,
+                                F<Item source='$dataset.class_name'/>Entity entity){
+   }
+
+   protected boolean onUpdateBefore(String logic,
+                                    F<Item source='$dataset.class_name'/>Entity before,
+                                    F<Item source='$dataset.class_name'/>Entity after){
+      return true;
+   }
+
+   public F<Item source='$dataset.class_name'/>Entity prepare(String logic){
+      F<Item source='$dataset.class_name'/>Entity entity = new F<Item source='$dataset.class_name'/>Entity();
+      return entity;
+   }
+
+}]]></Source>
+</Template>
+

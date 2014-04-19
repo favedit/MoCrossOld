@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="Rkvc70KpuZANE5tqfgR8rA" name="logic.process" label="M#12cn15业务-流程" is_valid="Y" note="M#" template="xmlobject" source="${home.source.logic}">
+  <Interface _uuid="CU4qjS2dglWoZLGjEJI8vw" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.logic.process.common.XObjectFace">
+    <Attribute _uuid="N03[ZBZIetVQ87tvJf3Jjw" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="5ET]ujfANyAEk3EiaMaMhw" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+    <Attribute _uuid="zUQrTY[YEo4i6OtDGtvkgQ" name="note" label="M#12cn12注释" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+    <Attribute _uuid="2UrQRXJ4[3jkyej2u4XCig" name="_type" label="M#12cn12类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="c0FL2XARDAIbPNyMamIDlA" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+  <Component _uuid="z0EEdTmPhn2DOx7i2XaRsQ" name="Process" label="M#12cn12流程" is_valid="Y" note="M#12jp12名称" class_name="org.mo.logic.process.common.XProcess" base_name="org.mo.logic.process.base.XBaseProcess" inherits="IObject">
+    <Attribute _uuid="mEkEJr2XD84Xt3LG0NH3lA" name="group_name" label="M#12cn14分组名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="dkytSkjpuo5ebp2antu6hg" name="ProcessCondition" label="M#12cn14流程条件" is_valid="Y" note="M#12jp12項目" class_name="org.mo.logic.process.common.XProcessCondition" base_name="org.mo.logic.process.base.XBaseProcessCondition" inherits="IObject">
+    <Attribute _uuid="m0xrvEBSmlGwTgQS[wAJhw" name="type_cd" label="M#12cn14条件类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="30M0]kb20IyQ95cIF4upiQ" name="process_check" label="M#12cn14流程检查" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="3kDViRYbWR8oBehjgZUeiA" name="type_name" label="M#12cn14类型名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="rE8]vNG72fjsiBsNoi26jg" name="process_order" label="M#12cn14处理顺序" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="X091WCesIZbYOAi[okDRtQ" name="ProcessEvent" label="M#12cn12事件" is_valid="Y" note="M#" class_name="org.mo.logic.process.common.XProcessEvent" base_name="org.mo.logic.process.base.XBaseProcessEvent" inherits="IObject">
+    <Attribute _uuid="NkmIF[yd[iWXVatwbaXpnA" name="event_group_name" label="M#12cn16事件分组名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="HkWI1mQgVBmdiuczYjQIsg" name="event_type_name" label="M#12cn16流程类型名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="W09zL7bqoi44kYeYk9fWtQ" name="event_priority_cd" label="M#12cn15事件优先级" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="vkNnKm[[9jcgR57BvyaVuQ" name="event_execute" label="M#12cn16事件执行类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="cEAvOkkaw01A[z9hsRWDiA" name="condition_name" label="M#12cn14条件名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="fESsSoO41EpDsj3v252kog" name="type_name" label="M#12cn16流程类型名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="]UzhP1J9S14nEegkT2GbkQ" name="process_result" label="M#12cn14检查结果" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="kUNWBebOfO9wMyoQKkb5hg" name="process_order" label="M#12cn14处理顺序" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="S02BST[UZPVVnWzM[4TDsQ" name="Task" label="M#12cn12任务" is_valid="Y" note="M#" class_name="org.mo.logic.process.common.XTask" base_name="org.mo.logic.process.base.XBaseTask" inherits="IObject">
+    <Attribute _uuid="X0f2Ns0I8BvIZA6SnBUClQ" name="type_name" label="M#12cn16流程类型名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="I0Sdwc]csIytTquSwIYpqQ" name="TaskCondition" label="M#12cn14任务条件" is_valid="Y" note="M#" class_name="org.mo.logic.process.common.XTaskCondition" base_name="org.mo.logic.process.base.XBaseTaskCondition" inherits="IObject">
+    <Attribute _uuid="pk2ftJ5ECCH6uNJ9etW7mA" name="type_cd" label="M#12cn14条件类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="Bk2xoXnn8jTElNltV0q6jA" name="process_check" label="M#12cn14任务检查" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="n0cC]GzAAr60iPb4z3S6mA" name="process_order" label="M#12cn14处理顺序" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="qEck69VdjhniP7Zfiy3RhA" name="TaskEvent" label="M#12cn14任务事件" is_valid="Y" note="M#" class_name="org.mo.logic.process.common.XTaskEvent" base_name="org.mo.logic.process.base.XBaseTaskEvent" inherits="IObject">
+    <Attribute _uuid="[UCzh9CiJre7Ath4kPDblQ" name="event_type_name" label="M#12cn16事件类型名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="UUHKC6vcsI9L5o7GHRelpg" name="event_group_name" label="M#12cn16事件分组名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="4UukjBn1bx3rpBBn7bqKvQ" name="event_priority_cd" label="M#12cn15事件优先级" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="Q0T[p5rlkZxL4exekCwSlQ" name="event_execute" label="M#12cn16事件执行类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="qEirsb1GxLjMHwXgMm6vqg" name="execute_order" label="M#12cn14执行顺序" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="j0t4NQGaksJubsNaB43Tgw" name="process_result" label="M#12cn18任务条件处理结果" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="2Ujg7GN2Xlu63fnjoDZllw" name="type_name" label="M#12cn16任务类型名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="LUuoSKS9dhxW3gbWYtqKig" name="process_order" label="M#12cn14处理顺序" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="Kkc56Gqri9Jh8FJgKqjtqg" name="Group" label="M#12cn14流程分组" is_valid="Y" note="M#" class_name="org.mo.logic.process.common.XGroup" base_name="org.mo.logic.process.base.XBaseGroup" inherits="IObject" />
+  <Component _uuid="G0NpbwNiBRfKtuYPVva1qw" name="ProcessResult" label="M#12cn16流程条件结果" is_valid="Y" note="M#" class_name="org.mo.logic.process.common.XProcessResult" base_name="org.mo.logic.process.base.XBaseProcessResult" inherits="IObject">
+    <Attribute _uuid="]0IMOPIndlqexgRLebHamQ" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="T0zzjVoBTm1]9xzYgJMQuQ" name="TaskResult" label="M#12cn16任务条件结果" is_valid="Y" note="M#" class_name="org.mo.logic.process.common.XTaskResult" base_name="org.mo.logic.process.base.XBaseTaskResult" inherits="IObject">
+    <Attribute _uuid="30N0v3rBgB0KbeAriro9vg" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="4UeQyQkG0HWa0eb6bQQ5nQ" name="GroupConfig" label="M#12cn16流程分组设置" is_valid="Y" note="M#" class_name="org.mo.logic.process.common.XGroupConfig" base_name="org.mo.logic.process.base.XBaseGroupConfig" inherits="IObject">
+    <Attribute _uuid="5EhXkVsfp85Jajlsads2sQ" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="FU3SSEH84wjJD84oFIbckA" name="ProcessConfig" label="M#12cn16流程类型设置" is_valid="Y" note="M#" class_name="org.mo.logic.process.common.XProcessConfig" base_name="org.mo.logic.process.base.XBaseProcessConfig" inherits="IObject">
+    <Attribute _uuid="s0yOjKVIiEEjioGw34ISqg" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="HEChXBVB5ZrmLmv1N[NDnA" name="ProcessConditionConfig" label="M#12cn16流程条件设置" is_valid="Y" note="M#" class_name="org.mo.logic.process.common.XProcessConditionConfig" base_name="org.mo.logic.process.base.XBaseProcessConditionConfig" inherits="IObject">
+    <Attribute _uuid="KEqtQ9flLXt7dkz4ASJ[vg" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="hkPtJOcL7JsQfNv]KYEmmw" name="ProcessEventConfig" label="M#12cn16流程事件设置" is_valid="Y" note="M#" class_name="org.mo.logic.process.common.XProcessEventConfig" base_name="org.mo.logic.process.base.XBaseProcessEventConfig" inherits="IObject">
+    <Attribute _uuid="[EmYlQzNh7hSCSxEDB[[rQ" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="lEn2NJL]0uog9TV55YAmgg" name="TaskConfig" label="M#12cn16任务类型设置" is_valid="Y" note="M#" class_name="org.mo.logic.process.common.XTaskConfig" base_name="org.mo.logic.process.base.XBaseTaskConfig" inherits="IObject">
+    <Attribute _uuid="uk5cbs6piFgfMTPz18iWiQ" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="7Ezf274PHtEfAp2zFn1dpQ" name="TaskConditionConfig" label="M#12cn16任务条件设置" is_valid="Y" note="M#" class_name="org.mo.logic.process.common.XTaskConditionConfig" base_name="org.mo.logic.process.base.XBaseTaskConditionConfig" inherits="IObject">
+    <Attribute _uuid="vkx[jS3EZNbsqlzyo0w8iw" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="aEpq6wkveKQepXlv39invA" name="TaskEventConfig" label="M#12cn16任务事件设置" is_valid="Y" note="M#" class_name="org.mo.logic.process.common.XTaskEventConfig" base_name="org.mo.logic.process.base.XBaseTaskEventConfig" inherits="IObject">
+    <Attribute _uuid="Tky9XMI3ipX55SKshejBmA" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+</Persistence>
+

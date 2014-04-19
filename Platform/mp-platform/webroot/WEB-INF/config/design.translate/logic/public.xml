@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="x0PZVqEcI]75q5nP1ui9sA" name="logic.public" label="业务-公用" is_valid="Y" code="public" type_cd="P">
+  <List _uuid="zU0kzo7Q8n2L9k6HBvwQkg" name="exception" label="例外消息" is_valid="Y" code="exception">
+    <Translate _uuid="xkaQfs58v8eeWg91j4P]jQ" name="dataset.field.null" label="数据集的字段为空" is_valid="Y" type_cd="P" status_cd="A" content="{0}'s field {1} is null." zh_content="{0}中，{1}的数据内容为空。" />
+  </List>
+  <List _uuid="504WZbMrh345OTZuy95mvw" name="message" label="消息内容" is_valid="Y" code="message">
+    <Translate _uuid="8UkpKjwxjtJ5dELwbXrIvw" name="table.lock" label="锁表失败" is_valid="Y" status_cd="A" content="Faild to lock the table named {0}." create_user_code="344" zh_content="无法锁定表{0}。">
+      <Parameter _uuid="OknVKMbZSswgNMXfPY7PpQ" name="0 - dataset_label" label="数据集名称" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="ckkRnCaSM5OQU9odsdkCrg" name="record.lock" label="锁记录失败" is_valid="Y" status_cd="A" content="Faild to lock record(dataset_label={0},object_id={1},object_version{2})." create_user_code="344" zh_content="无法锁定记录（数据集名称={0}，对象标识={1}，对象版本={2}）。">
+      <Parameter _uuid="e0vwvXp4VOn9Pm0M67Sxiw" name="0 - dataset_label" label="数据集名称" is_valid="Y" />
+      <Parameter _uuid="bkfzFUwf90g9JUGJEQo9mA" name="1 - object_id" label="对象标识" is_valid="Y" />
+      <Parameter _uuid="aEZP[tG2KQCwGNB69aHjnA" name="2 - object_version" label="对象版本" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="VUH3172zJksAlVFTGfjypA" name="record.not.exists" label="记录不存在" is_valid="Y" status_cd="A" content="The record(dataset_label={0},object_id={1},object_version{2}) is not exist" create_user_code="344" zh_content="无法找到记录（数据集名称={0}，对象标识={1}，对象版本={2}）。">
+      <Parameter _uuid="N05BiLNTiMFJBMG17eONrQ" name="0 - dataset_label" label="数据集名称" is_valid="Y" />
+      <Parameter _uuid="ekHIQg9zCWXafRhUIJv2mA" name="1 - object_id" label="对象标识" is_valid="Y" />
+      <Parameter _uuid="kEcYaOx4kTP3FxqjtW[RvA" name="2 - object_version" label="对象版本" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="2Uw5KCqL2SMuS9]VJN8Rng" name="record.duplicate" label="记录重复" is_valid="Y" status_cd="A" content="The record(object_id={1},object_version{2}) has exist in the table {0}." create_user_code="344" zh_content="记录（对象标识={1}，对象版本={2}）在表名为{0}的表中已经存在。">
+      <Parameter _uuid="bk85DDAjNJTEIKaG2acBrw" name="0 - dataset_label" label="数据集名称" is_valid="Y" />
+      <Parameter _uuid="qklYeWYgqAxJJmdXneWUtQ" name="1 - object_id" label="对象标识" is_valid="Y" />
+      <Parameter _uuid="fkk5zsiniyh]EY7WQ1W7rg" name="2 - object_version" label="对象版本" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="WElj5qlJlBU6MOmFtfJHgQ" name="record.changed" label="记录已变更" is_valid="Y" status_cd="A" content="The content of the record(dataset_label={0},object_id={1},object_version{2}) has be changed." create_user_code="344" zh_content="记录（数据集名称={0}，对象标识={1}，对象版本={2}）的内容已经改变。">
+      <Parameter _uuid="[0FUcdC7[Bbtys7KbwBHqg" name="0 - dataset_label" label="数据集名称" is_valid="Y" />
+      <Parameter _uuid="gUpsbjenB08kniAQPa5mtg" name="1 - object_id" label="对象标识" is_valid="Y" />
+      <Parameter _uuid="SU31pHFWDTxJbCSkrj[AgA" name="2 - object_version" label="对象版本" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="30u8s7sapKLdlaPhYPdZig" name="record.field.duplicate" label="记录上字段重复" is_valid="Y" type_cd="P" status_cd="A" content="The record(object_id={1},object_version{2}) has exist in the table {0}." zh_content="({0})中的({1})的内容({2})必须是唯一的。" />
+  </List>
+  <List _uuid="nETAVvD0mg0YTQRIcAfrjQ" name="session" label="线程服务" is_valid="Y" code="session">
+    <Translate _uuid="jkd73AqrM8YA5foXteEyvw" name="passport.empty" label="通行证为空" is_valid="Y" status_cd="A" content="You have enter a empty passport,please retype the passport and try again" create_user_code="344" zh_content="您输入的通行证为空，请重新输入。" />
+    <Translate _uuid="tU8AxZSCDJlgd5EtKiGDrQ" name="password.empty" label="密码为空" is_valid="Y" status_cd="A" content="You have enter a empty password,please retype the password and try again" zh_content="您输入的密码为空，请重新输入。\n" />
+    <Translate _uuid="dEAtV76X9CZC59xShin5tA" name="user.not.exists" label="通行证不存在" is_valid="Y" note="☉ 如果您忘了初始化密码，请联系人事查询初始化密码。&lt;BR&gt;\n☉ 如果您忘了通行证密码，请点击 &lt;A target='_blank' href='http://passport.linekong.com' style='color:yellow'&gt;这里&lt;/A&gt; 更改通行证密码。" type_cd="P" status_cd="A" content="This username does not exist,please check it correct." zh_content="该通行证({0})不存在，请检查是否输入正确。\n&lt;TABLE border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;\n&lt;tr&gt;&lt;td style=&quot;padding-left:100px;padding-top:10px&quot;&gt;\n&lt;B&gt;&lt;font color='#0960ad'&gt;如果首次登录系统，请使用初始账号（LKBJ+工号，密码相同）登录后绑定蓝港通行证。&lt;/font&gt;&lt;/B&gt;&lt;/td&gt;\n&lt;/tr&gt;\n&lt;/TABLE&gt;" />
+    <Translate _uuid="IkRgoMJ55KqkrEfet75avA" name="password.invalid" label="密码非法" is_valid="Y" note="☉ 如果您忘了初始化密码，请联系人事查询初始化密码。&lt;BR&gt;\n☉ 如果您忘了通行证密码，请点击 &lt;A target='_blank' href='http://passport.linekong.com' style='color:yellow'&gt;这里&lt;/A&gt; 更改通行证密码。" type_cd="P" status_cd="A" content="You have enter a invalid password,please retype the correct password and try again" zh_content="密码非法，请重新输入。&lt;BR&gt;\n" />
+    <Translate _uuid="gERnPfEttJDPHa[iHiN2sg" name="password.lock" label="用户账号锁定" is_valid="Y" type_cd="P" status_cd="A" content="password.lock" zh_content="该账号已被系统锁定，如解锁请联系人事部进行帐号解锁。" />
+    <Translate _uuid="XkVUbSG46b7CJ4thF3hquw" name="passport.invalid.password.lock" label="密码无效帐号锁定" is_valid="Y" note="&lt;TABLE border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;\n&lt;tr&gt;&lt;td style=&quot;padding-left:100px;padding-top:10px&quot;&gt;\n&lt;B&gt;&lt;font color='#0960ad'&gt;☉ 非法操作次数超过{0}次，该账号已被系统锁定，如解锁请联系人事部进行帐号解锁。&lt;/font&gt;&lt;/B&gt;&lt;/td&gt;\n&lt;/tr&gt;\n&lt;/TABLE&gt;" type_cd="P" status_cd="A" content="passport.invalid.password.lock" create_user_code="213" zh_content="☉ 您输入的通行证密码不正确，请确认后重新登录。&lt;BR&gt;\n&lt;TABLE border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;\n&lt;tr&gt;&lt;td style=&quot;padding-left:100px;padding-top:10px&quot;&gt;\n&lt;B&gt;&lt;font color='#0960ad'&gt;☉ 该账号已被系统锁定，如解锁请联系人事部进行帐号解锁。&lt;/font&gt;&lt;/B&gt;&lt;/td&gt;\n&lt;/tr&gt;\n&lt;/TABLE&gt;" ja_content="☉ 您输入的通行证密码不正确，请确认后重新登录。&lt;BR&gt;\n☉ 非法操作次数超过{0}次，该账号已被系统锁定，如解锁请联系人事部进行帐号解锁" />
+  </List>
+  <List _uuid="30iTTvdZT4NhpZ1XT4PWqA" name="integer" label="整数" is_valid="Y" code="integer">
+    <Translate _uuid="O00fDamEl1Xq3it53R7RkA" name="integer.length" label="长度" is_valid="Y" status_cd="A" content="The length of {0} must be {1} characters." zh_content="{0}的长度必须为{1}个字符。" />
+    <Translate _uuid="VklUZLeoZ89yszFeOE26sw" name="integer.length.min" label="长度不小于" is_valid="Y" status_cd="A" content="The length of {0} must be greater than {1}." zh_content="{0}的长度不能少于{1}个字符。" />
+    <Translate _uuid="90k8Kwhqk9IZboVsCcGrtQ" name="integer.length.max" label="长度不多于" is_valid="Y" status_cd="A" content="The length of {0} must be less than {1}." zh_content="{0}的长度不能多于{1}个字符。" />
+    <Translate _uuid="SEwL7]E]1y]Z9qpVPJkumA" name="integer.greater" label="最小值大于" is_valid="Y" status_cd="A" content="The minimum value of {0} must be greater than {1}." zh_content="{0}的最小值必须大于{1}。" />
+    <Translate _uuid="CUM8B[zU5w7bsUqedWk7tw" name="integer.less" label="最大值小于" is_valid="Y" status_cd="A" content="The maximum value of {0} must be smaller than {1}." zh_content="{0}的最大值必须小于{1}。" />
+    <Translate _uuid="3kC[D0cbvC2BH[BOo25[oA" name="integer.greater.eq" label="最小值不大于" is_valid="Y" status_cd="A" content="The minimum value of {0} must be equal or greater than {1}." zh_content="{0}的最小值必须不小于{1}。" />
+    <Translate _uuid="g0zN5dq93MfUfZ3saMi]oA" name="integer.less.eq" label="最大值不小于" is_valid="Y" status_cd="A" content="The maximum value of {0} must be equal or lesser than {1}." zh_content="{0}的最大值必须不大于{1}。" />
+    <Translate _uuid="h0a195sJUN3u0JQM6ExWpQ" name="integer" label="是整数" is_valid="Y" status_cd="A" content="The content of {0} is not a integer." zh_content="{0}的内容必须是整数。" />
+    <Translate _uuid="S0w0AINVWKYYU]aBhqOIvw" name="integer.positive" label="是正整数" is_valid="Y" status_cd="A" content="The content of {0} must be a positive integer." zh_content="{0}的内容必须是正整数。" />
+    <Translate _uuid="Q0i]ume1UYImazxv3[k8kA" name="integer.negative" label="是负整数" is_valid="Y" status_cd="A" content="The content of {0} must be a nagative integer." zh_content="{0}的内容必须是负整数。" />
+    <Translate _uuid="R01z8RVvJM82bzqVdv2Ohg" name="integer.between" label="范围之间" is_valid="Y" status_cd="A" content="The value of {0} is not between {1} and {2}." zh_content="{0}的内容不在{1}和{2}范围之间。" />
+    <Translate _uuid="50mPWUnmHmGGx[WcAHZJtw" name="integer.range" label="范围之间（左闭右开）" is_valid="Y" status_cd="A" content="The value of {0} is not greater and equal than {1} and less than {2}" zh_content="{0}的内容在{1}和{2}范围之间（左闭右开）。\n" />
+  </List>
+  <List _uuid="R0Wsz9RVSwz6tcbKWC9Eqw" name="float" label="浮点数" is_valid="Y" code="float">
+    <Translate _uuid="o0qiKh7in4R298N]D1l1nQ" name="float.length" label="长度" is_valid="Y" status_cd="A" content="The length of {0} must be {1} characters." update_date="20081222113915" zh_content="{0}的长度必须为{1}个字符。">
+      <Parameter _uuid="aUYLQkj5QX8tG3pysRenlw" name="0 - field_label" label="字段名称" is_valid="Y" />
+      <Parameter _uuid="t0xHGVGOgNXG11mKGcBPkA" name="1 - length" label="长度" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="gkybRxA23fTILm3oxMZwqQ" name="float.length.min" label="最小长度" is_valid="Y" status_cd="A" content="The length of {0} must be greater than {1}." zh_content="{0}的长度不能少于{1}个字符。">
+      <Parameter _uuid="qUswOwGg8zR319oNS9dSuw" name="0 - field_label" label="字段名称" is_valid="Y" />
+      <Parameter _uuid="QUuXZ2VSPWmfrTxnc0sUrQ" name="1 - length" label="长度" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="oUI0MBinV7MkYnbAjiIunw" name="float.length.max" label="最大长度" is_valid="Y" status_cd="A" content="The length of {0} must be less than {1}." zh_content="{0}的不能多于{1}个字符。">
+      <Parameter _uuid="DUQHW7Q4S9OSyhOeySL5vg" name="0 - field_label" label="字段名称" is_valid="Y" />
+      <Parameter _uuid="dkRDXH1UuK27nIkuQthUkA" name="1 - length" label="长度" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="0UfLcLCiSxALJQvwQK4]ig" name="float" label="是否是浮点数" is_valid="Y" status_cd="A" content="The content of {0} is not a float." zh_content="{0} 不是一个浮点数。">
+      <Parameter _uuid="XUWY46[cfxPQtkwH3GCjiQ" name="0 - field_label" label="字段名称" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="rk2CVRbhcjzcgyP[tgiRmw" name="float.greater" label="最小值" is_valid="Y" status_cd="A" content="The minimum value of {0} must be greater than {1}." zh_content="{0}的最小值必须大于{1}。">
+      <Parameter _uuid="zkfATNps[nMvLChvAMWMhA" name="0 - field_label" label="字段名称" is_valid="Y" />
+      <Parameter _uuid="vk66IiBJ[LB[bcX7hidgkQ" name="1 - value" label="最小值" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="sUpPfGlEPFnE6BZ0INn0kw" name="float.less" label="最大值" is_valid="Y" status_cd="A" content="The maximum value of {0} must be smaller than {1}." zh_content="{0}的最大值必须小于{1}。">
+      <Parameter _uuid="wEhhmqzZ7OovmBaeBHEVug" name="0 - field_label" label="字段名称" is_valid="Y" />
+      <Parameter _uuid="okqnsFiepPVhd8wxwYJikA" name="1 - value" label="最大值" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="b0A6Y]f63hH3DuBI55Aopw" name="float.greater.eq" label="最小值大于等于" is_valid="Y" status_cd="A" content="The minimum value of {0} must be equal or greater than {1}." zh_content="{0}的最小值必须不小于{1}。">
+      <Parameter _uuid="w0QACs[SJloNTXWYCcCpng" name="0 - field_label" label="字段名称" is_valid="Y" />
+      <Parameter _uuid="n0LH7A8q8OvqShIu6Lx7oA" name="1 - value" label="最小值" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="CkBV9PXMniVetqpudXgnoQ" name="float.less.eq" label="最大值小于等于" is_valid="Y" status_cd="A" content="The maximum value of {0} must be equal or lesser than {1}." zh_content="{0}的最大值必须不大于{1}。">
+      <Parameter _uuid="mkzVSwMWfEcS8vNhg28itA" name="0 - field_label" label="字段名称" is_valid="Y" />
+      <Parameter _uuid="X0MVRAuEzVGy]KyJXbDYrw" name="1 - value" label="最小值" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="cU3nBikeXUKsYqZn0Q7ZuQ" name="float.between" label="不再范围之内" is_valid="Y" status_cd="A" content="The value of {0} is not between {1} and {2}." zh_content="{0}的内容在{1}和{2}范围之间。">
+      <Parameter _uuid="SkWx]eQaPuWI0H9igQjlgQ" name="field_label" label="字段名称" is_valid="Y" />
+      <Parameter _uuid="1E74D8eUuTZ6f809A6L9vA" name="1 - min_value" label="最小值" is_valid="Y" />
+      <Parameter _uuid="OEzRR[1Nat4sIwBP23O4uA" name="2 - max_value" label="最大值" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="LEjt2[tQOSfxT5bYzCfEtw" name="float.range" label="范围之间（左闭右开）" is_valid="Y" status_cd="A" content="The value of {0} is not greater and equal than {1} and less than {2}" create_user_code="185" zh_content="{0}的内容在{1}和{2}范围之间（左闭右开）。\n" />
+  </List>
+  <List _uuid="]kbPWncjKLxsMfhD3sgqsQ" name="string" label="字符串" is_valid="Y" code="string">
+    <Translate _uuid="iUdVmC6hCeDBeOQZXUUThg" name="string.null" label="空值" is_valid="Y" status_cd="A" content="{0} is a null string." zh_content="{0}不能为空。" />
+    <Translate _uuid="vkvoXmAnEcTkBAWE27DAjA" name="string.length" label="长度" is_valid="Y" status_cd="A" content="The length of {0} must be {1}." create_user_code="360" zh_content="{0}的长度必须为{1}。" />
+    <Translate _uuid="CEcAlAL6oJ0NoztdqdNUjg" name="string.length.min" label="最小长度" is_valid="Y" status_cd="A" content="The length of {0} must be not less than {1}." zh_content="{0}的长度不能少于{1}个字符。" />
+    <Translate _uuid="jUPL51O[G2c6fFtCPHTDvQ" name="string.length.max" label="最大长度" is_valid="Y" status_cd="A" content="The length of {0} must be not more than {1}." zh_content="{0}的长度不能多于{1}个字符。" />
+    <Translate _uuid="gEO8UUvjB[mnNsdDrxFjiQ" name="string.upper" label="大写字母" is_valid="Y" status_cd="A" content="The content of {0} must be all in upper case;" zh_content="{0}的内容必须是大写字母。" />
+    <Translate _uuid="UUC]ayn0QxIPDF0LXl6bgg" name="string.lower" label="小写字母" is_valid="Y" status_cd="A" content="The content of {0} must be all in lower case;" zh_content="{0}的内容必须是小写字母。" />
+    <Translate _uuid="]U0h8qJAuUSehp3LqIBjlw" name="string.ascii" label="是否字母" is_valid="Y" status_cd="A" content="the content of {0} must be a assii character." zh_content="{0}的内容必须是字母。" />
+    <Translate _uuid="nkD1PJytjUG9GQajisuRgA" name="string.chinese" label="是否汉字" is_valid="Y" status_cd="A" content="The content of {0} must be a chinese." zh_content="{0}的内容必须是汉字。" />
+    <Translate _uuid="40nu0jtlI6ggD46SPHRJgQ" name="string.ansi" label="是否半角" is_valid="Y" status_cd="A" content="The content of {0} must be ansi." zh_content="{0}的内容必须是半角。" />
+    <Translate _uuid="]UwGXk1ysHvja6gOtiV8pw" name="string.dbcs" label="是否全角" is_valid="Y" status_cd="A" content="The content of {0} must be dbcs." zh_content="{0}的内容必须是全角。" />
+  </List>
+  <List _uuid="VEDiYRJrxeFu[]C8g04Kig" name="date" label="日期" is_valid="Y" code="date">
+    <Translate _uuid="8Ew9YeFn3]j1m1zkn3Xogg" name="date.format" label="日期格式" is_valid="Y" status_cd="A" content="The date format of {0} is incorrect,correct format is YYYY-MM-DD." create_user_code="391" update_user_code="185" update_date="20081225132351" zh_content="{0}的日期格式不正确,正确格式为YYYY-MM-DD。">
+      <Parameter _uuid="iEa6dkgZ9mLmIZ7Prqfjhg" name="0 - field_label_" label="字段名称" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="akqfkf4REoI[ELIEiYPRtQ" name="time.format" label="时间格式" is_valid="Y" status_cd="A" content="The date format of {0} is incorrect,correct format is HH:MM:SS." create_user_code="391" update_user_code="185" update_date="20081225132402" zh_content="{0}的时间格式不正确,正确的格式是：HH:MM:SS。">
+      <Parameter _uuid="vUpPXjpMuQAKHhUvf[AjmA" name="0 - field_label_" label="字段名称" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="IUkwOsm2oZ9TqV3kZaeLsQ" name="datetime.format" label="日期时间格式" is_valid="Y" status_cd="A" content="The datetime format of {0} is incorrect,correct format is YYYY-MM-DD HH:MM:SS." create_user_code="391" update_user_code="185" update_date="20081225132411" zh_content="{0}的日期时间格式不正确，正确格式为YYYY-MM-DD HH:MM:SS。">
+      <Parameter _uuid="oUyuYCeiXsArWGsLn7yokg" name="0 - field_label_" label="字段名称" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="hEXwIQfIzil1Rrvu6peJhA" name="datetime.between" label="日期时间范围" is_valid="Y" status_cd="A" content="The datetime of {0} must be  between {1} and {2}." create_user_code="391" zh_content="{0}的时间必须在{1}和{2}范围之间。">
+      <Parameter _uuid="Q0BOcVZ]Yrh6o5LGOn1csw" name="0 - field_label_" label="字段名称" is_valid="Y" />
+      <Parameter _uuid="TEHmVMdudXBqM0BFVhqYgQ" name="1 - before_value_" label="比较时间" is_valid="Y" />
+      <Parameter _uuid="6UII3MSutVm7ufeeJBnziQ" name="2 - after_value_" label="比较时间" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="HkG4fptjtBXq2ZoV35obqw" name="datetime.range" label="日期时间范围（左闭又开）" is_valid="Y" status_cd="A" content="The datetime must equal or after {1} and before {2}" create_user_code="391" zh_content="{0}的时间必须在{1}和{2}范围之间（左闭右开）。\n">
+      <Parameter _uuid="GEqGvDLKaYf0DPajiam0iw" name="0 - field_label_" label="字段名称" is_valid="Y" />
+      <Parameter _uuid="EEnoIJZuOQhwo]X1muFtsw" name="1 - before_value_" label="比较时间" is_valid="Y" />
+      <Parameter _uuid="vEZofADEj3NyTJJYRla8qw" name="2 - after_value_" label="比较时间" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="sUbE4n5tkaW73E[0G7vgig" name="datetime.after" label="之后的时间" is_valid="Y" status_cd="A" content="The datetime of {0} must be after {1}" create_user_code="391" update_user_code="185" update_date="20081225132330" zh_content="{0}的时间在{1}的之后。">
+      <Parameter _uuid="YEjmWFoNWl1UVy4SWw[SsA" name="0 - field_label_" label="字段名称" is_valid="Y" />
+      <Parameter _uuid="AUmzUPIYbDV0GrM1NnuhrQ" name="1 - after_value_" label="比较时间" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="k0tqGvbZTKQC3jPLOrLbig" name="datetime.before" label="之前的时间" is_valid="Y" status_cd="A" content="The datetime of {0} must be before {1}." create_user_code="391" zh_content="{0}的时间在{1}的之前。">
+      <Parameter _uuid="TESNextLs8uIYD2S5qFapQ" name="0 - field_label_" label="字段名称" is_valid="Y" />
+      <Parameter _uuid="PEVDX5nmp0[AM3yeV]gijA" name="1 - before_value_" label="比较时间" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="FEQVQGuHOx4144zgoizyvw" name="datetime.after.eq" label="时间不早于" is_valid="Y" status_cd="A" content="The datetime of {0} must be equal or after {1}." create_user_code="391" zh_content="{0}的时间不早于{1}。">
+      <Parameter _uuid="zU1VaEkOgVyofgQBn1tPig" name="0 - field_label_" label="字段名称" is_valid="Y" />
+      <Parameter _uuid="ikYMSs2S21ueEUkdy1NmnA" name="1 - after_value_" label="比较时间" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="aU3iUlfgdtV2n6biQ9XJow" name="datetime.before.eq" label="时间不晚于" is_valid="Y" status_cd="A" content="The datetime of {0} must be equal or before {1}." create_user_code="391" update_user_code="185" update_date="20081225132640" zh_content="{0}的时间不晚于{1}。">
+      <Parameter _uuid="[EFG0V9wWyQ]hC3Lv]27kg" name="0 - field_label_" label="字段名称" is_valid="Y" />
+      <Parameter _uuid="YEOw]5fTdTTg05UMH[fTiA" name="1 - before_value_" label="比较时间" is_valid="Y" />
+    </Translate>
+    <Translate _uuid="YUaEnyGoFDekvjqe3EiToQ" name="year" label="年" is_valid="Y" type_cd="P" status_cd="A" content="year" zh_content="年" />
+    <Translate _uuid="EEiE6AAR4p[lHA4Bs0Umkw" name="month" label="月" is_valid="Y" type_cd="P" status_cd="A" content="Month" zh_content="月" />
+    <Translate _uuid="2ERRxwlL6VjvcklDpQSMiA" name="day" label="日" is_valid="Y" type_cd="P" status_cd="A" content="day" zh_content="日" />
+    <Translate _uuid="AERNcmiCA13TAiQm9L6fnQ" name="hour" label="时" is_valid="Y" type_cd="P" status_cd="A" content="Hour" zh_content="时" />
+    <Translate _uuid="EUx5vv96r1r88cutVdVIgw" name="minute" label="分" is_valid="Y" type_cd="P" status_cd="A" content="Minute" zh_content="分" />
+    <Translate _uuid="hE4g8dC8]fOUDBlJVGD[tg" name="second" label="秒" is_valid="Y" type_cd="P" status_cd="A" content="Second" zh_content="秒" />
+  </List>
+  <List _uuid="X0d[HPhvcEf]EU0qX0DDnA" name="time.span" label="时间段" is_valid="Y" code="time.span">
+    <Translate _uuid="7E4GNJ1h76klFVmvhAU2gw" name="day" label="天" is_valid="Y" type_cd="P" status_cd="A" content="day" zh_content="天" />
+    <Translate _uuid="fU9PVt95KyboC76OtmDUkw" name="hour" label="小时" is_valid="Y" type_cd="P" status_cd="A" content="hour" zh_content="小时" />
+    <Translate _uuid="vkcNWgHOzqYr[CH09jsItQ" name="minute" label="分钟" is_valid="Y" type_cd="P" status_cd="A" content="minute" zh_content="分钟" />
+    <Translate _uuid="WEUft4mhmYrCPjK2dDHPkg" name="second" label="秒" is_valid="Y" type_cd="P" status_cd="A" content="second" zh_content="秒" />
+  </List>
+</Group>
+

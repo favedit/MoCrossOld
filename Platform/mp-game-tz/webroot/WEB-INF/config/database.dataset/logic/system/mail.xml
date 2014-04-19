@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="h0CZ8Bfg4YmMkzH91YcLnQ" name="logic.system.mail" label="M#12cn14邮件发送" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_SYSTEM_MAIL" data_alias="LG_SY_MAL" data_logic="LG_SYSTEM_MAIL_DI" parent_name="template.store" data_type="D">
+  <FieldBoolean _uuid="IEo7wJ96VnUPp4Dp110Ygg" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" />
+  <FieldInteger _uuid="m0hkt2inJEDkfgm20AbMlg" name="group_id" label="M#12cn14分组标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GROUP_ID" data_refer="logic.system.mail.group" />
+  <FieldEnum _uuid="sEg7v6AYnVfp0Y4mcpn7jg" name="status_cd" label="M#12cn12状态" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="logic.system.mail.status" />
+  <FieldString _uuid="pElJ9R9orsMR3gkvO72Psg" name="event_code" label="M#12cn14事件代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EVENT_CODE" data_size="200" />
+  <FieldString _uuid="bk[NXw8xks7GQjAidLAvgw" name="receiver" label="M#12cn13收件人" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="RECEIVER" data_size="1000" />
+  <FieldInteger _uuid="c0zwotqYuUt3t[P8rLAsiA" name="sender" label="M#12cn13发件人" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SENDER" data_refer="person.user" />
+  <FieldString _uuid="fkrrnFX7s6sdWpxKeyJ[qw" name="title" label="M#12cn12标题" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TITLE" data_size="400" />
+  <FieldString _uuid="jkHNGuj2H3pQ8AM]gc5ckw" name="context" label="M#12cn12内容" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CONTEXT" data_size="4000" />
+  <FieldString _uuid="V0li8y5vRIUTAASwBBiXgQ" name="attachment" label="M#12cn12附件" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ATTACHMENT" data_size="100" />
+  <FieldDate _uuid="dkC68BVWg[pjJo3zHYDFjA" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_default="SYSDATE" />
+</DataStore>
+

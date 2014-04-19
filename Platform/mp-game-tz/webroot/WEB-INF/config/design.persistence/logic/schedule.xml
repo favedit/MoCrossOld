@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="nE1X9YgRl4qZXAdgMTlFng" name="logic.schedule" label="M#12cn15业务-计划" is_valid="Y" note="M#" template="xmlobject" source="${home.source.logic}">
+  <Interface _uuid="bEwkfH3Yg0l84ElzuAJBnA" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.logic.schedule.common.XObjectFace">
+    <Attribute _uuid="60Rnaui7K4AFqQ]gJfONmQ" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="tkuysIE4NozA1NOWK7naiQ" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+    <Attribute _uuid="z0ZfKTtsGj5JoAOawCQxmA" name="note" label="M#12cn12注释" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+    <Attribute _uuid="[E8[5ZYZkJXmKjQAfj0JoA" name="_type" label="M#12cn12类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="ZEAicN49agoFQ0ZO3NHRhA" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+  <Component _uuid="UEXJWhH1Cd8a0uhHkJ10hQ" name="Group" label="M#12cn14计划分组" is_valid="Y" note="M#12jp12名称" class_name="org.mo.logic.schedule.common.XGroup" base_name="org.mo.logic.schedule.base.XBaseGroup" inherits="IObject" />
+  <Component _uuid="nkrC]1gXWdL1lvY24jkSiw" name="Type" label="M#12cn14计划类型" is_valid="Y" note="M#12jp12項目" class_name="org.mo.logic.schedule.common.XType" base_name="org.mo.logic.schedule.base.XBaseType" inherits="IObject">
+    <Attribute _uuid="VEXHoGuJtccNQCueYPXTqw" name="group_name" label="M#12cn14分组名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="EUuS7V5XbFleoPS9Cl66pA" name="TypeConfig" label="M#12cn14类型设置" is_valid="Y" note="M#" class_name="org.mo.logic.schedule.common.XTypeConfig" base_name="org.mo.logic.schedule.base.XBaseTypeConfig" inherits="IObject">
+    <Attribute _uuid="lEjWQjphxBJ3PKOADYYQqg" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="W08wg0TTKrOiR4tx84s4hQ" name="Property" label="M#12cn12属性" is_valid="Y" note="M#" class_name="org.mo.logic.schedule.common.XProperty" base_name="org.mo.logic.schedule.base.XBaseProperty" inherits="IObject">
+    <Attribute _uuid="S0nNNL38KFhxLr4P1F9Ntw" name="data_type_cd" label="M#12cn14数据类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="IEeSa]CkQnoPk6BiubY6gQ" name="data_default" label="M#12cn13默认值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="zEzRuYKR0e59l40G3tVNiA" name="data_require" label="M#12cn14数据必须" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="y0CyXIhdHfY28cwxBUR7ng" name="GroupConfig" label="M#12cn14分组设置" is_valid="Y" note="M#" class_name="org.mo.logic.schedule.common.XGroupConfig" base_name="org.mo.logic.schedule.base.XBaseGroupConfig" inherits="IObject">
+    <Attribute _uuid="W0]zTA6rTXBt0QnSgVGPsw" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="mUbbS7DIIwA0e9ouNc9GhA" name="Schedule" label="M#12cn12计划" is_valid="Y" note="M#" class_name="org.mo.logic.schedule.common.XSchedule" base_name="org.mo.logic.schedule.base.XBaseSchedule" inherits="IObject">
+    <Attribute _uuid="MUGnfqvqWKhJMnuW0mTZuw" name="status_cd" label="M#12cn14计划状态" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="M0ap8Tmh]3bEnwAuobbKvQ" name="begin_date" label="M#12cn16执行开始时间" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="pU76G3QEKEeN8se9]NCDvA" name="end_date" label="M#12cn16执行结束时间" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="qUt[e0psnKuQVBnodrmdrA" name="create_user_name" label="M#12cn14用户名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="HEjZAmSSiJuSCQ3BKjoIvQ" name="TypeEvent" label="M#12cn14类型事件" is_valid="Y" note="M#" class_name="org.mo.logic.schedule.common.XTypeEvent" base_name="org.mo.logic.schedule.base.XBaseTypeEvent" inherits="IObject">
+    <Attribute _uuid="8k354GOfr7xfxorDCkjDgw" name="event_group_name" label="M#12cn14事件分组" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="8UJIfYuxaNsRnI7eU9Tnug" name="event_type_name" label="M#12cn14事件类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="9UfwYNGRqx]LlzKo]H68tQ" name="priority_cd" label="M#12cn13优先级" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="GE1GbMhzSeglGCmSaIYtvw" name="TypeEventConfig" label="M#12cn16类型事件设置" is_valid="Y" note="M#" class_name="org.mo.logic.schedule.common.XTypeEventConfig" base_name="org.mo.logic.schedule.base.XBaseTypeEventConfig" inherits="IObject">
+    <Attribute _uuid="[kOx4yYQ6MaOiOtEtCEang" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Interface _uuid="s0gKBv9LwNfwyM41JfdCpA" name="ITime" label="M#12cn14计划时间" is_valid="Y" note="M#" class_name="org.mo.logic.schedule.common.XTimeFace">
+    <Attribute _uuid="D0PkQAiR7ALULVJ1SN5Cvw" name="execute_time" label="M#12cn14执行时间" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="VEyLSItvxVpBmEAQwsFhqA" name="statue_cd" label="M#12cn14计划状态" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="3EKPGxbpWYEr2z5qAniJow" name="type_cd" label="M#12cn14时间类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="pkoJXtV2QMHIGfcbbBBTrw" name="interval" label="M#12cn14时间间隔" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="Okn4RyipxAwpkf1IUKVhkA" name="day_flag" label="M#12cn14执行标识" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="DEOoeLIxKF8md4Qb6fKknA" name="week_flag" label="M#12cn14执行标识" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="YkQ24GHshWxPosMHnnNvrA" name="month_flag" label="M#12cn14执行标识" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="e0JOt3k7R1lb5NckiKkAog" name="update_date" label="M#12cn14更新时间" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+  <Component _uuid="xUtKHSTFjtPuaAMBYnQbtg" name="Year" label="M#12cn14按年执行" is_valid="Y" note="M#12jp12名称" class_name="org.mo.logic.schedule.common.XYear" base_name="org.mo.logic.schedule.base.XBaseYear" inherits="IObject,ITime" />
+  <Component _uuid="KUEssB9z3Ir9FVl6e0FZng" name="MonthDay" label="M#12cn15按月天执行" is_valid="Y" note="M#12jp12名称" class_name="org.mo.logic.schedule.common.XMonthDay" base_name="org.mo.logic.schedule.base.XBaseMonthDay" inherits="IObject,ITime" />
+  <Component _uuid="bEYw1NoAwcQ[a9YXvlSusQ" name="MonthWeek" label="M#12cn15按月周执行" is_valid="Y" note="M#12jp12名称" class_name="org.mo.logic.schedule.common.XMonthWeek" base_name="org.mo.logic.schedule.base.XBaseMonthWeek" inherits="IObject,ITime" />
+  <Component _uuid="QkU4KD4hKVuNyuXJziTFkA" name="Week" label="M#12cn14按周执行" is_valid="Y" note="M#12jp12名称" class_name="org.mo.logic.schedule.common.XWeek" base_name="org.mo.logic.schedule.base.XBaseWeek" inherits="IObject,ITime" />
+  <Component _uuid="KElCXZBsk8VvR0d]yNn8gA" name="Day" label="M#12cn14按天执行" is_valid="Y" note="M#12jp12名称" class_name="org.mo.logic.schedule.common.XDay" base_name="org.mo.logic.schedule.base.XBaseDay" inherits="IObject,ITime" />
+  <Component _uuid="vERUahb[[N1Ak8I[utNJlQ" name="Hour" label="M#12cn15按小时执行" is_valid="Y" note="M#12jp12名称" class_name="org.mo.logic.schedule.common.XHour" base_name="org.mo.logic.schedule.base.XBaseHour" inherits="IObject,ITime" />
+  <Component _uuid="aEOpyBbnXmBlhDYWbkHPgQ" name="Minute" label="M#12cn15按分钟执行" is_valid="Y" note="M#12jp12名称" class_name="org.mo.logic.schedule.common.XMinute" base_name="org.mo.logic.schedule.base.XBaseMinute" inherits="IObject,ITime" />
+  <Component _uuid="00MlvI[szhUkhEfSIVJirQ" name="Once" label="M#12cn14一次执行" is_valid="Y" note="M#12jp12名称" class_name="org.mo.logic.schedule.common.XOnce" base_name="org.mo.logic.schedule.base.XBaseOnce" inherits="IObject,ITime" />
+</Persistence>
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CsvImport _uuid="YUt6xltIrkCOY30sXxVlnA" name="logic.person.user.company.rest.summaryMonthUntreated" label="未处理假期月报" is_valid="Y" head_lines="1">
+  <Columns _uuid="xEQZY4csMsFy9bplNoqMgg" name="Columns" label="列集合" is_valid="Y">
+    <Column _uuid="tk5OJQJmWZ4u4qEYgG4Osg" name="work_number" label="工号" is_valid="Y" data_name="work_number" is_require="Y" />
+    <Column _uuid="1URBBnRq4HMQqVjQ]wbtpw" name="user_label" label="姓名" is_valid="Y" data_name="USER_LABEL" is_require="Y" />
+    <Column _uuid="M0ExpjK4aZERTf9m73]PrA" name="organization_label" label="部门名称" is_valid="Y" data_name="ORGANIZATION_LABEL" is_require="Y" />
+    <Column _uuid="YUFnNsAQPwtYibuY321Olg" name="type_label" label="类型名称" is_valid="Y" data_name="TYPE_LABEL" is_require="Y" />
+    <Column _uuid="GUQYPqPE]ML0JHZApI84iQ" name="begin_date" label="开始时间" is_valid="Y" data_name="BEGIN_DATE" is_require="Y" />
+    <Column _uuid="OkA]HBFx6MI5iyxQNOZgsQ" name="end_date" label="结束时间" is_valid="Y" data_name="END_DATE" is_require="Y" />
+    <Column _uuid="M0if36KiRJg8tL9uu8lqtg" name="apply_ts_label" label="休假时长" is_valid="Y" data_name="APPLY_TS_LABEL" is_require="Y" />
+  </Columns>
+  <Export _uuid="IEH3ILpuaZwxyL6RwVy6kA" name="sql" label="未处理假期月报" is_valid="Y" sql="SELECT\n   WORK_NUMBER,\n   USER_LABEL,\n   ORGANIZATION_LABEL,\n   TYPE_LABEL,\n   BEGIN_DATE,\n   END_DATE,\n   CP_TIME_SPAN.Format_Hour_By_Calendar(APPLY_TS, '9990.0', CALENDAR_ID) APPLY_TS_LABEL\nFROM (\n   SELECT\n      USER_ID,\n      PM_USER_COMPANY_DI.Get_Fit_Calendar(USER_ID) CALENDAR_ID,\n      PM_USER_COMPANY_DI.Get_Work_Number_By_User_Id(USER_ID) WORK_NUMBER,\n      PM_USER_DI.Get_Full_Label(USER_ID) USER_LABEL,\n      PM_ORGANIZATION_DI.Find_Main_Organization(USER_ID) ORGANIZATION_ID,\n      PM_ORGANIZATION_DI.Find_Main_Organization_Label(USER_ID) ORGANIZATION_LABEL,\n      PM_USER_COMPANY_REST_TYPE_DI.Get_Label(TYPE_ID) TYPE_LABEL,\n      TO_CHAR(BEGIN_DATE, 'YYYY-MM-DD HH24:MI') BEGIN_DATE,\n      TO_CHAR(END_DATE, 'YYYY-MM-DD HH24:MI') END_DATE,\n      PM_USER_COMPANY_REST_DI.Calculate_Rest_Length(OUID, CP_DATE.Parse('${BEGIN_DATE}'), CP_DATE.Parse('${END_DATE}')) APPLY_TS\n   FROM PM_USER_COMPANY_REST\n   WHERE  STATUS_CD IN ('R', 'A')\n      AND PASS_DATE IS NULL\n      AND CP_DATE.Just_Range_In_Range(BEGIN_DATE, END_DATE, CP_DATE.Parse('${BEGIN_DATE}'), \n          CP_DATE.Parse('${END_DATE}')) = 'Y')\nORDER BY WORK_NUMBER" display_command="N" display_command_tag="N" display_head="N" display_head_tag="N" display_label="Y" display_label_tag="N" display_valid="N" display_valid_tag="N" is_open="N" export_name="eUIS-假期管理-未处理[${SETTLEMENT_BEGIN_DATE}-${SETTLEMENT_END_DATE}]" disp_data_start_tag="N" disp_data_end_tag="N" dataset_parameters="SELECT\n   TO_CHAR(CP_DATE.Parse('${BEGIN_DATE}'), 'YYYYMMDD') SETTLEMENT_BEGIN_DATE,\n   TO_CHAR(CP_DATE.Parse('${END_DATE}'), 'YYYYMMDD') SETTLEMENT_END_DATE\nFROM DUAL" />
+</CsvImport>
+

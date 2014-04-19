@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T><jt:item source='$group.label'/>。</T>
+//
+// @version 1.0.1
+//============================================================
+package mo.ms.enum
+{
+   //============================================================
+   // <T><jt:item source='$group.label'/>枚举定义。</T>
+   //
+   // @enum
+   //============================================================
+   public class E<jt:item source='$group.code_name'/>{
+<jt:loop source='$group' alias='enum' filter='$enum.is_client_as=Y'>
+
+      //------------------------------------------------------------
+<jt:loop source='$enum' alias='member'>
+      // <jt:item source='$enum.label'/> - <jt:item source='$member.label'/>。
+<jt:equals source='$member.value' value=''>
+      public static var E<jt:item source='$enum.name'/>_<jt:item source='$member.name'/>:int = <jt:item source='$member-position'/>;
+</jt:equals>
+<jt:notEmpty source='$member.value'>
+      public static var E<jt:item source='$enum.name'/>_<jt:item source='$member.name'/>:int = <jt:notEmpty source='$enum.refer_value'><jt:item source='$enum.refer_value'/> + </jt:notEmpty><jt:item source='$member.value'/>;
+</jt:notEmpty>
+</jt:loop>
+</jt:loop>
+   }
+}
+]]></Source>
+</Template>

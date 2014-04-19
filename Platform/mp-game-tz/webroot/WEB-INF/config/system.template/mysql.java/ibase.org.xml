@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="CU0pbh2siD3zMyFYJ8XCig" name="mysql.java.ibase.org" is_valid="Y" note="M#">
+  <Define _uuid="FEOW6E[nZPM1N2McVhUnrQ" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Define _uuid="SUDhKIDmaWJbfEXYhYH1kQ" name="type_from" is_valid="Y" note="M#" value="INTEGER|DATE|CHAR|STRING" />
+  <Define _uuid="0ERla[BGG7MZ0EjabnQksg" name="type_to" is_valid="Y" note="M#" value="Integer|Date|String|String" />
+  <Define _uuid="fE0urb88uqFExIY4msf0pA" name="key_from" is_valid="Y" note="M#" value="P|U|F" />
+  <Define _uuid="n0otaSLLMoXffPF]illepw" name="key_to" is_valid="Y" note="M#" value="Primary|Unique|Foreign" />
+  <Define _uuid="SkalYiqxGvjOdOFteBMBpA" name="key_default" is_valid="Y" note="M#" value="None" />
+  <Define _uuid="k0W60ehauDkAkVRQBSHUng" name="empty_from" is_valid="Y" note="M#" value="X" />
+  <Define _uuid="60Dav0U0zhgV2jf9RRnxsw" name="empty_to" is_valid="Y" note="M#" value="false" />
+  <Define _uuid="mUoroCX[bdwgdJLPZg7GjQ" name="empty_default" is_valid="Y" note="M#" value="true" />
+  <Source _uuid="t0wIn4jHdWFjqP0Du7RPpw" is_valid="Y" note="M#"><![CDATA[package <Item source='$dataset.logic_package'/>.base;
+
+import org.mobj.eng.data.common.FSqlSearchFields;
+import org.mobj.eng.entity.IEntityDao;
+
+public interface I<Item source='$dataset.class_name'/>Base extends
+      IEntityDao{
+
+   F<Item source='$dataset.class_name'/>Entity[] doFetch(String logic,
+                                 FSqlSearchFields fields);
+
+   F<Item source='$dataset.class_name'/>Entity doInsert(String logic,
+                           F<Item source='$dataset.class_name'/>Entity entity);
+
+   F<Item source='$dataset.class_name'/>Entity doUpdate(String logic,
+                           F<Item source='$dataset.class_name'/>Entity entity);
+
+   F<Item source='$dataset.class_name'/>Entity doUpdate(String logic,
+                           F<Item source='$dataset.class_name'/>Entity entity,
+                           int ouid);
+
+   F<Item source='$dataset.class_name'/>Entity doDelete(String logic,
+                           F<Item source='$dataset.class_name'/>Entity entity);
+
+   F<Item source='$dataset.class_name'/>Entity doDelete(String logic,
+                           int ouid);
+
+   F<Item source='$dataset.class_name'/>Entity get(int ouid);
+
+   F<Item source='$dataset.class_name'/>Entity get(String ouid);
+
+   F<Item source='$dataset.class_name'/>Entity prepare(String logic);
+
+}]]></Source>
+</Template>
+

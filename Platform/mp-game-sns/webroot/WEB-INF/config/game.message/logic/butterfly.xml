@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="[UTwEpQZNFUjrWQa3JXNnA" name="logic.butterfly" label="蝴蝶窝逻辑" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" source_name="MoMgLogicButterfly" code="Lbf" full_code="LogicButterfly" display_index="51">
+  <Message _uuid="I0I6Eq2An5VQB6vzSsdcjQ" name="butterfly.reiki.request" label="收取蝴蝶采集灵气请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ButterflyReiki" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0001" code_fix="N">
+    <Item _uuid="0kP3i[]HcCdvnxiupJlnjQ" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="9UL2hayR9XjGhKxKRvOZpw" name="sessionId" label="会话编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+  </Message>
+  <Message _uuid="z0okCH3AxL7oKE4CyM4ZuA" name="butterfly.reiki.response" label="收取蝴蝶采集灵气应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ButterflyReiki" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Enum _uuid="GkIYqB6KWKW4BrTW5OphrA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="b0[YVmPN[]n[hRagRGz5rw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="sUyxhBZHaJ9iFC9aG7nKpA" name="Success_Cd_Not_Full" label="收取蝴蝶的CD时间未满" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="kUCTE]FPkzXpqa5YmcuGsg" name="Success_Not_Has_Reiki" label="没有可以收取灵气，请唤醒蝴蝶工作" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="ykm]R6dg6NxChUTLB41nsw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="gUBIooxxMdlJ7waPj11FnA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="ZEjWpndvdQ6Al2K8ax9ztg" name="butterfkyReiki" label="蝴蝶采集的灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="oEK]ahOy9eHav2[9UEEMng" name="texReiki" label="交纳领主的灵气" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="n05eOY4uoSRbU3ppQxihmg" name="lastReiki" label="最后总灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="xkhDxatY8k[F]OtyWja3kA" name="butterflyReikiCd" label="收取蝴蝶采集灵气CD时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" />
+  </Message>
+  <Message _uuid="lkWle878sjblB5OQGaBOsA" name="butterfly.reiki.storage.request" label="收取蝴蝶采集灵气请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ButterflyReikiStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0003" code_fix="N">
+    <Item _uuid="ck4g7UNNSHF]JTV72ktStA" name="roleId" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="u0LFPdhpUaFq1rOxQAPduw" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="qEPyQmsWnTsp]]r9GsYJqw" name="butterflyReiki" label="蝴蝶采集的灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="10oY3bFD4Io1viAbvQZ8ng" name="texReiki" label="交纳领主的灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="50jkCD5KQppUoXx8PmkIsQ" name="updateReiki" label="更新灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="c0hZY8V5TfbuI4gLMlZMhg" name="updateTexReiki" label="更新纳税灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="wUxm[piqSVByikv1Z8g8tg" name="updateButterflyReiki" label="离线蝴蝶采集的灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="LUuVtayU6Pc61oZ9aOJMnA" name="butterflyWorkingTime" label="更新蝴蝶开始工作的时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="6E0C]Zpbpkkp7b0MB6CThg" name="butterflyReikiCd" label="收取蝴蝶采集灵气CD结束时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+  </Message>
+  <Message _uuid="fUEgPcqJHvcQVpMxUSO0pg" name="butterfly.reiki.storage.response" label="收取蝴蝶采集灵气应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ButterflyReikiStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0004" code_fix="N">
+    <Enum _uuid="okqxXQSbVDaT5Yy9tya]qQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="vEJY4YOYbplnuBx0SL]Kiw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="oUY0OmDkRJ33]Fxp4bP6gw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="xEn]2aNvFVd7BRSxAbWYqg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="zExdd263aeK77WGbJRPrvg" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="30AsXI5i7jJPjthMyTT1kg" name="butterflyReiki" label="蝴蝶采集的灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="c01PMhl5NcA6O]f0Gnh3pg" name="texReiki" label="交纳领主的灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="hU0rfsFEb4ruTPCRyqJenQ" name="updateReiki" label="更新灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="T0LcHgAE2rJWvZoSuRxhvg" name="updateTexReiki" label="更新纳税灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="JkpLW97n2XLGL9m]pfjxvg" name="updateButterflyReiki" label="离线蝴蝶采集的灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="60JZGlphJFfuDKwP]]c[vw" name="butterflyWorkingTime" label="更新蝴蝶开始工作的时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="tU89TnMqavyt[buv4sciqg" name="butterflyReikiCd" label="收取蝴蝶采集灵气CD结束时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+  </Message>
+  <Message _uuid="lk9CyJQJUCYjUTsKIdMupA" name="wakeup.butterfly.request" label="唤醒蝴蝶请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="WakeupButterfly" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0005" code_fix="N">
+    <Item _uuid="XE3DVHsDCIaFz3DIdztLtw" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="P0KAm3mN3wavhCODyFtzjA" name="sessionId" label="会话编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="Qk889peOXxC6jucfrdtyug" name="butterflyHostRoleId" label="蝴蝶主人角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="AUojYshUhVIwDJmvVLi3vg" name="wakeup.butterfly.response" label="唤醒蝴蝶应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="WakeupButterfly" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0006" code_fix="N">
+    <Enum _uuid="wkrfcs97VRX3l3q9c3BYvA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="hUxxNx1CGQZyT3wXHS1wiA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="B0IgHbelXs[[VbJPVA0Ftg" name="Success_Butterfly_Not_Sleep" label="蝴蝶未睡觉" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="qkUIDrMeHTnNXO39IQETow" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="8ETMX]FuXKeTdveKnShlvQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="P04OH6Qj79Efo2[aoEJnmg" name="hostRoleId" label="蝴蝶主人角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="qk[1DRljsRzpB[zLsK7bgg" name="awardReiki" label="奖励灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="XEC0Sc7TNPmbqDri7PD0jA" name="awardExprience" label="奖励经验" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="8U9sGv]3FIPqXwKLwaqlsg" name="pointReiki" label="灵气点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="6U8If7Jdaa5A[ctbeV42lw" name="pointFire" label="天火点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="8Etyq7yCL14wpNF4WfRChQ" name="pointProsperity" label="繁荣点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="SkTtt]0s6DvT4s5caRDigQ" name="roleExperience" label="最后总经验" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="o0LPxsAw9g077GSEdrOXlQ" name="homeSet" label="更新家园集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleHomeSet" is_collection="N" />
+    <Item _uuid="dk[avxk4ej71JDQNPP8toQ" name="hostButterflyWorkEndTime" label="蝴蝶主人蝴蝶结束时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" />
+  </Message>
+  <Message _uuid="a00ubOQtuxytlf]5JdchlA" name="wakeup.butterfly.storage.request" label="唤醒蝴蝶请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="WakeupButterflyStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0007" code_fix="N">
+    <Item _uuid="nUV0QBu2GdWWcODjefBrhQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="PkqAE0vRdVjeU5GE]j4Jpg" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="eUtKSN6t8J1pBaGrl9E2tA" name="hostRoleId" label="蝴蝶主人角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="D0NH7tZOZrx4S]jURn7hjg" name="awardReiki" label="奖励灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="OklpQx5Fewl77dpdnZJWsg" name="awardExperience" label="奖励经验" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="gEqxYaqCPCDIi2J7XcDCjQ" name="updateReiki" label="更新灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="6E9mZ[77DykTHOpaGIY7pw" name="updateTaxReiki" label="更新纳贡灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="yEH6WfyftV7iRFiMJQX]gg" name="updateButterflyReiki" label="更新蝴蝶离线灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="JkfqpQwZ]HkayvqhgMwtug" name="updateExperience" label="奖励经验" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="10Al1fLSVONyMf3E61oapA" name="updateRoleLevel" label="更新角色等级" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="Rkk8ixepT5voBEhl9A7Nig" name="updatePointFire" label="更新天火点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="vka4xTNjewAOCqrRe]v1kw" name="updateHostButterflyWorkingTime" label="更新蝴蝶工作的时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="GEzciIvNHpQInoit9funlQ" name="updateHostButterflyWorkEndTime" label="更新蝴蝶工作结束的时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+  </Message>
+  <Message _uuid="G09]HfEmOSAEEgKooEJ[lw" name="wakeup.butterfly.storage.response" label="唤醒蝴蝶应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="WakeupButterflyStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0008" code_fix="N">
+    <Enum _uuid="5EosTc2rA2yT5YOGnwAzlg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="Gku4SGgI1oGw7kaWCyWuiw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="4khaxY6U78dGsq3UfDBWuw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="a0NKQEV4p2PJRkLOfXwosw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="80a4TmtPiEQaItZy]SYJlg" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="yU417D3MCm2391X93mOGlg" name="hostRoleId" label="蝴蝶主人角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="Ikg0WYKp9r9b3g7kI2pRvA" name="awardReiki" label="奖励灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="a0hg8F0FFbIc1BWt7SPljQ" name="awardExperience" label="奖励经验" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="l0skdF1knkgrsE8HFKMBjA" name="updateReiki" label="更新灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="bk11xJpaWz5iS[Rb58zKiQ" name="updateTaxReiki" label="更新纳贡灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="6UFqvE7KG6qMixOsXIZQmg" name="updateButterflyReiki" label="更新蝴蝶离线灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="5kj9myaepWnWJCslPPtcpw" name="updateExperience" label="更新经验" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="6E6rGqIL0kDclhLGBcWVtw" name="updateRoleLevel" label="更新角色等级" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="4U9sv6jGcO9ffIx0oW7]pQ" name="updatePointFire" label="更新天火点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="8kvgHYdV39rg958KbNj0sg" name="updateHostButterflyWorkingTime" label="更新蝴蝶工作时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="CkGe2IpQVX5PkwGLIu8djA" name="updateHostButterflyWorkEndTime" label="更新蝴蝶工作结束的时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+  </Message>
+  <Message _uuid="20f0rdoQAcQmKMC2iHGYnQ" name="wakeup.butterfly.storage.query.request" label="唤醒蝴蝶查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="WakeupButterflyStorageQuery" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0009" code_fix="N">
+    <Item _uuid="lUD01cow7glAjVHdITyNsg" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="IUkKAKaa7MkZpvdYnfS0pA" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="KUs]cay]9h[kOLxR4ES7lw" name="hostRoleId" label="蝴蝶主人角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="KEvIUD7gaufA2hVUBcqmhA" name="wakeup.butterfly.storage.query.response" label="唤醒蝴蝶查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="WakeupButterflyStorageQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x000A" code_fix="N">
+    <Enum _uuid="VkgZVxf]YlJ2GHvv8nyzoA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="hEwem6pSZKd0Y7JzwBTfig" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="ak7A]ascgdy6p0caFq9huA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="Z0JCbB3LT0G5h5]x2IZCmg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="W0ktRs4XoohNYqdGsAUPsA" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="c0vK1u1gDxNvlfDARuRRhw" name="hostRoleId" label="蝴蝶主人角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="zUkwaidJB]V]PLjy7k7OkA" name="hostReikiHomeLevel" label="蝴蝶主人的灵气池等级" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="fUt6B3o]4UmAQoKaOM8vrQ" name="hostButterflyHomeLevel" label="蝴蝶主人的蝴蝶窝等级" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="lUBbQVXopdrqwN][hUm[jg" name="hostButterflyWorkingTime" label="蝴蝶主人的蝴蝶工作的时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="r0va3xinBX0btNwpwWcGpg" name="hostButterflyWorkEndTime" label="蝴蝶主人的蝴蝶工作结束的时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="zkIVeta0vyOlsoocwvysuQ" name="hostButterflyReiki" label="蝴蝶主人的蝴蝶离线采集灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+  </Message>
+  <Message _uuid="OEwXHjv0G1r1TmDsZ5fTkw" name="butterfly.warehouse.request" label="蝴蝶仓库请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ButterflyWarehouse" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x000B" code_fix="N">
+    <Item _uuid="wkukNlB6vS]XhNEoCzLynA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="bkmaAwXHMSj]aVPtrcJfkw" name="warehouseRoleId" label="仓库的角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="sEicgiwXQNtQHw90iPs8gQ" name="butterfly.warehouse.response" label="蝴蝶仓库请求应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ButterflyWarehouse" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000C" code_fix="N">
+    <Enum _uuid="JUvYX]r3[7l3hITi9r[ztw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="3UbbCvlDmXIVrysrydn4pA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="Kkwmwsa57sIx3fQo3tRhgg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Enum _uuid="O0ysTr2WojbNEvLvZZoQjg" name="EEnable" label="可以使用枚举" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="Tkx]CJ8mriHW8fSCSizLow" name="Butterfly" label="蝴蝶可以派去工作" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" data_value="0x0001" />
+      <Member _uuid="8UxQDdRvbdrMci1BhluZrA" name="Self" label="自己可以派去工作" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" data_value="0x0002" />
+      <Member _uuid="6U563h1ANZRCkz6ZeHK0ug" name="Footman" label="属臣可以派去工作" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" data_value="0x0004" />
+    </Enum>
+    <Item _uuid="qEtrwJaDEhkuI7QExXORpQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="cUjsBysp1pEd1Lfdb8JmuA" name="enableCd" label="可工作标识" is_valid="Y" note="M#" type="Enum" type_name="EEnable" is_collection="N" />
+    <Item _uuid="WkbDB1J[r[SL735K2pssnw" name="warehouseRoleId" label="仓库的角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="pk9uMK4T]l[K4wR]7Oq4jA" name="warehouseGridSet" label="仓库格子的集合" is_valid="Y" note="M#" type="Object" type_name="SGsWarehouseGridSet" is_collection="N" />
+    <Item _uuid="DE3dOmSNCjaXDiyBGEGGqQ" name="butteflyWorkEndTime" label="蝴蝶工作结束时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" />
+    <Item _uuid="nkTnzQbai35wckuEn6o6nw" name="nextProductTime" label="下次产出时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" />
+    <Item _uuid="kksyViN0TprykpB6N0z9jA" name="lairdRoleId" label="领主角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="SEDqtn6vJ20nGG2PdLGHtQ" name="takeEndTime" label="可拿取剩余时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" />
+  </Message>
+  <Message _uuid="bERwTvIiDNPAPl5tWq4Vig" name="butterfly.warehouse.storage.request" label="蝴蝶仓库存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ButterflyWarehouseStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x000D" code_fix="N">
+    <Item _uuid="DUACnpB6Zs[eDtOpRec0hg" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="hkaWbwV2RV400Vj2Y1zglw" name="warehouseRoleId" label="仓库的角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="Pk5zBe8mV96AujndMzZ9ng" name="butterfly.warehouse.storage.response" label="蝴蝶仓库存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ButterflyWarehouseStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x000E" code_fix="N">
+    <Enum _uuid="MUjDA8a3JDTo650w2gDssQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="cUjfB8v86TRdz0PwTC7XhA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="BUo2WNNsd68Pk]14j4p9pQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="[EPvSmT4w5W0jXDplTOVlg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="g0LhLVDb4a54eLK0h1qbtg" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="eEVMr3bnOOSZ94AHOF5asA" name="warehouseRoleId" label="仓库的角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="m07Cod9QgXFkC1a6[I1Mmw" name="warehouseGridSet" label="仓库格子的集合" is_valid="Y" note="M#" type="Object" type_name="SGmWarehouseGridSet" is_collection="N" />
+    <Item _uuid="rUrxKJnaKYhPG5xqyXZgsw" name="lairdRoleId" label="领主角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="xULg6LJGEXsm1]QIXWiAqg" name="takeEndTime" label="更新下次拿取时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="kUk]05vJK2Ne52nmbk[Qug" name="updateButterflyWokingTime" label="更细自己下次产出时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+  </Message>
+  <Message _uuid="pE[DRcMDoxVGMObzD1Ezqw" name="butterfly.take.request" label="蝴蝶仓库物品拿取请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ButterflyTake" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x000F" code_fix="N">
+    <Item _uuid="70xnbNf6X6Bc6hhaFqrmrA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="2EULlvj5dHwEkyuCPvsKlw" name="warehouseRoleId" label="仓库的角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="10q]MlFid7IjNWGzfCs]qA" name="warehouseGridTid" label="拿取的格子编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="qU2Irla6DTDCr]GGEETyrA" name="butterfly.take.response" label="蝴蝶仓库物品拿取应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ButterflyTake" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0010" code_fix="N">
+    <Enum _uuid="oE48OHXkOFvOf5ADzPDuoQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="RkyB76PIVwMcP0unerRNgA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="PE3P2fIDQ4D1c9UEJsR7nQ" name="Success_AlreadyTake" label="已经被取走" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="HEEtmv36jcTkj1ll4T1Lmw" name="Success_FootmanEescape" label="属臣已经已经逃逸" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="6EweuLXpzBBlnev5NDxvtg" name="Success_CD_NotFull" label="时间未满" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="E0UV8Nzc8rq7QTbO9l94kQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="RkJOZ8p8FYGFOZVt1gTisg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="S0V77wopTQG8LEmxkTcPnw" name="warehouseRoleId" label="仓库的角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="80OI9XdH]UrpjnwedHBPvQ" name="propSet" label="角色物品集合" is_valid="Y" note="M#" type="Object" type_name="SGsRolePropSet" is_collection="N" />
+    <Item _uuid="VEBQpQK9qYJyygTZWIr9iQ" name="warehouseGridSet" label="仓库格子集合" is_valid="Y" note="M#" type="Object" type_name="SGsWarehouseGridSet" is_collection="N" />
+    <Item _uuid="]UzX2UEJNBwgQqEy60sgkQ" name="takeEndCd" label="可拿取剩余时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" />
+  </Message>
+  <Message _uuid="t04]QI7KG3YD0bb5N8bijw" name="butterfly.take.storage.request" label="蝴蝶仓库物品拿取存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ButterflyTakeStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0011" code_fix="N">
+    <Item _uuid="GEWm3VLfSVoVn[bPX6RZtQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="E0HhHGJkSfZWBvVZSF0Krw" name="warehouseRoleId" label="仓库的角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="DEjMt0R4G1jfe[4NWPU6sw" name="updateWarehouseGridSet" label="更新仓库格子信息" is_valid="Y" note="M#" type="Object" type_name="SGmWarehouseGridSet" is_collection="N" />
+    <Item _uuid="[k[cewaxlvppLBjQiqdggA" name="updatePropSet" label="更新物品集合" is_valid="Y" note="M#" type="Object" type_name="SGpRolePropSet" is_collection="N" />
+    <Item _uuid="dkJKm877Q[Ic38WH7x5kmQ" name="footmanId" label="属臣数据库编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="BErv6Ml7nwzm26mJE]dIow" name="updateEndTime" label="更新下次拿取时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+  </Message>
+  <Message _uuid="CEUfJO2XuDnVI6kCiDL0pw" name="butterfly.take.storage.response" label="蝴蝶仓库物品拿取存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ButterflyTakeStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0012" code_fix="N">
+    <Enum _uuid="G03VXbgR42vshZZhggBNsg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="6k4t]IqXIeJLlcf3Xjo1rg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="xktq2N[AHKX6hj3v1wUVpA" name="Success_AlreadyTake" label="已经被取走" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="30oD1k9dTyA5XjmK0oL6vA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="kExwWTVz]MJucApUxgOTgg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="Y0KzPqFdfX[[YcO8zFBFsg" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="P0]LFBLPP8IDvIvdzidptA" name="warehouseRoleId" label="仓库的角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="vkQ]5hDJQyHIhRBJUEeZlw" name="warehouseRoleName" label="蝴蝶窝的所属者名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="64" />
+    <Item _uuid="M05ghiK4iwMfmeVxnaJNkw" name="warehouseGridSet" label="仓库格子的集合" is_valid="Y" note="M#" type="Object" type_name="SGmWarehouseGridSet" is_collection="N" />
+    <Item _uuid="e0jvyoGrWgRYQq53Zw9KnA" name="updatePropSet" label="更新物品集合" is_valid="Y" note="M#" type="Object" type_name="SGpRolePropSet" is_collection="N" />
+  </Message>
+  <Message _uuid="ckIthlR89Dd4NSAfc2JwmQ" name="butterfly.take.query.storage.request" label="蝴蝶仓库物品拿取查询存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ButterflyTakeQueryStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0013" code_fix="N">
+    <Item _uuid="UUjLQmje2mOMjxHa3cZEkw" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="5UPoTE9WQqzjYvFX8Keyow" name="warehouseRoleId" label="仓库的角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="WUuZ9Hw3eOLhZ2JLFUVbtw" name="warehouseGridTid" label="拿取的格子编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="fEl1Celw67DElNOBsK6Amg" name="butterfly.take.query.storage.response" label="蝴蝶仓库物品拿取查询存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ButterflyTakeQueryStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0014" code_fix="N">
+    <Enum _uuid="VUdgheTbRRBwzeiMMZvPjw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="9kENNzD0]HpWC5wabiEgpg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="w0CY0Sm5yzDdrZ9m6UXBtw" name="Success_AlreadyTake" label="已经被取走" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="ak]mF8lmeUKEbEnTRIrQjg" name="Success_FootmanEescape" label="仆从已经逃逸" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="ekvFEUxn5LOfRYqTEa0iow" name="Success_CD_NotFull" label="时间未满" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="CUkhKDOGcAW6mFS27u34ug" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="3k20MQxe27RS3oUD7Z4UvQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="rUkJYx[mHr8SOjPeQ1YKnA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="0ULN]Z3qkpS86hCaI5dDpA" name="warehouseRoleId" label="仓库的角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="KU2[iwy]3jbPsbw3BKBdqg" name="warehouseGrid" label="仓库格子信息" is_valid="Y" note="M#" type="Object" type_name="SGmWarehouseGrid" is_collection="N" />
+    <Item _uuid="aURWVkBg1CNbKrI3q3NPnA" name="warehouseGridSet" label="仓库格子的集合" is_valid="Y" note="M#" type="Object" type_name="SGmWarehouseGridSet" is_collection="N" />
+    <Item _uuid="ekTJOWijUzFloYMdIg3wnw" name="footmanId" label="属臣数据库编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="6kinXrM6h5FZo3gCQj00iA" name="endTime" label="取物品结束CD时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+  </Message>
+  <Message _uuid="QUpSYY2Of1svqeidq2grpw" name="butterfly.work.request" label="蝴蝶窝派去干活请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ButterflyWork" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0015" code_fix="N">
+    <Enum _uuid="PEXqj4na7xzo2AszJkqhqQ" name="EOperation" label="操作" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="K00w8HANuf26tRLxJhMXpw" name="Butterfly" label="蝴蝶" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="zEb[[WI5oURuaM5SaOy1kQ" name="Self" label="自己" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="5E1sE4iQlqQIUAh3NJsNpw" name="Footman" label="属臣" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="i0KQHUsenH0VYtMIa4CBjQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="SkHqX5MT7L[r89C1lupnog" name="operationCd" label="操作类型" is_valid="Y" note="M#" type="Enum" type_name="EOperation" is_collection="N" />
+  </Message>
+  <Message _uuid="YkFj]SxFO8oZw4J9V96Omg" name="butterfly.work.response" label="蝴蝶窝派去干活应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ButterflyWork" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0016" code_fix="N">
+    <Enum _uuid="Fkl2NTwLpxSW8URyRYsFsQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="X09hsj]FKktlAofoo3TKhg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="3ktatY081[r63FrpDDbFqQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Enum _uuid="0EZBJj]vTDME6ck4W6VInw" name="EEnable" label="可以使用枚举" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="JEBKM6xxvCMX[9aIBXcVvg" name="Butterfly" label="蝴蝶可以派去工作" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" data_value="0x0001" />
+      <Member _uuid="l0HkGQ3KftAL69eb9BA7qA" name="Self" label="自己可以派去工作" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" data_value="0x0002" />
+      <Member _uuid="nE3Qxc2Y]bSuPDcqzN7fig" name="Footman" label="属臣可以派去工作" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" data_value="0x0004" />
+    </Enum>
+    <Item _uuid="]EKVJ3vAfMp52HkPWL5sug" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="i0QFKLS8kRjSbUTNK0hdkA" name="enableCd" label="可工作标识" is_valid="Y" note="M#" type="Enum" type_name="EEnable" is_collection="N" />
+    <Item _uuid="bEdH8zAN2megoYxxfwL2qg" name="butteflyWorkEndTime" label="蝴蝶工作结束时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" />
+    <Item _uuid="o0dFr75aRS0wgxDmQ9TaoQ" name="selfWorkEndTime" label="自己工作结束时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" />
+    <Item _uuid="p0c7]p6FL9MwHhBL1[R6vw" name="footmanEndTime" label="属臣工作结束时间" is_valid="Y" note="M#" type="String" is_collection="N" data_size="common.datetime.string.max-length" />
+  </Message>
+  <Message _uuid="a0IA1dqCFolt2tuo]rP9kw" name="butterfly.work.storage.request" label="蝴蝶窝派去干活存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ButterflyWorkStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0017" code_fix="N">
+    <Item _uuid="NkJCE9jTf[zN3HFRLnyCjA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="gEAU1y]EEAnamhKHz63Nlg" name="updateButterflyBeginTime" label="更新蝴蝶开始工作时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="kkqkJXUjFzing8[hUOaPkw" name="updateButterflyEndTime" label="更新蝴蝶结束工作时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="KESoJYDyDInxktucVouaug" name="updateForLairdEndTime" label="更新给领主的结束工作时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="I0uAjK[MrpHOYpT4Mjv5sg" name="updateFootmanEndTime" label="更新属臣结束工作时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+  </Message>
+  <Message _uuid="m0LEcyYRyOzXuKbttgQ7pg" name="butterfly.work.storage.response" label="蝴蝶窝派去干活存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ButterflyWorkStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0018" code_fix="N">
+    <Enum _uuid="JUt]quRKyLxQeeoizg51sg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="oUbQVE20GEvypl2qwVC2rA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="c0OB1VqfymWSCqDPZxd2ug" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="bkonUUkGfo3Y1y7iCA87tA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="1kyh8tWRzbqTc65y3AnwhA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="n0ROPPOXb8LvejKRxk2HiQ" name="updateButterflyBeginTime" label="更新蝴蝶开始工作时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="xkztuUHRialBh6grs9PWtw" name="updateButterflyEndTime" label="更新蝴蝶结束工作时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="kEVlCP34IK4wM8ujUDQuhA" name="updateForLairdEndTime" label="更新给领主的结束工作时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="QUhz9rXmGrg]a]z5VpNknw" name="updateFootmanEndTime" label="更新属臣结束工作时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+  </Message>
+</Group>
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="j0tpQT3lVNuHsAeHDUjWsw" name="system.notify.type" label="M#12cn17系统-消息类型" is_valid="Y" note="M#" data_name="SY_NOTIFY_TYPE" data_logic="SY_NOTIFY_TYPE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="dataset.store" data_type="D">
+  <FieldInteger _uuid="jEf9onAGg4Vx1ThtmKJ4pQ" name="group_id" label="M#12cn14分组标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="GROUP_ID" data_refer="system.notify.group" />
+  <FieldInteger _uuid="zUG7HK0SJP9Nw0Vz2dzdow" name="business_id" label="M#12cn14业务标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BUSINESS_ID" data_refer="system.business" />
+  <FieldBoolean _uuid="0kuimGw3C8K9eaOkHOV3qw" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldString _uuid="BkLlUVBLDTDoH8h2PUrinw" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="80" />
+  <FieldString _uuid="b0GtLtZupO7iTgXVqrQopw" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_type="String" data_size="80" />
+  <FieldContent _uuid="9096GIIR]P]pTQJfmMr3tw" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="LABEL" />
+  <FieldInteger _uuid="XkGIlzEucJfGBbp9S7sLgA" name="icon_id" label="M#12cn14图标标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="ICON_ID" data_type="Integer" data_refer="common.icon" />
+  <FieldInteger _uuid="AUtR3Fb8IASeuWPIFZrKog" name="create_user_id" label="M#12cn13创建者" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CREATE_USER_ID" data_alias="CRT_USR" data_refer="person.user" />
+  <FieldDate _uuid="R02vO5ZypOzBGYBayA7]uA" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_type="Date" data_default="SYSDATE" />
+  <FieldContent _uuid="yEyjHRasfMgA75YQUmIrnA" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

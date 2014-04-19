@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="C0r7ZkLN0TBmSvkMMN5Aqg" name="game.template.equip.starup" label="M#12cn16装备星级升星" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_EQUIP_STARUP" data_alias="GM_TPL_EQP_STU" data_logic="GM_TPL_EQUIP_STARUP_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="1UiKWhkEYaoZjnAZjLSUow" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="e0vtO3JK32VeSizO3Tz1hg" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldInteger _uuid="WUubOplSGxGKSye7NRjIgw" name="item_star_tid" label="M#12cn12星级" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="ITEM_STAR_TID" data_alias="ITM_STR" />
+  <FieldInteger _uuid="fUXQbxN5gb7[sNQ1vlznjA" name="spend_bag_tid" label="M#12cn15消耗包编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="SPEND_BAG_TID" data_alias="SPD_BAG" data_refer="game.template.spend.bag" />
+  <FieldString _uuid="6kpyJ93PYybKRLkcw312uQ" name="spend_currency" label="M#12cn14消耗货币" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SPEND_CURRENCY" data_size="40" />
+  <FieldInteger _uuid="U0wSDKgf]xgebuqAmDbDrw" name="aid_prop_tid" label="M#12cn18辅助道具模版编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="AID_PROP_TID" data_alias="AID_PRP" data_refer="game.template.prop" />
+  <FieldInteger _uuid="kUmD2l6vxluZcK8V7ZKTuA" name="aid_prop_max_count" label="M#12cn18辅助道具数量上限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="AID_PROP_MAX_COUNT" />
+  <FieldFloat _uuid="gUUvE6rM7AdjjVIkoRChkw" name="aid_prop_rate" label="M#12cn17辅助道具成功率" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="AID_PROP_RATE" />
+  <FieldEnum _uuid="g0UkdnkquHy[oUzWJKsKkg" name="equip_control_cd" label="M#12cn14可否操作" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EQUIP_CONTROL_CD" data_size="1" data_code="game.template.equip.control" />
+  <FieldEnum _uuid="gEgETcTobqDwpcEJ3qyQgQ" name="star_up_rule_cd" label="M#12cn16星级规则类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STAR_UP_RULE_CD" data_size="1" data_code="game.template.star.up.rule" />
+  <FieldTemplate _uuid="NUEZ911ifvWXnGMkh7i[jA" name="describe" label="M#12cn14描述模版" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

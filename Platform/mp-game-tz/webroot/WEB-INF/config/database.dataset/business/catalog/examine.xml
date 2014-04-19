@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="R0UnG6AxdTilT0[GyXJjiw" name="business.catalog.examine" label="M#12cn16业务目录审核" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="BS_CATALOG_EXAMINE" data_alias="BS_CAT_EXM" data_logic="BS_CATALOG_EXAMINE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="e0bHbamCtjq6lgc0nnqQpw" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_refer="business.catalog.examine.type" />
+  <FieldInteger _uuid="REGqzkeY3gLDviUgvz0kqg" name="record_id" label="M#12cn14记录标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="RECORD_ID" />
+  <FieldInteger _uuid="9US4S5sWMkZDLThm62ilqg" name="business_id" label="M#12cn14业务标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BUSINESS_ID" data_refer="system.business" />
+  <FieldInteger _uuid="Gkd6lRMMR[JlkATDlHG0uw" name="catalog_id" label="M#12cn14目录标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CATALOG_ID" data_refer="business.catalog" />
+  <FieldInteger _uuid="[0Un063dgL7HWu]v3xjAvg" name="process_id" label="M#12cn15审核流标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROCESS_ID" data_refer="business.catalog.process" />
+  <FieldInteger _uuid="CEuGshQ]ge7issgRVuljpQ" name="batch_id" label="M#12cn14批次标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BATCH_ID" data_refer="business.catalog.examine.batch" />
+  <FieldEnum _uuid="sEq4OJfQfHmZWMigcQoTjw" name="type_cd" label="M#12cn14审批类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="business.catalog.examine.type" />
+  <FieldEnum _uuid="]kgJ0FxwRMm6SEnzdA3tlQ" name="status_cd" label="M#12cn14审核状态" is_valid="Y" note="M#12cn16通过/未通过" is_null="Y" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="business.catalog.examine.status" />
+  <FieldInteger _uuid="AE7mbbeND0NCb1tHDEl1vg" name="node_id" label="M#12cn14节点标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NODE_ID" data_refer="business.catalog.node" />
+  <FieldInteger _uuid="2kpHDKy6]K1WUhoDrihhuQ" name="organization_id" label="M#12cn17申请人组织标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ORGANIZATION_ID" data_refer="person.organization" />
+  <FieldInteger _uuid="R0CadCLrffEycmkyOlitig" name="user_id" label="M#12cn13申请人" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="USER_ID" data_refer="person.user" />
+  <FieldInteger _uuid="8kyQCFMmjJ[lcPi[PAmVug" name="examine_user_id" label="M#12cn13审批人" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_USER_ID" data_refer="person.user" />
+  <FieldInteger _uuid="D0Iw6hs]4gO8lubg0PKUpQ" name="examine_role_id" label="M#12cn15审批人角色" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_ROLE_ID" data_refer="person.role" />
+  <FieldDate _uuid="UkSb1D5avr05jn1IvE0AsQ" name="examine_date" label="M#12cn14审批日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_DATE" />
+  <FieldContent _uuid="FEjAU0Br7RIP4YGWUATOtA" name="examine_note" label="M#12cn14审批意见" is_valid="Y" note="M#12cn211对审批的一些建设性意见" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_NOTE" />
+  <FieldInteger _uuid="OUeoMXyrugrsvCtHIyw0iw" name="proxy_user_id" label="M#12cn15代理者标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROXY_USER_ID" data_refer="person.user" />
+  <FieldInteger _uuid="cUTM29bB8HriwG4Wv6]clw" name="proxy_role_id" label="M#12cn15审核人角色" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROXY_ROLE_ID" data_refer="person.role" />
+  <FieldSet _uuid="dExa3wQnKvfQUycw8pZwvw" name="proxy_user_ids" label="M#12cn15代理人集合" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROXY_USER_IDS" data_size="400" />
+  <FieldTemplate _uuid="pkEknr54Im9a2cuOhCCTmQ" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="M0qkUKEK3Idrc3cSMPX[vQ" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

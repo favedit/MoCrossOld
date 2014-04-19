@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="07b30dbf-c13f-4036-ae91-ce6ed86ee899" name="database.synchronizer" label="M#12cn16数据同步定义" is_valid="Y" note="M#" template="xmlobject" source="${export.logic.data.source}">
+   <Interface _uuid="1b132c4b-c831-4337-9303-fcd90e8b4b2b" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#" class_name="org.mo.data.synchronizer.common.XObjectFace">
+      <Attribute _uuid="552f113b-3b24-4e70-8bf0-bb1429ef6fab" name="code" label="M#12cn12代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="a268e4f1-c522-4ede-8b09-7c51a1607f6e" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" />
+      <Attribute _uuid="4d987c07-ef9b-4db9-ab35-2e8b30d529c5" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+      <Attribute _uuid="b499cd15-fe88-4a72-b45c-b7fd0b5d3596" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" />
+      <Attribute _uuid="e857ef8a-a5b3-4aca-8358-ab2156c195c7" name="note" label="M#12cn12注释" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+   </Interface>
+   <Component _uuid="0f166d60-4601-4fdd-be39-b6960d41333b" name="Synchronizer" label="M#12cn12分组" is_valid="Y" note="M#" class_name="org.mo.data.synchronizer.common.XSynchronizer" base_name="org.mo.data.synchronizer.base.XBaseSynchronizer" inherits="IObject">
+      <Attribute _uuid="e860a134-c5c6-41e3-9d31-6ec95001a981" name="domain_connection_name" label="M#12cn16主域链接名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="798a398d-2b75-4a89-bff7-771b08258b0c" name="source_connection_name" label="M#12cn16来源链接名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="e33d581e-6079-4cc2-b871-96be71f587c0" name="target_connection_name" label="M#12cn16目标链接名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="20678b05-5720-46be-a5ed-7c2a088abab8" name="Unit" label="M#12cn14数据单元" is_valid="Y" note="M#" class_name="org.mo.data.synchronizer.common.XUnit" base_name="org.mo.data.synchronizer.base.XBaseUnit" inherits="IObject">
+      <Attribute _uuid="fef0ff0d-2827-4bbb-8d51-349b2d1ef4d8" name="source_data_name" label="M#12cn16来源数据名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="ada3b8db-939b-4a44-acd4-11be50d03475" name="target_data_name" label="M#12cn16目标数据名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+</Persistence>

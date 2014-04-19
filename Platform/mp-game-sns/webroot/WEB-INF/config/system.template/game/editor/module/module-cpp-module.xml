@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Source is_valid="Y" note="M#">
+<![CDATA[//============================================================
+// <T><jt:item source='$module.label'/>实体的管理模块。</T>
+//
+// @version 1.0.1
+// @auto 代码器管理的代码，如需修改请在手动修改标出的地方修改。
+//============================================================
+#include "<jt:item source='$module.head_name'/>.h"
+// @manual (Include.Begin)
+//------------------------------------------------------------
+<jt:empty source='$module.body_include'>
+//------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$module.body_include'>
+<jt:item source='$module.body_include'/>//------------------------------------------------------------
+</jt:notEmpty>
+// @manual (Include.End)
+
+MO_NAMESPACE_BEGIN
+
+//============================================================
+// <T>构造<jt:item source='$module.label'/>实体的管理模块的实例。<T>
+//
+// @return 实例对象
+//============================================================
+<jt:item source='$module.source_module'/>::<jt:item source='$module.source_module'/>(){
+   _name = "<jt:item source='$module.code_full'/>";
+   _objectType = EGmObject_<jt:item source='$module.code'/>;
+   // @manual (Construct.Begin)
+   //------------------------------------------------------------
+<jt:empty source='$module.body_construct'>
+   //------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$module.body_construct'>
+<jt:item source='$module.body_construct'/>//------------------------------------------------------------
+</jt:notEmpty>
+   // @manual (Construct.End)
+}
+
+//============================================================
+// <T>析构<jt:item source='$module.label'/>实体的管理模块的实例。</T>
+//============================================================
+<jt:item source='$module.source_module'/>::~<jt:item source='$module.source_module'/>(){
+}
+
+// @manual (Module.Begin)
+//------------------------------------------------------------
+<jt:empty source='$module.body_module'>
+//------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$module.body_module'>
+<jt:item source='$module.body_module'/>//------------------------------------------------------------
+</jt:notEmpty>
+// @manual (Module.End)
+
+MO_NAMESPACE_END
+
+]]>
+   </Source>
+</Template>

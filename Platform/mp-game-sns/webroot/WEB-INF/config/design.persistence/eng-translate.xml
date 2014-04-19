@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="jEnHm[i0BPHkPiyoOJ3ajQ" name="eng-translate" label="M#12cn15多语言定义" is_valid="Y" note="M#" template="xmlobject" source="${home.source.eng}">
+  <Component _uuid="XUH6MkJqjs34TBQJt5yNkw" name="Translate" label="M#12cn14翻译对象" is_valid="Y" note="M#" class_name="org.mo.eng.translate.common.XTranslate" base_name="org.mo.eng.translate.base.XBaseTranslate" inherits="IObject">
+    <Attribute _uuid="jEZelqv1r3sUhEJFSmbbog" name="code" label="M#12cn14代码编号" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="5E7dxUpHUXf9gAlFVs8wgg" name="type_cd" label="M#12cn14代码类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="YkUH90fhBAJX2RdDC7p7tQ" name="status_cd" label="M#12cn14翻译状态" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="Xk0nJIBtgRwZIr7lLvE6nw" name="content" label="M#12cn12内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="8kwIlGVvLk7hnivDSfzvkQ" name="create_user_code" label="M#12cn15创建者工号" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="WEKBiK]YPRPkNe2HUtpPtQ" name="update_user_code" label="M#12cn15更新人工号" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="zUalLmgUC7gDgyCurQATsA" name="update_date" label="M#12cn14更新时间" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="w0eYDnPYiNW45oakQkDPvg" name="zh_content" label="M#12cn14中文内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="2ktYOtuxE1W3oL6wqTdQtQ" name="ja_content" label="M#12cn14日文内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="a0BfhqB1Dn3T9H[yLlFRrw" name="Content" label="M#12cn14内容对象" is_valid="Y" note="M#" class_name="org.mo.eng.translate.common.XContent" base_name="org.mo.eng.translate.base.XBaseContent" inherits="IObject">
+    <Attribute _uuid="UEqWSj4Rpyar9gxlR2X0pg" name="content" label="M#12cn12内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="[kIOoeIcI224Z2Ocaleurg" name="language_name" label="M#12cn14语言简称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="1k55BWh7kQRBWw9Choe6jA" name="create_user_code" label="M#12cn15创建者工号" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="iktSrg30Cc0YSjWlaVV2mA" name="update_user_code" label="M#12cn15更新者工号" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="R04nyqiMCVSOXe6gOU]ttA" name="update_date" label="M#12cn14更新时间" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Interface _uuid="Kksw6RtjBT2q155zWKyVlQ" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#" class_name="org.mo.eng.translate.common.XObjectFace">
+    <Attribute _uuid="gUVlHIoVqoFZG0o08jlxlg" name="name" label="M#12cn12名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="EkxbdLE3EpJimD4KVixIgg" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="]UGaQHRK4[Qy99U4g3QQvw" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="QUTQm58VICAw78wUFbd1gw" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Interface>
+  <Component _uuid="4k6tjPspStS0n6Lru1B6uQ" name="Group" label="M#12cn14翻译分组" is_valid="Y" note="M#" class_name="org.mo.eng.translate.common.XGroup" base_name="org.mo.eng.translate.base.XBaseGroup" inherits="IObject">
+    <Attribute _uuid="wkUExt9MHF5E7lcFYFetgA" name="code" label="M#12cn14代码编号" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="x0dtZM[eXY51TU6ugZ3brg" name="type_cd" label="M#12cn14代码类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="Y0wRWxDflqyt0z[npaE[lQ" name="Parameter" label="M#12cn14翻译参数" is_valid="Y" note="M#" class_name="org.mo.eng.translate.common.XParameter" base_name="org.mo.eng.translate.base.XBaseParameter" inherits="IObject" />
+  <Component _uuid="eUCR[NT1x[AEjUJzJjNJgg" name="List" label="M#12cn14翻译列表" is_valid="Y" note="M#" class_name="org.mo.eng.translate.common.XList" base_name="org.mo.eng.translate.base.XBaseList" inherits="IObject">
+    <Attribute _uuid="WUI7hCMPbh8SxRgwVo4VjA" name="type_cd" label="M#12cn14代码类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="fkD1G65AsHBcGe2U]RZ3qg" name="code" label="M#12cn14代码编号" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+</Persistence>
+

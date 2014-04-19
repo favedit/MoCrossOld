@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="gEPdliTQJRVC0q1B68]foA" name="game.template.player.equip" label="M#12cn14玩家装备" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_PLAYER_EQUIP" data_alias="GM_TPL_PLY_EQP" data_logic="GM_TPL_PLAYER_EQUIP_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="bkvAyULYo8Sxd43nXsuwgQ" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="XkUOGcMV4eWO4eGhTq3Flw" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldInteger _uuid="9EKRoa[sJ9Xr9509rrdvqQ" name="player_tid" label="M#12cn14玩家编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PLAYER_TID" data_alias="PLY" data_refer="game.template.player" />
+  <FieldEnum _uuid="4UNfxdhNiq1eydgHMBg]hA" name="slot_cd" label="M#12cn14装备位置" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SLOT_CD" data_size="1" data_code="game.template.equip.slot" />
+  <FieldInteger _uuid="lEJO[VmXTc9dDe073H3ovw" name="equip_tid" label="M#12cn14装备编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="EQUIP_TID" data_alias="EQP" data_refer="game.template.equip" />
+  <FieldTemplate _uuid="XENX3XOYboqMXV9WmhRbjg" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="6kU0FCrp1xyBc[Ls[mYUlg" name="logic.business.it.QuarterReport" label="工作日志-季报" is_valid="Y" fileName="reportLog(Quarter)[${QUERY_DATE}].xls" template="logic.business.it.quarterReport">
+  <Sql _uuid="rUUZY4]tuWJIRHoxht8Svw" name="count_quarter" label="季度统计" is_valid="Y"><![CDATA[SELECT  DATE_INFO.QUARTER_DATE  MONTH_DATE,
+       DATE_INFO.BEGIN_DATE,
+       DATE_INFO.END_DATE,
+    BS_IT_LOG_DI.Get_Status_Count(null, null, DATE_INFO.BEGIN_DATE, DATE_INFO.END_DATE) TOAL_WORK_NUM,
+       BS_IT_LOG_DI.Get_Status_Count(null, 'C', DATE_INFO.BEGIN_DATE, DATE_INFO.END_DATE) COMPLETED_NUM,
+       BS_IT_LOG_DI.Get_Status_Count(null, 'U', DATE_INFO.BEGIN_DATE, DATE_INFO.END_DATE) UNCOMLPLETED_NUM,
+       BS_IT_LOG_DI.Get_Status_Count(null, 'P', DATE_INFO.BEGIN_DATE, DATE_INFO.END_DATE) PROCESS_NUM,
+       BS_IT_LOG_DI.Get_Status_Count(null, 'O', DATE_INFO.BEGIN_DATE, DATE_INFO.END_DATE) OBSERVE_NUM
+ FROM (SELECT QUARTER_DATE,
+              MONTH_DATE,                                                    
+              CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY') || '-' ||MONTH_DATE || '-01') BEGIN_DATE,
+              LAST_DAY(CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY')|| '-' || (MONTH_DATE+2))) END_DATE
+            FROM (SELECT 3*ROWNUM-2 AS MONTH_DATE, ROWNUM AS QUARTER_DATE FROM DUAL CONNECT BY LEVEL <= 4) MONTH_DATE_INFO) DATE_INFO]]></Sql>
+  <Sql _uuid="V0qnBmR7wjley06vI0TQjw" name="date_config" label="当年时间" is_valid="Y"><![CDATA[SELECT
+   TO_CHAR(CP_DATE.Parse(NVL('${QUERY_DATE}',TO_CHAR(SYSDATE,'YYYY-MM-DD'))),'YYYY') CURRENT_DATE
+FROM DUAL]]></Sql>
+</ExportExcel>
+

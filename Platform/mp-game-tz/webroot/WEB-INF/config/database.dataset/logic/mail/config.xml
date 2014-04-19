@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="EkwhMY1kOBoqn2d3rIbgsw" name="logic.mail.config" label="M#12cn14邮件配置" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_MAIL_CONFIG" data_logic="LG_MAIL_CONFIG_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="6k5pq41XokyItNzUPMicng" name="type_id" label="M#12cn14类型编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_refer="logic.mail.type" index_names="link" />
+  <FieldBoolean _uuid="5UANjBVOhuv1y4d33Ue9nw" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="'Y'" />
+  <FieldString _uuid="T0Wl8552qnQNxgKmGXVIgg" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldString _uuid="SEFU0fl36jBuHyyJA4Unnw" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" data_size="80" />
+  <FieldEnum _uuid="Akzx0mGvGC2BN7piwIH0iQ" name="target_cd" label="M#12cn14目标类型" is_valid="Y" note="M#12cn243R=Role 角色用户\nJ=Job  角色岗位\nU=User 用户\nO=Org  组织" is_null="Y" is_store="Y" is_abstract="N" data_name="TARGET_CD" data_size="1" data_code="logic.business.catalog.link" index_names="link" />
+  <FieldInteger _uuid="jUl5ESjk[]gAy94LD5jcrg" name="target_id" label="M#12cn14目标编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TARGET_ID" index_names="link" />
+  <FieldInteger _uuid="oUfQo7yPmFqCzofFjjubtw" name="times" label="M#12cn12次数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TIMES" />
+  <FieldInteger _uuid="2EL1[JuNly5mYi15mdX5uQ" name="early_days" label="M#12cn14提前天数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EARLY_DAYS" />
+  <FieldContent _uuid="Z0LibWGOCRJ7n2Xa[hi7rA" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+  <FieldTemplate _uuid="eEixj3KlNNV]7cGb0dfguw" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+</DataStore>
+

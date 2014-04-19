@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="70Fljpshj7SEnc62kkYviw" name="web-tree" label="M#12cn15目录树信息" is_valid="Y" note="M#" template="xmlobject" source="${export.web.web.source}">
+   <Interface _uuid="i0mAyKol9u[3FAYkF2YRlA" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.web.core.webtree.common.XObjectFace">
+      <Attribute _uuid="I0LN]80bkE2y38B]7MO]vg" name="name" label="M#12cn12名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="Gkm0SZQSgxgKTjSXp1Toug" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="u0WIqbcRc4GFENUVkk62uQ" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" data_default="Y" />
+      <Attribute _uuid="GkhL5An]D0F9lr]ftm5vpg" name="note" label="M#12cn14注释信息" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" is_default="N" />
+   </Interface>
+   <Interface _uuid="pUt3gyORiF8p7aj2ljheiA" name="IStyle" label="M#12cn14样式控件" is_valid="Y" note="M#" class_name="org.mo.web.core.webtree.common.XStyleFace">
+      <Attribute _uuid="GUR7sOn5qx77Tbrc6NTguw" name="color" label="M#12cn14字体颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="ykA0bcWY4pn9a9iRRT]Hjg" name="bg_color" label="M#12cn14背景颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Interface>
+   <Component _uuid="nU3UfOdTJ5yXArRpt[vjmA" name="TreeView" label="M#12cn13目录树" is_valid="Y" note="M#12jp16データセット" class_name="org.mo.web.core.webtree.common.XTreeView" base_name="org.mo.web.core.webtree.base.XBaseTreeView" inherits="IObject">
+      <Attribute _uuid="IkyMgZPLF]Ql0jXY5GGshw" name="is_config" label="M#12cn13可配置" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="RE]wduSls9rzupDIvL4Zkg" name="disp_checked" label="M#12cn15显示复选框" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="WkxKrFG3u56h2ihfdRxdkQ" name="service" label="M#12cn14服务名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="cERVDiRkagWY05KUdbZIiw" name="parent_name" label="M#12cn13父名称" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+      <Attribute _uuid="a03QOAu6B1tN6Oiezelarg" name="query_service" label="M#12cn14查询服务" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="G047DagdvHrJ6zOYbocplg" name="TreeNode" label="M#12cn14目录节点" is_valid="Y" note="M#12jp15フィールド" class_name="org.mo.web.core.webtree.common.XTreeNode" base_name="org.mo.web.core.webtree.base.XBaseTreeNode" inherits="IObject,IStyle">
+      <Attribute _uuid="LUe8vtPRE9Wv9qhiBQPKuw" name="type" label="M#12cn14节点类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="t0uGn705Spm1ff6El[x8vw" name="uuid" label="M#12cn14唯一标识" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="m0hc72RJ6DgjkEkIfeYnlg" name="icon" label="M#12cn12图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="AE8aTHeF0OJ3afAYxgYskA" name="child" label="M#12cn15含有子节点" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="pkzKqQlvX2j0j4NzlYjkgg" name="is_config" label="M#12cn13可配置" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="zk2y2kJZk5pFLrxYopeIhQ" name="order_type" label="M#12cn14排序方式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="Vk0lCi8THZ1VtFUSX7d6kA" name="attributes" label="M#12cn14属性内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="yUWyd1lWRtNXNazHfnB9og" name="checked" label="M#12cn14是否选中" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="00LpC4sGWoEDeKd3FeHWpA" name="extended" label="M#12cn14是否展开" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="n0Elq63aVdZOSmTAQe7WnQ" name="link_tree" label="M#12cn14关联目录" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="mk9yD]ScUERRqo1wCW2vnw" name="TreeLevel" label="M#12cn14目录级别" is_valid="Y" note="M#" class_name="org.mo.web.core.webtree.common.XTreeLevel" base_name="org.mo.web.core.webtree.base.XBaseTreeLevel" inherits="IObject,IStyle">
+      <Attribute _uuid="R0Q]QA7PhiMAqR0McQg3tg" name="id" label="M#12cn12编号" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+   <Component _uuid="GEMIGgqtCH6j7bBHUbz3lA" name="TreeColumn" label="M#12cn13数据列" is_valid="Y" note="M#" class_name="org.mo.web.core.webtree.common.XTreeColumn" base_name="org.mo.web.core.webtree.base.XBaseTreeColumn" inherits="IObject,IStyle">
+      <Attribute _uuid="ZUqIggbHryqMuNucAMn[gQ" name="icon" label="M#12cn12图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="b0NtEhkmGomp6DQl3D56hw" name="data_name" label="M#12cn14数据名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="3U6O4bR]NQG]M02dIKOKug" name="width" label="M#12cn12宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="2kPFDDoRH0J8Y[UWlBuOkA" name="TreeNodeType" label="M#12cn14节点类型" is_valid="Y" note="M#" class_name="org.mo.web.core.webtree.common.XTreeNodeType" base_name="org.mo.web.core.webtree.base.XBaseTreeNodeType" inherits="IObject,IStyle">
+      <Attribute _uuid="7Uz8LXFjiHF9ohfMo1VRvg" name="type" label="M#12cn12类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="I0YOh3i9rWug388hNWN6sA" name="type_name" label="M#12cn14类型名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="aktZbcRekZevJfGddU8opw" name="icon" label="M#12cn12图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="y0cX3Oqw]HcOAb41AVsAtw" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="4keNX9]KoG1]U]9G]ZRTgA" name="service" label="M#12cn12服务" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="h0V2wvsok]hoyh1iB2Vyiw" name="order_type" label="M#12cn14排序方式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="90T]mLqJzHEqrexmwB2ImA" name="attributes" label="M#12cn14属性内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+</Persistence>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="IkLGGylgGOv]7E6Lv6JbrQ" name="logic.person.user.staff.YearReport" label="人力资源-年报统计" is_valid="Y" fileName="人力资源-年报统计[${CURRENT_DATE}].xls" template="logic.person.user.staff.YearReport.xls">
+  <Sql _uuid="hkdZAZEWZKvdhg6Ykf1fmw" name="user_list" label="年报统计SQL" is_valid="Y"><![CDATA[SELECT MOTHS_CD,
+   BEGIN_DATE,
+   END_DATE,
+   YEAR_ENTRY_COUNT,
+   ENTRY_COUNT,
+   LEAVE_COUNT,
+   PROBATE_COUNT,
+   INSERVICE_COUNT,
+   FORMAL_COUNT,
+   PRACTISE_COUNT,
+   PERIOD_PRACTISE_COUNT,
+   ADVISER_COUNT,
+   TEMPORARY_COUNT,
+   PARTTIME_COUNT,
+   YEAR_LEAVE_COUNT,
+   (INSERVICE_COUNT - FORMAL_COUNT - PRACTISE_COUNT - ADVISER_COUNT - TEMPORARY_COUNT - PARTTIME_COUNT) TEST_COUNT
+FROM (SELECT NEW_DATE.*,
+      PM_USER_COMPANY_DI.Get_Entry_Count_By_Date(BEGIN_DATE, END_DATE) ENTRY_COUNT,
+      PM_USER_COMPANY_DI.Get_Entry_Count_By_Date(YEAR_BEGIN, END_DATE) YEAR_ENTRY_COUNT,
+      PM_USER_COMPANY_DI.Get_Leave_Count_By_Date(BEGIN_DATE, END_DATE) LEAVE_COUNT,
+      PM_USER_COMPANY_DI.Get_Probate_Count_By_Date(BEGIN_DATE, END_DATE) PROBATE_COUNT,
+      PM_USER_COMPANY_DI.Get_Inservice_Count('', BEGIN_DATE, END_DATE) INSERVICE_COUNT,
+      PM_USER_COMPANY_DI.Get_Formal_Count(BEGIN_DATE, END_DATE) FORMAL_COUNT,
+      PM_USER_COMPANY_DI.Get_Practise_Count_By_Date(YEAR_BEGIN, END_DATE) PRACTISE_COUNT,
+      PM_USER_COMPANY_DI.Get_Period_Practise_Count(BEGIN_DATE, END_DATE) PERIOD_PRACTISE_COUNT,
+      PM_USER_COMPANY_DI.Get_Leave_Count(YEAR_BEGIN, END_DATE) YEAR_LEAVE_COUNT,
+      PM_USER_COMPANY_DI.Get_Inservice_Count('A', BEGIN_DATE, END_DATE) ADVISER_COUNT,
+      PM_USER_COMPANY_DI.Get_Inservice_Count('T', BEGIN_DATE, END_DATE) TEMPORARY_COUNT,
+      PM_USER_COMPANY_DI.Get_Inservice_Count('M', BEGIN_DATE, END_DATE) PARTTIME_COUNT
+   FROM ( 
+      SELECT MOTHS_CD,   
+         CP_DATE.Parse(SUBSTR('${YEAR_DATE}', 1, 4) || '-' || MOTHS_CD || '-01') BEGIN_DATE,
+         LAST_DAY(CP_DATE.Parse(SUBSTR('${YEAR_DATE}',1,4) || '-' || MOTHS_CD)) END_DATE,
+         CP_DATE.Parse(SUBSTR('${YEAR_DATE}', 1, 4)  || '-01' || '-01') YEAR_BEGIN
+      FROM (SELECT ROWNUM AS MOTHS_CD 
+            FROM DUAL 
+            CONNECT BY LEVEL <= 12 )) NEW_DATE)]]></Sql>
+  <Sql _uuid="XUsCX]cbF[0cOQ5o2bxPug" name="current_config" label="当前时间" is_valid="Y"><![CDATA[SELECT
+   TO_CHAR(CP_DATE.Parse('${YEAR_DATE}'), 'YYYY') YEAR_DATE,
+   PM_USER_COMPANY_DI.Get_Entry_Count_By_Date(CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${YEAR_DATE}'), 'YYYY') || '0101'), CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${YEAR_DATE}'), 'YYYY') || '1231')) ENTRY_ALL_COUNT,
+   PM_USER_COMPANY_DI.Get_Probate_Count_By_Date(CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${YEAR_DATE}'), 'YYYY') || '0101'), CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${YEAR_DATE}'), 'YYYY') || '1231')) PROBATE_ALL_COUNT,
+   PM_USER_COMPANY_DI.Get_Period_Practise_Count(CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${YEAR_DATE}'), 'YYYY') || '0101'), CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${YEAR_DATE}'), 'YYYY') || '1231')) PRACTISE_ALL_COUNT,
+   PM_USER_COMPANY_DI.Get_Leave_Count_By_Date(CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${YEAR_DATE}'), 'YYYY') || '0101'), CP_DATE.Parse(TO_CHAR(CP_DATE.Parse('${YEAR_DATE}'), 'YYYY') || '1231')) LEAVE_ALL_COUNT
+FROM DUAL]]></Sql>
+</ExportExcel>
+

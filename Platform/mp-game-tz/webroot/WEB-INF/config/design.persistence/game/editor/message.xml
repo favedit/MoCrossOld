@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="h0ozms4DGAUHDYzptRUmpw" name="game.editor.message" label="M#12cn14消息信息" is_valid="Y" note="M#12jp13リスト" template="xmlobject" source="${home.source.game.editor}">
+  <Interface _uuid="wEbNRNR7Ng[euluzJpe0uA" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.game.editor.core.message.common.XObjectFace">
+    <Attribute _uuid="HUVcP2F2k2Yz3asty8A[gA" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="SU1oIvILBIX1QDSNAb1dtw" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="xUylqXKCczELM1YSX8tzvg" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="B0yY7YYNECrlNLBZMDlLgA" name="note" label="M#12cn12注释" is_valid="Y" note="M#12jp12注釈" type="MultiString" is_store="Y" is_config="Y" is_default="N" />
+  </Interface>
+  <Component _uuid="Uk4hdbstCPao1fu7FISxjw" name="Item" label="M#12cn13数据项" is_valid="Y" note="M#12jp12項目" class_name="org.mo.game.editor.core.message.common.XMessageItem" base_name="org.mo.game.editor.core.message.base.XBaseMessageItem" inherits="IObject,ISource">
+    <Attribute _uuid="p0Oa1jcjU]j44iDLMUCMkA" name="type" label="M#12cn12类型" is_valid="Y" note="M#12jp13タイプ" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="YkFXSIoE2TYIYgyJlwR5vQ" name="value" label="M#12cn12内容" is_valid="Y" note="M#12jp11値" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="pEQToRGHoaXSQMPUQ66buw" name="hotkey" label="M#12cn12热键" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="UEt3daxw2LUnmjxGyPYNhw" name="type_cd" label="M#12cn12类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="3EmBrKvsBH7wCjLr3hlqrw" name="type_name" label="M#12cn14类型名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="AkYTCq4y2e[LC1oBRzevng" name="type_cs" label="M#12cn14CS类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="G04IFEn190JfgV55QIPclg" name="type_as" label="M#12cn14AS类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="3UgHjJxH5eXtUtRawBlcvQ" name="is_collection" label="M#12cn12集合" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="xEq1bn7qCWer493jRh00hw" name="data_size" label="M#12cn14数据大小" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="jUrB4wM4iXr64SugNYH6kw" name="data_default" label="M#12cn15数据默认值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="EUyvLfUZMIXI[ayIdXc0oQ" name="Message" label="M#12cn12消息" is_valid="Y" note="M#12jp13リスト" class_name="org.mo.game.editor.core.message.common.XMessage" base_name="org.mo.game.editor.core.message.base.XBaseMessage" inherits="IObject,ISource">
+    <Attribute _uuid="OkEFh38J4znRCoTf3]fBpA" name="cache" label="M#12cn13可缓冲" is_valid="Y" note="M#12cn13缓存可" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="I0diONZO[9pI6O]9TflZig" name="code" label="M#12cn13代码号" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="FEc2JlD]304D]Xos7OePrg" name="source_name" label="M#12cn13源名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="J0lOFq[ZWaVza5GitWYpkQ" name="is_udp" label="M#12cn19是否使用UDP协议" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="g0t5MrM0TFO]31xCHipNsQ" name="message_type" label="M#12cn14消息类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="3UBJgogQ7d[ETykji3[[lw" name="is_asynchronous" label="M#12cn14异步标志" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="BkBRlzGOjAHrj9Q7MDolsA" name="is_session" label="M#12cn14会话标志" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="e0YwQcDuqw4MHwfM3Sdptg" name="is_login" label="M#12cn14账号登录" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="s05hJN9WkvJmh1asQF]VhA" name="is_login_role" label="M#12cn14角色登录" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="f0r]B0bfYwzxg78ZJuE0rw" name="is_manage" label="M#12cn14管理标志" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="wUYssS]hnjRVHYZGYfl5rA" name="source_type" label="M#12cn14来源类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="J0KFO4ljMQiq[9tJVK0Qrw" name="target_type" label="M#12cn14目标类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="oUASqS4S92Hnsn6jQKvGmQ" name="service_type" label="M#12cn14服务类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="akUX0v4cWMNu3caNSfstiQ" name="code_value" label="M#12cn13代码值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="xkkCUycmqOxE8bHwjZPugg" name="code_fix" label="M#12cn14固定号码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="iUTPdtx]Lq]sj70y1Pbrsw" name="Group" label="M#12cn14消息分组" is_valid="Y" note="M#" class_name="org.mo.game.editor.core.message.common.XMessageGroup" base_name="org.mo.game.editor.core.message.base.XBaseMessageGroup" inherits="IObject,ISource">
+    <Attribute _uuid="7ET6CiY4mamQtaPJiaU]rA" name="source_name" label="M#12cn14代码名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="GExY9TQ7l8Q5U24kmGHalw" name="code" label="M#12cn12代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="[EN7ohkIY0kV2Rs[GGjyrw" name="full_code" label="M#12cn14代码全称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="mUAjeSjYFupXRgteHP1Mvw" name="display_index" label="M#12cn14显示顺序" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="EErvbqsW7o8MWdfYXSaTtw" name="Struct" label="M#12cn13结构体" is_valid="Y" note="M#" class_name="org.mo.game.editor.core.message.common.XMessageStruct" base_name="org.mo.game.editor.core.message.base.XBaseMessageStruct" inherits="IObject,ISource" />
+  <Component _uuid="JkFf[SKPEZ8RewfNLj3Dkg" name="Enum" label="M#12cn12枚举" is_valid="Y" note="M#" class_name="org.mo.game.editor.core.message.common.XMessageEnum" base_name="org.mo.game.editor.core.message.base.XBaseMessageEnum" inherits="IObject,ISource" />
+  <Component _uuid="fEGxRmbXXY4]cB7DC7nnqA" name="Type" label="M#12cn12类型" is_valid="Y" note="M#" class_name="org.mo.game.editor.core.message.common.XMessageType" base_name="org.mo.game.editor.core.message.base.XBaseMessageType" inherits="IObject,ISource">
+    <Attribute _uuid="TkCmRbanxWWUJ1ulBI2Ghg" name="type" label="M#12cn12类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="T0ubC]J5Kky6DMlElqBBuw" name="Member" label="M#12cn14枚举成员" is_valid="Y" note="M#" class_name="org.mo.game.editor.core.message.common.XEnumMember" base_name="org.mo.game.editor.core.message.base.XBaseEnumMember" inherits="IObject,ISource">
+    <Attribute _uuid="QkUOXTRtX1UdaB3nrJ5tmg" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Interface _uuid="CkdbTMTLjXPZkwE3te2IjA" name="ISource" label="M#12cn14代码类型" is_valid="Y" note="M#" class_name="org.mo.game.editor.core.message.common.XObjectSource">
+    <Attribute _uuid="E0Ygjq3h3ecc[mt6WD8jow" name="is_server" label="M#12cn13服务器" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="HkEqB7qIhvfiGdYpPag0vQ" name="is_server_cpp" label="M#12cn18服务器CPP代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="708yLIKoaIl[zMb9etBFpw" name="is_server_java" label="M#12cn19服务器JAVA代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="rEa03an3gL7axka]MwukuA" name="is_client" label="M#12cn13客户端" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="V0y3DfAE0S8oZ96TmZieuw" name="is_client_cpp" label="M#12cn18客户端CPP代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="Ckcp0RDif4nBud49e0VNng" name="is_client_as" label="M#12cn17客户端AS代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="1Esxeoc5cfigLEetS8Hbgw" name="is_client_cs" label="M#12cn17客户端CS代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="9EVUkglSDJ34ms0mHyk8oQ" name="is_client_java" label="M#12cn19客户端JAVA代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+</Persistence>
+

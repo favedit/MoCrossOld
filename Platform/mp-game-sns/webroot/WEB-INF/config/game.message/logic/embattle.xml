@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="GE22eUqnJZiwg6FxTMCHnQ" name="logic.embattle" label="逻辑布阵" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" source_name="MoMgLogicEmbattle" code="Leb" full_code="LogicEmbattle" display_index="48">
+  <Message _uuid="skhaJ]iZWOuLzBTgS[M3vg" name="embattle.enter.request" label="布阵进入请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EmbattleEnter" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0001" code_fix="N">
+    <Item _uuid="VU0ZfxrZTs4ir[s4L]4JsQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="VUgsR5vMcVH9RonfDDM4qg" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="2kIG9N3a5JpzRSM4r5aPlg" name="embattle.enter.response" label="布阵进入应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EmbattleEnter" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Enum _uuid="]ElpCays5RFMMBaiX6svjg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="O0wQEmj0hPrP31A]KK1]nQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="TE51OrVNgNMn85jq6Bv1oA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="SU1cr2n5XDBCa0hhZOXXhg" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="IE3Y4hqP1hYuexjf8QYvrA" name="validIntervalTick" label="有效间隔时刻" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="CksLrsdbJYUiXHXskEjmuQ" name="embattle" label="布阵信息" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleMap" is_collection="N" />
+    <Item _uuid="SEJrwI93H0DnM18[ugpRqg" name="placeCostReiki" label="改造需要花费灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="4kXSq2GPxM2cqlm7D4uKnQ" name="isbeenRaid" label="玩家的布阵地图是否被突袭过" is_valid="Y" note="M#" type="Enum" type_name="EGmBeenRaid" is_collection="N" />
+  </Message>
+  <Message _uuid="S0wJeTgz3mGR4twRasIDpw" name="embattle.enter.storage.request" label="布阵进入存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="EmbattleEnterStorage" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0003" code_fix="N">
+    <Item _uuid="bEmNBzffHpJ6jbxHX8oOug" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="XEqOOeQjmVA0aJxmS]ipvQ" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="b0NzjTJDuSDjROx2NSqQvQ" name="embattle.enter.storage.response" label="布阵进入存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="EmbattleEnterStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0004" code_fix="N">
+    <Enum _uuid="eUejvDgvLLYio6]OeIPQmA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="OEG8WBpYxBCoP8BqjMmNog" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="GUDhtsm3Fy[hyRV2XDEjsA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="jk1L8Vqddmh1GJ3vyVvWhw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="uEW2iXbgSFICt3URMcp5qg" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="skqw0an17mCq8Qc4Tb0RjA" name="validIntervalTick" label="有效间隔时刻" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="eUWEOsRMJcD4T44yLLZlmA" name="embattle" label="布阵信息" is_valid="Y" note="M#" type="Object" type_name="SGpRoleEmbattleMap" is_collection="N" />
+    <Item _uuid="gk[w1EIvnJDsvulwMKugvQ" name="isBeenRaid" label="玩家的地图是否被突袭过" is_valid="Y" note="M#" type="Enum" type_name="EGmBeenRaid" is_collection="N" />
+  </Message>
+  <Message _uuid="d08gAO0tAz8dpxcQy5v2pg" name="embattle.store.request" label="布阵存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EmbattleStore" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0005" code_fix="N">
+    <Item _uuid="V0KGpPant7DTuJv4VqGHrQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="Fkc1AIsIYuA6HWqDgABCjg" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="[0Oe4RIoWr1mQHmrYUzmtw" name="entitySet" label="布阵集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleEntitySet" is_collection="N" />
+  </Message>
+  <Message _uuid="s06IjrIKxP0i9iXf7auAlg" name="embattle.store.response" label="布阵存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EmbattleStore" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0006" code_fix="N">
+    <Enum _uuid="wEaYkb]T]XcAy8b0ZuHwsw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="v0c]mSRxacrmKbls4hOIhw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="o0[Tt8dfW5UAOwBcMdVBsg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="dUlgYshltzAhioCgQcanoA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="tUIWCpeaDMCK8PZoov6vpg" name="embattleGrade" label="布阵评分" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="xU[FqV3QdNZPhI[RKdDfqw" name="embattle" label="布阵信息" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleMap" is_collection="N" />
+  </Message>
+  <Message _uuid="OUUsBobP6Bdz0eheubzwgg" name="embattle.store.storage.request" label="布阵保存存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="EmbattleStoreStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0007" code_fix="N">
+    <Item _uuid="3EvOjcoB3AfvGdU4CGUTsA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="MkLw1TY1xFLVda9g[sBpjw" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="qk8eFf5V[eXp[gx[zP7sqA" name="embattleGrade" label="布阵评分" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="J0f7bnasxRz0BxBH5Tccgg" name="updateEntitySet" label="实体集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleEmbattleEntitySet" is_collection="N" />
+  </Message>
+  <Message _uuid="E0Cy1cYN]vbbdtu]B]W[ow" name="embattle.store.storage.response" label="布阵保存存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="EmbattleStoreStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0008" code_fix="N">
+    <Enum _uuid="nkKNfgqEulfqgt1ae8[4vw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="c0]dPKcS5Ftj2lMMR1aXlg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="LUwrAaRJDHPmI4IJQQk7mQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="Uk0VaJPSny64lsfno9EIrQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="uUEI49GuBdoZTScWpA7FuQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="v0tvrFK]kXTFHuARoBSUkg" name="mapTid" label="地图模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="nEraNXQdA0eNXjS19rFZmQ" name="embattleGrade" label="布阵评分" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="D0pc70mwlJyqFAsEi8ddjw" name="updateEntitySet" label="实体集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleEmbattleEntitySet" is_collection="N" />
+  </Message>
+  <Message _uuid="[UyTZkImiMB6[pHCcLiLng" name="embattle.place.request" label="放置请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EmbattlePlace" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0009" code_fix="N">
+    <Item _uuid="UkKKj4tWru9kzgDVyAfRlw" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="3k2xrCPdIm[XMPutS8mblA" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="C0lX23W8PGfBHD]5Lqyljw" name="placeSet" label="位置集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattlePlaceSet" is_collection="N" />
+  </Message>
+  <Message _uuid="PE0Pgwq8b8YeQhvkJogLtQ" name="embattle.place.response" label="布阵放置应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EmbattlePlace" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000A" code_fix="N">
+    <Enum _uuid="XkwChR2eHPrwwfTBtDhonw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="v0gGUUYXd[6AJXhnnKSTnw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="DkzUseXybFuf]3G4LZCflQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="eUCkkw0PTbAdCE51T23wnw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="nE4gluTWlhupA5tn1XTlqw" name="roleReiki" label="更新角色灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="T0V]4zC4AI5GtmDIDuApuQ" name="embattleMap" label="布阵地图" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleMap" is_collection="N" />
+    <Item _uuid="xEqSCJ55MFu9dQGHZDpvsg" name="placeCostReiki" label="改造需要花费灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+  </Message>
+  <Message _uuid="l0Qo2O]F9OcN[qXkECZ4qg" name="embattle.place.storage.request" label="布阵放置存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="EmbattlePlaceStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x000B" code_fix="N">
+    <Item _uuid="Xka6FGWC6I[XGua0qZtYqg" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="wEXK[K[44yS7kbukhCYisQ" name="updateRoleReiki" label="更新角色灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="xUAXXp2LW2hU6[VB9kvdnw" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="HkDedR]iaEyqOUPmvGtvnQ" name="placeSet" label="位置集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattlePlaceSet" is_collection="N" />
+    <Item _uuid="j04wftU1Eslyo96fvWaSig" name="updateEembattleMap" label="更新布阵地图" is_valid="Y" note="M#" type="Object" type_name="SGpRoleEmbattleMap" is_collection="N" />
+  </Message>
+  <Message _uuid="BUyg3RC[QJnTaFuT9mcdiA" name="embattle.place.storage.response" label="布阵放置存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="EmbattlePlaceStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x000C" code_fix="N">
+    <Enum _uuid="VkmIpxmXlftOwusVWaimmw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="SUcKHCHdDqmYK5A8DePykA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="xEHGhXNYMVeoVo3T7xWemQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="F0fyBEAOlt1DHg6Lu1DIuQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="ak4UhUw6FtssXmun]DqruQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="o0idfqiK2JKB2EWeCW13tA" name="updateRoleReiki" label="更新角色灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="zkLk2oc[lMvKiOZIwkPCrw" name="updateEmbattleMap" label="更新布阵地图" is_valid="Y" note="M#" type="Object" type_name="SGpRoleEmbattleMap" is_collection="N" />
+  </Message>
+  <Message _uuid="HkzmuQhNE11ZQq]6nPNrmQ" name="raid.list.request" label="突袭列表请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RaidList" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x000D" code_fix="N">
+    <Item _uuid="yUXSh6hi82S8LmTjIpLQgw" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="ZkIAQ4WFvuiW3WJbgOxNog" name="mapTid" label="布阵地图的编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="uUzafDOmY0VArxesjOKIpA" name="raid.list.response" label="突袭列表应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RaidList" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000E" code_fix="N">
+    <Enum _uuid="bUN7c84xLBVCtUUJSKhchA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="NEst1PNvR8KpJKGcmqcekw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="807sdtB98k5ohVjgGt22tg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="RkiekoeQEs1TeYtCuyRvnQ" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="ZEKOHNa9GzTjCW9MmYWXgg" name="raidSet" label="突袭集合" is_valid="Y" note="M#" type="Object" type_name="SGsEmbattleRaidSet" is_collection="N" />
+  </Message>
+  <Message _uuid="K0zvX5sxnQafZERwcSvviw" name="raid.list.storage.request" label="突袭列表存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RaidListStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x000F" code_fix="N">
+    <Item _uuid="ZEPjGTW18qlPYpzfztduqA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="9UNQ1eT1oa3ZJIHloXTMlg" name="mapTid" label="布阵地图" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="[0UPt5z1TGdaMyNRO90yhA" name="raid.list.storage.response" label="突袭列表存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RaidListStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0010" code_fix="N">
+    <Enum _uuid="4UYcNIcFrVAE[S4QiQwmnQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="A0cSMbyDnOlKE[K13b4hjg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="sElldAs5eP0QdTnymHuFmA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="B0D8eXGFu8KFxIBPB08FhA" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="PkvrTwh]O[]hIl7NZmWUgg" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="qEuWLKHM0MFOYB2]TSKZgg" name="raidSet" label="突袭集合" is_valid="Y" note="M#" type="Object" type_name="SGsEmbattleRaidSet" is_collection="N" />
+  </Message>
+  <Message _uuid="30QjZVdD44ZMYcEmyHaHpw" name="defense.role.begin.request" label="诱敌角色开始请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DefenseRoleBegin" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0011" code_fix="N">
+    <Item _uuid="s0]]EbCaI]kYyYZ1gRS5iQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="tUNEOPYaM8shLJ2n1p]8og" name="raidId" label="突袭编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="5UaZ7naMlZ1r0zhRuE6dlQ" name="questCd" label="请求方式" is_valid="Y" note="M#" type="Enum" type_name="EGmRaidBeginQuest" is_collection="N" />
+  </Message>
+  <Message _uuid="6EWLLo7dC4IXcMKFuqZskQ" name="defense.role.begin.response" label="诱敌角色开始应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DefenseRoleBegin" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0012" code_fix="N">
+    <Enum _uuid="LEkM5czulDduno2xwKUskA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="zUk6XnrnIT0V]JbFgZhFsg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="1kaxZs5RCjS4]xAilE7vpw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="xU[cMSVpQdT177ANtt54sA" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="4UZpfWl[UT2E]eIa6V4PhQ" name="raidRoleId" label="突袭角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="E0sCjzn2vN50vIkOLY0DpA" name="raidRoleLevel" label="突袭玩家级别" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="iEtX79w2ouh7mVbrG323jw" name="raidRoleLabel" label="突袭角色标签" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+    <Item _uuid="PE3ADqUA3QGGhBczjT8Njg" name="raidRoleUrl" label="突袭玩家地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.face.url.max-length" />
+    <Item _uuid="CkhLNp4w[jiHF23P76rZvw" name="entitySet" label="实体集合" is_valid="Y" note="M#" type="Object" type_name="SGsEmbattleRaidEntitySet" is_collection="N" />
+    <Item _uuid="QkV8MDBim3eh5WxD2SGtpA" name="embattleMapTid" label="受到突袭的布阵地图" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="Y0wU94dz2AE7ucOgEPPwhA" name="questCd" label="请求方式" is_valid="Y" note="M#" type="Enum" type_name="EGmRaidBeginQuest" is_collection="N" />
+    <Item _uuid="pEpc3M8T1vtQJCidyVEfnw" name="embattleMap" label="布阵地图" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleMap" is_collection="N" />
+  </Message>
+  <Message _uuid="1kFkDGNwsLr6]G6Azg2ToQ" name="defense.role.begin.storage.request" label="诱敌角色开始存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DefenseRoleBeginStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0013" code_fix="N">
+    <Item _uuid="p0I]65]eaCUsmjCyo44Qhw" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="c0hsc6CW5cybSS]U9Kg1ow" name="raidId" label="突袭编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="M0v[Gf5FWUdDi]cmBHdTvg" name="questCd" label="请求方式" is_valid="Y" note="M#" type="Enum" type_name="EGmRaidBeginQuest" is_collection="N" />
+  </Message>
+  <Message _uuid="pUeC]m3cq6mv]kwKIP[0ug" name="defense.role.begin.storage.response" label="诱敌角色开始存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DefenseRoleBeginStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0014" code_fix="N">
+    <Enum _uuid="SEuLyfNCOmsuJaLndYYnjQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="oU1LHjxmPEDnTmSbGA5giA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="LUBz5HMQi3n[maMBiYz6tw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="xEEAiqTI1yfeZrVMHpdXpQ" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="aEkSUP8p0cdQwUSg6z0vnQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="o0FT3dq1mA7Vd76uLg6pqw" name="raidRoleId" label="突袭玩家编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="UU6QfjgtQTDjRSYvcVM1nQ" name="raidRoleLevel" label="突袭角色级别" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="ukh5ASXivTp0ozokMXougA" name="raidRoleLabel" label="突袭角色标签" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+    <Item _uuid="50RZ9BoqJdVjb5uXEgKWvw" name="raidRoleUrl" label="突袭角色地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.face.url.max-length" />
+    <Item _uuid="8kAS]c7CgnWlZLTPXY[6sQ" name="entitySet" label="实体集合" is_valid="Y" note="M#" type="Object" type_name="SGsEmbattleRaidEntitySet" is_collection="N" />
+    <Item _uuid="MkkZwGSZ2eP[ISnbbhpwlQ" name="raidMapTid" label="被突袭的布阵地图的编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="R0p[mGSC7GRFoRvf9BpPrw" name="questCd" label="请求方式" is_valid="Y" note="M#" type="Enum" type_name="EGmRaidBeginQuest" is_collection="N" />
+    <Item _uuid="CUn2IOaQlOwIkVdvidTqkA" name="embattleMap" label="布阵地图" is_valid="Y" note="M#" type="Object" type_name="SGpRoleEmbattleMap" is_collection="N" />
+  </Message>
+  <Message _uuid="cUfyEA2xWfIgfYqSWy8Ygw" name="defense.role.finish.request" label="防御角色结束请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DefenseRoleFinish" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0015" code_fix="N">
+    <Item _uuid="x0NUBG5H9HCeFrvfryNAhA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="6khsWYvvPSy[8T7YqcLkgg" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="AUDYTXQLvm2eB0wUW61agg" name="resultCd" label="结果类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMapResult" is_collection="N" />
+    <Item _uuid="hEuR]gLIsoIX7Cpp0VoHtg" name="slaveSet" label="奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="7kqLimaWFTH[VCJt6nWGug" name="propSet" label="道具集合" is_valid="Y" note="M#" type="Object" type_name="SGsRolePropSet" is_collection="N" />
+    <Item _uuid="rE58qlmFb1WSP20jlYk4hQ" name="killSlaveSet" label="杀死奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+  </Message>
+  <Message _uuid="j0PRvOlKNm4bbvzgx2DBhQ" name="defense.role.finish.response" label="防御角色结束应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DefenseRoleFinish" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0016" code_fix="N">
+    <Enum _uuid="xU03NJS6qkfx7yK52NUmjg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="tkAV[1SknfmLW78C0ZP6mA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="TktNuws3yWIHm45icfG1hg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="gk639KriP]xYIl3c34ghpw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="SUCcKJOn7ONIHGDIMu5PoQ" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="nU]QhFDsqfQaJkHi8nrSgA" name="resultCd" label="结果类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMapResult" is_collection="N" />
+    <Item _uuid="8EKqosO5EcKX67cDK1Lmuw" name="raidResult" label="突袭结果" is_valid="Y" note="M#" type="Object" type_name="SGsEmbattleRaidResult" is_collection="N" />
+    <Item _uuid="s0yywh6NJdlwv2Z[9iLSuw" name="embattle" label="布阵信息" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleMap" is_collection="N" />
+    <Item _uuid="30iKE1iS[V16NhjWjaUptQ" name="awardExperience " label="奖励经验" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="O09RNrPfu7zbKYR2hd]Epg" name="slaveSet" label="奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="S0bLulDJQnJQn[yEA61LvA" name="isbeenRaid" label="玩家的布阵地图是否被突袭过" is_valid="Y" note="M#" type="Enum" type_name="EGmBeenRaid" is_collection="N" />
+  </Message>
+  <Message _uuid="lkcNJebjnW8z8i0iNx0Vkw" name="defense.role.finish.storage.request" label="防御角色结束存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DefenseRoleFinishStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0017" code_fix="N">
+    <Item _uuid="iEzjcRIdznxByWNDl5hZmQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="bULcU8l35dOEVpQwSGYGpQ" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="mkQem[Z6nBo5zDBD54[buQ" name="resultCd" label="结果类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMapResult" is_collection="N" />
+    <Item _uuid="b0[KTh8asaeOw2rgJqNOsQ" name="slaveSet" label="奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="k0wzQkW[zofYKUJi3S3NiA" name="propSet" label="道具集合" is_valid="Y" note="M#" type="Object" type_name="SGsRolePropSet" is_collection="N" />
+    <Item _uuid="DkgC5YeBIP1qwxi88gPPkw" name="updateEmbattleMap" label="更新布阵地图" is_valid="Y" note="M#" type="Object" type_name="SGpRoleEmbattleMap" is_collection="N" />
+    <Item _uuid="qkxECD43mysTcaKdn1NnrQ" name="updateSlaveSet" label="更新奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleSlaveSet" is_collection="N" />
+  </Message>
+  <Message _uuid="LkROW0Q7CBOKC1QLgtDagg" name="defense.role.finish.storage.response" label="防御角色结束存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DefenseRoleFinishStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0018" code_fix="N">
+    <Enum _uuid="7kjHgOa[]4Zt[sMjHWz]lA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="gURdS1BohEKQI[jSCoWykg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="5EranWOJ0F79FHDVjiN4ow" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="dUUCptBhEPfvNqh5DyNxrQ" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="zUwN8RcgDKkIUerYb42dpA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="1ERSNdnkalLTNNQ]0DDliw" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="q0FYi76oyXjToswILnhgmg" name="resultCd" label="突袭结果" is_valid="Y" note="M#" type="Enum" type_name="EGmMapResult" is_collection="N" />
+    <Item _uuid="U0XBmw7hlBnGQMUJPkFtsQ" name="updateEmbattleMap" label="更新布阵地图" is_valid="Y" note="M#" type="Object" type_name="SGpRoleEmbattleMap" is_collection="N" />
+    <Item _uuid="RUg4OV5ua3SA9bWC8Dk3jQ" name="updateSlaveSet" label="更新奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleSlaveSet" is_collection="N" />
+    <Item _uuid="eUMbJrRKko28CsAwlloXvw" name="isbeenRaid" label="玩家的布阵地图是否被突袭过" is_valid="Y" note="M#" type="Enum" type_name="EGmBeenRaid" is_collection="N" />
+  </Message>
+  <Message _uuid="kkD65C08I7bxRUF6WGu8qg" name="defense.boss.begin.request" label="防御敌人开始请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DefenseBossBegin" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0019" code_fix="N">
+    <Item _uuid="gUgW3RwV[FZPk453TLhWug" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="DUZeaRYsGTKSTP1u7S2ktQ" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="oU79u2RxWNRGjF3P23JFtQ" name="defense.boss.begin.response" label="防御敌人开始应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DefenseBossBegin" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x001A" code_fix="N">
+    <Enum _uuid="gkwBYps]WbmDWueMFC]phA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="q0YTzh4OII3txigsK0hFiA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="yU8nhfCLm7cRuL5231FTmA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="B0KWxBhIfLZp4UEuTMsztQ" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="GUfigx]A2QhMO7J]qG1Kjw" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="BEbf6j1Ao6Z7vDzDuxdEqg" name="entitySet" label="实体集合" is_valid="Y" note="M#" type="Object" type_name="SGsEmbattleRaidEntitySet" is_collection="N" />
+    <Item _uuid="AkUfTVoJ]V]4eJdA8vD4kA" name="validIntervalTick" label="有效间隔时刻" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+  </Message>
+  <Message _uuid="iEIjh]Ng907nAlNG5s0yvQ" name="defense.boss.begin.storage.request" label="防御敌人开始存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DefenseBossBeginStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x001B" code_fix="N">
+    <Item _uuid="jUh4DbV72sM5XkROjm76rQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="4ExgaopVGwv28CxXmi60hA" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="bEYvsGuvslP5HNlCygn9jw" name="defense.boss.begin.storage.response" label="防御敌人开始存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DefenseBossBeginStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x001C" code_fix="N">
+    <Enum _uuid="HEqbhg8]uN0tO1uuX3ehlw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="T01oGw3p9A7lvcHd8YA5oA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="RUFXtvcub2TEWR3yR7mYjQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="rEeiyQUTI05]8PRlVLPnmw" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="LEYnXtkxvL]cHto1TEx8ug" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="GUWUjz7etTL3Z2b8eYmCmQ" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="]EXp0fhRNqkiFMjuIxCxow" name="entitySet" label="实体集合" is_valid="Y" note="M#" type="Object" type_name="SGpEmbattleRaidEntitySet" is_collection="N" />
+  </Message>
+  <Message _uuid="q0yNxg[07dJS78oFiNhWqw" name="defense.boss.finish.request" label="防御敌人结束请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DefenseBossFinish" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x001D" code_fix="N">
+    <Item _uuid="LE6Z5]rseUjtZyScvLXUjA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="P0AsbmAyncbaG5jiACgAnw" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="Hkw53cFytzZaH4ki3eHAtg" name="resultCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMapResult" is_collection="N" />
+    <Item _uuid="akbw8H3[aZm2O[DJx]SilQ" name="slaveSet" label="奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="hkkrBK68T]HJfGkk5DpkiA" name="propSet" label="道具集合" is_valid="Y" note="M#" type="Object" type_name="SGsRolePropSet" is_collection="N" />
+    <Item _uuid="40oKhT90LMw1wFtdW2DOoA" name="killSlaveSet" label="杀死奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+  </Message>
+  <Message _uuid="CEgxEK239BsEW438rb6[qQ" name="defense.boss.finish.response" label="防御敌人结束应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DefenseBossFinish" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x001E" code_fix="N">
+    <Enum _uuid="70m0GtBYQ9l0KnTe7236rg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="R0xBmfKyzTfxu29dXRabig" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="ckfYThF0tZqoq63FfRB2mg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="LUzTdYP1HRs[nZAnwMJyuw" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="hEwmU1NKrQ8himYcA3uXmg" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="gUJ1nJk[5csa8K8cxKrOoA" name="raidResult" label="突袭结果" is_valid="Y" note="M#" type="Object" type_name="SGsEmbattleRaidResult" is_collection="N" />
+    <Item _uuid="vUOZP6KI]jSbHSgYWEjxuA" name="embattleMap" label="布阵地图" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleMap" is_collection="N" />
+    <Item _uuid="uk3KBBkanCQtjEmJBMeuhg" name="awardExperience " label="奖励经验" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="PUtzVdXpRw3RtZn5M6AagA" name="validIntervalTick" label="有效间隔时刻" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="HUe5U9nyGI3sPQyyrotQmA" name="slaveSet" label="奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+  </Message>
+  <Message _uuid="LUBJ1XcSwcfKQORWr30dnw" name="defense.boss.finish.storage.request" label="防御敌人结束存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DefenseBossFinishStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x001F" code_fix="N">
+    <Item _uuid="R0e94c4UMpbH]KugYXN]mw" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="TEFovuqjk9EUGk3bz62EgA" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="TE[OVT3k7WHFdGZkox2TvA" name="resultCd" label="结果类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMapResult" is_collection="N" />
+    <Item _uuid="wUj4gh11c1l57Ua1RL1zqQ" name="updateEmbattleMap" label="更新布阵地图" is_valid="Y" note="M#" type="Object" type_name="SGpRoleEmbattleMap" is_collection="N" />
+    <Item _uuid="RU]UvESK]f]yRcQsGfgNmQ" name="updateBossRaidEndTime" label="更新恐怖大王突袭CD结束时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="EEsXwJiBKKEbKSPv[5[qkQ" name="updateSlaveSet" label="更新奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleSlaveSet" is_collection="N" />
+  </Message>
+  <Message _uuid="ZE7FrrXq[ugWVSC9yNhkpA" name="defense.boss.finish.storage.response" label="防御敌人结束存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DefenseBossFinishStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0020" code_fix="N">
+    <Enum _uuid="CkOBOnIUTqT1rgvgjH4Rhg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="f0u51zRj7VatBE5O8Gn8vg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="IUnadYc9yeQUQnoToMIQig" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="xEaX[TVfGeRkbShworUigg" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="]UDQJJRYAf]LRpwjbG1Llw" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="DUGglbExGcs96r[hmtRpqw" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="70]p9wql9oXuPC165W[Xqw" name="raidResult" label="突袭结果" is_valid="Y" note="M#" type="Object" type_name="SGsEmbattleRaidResult" is_collection="N" />
+    <Item _uuid="20oTK6J4928FEgOlWabjlg" name="updateEmbattleMap" label="更新布阵地图" is_valid="Y" note="M#" type="Object" type_name="SGpRoleEmbattleMap" is_collection="N" />
+    <Item _uuid="ZUGYPWY5wQlBVtVotH7]hw" name="updateBossRaidEndTime" label="更新恐怖大王突袭CD结束时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="50shj5rucyUPt9PjWDbUjQ" name="updateSlaveSet" label="更新奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleSlaveSet" is_collection="N" />
+  </Message>
+  <Message _uuid="BESPSMP5Oya3ujPjB2FLkg" name="defense.boss.end.request" label="防御敌人结算请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DefenseBossEnd" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0021" code_fix="N">
+    <Item _uuid="00GFUhLvEKHAbmk5SiHckg" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="]0JNeKmEpT8FJPAcPhuAiw" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="SEoRvI0tsfBpGFsUkcI9sg" name="resultCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMapResult" is_collection="N" />
+    <Item _uuid="KETuovLED5DAkH0clzM1sA" name="killSlaveSet" label="杀死奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+  </Message>
+  <Message _uuid="tEqD9sQ2R4E8BiGA5jxSiA" name="defense.boss.end.response" label="防御敌人结算应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DefenseBossEnd" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0022" code_fix="N">
+    <Enum _uuid="MkBaFAXtBEJZvCMygBUSlQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="SEPaIdwZRTGcsG18gLxaog" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="iEzqOLeZbgU[PIJlqTp1rg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="SETMeO[XcJRTeN9f5D87hw" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="FEQ5cCoA9d34eA6t[ouutg" name="resultCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMapResult" is_collection="N" />
+    <Item _uuid="SU[5Wh0ifIemZsGhnvGwiw" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="WExSdEu02YMADqbSAO2HqA" name="awardExperience" label="奖励经验" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+  </Message>
+  <Message _uuid="okrKCfj735zjlUYjJEBktg" name="defense.role.end.request" label="诱敌角色结算请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DefenseRoleEnd" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0023" code_fix="N">
+    <Item _uuid="IEGG7mUiHQuoPJ42ln[QmA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="6E[Dfdgutr0LJwVITHA5jA" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="M0s9P5dRIPi2Ij1dI39mjA" name="resultCd" label="结果类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMapResult" is_collection="N" />
+    <Item _uuid="rkDWsNCZVz426lC69EYJiQ" name="killSlaveSet" label="杀死奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+  </Message>
+  <Message _uuid="0kNoya7Sw4J2flfpLAyurA" name="defense.role.end.response" label="诱敌角色结算应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DefenseRoleEnd" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0024" code_fix="N">
+    <Enum _uuid="C0cpUYQiRl14FV]z]2b5sA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="kE1m3fX8e[8o5H7LW8p6qw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="hE[6]bemK[dWV]gdZW[vvQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="l0j1cmYjNUpgFmZslYyRnA" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="rkFNrelpY5HUJDmRGEKxgg" name="resultCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMapResult" is_collection="N" />
+    <Item _uuid="A0me0v3flmlreMGtboRZgg" name="mapTid" label="地图模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="tUZbbAeZR4SZQcMg8FSAlA" name="awardExperience " label="奖励经验" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+  </Message>
+  <Message _uuid="IkRudoZ95Dedy7Jn[5TmhA" name="embattle.active.request" label="布阵地图激活请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EmbattleActive" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0025" code_fix="N">
+    <Item _uuid="K0yfhD3F4ShxP6KcSto8iw" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="VU93g7la94djRpJ8G8HTsg" name="mapTid" label="地图模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="JErQxABpbZl4zjwsI]8iig" name="embattle.active.response" label="布阵地图激活应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EmbattleActive" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0026" code_fix="N">
+    <Enum _uuid="70v9jldoCwKDmVvF0vtVjQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N">
+      <Member _uuid="R0Zr3nULNTjB4vHUBtDAmw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="40lF]tGCMynhyjmCIi79qw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="i0Cnzm0sYDlg7Tl[0lyHtA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="kE6V]V9YRf6X]MEH[ENArg" name="mapTid" label="地图模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="kUgZcTbMcCqsegUT6RV5gQ" name="embattle.active.storage.request" label="布阵激活存贮请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="EmbattleActiveStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0027" code_fix="N">
+    <Item _uuid="V03IOAhj5PcY5WJG96t3uw" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="l0RD7Sak89IhxsvzbbzZgg" name="activeEmbattleMapTid" label="激活布阵地图编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="7UeFGxqOl4hV5yoI55J2pQ" name="activeEmbattleMapGrade" label="激活地图布阵评分" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+  </Message>
+  <Message _uuid="UU93vUA2W8BnbXtP99IchQ" name="embattle.active.storage.response" label="布阵激活存贮应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="EmbattleActiveStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0028" code_fix="N">
+    <Enum _uuid="mEFVRp1KeE0Iu3tFbibMlQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="tUj16jvTz16xOur9puLltg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="kUfAG8OiTUQpPd3ZpaFkuQ" name="NotEmbattled" label="没有布阵" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="N0WJKkYLr[ATyowsHjQQlg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="1Efvt79RyjO9QW6o06eVlQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="8kzfvFfN6sjAengBZ822tQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="mEeqAZhj6G9Hr2T8zm2Gmw" name="activeEmbattleMapTid" label="激活布阵地图编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="HE5XWEbizBmOHu0Uljj]oA" name="activeEmbattleMapGrade" label="激活地图布阵评分" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+  </Message>
+  <Message _uuid="mErXjNOhXzCtwujOmZRUrA" name="embattle.query.request" label="布阵地图查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EmbattleQuery" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0029" code_fix="N">
+    <Item _uuid="kEm1Op1pE29qefuuPYyrnQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+  </Message>
+  <Message _uuid="eED2ukxQG4r5OH]pUsNruQ" name="embattle.query.response" label="布阵地图查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EmbattleQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x002A" code_fix="N">
+    <Enum _uuid="d0kiORJsXE0ZWrGdreDBug" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="pEWbDNRllmFyzLaAoTMJvg" name="Success" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="DEF2JNBpnQfNsCDENLSOpg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="3kaJzXVIiiK2q7VTD0VLkw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="A0blrQK[M[sWT6X9]Lz6gA" name="embattleMapExSet" label="布阵地图扩展集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleMapExSet" is_collection="N" />
+  </Message>
+  <Message _uuid="JUSdh3do3oa3TKf0s[QLjA" name="embattle.query.storage.request" label="布阵地图查询存贮请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="EmbattleQueryStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x002B" code_fix="N">
+    <Item _uuid="ok]JYKE2LXnT7Kne7jpamw" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+  </Message>
+  <Message _uuid="CkgRNEpsWHjlHJ]4oNTCuw" name="embattle.query.storage.response" label="布阵地图查询存贮应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="EmbattleQueryStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x002C" code_fix="N">
+    <Struct _uuid="[0EielbBIUiZkDhOLWmBqA" name="SEmbattleMapEx" label="布阵地图扩展" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="20w4M3gSO6WJ4pZjX9GYpQ" name="mapTid" label="地图模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="5Evqynpo4kg1]ooMLlUqmw" name="entitySet" label="实体集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleEmbattleEntitySet" is_collection="N" />
+    </Struct>
+    <Enum _uuid="ekaS3uKwxH[dyuaKPYTjhw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="m0Tc9yAU8tJ0OVM9Z1BGmw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="jUimnYFYiQlDpP3whu25qA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="8Eg7P86m[CuvafqnpXuciA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="QEfyBiUkrxmWtZ1dpXQhqA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="vE2qB5lJuNmFoAMjxNpctQ" name="mapSet" label="布阵地图扩展集合" is_valid="Y" note="M#" type="Object" type_name="SEmbattleMapEx" is_collection="Y" data_size="32" />
+  </Message>
+</Group>
+

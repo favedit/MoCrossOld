@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="374334da-3ec0-41fd-bcbe-11b2f3bc2f2c" name="logic.project" label="M#12cn15业务-项目" is_valid="Y" note="M#" template="xmlobject" source="${export.logic.logic.source}">
+   <Interface _uuid="62fe8ba9-b65a-4fc6-afe2-173845c611dd" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.logic.project.common.XObjectFace">
+      <Attribute _uuid="fb3d1df6-4a96-44db-9544-2b939328acd1" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" />
+      <Attribute _uuid="3fd4e6a5-06c8-4b65-9c02-600cbb3f7d40" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+      <Attribute _uuid="6a8130ba-960f-466b-9849-1fa9df3bc8be" name="note" label="M#12cn12注释" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+      <Attribute _uuid="cbdec026-a2da-4d7d-bc11-463c73dd1aa0" name="_type" label="M#12cn12类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="8be863b4-4861-4692-8318-d622e7a9d649" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Interface>
+   <Component _uuid="6eaf962d-79bf-457c-9fc1-fbf8a1873cea" name="Project" label="M#12cn12项目" is_valid="Y" note="M#" class_name="org.mo.logic.project.common.XProject" base_name="org.mo.logic.project.base.XBaseProject" inherits="IObject">
+      <Attribute _uuid="22abbf68-ad2f-4a95-b8c7-7a837fb9d80a" name="code" label="M#12cn14项目编号" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="c43a00a1-19dc-447d-81a1-47707ca8b956" name="type_cd" label="M#12cn14项目类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="a7936173-764d-4a1c-a5ec-60329bdc1dd1" name="status_cd" label="M#12cn14项目状态" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="3c3d8f92-5d42-4e4e-8058-e1630e26869c" name="expect_begin_date" label="M#12cn16预期开始时间" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="02fd83b8-876b-4f71-a90c-02c0d951ed32" name="expect_end_date" label="M#12cn16预期结束时间" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="59563fae-8020-429e-b52a-2d5495ab9fc5" name="begin_date" label="M#12cn14开始时间" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="b01f6ffb-60c7-4506-aef5-c87701ccddb0" name="end_date" label="M#12cn14结束时间" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="7afc7b5f-7e98-484c-818b-0de2a4b2db38" name="plan_person_count" label="M#12cn14预计人数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="4e226a57-588b-4313-ad0b-3ae303d6d49e" name="plan_person_month_count" label="M#12cn15预计人月数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="2930825f-6875-4739-b7c5-b2dbf3d56922" name="background_note" label="M#12cn14背景描述" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="7c79929c-eb72-45f3-a886-e0d35f19ebcf" name="target_note" label="M#12cn14目标描述" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="638e44ae-af29-40ae-8882-b45d1a2fbf8c" name="scale_cd" label="M#12cn14规模类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="ee87e84a-8fc7-42f5-9ea3-34e6f635dc98" name="Catalog" label="M#12cn14模块目录" is_valid="Y" note="M#" class_name="org.mo.logic.project.common.XCatalog" base_name="org.mo.logic.project.base.XBaseCatalog" inherits="IObject" />
+   <Component _uuid="a86d2c79-8bc2-4047-a733-de9e5f6ef3cc" name="Module" label="M#12cn12模块" is_valid="Y" note="M#" class_name="org.mo.logic.project.common.XModule" base_name="org.mo.logic.project.base.XBaseModule" inherits="IObject">
+      <Attribute _uuid="a4fce51e-62ef-4a10-b61a-4e453ee60637" name="status_cd" label="M#12cn14模块状态" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="9e38a136-47a4-43e5-af05-741a12d447ec" name="Point" label="M#12cn13测试点" is_valid="Y" note="M#" class_name="org.mo.logic.project.common.XPoint" base_name="org.mo.logic.project.base.XBasePoint" inherits="IObject">
+      <Attribute _uuid="3951349c-4986-4b53-9d7a-ed0afc7b4698" name="status_cd" label="M#12cn14状态代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="8fc42368-848d-4ca3-9f0c-e7095f50dbd4" name="expect_begin_date" label="M#12cn16预期开始时间" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="b4b51d71-33dd-4558-aba5-51a7e440533e" name="expect_end_date" label="M#12cn16预期结束时间" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="3380ed92-c6d4-4ed7-854e-ec32b76f790a" name="begin_date" label="M#12cn14开始时间" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="5ad70941-f746-4196-9389-697098c8f0aa" name="end_date" label="M#12cn14结束时间" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="8643ded9-0932-48e6-bcec-3d5fa0f85152" name="create_user_name" label="M#12cn15创建人名称" is_valid="Y" note="M#12cn16用文本框实现" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="f703f2d1-0f85-44d3-be7f-3e4cd6d74324" name="scope_note" label="M#12cn16测试范围描述" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="5b8b8470-06a2-479f-91a3-41f73d0b921e" name="important_cd" label="M#12cn13重要度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="5b8cf74e-93ed-4d7a-9c81-9b585ee231fd" name="priority_cd" label="M#12cn13优先级" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="8c2f037d-f2c6-4420-98ab-2bb5c6962b97" name="difficult_cd" label="M#12cn13困难度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="85429b03-67ab-4e1c-ad8e-1f6716d023a5" name="TestCase" label="M#12cn14测试用例" is_valid="Y" note="M#" class_name="org.mo.logic.project.common.XTestCase" base_name="org.mo.logic.project.base.XBaseTestCase" inherits="IObject">
+      <Attribute _uuid="638b022e-ea54-414a-a511-1dc1e7fecfe3" name="code" label="M#12cn14代码编号" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="cba0222c-1dca-4ab5-bea3-78d4d912d960" name="status_cd" label="M#12cn14状态类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="64bc6369-e64d-4ff2-9e91-818741786a2b" name="important_cd" label="M#12cn13重要度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="71ce8bc9-13cb-4620-97aa-6781f7a8cff2" name="priority_cd" label="M#12cn13优先级" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="1963d343-f3db-411e-9bf6-5a6bb00ff798" name="difficult_cd" label="M#12cn13困难度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="61a1d200-b4ae-44f3-84ad-d9de5d10b5bc" name="case_note" label="M#12cn14测试描述" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="b2f30483-874d-454d-9fbd-cc206f4924e3" name="input_note" label="M#12cn14输入描述" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="2a606aed-3139-4b71-8d34-079ff2ba5ebb" name="output_note" label="M#12cn14输入描述" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="a1da4eb4-d574-4119-94b1-d9328c03e6bd" name="result_cd" label="M#12cn14结果类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="f3cdc9d6-7c6b-4e05-b6a6-be429bec787a" name="result_note" label="M#12cn14结果描述" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="a2ab3a1c-c333-4e1e-a044-63ed4289e549" name="failure_cd" label="M#12cn14失败类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="d6f4215c-3b98-4a50-8fb9-d8d399edfbef" name="failure_note" label="M#12cn14失败描述" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="230fcf93-5441-4666-a5fa-e28a37cd9325" name="reason_cd" label="M#12cn14原因类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="a0d685f3-279b-48b8-bbb5-fc65a0b29466" name="reason_note" label="M#12cn14原因描述" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="ede2d68a-c657-42cd-b8fc-f417ccde65b8" name="create_user_name" label="M#12cn15创建人名称" is_valid="Y" note="M#12cn16用文本框实现" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="cecae066-51ee-495a-9eb2-b6ca8d79869c" name="test_user_name" label="M#12cn15测试人名称" is_valid="Y" note="M#12cn16用文本框实现" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="d6f24d02-8261-4006-bcba-e6e6c876913a" name="test_date" label="M#12cn14测试时间" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="62a66be1-9012-45bc-80cc-4d5e879c6e5a" name="confirm_user_name" label="M#12cn13确认人" is_valid="Y" note="M#12cn16用文本框实现" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="76e7f8a5-fcf6-47f4-84ee-365cec3bac04" name="confirm_date" label="M#12cn14确认日期" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="8f1c4c8c-ef06-4e34-89a6-221abe16fc89" name="Invoke" label="M#12cn14测试调用" is_valid="Y" note="M#" class_name="org.mo.logic.project.common.XInvoke" base_name="org.mo.logic.project.base.XBaseInvoke" inherits="IObject">
+      <Attribute _uuid="29c23002-7e4e-4a37-b114-43f192841bd9" name="type_cd" label="M#12cn14调用类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="27a7a06b-1502-4597-9c43-2506f4a6080c" name="process_invoke" label="M#12cn14处理调用" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="435bd0b0-65d6-4c19-b668-5897c75c143d" name="process_input" label="M#12cn14输入参数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="dadf94a9-e80b-45a8-b0bf-b0e59d3b1044" name="process_output" label="M#12cn14输出参数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+</Persistence>

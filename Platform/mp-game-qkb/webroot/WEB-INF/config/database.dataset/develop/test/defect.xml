@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="30CMKlzsyxMXsgIwxx3ekg" name="develop.test.defect" label="M#12cn14测试缺陷" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="DP_TEST_DEFECT" data_alias="DP_TST_DFC" data_logic="DP_TEST_DEFECT_DI" parent_name="template.store" data_type="D">
+  <FieldBoolean _uuid="JEgP47zfUOO0IOqmm9BxuQ" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldInteger _uuid="9EqgKsnmXq5Ah9bc[5OBuw" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_alias="TYP" data_refer="develop.test.defect.type" />
+  <FieldInteger _uuid="KUrFuNF6M2os3PJTvAgaoQ" name="project_id" label="M#12cn14项目标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldInteger _uuid="LU7vh7kyK0xfCiEsOiZvjQ" name="module_id" label="M#12cn14模块标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MODULE_ID" data_alias="MOD" data_refer="develop.describe.module" />
+  <FieldInteger _uuid="A0veCGiRAz6UQVHzCo4HjQ" name="require_id" label="M#12cn14需求标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REQUIRE_ID" data_alias="REQ" data_refer="develop.test.require" />
+  <FieldInteger _uuid="j0z]kqemfs1vJ7[ahElIuQ" name="case_id" label="M#12cn16测试用例标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CASE_ID" data_alias="CAS" data_refer="develop.test.case" />
+  <FieldString _uuid="WkZK]ZEz5A6vSzoDr[[Fgg" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="E0sFLbTx5DP4lkhZ[qd1uQ" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="nEUM7FvBRPjwhhbK9Oo0lw" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldEnum _uuid="cE9YRZKSfetXbptHH61Wpg" name="status_cd" label="M#12cn14状态类型" is_valid="Y" note="M#12cn219C:启动\nP:计划\nI:实现\nM:维护" is_null="Y" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="develop.test.defect.status" />
+  <FieldEnum _uuid="i02vUhr0Ovc1wsGBHe6whA" name="stage_cd" label="M#12cn14阶段类型" is_valid="Y" note="M#" is_null="Y" is_store="N" is_abstract="N" data_name="STAGE_CD" data_size="2" data_code="develop.test.defect.status.two" />
+  <FieldEnum _uuid="ikf891jJIlK7NaWnIKMblQ" name="priority_cd" label="M#12cn13优先级" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRIORITY_CD" data_size="1" data_code="develop.test.defect.priority" />
+  <FieldEnum _uuid="HEIq[1pA3[SHwORWwll6sQ" name="importance_cd" label="M#12cn13重要度" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IMPORTANCE_CD" data_size="1" data_code="develop.test.defect.importance" />
+  <FieldEnum _uuid="O0uT]kAGq97LrW9W1yWysg" name="frequency_cd" label="M#12cn14频率类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FREQUENCY_CD" data_size="1" data_code="develop.test.defect.frequency" />
+  <FieldEnum _uuid="30YK0MNwFym]lWBSOU8VlQ" name="reason_cd" label="M#12cn14原因类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REASON_CD" data_size="1" data_code="develop.test.defect.reason" />
+  <FieldInteger _uuid="xE2BcJbdjKyEp]MD3LI[ig" name="begin_version_id" label="M#12cn16开始版本标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BEGIN_VERSION_ID" data_refer="develop.describe.version" />
+  <FieldInteger _uuid="ZEd8Yp5csG3]6KAuvcdWsw" name="end_version_id" label="M#12cn16结束版本标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="END_VERSION_ID" data_refer="develop.describe.version" />
+  <FieldDate _uuid="ikQ]xl0rhB]EcofjoBh7tw" name="expect_begin_date" label="M#12cn16预期开始时间" is_valid="Y" note="M#12cn210预期的任务启动时间。" is_null="Y" is_store="Y" is_abstract="N" data_name="EXPECT_BEGIN_DATE" />
+  <FieldDate _uuid="aEVxzu6gPvJbQIyv0xg9pA" name="expect_end_date" label="M#12cn16预期完成时间" is_valid="Y" note="M#12cn211预期的任务的结束时间。" is_null="Y" is_store="Y" is_abstract="N" data_name="EXPECT_END_DATE" />
+  <FieldDate _uuid="dkqLztv8yRPIY2wrDuLFhA" name="begin_date" label="M#12cn14开始日期" is_valid="Y" note="M#12cn16项目开始时间" is_null="Y" is_store="Y" is_abstract="N" data_name="BEGIN_DATE" />
+  <FieldDate _uuid="8U]Y74gsBpf73QvO42drqQ" name="end_date" label="M#12cn14完成日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="END_DATE" />
+  <FieldInteger _uuid="60[wyx7VJgGveiR2ixtMlQ" name="principal_user_id" label="M#12cn15负责人标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRINCIPAL_USER_ID" data_refer="person.user" />
+  <FieldFloat _uuid="ekwYSRd7XJeyYdJ4zY02mA" name="estimates_manhour" label="M#12cn14估计工时" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ESTIMATES_MANHOUR" />
+  <FieldFloat _uuid="6k4AdM0Qgs53NjWGiIXciw" name="real_manhour" label="M#12cn14实际工时" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REAL_MANHOUR" />
+  <FieldContent _uuid="yE9uvjXb2oCu3X7AcJikmQ" name="function_note" label="M#12cn14功能描述" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FUNCTION_NOTE" />
+  <FieldContent _uuid="ekAmG2oFg5hEZcZKFWI9hA" name="describe_note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DESCRIBE_NOTE" />
+  <FieldContent _uuid="nEm30I9P2s1ii7Ghw9uoug" name="summary_note" label="M#12cn14总结信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SUMMARY_NOTE" />
+  <FieldTemplate _uuid="fUTCRvNuF6Mpo2r[cFAkjA" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

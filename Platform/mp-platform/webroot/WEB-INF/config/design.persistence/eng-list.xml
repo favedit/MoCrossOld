@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="R0uaHZi9ipD7ZWCxnsasqQ" name="eng-list" label="M#12cn14列表信息" is_valid="Y" note="M#12jp13リスト" template="xmlobject" source="${export.core.engine.source}">
+   <Interface _uuid="ukv8kpjAN0xvGAo4GhAxsw" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.eng.list.common.XObject">
+      <Attribute _uuid="mkfu3uGypjZOhDXRwZ2AnQ" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="gEiWFGfNbQOoIMd4mR8EiQ" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="j0ENgojyf5VoqCIjIIdIlA" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="DUarM6Vr1lPzlGQ3i7]NoQ" name="note" label="M#12cn12注释" is_valid="Y" note="M#12jp12注釈" type="MultiString" is_store="Y" is_config="Y" is_default="N" />
+   </Interface>
+   <Interface _uuid="LE]UpD27ROB70MSkeQ5fhA" name="IIcon" label="M#12cn14图标接口" is_valid="Y" note="M#" class_name="org.mo.eng.list.common.XIcon">
+      <Attribute _uuid="QUKlOAZoX4Aen]3OkpOpiQ" name="icon" label="M#12cn12图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Interface>
+   <Component _uuid="5k2sj[9Ang8QZc5BgTg2gQ" name="Item" label="M#12cn12项目" is_valid="Y" note="M#12jp12項目" class_name="org.mo.eng.list.common.XListItem" base_name="org.mo.eng.list.base.XBaseListItem" inherits="IObject">
+      <Attribute _uuid="I0LUk2EKewrJ195RdgWMow" name="type" label="M#12cn12类型" is_valid="Y" note="M#12jp13タイプ" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="sEYi4Ugmv37w5V7vRhkdsw" name="value" label="M#12cn12内容" is_valid="Y" note="M#12jp11値" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="cUiwbusev3pfIf2tF2AjtA" name="hotkey" label="M#12cn12热键" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+   <Component _uuid="yUqxde3Ywg][mcuqUsEVgg" name="List" label="M#12cn12列表" is_valid="Y" note="M#12jp13リスト" class_name="org.mo.eng.list.common.XList" base_name="org.mo.eng.list.base.XBaseList" inherits="IObject">
+      <Attribute _uuid="dkMZUkEzoe6tBCyMwpSLvg" name="cache" label="M#12cn13可缓冲" is_valid="Y" note="M#12cn13缓存可" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+   <Component _uuid="GkXKjXnDpBb]5owlN8TPmQ" name="Set" label="M#12cn12集合" is_valid="Y" note="M#" class_name="org.mo.eng.list.common.XSet" base_name="org.mo.eng.list.base.XBaseSet" inherits="IObject">
+      <Attribute _uuid="YEZ3dxvfl[tfgOq0sZdhvA" name="cache" label="M#12cn13可缓冲" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+   <Component _uuid="FUZH7DKa261T8e8kVYihkA" name="Enum" label="M#12cn12列举" is_valid="Y" note="M#" class_name="org.mo.eng.list.common.XEnum" base_name="org.mo.eng.list.base.XBaseEnum" inherits="IObject">
+      <Attribute _uuid="kky9h82QBCnwv1qB132EiQ" name="cache" label="M#12cn13可缓冲" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+</Persistence>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="G0XvMQu91FX]Zj4KesqQtQ" name="person.user.job" label="M#12cn17用户-工作经历" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="PM_USER_JOB" data_logic="PM_USER_JOB_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="50VeOuj0Xzz4mYwV6wS1vA" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#" is_store="Y" data_name="USER_ID" data_type="Integer" data_refer="person.user" />
+  <FieldEnum _uuid="JUew[CKR7wmnyLF8Ilqnjw" name="type_cd" label="M#12cn14工作类型" is_valid="Y" note="M#12cn211全职/兼职/实习/临时" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_type="Enum" data_size="1" data_code="person.user.work" />
+  <FieldEnum _uuid="u0coC4hq3Ky15HZJH1Ixkw" name="privacy_cd" label="M#12cn14隐私设置" is_valid="Y" note="M#12cn210是否将该项设置成隐私" is_null="Y" is_store="Y" is_abstract="N" data_name="PRIVACY_CD" data_type="Enum" data_size="1" data_code="person.user.privacy" />
+  <FieldBoolean _uuid="Q0PB[fgmgPYQu[VM1p5MrQ" name="display_able" label="M#12cn14显示可能" is_valid="Y" note="M#12cn19是否将该项显示出来" is_null="Y" is_store="Y" is_abstract="N" data_name="DISP_ABLE" data_type="Boolean" />
+  <FieldString _uuid="kENg2xvedABW]MfF7JZ9nw" name="company_name" label="M#12cn14公司名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="COMPANY_NAME" data_type="String" data_size="40" />
+  <FieldString _uuid="g0nVqApwttMP25[]z5tkgQ" name="duty" label="M#12cn12职务" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DUTY" data_size="40" />
+  <FieldDate _uuid="IkPI9JAKm]AzIOJb6nE0ig" name="begin_date" label="M#12cn14入职日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BEGIN_DATE" data_type="Date" />
+  <FieldDate _uuid="SELXaa0Ch0zQio6gZPEioA" name="end_date" label="M#12cn14离职日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="END_DATE" data_type="Date" />
+  <FieldFloat _uuid="]UvlvVZ47DgD[VUjMtMoqQ" name="salary_tax_amt" label="M#12cn15税前月薪酬" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SALARY_TAX_AMT" />
+  <FieldString _uuid="E0TFPeAreFFshFUkU7pJsw" name="welfare_cd" label="M#12cn14福利情况" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="WELFARE_CD" data_size="120" />
+  <FieldInteger _uuid="V0k6BZvU7mOghdcpNOtdqQ" name="insurance_paid" label="M#12cn16保险缴纳月数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="INSURANCE_PAID" />
+  <FieldContent _uuid="1EZ[p5a]]pZGUB6U9Czaqg" name="leaving_reason" label="M#12cn14离职原因" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LEAVING_REASON" />
+  <FieldBoolean _uuid="H0ZQ[X[RVCxYFyIedlYPoA" name="formalities_clear" label="M#12cn17手续是否办理完" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FORMALITIES_CLEAR" />
+  <FieldBoolean _uuid="ckTeVbfrP8PMdFR]Z8jvnQ" name="labor_dispute_exists" label="M#12cn17是否有劳动纠纷" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABOR_DISPUTE_EXISTS" />
+  <FieldContent _uuid="3E0gRB[0FZPu1Xn6niw6pw" name="labor_dispute_note" label="M#12cn16劳动纠纷备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABOR_DISPUTE_NOTE" />
+  <FieldBoolean _uuid="ZkZAeFp86QGzjz5TI[l0vw" name="secret_exists" label="M#12cn15有保密协议" is_valid="Y" note="M#12cn212是否有保密或竞业禁止约定" is_null="Y" is_store="Y" is_abstract="N" data_name="SECRET_EXISTS" />
+  <FieldDate _uuid="tk4z7vKjeH81s9YiVri7pg" name="secret_end_date" label="M#12cn18保密协议终止日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SECRET_END_DATE" />
+  <FieldContent _uuid="J0IWGvo[WeTeVp4VGk7NqQ" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

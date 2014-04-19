@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="LUQycjmw91v0VnjdLEa[pg" name="person.user.component" label="M#12cn14用户组件" is_valid="Y" note="M#12cn226用户选择的模块（但这些模块都是从role关联的模块）" access_insert="Y" access_update="Y" access_delete="Y" data_name="PM_USER_COMPONENT" data_logic="PM_USER_COMPONENT_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="gk[eQOpNQqNsFemZk8CTkg" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="USER_ID" data_refer="person.user" />
+  <FieldInteger _uuid="90U7ARFym9nk6pO2q]9moQ" name="component_id" label="M#12cn14组件标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="COMPONENT_ID" data_refer="person.component" />
+  <FieldEnum _uuid="j0rfZOe1bh80dIp4tz6ohw" name="type_cd" label="M#12cn14关联方式" is_valid="Y" note="M#12cn221只建了列表没有加元素！！！！！！！！！！！" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="person.user.component" />
+  <FieldBoolean _uuid="gkxLg7NZAJOHCtCatLm2gw" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#12cn242Y=yes 用户选定该模块\nN=no  用户没有选定该模块\n在某种状态下用户标识为空" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="'Y'" />
+  <FieldInteger _uuid="WUibVJPoYVWWsHeoICJ8gg" name="disp_order" label="M#12cn14显示顺序" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DISP_ORDER" />
+  <FieldDate _uuid="cE0H35BBZyT8fkNbo1N9qQ" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_default="SYSDATE" />
+</DataStore>
+

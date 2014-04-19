@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="YE5t5ADqFrRPlZnX]NpKhQ" _type="Persistence" name="eng-help" label="M#12cn14帮助配置" is_valid="Y" note="M#" template="xmlobject" source="${home.source.eng}">
+  <Interface _uuid="XE4P3uixVS7kFHuFG3lthA" _type="Interface" name="IObject" label="M#12cn14对象接口" is_valid="Y" note="M#12jp16オブジェクト">
+    <Attribute _uuid="bE4QUX4YTmxIzVKspEGOsA" _type="Attribute" name="name" label="M#12cn12名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="QUI3Y8YzN1qU6fRxodVwpA" _type="Attribute" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+    <Attribute _uuid="IkRkH3pBj4iOecuo3YOMrg" _type="Attribute" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" data_default="Y" />
+    <Attribute _uuid="8kcvkhwgKPjGkv5r31tYnA" _type="Attribute" name="note" label="M#12cn14注释信息" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+  </Interface>
+  <Component _uuid="3kD8R5m[cbONjOBb[TdWqg" _type="Component" name="Page" label="M#12cn12页面" is_valid="Y" note="M#" class_name="org.mo.eng.help.common.XPage" base_name="org.mo.eng.help.base.XBasePage" inherits="IObject" />
+  <Component _uuid="HU[hsQCFyErrg]R2cFmuig" _type="Component" name="Help" label="M#12cn12帮助" is_valid="Y" note="M#" class_name="org.mo.eng.help.common.XHelp" base_name="org.mo.eng.help.base.XBaseHelp" inherits="IObject">
+    <Attribute _uuid="iUEKalouH1kEwFI5QAS6og" _type="Attribute" name="process_face" label="M#12cn14处理接口" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="x0i16SxN48c]V8CAUTmctw" _type="Attribute" name="process_encoding" label="M#12cn14文字编码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="AUB78oufH[kfpfcmZ6LluA" _type="Attribute" name="output_root" label="M#12cn15输出根路径" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="dUdpWbHFijBTkvPg7Tblng" _type="Attribute" name="output_path" label="M#12cn14输出路径" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="LEfRrGlGE6L]pGQklFlDmw" _type="Attribute" name="template_project" label="M#12cn14项目模板" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="rEH65a4Vx7NvnnhqvkWGgg" _type="Attribute" name="template_index" label="M#12cn14索引模板" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="UUD5P6hx]9]uYVHlCMH8vA" _type="Attribute" name="template_catalog" label="M#12cn14目录模板" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="H0GImV6NJt0orA2C5v1yuQ" _type="Component" name="Catalog" label="M#12cn12目录" is_valid="Y" note="M#" class_name="org.mo.eng.help.common.XCatalog" base_name="org.mo.eng.help.base.XBaseCatalog" inherits="IObject" />
+  <Component _uuid="U0Oo[dQ6Aua8VqjYi0mItQ" _type="Component" name="Action" label="M#12cn12命令" is_valid="Y" note="M#" class_name="org.mo.eng.help.common.XAction" base_name="org.mo.eng.help.base.XBaseAction" inherits="IObject">
+    <Attribute _uuid="a0qyDLH8EPm3TnLfrxnttw" _type="Attribute" name="process_invoke" label="M#12cn14调用函数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="w042MSfVwuhHf4[S[5wLrQ" _type="Attribute" name="process_path" label="M#12cn14路径定义" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="JkHa59K6lVdZ60E9[FOErQ" _type="Attribute" name="output_file" label="M#12cn14输出文件" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="L0a3ePWRS1knU8KlUSdamw" _type="Attribute" name="output_path" label="M#12cn14输出路径" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="o0UiA8v35mIG469mLFi2hg" _type="Attribute" name="template_name" label="M#12cn14模板名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+</Persistence>
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="403psnrD6]aCxqn1DXz7ng" name="person.role.module.action" label="M#12cn19人员-模块动作角色" is_valid="Y" note="M#12cn211模块动作角色之间的关系" data_name="PM_ROLE_MODULE_ACTION" data_alias="PM_ROLE_MOD_ACT" data_logic="PM_ROLE_MODULE_ACTION_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="80NlQGT9FYFCUGKl8d]2mA" name="role_id" label="M#12cn14角色标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="ROLE_ID" data_type="Integer" data_refer="person.role" data_uniques="action" />
+  <FieldBoolean _uuid="Pk4acd2y3n9stO4NKyggsA" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_size="1" data_default="'Y'" />
+  <FieldBoolean _uuid="m00DheYxo4Ls6URCV7Rtig" name="is_grant" label="M#12cn14是否授权" is_valid="Y" note="M#12cn219Y=YES可以授权\nN=NO不可以授权" is_store="Y" is_abstract="N" data_name="IS_GRANT" data_size="1" data_default="'Y'" />
+  <FieldInteger _uuid="W0iP3hOiVc6Rd8uxDjM4qQ" name="module_id" label="M#12cn14模块标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="MODULE_ID" data_type="Integer" data_refer="system.module" data_uniques="action" />
+  <FieldInteger _uuid="]EsBY6]ggKhtvSSalaffng" name="action_id" label="M#12cn14动作标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="ACTION_ID" data_type="Integer" data_refer="system.module.action" data_uniques="action" />
+  <FieldDate _uuid="A0FP]MKnOoyvpJyNKc0wsA" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_type="Date" data_default="SYSDATE" />
+</DataStore>
+

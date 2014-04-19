@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="tUJ96X38T41]QnF2XKp0rQ" name="system.mail.confirm" is_valid="Y" note="M#">
+  <Define _uuid="kUzGVsJ8pQOAR6sNS8cVig" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Define _uuid="oU]pHIiF23wqHAnvIlPNng" name="type_from" is_valid="Y" note="M#" value="bool|int|float|date|char|string|mstring|enum|set|stream" />
+  <Define _uuid="tUL9xidCbez08]hd[sW6tQ" name="type_to" is_valid="Y" note="M#" value="Boolean|Integer|Float|Date|String|String|MultiString|String|String|String" />
+  <Source _uuid="5ESQGtGl4z95ob8zGn71og" is_valid="Y" note="M#"><![CDATA[package <Item source='$dataset.logic_package'/>.base;
+
+import org.mobj.com.lang.FMultiString;
+import org.mobj.core.aop.RAopComponent;
+import org.mobj.eng.entity.FEntity;
+import org.mobj.mylife.data.F<Item source='$dataset.class_name'/>;
+import org.mobj.mylife.data.I<Item source='$dataset.class_name'/>Logic;
+<Loop source='$fields' order='asc' alias='field'>
+<NotEmpty source='$field.data_refer'>
+import org.mobj.mylife.data.I<Item format='word.class' source='$field.data_refer'/>Logic;
+</NotEmpty>
+</Loop>
+
+public class F<Item source='$dataset.class_name'/>Entity extends FEntity{
+
+<Loop source='$fields' order='asc' alias='field'>
+   public static final String <Item format='upper' source='$field.name'/> = "<Item format='lower' source='$field.name'/>";
+
+</Loop>
+   protected static I<Item source='$dataset.class_name'/>Logic _logic;
+
+<Loop source='$fields' order='asc' alias='field'>
+<NotEmpty source='$field.data_refer'>
+   protected static I<Item format='word.class' source='$field.data_refer'/>Logic _<Item format='method' source='$field.name' removeLast='_id'/>Logic;
+
+</NotEmpty>
+</Loop>
+   public static I<Item source='$dataset.class_name'/>Logic logic(){
+      if(null == _logic){
+         _logic = RAopComponent.find(I<Item source='$dataset.class_name'/>Logic.class);
+      }
+      return _logic;
+   }
+
+   @SuppressWarnings("unchecked")
+   public F<Item source='$dataset.class_name'/>Entity(){
+      logic().prepare(null, (F<Item source='$dataset.class_name'/>)this);
+   }
+
+<Loop source='$fields' order='asc' alias='field'>
+<Equals source='$field.type' value="bool|int|char|string|date">
+<NotEmpty source='$field.data_refer'>
+   @SuppressWarnings("unchecked")
+   public &lt;T extends F<Item format='word.class' source='$field.data_refer'/>Entity&gt; T get<Item format='class' source='$field.name' removeLast='_id'/>(){
+      if(null == _<Item format='method' source='$field.name' removeLast='_id'/>Logic){
+         _<Item format='method' source='$field.name' removeLast='_id'/>Logic = RAopComponent.find(I<Item format='word.class' source='$field.data_refer'/>Logic.class);
+      }
+      return (T)_<Item format='method' source='$field.name' removeLast='_id'/>Logic.get(get<Item format='class' source='$field.name'/>());
+   }
+
+</NotEmpty>
+   public String get<Item format='class' source='$field.name' />(){
+      return (String)_values.get(<Item format='upper' source='$field.name'/>);
+   }
+
+   public void set<Item format='class' source='$field.name' />(String value){
+      _values.set(<Item format='upper' source='$field.name'/>, value);
+   }
+
+</Equals>
+<Equals source='$field.type' value="mstring">
+   public String get<Item format='class' source='$field.name' />(){
+      return get<Item format='class' source='$field.name'/>Object().get();
+   }
+
+   public void set<Item format='class' source='$field.name' />(String value){
+      get<Item format='class' source='$field.name'/>Object().set(value);
+   }
+
+   public FMultiString get<Item format='class' source='$field.name'/>Object(){
+      FMultiString value = (FMultiString)_values.get(<Item format='upper' source='$field.name'/>);
+      if(null == value){
+         value = new FMultiString();
+         _values.set(<Item format='upper' source='$field.name'/>, value);
+      }
+      return value;
+   }
+
+</Equals>
+</Loop>
+}]]></Source>
+</Template>
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="lUNNVsd6te5QAOJ1dw85gg" name="system.network.server" label="M#12cn16系统-服务器" is_valid="Y" note="M#" data_name="SY_NETWORK_SERVER" data_alias="SY_NET_SVR" data_logic="SY_NETWORK_SERVER_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="dataset.store" data_type="D">
+  <FieldInteger _uuid="hUZHB8aLsSN00R3aiY6Kow" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_type="Integer" data_refer="system.network.server.type" />
+  <FieldBoolean _uuid="70NKvxgTbiekAGPNN6bRow" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldInteger _uuid="xERb4v91eNfjCCzPwrHUsQ" name="network_id" label="M#12cn14网络标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="NETWORK_ID" data_refer="system.network" />
+  <FieldBoolean _uuid="xELbjYUuSnWft7]E6bZxsg" name="is_default" label="M#12cn14是否默认" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_DEFAULT" data_default="CP_BOOLEAN_EI.EFalse" />
+  <FieldString _uuid="x03QLS4jGcNh6yUFPG5nkg" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="80" />
+  <FieldString _uuid="oEs8zpPZ14xs0wvpo1KXuw" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#12cn14英文名称" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_type="String" data_size="40" />
+  <FieldContent _uuid="Z0tO[pJ4Heh]x3IArCi3qA" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#12cn17服务的中文名称" is_store="Y" is_abstract="N" data_name="LABEL" data_type="Content" />
+  <FieldString _uuid="wEo12AtbX]7[jBH6DZNxoA" name="host_name" label="M#12cn14主机名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="HOST_NAME" data_size="80" />
+  <FieldString _uuid="L0v8tixcPvn]38mt1bLusw" name="ip_address" label="M#12cn14服务地址" is_valid="Y" note="M#12cn14IP地址" is_null="Y" is_store="Y" is_abstract="N" data_name="IP_ADDRESS" data_size="40" />
+  <FieldInteger _uuid="K0OnWFcM25CoMkubEvlevg" name="port" label="M#12cn14服务端口" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PORT" />
+  <FieldDate _uuid="ukGQtXGnZEd7LMeghOtisw" name="create_date" label="M#12cn14创建日期" is_valid="Y" note="M#12cn17服务的创建时间" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_type="Date" data_default="SYSDATE" />
+  <FieldContent _uuid="IEBc[bDYAjrWCD5sNyLHsg" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

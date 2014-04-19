@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="QUjih7plANyAyqWQTzL6oQ" name="game.template.skill.level" label="M#12cn14技能等级" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_SKILL_LEVEL" data_alias="GM_TPL_SKL_LVL" data_logic="GM_TPL_SKILL_LEVEL_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="KUOjqaT4o2ijRlW8oOvylQ" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="YEWD4lGFbdU5xwWUDXydpA" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldInteger _uuid="akLy[4i3BMU9ihgndZchtg" name="skill_tid" label="M#12cn18所属技能模板编号" note="M#" is_store="Y" is_abstract="N" data_name="SKILL_TID" data_alias="SKL" data_size="4" data_refer="game.template.skill" />
+  <FieldInteger _uuid="DUFxtsmFfrrC[Vw7low6pw" name="skill_level" label="M#12cn14技能级别" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SKILL_LEVEL" data_size="2" />
+  <FieldInteger _uuid="1kDmJ1M5C24htk8Ge2DeuQ" name="limit_book_level_min" label="M#12cn16心法等级限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_BOOK_LEVEL_MIN" />
+  <FieldInteger _uuid="QUTqJa[Lo4po1TFpI]MSuQ" name="limit_player_level_min" label="M#12cn16玩家等级限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_PLAYER_LEVEL_MIN" />
+  <FieldInteger _uuid="qkIMPAXbdfOGlgNdyCvrmA" name="skill_scope_tid" label="M#12cn14范围类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SKILL_SCOPE_TID" data_alias="SKL_SCP" data_size="4" data_refer="game.template.skill.scope" />
+  <FieldInteger _uuid="uEhULj0wjw0QoekFuUI8gw" name="scope_count" label="M#12cn14范围数量" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SCOPE_COUNT" data_size="2" />
+  <FieldEnum _uuid="mkXevbzvwjpNW[Pg6OxHow" name="battle_cd" label="M#12cn18战斗/非战斗限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BATTLE_CD" data_size="1" data_code="game.template.skill.battle" />
+  <FieldEnum _uuid="UE69rEiGO1TfDEBCz5kCow" name="cd_type_cd" label="M#12cn14CD类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CD_TYPE_CD" data_size="1" data_code="game.template.skill.cd" />
+  <FieldInteger _uuid="nUyrYhwZBOEEg8RFtOG1kA" name="cd_value" label="M#12cn14CD内容" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CD_VALUE" data_size="8" />
+  <FieldFloat _uuid="k0hpOGNM2CGVMtQv5RcBhQ" name="inf_book_level_coe" label="M#12cn18心法等级影响系数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="INF_BOOK_LEVEL_COE" />
+  <FieldFloat _uuid="U0vGeylYgPc8y7Qdhcr9oQ" name="inf_coe_attack_physical" label="M#12cn18物理攻击影响系数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="INF_COE_ATTACK_PHYSICAL" />
+  <FieldFloat _uuid="x0DfNxIVuZTRk9H2MHFJjg" name="inf_coe_defence_physical" label="M#12cn18物理防御影响系数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="INF_COE_DEFENCE_PHYSICAL" />
+  <FieldFloat _uuid="fUFqCHkuSqCQnTOrc3wnqQ" name="inf_coe_attack_magic" label="M#12cn18魔法攻击影响系数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="INF_COE_ATTACK_MAGIC" />
+  <FieldFloat _uuid="8EubiJ9XavgVDN82QPNelA" name="inf_coe_defence_magic" label="M#12cn18魔法防御影响系数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="INF_COE_DEFENCE_MAGIC" />
+  <FieldFloat _uuid="EEa2BjlLW]XRgOe1GqztiA" name="inf_coe_harm" label="M#12cn14伤害系数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="INF_COE_HARM" />
+  <FieldFloat _uuid="fEu1]DOPK1t8Esz]2yFZjA" name="rand_coe_min" label="M#12cn16随机最小系数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RAND_COE_MIN" />
+  <FieldFloat _uuid="k0fW]DvN8bjHWUN2yGjTpw" name="rand_coe_max" label="M#12cn16随机最大系数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RAND_COE_MAX" />
+  <FieldFloat _uuid="HEkc7EEBg2VuP6hweN8Hhg" name="inf_coe_practice" label="M#12cn16修炼等级系数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="INF_COE_PRACTICE" />
+  <FieldInteger _uuid="L0g1bv1Xehw4v6cCM6ovjQ" name="skill_own_harm" label="M#12cn16技能本体伤害" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SKILL_OWN_HARM" />
+  <FieldString _uuid="700BCoSqge8JJHPEUuh7mg" name="modify_cd" label="M#12cn14修改类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MODIFY_CD" data_size="200" />
+  <FieldString _uuid="q0B6csYpfHu7O]91BKb6vw" name="property_cd" label="M#12cn14属性类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROPERTY_CD" data_size="200" />
+  <FieldString _uuid="fENxngNKmXOBkhad1asiqQ" name="description" label="M#12cn12描述" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DESCRIPTION" data_size="200" />
+  <FieldTemplate _uuid="ik0fc76dTA5UmfCZgJkXpA" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

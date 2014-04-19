@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="R0rE]OzodUfa7gBtNUWtoQ" name="game.manage" label="游戏管理" is_valid="Y" note="M#" is_server="Y" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" source_name="MoMgStructManage" code="Smg" full_code="StructManage" display_index="31" include_heads="game.core" project_name="/Common/MoMessage" project_code="Mg">
+  <EntityTemplate _uuid="7EC2R9faeL7vOqBQh0Byuw" name="GmRoleDetailTemplate" label="角色详细模板" is_valid="Y" note="M#">
+    <Item _uuid="5ki44XfuIGnG0mFzxHAPnw" name="roleId" label="角色账号编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="okz4YkGLergkg01YYHpUrQ" name="accountId" label="账号编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="e0i]gDiRZZTXk49RP4VNqQ" name="sessionId" label="登录会话编号" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="JUZW75jqKuEb2NMGXeVkhg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Uint32" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="[UwiQpsMKA1PErro]pA[oQ" name="label" label="标签" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Sk7JkfIb0IlFxeDLExeXsw" name="level" label="等级" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="s0LOUzxDSVGzhp9IpDO]lA" name="experience" label="经验" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </EntityTemplate>
+  <Entity _uuid="IkvusjI5bnhUSVpAbC1FjA" name="GmRoleInfo" label="角色信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N">
+    <ItemTemplate _uuid="cU1m7wc1npE03cwrVYNapA" name="roleInfo" label="角色信息模板" is_valid="Y" note="M#" entity_name="GmRoleDetailTemplate" />
+  </Entity>
+  <Entity _uuid="[Es2HcCShXl5[jFCRWURrA" name="GmRoleInfoSet" label="角色信息集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="DkTfBSMa1PDHaFOZzaAMpA" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGmRoleInfo" is_collection="Y" data_size="role.list.entry.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="K0iYDMsBjhABr3xBULnclQ" name="GmRoleHomeInfo" label="角色家园" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N" />
+  <Entity _uuid="wklBHBtPE6RF88FRNGnYmQ" name="GmRoleHomeInfoSet" label="角色家园集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="bUu86oePwyBN[LN1kh2Dow" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGmRoleHomeInfo" is_collection="Y" data_size="role.home.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="N0OseH2k]1KR0UtJLKCAuw" name="GmRoleHomeWorkerInfo" label="家园工人" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N" />
+  <Entity _uuid="y0ltHaDDqp5XFqrj[C79uQ" name="GmRoleHomeWorkerInfoSet" label="家园工人集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="fkMwIycX1HHRRnW6vLB2kA" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGmRoleHomeWorkerInfo" is_collection="Y" data_size="role.home.worker.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="wUnQz0ISQVOut2L6CPYsuA" name="GmNpcSkillInfo" label="NPC技能" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N" />
+  <Entity _uuid="80OExAkzrOuJfEiL8bqOgQ" name="GmNpcSkillInfoSet" label="NPC技能集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="GULczVppeXNvSHxODMuQtQ" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGmNpcSkillInfo" is_collection="Y" data_size="npc.skill.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="iUV2F[fudCmv2N]Edtczgg" name="GmRoleFortInfo" label="角色防御塔" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N" />
+  <Entity _uuid="r0jigNrCpho[AS46W5yvpw" name="GmRoleFortInfoSet" label="角色防御塔集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="Skvu18xdO7jluEklQu5nkQ" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGmRoleFortInfo" is_collection="Y" data_size="role.fort.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="rEx7XlLqzyoVXlAbIqVAhg" name="GmRoleDetail" label="角色详细" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N">
+    <ItemTemplate _uuid="r0J9RAfH7uwdHVJMd3Lamw" name="roleDetail" label="角色信息详细" is_valid="Y" note="M#" entity_name="GmRoleDetailTemplate" />
+  </Entity>
+  <Entity _uuid="o04[sBoc[GSAZXpCnsr9og" name="GmRoleSlaveRoomInfo" label="奴隶营房间" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N" />
+  <Entity _uuid="90qYhroIDhxvBr9iXzx8qQ" name="GmRoleSlaveRoomInfoSet" label="奴隶营房间集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="oEiu3ccJRenuJfm]Abkmiw" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGmRoleSlaveRoomInfo" is_collection="Y" data_size="role.slave.room.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="e0FEMUEjVFyia[9KC5ZMlg" name="GmRoleSlaveInfo" label="角色奴隶" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N" />
+  <Entity _uuid="fEiZggq4DFe0ss5T[wfLoQ" name="GmRoleSlaveInfoSet" label="角色奴隶集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="VUgEVSZ2uH4pyIrb1JtTvg" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGmRoleSlaveInfo" is_collection="Y" data_size="role.slave.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="gUWfx72inspgrOpcD3DLmw" name="GmRoleTrainingPlaceInfo" label="角色训练营位置" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N" />
+  <Entity _uuid="dUqdiPNxy8fi7zSwI9NpmA" name="GmRoleTrainingPlaceInfoSet" label="角色训练营位置集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="6kkir4TY4b[LJnlE3lJjhg" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGmRoleTrainingPlaceInfo" is_collection="Y" data_size="role.training.place.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="6k9Rs[a9h4N7RJXTWK6HpQ" name="GmRoleMapInfo" label="角色地图" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N" />
+  <Entity _uuid="KkfO2nvcg1kVnk]n6LHPpg" name="GmRoleMapInfoSet" label="角色地图集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="[0I4zQO1o]v9gIm3CPXHkg" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGmRoleMapInfo" is_collection="Y" data_size="role.map.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="N0WB8whc3nu6AiVghl7amw" name="GmRoleEmbattleInfo" label="角色布阵" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N" />
+  <Entity _uuid="WkEHh1HUNmme[tkMzGFIgA" name="GmRoleEmbattleInfoSet" label="角色布阵集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="uUVsG7bL420HSgi]hq7CoQ" name="items" label="项目集合" is_valid="Y" note="M#" type="Object" type_name="SGmRoleEmbattleInfo" is_collection="Y" data_size="role.embattle.place.max-count" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+</Group>
+

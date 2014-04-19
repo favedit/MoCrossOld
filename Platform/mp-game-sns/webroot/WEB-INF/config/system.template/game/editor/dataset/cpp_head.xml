@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="uUpzaGEPkNp3dBzx11rRpA" name="database.logicunit.sqlView" is_valid="Y" note="M#">
+  <Source _uuid="60]ZbPHhJJ80wmSY2jV0hw" is_valid="Y" note="M#">
+<![CDATA[//============================================================
+// <T><C><jt:Item source='$dataset.label'/></C>单元。</T>
+//
+// @struct
+//============================================================
+struct SRow<jt:Item source='$dataset.data_name' format='class'/>{
+public:
+   // @property 是否关联
+   TBool nativeLinked;
+protected:
+<jt:Loop source='$fields' alias='field'>
+   // @property <jt:Item source='$field.label'/>
+<jt:equals source='$field.type' value='RecordId'>
+   TRecordId _<jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Boolean'>
+   TBool _<jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Integer'>
+   TInt32 _<jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Long'>
+   TInt64 _<jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Date'>
+   TDateTime _<jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   TStackString<<jt:Item source='$field.data_size'/>> _<jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Char|Float|Double|DateTime'>
+   T<jt:Item source='$field.type'/> _<jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+</jt:Loop>
+public:
+<jt:Loop source='$fields' alias='field'>
+   // @property <jt:Item source='$field.label'/>
+<jt:equals source='$field.type' value='RecordId'>
+   TRecordId <jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Boolean'>
+   TBool <jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Integer'>
+   TInt32 <jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Long'>
+   TInt64 <jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Date'>
+   TDateTime <jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   TStackString<<jt:Item source='$field.data_size'/>> <jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Char|Float|Double|DateTime'>
+   T<jt:Item source='$field.type'/> <jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+</jt:Loop>
+public:
+   //------------------------------------------------------------
+   // <T>构造<C><jt:Item source='$dataset.label'/></C>单元。</T>
+   SRow<jt:Item source='$dataset.data_name' format='class'/>(){
+      nativeLinked = EFalse;
+      Reset();
+   }
+   //------------------------------------------------------------
+   // <T>构造<C><jt:Item source='$dataset.label'/></C>单元。</T>
+   SRow<jt:Item source='$dataset.data_name' format='class'/>(TBool initialized){
+      nativeLinked = EFalse;
+      if(initialized){
+         Reset();
+      }
+   }
+public:
+<jt:Loop source='$fields' alias='field'>
+   //------------------------------------------------------------
+   // <T>测试<jt:Item source='$field.label'/>是否改变。</T>
+   TBool Is<jt:Item source='$field.data_name' format='class'/>Changed(){
+      if(!nativeLinked){
+         return ETrue;
+      }
+<jt:equals source='$field.type' value='Boolean|RecordId|Integer|Long|Date|Float|Double|DateTime'>
+      return _<jt:Item source='$field.data_name' format='method'/> != <jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Char|String'>
+      return !<jt:Item source='$field.data_name' format='method'/>.Equals(_<jt:Item source='$field.data_name' format='method'/>);
+</jt:equals>
+   }
+</jt:Loop>
+public:
+<jt:Loop source='$fields' alias='field'>
+   //------------------------------------------------------------
+   // <T>获得<jt:Item source='$field.label'/>。</T>
+<jt:equals source='$field.type' value='RecordId'>
+   MO_METHOD_INLINE TRecordId <jt:Item source='$field.data_name' format='class'/>(){
+      return <jt:Item source='$field.data_name' format='method'/>;
+   }
+</jt:equals>
+<jt:equals source='$field.type' value='Boolean'>
+   MO_METHOD_INLINE TBool <jt:Item source='$field.data_name' format='class'/>(){
+      return <jt:Item source='$field.data_name' format='method'/>;
+   }
+</jt:equals>
+<jt:equals source='$field.type' value='Integer'>
+   MO_METHOD_INLINE TInt32 <jt:Item source='$field.data_name' format='class'/>(){
+      return <jt:Item source='$field.data_name' format='method'/>;
+   }
+</jt:equals>
+<jt:equals source='$field.type' value='Long'>
+   MO_METHOD_INLINE TInt64 <jt:Item source='$field.data_name' format='class'/>(){
+      return <jt:Item source='$field.data_name' format='method'/>;
+   }
+</jt:equals>
+<jt:equals source='$field.type' value='Date'>
+   MO_METHOD_INLINE TDateTime <jt:Item source='$field.data_name' format='class'/>(){
+      return <jt:Item source='$field.data_name' format='method'/>;
+   }
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   MO_METHOD_INLINE TCharC* <jt:Item source='$field.data_name' format='class'/>(){
+      return (TCharC*)<jt:Item source='$field.data_name' format='method'/>;
+   }
+</jt:equals>
+<jt:equals source='$field.type' value='Char|Float|Double|DateTime'>
+   MO_METHOD_INLINE T<jt:Item source='$field.type'/> <jt:Item source='$field.data_name' format='class'/>(){
+      return <jt:Item source='$field.data_name' format='method'/>;
+   }
+</jt:equals>
+   //------------------------------------------------------------
+   // <T>设置<jt:Item source='$field.label'/>。</T>
+<jt:equals source='$field.type' value='RecordId'>
+   MO_METHOD_INLINE void Set<jt:Item source='$field.data_name' format='class'/>(TRecordId value, TBool force = EFalse){
+      <jt:Item source='$field.data_name' format='method'/> = value;
+      if(force){
+         _<jt:Item source='$field.data_name' format='method'/> = value;
+      }
+   }
+</jt:equals>
+<jt:equals source='$field.type' value='Boolean'>
+   MO_METHOD_INLINE void Set<jt:Item source='$field.data_name' format='class'/>(TBool value, TBool force = EFalse){
+      <jt:Item source='$field.data_name' format='method'/> = value;
+      if(force){
+         _<jt:Item source='$field.data_name' format='method'/> = value;
+      }
+   }
+</jt:equals>
+<jt:equals source='$field.type' value='Integer'>
+   MO_METHOD_INLINE void Set<jt:Item source='$field.data_name' format='class'/>(TInt32 value, TBool force = EFalse){
+      <jt:Item source='$field.data_name' format='method'/> = value;
+      if(force){
+         _<jt:Item source='$field.data_name' format='method'/> = value;
+      }
+   }
+</jt:equals>
+<jt:equals source='$field.type' value='Long'>
+   MO_METHOD_INLINE void Set<jt:Item source='$field.data_name' format='class'/>(TInt64 value, TBool force = EFalse){
+      <jt:Item source='$field.data_name' format='method'/> = value;
+      if(force){
+         _<jt:Item source='$field.data_name' format='method'/> = value;
+      }
+   }
+</jt:equals>
+<jt:equals source='$field.type' value='Date'>
+   MO_METHOD_INLINE void Set<jt:Item source='$field.data_name' format='class'/>(TDateTime value, TBool force = EFalse){
+      <jt:Item source='$field.data_name' format='method'/> = value;
+      if(force){
+         _<jt:Item source='$field.data_name' format='method'/> = value;
+      }
+   }
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   MO_METHOD_INLINE void Set<jt:Item source='$field.data_name' format='class'/>(TCharC* pValue, TBool force = EFalse){
+      <jt:Item source='$field.data_name' format='method'/> = pValue;
+      if(force){
+         _<jt:Item source='$field.data_name' format='method'/> = pValue;
+      }
+   }
+</jt:equals>
+<jt:equals source='$field.type' value='Char|Float|Double|DateTime'>
+   MO_METHOD_INLINE void Set<jt:Item source='$field.data_name' format='class'/>(T<jt:Item source='$field.type'/> value, TBool force = EFalse){
+      <jt:Item source='$field.data_name' format='method'/> = value;
+      if(force){
+         _<jt:Item source='$field.data_name' format='method'/> = value;
+      }
+   }
+</jt:equals>
+</jt:Loop>
+public:
+   void Reset();
+};
+//------------------------------------------------------------
+typedef TDataset<SRow<jt:Item source='$dataset.data_name' format='class'/>> T<jt:Item source='$dataset.data_name' format='class'/>Dataset;
+typedef TFixPtrVector<SRow<jt:Item source='$dataset.data_name' format='class'/>, <jt:Item source='$dataset.data_size'/>> TFsRow<jt:Item source='$dataset.data_name' format='class'/>Vector;
+
+//============================================================
+// <T><C><jt:Item source='$dataset.label'/></C>数据集对象。</T>
+//
+// @class
+//============================================================
+class TDs<jt:Item source='$dataset.data_name' format='class'/> :
+      public TDatasetLogic,
+      public ISqlRowFiller{
+public:
+   static TInt LOGIC_CODE;
+   static TCharC* LOGIC_NAME;
+   static TCharC* DATA_NAME;
+   static TCharC* DATA_FIELDS;
+   static TCharC* DATA_FIELDS_STATEMENT;
+protected:
+   static FStorageDatasetMeta* _pMeta;
+public:
+   //------------------------------------------------------------
+   // <T>列枚举。</T>
+   enum EColumn{
+<jt:loop source='$fields' alias='field'>
+      EColumn_<jt:Item source='$field.data_name' format='class'/>,
+</jt:loop>
+   };
+public:
+   //------------------------------------------------------------
+   // <T>获得描述信息。</T>
+   MO_METHOD_INLINE static FStorageDatasetMeta* Meta(){
+      return _pMeta;
+   }
+public:
+   static void Create();
+   static void Release();
+public:
+   TDs<jt:Item source='$dataset.data_name' format='class'/>();
+   TDs<jt:Item source='$dataset.data_name' format='class'/>(ISqlConnection* pConnection);
+   ~TDs<jt:Item source='$dataset.data_name' format='class'/>();
+public: // Inherits: ISqlRowFiller
+   MO_OVERRIDE( void Fill(TAny* pEntity, TChar** ppValues, TInt count) );
+public:
+   TRecordId CurrentId();
+   TRecordId NextId();
+protected:
+   void SqlAssignSelect(MSql* pSql);
+   void SqlAppendSelect(MSql* pSql);
+   void SqlAssignInsert(MSql* pSql, SRow<jt:Item source='$dataset.data_name' format='class'/>& entity, TRecordId recordId = 0);
+   TBool SqlAssignUpdate(MSql* pSql, SRow<jt:Item source='$dataset.data_name' format='class'/>& entity, TRecordId recordId = 0);
+   void SqlAssignDelete(MSql* pSql, TRecordId recordId);
+public:
+   TBool Find(TRecordId recordId, SRow<jt:Item source='$dataset.data_name' format='class'/>& entity);
+   TBool InsertSync(SRow<jt:Item source='$dataset.data_name' format='class'/>& entity, TRecordId recordId = 0);
+   TBool InsertAnsy(SRow<jt:Item source='$dataset.data_name' format='class'/>& entity, TRecordId recordId = 0, ESqlLevel levelCd = ESqlLevel_Delay, HSqlConnectionCommandInvoker invoker = NULL, TAny* pParams = NULL);
+   TBool UpdateSync(TRecordId recordId, SRow<jt:Item source='$dataset.data_name' format='class'/>& entity);
+   TBool UpdateAnsy(TRecordId recordId, SRow<jt:Item source='$dataset.data_name' format='class'/>& entity, ESqlLevel levelCd = ESqlLevel_Delay, HSqlConnectionCommandInvoker invoker = NULL, TAny* pParams = NULL);
+   TBool DeleteSync(TRecordId recordId);
+   TBool DeleteAnsy(TRecordId recordId, ESqlLevel levelCd = ESqlLevel_Delay, HSqlConnectionCommandInvoker invoker = NULL, TAny* pParams = NULL);
+};
+
+]]></Source>
+</Template>

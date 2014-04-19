@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="bkx7WDHQUFLvewKK0le5ig" name="logic.business.it.QuarterTeamReport" label="工作日志-季报(多人统计)" is_valid="Y" fileName="reportLog(QuarterTeam)[${QUERY_DATE}].xls" template="logic.business.it.quarterTeamReport">
+  <Sql _uuid="a0ZCSjP]eC1Qo5CQZuHlow" name="log_list" label="个人统计列表" is_valid="Y"><![CDATA[SELECT PERSON_ID,
+BS_IT_LOG_DI.Get_Dispose_User_Label('${DISPOSE_CD}',PERSON_ID) PERSON_NAME, 
+BS_IT_LOG_DI.Get_Team_Count(PERSON_ID, '${DISPOSE_CD}', QUERY_DATE||'-1-1', TO_CHAR(LAST_DAY(CP_DATE.Parse(QUERY_DATE||'-3-1')), 'YYYY-MM-DD')) YI_NUM ,
+BS_IT_LOG_DI.Get_Team_Count(PERSON_ID, '${DISPOSE_CD}', QUERY_DATE||'-4-1', TO_CHAR(LAST_DAY(CP_DATE.Parse(QUERY_DATE||'-6-1')), 'YYYY-MM-DD')) ER_NUM,
+BS_IT_LOG_DI.Get_Team_Count(PERSON_ID, '${DISPOSE_CD}', QUERY_DATE||'-7-1', TO_CHAR(LAST_DAY(CP_DATE.Parse(QUERY_DATE||'-9-1')), 'YYYY-MM-DD')) SAN_NUM,
+BS_IT_LOG_DI.Get_Team_Count(PERSON_ID, '${DISPOSE_CD}', QUERY_DATE||'-10-1', TO_CHAR(LAST_DAY(CP_DATE.Parse(QUERY_DATE||'-12-1')), 'YYYY-MM-DD')) SI_NUM
+FROM (SELECT A.DISPOSE_ID PERSON_ID, TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'),'YYYY') QUERY_DATE FROM (SELECT BS_IT_LOG_DI.Get_New_Dispose_Id(DISPOSE_ID,DISPOSE_CD) DISPOSE_ID, DISPOSE_CD,IS_VALID FROM BS_IT_LOG) A WHERE A.DISPOSE_CD = '${DISPOSE_CD}' AND A.IS_VALID='Y' GROUP BY A.DISPOSE_ID)]]></Sql>
+  <Sql _uuid="BUzbfDpcfR4E]ojPU8g7iw" name="date_config" label="当前时间" is_valid="Y"><![CDATA[SELECT  TO_CHAR(CP_DATE.PARSE('${QUERY_DATE}'), 'YYYY') NOW_DATE FROM DUAL]]></Sql>
+</ExportExcel>
+

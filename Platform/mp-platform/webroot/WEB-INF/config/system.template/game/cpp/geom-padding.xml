@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template ads="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Source ads="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[
+//============================================================
+// <T><jt:item source='$label'/>边距。</T>
+//============================================================
+struct MO_CM_DECLARE S<jt:item source='$type_name'/>Padding{
+public:
+   <jt:item source='$type'/> left;
+   <jt:item source='$type'/> top;
+   <jt:item source='$type'/> right;
+   <jt:item source='$type'/> bottom;
+public:
+   //------------------------------------------------------------
+   // <T>构造<jt:item source='$label'/>边距。</T>
+   S<jt:item source='$type_name'/>Padding(){
+      left = <jt:item source='$default'/>;
+      top = <jt:item source='$default'/>;
+      right = <jt:item source='$default'/>;
+      bottom = <jt:item source='$default'/>;
+   }
+   //------------------------------------------------------------
+   // <T>构造<jt:item source='$label'/>边距。</T>
+   S<jt:item source='$type_name'/>Padding(<jt:item source='$type'/> leftValue, <jt:item source='$type'/> topValue, <jt:item source='$type'/> rightValue, <jt:item source='$type'/> bottomValue){
+      left = leftValue;
+      top = topValue;
+      right = rightValue;
+      bottom = bottomValue;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>判断是否相等。</T>
+   MO_INLINE TBool operator==(const S<jt:item source='$type_name'/>Padding& value){
+      return (left == value.left) && (top == value.top) && (right == value.right) && (bottom == value.bottom);
+   }
+   //------------------------------------------------------------
+   // <T>判断是否不相等。</T>
+   MO_INLINE TBool operator!=(const S<jt:item source='$type_name'/>Padding& value){
+      return (left != value.left) || (top != value.top) || (right != value.right) || (bottom != value.bottom);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void operator=(const S<jt:item source='$type_name'/>Padding& value){
+      left = value.left;
+      top = value.top;
+      right = value.right;
+      bottom = value.bottom;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>相加处理。</T>
+   MO_INLINE void operator+=(const S<jt:item source='$type_name'/>Padding& value){
+      Add(value);
+   }
+   //------------------------------------------------------------
+   // <T>相减处理。</T>
+   MO_INLINE void operator-=(const S<jt:item source='$type_name'/>Padding& value){
+      Sub(value);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>判断内容是否为空。</T>
+   MO_INLINE TBool IsEmpty(){
+      return (left == <jt:item source='$default'/>) && (top == <jt:item source='$default'/>) && (right == <jt:item source='$default'/>) && (bottom == <jt:item source='$default'/>);
+   }
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void Set(<jt:item source='$type'/> leftValue, <jt:item source='$type'/> topValue, <jt:item source='$type'/> rightValue, <jt:item source='$type'/> bottomValue){
+      left = leftValue;
+      top = topValue;
+      right = rightValue;
+      bottom = bottomValue;
+   }
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void Set(const S<jt:item source='$type_name'/>Padding& value){
+      left = value.left;
+      top = value.top;
+      right = value.right;
+      bottom = value.bottom;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>相加处理。</T>
+   MO_INLINE void Add(const S<jt:item source='$type_name'/>Padding& value){
+      left += value.left;
+      top += value.top;
+      right += value.right;
+      bottom += value.bottom;
+   }
+   //------------------------------------------------------------
+   // <T>相减处理。</T>
+   MO_INLINE void Sub(const S<jt:item source='$type_name'/>Padding& value){
+      left -= value.left;
+      top -= value.top;
+      right -= value.right;
+      bottom -= value.bottom;
+   }
+   //------------------------------------------------------------
+   // <T>重置处理。</T>
+   MO_INLINE void Reset(){
+      left = <jt:item source='$default'/>;
+      top = <jt:item source='$default'/>;
+      right = <jt:item source='$default'/>;
+      bottom = <jt:item source='$default'/>;
+   }
+public:
+<jt:equals source='$type_name' value='Int'>
+   TResult Serialize8(IDataOutput* pOutput);
+   TResult Unserialize8(IDataInput* pInput);
+   TResult Serialize16(IDataOutput* pOutput);
+   TResult Unserialize16(IDataInput* pInput);
+</jt:equals>
+<jt:equals source='$type_name' value='Float|Double'>
+</jt:equals>
+   TResult Serialize(IDataOutput* pOutput);
+   TResult Unserialize(IDataInput* pInput);
+};
+]]></Source>
+</Template>

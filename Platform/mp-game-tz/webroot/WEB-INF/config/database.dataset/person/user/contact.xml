@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="5kfF0xJ5VXe91WbWBrEivQ" name="person.user.contact" label="M#12cn17用户-联系信息" is_valid="Y" note="M#" data_name="PM_USER_CONTACT" data_alias="PM_USER_CNT" data_logic="PM_USER_CONTACT_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="hU4dSLUuhMDa0wYWQslEhw" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="USER_ID" data_type="Integer" data_refer="person.user" data_uniques="link" />
+  <FieldInteger _uuid="BUdrykoatCGG9BzsQPOzkQ" name="network_id" label="M#12cn14网络标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NETWORK_ID" data_refer="system.network" data_uniques="link" />
+  <FieldEnum _uuid="jUVYLoy3fxaxYMsqm2Myog" name="type_cd" label="M#12cn14联系类型" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_type="Enum" data_size="3" data_code="person.user.contact.type" data_uniques="link" />
+  <FieldBoolean _uuid="90EAz]6ZSuzESwPopTh3ow" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldBoolean _uuid="kEgZB7WO0QW0vK[vh30cjQ" name="is_using" label="M#12cn13使用中" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_USING" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldBoolean _uuid="eU7jodLe2yGvXsd3NzAMqw" name="is_default" label="M#12cn16是否默认方式" is_valid="Y" note="M#12cn217是否将该联系方式设置称默认联系方式" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_DEFAULT" data_type="Boolean" />
+  <FieldEnum _uuid="7U9vVkv[rXz7bkTJJ5]9sA" name="privacy_cd" label="M#12cn14隐私设置" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRIVACY_CD" data_type="Enum" data_size="1" data_code="person.user.privacy" />
+  <FieldBoolean _uuid="B0XwlDiLqPNUCkVqS7kyjw" name="disp_able" label="M#12cn14显示可能" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="DISP_ABLE" data_type="Boolean" />
+  <FieldInteger _uuid="ZkskgN1tHkSqhYMRxkhvhA" name="disp_order" label="M#12cn14显示顺序" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="DISP_ORDER" data_type="Integer" />
+  <FieldString _uuid="IUNHdNiYxtNCbPrKM9fupg" name="content" label="M#12cn14联系内容" is_valid="Y" note="M#12cn212该种联系方式下的信息内容" is_null="Y" is_store="Y" is_abstract="N" data_name="CONTENT" data_type="String" data_size="200" />
+  <FieldString _uuid="1ET3ZVjYMoWEC1OCd]OSgg" name="display" label="M#12cn14显示内容" is_valid="Y" note="M#12cn215设定相对用户来说显示出来的内容" is_null="Y" is_store="Y" is_abstract="N" data_name="DISPLAY" data_type="String" data_size="200" />
+  <FieldContent _uuid="w0J0DQVmeXRwj548iXJNrA" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

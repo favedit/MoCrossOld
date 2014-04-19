@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="OUZ7Txg3JeB1DRH1obxTvA" name="develop.progress.dba.confirm.mail" label="上线计划确认" is_valid="Y" note="M#">
+  <Define _uuid="r0FxBhn5KEi9nV4CHbJmrw" name="mail_content_type" label="邮件类型" is_valid="Y" note="M#" value="Html" />
+  <Variable _uuid="U0nH9EOQ0vg9HI8WspVkiA" name="user_full_label" label="申请人" is_valid="Y" note="M#" />
+  <Variable _uuid="OUf6fCDsQ9eHfxYnBj2gnw" name="id" label="编号" is_valid="Y" note="M#" />
+  <Variable _uuid="ZUUUPpwjZEdAF51VnOz1gA" name="project_label" label="项目名称" is_valid="Y" note="M#" />
+  <Variable _uuid="SUjItxlRQ[Me5y7pW]8ArA" name="system_label" label="系统名称" is_valid="Y" note="M#" />
+  <Variable _uuid="cEdD3aabQBhtB2vPpyT9jw" name="plan_date" label="上线时间" is_valid="Y" note="M#" />
+  <Variable _uuid="vEVf[8geW7Lf52onYlxIog" name="content" label="上线内容" is_valid="Y" note="M#" />
+  <Variable _uuid="K06Jyxp3pnlTQvYvFDwymQ" name="create_date" label="申请时间" is_valid="Y" note="M#" />
+  <Variable _uuid="A0VFWhfU10uGqG3BoCJUnQ" name="examine_user_label" label="审核者" is_valid="Y" note="M#" />
+  <Variable _uuid="d0vkHoGXi8FMVajT7HkalA" name="describe" label="分工描述" is_valid="Y" note="M#" />
+  <Source _uuid="rE3YEoLebA]Ex25WaimQiw" name="pass.head" label="通知-邮件标题" is_valid="Y" note="M#">【eUIS】【DBA操作】<![CDATA[<jt:item source='$config.examine_user_label'/>您好，您发布的DBA操作已经操作完毕，请确认。]]></Source>
+  <Source _uuid="QUdpQBs39izUASAHrxJirA" name="pass.body" label="通知-邮件正文" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<jt:define source='DBA操作 → 确认提醒' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'><FONT COLOR='#336699'><jt:item source='$config.examine_user_label'/></FONT>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+       <TR><TD><FONT COLOR='#336699'>您发布的DBA操作已经操作完毕，请确认</FONT></TD></TR>
+       <TR><TD><FONT COLOR='#336699'>确认地址：</FONT><A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#d8571d'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg">&nbsp;<B style='color:#014d99'>DBA操作信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' width='15%'>项目名称</TD>
+         <TD width="30%" class='ItemData'><jt:item source='$config.project_label' /></TD>
+         <TD class='ItemHead' width='15%'>系统名称</TD>
+         <TD class='ItemData'><jt:item source='$config.system_label' /></TD>
+      </TR>
+      <TR>
+         <TD class='ItemHead' width='15%'>上线日期</TD>
+         <TD class='ItemData'><jt:timeSpan source='$config.plan_date' type='date' format='YYYY-MM-DD'/></TD>
+         <TD class='ItemHead' width='15%'>申请日期</TD>
+         <TD class='ItemData'><jt:timeSpan source='$config.create_date' type='date' format='YYYY-MM-DD'/></TD>
+      </TR>
+      <TR>
+          <TD class='ItemHead' width='15%'>内容</TD>
+          <TD colspan="4" class='ItemData' width="800" nowrap=true><Pre><jt:item source='$config.content'/></Pre></TD>
+      </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Variable _uuid="Kkqv0yq1tNnXSpJAIylDmQ" name="redirect" label="地址" is_valid="Y" note="M#" />
+  <Variable _uui1d="WUWbnA8LC65fjxQfQzO]rA" name="home" label="主页" is_valid="Y" note="M#" />
+</Template>
+

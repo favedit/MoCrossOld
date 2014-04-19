@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="50IDMT[oLqW122lSn7Iouw" name="logic.global" label="全局逻辑" is_valid="Y" note="M#" is_server="Y" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" source_name="MoMgLogicGlobal" code="Lga" full_code="LogicGlobal" display_index="41">
+  <Message _uuid="okUd8CC5SJArxTDmX]2siw" name="global.query.storage.request" label="全局信息服务器请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="GlobalQueryStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0001" code_fix="N" />
+  <Message _uuid="kE[lHbl8ZoCBS5j9kuRHkw" name="global.query.storage.response" label="全局信息服务器应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="GlobalQueryStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0002" code_fix="N">
+    <Enum _uuid="F0I53MpC2UdIal0LbD]ppQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N">
+      <Member _uuid="Nk6ASPGkBa3a3FntfNRJqg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="8U68rtzkqDDwt0LbS1E]vg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Struct _uuid="f0VahaufGUyH99vIf7iIiw" name="SGlobalEntry" label="全局数据项" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="XU2q5q8veSRa7QfDSPEPog" name="globalCd" label="全局定义类型" is_valid="Y" note="M#" type="Enum" type_name="EGmGlobal" is_collection="N" />
+      <Item _uuid="hUfDnKLBj0W107TnpCr7jQ" name="dataInteger" label="整型数据" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+      <Item _uuid="FUV0kbFFcaUGBxZFux7lmw" name="dataFloat" label="单浮点数据" is_valid="Y" note="M#" type="Float" is_collection="N" />
+      <Item _uuid="IEAPFFQRY]NaK1Ny7ZDskA" name="dataString" label="字符串数据" is_valid="Y" note="M#" type="String" is_collection="N" data_size="80" />
+    </Struct>
+    <Item _uuid="UUwZtXG8czjPICenDd9zgg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="zECHlafkW2luaQLRwPF3hA" name="globalSet" label="全局数据" is_valid="Y" note="M#" type="Object" type_name="SGlobalEntry" is_collection="Y" data_size="16" />
+  </Message>
+</Group>
+

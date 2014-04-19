@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="kEye9RyG69JvI4n8qkWVrg" name="logic.friend" label="好友系统" is_valid="Y" note="M#" is_server="Y" is_server_cpp="N" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" source_name="MoMgLogicFriend" code="Lfd" full_code="LogicFriend" display_index="49">
+  <Message _uuid="ikIPROcngdnxC100aj7Ilw" name="status.notify" label="状态通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Status" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x0001" code_fix="N">
+    <Struct _uuid="uENtqfDGSrYp7uXj]jHjoA" name="SFriend" label="好友信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="P0tBgKZxaHxz76YCDcwxoA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+      <Item _uuid="0U5tkM0WD3JYJdITTelEtA" name="label" label="玩家的名字" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+      <Item _uuid="NkgHu8g]jtTgHTOICnyZuA" name="level" label="角色等级" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+      <Item _uuid="MUOGrgy2LbjhZ2[6[mwqlQ" name="metier" label="角色职业" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+      <Item _uuid="wkPzj7V98ebPIoViAVNItQ" name="genderTid" label="性别模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="k0KIe7lCV]lPynsiz7stlw" name="relationCd" label="关系类型" is_valid="Y" note="M#" type="Set" type_name="TGmFriendRelationSet" is_collection="N" />
+      <Item _uuid="7084sE9Trc[IDoF4OqpaqA" name="roleTid" label="角色模板编号-" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="60[yYujNUNwruSVl925gjA" name="roleStyleIcon" label="角色图标-" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="UEmRFGpozs2XM5z2]gItjw" name="friendId" label="好友编号-" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    </Struct>
+    <Item _uuid="NE3zK0oUFpHhfLGp9x1evw" name="friendList" label="好友列表" is_valid="Y" note="M#" type="Object" type_name="SFriend" is_collection="Y" data_size="role.friend.max-count" />
+  </Message>
+  <Message _uuid="VUKkNCfjIcbtMSW2Xwjqtw" name="friend.update.chat.notify" label="好友更新聊天通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="FriendUpdateChat" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GCT" code_value="0x0002" code_fix="N">
+    <Enum _uuid="uUxiDUovSigLG9luK796ow" name="EType" label="删除类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="6U7DYT5Yv3lLjbCw4WbBlg" name="unknow" label="没有关系" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="hURSZejt]pBQshtN9my9tw" name="friend" label="好友" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="w0XdApWEVOdX6]1JFrWqug" name="balcklist" label="黑名单" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="0Ef07tVVQ3XckUPrzJ8dhA" name="enemy" label="仇人" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="90[41q4pSDxhMuAPsen5vw" name="all" label="全部" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="6Ue36NeHzH0z4P]w9TFPqA" name="recently" label="最近联系人" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="W0KspLIX6HtQt3bZz5oEjw" name="couple" label="夫妻" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Enum _uuid="uU332J52]H8MNMq4bNEhhw" name="EAddType" label="增加类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="0kyrLgGUCSygy]nctjt8uA" name="unknow" label="无关系" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="Z0[OarFMNVOx7Wv8T8ongQ" name="friend" label="好友" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="v0TZVm[4PfB18P6rKDEbvg" name="balcklist" label="黑名单" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="bkUP[kIJbVItA4G[57DHsg" name="enemy" label="仇人" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="9ETfYF5JL]85NA8PKguzqg" name="recently" label="最近联系人" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="qkyoe4w[oZI8w[7SOa6skQ" name="couple" label="夫妻" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="CkeozGDLU9EAwLe[lqXrjQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="TkFOc0tKIGhKZY8eNyRdsA" name="friendDetail" label="好友数据" is_valid="Y" note="M#" type="Object" type_name="SGpFriend" is_collection="N" />
+    <Item _uuid="0EuM1bDuUtm2xwrx1f]Tkg" name="friendLid" label="好友关联编号" is_valid="Y" note="M#" type="Type" type_name="TLinkId" is_collection="N" />
+    <Item _uuid="MUQOrj7rx7vq4y]RVCrzlw" name="deleteType" label="删除类型" is_valid="Y" note="M#" type="Enum" type_name="EType" is_collection="N" />
+    <Item _uuid="W0F[hCOcDK[dvtWSVQKslg" name="addType" label="增加类型" is_valid="Y" note="M#" type="Enum" type_name="EAddType" is_collection="N" />
+    <Item _uuid="]EI6WGwpNJ21htZ]1Wd1pA" name="wrap" label="好友储存" is_valid="Y" note="M#" type="Object" type_name="SGmFriendWrap" is_collection="N" />
+  </Message>
+  <Message _uuid="7kyCbqSMOgxDoaW[JRePtQ" name="info.target.notify" label="目标提示通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="InfoTarget" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0003" code_fix="N">
+    <Item _uuid="Ek61rv8VInxlFm2iQ5jepQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="Kk6[SOW7yaxn5EcbnYqVhg" name="roleLabel" label="角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+  </Message>
+  <Message _uuid="HEWoYy0nA04BVdCj4X2yow" name="friend.list.chat.notify" label="好友列表聊天服务器通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="FriendListChat" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GCT" code_value="0x0004" code_fix="N">
+    <Item _uuid="ZEyVvEbTtL7rPPNAVkO6vg" name="friendList" label="好友列表" is_valid="Y" note="M#" type="Object" type_name="SGpFriend" is_collection="Y" data_size="role.all.friend.max-count" />
+    <Item _uuid="zE136GblAPirP475HvIvjg" name="enemyList" label="仇人列表" is_valid="Y" note="M#" type="Object" type_name="SGpFriend" is_collection="Y" data_size="role.enemy.max-count" />
+    <Item _uuid="i0ZILTr1YUJOwSARcaEmmQ" name="marryDetail" label="结婚信息" is_valid="Y" note="M#" type="Object" type_name="SGpFriend" is_collection="N" />
+  </Message>
+  <Message _uuid="PEtSJLYNgko9vdWzCilSow" name="list.request" label="好友列表查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FriendList" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0005" code_fix="N" />
+  <Message _uuid="ikxTzdNMBV3N2JbV6AysmQ" name="list.response" label="好友列表查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FriendList" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0006" code_fix="N">
+    <Struct _uuid="nktJlk[cay6zZmqU8ecwlQ" name="SRelation" label="关系信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="3U3bAgMc8Cw3ut5kmAJluA" name="friendId" label="好友对象编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+      <Item _uuid="4UyP6issl0pRGnIIJLg]nA" name="roleId" label="好友编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+      <Item _uuid="IksiZXeawV0AchcawYWmpg" name="label" label="好友姓名" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+      <Item _uuid="S0qM31nDrQEffAwoED1ulg" name="relationCd" label="好友的关系" is_valid="Y" note="M#" type="Set" type_name="TGmFriendRelationSet" is_collection="N" />
+      <Item _uuid="3k4Qkg4V04QnXYYPfBlouA" name="level" label="好友的等级" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+      <Item _uuid="eUoejYhW09]nXo5M[iUrow" name="metierTid" label="角色职业" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="80RyshB5M[uBfoWw0TI6hA" name="genderTid" label="性别模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="T0dShnpE]S5zMzi85z35lQ" name="roleStyleIcon" label="角色图标Tid" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="20MwskqLbEzw6nuNeMA5tw" name="onlineCd" label="在线标志" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+      <Item _uuid="g0chgvxItYesnW7cYAidkA" name="closeValue" label="亲密度" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="TU6pGGOC4Dz2FLlSVjiVvA" name="friendCharmingValue" label="好友魅力值" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="l0Y2vae1350W4UTBvD[dhg" name="consortRoleId" label="配偶角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+      <Item _uuid="wEFpxTfvj1SoDsTEkd1DtQ" name="exVIPLevel" label="额外VIP等级" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="rEOHuJaHdbdj9ukT0Hqtlw" name="exVIPinfo" label="额外VIP信息" is_valid="Y" note="M#" type="Set" type_name="TGmExtraVIPInfoSet" is_collection="N" />
+      <Item _uuid="hUWGKY[0F6QkPZiKGS4Nhw" name="isFriendSend" label="是否已经被赠送过" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    </Struct>
+    <Item _uuid="WkbIzqmH84V9QWNqkG6NnA" name="relationList" label="关系列表信息" is_valid="Y" note="M#" type="Object" type_name="SRelation" is_collection="Y" data_size="role.relation.max-count" />
+    <Item _uuid="bUddLtfNEdP6C[RnG5A7ug" name="roleStyleIconTid" label="玩家图标tid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="8kdS6pi[1U41Rrl82qbDtA" name="roleCharmingValue" label="玩家魅力值" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="Yk1RZ9cVY3cvb4JqBLBvrA" name="consortRoleId" label="配偶角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="hUhXBw5pHzvzc3Bb8NtIrw" name="currentFriendCount" label="当前好友个数" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="BEtagmeWct27eUFs4W8Qhw" name="friendLimitCount" label="好友上限" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="IE77Yis3N77FWjxpVw5XlQ" name="currentBlackCount" label="当前黑名单个数" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="zkQB4G2w]o]WXzp5U6Lpsw" name="blackLimitCount" label="黑名单上限" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="VUvRBA79e6Vy][wcokZRhQ" name="currentEnemyCount" label="当前仇人个数" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="xEz80AxXLB2UXB8]DVmutA" name="enemyLimitCount" label="仇人最大限制" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="uEC9UovzKP68LdGWQ1TzqA" name="currentRecentlyCount" label="最近联系人当前个数" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="3UwizTAeCZEm7P3xHoNzgw" name="recentlyLimitCount" label="最近联系人上限个数" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="G05AhphIUw7420J]3EkisA" name="consortRoleLabel" label="配偶角色名字" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+  </Message>
+  <Message _uuid="cEY40CnPDbIdkH4j41r[sg" name="find.query.request" label="查找好友请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FindQuery" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0007" code_fix="N">
+    <Item _uuid="d0pZQ8lU0l9YQjTLsi1htw" name="playerId" label="玩家编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="r0b91QfwbNoateyH7DUfuQ" name="label" label="查询玩家的名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    <Item _uuid="904ne6kB4dW4GU[rCPkZjQ" name="genderCd" label="性别" is_valid="Y" note="M#" type="Enum" type_name="EGmGender" is_collection="N" />
+  </Message>
+  <Message _uuid="6EJxgdkl5AuOgmOieznygw" name="find.query.response" label="查询好友应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FindQuery" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0008" code_fix="N">
+    <Enum _uuid="KkbQeLPVl7HUuXpnOxenkA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="pUasup0pq5]6BEihVB24rQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="7kWpbDGNnMv2nBFJmEPqrg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="nEHWEqUm4jBLpWe7uTKMow" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="FkB8xr71NFRx1izR[r4hhA" name="playerId" label="玩家的id" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="[ElkQuKYMGC08PPQApEclw" name="label" label="玩家的名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    <Item _uuid="oUvZlhfsBm]zeoFp[phUtw" name="roleLevel" label="角色等级" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+    <Item _uuid="WE7VlPpNXOk7C6vBWu2epg" name="roleMetier" label="角色职业" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+    <Item _uuid="tUIfRsXeEGMvy8YoEv1VkA" name="roleTid" label="角色模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="5Uck6RFSS765R6pcrlJgrQ" name="genderTid" label="性别模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="pkwrJ7HkmvN9XSekVp[ztA" name="roleStyleIcon" label="角色图标" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="p0BNjc1htzKGM5qPQMI6pg" name="friendId" label="好友编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="2U67dtoSqhPqD3L26rBBtA" name="make.request" label="添加好友请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Make" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0009" code_fix="N">
+    <Item _uuid="P0QLHfdAwwyPmHNNNbERjg" name="friendId" label="好友对象ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="Q0uuc5h52WLYcxBHahvBjA" name="roleId" label="添加的角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="KkWt5Gx9FEWMxO0vuK5GoQ" name="roleLabel" label="添加的角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+    <Item _uuid="0EUR4hTZoVwsELMS2hDkhw" name="relationCd" label="添加关系类型" is_valid="Y" note="M#" type="Enum" type_name="EGmFriendRelation" is_collection="N" />
+  </Message>
+  <Message _uuid="c0Stv9X2fj42kgDMW07bmg" name="make.response" label="添加好友应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Make" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000A" code_fix="N">
+    <Enum _uuid="90hmwQTkygxTbN9eraFUig" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="akAVBuZ6az2GFfHPph]apQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="MUPHlJXur4aOD]VfrQyohQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="20Bn]9kSG2fyxMcErBO4lQ" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="9EZ3iWEB]oev7u9SjbxQig" name="make.friend.domain.request" label="添加好友主域请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="MakeFriendDomain" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x000B" code_fix="N">
+    <Item _uuid="ukKavRuUglns1aHNzdMVmg" name="friendDetail" label="好友信息" is_valid="Y" note="M#" type="Object" type_name="SGpFriend" is_collection="N" />
+  </Message>
+  <Message _uuid="MkmWyFkzKiiFYvIzwXrRmg" name="make.friend.storage.request" label="添加好友存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="MakeFriendStorage" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x000C" code_fix="N">
+    <Item _uuid="UEPoRAsHdBCYUphC5wvqqQ" name="friendDetail" label="好友信息" is_valid="Y" note="M#" type="Object" type_name="SGpFriend" is_collection="N" />
+  </Message>
+  <Message _uuid="OUMhfR54VX0Z4]2dQbWZvQ" name="make.friend.storage.response" label="添加好友存储响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="MakeFriendStorage" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x000D" code_fix="N">
+    <Item _uuid="K0WZetErCyBzch2VdL13iw" name="friendDetail" label="好友信息" is_valid="Y" note="M#" type="Object" type_name="SGpFriend" is_collection="N" />
+  </Message>
+  <Message _uuid="QkzCUFV58D2]AM2KJvKqqg" name="make.friend.domain.response" label="添加好友主域响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="MakeFriendDomain" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x000E" code_fix="N">
+    <Item _uuid="wERGVb[yniNhwHiuVUOsmw" name="friendDetail" label="好友信息" is_valid="Y" note="M#" type="Object" type_name="SGpFriend" is_collection="N" />
+  </Message>
+  <Message _uuid="sEwP41OMHUkwMKXHqqTFig" name="change.friend.relation.domain.notify" label="改变好友关系主域通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ChangeFriendRelationDomain" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x000F" code_fix="N">
+    <Item _uuid="WUsQGHydPZpZkmSHiNYalA" name="friendId" label="好友编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="9ErHrymvSOfhUPSbaXK7gA" name="relationCd" label="添加关系类型" is_valid="Y" note="M#" type="Enum" type_name="EGmFriendRelation" is_collection="N" />
+  </Message>
+  <Message _uuid="iUiil0]XUIkkTXywBcWzvQ" name="change.friend.relation.storage.notify" label="改变好友关系存储通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ChangeFriendRelationStorage" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0010" code_fix="N">
+    <Item _uuid="NUWbrSHIhfit4Xj5vOgntQ" name="friendId" label="好友编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="008OgjBLbLHp1Pr1ZdYHqw" name="relationCd" label="添加关系类型" is_valid="Y" note="M#" type="Enum" type_name="EGmFriendRelation" is_collection="N" />
+  </Message>
+  <Message _uuid="x09PoObYZ[QtKsSB[v1Ilw" name="all.make.friend.request" label="全部添加好友请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="AllMake" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0014" code_fix="N">
+    <Struct _uuid="yEkilqgx]Iv03xIP91x4hA" name="STargetRole" label="目标角色结构体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="gERn1H2NobZcHG7lHjlNpg" name="targetRoleId" label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    </Struct>
+    <Item _uuid="NEr34OM[JOTGbEgirjicog" name="targetRoleList" label="目标角色列表" is_valid="Y" note="M#" type="Object" type_name="STargetRole" is_collection="Y" data_size="all.make.friends.max-count" />
+  </Message>
+  <Message _uuid="[Ubz7QYQGuktveDYXRC]iw" name="all.make.friend.domain.request" label="全部添加好友主域请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AllMakeDomainFriend" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0015" code_fix="N">
+    <Struct _uuid="vUufIO4OaW5vjrhBOyoGhA" name="STargetRole" label="目标角色结构体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="9kP06ojcLj7Vwon0CHpkpw" name="friendDetail" label="好友信息" is_valid="Y" note="M#" type="Object" type_name="SGpFriend" is_collection="N" />
+    </Struct>
+    <Item _uuid="XEybHQ09JXRsCi3v4UNkmg" name="targetRoleList" label="目标角色列表" is_valid="Y" note="M#" type="Object" type_name="STargetRole" is_collection="Y" data_size="all.make.friends.max-count" />
+  </Message>
+  <Message _uuid="wECqKVgwrVEvQwrZxNsypA" name="all.make.friend.storage.request" label="全部添加好友存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AllMakeStorageFriend" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0016" code_fix="N">
+    <Struct _uuid="WkJBqubcI[AXEp0WrvNUpA" name="STargetRole" label="目标角色结构体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="ckxB9qNk61aMhm6cAMpZsw" name="friendDetail" label="好友信息" is_valid="Y" note="M#" type="Object" type_name="SGpFriend" is_collection="N" />
+    </Struct>
+    <Item _uuid="tELxE1oZ]2H6]s2kwNNXtA" name="targetRoleList" label="目标角色列表" is_valid="Y" note="M#" type="Object" type_name="STargetRole" is_collection="Y" data_size="all.make.friends.max-count" />
+  </Message>
+  <Message _uuid="tknQNL0oOn1ziknP]C3boQ" name="all.make.friend.storage.response" label="全部添加好友存储响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AllMakeStorageFriend" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x0017" code_fix="N">
+    <Struct _uuid="IEIFsVAaYEsh8Sxr]8zznw" name="STargetRole" label="目标角色结构体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="a0hBTaDn2mnxRYr4PY10uQ" name="friendDetail" label="好友信息" is_valid="Y" note="M#" type="Object" type_name="SGpFriend" is_collection="N" />
+    </Struct>
+    <Item _uuid="UEWLxUhkmn6fdzRO4kKKvg" name="targetRoleList" label="目标角色列表" is_valid="Y" note="M#" type="Object" type_name="STargetRole" is_collection="Y" data_size="all.make.friends.max-count" />
+  </Message>
+  <Message _uuid="H0R4e6f5PG8p7XY9mEFzng" name="all.make.friend.domain.response" label="全部添加好友主域响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AllMakeDomainFriend" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0018" code_fix="N">
+    <Struct _uuid="IU6eqE4]pc4kdV6W0gfqtQ" name="STargetRole" label="构体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="EEq44j81lsOh]ld7ap5Arg" name="friendDetail" label="好友信息" is_valid="Y" note="M#" type="Object" type_name="SGpFriend" is_collection="N" />
+    </Struct>
+    <Item _uuid="ZEgAe4ItKgNsNiDrSsUwjQ" name="targetRoleList" label="目标角色列表" is_valid="Y" note="M#" type="Object" type_name="STargetRole" is_collection="Y" data_size="all.make.friends.max-count" />
+  </Message>
+  <Message _uuid="cEsrcac[uOhYTBKEJZzyuA" name="all.make.friend.response" label="全部添加好友响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="AllMakeFriend" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0019" code_fix="N">
+    <Enum _uuid="8U4HbtoL[PsguBbrXuXksg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="BUEvqSu0thZUGFdFkuiolQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="V03cWsNKmifjZiRCqd2pkg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="zEWXn[HBt9SkZ3CJE]0XvQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="20XfkG1dtW5dqGDygQ4iqQ" name="all.world.play.effect.notify" label="全世界特效播放通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="AllWorldPlayEffect" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x001D" code_fix="N" />
+  <Message _uuid="rkr4m8NvI8q0SPJBEQZksg" name="remove.request" label="删除好友请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Remove" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x001E" code_fix="N">
+    <Item _uuid="20PXDy7cye6AuR4S3Sy8rA" name="roldId" label="玩家编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="EEk5h5zlyNSqkvadvzR]qw" name="friendId" label="好友关系ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="u0DKru6W8QfP0velUv[0iQ" name="type" label="删除类型" is_valid="Y" note="M#" type="Enum" type_name="EGmFriendRelation" is_collection="N" />
+  </Message>
+  <Message _uuid="zkBBE9GrjX6[dux5y4xKvg" name="remove.response" label="删除好友应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Remove" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x001F" code_fix="N">
+    <Enum _uuid="xEq2a7BtQ02IJP6hnln0jA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="XEic6eEpEtgXAJcA3li3sg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="n0i8pDu6UPCXXUe9a[Pcsw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="5E]rXhJoVRoAnS0pNinWvQ" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="OkvK9dEqSmUD2OR10a5kkw" name="friendId" label="好友对象编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="VEB]Gk7umMsZEPkvyss7gA" name="playerId" label="玩家的编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="U0qcVANlw7qzZR68f3mnsA" name="label" label="玩家的名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+    <Item _uuid="40iTv2HTatkCsmlpMHU2jw" name="relationCd" label="关系" is_valid="Y" note="M#" type="Enum" type_name="EGmFriendRelation" is_collection="N" />
+  </Message>
+  <Message _uuid="UEk4hbBn7mJ]]f0TUk4DhA" name="remove.friend.domain.notify" label="删除好友主域通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RemoveFriendDomain" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0022" code_fix="N">
+    <Item _uuid="pEC3C0PiEadxSxHnxaxfsw" name="friendId" label="好友编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="70Zyx79stdR4l94kleZKsQ" name="remove.friend.storage.notify" label="删除好友存储通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RemoveFriendStorage" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0023" code_fix="N">
+    <Item _uuid="1kGvzOErsV9ZMyYSv4QsqA" name="friendId" label="好友编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="E0XXTAFAXl6Ob4ua12ZJrQ" name="recommend.friends.request" label="推荐好友请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RecommendFriends" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0024" code_fix="N" />
+  <Message _uuid="Lk6sVGIhO0rtLnT]oSuXsg" name="recommend.friends.response" label="推荐好友应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RecommendFriends" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0025" code_fix="N">
+    <Struct _uuid="RURuaHlauQGv6WXinbnYuw" name="SRole" label="玩家信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="JUoo]vpmnjb9y6pebhoTuQ" name="playerId" label="玩家的id" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+      <Item _uuid="PUxFLsSBS2xUySv]n4MVvg" name="roleLabel" label="玩家的名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+      <Item _uuid="HU9VJmrM5CDtfYjFMqd4sg" name="genderCd" label="性别" is_valid="Y" note="M#" type="Enum" type_name="EGmGender" is_collection="N" />
+      <Item _uuid="gUAkSEYStq]1osnAXS8nrQ" name="roleLevel" label="角色等级" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+      <Item _uuid="5EVUOmlxWDAeD8dmoTexrQ" name="roleMetier" label="角色职业" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="zUGkgUATk6f6SNF40AH[iQ" name="luckValue" label="缘分值" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="iE7YA]Dd9QbMaEkEt3wmkg" name="roleStyleIcon" label="角色图标" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    </Struct>
+    <Item _uuid="X0hFoN6G0jlUwZ8d8KTIvQ" name="roleList" label="玩家列表" is_valid="Y" note="M#" type="Object" type_name="SRole" is_collection="Y" data_size="recommend.friends.numbers.max-count" />
+  </Message>
+  <Message _uuid="2kgHvC3hS73JYjBZqZpijQ" name="friend.bless.request" label="好友祝福请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FriendBless" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0026" code_fix="N">
+    <Struct _uuid="E0QnY0zNNsSvuArW15qTrQ" name="SRole" label="玩家" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="X0NBiHUSlIZIxd2PY4X2hA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    </Struct>
+    <Item _uuid="nU0BhbpglsczUR0I8ZHYmw" name="roleList" label="角色列表" is_valid="Y" note="M#" type="Object" type_name="SRole" is_collection="Y" data_size="50" />
+  </Message>
+  <Message _uuid="7UFKCWj7KOFjLDJKmjCTpQ" name="friend.bless.response" label="好友祝福应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FriendBless" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0027" code_fix="N">
+    <Enum _uuid="u09AZuQbj3764OAjvjtTrw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N">
+      <Member _uuid="QEln9qo1[QGjOtTvKAU]lg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="QU9VqLiEaE[HaPbp3NJVrA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+  </Message>
+  <Message _uuid="eUXduCzrXgx4k8yKi62Bng" name="role.levelup.bless.Client.notify" label="玩家升级祝福通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RoleLevelupBlessClient" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0028" code_fix="N">
+    <Item _uuid="Ak8Hqw2TCWxvgUxNZCrnug" name="sendRoleId" label="发送祝福玩家ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="G0hmZggfQ7jxczc5bIC[kw" name="sendRoleLabel" label="发送祝福玩家的姓名" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    <Item _uuid="akDrMYW6CjXZmjUc28O5vg" name="sendRoleLevel" label="发送祝福玩家的等级" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="]U9WXTPoZP2eg4v2a8IMsA" name="blessCount" label="祝福次数" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="n0HsHVMgaJrNfzShhviTgw" name="friend.relation.update.notify" label="好友关系更新通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FriendRelationUpdate" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0029" code_fix="N">
+    <Struct _uuid="yECXUFz2duml2SfsL9pCtA" name="SRole" label="玩家的信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="h0Zy87lQiOmsPt9NRHddvQ" name="friendId" label="好友关系ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+      <Item _uuid="9Uld]mMgVHl06E4Ihcw0gA" name="roleId" label="添加的玩家的编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+      <Item _uuid="lEEpoX3iEIo4VON5uDmGiA" name="rolelabel" label="添加的玩家的名字" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+      <Item _uuid="Lk8WVOQ3vsWESuEVtZ3TkQ" name="roleLevel" label="玩家等级" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+      <Item _uuid="9Egxn[7SgSIJpVlK4SjpsQ" name="genderTid" label="性别模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="Fk574tMk]GkGT4jmYN05tQ" name="metierTid" label="职业Tid" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="7EOoI95[uzsZnMUPEpNErg" name="relationCd" label="好友关系类型" is_valid="Y" note="M#" type="Enum" type_name="EGmFriendRelation" is_collection="N" />
+      <Item _uuid="NkTZHjet]RlRTYK6y80XiA" name="modifyCd" label="好友关系更改类型" is_valid="Y" note="M#" type="Enum" type_name="EGmFriendModify" is_collection="N" />
+      <Item _uuid="6UKdEYQc064w5DWThvx9jA" name="onlineCd" label="在线标志" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+      <Item _uuid="0EST]Ih0w3czppjAH3sMnA" name="closeValue" label="好友亲密度" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="xkyZvcLe7dM2eBzkx1sXoQ" name="roleStyleIcon" label="角色图标" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="vkrPfZP42ptBFNjcH1XBnQ" name="exVIPLevel" label="额外VIP等级" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="dkm3z0WsVIFT6HFh2x]ziw" name="exVIPinfo" label="额外VIP信息" is_valid="Y" note="M#" type="Set" type_name="TGmExtraVIPInfoSet" is_collection="N" />
+      <Item _uuid="F010Vvsz6agyTQ13174Upw" name="isFreindSend" label="是否为好友赠送" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    </Struct>
+    <Item _uuid="20mSldQvAffDjHtv91fzrw" name="updateList" label="好友关系更新列表" is_valid="Y" note="M#" type="Object" type_name="SRole" is_collection="Y" data_size="8" />
+  </Message>
+  <Message _uuid="BUB1kpfcnBNRiANZaObyqA" name="query.enemy.request" label="查询仇人" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="QueryEnemy" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x002E" code_fix="N">
+    <Item _uuid="xkzScfDKScZWjadi40VwjQ" name="enemyRoleId" label="仇人角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="2kBIxsNH[[jVK7VKkVF2sw" name="revengeType" label="仇人类型" is_valid="Y" note="M#" type="Enum" type_name="EGmRevengeType" is_collection="N" />
+  </Message>
+  <Message _uuid="pE1CjdmIx0qfQCN2[fRNsQ" name="query.enemy.response" label="查询仇人响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="QueryEnemy" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x002F" code_fix="N">
+    <Enum _uuid="OUGiqdHWLF5J3]vcpLi5mw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="c01AMRyTtaHmTqjkRZXWjQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="K0fPVCPT6kTrTZ11cfOUqQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="rk4ZOoiGYlajt9F2ohl]hQ" name="mapTid" label="地图模板Tid" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="[0yvm8LX3qvaZSia2AEmoQ" name="mapName" label="地图名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="64" />
+    <Item _uuid="N0zGc4EBnF4Yu]QVQmx6lw" name="coordinate" label="坐标" is_valid="Y" note="M#" type="Struct" type_name="SGmPoint3" is_collection="N" />
+    <Item _uuid="WkgWnZ1dP0]EI3EXrzGSsg" name="enemyRoldId" label="仇人角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="]0Y]g2Q2qDKU2k]eQ1A]hw" name="enemyName" label="仇人姓名" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    <Item _uuid="Y0[MmacLRMKVhZmlBqgjgw" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="jEIwx6qrOzn8fN9NGeUppw" name="revengeType" label="仇人类型" is_valid="Y" note="M#" type="Enum" type_name="EGmRevengeType" is_collection="N" />
+    <Item _uuid="y0gu3zkuWY0184M7CGvlpg" name="enemyCountryType" label="仇人国家类型" is_valid="Y" note="M#" type="Enum" type_name="EGmRace" is_collection="N" />
+  </Message>
+  <Message _uuid="zEdMVd[IaFYy2y2moW69tQ" name="transfer.enemy.request" label="传送仇人请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TransferEnemy" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0030" code_fix="N">
+    <Item _uuid="ckpZFRfNNCc5J6J0f[Aeqg" name="enemyRoleId" label="仇人角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="I0vhZ9q7M2OElsQqzLhKjQ" name="transfer.enemy.response" label="传送仇人响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TransferEnemy" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0031" code_fix="N">
+    <Enum _uuid="bEjealrTiYacZjYGJxFxnw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="oE0[0CNxpxeK0a7uKid1tw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="lkKsoCTbaH[x1q9mccmHmA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="X089XSuLoOvYG1iE7SkBlQ" name="mapTid" label="地图模板Tid" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="kU5hMay6FtX4pHIK0H[Ntw" name="coordinate" label="坐标" is_valid="Y" note="M#" type="Struct" type_name="SGmPoint3" is_collection="N" />
+    <Item _uuid="eUNPz5OjH6psFW0C3SYjsg" name="enemyRoldId" label="仇人角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="EkGC4YQxljFd]]oqDTYcuw" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="PUO5yYUAERpISjnfglEorA" name="send.flower.request" label="送花请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="SendFlower" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0032" code_fix="N" />
+  <Message _uuid="GEXch9AVtSBDWcIiB46rlQ" name="send.flower.response" label="送花响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="SendFlower" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0033" code_fix="N">
+    <Enum _uuid="f0SbrF6LpcmhlRUsfGvhrA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="xkwB[VnqeaHxvAFKTTYZkA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="akjkaxGZFAqGkGR6eEhLqQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Struct _uuid="yEauhLNq8e6ZwS4t2C98vw" name="SItem" label="物品" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="pU5Dg0a0ST9EEq9qK293jA" name="itemTid" label="物品tid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="xUMpZu2CLpmgmsxyQSapjA" name="itemLabel" label="物品名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    </Struct>
+    <Item _uuid="Y0rpcBH65KOaS5ibh0d0qw" name="itemList" label="物品链表" is_valid="Y" note="M#" type="Object" type_name="SItem" is_collection="Y" data_size="5" />
+    <Item _uuid="lktY9jEXJEPYbb7de5wGjg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="4Ex[ARL9pgoMIWQYv3uluw" name="send.flower.confirm.request" label="发送鲜花确认请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="SendFlowerConfirm" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0034" code_fix="N">
+    <Enum _uuid="aU6GVbwqYr2kNB7o7ysNkw" name="EUseType" label="使用类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="K05wXE2lGYS5aWe]ZDhytw" name="DirectUse" label="直接使用" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="N0LEgNIZPvd1OaTHCsndlA" name="SelectPlayerUse" label="选择玩家使用" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="]0n[GThxh5GRUybSKY55hA" name="itemOid" label="物品oid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="B0gfojU0xhMKjTWMK8TFuQ" name="itemTid" label="物品tid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="TEQTQFdgUkWJV03oT1fpgw" name="itemCount" label="物品数量" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="a0Z1GCmGbyThMNgfu4VPpw" name="targetRoleLabel" label="目标角色姓名" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    <Item _uuid="GUC0JsOfkYokWP8W0tapqg" name="useType" label="使用类型" is_valid="Y" note="M#" type="Enum" type_name="EUseType" is_collection="N" />
+  </Message>
+  <Message _uuid="qUxnpkxE2FqGfM9xdsbPpA" name="send.flower.confirm.response" label="发送鲜花确认响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="SendFlowerConfirm" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0035" code_fix="N">
+    <Enum _uuid="]kjU4LMRpp6r]U[dDPF[gA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="XE6NovS63LWkutKaYGIvtw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="K0XdUgGwmyHvAXm4qo6UsA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="L0VapVz7rCtG6gX6NXPovg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="iETzkFhucj6pJkRESTNTog" name="sourceTid" label="资源tid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="v0KG9nj3XiHlLUkb0[8bpw" name="roleId" label="玩家tid" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="zEaHYM9MLZqmSr8NmEuBpQ" name="send.flower.target.notify" label="发送鲜花目标通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="SendFlowerTarget" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0036" code_fix="N">
+    <Item _uuid="UUaKaljblAbpCt0IGt6fnw" name="senderRoleLabel" label="赠送者角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    <Item _uuid="h0nYjLeqRjoO]2[U6FRtmQ" name="flowerLabel" label="鲜花名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="0EMa9J3LiU2G7bLyC1[ImA" name="flowerCount" label="鲜花个数" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="n0V1xuaetw0XNBZvpEbTqA" name="scene.increase.close.value.domain.request" label="场景增加亲密度主域请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SceneIncreaseCloseValueDomain" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0037" code_fix="N">
+    <Item _uuid="QEmzUZs]WBJt9wa1o2VFog" name="incraseCloseValue" label="增加亲密度" is_valid="Y" note="M#" type="Object" type_name="SGmFriendCloseValueIncrease" is_collection="N" />
+  </Message>
+  <Message _uuid="90N3HXyufswMzftZbcK2vw" name="friend.increase.close.value.storage.request" label="好友增加亲密度存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="FriendIncreaseCloseValueStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0038" code_fix="N">
+    <Item _uuid="6ksbB6HZAQfoNQyCWVeoqQ" name="incraseCloseValue" label="增加亲密度" is_valid="Y" note="M#" type="Object" type_name="SGmFriendCloseValueIncrease" is_collection="N" />
+  </Message>
+  <Message _uuid="XkdDqHkkW84]9q]Pn6o2gw" name="friend.increase.close.value.storage.response" label="好友增加亲密度存储响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="FriendIncreaseCloseValueStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x0039" code_fix="N">
+    <Item _uuid="KUISrD7[iXHqZ0xNzjpmvg" name="incraseCloseValue" label="增加亲密度" is_valid="Y" note="M#" type="Object" type_name="SGmFriendCloseValueIncrease" is_collection="N" />
+  </Message>
+  <Message _uuid="aE6gdZUTC5UEPv4qIWXpgA" name="scene.increase.close.value.domain.response" label="场景增加亲密度主域响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SceneIncreaseCloseValueDomain" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x003A" code_fix="N">
+    <Item _uuid="3Uh8[EcbstLQIR8aA0dHgA" name="incraseCloseValue" label="增加亲密度" is_valid="Y" note="M#" type="Object" type_name="SGmFriendCloseValueIncrease" is_collection="N" />
+  </Message>
+  <Message _uuid="M0A6gIKCDGMm8aAM1IyPsg" name="scene.increase.close.value.chat.notify" label="场景增加亲密度聊天通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SceneIncreaseCloseValueChat" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GCT" code_value="0x003B" code_fix="N">
+    <Item _uuid="vUVMaMoNwYLNJEY8dy04ug" name="incraseCloseValue" label="增加亲密度" is_valid="Y" note="M#" type="Object" type_name="SGmFriendCloseValueIncrease" is_collection="N" />
+  </Message>
+  <Message _uuid="50Zr7gH3zbaih7XgI6hCgA" name="chat.increase.close.value.scene.notify" label="聊天增加亲密度场景通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ChatIncreaseCloseValueScene" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="GSC" code_value="0x003C" code_fix="N">
+    <Item _uuid="Zk8AlCgebRI0vLcBRQ[ZiQ" name="incraseCloseValue" label="增加亲密度" is_valid="Y" note="M#" type="Object" type_name="SGmFriendCloseValueIncrease" is_collection="N" />
+  </Message>
+  <Message _uuid="ak55NZPafMAWsPqIVkbVrw" name="get.exp.client.notify" label="获得经验客户端通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetExpClient" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x003D" code_fix="N">
+    <Struct _uuid="0Uu7rAxuyQNm3G4E7PL3lA" name="SRole" label="角色" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="bkp]4zqzoO7DxGUf9nvOvw" name="roleLabel" label="角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    </Struct>
+    <Item _uuid="zE]CO6IqFHxuoCobVE7ztg" name="roleList" label="角色列表" is_valid="Y" note="M#" type="Object" type_name="SRole" is_collection="Y" data_size="5" />
+    <Item _uuid="UU4SZxe1BJFjIiXwjmeaow" name="exp" label="经验" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="WEo2CU4MkYX2Z5LSO6T8tQ" name="login.load.friend.list.storage.notify" label="登陆加载好友列表存储通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="LoginLoadFriendListStorage" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GLG" target_type="GSR" code_value="0x003E" code_fix="N">
+    <Item _uuid="Y0qkCP0U8a]XZv3[f[ZcpA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="6EHaWgNWmGM9Q4ZsQCbLiw" name="update.recently.scene.notify" label="更新最近联系人场景通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="UpdateRecentlyScene" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="GSC" code_value="0x003F" code_fix="N">
+    <Enum _uuid="i0IemACf3QxI6QkfCoDIlQ" name="EOperate" label="操作" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="JkzTU]YYXWt6[Roho0k[uQ" name="AddRelation" label="增加关系" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="z0RRAzR68kbkoxfdoYSGuw" name="DelRelation" label="删除关系" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="xUw13Zp8btRMbxwYw9ZIog" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="IkOmd0Vct]Uc8vrenYyytA" name="recentlyLink" label="最近联系人列表" is_valid="Y" note="M#" type="Object" type_name="SGmRecentlyLink" is_collection="N" />
+    <Item _uuid="EE62nMCT9FX2L1I3xISUjg" name="operate" label="操作" is_valid="Y" note="M#" type="Enum" type_name="EOperate" is_collection="N" />
+  </Message>
+  <Message _uuid="9En23fwSbBBkWI1bCakGrw" name="get.marry.request" label="结婚请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetMarry" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0040" code_fix="N">
+    <Item _uuid="REl6PsHKy1[0dofc1apXqg" name="weddingType" label="婚礼类型" is_valid="Y" note="M#" type="Enum" type_name="EGmWedingType" is_collection="N" />
+  </Message>
+  <Message _uuid="fkbJDd3A4YTdn9]V9eNUrw" name="get.marry.response" label="结婚响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetMarry" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0041" code_fix="N">
+    <Enum _uuid="SUCl20FUK9AUQEVx6XRBgg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="d06wsfADvyQOLKYuse]UnA" name="Agree" label="同意" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="k0JmzteN5NBpAbnBKr7VoQ" name="Disagree" label="不同意" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="N0UZTeclm4Qx86wH9G5jvQ" name="targetRoleId" label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="0UlNqklrqsS7Ryl8Y1XFlQ" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="GU7W]jUhBxrdqv3szjcLoQ" name="get.marry.affirm.requet" label="结婚确认请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetMarryAffirm" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0042" code_fix="N">
+    <Item _uuid="XkUj]37SeYHnM0ZUWnPxtA" name="captainRoleId" label="队长角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="108SRypMZjtBOlURLPtNog" name="captainRoleLabel" label="队长角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    <Item _uuid="4EpOUgnyYQGlzm3IPa4erw" name="weddingType" label="婚礼类型" is_valid="Y" note="M#" type="Enum" type_name="EGmWedingType" is_collection="N" />
+  </Message>
+  <Message _uuid="90QXbCBoj44ZTHiZu4Ytjw" name="get.marry.affirm.response" label="结婚确认响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetMarryAffirm" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0043" code_fix="N">
+    <Enum _uuid="u0x]jHmh1ooEOd9uT]bNuA" name="EOperate" label="操作" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="mUxm[vBLH6g5Lq]VeqqQgA" name="Agree" label="同意" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="0UR4ZcMkfpSgpR0OHviZhg" name="Disagree" label="不同意" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="1kID4jeJRR0ep7vjuvO8gw" name="captainRoleId" label="队长角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="Mk3Tmnb8CYYZFvkHegh7vA" name="operate" label="操作" is_valid="Y" note="M#" type="Enum" type_name="EOperate" is_collection="N" />
+    <Item _uuid="pk2QyRDEJ5jk2f27qYuUsQ" name="weddingType" label="婚礼类型" is_valid="Y" note="M#" type="Enum" type_name="EGmWedingType" is_collection="N" />
+  </Message>
+  <Message _uuid="nUzDUXz]L7q7Jzvc8K2WqA" name="divorce.requst" label="离婚请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Divorce" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0044" code_fix="N">
+    <Item _uuid="f0PHilCZnMHzf6rgXKmujw" name="divorceType" label="离婚类型" is_valid="Y" note="M#" type="Enum" type_name="EGmDivorce" is_collection="N" />
+  </Message>
+  <Message _uuid="v0XRWOvxyb2Yg91xcWHwgg" name="divorce.response" label="离婚响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Divorce" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0045" code_fix="N">
+    <Enum _uuid="skOu]LWn4Cva0WsGCElhrg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="A0uQhUf6oh29lPDLRNQasw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="CkLbqhQSmeKv6cXmfLCthA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="40IJ8FCuIcij80DZnIAUrA" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="s04g[yiLClEtay7QZcaMmQ" name="targetRoleId" label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="TU4hXKbvUulGt6Vuqhiitg" name="divorce.affirm.request" label="离婚确认请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DivorceAffirm" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0046" code_fix="N">
+    <Item _uuid="HU[nz]1jKakUdmPeZcPChQ" name="targetRoleId" label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="MU63HXd3q5nWJxGzQR2Tow" name="targetLabel" label="目标名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    <Item _uuid="OkcXYEMVBMjEJ7AEi2RfsA" name="divorceType" label="离婚类型" is_valid="Y" note="M#" type="Enum" type_name="EGmDivorce" is_collection="N" />
+  </Message>
+  <Message _uuid="8k92xS1O6KOal2bR[2dWgA" name="divorce.affirm.response" label="离婚确认响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DivorceAffirm" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0047" code_fix="N">
+    <Enum _uuid="q0p5dsEvn0Dbryy6[jEKrA" name="EOperate" label="操作" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="c0w[ikK4J[qh6j4Wll5lig" name="Agree" label="同意" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="Bk8RbvTP04fb7CaMU[swmg" name="Disagree" label="不同意" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="U0Y9ErCSIT8XgmeGh[dTtQ" name="affirmOperat" label="确认操作" is_valid="Y" note="M#" type="Enum" type_name="EOperate" is_collection="N" />
+    <Item _uuid="hEfhDfarvNDIfpOX75d8lA" name="divorceType" label="离婚类型" is_valid="Y" note="M#" type="Enum" type_name="EGmDivorce" is_collection="N" />
+    <Item _uuid="9kYo0sNbih7xFYNBlfzlqg" name="requestRoleId" label="请求者角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="]03mm2kEMfZQoSm8uDCFow" name="get.marry.target.role.notity" label="结婚目标角色通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetMarryTargetRole" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0048" code_fix="N" />
+  <Message _uuid="IU95LBKxDeiiRgzI6HiZuA" name="divorce.target.role.notity" label="离婚目标角色通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DivorceTargetRole" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0049" code_fix="N" />
+  <Message _uuid="IUWuLrNYV21exgbnu0RThQ" name="get.marry.domain.request" label="结婚主域请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="GetMarryDomain" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x004A" code_fix="N">
+    <Item _uuid="3EnDigg4YUtc1mGd]]b2og" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="k0ACWcouncSQ9ijdsKHPrw" name="targetRoleId " label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="CUdO]RL5ncbqQHORZ2ChkQ" name="friendId" label="好友编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="hki]I947hv44TVd7YaZ7nA" name="weddingType" label="婚礼类型" is_valid="Y" note="M#" type="Enum" type_name="EGmWedingType" is_collection="N" />
+  </Message>
+  <Message _uuid="DkyzitoSiWYAiTo[NqC3oA" name="get.marry.storage.request" label="结婚存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="GetMarryStorage" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x004B" code_fix="N">
+    <Item _uuid="sU]1MafkbCtW9mKEQ]Mluw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="q0yOllNeYVPGWqXZaCR1vw" name="targetRoleId " label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="IEcobXLc88qqy4nS3kMKig" name="husbandFriendId" label="丈夫好友编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="nknjJfGXlqcGRPRr6EiHnQ" name="wifeFriendId" label="妻子好友编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="fkBBtVQ8rw6v4yvzI5PQrw" name="weddingType" label="婚礼类型" is_valid="Y" note="M#" type="Enum" type_name="EGmWedingType" is_collection="N" />
+  </Message>
+  <Message _uuid="RUJykDjkK011U3CDpzWbvQ" name="get.marry.domain.response" label="结婚存储响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="GetMarryScene" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x004C" code_fix="N">
+    <Item _uuid="XE6XXBpmfXrNvYOtjJpjjQ" name="friendDetailHusband" label="好友丈夫信息" is_valid="Y" note="M#" type="Object" type_name="SGpFriend" is_collection="N" />
+    <Item _uuid="fUo7ZppVZjG7gMPZ0e4Yjw" name="friendDetailWife" label="好友妻子信息" is_valid="Y" note="M#" type="Object" type_name="SGpFriend" is_collection="N" />
+    <Item _uuid="2Eq6ch[MWu9CphuNJLAGgQ" name="weddingType" label="婚礼类型" is_valid="Y" note="M#" type="Enum" type_name="EGmWedingType" is_collection="N" />
+  </Message>
+  <Message _uuid="mUzLFan0MbS074icqrWDoA" name="get.marry.storage.response" label="结婚存储响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="GetMarryStorage" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x004D" code_fix="N">
+    <Item _uuid="[kxeKdeDE8irGFUIefHbvw" name="friendDetailHusband" label="好友丈夫信息" is_valid="Y" note="M#" type="Object" type_name="SGpFriend" is_collection="N" />
+    <Item _uuid="lkn2[QdCkiKKsRAG7OrZvQ" name="friendDetailWife" label="好友妻子信息" is_valid="Y" note="M#" type="Object" type_name="SGpFriend" is_collection="N" />
+    <Item _uuid="]0OnVxSIHCr6eFrm8faWpg" name="weddingType" label="婚礼类型" is_valid="Y" note="M#" type="Enum" type_name="EGmWedingType" is_collection="N" />
+  </Message>
+  <Message _uuid="e0sSBF[DdEon]UfZ42wFvg" name="divorce.domain.request" label="离婚主域请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DivorceDOmain" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x004E" code_fix="N">
+    <Item _uuid="RUITiIcHIhVJUe]G7Hy1mg" name="divorceType" label="离婚类型" is_valid="Y" note="M#" type="Enum" type_name="EGmDivorce" is_collection="N" />
+    <Item _uuid="fEw7iWJoQdGtmOcoKJjHnA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="j0Mn9mNtc]wbuDv9w156tg" name="targetRoleId" label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="8khUO4[os44cFk]6HoZxlQ" name="divorce.domain.response" label="离婚主域响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DivorceDomain" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x004F" code_fix="N">
+    <Enum _uuid="00s]r[TROJ27u930g[aygQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="cUrg4K6VfLwzrmpGiAOmuw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="a0iknCmPuN]ICO3m8XOaiA" name="OffTimeIsNotEnough" label="玩家下线时间不够" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="rUdLCXufZB[9V4n3IkTKpA" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="K0MCgQt93gvU[uNqD2XjvQ" name="divorceType" label="离婚类型" is_valid="Y" note="M#" type="Enum" type_name="EGmDivorce" is_collection="N" />
+    <Item _uuid="iku87[OJNNZWIjvxHv[ahw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="DkUYA6ioHcH6xexNUMNdrQ" name="targetRoleId" label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="HEfprIXHzLxlsym6VBfhiA" name="roleLabel" label="角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+    <Item _uuid="VU2XND1sG45Kq08l7npmkQ" name="targetRoleLabel" label="目标角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+  </Message>
+  <Message _uuid="C0TiUNZQqzCVpU4]3wFFgg" name="divorce.storage.request" label="离婚存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DivorceStorage" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0050" code_fix="N">
+    <Item _uuid="kky85Hyl[rprYcQFPOwlrg" name="divorceType" label="离婚类型" is_valid="Y" note="M#" type="Enum" type_name="EGmDivorce" is_collection="N" />
+    <Item _uuid="W087[wV1]4rbrtyK[UD4tw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="0UF4NZBXykeRWYZ7]i0QqA" name="targetRoleId" label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="Rk[yi7CgyLZael4GzDGTjA" name="divorce.storage.response" label="离婚存储响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DivorceStorage" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x0051" code_fix="N">
+    <Enum _uuid="FkGm737KKt8LruPWTb8epA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="zEmLLe[LbCIZ8Varztm]mg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="IEsXVUOWVgb3DGXBgsKarw" name="OffTimeIsNotEnough" label="玩家下线时间不够" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="cUr]Z8NMimtIbL9CYB3Qtg" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="LkobIrpQ9ZYRWHavK4pCiA" name="divorceType" label="离婚类型" is_valid="Y" note="M#" type="Enum" type_name="EGmDivorce" is_collection="N" />
+    <Item _uuid="rEzZdfUhEJRwjYBe]WVjuA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="NESdw]T2o[OKm83lusbCsw" name="targetRoleId" label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="ZkFEyyfKLQXJlMLRHWdasQ" name="roleLabel" label="角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+    <Item _uuid="kEFK0Q0m9Frlmo4l96JWig" name="targetRoleLabel" label="目标角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+  </Message>
+  <Message _uuid="M0ri49kb4svRo7zqau1prQ" name="get.marry.query.request" label="结婚查询" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetMarryQuery" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0052" code_fix="N" />
+  <Message _uuid="CEUPoxncz5loxC0yodTOjQ" name="get.marry.query.response" label="结婚查询响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetMarryQuery" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0053" code_fix="N">
+    <Enum _uuid="9EL20m7khfwT18cdyz]SpA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="pU35wbmX5elFnh0[Milogw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="s0SozhHHiipSgF[kxtg7ig" name="Faluire" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="IEKMIh[cyD9t63LqMNZQmQ" name="weddingList" label="婚礼列表" is_valid="Y" note="M#" type="Object" type_name="SGsWeddingDescription" is_collection="Y" data_size="5" />
+    <Item _uuid="OkeVYyKGxp]OuzcKbj9IvA" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="MUOsVKuVVst6Rw1gSn8zvQ" name="wedding.chat.bubble.requet" label="婚礼聊天泡泡请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="WeddingChatBubble" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0054" code_fix="N">
+    <Item _uuid="pUF30PPluyCI9dUv]tEPlw" name="step" label="步骤" is_valid="Y" note="M#" type="Uint8" is_collection="N" />
+  </Message>
+  <Message _uuid="3UUpoUJlEaBDYK5nvwcqpA" name="wedding.chat.bubble.response" label="婚礼聊天泡泡响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="WeddingChatBubble" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0055" code_fix="N">
+    <Enum _uuid="mU1nu2XrXygGNT2DEABvhQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="K0XEeEBGHx9wqgXBsNAxhQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="xkwNBPkOMXPq]Bnf7PNkpg" name="Faluire" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="C0GLzYAFJPBqThEKxMFDjg" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="F0PTDYR[VgCZ13f4MLRKqA" name="get.marry.start.member.notify" label="结婚开始队员通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetMarryMember" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0056" code_fix="N" />
+  <Message _uuid="]kwZ9ZTPTGhxZwTd0Jzqrw" name="bai.tang.notify" label="拜堂通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="BaiTang" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0057" code_fix="N">
+    <Item _uuid="2U[TW9LCTRmi9yj2DLizqA" name="step" label="步数" is_valid="Y" note="M#" type="Uint8" is_collection="N" />
+    <Item _uuid="Akon8K5CsKqlV4EwkUN5nA" name="entityOid" label="实体oid" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+  </Message>
+  <Message _uuid="9EzagKJOOL3HPSfvle5[qw" name="wedding.car.run.start.notify" label="婚车巡游开始通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="WeddingCarRunStart" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0058" code_fix="N">
+    <Item _uuid="KE]r4Z6dv]0mTdibBHINvw" name="weddingCarEntityOid" label="婚车实体编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+  </Message>
+  <Message _uuid="NULousy1s2QJQ8pSboUtkg" name="peace.divorce.domain.noyify" label="和平分手主域通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="PeaceDivorceDomain" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0059" code_fix="N">
+    <Item _uuid="tUG8XTq4SSci9ISUGKUCrQ" name="friendId" label="好友编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="WEqCUl8UYDD41]j3Z0V4nA" name="peace.divorce.storage.noyify" label="和平分手存储通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="PeaceDivorceStorage" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x005A" code_fix="N">
+    <Item _uuid="YkCxPzIlfCJKUQuZz1T4uA" name="friendId" label="好友编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="aEqATeGRRlOnKd9NjJW3jg" name="hide.entity.notify" label="隐藏实体通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="HideEntity" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x005B" code_fix="N">
+    <Enum _uuid="qEmrbjkJjXDvyuhFWjYong" name="EEntityStatus" label="实体状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="VEn0RTNmUCbEvSaWSd8Gsg" name="Hide" label="隐藏" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="Ykm4aSQiUBL3x9ayMu2lhw" name="Show" label="显示" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="BUtgPntT4[lz6JBgKE7VhQ" name="entityOid" label="实体oid" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="u0k5MDgb7bfNkg81BGMLqQ" name="entityOid2" label="实体oid" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="CEMKo0qt9Uwyx[H3ww7NmQ" name="entityStatus" label="实体状态" is_valid="Y" note="M#" type="Enum" type_name="EEntityStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="n0HY1kyjQQnPhfH5BcbvkA" name="send.gift.notify" label="送礼通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="SendGift" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x005C" code_fix="N">
+    <Item _uuid="T00Ewh4zNQD2dblpRSMhkQ" name="genderTid" label="性别模板编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="NENIm3AZsJ92wWcH]jiRvw" name="currencyCd" label="货币类型" is_valid="Y" note="M#" type="Enum" type_name="EGmCurrency" is_collection="N" />
+    <Item _uuid="U0qpXQndOPVqKx92KTAWvw" name="value" label="数量" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="LkefDjR6pmU1]ts9SrLuhw" name="content" label="内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="mail.content.max-length" />
+    <Item _uuid="GkUEXa]xa]SLlAQY]UaxoA" name="theme" label="主题" is_valid="Y" note="M#" type="String" is_collection="N" data_size="mail.theme.max-count" />
+  </Message>
+  <Message _uuid="OEHtdv8dTEbDr2OW6m20nQ" name="couple.send.red.bag.request" label="夫妻送红包请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="CoupleSendRedBag" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x005D" code_fix="N">
+    <Item _uuid="XUnpBFkXT[SeDUhKx2k5iA" name="itemCount" label="个数" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="5ELPoiIrv7JYx6midoqrpg" name="couple.send.red.bag.response" label="夫妻送红包响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="CoupleSendRedBag" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x005E" code_fix="N" />
+  <Message _uuid="V0Yz[UxPXrbsf49[w8zbvQ" name="wedding.change.teamleader.speed.member.notify" label="婚姻更改队长速度队员通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="WeddingChangeTeamLeaderSpeedMember" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x005F" code_fix="N">
+    <Item _uuid="zEIsDSqiQsyg3QqwILqnoQ" name="entityOid" label="实体oid" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="FED1EFcHeo7qZ4Oj21o6mw" name="speed" label="速度" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="kk5sfISc2pwEWRgvJie2og" name="create.relation.title.domain.request" label="创建关系称号主域请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="CreateRelatonTitleDomain" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0060" code_fix="N">
+    <Item _uuid="bUbLli5r0MUBXB7QpE]8jw" name="relationTitle" label="关系称号" is_valid="Y" note="M#" type="Object" type_name="SGmRelationTitle" is_collection="N" />
+  </Message>
+  <Message _uuid="sEwW7kJ8E84vK3cmP]W[oA" name="create.relation.title.domain.response" label="创建关系称号主域响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="CreateRelationTitleDomain" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0061" code_fix="N">
+    <Item _uuid="9kRc8Ap5J44yf0Gx6PIjnQ" name="relationTitle" label="关系称号" is_valid="Y" note="M#" type="Object" type_name="SGmRelationTitle" is_collection="N" />
+  </Message>
+  <Message _uuid="1UubvuDxlbovpIZDY9fHkw" name="create.relation.title.storage.request" label="创建关系称号存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="CreateRelationTitleStorage" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0062" code_fix="N">
+    <Item _uuid="JkDV9Izc5Yj3g5lgbVn1ng" name="relationTitle" label="关系称号" is_valid="Y" note="M#" type="Object" type_name="SGmRelationTitle" is_collection="N" />
+  </Message>
+  <Message _uuid="5kiwBnh6ZApZIqaZUlxtiw" name="create.relation.title.storage.response" label="创建关系称号存储响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="CreateRelationTitleStorage" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x0063" code_fix="N">
+    <Item _uuid="IEslDvLm3wzpv549l5CIiQ" name="relationTitle" label="关系称号" is_valid="Y" note="M#" type="Object" type_name="SGmRelationTitle" is_collection="N" />
+  </Message>
+  <Message _uuid="VEzzrFgDdRBD[j4cZgc7kw" name="delete.relation.title.storage.notify" label="删除关系称号通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DeleteRelationTitleStorage" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0064" code_fix="N">
+    <Item _uuid="FEnHjQSiGo0Bkl1Al6PCpQ" name="relationTitleId" label="关系称号编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId " is_collection="N" />
+  </Message>
+  <Message _uuid="EEidzoXQImmK49OpDGofpQ" name="delete.relation.title.domain.notify" label="删除关系称号主域通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DeleteRelationTitleDomain" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0065" code_fix="N">
+    <Item _uuid="RkwV9catWLSC01]CyKqniA" name="relationTitleId" label="关系称号编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId " is_collection="N" />
+  </Message>
+  <Message _uuid="TkL1vx4g37tNI3Q5Vr26qQ" name="friend.send.query.request" label="好于赠送查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FriendSendQuery" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0066" code_fix="N" />
+  <Message _uuid="dEVh]TbNcsGbMUfVqkbRqw" name="friend.send.query.response" label="好友赠送查询响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FriendSendQuery" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0067" code_fix="N">
+    <Item _uuid="bkjgOYXr7159[bu[1bJBuA" name="friendSend" label="好友赠送" is_valid="Y" note="M#" type="Object" type_name="SGsFriendSend" is_collection="N" />
+    <Item _uuid="zkGLZg3qzhWLODFvFjRgnw" name="receiveFriendSend" label="接受好友赠送" is_valid="Y" note="M#" type="Object" type_name="SGsFriendSend" is_collection="N" />
+    <Item _uuid="b0RGYSAMJPESLqx0YXMHlw" name="isRecieved" label="是否已经领取" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="UkDdd[rYox5SaJdRtT[5hA" name="friend.send.request" label="好友赠送请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FriendSend" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0068" code_fix="N">
+    <Item _uuid="VkiJtQBvUNyofvVHErluow" name="friendRoleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="kExQaS3mCYmlOaU9VsMZmw" name="friend.send.response" label="好友赠送响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FriendSend" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0069" code_fix="N">
+    <Enum _uuid="mUbW]wKcbN6d74qXnoDukA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="q0ZVE6xKds9dtYU8NPl1iw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="aUl4MY5od9y6DRXt308npg" name="Faluire" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="8Ul2y3cqMtYJ3ZiLsY4[kA" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="dEbJ4cF5JbXs7ADWZO5amQ" name="friendRoleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="XkEtk41YC2]NrZfIVmBysw" name="friend.send.notify" label="好友赠送通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FriendSend" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x006A" code_fix="N" />
+  <Message _uuid="MU1TbuRkZybezEkjas1DlQ" name="get.friend.send.award.request" label="请去好友赠送奖励请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetFriendSendAward" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x006B" code_fix="N" />
+  <Message _uuid="QkHYNH9ha7fWHLOKQBRohQ" name="get.friend.send.award.response" label="获得好友赠送奖励响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetFriendSendAward" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x006c" code_fix="N">
+    <Enum _uuid="2kcbJ8U6yqF342MvyMGsrw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="2kNDqg6N6YD4WpPnO21bgw" name="success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="XUl0WySCYrSBiJP0I2G5tQ" name="faluire" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="50ZhhlRXkuG84h4RrtNmqA" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+</Group>
+

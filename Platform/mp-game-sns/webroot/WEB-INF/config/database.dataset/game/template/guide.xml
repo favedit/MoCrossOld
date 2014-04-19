@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="NU1vH736V18Jht8PwlDQgA" name="game.template.guide" label="M#12cn14引导定义" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_GUIDE" data_alias="GM_TPL_GUD" data_logic="GM_TPL_GUIDE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="PUZb3dZparunmUsmABDTuQ" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="FUPXmDv[3gRX5XqHX6nmgw" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="4EdtZyFH2bkZtqzmmfAAlg" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="]0r1mRw8NgNFLp2NDfEQmg" name="label" label="M#12cn12标签" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldEnum _uuid="vUioqgR7zdSr7rvAPDJktQ" name="guide_action_cd" label="M#12cn14引导动作" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GUIDE_ACTION_CD" data_size="2" data_code="game.template.guide.action" />
+  <FieldEnum _uuid="Jk7OFCWR6VxdxYL1tU]Trg" name="guide_repeat_cd" label="M#12cn14是否重复" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GUIDE_REPEAT_CD" data_size="1" data_code="game.template.guide.repeat" />
+  <FieldInteger _uuid="EEhONkbwMa8hU0ZWnu2HhA" name="repeat_interval" label="M#12cn14重复间隔" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REPEAT_INTERVAL" />
+  <FieldEnum _uuid="bk]wdQQR27jGFpgeubGVkw" name="guide_active_count_cd" label="M#12cn16引导触发数量" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GUIDE_ACTIVE_COUNT_CD" data_size="1" data_code="game.template.guide.active.count" />
+  <FieldEnum _uuid="7EsdSDBHFbz3DEt30FjZuQ" name="guide_close_count_cd" label="M#12cn16引导关闭数量" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GUIDE_CLOSE_COUNT_CD" data_size="1" data_code="game.template.guide.close.count" />
+  <FieldEnum _uuid="WURLlVSY0ncYdRMffec[qA" name="guide_flag_cd" label="M#12cn14引导标志" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GUIDE_FLAG_CD" data_size="1" data_code="game.template.guide.flag" />
+  <FieldEnum _uuid="BkdBX9SfcWPgMAo1A9TEoQ" name="guide_close_action_cd" label="M#12cn16引导关闭动作" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GUIDE_CLOSE_ACTION_CD" data_size="2" data_code="game.template.guide.action" />
+  <FieldEnum _uuid="HUFpn8UVS06FFpdPjZCglQ" name="active_break_path_cd" label="M#12cn16是否打断寻路" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ACTIVE_BREAK_PATH_CD" data_size="1" data_code="game.template.bool" />
+  <FieldEnum _uuid="KUTDPS33XmVRhZd[Wykkkw" name="finish_close_ui_cd" label="M#12cn18完成是否关闭界面" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FINISH_CLOSE_UI_CD" data_size="1" data_code="game.template.bool" />
+  <FieldString _uuid="SUePZq4BkaX1eBp9XYAavw" name="ui_name" label="M#12cn14UI名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="UI_NAME" data_size="200" />
+  <FieldEnum _uuid="hk69h0hoXFBbUqKqIKK0qg" name="finish_countine_path_cd" label="M#12cn18完成是否继续寻路" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FINISH_COUNTINE_PATH_CD" data_size="1" data_code="game.template.bool" />
+  <FieldEnum _uuid="700yIotuKa7ZJy[mekEKpw" name="is_scene_guide_type_cd" label="M#12cn19是否为情景引导类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_SCENE_GUIDE_TYPE_CD" data_size="1" data_code="game.template.bool" />
+  <FieldEnum _uuid="3kLKRmp8tTTBaqD8B59ulA" name="dialog_correlation" label="M#12cn14对话相关" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DIALOG_CORRELATION" data_size="2" data_code="game.template.bool" />
+  <FieldTemplate _uuid="RU0TDNXDJpqUmOg25TO5qw" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

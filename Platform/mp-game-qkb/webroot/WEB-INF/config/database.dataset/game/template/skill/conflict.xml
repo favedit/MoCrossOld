@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="pEZqLvlTNorGhJNscWWrhQ" name="game.template.skill.conflict" label="M#12cn14技能冲突" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_SKILL_CONFLICT" data_alias="GM_TPL_SKL_CNF" data_logic="GM_TPL_SKILL_CONFLICT_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="TkdlYyygQbFFdHdBt2oypg" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="4UReHSVOmv[Fk6WnWDAdsQ" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldInteger _uuid="FUra6m8b5PmDdAKMq[8jqw" name="skill_tid" label="M#12cn16技能模板编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="SKILL_TID" data_alias="SKL" data_refer="game.template.skill" />
+  <FieldEnum _uuid="4kN85xV39]gcF0URAtkUuQ" name="skill_conflict_cd" label="M#12cn14冲突类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SKILL_CONFLICT_CD" data_size="1" data_code="game.template.skill.conflict" />
+  <FieldInteger _uuid="fkn8szFaHMtqasJQK2eolQ" name="skill_conflict_tid" label="M#12cn14冲突技能" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="SKILL_CONFLICT_TID" data_alias="SCT" data_refer="game.template.skill" />
+  <FieldTemplate _uuid="8kZ1GW9nRCHHMZcy7NJoiA" name="describe" label="M#12cn14模板描述" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

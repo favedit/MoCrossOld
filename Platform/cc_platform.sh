@@ -1,0 +1,1 @@
+svn --username=devlp co svn://192.168.2.1/Develop/Platform.DP ~/WP-Platform-DP

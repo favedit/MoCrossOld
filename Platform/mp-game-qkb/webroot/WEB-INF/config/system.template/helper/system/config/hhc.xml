@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="80Pg9GoriP2pQ5AfLHZQjQ" name="helper.system.config.hhc" is_valid="Y" note="M#">
+  <Source _uuid="Jk5V4KTX53836SnRMpuzng" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="组件配置">
+		<param name="Local" value="src\system.config\list.html">
+		</OBJECT>
+	<UL>
+<jt:loop source='$config' alias='config'>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="<jt:item source='$config.name'/> (<jt:item source='$config.label'/>)">
+		<param name="Local" value="src\system.config\config\<jt:item source='$config.name' format='path.lower'/>.html">
+		</OBJECT>
+		<UL>
+		<jt:loop source='$config' alias='item'>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="<jt:item source='$item.name'/> (<jt:item source='$item.name'/>)">
+				<param name="Local" value="src\system.config\item\<jt:item source='$config.name' format='path.lower'/>.<jt:item source='$item.name' format='lower'/>.html">
+				</OBJECT>
+				<UL>
+		</jt:loop>
+		</UL>
+</jt:loop>
+	</UL>
+</UL>
+</BODY></HTML>]]></Source>
+</Template>
+

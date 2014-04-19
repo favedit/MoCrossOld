@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="pkml85IjunBiME]aLAY8lg" name="logic.business" label="业务-商业模块" is_valid="Y" code="business" type_cd="P">
+  <List _uuid="z04nPyfua8uDhAFHwsjEiw" name="asset.order.public.meeting" label="会议室预订" is_valid="Y" type_cd="P">
+    <Translate _uuid="zkkjeFoEDmHYIJWrmK1dgA" name="time.limit" label="限制预订天数" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="391" zh_content="预订的日期超出系统设定的最大预订范围，目前设置的最大范围为距当前日期{0}天内有效。" />
+    <Translate _uuid="]0sOm3qfC9kS[1oWOwK1qQ" name="time.repeat" label="预订时间重复" is_valid="Y" type_cd="P" status_cd="A" create_user_code="391" zh_content="预订的{0}时间段中已经有被预订过了。" />
+    <Translate _uuid="pEyT47WuQ[z4Dqyj]Btnmw" name="update.status" label="检查更新状态" is_valid="Y" note="当预订状态为取消或完成时，则不可更改操作。\n当预订状态为预订或使用中时，则只能进行取消操作。" type_cd="P" status_cd="A" create_user_code="391" zh_content="当预订状态为{0}时，不可更新操作。" />
+    <Translate _uuid="[kxds7RAnTGnv8WB81VOoQ" name="revoke.status" label="检查取消状态" is_valid="Y" note="当预订状态为取消或完成时，则不可更改操作。\n当预订状态为预订或使用中时，则只能进行取消操作。" type_cd="P" status_cd="A" content="1" create_user_code="391" zh_content="当预订状态为{0}时，则只能进行撤销操作。" />
+    <Translate _uuid="SkBO3B8n0qfN07fMBK6kkg" name="order.exists" label="检查会议室存在预订记录" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="代码为【{0}】的会议室存在预订记录，不能做删除操作。" />
+    <Translate _uuid="h0ms9u9QfLmVLZJt5f0itQ" name="calendar.hint" label="浮动信息" is_valid="Y" note="{0}时间\n{1}会议室名称\n{2}会议室代码" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="您预订了【{0}】的{1}【{2}】会议室。\n" />
+  </List>
+  <List _uuid="YkrLSR00kOvmW[vrrYw7qQ" name="develop.project.finance.expense.reimbursement" label="个人报销" is_valid="Y" type_cd="P">
+    <Translate _uuid="tUCuMFy]f6oCiEAyFlTdkQ" name="valid.date" label="有效报销期" is_valid="Y" type_cd="P" status_cd="A" content="asd" create_user_code="213" zh_content="当前日期{0}，只能报销{1}之后的报销单。" />
+    <Translate _uuid="r0UPHktMclpoqADnr[]urw" name="valid.amt" label="有效报销金额" is_valid="Y" type_cd="P" status_cd="A" content="The {0} exceed the stipulated money frame." create_user_code="213" update_date="20090319193412" zh_content="报销单据的报销金额超出规定金额{0}元范围。" />
+    <Translate _uuid="Tkm1g8rS8nUxGHW2gGm9qw" name="valid.participator" label="有效报销参与者" is_valid="Y" note="在同一天内，于惊华已在代码编号为{001}{误餐费}的报销单中存在。" type_cd="P" status_cd="A" content="dd" create_user_code="213" update_date="20090323140854" zh_content="在同一天内，{0}已在代码编号为{1}{2}的报销单中存在。" />
+    <Translate _uuid="LUUVajHbKJ8A2fRcUpqYqg" name="between.valid.time" label="报销单据的有效时间范围" is_valid="Y" type_cd="P" status_cd="A" content="The {0} exceed the stipulated time frame." create_user_code="213" update_date="20090319193038" zh_content="{0}超出规定{1}～{2}的时间范围。" />
+    <Translate _uuid="ckJ7F50[G[WtD7JEYFKXjA" name="less.sysdate" label="报销日期小于当前日期" is_valid="Y" type_cd="P" status_cd="A" content="sdf" create_user_code="213" update_user_code="213" update_date="20090326114123" zh_content="当前日期{0}，只能报销小于当前日期的报销单据。" />
+    <Translate _uuid="Ik65h4lbSVy4Jjk7fxRqjA" name="user.same" label="在同一报销单据里用户相同" is_valid="Y" type_cd="P" status_cd="A" content="fff" create_user_code="213" update_date="20090323140854" zh_content="参与者{0}在该报销单据里重复参与报销。" />
+    <Translate _uuid="Lk3JQVNmA6]o0iQEsj1fhg" name="same.day.user.same" label="在同一天同种类型的用户相同" is_valid="Y" type_cd="P" status_cd="A" content="The reimbursement detail is has approved，not update。" create_user_code="213" update_date="20090317140100" zh_content="在同一天内,参与者{0}重复参与代码编号为{1}的报销单据。" />
+    <Translate _uuid="nUr9T8d]GuEUXTgrHIe0jg" name="invalid.last.role" label="无效最后角色" is_valid="Y" type_cd="P" status_cd="A" content="asdf" zh_content="在类型为{0}中没有找到最后的审批角色！" />
+    <Translate _uuid="0E[Ap2odTZDqE6vaWwrvvQ" name="not.do.cancel.approved" label="不能删除该报销单据，已经审批" is_valid="Y" type_cd="P" status_cd="A" content="asdf" zh_content="不能取消该报销单据，审批员已经审批！" />
+    <Translate _uuid="[E2ICZxumTeYXmue0AQrpg" name="invalid.reason" label="无效原因" is_valid="Y" type_cd="P" status_cd="A" content="a" zh_content="请说明无效原因！" />
+    <Translate _uuid="u07klS3eD6qh2tLMqNS2hg" name="relation.administrator" label="系统出错联系管理员" is_valid="Y" type_cd="P" status_cd="A" content="a" zh_content="审核配置出错请联系管理员,错误原因为：{0}！" />
+    <Translate _uuid="p0qmhhFz8sPlbduMMyN4mw" name="check.code.null" label="检查code号为空" is_valid="Y" type_cd="P" status_cd="A" content="a" zh_content="该报销单的代码编号为NULL！" />
+    <Translate _uuid="gkHSxfnwp2K4PO9BfMxzgw" name="produce.code" label="生成code号" is_valid="Y" type_cd="P" status_cd="A" content="a" zh_content="该报销单的代码编号为：{0},请写到该报销单上。" />
+    <Translate _uuid="mkEj0WGcL9Nq6hrshzaxug" name="not.is.company.person" label="不属于在职的公司员工" is_valid="Y" type_cd="P" status_cd="A" content="A" zh_content="{0}同学不属于在职的公司员工！" />
+    <Translate _uuid="gEYL1jNxiAEurrrUMOc7qg" name="not.has.receiver.mail" label="查找接收者mail地址" is_valid="Y" type_cd="P" status_cd="A" content="not.has.receiver.mail" zh_content="没有找到接收者{0}的E-Mail地址！" />
+    <Translate _uuid="g08NCoffkbLjHzPHI2kenA" name="did.not.find.expense" label="没有查找到票单。" is_valid="Y" type_cd="P" status_cd="A" content="Did not find the expense." zh_content="没有查找到报销单据。" />
+    <Translate _uuid="XkoMc8GaJMCAclsCvfIZlQ" name="repeat_examine" label="重复检查" is_valid="Y" type_cd="P" status_cd="A" content="This reimbursement is repeat examine." create_user_code="0213" zh_content="{0}同学您已经审核完毕报销单据【{1}】。" />
+    <Translate _uuid="L08A4OIleHRnZ9FPHmI1hQ" name="valid.project" label="所选项目是否是自己关联的项目" is_valid="Y" type_cd="P" status_cd="A" content="1111" create_user_code="213" zh_content="您【{0}】没有负责该项目，或该项目不存在。" />
+  </List>
+  <List _uuid="JENYIRYuedVeskTiV5jOjA" name="asset.order.public.book" label="图书借阅" is_valid="Y" type_cd="P">
+    <Translate _uuid="ek8kzUD8bAnfbo863KugrQ" name="last.continue.date" label="检查续借开始是否小于上次借阅时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="续借的开始时间【{0}】不能小于上次的借阅时间【{1}】" />
+    <Translate _uuid="cEmPEGV[qW0[GYdSk3zArw" name="continue.date" label="检查续借日期必须大于归还日期" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="续借的结束日期【{0}]必须大于续借的开始日期【{1}】。" />
+    <Translate _uuid="LkZMUHhgZkXoLc4WbOounA" name="return.date" label="检查归还日期必须不能小于借阅日期" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="归还日期【{0}】必须不能小于借阅日期【{1}】。" />
+    <Translate _uuid="WkHZEOXh[8BTv2KwDPwQtA" name="lend.count" label="检查用户借阅图书量不能超过限定数量" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="用户借阅图书量不能超过限定数量【{0}】。" />
+    <Translate _uuid="O0hdZzbFRru3G79OAbcssg" name="already.return" label="检查是否已经归还" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="代码为【{0}】的图书已经归还。" />
+    <Translate _uuid="qUK3CkG3K33AxguQQYOogg" name="already.lend" label="检查已经借出" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="代码为【{0}】的图书已经借出。" />
+    <Translate _uuid="mki3OExAEJOsAl1OvO0DvA" name="quantity.compare" label="检查图书数量" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="代码为【{0}】的图书数量【{1}】不能小于原有数量【{2}】。" />
+    <Translate _uuid="ekHTIXaFqXR3jXM6Z5jRiA" name="continue.count" label="检查续借次数" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="用户【{0}】续借代码为【{1}】的图书，已经超出续借次数【{2}】，不能再续借。" />
+    <Translate _uuid="2EdS5NpdYUHxX4nFtWO4uw" name="detail.exists" label="检查资产详细存在" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="代码为【{0}】的图书资产存在【{1}】条图书详细记录，保持数据的完整性不能删除。" />
+    <Translate _uuid="k0x4[P98kc8Bz1KgXvq4rA" name="csv.code.empty" label="代码不能为空" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="在导入文件的第【{0}】行图书代码不能为空。" />
+    <Translate _uuid="OULzAjj3UuJ5x9QYCdzQng" name="csv.type.exist" label="图书类型不存在" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="在导入文件的第【{0}】行，图书代码为【{1}】的图书类型【{2}】不存在。" />
+    <Translate _uuid="Uk4kqHBDWAhrUe0r2mfnqw" name="csv.code.format" label="图书代码格式不正确" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="在导入文件的第【{0}】行，图书代码为【{1}】的代码格式不正确。\n正确例子：【A01-0001】,【A-0001】,【A01-0001-01】,【A-0001-01】" />
+    <Translate _uuid="d0mux]W9lIySl4Ha]gcfjw" name="csv.quantity.empty" label="数量不为空" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="在导入文件的第【{0}】行，图书代码为【{1}】的数量不能为空。" />
+    <Translate _uuid="UEMRz5Uy5bBTNZcmzAoDuQ" name="csv.min.number" label="数量不能小于零" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="在导入文件的第【{0}】行，图书代码为【{1}】的【{2}】不能小于零。" />
+    <Translate _uuid="HkkDgRJqWVIOXvv]F]aeuQ" name="csv.date.format" label="日期格式不正确" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="在导入文件的第【{0}】行，图书代码为【{1}】的【{2}】日期格式不正确。" />
+    <Translate _uuid="F0DlkYMjSfqYuDTwxPb1pQ" name="csv.asset.exist" label="检查主资产存在" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="在导入文件的第【{0}】行，图书代码为【{1}】的图书资产不存在。" />
+    <Translate _uuid="[0ijEi141qHM7Dfn]lTWlA" name="calendar.hint" label="浮动信息" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="您借阅的图书【{0}】,请于【{1}】前归还。" />
+    <Translate _uuid="Z0poEGJILrm1k]Y2B80tmQ" name="csv.status.exists" label="状态存在" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="在导入文件的第【{0}】行的图书的主从类型不存在，主类型‘M’，从类型‘D’。" />
+    <Translate _uuid="MUxT7UW1ro1pd56WqBLcng" name="already.order" label="检查是否重复预订" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="代码为【{0}】的图书《{1}》，重复预订。" />
+    <Translate _uuid="40NGeE2gG2FdZb9hKolLrQ" name="order.exists" label="检查图书是否被预订过" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="代码为【{0}】的图书从资产存在【{1}】条借阅记录，保持数据的完整性不能删除。" />
+    <Translate _uuid="yE3vRXAmWKzv]Yf7R6N2vA" name="revoke.exist" label="检查取消时是否已经撤销" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="管理员已经撤销代码为【{0}】的图书《{1}》。" />
+    <Translate _uuid="hUo0zFxI4fWZV7wg]8VCjg" name="cancel.exist" label="检查撤销时是否已经取消" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="撤销预订代码为【{0}】的图书《{1}》，已经被取消。" />
+    <Translate _uuid="h0X18vaiOaSG6su5gVixkw" name="lend.order.exist" label="检查借阅时是否已经被预订" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="借阅代码为【{0}】的图书《{1}》，已经被预订。" />
+    <Translate _uuid="wkQ9owbfWwH]F0HOBKiwnA" name="lend.exist" label="检查预订时是否已经被借阅" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="预订代码为【{0}】的图书《{1}》，已经被借阅。" />
+    <Translate _uuid="wkwFiQbGmP47li9K3RQDnQ" name="lend.date" label="检查借阅日期大于归还日期" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="归还日期【{0}]必须大于借阅日期【{1}】。" />
+    <Translate _uuid="50U35HQcGpFlsZqrDN9Imw" name="order.count" label="检查预借图书数" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="用户预订图书数量加上借阅数量合计不能超出限定数量【{2}】册。\n\n提示：已预订图书数量【{0}】册，已借阅数量【{1}】册。\n备注：预订数量 + 借阅数量 = 限定数量\n" />
+    <Translate _uuid="0051E6U5LMY2czRaGnrMjg" name="detail.isvalid" label="检查从资产的有效性" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="代码为【{0}】的图书《{1}》，管理员已将该书设置无效，不能预订。" />
+    <Translate _uuid="oUuLcYwHiMNkldH8AN7LkA" name="revoke.days" label="检查撤销天数是否大于每个月的总共天数" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0391" zh_content="目前是{0}月份总计【{1}】天，设置的撤销日【{2}】天已超出范围。" />
+  </List>
+  <List _uuid="J0EQWVj4pVhQ7iXqd8zikw" name="finance.apply.travel" label="差旅费申请" is_valid="Y" type_cd="P">
+    <Translate _uuid="0kHOSlUh1ItChGUlo16bhA" name="begin.date.than.sysdate" label="开始时间大于当前时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="开始时间必须大于当前时间" />
+    <Translate _uuid="J01D8[8tP1iSPBxNNNOLqw" name="end.date.than.sysdate" label="结束时间大于当前时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="结束时间必须大于当前时间" />
+    <Translate _uuid="TE2Ji6WH3fOLwb7[vP][qg" name="end.date.than.begin.date" label="结束时间大于开始时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="结束时间必须大于开始时间" />
+    <Translate _uuid="ikBadisefJ497rFnQ0uwlw" name="allAmt.than.zero" label="总金额大于零" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="总金额大于零" />
+    <Translate _uuid="hUfXAxik2jcnBZp9eRp[gQ" name="accommodation.begin.date.than.sysdate" label="住宿费申请-入住时间大于当前时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="入住时间必须大于当前时间" />
+    <Translate _uuid="00INyk6MHM9DbzakiUnbgQ" name="accommodation.end.date.than.sysdate" label="住宿费申请-离开时间大于当前时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="离开时间必须大于当前时间" />
+    <Translate _uuid="CU53l[kIGTejnwLQt8mElA" name="accommodation.end.date.than.begin.date" label="住宿费申请-离开时间大于入住时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="离开时间必须大于入住时间" />
+    <Translate _uuid="70Rk3AdV6FkzHpE424xQpQ" name="accommodation.order.amt.than.zero" label="住宿费申请-申请金额大于零" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="申请金额必须大于零" />
+    <Translate _uuid="nkBdxHA0svONVcRYdtcCmA" name="other.order.amt.than.zero" label="其他费用申请-申请金额大于零" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="申请金额必须大于零" />
+    <Translate _uuid="tEAIAs56]yHDLHOfE32xig" name="entertain.order.amt.than.zero" label="招待费申请-申请金额大于零" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="申请金额必须大于零" />
+    <Translate _uuid="7037EWx8cUgugJPuimmWqw" name="fare.begin.date.than.sysdate" label="交通费申请-预定时间大于当前时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="预定时间必须大于当前时间" />
+    <Translate _uuid="60g3pjXlNk9BwYWDdi8Ztw" name="fare.end.date.than.sysdate" label="交通费申请-返回时间大于当前时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="返回时间必须大于预定时间" />
+    <Translate _uuid="VkM4P[J8kmQp60CZapriqg" name="fare.end.date.than.begin.date" label="交通费申请-返回时间必须大于预定时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="返回时间必须大于预定时间" />
+    <Translate _uuid="WE[zB[EocyqHAIK8VwR5uQ" name="fare.order.amt.than.zero" label="交通费申请-申请金额大于零" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="申请金额必须大于零" />
+    <Translate _uuid="]kLZJI1NXEKF9WhBotOYng" name="linked.object" label="判断是否关联项目" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="请选择您关联的项目" />
+    <Translate _uuid="]E7doMb[yU]4drJLyiqxlA" name="whether.fail" label="提醒是否未通过" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="请您输入未通过的理由！" />
+    <Translate _uuid="NkTLo5r9TqsgvwIH[tp[kQ" name="whether.reject" label="提醒是否驳回" is_valid="Y" type_cd="P" status_cd="A" content="1" zh_content="请您输入驳回理由！" />
+    <Translate _uuid="xEayZi7YRQabUYr8f1gXnA" name="not.order.code" label="未填写预定票号" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="请您填写预定票据编号！" />
+    <Translate _uuid="sUiyIZfn8I62R4NeKtsalw" name="remind.order.suc" label="审核列表显示提醒预订成功" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="'预定成功，预定的代码号为：'" />
+    <Translate _uuid="ukubHZ2Pmqj0]ZDf8BZnnA" name="money.has.been.made" label="审核列表显示提醒钱已付" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="'申请人已经领取申请的出差费用。'" />
+    <Translate _uuid="qEZc0knQSkMiHPRTiAGgpw" name="not.find.order" label="审核列表显示提醒未找到预订者" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="未找到预订者！" />
+    <Translate _uuid="qEsBjriIlIAe46WGDbaQog" name="cityfare.begindate.than.sysdate" label="乘坐时间必须大于当前时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="时间必须大于当前时间" />
+    <Translate _uuid="BU13jlY9Wsn5h50i4NeagA" name="cityfare.begindate.than.end.date" label="乘坐时间必须小于结束时间" is_valid="Y" type_cd="P" status_cd="A" content="1" zh_content="时间必须小于结束时间" />
+    <Translate _uuid="502IRaK5LzBT3m0m75h5tw" name="not.examine.note" label="必须添加审核描述" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="请填写审核描述！" />
+    <Translate _uuid="p0XDqtVmJpR0JAo7npz[kQ" name="not.real.order.amt" label="未输入实际预定金额" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" update_date="20091201172201" zh_content="请您输入实际预定金额！" />
+  </List>
+  <List _uuid="d0uV7YXtukpR1svXvnl0nQ" name="finance.expense.travel" label="差旅费报销" is_valid="Y" type_cd="P">
+    <Translate _uuid="zU8qHZINy7]weuwr70LKog" name="ad.cash.amt.than.expect" label="报销金额不能大于账面金额" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="报销金额不能大于账面金额" />
+    <Translate _uuid="6kXDPqngVSFWihQQHGSHsA" name="ad.cash.amt.than.zero" label="账面金额不能小于零" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="账面金额不能小于零" />
+    <Translate _uuid="zknYhk0vyQ6KiTcpeHeruQ" name="ad.expect.amt.than.zero" label="报销金额不能小于零" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="报销金额不能小于零" />
+    <Translate _uuid="h0dL2z7tLzFAljnFQoSsgg" name="ad.begin.date.than.apply.begin.date" label="开始时间不能小于申请开始时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="开始时间不能小于申请开始时间" />
+    <Translate _uuid="lkkyXD7lqroHprkDQUdanA" name="ad.end.date.than.begin.date" label="开始时间不能小于结束时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="开始时间不能小于结束时间" />
+    <Translate _uuid="ZkepjeJOJGny2o9xJywXrQ" name="ad.apply.end.date.than.end.date" label="结束时间必须小于申请结束时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="结束时间必须小于申请结束时间" />
+    <Translate _uuid="5k1[INf1d[r2zh1R5GTHkw" name="cf.begin.date.than.apply.begin.date" label="票单时间不能小于申请开始时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="票单时间不能小于申请开始时间" />
+    <Translate _uuid="nU]3B4h4BPTm92s1LAEOtg" name="cf.end.date.than.apply.end.date" label="票单时间不能大于申请结束时间" is_valid="Y" type_cd="P" status_cd="A" content="1" create_user_code="0627" zh_content="票单时间不能大于申请结束时间" />
+  </List>
+</Group>
+

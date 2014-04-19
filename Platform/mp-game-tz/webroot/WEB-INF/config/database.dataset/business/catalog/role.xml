@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="]E40[4RHiANfCDWKUwSWhw" name="business.catalog.role" label="M#12cn16业务目录角色" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="BS_CATALOG_ROLE" data_logic="BS_CATALOG_ROLE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="l0rO7Qy0HNrkJ2TmJQDShg" name="catalog_id" label="M#12cn16业务目录标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CATALOG_ID" data_refer="business.catalog" data_uniques="role" />
+  <FieldInteger _uuid="H0xZJ3tm3y0h6Zs3kzY3mQ" name="role_id" label="M#12cn14角色标识" is_valid="Y" note="M#12cn14角色标识" is_store="Y" is_abstract="N" data_name="ROLE_ID" data_refer="person.role" data_uniques="role" />
+  <FieldBoolean _uuid="Kk4]m5VAdUwaQtuVRUDPuQ" name="is_valid" label="M#12cn12有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldEnum _uuid="DEYHA6WsX6vFEgxF]YmWhw" name="unique_cd" label="M#12cn14唯一类型" is_valid="Y" note="M#12cn219C：目录唯一\nN：节点唯一\nU：不限制" is_null="Y" is_store="Y" is_abstract="N" data_name="UNIQUE_CD" data_size="1" data_code="business.catalog.role.unique" />
+  <FieldDate _uuid="50w0ouR2KJAlsBPxQC2duQ" name="create_date" label="M#12cn14创建日期" is_valid="Y" note="M#12cn16建立关联时间" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_default="SYSDATE" />
+  <FieldContent _uuid="aU7EGgRClA5kPhpTOGDrhA" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

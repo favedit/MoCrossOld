@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="ok1]N6W65rmfOE5d]Mdbiw" name="manage.game.gate" label="网关服务器管理" is_valid="Y" note="M#" is_server="Y" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" source_name="MoMgManageGameGate" code="Mgt" full_code="ManageGameGate" display_index="73">
+  <Message _uuid="lErcr3a2Au]EbcJ34LCVmw" name="session.list.request" label="查询网关服务器客户端" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="SessionList" is_udp="N" message_type="Request" is_session="N" is_manage="Y" source_type="CLT" target_type="GGT" code_value="0x0001" code_fix="N" />
+  <Message _uuid="Nk[n4FqwJWdKtArbFxajmQ" name="session.list.response" label="查询网关服务器客户端应答" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="SessionList" is_udp="N" message_type="Response" is_session="N" is_manage="Y" source_type="GGT" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Enum _uuid="80kPRQdeSdRuFP81WVk[jA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="G0PmEtErEUWqvj068aGSqA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="VUuoPg83PzcOK1Feh1BQog" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="2EgT5uDGTF09T2xRWJ3KoQ" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="e0iApTnQXmU9lKCGl9BUtQ" name="items" label="项目列表" is_valid="Y" note="M#" type="Object" type_name="SGmSessionInfo" is_collection="Y" data_size="1024" />
+  </Message>
+  <Message _uuid="b0]UkFQShLJBJdsyoyDFqQ" name="session.query.request" label="会话查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="SessionQuery" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="Y" source_type="CLT" target_type="GGT" code_value="0x0003" code_fix="N">
+    <Item _uuid="F0D3l[8WqIdF0mWQ5FKDjA" name="sessionId" label="会话编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="XELTduNglEDa3OeLHbcvpQ" name="session.query.response" label="会话查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="SessionQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="Y" source_type="GGT" target_type="CLT" code_value="0x0004" code_fix="N">
+    <Enum _uuid="8kf[l[]KIgDkskGpIdngiw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="dkMnrTcP3vlpdk04q1N7ug" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="oUYsJzZLWDAmdzjLA4dztw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="ukkR[ylZGdai9MwT[Tm4sA" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+</Group>
+

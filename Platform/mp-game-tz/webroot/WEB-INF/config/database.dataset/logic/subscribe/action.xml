@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="lkUdrfZq8EnvSmg5f6CHjw" name="logic.subscribe.action" label="M#12cn15订阅-动作" is_valid="Y" note="M#" data_name="LG_SUBSCRIBE_ACTION" data_alias="LG_SUB_ACT" data_logic="LG_SUBSCRIBE_ACTION_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="WULE3x25wp7z56fuT6dUng" name="subscribe_id" label="M#12cn14订阅标识" is_valid="Y" note="M#" is_store="Y" data_name="SUBSCRIBE_ID" data_alias="SUB" data_refer="logic.subscribe" data_uniques="action" />
+  <FieldInteger _uuid="nUh3ZUCjgeno2s7argLmmg" name="user_id" label="M#12cn15订阅者标识" is_valid="Y" note="M#12cn13接收者" is_store="Y" is_abstract="N" data_name="USER_ID" data_refer="person.user" data_uniques="link" />
+  <FieldInteger _uuid="HUe7N6Zjj5SqGdTCoiTDjQ" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_store="Y" data_name="TYPE_ID" data_refer="logic.subscribe.type" data_uniques="link" />
+  <FieldInteger _uuid="80mm6IvP5MJn7aLq9Oewjw" name="link_id" label="M#12cn14关联标识" is_valid="Y" note="M#" is_store="Y" data_name="LINK_ID" data_uniques="link" />
+  <FieldInteger _uuid="00kdwrIWzmWRr7Jb85MjtA" name="action_id" label="M#12cn16订阅动作标识" is_valid="Y" note="M#" is_store="Y" data_name="ACTION_ID" data_alias="ACT" data_refer="logic.subscribe.type.action" data_uniques="action,link" />
+  <FieldDate _uuid="d0HNEebup7pROZOxJ5Zpsg" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_default="SYSDATE" />
+</DataStore>
+

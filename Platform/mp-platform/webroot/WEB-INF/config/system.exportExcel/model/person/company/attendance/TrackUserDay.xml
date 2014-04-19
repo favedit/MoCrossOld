@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="qEqBnFweAh2hu8CGTLTVgg" name="model.person.company.attendance.TrackUserDay" label="考勤-员工月明细报表" is_valid="Y" fileName="eUIS-考勤-部门报表[${BEGIN_DATE}～${END_DATE}].xls" template="model.person.company.attendance.TrackUserDay.xls">
+  <Sql _uuid="KU9WZT7oyVTTujlWRy5IsQ" name="user_list" label="获得显示器列表" is_valid="Y"><![CDATA[SELECT *
+  FROM (SELECT *
+        FROM (SELECT OUID,
+                     OVER,
+                     PM_ATTENDANCE_SUMMARY_DI.Get_Date_Note(OUID) DATE_NOTE,
+                     CM_CODE_DI.Find_Label('person.attendance.simple.status', PM_ATTENDANCE_SUMMARY_DI.Get_Simple_Status(STATUS_CD,
+                                                                SIGN_STATUS_CD)) STATUS_LABEL,
+                     PM_ATTENDANCE_SUMMARY_DI.Get_Simple_Status(STATUS_CD,
+                                                                SIGN_STATUS_CD) STATUS,
+                     PM_USER_COMPANY_DI.Get_Work_Number_By_User_Id(USER_ID) WORK_NUMBER,
+                     PM_USER_DI.Get_Full_Label(USER_ID) USER_LABEL,
+                     PM_ORGANIZATION_DI.Find_Main_Org_Label_By_User(USER_ID) ORGANIZATION_LABEL,
+                     USER_ID,
+                     CP_DATE.Format_Time_Range(SIGN_BEGIN_DATE,
+                                               SIGN_END_DATE,
+                                               'HH24:MI') SIGN_LABEL,
+                     CP_TIME_SPAN.Format_Label_By_Calendar(NVL(SIGN_TS, 0), 'THHMI') SIGN_TS,
+                     PM_ATTENDANCE_SUMMARY_DI.Get_All_Note(USER_ID,
+                                                           RECORD_DATE,
+                                                           LATE_TS,
+                                                           EARLIER_TS,
+                                                           ABSENT_TS) DESCRIPTION
+                     FROM PM_ATTENDANCE_SUMMARY
+                     WHERE RECORD_DATE >= CP_DATE.Parse('${RECORD_BEGIN_DATE}')
+                        AND RECORD_DATE <= CP_DATE.Parse('${RECORD_END_DATE}')
+                        AND USER_ID <> '${USER_ID}'
+                        AND IS_VALID = 'Y'
+                        AND LG_BUSINESS_CATALOG_DI.Judge_Parent_User_New('${CATALOG_ID}', '${USER_ID}', '${ROLE_ID}', USER_ID) = 'Y'
+                        AND PM_USER_COMPANY_DI.Is_Valid_Staff_In_Date(USER_ID, CP_DATE.Parse('${RECORD_BEGIN_DATE}')) = 'Y')
+         ORDER BY WORK_NUMBER, DATE_NOTE)]]></Sql>
+  <Sql _uuid="AkfWP7KA5yK2GqJ362qJhA" name="config" label="统计信息" is_valid="Y"><![CDATA[SELECT
+   CP_DATE.Format_Label(NVL(CP_DATE.Parse('${RECORD_BEGIN_DATE}'), SYSDATE), 'YYYYMMDD') BEGIN_DATE,
+   CP_DATE.Format_Label(NVL(CP_DATE.Parse('${RECORD_END_DATE}'), SYSDATE), 'YYYYMMDD') END_DATE
+FROM DUAL]]></Sql>
+</ExportExcel>
+

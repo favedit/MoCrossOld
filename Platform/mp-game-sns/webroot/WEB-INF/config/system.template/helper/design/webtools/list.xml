@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="90dSPEywfn8am[K6goRKvw" name="helper.design.webtools.list" is_valid="Y" note="M#">
+  <Source _uuid="dESI8hm[X1BFxNPKNJ[[hg" is_valid="Y" note="M#"><![CDATA[<jt:include source='helper.title'/>
+
+<jt:include source='helper.navBegin'/>
+	<A href='#home'><IMG src='<jt:item source='$path'/>/ars/icon/tools/home.gif' align='absmiddle'> 主页</A> 
+	<IMG src='<jt:item source='$path'/>/ars/icon/tools/next.gif' align='absmiddle'> 工具栏列表
+<jt:include source='helper.navEnd'/>
+
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='12'>
+<TR><TD>
+
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+<TR>
+	<TD valign='bottom' class='headTitle'>工具栏列表</TD>
+	<TD align='right' valign='bottom'>version:1.0.0</TD>
+</TR>
+<TR><TD colspan='2'><HR></TD></TR>
+<TR><TD colspan='2'>
+	工具栏对象的列表
+</TD></TR>
+</TABLE>
+
+<BR>
+
+<TABLE width='100%' bgcolor='#666666' border='0' cellspacing='0' cellpadding='2'>
+<jt:loop source='$webtools' alias='webtools'>
+<TR bgcolor='#F8F8F8'>
+	<TD width='300' style='padding-left:20'>
+		<IMG src='<jt:item source='$path'/>/ars/icon/design/webtools/<jt:item source='$webtools:name' removeFirst='field' format='lower'/>.gif' align='absmiddle'> 
+		<A class='listElement' href='./webtools/<jt:item source='$webtools.name' format='path.lower'/>.html'><jt:item source='$webtools.name'/></A>
+	</TD>
+	<TD>[ <FONT color='green'><jt:item source='$webtools.label'/></FONT> ]</TD>
+</TR>
+</jt:loop>
+</TABLE>
+
+</TD></TR>
+</TABLE>
+
+<jt:include source='helper.footer'/>]]></Source>
+</Template>
+

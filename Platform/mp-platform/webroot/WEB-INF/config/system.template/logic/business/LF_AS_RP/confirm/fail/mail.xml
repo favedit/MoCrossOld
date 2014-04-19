@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template aa="pEJJpeb]eYRjuPBc69vfsg" name="logic.business.LF_AS_RP.confirm.fail.mail" label="招聘面试" is_valid="Y" note="M#">
+  <Source aa="fks7Egy3dbl3C7Cmgf9ZjA" name="fail.head" label="HR日报-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【招聘面试】 <jt:item source='$config.to_user_labels'/>您好，<jt:item source='$config.label'/>的入职申请总裁审核未通过。]]></Source>
+  <Source aa="SUA4WU2e9CBFi5VWtSnEjw" name="fail.body" label="HR日报-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='招聘面试 → 入职申请审核未通过' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><FONT COLOR='#336699'><jt:item source='$config.organization_label'/>的应聘者<B><jt:item source='$config.label'/></B>(<jt:item source='$config.job_label'/>)的入职申请总裁审核未通过。</FONT></TD></TR>
+   </TABLE>
+   <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>具体原因如下：</B>
+      <BR><BR>
+      <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD colspan="4" class='ItemData' height="200" width="800" nowrap=true><Pre><jt:item source='$config.note'/></Pre></TD>
+      </TR>
+      </TABLE>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

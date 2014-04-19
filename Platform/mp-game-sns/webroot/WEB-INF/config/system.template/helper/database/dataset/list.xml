@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="30pSdh4iuSXTYVV9BC1fnQ" name="helper.database.dataset.list" is_valid="Y" note="M#">
+  <Source _uuid="Fk7H4fZrqYJtNSiv42ioiw" is_valid="Y" note="M#"><![CDATA[<jt:include source='helper.title'/>
+
+<jt:include source='helper.navBegin'/>
+	<A href='#home'><IMG src='<jt:item source='$path'/>/ars/icon/tools/home.gif' align='absmiddle'> 主页</A> 
+	<IMG src='<jt:item source='$path'/>/ars/icon/tools/next.gif' align='absmiddle'> 数据集列表
+<jt:include source='helper.navEnd'/>
+
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='12'>
+<TR><TD>
+
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+<TR>
+	<TD valign='bottom' class='headTitle'>数据集列表</TD>
+	<TD align='right' valign='bottom'>version:1.0.0</TD>
+</TR>
+<TR><TD colspan='2'><HR></TD></TR>
+<TR><TD colspan='2'>
+	数据集对象的列表
+</TD></TR>
+</TABLE>
+
+<BR>
+
+<TABLE width='100%' bgcolor='#666666' border='0' cellspacing='0' cellpadding='2'>
+<jt:loop source='$config' alias='dataset'>
+<TR bgcolor='#F8F8F8'>
+	<TD width='300' style='padding-left:20'>
+		<IMG src='<jt:item source='$path'/>/ars/icon/database/dataset/<jt:item source='$dataset:name' removeFirst='field' format='lower'/>.gif' align='absmiddle'> 
+		<A class='listElement' href='./dataset/<jt:item source='$dataset.name' format='path.lower'/>.html'><jt:item source='$dataset.name'/></A>
+	</TD>
+	<TD>[ <FONT color='green'><jt:item source='$dataset.label'/></FONT> ]</TD>
+</TR>
+</jt:loop>
+</TABLE>
+
+</TD></TR>
+</TABLE>
+
+<jt:include source='helper.footer'/>]]></Source>
+</Template>
+

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="fUQRw1Ikck9LovBT9mfCiA" name="logic.business.finance.expense.daily.mail" label="日常报销模板审批和抄送" is_valid="Y" note="M#">
+  <Define _uuid="20rZSnrdMcLOnyYCjkrshA" name="mail_content_type" label="邮件类型" is_valid="Y" note="M#" value="Html" />
+  <Variable _uuid="00WBGXPHpt5QPf[J]JwtuQ" name="navigator_label" label="项目支出管理-日常报销" is_valid="Y" note="M#" />
+  <Source _uuid="OUgE5lATXYL6BlgRSjlkjQ" name="examine.head" label="审批-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][日常报销] <jt:item source='$config.to_user_labels'/>同学您好,<jt:item source='$config.send_user_label'/>同学已审核完毕的日常报销请审核。]]></Source>
+  <Source _uuid="MUPt2N3hWEd6AOpIEU2Pmw" name="examine.body" label="审批-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='日常报销管理 → 审批报销单据通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.send_user_label'/>已审核完毕的日常报销单据，请您审核！</TD></TR>
+      <TR><TD>审核地址为：<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>报销单据总信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>共报销</td>
+      <TD class='ItemData'><jt:item source='$config.all_count'/> (张)</TD>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>总金额</td>
+      <TD class='ItemData'><jt:item source='$config.all_amt'/> (元)</TD>
+   </TR>
+   <TR>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>误餐费报销</td>
+      <TD class='ItemData'><jt:item source='$config.meal_count'/> (张)</TD>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>金额</td>
+      <TD class='ItemData'><jt:item source='$config.meal_amt'/> (元)</TD>
+   </TR>
+   <TR>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>交通费报销</td>
+      <TD class='ItemData'><jt:item source='$config.fare_count'/> (张)</TD>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>金额</td>
+      <TD class='ItemData'><jt:item source='$config.fare_amt'/> (元)</TD>
+   </TR>
+   <TR>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>通讯费报销</td>
+      <TD class='ItemData'><jt:item source='$config.comm_count'/> (张)</TD>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>金额</td>
+      <TD class='ItemData'><jt:item source='$config.comm_amt'/> (元)</TD>
+   </TR>
+   <TR>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>活动经费报销</td>
+      <TD class='ItemData'><jt:item source='$config.ative_count'/> (张)</TD>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>金额</td>
+      <TD class='ItemData'><jt:item source='$config.ative_amt'/> (元)</TD>
+   </TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.meal_fee'>
+      <BR><BR>
+      <B style='color:#014d99'>误餐费报销单据详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='160' align="center">用餐日期</td>
+         <TD class='ItemHead' width='120' align="center">报销金额</td>
+         <TD class='ItemHead' align="center">参与人</td>
+      </TR>
+      <jt:loop source='$parameter.meal_fee' alias='meal'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$meal.bill_date'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$meal.real_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$meal.participants'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.fare_fee'>
+      <BR><BR>
+      <B style='color:#014d99'>交通费报销单据详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='160' align="center">乘车时间</td>
+         <TD class='ItemHead' width='120' align="center">报销金额</td>
+         <TD class='ItemHead' align="center">参与人</td>
+      </TR>
+      <jt:loop source='$parameter.fare_fee' alias='fare'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$fare.bill_date'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.real_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.participants'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.comm_fee'>
+      <BR><BR>
+      <B style='color:#014d99'>通讯费报销单据详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='160' align="center">日期</td>
+         <TD class='ItemHead' width='120' align="center">报销金额</td>
+         <TD class='ItemHead' align="center">参与人</td>
+      </TR>
+      <jt:loop source='$parameter.comm_fee' alias='comm'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$comm.bill_date'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$comm.real_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$comm.participants'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.ative_fee'>
+      <BR><BR>
+      <B style='color:#014d99'>活动经费报销单据详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='160' align="center">日期</td>
+         <TD class='ItemHead' width='120' align="center">报销金额</td>
+         <TD class='ItemHead' align="center">参与人</td>
+      </TR>
+      <jt:loop source='$parameter.ative_fee' alias='ative'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$ative.bill_date'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$ative.real_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$ative.participants'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="fUUCMsSo52HxQ2fhphAppw" name="copy.head" label="抄送-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][日常报销] <jt:item source='$config.to_user_labels'/>您好,已经审核通过的日常报销单据，请您审查。]]></Source>
+  <Source _uuid="UUY8vHTspDhWJE3eg3FPtw" name="copy.body" label="抄送-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='日常报销管理 → 查看报销单据通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.to_user_label'/>已审核完毕的日常报销单据，请您审核！</TD></TR>
+      <TR><TD>查看地址为：<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>报销单据总信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>共报销</td>
+      <TD class='ItemData'><jt:item source='$config.all_count'/> (张)</TD>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>总金额</td>
+      <TD class='ItemData'><jt:item source='$config.all_amt'/> (元)</TD>
+   </TR>
+   <TR>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>误餐费报销</td>
+      <TD class='ItemData'><jt:item source='$config.meal_count'/> (张)</TD>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>金额</td>
+      <TD class='ItemData'><jt:item source='$config.meal_amt'/> (元)</TD>
+   </TR>
+   <TR>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>交通费报销</td>
+      <TD class='ItemData'><jt:item source='$config.fare_count'/> (张)</TD>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>金额</td>
+      <TD class='ItemData'><jt:item source='$config.fare_amt'/> (元)</TD>
+   </TR>
+   <TR>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>通讯费报销</td>
+      <TD class='ItemData'><jt:item source='$config.comm_count'/> (张)</TD>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>金额</td>
+      <TD class='ItemData'><jt:item source='$config.comm_amt'/> (元)</TD>
+   </TR>
+   <TR>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>活动经费报销</td>
+      <TD class='ItemData'><jt:item source='$config.ative_count'/> (张)</TD>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>金额</td>
+      <TD class='ItemData'><jt:item source='$config.ative_amt'/> (元)</TD>
+   </TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.meal_fee'>
+      <BR><BR>
+      <B style='color:#014d99'>误餐费报销单据详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='160' align="center">用餐日期</td>
+         <TD class='ItemHead' width='120' align="center">报销金额</td>
+         <TD class='ItemHead' align="center">参与人</td>
+      </TR>
+      <jt:loop source='$parameter.meal_fee' alias='meal'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$meal.bill_date'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$meal.real_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$meal.participants'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.fare_fee'>
+      <BR><BR>
+      <B style='color:#014d99'>交通费报销单据详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='160' align="center">乘车时间</td>
+         <TD class='ItemHead' width='120' align="center">报销金额</td>
+         <TD class='ItemHead' align="center">参与人</td>
+      </TR>
+      <jt:loop source='$parameter.fare_fee' alias='fare'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$fare.bill_date'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.real_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.participants'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.comm_fee'>
+      <BR><BR>
+      <B style='color:#014d99'>通讯费报销单据详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='160' align="center">日期</td>
+         <TD class='ItemHead' width='120' align="center">报销金额</td>
+         <TD class='ItemHead' align="center">参与人</td>
+      </TR>
+      <jt:loop source='$parameter.comm_fee' alias='comm'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$comm.bill_date'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$comm.real_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$comm.participants'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.ative_fee'>
+      <BR><BR>
+      <B style='color:#014d99'>活动经费报销单据详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='160' align="center">日期</td>
+         <TD class='ItemHead' width='120' align="center">报销金额</td>
+         <TD class='ItemHead' align="center">参与人</td>
+      </TR>
+      <jt:loop source='$parameter.ative_fee' alias='ative'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$ative.bill_date'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$ative.real_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$ative.participants'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

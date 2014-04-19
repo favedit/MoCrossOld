@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="NU1vH736V18Jht8PwlDQgA" name="game.template.duplicate.difficulty" label="M#12cn14副本难度" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_DUPLICATE_DIFFICULTY" data_alias="GM_TPL_DUD" data_logic="GM_TPL_DUPLICATE_DIFFICULTY_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="PUZb3dZparunmUsmABDTuQ" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="e0tIDvHx2BqUmUba6Qz[rQ" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="4EdtZyFH2bkZtqzmmfAAlg" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="]0r1mRw8NgNFLp2NDfEQmg" name="label" label="M#12cn12标签" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldString _uuid="y0ogEH]NtjncJyur0nJUhw" name="target" label="M#12cn14副本目标" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TARGET" data_size="100" />
+  <FieldInteger _uuid="KEmWu7AN6oXC7oTn8a7Hog" name="reward_bag_tid" label="M#12cn210进副本显示奖励物品包" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REWARD_BAG_TID" data_alias="ITM_BAG" data_refer="game.template.item.bag" />
+  <FieldInteger _uuid="EkEywMCdeZnTlV90v8ZAvA" name="duplicate_tid" label="M#12cn16副本模板编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="DUPLICATE_TID" data_alias="DUP" data_refer="game.template.duplicate" />
+  <FieldEnum _uuid="HkYgsolyHxn1MuhQjRyzqw" name="duplicate_difficulty_cd" label="M#12cn14副本难度" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DUPLICATE_DIFFICULTY_CD" data_size="1" data_code="game.template.area.difficulty" />
+  <FieldEnum _uuid="0kjOLIDEfl9fNLRLvDxplQ" name="monster_generation_cd" label="M#12cn16怪物生成模式" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MONSTER_GENERATION_CD" data_size="1" data_code="game.template.duplicate.generation" />
+  <FieldInteger _uuid="M0fDAN1]P11w7NZdsssblg" name="actor_factory_tid" label="M#12cn18演员工厂模板编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="ACTOR_FACTORY_TID" data_alias="AFT" data_refer="game.template.actor.factory" />
+  <FieldInteger _uuid="Rk60ev3DepdJ3TMt3LuztA" name="still_factory_tid" label="M#12cn18静物工厂模板编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STILL_FACTORY_TID" data_alias="SFC" data_refer="game.template.still.factory" />
+  <FieldFloat _uuid="4kHX]zxYfJamNfb1vN4brA" name="round_point" label="M#12cn15回合数系数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ROUND_POINT" />
+  <FieldFloat _uuid="TUaFe5KR6mHxbRTCB][agg" name="round_offset" label="M#12cn17回合数 附加值" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ROUND_OFFSET" />
+  <FieldFloat _uuid="H0f9Qu2hzpMuO4MSSze7nw" name="total_damage_offset" label="M#12cn17总伤害削减系数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TOTAL_DAMAGE_OFFSET" />
+  <FieldFloat _uuid="rEICnGynCQL0HUWlKnp7gg" name="personal_damage_offset" label="M#12cn18个人伤害调整系数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PERSONAL_DMG_OFFSET" />
+  <FieldFloat _uuid="CUF37lWcj4ACElFRz11kig" name="bear_damage_offset" label="M#12cn16承受伤害系数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BEAR_DAMAGE_OFFSET" />
+  <FieldFloat _uuid="GElV88hZ8UXbJ3KAHZLypg" name="recommended_point_offset" label="M#12cn18推荐战力偏移系数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RECOMMENDED_POINT_OFFSET" />
+  <FieldInteger _uuid="3U[jL88KGLBccsJMYSCrlg" name="quick_reward_exp" label="M#12cn211快速挑战副本奖励经验值" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="QUICK_REWARD_EXP" />
+  <FieldInteger _uuid="30PNiIMAEH8cQv]2dQkioA" name="quick_reward_gold" label="M#12cn210快速挑战副本奖励金钱" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="QUICK_REWARD_GOLD" />
+  <FieldInteger _uuid="CEWlu2IOoY]PdPLRl6ehhg" name="quick_challenge_cd" label="M#12cn18快速挑战副本CD" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="QUICK_CHALLENGE_CD" />
+  <FieldInteger _uuid="wUsnGYSybCTTOysjJvxOrQ" name="quick_dropbag_tid" label="M#12cn213快速挑战副本奖励掉落包编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="QUICK_DROPBAG_TID" data_alias="ITM_DROP" data_refer="game.template.drop.bag" />
+  <FieldInteger _uuid="S0iLpB[hadnaCY3jrUgmvg" name="quick_challenge_copy_cost" label="M#12cn18快速挑战副本花费" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="QUICK_CHALLENGE_COPY_COST" />
+  <FieldTemplate _uuid="RU0TDNXDJpqUmOg25TO5qw" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

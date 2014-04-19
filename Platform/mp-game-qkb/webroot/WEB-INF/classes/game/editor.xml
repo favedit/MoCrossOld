@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+   
+   <!-- ============================================================ -->
+   <!-- ListConsole:枚举控制台                                       -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.game.editor.core.enums.IEnumConsole'
+         class = 'org.mo.game.editor.core.enums.FEnumConsole'
+         scope = 'global'>
+      <Property name='persistence'>game.editor.enum</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${game.space}/game.enum</Property>
+      <Property name='pathServer'>${game.export.server}</Property>
+      <Property name='pathClient'>${game.export.client}/mo-4-message/2-enum/mo/ms/enum</Property>
+      <Property name='pathTool'>${game.export.tools}/2 - Core/MoMessage/Enum</Property>
+      <Property name='pathPlatform'>${game.export.platform}/mp-app-qkb-1-common/src/client-message-java/org/mo/qkb/msg/enums</Property>
+      <Property name='templatePath'>${game.export.template}</Property>
+      <Property name='cacheTimeout'>60000</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- InstanceConsole:实例制台                                     -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.game.editor.core.instance.IInstanceConsole'
+         class = 'org.mo.game.editor.core.instance.FInstanceConsole'
+         scope = 'global'>
+      <Property name='persistence'>game.editor.instance</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${game.space}/game.instance</Property>
+      <Property name='pathServer'>${game.export.server}</Property>
+      <Property name='pathClient'>${game.export.client}/mo-4-message/3-instance/mo/ms/instance</Property>
+      <Property name='cacheTimeout'>60000</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- ListConsole:实体制台                                         -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.game.editor.core.entity.IEntityConsole'
+         class = 'org.mo.game.editor.core.entity.FEntityConsole'
+         scope = 'global'>
+      <Property name='persistence'>game.editor.entity</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${game.space}/game.entity</Property>
+      <Property name='pathServer'>${game.export.server}</Property>
+      <Property name='pathClient'>${game.export.client}/mo-4-message/3-entity/mo/ms/entity</Property>
+      <Property name='pathTool'>${game.export.tools}/2 - Core/MoMessage/Entity</Property>
+      <Property name='pathPlatform'>${game.export.platform}/mp-app-qkb-1-common/src/client-message-java/org/mo/qkb/msg/entity</Property>
+      <Property name='cacheTimeout'>60000</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+   
+   <!-- ============================================================ -->
+   <!-- ListConsole:共享实体制台                                     -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.game.editor.core.module.IModuleConsole'
+         class = 'org.mo.game.editor.core.module.FModuleConsole'
+         scope = 'global'>
+      <Property name='persistence'>game.editor.module</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${game.space}/game.module</Property>
+      <Property name='sourcepath'>${game.export.server}</Property>
+      <Property name='cacheTimeout'>60000</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- ListConsole:消息制台                                       -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.game.editor.core.message.IMessageConsole'
+         class = 'org.mo.game.editor.core.message.FMessageConsole'
+         scope = 'global'>
+      <Property name='persistence'>game.editor.message</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${game.space}/game.message</Property>
+      <Property name='pathServer'>${game.export.server}/Common/MoDefineMessage</Property>
+      <Property name='pathClient'>${game.export.client}/mo-4-message/4-message/mo/ms</Property>
+      <Property name='pathTools'>${game.export.tools}/2 - Core/MoMessage/Message</Property>
+      <Property name='pathPlatform'>${game.export.platform}/mp-app-qkb-1-common/src/client-message-java/org/mo/qkb/msg/message</Property>
+      <Property name='cacheTimeout'>60000</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- ProcessorConsole:处理器控制台                                -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.game.editor.core.processor.IProcessorConsole'
+         class = 'org.mo.game.editor.core.processor.FProcessorConsole'
+         scope = 'global'>
+      <Property name='persistence'>game.editor.processor</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${game.space}/game.processor</Property>
+      <Property name='sourcepath'>${game.export.server}</Property>
+      <Property name='cacheTimeout'>60000</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+   
+   <!-- ============================================================ -->
+   <!-- ListConsole:存储器制台                                       -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.game.editor.core.storage.IStorageConsole'
+         class = 'org.mo.game.editor.core.storage.FStorageConsole'
+         scope = 'global'>
+      <Property name='persistence'>game.editor.storage</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${game.space}/game.storage</Property>
+      <Property name='sourcepath'>${game.export.server}/Game</Property>
+      <Property name='cacheTimeout'>60000</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+   
+   <!-- ============================================================ -->
+   <!-- DatasetConsole:数据集合控制台                                -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.game.editor.core.dataset.IDatasetConsole'
+         class = 'org.mo.game.editor.core.dataset.FDatasetConsole'
+         scope = 'global'>
+      <Property name='persistence'>game.editor.dataset</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${game.space}/game.dataset</Property>
+      <Property name='sourceServerPath'>${game.export.server}/</Property>
+      <Property name='sourceJavaDomainPath'>${application}/mo-3-logic/src/data-java/org/mo/data/face/</Property>
+      <Property name='sourceJavaDataPath'>${application}/mo-zq-logic/src/data-java/com/zqinet/logic/data/</Property>
+      <Property name='cacheTimeout'>60000</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+   
+   <!-- ============================================================ -->
+   <!-- LogicConsole:数据集合控制台                                  -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.game.editor.core.logic.ILogicConsole'
+         class = 'org.mo.game.editor.core.logic.FLogicConsole'
+         scope = 'global'>
+      <Property name='persistence'>game.editor.logic</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${game.space}/game.logic</Property>
+      <Property name='sourceServerPath'>${game.export.server}/</Property>
+      <Property name='cacheTimeout'>60000</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+   
+</Config>

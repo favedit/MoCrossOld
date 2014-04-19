@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="9kQajg5OsijxLQvGAw]Wnw" name="logic.business.LF_AS_AT.mail" label="考勤管理" is_valid="Y" note="M#">
+  <Define _uuid="z0PRq8hF6OcH6l6pr3SplQ" name="mail_content_type" label="邮件类型" is_valid="Y" note="M#" value="Html" />
+  <Source _uuid="NE99VmV6nkMdUNMJLJxVpQ" name="remind.head" label="提醒-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][考勤管理] <jt:item source='$config.to_user_labels'/>您好，请审核[<jt:item source='$config.begin_date'/>]-[<jt:item source='$config.end_date'/>]期间的所属员工考勤。]]></Source>
+  <Source _uuid="lENnfcQ90stuUXvGeYcIng" name="remind.body" label="提醒-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='考勤管理 → 审核' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD>请审核[<jt:item source='$config.begin_date'/>]-[<jt:item source='$config.end_date'/>]期间的所属员工考勤，<B><FONT color="#FF0000">审核截至日期为[<jt:item source='$config.examine_end_date'/>]</FONT></B>，谢谢支持我们的工作。</TD></TR>
+     <TR><TD>审核地址为：<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   </TD></TR>
+   <TR><TD style='padding:0 20;'>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8' bgcolor='#e6ffcc'>
+      <TR><TD style='padding:3 10'><B>考勤审核说明：</B></TD></TR>
+      <TR><TD height='1' bgcolor='#FFFFFF'></TD></TR>
+      <TR><TD height='1' bgcolor='#85BC4C'></TD></TR>
+      <TR><TD>
+	  <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8' bgcolor='#e6ffcc'>
+		  <TR><TD>
+		  <table cellspacing="0" cellpadding="0">
+			<TR>
+			  <TD><B>一、审核通过</B></TD>
+			</TR>
+			<TR>
+			  <TD class='HelpHead'>说明：对异常（迟到、早退、旷工）记录审核通过，则计考勤正常，本部分操作只针对考勤，不对假期和其它系统构成任何影响。</TD>
+			</TR>
+			<TR>
+			  <TD><TABLE cellSpacing="2" cellPadding="0" width="100%" border="0">
+				  <TBODY>
+					<TR vAlign="top">
+					  <TD class='HelpHead'>a) 对旷工审核、则计全勤。</TD>
+					</TR>
+					<TR vAlign="top">
+					  <TD class='HelpHead'>b) 对迟到审核、则不计迟到。</TD>
+					</TR class='HelpText'>
+					<TR vAlign="top">
+					  <TD class='HelpHead'>c) 对早退审核、则不计早退。</TD>
+					</TR>
+				  </TBODY>
+			  </TABLE></TD>
+			</TR>
+		  </table></TD></TR>
+		  <TR><TD>
+		  <table cellspacing="0" cellpadding="0">
+			<TR>
+			  <TD><B>二、审核未通过（注释：如果对异常的考勤不处理、则按未通过处理。）</B></TD>
+			</TR>
+			<TR>
+			  <TD class='HelpHead'>说明：对异常（迟到、早退、旷工）记录审核未通过，则考勤为异常、按考勤实际情况统计，本部分操作只针对考勤，不对假期和其它系统构成任何影响。</TD>
+			</TR>
+			<TR>
+			  <TD><TABLE cellSpacing="2" cellPadding="0" width="100%" border="0">
+				  <TBODY>
+					<TR vAlign="top">
+					  <TD class='HelpHead'>a) 对旷工审核、则计旷工的实际时长。</TD>
+					</TR>
+					<TR vAlign="top">
+					  <TD class='HelpHead'>b) 对迟到审核、则计迟到。</TD>
+					</TR>
+					<TR vAlign="top">
+					  <TD class='HelpHead'>c) 对早退审核、则计早退。</TD>
+					</TR>
+				  </TBODY>
+			  </TABLE></TD>
+			</TR>
+		  </table></TD></TR>
+	   </TABLE></TD>
+	   </TR>
+	 </TABLE>
+   </TD></TR>
+   <TR><TD style='padding:0 20;'>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8' bgcolor='#D5DAFD'>
+      <TR><TD style='padding:3 10'><B>考勤细则：</B></TD></TR>
+         <TR><TD height='1' bgcolor='#FFFFFF'></TD></TR>
+         <TR><TD height='1' bgcolor='#85BC4C'></TD></TR>
+      <TR><TD>
+	  <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8' bgcolor='#D5DAFD'>
+		  <TR><TD>
+		  <table cellspacing="0" cellpadding="0">
+			<TR>
+			  <TD><B>一、系统内签到，如在两日内（不包括双休）未提交说明，按旷工处理：</B></TD>
+			</TR>
+			<TR>
+			  <TD><TABLE cellSpacing="2" cellPadding="0" width="100%" border="0">
+				  <TBODY>
+					<TR vAlign="top">
+					  <TD class='HelpText'>a) 员工忘带胸卡，需到系统内签到及签退。（注：第一次登录系统时间为签到时间，最后一次登录系统时间为签退时间。）</TD>
+					</TR>
+					<TR vAlign="top">
+					  <TD class='HelpText'>b) 因公外出，需在考勤系统内登录事由，直属上级确认。   详见附件(9.1.2可以登记及察看事由)。</TD>
+					</TR>
+					<TR vAlign="top">
+					  <TD class='HelpText'>c) 未打卡，需第二天在考勤系统内登录事由，直属上级确认。详见附件(9.1.2可以登记及察看事由)。</TD>
+					</TR>
+				  </TBODY>
+			  </TABLE></TD>
+			</TR>
+		  </table></TD></TR>
+		  <TR>
+			<TD><table cellspacing="0" cellpadding="0">
+			  <TR>
+				<TD><B>二、 员工上下班时间固定（如遇项目进度紧张或特殊情况，需请部门经理/项目经理做出相应申请及说明）：</B></TD>
+			  </TR>
+			  <TR>
+				<TD><TABLE cellSpacing="2" cellPadding="0" width="100%" border="0">
+					<TBODY>
+					  <TR vAlign="top">
+						<TD class='HelpText'>a) 公司员工如前一日加班至晚10点以后，次日上班时间可作适当调整</TD>
+					  </TR>
+					  <TR vAlign="top">
+						<TD class='HelpText'>b) 研发中心、运营中心工作时间：9:30-18:30，运营中心运维部、客户服务部的考勤记录以部门经理提供的考勤为准。</TD>
+					  </TR>
+					  <TR vAlign="top">
+						<TD class='HelpText'>c) 营销中心工作时间：9:15-18:15，营销中心渠道部推广员不以公司总部工作时间为参照，具体时间由部门经理制定。</TD>
+					  </TR>
+					  <TR vAlign="top">
+						<TD class='HelpText'>d) 职能平台工作时间：9:00-18:00。</TD>
+					  </TR>
+					  <TR vAlign="top">
+						<TD class='HelpText'>以上时间，如无特殊情况未能及时到岗或提早下班，均按迟到早退处理。</TD>
+					  </TR>
+					</TBODY>
+				</TABLE></TD>
+			  </TR>
+			  </table></TD>
+		  </TR>
+		  <TR>
+			<TD><table cellspacing="0" cellpadding="0">
+			  <TR>
+				<TD><B>三、 系统可以针对迟到、早退、旷工做分类统计及筛选：</B></TD>
+			  </TR>
+			  <TR>
+		                <TD><TABLE cellSpacing="2" cellPadding="0" width="100%" border="0">
+                                            <TBODY>
+				  <TR vAlign="top">
+				    <TD class='HelpText'>a) 迟到：15分钟以内,15分钟以上,30分钟以上,60分钟以上</TD>
+				  </TR>
+				  <TR vAlign="top">
+				    <TD class='HelpText'>b) 早退：20分钟以内，30分钟以上，60分钟以上</TD>
+				  </TR>
+				  <TR vAlign="top">
+				    <TD class='HelpText'>c) 旷工：迟到或早退120分钟以上，记为旷工半天，迟到或早退180分钟以上，记旷工一天。当月连续四次或累计六次迟到，以旷工半天计。</TD>
+				  </TR>
+				  </TBODY>
+				</TABLE></TD>
+			  </TR>
+		 </TABLE></TD>
+	         </TR>
+	   </TABLE></TD>
+	   </TR>
+	 </TABLE>
+   </TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

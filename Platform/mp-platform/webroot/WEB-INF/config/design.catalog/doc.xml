@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<TreeView>
+   <!-- Type Define -->
+   <Types page_svc='sys.doc.catalog'>
+
+      <Type name='default'>
+         <Sheet name='inf' icon='sys.info' label='trs:sys|pagectl.info|Information' action='/inc/Empty.wsa'/>
+      </Type>
+
+      <!-- Document Type -->
+      <Type name='doc' tree_svc='dev.doc.catalog'>
+         <Sheet name='dir' icon='sys.info' label='trs:sys|pagectl.info|Information' action='/inc/Empty.wsa'/>
+      </Type>
+      <Type name='sys.doc.cat'>
+         <Sheet name='inf' icon='sys.info' label='trs:sys|pagectl.info|Information' action='/sys/doc/node/Directory.wsa'/>
+      </Type>
+      <Type name='sys.doc.itm'>
+         <Sheet name='inf' icon='sys.info' label='trs:sys|pagectl.info|Information' action='/sys/doc/node/Document.wsa'/>
+      </Type>
+
+      <!-- Java Source Type -->
+      <Type name='src.java' tree_svc='sys.src.java'>
+         <Sheet name='dir' icon='sys.info' label='trs:sys|pagectl.info|Information' action='/inc/Empty.wsa'/>
+      </Type>
+      <Type name='src.java.class'>
+         <Sheet name='inf' icon='sys.info' label='trs:sys|pagectl.info|Information' action='/sys/src/java/Info.wsa'/>
+         <Sheet name='src' icon='sys.info' label='trs:sys|pagectl.source|Source' action='/sys/src/java/Source.wsa'/>
+         <Sheet name='hlp' icon='sys.info' label='trs:sys|pagectl.help|Help' action='/sys/src/java/Help.wsa'/>
+      </Type>
+
+      <Type name='src.web' tree_svc='sys.src.web'>
+         <Sheet name='dir' icon='sys.info' label='trs:sys|pagectl.info|Information' action='/inc/Empty.wsa'/>
+      </Type>
+
+      <Type name='src.web.file' tree_svc='sys.src.web'>
+         <Sheet name='src' icon='sys.info' label='trs:sys|pagectl.source|Source' action='/sys/src/web/Source.wsa'/>
+      </Type>
+
+      <!-- Database Type -->
+      <Type name='db' tree_svc='sys.db.oracle.catalog'>
+         <Sheet name='inf' icon='sys.info' label='trs:sys|pagectl.info|Information' action='/inc/Empty.wsa'/>
+      </Type>
+      <Type name='db.tab'>
+         <Sheet name='inf' icon='sys.info' label='trs:sys|pagectl.info|Information' action='/sys/db/oracle/tab/Info.wsa'/>
+         <Sheet name='pty' icon='sys.info' label='trs:sys|pagectl.property|Property' action='/sys/db/oracle/tab/TableConfig.wsa'/>
+         <Sheet name='src' icon='sys.info' label='trs:sys|pagectl.source|Source' action='/sys/db/oracle/tab/src/Info.wsa'/>
+      </Type>
+      <Type name='db.seq'>
+         <Sheet name='inf' icon='sys.info' label='trs:sys|pagectl.info|Information' action='/inc/Empty.wsa'/>
+         <Sheet name='src' icon='sys.info' label='trs:sys|pagectl.source|Source' action='/sys/db/oracle/seq/src/Info.wsa'/>
+      </Type>
+      <Type name='db.tab.fld'>
+         <Sheet name='pty' icon='sys.info' label='trs:sys|pagectl.property|Property' action='/sys/db/oracle/tab/FieldConfig.wsa'/>
+      </Type>
+
+      <!-- System View Type -->
+      <Type name='vw.mem'>
+         <Sheet name='Info' icon='sys.info' label='trs:sys|pagectl.memory|Memory' action='/sys/vw/Memory.wsa'/>
+      </Type>
+
+   </Types>
+
+   <!-- Tree Node Define -->
+   <Nodes>
+      <Node type='doc' icon='doc.root' label='Document' child='Y'/>
+      <Node type='src' icon='sys.module' label='Source'>
+         <Node type='src.java' icon='sys.pkg' label='Java Source' child='Y'/>
+         <Node type='src.web' icon='sys.info' label='Web Source' child='Y'/>
+      </Node>
+      <Node type='db' icon='db.mgr' label='Database' child='Y'/>
+      <Node type='vw' icon='sys.app' label='Monitor' child='Y'>
+         <Node type='vw.mem' icon='sys.item' label='Memory View' child='N'/>
+      </Node>
+   </Nodes>
+
+</TreeView>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="RE43lgNF9rWAeK6vxzXjow" name="logic.person.user.staff.MonthReport" label="人力资源-月报统计" is_valid="Y" fileName="人力资源-月报统计[${CURRENT_DATE}].xls" template="logic.person.user.staff.MonthReport.xls">
+  <Sql _uuid="u0]nGAxQ7HHE5xpuW3ellA" name="user_list" label="月报汇总SQL" is_valid="Y"><![CDATA[SELECT BEGIN_DATE,
+   END_DATE,
+   ENTRY_COUNT,
+   LEAVE_COUNT,
+   PROBATE_COUNT,
+   INSERVICE_COUNT,
+   FORMAL_COUNT,
+   PRACTISE_COUNT,
+   ADVISER_COUNT,
+   TEMPORARY_COUNT,
+   PARTTIME_COUNT,
+   YEAR_LEAVE_COUNT,
+   YEAR_ENTRY_COUNT,
+   PERIOD_PRACTISE_COUNT,
+   (INSERVICE_COUNT - FORMAL_COUNT - PRACTISE_COUNT - ADVISER_COUNT - TEMPORARY_COUNT - PARTTIME_COUNT) TEST_COUNT
+FROM (SELECT
+   BEGIN_DATE,
+   END_DATE,
+   PM_USER_COMPANY_DI.Get_Entry_Count_By_Date(BEGIN_DATE, END_DATE) ENTRY_COUNT,
+   PM_USER_COMPANY_DI.Get_Leave_Count_By_Date(BEGIN_DATE, END_DATE) LEAVE_COUNT,
+   PM_USER_COMPANY_DI.Get_Probate_Count_By_Date(BEGIN_DATE, END_DATE) PROBATE_COUNT,
+   PM_USER_COMPANY_DI.Get_Inservice_Count('', BEGIN_DATE, END_DATE) INSERVICE_COUNT,
+   PM_USER_COMPANY_DI.Get_Formal_Count(BEGIN_DATE, END_DATE) FORMAL_COUNT,
+   PM_USER_COMPANY_DI.Get_Practise_Count_By_Date(BEGIN_DATE, END_DATE) PRACTISE_COUNT,
+   PM_USER_COMPANY_DI.Get_Inservice_Count('A', BEGIN_DATE, END_DATE) ADVISER_COUNT,
+   PM_USER_COMPANY_DI.Get_Inservice_Count('T', BEGIN_DATE, END_DATE) TEMPORARY_COUNT,
+   PM_USER_COMPANY_DI.Get_Inservice_Count('M', BEGIN_DATE, END_DATE) PARTTIME_COUNT,
+   PM_USER_COMPANY_DI.Get_Leave_Count(YEAR_BEGIN, END_DATE) YEAR_LEAVE_COUNT,
+   PM_USER_COMPANY_DI.Get_Entry_Count_By_Date(YEAR_BEGIN, END_DATE) YEAR_ENTRY_COUNT,
+   PM_USER_COMPANY_DI.Get_Period_Practise_Count(BEGIN_DATE, END_DATE) PERIOD_PRACTISE_COUNT
+FROM (SELECT  CP_DATE.Parse('${BEGIN_DATE}') BEGIN_DATE, 
+         LAST_DAY(CP_DATE.Parse('${BEGIN_DATE}')) END_DATE,
+         TRUNC(CP_DATE.Parse('${BEGIN_DATE}'), 'year') YEAR_BEGIN
+      FROM DUAL))]]></Sql>
+  <Sql _uuid="sEn9VR91dFtq[uc4xw1kog" name="current_config" label="当前时间" is_valid="Y"><![CDATA[SELECT  TO_CHAR(CP_DATE.Parse('${BEGIN_DATE}'), 'YYYY-MM-DD') BEGIN_DATE,  
+   TO_CHAR(LAST_DAY(CP_DATE.Parse('${BEGIN_DATE}')), 'YYYY-MM-DD') END_DATE FROM DUAL]]></Sql>
+  <Sql _uuid="v00I8D70sNVd[2shgC[8ig" name="detail_list" label="月报明细" is_valid="Y"><![CDATA[SELECT 
+    FULL_LABEL,
+    WORK_NUMBER,
+    SERVICE_CD,
+    DEPT_LABEL,
+    GENDER_LABEL,
+    GENDER_CD,
+    TYPE_CD,
+    SERVICE_LABEL,
+    TYPE_LABEL,
+    TO_CHAR(ENTRY_DATE, 'YYYY-MM-DD') ENTRY_DATE,
+    TO_CHAR(LEAVE_DATE, 'YYYY-MM-DD') LEAVE_DATE,
+    TO_CHAR(PROBATION_DATE, 'YYYY-MM-DD') PROBATION_DATE
+  FROM (SELECT T.OUID,
+               (T.LABEL || T.LABEL_LAST) FULL_LABEL,
+                C.WORK_NUMBER,
+                T.GENDER_CD,
+                PM_USER_SEX_EI.Decode_Label(T.GENDER_CD) GENDER_LABEL,
+                PM_ORGANIZATION_DI.Get_Label(PM_ORGANIZATION_DI.Find_Main_Organization_By_User(C.USER_ID)) DEPT_LABEL,
+                C.ENTRY_DATE,
+               C.LEAVE_DATE,
+               C.PROBATION_DATE,
+               C.SERVICE_CD,
+               C.TYPE_CD,
+               PM_USER_SERVICE_EI.DECODE_LABEL(C.SERVICE_CD) SERVICE_LABEL,
+               PM_USER_WORK_EI.DECODE_LABEL(C.TYPE_CD) TYPE_LABEL
+          FROM (SELECT * FROM PM_USER) T, (SELECT * FROM PM_USER_COMPANY) C
+         WHERE T.OUID = C.USER_ID(+)
+           AND PM_USER_COMPANY_DI.Is_Exist_Staff(T.OUID) = 'Y') A,
+       (SELECT CP_DATE.Parse('${BEGIN_DATE}') BEGIN_DATE,
+         LAST_DAY(CP_DATE.Parse('${BEGIN_DATE}')) END_DATE
+          FROM DUAL) D
+ WHERE (A.ENTRY_DATE >= D.BEGIN_DATE AND ENTRY_DATE <= D.END_DATE)
+    OR (A.LEAVE_DATE >= D.BEGIN_DATE AND LEAVE_DATE <= D.END_DATE AND
+       A.SERVICE_CD = 'D')
+    OR (A.PROBATION_DATE >= D.BEGIN_DATE AND PROBATION_DATE <= D.END_DATE AND
+       A.TYPE_CD = 'F')
+ ORDER BY A.WORK_NUMBER]]></Sql>
+</ExportExcel>
+

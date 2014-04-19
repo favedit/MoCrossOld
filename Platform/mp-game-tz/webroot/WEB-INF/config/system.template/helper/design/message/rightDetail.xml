@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="wEClvLFjvM0dkJ8gIwxksA" name="helper.design.webform.bulidAllList" is_valid="Y" note="M#">
+  <Source _uuid="a0IkmDXOq6nWN9YQ[tI3vg" is_valid="Y" note="M#"><![CDATA[<!-- HTML Begin ------------------------------------------->
+<HTML>
+<HEAD>
+<META http-equiv='Content-Type' content='text/html;charset=GB2312'>
+<TITLE>Help - <jt:item source='$config.label'/></TITLE>
+<LINK rel="stylesheet" href='<jt:item source='$root_path'/>/acs/control.css' type="text/css" media="all"/>
+<LINK rel="stylesheet" href='<jt:item source='$root_path'/>/acs/lang_cn.css' type="text/css" media="all"/>
+<LINK rel="stylesheet" href='<jt:item source='$root_path'/>/acs/site_cn.css' type="text/css" media="all"/>
+<SCRIPT language='javascript' src='<jt:item source='$root_path'/>/ajs/mobj.js'></SCRIPT>
+<SCRIPT>
+function _load(){
+	//RGlobal.setContext('cn', '..', '');
+}
+</SCRIPT>
+</HEAD>
+
+<BODY onload='_load()' style='padding:0;margin:0'>
+<TABLE width='100%' height='100%' border='0' cellspacing='0' cellpadding='0'>
+<TR><TD valign='top'>
+
+<!-- Title Begin ------------------------------------------>
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='3'>
+<TR>
+	<TD width='220' bgcolor='#000000' align='center' valign='top' class='navTitle'>LIN<FONT color='#FF6A6A'>E</FONT>KONG <FONT color='#FF6A6A'>e</FONT>UIS HELP</TD>
+	<TD bgcolor='#3399FF' align='right' valign='bottom' class='navText'>
+		相关内容
+		<SELECT>
+			<OPTION value='1'>--------------------</OPTION>
+		</SELECT>
+	</TD>
+</TR>
+<TR height='1'>
+	<TD bgcolor='#FFFFFF'></TD>
+	<TD bgcolor='#FFFFFF'></TD>
+</TR>
+<TR height='1'>
+	<TD bgcolor='#000000'></TD>
+	<TD bgcolor='#3399FF'></TD>
+</TR>
+</TABLE>
+<!-- Title End -------------------------------------------->
+<!-- Navigator Begin -------------------------------------->
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='8'>
+<TR><TD>
+	<A href='../rightGroupList.html'><IMG src='<jt:item source='$root_path'/>/ars/icon/tools/home.gif' align='absmiddle'> 主页</A> 
+	<A href='../rightGroupList.html'><IMG src='<jt:item source='$root_path'/>/ars/icon/tools/next.gif' align='absmiddle'>消息分组列表</A> 
+	<IMG src='<jt:item source='$root_path'/>/ars/icon/tools/next.gif' align='absmiddle'> <jt:item source='$config.label'/> (<jt:item source='$config.name'/>)
+</TD></TR>
+</TABLE>
+<!-- Navigator End ---------------------------------------->
+<!-- Head Begin ------------------------------------------->
+<TABLE width='100%' border='0' cellspacing='8' cellpadding='0'>
+  <TR>
+	<TD class='headTitle'><jt:item source='$config.file_path' removeLast='/home' format='upper'/> [<FONT color='#FF6A6A'><jt:item source='$config.label' format='upper'/></FONT>]</TD>
+	<TD align='right' valign='bottom' class='headVersion'>version:1.0.0</TD>
+  </TR>
+  <TR><TD colspan='2'>
+	<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+		<TR height='1' bgcolor='#999999'><TD></TD></TR>
+		<TR height='1' bgcolor='#000000'><TD></TD></TR>
+	</TABLE>
+  </TD></TR>
+  <TR><TD colspan='2'>
+	<B>名称：</B>
+	<jt:item source='$config.name' format='html'/><BR>
+  </TD></TR>
+  <TR><TD colspan='2'>
+	<B>标签：</B>
+	<jt:item source='$config.label' format='html'/><BR>
+  </TD></TR>
+  <TR><TD colspan='2'>
+	<B>类型：</B>
+	<jt:item source='$config.type_label' format='html'/><BR>
+  </TD></TR>
+  <TR><TD colspan='2'>
+	<B>描述：</B>
+	<jt:item source='$config.note' format='html'/><BR>
+  </TD></TR>
+  <TR><TD colspan='2'>
+	<B>详细：</B><BR>
+  </TD></TR>
+</TABLE>
+<!-- Head End --------------------------------------------->
+<!-- Body Begin ------------------------------------------->
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='12'>
+<TR><TD>
+<!-- Dataset Begin ---------------------------------------->
+<TABLE width='100%' bgcolor='#666666' border='0' cellspacing='1' cellpadding='2'>
+<TR bgcolor='#dddddd' align='center'>
+  <TD class='fieldTitle'>名称</TD>
+  <TD class='fieldTitle'>标签</TD>
+  <TD class='fieldTitle'>类型</TD>
+  <TD class='fieldTitle'>描述信息</TD>
+</TR>
+<jt:loop source='$config' alias='detail'>
+  <TR bgcolor='#F8F8F8'>
+    <TD width='200' style='padding-left:16'>
+      <A href='<jt:item source='$path' format='root_path.lower'/>/<jt:item source='$detail.file_path' format='lower'/>.html' title=查看详细信息  target="_self">
+        <IMG src='<jt:item source='$root_path'/>/ars/icon/tools/detail.gif' align='absmiddle'>
+      </A>
+	  <A href='#<jt:item source='$detail.name'/>'>
+	    <jt:item source='$detail.name'/>
+	  </A>
+	</TD>
+	<TD width='180'><jt:item source='$detail.label'/></TD>
+	<TD width='80' align='center'><jt:item source='$detail.type_label'/></TD>
+	<TD><jt:item source='$detail.note'/></TD>
+  </TR>
+</jt:loop>
+</TABLE>
+<BR>
+<!-- Dataset End ------------------------------------------>
+</TD></TR>
+</TABLE>
+<!-- Details Begin ---------------------------------------->
+<jt:loop source='$config' alias='detail'>
+  <BR>
+  <TABLE width='100%' border='0' cellspacing='0' cellpadding='2'>
+  <TR bgcolor='#FFFFFF'>
+    <TD bgcolor='#FFFFF0' style='border:1 solid #CCCCCC' class='listElementTitle'>
+      <TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+        <TR>
+          <TD>
+            <A name='<jt:item source='$detail.name'/>'></A>
+              <IMG src='<jt:item source='$root_path'/>/ars/icon/tools/nl1.gif' align='absmiddle'>
+                <jt:item source='$detail.name'/> [ <jt:item source='$detail.label'/> ]
+          </TD>
+          <TD align='right'>
+            <A href='#top' title=返回顶部  target="_self"><IMG src='<jt:item source='$root_path'/>/ars/icon/tools/top.gif' align='absmiddle'></A> 
+            <A href='<jt:item source='$path' format='path.lower'/>/<jt:item source='$detail.file_path' format='lower'/>.html' title=查看详细信息  target="_self">
+              <IMG src='<jt:item source='$root_path'/>/ars/icon/tools/detail.gif' align='absmiddle'>
+            </A>
+          </TD>
+        </TR>
+      </TABLE>
+	 </TD>
+  </TR>
+  <TR>
+    <TD style='padding-left:30'>
+      <TABLE width='100%' border='0' cellspacing='0' cellpadding='2'>
+        <TR>
+          <TD bgcolor='#dddddd' width="120">名称</TD>
+          <TD>
+            <IMG src='<jt:item source='$root_path'/>/ars/icon/design.message/<jt:item source='$detail.type_name' format='lower'/>.gif' align='absmiddle'> 
+            <jt:item source='$detail.name'/>
+          </TD>
+        </TR>
+        <TR>
+          <TD bgcolor='#dddddd' width="120">标签</TD>
+          <TD><jt:item source='$detail.label'/></TD>
+        </TR>
+        <TR>
+          <TD bgcolor='#dddddd' width="120">类型</TD>
+          <TD><jt:item source='$detail.type_label'/></TD>
+        </TR>
+        <TR>
+          <TD bgcolor='#dddddd' width="120">描述</TD>
+          <TD><jt:item source='$detail.note'/></TD>
+        </TR>
+      </TABLE>
+    </TD>
+  </TR>
+  </TABLE>
+</jt:loop>
+<!-- Details End ------------------------------------------>
+<!-- Body End --------------------------------------------->]]></Source>
+</Template>
+

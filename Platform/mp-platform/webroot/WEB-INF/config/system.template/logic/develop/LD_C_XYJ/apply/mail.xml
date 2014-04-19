@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template ss="HU5IG6C9w6BWIuL6TJovqw" name="logic.develop.LD_C_XYJ.apply.mail" label="项目管理-西游记" is_valid="Y" note="M#">
+  <Source ss="EkruWqOpau8Xdf3cc1zmjA" name="require.apply.submit.head" label="需求发送-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【西游记项目管理-需求申请】<jt:item source='$config.apply_user_label'/>提交了新的需求申请单。]]></Source>
+  <Source ss="JU34tLWVxwhNV5XEAofvpA" name="require.apply.submit.body" label="需求发送-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='西游记项目管理' alias='navigator_label'/>
+<jt:define source='eUIS2.0系统' alias='survey_context'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><FONT COLOR='#336699'><jt:item source='$config.apply_user_label'/>提交了西游记项目的需求申请单.以下是详细信息，请<A target="_blank" href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#d8571d'>点击这里</B></A>及时进行审核。</FONT></TD></TR>
+   </TABLE>
+   <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>详细信息：</B>
+      <BR><BR>
+   <TABLE width='100%' cellpadding=0' cellspacing='1'  bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+	   <TR>
+	  	  	<TD class='ItemHead' width='20%' height=28 align="right">申请单名称</td>
+			<TD class='ItemData' align="left" height=28 width='80%'><jt:item source='$config.label'/></td>
+      </TR>
+	   <TR>
+		   <TD width='100%' colspan=2 style="padding-left:0">
+            <TABLE width='100%' cellpadding='0' cellspacing='0' bgcolor="#9fc5ea"'>
+            <TR>
+               <TD class='ItemHead' width='20%' align='right'>申请单编码</TD>
+               <TD class='ItemData' style="border-top:'0 solid black';border-left:'1 solid #9FC5EA'" width='30%' height=28 align='left'><jt:item source='$config.code'/></TD>
+               <TD class='ItemHead' style="border-left:'1 solid #9FC5EA';" width='20%' height=28 align='right'>预期上线</TD>
+               <TD class='ItemData' style="border-left:'1 solid #9FC5EA';" width='30%' height=28 align='left'><jt:timespan source='$require.plan_begin_date' type='date' format='YYYY-MM-DD'/></TD>
+            </TR>
+            </TABLE>
+         </TD>
+         <TD></TD>
+      </TR>	
+	  <TR>
+	     <TD class='ItemHead' width='20%' align="right">需求内容</td>
+	     <TD class='ItemData' align="left" width='80%' height='100'><PRE><jt:item source='$config.context'/></PRE></TD>
+	  </TR>
+	  <TR>
+	  	  <TD  class='ItemHead' width='20%' align="right">需求原因 </td>
+		  <TD class='ItemData' align="left" width='80%' height='100'><PRE><jt:item source='$config.reason'/></PRE></td>
+	  </TR>
+	</TABLE>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+
+  <Source ss="EkruWqOpau8Xdf3cc1zmjA" name="apply.product.head" label="需求发送-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【西游记项目管理-需求申请】产品负责人<jt:item source='$config.product_user'/>已经审核通过了<jt:item source='$config.apply_user_label'/>的需求申请单。]]></Source>
+  <Source ss="JU34tLWVxwhNV5XEAofvpA" name="apply.product.body" label="需求发送-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='西游记项目管理' alias='navigator_label'/>
+<jt:define source='eUIS2.0系统' alias='survey_context'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><FONT COLOR='#336699'><jt:item source='$config.apply_user_label'/>提交的西游记项目的需求申请单，已经由产品负责人<jt:item source='$config.product_user'/>审核通过.以下是需求单的详细信息，请<A target="_blank" href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#d8571d'>点击这里</B></A>继续审核。</FONT></TD></TR>
+   </TABLE>
+      <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>详细信息：</B>
+      <BR><BR>
+   <TABLE width='100%' cellpadding=0' cellspacing='1'  bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' width='20%' height=28 align="right">申请单名称</td>
+         <TD class='ItemData' align="left" height=28 width='80%'><jt:item source='$config.label'/></td>
+      </TR>
+      <TR>
+         <TD width='100%' colspan=2 style="padding-left:0">
+            <TABLE width='100%' cellpadding='0' cellspacing='0' bgcolor="#9fc5ea"'>
+            <TR>
+               <TD class='ItemHead' width='20%' align='right'>申请单编码</TD>
+               <TD class='ItemData' style="border-top:'0 solid black';border-left:'1 solid #9FC5EA'" width='30%' height=28 align='left'><jt:item source='$config.code'/></TD>
+               <TD class='ItemHead' style="border-left:'1 solid #9FC5EA';" width='20%' height=28 align='right'>预期上线</TD>
+               <TD class='ItemData' style="border-left:'1 solid #9FC5EA';" width='30%' height=28 align='left'><jt:timespan source='$require.plan_begin_date' type='date' format='YYYY-MM-DD'/></TD>
+            </TR>
+            </TABLE>
+         </TD>
+         <TD></TD>
+      </TR>
+     <TR>
+        <TD class='ItemHead' width='20%' align="right">需求内容</td>
+        <TD class='ItemData' align="left" width='80%' height='100'><PRE><jt:item source='$config.context'/></PRE></TD>
+     </TR>
+     <TR>
+        <TD  class='ItemHead' width='20%' align="right">需求原因 </td>
+        <TD class='ItemData' align="left" width='80%' height='100'><PRE><jt:item source='$config.reason'/></PRE></td>
+     </TR>
+     <TR>
+        <TD  class='ItemHead' width='20%' align="right">产品审核意见 </td>
+        <TD class='ItemData' align="left" width='80%' height='100'><PRE><jt:item source='$config.examine_note'/></PRE></td>
+     </TR>
+   </TABLE>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+
+
+  <Source ss="EkruWqOpau8Xdf3cc1zmjA" name="apply.develop.head" label="需求发送-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【西游记项目管理-需求申请】<jt:item source='$config.develop_user_label'/>已经审核通过了<jt:item source='$config.apply_user_label'/>的需求申请单。]]></Source>
+  <Source ss="JU34tLWVxwhNV5XEAofvpA" name="apply.develop.body" label="需求发送-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='西游记项目管理' alias='navigator_label'/>
+<jt:define source='eUIS2.0系统' alias='survey_context'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><FONT COLOR='#336699'><jt:item source='$config.apply_user_label'/>提交的需求申请单已经全部审核通过,以下是提交申请单的详细信息。</FONT></TD></TR>
+   </TABLE>
+         <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>详细信息：</B>
+      <BR><BR>
+   <TABLE width='100%' cellpadding=0' cellspacing='1'  bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' width='20%' height=28 align="right">申请单名称</td>
+         <TD class='ItemData' align="left" height=28 width='80%'><jt:item source='$config.label'/></td>
+      </TR>
+      <TR>
+         <TD width='100%' colspan=2 style="padding-left:0">
+            <TABLE width='100%' cellpadding='0' cellspacing='0' bgcolor="#9fc5ea"'>
+            <TR>
+               <TD class='ItemHead' width='20%' align='right'>申请单编码</TD>
+               <TD class='ItemData' style="border-top:'0 solid black';border-left:'1 solid #9FC5EA'" width='30%' height=28 align='left'><jt:item source='$config.code'/></TD>
+               <TD class='ItemHead' style="border-left:'1 solid #9FC5EA';" width='20%' height=28 align='right'>预期上线</TD>
+               <TD class='ItemData' style="border-left:'1 solid #9FC5EA';" width='30%' height=28 align='left'><jt:timespan source='$require.plan_begin_date' type='date' format='YYYY-MM-DD'/></TD>
+            </TR>
+            </TABLE>
+         </TD>
+         <TD></TD>
+      </TR>
+     <TR>
+        <TD class='ItemHead' width='20%' align="right">需求内容</td>
+        <TD class='ItemData' align="left" width='80%' height='100'><PRE><jt:item source='$config.context'/></PRE></TD>
+     </TR>
+     <TR>
+        <TD  class='ItemHead' width='20%' align="right">需求原因 </td>
+        <TD class='ItemData' align="left" width='80%' height='100'><PRE><jt:item source='$config.reason'/></PRE></td>
+     </TR>
+     <TR>
+        <TD  class='ItemHead' width='20%' align="right">审核意见</td>
+        <TD class='ItemData' align="left" width='80%' height='100'><PRE><jt:item source='$config.examine_note'/></PRE></td>
+     </TR>
+   </TABLE>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+
+
+
+
+  <Source ss="EkruWqOpau8Xdf3cc1zmjA" name="examine.fail.head" label="需求发送-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【西游记项目管理-需求申请】<jt:item source='$config.apply_user_label'/>提交的的需求申请单审核未通过。]]></Source>
+  <Source ss="JU34tLWVxwhNV5XEAofvpA" name="examine.fail.body" label="需求发送-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='西游记项目管理' alias='navigator_label'/>
+<jt:define source='eUIS2.0系统' alias='survey_context'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><FONT COLOR='#336699'><jt:item source='$config.apply_user_label'/>提交的需求申请单.审核未通过，具体原因如下：</FONT></TD></TR>
+   </TABLE>
+         <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>详细信息：</B>
+      <BR><BR>
+   <TABLE width='100%' cellpadding=0' cellspacing='1'  bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' width='20%' height=28 align="right">申请单名称</td>
+         <TD class='ItemData' align="left" height=28 width='80%'><jt:item source='$config.label'/></td>
+      </TR>
+      <TR>
+         <TD width='100%' colspan=2 style="padding-left:0">
+            <TABLE width='100%' cellpadding='0' cellspacing='0' bgcolor="#9fc5ea"'>
+            <TR>
+               <TD class='ItemHead' width='20%' align='right'>申请单编码</TD>
+               <TD class='ItemData' style="border-top:'0 solid black';border-left:'1 solid #9FC5EA'" width='30%' height=28 align='left'><jt:item source='$config.code'/></TD>
+               <TD class='ItemHead' style="border-left:'1 solid #9FC5EA';" width='20%' height=28 align='right'>预期上线</TD>
+               <TD class='ItemData' style="border-left:'1 solid #9FC5EA';" width='30%' height=28 align='left'><jt:timespan source='$require.plan_begin_date' type='date' format='YYYY-MM-DD'/></TD>
+            </TR>
+            </TABLE>
+         </TD>
+         <TD></TD>
+      </TR>
+     <TR>
+        <TD  class='ItemHead' width='20%' align="right">未通过原因 </td>
+        <TD class='ItemData' align="left" width='80%' height='100'><PRE><jt:item source='$config.fail_note'/></PRE></td>
+     </TR>
+   </TABLE>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+
+
+
+  <Source ss="EkruWqOpau8Xdf3cc1zmjA" name="examine.reject.head" label="需求发送-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【西游记项目管理-需求申请】<jt:item source='$config.apply_user_label'/>提交的的需求申请单审核已被驳回。]]></Source>
+  <Source ss="JU34tLWVxwhNV5XEAofvpA" name="examine.reject.body" label="需求发送-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='西游记项目管理' alias='navigator_label'/>
+<jt:define source='eUIS2.0系统' alias='survey_context'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><FONT COLOR='#336699'><jt:item source='$config.apply_user_label'/>提交的需求申请单已被驳回，具体原因如下：</FONT></TD></TR>
+   </TABLE>
+         <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>详细信息：</B>
+      <BR><BR>
+   <TABLE width='100%' cellpadding=0' cellspacing='1'  bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' width='20%' height=28 align="right">申请单名称</td>
+         <TD class='ItemData' align="left" height=28 width='80%'><jt:item source='$config.label'/></td>
+      </TR>
+      <TR>
+         <TD width='100%' colspan=2 style="padding-left:0">
+            <TABLE width='100%' cellpadding='0' cellspacing='0' bgcolor="#9fc5ea"'>
+            <TR>
+               <TD class='ItemHead' width='20%' align='right'>申请单编码</TD>
+               <TD class='ItemData' style="border-top:'0 solid black';border-left:'1 solid #9FC5EA'" width='30%' height=28 align='left'><jt:item source='$config.code'/></TD>
+               <TD class='ItemHead' style="border-left:'1 solid #9FC5EA';" width='20%' height=28 align='right'>预期上线</TD>
+               <TD class='ItemData' style="border-left:'1 solid #9FC5EA';" width='30%' height=28 align='left'><jt:timespan source='$require.plan_begin_date' type='date' format='YYYY-MM-DD'/></TD>
+            </TR>
+            </TABLE>
+         </TD>
+         <TD></TD>
+      </TR>
+     <TR>
+        <TD  class='ItemHead' width='20%' align="right">未通过原因 </td>
+        <TD class='ItemData' align="left" width='80%' height='100'><PRE><jt:item source='$config.fail_note'/></PRE></td>
+     </TR>
+   </TABLE>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+
+
+</Template>
+

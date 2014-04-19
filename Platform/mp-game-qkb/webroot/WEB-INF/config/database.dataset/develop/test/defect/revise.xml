@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="rk39[PhshQWFC07vnzK8nA" name="develop.test.defect.revise" label="M#12cn14缺陷修订" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="DP_TEST_DEFECT_REVISE" data_alias="DP_TEST_DFT_REV" data_logic="DP_TEST_DEFECT_REVISE_DI" parent_name="template.store" data_type="D">
+  <FieldBoolean _uuid="WUmyVOirmFAtS87[B3b3hQ" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="'Y'" />
+  <FieldInteger _uuid="mUnjWfHeoao[04tWJCh0iA" name="project_id" label="M#12cn14项目标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldInteger _uuid="dkUikeV1EG3xaF]sVVVGkQ" name="module_id" label="M#12cn14模块标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MODULE_ID" data_alias="MOD" data_refer="develop.describe.module" />
+  <FieldInteger _uuid="4Ej9CVB62Z8bhUazOKFurA" name="version_id" label="M#12cn14版本标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="VERSION_ID" data_alias="VER" data_refer="develop.describe.version" />
+  <FieldInteger _uuid="wkN0QUh76yIayV7fFWayqQ" name="defect_id" label="M#12cn14缺陷标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="DEFECT_ID" data_alias="DFT" data_refer="develop.test.defect" />
+  <FieldEnum _uuid="3kFUJYJiaMLf5tp6o1R9oA" name="status_cd" label="M#12cn14状态类型" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="develop.test.defect.status.two" />
+  <FieldContent _uuid="DEx4xyIwHklFttQLsubUhg" name="describe_note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DESCRIBE_NOTE" />
+  <FieldInteger _uuid="J0ECym7ekWgYtTbdKFOciw" name="principal_user_id" label="M#12cn13负责人" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRINCIPAL_USER_ID" data_alias="PRC_USR" data_refer="person.user" />
+  <FieldContent _uuid="30yhZpFME4zVSzi]gWdHow" name="summary_note" label="M#12cn14总结信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SUMMARY_NOTE" />
+  <FieldTemplate _uuid="ME[OAOXUJdxka47OnooGqQ" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

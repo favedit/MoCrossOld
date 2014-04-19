@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<Root>
+   <Sql>
+      <Hint>
+         <List>
+            SELECT
+               OBJ_VER HINT_DATE,
+               HINT_ID,
+               COM_HINT_CONTENT_DI.Get_Hint_Type(HINT_ID) HINT_TYPE,
+               COM_HINT_CONTENT_DI.Get_Description(HINT_ID) DESCRIPTION
+            FROM COM_HINT_USER_CONTENT
+            WHERE USER_ID = SYS_APP_SESSION.Appl_User
+         </List>
+      </Hint>
+   </Sql>
+</Root>

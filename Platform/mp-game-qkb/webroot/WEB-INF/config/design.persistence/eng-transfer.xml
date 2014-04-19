@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="skQU6jW2Ew6Sxws74T96og" name="eng-transfer" label="M#12cn14传输对象" is_valid="Y" note="M#" template="xmlobject" source="${home.source.eng}">
+  <Component _uuid="bEzJS1KF5tYFenk1JNfvjA" name="CsvImport" label="M#12cn14文件导入" is_valid="Y" note="M#" class_name="org.mo.eng.transfer.common.XCsvImport" base_name="org.mo.eng.transfer.base.XBaseCsvImport" inherits="IObject">
+    <Attribute _uuid="jkDnMWCgeg07Wf5dVzA5iQ" name="head_lines" label="M#12cn14表头行数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="ZkRW1OHKfrn9Q0PPQrjwpw" name="execute_plsql" label="M#12cn14数据命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="YUW5a5e2l8sa9[Zv[JqRsA" name="execute_action" label="M#12cn14执行命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="kEUGbdp47RMfST1P1fFxvg" name="execute_plsql_Before" label="M#12cn15执行前命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="rkZoJWmDbrSFAykc65Salw" name="execute_plsql_after" label="M#12cn15执行后命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="Jk3cw3c6MNSvcxlmXjMGkA" name="Columns" label="M#12cn13列集合" is_valid="Y" note="M#" class_name="org.mo.eng.transfer.common.XColumns" base_name="org.mo.eng.transfer.base.XBaseColumns" inherits="IObject" />
+  <Component _uuid="jUwC9guGedecPxmaD7YgnA" name="Column" label="M#12cn11列" is_valid="Y" note="M#" class_name="org.mo.eng.transfer.common.XColumn" base_name="org.mo.eng.transfer.base.XBaseColumn" inherits="IObject">
+    <Attribute _uuid="90ZmP7nmQHCOcU[rCtQInw" name="data_name" label="M#" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="jknr7T1q6aaeMZ1Z726Cog" name="is_require" label="M#12cn12必须" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+  </Component>
+  <Interface _uuid="cE9R3eK0unj4zloVqnShpQ" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#" class_name="org.mo.eng.transfer.common.XObjectFace">
+    <Attribute _uuid="WEHpAw9X7rRt3yfsnydqvA" name="name" label="M#12cn12名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="a0Yi6BSWImwhKhURC9M3ng" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="SEcHQpCr3VPv0aygOXTZvw" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="nUScJZZDPrBqkRCjkFe1qA" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Interface>
+  <Component _uuid="bk3rSpmCw[jX7FD3RhKgig" name="Export" label="M#12cn14导出数据" is_valid="Y" note="M#" class_name="org.mo.eng.transfer.common.XExport" base_name="org.mo.eng.transfer.base.XBaseExport" inherits="IObject">
+    <Attribute _uuid="3E4KGrpX8xCoAxEXi55bjw" name="sql" label="M#12cn14SQL文" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="V0iF9A8LFFWN0Uv[w[OCow" name="display_command" label="M#12cn14显示命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="LUJuzcSCApb4Jyx4OwDZgg" name="display_command_tag" label="M#12cn14命令标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="lk27LvyzalAXELZfDYYXqA" name="display_head" label="M#12cn15显示字段名" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="yU]VTM[nrfc2966i00USgA" name="display_head_tag" label="M#12cn14头部标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="iEDzGAgkNZ0S9]sP1abykw" name="display_label" label="M#12cn14显示名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="b0iG6EkwqCY]HL8Ia5thmA" name="display_label_tag" label="M#12cn14名称标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="DUhuOkf88fsOWTR[sqApng" name="display_valid" label="M#12cn14显示校验" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="9EwDfCn4x[6u4XdKOeSKnQ" name="display_valid_tag" label="M#12cn14校验标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="IEXVXJ1GpabmXqh]aqZ7sg" name="is_open" label="M#12cn14是否打开" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="L0RCZsdx61tnIP7VBWhenQ" name="export_name" label="M#12cn16导入文件名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="Ak[HwVRxCGwZ[L[XBA2sig" name="export_charset" label="M#12cn14导出格式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="cUk9Y7[0PlPXmHY1FvFmow" name="disp_data_start_tag" label="M#12cn16数据开始标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="FUTh5LUR6Rg2ErDuN7o0ug" name="disp_data_end_tag" label="M#12cn16数据结束标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="S0OrVjk4Mjk1Oul4oycCiw" name="dataset_parameters" label="M#12cn14数据参数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="uEZeeMbGfS3xBPI4A9HAmw" name="Import" label="M#12cn14导入数据" is_valid="Y" note="M#" class_name="org.mo.eng.transfer.common.XImport" base_name="org.mo.eng.transfer.base.XBaseImport" inherits="IObject">
+    <Attribute _uuid="QE50s8riLM7]4[6ID5u2lA" name="sql" label="M#12cn14SQL文" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="1kngLyJYdZVARDjAdc9HlQ" name="display_command" label="M#12cn14显示命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="DUntf[sWxv2WvEDbYHM]nQ" name="display_head" label="M#12cn15显示字段名" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="lkGs5]ea5HxSia[t62JBuA" name="display_label" label="M#12cn14显示名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="]0f3lHrRDwZN9M9EZ[FSjA" name="display_valid" label="M#12cn14显示校验" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="3kfsHSQtAfHDkXsmFw3RsQ" name="is_open" label="M#12cn14是否打开" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+</Persistence>
+

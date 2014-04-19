@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="4EPuNnOwkMufuCAsZG9DgQ" name="develop.describe.period" label="M#12cn14期间定义" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="DP_DESCRIBE_PERIOD" data_alias="DP_DES_PRD" data_logic="DP_DESCRIBE_PERIOD_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldBoolean _uuid="zE5xY41TmmdEkMVhPBiRoQ" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" />
+  <FieldInteger _uuid="IkAHR7XvG6Qdfa97Wz09vg" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_alias="TYP" data_refer="develop.describe.period.type" />
+  <FieldInteger _uuid="8k7FGhHsHn[tnlBBVQxtmw" name="project_id" label="M#12cn14项目标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldInteger _uuid="5E][1zvdaPYLX4FHYYcAoA" name="parent_id" label="M#12cn15父期间标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PARENT_ID" data_default="0" />
+  <FieldString _uuid="aEp9ERdSrmJqixaEPabdgQ" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="p0OLR[GWAjPdlzPjdGfnpQ" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="qU4DlPzUrpNvrkyTmLu[oA" name="label" label="M#12cn12标签" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldEnum _uuid="xUZJ6cRRI3606j7Vs]oyhw" name="status_cd" label="M#12cn12状态" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="develop.describe.period.status" />
+  <FieldDate _uuid="yEi]VdUswHBI0D9qvG8dog" name="begin_date" label="M#12cn14开始日期" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="BEGIN_DATE" />
+  <FieldDate _uuid="qkMarLkUJg6Oqq1g85jnig" name="end_date" label="M#12cn14结束日期" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="END_DATE" />
+  <FieldContent _uuid="oktb6ZoRg]sIDnFfAxbjog" name="target_note" label="M#12cn14目标描述" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TARGET_NOTE" />
+  <FieldTemplate _uuid="p0sr[XbJxcbmxBX9VKrJnQ" name="describe" label="M#12cn14描述模块" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

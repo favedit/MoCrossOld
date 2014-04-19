@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="c556b236-dd21-475e-83ba-dfd65114ec53" name="game.template" label="模板定义" is_valid="Y" note="M#" source_name="MoMgStructTemplate" code="Stl" full_code="StructTemplate" display_index="2" include_heads="game.common" project_name="/Game/P1301/MoMessage" project_code="Mg">
+  <Instance _uuid="d84ed993-35b2-4e69-b4a4-ed524827c488" name="TplEnemy" label="敌人" is_valid="Y" note="M#" is_class="Y" is_final="N" parent_name="TplComponent">
+    <Item _uuid="5287a9de-71bb-4b4c-baef-aebd22cc5e5d" name="healthPoint" label="血量" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="80ec454a-87f8-4b3c-8061-be24548c4b65" name="magicPoint" label="魔法量" is_valid="Y" note="M#" type="Int32" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="5d67cd95-9445-46cf-9d85-5f6789aa364c" name="attackPower" label="攻击力" is_valid="Y" note="M#" type="Int16" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="d17ef450-57a5-4a3d-a97e-e45717860300" name="defensePower" label="防御力" is_valid="Y" note="M#" type="Int16" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="aba43e8f-04c8-4475-bac4-358b688dde6d" name="moveSpeed" label="移动速度" is_valid="Y" note="M#" type="Int16" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="d91a4372-39b4-4f12-bf13-5eba24060af9" name="iconTid" label="图标资源模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="3abf637a-d243-4b5d-a8aa-a5b44c803b58" name="resourceTid" label="资源模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Instance>
+  <Instance _uuid="48aa9567-820c-4ce6-b383-07d1b0b1bdc5" name="TplBullet" label="敌机子弹" is_valid="Y" note="M#" is_class="N" is_final="N">
+    <Item _uuid="9226bd97-7572-4109-a264-64af6924bd85" name="resourceId" label="资源模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Instance>
+  <Instance _uuid="3dc3f865-cf67-4296-af69-9188d0d4f75f" name="TplEnemyBullet" label="敌机子弹" is_valid="Y" note="M#" is_class="N" is_final="N">
+    <Item _uuid="b14b35e8-0a70-4816-814f-9c63c3ade98a" name="enemyTid" label="敌人模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="1" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="7f68a8d8-6fe6-458b-91dd-ff497a5bc952" name="bulletTid" label="子弹模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" property_id="2" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="838ffb26-0d34-4fe8-b324-02b2753d18e1" name="loop_count" label="循环次数" is_valid="Y" note="M#" type="Int16" is_collection="N" property_id="3" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="14f26e1f-e460-4e3b-ae4b-217babd8d091" name="loop_interval" label="循环间隔" is_valid="Y" note="M#" type="Int16" is_collection="N" property_id="4" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="b54c9200-7312-469b-96b3-08bde9c9714a" name="count" label="每次个数" is_valid="Y" note="M#" type="Int16" is_collection="N" property_id="5" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="cb4b8a91-2e41-454f-a3e1-d416973d8115" name="angle" label="每次角度" is_valid="Y" note="M#" type="Int16" is_collection="N" property_id="6" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="bd635b25-3ce1-454d-bfcc-ac5895ba7365" name="speed" label="速度" is_valid="Y" note="M#" type="Int16" is_collection="N" property_id="7" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="c5332c5f-fb10-4f11-a315-9eda85ad61ec" name="acceleration" label="加速度" is_valid="Y" note="M#" type="Int16" is_collection="N" property_id="8" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Instance>
+</Group>
+

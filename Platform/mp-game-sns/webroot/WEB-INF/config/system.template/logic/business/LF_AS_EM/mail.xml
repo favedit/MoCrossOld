@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="F01O1KS5u43dor67lZgHjQ" name="logic.business.LF_AS_EM.mail" label="入职管理" is_valid="Y" note="M#">
+  <Source _uuid="OktCjFeYvoMDbtBHcdoBhA" name="delay.head" label="延期标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【入职管理】 <jt:item source='$config.to_user_labels'/>您好，新员工（<jt:item source='$config.entry_user'/>）到岗延期提醒。]]></Source>
+  <Source _uuid="tUEAupXjL6[[APencSDBsg" name="delay.body" label="延期内容" is_valid="Y" note="M#"><![CDATA[<jt:define source='入职管理 → 新员工到岗延期提醒' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><FONT COLOR='#336699'><jt:item source='$config.user_full_label'/>新员工到岗延期提醒。</FONT></TD></TR>
+   </TABLE>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>新员工到岗延期信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+   <TR>
+      <TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.entry_user'/> (<jt:item source='$config.work_number'/>)</TD>
+      <TD class='ItemHead' width='15%'>部门</TD>
+      <TD class='ItemData'><jt:item source='$config.org_label'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>现定到岗日期</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.now_entry_date'/></TD>
+      <TD class='ItemHead' width='15%'>岗位</TD>
+      <TD class='ItemData'><jt:item source='$config.job_label'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>原定到岗日期</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.entry_date'/></TD>
+      <TD class='ItemHead' width='15%'>联系方式</TD>
+      <TD class='ItemData'>邮箱：<A href='mailto:<jt:item source='$config.user_mail'/>'><jt:item source='$config.person_mail'/></A>、
+       联系电话：(<jt:item source='$config.phone_number'/>)</TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>入职延期原因</TD>
+      <TD colspan="4" class='ItemData'><Pre class="PreSyl"><jt:item source='$config.entry_note'/></Pre></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="X01w9hlTblE1eb15ItuYtw" name="fail.head" label="失败标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【入职管理】 <jt:item source='$config.to_user_labels'/>您好，新员工（<jt:item source='$config.entry_user'/>）到岗失败提醒。]]></Source>
+  <Source _uuid="jkOJWiHNV41U1sy4WGM[mQ" name="fail.body" label="失败内容" is_valid="Y" note="M#"><![CDATA[<jt:define source='入职管理 → 新员工到岗失败提醒' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><FONT COLOR='#336699'><jt:item source='$config.user_full_label'/>新员工到岗失败提醒。</FONT></TD></TR>
+   </TABLE>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>新员工到岗失败信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+   <TR>
+      <TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.entry_user'/></TD>
+      <TD class='ItemHead' width='15%'>部门</TD>
+      <TD class='ItemData'><jt:item source='$config.org_label'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>原定到岗日期</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.entry_date'/></TD>
+      <TD class='ItemHead' width='15%'>岗位</TD>
+      <TD class='ItemData'><jt:item source='$config.job_label'/></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.phone_number'/></TD>
+      <TD class='ItemHead' width='15%'>邮箱</TD>
+      <TD class='ItemData'><A href='mailto:<jt:item source='$config.person_mail'/>'><jt:item source='$config.person_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD class='ItemHead' width='15%'>入职失败原因</TD>
+      <TD colspan="4" class='ItemData'><Pre class="PreSyl"><jt:item source='$config.entry_note'/></Pre></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="dkLHIQBwfIXGL0BksdNKuw" name="notify.head" label="通知标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【入职管理】 <jt:item source='$config.to_user_labels'/>您好，新员工到岗提醒。]]></Source>
+  <Source _uuid="CkymwQ7z8Ozplr0Aj2ROtw" name="notify.body" label="通知内容" is_valid="Y" note="M#"><![CDATA[<jt:define source='入职管理 → 新员工到岗提醒' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><FONT COLOR='#336699'>新员工到岗提示，请各部门做好相关准备工作。</FONT></TD></TR>
+      <TR><TD><FONT COLOR='#336699'>人力资源部：合同、及相关入职手续等。</FONT></TD></TR>
+      <TR><TD><FONT COLOR='#336699'>员工服务部：门禁卡、办公用品等。</FONT></TD></TR>
+      <TR><TD><FONT COLOR='#336699'>供应链管理部：机器设备等。</FONT></TD></TR>
+      <TR><TD><FONT COLOR='#336699'>信息管理部：邮件地址等。</FONT></TD></TR>
+   </TABLE>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>新员工名单</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+   <TR>
+      <TD class='ItemHead' width='8%' align='center'>序号</TD>
+      <TD class='ItemHead' width='10%' align='center'>工号</TD>
+      <TD class='ItemHead' width='10%' align='center'>姓名</TD>
+      <TD class='ItemHead' width='12%' align='center'>到岗日期</TD>
+      <TD class='ItemHead' width='30%' align='center'>部门</TD>
+      <TD class='ItemHead' width='20%' align='center'>岗位</TD>
+      <TD class='ItemHead' width='10%' align='center'>引导人</TD>
+   </TR>
+   <jt:loop source='$parameter.user_list' alias='list'>
+   <TR>
+      <TD width="8%" class='ItemData' align='center'><jt:item source='$list.number'/></TD>
+      <TD width="10%" class='ItemData' align='center'><jt:item source='$list.work_number'/></TD>
+      <TD width="10%" class='ItemData' align='center'><jt:item source='$list.entry_user'/></TD>
+      <TD width="12%" class='ItemData' align='center'><jt:item source='$list.entry_date'/></TD>
+      <TD width="30%" class='ItemData' align='center'><jt:item source='$list.org_label'/></TD>
+      <TD width="20%" class='ItemData' align='center'><jt:item source='$list.job_label'/></TD>
+      <TD width="10%" class='ItemData' align='center'><jt:item source='$list.lead_user'/></TD>
+   </TR>
+   </jt:loop>
+   </TABLE>
+   <BR><BR>
+   </TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="E0Xq5CdXz3KmPdqajeI6tQ" name="remindday.head" label="当天提醒入职标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【入职管理】 <jt:item source='$config.to_user_labels'/>您好，<jt:item source='$config.current_date'/>新员工到岗提醒。]]></Source>
+  <Source _uuid="uUxs8bERDAV[fCmWolfsuA" name="remindday.body" label="当天提醒入职内容" is_valid="Y" note="M#"><![CDATA[<jt:define source='入职管理 → 当天新员工到岗提醒' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><FONT COLOR='#336699'><B><jt:item source='$config.current_date'/></B> 新员工到岗提醒。</FONT></TD></TR>
+   </TABLE>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>新员工名单</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+   <TR>
+      <TD class='ItemHead' width='8%' align='center'>序号</TD>
+      <TD class='ItemHead' width='10%' align='center'>工号</TD>
+      <TD class='ItemHead' width='10%' align='center'>姓名</TD>
+      <TD class='ItemHead' width='40%' align='center'>部门</TD>
+      <TD class='ItemHead' width='32%' align='center'>岗位</TD>
+   </TR>
+   <jt:loop source='$parameter.user_list' alias='list'>
+   <TR>
+      <TD width="8%" class='ItemData' align='center'><jt:item source='$list.number'/></TD>
+      <TD width="10%" class='ItemData' align='center'><jt:item source='$list.work_number'/></TD>
+      <TD width="10%" class='ItemData' align='center'><jt:item source='$list.entry_user'/></TD>
+      <TD width="40%" class='ItemData' align='center'><jt:item source='$list.org_label'/></TD>
+      <TD width="32%" class='ItemData' align='center'><jt:item source='$list.job_label'/></TD>
+   </TR>
+   </jt:loop>
+   </TABLE>
+   <BR><BR>
+   </TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="p0XymOEN8jXY92lCDMWehw" name="notifyIt.head" label="通知信息管理部标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【入职管理】 <jt:item source='$config.to_user_labels'/>您好，新员工到岗提醒。]]></Source>
+  <Source _uuid="Z01dQjmJ3Sc1xfptlcd5sQ" name="notifyIt.body" label="通知信息管理部内容" is_valid="Y" note="M#"><![CDATA[<jt:define source='入职管理 → 新员工到岗提醒' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><FONT COLOR='#336699'>新员工到岗提示，请各部门做好相关准备工作。</FONT></TD></TR>
+      <TR><TD><FONT COLOR='#336699'>人力资源部：合同、及相关入职手续等。</FONT></TD></TR>
+      <TR><TD><FONT COLOR='#336699'>员工服务部：门禁卡、办公用品等。</FONT></TD></TR>
+      <TR><TD><FONT COLOR='#336699'>供应链管理部：机器设备等。</FONT></TD></TR>
+      <TR><TD><FONT COLOR='#336699'>信息管理部：邮件地址等。</FONT></TD></TR>
+   </TABLE>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'>新员工名单</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+   <TR>
+      <TD class='ItemHead' width='8%' align='center'>序号</TD>
+      <TD class='ItemHead' width='8%' align='center'>工号</TD>
+      <TD class='ItemHead' width='8%' align='center'>姓名</TD>
+      <TD class='ItemHead' width='12%' align='center'>到岗日期</TD>
+      <TD class='ItemHead' width='21%' align='center'>部门</TD>
+      <TD class='ItemHead' width='15%' align='center'>岗位</TD>
+      <TD class='ItemHead' width='8%' align='center'>引导人</TD>
+      <TD class='ItemHead' width='11%' align='center'>外网邮箱</TD>
+      <TD class='ItemHead' width='11%' align='center'>内网邮箱</TD>
+   </TR>
+   <jt:loop source='$parameter.user_list' alias='list'>
+   <TR>
+      <TD width="8%" class='ItemData' align='center'><jt:item source='$list.number'/></TD>
+      <TD width="8%" class='ItemData' align='center'><jt:item source='$list.work_number'/></TD>
+      <TD width="8%" class='ItemData' align='center'><jt:item source='$list.entry_user'/></TD>
+      <TD width="12%" class='ItemData' align='center'><jt:item source='$list.entry_date'/></TD>
+      <TD width="21%" class='ItemData' align='center'><jt:item source='$list.org_label'/></TD>
+      <TD width="15%" class='ItemData' align='center'><jt:item source='$list.job_label'/></TD>
+      <TD width="8%" class='ItemData' align='center'><jt:item source='$list.lead_user'/></TD>
+      <TD width="11%" class='ItemData' align='center'><jt:item source='$list.mail'/></TD>
+      <TD width="11%" class='ItemData' align='center'><jt:item source='$list.external_mail'/></TD>
+   </TR>
+   </jt:loop>
+   </TABLE>
+   <BR><BR>
+   </TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

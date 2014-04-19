@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="5kVDCsxAOLkkQmdMCOKggw" name="database.codelist.package.head" is_valid="Y" note="M#">
+  <Source _uuid="AkmefGjoW6sJuJxl4A44lQ" is_valid="Y" note="M#"><![CDATA[-------------------------------------------
+-- <jt:item source='$codelist.name' format='upper'/>
+--
+-- Copyright 2008 Microbject Corporation. All Rights Reserved.
+-- 模板版本: 1.01
+---------+----+---------------------------------------------
+-- 日期   作者 描述信息
+---------+----+---------------------------------------------
+------------------------------------------------------------
+
+DEFINE DF_LOGIC            = '<jt:item source='$codelist.name' format='upper'/>';
+DEFINE DF_PACKAGE          = '<jt:item source='$codelist.data_name'/>_EI';
+
+--========================================================--
+-- 公共数据接口
+--========================================================--
+PROMPT Deploy Interface: &DF_PACKAGE;
+
+-- Package define begin ------------------------------------
+CREATE OR REPLACE PACKAGE &DF_PACKAGE IS
+
+--========================================================--
+-- 静态定义区
+--========================================================--
+LG_NAME                    CONSTANT VARCHAR2(<jt:Length source='$codelist.name'/>) := '&DF_LOGIC';
+PK_NAME                    CONSTANT VARCHAR2(<jt:Length source='$codelist.data_name' add='3'/>) := '&DF_PACKAGE';
+
+------------------------------------------------------------
+<jt:loop source='$codes' alias='code'>
+K<jt:item source='$code.data_name' rpad='25'/> CONSTANT VARCHAR2(<jt:length source='$code.data_name'/>) := '<jt:item source='$code.data_name'/>';
+</jt:loop>
+
+<jt:loop source='$codes' alias='code'>
+K<jt:item source='$code.data_name' last='Label' rpad='25'/> VARCHAR2(80) := NULL;
+</jt:loop>
+
+<jt:loop source='$codes' alias='code'>
+E<jt:item source='$code.data_name' rpad='25'/> CONSTANT VARCHAR2(<jt:length source='$code.data_value'/>) := '<jt:item source='$code.data_value'/>';
+</jt:loop>
+
+--========================================================--
+-- 基本功能函数区
+--========================================================--
+
+------------------------------------------------------------
+-- <T>当前枚举中是否含有指定值。</T>
+--
+-- @param value_ 值
+-- @return TRUE：含有<BR/>FALSE：不含有
+FUNCTION Contains(
+      value_               IN     VARCHAR2
+   ) RETURN BOOLEAN;
+
+
+------------------------------------------------------------
+-- <T>将枚举值转换为枚举内容。</T>
+--
+-- @param value_ 枚举值
+-- @return 枚举内容
+FUNCTION Encode(
+      value_               IN     VARCHAR2
+   ) RETURN VARCHAR2;
+
+------------------------------------------------------------
+-- <T>将枚举内容转换为枚举值。</T>
+--
+-- @param value_ 枚举内容
+-- @return 枚举值
+FUNCTION Decode(
+      value_               IN     VARCHAR2
+   ) RETURN VARCHAR2;
+
+------------------------------------------------------------
+-- <T>将枚举值转换为枚举显示内容。</T>
+--
+-- @param value_ 枚举值
+-- @return 枚举内容
+FUNCTION Encode_Label(
+      value_               IN     VARCHAR2
+   ) RETURN VARCHAR2;
+
+------------------------------------------------------------
+-- <T>将枚举显示内容转换为枚举值。</T>
+--
+-- @param value_ 枚举内容
+-- @return 枚举值
+FUNCTION Decode_Label(
+      value_               IN     VARCHAR2
+   ) RETURN VARCHAR2;
+
+------------------------------------------------------------
+-- <T>刷新当前信息。</T>
+--
+PROCEDURE Refresh;
+
+END &DF_PACKAGE;
+-- Package define End --------------------------------------
+/
+SHOW ERROR]]></Source>
+</Template>
+

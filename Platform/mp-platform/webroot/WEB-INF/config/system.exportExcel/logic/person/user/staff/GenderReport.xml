@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="E05y3IfGCy54hn6Gglxltw" name="logic.person.user.staff.GenderReport" label="人力资源-职员性别统计" is_valid="Y" fileName="人力资源-职员性别统计[${CURRENT_DATE}].xls" template="logic.person.user.staff.GenderReport.xls">
+  <Sql _uuid="uke7HpX0]i7uH9b[sStdhQ" name="gander_list" label="性别统计列表" is_valid="Y"><![CDATA[SELECT MOTHS_CD,
+   FEMALE_MONTH_COUNT,
+   MALE_MONTH_COUNT
+FROM (SELECT NEW_DATE.*,
+       PM_USER_COMPANY_DI.Get_Gender_Count('F', END_DATE)  FEMALE_MONTH_COUNT,
+       PM_USER_COMPANY_DI.Get_Gender_Count('M', END_DATE)  MALE_MONTH_COUNT
+    FROM ( 
+      SELECT MOTHS_CD,   
+         LAST_DAY(CP_DATE.Parse(SUBSTR('${YEAR_DATE}', 1, 4) || '-' || MOTHS_CD)) END_DATE
+      FROM (SELECT ROWNUM AS MOTHS_CD 
+            FROM DUAL 
+            CONNECT BY LEVEL <= 12 )) NEW_DATE)]]></Sql>
+  <Sql _uuid="t0ePAxYqMkYVvqV80SoarQ" name="current_info" label="当前男女统计信息" is_valid="Y"><![CDATA[SELECT PM_USER_COMPANY_DI.Get_Gender_Count('F')  FEMALE_COUNT,
+       PM_USER_COMPANY_DI.Get_Gender_Count('M')  MALE_COUNT,
+       '${CURRENT_DATE}' CT_DATE
+FROM DUAL]]></Sql>
+</ExportExcel>
+

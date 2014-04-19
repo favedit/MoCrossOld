@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="q0hCISwAl[TWfccsVeXRug" name="logic.business.it.MonthPersonalReport" label="工作日志-月报(个人统计)" is_valid="Y" fileName="reportLog(MonthPersonal)[${QUERY_DATE}].xls" template="logic.business.it.monthPersonalReport">
+  <Sql _uuid="B0RE7Ec]nyfel2]UbfY5uQ" name="log_list" label="个人统计列表" is_valid="Y"><![CDATA[SELECT PERSON_ID, 
+BS_IT_LOG_DI.Get_Dispose_User_Label('S',PERSON_ID) PERSON_NAME,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-1',  QUERY_DATE||'-1') YI_NUM ,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-2',  QUERY_DATE||'-2') ER_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-3',  QUERY_DATE||'-3') SAN_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-4',  QUERY_DATE||'-4') SI_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-5',  QUERY_DATE||'-5') WU_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-6',  QUERY_DATE||'-6') LIU_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-7',  QUERY_DATE||'-7') QI_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-8',  QUERY_DATE||'-8') BA_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-9',  QUERY_DATE||'-9') JIU_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-10', QUERY_DATE||'-10') SHI_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-11', QUERY_DATE||'-11') SHIYI_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-12', QUERY_DATE||'-12') SHIER_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-13', QUERY_DATE||'-13') SHISAN_NUM ,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-14', QUERY_DATE||'-14') SHISI_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-15', QUERY_DATE||'-15') SHIWU_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-16', QUERY_DATE||'-16') SHILIU_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-17', QUERY_DATE||'-17') SHIQI_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-18', QUERY_DATE||'-18') SHIBA_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-19', QUERY_DATE||'-19') SHIJIU_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-20',  QUERY_DATE||'-20') ERSHI_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-21', QUERY_DATE||'-21') ERYI_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-22', QUERY_DATE||'-22') ERER_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-23', QUERY_DATE||'-23') ERSAN_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-24', QUERY_DATE||'-24') ERSI_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-25', QUERY_DATE||'-25') ERWU_NUM ,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-26', QUERY_DATE||'-26') ERLIU_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-27', QUERY_DATE||'-27') ERQI_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-28', QUERY_DATE||'-28') ERBA_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-29', QUERY_DATE||'-29') ERJIU_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-30', QUERY_DATE||'-30') SANSHI_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID,  QUERY_DATE||'-31', QUERY_DATE||'-31') SANYI_NUM
+FROM (SELECT DISPOSE_ID PERSON_ID, TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY-MM') QUERY_DATE FROM BS_IT_LOG  WHERE DISPOSE_CD = 'S'AND IS_VALID='Y' GROUP BY DISPOSE_ID)]]></Sql>
+  <Sql _uuid="PExXjApm8NcbDhy1tBLIiA" name="date_config" label="当前时间" is_valid="Y"><![CDATA[SELECT  TO_CHAR(CP_DATE.PARSE('${QUERY_DATE}'), 'YYYY-MM') NOW_DATE FROM DUAL]]></Sql>
+</ExportExcel>
+

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="Kk0SCei0kP41NH0L6aF3jQ" name="design.chart" label="M#12cn16数据列表定义" is_valid="Y" note="M#" template="xmlobject" source="${home.source.data}">
+  <Interface _uuid="J00qboolzHNti9I8GiMtpg" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#" class_name="org.mo.data.chart.common.XObjectFace">
+    <Attribute _uuid="6Eg1P5rTROeNCKqgWgTynA" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="ZU5ijUgS]SMBRNgayzUqig" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+    <Attribute _uuid="l0TwqzD[aD5ektXP]s0wjA" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="kkR3keMWn9qNiy[Z2]wFrA" name="note" label="M#12cn12注释" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+  </Interface>
+  <Component _uuid="TUb6BhiR8NYcwNFYTc3YuQ" name="Chart" label="M#12cn12图表" is_valid="Y" note="M#" class_name="org.mo.data.chart.common.XChart" base_name="org.mo.data.chart.base.XBaseChart" inherits="IObject,IPad">
+    <Attribute _uuid="8E4z29gc20nKlqeRUXSptw" name="data_logic" label="M#12cn14数据逻辑" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+  </Component>
+  <Component _uuid="uEwGHDrIuE1enm]N8zxblg" name="Coordinate" label="M#12cn13坐标区" is_valid="Y" note="M#" class_name="org.mo.data.chart.common.XCoordinate" base_name="org.mo.data.chart.base.XBaseCoordinate" inherits="IObject">
+    <Attribute _uuid="q0rjwoDT4TcUL2F4657zig" name="background_color" label="M#12cn14背景颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="]UI0SsQO[QYEqRb1nyw2vA" name="is_visible" label="M#12cn13可见性" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="dkh6xKIJvgTDhe][vRPkuA" name="Graphics" label="M#12cn13制图区" is_valid="Y" note="M#" class_name="org.mo.data.chart.common.XGraphics" base_name="org.mo.data.chart.base.XBaseGraphics" inherits="IObject,IPad,IMargin">
+    <Attribute _uuid="1UPCu]503P3QQhrujRW7jg" name="background_color" label="M#12cn14背景颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="pkJFSqSu6JV]pLUvt1tsqg" name="Axis" label="M#12cn13X坐标" is_valid="Y" note="M#" class_name="org.mo.data.chart.common.XAxis" base_name="org.mo.data.chart.base.XBaseAxis" inherits="IObject">
+    <Attribute _uuid="vUZV6hCXydDucRtB]2B]hQ" name="width" label="M#12cn12宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="Tkp[Gxto[LJbgQp2xx8Xjg" name="min" label="M#12cn13最小值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="I0FP8VyP1Snv[aHanLVZvQ" name="max" label="M#12cn13最大值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="rUoXTIlpqV0rGf7xlgQKtg" name="step" label="M#12cn12刻度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="AEl51b[2zGm20kRcHPhhgA" name="line_width" label="M#12cn14线条宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="eE3066]46t]U61QgbIU2qg" name="line_color" label="M#12cn14线条颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="KEwxheZy7DkQsCJ6WmKCqQ" name="step_width" label="M#12cn14刻度宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="wEgONTuc01JDnTamKSYNhQ" name="step_height" label="M#12cn14刻度高度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="lUXJl8Isu4a9oS2UFIZGlw" name="step_color" label="M#12cn14刻度颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="4kf2xSu3EEZrgNrOp3U0rA" name="background_color" label="M#12cn14背景颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="JEHSRAmEydYRbu3KABj1uQ" name="is_visible" label="M#12cn13可见性" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="90A4idpJr9T0BmJdNiRKow" name="type" label="M#12cn12类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="ZUMSD[jO[oWHGXEd8aJdhQ" name="data_name" label="M#12cn14数据名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Component>
+  <Component _uuid="EkuEjqyfpq4aWCKBT]wzsA" name="Series" label="M#12cn12系列" is_valid="Y" note="M#" class_name="org.mo.data.chart.common.XSeries" base_name="org.mo.data.chart.base.XBaseSeries" inherits="IObject">
+    <Attribute _uuid="zEEtGxpn[M39SAU82207lQ" name="type" label="M#12cn12类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="m0N3]kf16SxiTlRv3COAmA" name="Stick" label="M#12cn12分支" is_valid="Y" note="M#" class_name="org.mo.data.chart.common.XStick" base_name="org.mo.data.chart.base.XBaseStick" inherits="IObject">
+    <Attribute _uuid="jUzOf]3h8glA]FW5mr7qoA" name="min" label="M#12cn13最小值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="i0QjWVqsqvEg9QBKy1ItgQ" name="max" label="M#12cn13最大值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="FUQPzA23fUKu6ZZ4Jy5Zng" name="step" label="M#12cn12刻度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="kkbWi85aSs0zUfFQewokuA" name="line_width" label="M#12cn12线宽" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="8UZT9qURJVPtKZDARVLLrA" name="line_color" label="M#12cn12颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="GEyqdDYFFOdAAr6SfeDdrg" name="step_width" label="M#12cn14刻度宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="pEalA5UUVnsn1WJTnHU3rg" name="step_height" label="M#12cn14刻度高度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="4U0L6WLHrEC6NKMs]0osog" name="line_style" label="M#12cn14线条样式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="QU[z7Ftw2WPoadM6fbnoug" name="type" label="M#12cn12样式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Component>
+  <Component _uuid="OkIuXagT8kUgwaMF05McmQ" name="Data" label="M#12cn12数据" is_valid="Y" note="M#" class_name="org.mo.data.chart.common.XData" base_name="org.mo.data.chart.base.XBaseData" inherits="IObject">
+    <Attribute _uuid="E0li4tbhc[paEfIH57sUog" name="data_name" label="M#12cn14数据名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="rUs3iS34jPnzH8]5ncykpA" name="color" label="M#12cn12颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="lEAkB9mD4ouxKk6v5ieHrg" name="hover_color" label="M#12cn14激活颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="VkyN9TBNHfYQaFdPVUUNuA" name="hover_background_color" label="M#12cn15激活背景色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="EUMB0b24FBGabIlDPV5yjw" name="line_color" label="M#12cn14线条颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="b0jPLh9p4J[84mvXu743tA" name="line_width" label="M#12cn14线条宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="sU72FqXyGqdbBnwRhLpKmA" name="point_width" label="M#12cn14节点宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="SkIT2PvThe9JjFNSS0Jmhw" name="point_color" label="M#12cn14节点颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="6UFP3BZ0mhbS8nzXiva3pw" name="point_background_color" label="M#12cn15节点背景色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="PULEqSRv7tNtlXVK]8rApA" name="point_radius" label="M#12cn14节点半径" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Component>
+  <Component _uuid="lkiJMhJAKSJOsqq6SHiPqQ" name="Value" label="M#12cn13数据值" is_valid="Y" note="M#" class_name="org.mo.data.chart.common.XValue" base_name="org.mo.data.chart.base.XBaseValue" inherits="IObject">
+    <Attribute _uuid="Q0RvC4U8mNtg[nDNVI2YsA" name="X" label="M#12cn12X轴" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="]EuZM0kV[wBFggSkUy4irQ" name="Y" label="M#12cn12Y轴" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="Fk2WAAIsNBVdPb9OKxIwsw" name="value" label="M#12cn12数值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="Z0gtcw43WUjIno][uFYRuQ" name="color" label="M#12cn12颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="z0spUYQEv9cB3X09aGPRjA" name="line_color" label="M#" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="XkSDuXGXIaBSLngWkTH3lQ" name="background_color" label="M#" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Component>
+  <Component _uuid="QE4MkmMQUX715lbGKAiAug" name="Header" label="M#12cn12头部" is_valid="Y" note="M#" class_name="org.mo.data.chart.common.XHeader" base_name="org.mo.data.chart.base.XBaseHeader" inherits="IObject,IPad,IMargin">
+    <Attribute _uuid="qUmoz2xXkAuJBIwRILOflA" name="line_color" label="M#12cn14线条颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="eEA[Lno7pY0SxT0xqh0DsA" name="background_color" label="M#12cn14背景颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Component>
+  <Component _uuid="OkaZKYaJyPNNsaf2U1eirQ" name="Footer" label="M#12cn12注脚" is_valid="Y" note="M#" class_name="org.mo.data.chart.common.XFooter" base_name="org.mo.data.chart.base.XBaseFooter" inherits="IObject,IPad,IMargin">
+    <Attribute _uuid="FEKTBLy2JAhggOiCEHS7qw" name="line_color" label="M#12cn14线条颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="Lk3eiEdgaJr0Pynm1mjLvQ" name="background_color" label="M#12cn14背景颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Component>
+  <Interface _uuid="KEws94Eearyv7j1qgwN3pA" name="IPad" label="M#12cn16图表空余接口" is_valid="Y" note="M#" class_name="org.mo.data.chart.common.XPadFace">
+    <Attribute _uuid="TkyIlm2qvuoHtTXr8lKDnQ" name="pad_left" label="M#12cn13左空余" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="oUSsDBvs00KIDus]OP[Djg" name="pad_right" label="M#12cn13右空余" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="zUPSNCBe5PeRNQLJNXOAmQ" name="pad_top" label="M#12cn13上空余" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="EkIL7kTcTJNWP9kBjy61ig" name="pad_bottom" label="M#12cn13下空余" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+  <Interface _uuid="LU9InJD]slsASeTeH6zOog" name="IMargin" label="M#12cn16图表边距接口" is_valid="Y" note="M#" class_name="org.mo.data.chart.common.XMarginFace">
+    <Attribute _uuid="Z0KGsgt17MQcB4c6KFOBlg" name="margin_left" label="M#12cn13左边距" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="E0t]lzhC4BciX8hjJBfakA" name="margin_right" label="M#12cn13右边距" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="PECmMAIF]YuZxXM7V5E[mw" name="margin_top" label="M#12cn13上边距" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="g01AHCg7L6AHSTXB[YNamw" name="margin_bottom" label="M#12cn13底边距" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+</Persistence>
+

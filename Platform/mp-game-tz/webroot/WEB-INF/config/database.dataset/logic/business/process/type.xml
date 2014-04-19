@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="REptJK02f[WlvJQAtlDopw" name="logic.business.process.type" label="M#12cn16业务流程类型" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_BUSINESS_PROCESS_TYPE" data_alias="LG_BUS_PRC_TYP" data_logic="LG_BUSINESS_PROCESS_TYPE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="dEA1vMUtDdAL6j0kLR5KmA" name="business_id" label="M#12cn14业务标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BUSINESS_ID" data_alias="BUS" data_refer="logic.business" />
+  <FieldInteger _uuid="XUq0tH]HweoR0luYpzoIqQ" name="examine_type_id" label="M#12cn14审核类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_TYPE_ID" data_refer="logic.business.examine.type" />
+  <FieldBoolean _uuid="rUT92np3YjK11RD1mHhLkw" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldString _uuid="jEzjr5OZQSvQrxCr076ysA" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="80" />
+  <FieldString _uuid="rUdBuAp[mcalTB7O7yJulA" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="okMnz19qTHHQgExRK8VXrA" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldString _uuid="FUIcEC3l2yZoV[EO]cuPnw" name="begin_callback" label="M#12cn14开始回调" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BEGIN_CALLBACK" data_size="200" />
+  <FieldString _uuid="DEDVq8F4y9ANi3PohqvvjQ" name="end_callback" label="M#12cn14结束回调" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="END_CALLBACK" data_size="200" />
+  <FieldTemplate _uuid="s05wYcKDymWQH5fBT4r7lg" name="track" label="M#12cn12模板" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="wk8kxj1a3nCfdSvndPE0iw" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

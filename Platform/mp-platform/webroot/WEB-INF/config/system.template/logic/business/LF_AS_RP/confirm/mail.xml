@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template aa="pEJJpeb]eYRjuPBc69vfsg" name="logic.business.LF_AS_RP.confirm.mail" label="招聘面试" is_valid="Y" note="M#">
+  <Source aa="fks7Egy3dbl3C7Cmgf9ZjA" name="confirm.head" label="HR日报-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【招聘面试】 <jt:item source='$config.to_user_labels'/>您好，人力资源部请您审核最新一批应聘者的入职申请。]]></Source>
+  <Source aa="SUA4WU2e9CBFi5VWtSnEjw" name="confirm.body" label="HR日报-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='招聘面试 → 入职申请审核提醒' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><FONT COLOR='#336699'>人力资源部提交了一批最新应聘者的入职申请，请您及时登录系统进行审核。</FONT></TD></TR>
+   <TR><TD><FONT COLOR='#336699'>审核地址为：</FONT><A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#d8571d'>请点击这里</B></A></TD></TR>
+   </TABLE>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

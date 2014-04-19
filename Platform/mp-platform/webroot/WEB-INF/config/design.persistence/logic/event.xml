@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="vUlwcWbqdvLXeZOcMWhagQ" name="logic.event" label="M#12cn15业务-事件" is_valid="Y" note="M#" template="xmlobject" source="${export.logic.logic.source}">
+   <Interface _uuid="V0C9Zp1UXQq3]FaN6Ldfkg" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.logic.event.common.XObjectFace">
+      <Attribute _uuid="u0W87cHvoGPihJmPhV2cpw" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" />
+      <Attribute _uuid="[kYNbnJrph[4kiNSfroFnw" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+      <Attribute _uuid="ekvs5dP3fePGkOWeztSesQ" name="note" label="M#12cn12注释" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+      <Attribute _uuid="tEsv1OfgWRqGL2XddkVNtA" name="_type" label="M#12cn12类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="J0PdCs[yWWjEwx9XWtGnkw" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Interface>
+   <Component _uuid="j0nCrqNsKY0PeX3K2b0MsA" name="Group" label="M#12cn14事件分组" is_valid="Y" note="M#12jp12名称" class_name="org.mo.logic.event.common.XGroup" base_name="org.mo.logic.event.base.XBaseGroup" inherits="IObject" />
+   <Component _uuid="rkCDa3aKNcsyCV]kLpcCrA" name="Type" label="M#12cn14事件类型" is_valid="Y" note="M#12jp12項目" class_name="org.mo.logic.event.common.XType" base_name="org.mo.logic.event.base.XBaseType" inherits="IObject">
+      <Attribute _uuid="8kccLd0dPTXmaofdTeJjsQ" name="server_label" label="M#12cn14服务名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="g0[015jJpsVXNabn14tzmg" name="process_cd" label="M#12cn14处理类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="Qkh4En11o4No6got5GP0hA" name="process_invoke" label="M#12cn14处理调用" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="FkCp8jt]XxqgG1pEdEnCjQ" name="TypeConfig" label="M#12cn16类型属性设置" is_valid="Y" note="M#" class_name="org.mo.logic.event.common.XTypeConfig" base_name="org.mo.logic.event.base.XBaseTypeConfig" inherits="IObject">
+      <Attribute _uuid="ik9OmebmHpEIbAVXFpkTtg" name="type_name" label="M#12cn14类型名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="CUXhKb[MyBW69PqltYTxqw" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="]0YlJpzjXE42RnsrU37Zqw" name="Property" label="M#12cn12属性" is_valid="Y" note="M#" class_name="org.mo.logic.event.common.XProperty" base_name="org.mo.logic.event.base.XBaseProperty" inherits="IObject">
+      <Attribute _uuid="eEhBoVQ52vq8q8zm7jGoug" name="data_type_cd" label="M#12cn14数据类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="iE0MKCUNcQWmuUxbPUA6iA" name="data_default" label="M#12cn13默认值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="LUuBeSYUdgkLGjTMT[K9og" name="data_require" label="M#12cn14数据必须" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="IU8TkNRvgnbX8m7y]y0ZpQ" name="GroupConfig" label="M#12cn14分组设置" is_valid="Y" note="M#" class_name="org.mo.logic.event.common.XGroupConfig" base_name="org.mo.logic.event.base.XBaseGroupConfig" inherits="IObject">
+      <Attribute _uuid="IU8ukvLOLWtxbeZasC35rg" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+</Persistence>

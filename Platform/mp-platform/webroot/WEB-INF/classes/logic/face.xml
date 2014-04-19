@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+
+   <!-- ==================================================== -->
+   <!-- WebSession                                           -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.game.editor.web.session.IUserSessionConsole'
+         class = 'org.mo.game.editor.web.session.FUserSessionConsole'
+         scope = 'global' >
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- 命令：应用程序共通组件定义                                   -->
+   <!--    Action = apl/*                                            -->
+   <!-- ============================================================ -->
+   <Actions
+         uri   = '/apl/*/*'
+         face  = 'org.mo.jfa.face.apl.*.I*Action'/>
+
+   <Actions
+         uri   = '/apl/*'
+         face  = 'org.mo.jfa.face.apl.I*Action' />
+
+   <Components
+         face  = 'org.mo.jfa.face.apl.*.I*Action'
+         class = 'org.mo.jfa.face.apl.*.F*Action' />
+
+   <Components
+         face  = 'org.mo.jfa.face.apl.I*Action'
+         class = 'org.mo.jfa.face.apl.F*Action' />
+
+   <!-- ============================================================ -->
+   <!-- 命令：系统的命令映射和组件定义                               -->
+   <!--    Action = game/*                                           -->
+   <!-- ============================================================ -->
+   <Actions
+         uri   = '/game/platform/*/*'
+         face  = 'com.zq.game.platform.face.*.I*Action'/>
+
+   <Actions
+         uri   = '/game/platform/*'
+         face  = 'com.zq.game.platform.face.I*Action' />
+
+   <Components
+         face  = 'com.zq.game.platform.face.*.I*Action'
+         class = 'com.zq.game.platform.face.*.F*Action' />
+
+   <Components
+         face  = 'com.zq.game.platform.face.I*Action'
+         class = 'com.zq.game.platform.face.F*Action' />
+
+   <!-- ============================================================ -->
+   <!-- 命令：系统的命令映射和组件定义                               -->
+   <!--    Action = game/*                                           -->
+   <!-- ============================================================ -->
+   <Actions
+         uri   = '/game/*/*'
+         face  = 'com.zqinet.game.face.*.I*Action'/>
+
+   <Actions
+         uri   = '/game/*'
+         face  = 'com.zqinet.game.face.I*Action' />
+
+   <Components
+         face  = 'com.zqinet.game.face.*.I*Action'
+         class = 'com.zqinet.game.face.*.F*Action' />
+
+   <Components
+         face  = 'com.zqinet.game.face.I*Action'
+         class = 'com.zqinet.game.face.F*Action' />
+
+   <!-- ============================================================ -->
+   <!-- 命令：系统的命令映射和组件定义                               -->
+   <!--    Action = system/*                                         -->
+   <!-- ============================================================ -->
+   <Actions
+         uri   = '/platform/*/*'
+         face  = 'org.mo.platform.face.*.I*Action'/>
+
+   <Actions
+         uri   = '/platform/*'
+         face  = 'org.mo.platform.face.I*Action' />
+
+   <Components
+         face  = 'org.mo.platform.face.*.I*Action'
+         class = 'org.mo.platform.face.*.F*Action' />
+
+   <Components
+         face  = 'org.mo.platform.face.I*Action'
+         class = 'org.mo.platform.face.F*Action' />
+
+   <!-- ============================================================ -->
+   <!-- 命令：系统的命令映射和组件定义                               -->
+   <!--    Action = system/*                                         -->
+   <!-- ============================================================ -->
+   <Actions
+         uri   = '/system/*/*'
+         face  = 'org.mo.jfa.face.*.I*Action'/>
+
+   <Actions
+         uri   = '/system/*'
+         face  = 'org.mo.jfa.face.I*Action' />
+
+   <Components
+         face  = 'org.mo.jfa.face.*.I*Action'
+         class = 'org.mo.jfa.face.*.F*Action' />
+
+   <Components
+         face  = 'org.mo.jfa.face.I*Action'
+         class = 'org.mo.jfa.face.F*Action' />
+
+   <!-- ============================================================ -->
+   <!-- 命令：默认的命令映射和组件定义                               -->
+   <!--    Action = *                                                -->
+   <!-- ============================================================ -->
+   <Actions
+         uri   = '*'
+         face  = 'org.mo.jfa.face.I*Action' />
+         
+  
+
+</Config>

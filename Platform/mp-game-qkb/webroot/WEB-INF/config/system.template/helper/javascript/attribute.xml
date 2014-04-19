@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="jUy1]Jxj57nD7s1ttmMwvw" name="helper.javascript.attribute" is_valid="Y" note="M#">
+  <Source _uuid="JU]ZadFczMpSadg4AJlKpg" is_valid="Y" note="M#"><![CDATA[<jt:include source='helper.title'/>
+
+<!------------------------导航--------------------------------->
+<jt:include source='helper.navBegin'/>
+<IMG src='../../../ars/icon/tools/home.gif'/> <span><a href="../index.html">主页</a></span>
+<IMG src='../../../ars/icon/tools/next.gif'/> <span><a href="../space/<jt:item source='$attributes.package_name'/>.html"><jt:item source='$attributes.package_name'/></a></span>
+<IMG src='../../../ars/icon/tools/next.gif'/> <span><a href="../class/<jt:item source='$attributes.class_name'/>.html"><jt:item source='$attributes.class_name'/></a></span>
+<IMG src='../../../ars/icon/tools/next.gif'/> <span><jt:item source='$attributes.name'/></span>
+<jt:include source='helper.navEnd'/>
+<!-- Head Begin ------------------------------------------->
+<TABLE width='100%' border='0' cellspacing='8' cellpadding='0'>
+<TR>
+	<TD class='headTitle'><jt:item source='$attributes.name'/></TD>
+	<TD align='right' valign='bottom' class='headVersion'>version:1.0.0</TD>
+</TR>
+<TR><TD colspan='2'>
+	<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+		<TR height='1' bgcolor='#999999'><TD></TD></TR>
+		<TR height='1' bgcolor='#000000'><TD></TD></TR>
+	</TABLE>
+</TD></TR>
+</TABLE>
+<!-- Head End --------------------------------------------->
+<TABLE width='100%' border='0' cellspacing='8' cellpadding='16'>
+	<TR>
+	<TD>
+		<!------------------------常量详细说明--------------------------------->
+		</BR>
+		<span><B>说明</B></span>
+		<TABLE width='100%' border='0' cellspacing='1' cellpadding='4'>
+		<TR><TD style='padding-left:25'><jt:item source='$attributes.description'/></TD></TR>
+		</TABLE>
+	</TD>
+	</TR>
+</table>
+<!-- Body End --------------------------------------------->
+<jt:include source='helper.footer'/>]]></Source>
+</Template>
+

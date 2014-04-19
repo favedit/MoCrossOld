@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="m052CGzDCPnHai9g7RrFow" name="database.logicunit.history.sqlView" is_valid="Y" note="M#">
+  <Source _uuid="K0cAEIT8vP34744[qM]0sA" is_valid="Y" note="M#"><![CDATA[CREATE OR REPLACE VIEW <jt:Item source='$dataset.data_name' format='field'/>_HV
+AS
+   SELECT
+      OUHD,
+      OUHD_ACTION,
+      OUHD_DATE,
+<jt:Loop source='$fields' alias='field'>
+      <jt:Item source='$field.data_name' format='field'/><jt:Position type='last' source='$field' elseValue=','/>
+</jt:Loop>
+   FROM <jt:Item source='$dataset.data_name' format='field'/>_HS
+   WITH READ ONLY]]></Source>
+</Template>
+

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Source is_valid="Y" note="M#">
+<![CDATA[//============================================================
+// <T><jt:item source='$module.label'/>。</T>
+//
+// @version 1.0.1
+// @auto 代码器管理的代码，如需修改请在手动修改标出的地方修改。
+//============================================================
+#ifndef __MO_<jt:item source='$project.code' format='upper'/>_<jt:item source='$module.code_name' format='upper'/>_H__
+#define __MO_<jt:item source='$project.code' format='upper'/>_<jt:item source='$module.code_name' format='upper'/>_H__
+
+#ifndef __MO_<jt:item source='$project.code' format='upper'/>_CORE_H__
+#include "Mo<jt:item source='$project.code' format='class'/>Core.h"
+#endif // __MO_<jt:item source='$project.code' format='upper'/>_CORE_H__
+
+MO_NAMESPACE_BEGIN
+
+// @manual (Custom.Begin)
+//------------------------------------------------------------
+<jt:empty source='$module.head_custom'>
+//------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$module.head_custom'>
+<jt:item source='$module.head_custom'/>//------------------------------------------------------------
+</jt:notEmpty>
+// @manual (Custom.End)
+
+//============================================================
+// <T><jt:item source='$module.label'/>实体。</T>
+//============================================================
+class <jt:item source='$module.source_entity'/> : public <jt:notEmpty source='$module.parent_entity'>F<jt:item source='$module.parent_entity'/></jt:notEmpty><jt:empty source='$module.parent_entity'>FShared<jt:item source='$module.code_name'/></jt:empty>{
+public:
+   <jt:item source='$module.source_entity'/>();
+   MO_ABSTRACT ~<jt:item source='$module.source_entity'/>();
+   // @manual (Entity.Begin)
+   //------------------------------------------------------------
+<jt:empty source='$module.head_entity'>
+   //------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$module.head_entity'>
+<jt:item source='$module.head_entity'/>//------------------------------------------------------------
+</jt:notEmpty>
+   // @manual (Entity.End)
+};
+//------------------------------------------------------------
+typedef FSet<TUint32, <jt:item source='$module.source_entity'/>*> <jt:item source='$module.source_entity'/>Set;
+
+//============================================================
+// <T><jt:item source='$module.label'/>实体的管理模块。</T>
+//============================================================
+class <jt:item source='$module.source_module'/> : public FSharedObjectPoolModule<<jt:item source='$module.source_entity'/>>{
+public:
+   <jt:item source='$module.source_module'/>();
+   MO_ABSTRACT ~<jt:item source='$module.source_module'/>();
+   // @manual (Module.Begin)
+   //------------------------------------------------------------
+<jt:empty source='$module.head_module'>
+   //------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$module.head_module'>
+<jt:item source='$module.head_module'/>//------------------------------------------------------------
+</jt:notEmpty>
+   // @manual (Module.End)
+};
+//------------------------------------------------------------
+typedef RSharedModuleSingleton<<jt:item source='$module.source_module'/>> G<jt:item source='$module.source_module' removeFirst='F'/>;
+
+MO_NAMESPACE_END
+
+#endif // __MO_<jt:item source='$project.code' format='upper'/>_<jt:item source='$module.code_name' format='upper'/>_H__
+
+]]>
+   </Source>
+</Template>

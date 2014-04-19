@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="f0ueg8X4SNgIVao3vdwzhg" name="logic.business.public.asset.it" label="M#12cn19资产管理-IT资产" note="M#" is_valid="Y">
+  <GroupConfig _uuid="wEbIalpb3BmOjHgmrinrnA" name="smtp_host" label="M#12cn15邮件服务器" note="M#" is_valid="Y" data_value="${logic.mail|smtp_host}" />
+  <GroupConfig _uuid="5UegbwxDKGq7XnTkmq6JjQ" name="smtp_port" label="M#12cn17邮件服务器端口" note="M#" is_valid="Y" data_value="${logic.mail|smtp_port}" />
+  <GroupConfig _uuid="rUHyet20PQ1gN]VzIOLNsw" name="smtp_user" label="M#12cn14邮件帐户" note="M#" is_valid="Y" data_value="${logic.mail|smtp_user}" />
+  <GroupConfig _uuid="J0yZj7mM05Tf4ppPGsSQrQ" name="smtp_password" label="M#12cn16邮件帐户密码" note="M#" is_valid="Y" data_value="${logic.mail|smtp_password}" />
+  <GroupConfig _uuid="9UpG3zP8HxJ7XjtVkvjRpw" name="smtp_authentic" label="M#12cn14邮件认证" note="M#" is_valid="Y" data_value="${logic.mail|smtp_authentic}" />
+  <GroupConfig _uuid="Qk]Rog9zP0hpvkrLKaEbuA" name="from_user" label="M#12cn13发送者" note="M#" is_valid="Y" data_value="${logic.mail|from_user}" />
+  <Type _uuid="bkvz8AlH[CkZ79Vw1HQDhw" name="it.day.remind" label="M#12cn18资产日报汇总提醒" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="VUhlr59NFcB8izTfYeLXkg" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="it.day.head@logic.business.LF_AS_IT.mail" />
+    <TypeConfig _uuid="XkRKMgXmQTPETGdNxPL]sg" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="it.day.body@logic.business.LF_AS_IT.mail" />
+  </Type>
+  <Type _uuid="aEJdU1pFdKlxkOsAyzrgpA" name="it.moths.remind" label="M#12cn18资产月报汇总提醒" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="rE[nrywHspWKUg21r6JSpw" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="it.moths.head@logic.business.LF_AS_IT.mail" />
+    <TypeConfig _uuid="i0fFC[Hzeu4cq3ZDo3CKhg" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="it.moths.body@logic.business.LF_AS_IT.mail" />
+  </Type>
+  <Type _uuid="MEGEK]03mHaGeUmeQ4Ujjg" name="remind.assetview.everyday" label="M#12cn14资产日报" note="M#" is_valid="Y" process_cd="P" process_invoke="BS_ASSET_PB_IT_DI.Do_Send_It_Asset_Info" />
+  <Type _uuid="dEdISEpZU]tkdzYEEkVruw" name="remind.assetview.everymoths" label="M#12cn14资产月报" note="M#" is_valid="Y" process_cd="P" process_invoke="BS_ASSET_PB_IT_DI.Do_Send_Moths_Asset_Info" />
+</Group>
+

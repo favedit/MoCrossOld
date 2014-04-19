@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="Z00lCNWiyOjCsYZ]ynyuhQ" name="logic.develop.design.idea.reply" label="M#12cn19建议管理-建议回复" note="M#" is_valid="Y">
+  <GroupConfig _uuid="kk4Clm8Feme7VqeByHknng" name="smtp_host" label="M#12cn15邮件服务器" note="M#" is_valid="Y" data_value="${logic.mail|smtp_host}" />
+  <GroupConfig _uuid="xEA99wUKewt18N6kOIFRrQ" name="smtp_port" label="M#12cn17邮件服务器端口" note="M#" is_valid="Y" data_value="${logic.mail|smtp_port}" />
+  <GroupConfig _uuid="u0Fg35wI2eCehdnIGbqugQ" name="smtp_user" label="M#12cn14邮件帐户" note="M#" is_valid="Y" data_value="${logic.mail|smtp_user}" />
+  <GroupConfig _uuid="qUAao0xujfzKbp7IyBTxqQ" name="smtp_password" label="M#12cn16邮件帐户密码" note="M#" is_valid="Y" data_value="${logic.mail|smtp_password}" />
+  <GroupConfig _uuid="L0iWiwr8lZ82UQYeZ3G3hQ" name="smtp_authentic" label="M#12cn14邮件认证" note="M#" is_valid="Y" data_value="${logic.mail|smtp_authentic}" />
+  <GroupConfig _uuid="mEDSrpVudExzdbBYLy2tlw" name="from_user" label="M#12cn13发送者" note="M#" is_valid="Y" data_value="${logic.mail|from_user}" />
+  <Type _uuid="10qh6tm3iGH7BhTnUw3CoA" name="reply.mail" label="M#12cn14邮件通知" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="JE6g[8E]IpFvxWxl23Lqhg" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="reply.head@logic.business.project.develop.design.idea.mail" />
+    <TypeConfig _uuid="CUaEasIOud[uDuV[LVXHqw" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="reply.body@logic.business.project.develop.design.idea.mail" />
+  </Type>
+  <Type _uuid="10qh6tm3iGH7BhTnUw3Co1" name="close.mail" label="M#12cn14邮件通知" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="JE6g[8E]IpFvxWxl23Lqh2" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="close.head@logic.business.project.develop.design.idea.mail" />
+    <TypeConfig _uuid="CUaEasIOud[uDuV[LVXHq3" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="close.body@logic.business.project.develop.design.idea.mail" />
+  </Type>
+</Group>
+

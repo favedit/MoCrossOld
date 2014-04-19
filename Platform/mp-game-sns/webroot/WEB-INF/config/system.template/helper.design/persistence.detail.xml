@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="40sGh]OZm9rF32O857Ohrg" name="helper.design.persistence.detail" is_valid="Y" note="M#">
+  <Source _uuid="Qko3khutR]tzE0NPix9stg" is_valid="Y" note="M#"><![CDATA[<HTML>
+<HEAD>
+<META http-equiv='Content-Type' content='text/html;charset=UTF-8'>
+<TITLE>Class Example</TITLE>
+<LINK rel="stylesheet" href='../acs/control.css' type="text/css" media="all"/>
+<LINK rel="stylesheet" href='../acs/lang_cn.css' type="text/css" media="all"/>
+<SCRIPT language='javascript' src='../ajs/mobj.js'></SCRIPT>
+</HEAD>
+
+<SCRIPT>
+function _load(){
+	RGlobal.setContext('cn', '..', '');
+}
+</SCRIPT>
+
+<BODY onload='_load()' style='padding:8;margin:0'>
+
+<TABLE width='100%' border='0' cellspacing='1' cellpadding='4'>
+<TR><TD><jt:item source='$config.name'/></TD></TR>
+<TR><TD><jt:item source='$config.note'/></TD></TR>
+</TABLE>
+<BR>
+<TABLE width='100%' bgcolor='#cccccc' border='0' cellspacing='1' cellpadding='2'>
+<TR bgcolor='#dddddd'>
+<TD>名称</TD>
+<TD>描述信息</TD>
+</TR>
+<jt:loop source='$config' alias='class'>
+<TR bgcolor='#F8F8F8'>
+<TD width='200'><IMG src='/eUIS/system/ars/icon/design/persistence/<jt:item source='$class._type' format='lower'/>.gif' align='absmiddle'> <jt:item source='$class.name'/></TD>
+<TD><jt:item source='$class.label'/></TD>
+</TR>
+</jt:loop>
+</TABLE>
+
+<!--------------------------------------------------------->
+<jt:loop source='$config' alias='class'>
+<BR>
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='2'>
+<TR bgcolor='#FFFFFF'><TD bgcolor='#FFFFF0' style='border:1 solid #999999'>
+	<IMG src='/eUIS/system/ars/icon/design/persistence/<jt:item source='$class._type' format='lower'/>.gif' align='absmiddle'> <jt:item source='$class.name'/> <jt:item source='$class.label'/>
+	<BR>
+	<jt:item source='$class.note'/>
+</TD></TR>
+<TR bgcolor='#FFFFFF'><TD style='padding-left:40'>
+	<TABLE width='100%' bgcolor='#999999' cellspacing='1' cellpadding='2'>
+	<jt:loop source='$class' alias='property'>
+	<TR bgcolor='#F0FFF0'>
+	<TD width='160' nowrap>
+		<IMG src='/eUIS/system/ars/icon/design/persistence/attribute.gif' align='absmiddle'>
+		<jt:item source='$property.name'/></TD>
+	<TD width='80' nowrap><jt:item source='$property.type'/></TD>
+	<TD><jt:item source='$property.label'/></TD>
+	</TR>
+	</jt:loop>
+	</TABLE>
+</TD></TR>
+</TABLE>
+</jt:loop>
+
+</BODY>
+
+</HTML>]]></Source>
+</Template>
+

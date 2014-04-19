@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="LkhscIfudyUc4hwBi9lfqQ" name="system.catalog.node" label="M#12cn16系统目录节点" is_valid="Y" note="M#" data_name="SY_CATALOG_NODE" data_logic="SY_CATALOG_NODE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="dataset.store" data_type="D">
+  <FieldInteger _uuid="40hb4N1jKJfep]XQO1qgpA" name="catalog_id" label="M#12cn14视角标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CATALOG_ID" data_type="Integer" data_refer="system.catalog" data_uniques="name" />
+  <FieldInteger _uuid="m0cBx0HoMnEkZy0Zv3XOgw" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="TYPE_ID" data_type="Integer" data_refer="system.catalog.type" />
+  <FieldInteger _uuid="IUPnHJ[IM0AxR5z7fJ90rQ" name="parent_id" label="M#12cn13父标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PARENT_ID" data_type="Integer" />
+  <FieldBoolean _uuid="dka3OaB9OTdh4OWtCPauog" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="'Y'" />
+  <FieldString _uuid="l0pyvLLCTWFRraglpe7wiQ" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="WEONG[3vQqBSruQmysDRmQ" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_type="String" data_size="40" data_uniques="name" />
+  <FieldContent _uuid="p0mYrnmVw6PijP2ta3oyoA" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LABEL" data_type="Content" />
+  <FieldInteger _uuid="okN8pOfiS64qQyaluk6gkg" name="module_id" label="M#12cn14关联标识" is_valid="Y" note="M#12cn218根据类型决定存储的内容是那个表的外键" is_null="Y" is_store="Y" data_name="MODULE_ID" data_type="Integer" />
+  <FieldBoolean _uuid="l0YCPpumxEC9mreBlPuQlA" name="has_child" label="M#12cn15含有子节点" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="HAS_CHILD" />
+  <FieldBoolean _uuid="lUbWglDaiDTbUCF9lc]8gw" name="is_config" label="M#12cn13可配置" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_CONFIG" />
+  <FieldString _uuid="j0XTH5[WQ02rWXCt0E4]tQ" name="type_name" label="M#12cn14类型名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_NAME" data_size="40" />
+  <FieldString _uuid="ZEC7oZ1nc0VhbTzT7P9Nsg" name="icon_name" label="M#12cn14图标名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ICON_NAME" data_size="80" />
+  <FieldInteger _uuid="YUYsfwTyw29ACZ[QH45uoQ" name="display_order" label="M#12cn14显示排序" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="DISP_ORDER" data_type="Integer" />
+  <FieldString _uuid="rkyGH8DSHTdcwuC]hj6Tqw" name="link_catalog" label="M#12cn15关联目录树" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LINK_CATALOG" data_size="40" />
+  <FieldContent _uuid="0kxXfwEnNjbMKj]joAiIgw" name="properties" label="M#12cn14属性内容" is_valid="Y" note="M#12cn15打包字符串" is_null="Y" is_store="Y" is_abstract="N" data_name="PROPERTIES" />
+  <FieldContent _uuid="10d1T0gZDsS1K[TgmoD[gA" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

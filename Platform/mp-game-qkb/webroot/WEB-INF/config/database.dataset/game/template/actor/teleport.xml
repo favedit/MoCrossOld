@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="DEcfI9DAobf4E[KYgiZuoQ" name="game.template.actor.teleport" label="M#12cn15演员传送点" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_ACTOR_TELEPORT" data_alias="GM_TPL_ACT_TLP" data_logic="GM_TPL_ACTOR_TELEPORT_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="80aLgVrYjU71[urk8nR8kg" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="5Uz20l2O3lqUKXKWJEymtw" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldInteger _uuid="NEhjvt7qKzI[pFsPCwJiqw" name="actor_tid" label="M#12cn14演员编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="ACTOR_TID" data_alias="ACT" data_refer="game.template.actor" />
+  <FieldInteger _uuid="kE]eSSHFgPIDv2mvbjDrig" name="map_tid" label="M#12cn14地图编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="MAP_TID" data_alias="MAP" data_refer="game.template.map" />
+  <FieldInteger _uuid="DEEfyGRfWCmIjQN]jkz1pw" name="enter_code" label="M#12cn16地图N进入点" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ENTER_CODE" />
+  <FieldEnum _uuid="9klozqy5CGpfw1ANs]MMoQ" name="direction_cd" label="M#12cn14人物方向" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DIRECTION_CD" data_size="1" data_code="game.template.direction" />
+  <FieldTemplate _uuid="CEwgHy823LUO]yaGtL3lgg" name="describe" label="M#12cn14描述模版" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

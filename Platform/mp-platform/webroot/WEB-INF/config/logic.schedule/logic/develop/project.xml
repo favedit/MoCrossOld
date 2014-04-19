@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="bUN0JZOUD90eEyQDIG3Gow" name="logic.develop.project" label="M#12cn14项目管理" note="M#" is_valid="Y">
+  <Type _uuid="U0G3DzBBiV3CCcoM5BdPpA" name="progress.person.login" label="M#12cn19项目管理-用户登录" note="M#" is_valid="Y">
+    <TypeEvent _uuid="[UycHVOI7yWjVzYhpwYjvQ" name="login" label="M#12cn16登录时间同步" note="M#" is_valid="Y" event_group_name="logic.develop.project" event_type_name="progress.user.login" priority_cd="L" />
+    <Schedule _uuid="rk0rHQD89cFTe4G4gAzkpw" name="progress.person.login" label="M#12cn16登录时间同步" note="M#" is_valid="Y" begin_date="20090701144429" end_date="20120731144433">
+      <Minute _uuid="[0BDu4JUO9xrEpZGMRJSnw" name="minute-10" label="M#12cn18每十分钟执行一次" note="M#" is_valid="Y" execute_time="20090703144622" statue_cd="P" type_cd="I" interval="10" update_date="20090703174425" />
+    </Schedule>
+  </Type>
+  <Type _uuid="L0kBDs6xgT0eL6Kjjgnxgg" name="process.task.manhour" label="M#12cn19项目管理-任务工时" note="M#" is_valid="Y">
+    <TypeEvent _uuid="SkA66nPhcXSmHPJLDIbkoQ" name="manhour" label="M#12cn16任务工时同步" note="M#" is_valid="Y" event_group_name="logic.develop.project" event_type_name="process.task.manhour" priority_cd="L" />
+    <Schedule _uuid="DUGAnbEpEXzv6QgThiEFgQ" name="progress.task.manhour" label="M#12cn16任务工时同步" note="M#" is_valid="Y" begin_date="20090701174217" end_date="20120731174220">
+      <Day _uuid="YEdnXGv0j523fKpv6MGmuQ" name="day-1" label="M#12cn14每天执行" note="M#" is_valid="Y" execute_time="20090706030500" statue_cd="P" type_cd="D" interval="1" update_date="20090706180632" />
+    </Schedule>
+  </Type>
+  <Type _uuid="V0F4w4WIt[EYPfIcxPtPnw" name="process.progress" label="M#12cn19项目管理-进度管理" note="M#" is_valid="Y">
+    <TypeEvent _uuid="n0nKyfmJEpex]BojcWbJsg" name="progress" label="M#12cn12进度" note="M#" is_valid="Y" event_group_name="logic.develop.project" event_type_name="process.progress" priority_cd="L" />
+    <Schedule _uuid="HEhXxqhTcGXZf16qzWediA" name="process.progress" label="M#12cn14进度同步" note="M#" is_valid="Y" begin_date="20090701175723" end_date="20150701175725">
+      <Minute _uuid="5EskgRLdN2eMlx6cN[9Jgw" name="minute-10" label="M#12cn18每十分钟执行一次" note="M#" is_valid="Y" execute_time="20090706175802" statue_cd="P" type_cd="I" interval="10" update_date="20090706175807" />
+    </Schedule>
+  </Type>
+  <Type _uuid="IUNUrWU1AYjpjolaiOe5kQ" name="progress.plan" label="M#12cn19项目管理-上线计划" note="M#" is_valid="N">
+    <TypeEvent _uuid="SkAQFKpyuC5mEgqMi2Mkvw" name="plan.overtime.remind" label="M#12cn14超时提醒" note="M#" is_valid="Y" event_group_name="logic.develop.project" event_type_name="progress.plan.overtime.remind" priority_cd="H" />
+    <Schedule _uuid="wkG6bAhT8hDXc8TL6FXfuA" name="overtime.remind" label="M#12cn14超时提醒" note="M#" is_valid="N" begin_date="20070308000000" end_date="21070308000000">
+      <Day _uuid="DUN8I4gIjBgkeXIuJyTQgQ" name="1-per-day" label="M#12cn14按天执行" note="M#" is_valid="Y" execute_time="20070329030000" statue_cd="P" type_cd="D" interval="1" />
+    </Schedule>
+  </Type>
+</Group>
+

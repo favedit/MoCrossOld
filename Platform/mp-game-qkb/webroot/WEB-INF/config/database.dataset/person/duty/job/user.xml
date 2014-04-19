@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="NUMscVKCPA889NQOpsQOnA" name="person.duty.job.user" label="M#12cn16岗位人员关联" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="PM_DUTY_JOB_USER" data_alias="PM_DYT_JOB_USR" data_logic="PM_DUTY_JOB_USER_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="2UF4buIOgSuTsYM1GHfgow" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="USER_ID" data_alias="USR" data_refer="person.user" data_uniques="link" />
+  <FieldInteger _uuid="v0cTHalGVbfiMmVUSCv9rA" name="job_id" label="M#12cn14岗位标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="JOB_ID" data_refer="person.duty.job" data_uniques="link" />
+  <FieldEnum _uuid="WUHjMw0I4ui4YvbuDWCupw" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#12cn212标识职位联结人员是否有效" is_store="Y" is_abstract="N" data_name="IS_VALID" data_size="1" data_default="'Y'" />
+  <FieldEnum _uuid="OkRA4ES6RJwRP4BiqthdqQ" name="type_cd" label="M#12cn14担任类型" is_valid="Y" note="M#12cn15全职/兼职" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="person.duty.job.type" />
+  <FieldInteger _uuid="7U252]srR4hVJO5Zel4Xlw" name="organization_id" label="M#12cn14组织标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ORGANIZATION_ID" data_alias="ORG" data_refer="person.organization" />
+  <FieldInteger _uuid="VU8ChUbjQ63uc5x[qf[8jw" name="create_user_id" label="M#12cn15创建者标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CREATE_USER_ID" data_refer="person.user" />
+  <FieldDate _uuid="F0tbcTP3EVNL8gCHqRcJgw" name="create_date" label="M#12cn14创建日期" is_valid="Y" note="M#12cn19组织属性的创建时间" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_default="SYSDATE" />
+  <FieldContent _uuid="50i[OLYV4N4wRZIy4DaDnQ" name="note" label="M#12cn12备注" is_valid="Y" note="M#12cn15属性的注释" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

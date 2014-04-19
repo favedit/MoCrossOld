@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="CU6EY2GMesDeX]MUd2CwlQ" _type="Persistence" name="eng-alias" label="M#12cn14别称定义" is_valid="Y" note="M#" template="xmlobject" source="${home.source.eng}">
+  <Interface _uuid="OEFViaJWEZB1F2wa]cXWoQ" _type="Interface" name="IObject" label="M#" is_valid="Y" note="M#12jp16オブジェクト">
+    <Attribute _uuid="ekMgDQVxTHOoy2kSnkhupg" _type="Attribute" name="name" label="M#" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="DkBjx]PFI39wn4n52a2ZtA" _type="Attribute" name="note" label="M#" is_valid="Y" note="M#12jp12注釈" type="MultiString" is_store="Y" is_config="Y" is_default="N" />
+  </Interface>
+  <Component _uuid="]0slMt3dXdU2lWVFqNRvsA" _type="Component" name="Alias" label="M#" is_valid="Y" note="M#12jp12名称" class_name="org.mo.eng.alias.common.XAlias" base_name="org.mo.eng.alias.base.XBaseAlias" inherits="IObject" />
+  <Component _uuid="yENEEdN2a8iqndEslLofvQ" _type="Component" name="Item" label="M#" is_valid="Y" note="M#12jp12項目" class_name="org.mo.eng.alias.common.XItem" base_name="org.mo.eng.alias.base.XBaseItem" inherits="IObject">
+    <Attribute _uuid="[0NMVk37RCG2t9j93GwkjA" _type="Attribute" name="type" label="M#" is_valid="Y" note="M#" type="String" is_default="N" />
+    <Attribute _uuid="j0wLPmuymjqaXjUszUZ]rw" _type="Attribute" name="source" label="M#" is_valid="Y" note="M#" type="String" is_default="N" />
+  </Component>
+</Persistence>
+

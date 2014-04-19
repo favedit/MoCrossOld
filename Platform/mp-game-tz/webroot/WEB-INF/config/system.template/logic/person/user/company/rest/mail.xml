@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="OkN3uCM8tQ[pwQoBe196jw" name="logic.person.user.company.rest.mail" label="假期申请" is_valid="Y" note="M#">
+  <Define _uuid="EkUwFEAFZTRBUHpagYylpg" name="mail_content_type" label="邮件类型" is_valid="Y" note="M#" value="Html" />
+  <Variable _uuid="Nkl0s3iytWliVV5WjuiZow" name="user_full_label" label="申请人" is_valid="Y" note="M#" />
+  <Variable _uuid="lU9nEKEK6EmKakjPmHQ8tQ" name="phone_number" label="联系电话" is_valid="Y" note="M#" />
+  <Variable _uuid="WE4tIWeGSEYWj[DDI[RLrA" name="org_label" label="所属部门" is_valid="Y" note="M#" />
+  <Variable _uuid="pkJLuTYOowm5GNn9RG6dtg" name="begin_date" label="开始时间" is_valid="Y" note="M#" />
+  <Variable _uuid="l0K8guExrfClCxapaPMwrA" name="end_date" label="结束时间" is_valid="Y" note="M#" />
+  <Variable _uuid="sUWhDrDfcvm]TXGaSy7gmQ" name="create_date" label="申请时间" is_valid="Y" note="M#" />
+  <Variable _uuid="[EAGKiJjh56dccDD7b7wqA" name="reason_note" label="请假原因" is_valid="Y" note="M#" />
+  <Variable _uuid="LE[o5ddYjnlFaJQrmWLypQ" name="examine_user_id" label="审核者编号" is_valid="Y" note="M#" />
+  <Variable _uuid="Z0719oTSbvPw0hTRT]pLkA" name="examine_user_label" label="审核者名称" is_valid="Y" note="M#" />
+  <Variable _uuid="AU0cTUr5YpbTGmAHhj[nlA" name="examine_note" label="审核原因" is_valid="Y" note="M#" />
+  <Variable _uuid="okZbQomIlEAhr54CqcmNhw" name="type_label" label="假期类型" is_valid="Y" note="M#" />
+  <Variable _uuid="tEvdiFVz7f77KdcQGGmFqw" name="redirect" label="url地址" is_valid="Y" note="M#" />
+  <Variable _uuid="Z0nzWdDcJF7]pyIhPVy3iw" name="user_mail" label="申请者邮件" is_valid="Y" note="M#" />
+  <Variable _uuid="I0vLZEhKTXLPL]8]JM4]qg" name="work_number" label="工号" is_valid="Y" note="M#" />
+  <Variable _uuid="2k6X]aHfdbeZoWY3CKiJoA" name="company_label" label="公司名称" is_valid="Y" note="M#" />
+  <Source _uuid="nUebBrDh3YvnUEr2bEaUjg" name="notify.head" label="通知-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][请假申请] <jt:item source='$config.to_user_labels'/>你好,<jt:item source='$config.user_full_label'/>申请<jt:item source='$config.type_label'/>请审核。]]></Source>
+  <Source _uuid="m0YelpW090fXqXNRaThSrw" name="notify.body" label="通知-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='假期管理 → 假期审核通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.user_full_label'/>申请<jt:item source='$config.type_label'/>,请您审核.</TD></TR>
+      <TR><TD>审核地址为：<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>申请者信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.user_full_label'/> (<jt:item source='$config.work_number'/>)</TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>邮件</TD>
+      <TD class='ItemData'><A href='mailto:<jt:item source='$config.user_mail'/>'><jt:item source='$config.user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>公司</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.company_label'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.phone_number'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.org_label'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+   <B style='color:#014d99'>请<jt:item source='$config.type_label'/>信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>开始日期</TD>
+      <TD width="30%" class='ItemData'><jt:timeSpan source='$config.begin_date' type='date' format='YYYY-MM-DD HH24:MI' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>结束日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.end_date' type='date' format='YYYY-MM-DD HH24:MI'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>请假时长</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.apply_ts' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>创建时间</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.create_date' type='date' format='YYYY-MM-DD HH24:MI:SS'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>请假原因</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.reason_note'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="10eKPpAfaahYJ0ZlXVHnvA" name="pass.head" label="审核通过-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][请假申请] <jt:item source='$config.user_full_label'/>你好,申请<jt:item source='$config.type_label'/>已经审核通过。]]></Source>
+  <Source _uuid="gE08KEcmf7wvyrGGuIPGtg" name="pass.body" label="审核通过-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='假期管理 → 假期审核通过通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD>申请<jt:item source='$config.type_label'/>审核通过.</TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>请<jt:item source='$config.type_label'/>信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>开始日期</TD>
+      <TD width="30%" class='ItemData'><jt:timeSpan source='$config.begin_date' type='date' format='YYYY-MM-DD HH24:MI' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>结束日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.end_date' type='date' format='YYYY-MM-DD HH24:MI'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>请假时长</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.apply_ts' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>创建时间</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.create_date' type='date' format='YYYY-MM-DD HH24:MI:SS'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>请假原因</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.reason_note'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="GUsMwOA]997effMDlP2zhw" name="fail.head" label="审核取消-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][请假申请] <jt:item source='$config.user_full_label'/>你好,申请<jt:item source='$config.type_label'/>审核未通过。]]></Source>
+  <Source _uuid="qUBtiYdinVDspU9RpeQHqQ" name="fail.body" label="审核取消-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='假期管理 → 假期审核未通过通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD>申请<jt:item source='$config.type_label'/>审核未通过.</TD></TR>
+   </TABLE>
+   <B style='color:#014d99'><jt:item source='$config.type_label'/>审核信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>审核者</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.examine_user_label'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>审核原因</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.examine_note'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+   <B style='color:#014d99'>请<jt:item source='$config.type_label'/>信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>开始日期</TD>
+      <TD width="30%" class='ItemData'><jt:timeSpan source='$config.begin_date' type='date' format='YYYY-MM-DD HH24:MI' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>结束日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.end_date' type='date' format='YYYY-MM-DD HH24:MI'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>请假时长</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.apply_ts' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>创建时间</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.create_date' type='date' format='YYYY-MM-DD HH24:MI:SS'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>请假原因</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.reason_note'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="20IpxwjDYBYOfh0iV558oA" name="cancel.head" label="申请者取消假期通知-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][请假申请] <jt:item source='$config.to_user_labels'/>你好,<jt:item source='$config.user_full_label'/>取消了<jt:item source='$config.type_label'/>申请。]]></Source>
+  <Source _uuid="Z0XLaN6baTfqB3sEco0WkA" name="cancel.body" label="申请者取消假期通知-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='假期管理 → 申请者取消请假通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.user_full_label'/>取消了<jt:item source='$config.type_label'/>申请.</TD></TR>
+      <TR><TD></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>申请者信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.user_full_label'/> (<jt:item source='$config.work_number'/>)</TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>邮件</TD>
+      <TD class='ItemData'><A href='mailto:<jt:item source='$config.user_mail'/>'><jt:item source='$config.user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>公司</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.company_label'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.phone_number'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.org_label'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+   <B style='color:#014d99'>请<jt:item source='$config.type_label'/>信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>开始日期</TD>
+      <TD width="30%" class='ItemData'><jt:timeSpan source='$config.begin_date' type='date' format='YYYY-MM-DD HH24:MI' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>结束日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.end_date' type='date' format='YYYY-MM-DD HH24:MI'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>请假时长</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.apply_ts' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>创建时间</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.create_date' type='date' format='YYYY-MM-DD HH24:MI:SS'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>请假原因</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.reason_note'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="]E4WHmz4B4pSUWOcZu8rtQ" name="revoke.head" label="撤销-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][请假申请] <jt:item source='$config.user_full_label'/>你好,管理员已经撤销了你的<jt:item source='$config.type_label'/>申请。]]></Source>
+  <Source _uuid="E05KrM2FQINiUnhIfPL9sw" name="revoke.body" label="撤销-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='假期管理 → 管理员撤销通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD>管理员撤销了你的申请.</TD></TR>
+      <TR><TD></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>请<jt:item source='$config.type_label'/>信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>开始日期</TD>
+      <TD width="30%" class='ItemData'><jt:timeSpan source='$config.begin_date' type='date' format='YYYY-MM-DD HH24:MI' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>结束日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.end_date' type='date' format='YYYY-MM-DD HH24:MI'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>请假时长</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.apply_ts' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>创建时间</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.create_date' type='date' format='YYYY-MM-DD HH24:MI:SS'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>请假原因</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.reason_note'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="q0zNOixdVG3D5sEGoPpMig" name="copy.head" label="复制-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][请假申请] 您好,<jt:item source='$config.user_full_label'/>申请<jt:item source='$config.type_label'/>请查看！]]></Source>
+  <Source _uuid="zUCnzx1VqS1TxtPVr1YTtg" name="copy.body" label="复制-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='假期管理 → 查看通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.user_full_label'/>申请<jt:item source='$config.type_label'/>,请您查看.</TD></TR>
+      <TR><TD></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>申请者信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.user_full_label'/> (<jt:item source='$config.work_number'/>)</TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>邮件</TD>
+      <TD class='ItemData'><A href='mailto:<jt:item source='$config.user_mail'/>'><jt:item source='$config.user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>公司</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.company_label'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.phone_number'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.org_label'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+   <B style='color:#014d99'>请<jt:item source='$config.type_label'/>信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>开始日期</TD>
+      <TD width="30%" class='ItemData'><jt:timeSpan source='$config.begin_date' type='date' format='YYYY-MM-DD HH24:MI' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>结束日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.end_date' type='date' format='YYYY-MM-DD HH24:MI'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>请假时长</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.apply_ts' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>创建时间</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.create_date' type='date' format='YYYY-MM-DD HH24:MI:SS'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>请假原因</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.reason_note'/></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

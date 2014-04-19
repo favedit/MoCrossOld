@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="7Er4ZPURtyaffnwwr0CQiA" name="game.template.player.bag" label="M#12cn14玩家包裹" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_PLAYER_BAG" data_alias="GM_TPL_PBG" data_logic="GM_TPL_PLAYER_BAG_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="Fk7Tv09d9[zvqAPkqCKjgQ" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="TEqum5A6M3YP[tqWJixYiw" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldInteger _uuid="zkVqCNqevne7l9MnoMO]gw" name="player_tid" label="M#12cn14玩家编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PLAYER_TID" data_alias="PLY" data_refer="game.template.player" />
+  <FieldEnum _uuid="3ky7BgQ3Z[rv2xtVWw9ypA" name="bag_type_cd" label="M#12cn14包裹分类" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BAG_TYPE_CD" data_size="1" data_code="game.template.bag.type" />
+  <FieldInteger _uuid="l0QOKw2gwrlqSuTRTnxNsw" name="bag_tid" label="M#12cn16包裹模板编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="BAG_TID" data_alias="BAG" data_refer="game.template.bag" />
+  <FieldInteger _uuid="0kwBX5d2mAkJR1rIkCkjpg" name="slot_count" label="M#12cn19包裹格子初始开启数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SLOT_COUNT" />
+  <FieldTemplate _uuid="zUTOFTTDvxVl2Rw8e]gajQ" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

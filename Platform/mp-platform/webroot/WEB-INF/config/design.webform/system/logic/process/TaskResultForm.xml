@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebForm _uuid="A0q23z]CLHNen7nyQfbdqA" name="system.logic.process.TaskResultForm" label="M#12cn211系统-任务条件结果表单" is_valid="Y" note="M#" disp_fetch="N" disp_lov="N" disp_zoom="N" style_refer="logic.process.ControlStyle" dataset="logic.process.condition" edit_insert="Y" edit_update="Y" edit_delete="Y" edit_copy="N">
+  <Template _uuid="2ENCIljGZcjEwX7tdIgQmw" name="basicTemplate" label="M#12cn14基本模板" is_valid="Y" note="M#" template_name="system.logic.process.BasicTemplate" />
+  <ToolBar _uuid="tE]wiCHap1BTMDpCnWehsw" name="toolBar" label="M#12cn13工具栏" is_valid="Y" note="M#" width="100%" height="24">
+    <ToolButton _uuid="7E4xtl2yyVtaAYG9D8Y9og" name="saveButton" label="M#12cn12保存" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#tools.save" icon_disable="#tools.saveDisable" hotkey="F8" action="doSave()" />
+    <ToolButton _uuid="nEf4C35UCNry0e0Fuu0JnQ" name="deleteButton" label="M#12cn12删除" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#tools.delete" icon_disable="#tools.deleteDisable" hotkey="F6" action="doDelete()" />
+    <ToolButtonSplit _uuid="iEn[r37N2mCR6WKPXl[Fpw" name="split1Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="K0ZEPZBBje7JcK85rs5Jkw" name="insertEvent" label="M#12cn14新建事件" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#logic.process.event" page="insert@#/logic/process/Process.wa" attributes="_type=TaskEvent\ntask_type_id=type_id\ncondition_id=ouid\nsel_type=component\nform_name=system.logic.process.TaskEventForm" />
+    <ToolButtonSplit _uuid="L0Ow9P4dsoCTOdOArR2Pkw" name="split3Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="NkTEeAqxT0PZbZCKVFFtog" name="sortButton" label="M#12cn12排序" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#tools.sort" page="sort@#/logic/process/Process.wa" attributes="sel_type=component" />
+  </ToolBar>
+  <Memo _uuid="nEipJ19HzmPFdoHJavz]mw" name="dataValue" label="M#12cn14数据内容" is_valid="Y" note="M#" disp_search="Y" disp_lov="N" disp_zoom="N" disp_insert="Y" disp_update="Y" disp_delete="Y" style_refer="control" style_label="label" data_fetch="N" data_name="DATA_VALUE" edit_insert="Y" edit_update="Y" label_icon="#common.require" valid_insert="Y" valid_update="Y" valid_require="Y" edit_overflow="N" />
+  <Memo _uuid="BE3lQILIwt2PIAxU1AUwkA" name="note" label="M#12cn12备注" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" data_name="NOTE" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" />
+</WebForm>
+

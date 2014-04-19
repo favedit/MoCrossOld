@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="]EP5EkBdNMFXjcjT0NXcsg" name="logic.develop.project" label="M#12cn14项目管理" note="M#" is_valid="Y">
+  <GroupConfig _uuid="40FzcPU0FALPJKCKH0l7pw" name="smtp_host" label="M#12cn15邮件服务器" note="M#" is_valid="Y" data_value="${logic.mail|smtp_host}" />
+  <GroupConfig _uuid="zEiBrHHj734XGVXNHW3xkw" name="smtp_port" label="M#12cn17邮件服务器端口" note="M#" is_valid="Y" data_value="${logic.mail|smtp_port}" />
+  <GroupConfig _uuid="HknMMsAI0JRKXcwttr]ZiA" name="smtp_user" label="M#12cn14邮件帐户" note="M#" is_valid="Y" data_value="${logic.mail|smtp_user}" />
+  <GroupConfig _uuid="AkKwTDuSeAJqEKQIM[xnvw" name="smtp_password" label="M#12cn16邮件帐户密码" note="M#" is_valid="Y" data_value="${logic.mail|smtp_password}" />
+  <GroupConfig _uuid="HkSByb[uYS5DZi]yq3yIqw" name="smtp_authentic" label="M#12cn14邮件认证" note="M#" is_valid="Y" data_value="${logic.mail|smtp_authentic}" />
+  <GroupConfig _uuid="lUUMeU1UspJVZgYpZaiLnw" name="from_user" label="M#12cn13发送者" note="M#" is_valid="Y" data_value="${logic.mail|from_user}" />
+  <Type _uuid="x0NJD]A8k8dI3vAi[uDfqg" name="progress.user.login" label="M#12cn14用户登录" note="M#" is_valid="Y" process_cd="P" process_invoke="SY_BATCH_DI.Do_Deploy">
+    <TypeConfig _uuid="SE2q2T6Ra7pmRNS3UG41mQ" name="code" label="M#12cn14处理代码" note="M#" is_valid="Y" data_value="BS.LD_PP_MH.LOGIN" />
+  </Type>
+  <Type _uuid="BkHa54a[1J3Fg8dF9u6Mqw" name="process.task.manhour" label="M#12cn14任务工时" note="M#" is_valid="Y" process_cd="P" process_invoke="SY_BATCH_DI.Do_Deploy">
+    <TypeConfig _uuid="w0uIh09]GYYWjJ]vTdTkrw" name="code" label="M#12cn14处理代码" note="M#" is_valid="Y" data_value="BS.LD_PP_MH.HOUR" />
+  </Type>
+  <Type _uuid="9kjWvxiIIkqpgb1qMVltgw" name="process.progress" label="M#12cn14进度管理" note="M#" is_valid="Y" process_cd="P" process_invoke="SY_BATCH_DI.DO_DEPLOY">
+    <TypeConfig _uuid="V0uNQn4Cc3k7a8YTN3e8pw" name="code" label="M#12cn14处理代码" note="M#" is_valid="Y" data_value="BS.LD_PP_MH.PROGRESS" />
+  </Type>
+  <Type _uuid="HEsrpgvcEtUy2JaKLlS6qQ" name="progress.plan.examine" label="M#12cn16上线计划审核" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="QkXzOprXMsUYLmf46sH4kw" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="pass.head@develop.progress.plan.examine.mail" />
+    <TypeConfig _uuid="z0yqDrvaDeYuUYkkxE[okA" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="pass.body@develop.progress.plan.examine.mail" />
+  </Type>
+  <Type _uuid="BU[VYdMrCrio3lDc2mLAoA" name="progress.plan.operate" label="M#12cn16上线计划操作" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="BUuPZ5M326Z]PdNNy9U[gg" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="pass.head@develop.progress.plan.operate.mail" />
+    <TypeConfig _uuid="b0mLQ3wBHeJgtZ7P5xDEuA" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="pass.body@develop.progress.plan.operate.mail" />
+  </Type>
+  <Type _uuid="nUGlt3tf9WqIDTcPHfXCtA" name="progress.plan.confirm" label="M#12cn16上线计划确认" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="nEFNO5zrbJkR0BsEsWrbmQ" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="pass.head@develop.progress.plan.confirm.mail" />
+    <TypeConfig _uuid="JEvMZXiTNKzw6xmjmjpOsQ" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="pass.body@develop.progress.plan.confirm.mail" />
+  </Type>
+  <Type _uuid="80OiIIzbfHMA2b9E[hs0jA" name="progress.plan.finish" label="M#12cn16上线计划完成" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="B0sFmqa9L6esdR4PFu33gw" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="pass.head@develop.progress.plan.finish.mail" />
+    <TypeConfig _uuid="w0CiSuX53Y5FywEFDBzjvw" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="pass.body@develop.progress.plan.finish.mail" />
+  </Type>
+  <Type _uuid="hEZUX4WLsmLpSVUr11XJug" name="progress.dba.examine" label="M#12cn17DBA操作审核" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="CEEF5cW9AynZiQx3YGTDrg" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="pass.head@develop.progress.dba.examine.mail" />
+    <TypeConfig _uuid="lkXd[O0Wzl02o8CVc25jsg" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="pass.body@develop.progress.dba.examine.mail" />
+  </Type>
+  <Type _uuid="IE1X38rO5PixbJFJw0n8tw" name="progress.dba.operate" label="M#12cn17DBA操作操作" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="TkFH]34AN241uIdedEOJkA" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="pass.head@develop.progress.dba.operate.mail" />
+    <TypeConfig _uuid="X0zC6ODaLoC9D[y8DW77ug" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="pass.body@develop.progress.dba.operate.mail" />
+  </Type>
+  <Type _uuid="WU56199dfJw[omgzIQqaoA" name="progress.dba.confirm" label="M#12cn17DBA操作确认" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="TUvOGCXrohil43IJGGxxkQ" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="pass.head@develop.progress.dba.confirm.mail" />
+    <TypeConfig _uuid="AE]bI07g3txqmRocj5Obqg" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="pass.body@develop.progress.dba.confirm.mail" />
+  </Type>
+  <Type _uuid="oEph]XFx13Xlb8g5psGBrg" name="progress.dba.finish" label="M#12cn17DBA操作完成" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="WETQNYhkRz6YhCckT7ZOtw" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="pass.head@develop.progress.dba.finish.mail" />
+    <TypeConfig _uuid="mUuPgEDZ0ciqw9XeqHE1kg" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="pass.body@develop.progress.dba.finish.mail" />
+  </Type>
+  <Type _uuid="lkM3kcLPMVdbSuLNqmChgw" name="progress.plan.examine.remind" label="M#12cn210上线计划审核超时提醒" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="LEzWSSiR[s[xx[LAZzaNrg" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="pass.head@develop.progress.plan.examine.remind.mail" />
+    <TypeConfig _uuid="RkuJL8h7vpaRbVC2t5Mksg" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="pass.body@develop.progress.plan.examine.remind.mail" />
+  </Type>
+  <Type _uuid="akvGl3V[aTn8uQaoM3JnnQ" name="progress.plan.operate.remind" label="M#12cn210上线计划操作超时提醒" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="sEtBq6RCQ0yrMqpEiyIGug" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="pass.head@develop.progress.plan.operate.remind.mail" />
+    <TypeConfig _uuid="KEUmP9AvH7WX]06z8X4nlQ" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="pass.body@develop.progress.plan.operate.remind.mail" />
+  </Type>
+  <Type _uuid="a04cbzo9MBYaGs7SSMhpgg" name="progress.plan.confirm.remind" label="M#12cn210上线计划确认超时提醒" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="20iVj71ViDQg]89F102Emg" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="pass.head@develop.progress.plan.confirm.remind.mail" />
+    <TypeConfig _uuid="7EfZTK7rvDqgkibUMGkCgQ" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="pass.body@develop.progress.plan.confirm.remind.mail" />
+  </Type>
+  <Type _uuid="VU0sgsGpcmg7HMuPv1QdqQ" name="progress.dba.operate.remind" label="M#12cn211DBA操作操作超时提醒" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="LkUXbY[H0KvkYczoBgkong" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="pass.head@develop.progress.dba.operate.remind.mail" />
+    <TypeConfig _uuid="qU4x9pXhQuQCZml6wA[NnA" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="pass.body@develop.progress.dba.operate.remind.mail" />
+  </Type>
+  <Type _uuid="fEWcugnhmlNgawBlIrYhvg" name="progress.dba.examine.remind" label="M#12cn211DBA操作审核超时提醒" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="vU5WDJfHxuGVMbQ041cuvw" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="pass.head@develop.progress.dba.examine.remind.mail" />
+    <TypeConfig _uuid="90d]3Vd2n9alrPmUNPO1hA" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="pass.body@develop.progress.dba.examine.remind.mail" />
+  </Type>
+  <Type _uuid="C0Rf8SKS3v1H6tdprBB2mQ" name="progress.dba.confirm.remind" label="M#12cn211DBA操作确认超时提醒" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="Wk28H8vpH8dTgPSbysQvqw" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="pass.head@develop.progress.dba.confirm.remind.mail" />
+    <TypeConfig _uuid="ZkI5tPJOQwoMEwLGace0sg" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="pass.body@develop.progress.dba.confirm.remind.mail" />
+  </Type>
+  <Type _uuid="Q0cuRPyTfjni08NN5e2VpQ" name="progress.plan.overtime.remind" label="M#12cn18上线计划超时提醒" note="M#" is_valid="Y" process_cd="P" process_invoke="DP_PROGRESS_PLAN_DI.Do_Mail_Remind" />
+</Group>
+

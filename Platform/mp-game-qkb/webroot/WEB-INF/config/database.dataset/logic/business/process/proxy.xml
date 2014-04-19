@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="AEBlWeYXMLQap[pof3J3lg" name="logic.business.process.proxy" label="M#12cn14业务代理" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_BUSINESS_PROCESS_PROXY" data_alias="LG_BUS_PRC_PXY" data_logic="LG_BUSINESS_PROCESS_PROXY_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="uEkQoNls8igkM9Ja61Iyng" name="business_id" label="M#12cn14业务标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BUSINESS_ID" data_refer="logic.business" />
+  <FieldInteger _uuid="WUyDxV3A[7oFCu4WVH5HsA" name="catalog_id" label="M#12cn16审核目录标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CATALOG_ID" data_refer="logic.business.catalog" />
+  <FieldInteger _uuid="zkQF602OLNrkBxzhQsZtiQ" name="relation_id" label="M#12cn16流程关联标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RELATION_ID" data_refer="logic.business.catalog.process" />
+  <FieldEnum _uuid="fEJblQKVZM5dusvouIUutQ" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_size="1" data_default="'Y'" />
+  <FieldInteger _uuid="Pk4wKgD1o5EvxGtvI7BEvQ" name="user_id" label="M#12cn16审核用户标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="USER_ID" data_alias="EXM_USR" data_refer="person.user" />
+  <FieldInteger _uuid="aUIP0RqfqKQvVpbaBLVilA" name="role_id" label="M#12cn14角色标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ROLE_ID" data_refer="person.role" />
+  <FieldDate _uuid="y0Vp46yv9G2rIKyIy1]bpg" name="begin_date" label="M#12cn14开始时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BEGIN_DATE" />
+  <FieldDate _uuid="]0g[lg3G5Kum3Pq4Y1irlQ" name="end_date" label="M#12cn14结束时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="END_DATE" />
+  <FieldTemplate _uuid="r0Onh566QkcNedBJgZAJgg" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="Z0kW0jRFce4bNfwThWIjsw" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+  <FieldInteger _uuid="0UPiKu]mH]pbsOdwMMmlrw" name="proxy_user_id" label="M#12cn16审核人员标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROXY_USER_ID" data_alias="PXY_USR" data_refer="person.user" />
+</DataStore>
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="hEOSruj6pTyovFTybvi8vQ" name="game.template.task" label="M#12cn12任务" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_TASK" data_alias="GM_TPL_TSK" data_logic="GM_TPL_TASK_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="DErcAVPZRn9SkxLx1sm8qA" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="pUuMx7EK9[O6f8Zf9LLyvw" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="[Ek937CXptQMOQyOjBTBjg" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="600UOEmxB0GMKSLvlVcNqg" name="label" label="M#12cn12标签" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldInteger _uuid="jE0q4DS1B8bzLj[T]JM2nQ" name="task_group_tid" label="M#12cn15所属任务组" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TASK_GROUP_TID" data_alias="GRP" data_refer="game.template.task.group" />
+  <FieldEnum _uuid="REdPkUeCzlu[hTGVQbg[iw" name="catalog_cd" label="M#12cn14任务类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CATALOG_CD" data_size="2" data_code="game.template.task" />
+  <FieldEnum _uuid="aUn62cDiUgwU6VAc0QROmw" name="form_cd" label="M#12cn14任务形式" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FORM_CD" data_size="1" data_code="game.template.task.form" />
+  <FieldEnum _uuid="3EVsHYpNO9DfA[XixFydlQ" name="track_cd" label="M#12cn14任务追踪" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TRACK_CD" data_size="1" data_code="game.template.track.type" />
+  <FieldInteger _uuid="dkwM8DtvhTH27wfsdX5DqA" name="recommend_levels" label="M#12cn14推荐等级" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RECOMMEND_LEVELS" />
+  <FieldContent _uuid="aUMy16FSCcFp7O0OsVcmrw" name="summary" label="M#12cn14任务简介" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SUMMARY" />
+  <FieldEnum _uuid="DEMRpMXvuKFcTvoXC5THgQ" name="share_cd" label="M#12cn14共享类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SHARE_CD" data_size="1" data_code="game.template.task.share" />
+  <FieldEnum _uuid="nEnLJgnfUxi44y[9i0Mmmg" name="abandon_cd" label="M#12cn14放弃类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ABANDON_CD" data_size="1" data_code="game.template.task.abandon" />
+  <FieldEnum _uuid="3U0rM6rjqNuSTpq2CoKOlg" name="redo_cd" label="M#12cn14重做类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REDO_CD" data_size="1" data_code="game.template.task.redo" />
+  <FieldEnum _uuid="LktqbeFHtnJtNPZTnqKZnQ" name="destroy_cd" label="M#12cn14销毁类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DESTROY_CD" data_size="1" data_code="game.template.task.destroy" />
+  <FieldEnum _uuid="GkctqRqRObBTKFJa7usjvQ" name="repeat_cd" label="M#12cn14能否重复" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REPEAT_CD" data_size="1" data_code="game.template.task.repeat" />
+  <FieldInteger _uuid="6EPUCfkPOTyraDeYE9O7kg" name="limit_count" label="M#12cn14限制次数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_COUNT" />
+  <FieldEnum _uuid="5kgnT54pojX66bDYCj1Ghw" name="continue_cd" label="M#12cn18是否继续后续任务" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CONTINUE_CD" data_size="1" data_code="game.template.task.continue" />
+  <FieldEnum _uuid="J0VXEmHOPMcmxca5pjvkvw" name="reset_cd" label="M#12cn14重置类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RESET_CD" data_size="1" data_code="game.template.task.reset" />
+  <FieldInteger _uuid="okhnEHzUyQdo8zIhh]mbjA" name="next_task_tid" label="M#12cn14后续任务" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NEXT_TASK_TID" data_alias="NTK" data_refer="game.template.task" />
+  <FieldEnum _uuid="y0rri9Ishde5cuGUenpZvA" name="finish_deliver_cd" label="M#12cn18是否弹出给予UI" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FINISH_DELIVER_CD" data_size="1" data_code="game.template.task.finish.deliver" />
+  <FieldEnum _uuid="Vk3tUPxdil6B5hNQKiM8lw" name="finish_teleport_cd" label="M#12cn16远程完成类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FINISH_TELEPORT_CD" data_size="1" data_code="game.template.task.finish.teleport" />
+  <FieldEnum _uuid="Tk[t5ejwk550lDzeOTlIpw" name="finish_auto_cd" label="M#12cn16自动完成类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FINISH_AUTO_CD" data_size="1" data_code="game.template.task.finish.auto" />
+  <FieldEnum _uuid="l00TCMqwh2wOWmhPqkD3lA" name="finish_direct_cd" label="M#12cn14直接完成" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FINISH_DIRECT_CD" data_size="1" data_code="game.template.task.finish.direct" />
+  <FieldEnum _uuid="lEL]2mEcca[UOjit9mHhgA" name="auto_path_cd" label="M#12cn14自动寻路" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="AUTO_PATH_CD" data_size="1" data_code="game.template.task.finish.auto" />
+  <FieldInteger _uuid="2k7qdIyA0PDpV8VsDCZtug" name="interval_ts" label="M#12cn12间隔" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="INTERVAL_TS" />
+  <FieldInteger _uuid="gkgtJRgux[2wo6wd5gG3mA" name="timeout_ts" label="M#12cn12时限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TIMEOUT_TS" />
+  <FieldInteger _uuid="aEhXYZIpaRsrYwM[3ZpCpg" name="difficulty" label="M#12cn14任务难度" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DIFFICULTY" />
+  <FieldInteger _uuid="X0TxdWpDMVgX718vUqG8iQ" name="sequence" label="M#12cn14数据排序" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SEQUENCE" />
+  <FieldTemplate _uuid="Wk4fbh71B01Mp412mTdEvA" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

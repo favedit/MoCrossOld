@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="DEqJ9KNCOvJJ8xlHmWCzkA" name="logic.business.it.DailyReport" label="工作日志-日报" is_valid="Y" fileName="reportLog(Daily)[${REPORT_DATE}].xls" template="logic.business.it.dailyReport">
+  <Sql _uuid="sEiqSTUHraQuThjwQQ3cjQ" name="count_config" label="日报列表" is_valid="Y"><![CDATA[SELECT TYPE_LABEL,COUNT,COMPLETED_COUNT,UNCOMPLETED_COUNT,PROCESS_COUNT,OBSERVE_COUNT
+FROM (SELECT BS_IT_LOG_TYPE_DI.GET_LABEL(TYPE_ID)        TYPE_LABEL,
+       BS_IT_LOG_DI.GET_STATUS_COUNT(TYPE_ID,null,CP_DATE.Parse(${REPORT_DATE}),CP_DATE.Parse(${REPORT_DATE})) COUNT,
+       BS_IT_LOG_DI.GET_STATUS_COUNT(TYPE_ID, 'C',CP_DATE.Parse(${REPORT_DATE}),CP_DATE.Parse(${REPORT_DATE})) COMPLETED_COUNT,
+       BS_IT_LOG_DI.GET_STATUS_COUNT(TYPE_ID, 'U',CP_DATE.Parse(${REPORT_DATE}),CP_DATE.Parse(${REPORT_DATE})) UNCOMPLETED_COUNT,
+       BS_IT_LOG_DI.GET_STATUS_COUNT(TYPE_ID, 'P',CP_DATE.Parse(${REPORT_DATE}),CP_DATE.Parse(${REPORT_DATE})) PROCESS_COUNT,
+       BS_IT_LOG_DI.GET_STATUS_COUNT(TYPE_ID, 'O',CP_DATE.Parse(${REPORT_DATE}),CP_DATE.Parse(${REPORT_DATE})) OBSERVE_COUNT
+  FROM BS_IT_LOG
+ GROUP BY TYPE_ID) T]]></Sql>
+  <Sql _uuid="HUnA9LlVck8IQ5kGkSOenw" name="total_list" label="类型统计列表" is_valid="Y"><![CDATA[SELECT 
+      NVL(TO_CHAR(CP_DATE.Parse('${REPORT_DATE}'),'YYYY-MM-DD'), TO_CHAR(SYSDATE,'YYYY-MM-DD')) REPORT_DATE,
+        (SELECT COUNT(*)
+            FROM BS_IT_LOG
+            WHERE CP_DATE.Parse(TO_CHAR(CP_DATE.Parse(NVL('${REPORT_DATE}', TO_CHAR(SYSDATE,'YYYY-MM-DD'))), 'YYYY-MM-DD'))= TRUNC(REPAIR_DATE)
+               AND IS_VALID = 'Y')||'次' TOAL_NUM, 
+     (SELECT COUNT(DECODE(STATUS, 'C', STATUS))
+          FROM BS_IT_LOG
+            WHERE CP_DATE.Parse(TO_CHAR(CP_DATE.Parse(NVL('${REPORT_DATE}', TO_CHAR(SYSDATE,'YYYY-MM-DD'))), 'YYYY-MM-DD'))= TRUNC(REPAIR_DATE)
+             AND IS_VALID = 'Y')||'次'  COMPLETED_NUM,
+     (SELECT COUNT(DECODE(STATUS, 'U', STATUS))
+          FROM BS_IT_LOG
+           WHERE CP_DATE.Parse(TO_CHAR(CP_DATE.Parse(NVL('${REPORT_DATE}', TO_CHAR(SYSDATE,'YYYY-MM-DD'))), 'YYYY-MM-DD'))= TRUNC(REPAIR_DATE)
+             AND IS_VALID = 'Y') ||'次' UNCOMLPLETED_NUM,
+     (SELECT COUNT(DECODE(STATUS, 'P', STATUS))
+          FROM BS_IT_LOG
+           WHERE CP_DATE.Parse(TO_CHAR(CP_DATE.Parse(NVL('${REPORT_DATE}', TO_CHAR(SYSDATE,'YYYY-MM-DD'))), 'YYYY-MM-DD'))= TRUNC(REPAIR_DATE)
+             AND IS_VALID = 'Y')||'次'  PROCESS_NUM,
+     (SELECT COUNT(DECODE(STATUS, 'O', STATUS))
+          FROM BS_IT_LOG
+            WHERE CP_DATE.Parse(TO_CHAR(CP_DATE.Parse(NVL('${REPORT_DATE}', TO_CHAR(SYSDATE,'YYYY-MM-DD'))), 'YYYY-MM-DD'))= TRUNC(REPAIR_DATE)
+              AND IS_VALID = 'Y')||'次'  OBSERVE_NUM 
+     FROM DUAL]]></Sql>
+</ExportExcel>
+

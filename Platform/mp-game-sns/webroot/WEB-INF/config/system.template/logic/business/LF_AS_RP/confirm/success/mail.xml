@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template aa="pEJJpeb]eYRjuPBc69vfsg" name="logic.business.LF_AS_RP.confirm.success.mail" label="招聘面试" is_valid="Y" note="M#">
+  <Source aa="fks7Egy3dbl3C7Cmgf9ZjA" name="success.head" label="HR日报-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【招聘面试】 <jt:item source='$config.to_user_labels'/>您好，<jt:item source='$config.label'/>的入职申请总裁审核通过。]]></Source>
+  <Source aa="SUA4WU2e9CBFi5VWtSnEjw" name="success.body" label="HR日报-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='招聘面试 → 入职申请审核通过' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><FONT COLOR='#336699'><jt:item source='$config.organization_label'/>的应聘者<B><jt:item source='$config.label'/></B>（<jt:item source='$config.job_label'/>）的入职申请总裁审核通过。</FONT></TD></TR>
+   </TABLE>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>

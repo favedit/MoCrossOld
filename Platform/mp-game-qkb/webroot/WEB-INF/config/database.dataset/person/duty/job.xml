@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="GUE8R8DRB9x40xd70uErsw" name="person.duty.job" label="M#12cn14岗位信息" note="M#" access_insert="Y" access_update="Y" data_name="PM_DUTY_JOB" data_alias="PM_DTY_JOB" data_logic="PM_DUTY_JOB_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="10CCYBW3]7[LWEyTTAWApw" name="level_id" label="M#12cn14级别标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LEVEL_ID" data_refer="person.duty.level" />
+  <FieldInteger _uuid="c0EEf9ATnyTWb4XcC2I8gQ" name="duty_id" label="M#12cn14职位标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="DUTY_ID" data_refer="person.duty" />
+  <FieldBoolean _uuid="nEk00D4zees9IoFn9]rQsA" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldString _uuid="yEaziPR6x6N]tC2ileMgig" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="80" />
+  <FieldString _uuid="q0kXIVHfF0YXLkrXeqHoiw" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_type="String" data_size="80" />
+  <FieldContent _uuid="o0MOnYMTt8Mm9BX[FJK]vA" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LABEL" data_type="Content" />
+  <FieldInteger _uuid="XkLVJgQqsDsA6F4iBIpJtw" name="group_id" label="M#12cn14分组标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GROUP_ID" data_refer="person.duty.job.group" />
+  <FieldInteger _uuid="SEV2vJMepUpOHtQxF3jMig" name="series_id" label="M#12cn14系列标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SERIES_ID" data_refer="person.duty.job.series" />
+  <FieldInteger _uuid="fE7UNin1iaNpLjOCF2bDpg" name="organization_id" label="M#12cn14组织标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ORGANIZATION_ID" data_refer="person.organization" />
+  <FieldChar _uuid="aUCi8qXsm4brUwZ2S0lgrw" name="status_cd" label="M#12cn12状态" is_valid="Y" note="M#12cn214未审核/审核中/通过/未通过" is_null="Y" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="person.recruit.duty.examine.status" />
+  <FieldBoolean _uuid="o0QTTM51Eo8]qcAGEFXbug" name="is_planned" label="M#12cn15是否计划内" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_PLANNED" />
+  <FieldContent _uuid="LkuDTgXHq31Z7O68N2Tfgw" name="responsibility_note" label="M#12cn14岗位职责" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RESPONSIBILITY_NOTE" />
+  <FieldContent _uuid="B0F8DfBj8iNMM0i0bZbRnA" name="qualifications_note" label="M#12cn14任职资格" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="QUALIFICATIONS_NOTE" />
+  <FieldContent _uuid="cE6otNMCgfSfjri[Ap25qQ" name="description" label="M#12cn12说明" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DESCRIPTION" />
+  <FieldTemplate _uuid="SECoft98mHki9rBpsnAEsw" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="8Ej9LSZN6pm9WsU]XuJogQ" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

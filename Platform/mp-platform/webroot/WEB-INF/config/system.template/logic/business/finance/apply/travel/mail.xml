@@ -1,0 +1,1329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="CE6KMPx8gTGfxHXx6HtshA" name="logic.business.finance.apply.travel.mail" label="费用申请-差旅费申请邮件模板" is_valid="Y" note="M#">
+  <Define _uuid="V0aQBX3GD6e2QCmg6koZpg" name="mail_content_type" label="邮件类型" is_valid="Y" note="M#" value="Html" />
+  <Variable _uuid="jEmuxatxRNN7EkD9jFebtg" name="navigator_label" label="费用申请-差旅费申请" is_valid="Y" note="M#" />
+  <Source _uuid="DEZ5SDl7JTbK5ozH3vO3hg" name="examine.head" label="审批-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][差旅费申请-审核] <jt:item source='$config.to_user_labels'/>同学您好,<jt:item source='$config.apply_user_label'/>同学申请的差旅费请审核。]]></Source>
+  <Source _uuid="BEEHcwzu9cV4Jm0ZCTz2uQ" name="examine.body" label="审批-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='差旅费申请管理 → 审核通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.apply_user_label'/>同学申请的差旅费，请您审核！</TD></TR>
+      <TR><TD>直接进入：<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>申请人信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="276" class='ItemData'><jt:item source='$config.apply_user_label'/> (<jt:item source='$config.apply_work_number'/>)</TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>邮件</TD>
+      <TD width="279" class='ItemData'><A href='mailto:<jt:item source='$config.apply_user_mail'/>'>
+        <jt:item source='$config.apply_user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>职位</TD>
+      <TD width="276" class='ItemData'><jt:item source='$config.apply_user_duty'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.apply_user_mobile'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.apply_user_org'/></TD>
+   </TR>
+   </TABLE>
+   <B style='color:#014d99'>差旅费申请信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>开始日期</TD>
+      <TD width="277" class='ItemData'><jt:timeSpan source='$config.apply_begin_date' type='date' format='YYYY-MM-DD HH24:00' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>结束日期</TD>
+      <TD width="277" class='ItemData'><jt:timeSpan source='$config.apply_end_date' type='date' format='YYYY-MM-DD HH24:00' /></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>申请金额</TD>
+      <TD width="277" class='ItemData'><jt:item source='$config.apply_all_amt'/></TD>
+	  <TD width='1px' bgcolor='#0165CA'></TD>
+	  <TD class='ItemHead' width='15%'>创建时间</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.apply_date' type='date' format='YYYY-MM-DD HH24:MI' /></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>申请事由</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.apply_note'/></TD>
+   </TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.apply_fare'>
+      <BR><BR>
+      <B style='color:#014d99'>交通费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">需要预定</td>
+		 <TD class='ItemHead' width='60' align="center">交通工具</td>
+         <TD class='ItemHead' width='80' align="center">预定日期</td>
+		 <TD class='ItemHead' width='80' align="center">申请金额</td>
+		 <TD class='ItemHead' width='80' align="center">出发地</td>
+		 <TD class='ItemHead' width='80' align="center">到达地</td>
+		 <TD class='ItemHead' align="center">需求描述</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_fare' alias='fare'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$fare.is_order'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.transport'/></td>
+            <TD class='ItemData' align="center"><jt:timeSpan source='$fare.begin_date' type='date' format='YYYY-MM-DD HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.order_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.start_place'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$fare.arrive_place'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.require_note'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.reason_note'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_accom'>
+      <BR><BR>
+      <B style='color:#014d99'>住宿费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">需要预定</td>
+		 <TD class='ItemHead' width='60' align="center">宾馆类型</td>
+		 <TD class='ItemHead' width='60' align="center">宾馆级别</td>
+         <TD class='ItemHead' width='80' align="center">入住日期</td>
+		 <TD class='ItemHead' width='80' align="center">离开日期</td>
+		 <TD class='ItemHead' width='80' align="center">申请金额</td>
+		 <TD class='ItemHead' width='200' align="center">地址</td>
+		 <TD class='ItemHead' align="center">需求描述</td>
+         	 <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_accom' alias='accom'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$accom.is_order'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.hotel_type_cd'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.level_cd'/></td>
+			<TD class='ItemData' align="center"><jt:timeSpan source='$accom.begin_date' type='date' format='YYYY-MM-DD HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:timeSpan source='$accom.end_date' type='date' format='YYYY-MM-DD  HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.order_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.address'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.require_note'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.reason_note'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_entertain'>
+      <BR><BR>
+      <B style='color:#014d99'>招待费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='80' align="center">申请金额</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_entertain' alias='entertain'>
+      <TR>
+         <TD class='ItemData' align="center"><jt:item source='$entertain.order_amt'/></td>
+         <TD class='ItemData' align="center"><jt:item source='$entertain.reason_note'/></td>
+      </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_other'>
+      <BR><BR>
+      <B style='color:#014d99'>其他费用申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='80' align="center">申请金额</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_other' alias='other'>
+      <TR>
+         <TD class='ItemData' align="center"><jt:item source='$other.order_amt'/></td>
+         <TD class='ItemData' align="center"><jt:item source='$other.reason_note'/></td>
+      </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="X01T0Grb8vtP[ZMvfM3siQ" name="remind.head" label="提醒-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][差旅费申请-提醒] <jt:item source='$config.to_user_labels'/>同学您好,<jt:item source='$config.apply_user_label'/>同学申请的差旅费请提醒<jt:item source='$config.examine_user_labels'/>审核。]]></Source>
+  <Source _uuid="lEklCGMtnoM2GeRzRMZ5uQ" name="remind.body" label="提醒-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='差旅费申请管理 → 提醒审核alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.apply_user_label'/>同学申请的差旅费，请您提醒审核人审核！</TD></TR>
+      <TR><TD>直接进入：<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>申请人信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="276" class='ItemData'><jt:item source='$config.apply_user_label'/> (<jt:item source='$config.apply_work_number'/>)</TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>邮件</TD>
+      <TD width="279" class='ItemData'><A href='mailto:<jt:item source='$config.apply_user_mail'/>'>
+        <jt:item source='$config.apply_user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>职位</TD>
+      <TD width="276" class='ItemData'><jt:item source='$config.apply_user_duty'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.apply_user_mobile'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.apply_user_org'/></TD>
+   </TR>
+   </TABLE>
+   <B style='color:#014d99'>差旅费申请信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>开始日期</TD>
+      <TD width="277" class='ItemData'><jt:timeSpan source='$config.apply_begin_date' type='date' format='YYYY-MM-DD HH24:00' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>结束日期</TD>
+      <TD width="277" class='ItemData'><jt:timeSpan source='$config.apply_end_date' type='date' format='YYYY-MM-DD HH24:00' /></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>申请金额</TD>
+      <TD width="277" class='ItemData'><jt:item source='$config.apply_all_amt'/></TD>
+	  <TD width='1px' bgcolor='#0165CA'></TD>
+	  <TD class='ItemHead' width='15%'>创建时间</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.apply_date' type='date' format='YYYY-MM-DD HH24:MI' /></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>申请事由</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.apply_note'/></TD>
+   </TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.apply_fare'>
+      <BR><BR>
+      <B style='color:#014d99'>交通费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">需要预定</td>
+		 <TD class='ItemHead' width='60' align="center">交通工具</td>
+         <TD class='ItemHead' width='80' align="center">预定日期</td>
+		 <TD class='ItemHead' width='80' align="center">申请金额</td>
+		 <TD class='ItemHead' width='80' align="center">出发地</td>
+		 <TD class='ItemHead' width='80' align="center">到达地</td>
+		 <TD class='ItemHead' align="center">需求描述</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_fare' alias='fare'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$fare.is_order'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.transport'/></td>
+            <TD class='ItemData' align="center"><jt:timeSpan source='$fare.begin_date' type='date' format='YYYY-MM-DD HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.order_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.start_place'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$fare.arrive_place'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.require_note'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.reason_note'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_accom'>
+      <BR><BR>
+      <B style='color:#014d99'>住宿费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">需要预定</td>
+		 <TD class='ItemHead' width='60' align="center">宾馆类型</td>
+		 <TD class='ItemHead' width='60' align="center">宾馆级别</td>
+         <TD class='ItemHead' width='80' align="center">入住日期</td>
+		 <TD class='ItemHead' width='80' align="center">离开日期</td>
+		 <TD class='ItemHead' width='80' align="center">申请金额</td>
+		 <TD class='ItemHead' width='200' align="center">地址</td>
+		 <TD class='ItemHead' align="center">需求描述</td>
+         	 <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_accom' alias='accom'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$accom.is_order'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.hotel_type_cd'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.level_cd'/></td>
+			<TD class='ItemData' align="center"><jt:timeSpan source='$accom.begin_date' type='date' format='YYYY-MM-DD HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:timeSpan source='$accom.end_date' type='date' format='YYYY-MM-DD  HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.order_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.address'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.require_note'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.reason_note'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_entertain'>
+      <BR><BR>
+      <B style='color:#014d99'>招待费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='80' align="center">申请金额</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_entertain' alias='entertain'>
+      <TR>
+         <TD class='ItemData' align="center"><jt:item source='$entertain.order_amt'/></td>
+         <TD class='ItemData' align="center"><jt:item source='$entertain.reason_note'/></td>
+      </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_other'>
+      <BR><BR>
+      <B style='color:#014d99'>其他费用申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='80' align="center">申请金额</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_other' alias='other'>
+      <TR>
+         <TD class='ItemData' align="center"><jt:item source='$other.order_amt'/></td>
+         <TD class='ItemData' align="center"><jt:item source='$other.reason_note'/></td>
+      </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="iUoqCQu03vvhH6D26XjkpA" name="order.head" label="预定-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][差旅费申请-预定] <jt:item source='$config.to_user_labels'/>同学您好,<jt:item source='$config.apply_user_label'/>同学出差需要您预定。]]></Source>
+  <Source _uuid="QkXkKH]vb95BSXMFJP5bpA" name="order.body" label="预定-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='差旅费申请管理 → 审核通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.apply_user_label'/>同学出差时需要您帮助预定，请您预定</TD></TR>
+      <TR><TD>直接进入：<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>申请人信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="276" class='ItemData'><jt:item source='$config.apply_user_label'/> (<jt:item source='$config.apply_work_number'/>)</TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>邮件</TD>
+      <TD width="279" class='ItemData'><A href='mailto:<jt:item source='$config.apply_user_mail'/>'>
+        <jt:item source='$config.apply_user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>职位</TD>
+      <TD width="276" class='ItemData'><jt:item source='$config.apply_user_duty'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.apply_user_mobile'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.apply_user_org'/></TD>
+   </TR>
+   </TABLE>
+   <B style='color:#014d99'>差旅费申请信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>开始日期</TD>
+      <TD width="277" class='ItemData'><jt:timeSpan source='$config.apply_begin_date' type='date' format='YYYY-MM-DD HH24:00' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>结束日期</TD>
+      <TD width="277" class='ItemData'><jt:timeSpan source='$config.apply_end_date' type='date' format='YYYY-MM-DD HH24:00' /></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>申请金额</TD>
+      <TD width="277" class='ItemData'><jt:item source='$config.apply_all_amt'/></TD>
+	  <TD width='1px' bgcolor='#0165CA'></TD>
+	  <TD class='ItemHead' width='15%'>创建时间</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.apply_date' type='date' format='YYYY-MM-DD HH24:MI' /></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>申请事由</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.apply_note'/></TD>
+   </TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.apply_fare'>
+      <BR><BR>
+      <B style='color:#014d99'>交通费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">需要预定</td>
+		 <TD class='ItemHead' width='60' align="center">交通工具</td>
+         <TD class='ItemHead' width='80' align="center">预定日期</td>
+		 <TD class='ItemHead' width='80' align="center">申请金额</td>
+		 <TD class='ItemHead' width='80' align="center">出发地</td>
+		 <TD class='ItemHead' width='80' align="center">到达地</td>
+		 <TD class='ItemHead' align="center">需求描述</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_fare' alias='fare'>
+	     <jt:equals source='$fare.is_order' value="是">
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$fare.is_order'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.transport'/></td>
+            <TD class='ItemData' align="center"><jt:timeSpan source='$fare.begin_date' type='date' format='YYYY-MM-DD HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.order_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.start_place'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$fare.arrive_place'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.require_note'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.reason_note'/></td>
+         </TR>
+		</jt:equals> 
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_accom'>
+      <BR><BR>
+      <B style='color:#014d99'>住宿费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">需要预定</td>
+		 <TD class='ItemHead' width='60' align="center">宾馆类型</td>
+		 <TD class='ItemHead' width='60' align="center">宾馆级别</td>
+         <TD class='ItemHead' width='80' align="center">入住日期</td>
+		 <TD class='ItemHead' width='80' align="center">离开日期</td>
+		 <TD class='ItemHead' width='80' align="center">申请金额</td>
+		 <TD class='ItemHead' width='200' align="center">地址</td>
+		 <TD class='ItemHead' align="center">需求描述</td>
+         	 <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_accom' alias='accom'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$accom.is_order'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.hotel_type_cd'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.level_cd'/></td>
+			<TD class='ItemData' align="center"><jt:timeSpan source='$accom.begin_date' type='date' format='YYYY-MM-DD HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:timeSpan source='$accom.end_date' type='date' format='YYYY-MM-DD  HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.order_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.address'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.require_note'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.reason_note'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+      <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="U0EV8x0Ww5A2TVFJgUS[uA" name="final.head" label="财务-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][差旅费申请-财务] <jt:item source='$config.to_user_labels'/>同学您好,<jt:item source='$config.apply_user_label'/>同学申请的差旅费请您查看。]]></Source>
+  <Source _uuid="aEmNM7vwAFwJHIskRUkdiw" name="final.body" label="财务-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='差旅费申请管理 → 审核通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.apply_user_label'/>同学出差申请通过，请您查看</TD></TR>
+      <TR><TD>直接进入：<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>申请人信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="276" class='ItemData'><jt:item source='$config.apply_user_label'/> (<jt:item source='$config.apply_work_number'/>)</TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>邮件</TD>
+      <TD width="279" class='ItemData'><A href='mailto:<jt:item source='$config.apply_user_mail'/>'>
+        <jt:item source='$config.apply_user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>职位</TD>
+      <TD width="276" class='ItemData'><jt:item source='$config.apply_user_duty'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.apply_user_mobile'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.apply_user_org'/></TD>
+   </TR>
+   </TABLE>
+   <B style='color:#014d99'>差旅费申请信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>开始日期</TD>
+      <TD width="277" class='ItemData'><jt:timeSpan source='$config.apply_begin_date' type='date' format='YYYY-MM-DD HH24:00' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>结束日期</TD>
+      <TD width="277" class='ItemData'><jt:timeSpan source='$config.apply_end_date' type='date' format='YYYY-MM-DD HH24:00' /></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>申请金额</TD>
+      <TD width="277" class='ItemData'><jt:item source='$config.apply_all_amt'/></TD>
+	  <TD width='1px' bgcolor='#0165CA'></TD>
+	  <TD class='ItemHead' width='15%'>创建时间</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.apply_date' type='date' format='YYYY-MM-DD HH24:MI' /></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>申请事由</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.apply_note'/></TD>
+   </TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.apply_fare'>
+      <BR><BR>
+      <B style='color:#014d99'>交通费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">需要预定</td>
+		 <TD class='ItemHead' width='60' align="center">交通工具</td>
+         <TD class='ItemHead' width='80' align="center">预定日期</td>
+		 <TD class='ItemHead' width='80' align="center">申请金额</td>
+		 <TD class='ItemHead' width='80' align="center">出发地</td>
+		 <TD class='ItemHead' width='80' align="center">到达地</td>
+		 <TD class='ItemHead' align="center">需求描述</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_fare' alias='fare'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$fare.is_order'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.transport'/></td>
+            <TD class='ItemData' align="center"><jt:timeSpan source='$fare.begin_date' type='date' format='YYYY-MM-DD HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.order_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.start_place'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$fare.arrive_place'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.require_note'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.reason_note'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_accom'>
+      <BR><BR>
+      <B style='color:#014d99'>住宿费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">需要预定</td>
+		 <TD class='ItemHead' width='60' align="center">宾馆类型</td>
+		 <TD class='ItemHead' width='60' align="center">宾馆级别</td>
+         <TD class='ItemHead' width='80' align="center">入住日期</td>
+		 <TD class='ItemHead' width='80' align="center">离开日期</td>
+		 <TD class='ItemHead' width='80' align="center">申请金额</td>
+		 <TD class='ItemHead' width='200' align="center">地址</td>
+		 <TD class='ItemHead' align="center">需求描述</td>
+         	 <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_accom' alias='accom'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$accom.is_order'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.hotel_type_cd'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.level_cd'/></td>
+			<TD class='ItemData' align="center"><jt:timeSpan source='$accom.begin_date' type='date' format='YYYY-MM-DD HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:timeSpan source='$accom.end_date' type='date' format='YYYY-MM-DD  HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.order_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.address'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.require_note'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.reason_note'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_entertain'>
+      <BR><BR>
+      <B style='color:#014d99'>招待费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='80' align="center">申请金额</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_entertain' alias='entertain'>
+      <TR>
+         <TD class='ItemData' align="center"><jt:item source='$entertain.order_amt'/></td>
+         <TD class='ItemData' align="center"><jt:item source='$entertain.reason_note'/></td>
+      </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_other'>
+      <BR><BR>
+      <B style='color:#014d99'>其他费用申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='80' align="center">申请金额</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_other' alias='other'>
+      <TR>
+         <TD class='ItemData' align="center"><jt:item source='$other.order_amt'/></td>
+         <TD class='ItemData' align="center"><jt:item source='$other.reason_note'/></td>
+      </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="Nk6A7L6R4uBFlbCxdd5shQ" name="apply.suc.head" label="申请成功-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][差旅费申请-申请成功] <jt:item source='$config.to_user_labels'/>同学您好,您申请的差旅费已审核通过，请查收。]]></Source>
+  <Source _uuid="jk2duqgnROv9dnRgK1XSpw" name="apply.suc.body" label="申请成功-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='差旅费申请管理 → 审核通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.apply_user_label'/>同学，您申请的差旅费已经通过审核</TD></TR>
+      <TR><TD>直接进入：<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>申请人信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="276" class='ItemData'><jt:item source='$config.apply_user_label'/> (<jt:item source='$config.apply_work_number'/>)</TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>邮件</TD>
+      <TD width="279" class='ItemData'><A href='mailto:<jt:item source='$config.apply_user_mail'/>'>
+        <jt:item source='$config.apply_user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>职位</TD>
+      <TD width="276" class='ItemData'><jt:item source='$config.apply_user_duty'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.apply_user_mobile'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.apply_user_org'/></TD>
+   </TR>
+   </TABLE>
+   <B style='color:#014d99'>差旅费申请信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>开始日期</TD>
+      <TD width="277" class='ItemData'><jt:timeSpan source='$config.apply_begin_date' type='date' format='YYYY-MM-DD HH24:00' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>结束日期</TD>
+      <TD width="277" class='ItemData'><jt:timeSpan source='$config.apply_end_date' type='date' format='YYYY-MM-DD HH24:00' /></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>申请金额</TD>
+      <TD width="277" class='ItemData'><jt:item source='$config.apply_all_amt'/></TD>
+	  <TD width='1px' bgcolor='#0165CA'></TD>
+	  <TD class='ItemHead' width='15%'>创建时间</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.apply_date' type='date' format='YYYY-MM-DD HH24:MI' /></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>申请事由</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.apply_note'/></TD>
+   </TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.apply_fare'>
+      <BR><BR>
+      <B style='color:#014d99'>交通费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">需要预定</td>
+		 <TD class='ItemHead' width='60' align="center">交通工具</td>
+         <TD class='ItemHead' width='80' align="center">预定日期</td>
+		 <TD class='ItemHead' width='80' align="center">申请金额</td>
+		 <TD class='ItemHead' width='80' align="center">出发地</td>
+		 <TD class='ItemHead' width='80' align="center">到达地</td>
+		 <TD class='ItemHead' align="center">需求描述</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_fare' alias='fare'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$fare.is_order'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.transport'/></td>
+            <TD class='ItemData' align="center"><jt:timeSpan source='$fare.begin_date' type='date' format='YYYY-MM-DD HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.order_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.start_place'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$fare.arrive_place'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.require_note'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.reason_note'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_accom'>
+      <BR><BR>
+      <B style='color:#014d99'>住宿费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">需要预定</td>
+		 <TD class='ItemHead' width='60' align="center">宾馆类型</td>
+		 <TD class='ItemHead' width='60' align="center">宾馆级别</td>
+         <TD class='ItemHead' width='80' align="center">入住日期</td>
+		 <TD class='ItemHead' width='80' align="center">离开日期</td>
+		 <TD class='ItemHead' width='80' align="center">申请金额</td>
+		 <TD class='ItemHead' width='200' align="center">地址</td>
+		 <TD class='ItemHead' align="center">需求描述</td>
+         	 <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_accom' alias='accom'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$accom.is_order'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.hotel_type_cd'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.level_cd'/></td>
+			<TD class='ItemData' align="center"><jt:timeSpan source='$accom.begin_date' type='date' format='YYYY-MM-DD HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:timeSpan source='$accom.end_date' type='date' format='YYYY-MM-DD  HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.order_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.address'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.require_note'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.reason_note'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_entertain'>
+      <BR><BR>
+      <B style='color:#014d99'>招待费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='80' align="center">申请金额</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_entertain' alias='entertain'>
+      <TR>
+         <TD class='ItemData' align="center"><jt:item source='$entertain.order_amt'/></td>
+         <TD class='ItemData' align="center"><jt:item source='$entertain.reason_note'/></td>
+      </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_other'>
+      <BR><BR>
+      <B style='color:#014d99'>其他费用申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='80' align="center">申请金额</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_other' alias='other'>
+      <TR>
+         <TD class='ItemData' align="center"><jt:item source='$other.order_amt'/></td>
+         <TD class='ItemData' align="center"><jt:item source='$other.reason_note'/></td>
+      </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="LUj6s2P3xFfReHzdU3xtlQ" name="apply.fail.head" label="申请失败-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][差旅费申请-申请失败] <jt:item source='$config.to_user_labels'/>同学您好，您申请的差旅费审核未通过。]]></Source>
+  <Source _uuid="eU19BcoW6QtJGNenvXVWvQ" name="apply.fail.body" label="申请失败-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='差旅费申请管理 → 审核通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.apply_user_label'/>同学，您申请的差旅费未通过审核！</TD></TR>
+      <TR><TD>直接进入：<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>申请人信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="276" class='ItemData'><jt:item source='$config.apply_user_label'/> (<jt:item source='$config.apply_work_number'/>)</TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>邮件</TD>
+      <TD width="279" class='ItemData'><A href='mailto:<jt:item source='$config.apply_user_mail'/>'>
+        <jt:item source='$config.apply_user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>职位</TD>
+      <TD width="276" class='ItemData'><jt:item source='$config.apply_user_duty'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.apply_user_mobile'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.apply_user_org'/></TD>
+   </TR>
+   </TABLE>
+   <B style='color:#014d99'>差旅费申请信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>开始日期</TD>
+      <TD width="277" class='ItemData'><jt:timeSpan source='$config.apply_begin_date' type='date' format='YYYY-MM-DD HH24:00' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>结束日期</TD>
+      <TD width="277" class='ItemData'><jt:timeSpan source='$config.apply_end_date' type='date' format='YYYY-MM-DD HH24:00' /></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>申请金额</TD>
+      <TD width="277" class='ItemData'><jt:item source='$config.apply_all_amt'/></TD>
+	  <TD width='1px' bgcolor='#0165CA'></TD>
+	  <TD class='ItemHead' width='15%'>创建时间</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.apply_date' type='date' format='YYYY-MM-DD HH24:MI' /></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>申请事由</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.apply_note'/></TD>
+   </TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.apply_fare'>
+      <BR><BR>
+      <B style='color:#014d99'>交通费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">需要预定</td>
+		 <TD class='ItemHead' width='60' align="center">交通工具</td>
+         <TD class='ItemHead' width='80' align="center">预定日期</td>
+		 <TD class='ItemHead' width='80' align="center">申请金额</td>
+		 <TD class='ItemHead' width='80' align="center">出发地</td>
+		 <TD class='ItemHead' width='80' align="center">到达地</td>
+		 <TD class='ItemHead' align="center">需求描述</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_fare' alias='fare'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$fare.is_order'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.transport'/></td>
+            <TD class='ItemData' align="center"><jt:timeSpan source='$fare.begin_date' type='date' format='YYYY-MM-DD HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.order_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.start_place'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$fare.arrive_place'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.require_note'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.reason_note'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_accom'>
+      <BR><BR>
+      <B style='color:#014d99'>住宿费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">需要预定</td>
+		 <TD class='ItemHead' width='60' align="center">宾馆类型</td>
+		 <TD class='ItemHead' width='60' align="center">宾馆级别</td>
+         <TD class='ItemHead' width='80' align="center">入住日期</td>
+		 <TD class='ItemHead' width='80' align="center">离开日期</td>
+		 <TD class='ItemHead' width='80' align="center">申请金额</td>
+		 <TD class='ItemHead' width='200' align="center">地址</td>
+		 <TD class='ItemHead' align="center">需求描述</td>
+         	 <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_accom' alias='accom'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$accom.is_order'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.hotel_type_cd'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.level_cd'/></td>
+			<TD class='ItemData' align="center"><jt:timeSpan source='$accom.begin_date' type='date' format='YYYY-MM-DD HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:timeSpan source='$accom.end_date' type='date' format='YYYY-MM-DD  HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.order_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.address'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.require_note'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.reason_note'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_entertain'>
+      <BR><BR>
+      <B style='color:#014d99'>招待费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='80' align="center">申请金额</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_entertain' alias='entertain'>
+      <TR>
+         <TD class='ItemData' align="center"><jt:item source='$entertain.order_amt'/></td>
+         <TD class='ItemData' align="center"><jt:item source='$entertain.reason_note'/></td>
+      </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_other'>
+      <BR><BR>
+      <B style='color:#014d99'>其他费用申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='80' align="center">申请金额</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_other' alias='other'>
+      <TR>
+         <TD class='ItemData' align="center"><jt:item source='$other.order_amt'/></td>
+         <TD class='ItemData' align="center"><jt:item source='$other.reason_note'/></td>
+      </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="K00v5TBcLIAxEn6IARoGnw" name="order.suc.head" label="预定成功-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][差旅费申请-预定成功] <jt:item source='$config.to_user_labels'/>同学您好,您出差时需预定的宾馆，机票或火车票已经预定成功，请您查收。]]></Source>
+  <Source _uuid="OkzIIzcwqpu8Ex8Ya0]Amw" name="order.suc.body" label="预定成功-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='差旅费申请管理 → 审核通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.apply_user_label'/>同学，已帮您预定好了车票或宾馆！</TD></TR>
+      <TR><TD>直接进入：<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>申请人信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="276" class='ItemData'><jt:item source='$config.apply_user_label'/> (<jt:item source='$config.apply_work_number'/>)</TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>邮件</TD>
+      <TD width="279" class='ItemData'><A href='mailto:<jt:item source='$config.apply_user_mail'/>'>
+        <jt:item source='$config.apply_user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>职位</TD>
+      <TD width="276" class='ItemData'><jt:item source='$config.apply_user_duty'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.apply_user_mobile'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.apply_user_org'/></TD>
+   </TR>
+   </TABLE>
+   <B style='color:#014d99'>差旅费申请信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>开始日期</TD>
+      <TD width="277" class='ItemData'><jt:timeSpan source='$config.apply_begin_date' type='date' format='YYYY-MM-DD HH24:00' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>结束日期</TD>
+      <TD width="277" class='ItemData'><jt:timeSpan source='$config.apply_end_date' type='date' format='YYYY-MM-DD HH24:00' /></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>申请金额</TD>
+      <TD width="277" class='ItemData'><jt:item source='$config.apply_all_amt'/></TD>
+	  <TD width='1px' bgcolor='#0165CA'></TD>
+	  <TD class='ItemHead' width='15%'>创建时间</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.apply_date' type='date' format='YYYY-MM-DD HH24:MI' /></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>申请事由</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.apply_note'/></TD>
+   </TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.apply_fare'>
+      <BR><BR>
+      <B style='color:#014d99'>交通费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">需要预定</td>
+		 <TD class='ItemHead' width='60' align="center">交通工具</td>
+         <TD class='ItemHead' width='80' align="center">预定日期</td>
+		 <TD class='ItemHead' width='80' align="center">申请金额</td>
+		 <TD class='ItemHead' width='80' align="center">出发地</td>
+		 <TD class='ItemHead' width='80' align="center">到达地</td>
+		 <TD class='ItemHead' align="center">需求描述</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_fare' alias='fare'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$fare.is_order'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.transport'/></td>
+            <TD class='ItemData' align="center"><jt:timeSpan source='$fare.begin_date' type='date' format='YYYY-MM-DD HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.order_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.start_place'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$fare.arrive_place'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.require_note'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.reason_note'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_accom'>
+      <BR><BR>
+      <B style='color:#014d99'>住宿费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">需要预定</td>
+		 <TD class='ItemHead' width='60' align="center">宾馆类型</td>
+		 <TD class='ItemHead' width='60' align="center">宾馆级别</td>
+         <TD class='ItemHead' width='80' align="center">入住日期</td>
+		 <TD class='ItemHead' width='80' align="center">离开日期</td>
+		 <TD class='ItemHead' width='80' align="center">申请金额</td>
+		 <TD class='ItemHead' width='200' align="center">地址</td>
+		 <TD class='ItemHead' align="center">需求描述</td>
+         	 <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_accom' alias='accom'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$accom.is_order'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.hotel_type_cd'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.level_cd'/></td>
+			<TD class='ItemData' align="center"><jt:timeSpan source='$accom.begin_date' type='date' format='YYYY-MM-DD HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:timeSpan source='$accom.end_date' type='date' format='YYYY-MM-DD  HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.order_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.address'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.require_note'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.reason_note'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_entertain'>
+      <BR><BR>
+      <B style='color:#014d99'>招待费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='80' align="center">申请金额</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_entertain' alias='entertain'>
+      <TR>
+         <TD class='ItemData' align="center"><jt:item source='$entertain.order_amt'/></td>
+         <TD class='ItemData' align="center"><jt:item source='$entertain.reason_note'/></td>
+      </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_other'>
+      <BR><BR>
+      <B style='color:#014d99'>其他费用申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='80' align="center">申请金额</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_other' alias='other'>
+      <TR>
+         <TD class='ItemData' align="center"><jt:item source='$other.order_amt'/></td>
+         <TD class='ItemData' align="center"><jt:item source='$other.reason_note'/></td>
+      </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="0UQBTVONMMUNgOpmg9E2sg" name="order.fail.head" label="预定失败-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][差旅费申请-预定失败] <jt:item source='$config.to_user_labels'/>同学您好,您出差时需预定的宾馆，机票或火车票已经预定失败，请您查看。]]></Source>
+  <Source _uuid="JUAXE[9SlUPAsxpLTHefjQ" name="order.fail.body" label="预定失败-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='差旅费申请管理 → 审核通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.apply_user_label'/>同学，您的预定为成功，请自行预定！</TD></TR>
+      <TR><TD>直接进入：<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>申请人信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>姓名</TD>
+      <TD width="276" class='ItemData'><jt:item source='$config.apply_user_label'/> (<jt:item source='$config.apply_work_number'/>)</TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>邮件</TD>
+      <TD width="279" class='ItemData'><A href='mailto:<jt:item source='$config.apply_user_mail'/>'>
+        <jt:item source='$config.apply_user_mail'/></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>职位</TD>
+      <TD width="276" class='ItemData'><jt:item source='$config.apply_user_duty'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>联系电话</TD>
+      <TD class='ItemData'><jt:item source='$config.apply_user_mobile'/></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>所属</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.apply_user_org'/></TD>
+   </TR>
+   </TABLE>
+   <B style='color:#014d99'>差旅费申请信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>开始日期</TD>
+      <TD width="277" class='ItemData'><jt:timeSpan source='$config.apply_begin_date' type='date' format='YYYY-MM-DD HH24:00' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>结束日期</TD>
+      <TD width="277" class='ItemData'><jt:timeSpan source='$config.apply_end_date' type='date' format='YYYY-MM-DD HH24:00' /></A></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>申请金额</TD>
+      <TD width="277" class='ItemData'><jt:item source='$config.apply_all_amt'/></TD>
+	  <TD width='1px' bgcolor='#0165CA'></TD>
+	  <TD class='ItemHead' width='15%'>创建时间</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.apply_date' type='date' format='YYYY-MM-DD HH24:MI' /></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD>
+      <TD class='ItemHead' width='15%'>申请事由</TD>
+      <TD colspan="4" class='ItemData'><jt:item source='$config.apply_note'/></TD>
+   </TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.apply_fare'>
+      <BR><BR>
+      <B style='color:#014d99'>交通费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">需要预定</td>
+		 <TD class='ItemHead' width='60' align="center">交通工具</td>
+         <TD class='ItemHead' width='80' align="center">预定日期</td>
+		 <TD class='ItemHead' width='80' align="center">申请金额</td>
+		 <TD class='ItemHead' width='80' align="center">出发地</td>
+		 <TD class='ItemHead' width='80' align="center">到达地</td>
+		 <TD class='ItemHead' align="center">需求描述</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_fare' alias='fare'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$fare.is_order'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.transport'/></td>
+            <TD class='ItemData' align="center"><jt:timeSpan source='$fare.begin_date' type='date' format='YYYY-MM-DD HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.order_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.start_place'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$fare.arrive_place'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.require_note'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.reason_note'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_accom'>
+      <BR><BR>
+      <B style='color:#014d99'>住宿费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='60' align="center">需要预定</td>
+		 <TD class='ItemHead' width='60' align="center">宾馆类型</td>
+		 <TD class='ItemHead' width='60' align="center">宾馆级别</td>
+         <TD class='ItemHead' width='80' align="center">入住日期</td>
+		 <TD class='ItemHead' width='80' align="center">离开日期</td>
+		 <TD class='ItemHead' width='80' align="center">申请金额</td>
+		 <TD class='ItemHead' width='200' align="center">地址</td>
+		 <TD class='ItemHead' align="center">需求描述</td>
+         	 <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_accom' alias='accom'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$accom.is_order'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.hotel_type_cd'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.level_cd'/></td>
+			<TD class='ItemData' align="center"><jt:timeSpan source='$accom.begin_date' type='date' format='YYYY-MM-DD HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:timeSpan source='$accom.end_date' type='date' format='YYYY-MM-DD  HH24:00' /></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.order_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.address'/></td>
+			<TD class='ItemData' align="center"><jt:item source='$accom.require_note'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$accom.reason_note'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_entertain'>
+      <BR><BR>
+      <B style='color:#014d99'>招待费申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='80' align="center">申请金额</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_entertain' alias='entertain'>
+      <TR>
+         <TD class='ItemData' align="center"><jt:item source='$entertain.order_amt'/></td>
+         <TD class='ItemData' align="center"><jt:item source='$entertain.reason_note'/></td>
+      </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.apply_other'>
+      <BR><BR>
+      <B style='color:#014d99'>其他费用申请详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='80' align="center">申请金额</td>
+         <TD class='ItemHead' align="center">申请事由</td>
+      </TR>
+      <jt:loop source='$parameter.apply_other' alias='other'>
+      <TR>
+         <TD class='ItemData' align="center"><jt:item source='$other.order_amt'/></td>
+         <TD class='ItemData' align="center"><jt:item source='$other.reason_note'/></td>
+      </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="qEPCEgmK2[HFiteHCjZzhQ" name="copy.head" label="抄送-邮件标题" is_valid="Y" note="M#"><![CDATA[[eUIS][日常报销] <jt:item source='$config.to_user_labels'/>您好,已经审核通过的日常报销单据，请您审查。]]></Source>
+  <Source _uuid="BkCdj]5QLCbvlnUIWxu9kg" name="copy.body" label="抄送-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='日常报销管理 → 查看报销单据通知' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.to_user_label'/>已审核完毕的日常报销单据，请您审核！</TD></TR>
+      <TR><TD>查看地址为：<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <B style='color:#014d99'>报销单据总信息</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>共报销</td>
+      <TD class='ItemData'><jt:item source='$config.all_count'/> (张)</TD>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>总金额</td>
+      <TD class='ItemData'><jt:item source='$config.all_amt'/> (元)</TD>
+   </TR>
+   <TR>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>误餐费报销</td>
+      <TD class='ItemData'><jt:item source='$config.meal_count'/> (张)</TD>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>金额</td>
+      <TD class='ItemData'><jt:item source='$config.meal_amt'/> (元)</TD>
+   </TR>
+   <TR>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>交通费报销</td>
+      <TD class='ItemData'><jt:item source='$config.fare_count'/> (张)</TD>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>金额</td>
+      <TD class='ItemData'><jt:item source='$config.fare_amt'/> (元)</TD>
+   </TR>
+   <TR>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>通讯费报销</td>
+      <TD class='ItemData'><jt:item source='$config.comm_count'/> (张)</TD>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>金额</td>
+      <TD class='ItemData'><jt:item source='$config.comm_amt'/> (元)</TD>
+   </TR>
+   <TR>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>活动经费报销</td>
+      <TD class='ItemData'><jt:item source='$config.ative_count'/> (张)</TD>
+      <TD width='1' bgcolor='#0165CA'></TD><TD class='ItemHead' width='120'>金额</td>
+      <TD class='ItemData'><jt:item source='$config.ative_amt'/> (元)</TD>
+   </TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.meal_fee'>
+      <BR><BR>
+      <B style='color:#014d99'>误餐费报销单据详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='160' align="center">用餐日期</td>
+         <TD class='ItemHead' width='120' align="center">报销金额</td>
+         <TD class='ItemHead' align="center">参与人</td>
+      </TR>
+      <jt:loop source='$parameter.meal_fee' alias='meal'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$meal.bill_date'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$meal.real_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$meal.participants'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.fare_fee'>
+      <BR><BR>
+      <B style='color:#014d99'>交通费报销单据详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='160' align="center">乘车时间</td>
+         <TD class='ItemHead' width='120' align="center">报销金额</td>
+         <TD class='ItemHead' align="center">参与人</td>
+      </TR>
+      <jt:loop source='$parameter.fare_fee' alias='fare'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$fare.bill_date'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.real_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$fare.participants'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.comm_fee'>
+      <BR><BR>
+      <B style='color:#014d99'>通讯费报销单据详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='160' align="center">日期</td>
+         <TD class='ItemHead' width='120' align="center">报销金额</td>
+         <TD class='ItemHead' align="center">参与人</td>
+      </TR>
+      <jt:loop source='$parameter.comm_fee' alias='comm'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$comm.bill_date'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$comm.real_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$comm.participants'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.ative_fee'>
+      <BR><BR>
+      <B style='color:#014d99'>活动经费报销单据详细信息</B>：
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD class='ItemHead' width='160' align="center">日期</td>
+         <TD class='ItemHead' width='120' align="center">报销金额</td>
+         <TD class='ItemHead' align="center">参与人</td>
+      </TR>
+      <jt:loop source='$parameter.ative_fee' alias='ative'>
+         <TR>
+            <TD class='ItemData' align="center"><jt:item source='$ative.bill_date'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$ative.real_amt'/></td>
+            <TD class='ItemData' align="center"><jt:item source='$ative.participants'/></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

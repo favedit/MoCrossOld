@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="iktWkim9YjxrM7K[TKDnnA" name="person.user.account" label="M#12cn17用户-帐户信息" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="PM_USER_ACCOUNT" data_alias="PM_USER_ACT" data_logic="PM_USER_ACCOUNT_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="bE0BrWWo]SxNNlnhpOdCtw" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="USER_ID" data_type="Integer" data_refer="person.user" />
+  <FieldInteger _uuid="LEc1JnF2pJv2CscagEUdmA" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_size="1" data_refer="person.user.account.type" />
+  <FieldEnum _uuid="3kCDPY8c2YsMal2gqN5CmQ" name="status_cd" label="M#12cn14帐户状态" is_valid="Y" note="M#12cn19F:冻结\nU:可用" is_null="Y" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_type="Enum" data_size="1" data_code="person.user.account.status" />
+  <FieldFloat _uuid="M0ls92KDKiUaGQloaTrqmw" name="remain_amt" label="M#12cn14剩余金额" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="REMAIN_AMT" data_default="0" />
+  <FieldDate _uuid="j0QCIT[7tI2YD5DZFpSaqQ" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_type="Date" data_default="SYSDATE" />
+  <FieldContent _uuid="CUMZtj6bsWavUnpw3EqIjA" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

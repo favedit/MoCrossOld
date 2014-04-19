@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template asd="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define asd="]E[MIOeUo79dXfu13d2wsA" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source asd="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T><jt:item source='$group.label'/>实体定义。</T>
+//
+// @version 1.0.1
+// @auto 代码器管理的代码，如需修改请在手动修改标出的地方修改。
+//============================================================
+#ifndef __MO_<jt:item source='$group.project_code' format='upper'/>_<jt:item source='$group.full_code' format='upper'/>_H__
+#define __MO_<jt:item source='$group.project_code' format='upper'/>_<jt:item source='$group.full_code' format='upper'/>_H__
+
+#ifndef __MO_CR_COMMON_H__
+#include "MoCrCommon.h"
+#endif // __MO_CR_COMMON_H__
+
+#ifndef __MO_CR_CONSTANT_H__
+#include "MoCrConstant.h"
+#endif // __MO_CR_CONSTANT_H__
+
+#ifndef __MO_CR_STRUCT_H__
+#include "MoCrStruct.h"
+#endif // __MO_CR_STRUCT_H__
+
+#ifndef __MO_CR_MESSAGE_H__
+#include "MoCrMessage.h"
+#endif // __MO_CR_MESSAGE_H__
+
+#ifndef __MO_<jt:item source='$group.project_code' format='upper'/>_CORE_H__
+#include "Mo<jt:item source='$group.project_code'/>Core.h"
+#endif // __MO_<jt:item source='$group.project_code' format='upper'/>_CORE_H__
+
+#ifndef __MO_<jt:item source='$group.project_code' format='upper'/>_ENUM_H__
+#include "Mo<jt:item source='$group.project_code'/>Enum.h"
+#endif // __MO_<jt:item source='$group.project_code' format='upper'/>_ENUM_H__
+<jt:notEmpty source='$group.include_heads'>
+<jt:loop source='$group' alias='include' filter='$include:name=Include'>
+
+#ifndef __MO_<jt:item source='$group.project_code' format='upper'/>_<jt:item source='$include.full_code' format='upper'/>_H__
+#include "<jt:item source='$include.source_name'/>.h"
+#endif // __MO_<jt:item source='$group.project_code' format='upper'/>_<jt:item source='$include.full_code' format='upper'/>_H__
+</jt:loop>
+</jt:notEmpty>
+
+MO_NAMESPACE_BEGIN
+<jt:loop source='$group' alias='entity'>
+<jt:equals source='$entity:name' value='Struct|Entity'>
+
+//============================================================
+// <T><jt:item source='$entity.label'/>结构定义。</T>
+//
+// @struct
+//============================================================
+#pragma pack(1)
+struct MO_<jt:item source='$group.project_code' format='upper'/>_DECLARE S<jt:item source='$entity.name'/><jt:notEmpty source='$entity.parent_name'> : public S<jt:item source='$entity.parent_name'/></jt:notEmpty>{
+public:
+   // @property <jt:item source='$entity.label'/>定义
+   static SPropertyInfo KClassProperty;
+<jt:loop source='$entity' alias='field'>
+   // @property <jt:item source='$field.label'/>定义
+   static SPropertyInfo K<jt:item source='$field.name' format='upper.first'/>Property;
+</jt:loop>
+public:
+<jt:loop source='$entity' alias='field'>
+   // @property <jt:item source='$field.label'/>
+<jt:true source='$field.is_collection'>
+<jt:equals source='$field.type' value='String|Object'>
+   TFsNetObjects<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>> <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:notEquals source='$field.type' value='String|Object'>
+   TFsNetTypes<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>> <jt:item source='$field.name'/>;
+</jt:notEquals>
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Enum|Set'>
+   <jt:item source='$field.type_name'/> <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Type|Struct|Object'>
+   <jt:item source='$field.type_name'/> <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Bytes|String'>
+   TFsNet<jt:item source='$field.type'/><<jt:item source='$field.data_size'/>> <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Set|Struct|Bytes|String|Object'>
+   T<jt:item source='$field.type'/> <jt:item source='$field.name'/><jt:notEmpty source='$field.data_size'>[<jt:item source='$field.data_size'/>]</jt:notEmpty>;
+</jt:notEquals>
+</jt:false>
+</jt:loop>
+public:
+   //------------------------------------------------------------
+   // <T>构造结构体。</T>
+   S<jt:item source='$entity.name'/>(){
+      Initialize();
+   }
+   //------------------------------------------------------------
+   // <T>构造结构体。</T>
+   S<jt:item source='$entity.name'/>(TAnyC* pMemory){
+      MO_ASSERT(pMemory);
+      Initialize();
+      Unserialize(pMemory);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>初始化信息。</T>
+   MO_INLINE( void Initialize() ){
+<jt:loop source='$entity' alias='field'>
+<jt:false source='$field.is_collection'>
+<jt:empty source='$field.data_default'>
+<jt:equals source='$field.type' value='Char|Byte|Int16|Int32|Int64|Uint16|Uint32|Uint64|Float|Double'>
+      <jt:item source='$field.name'/> = 0;
+</jt:equals>
+</jt:empty>
+<jt:notEmpty source='$field.data_default'>
+<jt:equals source='$field.type' value='String'>
+      <jt:item source='$field.name'/> = "<jt:item source='$field.data_default'/>";
+</jt:equals>
+<jt:notEquals source='$field.type' value='String'>
+      <jt:item source='$field.name'/> = <jt:item source='$field.data_default'/>;
+</jt:notEquals>
+</jt:notEmpty>
+</jt:false>
+</jt:loop>
+   }
+public:
+   //------------------------------------------------------------
+   // <T>判断是否相等。</T>
+   MO_INLINE( TBool operator==(S<jt:item source='$entity.name'/>& value) ){
+      return Equals(value);
+   }
+   //------------------------------------------------------------
+   // <T>判断是否不等。</T>
+   MO_INLINE( TBool operator!=(S<jt:item source='$entity.name'/>& value) ){
+      return !Equals(value);
+   }
+public:
+<jt:loop source='$entity' alias='field'>
+<jt:true source='$field.is_collection'>
+   //------------------------------------------------------------
+   // <T>获得<jt:item source='$field.label'/>信息</T>
+<jt:equals source='$field.type' value='String|Object'>
+   inline TFsNetObjects<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+      return <jt:item source='$field.name'/>;
+   };
+</jt:equals>
+<jt:notEquals source='$field.type' value='String|Object'>
+   inline TFsNetTypes<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+      return <jt:item source='$field.name'/>;
+   };
+</jt:notEquals>
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Bool'>
+   //------------------------------------------------------------
+   // <T>判断是否<jt:item source='$field.label'/>信息</T>
+   MO_INLINE( TBool Is<jt:item source='$field.name' format='upper.first'/>() const ){
+      return <jt:item source='$field.name'/>;
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='Enum'>
+   //------------------------------------------------------------
+   // <T>判断是否<jt:item source='$field.label'/>信息</T>
+   MO_INLINE( TBool Is<jt:item source='$field.name' format='upper.first'/>(<jt:item source='$field.type_name'/> value) const ){
+      return (<jt:item source='$field.name'/> == value);
+   };
+</jt:equals>
+   //------------------------------------------------------------
+   // <T>获得<jt:item source='$field.label'/>信息</T>
+<jt:equals source='$field.type' value='Type|Enum'>
+   MO_INLINE( <jt:item source='$field.type_name'/> <jt:item source='$field.name' format='upper.first'/>() const ){
+      return <jt:item source='$field.name'/>;
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='Set|Struct|Object'>
+   MO_INLINE( <jt:item source='$field.type_name'/>& <jt:item source='$field.name' format='upper.first'/>() ){
+      return <jt:item source='$field.name'/>;
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='Bytes|String'>
+   inline TFsNet<jt:item source='$field.type'/><<jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+      return <jt:item source='$field.name'/>;
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   //------------------------------------------------------------
+   // <T>获得<jt:item source='$field.label'/>信息</T>
+   MO_INLINE( TCharC* <jt:item source='$field.name' format='upper.first'/>C() ){
+      return (TCharC*)<jt:item source='$field.name'/>;
+   };
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Set|Struct|Bytes|String|Object'>
+   MO_INLINE( T<jt:item source='$field.type'/> <jt:item source='$field.name' format='upper.first'/>() const ){
+      return <jt:item source='$field.name'/>;
+   };
+</jt:notEquals>
+   //------------------------------------------------------------
+   // <T>设置<jt:item source='$field.label'/>信息</T>
+<jt:equals source='$field.type' value='Type|Enum'>
+   MO_INLINE( void Set<jt:item source='$field.name' format='upper.first'/>(<jt:item source='$field.type_name'/> value) ){
+      <jt:item source='$field.name'/> = value;
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   MO_INLINE( void Set<jt:item source='$field.name' format='upper.first'/>(TCharC* pValue) ){
+      <jt:item source='$field.name'/>.Set(pValue);
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='Set|Struct'>
+   MO_INLINE( void Set<jt:item source='$field.name' format='upper.first'/>(<jt:item source='$field.type_name'/>& value) ){
+      <jt:item source='$field.name'/> = value;
+   };
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Set|Struct|Bytes|String|Object'>
+   MO_INLINE( void Set<jt:item source='$field.name' format='upper.first'/>(T<jt:item source='$field.type'/> value) ){
+      <jt:item source='$field.name'/> = value;
+   };
+</jt:notEquals>
+</jt:false>
+</jt:loop>
+public:
+   TSize Capacity();
+public:
+   TBool Equals(S<jt:item source='$entity.name'/>& value);
+   void Assign(S<jt:item source='$entity.name'/>& value);
+public:
+   TInt Serialize(TAny* pMemory);
+   TBool SerializePtr(TBytePtr ptr);
+   TInt Unserialize(TAnyC* pMemory);
+   TBool UnserializePtr(TBytePtr ptr);
+   TBool PackData(MPack* pPack);
+   TBool Pack(MPack* pPack);
+   TBool UnpackPropertyById(MPack* pPack, SPropertyHead* pHead, TBool* pFound);
+   TBool UnpackPropertyByName(MPack* pPack, SPropertyHead* pHead, TBool* pFound);
+   TBool Unpack(MPack* pPack);
+public:
+   void Reset();
+<jt:equals source='$entity:name' value='Struct'>
+   TBool Parse(TCharC* pValue);
+   TCharC* ToString(TChar* pValue, TSize capacity);
+   TCharC* ToDisplay(TChar* pValue, TSize capacity);
+</jt:equals>
+   TCharC* Track(MString* pTrack, TInt level=0);
+public:
+   // @manual (S<jt:item source='$entity.name'/>.Begin)
+   //------------------------------------------------------------
+<jt:empty source='$entity.build_source'>
+   //------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$entity.build_source'>
+<jt:item source='$entity.build_source'/>//------------------------------------------------------------
+</jt:notEmpty>
+   // @manual (S<jt:item source='$entity.name'/>.End)
+};
+#pragma pack()
+<jt:true source='$entity.is_class'>
+<jt:equals source='$entity:name' value='Entity'>
+
+//============================================================
+// <T><jt:item source='$entity.label'/>衍生类。</T>
+//
+// @struct
+//============================================================
+class MO_<jt:item source='$group.project_code' format='upper'/>_DECLARE M<jt:item source='$entity.name'/>{
+protected:
+   S<jt:item source='$entity.name'/>* _g<jt:item source='$entity.name' removeFirst='Gm'/>;
+public:
+   //------------------------------------------------------------
+   // <T>获得数据对象。</T>
+   MO_INLINE( S<jt:item source='$entity.name'/>& <jt:item source='$entity.name' removeFirst='Gm'/>Data() ){
+      return *_g<jt:item source='$entity.name' removeFirst='Gm'/>;
+   }
+   //------------------------------------------------------------
+   // <T>获得数据指针。</T>
+   MO_INLINE( S<jt:item source='$entity.name'/>* <jt:item source='$entity.name' removeFirst='Gm'/>Ptr() ){
+      return _g<jt:item source='$entity.name' removeFirst='Gm'/>;
+   }
+public:
+<jt:loop source='$entity' alias='field'>
+<jt:true source='$field.is_collection'>
+   //------------------------------------------------------------
+   // <T>获得<jt:item source='$field.label'/>信息</T>
+<jt:equals source='$field.type' value='String|Object'>
+   inline TFsNetObjects<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+      return _g<jt:item source='$entity.name' removeFirst='Gm'/>-><jt:item source='$field.name'/>;
+   };
+</jt:equals>
+<jt:notEquals source='$field.type' value='String|Object'>
+   inline TFsNetTypes<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+      return _g<jt:item source='$entity.name' removeFirst='Gm'/>-><jt:item source='$field.name'/>;
+   };
+</jt:notEquals>
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Bool'>
+   //------------------------------------------------------------
+   // <T>判断是否<jt:item source='$field.label'/>信息</T>
+   MO_INLINE( TBool Is<jt:item source='$field.name' format='upper.first'/>() const ){
+      return _g<jt:item source='$entity.name' removeFirst='Gm'/>-><jt:item source='$field.name'/>;
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='Enum'>
+   //------------------------------------------------------------
+   // <T>判断是否<jt:item source='$field.label'/>信息</T>
+   MO_INLINE( TBool Is<jt:item source='$field.name' format='upper.first'/>(<jt:item source='$field.type_name'/> value) const ){
+      return (_g<jt:item source='$entity.name' removeFirst='Gm'/>-><jt:item source='$field.name'/> == value);
+   };
+</jt:equals>
+   //------------------------------------------------------------
+   // <T>获得<jt:item source='$field.label'/>信息</T>
+<jt:equals source='$field.type' value='Type|Enum'>
+   MO_INLINE( <jt:item source='$field.type_name'/> <jt:item source='$field.name' format='upper.first'/>() ){
+      return _g<jt:item source='$entity.name' removeFirst='Gm'/>-><jt:item source='$field.name'/>;
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='Set|Struct|Object'>
+   MO_INLINE( <jt:item source='$field.type_name'/>& <jt:item source='$field.name' format='upper.first'/>() ){
+      return _g<jt:item source='$entity.name' removeFirst='Gm'/>-><jt:item source='$field.name'/>;
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   inline TFsNetString<<jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+      return _g<jt:item source='$entity.name' removeFirst='Gm'/>-><jt:item source='$field.name'/>;
+   };
+   //------------------------------------------------------------
+   // <T>获得<jt:item source='$field.label'/>信息</T>
+   MO_INLINE( TCharC* <jt:item source='$field.name' format='upper.first'/>C() ){
+      return (TCharC*)_g<jt:item source='$entity.name' removeFirst='Gm'/>-><jt:item source='$field.name'/>;
+   };
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Set|Struct|Bytes|String|Object'>
+   MO_INLINE( T<jt:item source='$field.type'/> <jt:item source='$field.name' format='upper.first'/>() ){
+      return _g<jt:item source='$entity.name' removeFirst='Gm'/>-><jt:item source='$field.name'/>;
+   };
+</jt:notEquals>
+   //------------------------------------------------------------
+   // <T>设置<jt:item source='$field.label'/>信息</T>
+<jt:equals source='$field.type' value='Type|Enum'>
+   MO_INLINE( void Set<jt:item source='$field.name' format='upper.first'/>(<jt:item source='$field.type_name'/> value) ){
+      _g<jt:item source='$entity.name' removeFirst='Gm'/>-><jt:item source='$field.name'/> = value;
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='Set'>
+   MO_INLINE( void Set<jt:item source='$field.name' format='upper.first'/>(<jt:item source='$field.type_name'/>& value) ){
+      _g<jt:item source='$entity.name' removeFirst='Gm'/>-><jt:item source='$field.name'/>.Modify(value);
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   MO_INLINE( void Set<jt:item source='$field.name' format='upper.first'/>(TCharC* pValue) ){
+      _g<jt:item source='$entity.name' removeFirst='Gm'/>-><jt:item source='$field.name'/>.Set(pValue);
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='Struct'>
+   MO_INLINE( void Set<jt:item source='$field.name' format='upper.first'/>(<jt:item source='$field.type_name'/>& value) ){
+      _g<jt:item source='$entity.name' removeFirst='Gm'/>-><jt:item source='$field.name'/> = value;
+   };
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Set|Struct|Bytes|String|Object'>
+   MO_INLINE( void Set<jt:item source='$field.name' format='upper.first'/>(T<jt:item source='$field.type'/> value) ){
+      _g<jt:item source='$entity.name' removeFirst='Gm'/>-><jt:item source='$field.name'/> = value;
+   };
+</jt:notEquals>
+</jt:false>
+</jt:loop>
+};
+</jt:equals>
+</jt:true>
+</jt:equals>
+</jt:loop>
+
+MO_NAMESPACE_END
+
+#endif // __MO_<jt:item source='$group.project_code' format='upper'/>_<jt:item source='$group.full_code' format='upper'/>_H__
+]]></Source>
+</Template>

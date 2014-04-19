@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="uUpzaGEPkNp3dBzx11rRpA" name="database.logicunit.sqlView" is_valid="Y" note="M#">
+  <Source _uuid="60]ZbPHhJJ80wmSY2jV0hw" is_valid="Y" note="M#"><![CDATA[CREATE OR REPLACE VIEW <jt:Item source='$dataset.data_name' format='field'/>
+AS
+   SELECT
+<jt:Loop source='$fields' alias='field'>
+<jt:notEquals source='$field.data_name' value='OGID|OVLD|OVER'>
+      <jt:Item source='$field.data_name' format='field'/>,
+</jt:notEquals>
+</jt:Loop>
+      OGID,
+      OVLD,
+      OVER
+   FROM <jt:Item source='$dataset.data_name' format='field'/>_DS
+   WITH READ ONLY]]></Source>
+</Template>

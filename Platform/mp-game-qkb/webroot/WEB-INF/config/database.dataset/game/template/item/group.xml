@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="uUB6FjRRgo67aJ6LPVzCvQ" name="game.template.item.group" label="M#12cn14物品分组" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_ITEM_GROUP" data_alias="GM_TPL_IGP" data_logic="GM_TPL_ITEM_GROUP_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="WU5NIjPCqb]Nngxv1XUTmw" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" />
+  <FieldString _uuid="IUqtWZxhFp]CBA8ONj[Hjw" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="wECslZF[DBVn]yAGz]jAmQ" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="40" />
+  <FieldString _uuid="jk]Kg9PRjny5CUKrWoi8jw" name="label" label="M#12cn12标签" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" data_size="100" />
+  <FieldEnum _uuid="3kOmJ[erv1oie0X6IzHKkw" name="trigger_cd" label="M#12cn14触发类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TRIGGER_CD" data_size="1" data_code="game.template.item.trigger" />
+  <FieldEnum _uuid="0UrM3OJXSC3srXtEP[UMjA" name="bind_cd" label="M#12cn14绑定类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BIND_CD" data_size="1" data_code="game.template.item.bind" />
+  <FieldInteger _uuid="qE5Zxt3u4hNkrtHenYx9kw" name="quality_tid" label="M#12cn12品质" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="QUALITY_TID" data_alias="QLT_TID" data_refer="game.template.item.quality" />
+  <FieldInteger _uuid="u0ai9Aha7qv116wIBjwbgQ" name="item_level" label="M#12cn12级别" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ITEM_LEVEL" />
+  <FieldEnum _uuid="VkY5qJ9SHGJK7vhAJdWglg" name="target_cd" label="M#12cn14目标类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TARGET_CD" data_size="1" data_code="game.template.item.skill.effect.target" />
+  <FieldEnum _uuid="wEiEz[UXjMWEzL9XI3wvvA" name="unique_cd" label="M#12cn14唯一类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="UNIQUE_CD" data_size="1" data_code="game.template.item.unique" />
+  <FieldEnum _uuid="cU1KznnD73ybjm0QaXXsjw" name="trade_cd" label="M#12cn14交易类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TRADE_CD" data_size="1" data_code="game.template.item.trade" />
+  <FieldEnum _uuid="7kbY9nl1tKVCGyQhAipRvg" name="present_cd" label="M#12cn14赠予类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRESENT_CD" data_size="1" data_code="game.template.item.dotation" />
+  <FieldEnum _uuid="uE6jW6YGYXLJyaRJMcWirw" name="drop_cd" label="M#12cn14销毁类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DROP_CD" data_size="1" data_code="game.template.item.dispose" />
+  <FieldInteger _uuid="CkiujFxdlUhjFA[qJRcHgw" name="pile_count" label="M#12cn14叠加类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PILE_COUNT" />
+  <FieldInteger _uuid="8khTuVQtYvUputvSn7uLsA" name="limit_times" label="M#12cn16使用时代限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_TIMES" />
+  <FieldInteger _uuid="x0orPwfTSi[Izu]qfDnSqQ" name="limit_races" label="M#12cn16使用种族限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_RACES" />
+  <FieldInteger _uuid="0kEaDCNNk8JNKnssEp[TgQ" name="limit_genders" label="M#12cn16使用性别限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_GENDERS" />
+  <FieldInteger _uuid="uECRITu9v6dIBFprwhwTlw" name="limit_metiers" label="M#12cn16使用门派限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_METIERS" />
+  <FieldInteger _uuid="CEKA2e6p]B2aJIg7TWAluw" name="limit_level_min" label="M#12cn16使用等级下限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_LEVEL_MIN" />
+  <FieldInteger _uuid="UU5Sk9fsrcMo1SIKiBfDug" name="limit_level_max" label="M#12cn16使用等级上限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_LEVEL_MAX" />
+  <FieldInteger _uuid="A0Fqc1]8AuRs4YzvLwRprg" name="limit_strength_min" label="M#12cn16使用力量下限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_STRENGTH_MIN" />
+  <FieldInteger _uuid="okX6VnZfzYvQT5s7IKIQnA" name="limit_magic_min" label="M#12cn16使用魔力下限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_MAGIC_MIN" />
+  <FieldInteger _uuid="VEOsa4afRKtR2yV[27rbvw" name="limit_vitality_min" label="M#12cn16使用体质下限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_VITALITY_MIN" />
+  <FieldInteger _uuid="jkm0wEqvnzaMKtw]eaqZrQ" name="limit_stamina_min" label="M#12cn16使用耐力下限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_STAMINA_MIN" />
+  <FieldInteger _uuid="hE5DAvVFbG]JYU07lg48tw" name="limit_agile_min" label="M#12cn16使用敏捷下限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_AGILE_MIN" />
+  <FieldInteger _uuid="Gk7sy9]25ihO7xnvUaO0rw" name="limit_hp_current_lower" label="M#12cn18使用当前气血上限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_HP_CURRENT_LOWER" />
+  <FieldInteger _uuid="XUTIrLOUfSWq30XI1WPopA" name="limit_hp_current_min" label="M#12cn18使用当前气血下限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_HP_CURRENT_MIN" />
+  <FieldInteger _uuid="8EYjxCob0K[vgMc3lKAwog" name="limit_hp_max_min" label="M#12cn18使用最大气血下限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_HP_MAX_MIN" />
+  <FieldInteger _uuid="uUu0NBL2Kiya7q[QAv7ukQ" name="limit_mp_current_lower" label="M#12cn18使用当前魔法上限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_MP_CURRENT_LOWER" />
+  <FieldInteger _uuid="gENg8aTyIf6nkn]2pJF0tA" name="limit_mp_current_min" label="M#12cn18使用当前魔法下限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_MP_CURRENT_MIN" />
+  <FieldInteger _uuid="BEKouSI24k8MbiJHsjx1vA" name="limit_mp_max_min" label="M#12cn18使用最大魔法下限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_MP_MAX_MIN" />
+  <FieldInteger _uuid="ik97GCWONi3xNoblIjDtoA" name="limit_fame_min" label="M#12cn16使用声望下限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_FAME_MIN" />
+  <FieldInteger _uuid="C0KLzEYVlNqscMzCLgWQgw" name="limit_faction_spend_min" label="M#12cn16使用帮贡下限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_FACTION_SPEND_MIN" />
+  <FieldInteger _uuid="LEEGSP374V2nyyyu9Vy0mg" name="limit_crime_number_max" label="M#12cn17使用罪恶值上限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_CRIME_NUMBER_MAX" />
+  <FieldInteger _uuid="M0WK7gTKqAtKhiU[G7eCqA" name="limit_online_ts" label="M#12cn18使用在线时间限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_ONLINE_TS" />
+  <FieldEnum _uuid="T0TnoWF2X6oRBlKSIMzduw" name="limit_faction_cd" label="M#12cn16是否加入帮派" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_FACTION_CD" data_size="1" data_code="game.template.limit.clubs" />
+  <FieldEnum _uuid="ckteGRFLuOJxvFxI[2M[sA" name="limit_married_cd" label="M#12cn14是否结婚" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_MARRIED_CD" data_size="1" data_code="game.template.item.married" />
+  <FieldEnum _uuid="h0R9Ysauk5f7i7FN7uThuw" name="is_alive_cd" label="M#12cn16人物是否存在" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_ALIVE_CD" data_size="1" />
+  <FieldEnum _uuid="p0KavDD7QM]xts[wH2WyvA" name="has_friends_cd" label="M#12cn15是否有好友" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="HAS_FRIENDS_CD" data_size="1" data_code="game.template.item.friend" />
+  <FieldEnum _uuid="x0YVnRrCrKZKHRw6pIAajQ" name="is_fighting_cd" label="M#12cn16是否在战斗中" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_FIGHTING_CD" data_size="1" data_code="game.template.item.battle" />
+  <FieldInteger _uuid="SEqIdJsyC1kr6XbVguiPuw" name="has_team" label="M#12cn15是否有队伍" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="HAS_TEAM" data_code="game.template.item.team" />
+  <FieldEnum _uuid="D0[rM3zcQLcOB07MHHm]sw" name="limit_captain_cd" label="M#12cn15是否是队长" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_CAPTAIN_CD" data_size="1" />
+  <FieldInteger _uuid="qE[RuMc3nIv7LwT1Qw6rgw" name="style_icon_tid" label="M#12cn14道具图标" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="STYLE_ICON_TID" data_alias="STY_ICN_TID" data_refer="game.template.style.icon" />
+  <FieldInteger _uuid="[0GiOnN]EEY34C8gq8kCig" name="style_effect_tid" label="M#12cn14使用特效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="STYLE_EFFECT_TID" data_alias="STY_EFT" data_refer="game.template.style.effect" />
+  <FieldString _uuid="yUDUQVynZqOWErL7]bf8hQ" name="describe" label="M#12cn12描述" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DESCRIBE" data_size="400" />
+  <FieldEnum _uuid="LEvRzftZ9vufpnUyBLFhqw" name="store_cd" label="M#12cn17是否能放入仓库" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STORE_CD" data_size="1" data_code="game.template.item.store" />
+  <FieldEnum _uuid="KkJrM9J6[iQ92fI7zYIpjA" name="can_use_bind_gold_cd" label="M#12cn19是否可以用绑定金币" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CAN_USE_BIND_GOLD_CD" data_size="1" />
+  <FieldInteger _uuid="N0gMunwkPDkqQMcz8Mr9jw" name="price_buy" label="M#12cn14购买价格" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRICE_BUY" />
+  <FieldInteger _uuid="2U]Rd]EpM05lO9FYRo8Bvg" name="price_sell_bind" label="M#12cn16绑定回收价格" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRICE_SELL_BIND" />
+  <FieldInteger _uuid="EkA4Z9UHcdhX4zG4muWBlA" name="price_sell_nobind" label="M#12cn17非绑定回收价格" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRICE_SELL_NOBIND" />
+  <FieldInteger _uuid="sUXqLE9EDrNTs8CYuoK]iQ" name="sound_take_up" label="M#12cn14拿起音效" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SOUND_TAKE_UP" />
+  <FieldInteger _uuid="I0u4y6AYGwsWttYLuPlNtQ" name="sound_put_down" label="M#12cn14放下音效" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SOUND_PUT_DOWN" />
+  <FieldInteger _uuid="tElwrkUMfuyY9FcAJWy5kg" name="sound_use" label="M#12cn14使用音效" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SOUND_USE" />
+  <FieldInteger _uuid="0UzCYu3N27U32G9VhzDysQ" name="purpose_type" label="M#12cn12类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PURPOSE_TYPE" />
+  <FieldEnum _uuid="2koiQYkOOfKbBPM]IrjEjw" name="disappear_used_cd" label="M#12cn17使用后是否消失" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DISAPPEAR_USED_CD" data_size="1" data_code="game.template.item.disappear" />
+  <FieldEnum _uuid="O0nZUGlqIhiAPEZ0nq4KtA" name="overdue_cd" label="M#12cn14过期类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OVERDUE_CD" data_size="1" data_code="game.template.item.overdue" />
+  <FieldInteger _uuid="bUq[bocYwo3jdGnUdaptqw" name="overdue_time" label="M#12cn14过期时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OVERDUE_TIME" />
+  <FieldInteger _uuid="FU4]VgHSDXVTgqBTVvYUuA" name="limit_title" label="M#12cn16使用称号限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_TITLE" />
+  <FieldEnum _uuid="2EM4dau3d9[YgTF8l7ljhA" name="is_no_use_cd" label="M#12cn17是否可被封道具" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_NO_USE_CD" data_size="1" data_code="game.template.item.no" />
+  <FieldEnum _uuid="Z0VBTfXRwd2FRrNe9n4FnA" name="camp_of_target_cd" label="M#12cn18使用目标对象阵营" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CAMP_OF_TARGET_CD" data_size="1" data_code="game.template.item.camp" />
+  <FieldEnum _uuid="p05[MhGateiu5LTx3ImgnA" name="type_of_target_cd" label="M#12cn18使用目标对象类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_OF_TARGET_CD" data_size="1" data_code="game.template.item.type" />
+  <FieldEnum _uuid="502MjMy7AaX]SAJompussA" name="monster_sort_target_cd" label="M#12cn18使用目标怪物类别" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MONSTER_SORT_TARGET_CD" data_size="1" data_code="game.template.item.monster" />
+  <FieldEnum _uuid="rEp671dA5lVV6jXfdhlMuQ" name="is_target_online_cd" label="M#12cn210使用目标对象是否在线" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_TARGET_ONLINE_CD" data_size="1" data_code="game.template.item.online" />
+  <FieldTemplate _uuid="x0Ic62Sc2JgOBa3upryNqA" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

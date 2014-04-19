@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="W0SIWDkzcohGNLKVIgvUvg" name="logic.business.describe.role" label="M#12cn16业务功能角色" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_BUSINESS_DESCRIBE_ROLE" data_alias="LG_BUS_DES_ROL" data_logic="LG_BUSINESS_DESCRIBE_ROLE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="OUWmThPfrcg8qWMHr50Wog" name="business_id" label="M#12cn14业务标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="BUSINESS_ID" data_refer="logic.business" />
+  <FieldInteger _uuid="50RZnx8ElLqFPHd6hIwbmg" name="function_id" label="M#12cn14功能标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FUNCTION_ID" data_alias="FUN" data_refer="logic.business.describe.function" data_uniques="role" />
+  <FieldInteger _uuid="vkAVDUb9P[JP[UZ9EeZInA" name="role_id" label="M#12cn14角色标识" is_valid="Y" note="M#12cn14角色标识" is_store="Y" is_abstract="N" data_name="ROLE_ID" data_refer="person.role" data_uniques="role" />
+  <FieldBoolean _uuid="uU3an]]vBkg7gYiy7seygg" name="is_valid" label="M#12cn12有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldTemplate _uuid="o0dJ7AcoPQYAMG[fqbgshg" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="pESSLs1ISf4WhuQjmhp8iA" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="IkoOF1MtJ4DvGdFlSjRkjw" name="game.logger" label="游戏日志服务器" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" source_name="MoMgGameLogger" code="Glo" full_code="GameLogger" display_index="39">
+  <Message _uuid="H0z4oPHnv]qyksGsJDN2rQ" name="echo.request" label="应答请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="Echo" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GPX" code_value="0x0001" code_fix="N">
+    <Item _uuid="60]b3JFA1wG2lTRZKf5ElA" name="id" label="编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="8UavHDRz8fKiIYIu3KIdqA" name="datetime" label="时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="CEWQqZ]tQNPzEicpBGhyiQ" name="data" label="数据内容" is_valid="Y" note="M#" type="Bytes" is_collection="N" data_size="16384" />
+  </Message>
+  <Message _uuid="DkSVyPtqsM]rHATnt74akA" name="echo.response" label="应答回应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="Echo" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GPX" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Item _uuid="00ypQ2]Ih9VB6HUc4YABvA" name="id" label="编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="cUwdAlE8jVTXCPng4Mq]rA" name="datetime" label="时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="]EO8YeBr35Xp[GC11j91ig" name="data" label="数据内容" is_valid="Y" note="M#" type="Bytes" is_collection="N" data_size="16384" />
+  </Message>
+  <Message _uuid="tEfcvp6Cakujpdn1OJDJsQ" name="register.request" label="注册请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Register" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GPX" code_value="0x0003" code_fix="N">
+    <Item _uuid="P0xtskwA]f1vSBlBWbq2lw" name="id" label="编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="GEAyA5uZKngBeCza[dDXqw" name="name" label="名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="wkdPjZzvzG5a[c6VVTTkuA" name="host" label="主机地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="hUFjJxxRR3PX3tGZHfX4gg" name="port" label="端口" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+  </Message>
+  <Message _uuid="70l538Wu61]VtCQwQypgkw" name="register.response" label="注册应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Register" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GPX" target_type="CLT" code_value="0x0004" code_fix="N">
+    <Enum _uuid="4EqYYx0NTDAi5]]sMK7nvA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="REj8NxvGaU]MokgRuyyKqQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="hEqhyAJYIfc3mIY2ZPvogw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="ukFhauFlUKmOR5HJeQkVkg" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="w0OCEkqYPzfejkW7KlBEhQ" name="ready.logger.response" label="准备请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ReadyLogger" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GLO" target_type="GDM" code_value="0x0005" code_fix="N" />
+</Group>
+

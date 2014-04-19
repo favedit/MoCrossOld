@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="iE6MHkdLMjgrydjmsxbQrQ" name="logic.asset" label="M#12cn14资产管理" note="M#" is_valid="Y">
+  <Process _uuid="Y0zHWZc29hSNyhBL8h]dow" name="order.meeting.room" label="M#12cn15会议室预定" note="M#" is_valid="Y">
+    <ProcessCondition _uuid="tUd5rV0vKuaFMPv9fvq5gw" name="start" label="M#12cn12开始" note="M#12cn248检查资产预定是否需要审核。\nY: 需要\nN: 不需要\n参数：\nparams\nprocess_id" is_valid="Y" type_cd="S">
+      <ProcessEvent _uuid="okemT2Me[PqbKN2lJe]ApQ" name="task.notify" label="M#12cn212调起任务（notify）" note="M#12cn224task_name=notify \n调起下一任务" is_valid="Y" event_group_name="logic.process" event_type_name="task.start" event_priority_cd="M" event_execute="I">
+        <ProcessEventConfig _uuid="r0CyONVal42xFvukRoItoQ" name="task_name" label="M#12cn16任务类型名称" note="M#" is_valid="Y" data_value="notify" />
+      </ProcessEvent>
+      <ProcessEvent _uuid="TEkBReZpEmTVXB[RephTrg" name="task.meeting.start" label="M#12cn219调起任务（meeting.start）" note="M#12cn230task_name=meeting.start\n调起下一任务" is_valid="Y" event_group_name="logic.process" event_type_name="task.start" event_priority_cd="M" event_execute="I">
+        <ProcessEventConfig _uuid="A05tgqYbeNzRqFksyAJPnw" name="task_name" label="M#12cn16任务类型名称" note="M#" is_valid="Y" data_value="meeting.start" />
+      </ProcessEvent>
+    </ProcessCondition>
+    <ProcessCondition _uuid="8kwbqbhswuZlaVeSM98qtw" name="stop" label="M#12cn12结束" note="M#" is_valid="Y" type_cd="T" />
+    <Task _uuid="WU[B5L[68sDh3vYVzZFTgA" name="cancel" label="M#12cn14会议取消" note="M#" is_valid="Y">
+      <TaskCondition _uuid="P0U3YVAymbjDARmVhtKFtw" name="start" label="M#12cn12开始" note="M#" is_valid="Y" type_cd="S">
+        <TaskEvent _uuid="s0yO2ZuIGXTCrAJv4wBNlw" name="Cb_Meeting_Cancel" label="M#12cn14会议取消" note="M#" is_valid="Y" event_type_name="cancel" event_group_name="business.asset.order.meeting" event_priority_cd="M" event_execute="I" />
+        <TaskEvent _uuid="C0yQxQYyVYWChGskrW0pqw" name="process.stop" label="M#12cn14结束流程" note="M#" is_valid="Y" event_type_name="process.stop" event_group_name="logic.process" event_priority_cd="M" event_execute="I" />
+      </TaskCondition>
+    </Task>
+    <Task _uuid="]0f[PL9IFMXK80xhdCzYnw" name="notify" label="M#12cn14提前通知" note="M#" is_valid="Y">
+      <TaskCondition _uuid="M0NyXax0c2YSsyrG9]MJkg" name="start" label="M#12cn12开始" note="M#" is_valid="Y" type_cd="S">
+        <TaskEvent _uuid="9kNrrIGNjFrWgCaP]wlftw" name="Cb_Meeting_Notify_Deploy" label="M#12cn16提前通知部署" note="M#" is_valid="Y" event_type_name="notify.deploy" event_group_name="business.asset.order.meeting" event_priority_cd="M" event_execute="I" />
+      </TaskCondition>
+      <TaskCondition _uuid="f0AEseyeamKvOon9lqbYiA" name="stop" label="M#12cn12结束" note="M#" is_valid="Y" type_cd="T">
+        <TaskEvent _uuid="10Vj7VOGD1LfgTDVKxe8ng" name="Cb_Meeting_Notify" label="M#12cn14提前通知" note="M#" is_valid="Y" event_type_name="notify" event_group_name="business.asset.order.meeting" event_priority_cd="M" event_execute="I" />
+      </TaskCondition>
+    </Task>
+    <Task _uuid="LE82e4CU4mkRFS[I6m6Atw" name="meeting.start" label="M#12cn14会议开始" note="M#" is_valid="Y">
+      <TaskCondition _uuid="H0L0IZAG2cUQEMm0yvQevg" name="start" label="M#12cn12开始" note="M#" is_valid="Y" type_cd="S">
+        <TaskEvent _uuid="HEd8mEb]OI[iAqp1MnYgrw" name="Cb_Meeting_Deploy" label="M#12cn16会议开始部署" note="M#" is_valid="Y" event_type_name="meeting.deploy" event_group_name="business.asset.order.meeting" event_priority_cd="M" event_execute="I" />
+      </TaskCondition>
+      <TaskCondition _uuid="N0yiG8p3EJYinOnTStK8sg" name="stop" label="M#12cn12结束" note="M#" is_valid="Y" type_cd="T">
+        <TaskEvent _uuid="tU0OttPzkM2jNNIt8bj7vg" name="Do_Meeting_Start" label="M#12cn14会议开始" note="M#" is_valid="Y" event_type_name="meeting.start" event_group_name="business.asset.order.meeting" event_priority_cd="M" event_execute="I" />
+        <TaskEvent _uuid="hUrocfzB6qUov2]1JTdejw" name="task.meeting.stop" label="M#12cn218调起任务（meeting.stop）" note="M#" is_valid="Y" event_type_name="task.start" event_group_name="logic.process" event_priority_cd="M" event_execute="I">
+          <TaskEventConfig _uuid="LEUl2Clb8nXtgEopVF6Bqw" name="task_name" label="M#12cn16任务类型名称" note="M#" is_valid="Y" data_value="meeting.stop" />
+        </TaskEvent>
+      </TaskCondition>
+    </Task>
+    <Task _uuid="Q0xRU3hQ07YGGqvqT2YMlg" name="meeting.stop" label="M#12cn14会议结束" note="M#" is_valid="Y">
+      <TaskCondition _uuid="akPMApr36GB45WJYwntCmg" name="start" label="M#12cn12开始" note="M#" is_valid="Y" type_cd="S">
+        <TaskEvent _uuid="9EfnKs]OjFBaEAISIkeEqA" name="Cb_Meeting_Stop_Deploy" label="M#12cn16预定结束部署" note="M#" is_valid="Y" event_type_name="stop.deploy" event_group_name="business.asset.order.meeting" event_priority_cd="M" event_execute="I" />
+      </TaskCondition>
+      <TaskCondition _uuid="nUZ6T0oB4LJyGqpS6aq3qQ" name="stop" label="M#12cn12结束" note="M#" is_valid="Y" type_cd="T">
+        <TaskEvent _uuid="UEfb]qv1cXfqOkbIaGW[qg" name="Cb_Meeting_Stop" label="M#12cn14预定结束" note="M#" is_valid="Y" event_type_name="stop" event_group_name="business.asset.order.meeting" event_priority_cd="M" event_execute="I" />
+        <TaskEvent _uuid="xEnqQddZhBUVfA3cZYAMgA" name="process.stop" label="M#12cn14结束流程" note="M#" is_valid="Y" event_type_name="process.stop" event_group_name="logic.process" event_priority_cd="M" event_execute="I" />
+      </TaskCondition>
+    </Task>
+  </Process>
+</Group>
+

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="uk2munY[xHNNcdw7mJiSgg" name="helper.design.webtools.hhc" is_valid="Y" note="M#">
+  <Source _uuid="9EYxfYngupZulkhg1pGGoA" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="工具栏">
+		<param name="Local" value="src\design.webtools\list.html">
+		</OBJECT>
+	<UL>
+<jt:loop source='$config' alias='webtools'>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="<jt:item source='$webtools.name'/> (<jt:item source='$webtools.name'/>)">
+		<param name="Local" value="src\design.webtools\webtools\<jt:item source='$webtools.name' format='path.lower'/>.html">
+		</OBJECT>
+		
+		<jt:loop source='$webtools' alias='item'>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="<jt:item source='$item.name'/> (<jt:item source='$item.name'/>)">
+				<param name="Local" value="src\design.webtools\item\<jt:item source='$webtools.name' format='path.lower'/>.<jt:item source='$item.name' format='lower'/>.html">
+				</OBJECT>
+		</jt:loop>
+		<UL>
+				<jt:loop source='$item' alias='child'>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="<jt:item source='$item.name'/> (<jt:item source='$child.name'/>)">
+				<param name="Local" value="src\design.webtools\item\<jt:item source='$webtools.name' format='path.lower'/>.<jt:item source='$child.name' format='lower'/>.html">
+				</OBJECT>
+		</jt:loop>
+		</UL>
+</jt:loop>
+	</UL>
+</UL>
+</BODY></HTML>]]></Source>
+</Template>
+

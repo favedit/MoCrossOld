@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CsvImport _uuid="xENLbN6k5muJnNQtQESFkA" name="logic.person.user.export.formal" label="职员管理-转正CSV信息" is_valid="Y">
+  <Columns _uuid="UE9jIMI8E3saZpfZoeburA" name="Columns" label="列集合" is_valid="Y">
+    <Column _uuid="AU]s7FJ8HQqSWVpBbZBjuw" name="work_number" label="工号" is_valid="Y" data_name="WORK_NUMBER" />
+    <Column _uuid="yU4UtejKRzyIV4rid3DGmw" name="user_label" label="姓名" is_valid="Y" data_name="USER_LABEL" />
+    <Column _uuid="mUfqwJIm7uuV6QmPFLbJrw" name="type_cd" label="员工类型" is_valid="Y" data_name="TYPE_CD" />
+    <Column _uuid="YEXQ5rKmElcWgaAiRUaXrg" name="service_cd" label="员工状态" is_valid="Y" data_name="SERVICE_CD" />
+    <Column _uuid="g0PEXLnW[2T[8RBGd1xhqg" name="entry_date" label="入职日期" is_valid="Y" data_name="ENTRY_DATE" />
+    <Column _uuid="u0KwbCdmWbxext46DcKGow" name="probation_date" label="转正日期" is_valid="Y" data_name="PROBATION_DATE" />
+    <Column _uuid="8EXHVqsKRMIADajwr8r3og" name="organization_label" label="部门" is_valid="Y" data_name="ORGANIZATION_LABEL" />
+    <Column _uuid="7EyAavZFgaygnWcqbBpXjg" name="external_mail" label="外网邮箱" is_valid="Y" data_name="EXTERNAL_MAIL" />
+    <Column _uuid="n0iTxxwl369n33SIA[QdjQ" name="mail" label="内网邮箱" is_valid="Y" data_name="MAIL" />
+  </Columns>
+  <Export _uuid="U0W8SAhO5dj7rwk[hooppw" name="sql" label="转正" is_valid="Y" sql="SELECT WORK_NUMBER,\n   PM_USER_DI.GET_FULL_LABEL(USER_ID) USER_LABEL,\n   PM_USER_WORK_EI.DECODE_LABEL(TYPE_CD) TYPE_CD,\n   PM_USER_SERVICE_EI.DECODE_LABEL(SERVICE_CD) SERVICE_CD,\n   TO_CHAR(ENTRY_DATE, 'YYYY-MM-DD') ENTRY_DATE,\n   TO_CHAR(PROBATION_DATE, 'YYYY-MM-DD') PROBATION_DATE,\n   MAIL,\n   EXTERNAL_MAIL,\n   PM_ORGANIZATION_DI.FIND_MAIN_ORGANIZATION_LABEL(USER_ID) ORGANIZATION_LABEL\nFROM PM_USER_COMPANY\nWHERE PROBATION_DATE &gt;= CP_DATE.Parse('${BEGIN_DATE}')\n   AND PROBATION_DATE &lt;= CP_DATE.Parse('${END_DATE}')\n   AND PM_USER_DI.Get_Is_Valid(USER_ID) = 'Y'\nORDER BY WORK_NUMBER" display_command="N" display_command_tag="N" display_head="N" display_head_tag="N" display_label="Y" display_label_tag="N" display_valid="N" display_valid_tag="N" is_open="N" export_name="eUIS-职员管理-转正[${SETTLEMENT_BEGIN_DATE}-${SETTLEMENT_END_DATE}]" export_charset="GB18030" disp_data_start_tag="N" disp_data_end_tag="N" dataset_parameters="SELECT\n   TO_CHAR(CP_DATE.Parse('${BEGIN_DATE}'), 'YYYYMMDD') SETTLEMENT_BEGIN_DATE,\n   TO_CHAR(CP_DATE.Parse('${END_DATE}'), 'YYYYMMDD') SETTLEMENT_END_DATE\nFROM DUAL" />
+</CsvImport>
+

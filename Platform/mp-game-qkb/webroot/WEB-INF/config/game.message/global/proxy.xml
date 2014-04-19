@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="qEODlikAMA0US77XawrUug" name="global.proxy" label="全局代理服务器" is_valid="Y" note="M#" is_server="N" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" source_name="MoMgGlobalProxy" code="Apx" full_code="GlobalProxy" display_index="21">
+  <Message _uuid="ekJV4YnkotrZ5VNeAFzQvg" name="status.notify" label="状态通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Status" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="AGT" target_type="CLT" code_value="0x0001" code_fix="N" />
+  <Message _uuid="IkNstnP9yARky]GNIDzIkg" name="register.request" label="注册请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Register" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="APX" target_type="ATS" code_value="0x0002" code_fix="N">
+    <Item _uuid="10fbnbQqe4KzEir2xsGDkg" name="id" label="编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="zU]gfVJLtL]pPObJHuVvgg" name="name" label="名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="PEDzrpFA9UjCJX]fkBQgvQ" name="host" label="主机地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="zUYO9rwvqd4jGIR0HEa6iw" name="port" label="端口" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+  </Message>
+  <Message _uuid="YEnFBQWRgDuhp[xrCEQQvQ" name="register.response" label="注册应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Register" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="ATS" target_type="APX" code_value="0x0003" code_fix="N">
+    <Enum _uuid="JkyJYIuMLRtjfNfzfL7Iig" name="EStatusCd" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="XEsM0bTxPDlJ2hGgp44ZnQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="HE8gOl8N8KCBKrrIQbC[hQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="S0NMpX4[cfUhqJZMe2LSkQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatusCd" is_collection="N" />
+  </Message>
+</Group>
+

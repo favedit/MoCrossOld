@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template asd="oU1HrXz1TnqU8wJo0iXPtg" name="helper.design.message.hhc" is_valid="Y" note="M#">
+  <Source asd="LkrtYqHDKRCjoY[NwJbTgg" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+  <param name="ImageType" value="Folder">
+</OBJECT>
+<OBJECT type="text/site properties">
+  <param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+  <LI><OBJECT type="text/sitemap">
+	<param name="Name" value="简介">
+  </OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap">
+        <param name="Name" value="介绍">
+	    <param name="Local" value="src/help.c++/home.html">
+    </OBJECT>
+  </UL>
+</UL>
+<UL>
+  <LI><OBJECT type="text/sitemap">
+      <param name="Name" value="目录">
+	  <!-- <param name="Local" value="src/help.c++/home.html"> -->
+  </OBJECT>
+  <jt:loop source='$config' alias='configChild1'>
+<!-- 创建Defines -->
+    <jt:Equals source='$configChild1.type_' value='defines'>
+      <UL>
+	    <LI><OBJECT type="text/sitemap">
+		    <param name="Name" value="Defines">
+		    <param name="Local" value="src/help.c++/defines/DefineList.html">
+		    <PARAM NAME="ImageNumber" value="1">
+		</OBJECT>
+		  <jt:loop source='$configChild1' alias='define'>
+		    <UL>
+		      <LI><OBJECT type="text/sitemap">
+		        <param name="Name" value="<jt:item source='$define.name'/> (<jt:item source='$define.value'/>)">
+		        <param name="Local" value="src/help.c++/defines/<jt:item source='$define.path'/>/<jt:item source='$define.file_name'/>.html">
+		        <PARAM NAME="ImageNumber" value="41">
+		      </OBJECT>
+		    </UL>
+		  </jt:loop>
+      </UL>
+    </jt:Equals>
+<!-- 创建NameSpaces -->
+    <jt:Equals source='$configChild1.type_' value='namespaces'>
+      <UL>
+	    <LI><OBJECT type="text/sitemap">
+		    <param name="Name" value="NameSpaces">
+		    <param name="Local" value="src/help.c++/namespaces/NameSpaceList.html">
+		    <PARAM NAME="ImageNumber" value="1">
+		</OBJECT>
+		  <jt:loop source='$configChild1' alias='namespace'>
+		    <UL>
+		      <LI><OBJECT type="text/sitemap">
+		        <param name="Name" value="<jt:item source='$namespace.name'/>">
+		        <param name="Local" value="src/help.c++/namespaces/<jt:item source='$namespace.path'/>/<jt:item source='$namespace.file_name'/>.html">
+		        <PARAM NAME="ImageNumber" value="41">
+		      </OBJECT>
+		      <jt:loop source='$namespace' alias='namespaceChild1'>
+<!-- 创建目录Typedef -->
+                <jt:Equals source='$namespaceChild1.type_' value='typedefs'>
+                  <UL>
+		            <LI><OBJECT type="text/sitemap">
+		              <param name="Name" value="Typedefs">
+		              <param name="Local" value="src/help.c++/namespaces/<jt:item source='$namespace.path'/>/TypedefList.html">
+		              <PARAM NAME="ImageNumber" value="41">
+		            </OBJECT>
+		            <jt:loop source='$namespaceChild1' alias='typedef'>
+				       <UL>
+				         <LI><OBJECT type="text/sitemap">
+				           <param name="Name" value="<jt:item source='$typedef.name'/> (<jt:item source='$typedef.value'/>)">
+				           <param name="Local" value="src/help.c++/namespaces/<jt:item source='$typedef.path'/>/<jt:item source='$typedef.file_name'/>.html">
+				           <PARAM NAME="ImageNumber" value="41">
+				         </OBJECT>
+				       </UL>
+				    </jt:loop>
+		          </UL>
+		        </jt:Equals>
+<!-- 创建目录Variables -->		        
+		        <jt:Equals source='$namespaceChild1.type_' value='variables'>
+                  <UL>
+		            <LI><OBJECT type="text/sitemap">
+		              <param name="Name" value="Variables">
+		              <param name="Local" value="src/help.c++/namespaces/<jt:item source='$namespace.path'/>/VariableList.html">
+		              <PARAM NAME="ImageNumber" value="41">
+		            </OBJECT>
+		            <jt:loop source='$namespaceChild1' alias='variable'>
+				       <UL>
+				         <LI><OBJECT type="text/sitemap">
+				           <param name="Name" value="<jt:item source='$variable.name'/> (<jt:item source='$variable.value'/>)">
+				           <param name="Local" value="src/help.c++/namespaces/<jt:item source='$variable.path'/>/<jt:item source='$variable.file_name'/>.html">
+				           <PARAM NAME="ImageNumber" value="41">
+				         </OBJECT>
+				       </UL>
+				    </jt:loop>
+		          </UL>
+		        </jt:Equals>
+<!-- 创建目录Methods -->		        
+		        <jt:Equals source='$namespaceChild1.type_' value='Methods'>
+                  <UL>
+		            <LI><OBJECT type="text/sitemap">
+		              <param name="Name" value="Methods">
+		              <param name="Local" value="src/help.c++/namespaces/<jt:item source='$namespace.path'/>/MethodList.html">
+		              <PARAM NAME="ImageNumber" value="41">
+		            </OBJECT>
+		            <jt:loop source='$namespaceChild1' alias='method'>
+				       <UL>
+				         <LI><OBJECT type="text/sitemap">
+				           <param name="Name" value="<jt:item source='$method.name'/> (<jt:item source='$method.description'/>)">
+				           <param name="Local" value="src/help.c++/namespaces/<jt:item source='$method.path'/>/<jt:item source='$method.file_name'/>.html">
+				           <PARAM NAME="ImageNumber" value="41">
+				         </OBJECT>
+				       </UL>
+				    </jt:loop>
+		          </UL>
+		        </jt:Equals>
+<!-- 创建目录Classes -->		        
+		        <jt:Equals source='$namespaceChild1.type_' value='Classes'>
+                  <UL>
+		            <LI><OBJECT type="text/sitemap">
+		              <param name="Name" value="Classes">
+		              <param name="Local" value="src/help.c++/namespaces/<jt:item source='$namespace.path'/>/ClassList.html">
+		              <PARAM NAME="ImageNumber" value="41">
+		            </OBJECT>
+		            <jt:loop source='$namespaceChild1' alias='class'>
+				       <UL>
+				         <LI><OBJECT type="text/sitemap">
+				           <param name="Name" value="<jt:item source='$class.name'/>">
+				           <param name="Local" value="src/help.c++/namespaces/<jt:item source='$class.path'/>/<jt:item source='$class.file_name'/>.html">
+				           <PARAM NAME="ImageNumber" value="41">
+				         </OBJECT>
+<!-- 创建目录Class子目录 -->				         
+				         <jt:loop source='$class' alias='classChild1'>
+<!-- 创建目录Class子目录Attributes -->
+                           <jt:Equals source='$classChild1.type_' value='attributes'>
+			                  <UL>
+					            <LI><OBJECT type="text/sitemap">
+					              <param name="Name" value="Attributes">
+					              <param name="Local" value="src/help.c++/namespaces/<jt:item source='$classChild1.path'/>/AttributeList.html">
+					              <PARAM NAME="ImageNumber" value="41">
+					            </OBJECT>
+					            <jt:loop source='$classChild1' alias='attribute'>
+							       <UL>
+							         <LI><OBJECT type="text/sitemap">
+							           <param name="Name" value="<jt:item source='$attribute.name'/> (<jt:item source='$attribute.type'/>)">
+							           <param name="Local" value="src/help.c++/namespaces/<jt:item source='$attribute.path'/>/<jt:item source='$attribute.file_name'/>.html">
+							           <PARAM NAME="ImageNumber" value="41">
+							         </OBJECT>
+							       </UL>
+							    </jt:loop>
+					          </UL>
+					        </jt:Equals>
+<!-- 创建目录Class子目录Constructor -->
+                           <jt:Equals source='$classChild1.type_' value='constructors'>
+			                  <UL>
+					            <LI><OBJECT type="text/sitemap">
+					              <param name="Name" value="Constructors">
+					              <param name="Local" value="src/help.c++/namespaces/<jt:item source='$classChild1.path'/>/ConstructorList.html">
+					              <PARAM NAME="ImageNumber" value="41">
+					            </OBJECT>
+					            <jt:loop source='$classChild1' alias='constructor'>
+							       <UL>
+							         <LI><OBJECT type="text/sitemap">
+							           <param name="Name" value="<jt:item source='$constructor.name'/> (<jt:item source='$constructor.description'/>)">
+							           <param name="Local" value="src/help.c++/namespaces/<jt:item source='$constructor.path'/>/<jt:item source='$constructor.file_name'/>.html">
+							           <PARAM NAME="ImageNumber" value="41">
+							         </OBJECT>
+							       </UL>
+							    </jt:loop>
+					          </UL>
+					        </jt:Equals>                         
+<!-- 创建目录Class子目录Destructors -->
+                           <jt:Equals source='$classChild1.type_' value='destructors'>
+			                  <UL>
+					            <LI><OBJECT type="text/sitemap">
+					              <param name="Name" value="Destructors">
+					              <param name="Local" value="src/help.c++/namespaces/<jt:item source='$classChild1.path'/>/DestructorList.html">
+					              <PARAM NAME="ImageNumber" value="41">
+					            </OBJECT>
+					            <jt:loop source='$classChild1' alias='destructor'>
+							       <UL>
+							         <LI><OBJECT type="text/sitemap">
+							           <param name="Name" value="<jt:item source='$destructor.name'/> (<jt:item source='$destructor.description'/>)">
+							           <param name="Local" value="src/help.c++/namespaces/<jt:item source='$destructor.path'/>/<jt:item source='$destructor.file_name'/>.html">
+							           <PARAM NAME="ImageNumber" value="41">
+							         </OBJECT>
+							       </UL>
+							    </jt:loop>
+					          </UL>
+					        </jt:Equals>
+<!-- 创建目录Class子目录Methods -->
+                           <jt:Equals source='$classChild1.type_' value='methods'>
+			                  <UL>
+					            <LI><OBJECT type="text/sitemap">
+					              <param name="Name" value="Methods">
+					              <param name="Local" value="src/help.c++/namespaces/<jt:item source='$classChild1.path'/>/MethodList.html">
+					              <PARAM NAME="ImageNumber" value="41">
+					            </OBJECT>
+					            <jt:loop source='$classChild1' alias='method'>
+							       <UL>
+							         <LI><OBJECT type="text/sitemap">
+							           <param name="Name" value="<jt:item source='$method.name'/> (<jt:item source='$method.description'/>)">
+							           <param name="Local" value="src/help.c++/namespaces/<jt:item source='$method.path'/>/<jt:item source='$method.file_name'/>.html">
+							           <PARAM NAME="ImageNumber" value="41">
+							         </OBJECT>
+							       </UL>
+							    </jt:loop>
+					          </UL>
+					        </jt:Equals>
+				         </jt:loop>
+				       </UL>
+				    </jt:loop>
+		          </UL>
+		        </jt:Equals>		        
+		        
+		      </jt:loop>
+		    </UL>
+		  </jt:loop>
+      </UL>
+    </jt:Equals>
+<!-- 创建目录完毕 -->
+  </jt:loop>
+</UL>
+</BODY></HTML>]]></Source>
+</Template>
+

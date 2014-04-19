@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template asd="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define asd="]E[MIOeUo79dXfu13d2wsA" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source asd="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T><jt:item source='$project.label'/>。</T>
+//
+// @version 1.0.1
+//============================================================
+#ifndef __MO_<jt:item source='$project.code' format='upper'/>_SHARED_H__
+#define __MO_<jt:item source='$project.code' format='upper'/>_SHARED_H__
+
+#ifndef __MO_COMMON_H__
+#include <MoCommon.h>
+#endif // __MO_COMMON_H__
+
+#ifndef __MO_CORE_H__
+#include <MoCore.h>
+#endif // __MO_CORE_H__
+
+#ifndef __MO_MESSAGE_H__
+#include <MoMessage.h>
+#endif // __MO_MESSAGE_H__
+
+#ifndef __MO_GAME_H__
+#include <MoGame.h>
+#endif // __MO_GAME_H__
+
+MO_NAMESPACE_BEGIN
+
+<jt:loop source='$project' alias='entity' filter='$entity:name=Entity'>
+<jt:equals source='$entity.parent_entity' value=''>
+//============================================================
+// <T><jt:item source='$entity.label'/>结构。</T>
+//
+// @struct
+//============================================================
+<jt:true source='$entity.is_session'>
+struct SShared<jt:item source='$entity.code_name'/> : public SGmClientSession{
+</jt:true>
+<jt:false source='$entity.is_session'>
+struct SShared<jt:item source='$entity.code_name'/><jt:notEmpty source='$entity.parent_name'> : <jt:item source='$entity.parent_name'/></jt:notEmpty>{
+</jt:false>
+<jt:loop source='$entity' alias='field'>
+   // @property <jt:item source='$field.label'/>
+<jt:true source='$field.is_collection'>
+<jt:equals source='$field.type' value='String|Object'>
+   TFsNetObjects<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>> <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:notEquals source='$field.type' value='String|Object'>
+   TFsNetTypes<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>> <jt:item source='$field.name'/>;
+</jt:notEquals>
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Type|Enum'>
+   <jt:item source='$field.type_name'/> <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Struct|Object'>
+   <jt:item source='$field.type_name'/> <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Bytes'>
+   TNetBytes <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   TFsNetString<<jt:item source='$field.data_size'/>> <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Struct|Bytes|String|Object'>
+   T<jt:item source='$field.type'/> <jt:item source='$field.name'/><jt:notEmpty source='$field.data_size'>[<jt:item source='$field.data_size'/>]</jt:notEmpty>;
+</jt:notEquals>
+</jt:false>
+</jt:loop>
+};
+
+//============================================================
+// <T><jt:item source='$entity.label'/>结构定义。</T>
+//
+// @struct
+//============================================================
+<jt:true source='$entity.is_session'>
+class FShared<jt:item source='$entity.code_name'/> : public FGmClientSession{
+</jt:true>
+<jt:false source='$entity.is_session'>
+class FShared<jt:item source='$entity.code_name'/> : public <jt:true source='$entity.is_socket' value='FSharedGmObjectClient' elseValue='FSharedGmObject'/>{
+</jt:false>
+protected:
+   SShared<jt:item source='$entity.code_name'/>* _gData;
+public:
+   FShared<jt:item source='$entity.code_name'/>();
+   MO_ABSTRACT ~FShared<jt:item source='$entity.code_name'/>();
+public:
+   static TSize CalculateCapacity();
+   MO_OVERRIDE void OnSharedInitialize();
+   MO_OVERRIDE void OnSharedResume();
+   MO_OVERRIDE void OnSharedLink(TShareSegment& segment);
+   MO_OVERRIDE TSize SharedCapacity();
+public:
+   //------------------------------------------------------------
+   // <T>获得数据信息</T>
+   inline SShared<jt:item source='$entity.code_name'/>* Data(){
+      return _gData;
+   }
+<jt:loop source='$entity' alias='field'>
+<jt:true source='$field.is_collection'>
+   //------------------------------------------------------------
+   // <T>获得<jt:item source='$field.label'/>信息</T>
+<jt:equals source='$field.type' value='String|Object'>
+   inline TFsNetObjects<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+      return _gData-><jt:item source='$field.name'/>;
+   };
+</jt:equals>
+<jt:notEquals source='$field.type' value='String|Object'>
+   inline TFsNetTypes<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+      return _gData-><jt:item source='$field.name'/>;
+   };
+</jt:notEquals>
+</jt:true>
+<jt:false source='$field.is_collection'>
+   //------------------------------------------------------------
+   // <T>获得<jt:item source='$field.label'/>信息</T>
+<jt:equals source='$field.type' value='Type|Enum'>
+   inline <jt:item source='$field.type_name'/> <jt:item source='$field.name' format='upper.first'/>(){
+</jt:equals>
+<jt:equals source='$field.type' value='Struct|Object'>
+   inline <jt:item source='$field.type_name'/>& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   inline TFsNetString<<jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Struct|String|Object'>
+   inline T<jt:item source='$field.type'/> <jt:item source='$field.name' format='upper.first'/>(){
+</jt:notEquals>
+      return _gData-><jt:item source='$field.name'/>;
+   };
+<jt:notEquals source='$field.type' value='Object'>
+   //------------------------------------------------------------
+   // <T>设置<jt:item source='$field.label'/>信息</T>
+</jt:notEquals>
+<jt:equals source='$field.type' value='Type|Enum'>
+   inline void Set<jt:item source='$field.name' format='upper.first'/>(<jt:item source='$field.type_name'/> value){
+      _gData-><jt:item source='$field.name'/> = value;
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='Struct'>
+   inline void Set<jt:item source='$field.name' format='upper.first'/>(<jt:item source='$field.type_name'/>& value){
+      _gData-><jt:item source='$field.name'/> = value;
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   inline void Set<jt:item source='$field.name' format='upper.first'/>(TCharC* pValue){
+      _gData-><jt:item source='$field.name'/> = pValue;
+   };
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Struct|String|Object'>
+   inline void Set<jt:item source='$field.name' format='upper.first'/>(T<jt:item source='$field.type'/> value){
+      _gData-><jt:item source='$field.name'/> = value;
+   };
+</jt:notEquals>
+</jt:false>
+</jt:loop>
+public:
+   MO_OVERRIDE void Reset();
+   MO_OVERRIDE TCharC* Dump(TChar* pDump, TSize capacity);
+};
+
+</jt:equals>
+</jt:loop>
+MO_NAMESPACE_END
+
+#endif // __MO_<jt:item source='$project.code' format='upper'/>_SHARED_H__
+]]></Source>
+</Template>

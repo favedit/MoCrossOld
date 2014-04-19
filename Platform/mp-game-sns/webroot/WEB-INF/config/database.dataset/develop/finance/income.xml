@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="[07niD]NFGs7iRkqzk4OtA" name="develop.finance.income" label="M#12cn17项目-收入信息" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="DP_FINANCE_INCOME" data_alias="DP_FIN_INC" data_logic="DP_FINANCE_INCOME_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="5E9C4ZMl4cKdx5rop0BluQ" name="project_id" label="M#12cn14项目标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PJT" data_refer="develop.project" data_uniques="income" />
+  <FieldInteger _uuid="UUhzFvtWmXMuaoBIAT4TkA" name="income_id" label="M#12cn14收入标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="INCOME_ID" data_alias="INC" data_refer="business.finance.income" data_uniques="income" />
+  <FieldBoolean _uuid="p0EWtPZMBW2GBWmA5OLvoQ" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#12cn213Y = 有效\nN = 无效" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldFloat _uuid="zkTFiGmU[Qh1JAZZkT2zmw" name="income_rate" label="M#12cn14收入比率" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="INCOME_RATE" />
+  <FieldDate _uuid="okpO7z1IMgFWp3LTSyznjQ" name="create_date" label="M#12cn14创建日期" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_default="SYSDATE" />
+</DataStore>
+

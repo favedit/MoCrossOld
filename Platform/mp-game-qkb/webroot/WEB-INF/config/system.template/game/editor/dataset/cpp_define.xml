@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="uUpzaGEPkNp3dBzx11rRpA" name="database.logicunit.sqlView" is_valid="Y" note="M#">
+  <Source _uuid="60]ZbPHhJJ80wmSY2jV0hw" is_valid="Y" note="M#">
+<![CDATA[#ifndef __MO_<jt:Item source='$data_group' format='upper'/>_DATASET_H__
+#define __MO_<jt:Item source='$data_group' format='upper'/>_DATASET_H__
+
+#ifndef __MO_<jt:Item source='$data_group' format='upper'/>_CORE_H__
+#include "Mo<jt:Item source='$data_group'/>Core.h"
+#endif // __MO_<jt:Item source='$data_group' format='upper'/>_CORE_H__
+
+#ifndef __MO_<jt:Item source='$data_group' format='upper'/>_MODULE_H__
+#include "Mo<jt:Item source='$data_group'/>Module.h"
+#endif // __MO_<jt:Item source='$data_group' format='upper'/>_MODULE_H__
+
+#define MO_SQL_DATETIME_CHG_FORMAT "%Y%m%d%H%i%S"
+#define MO_SQL_DATETIME_GET_FORMAT "%Y%m%d%H%M%S"
+#define MO_SQL_DATETIME_SET_FORMAT "%Y-%m-%d %H:%M:%S"
+
+MO_NAMESPACE_BEGIN
+
+<jt:item source='$source'/>//============================================================
+// <T>创建所有数据集合</T>
+//============================================================
+class FStorageDatasetConsole{
+public:
+   //------------------------------------------------------------
+   // <T>初始化所有数据集合</T>
+   void Initialize(){
+<jt:loop source='$datasets' alias='dataset'>
+      TDs<jt:Item source='$dataset.data_name' format='class'/>::Create();
+</jt:loop>
+   }
+   //------------------------------------------------------------
+   // <T>释放所有数据集合</T>
+   void Release(){
+   }
+};
+//------------------------------------------------------------
+typedef RSingleton<FStorageDatasetConsole> RStorageDatasetManager;
+
+MO_NAMESPACE_END
+
+#endif // __MO_<jt:Item source='$data_group' format='upper'/>_DATASET_H__
+]]></Source>
+</Template>

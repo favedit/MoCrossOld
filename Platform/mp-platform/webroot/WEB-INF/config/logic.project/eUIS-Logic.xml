@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project _uuid="ukTa4iuFyoGrjs01WcbBkg" name="eUIS-Logic" label="M#12cn14公司业务" note="M#" is_valid="Y">
+  <Catalog _uuid="mEewtyAv1AkydPkOsjPcjg" name="Design" label="M#12cn14业务设计" note="M#" is_valid="Y" />
+  <Catalog _uuid="Xk]q58ZPvacaktVKAyb8jQ" name="Process" label="M#12cn14流程构架" note="M#" is_valid="Y">
+    <Catalog _uuid="UkkOboyeG[5ISr43M[5IgA" name="Property" label="M#12cn14属性定义" note="M#" is_valid="Y" />
+    <Catalog _uuid="ckgM05WCA14biceRuCmxkA" name="Event" label="M#12cn14事件队列" note="M#" is_valid="Y">
+      <Catalog _uuid="okA4LuL[x6fp08EsmQDPnw" name="Design" label="M#12cn14业务设计" note="M#" is_valid="Y" />
+      <Catalog _uuid="pEsVgiowj8]eiQQ7lD66nQ" name="Framework" label="M#12cn12构架" note="M#" is_valid="Y">
+        <Module _uuid="RUxZ2mfEcTQCg2t75jNJuQ" name="Event" label="M#12cn14事件定义" note="M#12cn248事件队列是三大流程（事件队列，计划，订阅）中最基础的部分，\n订阅与计划最终都是分配到事件上执行。" is_valid="Y" />
+        <Module _uuid="AEBKEyhAUSV01FcW64NbgQ" name="EventConsole" label="M#12cn15事件控制台" note="M#" is_valid="Y">
+          <Point _uuid="wUkbEcKscTjxIwzPCKPZiA" name="查询线程根据预先设置好的事件间隔运行" label="M#" note="M#12cn3177线程的概念：是进程中的一个实体，是被系统独立调度和分派的基本单位，\n线程自己不拥有系统资源，只拥有一点在运行中必不可少的资源，但它可\n与同属一个进程的其它线程共享进程所拥有的全部资源。一个线程可以创\n建和撤消另一个线程，同一进程中的多个线程之间可以并发执行。由于线\n程之间的相互制约，致使线程在运行中呈现出间断性。线程也有就绪、\n阻塞和运行三种基本状态。" is_valid="Y" scope_note="查询线程也是一个普通线程，预先设置好其时间间隔后，线程会根据预先\n设置好的时间间隔有规律的以运行，休息，运行的方式执行。" />
+          <Point _uuid="B0314QExb9OdvENtT7X7qg" name="线程缓冲池里的线程（执行线程）根据预先设置好的事件间隔运行" label="M#" note="M#" is_valid="Y" scope_note="查询线程也是一个普通线程，预先设置好其时间间隔后，线程会根据预先\n设置好的时间间隔有规律的以运行，休息，运行的方式执行。" />
+        </Module>
+        <Module _uuid="Ckqy7yunaE2W4uqmbTfBjA" name="QueryThread" label="M#12cn14查询线程" note="M#" is_valid="Y">
+          <Point _uuid="1U[e]etv]l5G5]q9fnaOmQ" name="事件状态为已发行状态的数据将被查询出来" label="M#" note="M#12cn3104事件状态共有以下几种状态：\n发行状态，英文全称publish，英文缩写P\n等待状态，英文全称waiting，英文缩写W\n运行状态，英文全称running，英文缩写R\n停止状态，英文全称stop，英文缩写S\n\n" is_valid="Y" scope_note="事件状态为发行表示该事件发行状态，只有处于发行状态的事件才会被\n查询出来。" />
+          <Point _uuid="bEe68j[hDF5MMPvmpl[knQ" name="查询出来的每一条记录以组为单位分配到可执行对象" label="M#" note="M#" is_valid="Y" scope_note="对检索出来的事件根据预先设定好的分组信息，进行分组（没有组名的给予\n默认组）分配到不同的可执行对象，并等待执行线程的调起。" />
+          <Point _uuid="wUxt0Wokvqef8lbjUwBSlQ" name="分配到可执行对象上的记录状态将会被更新" label="M#" note="M#" is_valid="Y" scope_note="事件状态更新为等待状态，为了准确的能够了解到事件记录目前执行到了\n什么状况。" />
+          <Point _uuid="201w8RbBersg5k9AIormjw" name="在更新状态的过程中如果发生意外，则弹出相应消息" label="M#" note="M#" is_valid="Y" scope_note="在执行过程中，为了提高客户体验，给予客户更人性化的画面信息，如果\n这其间发生了意外，使程序暂时终止了，此时需要将页面迁移到一个错误\n页面，并且告诉客户哪些操作可能产生了错误。" />
+          <Point _uuid="PkfnRt5M]ieNCPNIJHG4lw" name="如果线程处于运行状态" label="M#" note="M#" is_valid="Y" scope_note="如果数据的分组的可执行对象处于运行状态，则把该数据直接推入到相应\n组事件队列，在这其间，需要把该组对应的事件队列数据进行同步，保证\n数据的完整性。" />
+          <Point _uuid="qU8LkSiTtlVTFr4V1UMtiA" name="如果线程处于非运行状态" label="M#" note="M#" is_valid="Y" scope_note="如果数据的分组的可执行对象处于非运行状态，则把该数据推入到相应组\n事件队列，并把该组对应的可执行对象的运行状态改为执行中。" />
+        </Module>
+        <Module _uuid="]E[8Xsf717PFr0PNCVIYqw" name="ExecuteThread" label="M#12cn14执行线程" note="M#" is_valid="Y">
+          <Point _uuid="CU7RKYK7uuRx6Vzr]mWArA" name="将发行的事件按照优先级排序" label="M#" note="M#" is_valid="Y" scope_note="如果优先级和创建日期都存在，则优先级高的先排序，再对创建日期排序，\n这样保证级别高的或者创建时间早的放在事件队列列表的前面，保证能\n优先执行，避免插队现象。" />
+          <Point _uuid="DE0gFQxOEcQ]7f1Yq5LesA" name="将发行的事件按照创建日期排序" label="M#" note="M#" is_valid="Y" scope_note="如果在优先级相同的情况下，需要按照事件的创建日期排序，创建时间越\n早的将会被排到事件队列列表的最前面，保证其能够优先被执行到。" />
+          <Point _uuid="n0KiYuGML[bFq0ErpcWBig" name="在排序过程中如果发生意外，则弹出相应消息" label="M#" note="M#" is_valid="Y" scope_note="在排序过程中产生的任何意外，我们都应该将页面迁移到错误信息页面，\n把可能产生错误的信息告知用户。" />
+          <Point _uuid="Kk14RZRYx]PrVOZMOU0Sjg" name="取事件队列列表里的第一条数据执行" label="M#" note="M#" is_valid="Y" scope_note="按照排序的结果，列表里的第一条数据应该是优先级最高，而且创建时间\n也比较早的，所以应该最先被执行的。" />
+          <Point _uuid="Hkn[zbmWuaBs50GdyCgYvg" name="处理数据前先修改事件状态" label="M#" note="M#" is_valid="Y" scope_note="在事件状态已经为等待状态的基础上，把其状态修改成运行状态，这样能\n够做到对事件状态的变化能够实时的跟踪到。" />
+          <Point _uuid="zkhdBMQX5rISH3Seva2Aqw" name="在更新状态的过程中如果发生意外，则弹出相应消息" label="M#" note="M#" is_valid="Y" scope_note="在执行过程中，为了提高客户体验，给予客户更人性化的画面信息，如果\n这其间发生了意外，使程序暂时终止了，此时需要将页面迁移到一个错误\n页面，并且告诉客户哪些操作可能产生了错误。" />
+          <Point _uuid="vU9EN07LgkwQxrqLTu[sqw" name="每组的事件由一个线程来负责调起执行" label="M#" note="M#" is_valid="Y" scope_note="每组的事件由一个线程调起执行，每个线程负责一组事件的处理执行。" />
+          <Point _uuid="ZkAjNM79gajgdRik7q1iqQ" name="调起执行的事件，根据其类型设置，调用相应的执行去处理" label="M#" note="M#" is_valid="Y" />
+          <Point _uuid="aEAqQT55CBCd7[uCkBjtug" name="如果处理类型是JAVA的" label="M#" note="M#" is_valid="Y" scope_note="处理类型为JAVA的，根据解析出来的类名和函数名，调用相应的函数执行。" />
+          <Point _uuid="jkgWfVvQ1I7tC70MBBeWvg" name="如果在执行过程对应JAVA的过程中发生意外，则弹出相应消息" label="M#" note="M#" is_valid="Y" scope_note="如果执行失败则出message，显示具体出错的原因。" />
+          <Point _uuid="CkRl]4MgUOoq2fRfWwPloQ" name="如果处理类型是PL/SQL的" label="M#" note="M#" is_valid="Y" scope_note="处理类型为PLSQL的，根据解析出来的包名和函数名，调用相应的函数执行。" />
+          <Point _uuid="RUuEdspXA[7V87[dhbFFpw" name="如果在执行过程对应PL/SQL的过程中发生意外，则弹出相应消息" label="M#" note="M#" is_valid="Y" scope_note="如果执行失败则出message，显示具体出错的原因。" />
+          <Point _uuid="nkn3VzPSze8ZgnW3Qh6]iw" name="如果处理类型是可执行文件的" label="M#" note="M#" is_valid="Y" scope_note="处理类型为EXECUTE的，根据解析出来的类名和函数名，调用相应的\n函数执行。" />
+          <Point _uuid="10tKuFQw4sd1GFzR9ailug" name="如果在执行过程对应可执行文件的过程中发生意外，则弹出相应消息" label="M#" note="M#" is_valid="Y" scope_note="如果执行失败则出message，显示具体出错的原因。" />
+          <Point _uuid="O0SpcKtNgHjQDZHEbWCbiQ" name="执行完的事件需要从事件队列列表中移除" label="M#" note="M#" is_valid="Y" scope_note="将该数据从该组事件队列中移除。" />
+          <Point _uuid="HU[h9YMCu8b0FwvWqTGvnw" name="相应的处理执行结束后更新事件的状态" label="M#" note="M#" is_valid="Y" scope_note="执行事件结束后，并将其事件停止。" />
+          <Point _uuid="fURRq5K[L8IB3irtLUEFiQ" name="在更新状态的过程中如果发生意外，则弹出相应消息" label="M#" note="M#" is_valid="Y" scope_note="更新失败，则出message，显示具体出错的原因。" />
+          <Point _uuid="ZEksJgnXLoFRxD3pH]D9kQ" name="更新事件的执行百分比" label="M#" note="M#" is_valid="Y" scope_note="事件执行百分比更新为百分之百。" />
+          <Point _uuid="xkSRaBIdLtbFgkP3OvmbuQ" name="更新失败则弹出相应消息" label="M#" note="M#" is_valid="Y" scope_note="更新失败，则出message，显示具体出错的原因。" />
+          <Point _uuid="r0ZQcE[w1N0ReNAVxjMXpg" name="将事件执行的结果写入事件结果表" label="M#" note="M#" is_valid="Y" scope_note="将事件执行结果写入事件结果表。" />
+          <Point _uuid="JEwpxKpBuHgHWV6xsiPFnQ" name="结果写入失败则弹出相应消息" label="M#" note="M#" is_valid="Y" scope_note="写入失败，则出message，显示具体出错的原因。" />
+          <Point _uuid="9U60Wg8SxCBA[dqJxDH8vw" name="循环执行调起下一个事件执行" label="M#" note="M#" is_valid="Y" scope_note="根据预先设置好的时间间隔，到了事件间隔，取下一条数据重复上述执行。" />
+        </Module>
+      </Catalog>
+    </Catalog>
+    <Catalog _uuid="fEV2I[V9[G89ZpXl[8O1lw" name="Schedule" label="M#12cn14计划队列" note="M#" is_valid="Y">
+      <Catalog _uuid="h0yfFHT63b[CvQB916Rbow" name="Design" label="M#12cn14业务设计" note="M#" is_valid="Y" />
+      <Catalog _uuid="t0BOqXQ9ojIXR[KjtYbbjg" name="Framework" label="M#12cn12构架" note="M#" is_valid="Y">
+        <Module _uuid="BErFh63gHarZb6ZWfSrHmQ" name="Schedule" label="M#12cn14计划定义" note="M#" is_valid="Y" />
+        <Module _uuid="jUB34a0YGUrYeCwXqJfJgQ" name="scheduleConsole" label="M#12cn15计划控制台" note="M#" is_valid="Y">
+          <Point _uuid="ZEANj7d2jI[NYngG0]WHsw" name="设置线程运行间隔" label="M#" note="M#" is_valid="Y" expect_begin_date="20081218000000" expect_end_date="20081218000000" create_user_name="185" scope_note="控制台通过从组件配置信息获取线程的运行时间间隔。" />
+          <Point _uuid="YkPngOiaAX]pu7BNvpYEmQ" name="启动查询线程" label="M#" note="M#" is_valid="Y" create_user_name="185" scope_note="控制台创建查询线程并启动线程" />
+          <Point _uuid="NUNyzOo3yci5XAJWMXVPrg" name="启动执行线程" label="M#" note="M#" is_valid="Y" create_user_name="185" scope_note="控制台创建执行线程并启动。" />
+        </Module>
+        <Module _uuid="DU9Nod0Bthf3MSh6CIAZow" name="QueryThread" label="M#12cn14查询线程" note="M#" is_valid="Y">
+          <Point _uuid="gkzTF6XYebX268fDquZ8rg" name="设定查询时间规则" label="M#" note="M#" is_valid="Y" create_user_name="185" scope_note="第一次查询的开始时间为0，处理的结束时间为系统当前时间，以后处理\n的开始时间为上一次处理的结束时间，处理的结束时间总是取系统的当前\n时间。\n" />
+          <Point _uuid="jUMNpwjgeAYUS9E92Ol]hw" name="从数据库查询数据" label="M#" note="M#" is_valid="Y" create_user_name="185" scope_note="从数据库中查询符合条件的计划，条件如下：\n1，计划状态为已发行\n2，计划更新时间大于或者等于查询的开始时间\n3，计划更新时间小于查询的结束时间" />
+          <Point _uuid="V0vIsKKzaNdPxBH5vAVskQ" name="组建计划对象" label="M#" note="M#" is_valid="Y" create_user_name="185" scope_note="根据查询所得的计划与他的时间点数据，组装成计划，计划下包括时间点。" />
+          <Point _uuid="l0K4ryMHvMFoUzBX6oeFgw" name="检查计划是否已存在" label="M#" note="M#" is_valid="Y" create_user_name="185" scope_note="检查计划对象是否已在计划列表中存在，存在则将列表中的对象覆盖，不存\n在直接插入即可。\n" />
+          <Point _uuid="50EjMXo8]fHLloxpHMvoiw" name="计划列表同步" label="M#" note="M#" is_valid="Y" create_user_name="185" scope_note="在向计划列表进行数据插入时，必须对计划列表进行同步，即在该现程修改\n计划列表内容时，不允许其线程修改计划列表内容，以保证数据的完整性。" />
+          <Point _uuid="DUrNDzvuQ2P8DeQzmLvxkQ" name="循环执行以上各步骤" label="M#" note="M#" is_valid="Y" expect_begin_date="20081218000000" expect_end_date="20081218000000" create_user_name="185" scope_note="线程安预先设定好的时间间隔循环执行以上各个步骤" />
+        </Module>
+        <Module _uuid="vk5m1mbyRoOIBJJxYP6Jog" name="ExecuteThread" label="M#12cn14执行线程" note="M#" is_valid="Y">
+          <Point _uuid="c0Yja]U8JUV3D2pQTE6lrA" name="线程安预先约定时间循环执行" label="M#" note="M#" is_valid="Y" create_user_name="185" scope_note="线程按照预先约定好的时间执行启动函数。" />
+          <Point _uuid="mEKzijUip7wFGuwzgK[qnA" name="线程是否停止" label="M#" note="M#" is_valid="Y" create_user_name="185" scope_note="检查线程状态是否停止，停止则退出执行" />
+          <Point _uuid="yEDgJ45hTZM1mqJuDJdnvw" name="获得执行的开始时间和结束时间" label="M#" note="M#" is_valid="Y" create_user_name="185" scope_note="计划时间点的执行时间必须在执行的开始时间和结束时间范围之内才会被\n执行。\n获得执行开始时间和结束时间的规则：\n第一次开始时间和结束时间都是当前时间，以后每一次的开始时间是上\n一次循环的结束时间，结束时间为当前时间。" />
+          <Point _uuid="G0]gW3]56j1jM3PiRD4krw" name="循环检查计划" label="M#" note="M#" is_valid="Y" create_user_name="185" scope_note="如果没有停止，则循环检查计划列表中的计划是否需要执行" />
+          <Point _uuid="rUGR]l3qKLWMugFHjuKXhA" name="循环检查计划的时间点" label="M#" note="M#" is_valid="Y" create_user_name="185" scope_note="循环计划的每个时间点进行检查。" />
+          <Point _uuid="H0hR0lrohhLD5vGw3JPoug" name="计划是否有效" label="M#" note="M#" is_valid="Y" create_user_name="185" scope_note="判断当前时间是否在计划的开始和结束时间之间，不在则将计划取消。" />
+          <Point _uuid="[0gm]cW4QY8o4GVyo5BphQ" name="获得各个时间差" label="M#" note="M#" is_valid="Y" create_user_name="185" scope_note="获得当前时间与计划的开始时间之间的各个时间差值，如月份差，天数差，\n小时差等" />
+          <Point _uuid="lEo]nqRG6jnm0liTqSedtw" name="检查时间点类型" label="M#" note="M#" is_valid="Y" scope_note="检查时间点的类型" />
+          <Point _uuid="Rk6[3764ST0ZwSwyCgd4iQ" name="按年执行" label="M#" note="M#" is_valid="Y" scope_note="时间点的类型为按年执行的，即每(隔几)年的那几天去执行" />
+          <Point _uuid="7UZ4exdw5b9Cy9LI9GJarg" name="按月份的那几天执行" label="M#" note="M#" is_valid="Y" scope_note="按月份得那几天执行，即每(隔几)月的那几天执行" />
+          <Point _uuid="Z0XzDgxITXp5pDvJsQ7ckA" name="按月份的周来执行" label="M#" note="M#" is_valid="Y" scope_note="按月份的周来执行，即每(隔几)个月的哪(几)周的哪(几)天执行" />
+          <Point _uuid="eUIUTdw10mZ[fCYzuAwNlg" name="按周来执行" label="M#" note="M#" is_valid="Y" scope_note="按周来执行，即每(隔几)周的哪(几)天来执行。" />
+          <Point _uuid="Xk4FLl7pEsn9jIo5mWYUkQ" name="按天来执行" label="M#" note="M#" is_valid="Y" scope_note="按天来执行，即按每(几)天的执行时间执行" />
+          <Point _uuid="2Es4s]bYtm6]V29T]wjbmQ" name="按小时执行" label="M#" note="M#" is_valid="Y" scope_note="按小时执行，即每(几)个小时的多少分钟执行" />
+          <Point _uuid="BUQa[F3jJHLVplHIYaACug" name="一次执行" label="M#" note="M#" is_valid="Y" scope_note="按给定时间来一次执行计划。" />
+          <Point _uuid="fkY[mE2H0toQqUURpYNXiw" name="不存在的类型抛出错误" label="M#" note="M#" is_valid="Y" scope_note="如果时间类型不存在，则抛出时间类型不存在的错误" />
+          <Point _uuid="bEwPfYNiSJB2rUgsYIaelA" name="时间检查通过则部署事件" label="M#" note="M#" is_valid="Y" scope_note="时间检查通过后则部署事件" />
+        </Module>
+      </Catalog>
+    </Catalog>
+    <Catalog _uuid="gkB]KaYYvm0JjvkvxmdmuA" name="Subscribe" label="M#12cn14事件订阅" note="M#" is_valid="Y">
+      <Catalog _uuid="P05iWjqJEji8Q]nULAuhmQ" name="Design" label="M#12cn12设计" note="M#" is_valid="Y" />
+      <Catalog _uuid="1EUgYlLhDQWZb[2EdTIoog" name="Framework" label="M#12cn12构架" note="M#" is_valid="Y" />
+    </Catalog>
+    <Catalog _uuid="Ck773yK8pqHG25NdFAfbtA" name="Process" label="M#12cn14流程队列" note="M#" is_valid="Y" />
+  </Catalog>
+  <Catalog _uuid="rk[b9aBFfvLRDD5ClLSmnQ" name="UserInterface" label="M#12cn14用户界面" note="M#" is_valid="Y">
+    <Catalog _uuid="T0xWPuWSaMKLF03hmLjonw" name="Public" label="M#12cn14共同机能" note="M#" is_valid="Y">
+      <Catalog _uuid="ikfd[LHp8AX0x5mineUmsg" name="Login" label="M#12cn14用户登录" note="M#" is_valid="Y">
+        <Module _uuid="u0fv445BK1En8hFDd4rqvg" name="LoginPage" label="M#12cn14登录画面" note="M#" is_valid="Y" status_cd="T">
+          <Point _uuid="Lk4zayXwJbtdWi6rsBxYjQ" name="输入账号，密码之后按Enter键登录" label="M#" note="M#" is_valid="Y" status_cd="T" expect_begin_date="20081218000000" expect_end_date="20081218000000" begin_date="20081218000000" end_date="20081218000000" create_user_name="185" scope_note="输入账号和密码之后按Enter键能够登录。" important_cd="3" priority_cd="3" difficult_cd="3">
+            <TestCase _uuid="bEYh9xqHi2A7SP5PVacrpw" name="输入账号，密码之后按Enter键登录" label="M#" note="M#" is_valid="Y" status_cd="O" priority_cd="3" difficult_cd="3" case_note="当用户输入账号和密码之后，敲回车键能够登录" input_note="通行证：huyukun\n密码：huyukun\nEnter键" output_note="登录页面" result_cd="S" result_note="正确登陆页面" create_user_name="185" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="0klcZK5SV47GYwCYvq3wgg" name="锁定IP地址登录" label="M#" note="M#" is_valid="Y" create_user_name="185" scope_note="在允许IP已登陆情况下不允许其他IP重复登录" />
+          <Point _uuid="8U2Q6Gc64l[4iM3Aktj2qg" name="正确的帐号，密码，不保存信息，不记录cookie登录" label="M#" note="M#" is_valid="Y" status_cd="T" expect_begin_date="20081216000000" expect_end_date="20081218000000" begin_date="20081216000000" end_date="20081218000000" create_user_name="185" scope_note="正确的帐号，密码，不保存信息，不记录cookie正确登陆。" priority_cd="7">
+            <TestCase _uuid="c0Vv87bSz2Q7[Y8Hf6MFvg" name="正确的帐号，密码，不保存信息，不记录cookie登录" label="M#" note="M#" is_valid="Y" status_cd="O" priority_cd="7" case_note="测试在输入正确的密码，正确的账户，不保存信息，也不保存cookie的情况下，用户是否能够正确地登录" input_note="通行证：huyukun\n密码：huyukun\n不保存账户信息\n不保存cookie" output_note="正确登录" result_cd="S" result_note="用户正确登陆" create_user_name="185" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="o0Req[zgik9uYVhxtHb9rQ" name="正确的帐号，密码，不保存信息，永久记录cookie登录" label="M#" note="M#" is_valid="Y" status_cd="T" expect_begin_date="20081217000000" expect_end_date="20081219000000" begin_date="20081217000000" end_date="20081219000000" create_user_name="185" scope_note="正确的帐号，密码，不保存信息，永久记录cookie正确登录。" priority_cd="7">
+            <TestCase _uuid="kU7Q]T]D363P4ujcYQp9sw" name="正确的帐号，密码，不保存信息，永久记录cookie登录" label="M#" note="M#" is_valid="Y" status_cd="N" priority_cd="5" case_note="测试在输入正确的密码，正确的账户，不保存信息，永久保存cookie的情况下，用户是否能够正确地登录" input_note="通行证：huyukun\n密码：huyukun\n不保存账户信息\n永久保存cookie" output_note="正确登录" result_cd="S" result_note="用户正确登录" create_user_name="185" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="F0kvgFTn]i4O6f5b[kKjow" name="正确的帐号，密码，不保存信息，计录cookie一个月登录" label="M#" note="M#" is_valid="Y" status_cd="T" create_user_name="185" scope_note="正确的账号和密码在不保存账户信息和记录cookie一个月的情况下登陆正确">
+            <TestCase _uuid="pUmKfZ0EDYFIMHEdRyxVpg" name="正确的帐号，密码，不保存信息，计录cookie一个月登录" label="M#" note="M#" is_valid="Y" status_cd="O" priority_cd="5" case_note="测试在输入正确的密码，正确的账户，不保存信息，保存cookie一个月的情况下，用户是否能够正确地登录" input_note="账户：huyukun\n密码：huyukun\n不保存账户信息\n保存cookie一个月" output_note="正确登陆" result_cd="S" result_note="正确登陆" create_user_name="185" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="7EdNfR2lwGpVLkC7oCTrrQ" name="正确的帐号，密码，不保存信息，计录cookie一天登录" label="M#" note="M#" is_valid="Y" create_user_name="185">
+            <TestCase _uuid="LUthjQOXaC3xadxzEArqgg" name="正确的帐号，密码，不保存信息，计录cookie一天登录" label="M#" note="M#" is_valid="Y" case_note="测试在输入正确的密码，正确的账户，不保存信息，保存cookie一天的情况下，用户是否能够正确地登录" input_note="账户：huyukun\n密码：huyukun\n不保存账户信息\n保存cookie一天" output_note="正确登陆" result_cd="S" result_note="正确登陆" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="LkGxmF8hRYaxqBUc3AoGnQ" name="正确的帐号，密码，保存信息，  不计录cookit登录" label="M#" note="M#" is_valid="Y">
+            <TestCase _uuid="okRcsDWo2G4yyv8g01jxiA" name="正确的帐号，密码，保存信息，  不计录cookit登录" label="M#" note="M#" is_valid="Y" case_note="测试在输入正确的密码，正确的账户，保存信息，不保存cookie的情况下，用户是否能够正确地登录" input_note="账户：huyukun\n密码：huyukun\n保存账户信息\n不保存cookie" output_note="正确登陆" result_cd="S" result_note="正确登陆" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="I0yAsy1uMZ2UywDf1FSmmg" name="正确的帐号，密码，保存信息，  永久计录cookie登录" label="M#" note="M#" is_valid="Y">
+            <TestCase _uuid="J0rhUNKqnM6L9lTcYo50qg" name="正确的帐号，密码，保存信息，  永久计录cookie登录" label="M#" note="M#" is_valid="Y" case_note="用户使用正确的帐号，密码，保存账户信息， 永久计录cookie登录" input_note="账户：huyukun\n密码：huyukun\n保存账户信息\n永久记录cookie" output_note="正确登陆" result_cd="S" result_note="正确登陆" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="pUy2uV2]CfqExJCTffV9qw" name="正确的帐号，密码，保存信息，  计录cookie一个月登录" label="M#" note="M#" is_valid="Y">
+            <TestCase _uuid="KkwsQR[ZoYiyiG3h4T7TqQ" name="正确的帐号，密码，保存信息，  计录cookie一个月登录" label="M#" note="M#" is_valid="Y" case_note="用户使用正确的帐号，密码，保存信息，记录cookie一个月登录" input_note="账户：huyukun\n密码：huyukun\n保存账户信息\n保存cookie一个月" output_note="正确登陆" result_cd="S" result_note="正确登陆" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="kU[tfIduPDnrrWe0kL5KqQ" name="正确的帐号，密码，保存信息，  计录cookie一天登录" label="M#" note="M#" is_valid="Y">
+            <TestCase _uuid="S02LCKc[eFa11fAD8OCtiw" name="正确的帐号，密码，保存信息， 计录cookie一天登录" label="M#" note="M#" is_valid="Y" case_note="用户使用正确的帐号，密码，保存信息，计录cookie一天登录是否成功。" input_note="账户：huyukun\n密码：huyukun\n保存账户信息\n保存cookie一天" output_note="正确登陆" result_cd="S" result_note="正确登陆" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="6kxxST2vItWjRPqwXfFBog" name="空的帐号，空的密码错误登录" label="M#" note="M#" is_valid="Y" scope_note="用空的帐号，空的密码错误登陆，报帐号为空的错误。">
+            <TestCase _uuid="WEtmVwy0Al3VAhU7DcBxhw" name="空账户和密码登陆错误" label="M#" note="M#" is_valid="Y" case_note="用户不输入账户名和密码的情况下登陆" input_note="账户：\n密码：" output_note="显示账户为空的信息" result_cd="S" result_note="显示“您输入的通行证为空，请重新输入。”" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="kkD3BC5v22LM]X47vfPetg" name="空的帐号，有密码错误登录" label="M#" note="M#" is_valid="Y" scope_note="空的帐号，有密码错误登录，报帐号为空错误">
+            <TestCase _uuid="OUJXrmI02vbNw]JNP5mahg" name="空账户有密码登陆错误" label="M#" note="M#" is_valid="Y" case_note="用户在有密码单没有输入账户名的情况下登陆" input_note="账户; \n密码: huyukun" output_note="显示账户为空的消息。" result_cd="S" result_note="显示“ 您输入的通行证为空，请重新输入。 ”" test_user_name="185" test_date="20080119000000" />
+          </Point>
+          <Point _uuid="8UAX6wEWIdt[y1jnrB13nw" name="错误的帐号，空的密码错误登录" label="M#" note="M#" is_valid="Y" scope_note="错误的帐号，空的密码错误登录，报帐号不存在">
+            <TestCase _uuid="QU3DQKABnRjeCQhSL3ZqrQ" name="错误的账号没有密码登陆错误" label="M#" note="M#" is_valid="Y" case_note="用户在填写了错误的账户但没有填写密码的情况下登陆" input_note="账户：hyk\n密码：\n" output_note="账户不存在信息" result_cd="S" result_note="显示“该通行证(hyk)不存在，请检查是否输入正确 ”" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="hEjxKJ9Zehvnaun3sDwwqw" name="错误的帐号，错误的密码错误登录" label="M#" note="M#" is_valid="Y" scope_note="错误的帐号，错误的密码错误登录，报帐号不存在">
+            <TestCase _uuid="L09XLdDdRoI7H1gAhKZhhg" name="错误的账号和密码登陆错误" label="M#" note="M#" is_valid="Y" case_note="用户填写错误的账户名和密码登陆" input_note="账户：1233\n密码：3211" output_note="显示账户不存在信息" result_cd="S" result_note="显示“该通行证(1233)不存在，请检查是否输入正确”。" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="mU88ahDh0eN]Dbz6iBLPrQ" name="正确的帐号，空的密码错误登陆" label="M#" note="M#" is_valid="Y" scope_note="正确的帐号，空的密码错误登录，报密码错">
+            <TestCase _uuid="RUc0nBhMBg0XN8JQUmnmhg" name="正确的账号空的密码登陆错误" label="M#" note="M#" is_valid="Y" case_note="用户输入正确的账户名但没有输入密码" input_note="账户：huyukun\n密码：" output_note="显示密码空的消息" result_cd="S" result_note="显示“您输入的密码为空，请重新输入。”。" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="HUaDx4or3Bd2ta0HaBzCkw" name="正确的账号，错误的密码错误登录" label="M#" note="M#" is_valid="Y" scope_note="正确的账号，错误的密码错误登录，报密码错">
+            <TestCase _uuid="5E9Uquoy2TU3cz[nOlfWjA" name="正确的账号错误的密码登陆错误" label="M#" note="M#" is_valid="Y" case_note="用户输入正确的账号和错误的密码" input_note="账户：huyukun\n密码：hyk" output_note="显示密码错误的消息" result_cd="S" result_note="显示“密码非法，请重新输入。”" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="RUmtHGAKBlKDpFjbKbXalg" name="退出之后返回登录画面" label="M#" note="M#" is_valid="Y" status_cd="T" create_user_name="185" scope_note="在登陆之后点击退出，返回的画面是登陆页面">
+            <TestCase _uuid="70mZO9UhA]KBexb7PtPQoA" name="退出之后返回登陆页面" label="M#" note="M#" is_valid="Y" case_note="用户在退出后画面应该是登陆页面" input_note="登陆\n点击退出" output_note="返回登陆页面" result_cd="S" result_note="返回登陆页面" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="EEgqhhS2yIJZqWmyMG1Bpw" name="永久保存cookie" label="M#" note="M#" is_valid="Y" scope_note="登录之后，在不ie没有变更和用户没有主动退出的情况下能够跳过登陆画面直接登录。">
+            <TestCase _uuid="TUVW2D9AbLN[eG6rg57Fow" name="永久保存cookie" label="M#" note="M#" is_valid="Y" status_cd="O" priority_cd="5" difficult_cd="5" case_note="用户选择永久保存cookie之后，是否在不退出的情况下能永久的跳过登陆页面直接登录。" input_note="通行证：huyukun\n密码：huyukun\n永久保存cookie\n一天之后登录" output_note="跳过登陆页面直接登录" create_user_name="185" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="PUG5CbasS1HQ8knk5WJSrg" name="保存cookie一月" label="M#" note="M#" is_valid="Y" scope_note="登录之后，在ie没有变更和用户没有主动退出的情况下能够在一个月之内跳过登陆画面直接登录，一个月之后需重新登录。">
+            <TestCase _uuid="d0AAcLLfDiJOhisufB98iA" name="保存cookie一个月之后一天登录" label="M#" note="M#" is_valid="Y" case_note="用户选择保存cookie一个月之后，是否在不退出的情况下在一天后能跳过登陆页面直接登录。" input_note="通行证：huyukun\n密码：huyukun\n永久保存cookie\n一天之后登录" output_note="跳过登陆页面直接登录" result_cd="S" result_note="跳过登陆页面直接登录" test_user_name="185" test_date="20081219000000" />
+            <TestCase _uuid="20WywV97oBvMFdpjmtMqkQ" name="保存cookie一个月之后一月登录" label="M#" note="M#" is_valid="Y" case_note="用户选择保存cookie一个月之后，是否在不退出的情况下在一月后不能跳过登陆页面直接登录。" input_note="通行证：huyukun\n密码：huyukun\n永久保存cookie\n一月之后登录" output_note="需重新登陆" result_cd="S" result_note="需重新登陆" test_user_name="185" test_date="20081220000000" />
+          </Point>
+          <Point _uuid="hE5]tv5aYh8JRjz8B5sDsA" name="保存cookie一天" label="M#" note="M#" is_valid="Y" scope_note="登录之后，在ie没有变更和用户没有主动退出的情况下能够在天之内跳过登陆画面直接登录，一天之后需重新登录。">
+            <TestCase _uuid="REJ4lclWiFLKK8tUzbKQug" name="保存cookie一天之后一天内登陆" label="M#" note="M#" is_valid="Y" case_note="用户选择保存cookie一天之后，是否在不退出的情况下在一天之内能跳过登陆页面直接登录。" input_note="通行证：huyukun\n密码：huyukun\n保存cookie一天\n3小时之后登录" output_note="成功跳过登陆页面直接登录" result_cd="S" result_note="跳过登陆页面直接登录" test_user_name="185" test_date="20090120000000" />
+            <TestCase _uuid="lkPWpymE]6lF78NREIbuiw" name="保存cookie一天情况下一天后登陆" label="M#" note="M#" is_valid="Y" case_note="用户选择保存cookie一天之后，是否在不退出的情况下在一天后不能跳过登陆页面直接登录。" input_note="通行证：huyukun\n密码：huyukun\n保存cookie一天\n一天之后登录" output_note="不能跳过登陆页面直接登录" result_cd="S" result_note="不能跳过登陆页面直接登录" test_user_name="185" test_date="20081220000000" />
+          </Point>
+          <Point _uuid="4Uwj]g3tKNfJvtlXd[NCpA" name="不保存cookie" label="M#" note="M#" is_valid="Y" scope_note="登录之后，用户每次需重新登陆">
+            <TestCase _uuid="NUxqBYM8JVejvnPLoONtjQ" name="不保存cookie登陆" label="M#" note="M#" is_valid="Y" case_note="在用户没有保存cookie的情况下，每次登录都得从登陆页面登陆。" input_note="通行证：huyukun\n密码：huyukun\n不保存cookie\n重新点击登陆链接" output_note="不能跳过登陆页面" result_cd="S" result_note="不能跳过登陆页面，需重新输入帐号和密码登陆" test_user_name="185" test_date="20080119000000" />
+          </Point>
+          <Point _uuid="qUa]w0cxlnkfvg0EfadGgA" name="保存账户信息" label="M#" note="M#" is_valid="Y" create_user_name="185" scope_note="在保存账户信息的情况下，以后每次登录时账户名已填写，退出后账户名也是在账号输入框中，但密码不保存。">
+            <TestCase _uuid="0EwEGubNGeo8P26t7lfyhQ" name="保存账户信息后重新登录" label="M#" note="M#" is_valid="Y" case_note="用户保存账户信息之后，重新登陆时，不需要填写账户名" input_note="保存账户登录\n重新进入登陆页面" output_note="账户已填，密码未填" result_cd="S" result_note="用户的账户已填" create_user_name="185" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="okhc]aSV2zPUAPa22IxJsg" name="不保存账户信息" label="M#" note="M#" is_valid="Y" scope_note="在不保存账户信息的情况下，用户每次登录都得输入账户名和密码。">
+            <TestCase _uuid="zUxam3P490EkAz9IbZyXlw" name="不保存账户信息的情况下重新登录" label="M#" note="M#" is_valid="Y" case_note="在不保存账户信息的情况下，重新点击登陆链接，需重新输入账户名和密码" input_note="不保存账户登陆\n重新点击登录链接" output_note="需重新输入账户信息和密码才能登录。" result_cd="F" result_note="重新登陆不用再输入账户名，账户名已存在。" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="RkYCfnQ65F6qmqM2wbVXhw" name="在保存了cookie登陆之后，再退出，然后登陆页面链接不能登陆到首页" label="M#" note="M#" is_valid="Y" scope_note="在保存了cookie登陆之后，再退出，然后点击登陆页面链接不能登陆到首页。">
+            <TestCase _uuid="6k[t4tIsmZd8siaiW8wqsA" name="保存账户信息之后重新点击登陆链接登陆" label="M#" note="M#" is_valid="Y" case_note="在保存了账户信息登陆之后，点击退出，再次点击登陆链接，会跳到登陆页面，用户需重新输入密码和账户" input_note="保存cookie登陆\n退出\n点击登陆链接" output_note="登陆页面，需重新输入密码和账户登陆" result_cd="S" result_note="登陆页面，需重新输入密码和账户登陆" test_user_name="185" test_date="20081219000000" />
+          </Point>
+          <Point _uuid="DkA5ufmNQllZrbi[bdFuoA" name="右侧显示系统功能更新信息" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="185" scope_note="在右侧显示系统的功能更新信息" />
+        </Module>
+      </Catalog>
+    </Catalog>
+  </Catalog>
+</Project>
+

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template ads="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define ads="]E[MIOeUo79dXfu13d2wsA" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source ads="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T>网络消息工厂。</T>
+//
+// @version 1.0.1
+// @auto 代码器管理的代码，如需修改请在手动修改标出的地方修改。
+//============================================================
+#include "MoMgMessage.h"
+
+MO_NAMESPACE_BEGIN
+
+//============================================================
+// <T>根据消息代号获得消息名称。</T>
+//
+// @param code 代码号
+// @return 消息名称
+//============================================================
+TCharC* FNetMessageFactory::CodeName(TInt code){
+   TInt group = code & 0xFF00;
+   switch(group){
+<jt:loop source='$config' alias='group'>
+      // <jt:item source='$group.label'/>
+      case ENetMessageGroup_<jt:item source='$group.full_code'/>:
+         return RNm<jt:item source='$group.full_code'/>Message::CodeName(code);
+</jt:loop>
+   }
+   return "";
+}
+
+//============================================================
+// <T>根据消息代号获得消息定义。</T>
+//
+// @param code 代码号
+// @return 消息定义
+//============================================================
+TNetMessageInfo* FNetMessageFactory::CodeInfo(TInt code){
+   TInt group = code & 0xFF00;
+   switch(group){
+<jt:loop source='$config' alias='group'>
+      // <jt:item source='$group.label'/>
+      case ENetMessageGroup_<jt:item source='$group.full_code'/>:
+         return RNm<jt:item source='$group.full_code'/>Message::CodeInfo(code);
+</jt:loop>
+   }
+   return NULL;
+}
+
+//============================================================
+// <T>根据消息代号获得消息定义。</T>
+//
+// @param code 代码号
+// @return 消息定义
+//============================================================
+TCharC* FNetMessageFactory::DumpData(TNetMessage* pMessage, MString* pTrack){
+   MO_ASSERT(pTrack);
+   TInt group = pMessage->MessageHead().CodeGroup();
+   switch(group){
+<jt:loop source='$config' alias='group'>
+      // <jt:item source='$group.label'/>
+      case ENetMessageGroup_<jt:item source='$group.full_code'/>:
+         return RNm<jt:item source='$group.full_code'/>Message::DumpData(pMessage, pTrack);
+</jt:loop>
+   }
+   return "";
+}
+
+MO_NAMESPACE_END
+]]></Source>
+</Template>

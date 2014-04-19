@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="nkztj9hvbqBgXbZT6vfUrg" name="logic.process" label="M#12cn14业务流程" note="M#" is_valid="Y">
+  <Type _uuid="YEQhg2rur3Tz6K5glhBMrQ" name="task.start" label="M#12cn14开始任务" note="M#12cn264参数打包字段\nprocess_id_\ntask_id_\nnext_task_condition_\nnext_task_name_" is_valid="Y" process_cd="P" process_invoke="LG_TASK_DI.Cb_Start">
+    <TypeConfig _uuid="[Egjxgx7u2R6bfIBOWBSng" name="default_condition" label="M#12cn14默认条件" note="M#" is_valid="Y" data_value="start" />
+  </Type>
+  <Type _uuid="iEdXJrWaR7Y1mnfzcy0quw" name="task.stop.deploy" label="M#12cn16部署结束任务" note="M#12cn233execute_date\nprocess_id_\ntask_id_" is_valid="Y" process_cd="P" process_invoke="LG_TASK_DI.Cb_Stop_Deploy" />
+  <Type _uuid="BUpyCmXihRxjaqTdf0m[rQ" name="task.stop" label="M#12cn14任务结束" note="M#12cn220process_id_\ntask_id_" is_valid="Y" process_cd="P" process_invoke="LG_TASK_DI.Cb_Stop" />
+  <Type _uuid="9Usfdl8xOJgzn5i6d]CLqw" name="process.stop" label="M#12cn14停止流程" note="M#12cn211process_id_" is_valid="Y" process_cd="P" process_invoke="LG_PROCESS_DI.Cb_Stop" />
+</Group>
+

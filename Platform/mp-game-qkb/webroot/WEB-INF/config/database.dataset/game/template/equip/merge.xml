@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="C0r7ZkLN0TBmSvkMMN5Aqg" name="game.template.equip.merge" label="M#12cn15装备-合成" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_EQUIP_MERGE" data_alias="GM_TPL_EQP_MRG" data_logic="GM_TPL_EQUIP_MERGE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="1UiKWhkEYaoZjnAZjLSUow" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="e0vtO3JK32VeSizO3Tz1hg" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldEnum _uuid="nEUqNyJUW59w4PyJo]Jsqg" name="equip_merge_type_cd" label="M#12cn16装备合成类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EQUIP_MERGE_TYPE_CD" data_size="2" data_code="game.template.equip.merge.type" />
+  <FieldInteger _uuid="gEdOAaMN1X21yK9JpoYTqw" name="source_equip_tid" label="M#12cn18来源装备模板编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SOURCE_EQUIP_TID" data_alias="SUC_EQP" data_refer="game.template.equip" />
+  <FieldInteger _uuid="tE97VDpOvAvVq57fsvJUvA" name="source_equip_quality_tid" label="M#12cn18来源装备品级编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SOURCE_EQUIP_QUALITY_TID" data_alias="SOC_EQP_QLT" data_refer="game.template.equip.quality" />
+  <FieldInteger _uuid="3EWYqeVYjxFAcl9TWBaCnQ" name="spend_bag_tid" label="M#12cn15消耗包编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SPEND_BAG_TID" data_alias="SPD_BAG" data_refer="game.template.spend.bag" />
+  <FieldString _uuid="KEycGXDJTTL3BRGeJsz5mA" name="spend_currency" label="M#12cn14消耗货币" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SPEND_CURRENCY" data_size="200" />
+  <FieldInteger _uuid="DU2WSafAInkg8kUFbTtbmg" name="target_equip_tid" label="M#12cn18目标装备模板编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TARGET_EQUIP_TID" data_alias="TGT_EQP" data_refer="game.template.equip" />
+  <FieldInteger _uuid="Kk5olMr7Yu9]ka4N4Btlvg" name="target_equip_quality_tid" label="M#12cn18目标装备品级编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TARGET_EQUIP_QUALITY_TID" data_alias="TGT_EQP_QLT" data_refer="game.template.equip.quality" />
+  <FieldEnum _uuid="PklyccJe8Ui63aOKCiguuA" name="equip_level_page_cd" label="M#12cn18装备等级分页类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EQUIP_LEVEL_PAGE_CD" data_size="2" data_code="game.template.equip.level.page.type" />
+  <FieldInteger _uuid="7kVuHohkXCqGP5NFcYz3nQ" name="metier_tid" label="M#12cn14门派编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="METIER_TID" data_alias="MTR" data_refer="game.template.metier" />
+  <FieldTemplate _uuid="NUEZ911ifvWXnGMkh7i[jA" name="describe" label="M#12cn14描述模版" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

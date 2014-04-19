@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+
+   <!-- ==================================================== -->
+   <!-- Platform.Monitor.Svn.Console                         -->
+   <!-- 平台版本监视器                                       -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'com.zqinet.platform.monitor.svn.ISvnMonitorConsole'
+         class = 'com.zqinet.platform.monitor.svn.FSvnMonitorConsole'
+         scope = 'global' >
+      <!-- ============================================================ -->
+      <!-- SVN 客户端 (svn://192.168.2.1/Develop/Client/Workspace)      -->
+      <!-- ============================================================ -->
+      <Initialize name='register'>
+         <Parameter>
+            <Component class = 'com.zqinet.platform.monitor.svn.FSvnMonitor'>
+               <Property name='group_name'>svn</Property>
+               <Property name='name'>DVP-Client</Property>
+               <Property name='path'>/Develop/Client/Workspace</Property>
+               <Property name='valid'>1</Property>
+               <Property name='url'>svn://192.168.2.1/Develop/Client/Workspace</Property>
+               <Property name='passport'>devlp</Property>
+               <Property name='password'>Iamdevelop12</Property>
+               <Property name='interval'>60000</Property>
+               <Property name='receivers'>maocy;hykun;hykun-rc;weifh;anzhf;libin;yaoyl;yufal</Property>
+            </Component>
+         </Parameter>
+      </Initialize>
+      <!-- ============================================================ -->
+      <!-- SVN 服务器 (svn://192.168.2.1/Develop/Server)                -->
+      <!-- ============================================================ -->
+      <Initialize name='register'>
+         <Parameter>
+            <Component class = 'com.zqinet.platform.monitor.svn.FSvnMonitor'>
+               <Property name='group_name'>svn</Property>
+               <Property name='name'>DVP-Server</Property>
+               <Property name='path'>/Develop/Server</Property>
+               <Property name='valid'>1</Property>
+               <Property name='url'>svn://192.168.2.1/Develop/Server</Property>
+               <Property name='passport'>devlp</Property>
+               <Property name='password'>Iamdevelop12</Property>
+               <Property name='interval'>60000</Property>
+               <Property name='receivers'>maocy;liyan;luzhg;qihao;yojia;shzyu;lxhui;jygng</Property>
+            </Component>
+         </Parameter>
+      </Initialize>
+      <!-- ============================================================ -->
+      <!-- SVN 测试-客户端 (svn://192.168.2.1/Develop-TZ/Client)        -->
+      <!-- ============================================================ -->
+      <Initialize name='register'>
+         <Parameter>
+            <Component class = 'com.zqinet.platform.monitor.svn.FSvnMonitor'>
+               <Property name='group_name'>svn</Property>
+               <Property name='name'>DVP-Test-CLT</Property>
+               <Property name='path'>/Develop-TZ/Client</Property>
+               <Property name='valid'>1</Property>
+               <Property name='url'>svn://192.168.2.1/Develop-TZ/Client</Property>
+               <Property name='passport'>devlp</Property>
+               <Property name='password'>Iamdevelop12</Property>
+               <Property name='interval'>60000</Property>
+               <Property name='receivers'>maocy;chenj;dhyan;fngyu;lwenj;mxkng;wngqi;yngxl;zjyao</Property>
+            </Component>
+         </Parameter>
+      </Initialize>
+      <!-- ============================================================ -->
+      <!-- SVN 测试-服务器 (svn://192.168.2.1/Develop-TZ/Server)        -->
+      <!-- ============================================================ -->
+      <Initialize name='register'>
+         <Parameter>
+            <Component class = 'com.zqinet.platform.monitor.svn.FSvnMonitor'>
+               <Property name='group_name'>svn</Property>
+               <Property name='name'>DVP-Test-SVR</Property>
+               <Property name='path'>/Develop-TZ/Client</Property>
+               <Property name='valid'>1</Property>
+               <Property name='url'>svn://192.168.2.1/Develop-TZ/Server</Property>
+               <Property name='passport'>devlp</Property>
+               <Property name='password'>Iamdevelop12</Property>
+               <Property name='interval'>60000</Property>
+               <Property name='receivers'>maocy;chenj;dhyan;fngyu;lwenj;mxkng;wngqi;yngxl;zjyao</Property>
+            </Component>
+         </Parameter>
+      </Initialize>
+      <!-- ============================================================ -->
+      <!-- SVN 测试-资源 (svn://192.168.2.1/Develop-TZ/Release/Webroot) -->
+      <!-- ============================================================ -->
+      <Initialize name='register'>
+         <Parameter>
+            <Component class = 'com.zqinet.platform.monitor.svn.FSvnMonitor'>
+               <Property name='group_name'>svn</Property>
+               <Property name='name'>DVP-Test-RES</Property>
+               <Property name='path'>/Develop-TZ/Release/Webroot</Property>
+               <Property name='valid'>1</Property>
+               <Property name='url'>svn://192.168.2.1/Develop-TZ/Release/Webroot</Property>
+               <Property name='passport'>devlp</Property>
+               <Property name='password'>Iamdevelop12</Property>
+               <Property name='interval'>60000</Property>
+               <Property name='receivers'>maocy;chenj;dhyan;fngyu;lwenj;mxkng;wngqi;yngxl;zjyao</Property>
+            </Component>
+         </Parameter>
+      </Initialize>
+      <!-- ============================================================ -->
+      <!-- SVN 测试-模板 (svn://192.168.2.1/Develop-TZ/Template-Branch) -->
+      <!-- ============================================================ -->
+      <Initialize name='register'>
+         <Parameter>
+            <Component class = 'com.zqinet.platform.monitor.svn.FSvnMonitor'>
+               <Property name='group_name'>svn</Property>
+               <Property name='name'>DVP-Test-TPL</Property>
+               <Property name='path'>/Develop-TZ/Template-Branch</Property>
+               <Property name='valid'>1</Property>
+               <Property name='url'>svn://192.168.2.1/Develop-TZ/Template-Branch</Property>
+               <Property name='passport'>devlp</Property>
+               <Property name='password'>Iamdevelop12</Property>
+               <Property name='interval'>60000</Property>
+               <Property name='receivers'>maocy;chenj;dhyan;fngyu;lwenj;mxkng;wngqi;yngxl;zjyao</Property>
+            </Component>
+         </Parameter>
+      </Initialize>
+   </Component>
+</Config>

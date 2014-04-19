@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project _uuid="sEzhx2K67Wa1jzFbDvD3gQ" name="game.proxy" label="游戏代理服务器" is_valid="Y" note="M#" source_name="MoGameProxy" group="Game" code="Gpx" full_code="GameProxy">
+  <Processor _uuid="n0oDP1HhApXMMZbpFHTniw" name="logic.login" label="登录管理器" is_valid="Y" note="M#" has_module="N" code="LoginLogic" head_name="MoGpxLoginLogic" source_name="FLoginLogicProcessor">
+    <Function _uuid="d08B8HFLbWOhRfTNDaeCvQ" name="OnConnectProxyRequest" label="连接代理服务器" is_valid="Y" note="M#" type="OM" code="Request" full_code="LlgConnectProxyRequest" source_from="GameGate" source_target="GameProxy" is_session="N" is_manage="N" />
+    <Function _uuid="GkYyp3BOSsg6Har8KJeHlQ" name="OnAliveProxyNotify" label="保活代理通知" is_valid="Y" note="M#" type="OM" code="Notify" full_code="LlgAliveProxyNotify" source_from="GameGate" source_target="GameProxy" is_session="Y" is_login="N" is_login_role="N" is_manage="N" />
+    <Function _uuid="JUjA6rKS1YmHQhknxkYStw" name="OnDisconnectProxyNotify" label="客户断开代理通知" is_valid="Y" note="M#" type="OM" code="Notify" full_code="LlgDisconnectProxyNotify" source_from="GameDomain" source_target="GameProxy" is_session="Y" is_login="N" is_login_role="N" is_manage="N" />
+  </Processor>
+  <Processor _uuid="xEoS8FGxyx09BcYOjvBTrQ" name="manage.game" label="代理服务器" is_valid="Y" note="M#" logic_name="manage.game.proxy" has_module="N" code="ServerManage" head_name="MoGpxGameManage" source_name="FGameManageProcessor">
+    <Function _uuid="4U8dRAB18TvOrIXOlosIug" name="OnSessionListRequest" label="查询代理务器客户端" is_valid="Y" note="M#" type="OM" code="Request" full_code="MgpSessionListRequest" source_from="ClientPlayer" source_target="GameProxy" is_session="N" is_manage="Y" />
+    <Function _uuid="pkHZdsRn3bjLixt7k0M6pA" name="OnSessionQueryRequest" label="会话查询请求" is_valid="Y" note="M#" type="OM" code="Request" full_code="MgpSessionQueryRequest" source_from="ClientPlayer" source_target="GameProxy" is_session="N" is_login="N" is_login_role="N" is_manage="Y" />
+  </Processor>
+  <Processor _uuid="zkkdLAbmICXhnn9OE74XmQ" name="logic.logger" label="日志管理器" is_valid="Y" note="M#" has_module="N" code="LoggerLogic" head_name="MoGpxLoggerLogic" source_name="FLoggerLogicProcessor" />
+</Project>
+

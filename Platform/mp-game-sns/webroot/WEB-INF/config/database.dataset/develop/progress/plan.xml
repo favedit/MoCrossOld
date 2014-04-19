@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="4EUp32W]a]baRH1WPs3TkQ" name="develop.progress.plan" label="M#12cn14计划任务" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="DP_PROGRESS_PLAN" data_alias="DP_PRG_PLN" data_logic="DP_PROGRESS_PLAN_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldBoolean _uuid="3UoGP]]et49uQZfAgw4FmQ" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldInteger _uuid="GEBZTUdQ2dBwHwBMVb3AgA" name="type_id" label="M#12cn14类型编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_alias="TYP" data_refer="develop.progress.plan.type" />
+  <FieldInteger _uuid="QUahFO524SixWc[zacxThg" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldInteger _uuid="eECr34Lcm3sdibOQs0DFoQ" name="parent_id" label="M#12cn13父编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PARENT_ID" />
+  <FieldString _uuid="9kN]]DVlj3YmmCLkJxziiQ" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldString _uuid="A0SunCC77R9zkJYQy2hVgg" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" data_size="200" />
+  <FieldContent _uuid="lEIPYpa3QiI1pneD2edFqA" name="content" label="M#12cn14计划内容" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CONTENT" />
+  <FieldContent _uuid="CEcdeZOis9m2izoEZV88qQ" name="risk_note" label="M#12cn14风险描述" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RISK_NOTE" />
+  <FieldEnum _uuid="JkvxqG7Y5VvmQyVpROo3ow" name="status_cd" label="M#12cn12状态" is_valid="Y" note="M#12cn254P=PUBLISH 发布\nE=EXAMINE 审核通过\nO=OPERATE 操作完成\nF=FINISH 完成" is_null="Y" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="develop.progress.plan.status" />
+  <FieldEnum _uuid="yEcXvT6uLauJG1hY]QU4tg" name="priority_cd" label="M#12cn13优先级" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRIORITY_CD" data_size="1" data_code="develop.progress.plan.priority" />
+  <FieldDate _uuid="ak3PvBWpJJVxh1VGY2gktg" name="begin_date" label="M#12cn14开始日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BEGIN_DATE" />
+  <FieldDate _uuid="C0jRzCpN]efS8ebt0YTjgg" name="end_date" label="M#12cn14结束日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="END_DATE" />
+  <FieldContent _uuid="Jkt71PrEAmzSpW76[7vWuw" name="summary_note" label="M#12cn14总结信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SUMMARY_NOTE" />
+  <FieldTemplate _uuid="wkR9106W]fe4cN19Cg5ShA" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

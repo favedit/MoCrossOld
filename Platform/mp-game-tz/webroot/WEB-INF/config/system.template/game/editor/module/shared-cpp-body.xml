@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template ads="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define ads="]E[MIOeUo79dXfu13d2wsA" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source ads="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T><jt:item source='$project.label'/>消息类型定义。</T>
+//
+// @enum
+//============================================================
+#include "Mo<jt:item source='$project.code'/>Shared.h"
+
+MO_NAMESPACE_BEGIN
+
+<jt:loop source='$project' alias='entity' filter='$entity:name=Entity'>
+<jt:equals source='$entity.parent_entity' value=''>
+//============================================================
+// <T>构造实例。</T>
+//============================================================
+FShared<jt:item source='$entity.code_name'/>::FShared<jt:item source='$entity.code_name'/>(){
+   MO_CLEAR(_gData);
+}
+
+//============================================================
+// <T>析构实例。</T>
+//============================================================
+FShared<jt:item source='$entity.code_name'/>::~FShared<jt:item source='$entity.code_name'/>(){
+}
+
+//============================================================
+// <T>计算共享内存大小。</T>
+//
+// @return 内存大小
+//============================================================
+TSize FShared<jt:item source='$entity.code_name'/>::CalculateCapacity(){
+<jt:true source='$entity.is_session'>
+   TSize capacity = 0;
+</jt:true>
+<jt:false source='$entity.is_session'>
+<jt:true source='$entity.is_socket'>
+   TSize capacity = FSharedGmObjectClient::CalculateCapacity();
+</jt:true>
+<jt:false source='$entity.is_socket'>
+   TSize capacity = FSharedGmObject::CalculateCapacity();
+</jt:false>
+</jt:false>
+   capacity += sizeof(SShared<jt:item source='$entity.code_name'/>);
+   return capacity;
+}
+
+//============================================================
+// <T>初始化共享内存。</T>
+//============================================================
+void FShared<jt:item source='$entity.code_name'/>::OnSharedInitialize(){
+<jt:true source='$entity.is_session'>
+   FGmClientSession::OnSharedInitialize();
+</jt:true>
+<jt:false source='$entity.is_session'>
+<jt:true source='$entity.is_socket'>
+   FSharedGmObjectClient::OnSharedInitialize();
+</jt:true>
+<jt:false source='$entity.is_socket'>
+   FSharedGmObject::OnSharedInitialize();
+</jt:false>
+</jt:false>
+   RType<SShared<jt:item source='$entity.code_name'/>>::Clear(_gData);
+}
+
+//============================================================
+// <T>继续使用共享内存。</T>
+//============================================================
+void FShared<jt:item source='$entity.code_name'/>::OnSharedResume(){
+<jt:true source='$entity.is_session'>
+   FGmClientSession::OnSharedResume();
+</jt:true>
+<jt:false source='$entity.is_session'>
+<jt:true source='$entity.is_socket'>
+   FSharedGmObjectClient::OnSharedResume();
+</jt:true>
+<jt:false source='$entity.is_socket'>
+   FSharedGmObject::OnSharedResume();
+</jt:false>
+</jt:false>
+}
+
+//============================================================
+// <T>分配共享内存。</T>
+//
+// @param segment 共享内存段
+//============================================================
+void FShared<jt:item source='$entity.code_name'/>::OnSharedLink(TShareSegment& segment){
+<jt:true source='$entity.is_session'>
+   // 分配内存
+   _gMemory = (TByte*)segment.TypeAlloc<SShared<jt:item source='$entity.code_name'/>>();
+   _gObject = (SGmObject*)_gMemory;
+   _gSession = (SGmSession*)_gMemory;
+   _gClientSession = (SGmClientSession*)_gMemory;
+   _gData = (SShared<jt:item source='$entity.code_name'/>*)_gMemory;
+   // 关联消息互斥
+   TByte* pMutexMemory = _gData->messageMetux.Memory();
+   _pMutex->LinkMemory(pMutexMemory);
+</jt:true>
+<jt:false source='$entity.is_session'>
+<jt:true source='$entity.is_socket'>
+   FSharedGmObjectClient::OnSharedLink(segment);
+</jt:true>
+<jt:false source='$entity.is_socket'>
+   FSharedGmObject::OnSharedLink(segment);
+</jt:false>
+   _gData = segment.TypeAlloc<SShared<jt:item source='$entity.code_name'/>>();
+</jt:false>
+}
+
+//============================================================
+// <T>计算共享内存大小。</T>
+//
+// @return 内存大小
+//============================================================
+TSize FShared<jt:item source='$entity.code_name'/>::SharedCapacity(){
+   return CalculateCapacity();
+}
+
+//============================================================
+// <T>重置内部消息。</T>
+//============================================================
+void FShared<jt:item source='$entity.code_name'/>::Reset(){
+<jt:true source='$entity.is_session'>
+   FGmClientSession::Reset();
+</jt:true>
+<jt:false source='$entity.is_session'>
+   <jt:true source='$entity.is_socket' value='FSharedGmObjectClient' elseValue='FSharedGmObject'/>::Reset();
+</jt:false>
+   RType<SShared<jt:item source='$entity.code_name'/>>::Clear(_gData);
+}
+
+//============================================================
+// <T>获得内部消息。</T>
+//
+// @return 执行是否成功
+//============================================================
+TCharC* FShared<jt:item source='$entity.code_name'/>::Dump(TChar* pDump, TSize capacity){
+   return pDump;
+}
+
+</jt:equals>
+</jt:loop>
+MO_NAMESPACE_END
+
+]]></Source>
+</Template>

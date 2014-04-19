@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="MU9LrmDAbIzXbiiqnKzpjQ" name="develop.finance.apply" label="M#12cn17项目-支出信息" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="DP_FINANCE_APPLY" data_alias="DP_FIN_APP" data_logic="DP_FINANCE_APPLY_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="z0kwTshiMVyPrkP6UPGWjg" name="project_id" label="M#12cn14项目标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PJT" data_refer="develop.project" />
+  <FieldInteger _uuid="pExwwFnPFVEUW4YEoALppQ" name="apply_batch_id" label="M#12cn16申请批次标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="APPLY_BATCH_ID" data_alias="AP_BH" data_refer="business.finance.apply.batch" group="N" />
+  <FieldInteger _uuid="SUw99NzDcBGMSlMVuIh3hw" name="apply_id" label="M#12cn14申请标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="APPLY_ID" data_alias="APP" group="N" />
+  <FieldBoolean _uuid="20S9U]d1umgPAwuNdzI1vw" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#12cn213Y = 有效\nN = 无效" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldFloat _uuid="S0WtNVnKOB0kLpr8R]qliw" name="cash_amt" label="M#12cn12金额" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CASH_AMT" />
+  <FieldFloat _uuid="2UBBlLqspgOXq6Qrtg1flQ" name="total_amt" label="M#12cn13总金额" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TOTAL_AMT" />
+  <FieldInteger _uuid="f0qyAzt[LWmRw8mDGPfshw" name="create_user_id" label="M#12cn15创建者标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CREATE_USER_ID" data_refer="person.user" group="N" />
+  <FieldInteger _uuid="bEYmEWgoYqLAf1]]ukMDvw" name="update_user_id" label="M#12cn15更新者编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="UPDATE_USER_ID" data_refer="person.user" group="N" />
+  <FieldDate _uuid="vE[Q0ATdeQnC5dnRtO0EmQ" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_default="SYSDATE" />
+  <FieldDate _uuid="TUFXv]Ia5mkahQ8[Plkugg" name="update_date" label="M#12cn14更新时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="UPDATE_DATE" group="N" data_default="SYSDATE" />
+  <FieldContent _uuid="qEyfV[uRTd5d1mhZZ2[joA" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" group="N" />
+</DataStore>
+

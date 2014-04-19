@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="okvMtX4yQrX1yYiAnKx1vg" name="web-form" label="M#12cn16数据表单定义" is_valid="Y" note="M#" template="xmlobject" source="${home.source.web}">
+  <Interface _uuid="gk8Fzyx73tKSE5QlJeSFgw" name="Component" label="M#12cn14组件接口" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.web.core.webform.control.XComponentFace">
+    <Attribute _uuid="3U54uHM]0TolYUphtLCksg" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="Lk0gS5QN2RCDPHuqjXU9vw" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+    <Attribute _uuid="bkB4tOKv4zwAm0fKBi6lgg" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="RUcSkCmlaxd4TPPvxs8]ow" name="note" label="M#12cn12注释" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+  </Interface>
+  <Interface _uuid="mEweCazAXH[s4BfWYmBOlw" name="Control" label="M#12cn14控件接口" is_valid="Y" note="M#12jp16コントロール" class_name="org.mo.web.core.webform.control.XControlFace" inherits="Component,MDisplay,MPad,MSize">
+    <Attribute _uuid="aE9VRnu8kaQiweVzyx4Vsg" name="nowrap" label="M#12cn13无回行" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" />
+    <Attribute _uuid="Ok1XUaUaxODW8YyD4wEIrQ" name="hint" label="M#12cn15状态栏提示" is_valid="Y" note="M#12cn15状态栏提示" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="V0squm6EGFUp8nPRaaxjmg" name="style_refer" label="M#12cn14控件样式" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="eU]urhrQbTyu9KwsWYMMkg" name="style_label" label="M#12cn14标签样式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="ZkTYrP8bltPGQIfRHoRSqA" name="style_edit" label="M#12cn14编辑样式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="OkOcuS6lzfLCs9SNTGJasQ" name="version" label="M#12cn12版本" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+  <Component _uuid="6kK2hg0HYltz]iXf16BDrw" name="Edit" label="M#12cn13编辑框" is_valid="Y" note="M#12jp16入力ボックス" class_name="org.mo.web.core.webform.control.XEdit" base_name="org.mo.web.core.webform.base.XBaseEdit" inherits="EditControl,MListView,MDescEdit" />
+  <Component _uuid="fkeqt5cSDfHYUfAs26qzhg" name="Reference" label="M#12cn15引用编辑框" is_valid="Y" note="M#12jp16入力ボックス" class_name="org.mo.web.core.webform.control.XReference" base_name="org.mo.web.core.webform.base.XBaseReference" inherits="EditControl,MListView,MDescEdit,MZoom">
+    <Attribute _uuid="AEy2NL1tZOINr]BFnuB1qg" name="picker_width" label="M#12cn14选取宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="B0d4y0pCiigrf8rtP0a8rw" name="Check" label="M#12cn15检查输入框" is_valid="Y" note="M#12jp18チェックボックス" class_name="org.mo.web.core.webform.control.XCheck" base_name="org.mo.web.core.webform.base.XBaseCheck" inherits="EditControl,MDescCheck" />
+  <Component _uuid="Bk26B3[RiSdvT3OHuD2Amw" name="Select" label="M#12cn13选择框" is_valid="Y" note="M#12jp16選択ボックス" class_name="org.mo.web.core.webform.control.XSelect" base_name="org.mo.web.core.webform.base.XBaseSelect" inherits="EditControl,MDescSelect">
+    <Attribute _uuid="SEJMaXUxBWpM6DTyKl3epw" name="edit_dynamic" label="M#12cn14动态编辑" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="M0PZP]VBca7]x9i9zipFuA" name="Item" label="M#12cn12项目" is_valid="Y" note="M#12jp12項目" class_name="org.mo.web.core.webform.control.XItem" base_name="org.mo.web.core.webform.base.XBaseItem" inherits="Component">
+    <Attribute _uuid="Kkc8P4dt67sZNsy9[b0GoA" name="value" label="M#12cn11值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+  </Component>
+  <Component _uuid="8kO2xFmapF71BC6]085yqw" name="DataAction" label="M#12cn14数据命令" is_valid="Y" note="M#12jp15データ命令" class_name="org.mo.web.core.webform.control.XDataAction" base_name="org.mo.web.core.webform.base.XBaseDataAction" inherits="Component">
+    <Attribute _uuid="80MaWkP8t[xV[yHuD6BNkA" name="service" label="M#12cn14数据服务" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="DU3A[MFRbvQYjtU]5b8Puw" name="icon_path" label="M#12cn14图片路径" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="eEWZBXw2AcXRQ2Hyfk[Etw" name="action" label="M#12cn14执行操作" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="yknCDFRLBNSEpmNrW9vBng" name="invoke_function" label="M#12cn14回调函数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="Ukq]WGKHSMx0ApnVh]lUjg" name="execute_action" label="M#12cn14执行命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="MUUxtZw[X6wQD1TXUi5xvg" name="execute_final_action" label="M#12cn14最终命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="Qk6d]ZBRII6UZtZwmxIjlw" name="Split" label="M#12cn13分割条" is_valid="Y" note="M#12jp13分割列" class_name="org.mo.web.core.webform.control.XSplit" base_name="org.mo.web.core.webform.base.XBaseSplit" inherits="Control">
+    <Attribute _uuid="mEGWi4xBGE]WD]Un8QDTtg" name="icon" label="M#12cn12图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="WEPCnaxLHImmc33MQC8ygQ" name="disp_type" label="M#12cn14显示方式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="b0duaP86njU2QUzRrbkong" name="disp_style" label="M#12cn14显示风格" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="2keqVhipdBprXHZnoFlLpQ" name="edit_extend" label="M#12cn14默认展开" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Component>
+  <Component _uuid="bknvBZ]kQvY9vUKIexoqgA" name="Table" label="M#12cn14列表控件" is_valid="Y" note="M#12jp14テーブル" class_name="org.mo.web.core.webform.control.XTable" base_name="org.mo.web.core.webform.base.XBaseTable" inherits="Control,MDataset,MGrid">
+    <Attribute _uuid="10bxfHzc8Yut7EG4uyVUrQ" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="hk[IK1S9wJOPsUth1BdJmA" name="form_name" label="M#12cn14表单名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="VUDWb06wa2KouGMr45Exhw" name="page_size" label="M#12cn14分页大小" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="EUUbXY3D6CIhJ6]d6vxToQ" name="parent_name" label="M#12cn13父名称" is_valid="Y" note="M#" type="String" is_store="Y" />
+    <Attribute _uuid="ZE2AtuEg1M32d5Pd0c32vg" name="form_refer" label="M#12cn14表单引用" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="UErN[ljj2Y9]g]UpUuFMhA" name="form_refer_where" label="M#12cn16表单转移条件" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="H0rB6eXPiNWEcqv6xC[]iw" name="form_link" label="M#12cn14表单链接" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="RkMPCMh7jzMCSxnfjdqzoA" name="form_search" label="M#12cn14表单查询" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="tU19USIaLDFz5V6OMS3eng" name="form_order" label="M#12cn14表单排序" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="KkFbCTYTPByBcAsnKQpWrA" name="disp_count" label="M#12cn14显示行数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="1kTTB4EWLxucFzhSeyRbtA" name="BrowserControl" label="M#12cn14浏览控件" is_valid="Y" note="M#12jp14テーブル" class_name="org.mo.web.core.webform.control.XBrowserControl" base_name="org.mo.web.core.webform.base.XBaseBrowserControl" inherits="Control,MDataset,MGrid">
+    <Attribute _uuid="60lzNM5o0bHKK[cBTUS4qw" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="T0xoGwQyrGwWn3K1vEEFiQ" name="form_name" label="M#12cn14表单名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="yk3QG14T[p0vhtE4tvKGmg" name="page_size" label="M#12cn14分页大小" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="OEOqBg7OUP09JMl29uo5ig" name="parent_name" label="M#12cn13父名称" is_valid="Y" note="M#" type="String" is_store="Y" />
+    <Attribute _uuid="mU1o4mq[pvMHhrUNK73NjA" name="form_refer" label="M#12cn14表单引用" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="X0pE28[vR8HwxLd3cu5Wrw" name="form_refer_where" label="M#12cn16表单转移条件" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="7k9ulg32eDFLxb[2h5ZknQ" name="form_link" label="M#12cn14表单链接" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="Akua8pavvBweKm]wsxnZvQ" name="form_search" label="M#12cn14表单查询" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="U05be15mPvJlbesDAlu7tg" name="form_order" label="M#12cn14表单排序" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="okyW0ctdDMZ[nJmyfXW4hA" name="disp_count" label="M#12cn14显示行数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="EELEapBgXLcY6FsQOnUkoQ" name="field_name" label="M#12cn14字段名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="8UMm]h[4tXpayOkXYykYhQ" name="field_label" label="M#12cn14字段标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="MkLsVpWJ[gfPypoCcRVjmA" name="field_icon" label="M#12cn14字段图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="2U5wLId6b3ZwYCKAvoZ5hA" name="field_group" label="M#12cn14字段分组" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="wkSTnIrvzN6ykTs2P0wstg" name="Discussion" label="M#12cn14讨论控件" is_valid="Y" note="M#12jp14テーブル" class_name="org.mo.web.core.webform.control.XDiscussion" base_name="org.mo.web.core.webform.base.XBaseDiscussion" inherits="Control,MDataset,MGrid">
+    <Attribute _uuid="Vk4LCRA2rnQtD1r]1yBtug" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="nU5IgOtDSDHrSWCR5uKJog" name="form_name" label="M#12cn14表单名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="OUBFIlieldywhAEDAMo7tQ" name="page_size" label="M#12cn14分页大小" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="mUCgfTEw8WRVPFa0GYtqug" name="parent_name" label="M#12cn13父名称" is_valid="Y" note="M#" type="String" is_store="Y" />
+    <Attribute _uuid="DEzfaycxTaBmz0nULlGVjA" name="form_refer" label="M#12cn14表单引用" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="gUAX5dGPtYY9puCMY0Hmig" name="form_refer_where" label="M#12cn16表单转移条件" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="fkXaoXpS5NzO]MklaTvZkg" name="form_link" label="M#12cn14表单链接" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="X0p2HSxZAmkCwCeGNR75gw" name="form_search" label="M#12cn14表单查询" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="qU9lheLaTePv4I2cF6r3tg" name="form_order" label="M#12cn14表单排序" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="JU9lhGZHZaYj9rOilxljiw" name="disp_count" label="M#12cn14显示行数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="MEBP[RL]Sw5LnzaWIAkolQ" name="FixGrid" label="M#12cn16固定网格控件" is_valid="Y" note="M#12jp14テーブル" class_name="org.mo.web.core.webform.control.XFixGrid" base_name="org.mo.web.core.webform.base.XBaseFixGrid" inherits="Control,MDataset,MGrid">
+    <Attribute _uuid="v0AAlFYmLHK0vBn51KXRpA" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="XUBI318Vas9Uo9tslsE[kg" name="form_name" label="M#12cn14表单名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="b0BxuojHxxYdkFpux94xmA" name="page_size" label="M#12cn14分页大小" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="XEp2aJfYPSa]C0]QqVX]vg" name="parent_name" label="M#12cn13父名称" is_valid="Y" note="M#" type="String" is_store="Y" />
+    <Attribute _uuid="sEg[kRdgSbjjq1tQkaqYvg" name="form_refer" label="M#12cn14表单引用" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="6kTjP[m3e1GBGGIdhIcBqw" name="form_refer_where" label="M#12cn16表单转移条件" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="akr20dI887lM4KabnZvenQ" name="form_link" label="M#12cn14表单链接" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="o0fSrnYiC3T18evdnWFZkQ" name="form_search" label="M#12cn14表单查询" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="aUrNnjqUkABBI8V[axoJgA" name="form_order" label="M#12cn14表单排序" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="mEICuYamTN9ixDn2sM7bmQ" name="disp_count" label="M#12cn14显示行数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="6ksjVtQ65z81yOLHLDcvtQ" name="Grid" label="M#12cn14网格控件" is_valid="Y" note="M#12jp14テーブル" class_name="org.mo.web.core.webform.control.XGrid" base_name="org.mo.web.core.webform.base.XBaseGrid" inherits="Control,MDataset,MGrid">
+    <Attribute _uuid="WUENDR9RfUouDqDD7JR9uA" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="ckdHn3xT2ijNXrCbUDsGgw" name="form_name" label="M#12cn14表单名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="Kk3Xm5X244LZ]SULnIJ9hA" name="page_size" label="M#12cn14分页大小" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="DEFLghvYweMOIW8OrvAanw" name="parent_name" label="M#12cn13父名称" is_valid="Y" note="M#" type="String" is_store="Y" />
+    <Attribute _uuid="lk5RfxnZWkoX4xvGYKBQtQ" name="form_refer" label="M#12cn14表单引用" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="qUDRrJuxJIrByNL2ydhCsA" name="form_refer_where" label="M#12cn16表单转移条件" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="T048XSmBVbMSKS4O36D[sQ" name="form_link" label="M#12cn14表单链接" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="rkFnsdw3h[iHJ]YaR12QqQ" name="form_search" label="M#12cn14表单查询" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="Iki6NI4HB1aFR56qEtz9rQ" name="form_order" label="M#12cn14表单排序" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="AkVx2zjbpTSKp4pFT110pQ" name="disp_count" label="M#12cn14显示行数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="S0gDiUmAOf8TSBiLVA6YkA" name="FixTable" label="M#12cn16固定列表控件" is_valid="Y" note="M#12jp14テーブル" class_name="org.mo.web.core.webform.control.XFixTable" base_name="org.mo.web.core.webform.base.XBaseFixTable" inherits="Control,MDataset,MGrid">
+    <Attribute _uuid="IUXMKn3KSeme3WAG6kzeng" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="9EXMe]Xp56z4fnKj]cPQkQ" name="form_name" label="M#12cn14表单名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="8ks2D68okXPVCOPK79I2jg" name="page_size" label="M#12cn14分页大小" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="fEXjp7Srbgjrh8pI5v3XqA" name="parent_name" label="M#12cn13父名称" is_valid="Y" note="M#" type="String" is_store="Y" />
+    <Attribute _uuid="ZUhvhWRGICi8NH5]n6lyrw" name="form_refer" label="M#12cn14表单引用" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="PE09]ALNLazhjjWn[pdlgw" name="form_refer_where" label="M#12cn16表单转移条件" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="HEE2sEGlLtMrHCKjdwkeow" name="form_link" label="M#12cn14表单链接" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="rUVLsw2V43KrxxVZamzokg" name="form_search" label="M#12cn14表单查询" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="v012sIXNi2TIHrSD8PxUqg" name="form_order" label="M#12cn14表单排序" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="50Hi6aDHWoA425gJpIKXjA" name="disp_count" label="M#12cn14显示行数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="6UqtzJXKIx5LEPECKivJvA" name="ColumnEdit" label="M#12cn14可编辑列" is_valid="Y" note="M#12jp13編集列" class_name="org.mo.web.core.webform.control.XColumnEdit" base_name="org.mo.web.core.webform.base.XBaseColumnEdit" inherits="ColumnEditControl,MDescEdit,MListView" />
+  <Component _uuid="UECezXwFgnLtFeiIpTDOvw" name="ColumnRadioGroup" label="M#12cn15多选择框列" is_valid="Y" note="M#12jp13編集列" class_name="org.mo.web.core.webform.control.XColumnRadioGroup" base_name="org.mo.web.core.webform.base.XBaseColumnRadioGroup" inherits="ColumnEditControl,MDescEdit,MListView" />
+  <Component _uuid="mkxIhRuNhOr6AUs1svfljg" name="Row" label="M#12cn13行对象" is_valid="Y" note="M#12jp11行" class_name="org.mo.web.core.webform.control.XRow" base_name="org.mo.web.core.webform.base.XBaseRow" inherits="Control">
+    <Attribute _uuid="H02Cda6Mw]CQYYRSWsRgjA" name="_type" label="M#12cn12类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Component>
+  <Component _uuid="pkgSHBK4kSPOSS9YYH8GkA" name="WebForm" label="M#12cn14表单窗口" is_valid="Y" note="M#12jp14フォーム" class_name="org.mo.web.core.webform.control.XWebForm" base_name="org.mo.web.core.webform.base.XBaseWebForm" inherits="Control,MDataset">
+    <Attribute _uuid="NEsbDIVT6Gssq01ILCm3kg" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="GkNMjJtYcK]2hPZsTNfDuw" name="parent_name" label="M#12cn13父名称" is_valid="Y" note="M#" type="String" is_store="Y" />
+    <Attribute _uuid="PktNI8iSBzFhiThDGP]bvQ" name="table_name" label="M#12cn14表格名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="Y0RSvt0crZXjJd8Pav9HnA" name="disp_icon" label="M#12cn14显示图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="hUdqPUQTJJdGt4rJYjdPog" name="define_imports" label="M#12cn14定义导入" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="s0IcgRxMZl4x0xBe7hfvqQ" name="business_code" label="M#12cn14业务代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="qkT6E6ByvxFoExcgurRkpg" name="WebTable" label="M#12cn14列表窗口" is_valid="Y" note="M#12jp18フォームテーブル" class_name="org.mo.web.core.webform.control.XWebTable" base_name="org.mo.web.core.webform.base.XBaseWebTable" inherits="Control,MDataset,MGrid">
+    <Attribute _uuid="j0uBBldGxF1M7sMiC9k]vA" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="Ik9LV[Dk[bbKfo83yLOUtg" name="form_name" label="M#12cn14表单名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="PUNUhc7StcY6g40TtACYrg" name="page_size" label="M#12cn14分页大小" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="x04FBxuCnRgALinsLNO0qw" name="parent_name" label="M#12cn13父名称" is_valid="Y" note="M#" type="String" is_store="Y" />
+    <Attribute _uuid="jkmad]FiaS8lVRn7DNv]vw" name="disp_icon" label="M#12cn14显示图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="F0bInNliULwqKewOAm6[tw" name="disp_searchbar" label="M#12cn15显示搜索栏" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="yU3Xu9c4VEWE9uOvvqTRhg" name="disp_titlebar" label="M#12cn15显示标题栏" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="CUXWIsVCShOkuVuXAvaruA" name="disp_count" label="M#12cn14最大行数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="KUGmkxBfKYmL6JA00iYLug" name="define_imports" label="M#12cn14定义导入" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="bE]yowFBl46pNvXxYG[SsQ" name="row_height" label="M#12cn12行高" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="OUk731n8ekQhhwncy2Wtsg" name="business_code" label="M#12cn14业务代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="p0NaJQEC1zDG4YcYpGofjQ" name="WebBrowser" label="M#12cn14流程窗口" is_valid="Y" note="M#12jp18フォームテーブル" class_name="org.mo.web.core.webform.control.XWebBrowser" base_name="org.mo.web.core.webform.base.XBaseWebBrowser" inherits="Control,MDataset,MGrid">
+    <Attribute _uuid="LUaM5TMsGF7RItaNZemPiQ" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="vkVD7qPCqff3xf7Cx92djQ" name="form_name" label="M#12cn14表单名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="1EPBhI95wqpZxIILqsXwqQ" name="page_size" label="M#12cn14分页大小" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="vUeFfre[ndomJTyLgbyuiw" name="parent_name" label="M#12cn13父名称" is_valid="Y" note="M#" type="String" is_store="Y" />
+    <Attribute _uuid="zkxAPyKy4tixufeEPjq2nw" name="disp_icon" label="M#12cn14显示图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="xU0VuOjeD3MFzPoouVwNkA" name="disp_searchbar" label="M#12cn15显示搜索栏" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="GEw3G9X5UF3baQ]hE8IFpg" name="disp_titlebar" label="M#12cn15显示标题栏" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="XEew9jqZ997BxjJtERjnpw" name="disp_count" label="M#12cn14最大行数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="P02xwYJK2oIzZ]y4LxQHrA" name="define_imports" label="M#12cn14定义导入" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="C0rDESYIpUp6350tbfxNqg" name="row_height" label="M#12cn12行高" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="HESdViZ1CyunrrJ3fubGig" name="field_name" label="M#12cn14字段名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="VUNfgpqiOZ1cXVan0CGZjg" name="field_label" label="M#12cn14字段标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="vEMMBRiIEdjTnx5rOzuTmg" name="field_icon" label="M#12cn14字段标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="rE1H1JFVxgD8lq[rKujttw" name="field_group" label="M#12cn14字段分组" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="WEMKDKL1xt6VKxuUDQYslg" name="business_code" label="M#12cn14业务代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="50EDrMgQuN1JnZLnIwrkjA" name="WebFixGrid" label="M#12cn16固定网格窗口" is_valid="Y" note="M#12jp18フォームテーブル" class_name="org.mo.web.core.webform.control.XWebFixGrid" base_name="org.mo.web.core.webform.base.XBaseWebFixGrid" inherits="Control,MDataset,MGrid">
+    <Attribute _uuid="Rk7hc8Y[TMYz4Bw1UzfmlA" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="20Do9arqmkwYEOaoP27Wpw" name="form_name" label="M#12cn14表单名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="PkWDQRYIxydOQdDZuTvUuQ" name="page_size" label="M#12cn14分页大小" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="[UOm9hUuvOK0sXP5ghBBpA" name="parent_name" label="M#12cn13父名称" is_valid="Y" note="M#" type="String" is_store="Y" />
+    <Attribute _uuid="]0obSPbnOv7jNW094bGOsQ" name="disp_icon" label="M#12cn14显示图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="RUjiKTJbcEQBsKKHOM9jqA" name="disp_searchbar" label="M#12cn15显示搜索栏" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="DUQ63yJVMsAAE9er]WMWlA" name="disp_titlebar" label="M#12cn15显示标题栏" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="pk7twzWWHcN4CYkIQzdvhw" name="disp_count" label="M#12cn14最大行数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="TEzQaZEojUTpX[tjVEUrsw" name="define_imports" label="M#12cn14定义导入" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="PUOI9yf2y2jZu]IEUxIorw" name="row_height" label="M#12cn12行高" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="bUUsgUqjzYWe2C9UJfeBtA" name="business_code" label="M#12cn14业务代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="80dAAhC6e7xEh9n5hVloig" name="WebGrid" label="M#12cn14网格窗口" is_valid="Y" note="M#12jp18フォームテーブル" class_name="org.mo.web.core.webform.control.XWebGrid" base_name="org.mo.web.core.webform.base.XBaseWebGrid" inherits="Control,MDataset,MGrid">
+    <Attribute _uuid="VURVNDKVNI7Yo]HZu9CSvA" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="UkBaiSldAHHUfGSzJ8bGrQ" name="form_name" label="M#12cn14表单名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="7k7rDlCv7NfE5NCnTqqMvA" name="page_size" label="M#12cn14分页大小" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="405Icb4Cq[fLeG84LUPtgA" name="parent_name" label="M#12cn13父名称" is_valid="Y" note="M#" type="String" is_store="Y" />
+    <Attribute _uuid="NEo3PdTWoC01gWTkCejYuQ" name="disp_icon" label="M#12cn14显示图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="KUkSEyrJxMHAQhJcZWOMlA" name="disp_searchbar" label="M#12cn15显示搜索栏" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="xkHXwh7pdRoIpj8fvV4yrA" name="disp_titlebar" label="M#12cn15显示标题栏" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="m0v4dWXoQdBtwFRhh[iprA" name="disp_count" label="M#12cn14最大行数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="NEVCjddbZYTKr73zlZHSlw" name="define_imports" label="M#12cn14定义导入" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="vkozx[IEfp8gGryVDYiVhw" name="row_height" label="M#12cn12行高" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="lEzg1X1tI100JdPSrvXAiQ" name="business_code" label="M#12cn14业务代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="kkV5Uu0fTgPXD3DvXdyNgA" name="WebFixTable" label="M#12cn16固定列表窗口" is_valid="Y" note="M#12jp18フォームテーブル" class_name="org.mo.web.core.webform.control.XWebFixTable" base_name="org.mo.web.core.webform.base.XBaseWebFixTable" inherits="Control,MDataset,MGrid">
+    <Attribute _uuid="Q03hAiovwAn5bNpA8ifajA" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="L0Mn4DnAZC8Ao[0tjNnYqA" name="form_name" label="M#12cn14表单名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="dEC[fgTYWF3OVqJmg75KuA" name="page_size" label="M#12cn14分页大小" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="rE2]vy2DT7GeMymgtWurog" name="parent_name" label="M#12cn13父名称" is_valid="Y" note="M#" type="String" is_store="Y" />
+    <Attribute _uuid="bUw0qqNpAVHei]vAFpfspA" name="disp_icon" label="M#12cn14显示图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="80QMvdjC09yfSj0bj1Uvrg" name="disp_searchbar" label="M#12cn15显示搜索栏" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="VUcRcMbDwpGi4edLC[qKiA" name="disp_titlebar" label="M#12cn15显示标题栏" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="7kfuk]TmPOMhcnlnljWVgg" name="disp_count" label="M#12cn14最大行数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="r04[WkM3zxyBrEviGMCwng" name="define_imports" label="M#12cn14定义导入" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="QknDsEdTsoM92yqOZ77xgA" name="row_height" label="M#12cn12行高" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="30R8GX4K3x5FB6XF[hwXjQ" name="business_code" label="M#12cn14业务代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="907OOZ6pv4xlwaK3I]FCpA" name="Number" label="M#12cn15数字输入框" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XNumber" base_name="org.mo.web.core.webform.base.XBaseNumber" inherits="EditControl,MDescNumber,MlistView,MZoom">
+    <Attribute _uuid="HETWk]PjhNx4lejm2HY9uw" name="disp_format" label="M#12cn14显示格式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Component>
+  <Component _uuid="Sk65pMeyb7RXuOcUNbw9gg" name="ToolBar" label="M#12cn13工具栏" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XToolBar" base_name="org.mo.web.core.webform.base.XBaseToolBar" inherits="Control">
+    <Attribute _uuid="jkC[af2X0UC6a[uwPsuwlA" name="is_merge" label="M#12cn17是否合并工具栏" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+  </Component>
+  <Component _uuid="WUwuNty4gKcCZ9dkDA3Wiw" name="ToolButton" label="M#12cn14工具按钮" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XToolButton" base_name="org.mo.web.core.webform.base.XBaseToolButton" inherits="MToolButton">
+    <Attribute _uuid="SUQXwbDIkmBLfR40iME0vg" name="execute" label="M#12cn14执行内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="ak3xvPhDlKDrU8j4wWCyoA" name="MenuButton" label="M#12cn14菜单按钮" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XMenuButton" base_name="org.mo.web.core.webform.base.XBaseMenuButton" inherits="Control">
+    <Attribute _uuid="IE88pHt2jAJ0kWARoAcZiA" name="icon" label="M#12cn12图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="U0VQsOYqzGmOeaXaJ0xoqg" name="icon_disable" label="M#12cn14禁止图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="104Z4YjVLFq8m5tx1fT0hg" name="hotkey" label="M#12cn12热键" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="SkzDTWcTpKLiFCR5BJQzmw" name="target" label="M#12cn14目标页面" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="NEouKvxzPTgLUX3om1lUrA" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="GEK8TW37TXDjH44tHUF7oQ" name="page" label="M#12cn12页面" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="n0ggvGqGsRL8y1li8dawsw" name="attributes" label="M#12cn14属性集合" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+  </Component>
+  <Component _uuid="b0LhXxTB4Uao6EftK8sMgQ" name="Memo" label="M#12cn17多行文本输入框" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XMemo" base_name="org.mo.web.core.webform.base.XBaseMemo" inherits="EditControl">
+    <Attribute _uuid="p0bGb4E9TW]4V4Rs3Fr9lg" name="edit_overflow" label="M#12cn14自动换行" is_valid="Y" note="M#12cn250设置当内容超出对象宽度时如何管理对象内容\n没有这个属性值时 自动换行\n有这个属性值时 出现横向滚动条" type="String" is_store="Y" is_config="Y" is_default="Y" data_default="N" />
+  </Component>
+  <Component _uuid="REe8mwB[mzXjPeqVqVYRkA" name="FRichEdit" label="M#12cn17格式文本输入框" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XFRichEdit" base_name="org.mo.web.core.webform.base.XBaseFRichEdit" inherits="EditControl">
+    <Attribute _uuid="Q0iKkXao2lkTZJHykFrKlg" name="edit_overflow" label="M#12cn14自动换行" is_valid="Y" note="M#12cn250设置当内容超出对象宽度时如何管理对象内容\n没有这个属性值时 自动换行\n有这个属性值时 出现横向滚动条" type="String" is_store="Y" is_config="Y" is_default="Y" data_default="N" />
+  </Component>
+  <Component _uuid="PUdsb1OTzxM[5e8T2qR5lw" name="Calendar" label="M#12cn17日期时间输入框" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XCalendar" base_name="org.mo.web.core.webform.base.XBaseCalendar" inherits="EditControl,MDescCalendar" />
+  <Component _uuid="V07z8jTss5drYi7WkDcxkg" name="Date" label="M#12cn15日期选取框" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XDate" base_name="org.mo.web.core.webform.base.XBaseDate" inherits="EditControl,MDescCalendar">
+    <Attribute _uuid="kUEJnYJgfmXIutG1DavQow" name="edit_date" label="M#12cn14日期格式" is_valid="Y" note="M#" type="String" is_config="Y" is_abstract="Y" is_default="N" />
+    <Attribute _uuid="TE8YeRVoYvy0bPgZ0G2EtA" name="edit_year" label="M#12cn13显示年" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="oEGGioLjFiGPTIG1c2QNmw" name="edit_month" label="M#12cn13月显示" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="Akit5CFpI606cGKj[qdMig" name="edit_day" label="M#12cn13天显示" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="cEfujmu15bVq6IUsv]cDkg" name="edit_year_begin" label="M#12cn14开始年份" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="G0htRLFQb4Kcs6a0Ip9miw" name="edit_year_end" label="M#12cn14结束年份" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Component>
+  <Component _uuid="zkw6TblflVNO[TLFeRZZiw" name="Time" label="M#12cn15时间选取框" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XTime" base_name="org.mo.web.core.webform.base.XBaseTime" inherits="EditControl,MDescCalendar">
+    <Attribute _uuid="8Euc9uAFd0[zx8q[qSLLnw" name="edit_date" label="M#12cn14时间格式" is_valid="Y" note="M#" type="String" is_config="Y" is_abstract="Y" is_default="N" />
+    <Attribute _uuid="b01Q9dXLppX[BCYwjZbcgw" name="edit_hour" label="M#12cn14小时显示" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="GEOpLG6cA5yhbgs]r7uOgQ" name="edit_minute" label="M#12cn14分钟显示" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="M03iLJMfKOipjHAxA3GiqA" name="edit_second" label="M#12cn14秒数显示" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="G02YfQ44OOcQilPyx8SulQ" name="edit_minute_interval" label="M#12cn14分钟间隔" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="2EwndXcgvwi703PrWPSujA" name="edit_second_interval" label="M#12cn14秒数间隔" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="a0Rz6KK0Sflly[uErNKVmA" name="ColumnCheck" label="M#12cn13单选框" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColumnCheck" base_name="org.mo.web.core.webform.base.XBaseColumnCheck" inherits="ColumnEditControl,MDescCheck" />
+  <Component _uuid="oEWPn1I9BILn]oSKkU2KqA" name="ColumnSelect" label="M#12cn15下拉列表列" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColumnSelect" base_name="org.mo.web.core.webform.base.XBaseColumnSelect" inherits="ColumnEditControl,MDescSelect" />
+  <Component _uuid="V0quC5X9flXra7zDv6Xgmw" name="IconPicker" label="M#12cn14图标选取" is_valid="Y" note="M#12cn14图标选取" class_name="org.mo.web.core.webform.control.XIconPicker" base_name="org.mo.web.core.webform.base.XBaseIconPicker" inherits="EditControl,MListView">
+    <Attribute _uuid="hUnA31fK2gukkBkPA1PnkA" name="icon_default" label="M#12cn14默认图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+  </Component>
+  <Component _uuid="K0MEwQSCAOwMhy7kn[XAkg" name="PageControl" label="M#12cn14分页控件" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XPageControl" base_name="org.mo.web.core.webform.base.XBasePageControl" inherits="Control" />
+  <Component _uuid="T0[QVugVmUs9YL]0vB3ltQ" name="PageSheet" label="M#12cn16分页控件-页" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XPageSheet" base_name="org.mo.web.core.webform.base.XBasePageSheet" inherits="Control">
+    <Attribute _uuid="oke47PexsGe0rO20CkdfgQ" name="form_refer" label="M#12cn14表单引用" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="aUiKYM8[nUvrSIbBifynqA" name="form_link" label="M#12cn14表单链接" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="CkuVpMtUxEk7z441BfTlhw" name="form_search" label="M#12cn14表单查询" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="S0KqiYFTTYhwlJg]9kkxiQ" name="form_order" label="M#12cn14表单排序" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="KEPoJH[3VfEqF5fRlkeWkA" name="query_prepare" label="M#12cn14准备查询" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Component>
+  <Interface _uuid="n0ex1Igp[f7J3lWgVu8BiQ" name="MDataset" label="M#12cn15数据集接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XDatasetFace">
+    <Attribute _uuid="wEelW[nLv9nVZv81dEBvqw" name="dataset" label="M#12cn15数据集名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="0EOYXRamzni5JFwzOiqNhQ" name="dataset_from" label="M#12cn14数据来源" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="JUUXjgpPp9]qJu5]Bf5PlA" name="dataset_procedure" label="M#12cn14数据处理" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="SUE1TOZYVurU0r8RSLzxtw" name="dataset_service" label="M#12cn14数据服务" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="q0VLFXQ[aHHP6n]IRj]1uQ" name="dataset_search" label="M#12cn14数据搜索" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="cEDzNYph7t]ulTyfiPldiQ" name="dataset_group" label="M#12cn14数据分组" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="rkHhScwQXJurnx9fw97Blg" name="dataset_order" label="M#12cn14数据排序" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="f0b01cVoosYY6H9Whu9mmw" name="dataset_parameters" label="M#12cn14数据参数" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="okfuQFmakei0o8pavWmTnA" name="dataset_prepare" label="M#12cn16操作数据准备" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="R0n603ur7lmcqWOfd6KIrQ" name="dataset_insert_parameters" label="M#12cn16新建数据参数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="r0AcmJVwe8GMp6yQ9XZekg" name="dataset_insert" label="M#12cn14新建数据" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="e0FqTubflH105Z6fM[A7lA" name="dataset_update_parameters" label="M#12cn16更新数据参数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="o09Eng[lU[PrhWmCidm5ow" name="dataset_update" label="M#12cn14更新数据" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="MUb6cMN[qnCwTjvZwLAZtQ" name="dataset_delete_parameters" label="M#12cn16删除数据参数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="S0ZxRP]Dv6dmNKMI6orEvQ" name="dataset_delete" label="M#12cn14删除数据" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="n03VmSZkwe5Dsqfwg]vuqA" name="edit_mode" label="M#12cn14编辑模式" is_valid="Y" note="M#" type="String" is_config="Y" is_abstract="Y" is_default="N" />
+    <Attribute _uuid="HkSw]QOgn98NsmRmAoBstQ" name="edit_config" label="M#12cn14编辑设置" is_valid="Y" note="M#" type="String" is_config="Y" is_abstract="Y" is_default="N" />
+    <Attribute _uuid="8kFfxxGXSNWwvvZL1DaFoQ" name="edit_copy" label="M#12cn15复制编辑可" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="dkCTSEkl7EFK99pufVnWkg" name="edit_fetch" label="M#12cn15查询编辑可" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="mUoyJq1GANUveTNy8RGIuQ" name="edit_search" label="M#12cn15搜索编辑可" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="DkSYRVHIJUNhq9PVIuF8oA" name="edit_picker" label="M#12cn15选取编辑可" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="DEQg2Lh5Nz4GlkUPFIfDqg" name="edit_zoom" label="M#12cn15放大编辑可" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="OEzJwkusgvPF8IL9Mzd8gQ" name="edit_print" label="M#12cn15打印编辑可" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="2kXs]3scbpmpoU]2NW9qtA" name="edit_action" label="M#12cn15操作编辑可" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="R0C2wi]xzrZA7BOADCzAoQ" name="edit_insert" label="M#12cn15新建编辑可" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="DEKYBhnmGBRRXNUnxe6Drw" name="edit_update" label="M#12cn15修改编辑可" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="W0bk43faIs7DCb2KCmUcsQ" name="edit_delete" label="M#12cn15删除编辑可" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="SEwQiv34aKb4EjfWOsgSiQ" name="valid_access" label="M#12cn14检查权限" is_valid="Y" note="M#" type="String" is_config="Y" is_abstract="Y" />
+    <Attribute _uuid="]kMoo9mXmjOtj9xi0cF8rQ" name="valid_insert" label="M#12cn15新建检查可" is_valid="Y" note="M#" type="Boolean" is_store="Y" />
+    <Attribute _uuid="qU3xmxo2FE6QwFLtAojoug" name="valid_update" label="M#12cn15更新检查可" is_valid="Y" note="M#" type="Boolean" is_store="Y" />
+    <Attribute _uuid="CEzIcJyBe5UB]PDOMz1Atg" name="valid_delete" label="M#12cn15删除检查可" is_valid="Y" note="M#" type="Boolean" is_store="Y" />
+    <Attribute _uuid="bUzDwRyFATR4JgegQKZThg" name="action_insert" label="M#12cn14新建处理" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="XEg5LjJqCwN2TruqnrCYqA" name="action_update" label="M#12cn14更新处理" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="VkQN7RAwKQscGTZCONt7hQ" name="action_delete" label="M#12cn14删除处理" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="WUEvN68ojunqLfIsGPpQqg" name="action_prepare" label="M#12cn14操作准备" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="0UdKUzraTmBgoR2E]sk0vA" name="disp_toolbar" label="M#12cn15工具栏显示" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="kUTPv1KFmIqJcCF7yc6jvw" name="lg_name" label="M#12cn14逻辑名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+  <Component _uuid="t0Y1NSN9lAjBcVjKSXCGnA" name="ColorPicker" label="M#12cn14颜色控件" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColorPicker" base_name="org.mo.web.core.webform.base.XBaseColorPicker" inherits="EditControl,MDescColorPicker" />
+  <Component _uuid="zUohVHvZXKeVZOs3qslvsQ" name="Progress" label="M#12cn16进度显示控件" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XProgress" base_name="org.mo.web.core.webform.base.XBaseProgress" inherits="EditControl,MDescProgress" />
+  <Component _uuid="HEFY4XnjWsuAboohLzPQnQ" name="Picture" label="M#12cn13图片框" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XPicture" base_name="org.mo.web.core.webform.base.XBasePicture" inherits="EditControl,MDescPicture">
+    <Attribute _uuid="h0BLKwLdK[QvxipgQVwOtw" name="store_type" label="M#12cn14存储类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="y0wI0vKG4c[ubUj6kHUAow" name="store_code" label="M#12cn14存储代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="yUu0fOmlpOj3nzjsVIxFlQ" name="store_name" label="M#12cn14存储名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="1UbwwDOVrlysbvcgfjfjkA" name="edit_adjust" label="M#12cn14自动调整" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="3ESCCk5CgOLl9gLAYPTMlA" name="edit_max_width" label="M#12cn14最大宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="2kr6YuR2xrjGMd5zJucRkw" name="edit_max_height" label="M#12cn14最大高度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="YkFO6vOabugIB9fGtqr]uQ" name="Button" label="M#12cn12按键" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XButton" base_name="org.mo.web.core.webform.base.XBaseButton" inherits="MToolButton">
+    <Attribute _uuid="50e0qMB9wibsCIAdQkHxjA" name="edit_form" label="M#12cn14表单名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="uU[D0xnMoKwJinviznOsmw" name="edit_url" label="M#12cn14编辑地址" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="mkd6fmCpNJNWbWaTCnUojw" name="Radio" label="M#12cn16单项选择按钮" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XRadio" base_name="org.mo.web.core.webform.base.XBaseRadio" inherits="EditControl">
+    <Attribute _uuid="4EjI74RXPm1wLEiJcDyRuQ" name="group_name" label="M#12cn13组名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="3klinWhRJndjrw[CpWYqvQ" name="edit_checked" label="M#12cn14默认选择" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="KEfVw4LIPK6bySfuOrglvA" name="ColumnColorPicker" label="M#12cn13颜色列" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColumnColorPicker" base_name="org.mo.web.core.webform.base.XBaseColumnColorPicker" inherits="ColumnEditControl,MDescColorPicker" />
+  <Component _uuid="tUet8TqWV6OWhuNMjFtflA" name="ColumnCalendar" label="M#12cn15日期时间列" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColumnCalendar" base_name="org.mo.web.core.webform.base.XBaseColumnCalendar" inherits="ColumnEditControl,MDescCalendar" />
+  <Component _uuid="VkqlDwKCmu5qFEzjqKsBlw" name="ColumnDate" label="M#12cn13日期列" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColumnDate" base_name="org.mo.web.core.webform.base.XBaseColumnDate" inherits="ColumnEditControl,MDescCalendar" />
+  <Component _uuid="40Pg1ALMT6QzHcpdrnXAkA" name="ColumnTime" label="M#12cn13时间列" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColumnTime" base_name="org.mo.web.core.webform.base.XBaseColumnTime" inherits="ColumnEditControl,MDescCalendar" />
+  <Component _uuid="rUntNttDp7zZFoFU[]enkA" name="ColumnIcon" label="M#12cn13图标列" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColumnIcon" base_name="org.mo.web.core.webform.base.XBaseColumnIcon" inherits="ColumnEditControl" />
+  <Component _uuid="1EBgBZPxTbBuewpHlEBipA" name="ColumnProgress" label="M#12cn13进度列" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColumnProgress" base_name="org.mo.web.core.webform.base.XBaseColumnProgress" inherits="ColumnEditControl,MDescProgress" />
+  <Component _uuid="OUujW]jcw1ymFzeGGPH2pQ" name="ColumnNumber" label="M#12cn13数字列" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColumnNumber" base_name="org.mo.web.core.webform.base.XBaseColumnNumber" inherits="ColumnEditControl,MDescNumber,MListView">
+    <Attribute _uuid="fEdgEjbpnSsmAhB]zlDmhg" name="disp_format" label="M#12cn14显示格式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="uUutu1FStB[roeRIa]2]lQ" name="data_total" label="M#12cn14合计类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="Q0kg1SHVfLhgmC17rqKBsQ" name="edit_link" label="M#12cn16编辑下的关联" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+  </Component>
+  <Component _uuid="8kVg5Ftz1RJG5EmHRtddtQ" name="ToolButtonSplit" label="M#12cn16工具按键分割" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XToolButtonSplit" base_name="org.mo.web.core.webform.base.XBaseToolButtonSplit" inherits="Control" />
+  <Component _uuid="OUTQkovdusgKah5IPgv0hQ" name="ToolButtonMenu" label="M#12cn14按键菜单" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XToolButtonMenu" base_name="org.mo.web.core.webform.base.XBaseToolButtonMenu" inherits="MToolButton" />
+  <Interface _uuid="iU8RdiCPCTEPqCgCKC4ftg" name="MListView" label="M#12cn14选取控件" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XListViewFace">
+    <Attribute _uuid="sEWgSy2S[1RDHrGXEm][ug" name="lov_service" label="M#12cn14选取服务" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="3kOQw7VB9gQqvFcUFtjUgg" name="lov_refer" label="M#12cn14选取引用" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="[k8[9RDuTxC3fpfKoI]WiA" name="lov_fields" label="M#12cn14选取字段" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="EU0Vpp9JZh]lG8tHiRhitw" name="lov_where" label="M#12cn14选取条件" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="tUM4NLHP8XC]v]h7Jd49uQ" name="lov_order" label="M#12cn14选取顺序" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+  </Interface>
+  <Component _uuid="wEsaqyEHlpUjP5F5omkyrg" name="WebBatch" label="M#12cn16在线处理窗口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XWebBatch" base_name="org.mo.web.core.webform.base.XBaseWebBatch" inherits="Control">
+    <Attribute _uuid="TUZeTTeQtbEy9GAiRXW[vQ" name="business_code" label="M#12cn14业务代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="eEDmDj2iegcIHPhQhqBGjw" name="WebDialog" label="M#12cn14弹出窗口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XWebDialog" base_name="org.mo.web.core.webform.base.XBaseWebDialog" inherits="Control">
+    <Attribute _uuid="jUHsD8LEzlwnMFCPuuVFrA" name="business_code" label="M#12cn14业务代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="Pk0DY1EX9XC3hwBu4Iu0rQ" name="Template" label="M#12cn12模板" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XTemplate" base_name="org.mo.web.core.webform.base.XBaseTemplate" inherits="Control">
+    <Attribute _uuid="4k]v2[XVL2jHsJ91YU4nnA" name="template_name" label="M#12cn14模板名称" is_valid="Y" note="M#" type="String" is_store="Y" />
+  </Component>
+  <Component _uuid="v0]HSIZhOAjSheGqmavcjw" name="WebTemplate" label="M#12cn14表单模板" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XWebTemplate" base_name="org.mo.web.core.webform.base.XBaseWebTemplate" inherits="Control" />
+  <Component _uuid="B0BsxaK2vAs]8e1b9amGug" name="WebStyle" label="M#12cn14样式窗口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XWebStyle" base_name="org.mo.web.core.webform.base.XBaseWebStyle" inherits="Control" />
+  <Component _uuid="MUU1wLPoZCZ2EtGMnLdtmg" name="MenuButtonSplit" label="M#12cn14按键分隔" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XMenuButtonSplit" base_name="org.mo.web.core.webform.base.XBaseMenuButtonSplit" inherits="Control" />
+  <Component _uuid="ykPTQDbPOEseBdQWRHOWhQ" name="ColumnPicture" label="M#12cn13图片列" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColumnPicture" base_name="org.mo.web.core.webform.base.XBaseColumnPicture" inherits="ColumnEditControl,MDescPicture">
+    <Attribute _uuid="wkEIL4yeod79[KqS]d10nw" name="store_type" label="M#12cn14存储类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="QkQ8dIoe8d5L7XHT9eCVhw" name="store_code" label="M#12cn14存储代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="Ik40IJMxu5[h1J7MyamSiQ" name="store_name" label="M#12cn14存储名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Component>
+  <Interface _uuid="yEvhfs0p30QCcj53VIiilw" name="MZoom" label="M#12cn15放大镜接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XZoomFace">
+    <Attribute _uuid="s0p4BAjPgIqwJRk4EnRonw" name="zoom_refer" label="M#12cn14引用表单" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="XUoeGVuck]uKZRSbPp1Uug" name="zoom_field" label="M#12cn14放大字段" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+  <Interface _uuid="lELjPvKpflmBv]mjOYKauw" name="MDescNumber" label="M#12cn16数字控件接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XDescNumberFace">
+    <Attribute _uuid="RUOyl42e48PqXsapdqhXvQ" name="edit_splitter" label="M#12cn14是否分隔" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="N08VR6VOzY]pvjGoiRyPig" name="edit_increate" label="M#12cn14增减单位" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="7UmUX53tVVU4Id2xokv3rA" name="edit_precision" label="M#12cn12精度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="LE9dU5DhS6eWvZNsKopxng" name="edit_pattern" label="M#12cn14输入模板" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="OUAxPMkOZeCgiJ]7WDuUhQ" name="edit_round" label="M#12cn14四舍五入" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="S0WEJByhQ[KMtl3r4qI3oA" name="valid_eqlmin" label="M#12cn15允许最小值" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="qUJzpyTS2dXlJ9oachDZlw" name="valid_eqlmax" label="M#12cn15允许最大值" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="9kO5M7IQaNNFVagCDVevpg" name="valid_valmin" label="M#12cn13最小值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="1kweykESeGL8txACd0ZMjQ" name="valid_valmax" label="M#12cn13最大值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="c0LZuu[AryC9QrNy5NOxrg" name="edit_length" label="M#12cn15可输入长度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="1EZxj4mE3rmmTpbPmSP7ug" name="edit_format" label="M#12cn14编辑格式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="Xkp3Lu4hhXmZ]xh0hepWng" name="edit_align" label="M#12cn14编辑对齐" is_valid="Y" note="M#12cn14;l.;" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+  <Interface _uuid="bEfw1nIgnii6vwCXYFpTgQ" name="MDescEdit" label="M#12cn16文本控件接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XDescEditFace">
+    <Attribute _uuid="fkBvaAC5FCafagjIgUK9mg" name="edit_parent" label="M#12cn13编辑父" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="vU0dm460OTWZ]wbya8AyjA" name="edit_complete" label="M#12cn14自动完成" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="EE5Suhp1QIWGkcSvHPSWlA" name="edit_align" label="M#12cn14编辑对齐" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="9kIc3xD75zQ6bw7QHKEWjQ" name="edit_length" label="M#12cn14编辑长度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="L0UrxxUDgkRrbIPbReXrgg" name="edit_case" label="M#12cn14输入格式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="Bkw6JW4nHwG1Ox1pyoJPkw" name="edit_pattern" label="M#12cn14输入模板" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="v04nmKK0DYoD30CUgJeHoQ" name="edit_format" label="M#12cn14编辑格式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="dUGQrfzIvbl[FYCi8MgNqQ" name="valid_lenmax" label="M#12cn14最大长度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+  </Interface>
+  <Interface _uuid="AErk4RekjmSGbhkfRIfUnQ" name="MDisplay" label="M#12cn16控制显示接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XDisplayFace">
+    <Attribute _uuid="t0pC]2uOoPGI4WwUEfrPpQ" name="disp_mode" label="M#12cn14显示模式" is_valid="Y" note="M#12cn17显示状态的集合" type="String" is_config="Y" is_abstract="Y" is_default="N" />
+    <Attribute _uuid="OUMgVnIdksVIMIaruuHThw" name="disp_config" label="M#12cn14显示设置" is_valid="Y" note="M#" type="String" is_config="Y" is_abstract="Y" is_default="N" />
+    <Attribute _uuid="yUvUeRoLg24Yg]TaYc5HlQ" name="disp_fetch" label="M#12cn12查询" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="40PCwxMGKPQtbEfkLgIRsA" name="disp_search" label="M#12cn14搜索显示" is_valid="Y" note="M#12cn210弹出搜索框时是否显示" type="Boolean" is_store="Y" />
+    <Attribute _uuid="I08nApzngTSLC]NlRl3]jg" name="disp_picker" label="M#12cn14选取显示" is_valid="Y" note="M#12cn211在LOV列表中是否显示" type="Boolean" is_store="Y" />
+    <Attribute _uuid="u0woTkIiKMOBhfZV6cpEtA" name="disp_lov" label="M#12cn15LOV显示" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="D0Hde[hGsYuxkCXmnc[MoA" name="disp_zoom" label="M#12cn14放大显示" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="[Ueb2JpEvyo6UjTTMcrbiQ" name="disp_list" label="M#12cn14列表显示" is_valid="Y" note="M#12cn215Table中列表状态时是否显示" type="Boolean" is_store="Y" />
+    <Attribute _uuid="pUvRWAcFY98uhAegel5xtw" name="disp_display" label="M#12cn14显示显示" is_valid="Y" note="M#12cn19显示状态时是否显示" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="]E6cW4GxALrwsefjXg5Gng" name="disp_insert" label="M#12cn14新建显示" is_valid="Y" note="M#12cn19新建状态时是否显示" type="Boolean" is_store="Y" />
+    <Attribute _uuid="hkiGacng05TDSkhgOAWMvQ" name="disp_update" label="M#12cn14更新显示" is_valid="Y" note="M#12cn19更新状态时是否显示" type="Boolean" is_store="Y" />
+    <Attribute _uuid="D0J6JipgGmsg8hfvHTXRtA" name="disp_delete" label="M#12cn14删除显示" is_valid="Y" note="M#12cn19删除状态时是否显示" type="Boolean" is_store="Y" />
+    <Attribute _uuid="3UL4RZ3a[p9Zik2qVx8Vjg" name="disp_auto" label="M#12cn14自动调整" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="v0]s7u7x1KAJ]NmaquFWoQ" name="disp_size" label="M#12cn14可变大小" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="yUeBAl0nKsfIXxV8LsG5lw" name="disp_drag" label="M#12cn14可被拖拽" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="2kvGfiQ22dI1LjDf729zvg" name="disp_print" label="M#12cn14印刷显示" is_valid="Y" note="M#12cn19打印状态时是否显示" type="Boolean" is_store="Y" is_default="N" />
+  </Interface>
+  <Interface _uuid="9E9zGHNQqZXOa89gpO6[jg" name="MPad" label="M#12cn16控件空余接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XPadFace">
+    <Attribute _uuid="5UrS6ykFtuuctl5uzecRiA" name="pad_left" label="M#12cn13左空余" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="HUQb6xaRlYvIdU]Cm4Dsjw" name="pad_top" label="M#12cn13上空余" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="707D]Bx6hvaV[s]P0kBUtQ" name="pad_bottom" label="M#12cn13下空余" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="ckfL7aG7QIIuiRWBVIIojA" name="pad_right" label="M#12cn13右空余" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+  <Interface _uuid="kk0WWFgc6GVtMRaqvcgpjQ" name="MSize" label="M#12cn16控件位置接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XSizeFace">
+    <Attribute _uuid="pkhPO2Ch]5lrB6oLVD[FlA" name="left" label="M#12cn13左位置" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="PkcSMheCexG[BakDlH2DkQ" name="top" label="M#12cn13上位置" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="2UZBrim0V1QlHZSZkzNioA" name="right" label="M#12cn13右位置" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="TUr4N08EYY1LJI1eRSofgw" name="bottom" label="M#12cn13下位置" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="mUA89kt2V2879lj2BA9]sQ" name="width" label="M#12cn12宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="R0pK]]kDFggY]dUZVa6otQ" name="height" label="M#12cn12高度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+  <Interface _uuid="EUWhdZBDJhRQFB7n2fD4jQ" name="MEditDescriptor" label="M#12cn16编辑信息接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XEditDescriptorFace">
+    <Attribute _uuid="P0bjzKQMAJV96Bo[yfbBhg" name="label_align" label="M#12cn14对齐方式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="y0cE8n5SXr6ZL]WSfqvBrA" name="label_color" label="M#12cn14标签颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="6EsG568MuT0sYyoSIMr9vw" name="label_icon" label="M#12cn14标签图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="xU1R]JeKRHbubW7CJotDng" name="data_fetch" label="M#12cn14是否查询" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="O00N9LtdjHN9tuZOquG]mQ" name="data_name" label="M#12cn14数据名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="fUGR4rsj5HpZN5Og[fLctA" name="data_code" label="M#12cn14数据代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="SUWOVyP1TMmwxAbE0M64hA" name="data_prepare" label="M#12cn14数据准备" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="GEnrn6PzE40JKc1SPWAhig" name="data_default" label="M#12cn14缺省内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="T0Pix6LYM[mQN40gqXdKpg" name="edit_mode" label="M#12cn14编辑模式" is_valid="Y" note="M#" type="String" is_config="Y" is_abstract="Y" is_default="N" />
+    <Attribute _uuid="fkvkuciVoCT9Zrj38YTFhA" name="edit_config" label="M#12cn14编辑设置" is_valid="Y" note="M#" type="String" is_config="Y" is_abstract="Y" is_default="N" />
+    <Attribute _uuid="s0[H4dR3sLCxXjerUrmrkw" name="edit_search" label="M#12cn15搜索编辑可" is_valid="Y" note="M#" type="Boolean" is_store="Y" />
+    <Attribute _uuid="BEjOgV4vHKszWejbbcZrgA" name="edit_insert" label="M#12cn15新建编辑可" is_valid="Y" note="M#" type="Boolean" is_store="Y" />
+    <Attribute _uuid="2kXi]257eh4udeIT[m44qQ" name="edit_update" label="M#12cn15修改编辑可" is_valid="Y" note="M#" type="Boolean" is_store="Y" />
+    <Attribute _uuid="l0L[wwjJetuz5Qpeq50Jiw" name="edit_delete" label="M#12cn15删除编辑可" is_valid="Y" note="M#" type="Boolean" is_store="Y" />
+    <Attribute _uuid="uk[PhSS9lArh2b[PxheyoA" name="edit_zoom" label="M#12cn15放大编辑可" is_valid="Y" note="M#" type="String" is_store="Y" is_default="Y" />
+    <Attribute _uuid="9U[1AdQpEMyxKxCOn50Ehw" name="edit_unit" label="M#12cn14计量单位" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="DkwxUeJFO0WJ4C3XFUbisg" name="edit_tip" label="M#12cn14编辑提示" is_valid="Y" note="M#12cn234在编辑控件时，在输入框内的提示信息。\n当鼠标点击进去，提示内容消失。" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="Z0LM2K2uJkp2gA9X8L1olA" name="edit_copy" label="M#12cn13复制可" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="EElAuw9izb6gUmSKnh[Pmw" name="valid_access" label="M#12cn14检查权限" is_valid="Y" note="M#" type="String" is_config="Y" is_abstract="Y" />
+    <Attribute _uuid="2E6tFXwWNQm[]k5lgPCzoA" name="valid_insert" label="M#12cn15新建检查可" is_valid="Y" note="M#" type="Boolean" is_store="Y" />
+    <Attribute _uuid="N0u9QXsOVDex4Q[p8g0Wtg" name="valid_update" label="M#12cn15更新检查可" is_valid="Y" note="M#" type="Boolean" is_store="Y" />
+    <Attribute _uuid="cUrtnIH8pIUEfUZlwPaRug" name="valid_delete" label="M#12cn15删除检查可" is_valid="Y" note="M#" type="Boolean" is_store="Y" />
+    <Attribute _uuid="hU4Ou9U1RxVqo[oGzefptA" name="valid_require" label="M#12cn14检查必须" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+  </Interface>
+  <Interface _uuid="7URmsb]oNjljk6K[Ui5Cuw" name="EditControl" label="M#12cn16编辑控件接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XEditControlFace" inherits="Control,MEditDescriptor,MEditValue">
+    <Attribute _uuid="]kKGRwtGwVcc[Z5GH97RkA" name="label_type" label="M#12cn14显示方式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="mkI1VzjbR8nzrSDcBryElw" name="label_position" label="M#12cn14标签位置" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="3EY[7hqbCbTWJMKFvLEaow" name="label_width" label="M#12cn14标签宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="WUSpw2iBxIgre7]ChiehvA" name="label_height" label="M#12cn14标签高度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="]k3mUNMuDC7GS8geNfeorw" name="edit_width" label="M#12cn14编辑宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="VkTA5[hLF03n9391sk0CkA" name="edit_height" label="M#12cn14编辑高度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="qkTIyKwGSvRWHjcQKp5juQ" name="search_type" label="M#12cn14搜索方式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="5UY3SgR8uwS5EsjZZA04qw" name="data_type" label="M#12cn14数据类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="ckLpsc2[ES0YzDJZINfvhQ" name="edit_color" label="M#12cn14编辑颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Interface>
+  <Interface _uuid="L0pRs]xwGlpFoYjeyXeZmw" name="MEditValue" label="M#12cn16数据内容接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XEditValueFace">
+    <Attribute _uuid="uk7wPSfMGlXSN4jS076YvA" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+  </Interface>
+  <Interface _uuid="gEhn5Hge]fXyHC8UeH2ojQ" name="MDescSelect" label="M#12cn16下拉列表接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XDescSelectFace">
+    <Attribute _uuid="eEoNAwFrvDAcgwWpo0LFoA" name="edit_empty" label="M#12cn14允许空值" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" />
+    <Attribute _uuid="3k[whscEiTeYqLM7y1Fjjw" name="edit_refer" label="M#12cn14编辑引用" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="ikeHPvB32FFiFzGwcwdnvA" name="edit_check" label="M#12cn13可输入" is_valid="Y" note="M#12cn16用户可输入值" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="D02oop2pFkURkjsq]BP7og" name="edit_align" label="M#12cn14对齐方式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Interface>
+  <Interface _uuid="809fAAMQmN[2VipQO2Bltg" name="MDescProgress" label="M#12cn15进度条接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XDescProgressFace" />
+  <Interface _uuid="bU9hPwLWtSHFGbVd[JrQlQ" name="MDescPicture" label="M#12cn16图片控件接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XDescPictureFace" />
+  <Interface _uuid="gEDep[vt96jlwCBrkj9[ug" name="MDescColorPicker" label="M#12cn16图片控件接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XDescColorPickerFace" />
+  <Interface _uuid="tkj5jrLTwOBZtEi8DM85nw" name="MDescCheck" label="M#12cn15复选框接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XDescCheckFace">
+    <Attribute _uuid="vkZsnr18LPtkgGx]YzAFhw" name="edit_true" label="M#12cn12真值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="Ok3fgYnt]oSqFzMSIT1Bhw" name="edit_false" label="M#12cn12假值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+  <Interface _uuid="dEzfvgZClR9SterPE5y[mA" name="MDescCalendar" label="M#12cn16日期控件接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XDescCalendarFace">
+    <Attribute _uuid="nUBLakFoavbDEEMH3xEJtA" name="edit_format" label="M#12cn14数据格式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="fk06iR1szLFb7RQuJ9KNhA" name="edit_align" label="M#12cn14编辑对齐" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Interface>
+  <Interface _uuid="]EFucn]5FNKP[wEf]9NlhQ" name="ColumnEditControl" label="M#12cn15列控件基类" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColumnEditControlFace" inherits="IColumn" />
+  <Interface _uuid="HkX2BH3A57hEViML]8Qbiw" name="MToolButton" label="M#12cn16工具按钮接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XToolButtonFace" inherits="Control">
+    <Attribute _uuid="ok]VeowcpkL94qE2pixPlQ" name="icon" label="M#12cn12图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="mE7mniMkDrcsYB3k0vqQsw" name="icon_disable" label="M#12cn14禁止图标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="tEapz3jgQYjqLvlzpZnKmw" name="hotkey" label="M#12cn12热键" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="J0jTRgoVAaCixvHfxgkZqA" name="target" label="M#12cn14目标页面" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="4UteGTCSflyAN3mn9IL[nA" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="5UGU7pd71cFFigDspezZhQ" name="service" label="M#12cn12服务" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="fkS[4ej0fONmPbFLl4bslw" name="page" label="M#12cn12页面" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="wEufjwt[XGtFvLtFgwx]tg" name="attributes" label="M#12cn14属性集合" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="RkyH7C]M2tteRn4ZQzN[kg" name="data_action" label="M#12cn14数据命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Interface>
+  <Component _uuid="KUfgdgTsdnXxXZBtQ[qnoA" name="Picker" label="M#12cn14纪录选取" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XPicker" base_name="org.mo.web.core.webform.base.XBasePicker" inherits="EditControl,MListView,MDescEdit" />
+  <Interface _uuid="mEWkXQKzPumyHKoh1sxZvQ" name="MDescProcessStatus" label="M#12cn18处理状态控件接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XDescProcessStatusFace">
+    <Attribute _uuid="zUZ4mmyV7OSwl1Vn7J69rQ" name="level_colors" label="M#12cn16处理级别颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="VUKBPP8lKHEKyxM00pyXjw" name="level_images" label="M#12cn16处理级别图片" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="jUUDqmJoTTQc4VLLcNWSiA" name="step_start" label="M#12cn18级别显示起始位置" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="JkpsJQlYlsBCRR7lRFV8qg" name="step_width" label="M#12cn18单个级别显示宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="EU77O0zGaA05UirzKAvlkA" name="step_count" label="M#12cn17显示级别的个数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+  <Component _uuid="N07RvdWViHSorwyXZ8Cduw" name="ColumnProcessStatus" label="M#12cn15处理状态列" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColumnProcessStatus" base_name="org.mo.web.core.webform.base.XBaseColumnProcessStatus" inherits="ColumnEditControl,MDescProcessStatus" />
+  <Component _uuid="fk7s1nkMzs2HRQAqmRuGow" name="Timer" label="M#12cn14时间控件" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XTimer" base_name="org.mo.web.core.webform.base.XBaseTimer" inherits="Control" />
+  <Component _uuid="mULxDN8rO12AdBNQqqJyrw" name="HtmlMemo" label="M#12cn210HTML文本输出控件" is_valid="Y" note="M#12cn210HTML文本输出控件" class_name="org.mo.web.core.webform.control.XHtmlMemo" base_name="org.mo.web.core.webform.base.XBaseHtmlMemo" inherits="EditControl" />
+  <Interface _uuid="J0KAFgjUg0hQkZNfSJ6Ptg" name="MDescCheckPicker" label="M#12cn16多选下拉列表" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XDescCheckPickerFace">
+    <Attribute _uuid="7Uu2wCesNUKXuBf1QYYEkQ" name="edit_empty" label="M#12cn14允许空值" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" />
+    <Attribute _uuid="TUhlYd1PGwFyyiqKftS1hw" name="edit_refer" label="M#12cn14编辑引用" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="vUZLv9Mz232gTlJCpdNjsw" name="edit_check" label="M#12cn13可输入" is_valid="Y" note="M#12cn16用户可输入值" type="String" is_store="Y" is_config="Y" />
+  </Interface>
+  <Component _uuid="fUiwiNj2vOnr7ZdTwq0RhA" name="CheckPicker" label="M#12cn15多项选择框" is_valid="Y" note="M#12jp16選択ボックス" class_name="org.mo.web.core.webform.control.XCheckPicker" base_name="org.mo.web.core.webform.base.XBaseCheckPicker" inherits="EditControl,MDescCheckPicker" />
+  <Component _uuid="X0fWCmD]H[0dxiGPoLfsvw" name="Event" label="M#12cn14事件对象" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XEvent" base_name="org.mo.web.core.webform.base.XBaseEvent" inherits="Component">
+    <Attribute _uuid="jkTCJhqNzC[pjoy8hxBDlw" name="code" label="M#12cn15事件函数体" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="SUOODq2YoT[xG]wLHzqFvQ" name="source" label="M#12cn14对象名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="1029E1bSBlZxwrH]rMRbtg" name="form" label="M#12cn14表单名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="wEtgaroeSFJ5poRVRgoHgA" name="TimeSpanPicker" label="M#12cn15时间段选取" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XTimeSpanPicker" base_name="org.mo.web.core.webform.base.XBaseTimeSpanPicker" inherits="EditControl" />
+  <Interface _uuid="gkFXpoxFJ4oLkZnQ9K6Ipw" name="IColumn" label="M#12cn15列组件接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XIColumnFace" inherits="Control,MEditDescriptor,MEditValue,MZoom">
+    <Attribute _uuid="90OaJIAYNTpZ5m6FRtpmqA" name="view_icons" label="M#12cn15类型图片集" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="vEfkOrOR11NLG5R0kRhyiQ" name="disp_fixed" label="M#12cn14显示固定" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_default="N" />
+    <Attribute _uuid="ZUD2dcUgjZG]diDNbRuWmA" name="search_type" label="M#12cn14搜索方式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="uEaUqmb3qh5r4dmV9NjEvQ" name="data_type" label="M#12cn14数据类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="9ENnKeZCBhtf4pQHUAEHog" name="edit_color" label="M#12cn14字体颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="5ku7ltwGg8Ymu]ZHeljghg" name="edit_bgcolor" label="M#12cn14背景颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="yEMpWFARV1JsKS[fOm5Mmw" name="data_search" label="M#12cn14搜索字段" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Interface>
+  <Component _uuid="BUP00dB11o0xtDUCImVwvw" name="Column" label="M#12cn13表格列" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColumn" base_name="org.mo.web.core.webform.base.XBaseColumn" inherits="IColumn">
+    <Attribute _uuid="I0DUoLVuJaT5PmPVYKocgg" name="edit_format" label="M#12cn14文本格式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="fkD9l0DhzhhXmewx8htBoQ" name="WebPicker" label="M#12cn14选取窗口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XWebPicker" base_name="org.mo.web.core.webform.base.XBaseWebPicker" inherits="Control,MDataset">
+    <Attribute _uuid="I0Gy0r4bsA3nNFUrKoa2mA" name="disp_count" label="M#12cn14显示行数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="RkoBKF[TRGi9eY9HJvxTmQ" name="Label" label="M#12cn14标签控件" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XLabel" base_name="org.mo.web.core.webform.base.XBaseLabel" inherits="EditControl" />
+  <Component _uuid="X0VcKLrwPJEj2OZES[BcuQ" name="FormInformationBar" label="M#12cn16表单信息控件" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XFormInformationBar" base_name="org.mo.web.core.webform.base.XBaseFormInformationBar" inherits="Control,MEditValue,MEditDescriptor" />
+  <Component _uuid="Z0Cr0DUbYWtcCOVkE3YekA" name="ColumnTree" label="M#" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColumnTree" base_name="org.mo.web.core.webform.base.XBaseColumnTree" inherits="ColumnEditControl" />
+  <Component _uuid="2kxc]2yL2qn8MMzyhoSauw" name="RowType" label="M#12cn13行类型" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XRowType" base_name="org.mo.web.core.webform.base.XBaseRowType" inherits="Control">
+    <Attribute _uuid="BUPCcXwWSnV5l76F0WDWkw" name="action" label="M#12cn12命令" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="9E88M3r8axiKhFMyWYyOkg" name="service" label="M#12cn12服务" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="2EZwT4mZMDCzD]i50]T]tQ" name="form_name" label="M#12cn14表单名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="rERSepf74oalDLZTMFVNqA" name="form_where" label="M#12cn14表单条件" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="NkmAGSxIdaDmMW6Raz2RpQ" name="form_order" label="M#12cn14表单排序" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="s00sMsHn3II2l]30]zseqw" name="form_research" label="M#12cn14查询有效" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="vE68WdOluOScJNph0MXcvg" name="LogicUserPicker" label="M#12cn16用户逻辑控件" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XLogicUserPicker" base_name="org.mo.web.core.webform.base.XBaseLogicUserPicker" inherits="EditControl">
+    <Attribute _uuid="B0l1b82SmljmvXuqPaW2mA" name="edit_style" label="M#12cn15编辑框样式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="EEuOXn3KNhbIdnoeuNfMmA" name="Browser" label="M#12cn14待定控件" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XBrowser" base_name="org.mo.web.core.webform.base.XBaseBrowser" inherits="EditControl" />
+  <Component _uuid="d0XjuBkNXNYuFpS4SFLvgg" name="Attachment" label="M#12cn14上传控件" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XAttachment" base_name="org.mo.web.core.webform.base.XBaseAttachment" inherits="EditControl">
+    <Attribute _uuid="40G[zkNoP6PyH2JFoxa[jg" name="edit_record" label="M#12cn14记录代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="a0EP6h2sXeG4c6v2Hboaiw" name="ProgressBar" label="M#12cn16进度显示控件" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XProgressBar" base_name="org.mo.web.core.webform.base.XBaseProgressBar" inherits="EditControl" />
+  <Component _uuid="cEeVg[aVfJlBIKUTCQb0oQ" name="ColumnProgressBar" label="M#12cn14百分比列" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColumnProgressBar" base_name="org.mo.web.core.webform.base.XBaseColumnProgressBar" inherits="IColumn">
+    <Attribute _uuid="fEpVyr7[cyT53ziiVJAnkA" name="disp_style" label="M#12cn14显示样式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="OEuLppzmWxuXP1d4lw8QhA" name="Chart" label="M#12cn12图表" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XChart" base_name="org.mo.web.core.webform.base.XBaseChart" inherits="EditControl">
+    <Attribute _uuid="XU7BaDu26iRLPc78iAAcgA" name="data_service" label="M#12cn14数据服务" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Interface _uuid="EER76P5FrBHEGGmSQ6[rvQ" name="MGrid" label="M#12cn14网格接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XGridFace">
+    <Attribute _uuid="10Lgdz46oZMiyJj[Ai7hlw" name="panel_access" label="M#12cn14面板权限" is_valid="Y" note="M#" type="String" is_config="Y" is_abstract="Y" is_default="N" />
+    <Attribute _uuid="CUG8XCcbL]E7KWtLpteWlw" name="disp_rowbar" label="M#12cn14行工具栏" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="uktmN3CCrAonbz3ePOSyoA" name="panel_title" label="M#12cn15显示标题栏" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="gEaw]YJwrF1Kt9EbtmVHrw" name="panel_head" label="M#12cn15显示表头栏" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="AEOENW1IDkp7PKQQ8N5TgQ" name="panel_search" label="M#12cn16显示搜索框栏" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="bkbSawZcxy3IgUEaOSwWmA" name="panel_hint" label="M#12cn15显示提示栏" is_valid="Y" note="M#" type="String" is_store="Y" is_default="N" />
+    <Attribute _uuid="iUx1dRI6BRxOKcpSZdUZkg" name="panel_total" label="M#12cn12合计" is_valid="Y" note="M#" type="String" is_store="Y" is_default="Y" />
+    <Attribute _uuid="[UjDlikNaZAVBFNyahB3oA" name="query_prepare" label="M#12cn14准备查询" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="a0hi0EjB7PGRqOBpZOk0hQ" name="form_linked" label="M#12cn19是否已关联详细表单" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="6USpa9Pg]Z1XHMjOJn1XhQ" name="form_custom" label="M#12cn14传输方式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="5E5TOPYx75vox]mjzMcPsg" name="form_parameter" label="M#12cn14传输参数" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Interface>
+  <Component _uuid="[EATqBf1rwUJItFn1dkTnQ" name="ColumnButton" label="M#12cn13列按键" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XColumnButton" base_name="org.mo.web.core.webform.base.XBaseColumnButton" inherits="IColumn" />
+  <Component _uuid="WU1]ZPZ8derX7Hfnt87grQ" name="Sql" label="M#12cn17sql文存储框" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XSql" base_name="org.mo.web.core.webform.base.XBaseSql" inherits="Component" />
+  <Component _uuid="9Uy1oFNUKaYQKnalXqZ3sQ" name="Panel" label="M#12cn12面板" is_valid="Y" note="M#" class_name="org.mo.web.core.webform.control.XPanel" base_name="org.mo.web.core.webform.base.XBasePanel" inherits="Control" />
+</Persistence>
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="6UPaxJML]9RqZFje3mnXiA" name="eng-datainfo" label="M#12cn14数据信息" is_valid="Y" note="M#" template="xmlobject" source="${export.logic.data.source}">
+   <Interface _uuid="q0EQ7yI8AAKil8zEdaR4rA" name="IObject" label="M#" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.data.datainfo.common.XObject">
+      <Attribute _uuid="bkGoTu]FxSd6n5El1LaZrQ" name="name" label="M#" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="vEl8COw7cYvJi0xWY5OLow" name="label" label="M#" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="CUYaCPCpYoIoVmxCroLsuw" name="note" label="M#" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="8kbHpG49hQ]0P5wmgJx0mg" name="data_name" label="M#" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Interface>
+   <Component _uuid="FUGDQKBVI6Wt]8HA1geJrw" name="Field" label="M#" is_valid="Y" note="M#12jp15フィールド" class_name="org.mo.data.datainfo.common.XField" base_name="org.mo.data.datainfo.base.XBaseField" inherits="IObject">
+      <Attribute _uuid="50uHhbOj]oT2tqg[xT9Lhg" name="type" label="M#" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="bEr9XlNXeRddvl75RatUqA" name="is_key" label="M#" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="ZEznYNMlyp1F]5NmQ1AnsQ" name="is_null" label="M#" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="[US6mzVBiPs5oeDNH84QrA" name="size" label="M#" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+   <Component _uuid="Y0pn6aS[Bi4[[iPxRiYIng" name="Table" label="M#" is_valid="Y" note="M#12jp14テーブル" class_name="org.mo.data.datainfo.common.XTable" base_name="org.mo.data.datainfo.base.XBaseTable" inherits="IObject">
+      <Attribute _uuid="yEa3OWNExWiDWk4nsgFThg" name="logic" label="M#" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="TUbM8MNtZlluVCkWBLENrQ" name="edit_insert" label="M#" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="okonwiq1T]i3W[EoUIvfug" name="edit_update" label="M#" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="]URgsNNOsNN5nKcQ8IWFlw" name="edit_delete" label="M#" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+   <Component _uuid="ukJWr5YP9qVV9ObCpqptoQ" name="View" label="M#" is_valid="Y" note="M#12jp13ビュー" class_name="org.mo.data.datainfo.common.XView" base_name="org.mo.data.datainfo.base.XBaseView" inherits="IObject">
+      <Attribute _uuid="dUCNUhyaZG3jYyTaXFpqmw" name="logic" label="M#" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="LEqNY25XRxALRiqTQU59tg" name="edit_insert" label="M#" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="hUgdP0[RS9P2XFEx8OJapw" name="edit_update" label="M#" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="KUWS4YkDyzc6V01rUKqpqw" name="edit_delete" label="M#" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+   <Component _uuid="Mk5bQSE58aM2ycr2KFPGkg" name="Package" label="M#" is_valid="Y" note="M#12jp15パッケージ" class_name="org.mo.data.datainfo.common.XPackage" base_name="org.mo.data.datainfo.base.XBasePackage" inherits="IObject">
+      <Attribute _uuid="T0Stlmd[fJ8gUIEmbndmqA" name="logic" label="M#" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="s0hc7WQ6JkZZ7fWxKeywkg" name="edit_insert" label="M#" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="w0WpNSaTOgx3bdvt5[XpnQ" name="edit_update" label="M#" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="YkwUXJ5GHRiuiviDBLgTug" name="edit_delete" label="M#" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+   </Component>
+</Persistence>

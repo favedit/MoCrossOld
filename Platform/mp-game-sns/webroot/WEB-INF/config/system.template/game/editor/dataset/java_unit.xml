@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="uUpzaGEPkNp3dBzx11rRpA" name="database.logicunit.sqlView" is_valid="Y" note="M#">
+  <Source _uuid="60]ZbPHhJJ80wmSY2jV0hw" is_valid="Y" note="M#"><![CDATA[package <jt:item source='$dataset.source_package_name'/>;
+
+import org.mo.com.lang.*;
+import org.mo.com.collections.*;
+import org.mo.com.lang.type.*;
+import org.mo.data.logic.*;
+
+//============================================================
+// <T><jt:item source='$dataset.label'/>逻辑单元。</T>
+//============================================================
+public class <jt:item source='$dataset.source_class_name'/>Unit extends FLogicUnit
+{
+<jt:loop source='$fields' alias='field'>
+   // 存储字段<jt:item source='$field.label'/>的定义。
+<jt:equals source='$field.type' value='RecordId|Boolean|Integer|Long|Float|Double|Char|String'>
+   private <jt:item source='$field.java_type'/> __<jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Date|Time|DateTime'>
+   private <jt:item source='$field.java_type'/> __<jt:Item source='$field.data_name' format='method'/> = new <jt:item source='$field.java_type'/>();
+</jt:equals>
+
+   // 字段<jt:item source='$field.label'/>的定义。
+<jt:equals source='$field.type' value='RecordId|Boolean|Integer|Long|Float|Double|Char|String'>
+   protected <jt:item source='$field.java_type'/> _<jt:Item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Date|Time|DateTime'>
+   protected <jt:item source='$field.java_type'/> _<jt:Item source='$field.data_name' format='method'/> = new <jt:item source='$field.java_type'/>();
+</jt:equals>
+
+</jt:loop>
+   //============================================================
+   // <T>构造<jt:item source='$dataset.label'/>逻辑单元。</T>
+   //============================================================
+   public <jt:item source='$dataset.source_class_name'/>Unit(){
+   }
+<jt:loop source='$fields' alias='field'>
+
+   //============================================================
+   // <T>判断<jt:item source='$field.label'/>的数据是否改变。</T>
+   //
+   // @return 数据内容
+   //============================================================
+   public boolean is<jt:item source='$field.data_name' format='class'/>Changed(){
+<jt:equals source='$field.type' value='RecordId|Boolean|Integer|Long|Float|Double'>
+      return __<jt:item source='$field.data_name' format='method'/> != _<jt:item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Date|Time|DateTime'>
+      return !__<jt:item source='$field.data_name' format='method'/>.equals(_<jt:item source='$field.data_name' format='method'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Char|String'>
+      return !RString.equals(__<jt:item source='$field.data_name' format='method'/>, _<jt:item source='$field.data_name' format='method'/>);
+</jt:equals>
+   }
+
+   //============================================================
+   // <T>获得<jt:item source='$field.label'/>的数据内容。</T>
+   //
+   // @return 数据内容
+   //============================================================
+   public <jt:item source='$field.java_type'/> <jt:item source='$field.data_name' format='method'/>(){
+      return _<jt:item source='$field.data_name' format='method'/>;
+   }
+
+   //============================================================
+   // <T>设置<jt:item source='$field.label'/>的数据内容。</T>
+   //
+   // @param value 数据内容
+   //============================================================
+   public void set<jt:item source='$field.data_name' format='class'/>(<jt:item source='$field.java_type'/> value){
+      _<jt:item source='$field.data_name' format='method'/> = value;
+   }
+</jt:loop>
+
+   //============================================================
+   // <T>加载行记录。</T>
+   //
+   // @param row 行记录
+   //============================================================
+   public void load(FRow row){
+<jt:loop source='$fields' alias='field'>
+<jt:equals source='$field.type' value='RecordId'>
+      __<jt:item source='$field.data_name' format='method'/> = RLong.parse(row.get("<jt:item source='$field.data_name' format='lower'/>"));
+      _<jt:item source='$field.data_name' format='method'/> = __<jt:item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Integer|Long|Float|Double'>
+      __<jt:item source='$field.data_name' format='method'/> = row.get<jt:item source='$field.type'/>("<jt:item source='$field.data_name' format='lower'/>");
+      _<jt:item source='$field.data_name' format='method'/> = __<jt:item source='$field.data_name' format='method'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Date|Time|DateTime'>
+      __<jt:item source='$field.data_name' format='method'/>.parse(row.get("<jt:item source='$field.data_name' format='lower'/>"));
+      _<jt:item source='$field.data_name' format='method'/>.assign(__<jt:item source='$field.data_name' format='method'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Char|String'>
+      __<jt:item source='$field.data_name' format='method'/> = row.get("<jt:item source='$field.data_name' format='lower'/>");
+      _<jt:item source='$field.data_name' format='method'/> = __<jt:item source='$field.data_name' format='method'/>;
+</jt:equals>
+</jt:loop>
+   }
+}
+]]></Source>
+</Template>

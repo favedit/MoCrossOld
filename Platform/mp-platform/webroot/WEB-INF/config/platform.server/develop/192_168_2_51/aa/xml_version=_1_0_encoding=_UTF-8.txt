@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+   
+   <Component name="Game.Gate.Server.Transfer">
+      <Property name="mode">single</Property>
+      <Property name="link_type">create</Property>
+      <Property name="share_key">/data/shm_nio_server.key</Property>
+      <Property name="receive_thread_count">4</Property>
+      <Property name="socket_timeout">30000</Property>
+      <Host host="127.0.0.1" port="10201" />
+   </Component>
+   <Component name="Game.Gate.Client.Transfer">
+      <Property name="mode">single</Property>
+      <Property name="protocol">message</Property>
+      <Property name="link_type">create</Property>
+      <Property name="share_key">/data/shm_nio_client.key</Property>
+      <Property name="udp_support">N</Property>
+      <Property name="udp_host">192.168.1.108</Property>
+      <Property name="udp_port">10000</Property>
+      <Property name="limit_socket_count">5000</Property>
+      <Property name="limit_client_count">3000</Property>
+      <Property name="receive_first_timeout">10000</Property>
+      <Property name="receive_timeout">120000</Property>
+      <Property name="send_timeout">0</Property>
+      <Property name="receive_thread_count">4</Property>
+      <Property name="socket_timeout">120000</Property>
+      <Property name="data_check">0</Property>
+      <Property name="data_compress">0</Property>
+      <Property name="data_mask">0</Property>
+      <Host host="*" port="80" />
+   </Component>
+   <Component name="Game.Proxy.Module">
+      <Property name="host">127.0.0.1</Property>
+      <Property name="port">10210</Property>
+   </Component>
+   <Component name="Game.Proxy.Server.Transfer">
+      <Property name="link_type">create</Property>
+      <Property name="share_key">/data/shm_nio_server.key</Property>
+      <Property name="socket_timeout">30000</Property>
+      <Host host="*" port="10210" />
+   </Component>
+   <Component name="Game.Domain.Server.Transfer">
+      <Property name="link_type">create</Property>
+      <Property name="share_key">/data/shm_nio_server.key</Property>
+      <Property name="socket_timeout">30000</Property>
+      <Host host="127.0.0.1" port="10220" />
+   </Component>
+   <Component name="Game.Login.Server.Transfer">
+      <Property name="link_type">create</Property>
+      <Property name="share_key">/data/shm_nio_server.key</Property>
+      <Property name="socket_timeout">30000</Property>
+      <Host host="127.0.0.1" port="10230" />
+   </Component>
+   <Component name="Game.Scene.Server.Transfer">
+      <Property name="link_type">create</Property>
+      <Property name="share_key">/data/shm_nio_server.key</Property>
+      <Property name="socket_timeout">30000</Property>
+      <Host host="127.0.0.1" port="10221" />
+   </Component>
+   <Component name="Game.Battle.Server.Transfer">
+      <Property name="link_type">create</Property>
+      <Property name="share_key">/data/shm_nio_server.key</Property>
+      <Property name="socket_timeout">30000</Property>
+      <Host host="127.0.0.1" port="10250" />
+   </Component>
+   <Component name="Game.Storage.Server.Transfer">
+      <Property name="link_type">create</Property>
+      <Property name="share_key">/data/shm_nio_server.key</Property>
+      <Property name="socket_timeout">30000</Property>
+      <Host host="127.0.0.1" port="10260" />
+   </Component>
+   <Component name="Game.Chat.Server.Transfer">
+      <Property name="link_type">create</Property>
+      <Property name="share_key">/data/shm_nio_server.key</Property>
+      <Property name="socket_timeout">30000</Property>
+      <Host host="127.0.0.1" port="10270" />
+   </Component>
+   <Component name="Game.Logger.Server.Transfer">
+      <Property name="link_type">create</Property>
+      <Property name="share_key">/data/shm_nio_server.key</Property>
+      <Property name="socket_timeout">30000</Property>
+      <Host host="127.0.0.1" port="10240" />
+   </Component>
+
+   <Component name="Module.Storage.Database">
+      <Property name="default_id">0</Property>
+      <Property name="default_type">0</Property>
+      <Connection id="0" type="0" count="4" limit="128" passport="game" password="game" host="127.0.0.1" port="3306" database="dbname_game_qkb_wk" charset="utf8" interval="1000" command_buffer="1024000" record_buffer="1024000" record_limit="256" record_interval="10000" />
+   </Component>
+   <Component name="Module.Logger.Database">
+      <Property name="default_id">0</Property>
+      <Property name="default_type">0</Property>
+      <Connection id="0" type="0" count="2" limit="16" passport="game" password="game" host="127.0.0.1" port="3306" database="dbname_logger_qkb_wk" charset="utf8" />
+   </Component>
+</Configuration>

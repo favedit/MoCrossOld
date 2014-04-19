@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="lEI8NFxV7Ybk4mEGhfJspw" name="person.user.login" label="M#12cn17用户-登录信息" is_valid="Y" note="M#" data_name="PM_USER_LOGIN" data_logic="PM_USER_LOGIN_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="3UyMX7fBIMK6A4Co829wnA" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="USER_ID" data_refer="person.user" />
+  <FieldEnum _uuid="EETNKpL7qAbJXl4AYQc7jQ" name="solve_cd" label="M#12cn14解决类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SOLVE_CD" data_size="1" data_code="person.user.login.solve" group="N" data_default="PM_USER_LOGIN_SOLVE_EI.EInvalid" />
+  <FieldEnum _uuid="608zFa9LyiDvip4EkXbvjw" name="type_cd" label="M#12cn14登录类型" is_valid="Y" note="M#12cn214I：登录\nO：登出\nC：刷卡" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="person.user.login.type" />
+  <FieldEnum _uuid="v0hyW[B6H9K2bmVL87YGsA" name="result_cd" label="M#12cn14结果类型" is_valid="Y" note="M#12cn215U:用户不存在\nP:密码错误\n" is_store="Y" is_abstract="N" data_name="RESULT_CD" data_type="Enum" data_size="1" data_code="person.user.login.result" />
+  <FieldDate _uuid="mEP8E38oB9vhP3aNnLA]mQ" name="login_date" label="M#12cn14登录日期" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LOGIN_DATE" />
+  <FieldDate _uuid="DUrbFyIsCaW6Ysg[95BYhw" name="login_time" label="M#12cn14登录时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LOGIN_TIME" />
+  <FieldChar _uuid="tE1GN[bWxQsq61]p4MEZqQ" name="client_ip" label="M#12cn14客户地址" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CLIENT_IP" data_size="15" />
+  <FieldString _uuid="yUx9DcP20L7W4x4fwz6PlA" name="client_host" label="M#12cn15客户主机名" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CLIENT_HOST" data_size="40" />
+  <FieldInteger _uuid="wk6vlD[7H2dI]EYcrjYtpA" name="client_port" label="M#12cn14客户端口" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CLIENT_PORT" />
+  <FieldString _uuid="207rZ050HDskoDX8MgArkw" name="client_user" label="M#12cn14客户名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CLIENT_USER" data_size="40" />
+  <FieldString _uuid="xU9YXtbH4wb9SHFQOFOJtw" name="parameters" label="M#12cn14登录参数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PARAMETERS" data_size="2000" />
+</DataStore>
+

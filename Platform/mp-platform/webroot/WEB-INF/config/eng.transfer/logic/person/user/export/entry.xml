@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CsvImport _uuid="3kzU]599Alels5mYTEK9sQ" name="logic.person.user.export.entry" label="职员管理-入职CSV信息" is_valid="Y">
+  <Columns _uuid="v0SFHzIBDHmfy]L1ERlbpw" name="Columns" label="列集合" is_valid="Y">
+    <Column _uuid="0E[vIM5HZzKvOmktXg[fjg" name="work_number" label="工号" is_valid="Y" data_name="WORK_NUMBER" />
+    <Column _uuid="aEbO0ORQWKW6QVHjrMdZgg" name="user_label" label="姓名" is_valid="Y" data_name="USER_LABEL" />
+    <Column _uuid="nUibRiYK]Jit08HZORwdmg" name="type_cd" label="员工类型" is_valid="Y" data_name="TYPE_CD" />
+    <Column _uuid="g0]1B8xiHe5OKq6ygYjSjg" name="service_cd" label="员工状态" is_valid="Y" data_name="SERVICE_CD" />
+    <Column _uuid="nECU]17gjUCE9CucEC25mw" name="entry_date" label="入职日期" is_valid="Y" data_name="ENTRY_DATE" />
+    <Column _uuid="Y0AJeTx]wTcxg8YdsU[iuQ" name="organization_label" label="部门" is_valid="Y" data_name="ORGANIZATION_LABEL" />
+    <Column _uuid="j0DXDdQtldlwooV3TI0yoQ" name="external_mail" label="外网邮箱" is_valid="Y" data_name="EXTERNAL_MAIL" />
+    <Column _uuid="eE7vklKm8n4y4x4pV7MSmg" name="mail" label="内网邮箱" is_valid="Y" data_name="MAIL" />
+  </Columns>
+  <Export _uuid="ekdvXoGggT]hMDAmc[I3tQ" name="sql" label="入职" is_valid="Y" sql="SELECT WORK_NUMBER,\n   PM_USER_DI.GET_FULL_LABEL(USER_ID) USER_LABEL,\n   PM_USER_WORK_EI.DECODE_LABEL(TYPE_CD) TYPE_CD,\n   PM_USER_SERVICE_EI.DECODE_LABEL(SERVICE_CD) SERVICE_CD,\n   TO_CHAR(ENTRY_DATE, 'YYYY-MM-DD')  ENTRY_DATE,\n   MAIL,\n   EXTERNAL_MAIL,\n   PM_ORGANIZATION_DI.FIND_MAIN_ORGANIZATION_LABEL(USER_ID) ORGANIZATION_LABEL\nFROM PM_USER_COMPANY\nWHERE ENTRY_DATE &gt;= CP_DATE.Parse('${BEGIN_DATE}')\n   AND ENTRY_DATE &lt;= CP_DATE.Parse('${END_DATE}')\n   AND PM_USER_DI.Get_Is_Valid(USER_ID) = 'Y'\nORDER BY WORK_NUMBER" display_command="N" display_command_tag="N" display_head="N" display_head_tag="N" display_label="Y" display_label_tag="N" display_valid="N" display_valid_tag="N" is_open="N" export_name="eUIS-职员管理-入职[${SETTLEMENT_BEGIN_DATE}-${SETTLEMENT_END_DATE}]" export_charset="GB18030" disp_data_start_tag="N" disp_data_end_tag="N" dataset_parameters="SELECT\n   TO_CHAR(CP_DATE.Parse('${BEGIN_DATE}'), 'YYYYMMDD') SETTLEMENT_BEGIN_DATE,\n   TO_CHAR(CP_DATE.Parse('${END_DATE}'), 'YYYYMMDD') SETTLEMENT_END_DATE\nFROM DUAL" />
+</CsvImport>
+

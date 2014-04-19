@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="e0kKW[3gGrO25QEUQIQZmA" name="system.notify.receive" label="M#12cn17通知接收者连接" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="SY_NOTIFY_RECEIVE" data_alias="SY_NOTIFY_REC" data_logic="SY_NOTIFY_RECEIVE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="dataset.store" data_type="D">
+  <FieldInteger _uuid="n0]mXJGcGBbdr]nTF[Bfnw" name="notify_id" label="M#12cn15发送者标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="NOTIFY_ID" data_refer="system.notify" />
+  <FieldInteger _uuid="303M9s2zufZDR8GlwcRZtg" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_refer="system.notify.type" />
+  <FieldInteger _uuid="CE1X5gnCl2EWkDEre33fpQ" name="group_id" label="M#12cn13组标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GROUP_ID" data_refer="system.notify.group" />
+  <FieldInteger _uuid="FUQKKZB0jkMP88DWGm1VrQ" name="target_id" label="M#12cn15接受者标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="RECEIVER_ID" />
+  <FieldEnum _uuid="UkvOT6Lw5RtYqfc4tuz7sA" name="status_cd" label="M#12cn14消息状态" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="system.notify.status" />
+</DataStore>
+

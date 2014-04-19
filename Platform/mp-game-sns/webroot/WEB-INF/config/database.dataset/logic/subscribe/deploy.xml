@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="QUrRttNtdIM1rLrmMQqFhg" name="logic.subscribe.deploy" label="M#12cn15订阅-发布" is_valid="Y" note="M#" data_name="LG_SUBSCRIBE_DEPLOY" data_alias="LG_SUB_DEP" data_logic="LG_SUBSCRIBE_DEPLOY_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="x03noJzpBsWcmTsMzlTjrQ" name="subscribe_id" label="M#12cn14订阅标识" is_valid="Y" note="M#" is_store="Y" data_name="SUBSCRIBE_ID" data_refer="logic.subscribe" />
+  <FieldInteger _uuid="fEtGwOXnfKuv5C28]7Zspg" name="action_id" label="M#12cn16订阅动作标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="ACTION_ID" data_alias="ACT_ID" data_refer="logic.subscribe.type.action" />
+  <FieldInteger _uuid="e0earq8qLi[W6eOWOmM5hw" name="type_event_id" label="M#12cn16订阅事件标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TYPE_EVENT_ID" data_alias="TYP_EVE_ID" data_refer="logic.subscribe.type.event" />
+  <FieldInteger _uuid="aEAa1AfrzQWGot[HOdrOtQ" name="sender_id" label="M#12cn15发布者标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="SENDER_ID" data_refer="person.user" />
+  <FieldInteger _uuid="QU4QtrvBkYqub9Qm5U0mug" name="receiver_id" label="M#12cn15接收者标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="RECEIVER_ID" data_refer="person.user" />
+  <FieldInteger _uuid="ek2a56W1AzxlQPJS7]NLjQ" name="event_id" label="M#12cn14事件标识" is_valid="Y" note="M#" is_store="Y" data_name="EVENT_ID" data_refer="logic.event" />
+  <FieldDate _uuid="6U0FYS06sHvj6YzjiGZgkQ" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_type="Date" data_default="SYSDATE" />
+  <FieldContent _uuid="w0g9foN9bTEI5Wvpo[[1vQ" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

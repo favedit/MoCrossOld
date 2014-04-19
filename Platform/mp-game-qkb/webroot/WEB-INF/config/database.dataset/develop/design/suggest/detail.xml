@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="rk39[PhshQWFC07vnzK8nA" name="develop.design.suggest.detail" label="M#12cn14建议详细" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="DP_DESIGN_SUGGEST_DETAIL" data_alias="DP_DSN_SUG_DTL" data_logic="DP_DESIGN_SUGGEST_DETAIL_DI" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="wkN0QUh76yIayV7fFWayqQ" name="suggest_id" label="M#12cn14建议标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="SUGGEST_ID" data_alias="SUG" data_refer="develop.design.suggest" />
+  <FieldBoolean _uuid="WUmyVOirmFAtS87[B3b3hQ" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="'Y'" />
+  <FieldEnum _uuid="3kFUJYJiaMLf5tp6o1R9oA" name="status_cd" label="M#12cn14状态类型" is_valid="Y" note="M#12cn219C:启动\nP:计划\nI:实现\nM:维护" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="develop.design.suggest.detail.status" />
+  <FieldContent _uuid="DEx4xyIwHklFttQLsubUhg" name="describe_note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DESCRIBE_NOTE" />
+  <FieldInteger _uuid="J0ECym7ekWgYtTbdKFOciw" name="principal_user_id" label="M#12cn13负责人" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRINCIPAL_USER_ID" data_alias="PRC_USR" data_refer="person.user" />
+  <FieldContent _uuid="30yhZpFME4zVSzi]gWdHow" name="summary_note" label="M#12cn14总结信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SUMMARY_NOTE" />
+  <FieldTemplate _uuid="ME[OAOXUJdxka47OnooGqQ" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="[0jqDVRHt[BI2I0QttXaqg" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

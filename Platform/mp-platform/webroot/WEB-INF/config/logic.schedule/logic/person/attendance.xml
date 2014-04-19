@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="pUYUFDmivUgLvzDNER8nqQ" name="logic.person.attendance" label="M#12cn14考勤计划" note="M#" is_valid="Y">
+  <Type _uuid="p0RWmVTa0wEpmKQ6AMo1gQ" name="period.correct" label="M#12cn18考勤管理-月统计" note="M#" is_valid="Y">
+    <TypeEvent _uuid="f0jB4]KTSMS9wdBEUl8eqQ" name="period.deploy" label="M#12cn14发布事件" note="M#" is_valid="Y" event_group_name="logic.business.attendance" event_type_name="period.deploy" priority_cd="M" />
+    <Schedule _uuid="IUdTlKODdJ8[g3KHaNKdsw" name="correct.day.sync" label="M#12cn14修正同步" note="M#" is_valid="Y" begin_date="20090101000000" end_date="20200101000000">
+      <Hour _uuid="CEqj4UqiCip3PW135TTmhA" name="syncHour" label="M#12cn15按小时执行" note="M#12cn213期间修正同步计划，按天执行" is_valid="Y" execute_time="20090705081000" statue_cd="P" type_cd="H" interval="1" />
+    </Schedule>
+  </Type>
+  <Type _uuid="2k8r7[noHY9qeI3gXagOpw" name="summary.day" label="M#12cn18考勤管理-日统计" note="M#" is_valid="Y">
+    <TypeEvent _uuid="Ykax0mGSii[tqH3qd][Fiw" name="summary.sync" label="M#12cn14同步事件" note="M#" is_valid="Y" event_group_name="logic.business.attendance" event_type_name="summary.sync" priority_cd="M" />
+    <Schedule _uuid="0k8RiS3mE2]3IUDOIp9KgQ" name="summary.day.sync" label="M#12cn15同步统计天" note="M#" is_valid="Y" begin_date="20090101000000" end_date="20200101000000">
+      <Hour _uuid="BEqTuP2a57wFruCBbQ3BsQ" name="syncHour" label="M#12cn15按小时执行" note="M#12cn224从EUISLG服务器中取数据，统计期间内的天计算" is_valid="Y" execute_time="20090705073000" statue_cd="P" type_cd="H" interval="1" />
+    </Schedule>
+  </Type>
+  <Type _uuid="Aks0xxe1lOEsPRRiFUmCkw" name="sync.track" label="M#12cn211考勤管理-同步基础数据" note="M#" is_valid="Y">
+    <TypeEvent _uuid="QkCp2MMb2F8CqbwDzsuSrg" name="track.sync" label="M#12cn14同步数据" note="M#" is_valid="Y" event_group_name="logic.business.attendance" event_type_name="track.sync" priority_cd="M" />
+    <Schedule _uuid="HUQXMTNuT5RXUrlMLbbSvA" name="track.hour.sync" label="M#12cn15按小时同步" note="M#" is_valid="Y" begin_date="20090101000000" end_date="20200101000000">
+      <Hour _uuid="C03vTJhMryuszzk2BR66nA" name="syncHour" label="M#12cn15按小时执行" note="M#" is_valid="Y" execute_time="20090705060000" statue_cd="P" type_cd="H" interval="1" />
+    </Schedule>
+  </Type>
+  <Type _uuid="YkW8lHgwnUZY]a5jztPSpA" name="not.activated.card.remind" label="M#12cn214考勤管理-卡片未激活邮件提醒" note="M#" is_valid="Y">
+    <TypeEvent _uuid="wkBbfaG8rSRLAX5Yuy8Xkg" name="not.activated.card.remind" label="M#12cn19卡片未激活邮件提醒" note="M#" is_valid="Y" event_group_name="logic.business.attendance" event_type_name="not.activated.card.operate" priority_cd="M" />
+    <Schedule _uuid="Zk0V18RAKarwWIxgy6RysQ" name="not.activated.card.remind" label="M#12cn19卡片未激活邮件提醒" note="M#" is_valid="Y" begin_date="20091231152443" end_date="20991231152456">
+      <Week _uuid="gU3DlHQoJR4Ou4GaWh3koQ" name="week.remind" label="M#12cn14按周提醒" note="M#12cn13111" is_valid="Y" execute_time="20000101040000" statue_cd="P" type_cd="E" interval="1" day_flag="1000000" />
+    </Schedule>
+  </Type>
+  <Type _uuid="g0v40V[BpL6mzSUIFjuOnQ" name="exception.warn" label="M#12cn16考勤异常提醒" note="M#" is_valid="Y">
+    <TypeEvent _uuid="2kGZ[uw]jU794PZv5Mserg" name="exception.warn" label="M#12cn14异常预警" note="M#" is_valid="Y" event_group_name="logic.business.attendance" event_type_name="exception.warn" priority_cd="H" />
+    <Schedule _uuid="U0v2szrhMuLzeQY2R3wVqw" name="exception.warn" label="M#12cn14异常预警" note="M#" is_valid="Y" begin_date="20100113172147" end_date="20220113000000">
+      <Day _uuid="x0YQlZg7ohh5K[PDWr5JqQ" name="executePerDay" label="M#12cn14每天一次" note="M#" is_valid="Y" execute_time="20000101170000" statue_cd="P" type_cd="D" interval="1" />
+    </Schedule>
+  </Type>
+  <Type _uuid="EkVqyEGw28GdpTt2f[KVmw" name="sync.sign.out.time" label="M#12cn16修正签退时间" note="M#" is_valid="Y">
+    <TypeEvent _uuid="yUmu4Zo6MbfaTFBdtibxiw" name="sync.sign.out.time" label="M#12cn18修正签退时间事件" note="M#" is_valid="Y" event_group_name="logic.business.attendance" event_type_name="sync.sign.out.time" priority_cd="H" />
+    <Schedule _uuid="gEvwC9lOaVstrk7dBJJsig" name="sync.sign.out.time.plan" label="M#12cn18修正签到时间计划" note="M#" is_valid="Y" begin_date="20110301110757" end_date="22330508000000">
+      <Day _uuid="c0OKehJMkTJiErs[JRJJjQ" name="sync.per.day" label="M#12cn14每天执行" note="M#" is_valid="Y" execute_time="20000101235500" statue_cd="P" type_cd="D" interval="1" />
+    </Schedule>
+  </Type>
+</Group>
+

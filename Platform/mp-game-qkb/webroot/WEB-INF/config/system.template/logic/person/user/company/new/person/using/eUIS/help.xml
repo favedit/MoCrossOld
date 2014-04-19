@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="70Bf]wZ37UDpFQ98nNucqg" name="logic.person.user.company.new.person.using.eUIS.help" label="新人入职使用eUIS系统帮助提醒" is_valid="Y" note="M#">
+  <Source _uuid="N0UQgJYXpcTqmgxV]CO9gA" name="head" label="邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【入职提醒】 <jt:item source='$config.to_user_labels'/>您好，欢迎新员工使用eUIS【信息平台】系统帮助。]]></Source>
+  <Source _uuid="FkEvgZ5yLQvlSOTXNAQMjw" name="body" label="邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='公司→ 新员工入职eUIS系统帮助' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><FONT COLOR='#336699'>欢迎加入蓝港在线，eUIS【信息平台】系统是为您提供高效、快捷的办公软件系统。eUIS系统功能介绍如下：</FONT></TD></TR>
+      <TR><TD><FONT COLOR='#336699'>1、eUIS系统登录页面地址：</FONT></TD></TR>
+      <TR><TD style='padding:0 20;'>
+        <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+          <TR><TD><FONT COLOR='#336699'>1）、外网：http://192.168.41.191/apl/login/Login.wa，公司外网员工登录</FONT>  【<A href="http://192.168.41.191/apl/login/Login.wa"><B style='color:#FE5A00'>点击登录</B></A>】</TD></TR>
+          <TR><TD><FONT COLOR='#336699'>2）、内网：http://10.10.42.222/apl/login/Login.wa，公司内网员工登录</FONT>    【<A href="http://10.10.42.222/apl/login/Login.wa"><B style='color:#FE5A00'>点击登录</B></A>】</TD></TR>
+        </TABLE>
+      </TD></TR>
+      <TR><TD><FONT COLOR='#336699'>2、第一次登录eUIS系统步骤：请查看eUIS系统帮助文档-->新手指南</FONT>【<A  href="http://192.168.41.191/apl/login/help/page/LF_PB_NG/newbieAccount.html"><B style='color:#FE5A00'>外网</B></A>】 【<A  href="http://10.10.42.222/apl/login/help/page/LF_PB_NG/newbieAccount.html"><B style='color:#FE5A00'>内网</B></A>】。</TD></TR>
+      <TR><TD style='padding:0 20;'>
+        <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+          <TR><TD><FONT COLOR='#336699'>1）、登录外网服务器</FONT>【<A href="http://192.168.41.191/apl/login/Login.wa"><B style='color:#FE5A00'>点击登录</B></A>】。</TD></TR>
+          <TR><TD><FONT COLOR='#336699'>2）、帐号：LKBJ+工号；密码：LKBJ+工号登录系统。</FONT></TD></TR>
+          <TR><TD><FONT COLOR='#336699'>3）、注册蓝港通行证。</FONT></TD></TR>
+          <TR><TD><FONT COLOR='#336699'>4）、绑定蓝港通行证。</FONT></TD></TR>
+          <TR><TD><FONT COLOR='#336699'>5）、登录成功。</FONT></TD></TR>
+        </TABLE>
+     </TD></TR>
+   </TABLE>
+   <BR><BR>
+   <FONT COLOR='#336699'>谢谢您对eUIS系统的支持，祝您工作愉快，天天开心！</FONT>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

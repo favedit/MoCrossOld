@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebTemplate _uuid="8ka[XRLa8mmm8[w9VuookA" name="system.logic.property.BasicTemplate" label="M#12cn16属性分组模板" is_valid="Y" note="M#" style_refer="system.config.ConfigStyle">
+  <DataAction _uuid="nUGfBG9zPnbroJLQw5Bdsw" name="insertAction" label="M#12cn14新建命令" is_valid="Y" note="M#" service="insert@logic.property" />
+  <DataAction _uuid="OkoLgydgvSTH7XTslKaEnA" name="updateAction" label="M#12cn14保存命令" is_valid="Y" note="M#" service="update@logic.property" />
+  <DataAction _uuid="ikeLp4sKtEPRuQIlxOIQsQ" name="deleteAction" label="M#12cn14删除命令" is_valid="Y" note="M#" service="delete@logic.property" />
+  <ToolBar _uuid="LEmNewhRaFrQPx7IceO7jA" name="toolBar" label="M#12cn13工具栏" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" width="100%" height="24">
+    <ToolButton _uuid="TU3B21W6zeZ3zmprhUBmnQ" name="saveButton" label="M#12cn12保存" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#tools.save" icon_disable="#tools.saveDisable" hotkey="F8" action="doSave()" />
+    <ToolButton _uuid="DEZ3rUGzl8V0VXDmlN94iQ" name="deleteButton" label="M#12cn12删除" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#tools.delete" icon_disable="#tools.deleteDisable" hotkey="F6" action="doDelete()" />
+  </ToolBar>
+  <Select _uuid="mkdwN5ILQGd6[AD22k]eqQ" name="type" label="M#12cn12类型" is_valid="Y" note="M#" disp_fetch="Y" disp_search="Y" disp_lov="Y" disp_zoom="N" disp_insert="Y" disp_update="Y" disp_delete="Y" disp_print="Y" nowrap="Y" style_edit="select" data_name="_TYPE" valid_insert="Y" valid_update="Y" label_position="left" edit_refer="logic.property.GroupType" edit_check="N" />
+  <Check _uuid="VkuMQArukMQR]JvPKYmnkg" name="isValid" label="M#12cn13有效性" is_valid="Y" note="M#" disp_search="Y" disp_lov="Y" disp_zoom="N" disp_insert="Y" disp_update="Y" disp_delete="Y" disp_print="Y" data_name="IS_VALID" data_default="Y" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" label_position="left" />
+  <Edit _uuid="FEsdFkPReuvMWLc8NfCHow" name="name" label="M#12cn12名称" is_valid="Y" note="M#" disp_fetch="Y" disp_search="Y" disp_lov="Y" disp_zoom="N" disp_insert="Y" disp_update="Y" disp_delete="Y" disp_print="Y" style_edit="editWide" data_fetch="Y" data_name="NAME" edit_insert="Y" valid_insert="Y" valid_update="Y" valid_require="Y" label_position="left" />
+  <Edit _uuid="NEkfgVtpT2LMIfHmPTDThA" name="label" label="M#12cn12标签" is_valid="Y" note="M#" disp_fetch="Y" disp_search="Y" disp_lov="Y" disp_zoom="N" disp_insert="Y" disp_update="Y" disp_delete="Y" disp_print="Y" style_edit="editWide" data_name="LABEL" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" label_position="left" />
+</WebTemplate>
+

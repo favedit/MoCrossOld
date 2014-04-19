@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="nUDFNgm[bmdTOalQ8pg]rg" name="logic.process.condition" label="M#12cn14流程条件" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_PROCESS_CDT" data_alias="LG_PROCESS_CDT" data_logic="LG_PROCESS_CDT_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="7EVCJhLLHu[bBjoxPmEhpA" name="type_id" label="M#12cn16流程类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_refer="logic.process.type" data_uniques="link" />
+  <FieldString _uuid="TE[tn6iLBIQOzYOLzyNzjw" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="NAME" data_size="40" data_uniques="link" />
+  <FieldContent _uuid="AUM]IrnTVULIbQ4gCRJQkg" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldEnum _uuid="VExpafLT]zLY0jNlCFwBiA" name="type_cd" label="M#12cn14条件类型" is_valid="Y" note="M#12cn225S=开始\nP=通过\nF=未通过\nD=延期\nC=取消" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="logic.process.condition" />
+  <FieldString _uuid="ckpIThmcA0KhyCcn[1SYsw" name="process_check" label="M#12cn14处理检查" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROCESS_CHECK" data_size="2000" />
+  <FieldInteger _uuid="UEXOST[enhWMAx4M5TJgng" name="process_order" label="M#12cn14处理顺序" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROCESS_ORDER" />
+  <FieldDate _uuid="v007jUJEFwc385AQj1bMvA" name="create_date" label="M#12cn14创建日期" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_default="SYSDATE" />
+  <FieldContent _uuid="7ky3yBsYSct514wLJmH3gw" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" />
+</DataStore>
+

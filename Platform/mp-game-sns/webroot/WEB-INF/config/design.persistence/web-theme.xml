@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="508S4VlV]m7bL70t8ygdsw" name="web-theme" label="M#12cn14主题配置" is_valid="Y" note="M#" template="xmlobject" source="${home.source.web}">
+  <Interface _uuid="Q0[C9ZxvQnRxzv3ahRlyjA" name="IObject" label="M#12cn14对象接口" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.web.core.webtheme.common.XObjectFace">
+    <Attribute _uuid="tE[w[YIRvPEJHC0DC[RugQ" name="name" label="M#12cn12名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="G0rMgC8UOluLk78[XhMtpA" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+    <Attribute _uuid="]0wXgRBLTr9zc0BU[lxLhg" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" data_default="Y" />
+    <Attribute _uuid="ZEjTqOCqF]jWBDJy6JdVmQ" name="parent_style" label="M#12cn13父主题" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="FkR71LJCAGhRM]h3bJ8zpw" name="note" label="M#12cn14注释信息" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+  </Interface>
+  <Component _uuid="AUmRWSGrrzvwm[h]oed7kg" name="Control" label="M#12cn12控件" is_valid="Y" note="M#" class_name="org.mo.web.core.webtheme.common.XControl" base_name="org.mo.web.core.webtheme.base.XBaseControl" inherits="IObject,IStyle">
+    <Attribute _uuid="sEs2blNpGtp0VM3oLXBBiQ" name="parent_name" label="M#12cn15父控件名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="v0Nc5Rl6y3VSUOs6r4hRiw" name="WebTheme" label="M#12cn12主题" is_valid="Y" note="M#" class_name="org.mo.web.core.webtheme.common.XWebTheme" base_name="org.mo.web.core.webtheme.base.XBaseWebTheme" inherits="IObject">
+    <Attribute _uuid="QUO3TGzg[]1fGNdVoJonng" name="file_path" label="M#12cn14文件路径" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="806zxM7kosqBoUSUMSJ4gQ" name="Package" label="M#12cn13主题包" is_valid="Y" note="M#" class_name="org.mo.web.core.webtheme.common.XPackage" base_name="org.mo.web.core.webtheme.base.XBasePackage" inherits="IObject">
+    <Attribute _uuid="AEXUoPovxcUeEHvG7QDPgw" name="file_name" label="M#12cn14文件名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="GEbjhvNIsD3I3bA[cpbelg" name="Style" label="M#12cn12样式" is_valid="Y" note="M#" class_name="org.mo.web.core.webtheme.common.XStyle" base_name="org.mo.web.core.webtheme.base.XBaseStyle" inherits="IObject,IStyle" />
+  <Interface _uuid="NUbQdqCxL3eXQc9Zx[V3sQ" name="IStyle" label="M#12cn14样式接口" is_valid="Y" note="M#" class_name="org.mo.web.core.webtheme.common.XStyleFace">
+    <Attribute _uuid="b07Xt6grbpBv]9PetAClkg" name="color" label="M#12cn12颜色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="mkjvv]DMG]hahrQursfajw" name="background_color" label="M#12cn13背景色" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="5UVV4Buruu]kCFlgtGfIrg" name="background_image" label="M#12cn14背景图片" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="pEBf]lZkTN2g8ckGxuh[qQ" name="background_position" label="M#12cn16背景图片位置" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="B0]UDGH4O0zkk2LXkR0SlQ" name="background_position_x" label="M#12cn17背景图片位置X" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="X0fdRvdBicYKjiJu[A]epw" name="background_position_y" label="M#12cn17背景图片位置Y" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="cEwItU8fTHhdUOTsSydysA" name="background_repeat" label="M#12cn16背景图片重复" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="mEgg8aSn5[KVq3izr6DPiQ" name="cursor" label="M#12cn12光标" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="nkRPtWb6Oh6IfsBEzSl[og" name="vertical_align" label="M#12cn14垂直对齐" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="Okjpg4QPp5cvVFchaMXelQ" name="width" label="M#12cn12宽度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="iE9nNVAPdQz5lpyjCX87uQ" name="height" label="M#12cn12高度" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="eUfTwGp0tYb9yK[3JXizrw" name="position" label="M#12cn12位置" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="t0BqpY0xqAVsz6wqsXcfoQ" name="left" label="M#12cn13左坐标" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="b0OeexQ9S7Y0wqGrMzlZkQ" name="top" label="M#12cn13上坐标" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="BEBmG5hmLceoMUVZxEqVtg" name="border" label="M#12cn12边框" note="M#" type="String" is_config="Y" is_abstract="Y" />
+    <Attribute _uuid="n0JgfdPhpkS6S3z2qaVNoQ" name="border_width" label="M#12cn14边框宽度" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="q0PzFbQ3NN4W2sRHQsMdhA" name="border_style" label="M#12cn14边框样式" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="JUs4qu6tCMkTY8]CfjXsvw" name="border_color" label="M#12cn14边框颜色" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="7EwCBEyoNyCvOk[jnGMOqA" name="border_left" label="M#12cn13左边框" note="M#" type="String" is_config="Y" is_abstract="Y" />
+    <Attribute _uuid="VUZu87d6bAkEQ[uXUVrrvQ" name="border_left_width" label="M#12cn15左边框宽度" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="aEOHSAG[9fZnscsEU0IJrw" name="border_left_style" label="M#12cn15左边框样式" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="i0DSAgDAUU]Oexr5QS1wiQ" name="border_left_color" label="M#12cn15左边框颜色" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="QEbGeHxkSE1KbwCAWpBRsw" name="border_top" label="M#12cn13上边框" note="M#" type="String" is_config="Y" is_abstract="Y" />
+    <Attribute _uuid="jUSsI9UJzihqTeKZSFrnmA" name="border_top_width" label="M#12cn15上边框宽度" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="S0Ob[ypJnLbOiaZXc9BSjw" name="border_top_style" label="M#12cn15上边框样式" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="mUl6uolQ2ur4zdDSRiCgmg" name="border_top_color" label="M#12cn15上边框颜色" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="SEHA9ot6T5]uyfV8oEOimw" name="border_right" label="M#12cn13右边框" note="M#" type="String" is_config="Y" is_abstract="Y" />
+    <Attribute _uuid="0k9nA717LofKWxk4c]4luA" name="border_right_width" label="M#12cn15右边框宽度" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="W0tYvAG97ysET[CmmjPngA" name="border_right_style" label="M#12cn15右边框样式" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="[kC7JHmB7qpmC5oFNlAWmA" name="border_right_color" label="M#12cn15右边框颜色" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="zE1gxRZvjjfjInDv5kS0tA" name="border_bottom" label="M#12cn13下边框" note="M#" type="String" is_config="Y" is_abstract="Y" />
+    <Attribute _uuid="FkXUJvoOCDIe5g5g4ER8ug" name="border_bottom_width" label="M#12cn15下边框宽度" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="zU4W[cGUiWlr]xJ4cUT0vQ" name="border_bottom_style" label="M#12cn15下边框样式" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="XUgqIHxULzugfiyzr8]YqA" name="border_bottom_color" label="M#12cn15下边框颜色" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="akMBHWlX1SakCwEyqQc3kw" name="padding" label="M#12cn14余白设定" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="KUhpHQ660e5tNEyU2KTdvQ" name="padding_left" label="M#12cn13左余白" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="[0wvjUWcir[LYBuyOpg[sQ" name="padding_top" label="M#12cn13上余白" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="q01nLziieOR3uTybq[UHlw" name="padding_right" label="M#12cn13右余白" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="fkDjm7TBHJ2WfKJEDCDAlw" name="padding_bottom" label="M#12cn13下余白" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="]kiXDNeWjnIiJmHD[DAxgA" name="margin" label="M#12cn14合并设定" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="e0PjwNyoeNtJ]0GBs2ArtA" name="margin_left" label="M#12cn13左合并" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="mU7VZRPMZFTgV0VPjiPIsg" name="margin_top" label="M#12cn13上合并" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="JUTESLazrnjqZSOA[3Wajw" name="margin_right" label="M#12cn13右合并" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="JUf]C[aSn0nlmPMfprrpjA" name="margin_bottom" label="M#12cn13下合并" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="yUpZTGiiCbUMyglB8IvOsw" name="white_space" label="M#12cn14空白处理" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="mESrIuxs8UzA7nfxsPmQgQ" name="line_height" label="M#12cn12行高" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="KkVbjGmzsfa2snXw]o]2ow" name="font_family" label="M#12cn13字体族" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="TEzbgUB4QPFhmU8h9n4LnQ" name="font_size" label="M#12cn14字体大小" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="8EwLyCay[0vCH0gqb60]rg" name="font_weight" label="M#12cn14字体粗细" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="80bVL10]qJF7Z1NyXKglvw" name="overflow" label="M#12cn14溢出设定" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="j08K]uWaaQmuEUnpaJC0qA" name="overflow_x" label="M#12cn14X轴溢出" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="JEiCJA]7rmaY05F4ydfUmw" name="overflow_y" label="M#12cn14Y轴溢出" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="EUez48i774PcuDEN4r6BlA" name="underline_position" label="M#12cn15下划线位置" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="7USyhQOR1nepPApPOmcvuw" name="text_align" label="M#12cn16文本对齐方式" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="QES7QTd5C4uFJ2EN[RNqtA" name="text_transform" label="M#12cn15大小写控制" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="nkq5Lb3Hs[K3mjXvRGJSvg" name="table_layout" label="M#12cn14表格布局" is_valid="Y" note="M#12cn14表格布局" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="bEgYYMFmuI8N]DPfhrewrQ" name="z_index" label="M#12cn12纵深" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+  <Interface _uuid="Ek[JkIgVoyqga68xneXYsA" name="IFilter" label="M#12cn13过滤器" is_valid="Y" note="M#" class_name="org.mo.web.core.webtheme.common.XFilterFace" inherits="IObject">
+    <Attribute _uuid="MUkwq[vdxW2nRcNkew5]sg" name="enable" label="M#12cn15激活过滤器" is_valid="Y" note="M#12cn15激活过滤器" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+  <Component _uuid="PEc2gpaEO2oLDyR[8EIukg" name="FilterAlpha" label="M#12cn16过滤器-透明" is_valid="Y" note="M#12cn15设置透明度" class_name="org.mo.web.core.webtheme.common.XFilterAlpha" base_name="org.mo.web.core.webtheme.base.XBaseFilterAlpha" inherits="IFilter">
+    <Attribute _uuid="NU80YxICn[FAwCXuHsZcnw" name="opacity" label="M#12cn13透明度" is_valid="Y" note="M#12cn229透明度起始值 \n取值为0～100, 0为透明，100为原图" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="f0K7QrtY8[G]RowrPeT9ig" name="finishopacity" label="M#12cn13目标值" is_valid="Y" note="M#12cn15透明终点值" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="TELQAyAXP339J]GqujbGkg" name="style" label="M#12cn14渐变方式" is_valid="Y" note="M#12cn215渐变方式{[1][2][3]}" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="00DZ1WgbJH[1fZUAcvOkpQ" name="startx" label="M#12cn13起始X" is_valid="Y" note="M#12cn17透明起始坐标值" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="yUuSjGjOA0pTzbftkbHfvg" name="starty" label="M#12cn13起始Y" is_valid="Y" note="M#12cn17透明起始坐标值" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="AEe[PvrJDu97FbMQrkaipg" name="FilterBasicImage" label="M#12cn18过滤器-图片效果" is_valid="Y" note="M#12cn280用于色彩处理，图像旋转，或对象内容的透明度\n当此效果通过转变显示时，在渐变册色彩层之上的文本程序性的初始化为透明的，当色彩渐变实现后，文本颜色会以其定义的值更新" class_name="org.mo.web.core.webtheme.common.XFilterBasicImage" base_name="org.mo.web.core.webtheme.base.XBaseFilterBasicImage" inherits="IFilter">
+    <Attribute _uuid="ZkwxbElPfRfhEASIh587uA" name="grayscale" label="M#12cn14灰度显示" is_valid="Y" note="M#12cn213设置是否以灰度显示对象内容" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="]ErV1pKQi]LjmMyf0cFfjA" name="invert" label="M#12cn14反相显示" is_valid="Y" note="M#12cn212设置对象内容是否反相显示" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="2EkBitVkMc5JZ51WchaZpw" name="mask" label="M#12cn14添加遮罩" is_valid="Y" note="M#12cn226设置是否依据 MaskColor 的值为对象添加遮罩" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="LEzOW[ELoBE3FTNo3WIauA" name="maskcolor" label="M#12cn14遮罩颜色" is_valid="Y" note="M#12cn16设置遮罩颜色" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="G0N0RgQkMe3dS8uXVr84ug" name="mirror" label="M#12cn14反转显示" is_valid="Y" note="M#12cn212设置是否反转显示对象内容" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="3kZEAubdb9LRJL8ucWdvhg" name="opacity" label="M#12cn13透明度" is_valid="Y" note="M#12cn210设置对象内容的透明度" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="aU9]jxON6FSxTUvj4Yanrg" name="rotation" label="M#12cn12旋转" is_valid="Y" note="M#12cn19设置对象内容的旋转" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="e0I4XMOmMpUkQt0NN]WygA" name="FilterGradient" label="M#12cn18过滤器-定制色彩" is_valid="Y" note="M#12cn219在对象的背景和内容之间显示定制的色彩层" class_name="org.mo.web.core.webtheme.common.XFilterGradient" base_name="org.mo.web.core.webtheme.base.XBaseFilterGradient" inherits="IFilter">
+    <Attribute _uuid="nkRBLtpuiNg6eotpUTgsgQ" name="gradienttype" label="M#12cn14渐变方向" is_valid="Y" note="M#12cn19设置色彩渐变的方向" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="cElbFXSponQQLW5Uwke3mA" name="startcolorstr" label="M#12cn18开始颜色和透明度" is_valid="Y" note="M#12cn215设置色彩渐变的开始颜色和透明度" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="IkNy]U9LkOyU4eRCtSIgng" name="endcolorstr" label="M#12cn18结束颜色和透明度" is_valid="Y" note="M#12cn215设置色彩渐变的结束颜色和透明度" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="lE05HwpyUSsgjDKTDz7dng" name="startcolor" label="M#12cn14开始颜色" is_valid="Y" note="M#12cn211设置色彩渐变的开始颜色" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="h0AJXy7tMGRtApJyG1gvtQ" name="endcolor" label="M#12cn14结束颜色" is_valid="Y" note="M#12cn211设置色彩渐变的结束颜色" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="MEhgd]p7VTVAOJMypc[IrA" name="Part" label="M#12cn12部分" is_valid="Y" note="M#" class_name="org.mo.web.core.webtheme.common.XPart" base_name="org.mo.web.core.webtheme.base.XBasePart" inherits="IObject,IStyle" />
+  <Component _uuid="QE2Ike99fCZsPzyywVuxrQ" name="FilterBlur" label="M#12cn16过滤器-模糊" is_valid="Y" note="M#12cn215创建高速度移动效果，即模糊效果" class_name="org.mo.web.core.webtheme.common.XFilterBlur" base_name="org.mo.web.core.webtheme.base.XBaseFilterBlur" inherits="IFilter" />
+  <Component _uuid="BE2TuIReJ[iA9D4Ii8iAiA" name="FilterChroma" label="M#12cn18过滤器-颜色透明" is_valid="Y" note="M#12cn18设置指定颜色透明" class_name="org.mo.web.core.webtheme.common.XFilterChroma" base_name="org.mo.web.core.webtheme.base.XBaseFilterChroma" inherits="IFilter" />
+  <Component _uuid="AEyUmt]5CZy0TB7ziT71pQ" name="FilterDropshadow" label="M#12cn18过滤器-投射阴影" is_valid="Y" note="M#12cn16设置投射阴影" class_name="org.mo.web.core.webtheme.common.XFilterDropshadow" base_name="org.mo.web.core.webtheme.base.XBaseFilterDropshadow" inherits="IFilter" />
+  <Component _uuid="6klPJa9lF9ghRvcc1V]3qA" name="FilterFliph" label="M#12cn18过滤器-水平翻转" is_valid="Y" note="M#12cn14水平翻转" class_name="org.mo.web.core.webtheme.common.XFilterFliph" base_name="org.mo.web.core.webtheme.base.XBaseFilterFliph" inherits="IFilter" />
+  <Component _uuid="t02HGzB73XGYW5]xi1LrrQ" name="FilterFlipv" label="M#12cn18过滤器-垂直翻转" is_valid="Y" note="M#12cn14垂直翻转" class_name="org.mo.web.core.webtheme.common.XFilterFlipv" base_name="org.mo.web.core.webtheme.base.XBaseFilterFlipv" inherits="IFilter" />
+  <Component _uuid="b0]Xz2CwkFMBiidzD]yPiA" name="FilterGlow" label="M#12cn19过滤器-外边界光效" is_valid="Y" note="M#12cn211为对象的外边界增加光效" class_name="org.mo.web.core.webtheme.common.XFilterGlow" base_name="org.mo.web.core.webtheme.base.XBaseFilterGlow" inherits="IFilter" />
+  <Component _uuid="sk]0sfYGqlUEsZi[N8SKoA" name="FilterInvert" label="M#12cn18过滤器-底片效果" is_valid="Y" note="M#12cn13反色 " class_name="org.mo.web.core.webtheme.common.XFilterInvert" base_name="org.mo.web.core.webtheme.base.XBaseFilterInvert" inherits="IFilter" />
+  <Component _uuid="5kAezvCqDnFX0sqfXq8cng" name="FilterLight" label="M#12cn18过滤器-灯光效果" is_valid="Y" note="M#12cn19创建光源在对象上 " class_name="org.mo.web.core.webtheme.common.XFilterLight" base_name="org.mo.web.core.webtheme.base.XBaseFilterLight" inherits="IFilter" />
+  <Component _uuid="sEj]5JPG]6g4Wk8[ddEBrA" name="FilterMask" label="M#12cn17过滤器-透明膜" is_valid="Y" note="M#12cn15设置透明膜" class_name="org.mo.web.core.webtheme.common.XFilterMask" base_name="org.mo.web.core.webtheme.base.XBaseFilterMask" inherits="IFilter" />
+  <Component _uuid="ZEvz5TSi[7aNlv4YpNaTiw" name="FilterShadow" label="M#12cn18过滤器-阴影效果" is_valid="Y" note="M#12cn16设置阴影效果" class_name="org.mo.web.core.webtheme.common.XFilterShadow" base_name="org.mo.web.core.webtheme.base.XBaseFilterShadow" inherits="IFilter" />
+  <Component _uuid="ZkD7sI0sTbsSvz5rdQ3dvw" name="FilterWave" label="M#12cn18过滤器-波纹效果" is_valid="Y" note="M#12cn14波纹效果" class_name="org.mo.web.core.webtheme.common.XFilterWave" base_name="org.mo.web.core.webtheme.base.XBaseFilterWave" inherits="IFilter">
+    <Attribute _uuid="vkPoqY6O3tSom1vwKgeYqQ" name="add" label="M#12cn14覆盖源图" is_valid="Y" note="M#12cn19是否覆盖原来的图片" type="Boolean" is_store="Y" is_config="Y" />
+    <Attribute _uuid="3UNldztAlmDhqD]5COeqqg" name="freq" label="M#12cn13变形值" is_valid="Y" note="M#12cn13变形值" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="g067M[7poWgqiBzP7RhGsw" name="lightstrength" label="M#12cn15变形百分比" is_valid="Y" note="M#12cn15变形百分比" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="W0bVhPSu87lq[JgnBI7aqA" name="phase" label="M#12cn17角度变形百分比" is_valid="Y" note="M#12cn17角度变形百分比" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="YUOd]LkbBD8Bj4a47avvjg" name="strength" label="M#12cn14变形强度" is_valid="Y" note="M#12cn14变形强度" type="String" is_store="Y" is_config="Y" />
+  </Component>
+</Persistence>
+

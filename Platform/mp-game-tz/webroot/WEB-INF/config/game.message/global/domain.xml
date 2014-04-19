@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="q0YkbzPpTkQs9GbCEKJZiA" name="global.domain" label="全局主域服务器" is_valid="Y" note="M#" is_server="N" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" source_name="MoMgGlobalDomain" code="Adm" full_code="GlobalDomain" display_index="22">
+  <Struct _uuid="YE35z0tpLGcmSzuermYGnA" name="SAmServerInfo" label="服务器信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+    <Item _uuid="LEfrVAMnuMPylxfsSVRlog" name="host" label="主机名" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="7kYzgo7tnv7LVjN0xEGKrw" name="port" label="端口" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+  </Struct>
+  <Struct _uuid="ZUI8jH5LOFZERYBKcmMmgQ" name="SAmWorldInfo" label="世界信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+    <Item _uuid="xkVynzNm[DJWI6oAbfKctA" name="status" label="状态" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="0E0NSs9YA[tzNp0GqaRiqA" name="flag" label="标志" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="NknYeNlzh8DemIbQfrKFiA" name="roleCount" label="角色数目" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+  </Struct>
+  <Message _uuid="qETkwKix5qct2i9AUivkjQ" name="server.query.request" label="服务器查询请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ServerQuery" is_udp="N" message_type="Request" is_session="N" is_manage="N" source_type="CLT" target_type="ADM" code_value="0x0001" code_fix="N">
+    <Enum _uuid="Pkt[vmcHnNrbkI[Hnhaglw" name="EServerType" label="类型" is_valid="Y" note="M#">
+      <Member _uuid="QkIwcyEHK5VCbbmiqm3KpQ" name="GlobalChat" label="全局聊天服务器" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="QUHlf4j3OZCdvwgWGb0jsA" name="type" label="服务器类型" is_valid="Y" note="M#" type="Enum" type_name="EServerType" is_collection="N" />
+  </Message>
+  <Message _uuid="xEfKpIvvCtKBEuTHxs4RuA" name="server.query.response" label="服务器查询应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ServerQuery" is_udp="N" message_type="Response" is_session="N" is_manage="N" source_type="ADM" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Enum _uuid="pURbRV3Lz]N9lyL1HIGyhQ" name="EStatus" label="状态" is_valid="Y" note="M#">
+      <Member _uuid="L0UEyGmQkiY4PW6ESL8osg" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="ZUOrzUfV4chHtv74Xb2Ciw" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="N0W2sZo3NVKqG]Tx4Bh2lg" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="Bk2DiaeYVr3E32VjlHVhpw" name="servers" label="服务列表" is_valid="Y" note="M#" type="Object" type_name="SAmServerInfo" is_collection="Y" data_size="64" />
+  </Message>
+  <Message _uuid="uES]HIAxHzRUCiPvwuqDgQ" name="world.query.request" label="世界查询" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="WorldQuery" is_udp="N" message_type="Request" is_session="N" is_manage="N" source_type="CLT" target_type="ADM" code_value="0x0003" code_fix="N">
+    <Item _uuid="LkTlXJc[4RIu3owpCOwrhQ" name="accountId" label="帐号编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="VURMPcfi9gXoQ17e[cxojA" name="world.query.response" label="世界查询应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="WorldQuery" is_udp="N" message_type="Response" is_session="N" is_manage="N" source_type="ADM" target_type="CLT" code_value="0x0004" code_fix="N">
+    <Enum _uuid="uE53GrnPSQzwdlDyYI6UvQ" name="EStatus" label="状态" is_valid="Y" note="M#">
+      <Member _uuid="pUVpqvGWHrm2GBNue9KGmQ" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="I0maLo5nE6JlfRTM1MPrlg" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="mEHn9VbWo7PEvDFjzc1omw" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="D0mMC9f9oSMw3KRZbl4qvQ" name="worlds" label="世界信息列表" is_valid="Y" note="M#" type="Struct" type_name="SAmWorldInfo" is_collection="Y" data_size="64" />
+  </Message>
+  <Message _uuid="WUvUKnLYwQ6WsAMfiNLOqg" name="register.request" label="注册请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Register" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="ADM" target_type="APX" code_value="0x0005" code_fix="N">
+    <Item _uuid="oU5FUa0kwpyCUQZL3t1xpg" name="id" label="编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="nka27qrg4sWyjfogoVpqqg" name="name" label="名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="H0SKh2XriqE6uUIl03d0qQ" name="host" label="主机地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="GUVKn29oCW3GP2aNsDKYnw" name="port" label="端口" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+  </Message>
+  <Message _uuid="eU]HxQxbzSGnWjLH8I0OsQ" name="register.response" label="注册应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Register" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="APX" target_type="ADM" code_value="0x0006" code_fix="N">
+    <Enum _uuid="W0eVgNajNwFHzxZUqkM6vg" name="EStatusCd" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="Gk]QJiNGBvfXqFbl53xwmg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="xkje1VKj3vv3dkuuLy2doA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="L0EaFkRVq0TmkVShX3NHvA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatusCd" is_collection="N" />
+  </Message>
+</Group>
+

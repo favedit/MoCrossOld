@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="lU6aFryH9L5GUq672n1xpA" name="logic.business.asset.order.mail" label="会议室预订" is_valid="Y" note="M#">
+  <Define _uuid="tkwkWYnWgTdAu1d0oA3dtg" name="mail_content_type" label="邮件类型" is_valid="Y" note="M#" value="Html" />
+  <Variable _uuid="WkNsBK0qV9AEoiWK]IYQsg" name="user_full_label" label="用户名称" is_valid="Y" note="M#" />
+  <Variable _uuid="aEnFKv3i06jRXb9A[w10kw" name="phone_number" label="联系电话" is_valid="Y" note="M#" />
+  <Variable _uuid="yUt2tRLZ5tzf7j]zWy4kmQ" name="detail_code" label="资产详细编号" is_valid="Y" note="M#" />
+  <Variable _uuid="fUUs1eGa72b5aYgtX7devw" name="detail_label" label="会议室" is_valid="Y" note="M#" />
+  <Variable _uuid="fEvXWayqUxcQjS7yFz[cgw" name="expect_begin_date" label="预订日期" is_valid="Y" note="M#" />
+  <Variable _uuid="k0rdwAe1DSACPobEQAU7lQ" name="expect_time_span" label="时间范围" is_valid="Y" note="M#" />
+  <Variable _uuid="wUuFHq0nMQzJHSYi1aPdsg" name="host_user" label="主持者" is_valid="Y" note="M#" />
+  <Variable _uuid="K0MjixKm4UGpGZOTar4Ciw" name="note" label="会议内容" is_valid="Y" note="M#" />
+  <Variable _uuid="Gk[4qGOhfe7ycoS6Qzzsjw" name="conventioneer" label="参会人员" is_valid="Y" note="M#" />
+  <Variable _uuid="60hNKUJdHSZ5avw0]lq2kw" name="to_users" label="接受者的邮件地址" is_valid="Y" note="M#" />
+  <Source _uuid="RU5M3gUzppqCJadO6x7MkA" name="notify.head" label="通知-邮件标题" is_valid="Y" note="M#"><![CDATA[<jt:item source='$config.user_full_label'/>你好,预订代码为<jt:item source='$config.detail_code'/>会议室已成功]]></Source>
+  <Source _uuid="K0l]1HSi1Ia5U4]2g3wPmw" name="notify.body" label="通知-邮件正文" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="Content-Language" content="en-us" />
+<SCRIPT language='javascript' src='<jt:item source='$path'/>/ajs/mobj.js'></SCRIPT>
+<style type="text/css" media="screen">
+   body {
+      margin: 0px;
+      padding: 0px;
+   }
+   * #BodyImposter {
+      color: #666;
+      background: #fff;
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+   }
+   * #BodyImposter dd,
+   * #BodyImposter dt,
+   * #BodyImposter li,
+   * #BodyImposter p,
+   * #BodyImposter td {
+      font-size: 12px;
+      line-height: 1.5em;
+      font-family: Helvetica, Arial, sans-serif;
+   }
+   * #BodyImposter dl,
+   * #BodyImposter p,
+   * #BodyImposter ol,
+   * #BodyImposter ul {
+      margin: 0em 0em 1em 0em;
+   }
+   * #BodyImposter img {
+      border: 0px;
+   }
+   * #BodyImposter small {
+      font-size: 10px;
+      line-height: 1.3em;
+   }
+   * #BodyImposter ol {
+      padding-left: 1em;
+   }
+   * #Primary ul {
+      padding-left: 1em;
+      padding-right: 1em;
+   }
+   * #BodyImposter ol li {
+      margin: 0px;
+      padding: 0px;
+   }
+   * #BodyImposter ul li {
+      background: url("img/bullet.gif") no-repeat 0em 0.5em;
+      padding: 0px 0px 0px 8px;
+      margin: 0px;
+   list-style: none;
+   }
+
+   * #BodyImposter h1,
+   * #BodyImposter h2 {
+      color: #c96;
+      background: #fff;
+      font-family: Helvetica, Arial, sans-serif;
+      font-weight: bold;
+      line-height: normal;
+      margin: 0.75em 0em;
+      padding: 0px;
+   }
+   * #Masthead h1 {
+      font-size: 28px;
+      color: #fff;
+      background: #945620;
+   }
+   * #Primary h2 {
+      font-size: 18px;
+   }
+   * #Tertiary h2 {
+      font-size: 14px;
+   }
+   * #Box {
+      width: 100%;
+      text-align: left;
+   }
+   * #Content {
+      margin: 0px auto;
+      text-align: left;
+   }
+   * #Content td#Primary {
+      width: 550px;
+   }
+   * #Content td#Primary img {
+      border: 6px solid #e0e0e0;
+      float: right;
+      margin: 5px 0px 10px 15px;
+   }
+   * #Helpful table {
+      color: #c2c2c2;
+      background: #fff;
+      margin: 0px auto;
+   }
+   * #Helpful p {
+      width: 550px;
+      margin: 0px auto;
+      padding: 0px 20px;
+      text-align: left;
+   }
+   * #Legal {
+      padding: 20px 0px;
+   }
+   * #Legal table {
+      color: #bb9979;
+      background: #e0bc7e;
+      margin: 0px auto;
+   }
+   * #Legal p {
+      width: 550px;
+      margin: 0px auto;
+      padding: 0px 20px;
+      text-align: left;
+   }
+   * #Masthead {
+      padding: 20px 0px;
+   }
+   * #Masthead table {
+      color: #fff;
+      background: #945620;
+      margin: 0px auto;
+   }
+   * #Masthead h1,
+   * #Masthead p {
+      width: 550px;
+      margin: 0px auto;
+      padding: 0px 20px;
+      text-align: left;
+   }
+   * #Masthead p {
+      font-size: 14px;
+   }
+   * #Masthead p #Date {
+      float: right;
+   }
+   * #Tertiary {
+      padding: 20px 0px;
+   }
+   * #Tertiary table {
+      color: #e1c0a0;
+      background: #c96;
+      margin: 0px auto;
+   }
+   * #Tertiary h2 {
+      color: #fff;
+      background: #c96;
+      padding: 0em 0em 0.5em 0em;
+   }
+   * #Tertiary h2,
+   * #Tertiary p {
+      width: 550px;
+      margin: 0px auto;
+      padding: 0px 20px;
+      text-align: left;
+   }
+   * #Helpful,
+   * #Legal,
+   * #Masthead,
+   * #Tertiary {
+      width: 100%;
+      text-align: left;
+   }
+   .td{
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: normal;
+      text-decoration: none;
+      text-align:center;
+      background-color: #e7f6fd;
+      border: 1px solid #96d4ee;
+      padding-top: 2px;
+      padding-right: 0px;
+      padding-bottom: 0px;
+      padding-left: 0px;
+   }
+   .td_text{
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: normal;
+      text-decoration: none;
+      text-align:left;
+      background-color: #e7f6fd;
+      border: 1px solid #96d4ee;
+      padding-top: 2px;
+      padding-right: 0px;
+      padding-bottom: 1px;
+      padding-left: 0px;
+   }
+</style>
+</head>
+<body>
+<div id="BodyImposter">
+   <div id="Box">
+   <table id="left" cellspacing="0" cellpadding="15" width="580">
+      <tr>
+         <td id="Primary" style="font-family: Helvetica, Arial, sans-serif;">
+            <h2><jt:item source='$config.user_full_label'/>你好：</h2>
+            <table width="544" cellspacing="0" cellpadding="5">
+               <tr>
+                  <td width="14" align="left"> </td>
+                  <td width="508" align="left">预订代码为的<jt:item source='$config.detail_code'/>的会议室预订成功。</td>
+               </tr>
+           </table>
+            <br />
+            <p>   会议室详细情况如下：</p>
+	<table width="103%" height="90">
+               <tr>
+                  <td  class="td" width="80">代码</td>
+                  <td  class="td_text" width="200"> <jt:item source='$config.detail_code'/></td>
+                  <td  class="td" width="80">会议室</td>
+                  <td  class="td_text" width="200"> <jt:item source='$config.detail_label'/></td>
+               </tr>
+               <tr>
+                  <td class="td">位置</td>
+                  <td class="td" colspan="3"> </td>
+               </tr>
+           </table>
+	<br/>
+	<p>   预订详细情况如下：</p>
+            <table width="103%" height="211">
+               <tr>
+                  <td  class="td" width="80">预订日期</td>
+                  <td  class="td_text" width="200"> <jt:item source='$config.expect_begin_date'/></td>
+                  <td  class="td" width="80">预订者</td>
+                  <td  class="td_text" width="200"> <jt:item source='$config.user_full_label'/></td>
+               </tr>
+               <tr>
+                  <td height="45" class="td">主持者</td>
+                  <td class="td_text"> <jt:item source='$config.host_user'/></td>
+                  <td class="td">联系电话</td>
+                  <td class="td_text"> </td>
+               </tr>
+	    <tr>
+                  <td class="td">时间范围</td>
+                  <td class="td_text" colspan="3"> <jt:item source='$config.expect_time_span'/> </td>
+               </tr>
+	    <tr>
+                  <td class="td">会议内容</td>
+                  <td class="td_text" colspan="3"> <jt:item source='$config.note'/></td>
+               </tr>
+	    <tr>
+                  <td class="td">参会人员</td>
+                  <td class="td_text" colspan="3"> <jt:item source='$config.conventioneer'/></td>
+               </tr>
+           </table>
+            <p> </p>
+            <table width="537" cellspacing="0" cellpadding="5">
+               <tr>
+                  <td width="376" align="right"> </td>
+                  <td width="139" align="left">发信者</td>
+               </tr>
+               <tr>
+                  <td align="right"> </td>
+                  <td align="left">****年**月**日</td>
+               </tr>
+            </table>
+            <h2>帮助</h2>
+            <table width="538" cellspacing="0" cellpadding="5">
+               <tr>
+                  <td width="16" align="right"> </td>
+                  <td colspan="3" align="left">※请不要直接回复此邮件,您可以通过点击以下链接了解常见问题</td>
+               </tr>
+               <tr>
+                  <td align="right"> </td>
+                  <td colspan="3" align="left">※请不要直接回复此邮件,您可以通过联系方式咨询常见问题。</td>
+              </tr>
+               <tr>
+                  <td align="right"> </td>
+                  <td width="10" align="left"> </td>
+                  <td width="113" align="left">×××负责×××:</td>
+                  <td width="357" align="left">电话号码，MSN, QQ</td>
+               </tr>
+               <tr>
+                  <td align="right"> </td>
+                  <td width="10" align="left"> </td>
+                  <td width="113" align="left">×××负责×××:</td>
+                  <td width="357" align="left">电话号码，MSN, QQ</td>
+               </tr>
+               <tr>
+                  <td align="right"> </td>
+                  <td width="10" align="left"> </td>
+                  <td width="113" align="left">×××负责×××:</td>
+                  <td width="357" align="left">电话号码，MSN, QQ</td>
+               </tr>
+            </table>
+            <table width="539" cellspacing="0" cellpadding="5">
+               <tr>
+                  <td width="17"> </td>
+               </tr>
+               <tr>
+                  <td>欢迎您再次使用预订会议室系统，祝您一切顺利！</td>
+               </tr>
+            </table>
+         </td>
+         </tr>
+      </table>
+   </div>
+</div>
+</body>
+</html>]]></Source>
+  <Source _uuid="V0v65Le411Dn[v[W]n1lqA" name="cancel.head" label="取消-邮件标题" is_valid="Y" note="M#"><![CDATA[<jt:item source='$config.user_full_label'/>你好,您取消了先前预订代码为<jt:item source='$config.detail_code'/>的会议室。]]></Source>
+  <Source _uuid="2UT[5oOZ1jPqHUybUm7Bhw" name="cancel.body" label="取消-邮件正文" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="Content-Language" content="en-us" />
+<SCRIPT language='javascript' src='<jt:item source='$path'/>/ajs/mobj.js'></SCRIPT>
+<style type="text/css" media="screen">
+   body {
+      margin: 0px;
+      padding: 0px;
+   }
+   * #BodyImposter {
+      color: #666;
+      background: #fff;
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+   }
+   * #BodyImposter dd,
+   * #BodyImposter dt,
+   * #BodyImposter li,
+   * #BodyImposter p,
+   * #BodyImposter td {
+      font-size: 12px;
+      line-height: 1.5em;
+      font-family: Helvetica, Arial, sans-serif;
+   }
+   * #BodyImposter dl,
+   * #BodyImposter p,
+   * #BodyImposter ol,
+   * #BodyImposter ul {
+      margin: 0em 0em 1em 0em;
+   }
+   * #BodyImposter img {
+      border: 0px;
+   }
+   * #BodyImposter small {
+      font-size: 10px;
+      line-height: 1.3em;
+   }
+   * #BodyImposter ol {
+      padding-left: 1em;
+   }
+   * #Primary ul {
+      padding-left: 1em;
+      padding-right: 1em;
+   }
+   * #BodyImposter ol li {
+      margin: 0px;
+      padding: 0px;
+   }
+   * #BodyImposter ul li {
+      background: url("img/bullet.gif") no-repeat 0em 0.5em;
+      padding: 0px 0px 0px 8px;
+      margin: 0px;
+   list-style: none;
+   }
+
+   * #BodyImposter h1,
+   * #BodyImposter h2 {
+      color: #c96;
+      background: #fff;
+      font-family: Helvetica, Arial, sans-serif;
+      font-weight: bold;
+      line-height: normal;
+      margin: 0.75em 0em;
+      padding: 0px;
+   }
+   * #Masthead h1 {
+      font-size: 28px;
+      color: #fff;
+      background: #945620;
+   }
+   * #Primary h2 {
+      font-size: 18px;
+   }
+   * #Tertiary h2 {
+      font-size: 14px;
+   }
+   * #Box {
+      width: 100%;
+      text-align: left;
+   }
+   * #Content {
+      margin: 0px auto;
+      text-align: left;
+   }
+   * #Content td#Primary {
+      width: 550px;
+   }
+   * #Content td#Primary img {
+      border: 6px solid #e0e0e0;
+      float: right;
+      margin: 5px 0px 10px 15px;
+   }
+   * #Helpful table {
+      color: #c2c2c2;
+      background: #fff;
+      margin: 0px auto;
+   }
+   * #Helpful p {
+      width: 550px;
+      margin: 0px auto;
+      padding: 0px 20px;
+      text-align: left;
+   }
+   * #Legal {
+      padding: 20px 0px;
+   }
+   * #Legal table {
+      color: #bb9979;
+      background: #e0bc7e;
+      margin: 0px auto;
+   }
+   * #Legal p {
+      width: 550px;
+      margin: 0px auto;
+      padding: 0px 20px;
+      text-align: left;
+   }
+   * #Masthead {
+      padding: 20px 0px;
+   }
+   * #Masthead table {
+      color: #fff;
+      background: #945620;
+      margin: 0px auto;
+   }
+   * #Masthead h1,
+   * #Masthead p {
+      width: 550px;
+      margin: 0px auto;
+      padding: 0px 20px;
+      text-align: left;
+   }
+   * #Masthead p {
+      font-size: 14px;
+   }
+   * #Masthead p #Date {
+      float: right;
+   }
+   * #Tertiary {
+      padding: 20px 0px;
+   }
+   * #Tertiary table {
+      color: #e1c0a0;
+      background: #c96;
+      margin: 0px auto;
+   }
+   * #Tertiary h2 {
+      color: #fff;
+      background: #c96;
+      padding: 0em 0em 0.5em 0em;
+   }
+   * #Tertiary h2,
+   * #Tertiary p {
+      width: 550px;
+      margin: 0px auto;
+      padding: 0px 20px;
+      text-align: left;
+   }
+   * #Helpful,
+   * #Legal,
+   * #Masthead,
+   * #Tertiary {
+      width: 100%;
+      text-align: left;
+   }
+   .td{
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: normal;
+      text-decoration: none;
+      text-align:center;
+      background-color: #e7f6fd;
+      border: 1px solid #96d4ee;
+      padding-top: 2px;
+      padding-right: 0px;
+      padding-bottom: 0px;
+      padding-left: 0px;
+   }
+   .td_text{
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: normal;
+      text-decoration: none;
+      text-align:left;
+      background-color: #e7f6fd;
+      border: 1px solid #96d4ee;
+      padding-top: 2px;
+      padding-right: 0px;
+      padding-bottom: 1px;
+      padding-left: 0px;
+   }
+</style>
+</head>
+<body>
+<div id="BodyImposter">
+   <div id="Box">
+   <table id="left" cellspacing="0" cellpadding="15" width="580">
+      <tr>
+         <td id="Primary" style="font-family: Helvetica, Arial, sans-serif;">
+            <h2><jt:item source='$config.user_full_label'/>你好：</h2>
+            <table width="544" cellspacing="0" cellpadding="5">
+               <tr>
+                  <td width="14" align="left"> </td>
+                  <td width="508" align="left">预订的<jt:item source='$config.detail_code'/>会议室已经取消。</td>
+               </tr>
+           </table>
+            <br />
+            <p>   会议室详细情况如下：</p>
+	<table width="103%" height="90">
+               <tr>
+                  <td  class="td" width="80">代码</td>
+                  <td  class="td_text" width="200"> <jt:item source='$config.detail_code'/></td>
+                  <td  class="td" width="80">会议室</td>
+                  <td  class="td_text" width="200"> <jt:item source='$config.detail_label'/></td>
+               </tr>
+               <tr>
+                  <td class="td">位置</td>
+                  <td class="td_text" colspan="3"> </td>
+               </tr>
+           </table>
+	<br/>
+	<p>   预订详细情况如下：</p>
+            <table width="103%" height="211">
+               <tr>
+                  <td  class="td" width="80">预订日期</td>
+                  <td  class="td_text" width="200"> <jt:item source='$config.expect_begin_date'/></td>
+                  <td  class="td" width="80">预订者</td>
+                  <td  class="td_text" width="200"> <jt:item source='$config.user_full_label'/></td>
+               </tr>
+               <tr>
+                  <td height="45" class="td">主持者</td>
+                  <td class="td_text"> <jt:item source='$config.host_user'/></td>
+                  <td class="td">联系电话</td>
+                  <td class="td_text"> </td>
+               </tr>
+	    <tr>
+                  <td class="td">时间范围</td>
+                  <td class="td_text" colspan="3"> <jt:item source='$config.expect_time_span'/> </td>
+               </tr>
+	    <tr>
+                  <td class="td">会议内容</td>
+                  <td class="td_text" colspan="3"> <jt:item source='$config.note'/></td>
+               </tr>
+	    <tr>
+                  <td class="td">参会人员</td>
+                  <td class="td_text" colspan="3"> <jt:item source='$config.conventioneer'/></td>
+               </tr>
+           </table>
+            <p> </p>
+            <table width="537" cellspacing="0" cellpadding="5">
+               <tr>
+                  <td width="376" align="right"> </td>
+                  <td width="139" align="left">发信者</td>
+               </tr>
+               <tr>
+                  <td align="right"> </td>
+                  <td align="left">****年**月**日</td>
+               </tr>
+            </table>
+            <h2>帮助</h2>
+            <table width="538" cellspacing="0" cellpadding="5">
+               <tr>
+                  <td width="16" align="right"> </td>
+                  <td colspan="3" align="left">※请不要直接回复此邮件,您可以通过点击以下链接了解常见问题</td>
+               </tr>
+               <tr>
+                  <td align="right"> </td>
+                  <td colspan="3" align="left">※请不要直接回复此邮件,您可以通过联系方式咨询常见问题。</td>
+              </tr>
+               <tr>
+                  <td align="right"> </td>
+                  <td width="10" align="left"> </td>
+                  <td width="113" align="left">×××负责×××:</td>
+                  <td width="357" align="left">电话号码，MSN, QQ</td>
+               </tr>
+               <tr>
+                  <td align="right"> </td>
+                  <td width="10" align="left"> </td>
+                  <td width="113" align="left">×××负责×××:</td>
+                  <td width="357" align="left">电话号码，MSN, QQ</td>
+               </tr>
+               <tr>
+                  <td align="right"> </td>
+                  <td width="10" align="left"> </td>
+                  <td width="113" align="left">×××负责×××:</td>
+                  <td width="357" align="left">电话号码，MSN, QQ</td>
+               </tr>
+            </table>
+            <table width="539" cellspacing="0" cellpadding="5">
+               <tr>
+                  <td width="17"> </td>
+               </tr>
+               <tr>
+                  <td>欢迎您再次使用预订会议室系统，祝您一切顺利！</td>
+               </tr>
+            </table>
+         </td>
+         </tr>
+      </table>
+   </div>
+</div>
+</body>
+</html>]]></Source>
+</Template>
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="MkNukqUkQv1IxsFlH8dYgw" name="game.template.pet.source" label="M#12cn14宠物来源" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_PET_SOURCE" data_alias="GM_TPL_PET_SRC" data_logic="GM_TPL_PET_SOURCE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="hEGf1hTFP87X4CY29ei[tw" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="eU]WtnErKlkXva62BGG7og" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldInteger _uuid="w0olhk0]P1QA6XN]e1qckw" name="pet_type_tid" label="M#12cn18宠物类别模版编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PET_TYPE_TID" data_alias="PET_TYP" data_refer="game.template.pet.type" />
+  <FieldInteger _uuid="9Ei375GhcMr]FNlGToyQvQ" name="pet_tid" label="M#12cn16宠物模版编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PET_TID" data_alias="PET" data_refer="game.template.pet" />
+  <FieldEnum _uuid="0U2CARqUciaDHkm6vat7iQ" name="source_cd" label="M#12cn14来源类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SOURCE_CD" data_size="1" data_code="game.template.source" />
+  <FieldInteger _uuid="OkoEkH5HIu2wk0gXUerqrw" name="source_tid" label="M#12cn16来源模版编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="SOURCE_TID" data_alias="SRC_NPC" data_refer="game.template.npc" />
+  <FieldBoolean _uuid="9Ux320En9H3IuCjSlEQeoQ" name="is_bind" label="M#12cn14是否绑定" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_BIND" />
+  <FieldTemplate _uuid="d0LWzDvOjRQn7WNrvrmeiw" name="describe" label="M#12cn14描述模版" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

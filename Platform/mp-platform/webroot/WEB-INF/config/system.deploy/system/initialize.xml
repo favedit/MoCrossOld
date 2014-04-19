@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Version _uuid="OEG5ZeOMtIQ0kC0UoGvlsA" name="system.initialize" label="版本(1.0.1)" is_valid="Y">
+  <Deploy _uuid="gkmYBuXv09Xc[9t]15C0mg" name="install" label="安装部署" is_valid="Y" deployType="Install">
+    <Process _uuid="d0y3RQUpiHKlo5sFRLFqpg" name="sql.table" label="建立所有表" is_valid="Y" processType="SqlTable" />
+    <Process _uuid="0kdNZICzCMpuNQ2ePCH9oQ" name="sql.view" label="建立业务视图" is_valid="Y" processType="SqlView" />
+    <Process _uuid="sk82MHxltBpEjGfEnDPhng" name="sql.sequence" label="建立所有序列" is_valid="Y" processType="SqlSequence" />
+    <Process _uuid="4EkGme[m587CaX9OT6GLuw" name="sql.enum.head" label="建立列表包头" is_valid="Y" processType="SqlEnumHead" />
+    <Process _uuid="hEkDJTxI7yNph4NbT8mOqA" name="sql.system.head" label="建立系统包头" is_valid="Y" processType="SqlSystemHead" />
+    <Process _uuid="1Uj59U4Z4Fi2VP4ATGYwgQ" name="sql.type.head" label="建立类型包头" is_valid="Y" processType="SqlTypeHead" />
+    <Process _uuid="IUM7Dpi8pMBtSdPAdDLPtA" name="sql.package.head" label="建立普通包头" is_valid="Y" processType="SqlPackageHead" />
+    <Process _uuid="rU[xwsoqbaE0TzS3c47Hjw" name="sql.system.body" label="建立系统包体" is_valid="Y" processType="SqlSystemBody" />
+    <Process _uuid="1EjuYqocGp3y1o0e[lufkA" name="sql.enum.body" label="建立列表包体" is_valid="Y" processType="SqlEnumBody" />
+    <Process _uuid="yEUWH[ILib56mfGyFsGwog" name="sql.type.body" label="建立类型包体" is_valid="Y" processType="SqlTypeBody" />
+    <Process _uuid="CUwWNxtsa1ZMPeCfnhUegg" name="sql.package.body" label="建立所有普通包体" is_valid="Y" processType="SqlPackageBody" />
+    <Process _uuid="fkE7hBJIvMGAmSJZPqW]pQ" name="sql.history.table" label="建立历史表" is_valid="Y" processType="SqlHistoryTable" />
+    <Process _uuid="H0SprAxgcIsNGrY4p78gsw" name="sql.history.view" label="建立历史视图" is_valid="Y" processType="SqlHistoryView" />
+    <Process _uuid="WEIup[pCL8iokbH8WfCnig" name="sql.history.sequence" label="建立历史序列" is_valid="Y" processType="SqlHistorySequence" />
+    <Process _uuid="ckBH5cIr9Z[awbQJ]vQPuQ" name="sql.history.package.head" label="建立历史包头" is_valid="Y" processType="SqlHistoryHead" />
+    <Process _uuid="AUH[7AFcCmNN6]29gI[Etw" name="sql.history.package.body" label="建立历史包体" is_valid="Y" processType="SqlHistoryBody" />
+    <Process _uuid="RE]]I6e1T0LW[34llv7cgw" name="sql.view.user" label="建立业务视图" processType="SqlViewUser" />
+    <Process _uuid="n009pJkShzQY5qhgoBWPlw" name="sql.initialize.data" label="初始化数据" is_valid="Y" processType="InitializeData" />
+    <Process _uuid="4EzdKcUP30ZVeYyNnTCJsA" name="sql.foreign.key" label="建立所有外键" is_valid="Y" processType="SqlForeignKey" />
+  </Deploy>
+  <Deploy _uuid="0UG6s1SoGuiUlZnguW2[hg" name="uninstall" label="卸载部署" is_valid="Y" deployType="Uninstall">
+    <Process _uuid="EUJI95cf456YiP9VIDuarw" name="sql.initialize.data" label="卸载表数据" is_valid="Y" processType="InitializeData" />
+    <Process _uuid="zUObCnwPUM9ZECDVBt0JoA" name="sql.history.package.body" label="卸载历史包体" is_valid="Y" processType="SqlHistoryBody" />
+    <Process _uuid="D0XL0Szie27jc9sTXgWKgA" name="sql.history.package.head" label="卸载历史包头" is_valid="Y" processType="SqlHistoryHead" />
+    <Process _uuid="N0HEpORYpmG]2I6mW6YQoQ" name="sql.history.sequence" label="卸载历史序列" is_valid="Y" processType="SqlHistorySequence" />
+    <Process _uuid="zEC6[H4CXIfKRrOgI[wqnQ" name="sql.history.view" label="卸载历史视图" is_valid="Y" processType="SqlHistoryView" />
+    <Process _uuid="GEewjXFWfIL7wAgc]y5Ehw" name="sql.history.table" label="卸载历史表" is_valid="Y" processType="SqlHistoryTable" />
+    <Process _uuid="RkfepPOfPTvgrenPMLH5hQ" name="sql.foreign.key" label="卸载所有外键" is_valid="Y" processType="SqlForeignKey" />
+    <Process _uuid="TUhWnu9Z9IAFZ8c6uNEQmA" name="sql.package.body" label="卸载所有普通包体" is_valid="Y" processType="SqlPackageBody" />
+    <Process _uuid="oEGV]7Tqz6Lb2oLOUohNqw" name="sql.package.head" label="卸载普通包头" is_valid="Y" processType="SqlPackageHead" />
+    <Process _uuid="CUWyIDQkPl32LwsNX8DJsg" name="sql.system.body" label="卸载系统包体" is_valid="Y" processType="SqlSystemBody" />
+    <Process _uuid="JkpUnSSajl1qny6ayoS2oQ" name="sql.type" label="卸载类型包" is_valid="Y" processType="SqlTypeHead" />
+    <Process _uuid="h0XsJlrY9XoK2]tDFg6ugg" name="sql.enum" label="卸载系统包" is_valid="Y" processType="SqlEnumHead" />
+    <Process _uuid="OEq1k]5Xn1Dvi9pDX7g6hQ" name="sql.system.head" label="卸载系统包头" is_valid="Y" processType="SqlSystemHead" />
+    <Process _uuid="cU4Mgokq3fQIY]GEVouVtA" name="sql.sequence" label="卸载所有序列" is_valid="Y" processType="SqlSequence" />
+    <Process _uuid="kkgWi8Otx6rzJ1sFLeXqsw" name="sql.view.user" label="卸载用户视图" is_valid="Y" processType="SqlViewUser" />
+    <Process _uuid="v0dJILl0dC2pVnZPhx5Hnw" name="sql.view" label="卸载业务视图" is_valid="Y" processType="SqlView" />
+    <Process _uuid="ZEOe4cpPfSnx8B9lR2lCjQ" name="sql.table" label="卸载所有表" is_valid="Y" processType="SqlTable" />
+  </Deploy>
+</Version>
+

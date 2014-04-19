@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="zENDtOO2Ov8S6VJAvBrwkw" name="web.tag" label="M#12cn17web-tag" is_valid="Y" note="M#" template="xmlobject" source="${home.source.web-system}">
+  <Interface _uuid="OEqCK5GdmJC5P7ZqO]wJrA" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.jfa.core.webtag.common.XObjectFace">
+    <Attribute _uuid="]UpyC2VWApqUz8A8SYnkpA" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="WErrEArH7tDqv0LrmNBAsg" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+    <Attribute _uuid="GknWZX287OhXkM[wj8Wkiw" name="note" label="M#12cn12注释" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+    <Attribute _uuid="4EdqHTBxTgeYy2ofj596sQ" name="_type" label="M#12cn12类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="TE8dQkZoeMi]kbFcQf3HlQ" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Interface>
+  <Component _uuid="1E5B6YKiG0UMLfbHPJo6ow" name="taglib" label="M#12cn16taglib" is_valid="Y" note="M#" class_name="org.mo.jfa.core.webtag.common.XTagLib" base_name="org.mo.jfa.core.webtag.base.XBaseTagLib" inherits="IObject">
+    <Attribute _uuid="gkDukxXn6fzFlc2nZgSNsA" name="short_name" label="M#12cn13短名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="30Gul2ydCgU8IMtjRjNtmA" name="tag" label="M#12cn13tag" is_valid="Y" note="M#12jp12項目" class_name="org.mo.jfa.core.webtag.common.XTag" base_name="org.mo.jfa.core.webtag.base.XBaseTag" inherits="IObject">
+    <Attribute _uuid="o0mNBm]chMHTlCWLtulysw" name="class_name" label="M#12cn13类名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="lE71HQI33J]5Y3zXlW1ctw" name="base_name" label="M#12cn14基类名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="aUY1qE9U]ig5CmUCas]8uA" name="tag_face" label="M#12cn15tag接口" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="lUncTBBYIAVlquxCWQnvuQ" name="attribute" label="M#12cn12属性" is_valid="Y" note="M#" class_name="org.mo.jfa.core.webtag.common.XAttribute" base_name="org.mo.jfa.core.webtag.base.XBaseAttribute" inherits="IObject">
+    <Attribute _uuid="Uk93[1NnyL4JUGzAXvPUuA" name="required" label="M#12cn18required" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="OkOCrqvD]8awgojm7D5Wmw" name="html" label="M#12cn14html" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="O0ImLfifRyfrZyg0Ac1Zqg" name="default_data" label="M#12cn14默认数据" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="F088pG6wLo]7DRB]AiC6oA" name="html_name" label="M#12cn14页面名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="sEgefz[Keem49PPeSLTOhw" name="tagFace" label="M#12cn15tag接口" is_valid="Y" note="M#" class_name="org.mo.jfa.core.webtag.common.XTagFace" base_name="org.mo.jfa.core.webtag.base.XBaseTagFace" inherits="IObject" />
+</Persistence>
+

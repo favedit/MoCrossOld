@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project _uuid="20Ke7DiMyWRzIxQtAslUoA" name="eUIS-MoJS" label="M#12cn14界面引擎" note="M#12cn228画面项目很多，还有很多功能在添加中，是一个持续性的项目。" is_valid="Y" code="MOJS-001" type_cd="I" status_cd="E" expect_begin_date="20081001000000" expect_end_date="20090630000000" begin_date="20081001000000" plan_person_count="1" plan_person_month_count="9" background_note="信息管理平台中用的地界面很多，其界面的变化比较大。\n为了能够提供一套有友好界面，又可以不断提升功能和\n用户体验的方案，开发一套JS的交界面方案。" target_note="提供一套JavaScript架构，能够根据服务器发过来的XML信息，\n在IE客户端展现为用户操作的界面。\n并提供到服务器的数据交换。" scale_cd="S">
+  <Catalog _uuid="e0K0YRaobDC98Ia62oB]tA" name="Design" label="M#12cn14系统设计" note="M#" is_valid="Y" />
+  <Catalog _uuid="1UjNvz4DwFJe3T4dnRnorA" name="Framework" label="M#12cn14程序构架" note="M#" is_valid="Y">
+    <Catalog _uuid="hEaL1FnwOmh9jCW7XzxLhw" name="Runtime" label="M#12cn13运行库" note="M#" is_valid="Y" />
+    <Catalog _uuid="]0YxxdH1mtPk8UT6icQQnQ" name="Language" label="M#12cn13语言库" note="M#" is_valid="Y" />
+    <Catalog _uuid="90VGYcLkVeur[6SDqwDkmA" name="Base" label="M#12cn13基础库" note="M#" is_valid="Y" />
+    <Catalog _uuid="RELX02hrcC1]rGo[GqDkvw" name="Core" label="M#12cn13核心库" note="M#" is_valid="Y" />
+    <Catalog _uuid="kUPtHoHkp9jPxBNE3sd2qw" name="Control" label="M#12cn13控件库" note="M#" is_valid="Y">
+      <Catalog _uuid="QUcnsR9yNx4hFVzzwPgmng" name="Form" label="M#12cn15表单控件库" note="M#" is_valid="Y">
+        <Module _uuid="eEk]1ixyPlzVMawyQxJPrg" name="FEdit" label="M#12cn16文本编辑控件" note="M#" is_valid="N">
+          <Point _uuid="vkFd7bJyKe1]DdEziUKXuQ" name="编辑-自动完成" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="设置了自动完成，输入时会列出字符相似的数据列表。不设置不列出。" />
+          <Point _uuid="90UKEraDZX0KWyg92RtYkw" name="编辑-编辑父" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" />
+          <Point _uuid="pEOMHNoU76TnD1NflwyMtg" name="编辑-计量单位" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="设置了编辑框后面的单位字符，控件在显示时会显示单位字符，否则不显示" />
+          <Point _uuid="XUeFOqno]kpU6O680hLAlg" name="编辑-编辑对齐" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="设置了编辑框内字符的对齐方式，编辑框内字符按设定对齐方式对齐，否则默认为左对齐" />
+          <Point _uuid="z0s0f8pVHekLrYxasaAAmg" name="编辑-输入格式" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="设置了输入框内字符的大小写格式，则按指定格式显示，否则默认" />
+          <Point _uuid="w0OOvr0Q9D4ZqXZYR2L]sA" name="编辑-选取引用" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了选取引用，可在控件中弹出选取引用对话框，否则不能弹出。" />
+          <Point _uuid="QUscB7RtTpBJ[MBU2ds0qA" name="编辑-选取字段" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="设置了选取字段，将返回选取字段对应的数据内容。" />
+          <Point _uuid="IknTj4qm]Q3vhYZs6XwCsQ" name="编辑-选取顺序" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" />
+          <Point _uuid="n0guFds[6x3E69rJ4kWbiQ" name="编辑-选取条件" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" />
+        </Module>
+        <Module _uuid="MUmP4mnBNwBgWs8keGLiuA" name="FNumber" label="M#12cn16数字编辑控件" note="M#" is_valid="N">
+          <Point _uuid="10jE0EPcl0bNcjuwwv5[hg" name="显示-激活颜色" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="当鼠标移动到控件上，或者控件获得焦点后，\n编辑框后面的箭头变为激活颜色，\n鼠标离开或者失去焦点后箭头恢复颜色。" />
+          <Point _uuid="EUEwEL7VuVtRMVbuaJF[iA" name="编辑-数字增减" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="控件获得焦点后，\n按下键盘键的Ctrl+&quot;+&quot;，数字值变为最大值，\n按下键盘键的Ctrl+&quot;-&quot;，数字值变为最小值，\n按下键盘键的&quot;+&quot;，数字值加增减单位，\n按下键盘键的&quot;-&quot;，数字值减增减单位，" />
+          <Point _uuid="AU3chHl[eBJYQisu35OUsQ" name="编辑-数字输入" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="只能够输入数字（包含0-9，负号，百分号%），\n当为有效数字时，数字内容可被存储，\n否则不能存储且编辑框背景色变为警告颜色。\n不能输入其他非数字字符。" />
+          <Point _uuid="DUNhztuhF0DRI8ZiX[uHqQ" name="编辑-分隔显示" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="设置了分隔显示数字，\n每隔三个数字用”’”分隔符分隔显示，\n否则正常显示。" />
+          <Point _uuid="XUjg4t7Ix5fNmBVR8rU4uw" name="编辑-四舍五入" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="设置了四舍五入，控件失去焦点后，\n自动把数字格式化为指定精度显示，并用四舍五入舍去超出精度的字符。\n否则不使用四舍五入舍去超出精度的字符并显示。" />
+          <Point _uuid="VkE3isTuHtQVozNpovVHgg" name="编辑-选取引用" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="设置了选取引用，可在控件中弹出选取引用对话框，否则不能弹出。" />
+          <Point _uuid="qEGmsf2W8LtH9kBlCQT7og" name="编辑-选取字段" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="设置了选取字段，将在点击选取对话框中的一条数据后，\n根据选取字段返回选取字段对应的数据内容。" />
+          <Point _uuid="xEAoY2KcZPu8yKPs5JWzug" name="编辑-选取顺序" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" />
+          <Point _uuid="GEKg8AXJj[TOmLvFn9S5lg" name="编辑-选取条件" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" />
+          <Point _uuid="5k4kfWZVnA1]khpjFM6UuA" name="编辑-增减单位" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="设置了增减单位，用鼠标或者键盘控制数字的加减时，\n将使用设置的增减单位来控制编辑数值增加或减少的单位，\n不设置增减单位，按照默认增减单位为1计算。" />
+          <Point _uuid="tE1gEy8xWNAPPH6aQzDPog" name="编辑-数字精度" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="设置了数字显示的精度，\n将以指定的精度显示数字，\n否则以默认精度（1）显示数字。" />
+          <Point _uuid="Q0bZUAVOQIvysjrjzSfHgQ" name="校验-最大值" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="设置了允许输入的数值最大值，编辑框数字不能超过设定值，\n否则不能提交，并且编辑框背景变为警告颜色。" />
+          <Point _uuid="wUok045KyKmT2C3rZK7XiA" name="校验-最小值" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="设置了允许输入的数值最小值，编辑框数字不能超过设定值，\n否则不能提交，并且编辑框背景变为警告颜色。" />
+          <Point _uuid="CURQ6tsYJgQF[zSdsFKsnw" name="校验-允许最大" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="设置了允许最大，\n编辑数值最大可等于最大值，否则不能等于最大值\n当超过最大值后，编辑框背景颜色变为警告颜色，不能提交数据" />
+          <Point _uuid="90MrWZm36dyQx1[nvATMtg" name="校验-允许最小" label="M#" note="M#" is_valid="Y" create_user_name="李永乐" scope_note="设置了允许最小，\n编辑数值最小可等于最小值，否则不能等于最小值\n当小于最小值后，编辑框背景颜色变为警告颜色，不能提交数据" />
+        </Module>
+        <Module _uuid="tEydJL0LY4JZm7rFLdx0lQ" name="FCheck" label="M#12cn16单项选择控件" note="M#" is_valid="N">
+          <Point _uuid="A0YAfv0Nb]tHHVAdUd9dsQ" name="编辑-真假内容" label="M#" note="M#" is_valid="Y" status_cd="P" expect_begin_date="20081217000000" create_user_name="李永乐" scope_note="设置了控件的真假内容值，控件的提交数据以真假内容值提交。不设置真内容为&quot;Y&quot;,假内容为&quot;N&quot;。" />
+        </Module>
+        <Module _uuid="9kT6SQ]W]zwO6[sD[Fg2qg" name="FSelect" label="M#12cn16下拉选择控件" note="M#" is_valid="N" />
+        <Module _uuid="jE[Ap9j[JWCrpm2MFyDzsA" name="FCalendar" label="M#12cn16日期选择控件" note="M#" is_valid="N" />
+        <Module _uuid="QkAEoo2eA2UqAR2FmQrvpg" name="FColorPicker" label="M#12cn16颜色选择控件" note="M#" is_valid="N" />
+        <Module _uuid="OUXUD5p03F5eCGCrqVqptA" name="FCheckPicker" label="M#12cn18多项选择列表控件" note="M#" is_valid="N" />
+        <Module _uuid="GUR42hkrbkvtFurZWfMsqw" name="表格控件通用功能点" label="M#12cn19表格控件通用功能点" note="M#" is_valid="Y" status_cd="L">
+          <Point _uuid="IE2fcdnqQ53MLMTfxYHAtA" name="显示-控件由标签部分和编辑部分组成，可单独设置一部分是否显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="203" scope_note="控件由标签部分和编辑部分两部分组成\n可以设置标签部分是否显示，默认为显示\n可以设置编辑部分是否显示，默认为显示" />
+          <Point _uuid="r0XRBQip6YJV6iwumOTirw" name="显示-标签宽度，设置了编辑框部分宽度，则以设置的编辑框宽度显示，否则默认显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="203" scope_note="控件由标签部分和编辑部分两部分组成\n设置了编辑框部分宽度，则以设置的编辑框宽度显示，否则默认显示" />
+          <Point _uuid="dUjzKLuGJjD7[xSp45TRhg" name="显示-标签对齐，设定了标签部分内的水平对齐方式（居左方式，居中方式，居右方式）。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="203" scope_note="标签部分由标签图标和标签文字组成，\n设定了标签部分内的水平对齐方式（居左方式，居中方式，居右方式）\n后，标签部分内的部分按照设定对齐方式排列。" />
+          <Point _uuid="h0TONnWf1CU4a9g1PFfJgw" name="显示-编辑宽度，设置了编辑部分宽度，编辑部分以设定宽度显示，否则以默认显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="203" scope_note="控件由标签部分和编辑部分两部分组成\n设置了编辑部分宽度，编辑部分以设定宽度显示，否则以默认显示" />
+          <Point _uuid="0UcIMorN[MPA8rDRhWSEmQ" name="显示-编辑高度，设置了编辑部分高度，编辑部分以设定高度显示，否则以默认显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="203" scope_note="控件由标签部分和编辑部分两部分组成\n设置了编辑部分高度，编辑部分以设定高度显示，否则以默认显示" />
+          <Point _uuid="TEWs]z5wzbo7Bb3gHpzanA" name="显示-标签图标，标签部分由标签图标和标签文字组成，添加了标签图标文件路径后，标签图标可被显示，否则不显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="203" scope_note="控件由标签部分和编辑部分两部分组成\n标签部分由标签图标和标签文字组成，添加了标签图标文件路径后，\n标签图标可被显示，否则不显示" />
+          <Point _uuid="fEb4X3]svVAqot9JQKiOmQ" name="显示-标签颜色，设定标签文字颜色后，标签文字以设定颜色显示，否则为默认颜色(黑色)。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="203" scope_note="控件由标签部分和编辑部分两部分组成\n设定标签文字颜色后，标签文字以设定颜色显示\n否则为默认颜色(黑色)。" />
+          <Point _uuid="2E7x56V9IlFLVDvdItOamg" name="显示-标签位置，设定了标签部分与编辑部分的排放位置（左方，右方，上方），标签显示在指定方位，否则标签部分在编辑框左方显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="203" scope_note="控件由标签部分和编辑部分两部分组成\n设定了标签部分与编辑部分的排放位置（左方，右方，上方）\n标签显示在指定方位，否则标签部分在编辑框左方显示。" />
+          <Point _uuid="dk15EYKtph9ao34[]P]3lQ" name="显示-控件续行，设置了控件以续行显示，控件在上一个控件右边紧邻显示，否则在上一个控件的下一行显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="203" scope_note="设置了控件以续行显示，控件在上一个控件右边紧邻显示\n否则在上一个控件的下一行显示。" />
+          <Point _uuid="d0[h1vPmC7l2ceYFqm1NmA" name="显示-控件坐标，设置了控件的位置坐标（左坐标，顶坐标），控件在指定坐标位置显示，否则紧邻上一个控件显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="203" scope_note="设置了控件的位置坐标（左坐标，顶坐标），控件在指定坐标位置显示\n否则紧邻上一个控件显示。" />
+          <Point _uuid="j04]2MFuAn5HCUer0GG]oA" name="显示-控件宽度，设置了控件的显示宽度，控件以指定宽度显示。否则以默认宽度显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="203" scope_note="设置了控件的显示宽度，控件以指定宽度显示。否则以默认宽度显示。" />
+          <Point _uuid="gkW]89L]YOJZHsOLYllkpg" name="显示-控件高度，设置了控件的显示高度，控件以指定高度显示。否则以默认高度显示。" label="M#" note="M#" is_valid="Y" create_user_name="203" scope_note="设置了控件的显示高度，控件以指定高度显示。否则以默认高度显示。" />
+          <Point _uuid="G0zFSCbqj5O5fqpGPwYvvQ" name="显示-控件余白，设置了控件与周围控件的空余距离，控件以指定空余显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="203" scope_note="设置了控件与周围控件的空余距离，控件以指定空余显示，\n不设置时，以空余为0显示控件。\n设置了控件与相邻控件（左，上，右，下）的单个空余距离，\n控件的单个空余距离以指定空余显示，\n不设置时，以空余为0显示" />
+          <Point _uuid="aEZrrnGM2acfBpZiGdsljg" name="显示-搜索状态，设置了搜索状态页面中显示控件，控件在搜索状态下能够显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="203" scope_note="设置了搜索状态页面中显示控件，控件在搜索状态下能够显示，\n否则不显示" />
+          <Point _uuid="k0xwW7qFHr]4TV0wswImsg" name="显示-选取状态，设置了在选取页面状态中显示控件，控件在选取页面状态下能够显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了在选取页面状态中显示控件，控件在选取页面状态下能够显示，\n否则不显示" />
+          <Point _uuid="vEwWkUEfNg[JjiUuxyPcmg" name="显示-放大状态，设置了放大页面状态中显示控件，控件在放大状态下能够显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了放大页面状态中显示控件，控件在放大状态下能够显示，\n否则不显示" />
+          <Point _uuid="JE9YTN6pMQzTakuNw8jIiA" name="显示-新建状态，设置了新建页面状态中显示控件，控件在新建状态下能够显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了新建页面状态中显示控件，控件在新建状态下能够显示，\n否则不显示" />
+          <Point _uuid="jU4twizROVKrE0OFAib9vw" name="显示-更新状态，设置了更新页面状态中显示控件，控件在更新状态下能够显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了更新页面状态中显示控件，控件在更新状态下能够显示，\n否则不显示" />
+          <Point _uuid="JkfUBsZGaQihsOTo72iaqQ" name="显示-删除状态，设置了删除页面状态中显示控件，控件在删除状态下能够显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了删除页面状态中显示控件，控件在删除状态下能够显示，\n否则不显示" />
+          <Point _uuid="zENTvESq3Arjhq9VZv8hqg" name="显示-打印状态，设置了打印页面状态中显示控件，控件在打印状态下能够显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了打印页面状态中显示控件，控件在打印状态下能够显示，\n否则不显示" />
+          <Point _uuid="X0HTlngubEGNDVtTOU0zjA" name="编辑-数据查询，设置了是否查询，这个控件对应的数据内容将在数据库中查取数据在页面中显示。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了是否查询，\n这个控件对应的数据内容将在数据库中查取数据在页面中显示，\n否则不查询，在页面中就不会显示。" />
+          <Point _uuid="dU2p[4AzpAZOY3vmWzW1oQ" name="编辑-搜索方式，设置了搜索方式，在搜索状态下，控件的数据内容按设定的搜索方式搜索，没有设定默认搜索。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了搜索方式，在搜索状态下，\n控件的数据内容按设定的搜索方式搜索，\n没有设定默认搜索。" />
+          <Point _uuid="hE6WrQN2FA7afS2hvgEaiA" name="编辑-数据复制，设置了控件可复制，在复制出的页面中将保留这个控件的值。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了控件可复制，\n在复制出的页面中将保留这个控件的值，\n否则不保留控件的值。" />
+          <Point _uuid="m0BsOistceZvceQ0v0MrrQ" name="编辑-最大长度，设置了可编辑区最大长度，则只能输入最大长度个字符。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了可编辑区最大长度，\n则只能输入最大长度个字符，\n否则可输入任意长度个字符。" />
+          <Point _uuid="Hkww3kiBs[z3LrPh6nituQ" name="编辑-新建修改，设置了控件在新建状态下的修改状态，在新建页面中控件能够被编辑修改。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了控件在新建状态下的修改状态，\n在新建页面中控件能够被编辑修改，\n否则不能编辑修改。" />
+          <Point _uuid="NEpSfR1G4sPp0chZSX0Zgg" name="编辑-更新修改，设置了控件在更新状态下的修改状态，在更新页面中控件能够被编辑修改。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了控件在更新状态下的修改状态，\n在更新页面中控件能够被编辑修改，\n否则不能编辑修改。" />
+          <Point _uuid="60MjNtUillTln6bFKKUGkA" name="编辑-删除修改，设置了控件在删除状态下的修改状态，在删除页面中控件能够被编辑修改。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了控件在删除状态下的修改状态，\n在删除页面中控件能够被编辑修改，\n否则不能编辑修改。" />
+          <Point _uuid="DEftMED7]QLzY0o94gyMtg" name="校验-新建校验，设置了在新建的状态下必须数据校验，校验成功后控件数据内容可提交。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了在新建的状态下必须数据校验，\n则校验成功后控件数据内容可提交，\n校验不成功不能提交控件数据。\n没有设置在新建的状态下必须数据校验，\n控件数据内容可直接提交。\n" />
+          <Point _uuid="FUyasAZbbthrJg2Xy30bvg" name="校验-更新校验，设置了在更新的状态下必须数据校验，校验成功后控件数据内容可提交。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了在更新的状态下必须数据校验，\n则校验成功后控件数据内容可提交，\n校验不成功不能提交控件数据。\n没有设置在更新的状态下必须数据校验，\n控件数据内容可直接提交。\n" />
+          <Point _uuid="80BeSx0EVXyZQh48k82LsQ" name="校验-删除校验，设置了在删除的状态下必须数据校验，校验成功后控件数据内容可提交。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="设置了在删除的状态下必须数据校验，\n则校验成功后控件数据内容可提交，\n校验不成功不能提交控件数据。\n没有设置在删除的状态下必须数据校验，\n控件数据内容可直接提交。\n" />
+          <Point _uuid="R0L5D0VxqZnopg8UmrYuig" name="注释-输入提示，添加了控件的输入提示文字，当鼠标移到控件上时，出现输入提示浮动文字。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="添加了控件的输入提示文字，当鼠标移到控件上时，\n出现输入提示浮动文字。\n鼠标移开后提示文字消失。" />
+          <Point _uuid="zUjjph15bfy48VAsYxVKow" name="注释-状态信息，添加了控件的状态信息文字，当控件获得焦点时，状态栏显示状态信息文字。" label="M#" note="M#" is_valid="Y" status_cd="P" create_user_name="李永乐" scope_note="添加了控件的状态信息文字，\n当控件获得焦点时，状态栏显示状态信息文字。\n当控件失去焦点时，状态信息文字消失。" />
+        </Module>
+      </Catalog>
+      <Catalog _uuid="REyK[TkK4aTX23wvP7wlpQ" name="Table" label="M#12cn15列表控件库" note="M#" is_valid="Y" />
+      <Catalog _uuid="rkvC8JA5mxFsStuEcAwDvw" name="TreeView" label="M#12cn16树目录控件库" note="M#" is_valid="Y" />
+      <Catalog _uuid="w077gdUdC1zKGgV5ftKAkA" name="ToolBar" label="M#12cn16工具栏控件库" note="M#" is_valid="Y" />
+      <Catalog _uuid="Zk]IhXlnStV9xIGIMyJrhA" name="Window" label="M#12cn16弹出框控件库" note="M#" is_valid="Y">
+        <Module _uuid="uUFD6Oh8gYn55CRJb1QPmQ" name="FMessageWindow" label="M#12cn15消息弹出框" note="M#12cn3118消息弹出框是用来显示用户错误操作的后台警告或者错误信息的控件。\n用户可在消息弹出框上点击查看每个错误条目的详细信息，消息框显示期\n间，用户不能对弹出框下面的页面进行任何操作。按下弹出框上的关闭\n按钮，或者按下键盘键ESC，隐藏消息框。\n" is_valid="Y">
+          <Point _uuid="NUL]6MCMDJ9ZS72ZAfINgg" name="弹出的消息框后，页面禁止变灰，能够正常显示消息框。" label="M#" note="M#" is_valid="Y" create_user_name="203" important_cd="9" />
+          <Point _uuid="o0HrePRYkpvHvKS9L3MRjQ" name="在消息弹出框的标题栏中按下鼠标左键，可以拖动整个窗口框。" label="M#" note="M#" is_valid="Y" scope_note="在消息弹出框的标题栏中按下鼠标左键，可以拖动整个窗口框,\n当放开鼠标左键后，停止拖动。" important_cd="5" priority_cd="5" difficult_cd="5" />
+          <Point _uuid="XEPsgcFIOTE[x4p1mwacog" name="点击消息框中的每个消息标题条目时，在消息的详细显示区，会显示对应的消息详细内容。" label="M#" note="M#" is_valid="Y" scope_note="点击消息框中的每个消息标题条目时，在消息的详细显示区，\n会显示对应的消息详细内容。" important_cd="5" priority_cd="5" difficult_cd="5" />
+          <Point _uuid="MEsEKWavc6QyeW745Lt8kQ" name="消息框中的消息内容类型分为info,warning和error三种。" label="M#" note="M#" is_valid="Y" scope_note="消息框中的消息内容类型分为info,warning和error三种。\n每种消息类型的消息框的显示在 按钮区中有所区别：\ninfo:显示OK按钮。\nwarning:显示OK和Cancel按钮。\nError:显示OK按钮。" important_cd="5" priority_cd="5" difficult_cd="5" />
+          <Point _uuid="fkP5mC9[hPghoOcmw42rhA" name="关闭消息框的三种方式：按下ESC键，点击消息框的关闭图标，点击消息框中的按钮。" label="M#" note="M#" is_valid="Y" scope_note="关闭消息框的三种方式：\n1-按下ESC键。\n2-点击消息框的关闭图标。\n3-点击消息框中的按钮。" important_cd="5" priority_cd="5" difficult_cd="5" />
+        </Module>
+        <Module _uuid="OUHk7nHg]iv3vVg1QmZ0jw" name="FListWindow" label="M#12cn15选取弹出框" note="M#12cn3111弹出选取框后，用户选取一条数据内容，并把数据内容放到弹出该\n对话框的控件中并隐藏该弹出框控件。\n显示该弹出框控件后，用户不能对弹出框下面的页面进行任何操作，\n一直到控件被隐藏。按下弹出框上的关闭按钮，或者按下键盘键ESC。" is_valid="Y">
+          <Point _uuid="JU557Z0bHxF0zSL74rRTmQ" name="弹出选取框后，用户可对弹出的消息框进行操作，消息框后面的页面不能进行任何操作，直到选取框被隐藏。" label="M#" note="M#" is_valid="Y" scope_note="弹出选取框后，用户可对弹出的消息框进行操作，\n消息框后面的页面不能进行任何操作，直到选取框被隐藏。" important_cd="5" priority_cd="5" difficult_cd="5" />
+          <Point _uuid="j0P89FgufwFKz3M1F90Cvg" name="隐藏搜索框的三种方式：点击关闭图标、点击关闭按钮、按下ESC功能键。" label="M#" note="M#" is_valid="Y" scope_note="隐藏搜索框的三种方式：\n1-点击搜索框标题栏的关闭图标、\n2-点击按钮区的关闭按钮、\n3-按下键盘的ESC功能键。" important_cd="5" priority_cd="5" difficult_cd="5" />
+        </Module>
+        <Module _uuid="b0GLKHiIMB3PbQUY[4jRoQ" name="FSearchWindow" label="M#12cn15搜索弹出框" note="M#12cn267用户可以在搜索弹出框中选择要搜索信息的关键字段，点击搜索框里的\n搜索按钮后，隐藏搜索弹出框，\n并且会返回按照填入字段搜索得到的数据。\n" is_valid="Y">
+          <Point _uuid="JEHJno1I0dNYdPwEZqoHmA" name="搜索弹出框的按钮区中共有四个按钮，分别是搜索确认，关闭，清除，重置按钮。" label="M#" note="M#" is_valid="Y" scope_note="搜索弹出框的按钮区中共有四个按钮，分别是搜索确认，关闭，清除，\n重置按钮。功能分别如下：\n1-搜索确认：隐藏搜索框，按照填入的搜索条件返回搜索内容。\n2-关闭：隐藏搜索框。\n3-清除：清楚已经填入或者选择的搜索条目。\n4-重置按钮：把所有的搜索条目内容返回到初始显示状态。\n" important_cd="5" priority_cd="5" difficult_cd="5" />
+          <Point _uuid="6ERVgk[fC[n0Zaq25XO6hg" name="隐藏搜索框的三种方式，点击搜索框标题栏的关闭图标、点击按钮区的关闭按钮、按下键盘的ESC功能键。" label="M#" note="M#" is_valid="Y" scope_note="隐藏搜索框的三种方式：\n1-点击搜索框标题栏的关闭图标、\n2-点击按钮区的关闭按钮、\n3-按下键盘的ESC功能键。" important_cd="5" priority_cd="5" difficult_cd="5" />
+        </Module>
+      </Catalog>
+      <Module _uuid="T0720KaNJnZYgEcDMD5qjA" name="键盘和鼠标操作控件" label="M#" note="M#" is_valid="Y">
+        <Point _uuid="T0agNcd1i]pe6G[4xpXNng" name="表格列表：鼠标单击一列的标题，表格数据内容进行排序" label="M#" note="M#" is_valid="Y" create_user_name="203" scope_note="鼠标点击一列的标题，把表格中的所有数据按照点击列的数据内容排序，\n标题列中图标变为正向排序图标。再次单击这列，进行反向排序，标题列\n中图标变为反向排序图标。" important_cd="3" />
+        <Point _uuid="KESLmR]ZqehxrlnfLJ8PrQ" name="表格列表：鼠标单击表格中的数据行列，置当前行为焦点行，如果是可编辑列，则进入修改。" label="M#" note="M#" is_valid="Y" scope_note="鼠标单击表格中的数据行列，置当前行为焦点行，\n如果是可编辑列，则进入修改。" important_cd="9" />
+        <Point _uuid="Mk12b7DO7ccVZTTqqSXSgQ" name="表格列表：鼠标双击行列全选内容，可编辑时进入修改" label="M#" note="M#" is_valid="Y" scope_note="鼠标双击表格中的数据行列时，全选编辑格的数据内容，\n如果是可编辑格时，则进入修改。" important_cd="7" />
+        <Point _uuid="rkZf831uquGrgIOdDaRDpg" name="表格列表：Table键下一个编辑格置为焦点数据格" label="M#" note="M#" is_valid="Y" scope_note="按下Table键，可移动当前的焦点到下一个编辑格，如果下一个编辑格是\n可编辑的，则进入编辑，是不可编辑的，则全选数据内容。\n如果当前焦点是最后一个编辑格时，\n则移动到焦点到下一行中的第一个单元格。" />
+        <Point _uuid="6kCKDTy1YtDcCIQY2Ubkrw" name="表格列表：按下(Shift+Table)键 把上一个编辑格置为数据焦点格" label="M#" note="M#" is_valid="Y" scope_note="按下按下(Shift+Table)键键，可移动当前的焦点到上一个编辑格，\n如果上一个编辑格是可编辑的，则进入编辑，\n是不可编辑的，则全选数据内容。\n如果当前焦点是这行中第一个编辑格时，\n则移动到焦点到上一行中的最后一个单元格。" />
+        <Point _uuid="EkERjYnz82i7Sf4ykqqomQ" name="表格列表：上方向键移动行焦点到上一行" label="M#" note="M#" is_valid="Y" scope_note="按下键盘的上方向键，则移动行焦点到上一行，\n如果当前行是第一行时，则不移动行焦点。" />
+        <Point _uuid="akkrXyaxnDous9wEiognoQ" name="表格列表：下方向键移动行焦点到下一行" label="M#" note="M#" is_valid="Y" scope_note="按下键盘的下方向键，则移动行焦点到下一行，\n如果当前行是最后一行时，则不移动行焦点。" />
+        <Point _uuid="H0CB679QzY]uOWHeEYPJsQ" name="表格列表：按下PageUp键，更新当前数据内容到上一页数据" label="M#" note="M#" is_valid="Y" scope_note="Table中，按下PageUp键，更新当前数据内容到上一页数据显示。" />
+        <Point _uuid="b0[hr669puCfFhDm5HnupQ" name="表格列表：按下PageDown键，更新当前数据内容到下一页数据" label="M#" note="M#" is_valid="Y" scope_note="Table中，按下PageDown键，更新当前数据内容到下一页数据" />
+        <Point _uuid="UEZzO81EGodc[EnJyhwOtw" name="表格列表：按下(Ctrl+PageUp)键，更新当前数据内容到第一页数据" label="M#" note="M#" is_valid="Y" scope_note="Table中，按下(Ctrl+PageUp)键，更新当前数据内容到数据页的第一页\n数据显示。" />
+        <Point _uuid="[0sbD2AtKhs6P2w[ftsOnQ" name="表格列表：按下(Ctrl+PageDown)键，更新当前数据内容到最后一页数据显示" label="M#" note="M#" is_valid="Y" create_user_name="203" scope_note="Table中，按下(Ctrl+PageDown)键，更新当前数据内容到数据页的第一页\n数据显示。" />
+        <Point _uuid="gk646UgHRgeCAsMaT9FDuQ" name="表格列表：按下(Ctrl+Z)组合键取消当前焦点单元格的操作，恢复到初始数据。" label="M#" note="M#" is_valid="Y" scope_note="表格列表：按下(Ctrl+Z)组合键取消当前焦点单元格的操作，\n恢复到初始数据。" />
+        <Point _uuid="W04CZxwmmu9qY2]Ik]YrtA" name="表格列表：按下(Ctrl+Shift+Z)组合键取消当前焦点行的操作，恢复当前行数据到初始数据。" label="M#" note="M#" is_valid="Y" scope_note="表格列表：按下(Ctrl+Shift+Z)组合键取消当前焦点行的操作，\n恢复当前行数据到初始数据。" />
+        <Point _uuid="4EvrpBJo49gXQj]9RFzDqQ" name="表格列表：按下(Ctrl+R)组合键可复制当前行的数据到新建的表单中." label="M#" note="M#" is_valid="Y" scope_note="表格列表：按下(Ctrl+R)组合键可复制当前行的数据到新建的表单中。" />
+        <Point _uuid="P0IiDCmV6OaSAB36FGdXkQ" name="表格列表：按住Ctrl，点击一行，则多选这一行。" label="M#" note="M#" is_valid="Y" scope_note="表格列表：按住Ctrl，点击数据列表中的一行，则多选这一行。" />
+        <Point _uuid="qkstLy6peorfbC6wYYLilw" name="表格列表：按住Shift,点击一行，则选中表格中当前行到点击行之间的数据行。" label="M#" note="M#" is_valid="Y" scope_note="表格列表：按住Shift,点击一行，\n则选中表格中当前行到点击行之间的数据行。" />
+        <Point _uuid="hE589zboMfWGC7K28k4Miw" name="表格列表：按下(Shift+Up)组合键，则多选上一行数据行。" label="M#" note="M#" is_valid="Y" scope_note="表格列表：按下(Shift+Up)组合键，则多选上一行数据行。" />
+        <Point _uuid="I0E9goVSkpf9Z5plsao2iA" name="表格列表：按下(Shift+Down)组合键，则多选下一行数据行。" label="M#" note="M#" is_valid="Y" scope_note="表格列表：按下Shift+Down组合键，则多选下一行数据行。" />
+        <Point _uuid="a0ereMnU6f0yY]LxRRPOkw" name="表格列表：按下(Shift+Home)组合键，则多选当前行到数据列第一行。" label="M#" note="M#" is_valid="Y" scope_note="表格列表：按下(Shift+Home)组合键，\n则多选当前行到数据列第一行之间的所有数据行。" />
+        <Point _uuid="Q0YeAn2u093MjISBAw6esg" name="表格列表：按下(Shift+End)组合键，则多选当前行到数据列表中的最后一行。" label="M#" note="M#" is_valid="Y" scope_note="表格列表：按下(Shift+End)组合键，\n则多选当前行到数据列表中的最后一行。" />
+        <Point _uuid="5ENnTLG0A[NWy2WT8HVXqg" name="表格列表：按下(Ctrl+F3)，则把表格中的数据按照焦点编辑格的内容筛选显示。" label="M#" note="M#" is_valid="Y" scope_note="表格列表：按下(Ctrl+F3)组合键，\n则把表格中的数据按照焦点编辑格的内容筛选显示。" />
+        <Point _uuid="SkznjL18[fK9Oz[A51V9ig" name="下拉框：如果控件中LOV引用和下拉框，弹出下拉框。" label="M#" note="M#" is_valid="Y" scope_note="编辑框控件如果满足弹出列表和LOV的条件，则优先弹出列表框，\nLOV不弹出。单独只有LOV条件满足时，弹出LOV。" />
+        <Point _uuid="QUQAFRaMg6tX5aF[Hzzvgw" name="下拉列表：按组合键(Ctrl+'+')键盘键，选取下一个选项" label="M#" note="M#" is_valid="Y" scope_note="在选择控件中，按下组合键Ctrl + &quot;+&quot;键盘键，选取下一个选项到\n控件的可编辑区。" />
+        <Point _uuid="Bk3FXIRE9FLp1H7TK7Xkrw" name="下拉列表：按组合键(Ctrl+&quot;-&quot;)键盘键，直接选取第一个选项" label="M#" note="M#" is_valid="Y" scope_note="在选择控件中，按下组合键(Ctrl+&quot;-&quot;)键盘键，直接选取第一个选项到\n控件的可编辑区。" />
+        <Point _uuid="zE7UgYTcGQOEdVYGNIaKgQ" name="数字框：按下数字键盘的(Ctrl+'+')键，内容值加增减单位" label="M#" note="M#" is_valid="Y" scope_note="当数字框可编辑时，数字框中按下组合键盘(Ctrl+'+')键，\n内容值加增减单位，编辑框后面的上箭头图标变颜色，\n按键弹起后，箭头图标恢复颜色。" />
+        <Point _uuid="hUKzHTY01wFGoLv2fJf7qw" name="数字框：按下数字键盘的(Ctrl+'-')键，内容值减增减单位" label="M#" note="M#" is_valid="Y" scope_note="当数字框可编辑时，数字框中按下组合键(Ctrl+'-')键，\n内容值减增减单位，编辑框后面的下箭头图标变颜色，\n按键弹起后，箭头图标恢复颜色。" />
+        <Point _uuid="j09RVColmOYBdP1iWwW6iw" name="ESC：在有下拉菜单或者对话框的状态下，按下ESC键，则隐藏下拉菜单或者对话框。" label="M#" note="M#" is_valid="Y" scope_note="ESC：在有下拉菜单或者对话框的状态下，按下ESC键，\n则隐藏下拉菜单或者对话框。" />
+        <Point _uuid="d097hVSf0Ss0iC8ZcfdorA" name="ESC：在两次按下ESC键的过程中，如果中间对页面数据没有操作，则不相应后一个ESC键。" label="M#" note="M#" is_valid="Y" scope_note="ESC：在两次按下ESC键的过程中，\n如果中间对页面数据没有操作，则不相应后一个ESC键。" />
+        <Point _uuid="zkbnINdM5KvOLIFRRVIdtA" name="F2：如果查询按钮可见，按下F2功能键，弹出查询框。" label="M#" note="M#" is_valid="Y" scope_note="按下F2键:如果查询按钮可见，弹出查询框。" />
+        <Point _uuid="n0m8]kPmKDYE39vL2CcDvg" name="F3：如果搜索按钮可见，按下F3功能键，弹出搜索框" label="M#" note="M#" is_valid="Y" scope_note="F3:如果搜索按钮可见，按下F3功能键，弹出搜索框" />
+        <Point _uuid="skvSvTPqMWNcP]9m2gbqgA" name="F4：如果选取按钮可见，按下F4功能键，弹出选取框" label="M#" note="M#" is_valid="Y" scope_note="F4:如果选取按钮可见，按下F4功能键，弹出选取框" />
+        <Point _uuid="ZEfwwqFjNWWtQjZXYLmQsg" name="F5：按下F5功能键，新建一个数据表单" label="M#" note="M#" is_valid="Y" scope_note="F5：按下F5功能键，新建一个数据表单" />
+        <Point _uuid="lUqrxocVyVkVGYBbolbWgw" name="F6：在表格列表中按下功能键F6，则把选中行置为删除状态，当按下确认键(F6)后执行删除操作。" label="M#" note="M#" is_valid="Y" scope_note="F6：在表格列表中按下功能键F6，\n则把选中行置为删除状态，当按下确认键(F6)后执行删除操作。" />
+        <Point _uuid="A0km3N82p3iF]oX1PCKItw" name="Ctrl+F6：如果删除按钮可见，按下(Ctrl+F6)组合键，转移到详细删除页面，按下F8则确认删除" label="M#" note="M#" is_valid="Y" scope_note="Ctrl+F6：如果删除按钮可见，\n按下(Ctrl+F6)组合键，转移到详细删除页面，按下F8则确认删除" />
+        <Point _uuid="T0yCSwWk]Ck11YzMlMSohg" name="F8：当有变更操作后，保存（更新）按钮变为可见，按下F8键则执行保存操作。" label="M#" note="M#" is_valid="Y" scope_note="F8:当有变更操作后，保存（更新）按钮变为可见，\n按下F8键则执行保存操作。" />
+        <Point _uuid="rElJw45X5dG8GStq]V0cvg" name="F12：如果工具栏中有工具条菜单，按下功能键F12则弹出操作菜单" label="M#" note="M#" is_valid="Y" scope_note="F12：如果工具栏中有工具条菜单，按下功能键F12则弹出操作菜单" />
+      </Module>
+    </Catalog>
+    <Catalog _uuid="u0KT9ZpXjNO9R[zP82[ZuA" name="Window" label="M#12cn15活动窗口库" note="M#" is_valid="Y" />
+    <Catalog _uuid="KEmYG[kxz4qeRX]8[N96rQ" name="Context" label="M#12cn13环境库" note="M#" is_valid="Y" />
+  </Catalog>
+</Project>
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CsvImport _uuid="rUH0cOERcxVhbE362q41sQ" name="logic.person.user.export.leave" label="职员管理-离职CSV信息" is_valid="Y">
+  <Columns _uuid="1EySyynF1Q]D8I]UePczrA" name="Columns" label="列集合" is_valid="Y">
+    <Column _uuid="7UQiGRMdcbDwP3MFQtuksg" name="work_number" label="工号" is_valid="Y" data_name="WORK_NUMBER" />
+    <Column _uuid="AUZhn6GKStc9f4Ek3ZQCpw" name="user_label" label="姓名" is_valid="Y" data_name="USER_LABEL" />
+    <Column _uuid="DEZCw7Z]sANIAueVqcnmqA" name="type_cd" label="员工类型" is_valid="Y" data_name="TYPE_CD" />
+    <Column _uuid="0kbqqwjE8tQwPVZvy[8NnQ" name="service_cd" label="员工状态" is_valid="Y" data_name="SERVICE_CD" />
+    <Column _uuid="k0bGcA83URSnAmdMRrDygA" name="entry_date" label="入职日期" is_valid="Y" data_name="ENTRY_DATE" />
+    <Column _uuid="kU4YXXfFF0ldIyjK[dLZkQ" name="probation_date" label="转正日期" is_valid="Y" data_name="PROBATION_DATE" />
+    <Column _uuid="t0NS5YrXDLSn4Xv]68IEnQ" name="leave_date" label="离职日期" is_valid="Y" data_name="LEAVE_DATE" />
+    <Column _uuid="2kO6vsm2GAM0VNVX3oeqmw" name="organization_label" label="部门" is_valid="Y" data_name="ORGANIZATION_LABEL" />
+  </Columns>
+  <Export _uuid="PEy6AZIDtGoHM2kFy1H8sA" name="sql" label="离职" is_valid="Y" sql="SELECT WORK_NUMBER,\n   PM_USER_DI.GET_FULL_LABEL(USER_ID) USER_LABEL,\n   PM_USER_WORK_EI.DECODE_LABEL(TYPE_CD) TYPE_CD,\n   PM_USER_SERVICE_EI.DECODE_LABEL(SERVICE_CD) SERVICE_CD,\n   TO_CHAR(ENTRY_DATE, 'YYYY-MM-DD') ENTRY_DATE,\n   TO_CHAR(PROBATION_DATE, 'YYYY-MM-DD') PROBATION_DATE,\n   TO_CHAR(LEAVE_DATE, 'YYYY-MM-DD') LEAVE_DATE,\n   PM_ORGANIZATION_DI.FIND_MAIN_ORGANIZATION_LABEL(USER_ID) ORGANIZATION_LABEL\nFROM PM_USER_COMPANY\nWHERE SERVICE_CD = 'D'\n   AND LEAVE_DATE &gt;= CP_DATE.Parse('${BEGIN_DATE}')\n   AND LEAVE_DATE &lt;= CP_DATE.Parse('${END_DATE}')\n   AND PM_USER_DI.Get_Is_Valid(USER_ID) = 'Y'\nORDER BY WORK_NUMBER" display_command="N" display_command_tag="N" display_head="N" display_head_tag="N" display_label="Y" display_label_tag="N" display_valid="N" display_valid_tag="N" is_open="N" export_name="eUIS-职员管理-离职[${SETTLEMENT_BEGIN_DATE}-${SETTLEMENT_END_DATE}]" export_charset="GB18030" disp_data_start_tag="N" disp_data_end_tag="N" dataset_parameters="SELECT\n   TO_CHAR(CP_DATE.Parse('${BEGIN_DATE}'), 'YYYYMMDD') SETTLEMENT_BEGIN_DATE,\n   TO_CHAR(CP_DATE.Parse('${END_DATE}'), 'YYYYMMDD') SETTLEMENT_END_DATE\nFROM DUAL" />
+</CsvImport>
+

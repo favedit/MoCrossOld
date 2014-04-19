@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="CkaTo6o7ezSs0b8jlAWEjQ" name="logic.title" label="称号系统" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" source_name="MoMgLogicTitle" code="Ltl" full_code="LogicTitle" display_index="56">
+  <Message _uuid="QkAvyCc]dYObiI43NZ7Imw" name="title.query.request" label="称号查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TitleQuery" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GDM" code_value="0x0001" code_fix="N">
+    <Item _uuid="nUVwHuEdLcUTcmfKL7QKog" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="1kgOqS6PGlqV5V6sGHz3vA" name="title.query.response" label="称号查询响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="TitleQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Enum _uuid="jk6TiLftOkz8gWsiox8YoA" name="EStatuse" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="TEbGu9WEkSF1IJVJlpaorw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="qU5hNAr0ipd0gRwv5zq1kg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="mkzjphxzyDj[080ml0Ddjg" name="title" label="称号" is_valid="Y" note="M#" type="Object" type_name="SGsTitle" is_collection="Y" data_size="title.type.max-count" />
+    <Item _uuid="I0wL2uf[wyXwcc6]nOy0kQ" name="statuse" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatuse" is_collection="N" />
+  </Message>
+  <Message _uuid="HkrjtdxqWKb2cQsOx7HOkQ" name="modify.title.statuse.request" label="改变称号状态请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ModifyTitleStatuse" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GDM" code_value="0x0003" code_fix="N">
+    <Item _uuid="Nkn[JfZ6A3rssDOtHH4Rog" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="BkXkiwxrdUJsIDxPrl0npQ" name="titleId" label="称号编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="8095rVNHTSdjfuogK[9DlA" name="titleType" label="称号类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleType" is_collection="N" />
+    <Item _uuid="v0jHUNxxoe[FbE1TlKkyhg" name="titleTid" label="称号Tid" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="FUgehVknGB1CuMk]8MqLmQ" name="titleStatuse" label="称号状态" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="ckE943auiF2e7jpKS2v5sQ" name="modify.title.statuse.storage.request" label="改变称号状态存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ModifyTitleStatuseStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0004" code_fix="N">
+    <Item _uuid="Tkk5PIsvKlRKOa38UFJdiA" name="roleId" label="玩家编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="9kVXXKwtNnC7rzj8saWXtQ" name="titleType" label="称号类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleType" is_collection="N" />
+    <Item _uuid="Tk0l6sSB8noVql7LdsMOrw" name="titleTid" label="称号Tid" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="LE8DHjQN]BRo29nMeJZXiQ" name="titleStatuse" label="称号状态" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="ckGkqs8raPHHFwvXme[Cug" name="modify.title.statuse.storage.response" label="改变称号状态存储响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ModifyTitleStatuseStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x0005" code_fix="N">
+    <Item _uuid="[08vr0rw1fwKo22LAra6hw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="]krn0jfsPmZAbPIM32SsiQ" name="titleType" label="称号类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleType" is_collection="N" />
+    <Item _uuid="VU[R6Xo7Jz3z4yU1le9Bsg" name="titleTid" label="称号Tid" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="0Emx2g7SUO3HIG8fz5J[ng" name="titleStatuse" label="称号状态" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="00T5iD6c1qr5GC8FwG0okw" name="modify.title.statuse.response" label="改变称号状态响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ModifyTitleStatuse" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x0006" code_fix="N">
+    <Item _uuid="6ER[W8Dm1ueuuI8A9z[NoQ" name="titleType" label="称号类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleType" is_collection="N" />
+    <Item _uuid="WkQltiZN4EP664[Dtq17rQ" name="titleTid" label="称号Tid" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="eEGzAIh75wFVJBYtgJCjtQ" name="titleStatuse" label="称号状态" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="xUj6IlAOMKWBJfy9hXkfrQ" name="role.property.change.scene.notify" label="玩家属性改变场景通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RolePropertyChangeScene" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0007" code_fix="N">
+    <Item _uuid="X0[mBt8ucXX4qGlFeEyfuQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="fkGUm]H1DvBBwvW1yG7mlw" name="propertyCd" label="属性" is_valid="Y" note="M#" type="Enum" type_name="EGmProperty" is_collection="N" />
+    <Item _uuid="]UxEFrPQlLGRh1Kdx6fvjQ" name="modifyCd" label="修改类型" is_valid="Y" note="M#" type="Enum" type_name="EGmModify" is_collection="N" />
+    <Item _uuid="4E3GOKH8RkjN135r6iShgw" name="value" label="数值" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="HUT4XawGRzW8cGBi40aPug" name="titleTid" label="称号tid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="HEgMmEqYgIAoIZDsw6WchA" name="clear.rank.title.sotrage.request" label="清空排行榜称号存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ClearRankTitleSotrage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0008" code_fix="N" />
+  <Message _uuid="qE8[g1ZAtT4KlEJdLSFlng" name="clear.rank.title.sotrage.response" label="清空排行榜称号存储响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ClearRankTitleSotrage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x0009" code_fix="N">
+    <Enum _uuid="JEVOe6AayS1Y18jlkl5ykQ" name="EStatuse" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="tkizElM[dN8D[qLX1XFRhQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="7kT6UMtMOPYuM[rlGamTrw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="q0mFCwwuO0cbX]fobuSzgw" name="statuse" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatuse" is_collection="N" />
+  </Message>
+  <Message _uuid="hUQPCI7kPZ[cwhuXp7rRhw" name="add.rank.title.storage.request" label="增加排行榜称号存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AddRankTitleStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x000A" code_fix="N">
+    <Item _uuid="d09cymud1AOiUCUflwBSoA" name="rankTitle" label="排行榜称号" is_valid="Y" note="M#" type="Object" type_name="SGmRankTitle" is_collection="N" />
+  </Message>
+  <Message _uuid="MU3T[eAI9FhVlVvnikJxuw" name="add.rank.title.storage.response" label="增加排行榜称号存储响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AddRankTitleStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x000B" code_fix="N">
+    <Item _uuid="ZUfFAgBnh2W5qpqoIfHdpw" name="rankTitle" label="排行榜称号" is_valid="Y" note="M#" type="Object" type_name="SGmRankTitle" is_collection="N" />
+  </Message>
+  <Message _uuid="3UJPx0DHd[iy9JAYI1Twog" name="get.title.domain.request" label="获得称号主域请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="GetTitleDomain" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x000C" code_fix="N">
+    <Item _uuid="nUAFenRL3[hv1QYXojOMmQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="0kFR[yhNS9OPfc2aqUgIoA" name="titleType" label="称号类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleType" is_collection="N" />
+    <Item _uuid="W0EsscDgXcIUZluPq[Mrhg" name="titleTid" label="称号Tid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="CUUtN]l81lWtL4oIPVYTlg" name="isAddAble" label="是否可重叠" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="Y0UpaDh1trMxQS87zggLgw" name="titleStatuse" label="称号状态" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="S05GuesaHMGjK9T2wcX3sg" name="get.title.storage.request" label="获得称号存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="GetTitleStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x000D" code_fix="N">
+    <Item _uuid="qEJ2nz7FHswcUlDO]UP6gQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="M0X3gP4dA44BViCDIucSqw" name="titleType" label="称号类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleType" is_collection="N" />
+    <Item _uuid="IkHmDKIUaR1lPNKdFI]WoA" name="titleTid" label="称号Tid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="jkqp5cc[AXJo6DLZ5]KIrQ" name="isAddAble" label="是否可以重叠" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="Ck8uvPmUExrphZIcCX1oqQ" name="titleStatuse" label="称号状态" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="c0d6OviAY59HSogBdOVHkQ" name="add.rank.title.scene.notify" label="增加排行榜称号场景通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AddRankTitleScene" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x000E" code_fix="N">
+    <Item _uuid="UkPmZl6nJ1y5rpaDOK[1vw" name="rankTitle" label="排行榜称号" is_valid="Y" note="M#" type="Object" type_name="SGmRankTitle" is_collection="N" />
+  </Message>
+  <Message _uuid="8UHpuM]kaqNju81WWOKfiA" name="get.title.storage.response" label="获得称号存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="GetTitleStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x0010" code_fix="N">
+    <Enum _uuid="Y0zQaew]CCkYuXCgJOJ2lQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="4EXiWQh]N7h4uBG3cCWJvw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="Ektk2nWIv6Lh7eIUwHtFmw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="hkCbQzL9MtJARG2MtX26ug" name="titleTid" label="称号Tid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="8UzMAqoSzvGv2HjU3JZMhg" name="titleType" label="称号类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleType" is_collection="N" />
+    <Item _uuid="q07bcsHGqWwVmNr[0nwhqg" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="2E0nj2RPvgT1YMgK4LRwlg" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="iEJf9sVbnTrJpQw35oNfkg" name="titleId" label="称号ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="LUIWM5zFbTkcDIgJWAMJpA" name="titleStatuse" label="称号状态" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="sUUKkCMhlIiX8upMXuQ9iQ" name="modify.title.statuse.scene.notify" label="改变称号状态场景通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ModifyTitleStatuseScene" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0011" code_fix="N">
+    <Item _uuid="hUqb2qQlTeu8J8Aa[i48pg" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="00WUkhuWRihAyss[IUI4mA" name="titleType" label="称号类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleType" is_collection="N" />
+    <Item _uuid="P09aORBRqQcTnJQLCVxFuQ" name="titleTid" label="称号Tid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="]E6c7Lrf7hz6VmcmXGY9oA" name="titleStatuse" label="称号状态" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleStatus" is_collection="N" />
+    <Item _uuid="vEm8uCmPBREnSvvn6ZCcrw" name="newTitleStatuse" label="新称号状态" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleStatus" is_collection="N" />
+    <Item _uuid="]0fLp6y8ceeM6dxveW8opQ" name="titleId" label="称号ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="g0hBv1MT54sGHiIF9HB8kw" name="get.title.scene.notify" label="获得称号场景通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="GetTitleScene" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0012" code_fix="N">
+    <Item _uuid="VUQRSCosRAHP1ld0rgncuA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="bUZcp6t9JMeXScWFS[70jg" name="titleId" label="称号ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="1kq0mRVWyWduYrUakbZvnA" name="titleTid" label="称号Tid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="]Uz77W4zRAilJ1jGbTqJvQ" name="titleType" label="称号类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleType" is_collection="N" />
+    <Item _uuid="x0l6fg1VUFxfidh9RsX1mw" name="titleStatuse" label="称号状态" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="w0R8GHCc]bh8PY3YsDgMkQ" name="clear.rank.title.scene.request" label="清空排行榜称号存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ClearRankTitleScene" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0013" code_fix="N" />
+  <Message _uuid="B0xJyKmzoETArtp[eFbQlw" name="clear.rank.title.scene.response" label="清空排行榜称号场景响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ClearRankTitleScene" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0014" code_fix="N">
+    <Enum _uuid="VE]QTAPzQJifIRaWvOX]oQ" name="EStatuse" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="LUXN72l8PeUDDySUoC1Zlw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="DUFa2iL7S58LNmvj6bZ4lw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="C0bkinB4MWS]a4anq4]Fkg" name="statuse" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatuse" is_collection="N" />
+  </Message>
+  <Message _uuid="TUdsvLWk4nSDVYY[ArsLug" name="get.title.client.notify" label="获得称号客户端通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetTitleClient" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x0015" code_fix="N">
+    <Item _uuid="i0wFphR9U2wh28BKwrr6lw" name="titleTid" label="称号Tid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="PUfJ1yKb0KcFGVxl2ES4jA" name="titleStatuse" label="称号状态" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="cUeV6AX7d5GbebmzIdaxsA" name="achieve.title.client.notify" label="获得称号客户端通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="AchieveTitleClient" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0016" code_fix="N">
+    <Item _uuid="HUwRUQPfIcvCEYze]4lzmQ" name="titleTid" label="称号Tid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="uEeEmC5I4BFZYYo4yHVmjw" name="titleStatuse" label="称号状态" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="A0I8WweqthX5yISZPjoAvw" name="clear.title.domain.request" label="清除称号主域请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ClearTitleDomain" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0017" code_fix="N">
+    <Item _uuid="6kQb59EWGWC9AVgJJT8PuQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="bErI[EDDE[6SEmM15T1zvA" name="titleTid" label="称号Tid" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="H0efn[7sugSofwyTvieTuA" name="clear.title.domain.response" label="清除称号主域响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ClearTitleDomain" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0018" code_fix="N">
+    <Enum _uuid="QUbdDXYtCumhJ3vFsWXhow" name="EStatuse" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="w0hRl[tNgovTNc2vyc6TuA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="GE5T4bC33HcuUCQxHh1uqg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="a0]4D1I[pF5BeOCUg[EaqA" name="statuse" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatuse" is_collection="N" />
+    <Item _uuid="O0os8ELkmj9hrgPgChu9jw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="OE5WInCc8PBCBSDEfybxiw" name="titleTid" label="称号Tid" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="HkU6oI4TRFQmqMCZ7n8Rjg" name="clear.title.storage.request" label="清除称号存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ClearTitleStorage" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0019" code_fix="N">
+    <Item _uuid="60nckos9CmzQospRPjKVmA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="VExNgXvZ2TpEILvmFICJlQ" name="titleTid" label="称号Tid" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="tEtvKTEdmgZgniARCixCvQ" name="clear.title.storage.response" label="清除称号存储响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ClearTitleStorage" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x001A" code_fix="N">
+    <Enum _uuid="bk5EsEXSwLHTC0aSZiuLrA" name="EStatuse" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="bETkXbkM0XVBtlQ5wrt1iA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="ukFfmJ950Yz6eNF5c5YsvQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="EkFAaVeWYpOo8kgiZ4]9kA" name="statuse" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatuse" is_collection="N" />
+    <Item _uuid="JUV]qgSlfDVFZ6WixrZqog" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="mUdHp]GiEkum7apdbil6hQ" name="titleTid" label="称号Tid" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="n0hWXzkYuycOArjskZIGvA" name="change.title.status.domain.notify" label="改变称号状态主域通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ChangeTitleStatusDomain" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x001B" code_fix="N">
+    <Item _uuid="Lky3WBlV5oSHlTsTWHpRiw" name="titleId" label="称号ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="G0RBMMlliEuBCpRmy5zrnA" name="titleStatuse" label="称号状态" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="[kHzebLB7T1b1QR90fRZrQ" name="change.title.status.storage.notify" label="改变称号状态存储通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ChageTitleStatusStorage" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x001C" code_fix="N">
+    <Item _uuid="7Emfv[7H3ulO[VYDtFY]mA" name="titleId" label="称号ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="RE8kSwUcu0o7a]vgMgn4tg" name="titleStatuse" label="称号状态" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="3ebd4ee3-b823-4c34-871a-691b6b80a422" name="get.chest.title.client.notify" label="获得衣柜称号客户端通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetChestTitleClient" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x001D" code_fix="N">
+    <Struct _uuid="599c8367-fbe8-40cb-857e-0d6aa67f7bf8" name="SChestTitle" label="衣柜称号" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="9860a3b4-6102-41f7-8b50-57a7432c370d" name="titleTid" label="称号Tid" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="31db3061-d3e3-437d-89b2-2b62cd079219" name="titleStatus" label="称号状态" is_valid="Y" note="M#" type="Enum" type_name="EGmTitleStatus" is_collection="N" />
+      <Item _uuid="1c3ee5d1-bb34-4481-b5bf-c5e138491f42" name="titleResourceTid" label="称号资源编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    </Struct>
+    <Item _uuid="9a56af51-3be3-44cf-a3be-ce2da3769de1" name="chestTitleList" label="衣柜称号列表" is_valid="Y" note="M#" type="Object" type_name="SChestTitle" is_collection="Y" data_size="4" />
+  </Message>
+</Group>
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="Y0mVDM]q]KkBgqLLj5CBlw" name="system.attachment" label="M#12cn14系统附件" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="SY_ATTACHMENT" data_logic="SY_ATTACHMENT_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="dataset.store" data_type="D">
+  <FieldEnum _uuid="BU0sGYlmWKLHo6N6l94Tpw" name="type_cd" label="M#12cn12类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="system.attachment.type" />
+  <FieldInteger _uuid="q0T8B9NSU891KIL7Kc7upw" name="record_type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="RECORD_TYPE_ID" data_refer="system.record.type" />
+  <FieldInteger _uuid="ZEs0BW6C33XsLVh8ne9crQ" name="record_id" label="M#12cn14记录标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RECORD_ID" />
+  <FieldString _uuid="O0g3JzpPdz8JY3vV7Maxpw" name="record_guid" label="M#12cn16记录唯一标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="RECORD_GUID" data_size="40" />
+  <FieldBoolean _uuid="ckRVTkbGJPV]RGmTUS4SvQ" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.EFalse" />
+  <FieldBoolean _uuid="fkUOcjRILAjbmzAkchJ]ng" name="is_exists" label="M#12cn13存在性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_EXISTS" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldString _uuid="5UlqEyiTck]hRExlLtpdmg" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="256" />
+  <FieldString _uuid="kkS78evWjn2L[R20o9l4lQ" name="path" label="M#12cn14文件路径" is_valid="Y" note="M#12cn16全路径文件名" is_null="Y" is_store="Y" is_abstract="N" data_name="PATH" data_size="2000" />
+  <FieldInteger _uuid="9Uft5rK0bsteNfFtRp4unA" name="network_id" label="M#12cn14网络标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NETWORK_ID" data_refer="system.network" />
+  <FieldInteger _uuid="zUudSF2Jqhoqa9dy7ytEvw" name="server_id" label="M#12cn15服务器标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SERVER_ID" data_refer="system.network.server" />
+  <FieldInteger _uuid="OUyPunJaJQaPN31qCpJiqQ" name="mime_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="MIME_ID" data_refer="common.mime" />
+  <FieldInteger _uuid="4khBntCvePF2Ea[Jt]mQiA" name="data_size" label="M#12cn14数据大小" is_valid="Y" note="M#12cn14字节单位" is_store="Y" is_abstract="N" data_name="DATA_SIZE" />
+  <FieldDate _uuid="7EY6pcyBKT9nJCQAMGaHuA" name="data_date" label="M#12cn14数据时间" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="DATA_DATE" />
+  <FieldContent _uuid="NEtJay]]BUn3pCq]pzQjhw" name="properties" label="M#12cn14属性内容" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROPERTIES" />
+  <FieldContent _uuid="XkjDpYz24bzSoVkaodQKqg" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

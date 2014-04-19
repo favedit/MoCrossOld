@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebForm _uuid="mU8jyjQoNW5yTpTvsB36vg" _type="WebForm" name="system.help.CatalogForm" label="M#12cn17环境-属性表单" is_valid="Y" note="M#" style_refer="system.help.ControlStyle" edit_insert="Y" edit_update="Y">
+  <DataAction _uuid="uED4TOATpYCI4eHZh3[xqQ" _type="DataAction" name="insertAction" label="M#12cn14新建处理" is_valid="Y" note="M#" service="insert@system.help" />
+  <DataAction _uuid="30wk491FkJVGQxAgKzwXtA" _type="DataAction" name="updateAction" label="M#12cn14保存处理" is_valid="Y" note="M#" service="update@system.help" />
+  <DataAction _uuid="Y0vuGpvBuDQvbVTsThg2gw" _type="DataAction" name="deleteAction" label="M#12cn14删除处理" is_valid="Y" note="M#" service="delete@system.help" />
+  <DataAction _uuid="yk1o9L8XYJcj0mSGy2o5pQ" _type="DataAction" name="sortAction" label="M#12cn14排序处理" is_valid="Y" note="M#" service="sort@system.help" />
+  <ToolBar _uuid="7En3[dKtLNKP9pdWCgykgg" _type="ToolBar" name="toolBar" label="M#12cn13工具栏" is_valid="Y" note="M#" width="100%" height="24">
+    <ToolButton _uuid="LUxJqmZ]M[x]Nn1Bb9Zang" _type="ToolButton" name="saveButton" label="M#12cn12保存" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" label_width="60" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" icon="tool.save" icon_disable="tool.saved" hotkey="F8" action="doSave()" />
+    <ToolButton _uuid="tEh0j9JiIqe8dMwFqWArgA" _type="ToolButton" name="deleteButton" label="M#12cn12删除" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_update="Y" disp_delete="Y" label_width="60" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" icon="tool.delete" icon_disable="tool.deleted" hotkey="F6" action="doDelete()" attributes="sel_type=component" />
+    <ToolButtonSplit _uuid="i08J33E]a4L]4rq6[OQCtg" _type="ToolButtonSplit" name="splitButton" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="YkY]TmKS1a1rnAoYvTyqlw" _type="ToolButton" name="insertButton" label="M#12cn14新建目录" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#system.help.catalog" page="insert@#/system/help/Help.wa" attributes="form_name=system.help.CatalogForm\nsel_type=component\n_type=Catalog" />
+  </ToolBar>
+  <Select _uuid="SEtQyjIkIW33nxnY[n3mqg" _type="Select" name="type" label="M#12cn12类型" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" data_name="_TYPE" valid_insert="Y" valid_update="Y" valid_delete="Y" edit_refer="system.help.ComponentType" />
+  <Edit _uuid="dULV7JnKxEj9e5RMn2B2uA" _type="Edit" name="name" label="M#12cn12名称" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" data_name="NAME" label_icon="#common.require" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" />
+  <Edit _uuid="sk8VpiYqExi]5UUPOZ85kg" _type="Edit" name="label" label="M#12cn12标签" is_valid="Y" note="M#" nowrap="Y" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" data_name="LABEL" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" />
+  <Check _uuid="]09J4vwqVGAsa]TzeUkjgw" _type="Check" name="isValid" label="M#12cn13有效性" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" data_name="IS_VALID" data_default="Y" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" />
+  <Memo _uuid="nEkFqRKVWS5jGXcLMkElhg" _type="Memo" name="note" label="M#12cn12注释" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" data_name="NOTE" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" />
+</WebForm>
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="gkZojzFptxd5fLvLIrVvvw" name="person.role.user" label="M#12cn16角色人员关联" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="PM_ROLE_USER" data_logic="PM_ROLE_USER_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="dE2LKz[ONKIfTqgPrV18lA" name="role_type_id" label="M#12cn16角色类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="ROLE_TYPE_ID" data_alias="ROL_TYP_ID" data_refer="person.role.type" />
+  <FieldEnum _uuid="rkP7m166Q0JPv0QJNh[Xow" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_size="1" data_default="'Y'" />
+  <FieldEnum _uuid="tklAEfZQBOGUxEwFNgBZgQ" name="type_cd" label="M#12cn12类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="person.role.user.type" data_uniques="link" />
+  <FieldInteger _uuid="nEG9eSYUNNOqR[xQqCt0og" name="role_id" label="M#12cn14角色标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="ROLE_ID" data_refer="person.role" data_uniques="link" index_names="link" />
+  <FieldInteger _uuid="pkjDSi]QKs5LZmG8oadbrQ" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="USER_ID" data_refer="person.user" data_uniques="link" index_names="link" />
+  <FieldTemplate _uuid="8UlXuft8Neft2Mm7uOjCoQ" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+</DataStore>
+

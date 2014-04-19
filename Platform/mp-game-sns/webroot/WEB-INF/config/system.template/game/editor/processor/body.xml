@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T><jt:item source='$processor.label'/>。</T>
+//
+// @version 1.0.2
+// @auto 代码器管理的自动代码，如需修改请在手动修改标出的地方修改。
+//============================================================
+#include "Mo<jt:item source='$project.code' format='class'/>Instance.h"
+#include "<jt:item source='$processor.head_name'/>.h"
+#include "Mo<jt:item source='$project.code' format='class'/>Processor.h"
+#include "Mo<jt:item source='$project.code' format='class'/>Service.h"
+// @manual (Include.Begin)
+//------------------------------------------------------------
+<jt:empty source='$processor.source_include'>
+//------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$processor.source_include'>
+<jt:item source='$processor.source_include'/>//------------------------------------------------------------
+</jt:notEmpty>
+// @manual (Include.End)
+
+MO_NAMESPACE_BEGIN
+
+//============================================================
+// <T>构造<jt:item source='$processor.label'/>的实例。</T>
+//
+// @return 实例对象
+//============================================================
+<jt:item source='$processor.source_name'/>::<jt:item source='$processor.source_name'/>(){
+   _name = "Function.<jt:item source='$processor.code'/>.Processor";
+   // @manual (Construct.Begin)
+   //------------------------------------------------------------
+<jt:empty source='$processor.source_construct'>
+   //------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$processor.source_construct'>
+<jt:item source='$processor.source_construct'/>//------------------------------------------------------------
+</jt:notEmpty>
+   // @manual (Construct.End)
+}
+
+//============================================================
+// <T>析构<jt:item source='$processor.label'/>的实例。</T>
+//============================================================
+<jt:item source='$processor.source_name'/>::~<jt:item source='$processor.source_name'/>(){
+}
+
+//============================================================
+// <T>逻辑前置处理。</T>
+//
+// @param pRouter 路由对象
+// @return 处理结果
+//============================================================
+TBool <jt:item source='$processor.source_name'/>::OnProcessBefore(TNetRouter* pRouter){
+   TBool result = EFalse;
+   // @manual (ProcessBefore.Begin)
+   //------------------------------------------------------------
+<jt:empty source='$processor.source_process_before'>
+   result = ETrue;
+   //------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$processor.source_process_before'>
+<jt:item source='$processor.source_process_before'/>//------------------------------------------------------------
+</jt:notEmpty>
+   // @manual (ProcessBefore.End)
+   return result;
+}
+
+//============================================================
+// <T>逻辑后置处理。</T>
+//
+// @param pRouter 路由对象
+// @return 处理结果
+//============================================================
+TBool <jt:item source='$processor.source_name'/>::OnProcessAfter(TNetRouter* pRouter, TBool resultCd){
+   TBool result = EFalse;
+   // @manual (ProcessAfter.Begin)
+   //------------------------------------------------------------
+<jt:empty source='$processor.source_process_after'>
+   result = ETrue;
+   //------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$processor.source_process_after'>
+<jt:item source='$processor.source_process_after'/>//------------------------------------------------------------
+</jt:notEmpty>
+   // @manual (ProcessAfter.End)
+   return result;
+}
+<jt:loop source='$processor' alias='method' filter='$method.type=SM'>
+
+//============================================================
+// <T>发送<jt:item source='$method.label'/>。</T>
+//
+// @param pRouter 路由对象
+// @return 处理结果
+//============================================================
+TBool <jt:item source='$processor.source_name'/>::<jt:item source='$method.name'/>(TNetRouter* pRouter, TNm<jt:item source='$method.full_code'/>& message){
+   MO_ASSERT(pRouter);
+   TBool result = EFalse;
+   // @manual (<jt:item source='$method.name'/>.Begin)
+   //------------------------------------------------------------
+<jt:empty source='$method.source'>
+   //------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$method.source'>
+<jt:item source='$method.source'/>//------------------------------------------------------------
+</jt:notEmpty>
+   // @manual (<jt:item source='$method.name'/>.End)
+   return result;
+}
+</jt:loop>
+<jt:loop source='$processor' alias='method' filter='$method.type=OM'>
+<jt:notEmpty source='$method.source_target'>
+
+//============================================================
+// <T><jt:item source='$method.label'/>的处理。</T>
+//
+// @param pRouter 路由对象
+// @return 处理结果
+//============================================================
+TBool <jt:item source='$processor.source_name'/>::<jt:item source='$method.name'/>(TNetRouter* pRouter){
+   // 接收消息
+   MO_ASSERT(pRouter);
+   TBool result = EFalse;
+   // 前置逻辑处理
+   if(!OnProcessBefore(pRouter)){
+      result = EFalse;
+   }
+   // 获得消息
+   TNm<jt:item source='$method.full_code'/> <jt:item source='$method.code' format='lower'/> = pRouter;
+<jt:true source='$method.is_session'>
+   // 获得玩家实体对象
+   FGmClientPlayer* pClient = GGmClientPlayerModule::Instance().FindByRouter(pRouter);
+   if(NULL == pClient){
+      // 玩家不存在的情况下，通知客户端错误，断开客户端链接
+      MO_DEBUG_ERROR("Client is not exists. (session_id=0x%08X)", pRouter->RouterHead().SessionId());
+      return RGameService::Instance().SendMessageToClient(pRouter, EGnClient_NotExists);
+   }
+</jt:true>
+<jt:true source='$method.is_login'>
+   // 获得玩家关联存储账号对象
+   FGmStorageAccount* pAccount = pClient->FindAccount();
+   if(NULL == pAccount){
+      // 玩家未账号登录的情况下，通知客户端错误，断开客户端链接
+      MO_DEBUG_ERROR("Client link storage account is not exists. (session_id=0x%08X)", pRouter->RouterHead().SessionId());
+      return RGameService::Instance().SendMessageToClient(pRouter, EGnClient_AccountNotExists);
+   }
+   // 检查登录状态
+   if(pClient->SessionStatus() == EGmSessionStatus_Offline){
+      // 玩家不存在的情况下，通知客户端错误，断开客户端链接
+      MO_DEBUG_ERROR("Client is offline. (session_id=0x%08X)", pRouter->RouterHead().SessionId());
+      return RGameService::Instance().SendMessageToClient(pRouter, EGnClient_NotExists);
+   }
+</jt:true>
+<jt:true source='$method.is_login_role'>
+   // 获得玩家关联存储角色对象
+   FGmStorageRole* pRole = pClient->FindRole();
+   if(NULL == pRole){
+      // 玩家未角色登录的情况下，通知客户端错误，断开客户端链接
+      MO_DEBUG_ERROR("Client link storage role is not exists. (session_id=0x%08X)", pRouter->RouterHead().SessionId());
+      return RGameService::Instance().SendMessageToClient(pRouter, EGnClient_RoleNotExists);
+   }
+</jt:true>
+<jt:true source='$method.is_manage'>
+   // 获得玩家实体对象
+   FGmClientPlayer* pClient = GGmClientPlayerModule::Instance().SyncRouter(pRouter);
+   MO_ASSERT(pClient);
+</jt:true>
+   // @manual (<jt:item source='$method.name'/>.Begin)
+   //------------------------------------------------------------
+<jt:empty source='$method.source'>
+   //------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$method.source'>
+<jt:item source='$method.source'/>//------------------------------------------------------------
+</jt:notEmpty>
+   // @manual (<jt:item source='$method.name'/>.End)
+   // 后置逻辑处理
+   if(!OnProcessAfter(pRouter, result)){
+      result = EFalse;
+   }
+   return result;
+}
+</jt:notEmpty>
+</jt:loop>
+
+// @manual (ProcessorLogic.Begin)
+//------------------------------------------------------------
+<jt:empty source='$processor.source_processor_logic'>
+//------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$processor.source_processor_logic'>
+<jt:item source='$processor.source_processor_logic'/>//------------------------------------------------------------
+</jt:notEmpty>
+// @manual (ProcessorLogic.End)
+
+//============================================================
+// <T>注册所有处理器。</T>
+//
+// @return 处理结果
+//============================================================
+TBool <jt:item source='$processor.source_name'/>::RegisterAllProcessors() {
+<jt:loop source='$processor' alias='method' filter='$method.type=OM'>
+<jt:loop source='$method' alias='source' filter='$source:name=Source'>
+   MO_NET_MESSAGE_REFER_REGISTE(R<jt:item source='$source.source_name'/>Processor, TNm<jt:item source='$method.full_code'/>, <jt:item source='$processor.source_name'/>, <jt:item source='$method.name'/>);
+</jt:loop>
+</jt:loop>
+   // @manual (RegisterAll.Begin)
+   //------------------------------------------------------------
+<jt:empty source='$processor.source_register_all'>
+   //------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$processor.source_register_all'>
+<jt:item source='$processor.source_register_all'/>//------------------------------------------------------------
+</jt:notEmpty>
+   // @manual (RegisterAll.End)
+   return ETrue;
+}
+
+MO_NAMESPACE_END
+]]></Source>
+</Template>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="0Uni0Ly7puQFKZij0gXalg" name="game.template.medal.level" label="M#12cn14勋章等级" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_MEDAL_LEVEL" data_alias="GM_TPL_MDL_LVL" data_logic="GM_TPL_MEDAL_LEVEL_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="VUJcPr7ALWOHp2j4pcjGgQ" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="Bkqi92ZWm9By5xPJ5qzGuA" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="CE2LC0cR4Sa1p01MNUvZnA" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldInteger _uuid="JUB10B7Mp1brVw2ahVzKpQ" name="medal_tid" label="M#12cn14勋章模板" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="MEDAL_TID" data_alias="MDL_TID" data_refer="game.template.medal" />
+  <FieldInteger _uuid="D0OoGyt99ML4FKQXMUCrgA" name="resource_tid" label="M#12cn16勋章边框资源" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RESOURCE_TID" data_alias="RES_TID" data_refer="game.template.style.icon" />
+  <FieldEnum _uuid="u0CNg8U18zKG03fEzK2clw" name="medal_level_type_cd" label="M#12cn16勋章等级类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MEDAL_LEVEL_TYPE_CD" data_size="1" data_code="game.template.medal.level.type" />
+  <FieldString _uuid="GkjcWbfxiiNLiS]zvZF8pw" name="description" label="M#12cn14勋章描述" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DESCRIPTION" data_size="200" />
+  <FieldString _uuid="a0GRCFnRxMuZYISCmTiArw" name="achieve_description" label="M#12cn16勋章条件描述" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ACHIEVE_DESCRIPTION" data_size="200" />
+  <FieldBoolean _uuid="00vH9ETVcaloOpmHVCOYpQ" name="has_next_level_cd" label="M#12cn210是否有下一个等级勋章" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="HAS_NEXT_LEVEL_CD" />
+  <FieldInteger _uuid="f0]RbHCVlXDDDaE4SnBQkQ" name="next_level_tid" label="M#12cn19下一个勋章等级编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NEXT_LEVEL_TID" />
+  <FieldTemplate _uuid="E0eXK57MAf3M9tOnlheUkg" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

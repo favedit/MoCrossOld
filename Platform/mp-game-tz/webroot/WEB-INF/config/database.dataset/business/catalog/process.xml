@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="WEGnfZC]YrgqkMYLdm9xmQ" name="business.catalog.process" label="M#12cn15业务审核流" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="BS_CATALOG_PROCESS" data_alias="BS_CAT_PRC" data_logic="BS_CATALOG_PROCESS_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="]Elm1pnnQLryCFKFo5SPsQ" name="business_id" label="M#12cn14业务标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BUSINESS_ID" data_refer="system.business" />
+  <FieldInteger _uuid="DEzog7AooAZXs0xxVTXDqg" name="catalog_id" label="M#12cn14目录标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CATALOG_ID" data_refer="business.catalog" />
+  <FieldBoolean _uuid="]ExEVx]kKMlIY7RTUQR8og" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldString _uuid="1Eko1m0Ys9nadYUWAPi1pw" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="80" />
+  <FieldString _uuid="4kMHevvodYu6959WTns2pw" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="40" />
+  <FieldContent _uuid="cEUPd9jUngbyYmQx10MQqA" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldDate _uuid="X025I5bzK[OMT]yxxi]5mA" name="create_date" label="M#12cn14创建日期" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_default="sysdate" />
+  <FieldContent _uuid="k0enL3azPg5T2DLWsUAngQ" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

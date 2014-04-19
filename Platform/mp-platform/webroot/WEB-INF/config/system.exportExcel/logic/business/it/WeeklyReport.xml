@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="40AynI]Hl8T3H8PiQC6lkg" name="logic.business.it.WeeklyReport" label="工作日志-周报" is_valid="Y" fileName="reportLog(Weekly)[${BEGIN_DATE}-${END_DATE}].xls" template="logic.business.it.weeklyReport">
+  <Sql _uuid="8karSUOCtPWmOE8HIvYAkA" name="count_config" label="统计完成工作数量" is_valid="Y"><![CDATA[SELECT 
+       NVL('${REPORT_MONTH}', TO_CHAR(SYSDATE, 'YYYYMMDD')) REPORT_MONTH,
+       NVL('${WEEK_NUMBER}',1)                               WEEK_NUMBER,
+       MIN(MIN_DATE) BEGIN_DATE,
+       MAX(MIN_DATE) END_DATE,
+       BS_IT_LOG_DI.Get_Total_Label_By_Week(MIN(MIN_DATE),MAX(MIN_DATE))  TOTAL_LABEL
+  FROM (SELECT TO_DATE(SUBSTR(NVL(SUBSTR('${REPORT_MONTH}',1,6), TO_CHAR(SYSDATE, 'YYYYMMDD'))||'-'||NVL('${WEEK_NUMBER}',1), 1, 6) || '01' + ROWNUM - 1,
+                       'YYYYMMDD') MIN_DATE
+          FROM ALL_TABLES
+         WHERE ROWNUM <=
+               CP_DATE.GET_MONTH_DAYS(TO_DATE(SUBSTR(NVL(SUBSTR('${REPORT_MONTH}',1,6), TO_CHAR(SYSDATE, 'YYYYMMDD'))||'-'||NVL('${WEEK_NUMBER}',1), 1, 6) || '01',
+                                              'YYYYMMDD')))
+ WHERE CP_DATE.Test_Is_In_Week(MIN_DATE, NVL(SUBSTR('${REPORT_MONTH}',1,6), TO_CHAR(SYSDATE, 'YYYYMM'))||'-'||NVL('${WEEK_NUMBER}',1)) = 'Y']]></Sql>
+  <Sql _uuid="IkIMwZVP6uhuUrsBXwpvgg" name="affair_list" label="完成重大事项" is_valid="Y"><![CDATA[SELECT 
+   REPAIR_DATE,
+   LOG_NOTE,
+   CM_CODE_DI.Find_Label('business.it.complete.status', STATUS) STATUS_CD
+FROM BS_IT_LOG
+WHERE STATUS = 'C' 
+   AND TRUNC(REPAIR_DATE) >= TRUNC(CP_DATE.Parse('${BEGIN_DATE}')) 
+   AND TRUNC(REPAIR_DATE) <= TRUNC(CP_DATE.Parse('${END_DATE}'))
+   AND LEVEL_CD <> 'P' AND LOG_NOTE IS NOT NULL
+ORDER BY LEVEL_CD]]></Sql>
+  <Sql _uuid="5UemmyRs1mAvxMpA7C1log" name="b_date" label="开始日期" is_valid="Y"><![CDATA[SELECT
+   TO_CHAR(CP_DATE.Parse('${BEGIN_DATE}'),'YYYY-MM-DD') BDATE
+FROM DUAL]]></Sql>
+  <Sql _uuid="]0Fbyu0kOBk[Mt5rGGc9hA" name="e_date" label="结束日期" is_valid="Y"><![CDATA[SELECT
+   TO_CHAR(CP_DATE.Parse('${END_DATE}'),'YYYY-MM-DD') EDATE
+FROM DUAL]]></Sql>
+</ExportExcel>
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="9kww]zQ7o[QzVNrHUpA[oQ" name="system.batch" label="M#12cn16系统-批处理" is_valid="Y" note="M#" data_name="SY_BATCH" data_logic="SY_BATCH_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="r0L2HDkT3Qy3Ty9V4RRtjQ" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_type="Integer" data_refer="system.batch.type" />
+  <FieldInteger _uuid="bkp0SP7jFn[2kcuyWgdIjg" name="group_id" label="M#12cn13组标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="GROUP_ID" data_refer="system.batch" />
+  <FieldBoolean _uuid="M0v1Du2mzqc3kC78zyT4uQ" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldString _uuid="QkIIxF]I[rCj5T5la1cWhA" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="9EIhn4wcpCKQ]LYTInPrsw" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_type="String" data_size="80" />
+  <FieldContent _uuid="fUyKYGB6xxqgZare01Kyuw" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldEnum _uuid="DUIAzqG83vRuZ1yniNqUsQ" name="status_cd" label="M#12cn14状态类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="system.batch.status" />
+  <FieldEnum _uuid="4UyOvZdT[fqQ4PbRRKKLqw" name="result_cd" label="M#12cn14结束类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RESULT_CD" data_size="1" data_code="system.batch.result" />
+  <FieldInteger _uuid="jUUzupD2z86pey10NXU5jw" name="icon_id" label="M#12cn14图标标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="ICON_ID" data_type="Integer" data_refer="common.icon" />
+  <FieldString _uuid="KEczLRUYV9BNqrkxZCPFug" name="do_invoke" label="M#12cn14执行调度" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DO_INVOKE" data_type="String" data_size="400" />
+  <FieldContent _uuid="DU8rBKAcXaPJ3kFkm8ZFig" name="parameters" label="M#12cn16最后处理参数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PARAMETERS" />
+  <FieldDate _uuid="pkPpCZM6nuzalxqcuDSnqw" name="create_date" label="M#12cn14创建日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_type="Date" data_default="SYSDATE" />
+  <FieldContent _uuid="1kIJIRHWi3Jq1ciXyyxmqQ" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" data_size="2000" />
+  <FieldDate _uuid="G0GH3[M2]9zjGS0DTLBVlw" name="end_date" label="M#12cn14结束时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="END_DATE" />
+</DataStore>
+

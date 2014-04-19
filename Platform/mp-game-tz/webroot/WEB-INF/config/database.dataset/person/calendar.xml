@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="ekKalOPhtIKjyKEl0tDImw" name="person.calendar" label="M#12cn14用户日历" is_valid="Y" note="M#" data_name="PM_CALENDAR" data_logic="PM_CALENDAR_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="DkX5staqNhvKEauWzx84rA" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_type="Integer" data_refer="person.calendar.type" />
+  <FieldInteger _uuid="D0vwd72BdbOtQB[G9DzBvw" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="USER_ID" data_refer="person.user" />
+  <FieldBoolean _uuid="7UBlWbxt]QXD[o7PyH6jhA" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldBoolean _uuid="7E4UquevliGs6]F3qHOshQ" name="is_default" label="M#12cn13默认项" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_DEFAULT" />
+  <FieldString _uuid="fUxVPaMyRW14qWlmAxIWoA" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="20" />
+  <FieldString _uuid="Y0Bg6hisYlpBbDxEpsrmuA" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_type="String" data_size="80" />
+  <FieldContent _uuid="JELLDTJXNWSywLWQwRdAgg" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" data_type="Content" />
+  <FieldInteger _uuid="OExVzYW48xuVES3dZBo8rg" name="country_id" label="M#12cn14国家标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="COUNTRY_ID" data_refer="common.country" />
+  <FieldInteger _uuid="tUNMapPGjaCwt7M]FjBEpQ" name="time_zone_id" label="M#12cn14时区标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TIME_ZONE_ID" />
+  <FieldContent _uuid="8EM5l2h5RblIhj]YPxRJuw" name="location" label="M#12cn12地点" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LOCATION" />
+  <FieldDate _uuid="[0mjFaflOSKNOmJywHAqtg" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_type="Date" data_default="SYSDATE" />
+  <FieldContent _uuid="n0BvvoPrikgzYPFhSOCbpg" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="e0oQasPAm1X3V0[CCKiptg" name="person.organization.calendar" label="M#12cn16组织关联日历" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="PM_ORGANIZATION_CALENDAR" data_alias="PM_ORG_CALENDAR" data_logic="PM_ORGANIZATION_CALENDAR_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldChar _uuid="Akgn49e]EKCypBrFKyMysA" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_size="1" />
+  <FieldInteger _uuid="0kBket9i[1Xd3PpuPOBZjw" name="organization_id" label="M#12cn14组织编号" is_valid="Y" note="M#" is_null="Y" is_unique="Y" is_store="Y" is_abstract="N" data_name="ORGANIZATION_ID" data_alias="ORG_ID" data_refer="person.organization" index_names="link" />
+  <FieldInteger _uuid="bk9JXrTyIoNSYsi0Q5pEkQ" name="calendar_id" label="M#12cn14日历编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CALENDAR_ID" data_refer="common.calendar" index_names="link" />
+  <FieldTemplate _uuid="CEyPzwgg[ea1IqNKc9HalA" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="GkEQPTGy1sCrHUwKVEZ3rQ" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

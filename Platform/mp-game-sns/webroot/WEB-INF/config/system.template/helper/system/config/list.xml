@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="80Em3oWCvB1geDlOpms]gA" name="helper.system.config.list" is_valid="Y" note="M#">
+  <Source _uuid="yUcCRM[A9PkMi]1OyPmehQ" is_valid="Y" note="M#"><![CDATA[<jt:include source='helper.title'/>
+
+<jt:include source='helper.navBegin'/>
+	<A href='#home'><IMG src='<jt:item source='$path'/>/ars/icon/tools/home.gif' align='absmiddle'> 主页</A> 
+	<IMG src='<jt:item source='$path'/>/ars/icon/tools/next.gif' align='absmiddle'> 组件列表
+<jt:include source='helper.navEnd'/>
+
+
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='12'>
+<TR><TD>
+
+
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+<TR>
+	<TD valign='bottom' class='headTitle'>组件列表</TD>
+	<TD align='right' valign='bottom'>version:1.0.0</TD>
+</TR>
+<TR><TD colspan='2'><HR></TD></TR>
+<TR><TD colspan='2'>
+	组件配置的列表
+</TD></TR>
+</TABLE>
+
+<BR>
+
+<TABLE width='100%' bgcolor='#666666' border='0' cellspacing='0' cellpadding='2'>
+<jt:loop source='$config' alias='config'>
+<TR bgcolor='#F8F8F8'>
+	<TD width='300' style='padding-left:20'>
+		<IMG src='<jt:item source='$path'/>/ars/icon/system/config/<jt:item source='$config:name' removeFirst='field' format='lower'/>.gif' align='absmiddle'> 
+		<A class='listElement' href='./config/<jt:item source='$config.name' format='path.lower'/>.html'><jt:item source='$config.name'/></A>
+	</TD>
+	<TD>[ <FONT color='green'><jt:item source='$config.label'/></FONT> ]</TD>
+</TR>
+</jt:loop>
+</TABLE>
+
+</TD></TR>
+</TABLE>
+
+<jt:include source='helper.footer'/>]]></Source>
+</Template>
+

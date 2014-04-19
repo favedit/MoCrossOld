@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+   <!-- 应用定义 -->
+   <Define name='application'>D:/ZW-Platform-Work</Define>
+   <Define name='application.name'>mp-game-sns</Define>
+   <Define name='application.root'>${application}/${application.name}</Define>
+   <Define name='application.deploy'>${application.root}/deploy</Define>
+   <Define name='application.web'>${application.root}/webroot</Define>
+   <Define name='application.config'>${application.web}/WEB-INF/classes</Define>
+   <Define name='application.space'>${application.web}/WEB-INF/config</Define>
+   <Define name='application.temp'>${application}/mt-temp/${application.name}</Define>
+
+   <!-- 导出路径 -->
+   <Define name='game.space'>${application.space}</Define>
+   <Define name='game.export.template'>D:/WP-SNS-Work/Temp/Game/Configuration/template</Define>
+   <Define name='game.export.resource'>D:/WP-SNS-Work/Temp/Export</Define>
+   <Define name='game.export.server'>D:/WP-SNS-Work/Server</Define>
+   <Define name='game.export.client'>D:/WP-SNS-Work/Temp/Client</Define>
+   <Define name='game.export.tools'>D:/WP-SNS-Work/Temp/Tools</Define>
+   <Define name='game.export.platform'>D:/WP-SNS-Work/Temp/Platform</Define>
+
+   <!-- 包含：系统设定 -->
+   <Include>${application.config}/common/define.xml</Include>
+   <Include>${application.config}/common/core.xml</Include>
+   <Include>${application.config}/common/engine.xml</Include>
+   <Include>${application.config}/common/data.xml</Include>
+   <Include>${application.config}/common/web.xml</Include>
+   <Include>${application.config}/common/web-face.xml</Include>
+
+   <!-- 包含：游戏设定 -->
+   <Include>${application.config}/game/face.xml</Include>
+   <Include>${application.config}/game/editor.xml</Include>
+   <Include>${application.config}/game/service.xml</Include>
+
+   <!-- 包含：环境设定 -->
+   <Include>${application.config}/environment/local/environment.xml</Include>
+</Configuration>

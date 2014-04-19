@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="HEb6SMLWlmqQa[rOudyogQ" name="common.calendar.day.span" label="M#12cn17日历天时段定义" is_valid="Y" note="M#" data_name="CM_CALENDAR_DAY_SPAN" data_alias="CM_CLD_DAY_SPN" data_logic="CM_CALENDAR_DAY_SPAN_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="aUO9ZJZXAnH]psTSpODppA" name="day_id" label="M#12cn13天标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="DAY_ID" data_refer="common.calendar.day" />
+  <FieldBoolean _uuid="pkxD6UVADGoRPiJfwRbHqg" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldString _uuid="w01832DJB55wueRRAZwdjw" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="cU3oLUbYA0FRlEnMwmWHiw" name="label" label="M#12cn12标签" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldEnum _uuid="d07l2OvuzgwTlkfX[dcKgQ" name="type_cd" label="M#12cn12类型" is_valid="Y" note="M#12cn213W=Work\nR=Rest" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="common.calendar.span.type" />
+  <FieldDate _uuid="REMLkjrvw4HNxGuYwYIwpw" name="begin_time" label="M#12cn14开始时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="BEGIN_TIME" data_type="Date" />
+  <FieldDate _uuid="6kpOE0wnDZOa0IUCrvHbng" name="end_time" label="M#12cn14结束时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="END_TIME" data_type="Date" />
+  <FieldTemplate _uuid="8Es[NoVLpYNaOYM[wPKNsQ" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="N0vuButlEZFwHXlxj[WAiA" name="note" label="M#12cn12注释" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

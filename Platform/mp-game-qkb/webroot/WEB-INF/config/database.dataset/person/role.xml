@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="10UiZyoGrLhE]IjFDhDPjA" name="person.role" label="M#12cn14角色信息" note="M#12cn16角色基本信息" data_name="PM_ROLE" data_logic="PM_ROLE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="UEc5OjM0V15npANORmoVnQ" name="network_id" label="M#12cn14网络编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NETWORK_ID" data_refer="system.network" />
+  <FieldEnum _uuid="tUw8DNOEHfn44LHWM5c0lA" name="record_cd" label="M#12cn14记录类型" is_valid="Y" note="M#12cn294B=Business      业务\nA=Administrator 管理\nO=Organization  组织\nJ=Job           岗位\nU=User          用户" is_null="Y" is_store="Y" is_abstract="N" data_name="RECORD_CD" data_size="1" data_code="person.role.type" data_uniques="code" />
+  <FieldBoolean _uuid="o0gPw5qJnwr1Qxl2rpiOkw" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" />
+  <FieldInteger _uuid="AEEQ4cb70CBFnK5B3k8hrw" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_type="Integer" data_refer="person.role.type" />
+  <FieldInteger _uuid="gExbJRodl1jYG3wxhpTynQ" name="group_id" label="M#12cn14分组标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GROUP_ID" data_alias="GRP_ID" data_refer="person.role.group" />
+  <FieldString _uuid="505ixWDaH86Atjek]5jEmw" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" data_uniques="code" />
+  <FieldString _uuid="DETTZSIGbGFhImzGi54Xmw" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_type="String" data_size="80" />
+  <FieldContent _uuid="VEZL2M3iWs9hiJ8GE]Znug" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LABEL" data_type="Content" />
+  <FieldContent _uuid="e0QRJtMJtL5f]OhhIpLRnA" name="full_label" label="M#12cn14中文全称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FULL_LABEL" />
+  <FieldInteger _uuid="gU8wXAqCssjxylNaD3KjkQ" name="target_id" label="M#12cn14目标标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TARGET_ID" />
+  <FieldDate _uuid="X0hhrBaXhdRRlVGbO8v3pQ" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_type="Date" data_default="SYSDATE" />
+  <FieldContent _uuid="y0J]9XivNCsogn92sMmHsA" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

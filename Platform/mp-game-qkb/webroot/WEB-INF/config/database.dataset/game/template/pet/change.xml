@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="a0kxdhCzLrcf1Am2]Ml9sQ" name="game.template.pet.change" label="M#12cn14宠物变更" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_PET_CHANGE" data_alias="GM_TPL_PET_CHG" data_logic="GM_TPL_PET_CHANGE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="HkIdbTbaA0C0V4bOegmNnw" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="wU5YJXVIprqewQSttNTTrA" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldEnum _uuid="3kHazFKojJOGqoDwYIWGhw" name="pet_change_cd" label="M#12cn14宠物改变" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PET_CHANGE_CD" data_size="2" data_code="game.template.pet.status" />
+  <FieldEnum _uuid="rEvOiqFCPEJ3oPEWOOc1iQ" name="control_able_cd" label="M#12cn15是否可操作" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CONTROL_ABLE_CD" data_size="1" data_code="game.template.pet.control" />
+  <FieldInteger _uuid="iEoAl2XELVcgSk7emkUblA" name="pet_type_tid" label="M#12cn15操作前类别" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PET_TYPE_TID" data_alias="PET_TYP" data_refer="game.template.pet.type" />
+  <FieldInteger _uuid="ckQNgOpfdnaWVZwnZT5jkw" name="spend_bag_tid" label="M#12cn17消耗包模版编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="SPEND_BAG_TID" data_alias="SPD_BAG" data_refer="game.template.spend.bag" />
+  <FieldString _uuid="Rkm31QoMtJD[yda08t5IrA" name="spend_currency" label="M#12cn14消耗货币" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SPEND_CURRENCY" data_size="40" />
+  <FieldTemplate _uuid="608vOWxCBPbc1dYnBS1qlw" name="describe" label="M#12cn14描述模版" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

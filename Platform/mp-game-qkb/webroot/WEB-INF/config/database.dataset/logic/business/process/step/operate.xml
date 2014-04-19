@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="PkvhTLIcUA3gKHT8XR9ltA" name="logic.business.process.step.operate" label="M#12cn16业务阶段操作" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_BUSINESS_PROCESS_STP_OPT" data_alias="LG_BUS_PRC_STP_OPT" data_logic="LG_BUSINESS_PROCESS_STP_OPT_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="L0abMfyZyZc3gDr6CrF5hg" name="businessid" label="M#12cn14业务标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BUSINESS_ID" data_refer="logic.business" />
+  <FieldInteger _uuid="]098scj09QFzT9VeKVmcgw" name="step_id" label="M#12cn14阶段标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STEP_ID" data_refer="logic.business.process.step" />
+  <FieldBoolean _uuid="FkKblUDBeMN8Dq1TyqyNtQ" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldString _uuid="4U[witGH51PwNkbBFkosoA" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="80" />
+  <FieldString _uuid="d0CBueJ[ISAedjuRhO]6kg" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="bEMcqdBSocukkUsxV4wLnQ" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldEnum _uuid="GEvv94GUxoLl0Hp3DVNhgA" name="operate_cd" label="M#12cn12操作" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OPERATE_CD" data_size="1" />
+  <FieldString _uuid="90idj[Ma7xvP1Zt1Gc]Bgg" name="callback" label="M#12cn12回调" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CALLBACK" data_size="200" />
+  <FieldInteger _uuid="LkubzfoHnguCOZHG3EjarA" name="mail_id" label="M#12cn14邮件标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MAIL_ID" data_refer="logic.business.mail" />
+  <FieldInteger _uuid="Lkf0L3ywuhO8ggRw3Jpmpg" name="process_order" label="M#12cn14处理顺序" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROCESS_ORDER" />
+  <FieldContent _uuid="lkO4azo4nDaMy3D8fp49hQ" name="process_parameters" label="M#12cn14处理参数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROCESS_PARAMETERS" />
+  <FieldTemplate _uuid="cEZcZmdUpEitE27rrgeDtQ" name="track" label="M#12cn12模板" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="GEHy[JYePthWCw2VlZ00mQ" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

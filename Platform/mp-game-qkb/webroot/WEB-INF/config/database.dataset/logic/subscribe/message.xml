@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="dEQf]DuNt6cfmbhAnM8Lhg" name="logic.subscribe.message" label="M#12cn17订阅-通告事件" is_valid="Y" note="M#" data_name="LG_SUBSCRIBE_MESSAGE" data_alias="LG_SUB_MSG" data_logic="LG_SUBSCRIBE_MESSAGE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldEnum _uuid="R0wiFpYbzDvMMQjTm97ipQ" name="status_cd" label="M#12cn14状态类型" is_valid="Y" note="M#12cn210P=发行\nE=完成\n" is_store="Y" data_name="STATUS_CD" data_size="1" data_code="logic.subscribe.status" />
+  <FieldInteger _uuid="mkQjWGFFTIhuhDwULjsdjg" name="user_id" label="M#12cn15触发者标识" is_valid="Y" note="M#12cn13发布者" is_store="Y" is_abstract="N" data_name="USER_ID" data_refer="person.user" />
+  <FieldInteger _uuid="gE]9g4D9YDMyIbDkrX[Ihw" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_store="Y" data_name="TYPE_ID" data_alias="TYP" data_refer="logic.subscribe.type" />
+  <FieldInteger _uuid="1EW]]1u0sCI5VyCJEGLVsw" name="link_id" label="M#12cn14关联标识" is_valid="Y" note="M#" is_store="Y" data_name="LINK_ID" />
+  <FieldInteger _uuid="]kpkjRY[SFfIgymwy6P4rA" name="action_id" label="M#12cn16类型动作标识" is_valid="Y" note="M#" is_store="Y" data_name="ACTION_ID" data_alias="ACT" data_refer="logic.subscribe.type.action" />
+  <FieldString _uuid="s0dWmfbE]9IF3xifTY4itA" name="parameters" label="M#12cn12参数" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="PARAMETERS" data_size="2000" />
+  <FieldDate _uuid="CECdkBmrd1A9opFllm3LpA" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_type="Date" data_default="SYSDATE" />
+</DataStore>
+

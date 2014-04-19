@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="bEaQ3AZus]PTucTOjSFRhA" name="helper.sqlpackage.hhc" is_valid="Y" note="M#">
+  <Source _uuid="jEE9Rv45liKePc24Wc41qg" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="简介">
+		<param name="Local" value="src/sqlpackage/list.html">
+		</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="关于">
+		<param name="Local" value="src/sqlpackage/list.html">
+		</OBJECT>
+		</UL>
+	<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="参考">
+			<param name="Local" value="src/sqlpackage/list.html">
+			</OBJECT>
+		<UL>
+			<jt:loop source='$config' alias='package'>
+			<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="<jt:item source='$package.name'/>">
+			<param name="Local" value="src/sqlpackage/package/<jt:item source='$package.name' format='path.lower'/>.html">
+			</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="属性 [property]">
+					</OBJECT>
+					<UL>
+					<jt:define source='$package#Properties' alias='properties'/>
+					<jt:loop source='$properties' alias='property'>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="<jt:item source='$property.name'/>">
+						<param name="Local" value="src/sqlpackage/property/<jt:item source='$package.name'/>_<jt:item source='$property.name'/>.html">
+						</OBJECT>
+					</jt:loop>
+					</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="函数 [function]">
+					</OBJECT>
+					<UL>
+					<jt:define source='$package#Methods' alias='methods'/>
+					<jt:loop source='$methods' alias='method'>
+					<jt:equals source='$method:name' value='Function'>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="<jt:item source='$method.name'/>">
+						<param name="Local" value="src/sqlpackage/function/<jt:item source='$package.name'/>_<jt:item source='$method.name'/><jt:item source='$method.name_id'/>.html">
+						</OBJECT>
+					</jt:equals>
+					</jt:loop>
+					</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="过程 [procedure]">
+					</OBJECT>
+					<UL>
+					<jt:define source='$package#Methods' alias='methods'/>
+					<jt:loop source='$methods' alias='method'>
+					<jt:equals source='$method:name' value='Procedure'>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="<jt:item source='$method.name'/>">
+						<param name="Local" value="src/sqlpackage/procedure/<jt:item source='$package.name'/>_<jt:item source='$method.name'/><jt:item source='$method.name_id'/>.html">
+						</OBJECT>
+					</jt:equals>
+					</jt:loop>
+					</UL>
+			</UL>
+			</jt:loop>
+		</UL>
+</UL>
+</BODY></HTML>]]></Source>
+</Template>
+

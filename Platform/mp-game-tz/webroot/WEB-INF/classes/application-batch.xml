@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+
+   <!-- 系统工作路径 -->
+   <Define name='home'>D:/WP-Console/mo-game</Define>
+   <Define name='store'>D:/WP-Console/mo-game/tmp-store</Define>
+   <Define name='home.config'>${home}/webroot/WEB-INF/classes</Define>
+
+   <!-- 包含：系统环境设定 -->
+   <Include>${home.config}/common/config.xml</Include>
+   <Include>${home.config}/common/environment.xml</Include>
+
+   <!-- 包含：系统服务设定 -->
+   <Include>${home.config}/common/mobj-core.xml</Include>
+   <Include>${home.config}/common/mobj-eng.xml</Include>
+   <Include>${home.config}/common/mobj-data.xml</Include>
+   <Include>${home.config}/common/mobj-web.xml</Include>
+   <Include>${home.config}/common/mobj-jfa.xml</Include>
+   <Include>${home.config}/common/mobj-servlet.xml</Include>
+   <Include>${home.config}/common/mobj-logic.xml</Include>
+
+   <!-- 包含：公司在线管理系统设定 -->
+   <Include>${home.config}/linekong/core.xml</Include>
+   <Include>${home.config}/linekong/service.xml</Include>
+
+</Configuration>

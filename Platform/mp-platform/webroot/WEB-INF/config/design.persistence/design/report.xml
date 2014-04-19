@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="Q0Nm9vNHojJDpqo5iimMmA" name="design.report" label="M#12cn12报表" is_valid="Y" note="M#" template="xmlobject" source="${export.core.engine.source}">
+   <Interface _uuid="SUptuhuvZ1p15dcv1U16sA" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.eng.report.common.XObjectFace">
+      <Attribute _uuid="wkTaxqSTZN7X1cE95iEPig" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" />
+      <Attribute _uuid="rk6FswWXI2qeE6vz21vkkA" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+      <Attribute _uuid="j0cjPS9Vpf]yN[Sz0FtBhw" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" />
+      <Attribute _uuid="n04e7ziLq3uTAOWdG[xPsw" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#12jp12注釈" type="MultiString" is_store="Y" is_config="Y" />
+   </Interface>
+   <Component _uuid="J0VlhF[Sea49hNQDd[nUhg" name="Report" label="M#12cn12报表" is_valid="Y" note="M#" class_name="org.mo.eng.report.common.XReport" base_name="org.mo.eng.report.base.XBaseReport" inherits="IObject">
+      <Attribute _uuid="n0r]Mdp5bEm9rDlrqwjZrw" name="reference" label="M#12cn12参照" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="AEFuLCR5KGPp0UQKNR5cnQ" name="report_name" label="M#12cn14报表名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="JE9Md0oGnS51WKzS0oRRnw" name="Header" label="M#12cn12表头" is_valid="Y" note="M#" class_name="org.mo.eng.report.common.XHeader" base_name="org.mo.eng.report.base.XBaseHeader" inherits="IObject" />
+   <Component _uuid="]Up2Ld0DAOv4gC4lJb71mw" name="Body" label="M#12cn12表体" is_valid="Y" note="M#" class_name="org.mo.eng.report.common.XBody" base_name="org.mo.eng.report.base.XBaseBody" inherits="IObject" />
+   <Component _uuid="k0pLo0WvrU3y5t]WssOxlQ" name="Footer" label="M#12cn12表尾" is_valid="Y" note="M#" class_name="org.mo.eng.report.common.XFooter" base_name="org.mo.eng.report.base.XBaseFooter" inherits="IObject" />
+</Persistence>

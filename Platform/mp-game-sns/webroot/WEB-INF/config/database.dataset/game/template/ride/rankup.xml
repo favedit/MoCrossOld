@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="lkdHloHQJnLTYjhHjaEwhQ" name="game.template.ride.rankup" label="M#12cn14坐骑进阶" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_RIDE_RANKUP" data_alias="GM_TPL_RID_RUP" data_logic="GM_TPL_RIDE_RANKUP_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="M07OGSDqZaDYz6CRPg7esA" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="hUC9QTESas48AoJ9bK6piA" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldInteger _uuid="skEyyyrCnp7Af5RXsv7NpA" name="ride_tid" label="M#12cn15操作前档阶" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="RIDE_TID" data_alias="RID" data_refer="game.template.ride" />
+  <FieldEnum _uuid="W0hLLbNMMfQu4tUVFIgksA" name="rankup_cd" label="M#12cn14可否进阶" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RANKUP_CD" data_size="1" data_code="game.template.ride.rankup" />
+  <FieldEnum _uuid="Zkoskjj9knCFCo2wtc]Smg" name="trigger_cd" label="M#12cn14触发坐骑" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TRIGGER_CD" data_size="1" data_code="game.template.ride.trigger" />
+  <FieldInteger _uuid="7kr]cq0wLXHXGGYfeI6rgQ" name="limit_level_min" label="M#12cn16进阶等级下限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_LEVEL_MIN" />
+  <FieldInteger _uuid="JE[QE07v5hJ9yh6vsXMvgw" name="limit_luck_min" label="M#12cn15幸运值限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_LUCK_MIN" />
+  <FieldInteger _uuid="t0nq4VUYyn4BWykw4XoUnQ" name="limit_luck_max" label="M#12cn17幸运值最大限制" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LIMIT_LUCK_MAX" />
+  <FieldInteger _uuid="nUGaXpaVSk9afAe2rZ[Bhg" name="spend_bag_tid" label="M#12cn15消耗包编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SPEND_BAG_TID" data_alias="SPD_BAG" data_refer="game.template.spend.bag" />
+  <FieldString _uuid="PU0L7gmIkUeBx30U3qV5oA" name="spend_currency" label="M#12cn14消耗货币" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SPEND_CURRENCY" data_size="80" />
+  <FieldEnum _uuid="fkZHQU7tIZt0tq2VwBZsuw" name="aid_cd" label="M#12cn17是否需要副坐骑" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="AID_CD" data_size="1" data_code="game.template.ride.need.vice" />
+  <FieldInteger _uuid="LU2Uf6F1kBh5S7wjUqwcmg" name="aid_ride_tid" label="M#12cn17副坐骑模板编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="AID_RIDE_TID" data_alias="ART" data_refer="game.template.ride" />
+  <FieldTemplate _uuid="GEufn2BBY4U2YwkXJK1ilA" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T><jt:item source='$enum.label'/>。</T>
+//
+// @version 1.0.1
+//============================================================
+package mo.ms.enum
+{
+   import mo.cm.stream.*;
+
+   //============================================================
+   // <T><jt:item source='$enum.label'/>枚举定义。</T>
+   //
+   // @enum
+   //============================================================
+   public class T<jt:item source='$enum.name'/>Set
+   {
+      // 数据内容
+      protected var value:int;
+
+      //============================================================
+      // <T>构造<jt:item source='$enum.label'/>枚举定义。</T>
+      //============================================================
+      public function T<jt:item source='$enum.name'/>Set(){
+      }
+
+<jt:loop source='$enum' alias='member'>
+      //============================================================
+      // <T>获得<jt:item source='$member.label'/>标志位。</T>
+      //============================================================
+      public function get <jt:item source='$member.name' format='lower.first'/>():Boolean{
+         return 0 != (value & (1 << <jt:item source='$member-position'/>));
+      }
+
+      //============================================================
+      // <T>设置<jt:item source='$member.label'/>标志位。</T>
+      //============================================================
+      public function set <jt:item source='$member.name' format='lower.first'/>(flag:Boolean):void{
+         var mask:int = (1 << <jt:item source='$member-position'/>);
+         if(flag){
+            value |= mask;
+         }else{
+            value &= ~mask;
+         }
+      }
+
+</jt:loop>
+      //============================================================
+      // <T>接收对象内容。</T>
+      //
+      // @param object 对象
+      //============================================================
+      public function assign(set:T<jt:item source='$enum.name'/>Set):void{
+         value = set.value;
+      }
+
+     //============================================================
+      // <T>序列化数据部分到输入流中。</T>
+      //
+      // @param output 输入流
+      //============================================================
+      public function serialize(output:IOutput):void{
+         output.write<jt:item source='$enum.set_data_type_cd'/>(value);
+      }
+
+      //============================================================
+      // <T>从输出流中反序列化数据部分。</T>
+      //
+      // @param input 输出流
+      //============================================================
+      public function unserialize(input:IInput):void{
+         value = input.read<jt:item source='$enum.set_data_type_cd'/>();
+      }
+
+      //============================================================
+      // <T>重置内容。</T>
+      //============================================================
+      public function reset():void{
+         value = 0;
+      }
+   }
+}
+]]></Source>
+</Template>

@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<TreeView>
+   <!-- Type Define -->
+   <Types page_svc='mgr.db.oracle.catalog'>
+
+      <Type name='default'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/inc/Empty.wa'/>
+      </Type>
+
+      <!-- Design -->
+      <Type name='wfc.dsn.catalog' tree_svc='wfc.sys.design'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/design/CatalogUpdate.wa'/>
+      </Type>
+      <Type name='wfc.dsn.unit'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/design/UnitUpdate.wa'/>
+         <Sheet name='pty' icon='sys.info' label='trs:page.property|Property' action='/inc/wfc/property/Config.wa?type={property}&amp;objects=unit_name&amp;class=[wfc.pty.dsn.unit]'/>
+         <Sheet name='attrs' icon='sys.info' label='trs:page.attributes|Attributs' action='/system/design/FieldsConfig.wa'/>
+         <Sheet name='source' icon='sys.info' label='trs:page.source|Source' action='/system/design/UnitSource.wa'/>
+      </Type>
+      <Type name='wfc.dsn.item'>
+         <Sheet name='config' icon='sys.info' label='trs:page.information|Information' action='/system/design/ItemUpdate.wa'/>
+         <Sheet name='pty' icon='sys.info' label='trs:page.property|Property' action='/inc/wfc/property/Config.wa?type={property}&amp;objects=unit_name,item_name&amp;class=[wfc.pty.dsn.item]'/>
+         <Sheet name='flds' icon='sys.info' label='trs:page.attributes|Attributs' action='/system/design/FieldsConfig.wa'/>
+      </Type>
+
+      <Type name='design.list'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/design/Info.wa'/>
+      </Type>
+      <Type name='design.uml'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/design/UmlInfo.wa'/>
+         <Sheet name='sql' icon='sys.info' label='trs:page.sql|SQL' action='/sys/ctl/design/UmlSql.wa'/>
+      </Type>
+      <Type name='design.uml.class.machine'>
+         <Sheet name='config' icon='sys.info' label='trs:page.information|Information' action='/system/design/ClassStateMachineConfig.wa'/>
+      </Type>
+      <Type name='design.uml.class.state'>
+         <Sheet name='config' icon='sys.info' label='trs:page.information|Information' action='/system/design/ClassStateConfig.wa'/>
+      </Type>
+      <Type name='design.uml.class.trans'>
+         <Sheet name='config' icon='sys.info' label='trs:page.information|Information' action='/system/design/ClassTransConfig.wa'/>
+      </Type>
+      <Type name='design.uml.class.attribute'>
+         <Sheet name='config' icon='sys.info' label='trs:page.information|Information' action='/system/design/ClassAttributeConfig.wa'/>
+      </Type>
+      <Type name='design.uml.type'>
+         <Sheet name='config' icon='sys.info' label='trs:page.information|Information' action='/system/design/TypeConfig.wa'/>
+         <Sheet name='flds' icon='sys.info' label='trs:page.attributes|Attributs' action='/system/design/FieldsConfig.wa'/>
+      </Type>
+      <Type name='design.uml.type.attribute'>
+         <Sheet name='config' icon='sys.info' label='trs:page.information|Information' action='/system/design/TypeAttributeConfig.wa'/>
+      </Type>
+
+      <!-- Control List Type -->
+      <Type name='ctl.lst' tree_svc='wfc.sys.list'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/inc/Empty.wa'/>
+      </Type>
+
+      <!-- Document Type -->
+      <Type name='doc' tree_svc='dev.doc.catalog'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/inc/Empty.wa'/>
+         <Sheet name='cfg' icon='sys.info' label='trs:page.config|Config' action='/sys/doc/catalog/Config.wa'/>
+      </Type>
+      <Type name='sys.doc.cat'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/sys/doc/node/Directory.wa'/>
+         <Sheet name='cfg' icon='sys.info' label='trs:page.config|Config' action='/sys/doc/catalog/Config.wa'/>
+         <Sheet name='prms' icon='sys.info' label='trs:page.permission|Permission' action='/sys/doc/catalog/Premission.wa'/>
+      </Type>
+      <Type name='sys.doc.itm'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/sys/doc/node/Document.wa'/>
+         <Sheet name='cfg' icon='sys.info' label='trs:page.config|Config' action='/sys/doc/catalog/Config.wa'/>
+         <Sheet name='prms' icon='sys.info' label='trs:page.permission|Permission' action='/sys/doc/catalog/Premission.wa'/>
+      </Type>
+
+      <!-- Java Source Type -->
+      <Type name='src.java' tree_svc='sys.src.java'>
+         <Sheet name='dir' icon='sys.info' label='trs:page.information|Information' action='/inc/Empty.wa'/>
+      </Type>
+      <Type name='src.java.class'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/sys/src/java/Info.wa'/>
+         <Sheet name='src' icon='sys.info' label='trs:page.source|Source' action='/sys/src/java/Source.wa'/>
+         <Sheet name='hlp' icon='sys.info' label='trs:page.help|Help' action='/sys/src/java/Help.wa'/>
+      </Type>
+
+      <Type name='src.web' tree_svc='sys.src.web'>
+         <Sheet name='dir' icon='sys.info' label='trs:page.information|Information' action='/inc/Empty.wa'/>
+      </Type>
+
+      <Type name='src.web.file' tree_svc='sys.src.web'>
+         <Sheet name='src' icon='sys.info' label='trs:page.source|Source' action='/sys/src/web/Source.wa'/>
+         <Sheet name='trs' icon='sys.info' label='trs:page.translate|Translate' action='/sys/src/web/Translate.wa'/>
+      </Type>
+
+      <!-- Database -->
+      <Type name='db' tree_svc='wfc.sys.database'>
+         <Sheet name='src' icon='sys.info' label='trs:page.source|Source' action='/system/database/info/source/Info.wa'/>
+         <Sheet name='trs' icon='sys.info' label='trs:page.translate|Translate' action='/system/database/info/source/Translate.wa'/>
+      </Type>
+      <Type name='wfc.db.tables'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/database/table/List.wa'/>
+      </Type>
+      <Type name='db.tab'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/database/table/TableUpdate.wa'/>
+         <Sheet name='fields' icon='sys.info' label='trs:page.fields|Fields' action='/system/database/table/TableFields.wa'/>
+         <Sheet name='source' icon='sys.info' label='trs:page.source|Source' action='/system/database/table/SrcInfo.wa'/>
+         <Sheet name='translate' icon='sys.info' label='trs:page.translate|Translate' action='/system/database/table/TrsInfo.wa'/>
+      </Type>
+      <Type name='db.tab.fld'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/database/table/FieldUpdate.wa'/>
+      </Type>
+      <Type name='db.seq'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/inc/Empty.wa'/>
+         <Sheet name='src' icon='sys.info' label='trs:page.source|Source' action='/system/database/sequence/SrcInfo.wa'/>
+      </Type>
+      <Type name='db.pkg'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/inc/Empty.wa'/>
+         <Sheet name='trs' icon='sys.info' label='trs:page.translate|Translate' action='/system/database/logic/Translate.wa'/>
+      </Type>
+
+      <!-- Report Type -->
+      <Type name='ctl.rpt' tree_svc='sys.ctl.report.catalog'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/sys/ctl/rpt/Info.wa'/>
+      </Type>
+      <Type name='ctl.rpt.itm'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/sys/ctl/rpt/RptInfo.wa'/>
+      </Type>
+
+      <!-- Monitor Type -->
+      <Type name='vw.mem'>
+         <Sheet name='Info' icon='sys.info' label='trs:page.memory|Memory' action='/system/monitor/Memory.wa'/>
+      </Type>
+
+      <!-- List Type -->
+      <Type name='wfc.lst.catalog' tree_svc='wfc.sys.list'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/list/CatalogUpdate.wa'/>
+      </Type>
+      <Type name='wfc.lst.code'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/list/CodeUpdate.wa'/>
+      </Type>
+      <Type name='wfc.lst.item'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/list/ItemUpdate.wa'/>
+      </Type>
+
+      <!-- Property Type -->
+      <Type name='wfc.pty.catalog' tree_svc='wfc.sys.property'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/property/CatalogUpdate.wa'/>
+      </Type>
+      <Type name='wfc.pty'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/property/PropertyUpdate.wa'/>
+      </Type>
+      <Type name='wfc.pty.group'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/property/GroupUpdate.wa'/>
+      </Type>
+      <Type name='wfc.pty.field'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/property/FieldUpdate.wa'/>
+      </Type>
+
+      <!-- Dataset -->
+      <Type name='wfc.ds.catalog' tree_svc='wfc.sys.dataset'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/dataset/CatalogUpdate.wa'/>
+      </Type>
+      <Type name='wfc.ds.dataset'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/dataset/DatasetUpdate.wa'/>
+         <Sheet name='order' icon='sys.info' label='trs:page.order|Order' action='/system/dataset/DatasetOrder.wa'/>
+      </Type>
+      <Type name='wfc.ds.field'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/dataset/FieldUpdate.wa'/>
+      </Type>
+
+      <!-- Frame Type -->
+      <Type name='wfc.frm.catalog' tree_svc='wfc.sys.frame'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/frame/CatalogUpdate.wa'/>
+      </Type>
+      <Type name='wfc.frm'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/frame/FrameUpdate.wa'/>
+         <Sheet name='order' icon='sys.info' label='trs:page.order|Order' action='/system/frame/FrameOrder.wa'/>
+         <Sheet name='prv' icon='sys.info' label='trs:page.preview|Preview' action='/inc/wfc/frame/Process.wa?hc=Y&amp;fn={frame_name}'/>
+      </Type>
+      <Type name='wfc.frm.control'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/frame/ControlUpdate.wa'/>
+      </Type>
+
+      <!-- Translate Type -->
+      <Type name='wfc.trs'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/translate/Info.wa'/>
+      </Type>
+      <Type name='trs.cls' tree_svc='sys.src.java'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/inc/Empty.wa'/>
+      </Type>
+      <Type name='trs.js' tree_svc='sys.src.js'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/inc/Empty.wa'/>
+      </Type>
+      <Type name='trs.page' tree_svc='sys.src.page'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/inc/Empty.wa'/>
+      </Type>
+      <Type name='trs.tree' tree_svc='sys.src.tree'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/inc/Empty.wa'/>
+      </Type>
+      <Type name='trs.pty' tree_svc='sys.src.property'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/inc/Empty.wa'/>
+      </Type>
+      <Type name='trs.ds' tree_svc='sys.ctl.dataset.catalog'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/inc/Empty.wa'/>
+      </Type>
+      <Type name='trs.win' tree_svc='sys.ctl.window.catalog'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/inc/Empty.wa'/>
+      </Type>
+
+      <!-- Window -->
+      <Type name='wfc.win.catalog' tree_svc='wfc.sys.window'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/system/window/CatalogUpdate.wa'/>
+      </Type>
+      <Type name='wfc.win.window'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/system/window/WindowUpdate.wa'/>
+         <Sheet name='pty' icon='sys.info' label='trs:page.config|Config' action='/system/window/WinConfig.wa'/>
+         <Sheet name='vw' icon='sys.info' label='trs:page.preview|Preview' action='/system/window/WinPreview.wa'/>
+      </Type>
+      <Type name='wfc.win.control'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.property|Property' action='/system/window/ControlUpdate.wa'/>
+      </Type>
+
+      <!-- Navigator Type -->
+      <Type name='wfc.nav.groups' tree_svc='wfc.sys.navigator'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/navigator/GroupUpdate.wa'/>
+      </Type>
+      <Type name='wfc.nav.group' tree_svc='wfc.sys.navigator'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/navigator/GroupUpdate.wa'/>
+         <Sheet name='order' icon='sys.info' label='trs:page.order|Order' action='/system/navigator/CatalogOrder.wa'/>
+      </Type>
+      <Type name='wfc.nav.catalog'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/system/navigator/CatalogUpdate.wa'/>
+         <Sheet name='order' icon='sys.info' label='trs:page.order|Order' action='/system/navigator/CatalogOrder.wa'/>
+      </Type>
+      <Type name='wfc.nav.node'>
+         <Sheet name='cfg' icon='sys.info' label='trs:page.config|Config' action='/system/navigator/NodeUpdate.wa'/>
+         <Sheet name='prms' icon='sys.info' label='trs:page.permission|Permission' action='/sys/ctl/nav/Permission.wa'/>
+         <Sheet name='ctlprms' icon='sys.info' label='trs:page.permission.control|Control Permission' action='/sys/ctl/nav/ControlPermission.wa'/>
+      </Type>
+
+   </Types>
+   <!-- Tree Node Define -->
+   <Nodes>
+      <Node type='doc.asd' icon='doc.root' label='Document' child='Y'>
+         <Node type='wfc.cnt.catalog' icon='sys.pkg' label='BD- Basic Designer' child='Y'/>
+         <Node type='wfc.cnt.catalog' icon='sys.pkg' label='DD- Detail Designer' child='Y'/>
+         <Node type='wfc.cnt.catalog' icon='sys.pkg' label='PD- Program Designer' child='Y'/>
+         <Node type='wfc.cnt.catalog' icon='sys.pkg' label='UT- Unit Test' child='Y'/>
+         <Node type='wfc.cnt.catalog' icon='sys.pkg' label='SI- System In' child='Y'/>
+         <Node type='wfc.cnt.catalog' icon='sys.pkg' label='QA- Question Answer' child='Y'/>
+      </Node>
+
+      <Node type='wfc.dsn' icon='doc.root' label='Design' child='Y'>
+         <Node type='wfc.cnt.catalog' icon='sys.pkg' label='Content' child='Y'/>
+         <Node type='wfc.lst.catalog' icon='sys.mgr.list' label='List' child='Y'/>
+         <Node type='wfc.pty.catalog' icon='sys.mgr.property' label='Property' child='Y'/>
+         <Node type='wfc.lst.catalog' icon='sys.mgr.list' label='Entity' child='Y'/>
+      </Node>
+
+      <Node type='src' icon='sys.module' label='Source'>
+         <Node type='src.java' icon='sys.pkg' label='trs:tree.source.java|Java Source' child='Y'/>
+         <Node type='src.web' icon='sys.info' label='trs:tree.source.web|WEB Source' child='Y'/>
+      </Node>
+
+      <Node type='db' icon='db.mgr' label='trs:tree.database|Database' child='Y'/>
+
+      <Node type='wfc.t1' icon='sys.mgr.trs' label='Framework' child='Y'>
+         <Node type='wfc.ds.catalog' icon='sys.mgr.dataset' label='trs:tree.dataset|Dataset' child='Y'/>
+         <Node type='wfc.frm.catalog' icon='sys.module' label='trs:tree.frame|Frame' child='Y'/>
+         <Node type='wfc.win.catalog' icon='sys.mgr.window' label='trs:tree.window|Window' child='Y'/>
+         <Node type='wfc.nav.groups' icon='msc.floder' label='trs:tree.navigator|Navigator' child='Y'/>
+         <Node type='ctl.rpt' icon='sys.mgr.report' label='trs:tree.report|Report' child='Y'/>
+         <Node type='wfc.trs' icon='sys.mgr.trs' label='trs:tree.translate|Translate' child='Y'>
+            <Node type='trs.cls' icon='sys.floder' label='trs:tree.translate.class|Java Class' child='Y'/>
+            <Node type='trs.js' icon='sys.floder' label='trs:tree.translate.javascript|Java Script' child='Y'/>
+            <Node type='trs.page' icon='sys.floder' label='trs:tree.translate.page|JSP Page' child='Y'/>
+            <Node type='trs.tree' icon='sys.floder' label='trs:tree.translate.tree|Tree Control' child='Y'/>
+            <Node type='trs.pty' icon='sys.floder' label='trs:tree.translate.property|Property' child='Y'/>
+            <Node type='trs.ds' icon='sys.floder' label='trs:tree.translate.dataset|Dataset' child='Y'/>
+            <Node type='trs.win' icon='sys.floder' label='trs:tree.translate.window|Window' child='Y'/>
+         </Node>
+      </Node>
+
+      <Node type='db' icon='db.mgr' label='Test' child='Y'/>
+
+      <Node type='db' icon='db.mgr' label='Question' child='Y'/>
+
+      <Node type='vw' icon='sys.app' label='trs:tree.monitor|Monitor' child='Y'>
+         <Node type='vw.mem' icon='sys.item' label='trs:tree.monitor.memory|Memory View' child='N'/>
+      </Node>
+
+      <Node type='help' icon='sys.help' label='trs:tree.help|Help'/>
+
+   </Nodes>
+</TreeView>

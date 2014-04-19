@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="ZEOkyeF9xK9kkv]aKDQirg" name="develop.progress.plan.operate.mail" label="上线计划操作" is_valid="Y" note="M#">
+  <Define _uuid="3USAblNu]H0WG17TWYCfnw" name="mail_content_type" label="邮件类型" is_valid="Y" note="M#" value="Html" />
+  <Variable _uuid="NESNApNgyaO5qwVOad[5nQ" name="user_full_label" label="申请人" is_valid="Y" note="M#" />
+  <Variable _uuid="vUaDVXHnbOnOEAFIA0Kghg" name="id" label="编号" is_valid="Y" note="M#" />
+  <Variable _uuid="qUyD3PZBhATzJOIay10zrw" name="project_label" label="项目名称" is_valid="Y" note="M#" />
+  <Variable _uuid="6kkqzikZPPua7Be44DZEqg" name="system_label" label="系统名称" is_valid="Y" note="M#" />
+  <Variable _uuid="4kzp7iWFTtAeHrIZ9Vn2lw" name="plan_date" label="上线时间" is_valid="Y" note="M#" />
+  <Variable _uuid="NklLqG]U3z1Un05iqEUjhw" name="content" label="上线内容" is_valid="Y" note="M#" />
+  <Variable _uuid="6EjNa5hboYaVYdRU6xAxhg" name="create_date" label="申请时间" is_valid="Y" note="M#" />
+  <Variable _uuid="AUyQFhEnoaREhFYNIVHAhA" name="examine_user_label" label="审核者" is_valid="Y" note="M#" />
+  <Variable _uuid="]UOFyKGohceT2nT4KAKVgA" name="describe" label="分工描述" is_valid="Y" note="M#" />
+  <Source _uuid="e02fD]6udw4etyRLwkR8tA" name="pass.head" label="通知-邮件标题" is_valid="Y" note="M#"><![CDATA[<jt:item source='$config.examin_user_label'/>您好,<jt:item source='$config.user_full_label'/>发布的上线计划已审核完毕，请在操作完成之后确认！]]></Source>
+  <Source _uuid="W0CicQKK5hH8Sqd2POfIng" name="pass.body" label="通知-邮件正文" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'><jt:item source='$config.examine_user_label'/>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><jt:item source='$config.user_full_label'/> 有新的上线计划等待您的操作确认。</TD></TR>
+      <TR><TD>审核地址为：<A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#FE5A00'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>项目名称</TD>
+      <TD width="30%" class='ItemData'><jt:item source='$config.project_label' /></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>系统名称</TD>
+      <TD class='ItemData'><jt:item source='$config.system_label' /></TD>
+   </TR>
+   <TR>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>上线日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.plan_date' type='date' format='YYYY-MM-DD'/></TD>
+      <TD width='1px' bgcolor='#0165CA'></TD><TD class='ItemHead' width='15%'>申请日期</TD>
+      <TD class='ItemData'><jt:timeSpan source='$config.create_date' type='date' format='YYYY-MM-DD'/></TD>
+   </TR>
+   </TABLE>
+   <B style='color:#014d99'>分工描述</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+       <TD width='1px' bgcolor='#0165CA'></TD><TD colspan="4" class='ItemData' width="800" nowrap><Pre><jt:item source='$config.describe'/></Pre></TD>
+   </TR>
+   </TABLE>
+   <B style='color:#014d99'>上线计划内容</B>：
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+   <TR>
+       <TD width='1px' bgcolor='#0165CA'></TD><TD colspan="4" class='ItemData' width="800" nowrap=true><Pre><jt:item source='$config.content'/></Pre></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Variable _uuid="WUWbnA8LC65fjxQfQzO]rA" name="redirect" label="地址" is_valid="Y" note="M#" />
+</Template>
+

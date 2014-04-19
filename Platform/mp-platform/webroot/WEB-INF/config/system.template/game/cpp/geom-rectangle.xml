@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template ads="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Source ads="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[
+//============================================================
+// <T><jt:item source='$label'/>矩形。</T>
+//============================================================
+struct MO_CM_DECLARE S<jt:item source='$type_name'/>Rectangle{
+public:
+   <jt:item source='$type'/> left;
+   <jt:item source='$type'/> top;
+   <jt:item source='$type'/> width;
+   <jt:item source='$type'/> height;
+public:
+   //------------------------------------------------------------
+   // <T>构造<jt:item source='$label'/>矩形。</T>
+   S<jt:item source='$type_name'/>Rectangle(){
+      left = <jt:item source='$default'/>;
+      top = <jt:item source='$default'/>;
+      width = <jt:item source='$default'/>;
+      height = <jt:item source='$default'/>;
+   }
+   //------------------------------------------------------------
+   // <T>构造<jt:item source='$label'/>矩形。</T>
+   S<jt:item source='$type_name'/>Rectangle(<jt:item source='$type'/> leftValue, <jt:item source='$type'/> topValue, <jt:item source='$type'/> widthValue, <jt:item source='$type'/> heightValue){
+      left = leftValue;
+      top = topValue;
+      width = widthValue;
+      height = heightValue;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>判断是否相等。</T>
+   MO_INLINE TBool operator==(const S<jt:item source='$type_name'/>Rectangle& value) const{
+      return (left == value.left) && (top == value.top) && (width == value.width) && (height == value.height);
+   }
+   //------------------------------------------------------------
+   // <T>判断是否不相等。</T>
+   MO_INLINE TBool operator!=(const S<jt:item source='$type_name'/>Rectangle& value) const{
+      return (left != value.left) || (top != value.top) || (width != value.width) || (height != value.height);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void operator=(const S<jt:item source='$type_name'/>Rectangle& value){
+      left = value.left;
+      top = value.top;
+      width = value.width;
+      height = value.height;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>相加处理。</T>
+   MO_INLINE void operator+=(const S<jt:item source='$type_name'/>Rectangle& value){
+      Add(value);
+   }
+   //------------------------------------------------------------
+   // <T>相减处理。</T>
+   MO_INLINE void operator-=(const S<jt:item source='$type_name'/>Rectangle& value){
+      Sub(value);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>判断内容是否为空。</T>
+   MO_INLINE TBool IsEmpty(){
+      return (left == <jt:item source='$default'/>) && (top == <jt:item source='$default'/>) && (width == <jt:item source='$default'/>) && (height == <jt:item source='$default'/>);
+   }
+   //------------------------------------------------------------
+   // <T>获得右边界。</T>
+   MO_INLINE <jt:item source='$type'/> Right() const{
+      if(width > 0){
+         return left + width - 1;
+      }else if(width < 0){
+         return left + width + 1;
+      }
+      return left;
+   }
+   //------------------------------------------------------------
+   // <T>获得下边界。</T>
+   MO_INLINE <jt:item source='$type'/> Bottom() const{
+      if(width > 0){
+         return top + height - 1;
+      }else if(width < 0){
+         return top + height + 1;
+      }
+      return top;
+   }
+   //------------------------------------------------------------
+   // <T>设置位置。</T>
+   MO_INLINE void SetLocation(<jt:item source='$type'/> leftValue, <jt:item source='$type'/> topValue){
+      left = leftValue;
+      top = topValue;
+   }
+   //------------------------------------------------------------
+   // <T>设置尺寸。</T>
+   MO_INLINE void SetSize(<jt:item source='$type'/> widthValue, <jt:item source='$type'/> heightValue){
+      width = widthValue;
+      height = heightValue;
+   }
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void Set(<jt:item source='$type'/> leftValue, <jt:item source='$type'/> topValue, <jt:item source='$type'/> widthValue, <jt:item source='$type'/> heightValue){
+      left = leftValue;
+      top = topValue;
+      width = widthValue;
+      height = heightValue;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>包含下边界，不包含上边界，测试是否在范围内。</T>
+   MO_INLINE TBool TestInRange(<jt:item source='$type'/> x, <jt:item source='$type'/> y) const{
+      if(x < left){
+         return EFalse;
+      }
+      if(x >= left + width){
+         return EFalse;
+      }
+      if(y < top){
+         return EFalse;
+      }
+      if(y >= top + height){
+         return EFalse;
+      }
+      return ETrue;
+   }
+   //------------------------------------------------------------
+   // <T>不包含下边界，不包含上边界，测试是否在范围内。</T>
+   MO_INLINE TBool TestInBetween(<jt:item source='$type'/> x, <jt:item source='$type'/> y) const{
+      if(x < left){
+         return EFalse;
+      }
+      if(x > left + width){
+         return EFalse;
+      }
+      if(y < top){
+         return EFalse;
+      }
+      if(y > top + height){
+         return EFalse;
+      }
+      return ETrue;
+   }
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void Assign(const S<jt:item source='$type_name'/>Rectangle& value){
+      left = value.left;
+      top = value.top;
+      width = value.width;
+      height = value.height;
+   }
+   //------------------------------------------------------------
+   // <T>相加处理。</T>
+   MO_INLINE void Add(const S<jt:item source='$type_name'/>Rectangle& value){
+      left += value.left;
+      top += value.top;
+      width += value.width;
+      height += value.height;
+   }
+   //------------------------------------------------------------
+   // <T>相减处理。</T>
+   MO_INLINE void Sub(const S<jt:item source='$type_name'/>Rectangle& value){
+      left -= value.left;
+      top -= value.top;
+      width -= value.width;
+      height -= value.height;
+   }
+   //------------------------------------------------------------
+   // <T>缩小处理。</T>
+   MO_INLINE void Shrink(<jt:item source='$type'/> leftValue, <jt:item source='$type'/> topValue, <jt:item source='$type'/> rightValue, <jt:item source='$type'/> bottomValue){
+      left += leftValue;
+      top += topValue;
+      width -= leftValue + rightValue;
+      height -= topValue + bottomValue;
+   }
+   //------------------------------------------------------------
+   // <T>扩展处理。</T>
+   MO_INLINE void Spread(<jt:item source='$type'/> leftValue, <jt:item source='$type'/> topValue, <jt:item source='$type'/> rightValue, <jt:item source='$type'/> bottomValue){
+      left -= leftValue;
+      top -= topValue;
+      width += leftValue + rightValue;
+      height += topValue + bottomValue;
+   }
+   //------------------------------------------------------------
+   // <T>重置处理。</T>
+   MO_INLINE void Reset(){
+      left = <jt:item source='$default'/>;
+      top = <jt:item source='$default'/>;
+      width = <jt:item source='$default'/>;
+      height = <jt:item source='$default'/>;
+   }
+public:
+<jt:equals source='$type_name' value='Int'>
+   TResult Serialize8(IDataOutput* pOutput);
+   TResult Unserialize8(IDataInput* pInput);
+   TResult Serialize16(IDataOutput* pOutput);
+   TResult Unserialize16(IDataInput* pInput);
+</jt:equals>
+<jt:equals source='$type_name' value='Float|Double'>
+</jt:equals>
+   TResult Serialize(IDataOutput* pOutput);
+   TResult Unserialize(IDataInput* pInput);
+};
+]]></Source>
+</Template>

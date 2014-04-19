@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebForm _uuid="xk04JYDNHH5d8jgnPkRSow" name="system.environment.EnvironmentForm" label="M#12cn19环境-环境集合表单" is_valid="Y" note="M#" disp_zoom="N" style_refer="system.environment.ControlStyle" edit_copy="N" edit_insert="Y" edit_update="Y">
+  <DataAction _uuid="iE[2om7bQHRBDbbr7dNbsQ" name="insertAction" label="M#12cn14新建处理" is_valid="Y" note="M#" service="insert@system.environment" />
+  <DataAction _uuid="nU2LwbUMn3GUqDEZgR8YiQ" name="updateAction" label="M#12cn14保存处理" is_valid="Y" note="M#" service="update@system.environment" />
+  <DataAction _uuid="]kYSN8M3llequhEUee1djQ" name="deleteAction" label="M#12cn14删除处理" is_valid="Y" note="M#" service="delete@system.environment" />
+  <DataAction _uuid="AEnIFoGhZ1tWETgMMtzSiA" name="sortAction" label="M#12cn14排序处理" is_valid="Y" note="M#" service="sort@system.environment" />
+  <ToolBar _uuid="I0WDWUPOHKNvozfKAf5fuw" name="toolBar" label="M#12cn13工具栏" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" width="100%" height="24">
+    <ToolButton _uuid="sU6GdY5vu9u2uJkaHj7iuw" name="saveButton" label="M#12cn12保存" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="tool.save" icon_disable="tool.saved" hotkey="F8" action="doSave()" />
+    <ToolButton _uuid="wUP1DtVVFHqHaLw169kJuA" name="deleteButton" label="M#12cn12删除" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_update="Y" disp_delete="Y" icon="tool.delete" icon_disable="tool.deleted" hotkey="F6" action="doDelete()" attributes="sel_type=collection" />
+    <ToolButtonSplit _uuid="V083GaxdZPNVS9XEFwYorw" name="splitButton" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="gE8OHmmNj5S]szhjveeysg" name="insertButton" label="M#12cn14新建属性" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#system.environment.propertyNew" hotkey="F5" page="insert@#/system/environment/Environment.wa" attributes="form_name=system.environment.PropertyForm\nsel_type=component\n_type=Property" />
+    <ToolButtonSplit _uuid="v0XfFlrKt1yqS]V36IeYkA" name="split2Button" label="M#12cn12分隔" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="0UgCrdm]QZHg6IfGXfo4lQ" name="helpButton" label="M#12cn12帮助" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#tools.help" />
+  </ToolBar>
+  <Select _uuid="QEucNDM87MXEBy86zMnlnA" name="type" label="M#12cn12类型" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_zoom="N" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" nowrap="Y" data_name="_TYPE" data_default="Environment" valid_insert="Y" valid_update="Y" valid_require="Y" edit_refer="system.environment.ComponentType" edit_check="N" />
+  <Check _uuid="LEHeZnrHgJMIxsvOztIAmQ" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_zoom="N" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" data_name="IS_VALID" data_default="Y" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" />
+  <Edit _uuid="XkKRenUS]zsuXyNzFLD6qg" name="name" label="M#12cn12名称" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_zoom="N" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" style_edit="editWide" data_name="NAME" edit_insert="Y" label_icon="#common.require" valid_insert="Y" valid_update="Y" valid_require="Y" />
+  <Edit _uuid="FUuopxZtpW18wrwM0[udjw" name="label" label="M#12cn12标签" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_zoom="N" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" style_edit="editWide" data_name="LABEL" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" />
+  <Memo _uuid="UkOIzYKqUY4G0pT7kqKGkw" name="note" label="M#12cn12注释" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_zoom="N" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" style_edit="memoMax" data_name="NOTE" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" edit_overflow="N" />
+</WebForm>
+

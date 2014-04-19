@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template sad="lErw72Y5]Ik8PV05n7SXmQ" name="helper.design.webform.hhk" is_valid="Y" note="M#">
+  <Source sad="qENKN1]7mVg9KwQW1WYvhA" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+<jt:loop source='$config' alias='child1'>
+ <jt:Equals source='$child1.type_' value='Defines'>
+    <LI><OBJECT type="text/sitemap">
+	  <param name="Name" value="defines">
+	  <param name="Local" value="src/help.c++/defines/DefineList.html">
+	  <PARAM NAME="ImageNumber" value="25">
+	</OBJECT>  
+	<jt:loop source='$child1' alias='define'>
+	  <LI><OBJECT type="text/sitemap">
+	    <param name="Name" value="defines.<jt:item source='$define.name'/>">
+	    <param name="Local" value="src/help.c++/defines/<jt:item source='$define.path'/>/<jt:item source='$define.file_name'/>.html">
+	    <PARAM NAME="ImageNumber" value="25">
+	  </OBJECT>  
+	</jt:loop>
+ </jt:Equals>
+ <jt:Equals source='$child1.type_' value='NameSpaces'>
+    <LI><OBJECT type="text/sitemap">
+	  <param name="Name" value="nameSpaces">
+	  <param name="Local" value="src/help.c++/namespaces/NameSpaceList.html">
+	  <PARAM NAME="ImageNumber" value="25">
+	</OBJECT>  
+	<jt:loop source='$child1' alias='namespace'>
+	  <LI><OBJECT type="text/sitemap">
+	    <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>">
+	    <param name="Local" value="src/help.c++/namespaces/<jt:item source='$namespace.path'/>/<jt:item source='$namespace.file_name'/>.html">
+	    <PARAM NAME="ImageNumber" value="25">
+	  </OBJECT>
+	  <jt:loop source='$namespace' alias='namespaceChild1'>
+	    <LI><OBJECT type="text/sitemap">
+	      <jt:Equals source='$namespaceChild1.type_' value='Typedefs'>
+	        <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.typedefs">
+	        <param name="Local" value="src/help.c++/namespaces/<jt:item source='$namespace.path'/>/TypedefList.html">
+	        <PARAM NAME="ImageNumber" value="25">
+	        <jt:loop source='$namespaceChild1' alias='typedef'>
+	          <LI><OBJECT type="text/sitemap">
+	            <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.typedefs.<jt:item source='$typedef.name'/>">
+	            <param name="Local" value="src/help.c++/namespaces/<jt:item source='$typedef.path'/>/<jt:item source='$typedef.file_name'/>.html">
+	            <PARAM NAME="ImageNumber" value="25">
+	        </jt:loop>
+	      </jt:Equals>
+	      <jt:Equals source='$namespaceChild1.type_' value='Variables'>
+	        <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.variables">
+	        <param name="Local" value="src/help.c++/namespaces/<jt:item source='$namespace.path'/>/VariableList.html">
+	        <PARAM NAME="ImageNumber" value="25">
+	        <jt:loop source='$namespaceChild1' alias='variable'>
+	          <LI><OBJECT type="text/sitemap">
+	            <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.variables.<jt:item source='$variable.name'/>">
+	            <param name="Local" value="src/help.c++/namespaces/<jt:item source='$variable.path'/>/<jt:item source='$variable.file_name'/>.html">
+	            <PARAM NAME="ImageNumber" value="25">
+	        </jt:loop>
+	      </jt:Equals>
+	      <jt:Equals source='$namespaceChild1.type_' value='Methods'>
+	        <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.methods">
+	        <param name="Local" value="src/help.c++/namespaces/<jt:item source='$namespace.path'/>/MethodList.html">
+	        <PARAM NAME="ImageNumber" value="25">
+	        <jt:loop source='$namespaceChild1' alias='method'>
+	          <LI><OBJECT type="text/sitemap">
+	            <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.methods.<jt:item source='$method.name'/>">
+	            <param name="Local" value="src/help.c++/namespaces/<jt:item source='$method.path'/>/<jt:item source='$method.file_name'/>.html">
+	            <PARAM NAME="ImageNumber" value="25">
+	        </jt:loop>
+	      </jt:Equals>
+	      <jt:Equals source='$namespaceChild1.type_' value='Classes'>
+	        <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.classes">
+	        <param name="Local" value="src/help.c++/namespaces/<jt:item source='$namespace.path'/>/ClassList.html">
+	        <PARAM NAME="ImageNumber" value="25">
+	        <jt:loop source='$namespaceChild1' alias='class'>
+	          <LI><OBJECT type="text/sitemap">
+	            <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.classes.<jt:item source='$class.name'/>">
+	            <param name="Local" value="src/help.c++/namespaces/<jt:item source='$class.path'/>/<jt:item source='$class.file_name'/>.html">
+	            <PARAM NAME="ImageNumber" value="25">
+	            <jt:loop source='$class' alias='classChild'>
+	              <jt:Equals source='$classChild.type_' value='Attributes'>
+	                <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.classes.<jt:item source='$class.name'/>.attributes">
+	                <param name="Local" value="src/help.c++/namespaces/<jt:item source='$classChild.path'/>/AttributeList.html">
+	                <PARAM NAME="ImageNumber" value="25">
+	                <jt:loop source='$classChild' alias='attribute'>
+	                  <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.classes.<jt:item source='$class.name'/>.attributes.<jt:item source='$attribute.name'/>">
+	                  <param name="Local" value="src/help.c++/namespaces/<jt:item source='$attribute.path'/>/<jt:item source='$attribute.file_name'/>.html">
+	                  <PARAM NAME="ImageNumber" value="25">
+	                </jt:loop>
+	              </jt:Equals>
+	              <jt:Equals source='$classChild.type_' value='Constructors'>
+	                <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.classes.<jt:item source='$class.name'/>.constructors">
+	                <param name="Local" value="src/help.c++/namespaces/<jt:item source='$classChild.path'/>/ConstructorList.html">
+	                <PARAM NAME="ImageNumber" value="25">
+	                <jt:loop source='$classChild' alias='constructor'>
+	                  <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.classes.<jt:item source='$class.name'/>.constructors.<jt:item source='$constructor.name'/>">
+	                  <param name="Local" value="src/help.c++/namespaces/<jt:item source='$constructor.path'/>/<jt:item source='$constructor.file_name'/>.html">
+	                  <PARAM NAME="ImageNumber" value="25">
+	                  <jt:loop source='$constructor' alias='constructorChild'>
+	                    <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.classes.<jt:item source='$class.name'/>.constructors.<jt:item source='$constructor.name'/><jt:item source='$constructorChild.name'/>(<jt:item source='$constructor.type_'/>)">
+	                    <param name="Local" value="src/help.c++/namespaces/<jt:item source='$constructorChild.path'/>/<jt:item source='$constructorChild.file_name'/>.html">
+	                    <PARAM NAME="ImageNumber" value="25">
+	                  </jt:loop>
+	                </jt:loop>
+	              </jt:Equals>
+	              <jt:Equals source='$classChild.type_' value='Destructors'>
+	                <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.classes.<jt:item source='$class.name'/>.destructors">
+	                <param name="Local" value="src/help.c++/namespaces/<jt:item source='$classChild.path'/>/DestructorList.html">
+	                <PARAM NAME="ImageNumber" value="25">
+	                <jt:loop source='$classChild' alias='destructor'>
+	                  <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.classes.<jt:item source='$class.name'/>.destructors.<jt:item source='$destructor.name'/>">
+	                  <param name="Local" value="src/help.c++/namespaces/<jt:item source='$destructor.path'/>/<jt:item source='$destructor.file_name'/>.html">
+	                  <PARAM NAME="ImageNumber" value="25">
+	                  <jt:loop source='$destructor' alias='destructorChild'>
+	                    <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.classes.<jt:item source='$class.name'/>.destructors.<jt:item source='$destructor.name'/><jt:item source='$destructorChild.name'/>(<jt:item source='$destructorChild.type_'/>)">
+	                    <param name="Local" value="src/help.c++/namespaces/<jt:item source='$destructorChild.path'/>/<jt:item source='$destructorChild.file_name'/>.html">
+	                    <PARAM NAME="ImageNumber" value="25">
+	                  </jt:loop>
+	                </jt:loop>
+	              </jt:Equals>
+	              <jt:Equals source='$classChild.type_' value='Methods'>
+	                <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.classes.<jt:item source='$class.name'/>.methods">
+	                <param name="Local" value="src/help.c++/namespaces/<jt:item source='$classChild.path'/>/MethodList.html">
+	                <PARAM NAME="ImageNumber" value="25">
+	                <jt:loop source='$classChild' alias='method'>
+	                  <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.classes.<jt:item source='$class.name'/>.methods.<jt:item source='$method.name'/>">
+	                  <param name="Local" value="src/help.c++/namespaces/<jt:item source='$method.path'/>/<jt:item source='$method.file_name'/>.html">
+	                  <PARAM NAME="ImageNumber" value="25">
+	                  <jt:loop source='$destructor' alias='methodChild'>
+	                    <param name="Name" value="nameSpaces.<jt:item source='$namespace.name'/>.classes.<jt:item source='$class.name'/>.methods.<jt:item source='$method.name'/><jt:item source='$methodChild.name'/>(<jt:item source='$methodChild.type_'/>)">
+	                    <param name="Local" value="src/help.c++/namespaces/<jt:item source='$method.path'/>/<jt:item source='$method.file_name'/>.html">
+	                    <PARAM NAME="ImageNumber" value="25">
+	                  </jt:loop>
+	                </jt:loop>
+	              </jt:Equals>
+	            </jt:loop>
+	         </jt:loop>
+	      </jt:Equals>
+	    </OBJECT>  
+	  </jt:loop>  
+	</jt:loop>
+ </jt:Equals>
+</jt:loop>
+</UL>
+</BODY></HTML>]]></Source>
+</Template>
+

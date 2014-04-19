@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="FUIXCdQaWjq[lXkCzdnWvw" _type="Persistence" name="eng-persistence" label="M#12cn15持久化对象" is_valid="Y" note="M#" template="xmlobject" source="${home.source.eng}">
+  <Interface _uuid="gkdBEiCDPVFQKl3T1BWqug" _type="Interface" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.eng.persistence.common.XObjectFace">
+    <Attribute _uuid="IUGLz3t5UhaZik]e2kUvgw" _type="Attribute" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="M01EP7DKchTkJJ6r]Dofrg" _type="Attribute" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+    <Attribute _uuid="J0]yVx0mcYXf3e92iSVMjg" _type="Attribute" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" />
+    <Attribute _uuid="9kzdeWmjHu4m587H0]7hiw" _type="Attribute" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#12jp12注釈" type="MultiString" is_store="Y" is_config="Y" />
+    <Attribute _uuid="XEKQqOoKd8]BYH8lbe0smQ" _type="Attribute" name="attributes" label="M#12cn14附加属性" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+  </Interface>
+  <Component _uuid="qkK7Ln0Nvim2HCLTy]txig" _type="Component" name="Component" label="M#12cn12组件" is_valid="Y" note="M#" class_name="org.mo.eng.persistence.common.XComponent" base_name="org.mo.eng.persistence.base.XBaseComponent" inherits="IObject">
+    <Attribute _uuid="E0cA]lSVTj9wLU672LimoQ" _type="Attribute" name="class_name" label="M#12cn13类名称" is_valid="Y" note="M#12jp14クラス名" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="s0oJHdWYy]9AMBzFbTsdpg" _type="Attribute" name="base_name" label="M#12cn14基类名称" is_valid="Y" note="M#12jp16継承クラス名" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="S0b6M8RSF9uI0OwyiIL8uw" _type="Attribute" name="inherits" label="M#12cn14继承接口" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="kU8gwJkqdUvuhp0wDK80vw" _type="Attribute" name="source" label="M#12cn14代码位置" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+  </Component>
+  <Component _uuid="tkovIsSsVuqybFVKQW6Thg" _type="Component" name="Attribute" label="M#12cn12属性" is_valid="Y" note="M#12jp12属性" class_name="org.mo.eng.persistence.common.XAttribute" base_name="org.mo.eng.persistence.base.XBaseAttribute" inherits="IObject">
+    <Attribute _uuid="AUI8ukf16lE]7X03a99AgQ" _type="Attribute" name="type" label="M#12cn12类型" is_valid="Y" note="M#12jp13タイプ" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="KEl5sw0DZFtCrgBdmNFEhw" _type="Attribute" name="is_store" label="M#12cn13可存储" is_valid="Y" note="M#12jp12全部" type="Boolean" is_store="Y" is_config="Y" />
+    <Attribute _uuid="IkksRy0PnEqPHBEeRqF[jw" _type="Attribute" name="is_config" label="M#12cn13可配置" is_valid="Y" note="M#12jp12簡単" type="Boolean" is_store="Y" is_config="Y" />
+    <Attribute _uuid="ykRh47LyGJwe]y93gYZfuw" _type="Attribute" name="is_abstract" label="M#12cn13虚属性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" />
+    <Attribute _uuid="lk5ziy4oGWQxRcFAUbUSgw" _type="Attribute" name="is_default" label="M#12cn13可默认" is_valid="Y" note="M#12cn213可以从相同对象中获取默认值" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="6UlGFIm8RHeyvMk35h0esQ" _type="Attribute" name="data_default" label="M#12cn13默认值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+  </Component>
+  <Component _uuid="j0E]5wG2X]kXn2vqCmLJoQ" _type="Component" name="Persistence" label="M#12cn15持久化集合" is_valid="Y" note="M#" class_name="org.mo.eng.persistence.common.XPersistence" base_name="org.mo.eng.persistence.base.XBasePersistence" inherits="IObject">
+    <Attribute _uuid="tkuSSkrGg]Ti2qLrHg4dlQ" _type="Attribute" name="template" label="M#12cn14代码模板" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+    <Attribute _uuid="6kONZHpijU5jC7jOygSXiw" _type="Attribute" name="source" label="M#12cn14代码位置" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+  </Component>
+  <Component _uuid="DEJS149lDRrSftOAsJ]iow" _type="Component" name="Interface" label="M#12cn12接口" is_valid="Y" note="M#" class_name="org.mo.eng.persistence.common.XInterface" base_name="org.mo.eng.persistence.base.XBaseInterface" inherits="IObject">
+    <Attribute _uuid="Yk9QHb5wJ7fXYTe5tQIWvQ" _type="Attribute" name="class_name" label="M#12cn13类名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="IUq8VkTrghYhrz5zs8a3gw" _type="Attribute" name="inherits" label="M#12cn14继承接口" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" />
+  </Component>
+</Persistence>
+

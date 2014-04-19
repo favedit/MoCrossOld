@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="1f9c9196-3582-4d0a-9985-569905551ee9" name="database.statistics" label="M#12cn16数据统计定义" is_valid="Y" note="M#" template="xmlobject" source="${export.logic.data.source}">
+   <Interface _uuid="f7bb7299-8756-46c7-9429-07b52dcd3fb5" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#" class_name="org.mo.data.statistics.common.XObjectFace">
+      <Attribute _uuid="45a4cb59-2165-4ff0-aa8a-47b651ea7a01" name="code" label="M#12cn12代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="57a57fd8-49c4-45dd-a6c4-d1341fde3b18" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" />
+      <Attribute _uuid="b7af44be-744b-4c85-970d-4efe0f5d498e" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+      <Attribute _uuid="be54761e-0807-408d-84e0-104f41659619" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" />
+      <Attribute _uuid="ad62a8cf-dd28-44ae-aca0-5034280d9143" name="note" label="M#12cn12注释" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+   </Interface>
+   <Component _uuid="f7ee6bfe-da1c-4048-b4ee-dbb7381ba754" name="Statistics" label="M#12cn13统计器" is_valid="Y" note="M#" class_name="org.mo.data.statistics.common.XStatistics" base_name="org.mo.data.statistics.base.XBaseStatistics" inherits="IObject">
+      <Attribute _uuid="ac8ca5b4-9f12-4fa8-9268-0997a7f3bf33" name="domain_connection_name" label="M#12cn16主域链接名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="aefad693-4fe4-4c0c-b425-e7373c9d051e" name="analysis_connection_name" label="M#12cn16分析链接名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="7e57e662-7cd8-41c7-8591-03f01c01e529" name="data_connection_name" label="M#12cn16数据链接名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="cd5fe99c-8c14-432c-9c50-e137c9f02708" name="parameters" label="M#12cn14参数集合" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="cf44d94a-df46-49a2-891f-21ae1c39b445" name="Logic" label="M#12cn14逻辑处理" is_valid="Y" note="M#" class_name="org.mo.data.statistics.common.XLogic" base_name="org.mo.data.statistics.base.XBaseLogic" inherits="IObject">
+      <Attribute _uuid="9db873be-222d-414c-ace6-29e1692639ac" name="invoke_name" label="M#12cn14调起名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+</Persistence>

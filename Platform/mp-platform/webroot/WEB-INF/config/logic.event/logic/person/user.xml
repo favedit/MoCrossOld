@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="2UptpAXmmQkxRXb5zigkjg" name="logic.person.user" label="M#12cn14人事管理" note="M#" is_valid="Y">
+  <GroupConfig _uuid="oUI5imt6wzx5u6mLjxmygw" name="smtp_host" label="M#12cn15邮件服务器" note="M#" is_valid="Y" data_value="${logic.mail|smtp_host}" />
+  <GroupConfig _uuid="J0y734V9H7iBV]SoGpxAkw" name="smtp_port" label="M#12cn17邮件服务器端口" note="M#" is_valid="Y" data_value="${logic.mail|smtp_port}" />
+  <GroupConfig _uuid="LE7K81rNjDi[GxRWWam9hQ" name="smtp_user" label="M#12cn14邮件帐户" note="M#" is_valid="Y" data_value="${logic.mail|smtp_user}" />
+  <GroupConfig _uuid="RUvdpLcaxLCDgJlfjqT2rw" name="smtp_password" label="M#12cn16邮件帐户密码" note="M#" is_valid="Y" data_value="${logic.mail|smtp_password}" />
+  <GroupConfig _uuid="Zk0V]Gg84NlpBcsxpKOHhg" name="smtp_authentic" label="M#12cn14邮件认证" note="M#" is_valid="Y" data_value="${logic.mail|smtp_authentic}" />
+  <GroupConfig _uuid="Ik9gV3ANsEoZV9EnWpVggw" name="from_user" label="M#12cn13发送者" note="M#" is_valid="Y" data_value="${logic.mail|from_user}" />
+  <Type _uuid="EUrasVN]NteMI4b85a7WgQ" name="birthday.person.remind" label="M#12cn210生日个人提醒邮件通知" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="7keQWZPgKD]8m87brrbwgA" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="birthday.head@logic.person.user.company.birthday.person.mail" />
+    <TypeConfig _uuid="4khnqNiNvYA2m[XxaPAxuA" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="birthday.body@logic.person.user.company.birthday.person.mail" />
+  </Type>
+  <Type _uuid="aEwFguR7xZEFCxhLZHG5sg" name="new.person.using.eUIS.help" label="M#12cn214新人入职使用eUIS系统帮助" note="M#12cn244logic.person.user.new.person.using.eUIS.help" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="fE9ecITx88LIy7aYiRsIpg" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="head@logic.person.user.company.new.person.using.eUIS.help" />
+    <TypeConfig _uuid="1kXv8I9i6wd3vwjJCqJplw" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="body@logic.person.user.company.new.person.using.eUIS.help" />
+  </Type>
+  <Type _uuid="ak[61DcxPAcIjr8pVREMmg" name="birthday.superior.remind" label="M#12cn210生日上级提醒邮件通知" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="AEmECnFHj5tDiPor2o5Org" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="birthday.head@logic.person.user.company.birthday.superior.mail" />
+    <TypeConfig _uuid="8ErB2Uk[gbGS6sZFjiN0qA" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="birthday.body@logic.person.user.company.birthday.superior.mail" />
+  </Type>
+  <Type _uuid="0UlPjDFwKz6p[7B]jlA6mQ" name="formal.person.remind" label="M#12cn210转正个人提醒邮件通知" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="jE3Frruvvbiqqo4ESAu[pQ" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="birthday.head@logic.person.user.company.formal.person.mail" />
+    <TypeConfig _uuid="eEBe2TuajQn7gSnqXdiYqQ" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="birthday.body@logic.person.user.company.formal.person.mail" />
+  </Type>
+  <Type _uuid="4UKbC5qqtnwiR5aHkP6okA" name="formal.superior.remind" label="M#12cn210转正上级提醒邮件通知" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="ek3KQVUJixlqdGhMZnLkjQ" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="birthday.head@logic.person.user.company.formal.superior.mail" />
+    <TypeConfig _uuid="C0T6n9du8VzJ5UVERf7VqQ" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="birthday.body@logic.person.user.company.formal.superior.mail" />
+  </Type>
+  <Type _uuid="UkPnOe]wn3vn[D8zigD1pQ" name="leave.superior.remind" label="M#12cn210离职上级提醒邮件通知" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="K0Q16]go]7[yA9fobSWMpw" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="birthday.head@logic.person.user.company.leave.superior.mail" />
+    <TypeConfig _uuid="N0DebHezWX9Zw0uqjuFvsg" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="birthday.body@logic.person.user.company.leave.superior.mail" />
+  </Type>
+  <Type _uuid="bEtjX]ePStuIXjNlsW50lA" name="formal.deploy" label="M#12cn16用户转正部署" note="M#12cn214logic_\nparams_" is_valid="Y" process_cd="P" process_invoke="PM_USER_COMPANY_DI.Do_Deploy_Formal" />
+  <Type _uuid="8EDniaFR7YV1UDvCWl9RgA" name="birthday.remind.deploy" label="M#12cn16生日个人提醒" note="M#12cn214logic_\nparams_" is_valid="Y" process_cd="P" process_invoke="PM_USER_COMPANY_DI.Do_Deploy_Mail" />
+  <Type _uuid="70y4O881zWRzznBo6[n4mQ" name="birthday.superior.remind.deploy" label="M#12cn16生日上级提醒" note="M#12cn214logic_\nparams_" is_valid="Y" process_cd="P" process_invoke="PM_USER_COMPANY_DI.Do_Deploy_Mail_To_Superior" />
+  <Type _uuid="akKyayKNhu2[]WAsh9c9mg" name="formal.manager.remind.mail" label="M#12cn215提前给管理员发转正人员名单邮件" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="d0OWysPAkKvpdUJmIemUog" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="formal.head@logic.person.user.company.formal.manager.mail" />
+    <TypeConfig _uuid="xkMo02EzJIjvzLwhkFOxiQ" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="formal.body@logic.person.user.company.formal.manager.mail" />
+  </Type>
+  <Type _uuid="NUCA53yWgVXmsBD0iU99uw" name="formal.principal.remind.mail" label="M#12cn215提前给负责人发转正人员名单邮件" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="oELrQ9fKS3SoIcUio3]QsA" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="formal.head@logic.person.user.company.formal.superior.mail" />
+    <TypeConfig _uuid="VkTzf9OTSbiT4ioFME2EhQ" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="formal.body@logic.person.user.company.formal.superior.mail" />
+  </Type>
+  <Type _uuid="OkakMoBlVqiAuBDUxMRyrA" name="formal.remind" label="M#12cn213处理转正提醒邮件发给管理员" note="M#" is_valid="Y" process_cd="P" process_invoke="PM_USER_COMPANY_DI.Do_Formal_Remind" />
+  <Type _uuid="AE2Yew[b5ea62GcjDRsNvQ" name="birthday.manager.remind.mail" label="M#12cn211给管理员发生日提醒邮件" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="70UxAvA2lqLxX5mJ6IepiA" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="birthday.head@logic.person.user.company.birthday.manager.mail" />
+    <TypeConfig _uuid="o0ms[sHHpfQjTCKgXAdwvw" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="birthday.body@logic.person.user.company.birthday.manager.mail" />
+  </Type>
+  <Type _uuid="WUWdqaEYYgC06KkTcFUCpg" name="birthday.manager.remind" label="M#12cn213处理生日提醒邮件发给管理员" note="M#" is_valid="Y" process_cd="P" process_invoke="PM_USER_COMPANY_DI.Do_Manager_Birthday_Remind" />
+  <Type _uuid="KUWPOftb7Bo6Ovc[nz8Svw" name="contract.renewal.user.remaind" label="M#12cn211合同续签提醒（续签人）" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="LUMJ[SVFZodirGOzRshsmQ" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="contract.head@logic.person.user.company.contract.renewal.user.mail" />
+    <TypeConfig _uuid="5UsLVT56fCkM1TXAambYhA" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="contract.body@logic.person.user.company.contract.renewal.user.mail" />
+  </Type>
+  <Type _uuid="90Uz7sxU0JBAM5Ib3ZUdvA" name="contract.renewal.manager.remaind" label="M#12cn212合同续签提醒（部门经理）" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="0Ub[i8YLMZoqo[sZdOa]iw" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="contract.head@logic.person.user.company.contract.renewal.manager.mail" />
+    <TypeConfig _uuid="Mk6zCWUP1[yiW0nAp9HLtg" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="contract.body@logic.person.user.company.contract.renewal.manager.mail" />
+  </Type>
+  <Type _uuid="gEui[6xUEVnltrM1[5VrjA" name="contract.renewal.user.success.remaind" label="M#12cn213合同续签成功提醒（续签人）" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="mEO7]fcWQ4GPojx4zKoVuA" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="contract.head@logic.person.user.company.contract.renewal.user.success.mail" />
+    <TypeConfig _uuid="A0AzAADXb8ngkWxpE]iGsA" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="contract.body@logic.person.user.company.contract.renewal.user.success.mail" />
+  </Type>
+  <Type _uuid="20EOjRVs0M2J2asRjCZWvw" name="contract.renewal.manager.success.remaind" label="M#12cn214合同续签成功提醒（部门经理）" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="MEHs1gACJaqkm33nAt9Znw" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="contract.head@logic.person.user.company.contract.renewal.manager.success.mail" />
+    <TypeConfig _uuid="U0Qava0g5MsmqzM8fObcvw" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="contract.body@logic.person.user.company.contract.renewal.manager.success.mail" />
+  </Type>
+  <Type _uuid="ckDSOLDDhq[F0A[e6a[Yvw" name="contract.renewal.user.fail.remaind" label="M#12cn213合同续签失败提醒（续签人）" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="n0JilSlpH1RDPPE5iGdDpw" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="contract.head@logic.person.user.company.contract.renewal.user.fail.mail" />
+    <TypeConfig _uuid="XUmsKjm8APRlWuGVI08]qQ" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="contract.body@logic.person.user.company.contract.renewal.user.fail.mail" />
+  </Type>
+  <Type _uuid="NEkEC8FfqFv82OVtWBAlgA" name="contract.renewal.manager.fail.remaind" label="M#12cn214合同续签失败提醒（部门经理）" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="3EOZa]]KAKMAfX00oBiBtw" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="contract.head@logic.person.user.company.contract.renewal.manager.fail.mail" />
+    <TypeConfig _uuid="]UBZwsdWYDZMGiIo[GHskA" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="contract.body@logic.person.user.company.contract.renewal.manager.fail.mail" />
+  </Type>
+  <Type _uuid="MED8zE2eNJOQjX5qK3rcsw" name="contract.renewal.week.remaind" label="M#12cn16合同续签周报" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="r0dlo0XqfR9RwwH2WrZMqg" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="contract.head@logic.person.user.company.contract.renewal.hr.mail" />
+    <TypeConfig _uuid="ZU[whKoCcH1F[36LgudVpw" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="contract.body@logic.person.user.company.contract.renewal.hr.mail" />
+  </Type>
+  <Type _uuid="KkIOhUX]4LF74VMqSYErkQ" name="birthday.manager.remind" label="M#12cn213处理生日提醒邮件发给管理员" note="M#" is_valid="Y" process_cd="P" process_invoke="PM_USER_COMPANY_DI.Do_Manager_Birthday_Remind" />
+  <Type _uuid="x0I[BgvZ4HVnR5XGToREig" name="contract.status" label="M#12cn16监视合同状态" note="M#" is_valid="Y" process_cd="P" process_invoke="PM_USER_COMPANY_CONTRACT_DI.Check_Contract_Status" />
+  <Type _uuid="iUnu0uf6KAgJEQTgCCHIng" name="contract.renewal.week" label="M#12cn13周提醒" note="M#" is_valid="Y" process_cd="P" process_invoke="PM_USER_COMPANY_CONTRACT_DI.Do_Remaind_Renewal" />
+</Group>
+

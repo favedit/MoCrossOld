@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="kUNHT8OgxRoqoXxoKgK9gw" name="logic.person.recruit" label="M#12cn14招聘系统" note="M#" is_valid="Y">
+  <Type _uuid="9086TiyERGfiAOLrF4F]kA" name="remind.every.morning" label="M#12cn211招聘管理-每日凌晨提醒" note="M#" is_valid="Y">
+    <TypeEvent _uuid="4UD5M9cONk7e4OrnHadZtA" name="remind.every.morning.event" label="M#12cn18每日凌晨提醒事件" note="M#" is_valid="Y" event_group_name="logic.person.recruit" event_type_name="remind.every.morning" priority_cd="M" />
+    <Schedule _uuid="oklSlA6qg[X[9MCqEWwYvA" name="remind.every.morning.schedule" label="M#12cn18每日凌晨提醒计划" note="M#" is_valid="Y" begin_date="20070101102353" end_date="20461231102406">
+      <Day _uuid="3kNDUGoSv[I5YhT9uonUsg" name="remind.every.morning.time" label="M#12cn18每日凌晨提醒时间" note="M#" is_valid="Y" execute_time="20070101020000" statue_cd="P" type_cd="D" interval="1" />
+    </Schedule>
+  </Type>
+  <Type _uuid="ikxcIzwc8UdFYx22iDyxqg" name="remind.every.midday" label="M#12cn211招聘管理-每日中午提醒" note="M#" is_valid="Y">
+    <TypeEvent _uuid="30Y5hZt7fOE2yJi8Ap87ng" name="remind.every.midday.event" label="M#12cn18每日中午提醒事件" note="M#" is_valid="Y" event_group_name="logic.person.recruit" event_type_name="remind.every.midday" priority_cd="M" />
+    <Schedule _uuid="jEtSLtaGU8AyS3vt7NEcrQ" name="remind.every.midday.schedule" label="M#12cn18每日中午提醒计划" note="M#" is_valid="Y" begin_date="20070101104415" end_date="20461231000000">
+      <Day _uuid="gk0YpvTB6namt5Ckx5wTnw" name="remind.every.midday.time" label="M#12cn18每日中午提醒时间" note="M#" is_valid="Y" execute_time="20070101123000" statue_cd="P" type_cd="D" interval="1" />
+    </Schedule>
+  </Type>
+  <Type _uuid="AUJsBF58LcbHvOjNEXcztQ" name="remaind.everyday" label="M#12cn213招聘管理-每天面试部门日报" note="M#" is_valid="Y">
+    <TypeEvent _uuid="9kNqsCHYdQ]7Wx]Dp7]4jg" name="remaind.everyday.mail" label="M#12cn14每日日报" note="M#" is_valid="Y" event_group_name="logic.person.recruit" event_type_name="remaind.interview.everyday" priority_cd="H" />
+    <Schedule _uuid="hk3bLrtwvsDxza6nOTQTjg" name="remaind.everyday" label="M#12cn12计划" note="M#" is_valid="Y" begin_date="20080805204634" end_date="22220805000000">
+      <Day _uuid="]0whGXWwDtmfCcL0hd5HrQ" name="1-perday" label="M#12cn14每天执行" note="M#" is_valid="Y" execute_time="20000101183000" statue_cd="P" type_cd="D" interval="1" />
+    </Schedule>
+  </Type>
+  <Type _uuid="pE0z4emvlshyYI9KrSQKgg" name="operate.remaind.noon" label="M#12cn212招聘管理-午间待操作提醒" note="M#" is_valid="Y">
+    <TypeEvent _uuid="4EuAl1T2wn6X1IViWzzApg" name="operate.remaind.noon" label="M#12cn17待操作午间提醒" note="M#" is_valid="Y" event_group_name="logic.person.recruit" event_type_name="operate.remaind" priority_cd="H" />
+    <Schedule _uuid="Z09C3qV9ZCC69IUCvsFxjA" name="operate.remaind.noon" label="M#12cn14午间提醒" note="M#" is_valid="Y" begin_date="20070825000000" end_date="22220825000000">
+      <Day _uuid="YEoQoFXUs9tD9PiFTsA2gQ" name="everydaynoon" label="M#12cn14每天午间" note="M#" is_valid="Y" execute_time="20000101133000" statue_cd="P" type_cd="D" interval="1" />
+    </Schedule>
+  </Type>
+  <Type _uuid="4kL761L2Wh9cxr9pORr2iw" name="operate.remaind.afternoon" label="M#12cn212招聘管理-下午待操作提醒" note="M#" is_valid="Y">
+    <TypeEvent _uuid="EEADRK9rWEU89G1R9qA9kA" name="operate.remaind.afternoon" label="M#12cn17待操作下午提醒" note="M#" is_valid="Y" event_group_name="logic.person.recruit" event_type_name="operate.remaind" priority_cd="H" />
+    <Schedule _uuid="TEJaeWwCkoZLZJu7cV3zng" name="operate.remaind.afternoon" label="M#12cn14下午提醒" note="M#" is_valid="Y" begin_date="20070825000000" end_date="22220825000000">
+      <Day _uuid="B04KOy[lHcmqasOGyKKyjw" name="everydayafternoon" label="M#12cn14每天下午" note="M#" is_valid="Y" execute_time="20000101170000" statue_cd="P" type_cd="D" interval="1" />
+    </Schedule>
+  </Type>
+  <Type _uuid="iUNWJf6q7W97S79nnCkahg" name="sync.sign.status" label="M#12cn211招聘管理-同步签到状态" note="M#" is_valid="Y">
+    <TypeEvent _uuid="rklwjaqhffAmmLIcQfKmpg" name="sync.sign.status" label="M#12cn17待操作下午提醒" note="M#" is_valid="Y" event_group_name="logic.person.recruit" event_type_name="sync.sign" priority_cd="H" />
+    <Schedule _uuid="80EzqSVRVja0ZA3aDmkBnA" name="sync.sign.status" label="M#12cn14下午提醒" note="M#" is_valid="Y" begin_date="20070825000000" end_date="22220825000000">
+      <Day _uuid="bkcx4So0bFbAorfnPYx]mw" name="everydayafternoon" label="M#12cn14每天下午" note="M#" is_valid="Y" execute_time="20000101193000" statue_cd="P" type_cd="D" interval="1" />
+    </Schedule>
+  </Type>
+  <Type _uuid="ikNF2cz[RWrA4[4CjN6Cvw" name="send.confirm.mail" label="M#12cn16发送确认邮件" note="M#" is_valid="Y">
+    <TypeEvent _uuid="fE[1]NjxRckKo5Apq3hhsg" name="send.confirm.remind" label="M#12cn16发送审核邮件" note="M#" is_valid="Y" event_group_name="logic.person.recruit" event_type_name="send.confirm.remind" priority_cd="H" />
+    <Schedule _uuid="uk5kgjs3UCmlMnFlbHKtpw" name="send.confirm.mail.week" label="M#12cn18每周发送确认邮件" note="M#" is_valid="Y" begin_date="20070926000000" end_date="22220926000000">
+      <Week _uuid="rkVs]Fn[R]WPbmfK6JG3qQ" name="1-perweek" label="M#12cn14每周发送" note="M#" is_valid="Y" execute_time="20000101100000" statue_cd="P" type_cd="E" interval="1" day_flag="0100000" />
+    </Schedule>
+  </Type>
+  <Type _uuid="t0NURIsIM0s22WVZR9HwlQ" name="send.entry.notify.mail" label="M#12cn213招聘管理-发送入职提醒邮件" note="M#" is_valid="Y">
+    <TypeEvent _uuid="cEX[BayC1nn5ZXUnIaekrQ" name="entry.notify.mail" label="M#12cn16发送通知邮件" note="M#" is_valid="Y" event_group_name="logic.person.recruit" event_type_name="entry.notify.mail" priority_cd="H" />
+    <Schedule _uuid="e0de[lLSOqYMVxgqfy0cig" name="send.entry.notify" label="M#12cn16发送入职邮件" note="M#" is_valid="Y" begin_date="20071101000000" end_date="22221101000000">
+      <Week _uuid="30i[qyEGKq]87PBwSE3Nkw" name="week_per_day" label="M#12cn16每周发送一次" note="M#" is_valid="Y" execute_time="20000101170000" statue_cd="P" type_cd="E" interval="1" day_flag="0100000" update_date="20101101194004" />
+    </Schedule>
+  </Type>
+  <Type _uuid="cUMa2MOWW0Y4TzFiAKUftA" name="send.entry.remaind.day" label="M#12cn213招聘管理-发送入职每日提醒" note="M#" is_valid="Y">
+    <TypeEvent _uuid="6UmAMmXSMJa0vJIxugOdlA" name="entry.remaind.day" label="M#12cn16发送每日提醒" note="M#" is_valid="Y" event_group_name="logic.person.recruit" event_type_name="entry.remaind.day" priority_cd="H" />
+    <Schedule _uuid="EUhQ3bnWJqLaa]MGqU4Viw" name="send.entry.remaind" label="M#12cn16发送入职邮件" note="M#" is_valid="Y" begin_date="20071101000000" end_date="22221101000000">
+      <Day _uuid="P0QIBdsetuiflNGGhZWmjw" name="1_per_day" label="M#12cn16每天发送一次" note="M#" is_valid="Y" execute_time="20000101030000" statue_cd="P" type_cd="D" interval="1" update_date="20101101194004" />
+    </Schedule>
+  </Type>
+</Group>
+

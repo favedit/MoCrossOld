@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="kUz7l5nphoLQmHJpI1pDlQ" name="database.logicunit.sqlTable" is_valid="Y" note="M#">
+<Source _uuid="UkXEuiB]uyUH4BuN2GOngg" is_valid="Y" note="M#">
+<![CDATA[CREATE TABLE <jt:item source='$dataset.data_name' format='field'/>_DS
+(
+<jt:loop source='$fields' alias='field'>
+   <jt:item source='$field.data_name' format='field' rpad='20'/> <jt:item source='$field.data_type'/><jt:notEquals source='$field.is_null' value='Y'> NOT NULL</jt:notEquals><jt:position type='last' source='$field' elseValue=','/>
+</jt:loop>
+)<jt:equals source='$dataset.config' value='logic'> TABLESPACE EUISLG</jt:equals>;
+<jt:loop source='$keys' alias='key'>
+<jt:notEquals source='$key.key_type' value='Foreign'>
+<jt:equals source='$key.key_type' value='Primary'>
+ALTER TABLE <jt:item source='$dataset.data_name' format='field'/>_DS
+   ADD CONSTRAINT <jt:empty source='$dataset.data_alias' value='$dataset.data_name' elseValue='$dataset.data_alias' format='Upper'/>_PK PRIMARY KEY ( OUID )<jt:equals source='$dataset.config' value='logic'> USING INDEX TABLESPACE EUISDX</jt:equals>;
+</jt:equals>
+<jt:equals source='$key.key_type' value='Unique'>
+<jt:notEquals source='$key.is_null' value='Y'>
+ALTER TABLE <jt:item source='$dataset.data_name' format='field'/>_DS
+   ADD CONSTRAINT <jt:empty source='$dataset.data_alias' value='$dataset.data_name' elseValue='$dataset.data_alias' format='Upper'/>_UK_<jt:empty source='$key.data_alias' value='$key.data_name' elseValue='$key.data_alias' format='Upper'/> UNIQUE ( <jt:item source='$key.unique_names' format='field'/> )<jt:equals source='$dataset.config' value='logic'> USING INDEX TABLESPACE EUISDX</jt:equals>;
+</jt:notEquals>
+</jt:equals>
+</jt:notEquals>
+</jt:loop>
+<jt:loop source='$indexs' alias='index_name'>
+<jt:notEmpty source='$index_name.index_name'>
+CREATE INDEX <jt:item source='$index_name.data_name' format='field'/>_DX_<jt:item source='$index_name.index_name' format='field'/> ON <jt:item source='$dataset.data_name' format='field'/>_DS(<jt:loop source='$index_name' alias='index'><jt:item source='$index.index_params' format='field'/><jt:position source='$index' type='last' elseValue=','/></jt:loop>)
+   TABLESPACE EUISDX STORAGE(INITIAL 64k MINEXTENTS 1 MAXEXTENTS UNLIMITED);
+</jt:notEmpty>
+</jt:loop>]]>
+</Source>
+</Template>

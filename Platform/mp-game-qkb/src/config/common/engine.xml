@@ -1,0 +1,414 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+   <!-- ============================================================ -->
+   <!-- ServerConsole: 服务器控制台                                  -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.platform.server.IServerConsole'
+         class = 'org.mo.platform.server.FServerConsole'
+         scope = 'global'>
+      <Property name='persistence'>platform.server</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${application.space}/platform.server</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+   
+   
+   <!-- ==================================================== -->
+   <!-- Engine.Template:模板控制台                           -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.eng.template.ITemplateConsole'
+         class = 'org.mo.eng.template.FTemplateConsole'
+         scope = 'global' >
+      <Property name='type'>xml</Property>
+      <Property name='config'>${application.space}/system.module/system.template.xml</Property>
+      <Property name='workpath'>${application.space}/system.template</Property>
+      <Initialize name='initializeConfig'/>
+   </Component>
+   
+   <!-- ============================================================ -->
+   <!-- Engine.List:列表控制台                                       -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.eng.list.IListConsole'
+         class = 'org.mo.eng.list.FListConsole'
+         scope = 'global'>
+      <Property name='persistence'>eng-list</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${application.space}/design.list</Property>
+      <Property name='cacheTimeout'>60000</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Engine.Persistence                                   -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.eng.persistence.IPersistenceConsole'
+         class = 'org.mo.eng.persistence.FPersistenceConsole'
+         scope = 'global' >
+      <Property name='templateFace'>design.persistence.xmlface</Property>
+      <Property name='templateObject'>design.persistence.xmlobject</Property>
+      <Property name='persistence'>eng-persistence</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${application.space}/design.persistence</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- Mail                                                         -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.eng.mail.IMailConsole'
+         class = 'org.mo.eng.mail.FMailConsole'
+         scope = 'global'>
+      <Property name='smtpHost'>smtp.ym.163.com</Property>
+      <Property name='smtpPort'>25</Property>
+      <Property name='smtpAuthentic'>1</Property>
+      <Property name='smtpPassport'>m@zqinet.com</Property>
+      <Property name='smtpPassword'>IamzqMonitor2013</Property>
+      <Initialize name='initialize'/>
+      <!-- ============================================================ -->
+      <!-- 游戏服务器监视 (10.207.139.17)                               -->
+      <!-- ============================================================ -->
+      <Initialize name='registerGroup'>
+         <Parameter>
+            <Component class = 'org.mo.eng.mail.FMailGroup'>
+               <Property name='name'>zqinet.monitor</Property>
+               <!--  毛春杨; 程逸飞; 吴敏; 李炎; 梁成武; 第五宏博 -->
+               <Property name='to'>
+                  maochunyang@zqinet.com;
+                  chengyifei@zqinet.com;
+                  396217089@qq.com;
+                  18629383792@wo.com.cn;
+                  liangchengwu@zqinet.com;
+                  32554918@qq.com;
+               </Property>
+               <Property name='cc'></Property>
+               <Property name='bcc'></Property>
+            </Component>
+         </Parameter>
+      </Initialize>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Global                                               -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.eng.global.IGlobalConsole'
+         class = 'org.mo.eng.global.FGlobalConsole'
+         scope = 'global' >
+      <Property name='workpath'>${application.temp}/eng.global</Property>
+      <Initialize name='initializeResume'/>
+      <Release name='releaseInterrupt'/>
+   </Component> -->
+
+   <!-- ==================================================== -->
+   <!-- Global                                               -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.eng.cache.ICacheConsole'
+         class = 'org.mo.eng.cache.FCacheConsole'
+         scope = 'global' >
+      <Property name='workpath'>${application.temp}/eng.cache</Property>
+      <Property name='interval'>1000</Property>
+      <Initialize name='initializeConfig'/>
+      <Initialize name='initializeMonitor'/>
+      <Release name='release'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- security                                             -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.eng.security.IPermissionConsole'
+         class = 'org.mo.eng.security.FPermissionConsole'
+         scope = 'global' >
+         <Property name='interval'>1000</Property>
+         <Property name='count'>1000</Property>
+   </Component>
+   
+   <!-- ==================================================== -->
+   <!-- Template                                             -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.eng.template.ITemplateConfigConsole'
+         class = 'org.mo.eng.template.FTemplateConfigConsole'
+         scope = 'global' >
+      <Property name='templateFace'>design.persistence.xmlface</Property>
+      <Property name='templateObject'>design.persistence.xmlobject</Property>
+      <Property name='persistence'>system.template</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${application.space}/system.template</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- ConfigConsole:设定控制台                                     -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.eng.config.IConfigConsole'
+         class = 'org.mo.eng.config.FConfigConsole'
+         scope = 'global' >
+      <Property name='persistence'>eng-config</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${application.space}/system.config</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+   
+   <!-- ============================================================ -->
+   <!-- ConfigConsole:设定控制台                                     -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.eng.help.IHelpConsole'
+         class = 'org.mo.eng.help.FHelpConsole'
+         scope = 'global' >
+      <Property name='persistence'>eng-help</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${application.space}/system.help</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- WebToolsConsole:设定控制台                                   -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.web.core.webtools.IWebToolsConsole'
+         class = 'org.mo.web.core.webtools.FWebToolsConsole'
+         scope = 'global' >
+      <Property name='persistence'>web-tools</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${application.space}/design.webtools</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Entity                                               -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.eng.entity.IEntityConsole'
+         class = 'org.mo.eng.entity.FEntityConsole'
+         scope = 'global' >
+      <Property name='CacheCount'>1000</Property>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Environment                                          -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.eng.culture.ICultureConsole'
+         class = 'org.mo.eng.culture.FCultureConsole'
+         scope = 'global' >
+      <Initialize name='initializeConfig'>
+         <Parameter type='config'>
+            <Charset>utf-8</Charset>
+            <Country>
+               <Language>cn</Language>
+            </Country>
+         </Parameter>
+      </Initialize>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Track                                                -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.eng.tracker.ITrackerConsole'
+         class = 'org.mo.eng.tracker.FTrackerConsole'
+         scope = 'global' >
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Transfer                                                -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.eng.transfer.ITransferConsole'
+         class = 'org.mo.eng.transfer.FTransferConsole'
+         scope = 'global' >
+      <Property name='persistence'>eng-transfer</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='storeInterval'>10000</Property>
+      <Property name='workpath'>${application.space}/eng.transfer</Property>
+      <Property name='pathTemporary'>${application.temp}/web.transfer</Property>
+      <Property name='pathUpload'>${application.temp}/web.transfer.upload</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+      <Release name='releaseInterrupt'/>
+   </Component>
+
+   <!-- ==================================================== -->
+   <!-- Translate Persistence                                -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.eng.translate.ITranslateConsole'
+         class = 'org.mo.eng.translate.FTranslateConsole'
+         scope = 'global' >
+      <Property name='templateFace'>design.persistence.xmlface</Property>
+      <Property name='templateObject'>design.persistence.xmlobject</Property>
+      <Property name='persistence'>eng-translate</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${application.space}/design.translate</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+   
+   <!-- ==================================================== -->
+   <!-- Validator                                            -->
+   <!-- ==================================================== -->
+   <Component
+         face  = 'org.mo.eng.validator.IValidatorConsole'
+         class = 'org.mo.eng.validator.FValidatorConsole'
+         scope = 'global' />
+
+
+   <!-- <Component
+         face  = 'org.mo.eng.property.IPropertyConsole'
+         class = 'org.mo.eng.property.FPropertyConsole'
+         scope = 'global' >
+      <Property name='Type'>system.property</Property>
+      <Property name='PreFix'>pty:</Property>
+      <Property name='Filter'>|</Property>
+      <Property name='AftFix'></Property>
+
+      <Initialize name='initializeRegister'/>
+   </Component>
+
+   <Component
+         face  = 'org.mo.eng.alias.IAliasConsole'
+         class = 'org.mo.eng.alias.FAliasConsole'
+         scope = 'global' >
+      <Property name='Type'>system.alias</Property>
+      <Property name='PreFix'>[</Property>
+      <Property name='Filter'>|</Property>
+      <Property name='AftFix'>]</Property>
+      <Initialize name='initializeRegister'/>
+   </Component>
+
+   <Component
+      face  = 'org.mo.eng.data.access.IDataAccessConsole'
+      class = 'org.mo.eng.data.access.FDataAccessConsole'
+      scope = 'global' />
+
+   <Component
+         face  = 'org.mo.eng.data.xml.IXmlDataConsole'
+         class = 'org.mo.eng.data.xml.FXmlDataConsole'
+         scope = 'global' >
+      <Property name='workpath'>${home.data}</Property>
+      <Property name='interval'>10</Property>
+
+      <Initialize name='initializeMonitor'/>
+   </Component>
+
+   <Component
+         face  = 'org.mo.eng.event.IEventConsole'
+         class = 'org.mo.eng.event.FEventConsole'
+         scope = 'global' >
+
+      <Property name='interval'>10</Property>
+      <Property name='priority'>4</Property>
+      <Property name='workpath'>${application.temp}/system.monitor</Property>
+
+      <Initialize name='initializeThread'/>
+   </Component>
+
+   <Component
+         face  = 'org.mo.eng.list.IListConvert'
+         scope = 'global' >
+      <Proxy
+            face = 'org.mo.eng.convert.IConvertConsole'
+            source = '${home.source.eng}' />
+   </Component> -->
+
+   <!-- ============================================================ -->
+   <!-- ListConsole:列表控制台                                       -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.data.chart.IChartConsole'
+         class = 'org.mo.data.chart.FChartConsole'
+         scope = 'global'>
+      <Property name='persistence'>design.chart</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${application.space}/design.chart</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+   <!-- ============================================================ -->
+   <!-- ListConsole:列表控制台                                       -->
+   <!--  P:persistence - 持久化定义名称                              -->
+   <!--  P:extension - 配置文件类型                                  -->
+   <!--  P:interval - 检查间隔                                       -->
+   <!--  P:workpath - 工作路径                                       -->
+   <!--  I:initializeMonitor - 初始化配置监视器                      -->
+   <!--  I:initializeConfig - 增加配置信息                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.eng.report.IReportConsole'
+         class = 'org.mo.eng.report.FReportConsole'
+         scope = 'global'>
+      <Property name='persistence'>design.report</Property>
+      <Property name='extension'>xml</Property>
+      <Property name='interval'>1000</Property>
+      <Property name='workpath'>${application.space}/design.report</Property>
+      <Property name='storepath'>${application.space}/logic.report</Property>
+      <Property name='temppath'>${home.web}/ars/tmp</Property>
+      <Initialize name='initializeMonitor'/>
+      <Initialize name='initializeConfig'/>
+   </Component>
+
+</Config>

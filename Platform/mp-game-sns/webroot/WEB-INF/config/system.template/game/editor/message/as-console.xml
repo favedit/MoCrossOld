@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template ads="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define ads="]E[MIOeUo79dXfu13d2wsA" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source ads="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T>游戏场景消息定义。</T>
+//
+// @enum
+//============================================================
+package mo.ms
+{
+   import mo.cm.stream.*;
+   import mo.cr.message.*;
+<jt:loop source='$config' alias='group' filter='$group.is_client_as=Y'>
+   import mo.ms.<jt:item source='$group.full_code' format='lower'/>.FNet<jt:item source='$group.full_code'/>Message;
+</jt:loop>
+
+   //============================================================
+   public class RNetMessage
+   {
+<jt:loop source='$config' alias='group' filter='$group.is_client_as=Y'>
+      // <jt:item source='$group.label'/>
+      protected static var _<jt:item source='$group.full_code' format='lower.first'/>:FNet<jt:item source='$group.full_code'/>Message;
+
+</jt:loop>
+
+<jt:loop source='$config' alias='group' filter='$group.is_client_as=Y'>
+      //============================================================
+      // <T>获得<jt:item source='$group.label'/>对象。</T>
+      //
+      // @return <jt:item source='$group.label'/>对象
+      //============================================================
+      public static function get <jt:item source='$group.full_code' format='lower.first'/>():FNet<jt:item source='$group.full_code'/>Message{
+         if(null == _<jt:item source='$group.full_code' format='lower.first'/>){
+            _<jt:item source='$group.full_code' format='lower.first'/> = new FNet<jt:item source='$group.full_code'/>Message();
+         }
+         return _<jt:item source='$group.full_code' format='lower.first'/>;
+      }
+
+</jt:loop>
+   }
+}
+]]></Source>
+</Template>

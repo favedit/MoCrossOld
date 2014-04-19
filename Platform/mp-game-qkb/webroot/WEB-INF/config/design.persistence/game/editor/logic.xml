@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="e8adaf3b-3a00-4ff6-a581-f7e0365d1e76" name="game.editor.logic" label="M#12cn14逻辑处理" is_valid="Y" note="M#12jp13リスト" template="xmlobject" source="${export.game.develop.editor}">
+   <Interface _uuid="b3edee3a-54e2-4d9a-9d9c-8631200c5bac" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.game.editor.core.logic.common.XObjectFace">
+      <Attribute _uuid="84b592f9-f23f-42e2-9b10-5d9ba89ceb75" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="1f53dc86-6247-4523-bb31-af3c9f65e56f" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="898984f4-301c-4b92-938c-976ae2bc3281" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="9cea8d5e-c2c9-4439-a960-3c917d829b78" name="note" label="M#12cn12注释" is_valid="Y" note="M#12jp12注釈" type="MultiString" is_store="Y" is_config="Y" is_default="N" />
+   </Interface>
+   <Component _uuid="c0795513-2559-4112-94fd-b8031fc7e52b" name="Method" label="M#12cn12函数" is_valid="Y" note="M#12jp12項目" class_name="org.mo.game.editor.core.logic.common.XMethod" base_name="org.mo.game.editor.core.logic.base.XBaseMethod" inherits="IObject">
+      <Attribute _uuid="36d7f635-2c2d-4120-b1d5-30cbba55a825" name="return_type" label="M#12cn14返回类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="066d9916-c67d-4a2e-9d0a-29898814f0fe" name="Logic" label="M#12cn12逻辑" is_valid="Y" note="M#12jp13リスト" class_name="org.mo.game.editor.core.logic.common.XLogic" base_name="org.mo.game.editor.core.logic.base.XBaseLogic" inherits="IObject" />
+   <Component _uuid="ed47d468-8209-4d19-8693-247fcba003e5" name="Parameter" label="M#12cn12参数" is_valid="Y" note="M#" class_name="org.mo.game.editor.core.logic.common.XParameter" base_name="org.mo.game.editor.core.logic.base.XBaseParameter" inherits="IObject">
+      <Attribute _uuid="b4690e39-9d4d-40be-a7ce-44e6a5d950ef" name="data_type" label="M#12cn14数据类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+</Persistence>

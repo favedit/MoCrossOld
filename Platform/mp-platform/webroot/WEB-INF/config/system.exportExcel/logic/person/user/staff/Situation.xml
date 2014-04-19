@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="RkdlNRIW5bixcojjjxq6mQ" name="logic.person.user.staff.Situation" label="职员管理-员工统计" is_valid="Y" fileName="reportUser[{YYYY-MM-DD}].xls" template="logic.person.user.staff.Situation">
+  <Sql _uuid="ek4S4dW6lplV6R7NCyh7nw" name="user_list" label="sql" is_valid="Y"><![CDATA[SELECT NEW_DATE.*,
+         PM_USER_COMPANY_DI.Get_Enter_Number(BEGIN_DATE, END_DATE)  ENTER_NUMBER,  
+         PM_USER_COMPANY_DI.Get_Probation_Number(BEGIN_DATE, END_DATE) PROBATION_NUMBER,
+         PM_USER_COMPANY_DI.Get_Leave_Number(BEGIN_DATE, END_DATE) LEAVE_NUMBER
+         FROM ( SELECT MOTHS_CD MOTHS_CD ,   
+             CP_DATE.Parse(TO_CHAR(SYSDATE, 'YYYY') || '-' || MOTHS_CD || '-01') BEGIN_DATE,
+             LAST_DAY(CP_DATE.Parse(TO_CHAR(SYSDATE, 'YYYY') || '-' || MOTHS_CD)) END_DATE
+         FROM (SELECT ROWNUM AS MOTHS_CD FROM DUAL CONNECT BY LEVEL <= 12 ) ) NEW_DATE]]></Sql>
+  <Sql _uuid="GUWMvaB8dRQPghdFGkIqmw" name="count_config" label="总统计信息" is_valid="Y"><![CDATA[SELECT NEW_USER.*,
+  (SELECT COUNT(*) FROM PM_USER 
+        WHERE PM_USER_COMPANY_DI.Is_Valid_Staff_In_Date(OUID, SYSDATE) = 'Y') ||'(人)' TOAL_PERSON_NUMBER
+  FROM (SELECT COUNT(DECODE(TYPE_CD, 'F', TYPE_CD)) ||'(人)' FORMAL_STAFF,
+        COUNT(DECODE(TYPE_CD, 'P', TYPE_CD)) ||'(人)' PROBATION_STAFF,
+        COUNT(DECODE(TYPE_CD, 'M', TYPE_CD)) ||'(人)' PARTTIME_STAFF,
+        COUNT(DECODE(TYPE_CD, 'R', TYPE_CD)) ||'(人)' PRACTISE_STAFF,
+        COUNT(DECODE(TYPE_CD, 'A', TYPE_CD)) ||'(人)' ADVISER_STAFF,
+        COUNT(DECODE(TYPE_CD, 'T', TYPE_CD)) ||'(人)' TEMPORARY_STAFF,
+        PM_USER_COMPANY_DI.Get_Y_Leave_Number(SYSDATE) ||'(人)' Y_LEAVE_NUMBER
+   FROM ( SELECT * FROM PM_USER_COMPANY 
+              WHERE USER_ID IN ( SELECT OUID 
+                  FROM PM_USER WHERE PM_USER_COMPANY_DI.Is_Exist_Staff(OUID) = 'Y' ) ) USER_COMPANY 
+       WHERE  TO_CHAR(USER_COMPANY.ENTRY_DATE, 'YYYY') = TO_CHAR(SYSDATE, 'YYYY')) NEW_USER]]></Sql>
+</ExportExcel>
+

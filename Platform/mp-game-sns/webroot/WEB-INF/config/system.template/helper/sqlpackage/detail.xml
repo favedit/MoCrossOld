@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="30OMkWmJ4CrwtVRnL[36hA" name="helper.sqlpackage.detail" is_valid="Y" note="M#">
+  <Source _uuid="3Euts1qsBqMvtgbdRXNsiw" is_valid="Y" note="M#"><![CDATA[<!-- HTML Begin ------------------------------------------->
+<HTML>
+<HEAD>
+<META http-equiv='Content-Type' content='text/html;charset=GB2312'>
+<TITLE>Dataset - <jt:item source='$config.label'/></TITLE>
+<LINK rel="stylesheet" href='<jt:item source='$path'/>/acs/control.css' type="text/css" media="all"/>
+<LINK rel="stylesheet" href='<jt:item source='$path'/>/acs/lang_cn.css' type="text/css" media="all"/>
+<LINK rel="stylesheet" href='<jt:item source='$path'/>/acs/site_cn.css' type="text/css" media="all"/>
+<SCRIPT language='javascript' src='<jt:item source='$path'/>/ajs/mobj.js'></SCRIPT>
+<SCRIPT>RGlobal.setContext('jp','../../..','');</SCRIPT>
+</HEAD>
+<BODY style='padding:0;margin:0'>
+<a name='top'/>
+<TABLE width='100%' height='100%' border='0' cellspacing='0' cellpadding='0'>
+<TR><TD valign='top'>
+
+<!-- Title Begin ------------------------------------------>
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='3'>
+<TR>
+	<TD width='220' bgcolor='#000000' align='center' valign='top' class='navTitle'>LIN<FONT color='#FF6A6A'>E</FONT>KONG <FONT color='#FF6A6A'>e</FONT>UIS HELP</TD>
+	<TD bgcolor='#3399FF' align='right' valign='bottom' class='navText'>
+		相关内容
+		<SELECT>
+			<OPTION value='1'>--------------------</OPTION>
+			<OPTION value='1'>数据集列表</OPTION>
+			<OPTION value='1'>JAVA脚本</OPTION>
+			<OPTION value='1'></OPTION>
+			<OPTION value='1'></OPTION>
+		</SELECT>
+	</TD>
+</TR>
+<TR height='1'>
+	<TD bgcolor='#FFFFFF'></TD>
+	<TD bgcolor='#FFFFFF'></TD>
+</TR>
+<TR height='1'>
+	<TD bgcolor='#000000'></TD>
+	<TD bgcolor='#3399FF'></TD>
+</TR>
+</TABLE>
+<!-- Title End -------------------------------------------->
+
+<jt:include source='helper.navBegin'/>
+<IMG src='<jt:item source='$path'/>/ars/icon/tools/home.gif'/> <span><a href="#">主页</a></span>
+<IMG src='<jt:item source='$path'/>/ars/icon/tools/next.gif'/> <span><jt:item source='$class.name'/></span>
+<jt:include source='helper.navEnd'/>
+<!-- Head Begin ------------------------------------------->
+<TABLE width='100%' border='0' cellspacing='8' cellpadding='0'>
+<TR>
+	<TD class='headTitle'><jt:item source='$class.name'/></TD>
+	<TD align='right' valign='bottom' class='headVersion'>version:1.0.0</TD>
+</TR>
+<TR><TD colspan='2'>
+	<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+		<TR height='1' bgcolor='#999999'><TD></TD></TR>
+		<TR height='1' bgcolor='#000000'><TD></TD></TR>
+	</TABLE>
+</TD></TR>
+</TABLE>
+<!-- Head End --------------------------------------------->
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='16'>
+	<TR>
+	<TD>
+		<!------------------------属性--------------------------------->
+		<jt:equals source='$class.has_properties' value='Y'>
+		<span><B>属性列表</B></span>
+		<jt:define source='$class#Properties' alias='properties'/>
+		<TABLE width='100%' bgcolor='#cccccc' border='0' cellspacing='1' cellpadding='2'>
+		<TR bgcolor='#dddddd'>
+		<TD width='20%'>属性</TD>
+		<TD width='20%'>类型</TD>
+		<TD width='20%'>默认值</TD>
+		<TD width='60%'>描述信息</TD>
+		</TR>
+		<jt:loop source='$properties' alias='param'>
+		<TR bgcolor='#F8F8F8'>
+		<TD>
+		<IMG src='../../../ars/icon/helper/javascript/property.gif' border='0' align='absmiddle'>
+		<a href='../property/<jt:item source='$class.name'/>_<jt:item source='$param.name'/>.html'><jt:item source='$param.name'/></a>
+		</TD>
+		<TD><jt:item source='$param.type'/></TD>
+		<TD><jt:item source='$param.value'/></TD>
+		<TD><jt:item source='$param.description'/></TD>
+		</TR>
+		</jt:loop>
+		</TABLE>
+		<BR>
+		</jt:equals>
+		<!------------------------函数-------------------------------->
+		<jt:define source='$class#Methods' alias='methods'/>
+		<jt:equals source='$methods.has_functions' value='Y'>
+		<span><B>函数列表</B></span>
+		<TABLE width='100%' bgcolor='#cccccc' border='0' cellspacing='1' cellpadding='2'>
+		<TR bgcolor='#dddddd'>
+		<TD width='20%'>函数</TD>	
+		<TD>描述信息</TD>
+		</TR>
+		<jt:loop source='$methods' alias='function'>
+		<jt:equals source='$function:name' value='Function'>
+		<TR bgcolor='#F8F8F8'>
+		<TD>
+		<A href='#<jt:item source='$function.id'/>'><IMG src='../../../ars/icon/helper/javascript/method.gif' border='0' align='absmiddle'></A> 
+		<A href='../function/<jt:item source='$class.name'/>_<jt:item source='$function.name'/><jt:item source='$function.name_id'/>.html'>
+		<jt:item source='$function.name'/></A>
+		</TD>
+		<TD>
+		<jt:equals source='$function.has_description' value='Y'>
+		<jt:item source='$function#Description:text' format='html'/>
+		</jt:equals>
+		</TD>
+		</TR>
+		</jt:equals>
+		</jt:loop>
+		</TABLE>
+		<BR>
+		</jt:equals>
+		<!------------------------过程-------------------------------->
+		<jt:define source='$class#Methods' alias='methods'/>
+		<jt:equals source='$methods.has_procedures' value='Y'>
+		<span><B>过程列表</B></span>
+		<TABLE width='100%' bgcolor='#cccccc' border='0' cellspacing='1' cellpadding='2'>
+		<TR bgcolor='#dddddd'>
+		<TD width='20%'>过程</TD>	
+		<TD>描述信息</TD>
+		</TR>
+		<jt:loop source='$methods' alias='procedure'>
+		<jt:equals source='$procedure:name' value='Procedure'>
+		<TR bgcolor='#F8F8F8'>
+		<TD>
+		<A href='#<jt:item source='$procedure.id'/>'><IMG src='../../../ars/icon/helper/javascript/method.gif' border='0' align='absmiddle'></A> 
+		<A href='../procedure/<jt:item source='$class.name'/>_<jt:item source='$procedure.name'/><jt:item source='$procedure.name_id'/>.html'><jt:item source='$procedure.name'/></A>
+		</TD>
+		<TD><jt:equals source='$procedure.has_description' value='Y'>
+		<jt:item source='$procedure#Description:text' format='html'/>
+		</jt:equals></TD>
+		</TR>
+		</jt:equals>
+		</jt:loop>
+		</TABLE>
+		<BR>
+		</jt:equals>
+		<!-----------------------函数---------------------------------->
+		<jt:define source='$class#Methods' alias='methods'/>
+		<jt:equals source='$methods.has_functions' value='Y'>
+		<span><B>函数详细说明</B></span>
+		<jt:loop source='$methods' alias='function'>
+		<jt:equals source='$function:name' value='Function'>
+		<BR>
+		<TABLE width='100%' border='0' cellspacing='0' cellpadding='2'>
+		<TR bgcolor='#FFFFFF'>
+			<TD bgcolor='#FFFFF0' style='border:1 solid #CCCCCC' class='listElementTitle'>
+				<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+					<TR>
+						<TD>
+						<IMG src='<jt:item source='$path'/>/ars/icon/tools/nl1.gif' align='absmiddle'>
+						<a name='<jt:item source='$function.id'/>'><jt:item source='$function.name'/></a> 
+						[<jt:equals source='$function.has_description' value='Y'><jt:item source='$function#Description:text'/></jt:equals>]
+						</TD>
+						<TD align='right'>
+						<A href='#top'><IMG src='../../../ars/icon/tools/top.gif' align='absmiddle'></A> 
+						<A href='../function/<jt:item source='$class.name'/>_<jt:item source='$function.name'/><jt:item source='$function.name_id'/>.html'>
+						<IMG src='../../../ars/icon/tools/detail.gif' align='absmiddle'></A>
+						</TD>
+					</TR>
+				</TABLE>
+			</TD>
+		</TR>
+		<TR bgcolor='#FFFFFF'><TD style='padding-left:40'>
+			<table width='100%' bgcolor='#FFFFFF' cellspacing='0' cellpadding='0'>
+				<tr>
+				<td style='padding-left:10;padding-top:5;padding-bottom:5'>
+					<jt:equals source='$function.has_parameters' value='Y'>
+					<span><B>参数</B></span>
+					<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+						<jt:define source='$function#Parameters' alias='parameters'/>
+						<jt:loop source='$parameters' alias='param'>
+						<TR>
+						<TD width='200' nowrap style='padding-left:20'>
+							<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+							<TR>
+								<TD>
+								<IMG src='../../../ars/icon/helper/javascript/parameter.gif' border='0' align='absmiddle'> 
+								<jt:item source='$param.name'/></TD>
+								<TD width='60'><jt:item source='$param.direction'/></TD>
+							</TR>
+							</TABLE>
+						</TD>
+						<TD width='260'>
+							<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+							<TR>
+								<TD width='80%'><jt:item source='$param.data_type'/>
+								<js:NotEmpty source='$param.java_type'> (<jt:item source='$param.java_type'/>)</js:NotEmpty>
+								</TD>
+								<TD width='20%'><jt:item source='$param.value'/></TD>
+							</TR>
+							</TABLE>
+						</TD>
+						<TD align='left'><jt:item source='$param.description'/></TD>
+						<TD>&nbsp;</TD>
+						</TR>
+						</jt:loop>
+					</table>
+					</jt:equals>
+					<jt:equals source='$function.has_see' value='Y'>
+					<BR>
+					<span><B>调用</B></span>
+					<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+						<jt:define source='$function#See' alias='see'/>
+						<TR>
+						<TD width='200' nowrap  style='padding-left:20'><jt:item source='$see.type'/></TD>
+						<TD width='260' align='left'>
+						<A href='../procedure/<jt:item source='$see.type'/>_<jt:item source='$see.method'/>.html'>
+						<jt:item source='$see.method'/></A></TD>
+						<TD>&nbsp;</TD>
+						</TR>
+					</table>
+					</jt:equals>
+					<jt:equals source='$function.has_return' value='Y'>
+					<BR>
+					<span><B>返回</B></span>
+					<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+						<jt:define source='$function#Return' alias='return'/>
+						<TR>
+						<TD width='200' nowrap style='padding-left:20'><jt:item source='$return.type'/></TD>
+						<TD width='260' align='left'><jt:item source='$return.java_type'/></TD>
+						<TD><jt:item source='$return.description'/></TD>
+						<TD>&nbsp;</TD>
+						</TR>
+					</TABLE>
+					</jt:equals>
+				</TD></TR>
+			</TABLE>
+		</TD></TR>
+		</TABLE>
+		</jt:equals>
+		</jt:loop>
+		</jt:equals>
+		<!-----------------------过程---------------------------------->
+		<jt:define source='$class#Methods' alias='methods'/>
+		<jt:equals source='$methods.has_procedures' value='Y'>
+		<BR>
+		<span><B>过程详细说明</B></span>
+		<jt:loop source='$methods' alias='procedure'>
+		<jt:equals source='$procedure:name' value='Procedure'>
+		<BR>
+		<TABLE width='100%' border='0' cellspacing='0' cellpadding='2'>
+		<TR bgcolor='#FFFFFF'>
+			<TD bgcolor='#FFFFF0' style='border:1 solid #CCCCCC' class='listElementTitle'>
+				<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+					<TR>
+						<TD>
+						<IMG src='<jt:item source='$path'/>/ars/icon/tools/nl1.gif' align='absmiddle'>
+						<a name='<jt:item source='$procedure.id'/>'><jt:item source='$procedure.name'/></a>
+						[<jt:equals source='$procedure.has_description' value='Y'><jt:item source='$procedure#Description:text'/></jt:equals>]
+						</TD>
+						<TD align='right'>
+						<A href='#top'><IMG src='../../../ars/icon/tools/top.gif' align='absmiddle'></A> 
+						<A href='../procedure/<jt:item source='$class.name'/>_<jt:item source='$procedure.name'/><jt:item source='$procedure.name_id'/>.html'>
+						<IMG src='../../../ars/icon/tools/detail.gif' align='absmiddle'></A>
+						</TD>
+					</TR>
+				</TABLE>
+			</TD>
+		</TR>
+		<TR bgcolor='#FFFFFF'><TD style='padding-left:40'>
+			<table width='100%' bgcolor='#FFFFFF' cellspacing='0' cellpadding='0'>
+				<tr>
+				<td style='padding-left:10;padding-top:5;padding-bottom:5'>
+					<jt:equals source='$procedure.has_parameters' value='Y'>
+					<span><B>参数</B></span>
+					<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+						<jt:define source='$procedure#Parameters' alias='parameters'/>
+						<jt:loop source='$parameters' alias='param'>
+						<TR>
+						<TD width='200' nowrap style='padding-left:20'>
+							<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+							<TR>
+								<TD>
+								<IMG src='../../../ars/icon/helper/javascript/parameter.gif' border='0' align='absmiddle'> 
+								<jt:item source='$param.name'/></TD>
+								<TD width='60'><jt:item source='$param.direction'/></TD>
+							</TR>
+						</TABLE>
+						</TD>
+						<TD width='260'>
+							<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+							<TR>
+								<TD width='80%'><jt:item source='$param.data_type'/>
+								<js:NotEmpty source='$param.java_type'> (<jt:item source='$param.java_type'/>)</js:NotEmpty>
+								</TD>
+								<TD width='20%'><jt:item source='$param.value'/></TD>
+							</TR>
+							</TABLE>
+						</TD>
+						<TD align='left'><jt:item source='$param.description'/></TD>
+						<TD>&nbsp;</TD>
+						</TR>
+						</jt:loop>
+					</table>
+					</jt:equals>
+				</TD></TR>
+			</TABLE>
+		</TD></TR>
+		</TABLE>
+		</jt:equals>
+		</jt:loop>
+		</jt:equals>
+	</TD>
+	</TR>
+</table>
+<!-- Body End --------------------------------------------->
+<jt:include source='helper.footer'/>]]></Source>
+</Template>
+

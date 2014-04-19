@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="NU4yuNcZvQMRObtSjfqOqg" name="game.template.battle.bag" label="M#12cn13战斗包" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_BATTLE_BAG" data_alias="GM_TPL_BTL_BAG" data_logic="GM_TPL_BATTLE_BAG_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="h0RWaREtVl5MBgFOAsp5sg" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="TkVB4ANC6aXl5sT7Mzfyug" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="R05[QRNcd6H0VDVqLPUclA" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="[UbSIzKZZskYQn9bmivwhA" name="label" label="M#12cn12标签" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldEnum _uuid="BEGqp6lzvQxKNZ2Rhhmmpw" name="can_be_catch_cd" label="M#12cn16是否可被捕捉" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CAN_BE_CATCH_CD" data_size="1" data_code="game.template.npc.catch" />
+  <FieldInteger _uuid="p0Nu58]G5Sf9o66ZM7FNug" name="battle_field_tid" label="M#12cn16战场模板标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="BATTLE_FIELD_TID" data_alias="BTL_FLD" data_refer="game.template.battle.field" />
+  <FieldInteger _uuid="pkuohZt4tWoi7YljdAcQnQ" name="matrix_tid" label="M#12cn14阵型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="MATRIX_TID" data_alias="MTX" data_refer="game.template.matrix" />
+  <FieldInteger _uuid="MEhPHW]SnzrVZrFc[mvMlA" name="battle_count_down" label="M#12cn14战斗记时" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BATTLE_COUNT_DOWN" />
+  <FieldBoolean _uuid="2kAo4wmrS51srHcD0UrglA" name="is_boss" label="M#12cn16是否boss" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_BOSS" />
+  <FieldString _uuid="ZETCzCdKyzoJmp]xvLAInQ" name="operatable_cd" label="M#12cn15可操作类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OPERATABLE_CD" data_size="200" />
+  <FieldFloat _uuid="t09JdM0kdvLvZXTg6jbPgg" name="basic_catch_success_rate" label="M#12cn17基础捕捉成功率" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BASIC_CATCH_SUCCESS_RATE" data_alias="BCS" />
+  <FieldTemplate _uuid="2kMC[0Xn4Mpb[gvwYZH[tQ" name="describe" label="M#12cn14描述模版" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

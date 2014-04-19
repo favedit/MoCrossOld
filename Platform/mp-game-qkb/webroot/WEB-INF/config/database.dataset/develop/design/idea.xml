@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="gk42fXT0xliPluQLPqSfvw" name="develop.design.idea" label="M#12cn14设计构想" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="DP_DESIGN_IDEA" data_alias="DP_DSN_IDA" data_logic="DP_DESIGN_IDEA_DI" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="BkuL[sLeArjHxdgau7AotA" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_refer="develop.design.idea.type" />
+  <FieldInteger _uuid="5k3qHKD5fqU2wP4tbmbRgw" name="project_id" label="M#12cn14项目标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_refer="develop.project" />
+  <FieldInteger _uuid="n04zHqdePXKvKOAZlTkLkg" name="system_id" label="M#12cn14系统标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SYSTEM_ID" />
+  <FieldInteger _uuid="J0WgctoLbvMGMXLRdZ8Xqg" name="module_id" label="M#12cn14模块标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MODULE_ID" data_refer="develop.describe.module" />
+  <FieldInteger _uuid="GkMgUYUL6lJwRpPFh4UwhA" name="environment_id" label="M#12cn14环境标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ENVIRONMENT_ID" data_refer="develop.describe.environment" />
+  <FieldInteger _uuid="rE7Ur5S0[1fmsqt00CBUig" name="version_id" label="M#12cn14版本标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="VERSION_ID" data_refer="develop.describe.version" />
+  <FieldBoolean _uuid="Nkk0v]lUDm1Y6WsqrhVXkA" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="'Y'" />
+  <FieldEnum _uuid="ZkZvsdc8Pi1GHjcHINDIjA" name="status_cd" label="M#12cn14状态类型" is_valid="Y" note="M#12cn219C:启动\nP:计划\nI:实现\nM:维护" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="develop.design.idea.status" />
+  <FieldString _uuid="iU6Mfrl2hnvh4zaByVAJnA" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="2EmQLW5pkqaFADbZTWSKgA" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="xUIAszM378zqsNbqE4bqrQ" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldContent _uuid="hk3WALgsXJ4ARKKFD9AKmQ" name="describe_note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DESCRIBE_NOTE" />
+  <FieldInteger _uuid="ak4vBabrChHOI8jG96ernQ" name="group_id" label="M#12cn14分组标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GROUP_ID" data_refer="develop.design.idea.group" />
+  <FieldDate _uuid="hE0Veh72xltyZ4BSsp5dow" name="begin_date" label="M#12cn14开始日期" is_valid="Y" note="M#12cn16项目开始时间" is_null="Y" is_store="Y" is_abstract="N" data_name="BEGIN_DATE" />
+  <FieldDate _uuid="M0sUPjfnEK81ODWYT[LNig" name="end_date" label="M#12cn14完成日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="END_DATE" />
+  <FieldInteger _uuid="VkLEyYrBVhtT5VzO8mc1hA" name="principal_user_id" label="M#12cn13负责人" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRINCIPAL_USER_ID" data_refer="person.user" />
+  <FieldInteger _uuid="wUTAgPfO]pscbrC]YWQakw" name="principal_role_id" label="M#12cn17负责人角色标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRINCIPAL_ROLE_ID" />
+  <FieldInteger _uuid="qEA3JYx7hvuz1CRhIdEqiw" name="receive_user_id" label="M#12cn15接收者标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RECEIVE_USER_ID" data_refer="person.user" />
+  <FieldEnum _uuid="]kDzUFwaxJSDolcSg[xVug" name="access_cd" label="M#12cn14公开类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ACCESS_CD" data_size="1" />
+  <FieldEnum _uuid="Y0uR97bV7BY9FU[sNhwRig" name="score_cd" label="M#12cn12评分" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SCORE_CD" data_size="1" />
+  <FieldBoolean _uuid="u07k9qcA7[0UUWAgXi8skA" name="is_replay" label="M#12cn14是否回复" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_REPLAY" data_size="1" />
+  <FieldContent _uuid="40IYeOJCNEVgm]F]nPjlgw" name="reply_note" label="M#12cn14回复内容" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REPLY_NOTE" />
+  <FieldContent _uuid="cU8x30xNSm[rWBJnBvQUtg" name="summary_note" label="M#12cn14总结信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SUMMARY_NOTE" />
+  <FieldTemplate _uuid="SUdKJtJHDFEgs0VZvMrjqQ" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="Z00cA8dB]GtzHTLyIozInA" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

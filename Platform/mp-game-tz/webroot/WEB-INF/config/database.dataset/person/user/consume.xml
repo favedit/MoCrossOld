@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="FUtSlYRkPvayU]JrTxZxuw" name="person.user.consume" label="M#12cn17用户-消费信息" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="PM_USER_CONSUME" data_alias="PM_USER_CNE" data_logic="PM_USER_CONSUME_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="4kaJN46]0HVni8P4WkXfsQ" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="USER_ID" data_refer="person.user" />
+  <FieldInteger _uuid="NE]3NRR0gfDGxtijQhmEkQ" name="account_id" label="M#12cn14帐户标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="ACCOUNT_ID" data_refer="person.user.account" />
+  <FieldEnum _uuid="V0bv9UgF48Vka9RjClnioA" name="consume_type" label="M#12cn14消费类型" is_valid="Y" note="M#12cn19订餐/订票等等消费" is_null="Y" is_store="Y" is_abstract="N" data_name="CONSUME_TYPE" data_size="1" data_code="person.user.consume.type" />
+  <FieldFloat _uuid="00WEeL65tS6CLxRrsSu6hg" name="advance_amount" label="M#12cn14应付金额" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ADVANCE_AMOUNT" />
+  <FieldFloat _uuid="WEl]HStXdpGnBJknI81kuA" name="settle_amount" label="M#12cn14实付金额" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SETTLE_AMOUNT" />
+  <FieldDate _uuid="L0WUEXEiikQoe1EipHWdmA" name="consume_date" label="M#12cn14消费日期" is_valid="Y" note="M#12cn16精确到时间点" is_null="Y" is_store="Y" is_abstract="N" data_name="CONSUME_DATE" data_default="SYSDATE" />
+  <FieldContent _uuid="qEF[sYaUHlwMmbrXp1NChQ" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="note" />
+</DataStore>
+

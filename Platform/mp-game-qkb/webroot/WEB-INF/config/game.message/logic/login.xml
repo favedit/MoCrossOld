@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="40EKyDTS]k[HarYhiQV8ow" name="logic.login" label="登录系统" is_valid="Y" note="M#" is_server="Y" is_server_cpp="N" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" source_name="MoMgLogicLogin" code="Llg" full_code="LogicLogin" display_index="42">
+  <Message _uuid="]UaiDAf7hptZqtJEKsghuw" name="connect.login.request" label="连接登录服务器" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ConnectLogin" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GPX" target_type="GLG" code_value="0x0001" code_fix="N">
+    <Item _uuid="NEVpKwsBRu7F7GkU7Am]jQ" name="sessionCd" label="会话类型" is_valid="Y" note="M#" type="Enum" type_name="EGmSession" is_collection="N" />
+  </Message>
+  <Message _uuid="RkO6Ayvc]pLUYABbt7bnsw" name="connect.login.response" label="连接登录服务器应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ConnectLogin" is_udp="N" message_type="Response" is_session="N" is_manage="N" source_type="GLG" target_type="GGT" code_value="0x0002" code_fix="N" />
+  <Message _uuid="E0JO7XyUazkze5xR0qTfqw" name="connect.proxy.request" label="连接代理服务器" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ConnectProxy" is_udp="N" message_type="Request" is_session="N" is_manage="N" source_type="GGT" target_type="GPX" code_value="0x0003" code_fix="N">
+    <Item _uuid="m0a6uunRYz2ec91CsEkxqQ" name="sessionCd" label="会话类型" is_valid="Y" note="M#" type="Enum" type_name="EGmSession" is_collection="N" />
+  </Message>
+  <Message _uuid="oUK0YvfcShV1]IoMZAtJoA" name="connect.proxy.response" label="连接代理服务器应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ConnectProxy" is_udp="N" message_type="Response" is_session="N" is_manage="N" source_type="GPX" target_type="GGT" code_value="0x0004" code_fix="N" />
+  <Message _uuid="]0T4scsF827RhnlZm]Nilw" name="connect.domain.request" label="连接主域服务器" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ConnectDomain" is_udp="N" message_type="Request" is_session="N" is_manage="N" source_type="GLG" target_type="GDM" code_value="0x0005" code_fix="N">
+    <Item _uuid="Y0xMAVwCusvaqhberXmVng" name="sessionCd" label="会话类型" is_valid="Y" note="M#" type="Enum" type_name="EGmSession" is_collection="N" />
+  </Message>
+  <Message _uuid="eUtHcMU8LMntyW7pQiu5iw" name="connect.domain.response" label="连接主域服务器应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ConnectDomain" is_udp="N" message_type="Response" is_session="N" is_manage="N" source_type="GDM" target_type="GLG" code_value="0x0006" code_fix="N" />
+  <Message _uuid="jUIhK]3apK54F6oB6yZIkQ" name="connect.scene.notify" label="连接场景服务器" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ConnectScene" is_udp="N" message_type="Notify" is_session="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0007" code_fix="N">
+    <Item _uuid="I0EFkejXFZOJhyNiKJrunw" name="sessionCd" label="会话类型" is_valid="Y" note="M#" type="Enum" type_name="EGmSession" is_collection="N" />
+  </Message>
+  <Message _uuid="FEcMe0YgTqTt2Dlh2BEVkQ" name="connect.battle.notify" label="连接战斗服务器" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ConnectBattle" is_udp="N" message_type="Notify" is_session="N" is_manage="N" source_type="GDM" target_type="GBT" code_value="0x0008" code_fix="N">
+    <Item _uuid="a0X6R2KpowkObY2WATOguw" name="sessionCd" label="会话类型" is_valid="Y" note="M#" type="Enum" type_name="EGmSession" is_collection="N" />
+  </Message>
+  <Message _uuid="TUJy89FM7FOOn6OfKlRdsw" name="connect.storage.notify" label="连接存储服务器" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ConnectStorage" is_udp="N" message_type="Notify" is_session="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0009" code_fix="N">
+    <Item _uuid="r0H2LMpB9eWAkD1Bd0YGoA" name="sessionCd" label="会话类型" is_valid="Y" note="M#" type="Enum" type_name="EGmSession" is_collection="N" />
+  </Message>
+  <Message _uuid="P0I5NEEkgLq0xAq[Rgycmw" name="connect.chat.notify" label="连接聊天服务器" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ConnectChat" is_udp="N" message_type="Notify" is_session="N" is_manage="N" source_type="GDM" target_type="GCT" code_value="0x000A" code_fix="N">
+    <Item _uuid="8UlQpMJEQUCIevNX5CCirQ" name="sessionCd" label="会话类型" is_valid="Y" note="M#" type="Enum" type_name="EGmSession" is_collection="N" />
+  </Message>
+  <Message _uuid="pEhY70sVZe0OVBckIPj5vw" name="disconnect.notify" label="断开通知" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Disconnect" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GGT" target_type="GLG" code_value="0x000B" code_fix="N" />
+  <Message _uuid="30GliDumMeQTO3Tc]D0pow" name="disconnect.domain.notify" label="客户断开主域通知" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DisconnectDomain" is_udp="N" message_type="Notify" is_session="Y" is_manage="N" source_type="GLG" target_type="GDM" code_value="0x000C" code_fix="N" />
+  <Message _uuid="9kj1seSeP9nlo3L7vHl8mA" name="disconnect.scene.notify" label="客户断开场景通知" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DisconnectScene" is_udp="N" message_type="Notify" is_session="Y" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x000D" code_fix="N" />
+  <Message _uuid="HkLwK3NMGZiGN62XJhz7sQ" name="disconnect.battle.notify" label="客户端开战斗通知" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DisconnectBattle" is_udp="N" message_type="Notify" is_session="Y" is_manage="N" source_type="GDM" target_type="GBT" code_value="0x000E" code_fix="N" />
+  <Message _uuid="S0j93M3]QMSyYj8vmm99pg" name="disconnect.storage.notify" label="客户断开存储服务器通知" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DisconnectStorage" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x000F" code_fix="N" />
+  <Message _uuid="tklQ[Ika88Lsrjl7HhbJmA" name="disconnect.chat.notify" label="客户端开聊天通知" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DisconnectChat" is_udp="N" message_type="Notify" is_session="Y" is_manage="N" source_type="GDM" target_type="GCT" code_value="0x0010" code_fix="N" />
+  <Message _uuid="bEgrCERhoaKsZ1wkkGJVlw" name="disconnect.proxy.notify" label="客户断开代理通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DisconnectProxy" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GPX" code_value="0x0011" code_fix="N" />
+  <Message _uuid="JEliN0ERXbtUxkU7CpQKlA" name="alive.proxy.notify" label="保活代理通知" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AliveProxy" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GGT" target_type="GPX" code_value="0x0012" code_fix="N" />
+  <Message _uuid="c0gs54CnK[GaN7GY5rKCmw" name="alive.domain.notify" label="玩家保活通知" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AliveDomain" is_udp="N" message_type="Notify" is_session="Y" is_manage="N" source_type="GPX" target_type="GDM" code_value="0x0013" code_fix="N" />
+  <Message _uuid="f0C9PCioztB8xHUezmWsow" name="alive.login.notify" label="玩家保活通知" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AliveLogin" is_udp="N" message_type="Notify" is_session="Y" is_manage="N" source_type="GPX" target_type="GLG" code_value="0x0014" code_fix="N" />
+  <Message _uuid="zE4wgqp7t0OLrv[HRhrbpw" name="alive.scene.notify" label="玩家保活通知" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AliveScene" is_udp="N" message_type="Notify" is_session="Y" is_manage="N" source_type="GPX" target_type="GSC" code_value="0x0015" code_fix="N" />
+  <Message _uuid="G0BZudZac2ZzRQa0dOmLsw" name="alive.battle.notify" label="玩家保活通知" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AliveBattle" is_udp="N" message_type="Notify" is_session="Y" is_manage="N" source_type="GPX" target_type="GBT" code_value="0x0016" code_fix="N" />
+  <Message _uuid="YE5gc2Hia[PMLQfk6KrpnA" name="alive.storage.notify" label="玩家保活通知" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AliveStorage" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GPX" target_type="GSR" code_value="0x0017" code_fix="N" />
+  <Message _uuid="xkeqWY9Hesb6J[2ZNenxgQ" name="alive.chat.notify" label="玩家保活通知" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AliveChat" is_udp="N" message_type="Notify" is_session="Y" is_manage="N" source_type="GPX" target_type="GCT" code_value="0x0018" code_fix="N" />
+  <Message _uuid="V0YAu6FhsCqBjdn5wU15gw" name="login.request" label="玩家登录请求" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="Login" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GLG" code_value="0x0019" code_fix="N">
+    <Item _uuid="wkK5bS[PYu[MJ6a2W0ACqw" name="passport" label="通行证" is_valid="Y" note="M#" type="String" type_cd="C" is_collection="N" data_size="80" />
+    <Item _uuid="8UUpzme3[C7]GsMMcWb4ug" name="password" label="密码" is_valid="Y" note="M#" type="String" type_cd="C" is_collection="N" data_size="80" />
+  </Message>
+  <Message _uuid="3U1RN5][m8Jx7NjO5FSBgw" name="login.response" label="玩家登录应答" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="Login" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="UNK" target_type="CLT" code_value="0x001A" code_fix="N">
+    <Enum _uuid="T0pQak6[gwhCo8[b3j[Yog" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="Vkmjszl9MxlfTM1uet]hvw" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="40rszHSmKcfU4xtoRRQNuw" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="TU3V0fJKSNqKNmVE[xudlA" name="statusCd" label="结果" is_valid="Y" note="M#" type="Enum" type_cd="C" type_name="EStatus" is_collection="N" />
+    <Item _uuid="eEM0uLsf4dJt7im32q9[mQ" name="result" label="登录结果" is_valid="Y" note="M#" type="Enum" type_name="EGmLoginResult" is_collection="N" />
+    <Item _uuid="v0z2wGTchtP12gb10fHcrg" name="label" label="名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="oEeXkDLTYPTbkdrB0MDJkg" name="titleResource" label="称号资源" is_valid="Y" note="M#" type="Object" type_name="SGsTitleResourse" is_collection="Y" data_size="5" />
+  </Message>
+  <Message _uuid="bU5zBi[4wre4PqPn0fyhoA" name="login.account.query.request" label="查询账户请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="LoginAccountQuery" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GLG" target_type="GSR" code_value="0x001B" code_fix="N">
+    <Enum _uuid="l0mgq8Z2osDnFe2BRoQ0vw" name="EType" label="类型" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="SEJ]PInpY6omYva2eI30qQ" name="Passport" label="通行证" is_valid="Y" note="M#" />
+      <Member _uuid="Ak0vcur[VYu9UkxmD9vNjA" name="AccountId" label="帐号" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="DUP[bA8Np8W4WZqq5C1ssA" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EType" is_collection="N" />
+    <Item _uuid="AkPPdZ1TtU1lU7Oo76GnuQ" name="passport" label="通行证" is_valid="Y" note="M#" type="String" is_collection="N" data_size="80" />
+    <Item _uuid="NULx9KM3fNjEBvfD4NQMrQ" name="accountId" label="账号编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="BEOWquUOcy1cTOWUtOepug" name="serverClosed" label="服务器关闭标志" is_valid="Y" note="M#" type="Bool" is_collection="N" />
+  </Message>
+  <Message _uuid="YEpKfRzzzergFAQFRAeMlw" name="login.account.query.response" label="查询账户应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="LoginAccountQuery" is_udp="N" message_type="Response" is_session="Y" is_manage="N" source_type="GSR" target_type="GLG" code_value="0x001C" code_fix="N">
+    <Enum _uuid="2E2ZXrpdjjQPmHITmSJxtA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="7kwP9[qGa6LkHfw7Dhjbmg" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="YUQ8rq5Z4Tmy2Sx0U9gAnQ" name="NoExists" label="不存在" is_valid="Y" note="M#" />
+      <Member _uuid="bUhlGVDjFQlkzBi5PJnrvA" name="Failure" label="失败" is_valid="Y" note="M#" />
+      <Member _uuid="K0XdxQIkA5zC3ox33R19hA" name="ServerClosed" label="服务器已关闭" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="FkysFC1zi]Uh7m03QbwBnA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="dUssU]Liw8vB9EqvmG5ZjA" name="account" label="账号信息" is_valid="Y" note="M#" is_server="N" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" type="Object" type_name="SGpAccount" is_collection="N" />
+    <Item _uuid="AUX]ZEHDos]ZZqPMNizhqw" name="globalId" label="全局ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="kU3UM04Sl5Be5Lycv5VNqA" name="login.ask.request" label="同帐号登录请求" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="LoginAsk" is_udp="N" message_type="Request" is_session="Y" is_manage="N" source_type="GLG" target_type="CLT" code_value="0x001D" code_fix="N" />
+  <Message _uuid="5UQ41TJ22zRJIElrz5ddnw" name="login.ask.response" label="同帐号登录应答" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="LoginAsk" is_udp="N" message_type="Response" is_session="Y" is_manage="N" source_type="CLT" target_type="GLG" code_value="0x001E" code_fix="N">
+    <Enum _uuid="FUyOLscSFA5E2H8L[G1PkQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="Lk0nVEBkO8sAOrjmKTBskw" name="Ok" label="确定" is_valid="Y" note="M#" />
+      <Member _uuid="fktH15rLtk4HcUsenSqVqQ" name="Cancel" label="取消" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="W0HR]H72iNpk9TDa7CjWuQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="hkrLmb849GS9GbEo[rSzig" name="login.proposed.notify" label="同帐号登录被踢出通知" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="LoginProposed" is_udp="N" message_type="Notify" is_session="Y" is_manage="N" source_type="GLG" target_type="CLT" code_value="0x001F" code_fix="N" />
+  <Message _uuid="20[uhsgYtmQkjq88gXM8lg" name="logout.request" label="玩家退出请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Logout" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GLG" code_value="0x0020" code_fix="N" />
+  <Message _uuid="pES2qTHnYW3KyObxCJlJsQ" name="logout.response" label="用户退出应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Logout" is_udp="N" message_type="Response" is_session="Y" is_manage="N" source_type="GLG" target_type="CLT" code_value="0x0021" code_fix="N">
+    <Enum _uuid="p0dRV4pMava[hjPvL0cSrQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="OUw5meEmjLMy0APMJUF2nA" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="RUfEvwwNkhTQ9zR7rPaHtA" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="fEIVK[H04aoaWUM]mGigiQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="2kV7OLLWWXzwM8wSkgVBig" name="logout.domain.request" label="登出主域服务器" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="LogoutDomain" is_udp="N" message_type="Request" is_session="Y" is_manage="N" source_type="GLG" target_type="GDM" code_value="0x0022" code_fix="N" />
+  <Message _uuid="OU13nWTfvzx6DGS5Zl8EiQ" name="logout.domain.response" label="登出主域应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="LogoutDomain" is_udp="N" message_type="Response" is_session="Y" is_manage="N" source_type="GDM" target_type="GLG" code_value="0x0023" code_fix="N">
+    <Enum _uuid="E0nX2L]5DzhhtSbqu8AboQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="D0Vb4vVNV]VagFzKnwwQiA" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="IUvzSe]S1a1r]L[8IC4oig" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="ak4iV5L7k7o1zocdkcg4hA" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="pk4oYk2MCl4SQineS5l[sA" name="logout.scene.request" label="退出场景请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="LogoutScene" is_udp="N" message_type="Request" is_session="Y" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0024" code_fix="N" />
+  <Message _uuid="ykiO9DaUwEtrduOdrwQfnQ" name="logout.scene.response" label="退出场景应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="LogoutScene" is_udp="N" message_type="Response" is_session="Y" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0025" code_fix="N">
+    <Enum _uuid="C0]FqHhaY1jnqNNQgZ4CpA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="FEVNk6mQ9EhTn6gvXv0fqg" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="oUC4zzSg37POLOMdNA2Ctw" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="w02XgWmtWbgSQdROk6]]jg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="M0ZwgWWWl8QBZAFjeO]xiQ" name="logout.battle.notify" label="登出战斗服务器通知" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="LogoutBattle" is_udp="N" message_type="Notify" is_session="Y" is_manage="N" source_type="GDM" target_type="GBT" code_value="0x0026" code_fix="N" />
+  <Message _uuid="H0ZRuelqoaQ7GhKkkF21tg" name="logout.chat.notify" label="登出聊天通知" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="LogoutChat" is_udp="N" message_type="Notify" is_session="Y" is_manage="N" source_type="GDM" target_type="GCT" code_value="0x0027" code_fix="N" />
+  <Message _uuid="4UAewzMNowHoC4elo6YGoQ" name="role.list.request" label="角色列表请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="RoleList" is_udp="N" message_type="Request" is_session="Y" is_login="Y" is_login_role="N" is_manage="N" source_type="CLT" target_type="GLG" code_value="0x0028" code_fix="N" />
+  <Message _uuid="mERDqQhnKQl]NututtMXug" name="role.list.response" label="角色列表应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="RoleList" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GLG" target_type="CLT" code_value="0x0029" code_fix="N">
+    <Enum _uuid="o0gOoLS]gzBPPpiWu1x]iA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="ukv5kucPZvlS6CSWFeHrjA" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="akr7p0zEW4GMKMk0tOQ5iA" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Struct _uuid="]UV8uhcMvUCAdJoJsAY7mw" name="SRole" label="角色信息" is_valid="Y" note="M#">
+      <Item _uuid="ZkX6iJeNuLtRoHMac8cciw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+      <Item _uuid="oUpI30]2v6Uh9Zhzm[rjtA" name="level" label="等级" is_valid="Y" note="M#" type="Int16" is_collection="N" />
+      <Item _uuid="X0b9a5brUKsc0IrCqoSinw" name="label" label="角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="MO_GM_ROLE_LABEL_MAXLEN" />
+      <Item _uuid="C0LdFmZGIkY9jKvJoYDXgg" name="styleIcon" label="样式图标" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="W0BCxwjTjMpMuDFoBtSjmA" name="genderTid" label="性别模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="80OALajiAHBNN9ZmSB5QmQ" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EGmRoleStatus" is_collection="N" />
+      <Item _uuid="FUkM0HJz]M2tL4ONYtqTpg" name="update" label="更新时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="Q0OYa7P3pvBdSt0zfuhUsw" name="styleActionSet" label="样式动作集合" is_valid="Y" note="M#" type="Object" type_name="SGmStyleActionSet" is_collection="N" />
+      <Item _uuid="aEHcQIRZTLcKGKl0raUamA" name="metierTid" label="门派" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    </Struct>
+    <Item _uuid="QEzYtJKiDo2pYhLP[w9OrA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="x0YQpepN3XB0omzWQOdBrA" name="roles" label="角色列表" is_valid="Y" note="M#" type="Object" type_name="SRole" is_collection="Y" data_size="account.role.max-count" />
+  </Message>
+  <Message _uuid="cEVtcytJI4sqcnnDmfuevw" name="role.list.query.request" label="角色列表请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleListQuery" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GLG" target_type="GSR" code_value="0x002A" code_fix="N">
+    <Item _uuid="sUOwSGIL2cv1RMAe3ojlnQ" name="accountId" label="帐号编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="Z0I1f1OfvY]gg5Hm]RtziQ" name="role.list.query.response" label="角色列表应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleListQuery" is_udp="N" message_type="Response" is_session="Y" is_login="Y" is_login_role="N" is_manage="N" source_type="GSR" target_type="GLG" code_value="0x002B" code_fix="N">
+    <Enum _uuid="aUnl6vWv5OaaHoVZZl1TnQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="I0JnyG5TMgZxyJyWATs6rw" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="pEBDUGJ53aUT4jBCECvDnA" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Struct _uuid="bE[mzrEb7BWv2GyJEspVgA" name="SRole" label="角色信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="WEGAEWnCtgiPE36cRNxriA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+      <Item _uuid="305mVbXf67Ucr10jsEvAmA" name="level" label="等级" is_valid="Y" note="M#" type="Int16" is_collection="N" />
+      <Item _uuid="Zk1KcuEKriIRIFh0]i62qg" name="label" label="角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="MO_GM_ROLE_LABEL_MAXLEN" />
+      <Item _uuid="[UBJbKdcSoIcJOgK1ijNgA" name="genderTid" label="性别模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="2UirSIeYLC4xIZ9KDHB0tg" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EGmRoleStatus" is_collection="N" />
+      <Item _uuid="V0dskS8OYsSmz1FfCJ[Vqw" name="update" label="更新时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="F0fZkt9DB9RRC5xhE[QHlQ" name="metierTid" label="门派" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="fEKuBqxCYQvMpPcEDUrwiA" name="roleTid" label="角色模版" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="60TMO[Gi1ev69I0GPTU]sg" name="raceFlags" label="种族" is_valid="Y" note="M#" type="Set" type_name="TGmRaceSet" is_collection="N" />
+      <Item _uuid="d0dap1L]iN]jLYJ1XeybrA" name="onlineTime" label="上线时间" is_valid="Y" note="M#" type="Uint64" is_collection="N" />
+      <Item _uuid="qkHM]rCOsLjTBRnRniXwqQ" name="isFirst" label="是否领取过首冲" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    </Struct>
+    <Item _uuid="NE2DU5CJ7Imnw4oNH6proQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="tEX4eh41i1ClkrApqLaVtA" name="accountId" label="帐号编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="4Exov55v1A2EqxiwG9Tipw" name="roles" label="角色列表" is_valid="Y" note="M#" type="Object" type_name="SRole" is_collection="Y" data_size="account.role.max-count" />
+  </Message>
+  <Message _uuid="bURtAbg8k9]UZe[cwFW1pA" name="role.delete.response" label="删除角色应答" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleDelete" is_udp="N" message_type="Response" is_session="Y" is_manage="N" source_type="GSR" target_type="GLG" code_value="0x002C" code_fix="N">
+    <Enum _uuid="o0NI3aaZDeRCd[9q4f4hnw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="]0XPh[HkU7Wo05tCs6W4rA" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="4Usk8]f]0AxGC]JHrsgprw" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="]koH6r0SQsp8T4wu4uiquA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="j0p85TK8HygqqxDjG]F0ig" name="role.login.gate.request" label="角色登录网关服务器" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="RoleLoginGate" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GGT" code_value="0x002D" code_fix="N">
+    <Item _uuid="yEuJiXhxnOdSFuOG4FERvA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="ck[NhrbsU5pLkfvMral[kg" name="role.login.request" label="角色登录请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="RoleLogin" is_udp="N" message_type="Request" is_session="Y" is_login="Y" is_login_role="N" is_manage="N" source_type="GGT" target_type="GLG" code_value="0x002E" code_fix="N">
+    <Item _uuid="ikBd[D1g4sWGmWtfvOwokQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="BEh5aFpQLWMe7]53YBmWlQ" name="ip" label="网络地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="CU3DziRUXNnCXHwYrVVjqQ" name="loginHost" label="角色登陆的IP" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="ykh[4Ztt3nQlOcxyb]eZkg" name="role.login.response" label="角色登录应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="RoleLogin" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GLG" target_type="CLT" code_value="0x002F" code_fix="N">
+    <Enum _uuid="]EEzFDpEobRVn]m2PwKXiQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="n00uEMC1U21HFXMPeyAAkQ" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="L0Hl]SMQVTycnWEyRzOuug" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Struct _uuid="Z0UouWF8whS0lc6YYvwlpw" name="SPet" label="宠物信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="Y0s8qKLlzYhQEz0idB9]nQ" name="entityOid" label=" 宠物实体编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+      <Item _uuid="Vk0CEtBoyWdtCr2w3oR0nw" name="label" label="标签" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+      <Item _uuid="skv2hanPkUO0FHTBhr6LpQ" name="location" label="宠物坐标" is_valid="Y" note="M#" type="Struct" type_name="SGmPoint3" is_collection="N" />
+    </Struct>
+    <Item _uuid="xERDoG4gUlVahqQVdpHlqg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="A05]pPJcNmfQiFtz6DP]mw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="rkohnz[BIJzPR9YHsqkBgA" name="roleStyleIcon" label="角色图标" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="mUZAuDX]dIjINocdekzhkg" name="detail" label="详细信息" is_valid="Y" note="M#" type="Object" type_name="SGsRoleDetail" is_collection="N" />
+    <Item _uuid="RERV[IOkdptF]NGZbj]TtQ" name="styleActionSet" label="样式动作集合" is_valid="Y" note="M#" type="Object" type_name="SGmStyleActionSet" is_collection="N" />
+    <Item _uuid="BEaxskAX3A53aIywERAOkw" name="signSet" label="指示集合" is_valid="Y" note="M#" type="Object" type_name="SGmSignSet" is_collection="N" />
+    <Item _uuid="z0UapbxxKWooKkvwDFd8rw" name="shortcutSet" label="快捷集合" is_valid="Y" note="M#" type="Object" type_name="SGsShortcutSet" is_collection="N" />
+    <Item _uuid="ikpk2mgWmABgIK2K9pl3iA" name="roleEquipSet" label="角色装备集合" is_valid="Y" note="M#" type="Object" type_name="SGmRoleEquipSet" is_collection="N" />
+    <Item _uuid="HU8ctdDyEI95fHrpzbeqvA" name="taskSet" label="任务集合" is_valid="Y" note="M#" type="Object" type_name="SGsTaskSet" is_collection="N" />
+    <Item _uuid="OEigwSrZ1C9CjC1mK4s7nQ" name="petList" label="宠物列表" is_valid="Y" note="M#" type="Object" type_name="SPet" is_collection="Y" data_size="8" />
+    <Item _uuid="jkn65F0Y4fwzjvneJRssuA" name="battlePet" label="参战宠物" is_valid="Y" note="M#" type="Object" type_name="SGsPetDetail" is_collection="N" />
+    <Item _uuid="3koPAMDhKVg0[oDVJG2Hhg" name="buffSet" label="buff集合" is_valid="Y" note="M#" type="Object" type_name="SGsBuffSet" is_collection="N" />
+    <Item _uuid="]Uj[GRoBen1FwPn4pn6Eig" name="copyInfo" label="副本的详细信息" is_valid="Y" note="M#" type="Object" type_name="SGsCopyInformation" is_collection="N" />
+    <Item _uuid="oE9VR]ezXXGnJ]64jEsKug" name="isHasSocietyApply" label="是否有申请列表为空" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="xkW2s6AkI1BarEEm1pbMkA" name="hasBookLevelup" label="是否有可升级心法" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="L0[0bIlYIXnRmuTISW3MgQ" name="titleResource" label="称号资源" is_valid="Y" note="M#" type="Object" type_name="SGsTitleResourse" is_collection="Y" data_size="5" />
+    <Item _uuid="oUP6soCEccD]vonjnIDlsw" name="surCount" label="剩余格子数量" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="y0b44QplaUEDELaPgtHssw" name="isFirstGet" label="是否领取首冲" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="eUIkFzDfhm2ZJ2iAND65oA" name="onlineToday" label="今日在线时长" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="I0hKBx]LMqZNu7QAZsNnhg" name="mapLabel" label="地图名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="80" />
+    <Item _uuid="VkSCDsn[t22vGNca[gnAqw" name="channelOpenLevel" label="经脉开启等级" is_valid="Y" note="M#" type="Int16" is_collection="N" />
+    <Item _uuid="c0A4MD4toJFyQefcw5O2iw" name="isGotDragon" label="是否领取过龙珠" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="VU5OWVi7Tthdoz3[AHUlrw" name="mapStyleTid" label="地图资源编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="fkVRdi6MUwqQLhUmkTgBuA" name="surplusDoubleExpTime" label="剩余双倍经验时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="]kBIJVGuWB8Cabs[RiEvhw" name="avaliableDoubleExpTime" label="可用双倍经验时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="E0Ve6N5neuKcVlBumpkrgQ" name="surplusTime" label="剩余时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="XEE4VmLxLTT6sc2424CEuw" name="role.login.ask.request" label="角色登录重复请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RoleLoginAsk" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="Y" is_login_role="N" is_manage="N" source_type="GLG" target_type="CLT" code_value="0x0030" code_fix="N" />
+  <Message _uuid="xEX2WXkFTFg6sKjQRv9HoA" name="role.login.ask.response" label="角色登录重复应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RoleLoginAsk" is_udp="N" message_type="Response" is_session="Y" is_login="Y" is_login_role="N" is_manage="N" source_type="CLT" target_type="GLG" code_value="0x0031" code_fix="N">
+    <Enum _uuid="4kqm2n85[]lquWAv6gzguA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="n0LWUog8zcsi9T1S1qkJvA" name="Ok" label="确定" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="HUepaIA3mqsc9vR]ya1alg" name="Cancel" label="取消" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="Ikq4eMFGUfavNLyM9qhQgQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="gkB]eFztsZYNIGjovOnRtA" name="role.login.query.request" label="角色查询请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLoginQuery" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GLG" target_type="GSR" code_value="0x0032" code_fix="N">
+    <Item _uuid="8UvUvInYpsvDmUSttykMpA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="QUMCXkP]npzx[5RyaiOUnw" name="ip" label="网络地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="SURpLcZx[86DhMuDquS3oA" name="loginHost" label="角色登陆的IP" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="80jnjnYdEw9tDsCCKBt1tw" name="role.login.query.response" label="角色查询应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLoginQuery" is_udp="N" message_type="Response" is_session="Y" is_manage="N" source_type="GSR" target_type="GLG" code_value="0x0033" code_fix="N">
+    <Enum _uuid="X0KgfwcKsZOVd3FVf0iYvQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="tUQ3[6cSjsUofalG70mIrw" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="ik7Rj60aHPfT7Qy01IhdlA" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="CUU7zhnkOw6Yz1hQKE3Aog" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="tUUbE7zF1IKW0TKuyEM4iQ" name="role" label="角色信息" is_valid="Y" note="M#" is_server="N" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" type="Object" type_name="SGmRoleWrap" is_collection="N" />
+    <Item _uuid="REQeLBSWRjZZa7A1h]HDqw" name="loginHost" label="角色登录IP" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="JEGeJ63HAuld3Y1W96hkkA" name="role.login.domain.request" label="角色登录主域请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLoginDomain" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GLG" target_type="GDM" code_value="0x0034" code_fix="N">
+    <Item _uuid="LEpuLLRVyLcZNlPkEQrtrA" name="wrap" label="登录打包" is_valid="Y" note="M#" type="Object" type_name="SGmLoginWrap" is_collection="N" />
+    <Item _uuid="ME]r6TIa5lNSg7FYBdDktA" name="loginHost" label="角色登陆的IP" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="oEuNqdgS59NiIicVeVb1iw" name="role.login.domain.response" label="角色登录主域应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLoginDomain" is_udp="N" message_type="Response" is_session="Y" is_login="Y" is_login_role="N" is_manage="N" source_type="GDM" target_type="GLG" code_value="0x0035" code_fix="N">
+    <Enum _uuid="WEza[3TO579ms[Yg9Q4dhg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="N" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="jUg5aPOEaks8l1IH0rCBqg" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="Z0hDjyD7SbRlglQMqXSMlg" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="vk2tJZwTY0gzVzuS3yU0gQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="LkRMu[SweledMAqY3iwRrA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="XUZIXSHN[Jt[ERi9bu[gsw" name="detail" label="详细信息" is_valid="Y" note="M#" type="Object" type_name="SGsRoleDetail" is_collection="N" />
+    <Item _uuid="T0E3Fa8jwsyTKyntlQoxpg" name="styleActionSet" label="样式动作集合" is_valid="Y" note="M#" type="Object" type_name="SGmStyleActionSet" is_collection="N" />
+    <Item _uuid="k0qNKA]lBgJiDBTGWjwKvQ" name="signSet" label="指示集合" is_valid="Y" note="M#" type="Object" type_name="SGmSignSet" is_collection="N" />
+    <Item _uuid="SUUUptOxuPCnuk[q[VzJig" name="shortcutSet" label="快捷集合" is_valid="Y" note="M#" type="Object" type_name="SGsShortcutSet" is_collection="N" />
+    <Item _uuid="kU3eMo2qyb3B5bkxKeyftw" name="roleEquipSet" label="角色装备集合" is_valid="Y" note="M#" type="Object" type_name="SGmRoleEquipSet" is_collection="N" />
+    <Item _uuid="x0znd3uMHpXEMejv4xjJoA" name="taskSet" label="任务集合" is_valid="Y" note="M#" type="Object" type_name="SGsTaskSet" is_collection="N" />
+    <Item _uuid="cEo4nnFCzintJg3vj7N1nw" name="roleStyleIcon" label="角色图标" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Struct _uuid="N0aHPEcYScIX5I4mu1zLhA" name="STemMember" label="组队成员信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="b0q41Joqjxod7LHaqRXzoQ" name="roleId" label="玩家角色编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="ZE]bYbmmhsygvmbVIPGdog" name="label" label="标签" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+      <Item _uuid="XEoa8MLlwp6x0U2WZVN3qQ" name="roleIconId" label="角色图标编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="5ErvEgoN46b7B4NlhSqskg" name="flags" label="标志" is_valid="Y" note="M#" type="Set" type_name="TGmTeamMemberFlagSet" is_collection="N" />
+    </Struct>
+    <Item _uuid="LUw969EIOBsSrm]bY1m5qg" name="teamMemberList" label="组队成员列表" is_valid="Y" note="M#" type="Object" type_name="STemMember" is_collection="Y" data_size="team.member.max-count" />
+    <Struct _uuid="DESyFwq4fLE25zflYUsYmA" name="SPet" label="宠物信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="3UODRRsp4vr1s]gou05Tpg" name="entityOid" label=" 宠物实体编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+      <Item _uuid="ZkKtqCRNF883aUObvV]trw" name="label" label="标签" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+      <Item _uuid="V0tB5[xm98T8OIr18V2Xtg" name="location" label="宠物坐标" is_valid="Y" note="M#" type="Struct" type_name="SGmPoint3" is_collection="N" />
+    </Struct>
+    <Item _uuid="TUO76XHcDQFgbMslW4tPvw" name="petList" label="宠物列表" is_valid="Y" note="M#" type="Object" type_name="SPet" is_collection="Y" data_size="8" />
+    <Item _uuid="H0tX1gpwpgbZkkzEL]o2qw" name="battlePet" label="参战宠物" is_valid="Y" note="M#" type="Object" type_name="SGsPetDetail" is_collection="N" />
+    <Item _uuid="yUnz7gKcnn6pQ8gWtlsFsg" name="buffSet" label="buff集合" is_valid="Y" note="M#" type="Object" type_name="SGsBuffSet" is_collection="N" />
+    <Item _uuid="9EP5FHi8yIvdZhVPNiXElQ" name="copyInfo" label="副本的区域信息状态" is_valid="Y" note="M#" type="Object" type_name="SGsCopyInformation" is_collection="N" />
+    <Item _uuid="jEaUAPGUgOGq72T7nXR8hg" name="hasBookLevelup" label="是否有可升级心法" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="YkM]xdVvC4XXQJeQrAuClg" name="titleResource" label="称号资源" is_valid="Y" note="M#" type="Object" type_name="SGsTitleResourse" is_collection="Y" data_size="5" />
+    <Item _uuid="SkPkKLZoxnDoxREc1n[PoQ" name="isHasSocietyApply" label="是否帮会申请列表为空" is_valid="Y" note="M#" type="Bool" is_collection="N" />
+    <Item _uuid="w00eEzcQd3I2rr3QBJBZqw" name="surCount" label="剩余格子数量" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="L0mz4f1Dt1RaXfNp92R3tQ" name="isFirstGet" label="是否领取首冲" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="kEur5D6WGNud3KdJdK86sg" name="onlineToday" label="今日在线时长" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="5ERGO4HbIkOwNb1PXxdxsQ" name="surplusDoubleExpTime" label="剩余双倍经验时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="XEBKDmEmJBx7KXXH7qn[lw" name="avaliableDoubleExpTime" label="可用双倍经验时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="eUKGAh7hZQfL[U3PrZ7jqg" name="surplusTime" label="剩余时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="Ik2l]X]6EXiJ]ZibW1mbng" name="role.login.scene.request" label="角色登录网关请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLoginScene" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0036" code_fix="N">
+    <Item _uuid="JE34N3MFox2jVJedM2pHog" name="wrap" label="登录打包" is_valid="Y" note="M#" type="Object" type_name="SGmLoginWrap" is_collection="N" />
+  </Message>
+  <Message _uuid="K0TCV0BJej]4K[lHhvFKoQ" name="role.login.scene.response" label="角色登录场景应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLoginScene" is_udp="N" message_type="Response" is_session="Y" is_login="Y" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0037" code_fix="N">
+    <Enum _uuid="bEpizh[3tqEQvq8X7gA1hg" name="EStatus" label="状态" is_valid="Y" note="M#">
+      <Member _uuid="j01rMgNg08IPMF8HW11kqg" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="[01DWZmenaivpgPE4a65rQ" name="SceneOffline" label="场景服务器未开启" is_valid="Y" note="M#" />
+      <Member _uuid="b0PVg91TH67iWWVxnxtWjA" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="wkTX2APBT5GCrkdMQhErng" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Struct _uuid="h0GFBqgmUduS02fry6SmiA" name="SPet" label="宠物信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="jUetFsQFkBTXbZamouLeug" name="entityOid" label=" 宠物实体编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+      <Item _uuid="oUSqd0EmkCArSFnvHInqhg" name="label" label="标签" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+      <Item _uuid="cUt9P5SiLqROsDSBfegamQ" name="location" label="宠物坐标" is_valid="Y" note="M#" type="Struct" type_name="SGmPoint3" is_collection="N" />
+    </Struct>
+    <Item _uuid="E0EvW3RoYq1hXpcpIBNnuQ" name="petList" label="宠物列表" is_valid="Y" note="M#" type="Object" type_name="SPet" is_collection="Y" data_size="8" />
+    <Item _uuid="h0oEFCXS1qnDfI06xG04gg" name="entityLid" label="实体对象编号" is_valid="Y" note="M#" type="Type" type_name="TLinkId" is_collection="N" />
+    <Item _uuid="4k1b[u9Omtp0j4[SRpZdjw" name="detail" label="详细信息" is_valid="Y" note="M#" type="Object" type_name="SGsRoleDetail" is_collection="N" />
+    <Item _uuid="YUMmjIcSwxKXJ2]xfDfnsA" name="battlePet" label="参战宠物" is_valid="Y" note="M#" type="Object" type_name="SGsPetDetail" is_collection="N" />
+    <Item _uuid="Zk4yMhRJA9Z2ATOCiP6hpg" name="copyInfo" label="副本的区域信息状态" is_valid="Y" note="M#" type="Object" type_name="SGsCopyInformation" is_collection="N" />
+    <Item _uuid="w0rJ]5kI6TnXLz0tdPENjQ" name="taskSet" label="任务集合" is_valid="Y" note="M#" type="Object" type_name="SGsTaskSet" is_collection="N" />
+    <Item _uuid="YEoId5Ztk01VX6m5vCAxrQ" name="titleResource" label="称号资源" is_valid="Y" note="M#" type="Object" type_name="SGsTitleResourse" is_collection="Y" data_size="5" />
+    <Item _uuid="MEfUxSxFODPEeAMVcF1XsA" name="buffSet" label="buff集合" is_valid="Y" note="M#" type="Object" type_name="SGsBuffSet" is_collection="N" />
+    <Item _uuid="2k8Cc8pK4ODY63oVRICnng" name="surplusDoubleExpTime" label="剩余双倍经验时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="Gk6woxHkBggNXGVZi9icsA" name="avaliableDoubleExpTime" label="可用双倍经验时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="[0KJDye9OdK[z5mjvqmlow" name="surplusTime" label="剩余时间" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="Y0Hl61u07h0Lxt9[7UDyrQ" name="role.login.scene.notify" label="角色登录" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLoginScene" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0038" code_fix="N">
+    <Item _uuid="gEHTHo[gKGREw3a[tc27vQ" name="wrap" label="登录打包" is_valid="Y" note="M#" type="Object" type_name="SGmLoginWrap" is_collection="N" />
+  </Message>
+  <Message _uuid="]Ep]FPXC9lSS2zx08nKpsA" name="role.login.battle.request" label="角色登录战斗请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLoginBattle" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GBT" code_value="0x0039" code_fix="N">
+    <Item _uuid="i0Yji8ZBTO4C0yQKna5]vA" name="wrap" label="登录打包" is_valid="Y" note="M#" type="Object" type_name="SGmLoginWrap" is_collection="N" />
+  </Message>
+  <Message _uuid="rEZ8VJGWSKimODEEtKc8lQ" name="role.login.battle.response" label="角色登录战斗应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLoginBattle" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GBT" target_type="GDM" code_value="0x003A" code_fix="N">
+    <Enum _uuid="W0vnlbH71pdTOWqA44rOrQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="n04GTmw71anygdfvxCJutQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="n0yXKN]YBi]6KFwHU[gfiA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="nEpVB7p4O1OGxNmG[K7Hqg" name="statusCd" label="结果" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="PU3mUHKptWv3Tmy9Nocrsg" name="role.login.battle.notify" label="角色登录战斗" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLoginBattle" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GBT" code_value="0x003B" code_fix="N">
+    <Item _uuid="skUtemiatGQgsFGa[V2Vsg" name="wrap" label="登录打包" is_valid="Y" note="M#" type="Object" type_name="SGmLoginWrap" is_collection="N" />
+    <Item _uuid="8Elm2wgSF1fM1o5cgaMxpg" name="accountDetail" label="账号信息" is_valid="Y" note="M#" type="Object" type_name="SGpAccount" is_collection="N" />
+    <Item _uuid="7E]HKarny[yaLdqvKp]fig" name="roleDetail" label="角色信息" is_valid="Y" note="M#" type="Object" type_name="SGpRole" is_collection="N" />
+    <Item _uuid="FUaPENeaJxH4syEjRFhkrA" name="buffSet" label="BUFF集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleBuffSet" is_collection="N" />
+    <Item _uuid="7EfiJCwYTaMgIBZ2SGz2gQ" name="propSet" label="道具集合" is_valid="Y" note="M#" type="Object" type_name="SGpRolePropSet" is_collection="N" />
+    <Item _uuid="Tk5U3zch0O3NnuYONPaYjQ" name="equipSet" label="装备集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleEquipSet" is_collection="N" />
+    <Item _uuid="kEzkzkuDRrHrw4H4OoTVlQ" name="bookSet" label="心法集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleBookSet" is_collection="N" />
+    <Item _uuid="vUnb5xHbPpb9QNGHWVbNvw" name="skillSet" label="技能集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleSkillSet" is_collection="N" />
+    <Item _uuid="E0QFFmRVbpa1TaMZEJUdlA" name="rideSet" label="坐骑集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleRideSet" is_collection="N" />
+    <Item _uuid="KUjzPCPGuOuPkeVVAjwCoQ" name="petSet" label="宠物集合" is_valid="Y" note="M#" type="Object" type_name="SGpRolePetSet" is_collection="N" />
+    <Item _uuid="GkdSFuxe32tWU2roctlRsQ" name="practiceSet" label="修炼" is_valid="Y" note="M#" type="Object" type_name="SGpPracticeSet" is_collection="N" />
+    <Item _uuid="jUPS9tuo5s54YRz[TppIoA" name="taskSet" label="任务集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTaskSet" is_collection="N" />
+    <Item _uuid="Q0DBkGmgN1Jtnkxda[i2pQ" name="bagSet" label="背包集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleBagSet" is_collection="N" />
+  </Message>
+  <Message _uuid="P06WNe]oKBbQv]MH[E4lmA" name="role.login.chat.notify" label="角色登陆聊天通知" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLoginChat" is_udp="N" message_type="Notify" is_session="Y" is_manage="N" source_type="GDM" target_type="GCT" code_value="0x003C" code_fix="N">
+    <Item _uuid="uk0357OwRf6BF9jnGRHMsw" name="wrap" label="登录打包" is_valid="Y" note="M#" is_server="N" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" type="Object" type_name="SGmLoginWrap" is_collection="N" />
+  </Message>
+  <Message _uuid="KEZs]OYEuZ[25IcsQbxBiw" name="role.logout.request" label="角色退出请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RoleLogout" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GLG" code_value="0x003D" code_fix="N" />
+  <Message _uuid="AU8pm6salpcTK7HIygX2vw" name="role.logout.response" label="角色退出应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RoleLogout" is_udp="N" message_type="Response" is_session="Y" is_manage="N" source_type="GLG" target_type="CLT" code_value="0x003E" code_fix="N">
+    <Enum _uuid="q0YRZA8X0pLDzbnMnJfyrA" name="EStatus" label="状态" is_valid="Y" note="M#">
+      <Member _uuid="6Ee3zaVYhskGWuRNj9aIiw" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="d0ekBG]oJFeHqkip5phBjA" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="pEYaK6ELAj5bCUEU7]DxmQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="7kHEFWTglFnSlOY1sOtksQ" name="role.logout.domain.request" label="角色登出主域请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLogoutDomain" is_udp="N" message_type="Request" is_session="Y" is_manage="N" source_type="GLG" target_type="GDM" code_value="0x003F" code_fix="N" />
+  <Message _uuid="0EElHfsFDipzUUCNX]]hjA" name="role.logout.domain.response" label="角色登出网关" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLogoutDomain" is_udp="N" message_type="Response" is_session="Y" is_manage="N" source_type="GDM" target_type="GLG" code_value="0x0040" code_fix="N">
+    <Enum _uuid="]kmCrl74PdBimW[yJqUCsQ" name="EStatus" label="状态" is_valid="Y" note="M#">
+      <Member _uuid="ik50u1qzWaKJ8MwI73G2uw" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="6U8GZH098kVRxQee6Ra6pg" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="60YyKtlFSSbSzIJPJQV9jA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="8kXEB]]VMUtRn4Tzv62msg" name="role.logout.scene.request" label="角色退出场景请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLogoutScene" is_udp="N" message_type="Request" is_session="Y" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0041" code_fix="N" />
+  <Message _uuid="Zkj6fDGkvTRaq2ZE7NBKvQ" name="role.logout.scene.response" label="角色退出场景应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLogoutScene" is_udp="N" message_type="Response" is_session="Y" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0042" code_fix="N">
+    <Enum _uuid="a0Zw95x3LZAKDR3T7WpziA" name="EStatus" label="状态" is_valid="Y" note="M#">
+      <Member _uuid="ykb1kWLVRKwvyJNCCGaIjw" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="RU5YRfE20KfTHO]kLphKpw" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="V0MMe9qgWfx]uAl0uJnlsQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="UEQ2t5LoAIORidE9MVb7qA" name="role.logout.battle.notify" label="角色断开战斗通知" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLogoutBattle" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GBT" code_value="0x0043" code_fix="N" />
+  <Message _uuid="BkBeOORmcPKVyLjU5[pYsQ" name="role.logout.chat.notify" label="角色断开聊天通知" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleLogoutChat" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GCT" code_value="0x0044" code_fix="N" />
+  <Message _uuid="VUhEXgqRqADlWV0WTOXZow" name="role.arrive.create.page.notify" label="到达创建角色页面的Notify" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ArriveCreatePage" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GLG" code_value="0x0045" code_fix="N" />
+  <Message _uuid="J0w8hKNxqzc8xB]ZS7Ipmw" name="role.freeze.notify" label="角色冻结通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleFreeze" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GLG" code_value="0x0046" code_fix="N">
+    <Struct _uuid="VEvZbytUQ6H9YHxW5QFevA" name="SRole" label="角色编号" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="2EFtMuvikKlPMrso4FPIrA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    </Struct>
+    <Item _uuid="s05cszgq]dbNtDnQ8]RqmQ" name="roleList" label="角色链表" is_valid="Y" note="M#" type="Object" type_name="SRole" is_collection="Y" data_size="1024" />
+  </Message>
+  <Message _uuid="qE6e8xV4XDO2rOkGBHZ1jQ" name="server.state.notify" label="服务器状态通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ServerState" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GLG" code_value="0x0047" code_fix="N">
+    <Item _uuid="Ekxa7Mk1otC1Nz0XYU[3nA" name="serverStatus" label="服务器状态" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+</Group>
+

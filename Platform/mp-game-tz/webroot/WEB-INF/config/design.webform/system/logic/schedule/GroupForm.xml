@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebForm _uuid="nUyB2YwZnkuvNY6cyzFerA" name="system.logic.schedule.GroupForm" label="M#12cn215系统-计划分组表单（页面设置）" is_valid="Y" note="M#" disp_fetch="Y" disp_search="Y" disp_lov="Y" disp_zoom="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" disp_print="Y" style_refer="logic.process.ControlStyle" edit_copy="Y" dataset="logic.schedule.group" edit_insert="Y" edit_update="Y" edit_delete="Y">
+  <Template _uuid="nk2IyVUxTu]3ayrt4SNSmQ" name="basicTemplate" label="M#12cn14基本模板" is_valid="Y" note="M#" template_name="system.logic.schedule.group.BasicTemplate" />
+  <ToolBar _uuid="hkRqYgHYE1g2]xGpg14rgw" name="toolBar" label="M#12cn13工具栏" is_valid="Y" note="M#" width="100%" height="24" hebing="N">
+    <ToolButtonSplit _uuid="tUUSRzousEK7QXdLWZMwhA" name="split3Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="80MsEh21RF4Amk[efLsMpQ" name="insertTypeButton" label="M#12cn14新建类型" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#logic.schedule.type" page="insert@#/logic/schedule/Schedule.wa" attributes="_type=Type\nsel_type=component\nform_name=system.logic.schedule.TypeForm" />
+    <ToolButtonSplit _uuid="P0dLoWq1kYqbhM7EMJK8uA" name="split4Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="mUkLTJVw2msn8feVzDjisg" name="insertConfig" label="M#12cn16新建分组设置" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#logic.schedule.config" page="insert@#/logic/schedule/Schedule.wa" attributes="_type=GroupConfig\nsel_type=component\nform_name=system.logic.schedule.GroupConfigForm" />
+    <ToolButtonSplit _uuid="kEyJ1fAs87ixfYB]ujyopQ" name="split5Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="wUV8jv3gSctLtvu1zj]wiA" name="sortButton" label="M#12cn12排序" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#tools.sort" page="sort@#/logic/schedule/Schedule.wa" attributes="sel_type=collection" />
+    <ToolButtonSplit _uuid="DUD9TsY4mFKt3rkRdUmCnw" name="split6Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="iUy1INO0Tv2YQaU7gDzFqw" name="synScheduleButton" label="M#12cn12提交" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#tools.commit" page="syncSchedule@#/logic/schedule/Schedule.wa" attributes="sel_type=collection" />
+  </ToolBar>
+  <Edit _uuid="DE2V3Gk[ArrAlHT[UMGFnQ" name="name" label="M#12cn12名称" is_valid="Y" note="M#" disp_search="Y" disp_lov="Y" disp_zoom="N" disp_insert="Y" disp_update="Y" disp_delete="Y" disp_print="Y" style_edit="editWide" data_fetch="Y" data_name="NAME" edit_insert="Y" valid_insert="Y" valid_update="Y" label_position="left" />
+  <Memo _uuid="XUJMG8]Rt21kZv9NY3yagA" name="note" label="M#12cn12备注" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_lov="N" disp_zoom="N" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" style_label="label" data_name="NOTE" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" edit_overflow="N" />
+</WebForm>
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="kUHOj8xNXdVRjWajkKiqsA" name="person.organization.group.organization" label="M#12cn19组织分组与组织关联" is_valid="Y" note="M#" data_name="PM_ORGANIZATION_GROUP_ORG" data_alias="PM_ORG_GROUP_ORG" data_logic="PM_ORGANIZATION_GROUP_ORG_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="q0tk5kUBpH[18xYR3e5xrw" name="group_id" label="M#12cn14分组标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="GROUP_ID" data_type="Integer" data_refer="person.organization.catalog" />
+  <FieldInteger _uuid="fkryD1heRNAkeSNtB2a6lA" name="node_id" label="M#12cn14节点标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="NODE_ID" data_type="Integer" />
+  <FieldInteger _uuid="vE7xKkLUGKmSYH1mYT[ygA" name="organization_id" label="M#12cn14组织标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="ORGANIZATION_ID" data_alias="ORG" data_type="Integer" data_refer="person.organization" />
+  <FieldBoolean _uuid="NESkfIPjs5cqJ1xY7WnntA" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldInteger _uuid="WEtY6NgM4ZzyUaG3bKtYpw" name="display_order" label="M#12cn14显示顺序" is_valid="Y" note="M#12cn19组织目录的显示顺序" is_null="Y" is_store="Y" data_name="DISP_ORDER" data_type="Integer" />
+  <FieldDate _uuid="PkLSUDvOeg][YZfMv1QdtQ" name="create_date" label="M#12cn14创建日期" is_valid="Y" note="M#12cn19组织目录的创建时间" is_store="Y" data_name="CREATE_DATE" data_type="Date" data_default="SYSDATE" />
+  <FieldContent _uuid="9Efq3S1CS]pORHbWODKhjg" name="note" label="M#12cn12备注" is_valid="Y" note="M#12cn17组织目录的注释" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

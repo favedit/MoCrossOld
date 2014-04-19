@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="7URGCsaBMhegUmAB4PiTtg" name="tag.java.base" is_valid="Y" note="M#">
+  <Define _uuid="wEYpelzuvakXrHL6skY4mw" name="package" is_valid="Y" note="M#" value="org.mobj.web.tag.base" />
+  <Define _uuid="jkP4i7l[dO8Kj1E7pBvuvQ" name="class" is_valid="Y" note="M#" value="FBaseTag" />
+  <Source _uuid="hE9Ud5v8jZruFGfb]rRolg" is_valid="Y" note="M#"><![CDATA[/*
+ * @(#)FBase<Item source='$tag.name'/>Tag.java
+ *
+ * Copyright 2008 microbject, All Rights Reserved.
+ */
+package <Item source='$package'/>;
+
+import org.mobj.web.tag.common.FAbstractHtmlTag;
+
+public abstract class <Item source='$class'/> extends FAbstractHtmlTag{
+
+<Loop source='$attributes' order='asc' alias='attribute'>
+   protected String _<Item format='method' source='$attribute.name'/>;
+</Loop>
+
+   public void appendHtml(){
+<Loop source='$attributes' order='asc' alias='attribute'>
+<True source='$attribute.html'>
+      if(_<Item format='method' source='$attribute.name'/> != null){
+         _writer.appendAttribute("<Item format='method' source='$attribute.hname' default='$attribute.name'/>", _<Item format='method' source='$attribute.name'/>, true);
+      }
+<NotEmpty source='$attribute.hvalue'>
+      else{
+         _writer.appendAttribute("<Item format='method' source='$attribute.hname' default='$attribute.name'/>", "<Item source='$attribute.hvalue'/>", true);
+      }
+</NotEmpty>
+</True>
+</Loop>
+   }
+
+   public void release(){
+<Loop source='$attributes' order='asc' alias='attribute'>
+      _<Item format='method' source='$attribute.name'/> = null;
+</Loop>
+      super.release();
+   }
+
+<Loop source='$attributes' order='asc' alias='attribute'>
+   public void set<Item format='class' source='$attribute.name'/>(String value){
+      _<Item format='method' source='$attribute.name'/> = value;
+   }
+</Loop>
+}]]></Source>
+</Template>
+

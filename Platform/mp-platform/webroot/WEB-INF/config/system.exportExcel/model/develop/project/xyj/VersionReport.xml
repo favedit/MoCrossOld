@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="C0OT]J7enmj73k2qFeWCuQ" name="model.develop.project.xyj.VersionReport" label="西游记管理版本报表" is_valid="Y" fileName="【${CODE}】西游记.xls" template="model.develop.project.xyj.VersionReport.xls">
+  <Sql _uuid="2U568skia3JsJgsaJKPMgg" name="version_info" label="版本信息" is_valid="Y"><![CDATA[SELECT LABEL,
+       DP_PROJECT_XYJ_VERSION_DI.Get_Code(PARENT_ID)                   PARENT_CODE,
+       CODE,
+       REGEXP_REPLACE(REGEXP_REPLACE(CONTEXT,'<([[:alpha:]]+)([^>]*)>',''), '</([[:alpha:]]+)([^>]*)>', '')  CONTEXT,
+       DP_PROJECT_XYJ_VERSION_DI.Get_Type_Label(OUID)                  TYPE_LABEL,
+       PM_USER_DI.Get_Full_Label(TEST_USER_ID)                         TEST_USER,
+       PM_USER_DI.Get_Full_Label(RELEASE_USER_ID)                      RELEASE_USER,
+       TO_CHAR(PLAN_TEST_BEGIN_DATE, 'YYYY-MM-DD')                     PLAN_TEST_BEGIN,
+       TO_CHAR(PLAN_TEST_END_DATE, 'YYYY-MM-DD')                       PLAN_TEST_END,
+       TO_CHAR(REAL_TEST_BEGIN_DATE, 'YYYY-MM-DD')                     REAL_TEST_BEGIN,
+       TO_CHAR(REAL_TEST_END_DATE, 'YYYY-MM-DD')                       REAL_TEST_END,
+       TO_CHAR(PLAN_RELEASE_DATE, 'YYYY-MM-DD')                        PLAN_RELEASE,
+       TO_CHAR(REAL_RELEASE_DATE, 'YYYY-MM-DD')                        REAL_RELEASE
+FROM DP_PROJECT_XYJ_VERSION
+   WHERE OUID ='${OUID}']]></Sql>
+  <Sql _uuid="U0fLxsJdIzu]vfOUkaVkvQ" name="require_list" label="需求列表" is_valid="Y"><![CDATA[SELECT REQUIRE_ID,
+       DP_PROJECT_XYJ_REQUIRE_DI.Get_Code(REQUIRE_ID)                                         REQUIRE_CODE,
+       DP_PROJECT_XYJ_REQUIRE_DI.Get_Label(REQUIRE_ID)                                        REQUIRE_LABEL,
+       DP_PROJECT_CONFIG_DI.Get_Label(DP_PROJECT_XYJ_REQUIRE_DI.Get_Source_Id(REQUIRE_ID))    SOURCE_LABEL,
+       DP_PROJECT_CONFIG_DI.Get_Label(DP_PROJECT_XYJ_REQUIRE_DI.Get_Stage_Id(REQUIRE_ID))     STAGE_LABEL,
+       DP_PROJECT_CONFIG_DI.Get_Label(DP_PROJECT_XYJ_REQUIRE_DI.Get_Status_Id(REQUIRE_ID))    STATUS_LABEL,
+       PM_USER_DI.Get_Full_Label(DP_PROJECT_XYJ_REQUIRE_DI.Get_Principal_User_Id(REQUIRE_ID)) PRINCIPAL_USER_LABEL,
+       TO_CHAR(DP_PROJECT_XYJ_REQUIRE_DI.Get_Plan_Begin_Date(REQUIRE_ID),'YYYY-MM-DD')        PLAN_BEGIN,
+       TO_CHAR(DP_PROJECT_XYJ_REQUIRE_DI.Get_Plan_End_Date(REQUIRE_ID),'YYYY-MM-DD')          PLAN_END,
+       TO_CHAR(DP_PROJECT_XYJ_REQUIRE_DI.Get_Real_Begin_Date(REQUIRE_ID),'YYYY-MM-DD')        REAL_BEGIN,
+       TO_CHAR(DP_PROJECT_XYJ_REQUIRE_DI.Get_Real_End_Date(REQUIRE_ID),'YYYY-MM-DD')          REAL_END,
+       TO_CHAR(DP_PROJECT_XYJ_REQUIRE_DI.Get_Test_Begin_Date(REQUIRE_ID),'YYYY-MM-DD')        TEST_BEGIN,
+       TO_CHAR(DP_PROJECT_XYJ_REQUIRE_DI.Get_Test_End_Date(REQUIRE_ID),'YYYY-MM-DD')          TEST_END   
+FROM DP_PRO_XYJ_VSN_REQ
+WHERE IS_VALID = 'Y'
+   AND VERSION_ID = '${OUID}']]></Sql>
+</ExportExcel>
+

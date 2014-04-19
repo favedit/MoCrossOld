@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="4E21pNXFMHOIzeS5GzS3jg" name="system.attachment.permission" label="M#12cn14附件权限" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="SY_ATTACHMENT_PERMISSION" data_alias="SY_ATMT_PRN" data_logic="SY_ATTACHMENT_PERMISSION_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldBoolean _uuid="pkAtyf63adMonsr]MZMGig" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="'Y'" />
+  <FieldInteger _uuid="eUj]afEQ]8zJxMAssUy0tQ" name="attachment_id" label="M#12cn14附件标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="ATTACHMENT_ID" data_type="Integer" data_refer="system.attachment" />
+  <FieldEnum _uuid="NkSRu7XDcZb[]unpYmbEtg" name="target_cd" label="M#12cn14目标类型" is_valid="Y" note="M#12cn218R角色，U：人员：O：组织：D：职位" is_null="Y" is_store="Y" is_abstract="N" data_name="TARGET_CD" data_size="1" data_code="system.attachment.permission.target" />
+  <FieldInteger _uuid="Gk5HcpOK6c[rpOXUJBXlrQ" name="target_id" label="M#12cn14目标标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TARGET_ID" />
+  <FieldEnum _uuid="Hkrc[uxIkfG[HEFi4gj]hg" name="type_cd" label="M#12cn14权限类型" is_valid="Y" note="M#12cn216D:下载，T：删除，C：权限配置" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="system.attachment.permission.type" />
+  <FieldTemplate _uuid="iko8piiS]9LtpqN6adl6iA" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="gU648HVKEOgkEN01wvPMrQ" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" group="N" />
+</DataStore>
+

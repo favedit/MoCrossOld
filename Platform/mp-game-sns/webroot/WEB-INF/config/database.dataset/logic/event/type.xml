@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="u0xtzQy5Qa3g4jDcw79glg" name="logic.event.type" label="M#12cn14事件类型" is_valid="Y" note="M#" data_name="LG_EVENT_TYPE" data_logic="LG_EVENT_TYPE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="9kfyJ232fO3xp8ccXuIkrQ" name="group_id" label="M#12cn14分组标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="GROUP_ID" data_refer="logic.event.group" />
+  <FieldString _uuid="o0MY7qiShtHMxtWaU0ScoQ" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="80" />
+  <FieldString _uuid="W0yaf9lR8SIs3HwTr]g]vw" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_type="String" data_size="80" />
+  <FieldContent _uuid="hkJUsI4Fk]wmVr2vwRmusQ" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LABEL" data_type="Content" />
+  <FieldBoolean _uuid="JUG]DPmDKlkibp]djQLdqw" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" />
+  <FieldInteger _uuid="G09vP83FdH13GvBXVYG9sg" name="network_id" label="M#12cn14网络标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NETWORK_ID" data_refer="system.network" />
+  <FieldInteger _uuid="q08RO[UK3pvInKKbVuRTtg" name="server_id" label="M#12cn14服务标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SERVER_ID" data_refer="system.network.server" />
+  <FieldEnum _uuid="oU]IJFOX6F4w03tixYvtgw" name="process_cd" label="M#12cn14处理类型" is_valid="Y" note="M#12cn246J=Java Logic Event\nP=PLSQL Procedure\nE=Execute" is_store="Y" data_name="PROCESS_CD" data_size="1" data_code="logic.event.process" data_default="'J'" />
+  <FieldString _uuid="ck3kv4zssy2P0iQM7W6MqQ" name="process_invoke" label="M#12cn14处理调用" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="PROCESS_INVOKE" data_type="String" data_size="200" />
+  <FieldDate _uuid="MkjTUCUbVFaeUZ0P6oC]tA" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_type="Date" data_default="SYSDATE" />
+  <FieldContent _uuid="NUx2eI6oP2[fzKYxlTa3lw" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" />
+</DataStore>
+

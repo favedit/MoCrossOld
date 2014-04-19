@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template aa="ZEOkyeF9xK9kkv]aKDQirg" name="contract.renewal.manager.fail.mail" label="合同续签提醒" is_valid="Y" note="M#">
+  <Define aa="3USAblNu]H0WG17TWYCfnw" name="mail_content_type" label="邮件类型" is_valid="Y" note="M#" value="Html" />
+  <Variable aa="NESNApNgyaO5qwVOad[5nQ" name="user_full_label" label="收件人" is_valid="Y" note="M#" />
+  <Variable aa="NESNApNgyaO5qwVOad[5nQ" name="contract_user_label" label="合同人员" is_valid="Y" note="M#" />
+  <Variable aa="NESNApNgyaO5qwVOad[5nQ" name="hr_user_label" label="合同管理人员" is_valid="Y" note="M#" />
+  <Variable aa="qUyD3PZBhATzJOIay10zrw" name="code" label="合同编号" is_valid="Y" note="M#" />
+  <Variable aa="qUyD3PZBhATzJOIay10zrw" name="work_number" label="工号" is_valid="Y" note="M#" />
+  <Variable aa="qUyD3PZBhATzJOIay10zrw" name="department_label" label="部门编号" is_valid="Y" note="M#" />
+  <Variable aa="qUyD3PZBhATzJOIay10zrw" name="job_label" label="岗位名称" is_valid="Y" note="M#" />
+  <Variable aa="6kkqzikZPPua7Be44DZEqg" name="type_label" label="合同类型" is_valid="Y" note="M#" />
+  <Variable aa="4kzp7iWFTtAeHrIZ9Vn2lw" name="begin_date" label="开始日期" is_valid="Y" note="M#" />
+  <Variable aa="6EjNa5hboYaVYdRU6xAxhg" name="end_date" label="结束日期" is_valid="Y" note="M#" />
+    <Variable aa="6EjNa5hboYaVYdRU6xAxhg" name="note" label="失败原因" is_valid="Y" note="M#" />
+  <Source aa="e02fD]6udw4etyRLwkR8tA" name="contract.head" label="通知-邮件标题" is_valid="Y" note="M#">【eUIS】【合同管理】<![CDATA[<jt:item source='$config.user_full_label'/>您好，您所负责部门（<jt:item source='$config.department_label'/>）的员工<jt:item source='$config.contract_user_label'/>的合同续签失败。]]></Source>
+  <Source aa="W0CicQKK5hH8Sqd2POfIng" name="contract.body" label="通知-邮件正文" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<jt:define source='合同管理 → 合同续签提醒' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'><FONT COLOR='#336699'><jt:item source='$config.user_full_label'/></FONT><FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD><FONT COLOR='#336699'>您所负责部门（<jt:item source='$config.department_label'/>）的员工<jt:item source='$config.contract_user_label'/>的合同续签失败，具体失败原因如下：</FONT></TD></TR>
+   </TABLE>
+   <img src="<jt:context/>/apl/login/images/arrow.jpg">&nbsp;<B style='color:#014d99'>失败原因</B>：
+   <BR>
+   <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+   <TR>
+      <TD class='ItemHead' width='15%'>失败原因</TD>
+      <TD class='ItemData' width="800" height="100"><PRE><jt:item source='$config.note' /></PRE></TD>
+   </TR>
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

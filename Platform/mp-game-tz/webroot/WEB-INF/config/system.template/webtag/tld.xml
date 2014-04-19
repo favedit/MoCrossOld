@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="7URGCsaBMhegUmAB4PiTtg" name="webtag.tld" label="tag生成TLD模板" is_valid="Y" note="M#">
+  <Define _uuid="wEYpelzuvakXrHL6skY4mw" name="package" is_valid="Y" note="M#" value="org.mobj.web.tag.base" />
+  <Define _uuid="jkP4i7l[dO8Kj1E7pBvuvQ" name="class" is_valid="Y" note="M#" value="FBaseTag" />
+  <Source _uuid="hE9Ud5v8jZruFGfb]rRolg" is_valid="Y" note="M#"><![CDATA[<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE taglib
+      PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+      "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+<tlibversion>1.0</tlibversion>
+<jspversion>1.1</jspversion>
+<jt:NotEmpty source='$taglib.short_name'>
+<shortname><jt:Item source='$taglib.short_name'/></shortname>
+</jt:NotEmpty>
+<jt:NotEmpty source='$taglib.node'>
+<node><jt:Item source='$taglib.node'/></node>
+</jt:NotEmpty>
+<jt:Loop source='$taglib' order='asc' alias='tag'>
+
+   <tag>
+      <name><jt:Item source='$tag.name'/></name>
+<jt:NotEmpty source='$tag.class_name'>
+      <tagclass><jt:Item source='$tag.class_name'/></tagclass>       
+</jt:NotEmpty>
+<jt:Loop source='$tag' order='asc' alias='attributes'>
+      <attribute>
+          <name><jt:Item source='$attributes.name'/></name>
+<jt:Equals source='$attributes.required' value="Y">
+          <required>true</required>
+</jt:Equals>
+<jt:Equals source='$attributes.required' value="N">
+          <required>false</required>
+</jt:Equals>
+          <rtexprvalue>false</rtexprvalue>
+      </attribute>
+</jt:Loop>
+   </tag>    
+</jt:Loop>
+</taglib>]]></Source>
+</Template>
+

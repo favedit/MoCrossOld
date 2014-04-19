@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="HkocXPWgvX2]]zIV[KmVig" name="game.template.npc" label="M#12cn13NPC" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_NPC" data_alias="GM_TPL_NPC" data_logic="GM_TPL_NPC_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="g0ZwXareNwCYXyQNEVogqg" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="vUIJVHkJIAHVBiO]kB3juQ" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldString _uuid="Hk8ynKy0jx]OvdkJ86FPtQ" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="hkuk8]v0wd7cwuFG8ZaBrA" name="label" label="M#12cn12标签" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldInteger _uuid="]UoQT97ENlXFU1gMlZe[pg" name="gender_tid" label="M#12cn12性别" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GENDER_TID" data_alias="GDR_TID" data_refer="game.template.gender" />
+  <FieldInteger _uuid="rkJBDs4PqGhDGuhpWLgLqQ" name="metier_tid" label="M#12cn12门派" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="METIER_TID" data_alias="MTR_TID" data_refer="game.template.metier" />
+  <FieldInteger _uuid="n0kNVe3[r4IajLErMeQjpA" name="style_icon_tid" label="M#12cn14样式图标" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STYLE_ICON_TID" data_alias="STY_ICN" data_refer="game.template.style.icon" />
+  <FieldInteger _uuid="yU518vVhmnsI]sv2mrS5qQ" name="style_action_tid" label="M#12cn15资源包编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STYLE_ACTION_TID" data_alias="STL_ACT" data_refer="game.template.style.action" />
+  <FieldEnum _uuid="FEOIUta7TyUN4KTon0SphQ" name="outline_cd" label="M#12cn15NPC轮廓" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OUTLINE_CD" data_size="1" data_code="game.template.outline" />
+  <FieldString _uuid="5Ea12YO[39fLCpL07K7dqA" name="height" label="M#12cn12高度" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="HEIGHT" data_size="10" />
+  <FieldString _uuid="nUE7j9Z4v8wNKqKXoVU6gQ" name="width" label="M#12cn12宽度" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="WIDTH" data_size="10" />
+  <FieldString _uuid="okC[2g1o81rVcPAex[VDlw" name="gravity" label="M#12cn12重心" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="GRAVITY" data_size="10" />
+  <FieldInteger _uuid="BkDNCyqaHOFY6giCCFoLkA" name="npc_category_tid" label="M#12cn12类别" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NPC_CATEGORY_TID" data_alias="NPC_CGR" data_refer="game.template.npc.category" />
+  <FieldInteger _uuid="CUjvmvbfZRbZqZ4lXZmanA" name="wu_xing_tid" label="M#12cn12五行" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="WU_XING_TID" data_alias="WXG" data_refer="game.template.wuxing" />
+  <FieldInteger _uuid="ek4nYONfqxE7kQYqOgQChw" name="skill_bag_tid" label="M#12cn13技能包" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SKILL_BAG_TID" data_alias="SKL_BAG" data_size="10" data_refer="game.template.skill.bag" />
+  <FieldInteger _uuid="o0B2ofO6r9ErBNQfTo6FvA" name="catch_level" label="M#12cn16人物捕捉等级" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CATCH_LEVEL" />
+  <FieldEnum _uuid="uEPARGhLkRrug5KmQxItmg" name="can_be_catch_cd" label="M#12cn16是否可以捕捉" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CAN_BE_CATCH_CD" data_size="10" data_code="game.template.npc.catch" />
+  <FieldString _uuid="yUxgukiNwzSEE810H5L0hA" name="pet_race_cd" label="M#12cn12种族" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PET_RACE_CD" data_size="200" />
+  <FieldInteger _uuid="hkPJfy13m9o2[QJGPNhTiw" name="battle_style_action_tid" label="M#12cn17战斗资源包编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BATTLE_STYLE_ACTION_TID" data_alias="BAT_STY_ACT" data_refer="game.template.style.action" />
+  <FieldInteger _uuid="aEiNmIIR1P9G1zE6fQnHvw" name="battle_ai_tid" label="M#12cn16战斗AI编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BATTLE_AI_TID" data_alias="BAT_AI" data_refer="game.template.battle.ai" />
+  <FieldInteger _uuid="DkA2vHejaCUCZgMk8BvvjQ" name="battle_ai_bag_tid" label="M#12cn17战斗AI包编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BATTLE_AI_BAG_TID" data_alias="BAT_AI_BAG" data_refer="game.template.battle.ai.bag" />
+  <FieldInteger _uuid="g0Z3BXs7bF3SbYpDaFTWiw" name="move_speed" label="M#12cn14移动速度" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MOVE_SPEED" />
+  <FieldBoolean _uuid="s0pXDgYqKAmgoy7jLJWhow" name="is_share_hp" label="M#12cn16是否共享血量" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_SHARE_HP" />
+  <FieldInteger _uuid="YkQiFcZhFVTX2tpt2wlQqQ" name="share_hp_boss_tid" label="M#12cn210共血boss模板编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SHARE_HP_BOSS_TID" data_alias="SHB" data_refer="game.template.npc.share.hp.boss" />
+  <FieldTemplate _uuid="AkcctAQHim2ct1Aw1jvojQ" name="describe" label="M#12cn14描述模版" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="NEIs8TFxoERuIy9dNyx6uA" name="logic.schedule.time" label="M#12cn14计划时间" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_SCHEDULE_TIME" data_alias="LG_SCH_TIME" data_logic="LG_SCHEDULE_TIME_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="GEqXJNBj3p2AhAshIppojQ" name="schedule_id" label="M#12cn14计划标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="SCHEDULE_ID" data_alias="SCH_ID" data_type="Integer" data_refer="logic.schedule" data_uniques="code" />
+  <FieldString _uuid="VkCyRTEPNRBmTav12codtA" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CODE" data_size="80" data_uniques="code" />
+  <FieldBoolean _uuid="vkQ0ZIQBNV6GUTkm3WOaig" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldString _uuid="REOjTj65HyFHYiDLLNJokw" name="name" label="M#12cn14中文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="tEvHDH7yWB2eoAOxrpFygA" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldDate _uuid="EUNTAH8uumJvd8NOIu8yhw" name="execute_time" label="M#12cn14执行时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="EXECUTE_TIME" />
+  <FieldChar _uuid="qk2KV2Rb13MahZodDGXAuQ" name="status_cd" label="M#12cn14计划状态" is_valid="Y" note="M#" is_store="Y" data_name="STATUS_CD" data_size="1" data_default="LG_SCHEDULE_STATUS_EI.EPublish" />
+  <FieldEnum _uuid="8E3SFaP[kLyk03kT2YhEpw" name="type_cd" label="M#12cn14时间类型" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_default="LG_SCHEDULE_EXECUTE_TYPE_EI.EOnce" />
+  <FieldInteger _uuid="K0[MP8]88wSnTrRmFSNbkQ" name="interval" label="M#12cn14时间间隔" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="INTERVAL" />
+  <FieldString _uuid="IUnG[XkLp5zdWUe31WSeig" name="day_flag" label="M#12cn14执行标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="DAY_FLAG" data_size="366" />
+  <FieldString _uuid="TksZqj[3EkIdn]zgqsoRrQ" name="week_flag" label="M#12cn14执行标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="WEEK_FLAG" data_size="7" />
+  <FieldString _uuid="PE1KSw5U54SusFY]SSBokw" name="month_flag" label="M#12cn14执行标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="MONTH_FLAG" data_size="12" />
+  <FieldDate _uuid="jUGWNFdrkqIStdKYgh1Kpg" name="update_date" label="M#12cn14更新时间" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="UPDATE_DATE" data_default="SYSDATE" />
+  <FieldDate _uuid="7k2]jiSfIwPFZIy7tI9CtQ" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_default="SYSDATE" />
+  <FieldContent _uuid="gUQPfXAdcAI6aJFouzbFrw" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" />
+</DataStore>
+

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template ads="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Source ads="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[
+//============================================================
+// <T>三维<jt:item source='$label'/>大小。</T>
+//============================================================
+struct MO_CM_DECLARE S<jt:item source='$type_name'/>Size3{
+public:
+   <jt:item source='$type'/> width;
+   <jt:item source='$type'/> height;
+   <jt:item source='$type'/> deep;
+public:
+   //------------------------------------------------------------
+   // <T>构造三维<jt:item source='$label'/>大小。</T>
+   S<jt:item source='$type_name'/>Size3(){
+      width = <jt:item source='$default'/>;
+      height = <jt:item source='$default'/>;
+      deep = <jt:item source='$default'/>;
+   }
+   //------------------------------------------------------------
+   // <T>构造三维<jt:item source='$label'/>大小。</T>
+   S<jt:item source='$type_name'/>Size3(<jt:item source='$type'/> value){
+      width = value;
+      height = value;
+      deep = value;
+   }
+   //------------------------------------------------------------
+   // <T>构造三维<jt:item source='$label'/>大小。</T>
+   S<jt:item source='$type_name'/>Size3(<jt:item source='$type'/> widthValue, <jt:item source='$type'/> heightValue, <jt:item source='$type'/> deepValue){
+      width = widthValue;
+      height = heightValue;
+      deep = deepValue;
+   }
+   //------------------------------------------------------------
+   // <T>构造三维<jt:item source='$label'/>大小。</T>
+   S<jt:item source='$type_name'/>Size3(const S<jt:item source='$type_name'/>Size3& value){
+      width = value.width;
+      height = value.height;
+      deep = value.deep;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>判断是否相等。</T>
+   MO_INLINE TBool operator ==(const S<jt:item source='$type_name'/>Size3& value){
+      return ((width == value.width) && (height == value.height) && (deep == value.deep));
+   }
+   //------------------------------------------------------------
+   // <T>判断是否不相等。</T>
+   MO_INLINE TBool operator !=(const S<jt:item source='$type_name'/>Size3& value){
+      return ((width != value.width) || (height != value.height) || (deep != value.deep));
+   }
+public:
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void operator=(<jt:item source='$type'/> value){
+      width = value;
+      height = value;
+      deep = value;
+   }
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void operator=(const S<jt:item source='$type_name'/>Size3& value){
+      width = value.width;
+      height = value.height;
+      deep = value.deep;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>判断内容是否为空。</T>
+   MO_INLINE TBool IsEmpty(){
+      return (width == <jt:item source='$default'/>) && (height == <jt:item source='$default'/>) && (deep == <jt:item source='$default'/>);
+   }
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void Set(<jt:item source='$type'/> widthValue = <jt:item source='$default'/>, <jt:item source='$type'/> heightValue = <jt:item source='$default'/>, <jt:item source='$type'/> deepValue = <jt:item source='$default'/>){
+      width = widthValue;
+      height = heightValue;
+      deep = deepValue;
+   }
+   //------------------------------------------------------------
+   // <T>设置数据内容。</T>
+   MO_INLINE void Assign(const S<jt:item source='$type_name'/>Size3& value){
+      width = value.width;
+      height = value.height;
+      deep = value.deep;
+   }
+public:
+   //------------------------------------------------------------
+   MO_INLINE <jt:item source='$type'/> Square(){
+      return width * height * deep;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>序列化数据内容到输出流。</T>
+   void Serialize(IDataOutput* pOutput){
+      pOutput->Write<jt:item source='$type_name'/>(width);
+      pOutput->Write<jt:item source='$type_name'/>(height);
+      pOutput->Write<jt:item source='$type_name'/>(deep);
+   }
+<jt:equals source='$type_name' value='Int'>
+   //------------------------------------------------------------
+   // <T>序列化数据内容到输出流。</T>
+   void Serialize16(IDataOutput* pOutput){
+      pOutput->WriteInt16((TInt16)width);
+      pOutput->WriteInt16((TInt16)height);
+      pOutput->WriteInt16((TInt16)deep);
+   }
+</jt:equals>
+   //------------------------------------------------------------
+   // <T>从输入流反序列化数据内容。</T>
+   void Unserialize(IDataInput* pInput){
+      width = pInput->Read<jt:item source='$type_name'/>();
+      height = pInput->Read<jt:item source='$type_name'/>();
+      deep = pInput->Read<jt:item source='$type_name'/>();
+   }
+<jt:equals source='$type_name' value='Int'>
+   //------------------------------------------------------------
+   // <T>从输入流反序列化数据内容。</T>
+   void Unserialize16(IDataInput* pInput){
+      width = pInput->ReadInt16();
+      height = pInput->ReadInt16();
+      deep = pInput->ReadInt16();
+   }
+</jt:equals>
+public:
+   TBool Parse(TCharC* pValue);
+   TCharC* Format(TChar* pBuffer, TInt capacity);
+   TCharC* ToString(TChar* pBuffer, TInt capacity);
+};
+]]></Source>
+</Template>

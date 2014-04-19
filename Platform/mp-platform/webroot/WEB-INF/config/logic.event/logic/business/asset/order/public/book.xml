@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="ek8aSadsHZNN2zKbELRyjg" name="logic.business.asset.order.public.book" label="M#12cn19公司资产-图书借阅" note="M#" is_valid="Y">
+  <GroupConfig _uuid="UkxwPuIGk8SvGID4yHL9jg" name="smtp_host" label="M#12cn15邮件服务器" note="M#" is_valid="Y" data_value="${logic.mail|smtp_host}" />
+  <GroupConfig _uuid="OUMBmbBfuJgZdvVQVrIemQ" name="smtp_port" label="M#12cn17邮件服务器端口" note="M#" is_valid="Y" data_value="${logic.mail|smtp_port}" />
+  <GroupConfig _uuid="OUjVrgqjGnFIK7tknCTVnw" name="smtp_user" label="M#12cn14邮件帐户" note="M#" is_valid="Y" data_value="${logic.mail|smtp_user}" />
+  <GroupConfig _uuid="L0GiRmI[QyFmbRizTkV1pw" name="smtp_password" label="M#12cn16邮件帐户密码" note="M#" is_valid="Y" data_value="${logic.mail|smtp_password}" />
+  <GroupConfig _uuid="VUdr8dTyVPfNjQEc]sMKgQ" name="smtp_authentic" label="M#12cn14邮件认证" note="M#" is_valid="Y" data_value="${logic.mail|smtp_authentic}" />
+  <GroupConfig _uuid="wErrRJqmsmGDdDt]g[dmgA" name="from_user" label="M#12cn13发送者" note="M#" is_valid="Y" data_value="${logic.mail|from_user}" />
+  <Type _uuid="UkoAQ7ZNsHKaQg]6Tw45sQ" name="remind" label="M#12cn16提醒邮件通知" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="NkyrwB8JGHrKoPW2gwoDqg" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="remind.head@logic.business.LS_AS_BM.mail" />
+    <TypeConfig _uuid="]EhcuDEepusstOsYgkUGuA" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="remind.body@logic.business.LS_AS_BM.mail" />
+  </Type>
+  <Type _uuid="t0n68aCq7bq8FD7]9I6BgA" name="remind.deploy" label="M#12cn14提醒部署" note="M#12cn214logic_\nparams_" is_valid="Y" process_cd="P" process_invoke="BS_ASSET_ORDER_PB_BK_DI.Do_Deploy" />
+</Group>
+

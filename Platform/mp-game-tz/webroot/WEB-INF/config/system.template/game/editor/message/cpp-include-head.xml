@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define _uuid="]E[MIOeUo79dXfu13d2wsA" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source _uuid="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T>实体引用。</T>
+//
+// @version 1.0.1
+// @auto 代码器管理的代码，如需修改请在手动修改标出的地方修改。
+//============================================================
+#ifndef __MO_MG_MESSAGE_H__
+#define __MO_MG_MESSAGE_H__
+
+#ifndef __MO_MG_CORE_H__
+#include "MoMgCore.h"
+#endif // __MO_MG_CORE_H__
+<jt:loop source='$config' alias='group'>
+
+#ifndef __MO_MG_MSG_<jt:item source='$group.full_code' format='upper'/>_H__
+#include "MoMg<jt:item source='$group.full_code'/>.h"
+#endif // __MO_MG_MSG_<jt:item source='$group.full_code' format='upper'/>_H__
+</jt:loop>
+
+MO_NAMESPACE_BEGIN
+
+//============================================================
+// <T>消息工厂。</T>
+//============================================================
+class MO_MG_DECLARE FNetMessageFactory :
+      public FObject,
+      public INetMessageFactory{
+public:
+   MO_OVERRIDE( TCharC* CodeName(TInt code) );
+   MO_OVERRIDE( TNetMessageInfo* CodeInfo(TInt code) );
+   MO_OVERRIDE( TCharC* DumpData(TNetMessage* pMessage, MString* pTrack) );
+};
+
+// @manual (Source.Begin)
+//------------------------------------------------------------
+<jt:empty source='$source.build_source'>
+//------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$source.build_source'>
+<jt:item source='$source.build_source'/>//------------------------------------------------------------
+</jt:notEmpty>
+// @manual (Source.End)
+
+MO_NAMESPACE_END
+
+#endif // __MO_MG_MESSAGE_H__
+]]></Source>
+</Template>

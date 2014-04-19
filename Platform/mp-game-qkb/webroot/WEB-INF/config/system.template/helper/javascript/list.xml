@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="]kASUwPrH[8t0bO4gNL[jA" name="helper.javascript.list" is_valid="Y" note="M#">
+  <Source _uuid="QUqP0YANBk]bkrar501Ktw" is_valid="Y" note="M#"><![CDATA[<jt:include source='helper.title'/>
+
+<!------------------------导航--------------------------------->
+<jt:include source='helper.navBegin'/>
+<IMG src='../../../ars/icon/tools/home.gif'/> <span><a href="../index.html">主页</a></span>
+<IMG src='../../../ars/icon/tools/next.gif'/> <span><jt:Item source='$classes.space'/></span>
+<jt:include source='helper.navEnd'/>
+<!-- Head Begin ------------------------------------------->
+<TABLE width='100%' border='0' cellspacing='8' cellpadding='0'>
+<TR>
+	<TD class='headTitle'><jt:item source='$classes.space'/></TD>
+	<TD align='right' valign='bottom' class='headVersion'>version:1.0.0</TD>
+</TR>
+<TR><TD colspan='2'>
+	<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+		<TR height='1' bgcolor='#999999'><TD></TD></TR>
+		<TR height='1' bgcolor='#000000'><TD></TD></TR>
+	</TABLE>
+</TD></TR>
+<TR><TD colspan='2'>
+	<B>类列表</B><BR>
+</TD></TR>
+</TABLE>
+<!-- Head End --------------------------------------------->
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='16'>
+	<TR>
+	<TD>		
+		<!--------------------------------------------------------->
+		<TABLE width='100%' bgcolor='#666666' border='0' cellspacing='0' cellpadding='2'>
+		<jt:Loop source='$classes' alias='class'>
+		<TR bgcolor='#F8F8F8'>
+			<TD width='300' style='padding-left:20'>
+				<IMG src='../../../ars/icon/helper/javascript/class.gif' align='absmiddle'> 
+				<A class='listElement' href='../class/<jt:Item source='$class.name'/>.html'><jt:Item source='$class.name'/></A>
+			</TD>
+			<TD>[ <FONT color='green'><jt:Item source='$class.description'/></FONT> ]</TD>
+		</TR>
+		</jt:Loop>
+		</table>
+	</TD>
+	</TR>
+</table>
+<!-- Body End --------------------------------------------->
+<jt:include source='helper.footer'/>]]></Source>
+</Template>
+

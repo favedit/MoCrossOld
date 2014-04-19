@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T><jt:item source='$group.label'/>枚举定义。</T>
+//
+// @version 1.0.1
+// @auto 代码器管理的代码，如需修改请在手动修改标出的地方修改。
+//============================================================
+#ifndef __MO_<jt:item source='$group.project_code' format='upper'/>_<jt:item source='$group.full_code' format='upper'/>_H__
+#define __MO_<jt:item source='$group.project_code' format='upper'/>_<jt:item source='$group.full_code' format='upper'/>_H__
+
+#ifndef __MO_<jt:item source='$group.project_code' format='upper'/>_COMMON_H__
+#include "Mo<jt:item source='$group.project_code'/>Common.h"
+#endif // __MO_<jt:item source='$group.project_code' format='upper'/>_COMMON_H__
+<jt:notEmpty source='$group.include_heads'>
+<jt:loop source='$group' alias='include' filter='$include:name=Include'>
+
+#ifndef __MO_<jt:item source='$group.project_code' format='upper'/>_<jt:item source='$include.full_code' format='upper'/>_H__
+#include "<jt:item source='$include.source_name'/>.h"
+#endif // __MO_<jt:item source='$group.project_code' format='upper'/>_<jt:item source='$include.full_code' format='upper'/>_H__
+</jt:loop>
+</jt:notEmpty>
+
+MO_NAMESPACE_BEGIN
+<jt:loop source='$group' alias='constant' filter='$constant:name=Constant'>
+
+// <jt:item source='$constant.label'/>定义
+const T<jt:item source='$constant.type_cd'/> <jt:item source='$constant.code'/> = <jt:item source='$constant.value'/>;
+</jt:loop>
+<jt:loop source='$group' alias='enum' filter='$enum:name=Enum'>
+
+//============================================================
+// <T><jt:item source='$enum.label'/>枚举定义。</T>
+//
+// @enum
+//============================================================
+enum E<jt:item source='$enum.name'/>{
+<jt:loop source='$enum' alias='member'>
+<jt:equals source='$member.value' value=''>
+   E<jt:item source='$enum.name'/>_<jt:item source='$member.name' last=',' rpad='15'/> // <jt:item source='$member.label'/>
+</jt:equals>
+<jt:notEmpty source='$member.value'>
+   E<jt:item source='$enum.name'/>_<jt:item source='$member.name' rpad='14'/> = <jt:notEmpty source='$enum.refer_value'><jt:item source='$enum.refer_value'/> + </jt:notEmpty><jt:item source='$member.value'/>, // <jt:item source='$member.label'/>
+</jt:notEmpty>
+</jt:loop>
+<jt:true source='$enum.is_count'>
+   E<jt:item source='$enum.name'/>_Count,
+</jt:true>
+};
+<jt:true source='$enum.is_code'>
+
+//============================================================
+// <T><jt:item source='$enum.label'/>代码枚举定义。</T>
+//
+// @enum
+//============================================================
+enum E<jt:item source='$enum.name'/>Code{
+<jt:loop source='$enum' alias='member'>
+   // @member <jt:item source='$member.label'/>
+   E<jt:item source='$enum.name'/>_<jt:item source='$member.code'/> = E<jt:item source='$enum.name'/>_<jt:item source='$member.name' last=','/>
+</jt:loop>
+};
+</jt:true>
+<jt:true source='$enum.is_set'>
+
+//============================================================
+// <T><jt:item source='$enum.label'/>枚举类。</T>
+//
+// @class
+//============================================================
+struct MO_<jt:item source='$group.project_code' format='upper'/>_DECLARE T<jt:item source='$enum.name'/>Set : TBitSet<T<jt:item source='$enum.set_data_type_cd'/>>{
+<jt:loop source='$enum' alias='member'>
+public:
+   //------------------------------------------------------------
+   // <T>获得<jt:item source='$member.label'/>。</T>
+   MO_INLINE TBool Is<jt:item source='$member.name'/>(){
+      return GetBit(E<jt:item source='$enum.name'/>_<jt:item source='$member.name'/>);
+   }
+   //------------------------------------------------------------
+   // <T>获得<jt:item source='$member.label'/>。</T>
+   MO_INLINE TBool IsNot<jt:item source='$member.name'/>(){
+      return !GetBit(E<jt:item source='$enum.name'/>_<jt:item source='$member.name'/>);
+   }
+   //------------------------------------------------------------
+   // <T>设置<jt:item source='$member.label'/>。</T>
+   MO_INLINE void <jt:item source='$member.name'/>Set(){
+      return SetBit(E<jt:item source='$enum.name'/>_<jt:item source='$member.name'/>);
+   }
+   //------------------------------------------------------------
+   // <T>反转<jt:item source='$member.label'/>。</T>
+   MO_INLINE void <jt:item source='$member.name'/>Inverse(){
+      InverseBit(E<jt:item source='$enum.name'/>_<jt:item source='$member.name'/>);
+   }
+   //------------------------------------------------------------
+   // <T>修改<jt:item source='$member.label'/>。</T>
+   MO_INLINE void <jt:item source='$member.name'/>Modify(TBool flag){
+      ModifyBit(E<jt:item source='$enum.name'/>_<jt:item source='$member.name'/>, flag);
+   }
+   //------------------------------------------------------------
+   // <T>清除<jt:item source='$member.label'/>。</T>
+   MO_INLINE void <jt:item source='$member.name'/>Clear(){
+      ClearBit(E<jt:item source='$enum.name'/>_<jt:item source='$member.name'/>);
+   }
+</jt:loop>
+public:
+   TSize Capacity();
+   void Assign(T<jt:item source='$enum.name'/>Set& set);
+   void Parse(TCharC* pValue);
+   void ParseValue(TCharC* pValue);
+   TChar* ToString(TChar* pValue, TSize capacity);
+   TFsText ToString();
+};
+</jt:true>
+
+//============================================================
+// <T><jt:item source='$enum.label'/>枚举类。</T>
+//
+// @reference
+//============================================================
+class MO_<jt:item source='$group.project_code' format='upper'/>_DECLARE REnum<jt:item source='$enum.name'/>{
+public:
+   static E<jt:item source='$enum.name'/> Parse(TCharC* pValue);
+   static E<jt:item source='$enum.name'/> ParseCode(TCharC* pValue);
+   static TCharC* ToCode(E<jt:item source='$enum.name'/> value);
+   static TCharC* ToString(E<jt:item source='$enum.name'/> value);
+};
+</jt:loop>
+
+MO_NAMESPACE_END
+
+#endif // __MO_<jt:item source='$group.project_code' format='upper'/>_<jt:item source='$group.full_code' format='upper'/>_H__
+]]></Source>
+</Template>

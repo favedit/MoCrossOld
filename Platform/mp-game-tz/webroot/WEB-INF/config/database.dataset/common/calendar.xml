@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="NkzAiY66uE5cZwYIfyTrsg" name="common.calendar" label="M#12cn14工作日历" is_valid="Y" note="M#" data_name="CM_CALENDAR" data_logic="CM_CALENDAR_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldBoolean _uuid="[0fXV9[PD3iBgk8tjxGLuA" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldBoolean _uuid="K0eyQfxKKXQkk4vZ5HRPog" name="is_default" label="M#12cn12默认" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_DEFAULT" />
+  <FieldString _uuid="4kYyJM9wXIa7JyV39mg[uQ" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="20" />
+  <FieldString _uuid="kUaWZLwRxlavsUr3DxFfqA" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NAME" data_type="String" data_size="40" />
+  <FieldContent _uuid="T0ChsQvKdd34sAuYZauUqg" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldDate _uuid="7E8tSPekh4AOtiilZjhEpg" name="begin_date" label="M#12cn14开始日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="BEGIN_DATE" data_type="Date" />
+  <FieldDate _uuid="GkpqGts57[Jv0c2p[AY4iA" name="end_date" label="M#12cn14结束日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="END_DATE" data_type="Date" />
+  <FieldTimeSpan _uuid="KExcwHOlHuEBxQu0KiyKug" name="day_ts" label="M#12cn14日时间长" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DAY_TS" />
+  <FieldTimeSpan _uuid="okHezxIMF[]ufuiHpp0dvQ" name="day_work_ts" label="M#12cn15工作时间长" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DAY_WORK_TS" />
+  <FieldInteger _uuid="50HMu9OxX8xSqutKfBewkA" name="week_id" label="M#12cn13周标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="WEEK_ID" data_alias="WEK" data_refer="common.calendar.week" />
+  <FieldInteger _uuid="L0khjQ5tVne1zIbdsctGvQ" name="work_day_id" label="M#12cn15工作天标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="WORK_DAY_ID" data_alias="WRK_DAY" data_refer="common.calendar.day" />
+  <FieldInteger _uuid="RkH2Ak]66gjr74iQo9U[sw" name="rest_day_id" label="M#12cn15休息天标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REST_DAY_ID" data_alias="RST_DAY" data_refer="common.calendar.day" />
+  <FieldInteger _uuid="D0AzE0XtvHFab9NKCcGmiw" name="work_day_count" label="M#12cn14工作天数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="WORK_DAY_COUNT" />
+  <FieldInteger _uuid="nkytHWQ3f[e5pdb5BwSBjw" name="rest_day_count" label="M#12cn14休息天数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REST_DAY_COUNT" />
+  <FieldInteger _uuid="p07hyRj[fl6lTnjgy[Louw" name="holiday_count" label="M#12cn14假日天数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="HOLIDAY_COUNT" />
+  <FieldContent _uuid="rEH36uNDeec63pakwXvYgA" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

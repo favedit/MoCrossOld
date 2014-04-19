@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="Dk9ZERr2YnQWYmS3XFdOiQ" name="eng-enum" label="M#12cn14枚举信息" is_valid="Y" note="M#12jp13リスト" template="xmlobject" source="${home.source.eng}">
+  <Interface _uuid="NEiKcOdQjXW8lvXpSS4zmg" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.eng.enums.common.XObjectFace">
+    <Attribute _uuid="9UQq3BAKjdugmAaGebSmvQ" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="AkmDcXwnvdQmUFVnyKqpvQ" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="8Uyyhpi]bWShjy4PqLLTvA" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+    <Attribute _uuid="80OAec9Q5CLAXzo9CLIStQ" name="note" label="M#12cn12注释" is_valid="Y" note="M#12jp12注釈" type="MultiString" is_store="Y" is_config="Y" is_default="N" />
+  </Interface>
+  <Component _uuid="ZU1]sfGl6uUkwsxBKkMHjQ" name="Group" label="M#12cn14枚举分组" is_valid="Y" note="M#" class_name="org.mo.eng.enums.common.XEnumGroup" base_name="org.mo.eng.enums.base.XBaseEnumGroup" inherits="IObject">
+    <Attribute _uuid="V0mLaEJ9FEDrswuprKIFrw" name="source_name" label="M#12cn14代码名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="NkQVR[GIvx1P5]IWDHYIjQ" name="code" label="M#12cn12代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="b0]dCCyRtS8bzIuT1mOVgQ" name="code_name" label="M#12cn14代码名称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="G0hzB6KyuYKH0LRg738QoA" name="full_code" label="M#12cn14代码全称" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="9kJDMTD6FlnUq2xzERwfrQ" name="is_as" label="M#12cn14AS代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+  <Component _uuid="80S7ewvNXfjXz]N8av7ykA" name="Item" label="M#12cn12项目" is_valid="Y" note="M#12jp12項目" class_name="org.mo.eng.enums.common.XEnumItem" base_name="org.mo.eng.enums.base.XBaseEnumItem" inherits="IObject">
+    <Attribute _uuid="ZkbuCmWcgu[fLjbjRWa[nw" name="value" label="M#12cn12内容" is_valid="Y" note="M#12jp11値" type="String" is_store="Y" is_config="Y" is_default="N" />
+  </Component>
+  <Component _uuid="[0KquJ[p0TJkAQHq]2LUlg" name="Enum" label="M#12cn12枚举" is_valid="Y" note="M#" class_name="org.mo.eng.enums.common.XEnum" base_name="org.mo.eng.enums.base.XBaseEnum" inherits="IObject">
+    <Attribute _uuid="bkc6sGs38nmDFA8LTFLEog" name="is_count" label="M#12cn13计数器" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="G0FSz[78b]VMpPeejyVtqw" name="is_set" label="M#12cn12集合" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="iUAUKOD5Vsagz5iHiu[Emg" name="refer_value" label="M#12cn13参考值" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+    <Attribute _uuid="vEDcnjmJcnwo[TdA1b8Pkg" name="is_as" label="M#12cn14AS代码" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+  </Component>
+</Persistence>
+

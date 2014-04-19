@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template ads="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define ads="]E[MIOeUo79dXfu13d2wsA" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source ads="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T><jt:item source='$entity.label'/>消息定义。</T>
+//
+// @class
+//============================================================
+using System;
+using MO.Common.Lang;
+using MO.Common.IO;
+using MO.Message.Common;
+using MO.Message.Enum;
+using MO.Message.Geom;
+
+namespace MO.Message.Entity
+{
+   //============================================================
+   // <T><jt:item source='$entity.label'/>实体。</T>
+   //============================================================
+   public class S<jt:item source='$entity.name'/> : <jt:notEmpty source='$entity.parent_name'>S<jt:item source='$entity.parent_name'/>, </jt:notEmpty>INetObject
+   {
+<jt:loop source='$entity' alias='field' filter='$field:name=Item'>
+      // <jt:item source='$field.label'/>
+<jt:true source='$field.is_collection'>
+      protected FNetObjects<<jt:item source='$field.type_name'/>> _<jt:item source='$field.name'/> = new FNetObjects<<jt:item source='$field.type_name'/>>();
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Bool|Enum|Int8|Int16|Int32|Int64|Uint8|Uint16|Uint32|Uint64|Float|Double|DateTime|TimeSpan|String'>
+      protected <jt:item source='$field.lang_type'/> _<jt:item source='$field.name'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Type|Set|Struct|Object'>
+      protected <jt:item source='$field.lang_type'/> _<jt:item source='$field.name'/> = new <jt:item source='$field.lang_type'/>();
+</jt:equals>
+</jt:false>
+
+</jt:loop>
+      //============================================================
+      // <T>构造消息的实例对象。</T>
+      //
+      // @return 实例对象
+      //============================================================
+      public S<jt:item source='$entity.name'/>(){
+      }
+
+<jt:loop source='$entity' alias='field' filter='$field:name=Item'>
+      //============================================================
+      // <T>获得<jt:item source='$field.label'/>。</T>
+      //
+      // @return <jt:item source='$field.label'/>
+      //============================================================
+<jt:true source='$field.is_collection'>
+      public FNetObjects<<jt:item source='$field.type_name'/>> <jt:item source='$field.name' format='upper.first'/>{
+         get{ return _<jt:item source='$field.name'/>; }
+      }
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Bool|Enum|Int8|Int16|Int32|Int64|Uint8|Uint16|Uint32|Uint64|Float|Double|DateTime|TimeSpan|String'>
+      public <jt:item source='$field.lang_type'/> <jt:item source='$field.name' format='upper.first'/>{
+         get{ return _<jt:item source='$field.name'/>; }
+         set{ _<jt:item source='$field.name'/> = value; }
+      }
+</jt:equals>
+<jt:equals source='$field.type' value='Type|Set|Struct|Object'>
+      public <jt:item source='$field.type_name'/> <jt:item source='$field.name' format='upper.first'/>{
+         get{ return _<jt:item source='$field.name'/>; }
+      }
+</jt:equals>
+</jt:false>
+
+</jt:loop>
+
+      //============================================================
+      // <T>获得数据容量大小。</T>
+      //
+      // @return 数据容量大小
+      //============================================================
+      public <jt:empty source='$entity.parent_name'>virtual </jt:empty><jt:notEmpty source='$entity.parent_name'>override </jt:notEmpty>int Capacity(){
+<jt:empty source='$entity.parent_name'>
+         int capacity = 0;
+</jt:empty>
+<jt:notEmpty source='$entity.parent_name'>
+         int capacity = base.Capacity();
+</jt:notEmpty>
+<jt:loop source='$entity' alias='field' filter='$field:name=Item'>
+<jt:true source='$field.is_collection'>
+         capacity += _<jt:item source='$field.name'/>.Capacity();
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Bool'>
+            capacity += sizeof(byte);
+</jt:equals>
+<jt:equals source='$field.type' value='Enum'>
+         capacity += sizeof(<jt:item source='$field.data_type_cs'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Int8|Int16|Int32|Int64|Uint8|Uint16|Uint32|Uint64|Float|Double'>
+         capacity += sizeof(<jt:item source='$field.lang_type'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='DateTime|TimeSpan'>
+         capacity += sizeof(ulong);
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+         capacity += RNetMessage.GetStringCapacity(_<jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Type|Set|Struct|Object'>
+         capacity += _<jt:item source='$field.name'/>.Capacity();
+</jt:equals>
+</jt:false>
+</jt:loop>
+         return capacity;
+      }
+
+      //============================================================
+      // <T>序列化数据部分。</T>
+      //
+      // @param bytes 数据缓冲
+      //============================================================
+      public <jt:empty source='$entity.parent_name'>virtual </jt:empty><jt:notEmpty source='$entity.parent_name'>override </jt:notEmpty>void Serialize(IOutput output){
+<jt:notEmpty source='$entity.parent_name'>
+         base.Serialize(output);
+</jt:notEmpty>
+<jt:loop source='$entity' alias='field' filter='$field:name=Item'>
+         // 序列化<jt:item source='$field.label'/>
+<jt:true source='$field.is_collection'>
+         _<jt:item source='$field.name'/>.Serialize(output);
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Bool'>
+         output.WriteUint8((byte)(_<jt:item source='$field.name'/> ? 1 : 0));
+</jt:equals>
+<jt:equals source='$field.type' value='Enum'>
+         output.Write<jt:item source='$field.data_type_cd'/>((<jt:item source='$field.data_type_cs'/>)_<jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Set'>
+         output.Write<jt:item source='$field.data_type_cd'/>(_<jt:item source='$field.name'/>.InnerValue);
+</jt:equals>
+<jt:equals source='$field.type' value='Int8|Int16|Int32|Int64|Uint8|Uint16|Uint32|Uint64|Float|Double|String'>
+         output.Write<jt:item source='$field.type'/>(_<jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='DateTime|TimeSpan'>
+         output.WriteUint64(_<jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Type|Struct|Object'>
+         _<jt:item source='$field.name'/>.Serialize(output);
+</jt:equals>
+</jt:false>
+</jt:loop>
+      }
+
+      //============================================================
+      // <T>反序列化数据部分。</T>
+      //
+      // @param bytes 数据缓冲
+      //============================================================
+      public <jt:empty source='$entity.parent_name'>virtual </jt:empty><jt:notEmpty source='$entity.parent_name'>override </jt:notEmpty>void Unserialize(IInput input){
+<jt:notEmpty source='$entity.parent_name'>
+         base.Unserialize(input);
+</jt:notEmpty>
+<jt:loop source='$entity' alias='field' filter='$field:name=Item'>
+         // 反序列化<jt:item source='$field.label'/>
+<jt:true source='$field.is_collection'>
+         _<jt:item source='$field.name'/>.Unserialize(input);
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Bool'>
+         _<jt:item source='$field.name'/> = (input.ReadUint8() > 0);
+</jt:equals>
+<jt:equals source='$field.type' value='Enum'>
+         _<jt:item source='$field.name'/> = (<jt:item source='$field.lang_type'/>)input.Read<jt:item source='$field.data_type_cd'/>();
+</jt:equals>
+<jt:equals source='$field.type' value='Set'>
+         _<jt:item source='$field.name'/>.InnerValue = input.Read<jt:item source='$field.data_type_cd'/>();
+</jt:equals>
+<jt:equals source='$field.type' value='Int8|Int16|Int32|Int64|Uint8|Uint16|Uint32|Uint64|Float|Double|String'>
+         _<jt:item source='$field.name'/> = input.Read<jt:item source='$field.type'/>();
+</jt:equals>
+<jt:equals source='$field.type' value='DateTime|TimeSpan'>
+         _<jt:item source='$field.name'/> = input.ReadUint64();
+</jt:equals>
+<jt:equals source='$field.type' value='Type|Struct|Object'>
+         _<jt:item source='$field.name'/>.Unserialize(input);
+</jt:equals>
+</jt:false>
+</jt:loop>
+      }
+
+      // @manual (Source.Begin)
+      //------------------------------------------------------------
+<jt:empty source='$entity.source'>
+      //------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$entity.source'>
+<jt:item source='$entity.source'/>//------------------------------------------------------------
+</jt:notEmpty>
+      // @manual (Source.End)
+   }
+}
+]]></Source>
+</Template>

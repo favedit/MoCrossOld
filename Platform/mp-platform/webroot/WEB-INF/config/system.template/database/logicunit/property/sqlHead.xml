@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="7E]ooLLJa6re9VeXfcWRsw" name="database.logicunit.sqlHead" is_valid="Y" note="M#">
+  <Source _uuid="GUTo5YEHvuWuqFTJd2ZPgg" is_valid="Y" note="M#"><![CDATA[-------------------------------------------
+-- <jt:item source='$dataset.name' format='upper'/>
+--
+-- Copyright 2008 Microbject Corporation. All Rights Reserved.
+-- 属性模板版本: 1.01
+---------+----+---------------------------------------------
+-- 日期   作者 描述信息
+---------+----+---------------------------------------------
+------------------------------------------------------------
+
+DEFINE DF_LOGIC            = '<jt:item source='$dataset.name'/>';
+DEFINE DF_VIEW             = '<jt:item source='$dataset.data_name'/>';
+DEFINE DF_DATASET          = '<jt:item source='$dataset.data_name'/>_DS';
+DEFINE DF_PACKAGE          = '<jt:item source='$dataset.data_name'/>_DI';
+
+--========================================================--
+-- 公共数据接口
+--========================================================--
+PROMPT Deploy Interface: &DF_PACKAGE;
+
+-- Package define begin ------------------------------------
+CREATE OR REPLACE PACKAGE &DF_PACKAGE IS
+
+--========================================================--
+-- 静态定义区
+--========================================================--
+LG_NAME                    CONSTANT VARCHAR2(<jt:Length source='$dataset.name'/>) := '&DF_LOGIC';
+PK_NAME                    CONSTANT VARCHAR2(<jt:Length source='$dataset.data_name' add='3'/>) := '&DF_PACKAGE';
+DS_NAME                    CONSTANT VARCHAR2(<jt:Length source='$dataset.data_name' add='3'/>) := '&DF_DATASET';
+VW_NAME                    CONSTANT VARCHAR2(<jt:Length source='$dataset.data_name' add='3'/>) := '&DF_VIEW';
+
+------------------------------------------------------------
+DF_RECORD_CODE             CONSTANT VARCHAR2(<jt:Length source='$dataset.record_code'/>) := '<jt:item source='$dataset.record_code' format='field'/>';
+
+------------------------------------------------------------
+<jt:loop source='$fields' alias='field'>
+FD_<jt:item source='$field.data_name' format='field' rpad='23'/> CONSTANT VARCHAR2(<jt:length source='$field.data_name'/>) := '<jt:item source='$field.data_name' format='field'/>';
+</jt:loop>
+
+--========================================================--
+-- 用户代码区
+--========================================================--
+
+-------------------- Define Begin --------------------------
+<jt:item source='$dataset.old_define'/>-------------------- Define End ----------------------------
+
+--========================================================--
+-- 基本功能函数区
+--========================================================--
+
+------------------------------------------------------------
+-- <T>新建记录时，将打包字符串的内容解包后按照名称放入一个记录对象中</T>
+-- <P>不复制系统管理的字段。</P>
+--
+-- @param params_ 打包字符串
+-- @return 记录对象
+FUNCTION To_Prepare_Record(
+      params_              IN     VARCHAR2
+   ) RETURN &DF_VIEW%ROWTYPE;
+
+------------------------------------------------------------
+-- <T>新建记录时，将打包字符串的内容解包后按照名称和一个指定的记录对象进行合并操作</T>
+-- <P>如果打包字符串中含有某项，就会覆盖记录对象上对应的内容。</P>
+-- <P>不复制系统管理的字段。</P>
+--
+-- @param params_ 打包字符串
+-- @param rec_ 记录对象
+PROCEDURE To_Prepare_Record(
+      params_              IN     VARCHAR2,
+      rec_                 IN OUT &DF_VIEW%ROWTYPE);
+
+------------------------------------------------------------
+-- <T>将打包字符串的内容解包后按照名称放入一个记录对象中</T>
+--
+-- @param params_ 打包字符串
+-- @return 记录对象
+FUNCTION To_Record(
+      params_              IN     VARCHAR2
+   ) RETURN &DF_VIEW%ROWTYPE;
+
+------------------------------------------------------------
+-- <T>将打包字符串的内容解包后按照名称和一个指定的记录对象进行合并操作</T>
+-- <P>如果打包字符串中含有某项，就会覆盖记录对象上对应的内容。</P>
+--
+-- @param params_ 打包字符串
+-- @param rec_ 记录对象
+PROCEDURE To_Record(
+      params_              IN     VARCHAR2,
+      rec_                 IN OUT &DF_VIEW%ROWTYPE);
+
+------------------------------------------------------------
+-- <T>将属性表的记录转换为主表的数据记录。</T>
+--
+-- @param parent_rec_ 父记录对象
+-- @param rec_ 记录对象
+PROCEDURE To_Parent_Record(
+      rec_parent_          IN OUT <jt:item source='$dataset.parent_data_name'/>%ROWTYPE,
+      rec_                 IN     &DF_VIEW%ROWTYPE);
+
+------------------------------------------------------------
+-- <T>将主表的记录转换为属性表的数据记录。</T>
+--
+-- @param parent_rec_ 父记录对象
+-- @param rec_ 记录对象
+PROCEDURE To_Parent_Record(
+      rec_                 IN OUT &DF_VIEW%ROWTYPE,
+      rec_parent_          IN     <jt:item source='$dataset.parent_data_name'/>%ROWTYPE);
+
+------------------------------------------------------------
+-- <T>将记录对象中所有字段数据打包成一个字符串</T>
+--
+-- @param rec_ 记录对象
+-- @return 打包字符串
+FUNCTION To_Params(
+      rec_                 IN     &DF_VIEW%ROWTYPE
+   ) RETURN VARCHAR2;
+
+------------------------------------------------------------
+-- <T>查询当前数据集中是否含有指定的编号</T>
+--
+-- @param object_id_ 对象的编号
+-- @return 是否含有指定编号
+--    <L value='true'>含有</L>
+--    <L value='false'>不含有</L>
+FUNCTION Contains(
+      object_id_           IN     &DF_VIEW..OUID%TYPE
+   ) RETURN BOOLEAN;
+
+------------------------------------------------------------
+-- <T>根据指定编号获得对象记录</T>
+-- <UL>
+--    <L>若存在则返回被查询的记录对象。</L>
+--    <L>如果记录不存在，则产生记录不存在的例外。</L>
+-- </UL>
+--
+-- @param object_id_ 对象编号
+-- @return 记录对象
+-- @see CP_MESSAGE.Raise_No_Record
+FUNCTION Get(
+      object_id_           IN     &DF_VIEW..OUID%TYPE
+   ) RETURN &DF_VIEW%ROWTYPE;
+
+------------------------------------------------------------
+-- <T>查询当前数据集中是否含有指定的编号。</T>
+-- <P>该查询不会发生例外，查询完后可以根据存在标志判断当前记录是否存在<B/>
+--    若存在则返回被查询的记录对象。</P>
+--
+-- @param object_id_ 对象编号
+-- @param exists_ 存在标志
+-- @return 记录对象
+FUNCTION Find(
+      object_id_           IN     &DF_VIEW..OUID%TYPE,
+      exists_              IN OUT BOOLEAN
+   ) RETURN &DF_VIEW%ROWTYPE;
+
+------------------------------------------------------------
+-- <T>根据记录编号查找一条记录后将记录的所有字段数据打包成一个字符串</T>
+--
+-- @param object_id_ 对象编号
+-- @return 打包字符串
+FUNCTION Pack(
+      object_id_           IN     &DF_VIEW..OUID%TYPE
+   ) RETURN VARCHAR2;
+
+------------------------------------------------------------
+-- <T>根据对象编号锁定一条记录</T>
+-- <UL>
+--    <L>如果记录不存在，则产生记录不存在的例外</L>
+--    <L>如果其他用户已经锁定该记录，则产生锁定失败的例外。</L>
+-- </UL>
+--
+-- @param object_id_ 对象编号
+-- @return 记录对象
+PROCEDURE Lock_Record(
+      object_id_           IN     &DF_VIEW..OUID%TYPE);
+
+------------------------------------------------------------
+-- <T>根据对象编号和对象版本信息锁定一条记录</T>
+-- <UL>
+--    <L>如果记录不存在，则产生记录不存在的例外</L>
+--    <L>如果其他用户已经锁定该记录，则产生锁定失败的例外。</L>
+--    <L>如果锁定的记录的版本不符，则产生版本不相同的例外。</L>
+--    <L>如果成功锁定该记录，则返回该记录对象</L>
+-- </UL>
+--
+-- @param object_id_ 对象编号
+-- @param object_version_ 对象版本
+-- @return 记录对象
+-- @see CP_MESSAGE.Raise_No_Record
+-- @see CP_MESSAGE.Raise_Lock_Record
+FUNCTION Lock_Record(
+      object_id_           IN     &DF_VIEW..OUID%TYPE,
+      object_version_      IN     &DF_VIEW..OVER%TYPE
+   ) RETURN &DF_VIEW%ROWTYPE;
+
+------------------------------------------------------------
+-- <T>获得当前数据集对应的序列的编号</T>
+--
+-- @return 序列的编号
+FUNCTION Current_Id
+   RETURN INTEGER;
+
+------------------------------------------------------------
+-- <T>获得当前数据集对应的序列的下一个编号</T>
+--
+-- @return 序列的编号
+FUNCTION Next_Id
+   RETURN INTEGER;
+
+--========================================================--
+-- 数据处理区
+--========================================================--
+
+------------------------------------------------------------
+-- <T>锁定当前数据集防止任何对数据的非法操作</T>
+-- <UL>
+--   <L><C9>ROW SHARE</C9>: 行记录共享模式</L>
+--   <L><C9>ROW EXCLUSIVE</C9>: 行记录排他模式</L>
+--   <L><C9>SHARE UPDATE</C9>: 行更新模式</L>
+--   <L><C9>SHARE</C9>: 共享模式</L>
+--   <L><C9>SHARE ROW EXCLUSIVE</C9>: 共享行排他模式</L>
+--   <L><C9>EXCLUSIVE</C9>: 排他模式</L>
+--   <L>默认为排他模式</L>
+-- </UL>
+--
+-- @param mode_ 锁定的类型
+PROCEDURE Lock_Table(
+      mode_                IN     VARCHAR2 DEFAULT 'EXCLUSIVE');
+
+------------------------------------------------------------
+-- <T>新建一条记录的时对数据对象进行初始化</T>
+--
+-- @param logic_ 业务逻辑
+-- @param params_ 打包字符串
+PROCEDURE Prepare(
+      logic_               IN OUT VARCHAR2,
+      params_              IN OUT VARCHAR2);
+
+------------------------------------------------------------
+-- <T>新建一条记录的时候，对数据对象进行初始化</T>
+-- <UL>
+--   <L>若重置标志为真，则清除原对象的内容，只含新初始化的内容。</L>
+--   <L>若重置标志为假，则不清除原对象的内容，产生原对象和新初始化合并后的内容。</L>
+-- </UL>
+--
+-- @param logic_ 业务逻辑
+-- @param rec_ 记录对象
+-- @param reset_ 重置标志
+PROCEDURE Prepare(
+      logic_               IN OUT VARCHAR2,
+      rec_                 IN OUT &DF_VIEW%ROWTYPE,
+      reset_               IN     BOOLEAN DEFAULT TRUE);
+
+------------------------------------------------------------
+-- <T>在数据集内新建一条记录</T>
+--
+-- @param logic_ 业务逻辑
+-- @param params_ 打包字符串
+-- @param check_ 检查标志
+PROCEDURE Do_Insert(
+      logic_               IN OUT VARCHAR2,
+      params_              IN OUT VARCHAR2,
+      check_               IN     VARCHAR2 DEFAULT 'Y');
+
+------------------------------------------------------------
+-- <T>在数据集内新建一条记录</T>
+--
+-- @param logic_ 业务逻辑
+-- @param rec_ 记录对象
+-- @param check_ 检查标志
+PROCEDURE Do_Insert(
+      logic_               IN OUT VARCHAR2,
+      rec_                 IN OUT &DF_VIEW%ROWTYPE,
+      check_               IN     BOOLEAN DEFAULT TRUE);
+
+------------------------------------------------------------
+-- <T>在数据集内新建一条记录</T>
+--
+-- @param logic_ 业务逻辑
+-- @param rec_ 记录对象
+-- @param params_ 打包字符串
+-- @param check_ 检查标志
+PROCEDURE Do_Insert(
+      logic_               IN OUT VARCHAR2,
+      rec_                 IN OUT &DF_VIEW%ROWTYPE,
+      params_              IN OUT VARCHAR2,
+      check_               IN     BOOLEAN DEFAULT TRUE);
+
+------------------------------------------------------------
+-- <T>根据记录的编号修改一条记录</T>
+--
+-- @param logic_ 业务逻辑
+-- @param params_ 打包字符串
+-- @param object_id_ 记录的编号
+-- @param check_ 检查标志
+PROCEDURE Do_Update(
+      logic_               IN OUT VARCHAR2,
+      params_              IN OUT VARCHAR2,
+      object_id_           IN     &DF_VIEW..OUID%TYPE DEFAULT NULL,
+      check_               IN     VARCHAR2 DEFAULT 'Y');
+
+------------------------------------------------------------
+-- <T>根据记录的编号修改一条记录</T>
+--
+-- @param logic_ 业务逻辑
+-- @param rec_ 记录对象
+-- @param object_id_ 记录的编号
+-- @param check_ 检查标志
+PROCEDURE Do_Update(
+      logic_               IN OUT VARCHAR2,
+      rec_                 IN OUT &DF_VIEW%ROWTYPE,
+      object_id_           IN     &DF_VIEW..OUID%TYPE DEFAULT NULL,
+      check_               IN     BOOLEAN DEFAULT TRUE);
+
+------------------------------------------------------------
+-- <T>根据记录的编号修改一条记录</T>
+--
+-- @param logic_ 业务逻辑
+-- @param rec_ 记录对象
+-- @param params_ 打包字符串
+-- @param object_id_ 记录的编号
+-- @param check_ 检查标志
+PROCEDURE Do_Update(
+      logic_               IN OUT VARCHAR2,
+      rec_                 IN OUT &DF_VIEW%ROWTYPE,
+      params_              IN OUT VARCHAR2,
+      object_id_           IN     &DF_VIEW..OUID%TYPE DEFAULT NULL,
+      check_               IN     BOOLEAN DEFAULT TRUE);
+
+------------------------------------------------------------
+-- <T>根据记录的编号和数据集同步一条记录</T>
+-- <UL>
+--    <L>如果指定的记录不存在，进行新建处理。</L>
+--    <L>如果指定的记录存在，进行更新处理。</L>
+-- </UL>
+--
+-- @param logic_ 业务逻辑
+-- @param params_ 打包字符串
+-- @param object_id_ 记录的编号
+-- @param check_ 检查标志
+PROCEDURE Do_Sync(
+      logic_               IN OUT VARCHAR2,
+      params_              IN OUT VARCHAR2,
+      object_id_           IN     &DF_VIEW..OUID%TYPE DEFAULT NULL,
+      check_               IN     VARCHAR2 DEFAULT 'Y');
+
+------------------------------------------------------------
+-- <T>根据记录的编号和数据集同步一条记录</T>
+-- <UL>
+--    <L>如果指定的记录不存在，进行新建处理。</L>
+--    <L>如果指定的记录存在，进行更新处理。</L>
+-- </UL>
+--
+-- @param logic_ 业务逻辑
+-- @param rec_ 记录对象
+-- @param object_id_ 记录的编号
+-- @param check_ 检查标志
+PROCEDURE Do_Sync(
+      logic_               IN OUT VARCHAR2,
+      rec_                 IN OUT &DF_VIEW%ROWTYPE,
+      object_id_           IN     &DF_VIEW..OUID%TYPE DEFAULT NULL,
+      check_               IN     BOOLEAN DEFAULT TRUE);
+
+------------------------------------------------------------
+-- <T>根据记录的编号删除一条记录</T>
+--
+-- @param logic_ 业务逻辑
+-- @param params_ 打包字符串
+-- @param object_id_ 记录的编号
+-- @param check_ 检查标志
+PROCEDURE Do_Delete(
+      logic_               IN OUT VARCHAR2,
+      params_              IN OUT VARCHAR2,
+      object_id_           IN     &DF_VIEW..OUID%TYPE DEFAULT NULL,
+      check_               IN     VARCHAR2 DEFAULT 'Y');
+
+------------------------------------------------------------
+-- <T>根据记录的编号删除一条记录</T>
+--
+-- @param logic_ 业务逻辑
+-- @param rec_ 记录对象
+-- @param object_id_ 记录的编号
+-- @param check_ 检查标志
+PROCEDURE Do_Delete(
+      logic_               IN OUT VARCHAR2,
+      rec_                 IN OUT &DF_VIEW%ROWTYPE,
+      object_id_           IN     &DF_VIEW..OUID%TYPE DEFAULT NULL,
+      check_               IN     BOOLEAN DEFAULT TRUE);
+
+------------------------------------------------------------
+-- <T>根据记录的编号删除一条记录</T>
+--
+-- @param logic_ 业务逻辑
+-- @param rec_ 记录对象
+-- @param params_ 打包字符串
+-- @param object_id_ 记录的编号
+-- @param check_ 检查标志
+PROCEDURE Do_Delete(
+      logic_               IN OUT VARCHAR2,
+      rec_                 IN OUT &DF_VIEW%ROWTYPE,
+      params_              IN OUT VARCHAR2,
+      object_id_           IN     &DF_VIEW..OUID%TYPE DEFAULT NULL,
+      check_               IN     BOOLEAN DEFAULT TRUE);
+
+------------------------------------------------------------
+-- <T>清空当前数据集的全部记录</T>
+--
+PROCEDURE Do_Clear;
+
+--========================================================--
+-- 查找函数定义区
+--========================================================--
+
+------------------------------------------------------------
+-- <T>获得对象的信息。</T>
+--
+-- @param object_id_ 对象的编号
+-- @return 对象信息
+FUNCTION Get_Oinf(
+      object_id_           IN     &DF_VIEW..OUID%TYPE
+   ) RETURN VARCHAR2;
+
+<jt:loop source='$keys' alias='key' filter='$key.key_type=Unique'>
+------------------------------------------------------------
+-- <T>查询当前数据集中是否含有指定的编号。</T>
+--
+-- @param object_id_ 对象的编号
+-- @return 是否含有指定编号
+--    <L value='true'>含有</L>
+--    <L value='false'>不含有</L>
+<jt:loop source='$key' alias='keyField'>
+-- @param <jt:item source='$keyField.data_name' format='Lower'/>_ <jt:item source='$keyField.label'/>
+</jt:loop>
+-- @return 对象标识
+FUNCTION Contains_Id_By_<jt:item source='$key.data_name' format='db.func'/>(
+<jt:loop source='$key' alias='keyField'>
+      <jt:item source='$keyField.data_name' format='Lower' last='_' rpad='20'/> IN     &DF_VIEW..<jt:item source='$keyField.data_name'/>%TYPE<jt:position source='$keyField' type='last' elseValue=','/>
+</jt:loop>
+   ) RETURN BOOLEAN;
+
+</jt:loop>
+<jt:loop source='$keys' alias='key' filter='$key.key_type=Unique'>
+------------------------------------------------------------
+-- <T>根据<jt:item source='$key.label'/>(<C><jt:item source='$key.data_name' format='upper'/></C>)获得当前记录的编号</T>
+-- <UL>
+--    <L>若存在则返回被查询的记录对象的唯一标识。</L>
+--    <L>如果记录不存在，则产生记录不存在的例外。</L>
+-- </UL>
+--
+<jt:loop source='$key' alias='keyField'>
+-- @param <jt:item source='$keyField.data_name' format='Lower'/>_ <jt:item source='$keyField.label'/>
+</jt:loop>
+-- @return 对象标识
+FUNCTION Get_Id_By_<jt:item source='$key.data_name' format='db.func'/>(
+<jt:loop source='$key' alias='keyField'>
+      <jt:item source='$keyField.data_name' format='Lower' last='_' rpad='20'/> IN     &DF_VIEW..<jt:item source='$keyField.data_name'/>%TYPE<jt:position source='$keyField' type='last' elseValue=','/>
+</jt:loop>
+   ) RETURN &DF_VIEW..OUID%TYPE;
+
+</jt:loop>
+<jt:loop source='$keys' alias='key' filter='$key.key_type=Unique'>
+------------------------------------------------------------
+-- <T>根据<jt:item source='$key.label'/>(<C><jt:item source='$key.data_name' format='upper'/></C>)查找当前记录的编号</T>
+--
+<jt:loop source='$key' alias='keyField'>
+-- @param <jt:item source='$keyField.data_name' format='Lower'/>_ <jt:item source='$keyField.label'/>
+</jt:loop>
+-- @param exists_ 存在标志
+-- @return 对象标识
+FUNCTION Find_Id_By_<jt:item source='$key.data_name' format='db.func'/>(
+<jt:loop source='$key' alias='keyField'>
+      <jt:item source='$keyField.data_name' format='Lower' last='_' rpad='20'/> IN     &DF_VIEW..<jt:item source='$keyField.data_name'/>%TYPE,
+</jt:loop>
+      exists_              IN OUT BOOLEAN
+   ) RETURN &DF_VIEW..OUID%TYPE;
+
+</jt:loop>
+<jt:loop source='$fields' alias='field' filter='$field.is_key!=Y'>
+------------------------------------------------------------
+-- <T>根据记录的编号查找<jt:item source='$field.label'/>(<C><jt:item source='$field.data_name'/></C>)的数据内容</T>
+--
+-- @param object_id_ 记录的编号
+-- @return <jt:item source='$field.label'/>
+FUNCTION Get_<jt:item source='$field.data_name' format='db.func'/>(
+      object_id_           IN     &DF_VIEW..OUID%TYPE
+   ) RETURN &DF_VIEW..<jt:item source='$field.data_name'/>%TYPE;
+
+<jt:Equals source='$field.type' value='enum'>
+------------------------------------------------------------
+-- <T>根据记录的编号查找<jt:item source='$field.label'/>(<C><jt:item source='$field.data_name'/></C>)的显示内容</T>
+--
+-- @param object_id_ 记录的编号
+-- @return <jt:item source='$field.label'/>
+FUNCTION Get_<jt:item source='$field.data_name' removeLast='_Cd' format='db.func'/>_Label(
+      object_id_           IN     &DF_VIEW..OUID%TYPE
+   ) RETURN VARCHAR2;
+
+</jt:Equals>
+</jt:loop>
+<jt:Equals source='$dataset.data_type' value='P'>
+------------------------------------------------------------
+-- <T>获得指定记录的属性内容。</T>
+--
+-- @param record_id_ 记录的标识
+-- @param property_id_ 属性的标识
+-- @return 属性内容
+FUNCTION Get_Property(
+      record_id_           IN     &DF_VIEW..RECORD_ID%TYPE,
+      property_id_         IN     &DF_VIEW..PROPERTY_ID%TYPE
+   ) RETURN VARCHAR2;
+
+------------------------------------------------------------
+-- <T>以布尔值形式，获得指定记录的属性内容。</T>
+--
+-- @param record_id_ 记录的标识
+-- @param property_id_ 属性的标识
+-- @return 属性内容
+FUNCTION Get_Property_Boolean(
+      record_id_           IN     &DF_VIEW..RECORD_ID%TYPE,
+      property_id_         IN     &DF_VIEW..PROPERTY_ID%TYPE
+   ) RETURN CHAR;
+
+------------------------------------------------------------
+-- <T>以整数形式，获得指定记录的属性内容。</T>
+--
+-- @param record_id_ 记录的标识
+-- @param property_id_ 属性的标识
+-- @return 属性内容
+FUNCTION Get_Property_Integer(
+      record_id_           IN     &DF_VIEW..RECORD_ID%TYPE,
+      property_id_         IN     &DF_VIEW..PROPERTY_ID%TYPE
+   ) RETURN INTEGER;
+
+------------------------------------------------------------
+-- <T>以浮点数形式，获得指定记录的属性内容。</T>
+--
+-- @param record_id_ 记录的标识
+-- @param property_id_ 属性的标识
+-- @return 属性内容
+FUNCTION Get_Property_Float(
+      record_id_           IN     &DF_VIEW..RECORD_ID%TYPE,
+      property_id_         IN     &DF_VIEW..PROPERTY_ID%TYPE
+   ) RETURN FLOAT;
+
+------------------------------------------------------------
+-- <T>以时间形式，获得指定记录的属性内容。</T>
+--
+-- @param record_id_ 记录的标识
+-- @param property_id_ 属性的标识
+-- @return 属性内容
+FUNCTION Get_Property_Date(
+      record_id_           IN     &DF_VIEW..RECORD_ID%TYPE,
+      property_id_         IN     &DF_VIEW..PROPERTY_ID%TYPE
+   ) RETURN DATE;
+
+------------------------------------------------------------
+-- <T>以字符串形式，获得指定记录的属性内容。</T>
+--
+-- @param record_id_ 记录的标识
+-- @param property_id_ 属性的标识
+-- @return 属性内容
+FUNCTION Get_Property_String(
+      record_id_           IN     &DF_VIEW..RECORD_ID%TYPE,
+      property_id_         IN     &DF_VIEW..PROPERTY_ID%TYPE
+   ) RETURN VARCHAR2;
+
+</jt:Equals>
+END &DF_PACKAGE;
+-- Package define End --------------------------------------
+/
+SHOW ERROR]]></Source>
+</Template>
+

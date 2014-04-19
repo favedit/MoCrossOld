@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="c0SS9158P1djmMzm7Zu4tA" name="logic.raid" label="逻辑突袭" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" source_name="MoMgLogicRaid" code="Lrd" full_code="LogicRaid" display_index="47">
+  <Message _uuid="PUQJp4TJPWv[B2M4PVIxhQ" name="raid.enter.request" label="突袭进入请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RaidEnter" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0001" code_fix="N">
+    <Enum _uuid="rE0AI06WjorN1[eRgYfNtw" name="EDirectRaid" label="直接突袭枚举" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="YEI0rbAM7f9IVpboniZLmA" name="Yes" label="直接突袭" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="YUC41I1iy5[Q4ZulnEdBhw" name="No" label="不直接突袭" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="]kFanjG1VQ85Kys]FtLylA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="sU40IgyCbwRy8soFYGjGsw" name="sessionId" label="登陆会话编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="ykP]wxPGkvEaRlE2DWJFiw" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="NUV2Pb9xJ940T58IsEjfqw" name="targetRoleId" label="突袭目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="FElhZ3L5kkbtNZtSQeeJkg" name="occupyStatus" label="占领状态" is_valid="Y" note="M#" type="Enum" type_name="EGmOccupyStatus" is_collection="N" />
+    <Item _uuid="lESJWxfjI2ZbR59yITUylA" name="directRaid" label="已知领主信息直接突袭" is_valid="Y" note="M#" type="Enum" type_name="EDirectRaid" is_collection="N" />
+    <Item _uuid="Mkwjq9XNASJ5NF]3CydzhQ" name="tokenRaidCd" label="使用突袭令牌类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTokenRaid" is_collection="N" />
+    <Item _uuid="SEn8iKOR8fy6WEGt3T7mhg" name="enterWarSlaveSet" label="出战奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+  </Message>
+  <Message _uuid="m01JyazZF0jk1dxeTDYkrA" name="raid.enter.response" label="突袭进入应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RaidEnter" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Enum _uuid="W0ueZwyCY2nU6EeqDS4YpQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="8E[kKl2Ho0c0bcub79zHmA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="Z00hN2vB[htNiO5t4mOyog" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="2UqnGUpMEwwNTaDEyMHlnQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="mUvFsnlso2c3wHrynpAkhQ" name="tokenRaidCd" label="使用突袭令牌类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTokenRaid" is_collection="N" />
+    <Item _uuid="pERSCgchLcWTiKoemB6TnQ" name="tokenRaid1BindCount" label="1级突袭令绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="dUiVsUu9JH5xuWvlZAy]mg" name="tokenRaid2BindCount" label="2级突袭令绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="PEbdkV6K[eeMb7Up5bsTuw" name="tokenRaid3BindCount" label="3级突袭令绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="mkuiF4ijmQg2asCODeJugg" name="tokenRaid1UnbindCount" label="1级突袭令未绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="XUes9SjYglE1zh7NilVNnQ" name="tokenRaid2UnbindCount" label="2级突袭令未绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="BEucM0i6NXDMfvim89UnuQ" name="tokenRaid3UnbindCount" label="3级突袭令未绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="i02jHZHX6v]NWj59UwHgpQ" name="targetRoleId" label="突袭目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="NEZsisA0G3p6RC[8yR4jiQ" name="targetRoleDetail" label="目标角色信息" is_valid="Y" note="M#" type="Object" type_name="SGsRolePublic" is_collection="N" />
+    <Item _uuid="z0rOm07fSqTSy3IhL]VFgQ" name="realTargetRoleId" label="实际突袭的角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="yk3IeysmKjibcFFrA78[ug" name="raidFoodCarLevel" label="突袭的种子车级别" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="9UddF]eBs0iX4YtCBTRruQ" name="raidEmbattleSet" label="突袭的布阵集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleSet" is_collection="N" />
+    <Item _uuid="l03sMBKXyhW6bdzUQu7juw" name="raidFortSet" label="突袭角色防御塔集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleFortSet" is_collection="N" />
+    <Item _uuid="rU[rZuu9BWXjzVgiOYpVnQ" name="slaveSet" label="玩家剩余奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="S0Gk19uQlSCZ00lczGT5gQ" name="enterWarSlaveSet" label="出战奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="ZUp4mEdcwg8Pf[9FN2Y8kA" name="embattleMap" label="布阵地图" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleMap" is_collection="N" />
+  </Message>
+  <Message _uuid="]0LF]J9rJ1[4LWLCY57DgQ" name="raid.enter.storage.request" label="突袭进入请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RaidEnterStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0003" code_fix="N">
+    <Item _uuid="d0d[Pg]gVNGwwhOzJICAvg" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="QU72Qvv9IGlaDwXHxnW9tw" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="FUG5viQmZfGNLboWaIg5tA" name="targetRoleId" label="突袭目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="AES6kPvMVq]UurBnt2S[lQ" name="targetRoleDetail" label="目标角色信息" is_valid="Y" note="M#" type="Object" type_name="SGpRolePublic" is_collection="N" />
+    <Item _uuid="FUgCAmIH7d9qPDu2FyeUkg" name="realTargetRoleId" label="实际突袭的角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="dkHl1ZaWG3dHQpSOFxx9lQ" name="tokenRaidCd" label="使用突袭令牌类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTokenRaid" is_collection="N" />
+    <Item _uuid="KUpLmVkWkQvQgPT]JBTXvw" name="tokenRaid1BindCount" label="1级突袭令绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="L0Ugg2yo85ke7dQmH02mjA" name="tokenRaid2BindCount" label="2级突袭令绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="OEaJwVpFRRiMx6llr8Nlmw" name="tokenRaid3BindCount" label="3级突袭令绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="P0spwdyL5gNoryTKLxRDnA" name="tokenRaid1UnbindCount" label="1级突袭令未绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="tE]Hb0ydCprDGjrRT02vug" name="tokenRaid2UnbindCount" label="2级突袭令未绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="IkVFLN9tCfbvr4aj04tRnQ" name="tokenRaid3UnbindCount" label="3级突袭令绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="S0FCc87nOXsWg5ffUWJRhQ" name="updateSlaveSet" label="更新奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleSlaveSet" is_collection="N" />
+    <Item _uuid="SU9VN9rHM773UZyqxEIijA" name="enterWarSlaveSet" label="出战奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleSlaveSet" is_collection="N" />
+    <Item _uuid="bEpV]1VgxNoY[3C[SyaOgA" name="updateTaskSet" label="更新任务集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTaskSet" is_collection="N" />
+  </Message>
+  <Message _uuid="pUar3aUgIP7pOKPpFNHipg" name="raid.enter.storage.response" label="突袭进入应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RaidEnterStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0004" code_fix="N">
+    <Enum _uuid="sEZPAh6pd6lPXQePFTshjQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="5UelPZgByVtSG4S27G7xrA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="z01dSFxdZ7[jhbSgLLnspQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="e0dJnVhIK0v2hXH6HVl]uw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="bErjACIIASHnQv24WNPerg" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="xkuBbrEvKoz[sjiHMsn3oA" name="tokenRaidCd" label="使用突袭令牌类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTokenRaid" is_collection="N" />
+    <Item _uuid="SE2XpZpAWvrfK6wFidFMmQ" name="tokenRaid1BindCount" label="1级突袭令绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="YU5Kp5l1LA9RcKJHRynKhQ" name="tokenRaid2BindCount" label="2级突袭令绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="vEcH4cmXMwbY3t8gCgyXiQ" name="tokenRaid3BindCount" label="3级突袭令绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="s08ePwpNd9a0Rj2qvwRskA" name="tokenRaid1UnbindCount" label="1级突袭令未绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="Ekx]GXo0mg42Lt03PI9GhQ" name="tokenRaid2UnbindCount" label="2级突袭令未绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="yUnd55Ucs83BYE7]mzBAqQ" name="tokenRaid3UnbindCount" label="3级突袭令未绑定总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="IETG9pjGRPc]WcWZHpREjg" name="targetRoleId" label="突袭目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="9U]tTK[YiLAbZ78lqNrPqQ" name="targetRoleDetail" label="目标角色信息" is_valid="Y" note="M#" type="Object" type_name="SGpRolePublic" is_collection="N" />
+    <Item _uuid="9UTuBcG4E4SvDEbCsrL3vA" name="realTargetRoleId" label="实际突袭的角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="kENnkN2UvsaXQ3mWvdm[vw" name="targetSeedBaseLevel" label="突袭目标种子基地别" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="L0liLQn9q89pcgfCllu7qA" name="targetEmbattleSet" label="突袭目标布阵信息" is_valid="Y" note="M#" type="Object" type_name="SGpRoleEmbattleSet" is_collection="N" />
+    <Item _uuid="I00[ndKQPMBzkpaZGNfdkQ" name="targetFortSet" label="突袭目标防御塔集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFortSet" is_collection="N" />
+    <Item _uuid="XEY3[uOC[N7mYbF7ABBLng" name="updateSlaveSet" label="更新奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleSlaveSet" is_collection="N" />
+    <Item _uuid="U04Ih3m4xyHtXoTmCpEBlw" name="enterWarSlaveSet" label="出战奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleSlaveSet" is_collection="N" />
+    <Item _uuid="DUP87X2nVgcODIwYBHhDmQ" name="updateTaskSet" label="更新任务集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTaskSet" is_collection="N" />
+    <Item _uuid="oEUCrggsJM]hLeh3oaAitQ" name="raidId" label="突袭编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="xE1i]ncK8fotACTPEOrWkg" name="embattleMap" label="布阵地图" is_valid="Y" note="M#" type="Object" type_name="SGpRoleEmbattleMap" is_collection="N" />
+  </Message>
+  <Message _uuid="FEWu7eEXtrlIdpmOkkZBtw" name="raid.enter.storage.query.request" label="突袭进入查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RaidEnterStorageQuery" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0005" code_fix="N">
+    <Item _uuid="dEmAaqM3zM8aPXJixty]uw" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="4E9bvP7[fQx5fzrrwjFZhA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="q0Z7ACAzjQ56rVJmBoomoQ" name="targetRoleId" label="突袭目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="Ik0vNIQM9jH]K4qW7DF[mA" name="occupyStatus" label="占领状态" is_valid="Y" note="M#" type="Enum" type_name="EGmOccupyStatus" is_collection="N" />
+    <Item _uuid="skQVy4TnQ7eGAOlRpjU4hg" name="directRaid" label="已知领主信息直接突袭" is_valid="Y" note="M#" type="Bool" is_collection="N" />
+    <Item _uuid="IkghkOoHJJzSL7Fq9a61hw" name="tokenRaidCd" label="使用突袭令牌类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTokenRaid" is_collection="N" />
+    <Item _uuid="lEdrdCzIMN5TOz]TVWJgvw" name="enterWarSlaveSet" label="出战奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+  </Message>
+  <Message _uuid="Ikhlwxk2OUtFIQJjlg]orQ" name="raid.enter.storage.query.response" label="突袭进入查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RaidEnterStorageQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0006" code_fix="N">
+    <Enum _uuid="wUMSND5Hlt[SFzhy5wvvog" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="q0kRIH9HWglLShqb9jTJjg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="vUyjrzgFNyeRPVkQBK0tpA" name="SuccessTargetRoleNotExist" label="突袭目标不存在" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="T0jp9zlMd6D5wfBj[IbSsQ" name="SuccessTargetLairdRoleNotExist" label="突袭目标的领主不存在" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="lkSiKAIbb4]BGX6OIEeMjQ" name="CanNotRaidInLimitTime" label="此玩家在突袭保护时间内" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="60tzF2gTaxQXLTolQ0h1hw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="J0ht9SKQnO]8r5mPFPT2rg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="tktooH9VtLi3MhvEpnoXhA" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="j0cpmTWNHT7mLI7aoWOgvg" name="targetRoleId" label="突袭目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="XEkklmHaxyGZOBYnzz3Ung" name="occupyStatus" label="占领状态" is_valid="Y" note="M#" type="Enum" type_name="EGmOccupyStatus" is_collection="N" />
+    <Item _uuid="50ExrdRyt2fBknmbHz8DoA" name="directRaid" label="已知领主信息直接突袭" is_valid="Y" note="M#" type="Bool" is_collection="N" />
+    <Item _uuid="WUx1tjs8aG]T1jnYz5gpgA" name="tokenRaidCd" label="使用突袭令牌类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTokenRaid" is_collection="N" />
+    <Item _uuid="GkmXiqYlGKauPUxZ77abuw" name="enterWarSlaveSet" label="出战奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="mUZLI5jjD8JB4kdMMJpTmA" name="targetRoleDetail" label="突袭目标角色详细" is_valid="Y" note="M#" type="Object" type_name="SGpRolePublic" is_collection="N" />
+    <Item _uuid="2kGLIhEsjCrIHHg3ZGxqlA" name="targetLairdRoleDetail" label="突袭目标领主详细" is_valid="Y" note="M#" type="Object" type_name="SGpRolePublic" is_collection="N" />
+    <Item _uuid="WkChz2OulrqwuW4qDoTkug" name="embattleMap" label="布阵地图" is_valid="Y" note="M#" type="Object" type_name="SGsRoleEmbattleMap" is_collection="N" />
+    <Item _uuid="zUt0Djacy6nQg7m0O3[xjQ" name="footmanCount" label="属臣个数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+  </Message>
+  <Message _uuid="gU3Ikjp1WJiaMUQqOmFhgQ" name="raid.enter.info.response" label="突袭进入信息应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RaidEnterInfo" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0007" code_fix="N">
+    <Enum _uuid="DEd[oChevsG3wdxZC7qZuQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="qEFG2vGI6sd3SHZcXNq7mg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="qE5wBlyium89sFbT8NV1pg" name="SuccessTargetAlreadyBeOccupy" label="突袭目标已经有领主" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="O0mYdeNEg2vBZCeoT4ZAug" name="SuccessTargetAlreadyFree" label="突袭目标已经逃逸" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="90[jgFt6Lx8E8clvt1pXkw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="F0xQ]dDPGcdcKzKpa[XBvg" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="IUlltP2lVBRNrYhG8nf4iA" name="targetRoleDetail" label="目标角色信息" is_valid="Y" note="M#" type="Object" type_name="SGsRolePublic" is_collection="N" />
+    <Item _uuid="ykL]0qpbOihmvcnZ]IY6nA" name="targetLairdRoleDetail" label="目标领主角色信息" is_valid="Y" note="M#" type="Object" type_name="SGsRolePublic" is_collection="N" />
+  </Message>
+  <Message _uuid="bEw0m4fARrgTPjAzCipgmA" name="raid.finish.request" label="突袭结束请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RaidFinish" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0008" code_fix="N">
+    <Item _uuid="KECwn1CkwPBgGfuqafNGuQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="XEzMQGlD3rYpdcIV]TrRgw" name="result" label="突袭结果" is_valid="Y" note="M#" type="Enum" type_name="EGmRaidResult" is_collection="N" />
+    <Item _uuid="c0yQFupo3AL7yCeyo0AgpQ" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="fU6POVtGWIG2F3hVVr1OmA" name="sessionId" label="会话编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="iEB90HFO1kVeck[VDPJmqw" name="targetRoleId" label="突袭目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="T0EEfbkTdfuHawy9asnVhw" name="realTargetRoleId" label="突袭实际突袭角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="YUIxq8tES1zUcDIe1SwQgw" name="seedCount" label="得到的种子数量" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="4UdmfWKVDpKZFVTKlPQ2tA" name="slaveSet" label="出战存活奴隶" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="vULncBdN5Goc7y2dgUXWuA" name="tokenRaidCd" label="突袭使用的令牌类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTokenRaid" is_collection="N" />
+    <Item _uuid="JEcRCuEsCpzCOiQWDrz7ng" name="targetPropSet" label="取得属臣的物品集合" is_valid="Y" note="M#" type="Object" type_name="SGsWarehouseGridSet" is_collection="N" />
+  </Message>
+  <Message _uuid="0U01]4C2rMsr4gr3Pg1OgQ" name="raid.finish.response" label="突袭结束应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RaidFinish" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0009" code_fix="N">
+    <Enum _uuid="TUve0rSVSVkZCIGKadcjsw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="5EtkTIln2Imr]qA7PlVRsQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="MkRnGLfe3Q8fq[G6L3YUtg" name="SuccessAlreadyBeOccupy" label="突袭已被别人抢先一步" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="fEXjg]Dli2QSpLLm3OY9qQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="zUpF7bV1FLADx2RdKZAFig" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="GUswMb3cWCU3pl7Y9sRviQ" name="seedCount" label="得到的种子数量" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="4kXQwBTlWAU12XTcbKcesQ" name="rewardPointOverlord" label="奖励统治力" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="10NKsm8YLY1G9TjkkRUhiQ" name="rewardPointReiki" label="奖励灵气点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="DkSJiv7fXn[1FjzWUyynlg" name="rewardExperience" label="奖励经验点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="Ik2ms66F4Cy2faQS4g2dsA" name="pointOverlord" label="统治力" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="okmZMVjI0bhyg83XvHX5iA" name="pointFire" label="天火点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="ZEfuUqYxx5C3guf0Zcdpjg" name="pointReiki" label="角色灵气点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="FUVlbAbvryiqtWWT7hfGiQ" name="pointProsperity" label="繁荣点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="JEhTk]hh5s1psO90L9n0rA" name="roleExperience" label="角色经验" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="EEdGbXAXxL4RAPDuxnxrnQ" name="targetRoleDetail" label="目标更新的角色信息" is_valid="Y" note="M#" type="Object" type_name="SGsRolePublic" is_collection="N" />
+    <Item _uuid="ckaJ9Re4H[O8TrWvjaIKjw" name="slaveSet" label="出战存活奴隶" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="E0MqisHh5B60]4pONFwKng" name="lastSlaveSet" label="剩余奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="hE0wqsoudGBmoGVl6GcwkQ" name="updateHomeSet" label="更新家园集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleHomeSet" is_collection="N" />
+    <Item _uuid="fU0EyB5FzXvwJLrqjmiUsQ" name="propSet" label="道具集合" is_valid="Y" note="M#" type="Object" type_name="SGsRolePropSet" is_collection="N" />
+  </Message>
+  <Message _uuid="O0dXhrxq0fdi[OeboPPogQ" name="raid.finish.storage.request" label="突袭结束请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RaidFinishStorage" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x000A" code_fix="N">
+    <Item _uuid="NkQHjvggQ]]agzlYzH0doA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="]EJkNgdyn3bTPQo3KbtJiQ" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="sERHQ9JLUZGq4yf3bO90jA" name="targetRoleId" label="突袭目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="LEqCvXYlFqr1dE6hEs0dsg" name="targetLairdRoleId" label="突袭目标领主角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="6k8FB]GCUCybw3SOCue4og" name="result" label="突袭结果" is_valid="Y" note="M#" type="Enum" type_name="EGmRaidResult" is_collection="N" />
+    <Item _uuid="KU4x]fkPRwtPVOFB0LZfvQ" name="seedCount" label=" 得到的种子数量" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="T0TlGeT7Gd4ulgH]4nANnA" name="updatePointReiki" label="更新灵气点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="qUJvJGJGCESdO1w3ZYbDtw" name="updatePointFire" label="更新天火点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="3EbcGGQggcs9Sor5RXOWrw" name="updateExperience" label="更新经验点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="LU[SaNiNxmJifGT3GpZArg" name="updateRoleLevel" label="更新角色等级" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="nkrgeyD9yUP4R5JOe9irqA" name="footman" label="角色仆从" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFootman" is_collection="N" />
+    <Item _uuid="0E2OcB8f1YRAIbsMff8Spg" name="slaveSet" label="出战存活奴隶" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="4kWE[Jqd8BzQ]ZSybv[ohg" name="updateSlaveSet" label="更新奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleSlaveSet" is_collection="N" />
+    <Item _uuid="hknifGekCjSad8TCWJI8ig" name="updateTaskSet" label="更新任务集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTaskSet" is_collection="N" />
+    <Item _uuid="f0pOwCZvQxuzH3[fuoPyoA" name="raidId" label="突袭编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="WEB]L]NPCVOhXGiGUjwMjQ" name="updateEmbattleMapDurability" label="更新后的角色布阵地图耐久度" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="zErkPQW6KnhPB5xuG6zjkQ" name="updatePropSet" label="更新的物品集合" is_valid="Y" note="M#" type="Object" type_name="SGpRolePropSet" is_collection="N" />
+    <Item _uuid="TUVuuPv]E3zQhOYU1Qugng" name="updateWarehouseGridSet" label="更新仓库格子信息" is_valid="Y" note="M#" type="Object" type_name="SGmWarehouseGridSet" is_collection="N" />
+  </Message>
+  <Message _uuid="u0gZ]Z3TTZZumgQ8mMvdnA" name="raid.finish.storage.response" label="突袭结束应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RaidFinishStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x000B" code_fix="N">
+    <Enum _uuid="1kIO3C7xhp4R1Wv5MB7inA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="ekQ3hlVxqvCZ70rk4cc8nQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="FE6yevLfzwqn7PbrKL1aqg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="RUmCzD24[OIhmuDi46spnA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="9kLYkwg46mpUQzp5Fjntjg" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="sUl7apxXt[mELvIuQa3Pkg" name="result" label="突袭结果" is_valid="Y" note="M#" type="Enum" type_name="EGmRaidResult" is_collection="N" />
+    <Item _uuid="gEb4nu]HqjQ7X]RVBm]dqw" name="seedCount" label="得到的种子数量" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="u0LLmlo3aMVWzn[2D0Wutg" name="updatePointOverlord" label="更新统治力" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="yEqgi7lJB1vLDWYVAjCHng" name="updatePointReiki" label="更新灵气点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="CED8aKI5rIlEq4kuq3hziw" name="updatePointFire" label="更新天火点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="R0fu2gN4MHtTHKbI]ONEng" name="updateExperience" label="更新经验点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="SEukcoyEX3PYlWKTO58]jA" name="updateRoleLevel" label="更新角色等级" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="jEFxDJxDnxzOZdtre9KUiw" name="footman" label="角色仆从" is_valid="Y" note="M#" type="Object" type_name="SGpRoleFootman" is_collection="N" />
+    <Item _uuid="QknC5V]ixlNK4W4rMm15sg" name="targetRoleDetail" label="角色仆从详细" is_valid="Y" note="M#" type="Object" type_name="SGpRolePublic" is_collection="N" />
+    <Item _uuid="ZUIj8klkXPJoa13H0T9AvA" name="slaveSet" label="出战存活奴隶" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="BUbM7bgrJ]dHKB2lDe5Qkg" name="updateSlaveSet" label="更新奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleSlaveSet" is_collection="N" />
+    <Item _uuid="VkiYBO9oMJmNDo1Yn2Illg" name="updateTaskSet" label="更新任务集合" is_valid="Y" note="M#" type="Object" type_name="SGpRoleTaskSet" is_collection="N" />
+    <Item _uuid="F0mr24PaOigF1TJj]0iqmA" name="updateTax" label="更新的税值" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="cEcls3FcQdwyuC]cZoIQrg" name="targetRoleId" label="突袭目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="yEdyhnr3FZMpFVzF]3sSkg" name="targetLairdRoleId" label="突袭目标领主角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="pk5axrLyc1]Kz0F9av6Yrg" name="targetLairdRoleName" label="突袭目标领主角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="64" />
+    <Item _uuid="V0VnnSsENBVe3L6embWJhg" name="updatePropSet" label="更新的物品集合" is_valid="Y" note="M#" type="Object" type_name="SGpRolePropSet" is_collection="N" />
+  </Message>
+  <Message _uuid="P0xS4YENH5wAZgbtcMhWgQ" name="raid.finish.storage.query.request" label="突袭结束查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RaidFinishStorageQuery" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x000C" code_fix="N">
+    <Item _uuid="r0EuOwkvk6BvM2LgS12BpQ" name="result" label="突袭结果" is_valid="Y" note="M#" type="Enum" type_name="EGmRaidResult" is_collection="N" />
+    <Item _uuid="xk4Atyq5]eE5PBN70Cqrkg" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="xkijN0T]hFw8dxY0f9mEkg" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="x0hf1APMvYVoFm2xJkFVtQ" name="targetRoleId" label="突袭目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="l0sjGmO05Z3CmSal4n5alg" name="targetLairdRoleId" label="突袭目标领主编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="mEfz1WZgavJgSgFCEawnlA" name="seedCount" label="得到种子数量" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="4ksXsvL5uKnAefu7GEdrjw" name="slaveSet" label="出战存活奴隶" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="iU0Pw9S9il[qOoqexiI7oQ" name="raidId" label="突袭编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="1ENm9RNt]jJjl2WFnGgbrQ" name="tokenRaidCd" label="突袭使用的令牌类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTokenRaid" is_collection="N" />
+    <Item _uuid="VUsmD1EveCbXQXX5nlGNtw" name="takePropSet" label="取得属臣的物品集合" is_valid="Y" note="M#" type="Object" type_name="SGsWarehouseGridSet" is_collection="N" />
+  </Message>
+  <Message _uuid="qE]]m7h8Aw[lKYtkKI[DtA" name="raid.finish.storage.query.response" label="突袭结束查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RaidFinishStorgaeQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x000D" code_fix="N">
+    <Enum _uuid="fk54[HFl0IQSzKffR3DNrw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="2kU3DaOD8AgvFXo2bQiDtw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="eUoX6Ak1erqZHiwZgo51jA" name="SuccessAlreadyBeOccupy" label="突袭目标已经被其他玩家占领" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="kkkw4MOXtYYDqoKrxcMorA" name="FailureRoleNotExist" label="突袭目标不存在" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="qkG4Fft2NE0605PHgoc7rQ" name="FailureLairdRoleNotExist" label="突袭目标的领主不存在" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="gEyBJ9UYePJJs4TlkgvYkg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="g0CryRIUFfH9b3wOmcagiA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="t0eFgxmOK8bEdSSTUL7hlQ" name="result" label="突袭结果" is_valid="Y" note="M#" type="Enum" type_name="EGmRaidResult" is_collection="N" />
+    <Item _uuid="0kA3YlvLl]lc[2BUjXlStQ" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="LE]OWgyZkl24ycCcTiPDjQ" name="sessionId" label="会话编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="50HqALDqQDX5vtKBNDsUqA" name="targetRoleId" label="突袭目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="NUJ]OnLkWutZMrnQ1oN6oA" name="targetLairdRoleId" label="突袭目标领主角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="lk7wxxH94x94Rxs3Gw72kA" name="seedCount" label="得到种子数量" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="L0sSDU9NErrPhW61UKmjjA" name="slaveSet" label="出战存活奴隶" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="MEHNpl[rVfKfxvwSEvsvtg" name="queryTargetRoleLevel" label="查询突袭玩家的等级" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="7kCwGybdIYdMLe]pPsO0sw" name="queryTargetLairdRoleLevel" label="查询突袭玩家领主的等级" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="ckqjLbxGUBAxOFXja6VUiw" name="querySeedBaseLevel" label="查询突袭目标的种子基地级别" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="Pk2tJbBVkSrwU8zchBWqsA" name="queryLairdSeedBaseLevel" label="查询突袭玩家领主的种子基地级别" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="800xN6h]keVevQDH8xT4sA" name="queryEmbattleMapTid" label="查询突袭目标的布阵地图" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="LUHhcae]9ZCazSo1718TkQ" name="queryEmbattleGrade" label="查询突袭目标的布阵评分" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="JETAHUR]35HKlrSg]JxKpg" name="queryLairdEmbattleMapTid" label="查询突袭玩家领主的布阵地图模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="U0ANZI8tXbkA32lK5NDmuA" name="queryLairdEmbattleGrade" label="查询突袭玩家领主的布阵评分" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="oErjFSDGyiB2SxtZvULtmw" name="queryEnterWarSlaveSet" label="查询突袭方参战的奴隶" is_valid="Y" note="M#" type="Object" type_name="SGpRoleSlaveSet" is_collection="N" />
+    <Item _uuid="[U5Yd5Lf9wc3MA[kOakStw" name="tokenRaidCd" label="使用的突袭令牌的类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTokenRaid" is_collection="N" />
+    <Item _uuid="SUZVPuG9GbF4ACwgkWkfiQ" name="queryEmbattleMapDurability" label="查询到的布阵地图的耐久度" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="9kqutf4mjlENgLglAU6Vqg" name="takePropSet" label="取得属臣的物品集合" is_valid="Y" note="M#" type="Object" type_name="SGsWarehouseGridSet" is_collection="N" />
+    <Item _uuid="dkeaq8UqaxplXtyMG5CHjQ" name="targetWarehouseGridSet" label="目标蝴蝶仓库" is_valid="Y" note="M#" type="Object" type_name="SGmWarehouseGridSet" is_collection="N" />
+  </Message>
+  <Message _uuid="lEU[QY]igWwCl0ik[Wo5gQ" name="raid.end.request" label="突袭结束结算请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RaidEnd" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x000E" code_fix="N">
+    <Item _uuid="mUUvE1TxgG2bfp7sGND]oQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="zEPdVKwV5yC3eA6m1G[]pg" name="result" label="突袭结果" is_valid="Y" note="M#" type="Enum" type_name="EGmRaidResult" is_collection="N" />
+    <Item _uuid="5E[uysSBpLFl0n5jToE0kw" name="targetRoleId" label="突袭目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="qE11eBNKnIlpkIsnjQebrQ" name="realTragetRoleId" label="实际突袭角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="fESfJzzKfA]5frYSqKDTmQ" name="seedCount" label="得到的种子数量" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="okcXjp3Wrist[FvctsRInQ" name="slaveSet" label="玩家剩余奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="Ukv1c1KPMElRZkAc[gfIog" name="tokenRaidCd" label="突袭使用的令牌类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTokenRaid" is_collection="N" />
+  </Message>
+  <Message _uuid="MUT5UYJfq1kI8SZ1GiPKvw" name="raid.end.response" label="突袭结束结算应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RaidEnd" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000F" code_fix="N">
+    <Enum _uuid="3Uj1IAXUkJoo[Fxtdqb0sA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="5kDQVhdVnd]s5]ka7kIYgQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="LEv4x[3kVDSR0WT4xnjZsA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="20H3k]ts3o3fyb98nkOuuQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="ZEtzXgkWWfchW]5Rm]sIhg" name="resultCd" label="突袭结果" is_valid="Y" note="M#" type="Enum" type_name="EGmRaidResult" is_collection="N" />
+    <Item _uuid="[0LxDUrsFVtoLJA[G8OXsQ" name="seedCount" label="得到种子的数量" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="2kZtT7n35c3ziV]xEzFYjA" name="rewardPointOverlord" label="奖励统治力" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="tUrlLrjhVMpxfn4vMP2Otg" name="rewardPointReiki" label="奖励灵气点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="D0[ZEMyfNUWBHKzfhSVxsA" name="rewardExperience" label="奖励经验点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="EkYgFD9sHIHLWGimNFZrmg" name="lastSlaveSet" label="剩余奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="40tWN1IQ1JqQuk8l]nHnuQ" name="takePropSet" label="取得属臣的物品集合" is_valid="Y" note="M#" type="Object" type_name="SGsWarehouseGridSet" is_collection="N" />
+    <Item _uuid="NkJxFVdUmHUC7xkN]PUqog" name="takeReiki" label="取得属臣灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+  </Message>
+  <Message _uuid="90r8iVPQcfuKiHE0SnLVqg" name="raid.end.storage.query.request" label="突袭结束结算存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RaidEndStorageQuery" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0010" code_fix="N">
+    <Item _uuid="j0MiZS6[he3sW4Ll]Fp7gA" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="wk68MOv8vCdyEo8caXqBuQ" name="result" label="突袭结果" is_valid="Y" note="M#" type="Enum" type_name="EGmRaidResult" is_collection="N" />
+    <Item _uuid="IEs[0tK5O4NbUGbRPr0QgQ" name="targetRoleId" label="突袭目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="YkV]e3zURaCR5mxiz3WAlQ" name="realTragetRoleId" label="实际突袭角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="sUij2N8RO[fPv7qfc0GMsg" name="seedCount" label="得到的种子数量" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="dE6A8nIQnfJ[[V93PLkupw" name="slaveSet" label="玩家剩余奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="ZkJ1IXTLxhgU5vqclwTGtg" name="tokenRaidCd" label="突袭使用的令牌类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTokenRaid" is_collection="N" />
+    <Item _uuid="dkCwY5Rr8z[D7Jli9l7hqA" name="raidId" label="突袭编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="r0mQQz[V54rECPERC729tg" name="raid.end.storage.query.response" label="突袭结束结算存储应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RaidEndStorageQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0011" code_fix="N">
+    <Enum _uuid="q0yYI6XRzSYf1fGWCJtEmA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="1Ul8kgdtYTCS8oqx2[HAmg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="HEU9JoK3YM5iG4FsrBX6vQ" name="SuccessAlreadyBeOccupy" label="突袭目标已经被其他玩家占领" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="6UhHPmMTiaVQIRlzHI6UtA" name="FailureRoleNotExist" label="突袭目标不存在" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="rEnVEHAMYyKGT43Gl7X]lg" name="FailureLairdRoleNotExist" label="突袭目标的领主不存在" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="CkvdhWoYsPAsRBizSlvOow" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="XUHHNoqFSQYv10lTRPMVvA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="1U59aCSLumukQE31bHT9lQ" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="P09BShdWPgAunPelM8nWrQ" name="result" label="突袭结果" is_valid="Y" note="M#" type="Enum" type_name="EGmRaidResult" is_collection="N" />
+    <Item _uuid="WUjsi2HHo2M9uiC1X8lZsw" name="targetRoleId" label="突袭目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="ukQMKirc6gl2D9uvmXjdog" name="realTragetRoleId" label="实际突袭角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="F0cYT]MnyE]ZXmSw5mhDmA" name="seedCount" label="得到的种子数量" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="aEQexpUVO5ejqrlXXIaKrQ" name="slaveSet" label="玩家剩余奴隶集合" is_valid="Y" note="M#" type="Object" type_name="SGsRoleSlaveSet" is_collection="N" />
+    <Item _uuid="G09]eb1ReOxRLLQWnJIuvA" name="tokenRaidCd" label="突袭使用的令牌类型" is_valid="Y" note="M#" type="Enum" type_name="EGmTokenRaid" is_collection="N" />
+    <Item _uuid="aEwEFzy40GAgRtKP7gLYtQ" name="enterWarSlaveSet" label="突袭方参战的奴隶" is_valid="Y" note="M#" type="Object" type_name="SGpRoleSlaveSet" is_collection="N" />
+    <Item _uuid="8UvHzWwj]oWMfDxros7GgQ" name="treeLevel" label="神树级别" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="[ENrxVDR2Z5WCCgEdipNgg" name="embattleGrade" label="布阵评分" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="LEDxRJpyvlwidchYfkqKhw" name="awradOverlord" label="奖励统治点" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="y0LxAgh9Q1ICiArTWuratQ" name="targetWarehouseGridSet" label="目标蝴蝶仓库" is_valid="Y" note="M#" type="Object" type_name="SGmWarehouseGridSet" is_collection="N" />
+    <Item _uuid="RkVH8Yk60Odf6xj9wcQ6lA" name="targetButterflyReiki" label="角色蝴蝶灵气" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+  </Message>
+  <Message _uuid="A0sacBqcRgAzUlvxHKyjqA" name="emancipate.footman.request" label="释放属臣请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EmancipateFootman" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0012" code_fix="N">
+    <Item _uuid="sUrP[so98tzLZmF9d6A2pg" name="source" label="来源" is_valid="Y" note="M#" type="Object" type_name="SGmSource" is_collection="N" />
+    <Item _uuid="pEcRWCX2yxVUCzrrOeFqpA" name="footmanRoleId" label="属臣角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="p0jiXxMlCxiWjDtuj[p7jg" name="emancipate.footman.response" label="释放属臣应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EmancipateFootman" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0013" code_fix="N">
+    <Enum _uuid="40vIjjpEu0nyTa1V0tU1mg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="MUMbk4zG[7QrUGLZeifTpw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="YU7kD8VrYLSATZcBFSg3nw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="mUXD7NxX6bbnQXoa0cDktQ" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="XUynT8d98fZEfgVkzbZ6mg" name="emancipate.footman.storage.request" label="释放属臣存储请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="EmancipateFootmanStorage" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x0014" code_fix="N" />
+  <Message _uuid="g0lo9mFIi7cblK6uBoOLgQ" name="emancipate.footman.storage.response" label="属臣释放应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="EmancipateFootmanStorage" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x0015" code_fix="N" />
+</Group>
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="lUZ1kgKegyd3nkgcLOg7vQ" name="global.gate" label="全局网关服务器" is_valid="Y" note="M#" is_server="N" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" source_name="MoMgGlobalGate" code="Agt" full_code="GlobalGate" display_index="23">
+  <Message _uuid="]E0LZJsvhro2h5HknQrpiw" name="register.request" label="注册请求" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Register" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="AGT" target_type="APX" code_value="0x0001" code_fix="N">
+    <Item _uuid="pk9iPST3187qY2j4TkTWvQ" name="id" label="编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="vEKz6VrI6QlSjN9iKZl8kw" name="name" label="名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="GU9NB3mdHOBjG6IXGPzQsg" name="host" label="主机地址" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="9UlktrBCa8PDQtERYWlLiA" name="port" label="端口" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+  </Message>
+  <Message _uuid="hEYaAHAKWiYi3VHgC6AWsg" name="register.response" label="注册应答" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Register" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="ADM" target_type="APX" code_value="0x0002" code_fix="N">
+    <Enum _uuid="D0k5wchByVdckTyRAB0Asw" name="EStatus" label="状态" is_valid="Y" note="M#">
+      <Member _uuid="pkyIrccNONRCstYa9qthlw" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="]UaFR2f3H7KCE78ruvCMvA" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="H0feRbKAH9r9nY]5unlmkQ" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="gUh7YGYeK9y7tINQdaThmg" name="index" label="索引编号" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+  </Message>
+  <Message _uuid="XUU9kqcimXMNCpTDhw9gjg" name="alive.proxy.notify" label="玩家保活通知" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Alivi" is_udp="N" message_type="Notify" is_session="N" is_manage="N" source_type="GGT" target_type="GPX" code_value="0x0010" code_fix="N" />
+</Group>
+

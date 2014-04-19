@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="nUQ1VubtAgJHElF6l1zRmQ" name="logic.business.role" label="M#12cn14业务角色" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_BUSINESS_ROLE" data_alias="LG_BUS_ROL" data_logic="LG_BUSINESS_ROLE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="30mtEjv7Juv]JX[RvhAXlQ" name="business_id" label="M#12cn14业务标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="BUSINESS_ID" data_refer="logic.business" data_uniques="role" />
+  <FieldBoolean _uuid="lEeTn6G]U7QO0kErJ[w4hQ" name="is_permission" label="M#12cn13可授权" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_PERMISSION" data_default="'N'" />
+  <FieldInteger _uuid="wEq0G3E8C8g02UcrbYXItg" name="role_id" label="M#12cn14角色标识" is_valid="Y" note="M#12cn14角色标识" is_store="Y" is_abstract="N" data_name="ROLE_ID" data_refer="person.role" data_uniques="role" />
+  <FieldBoolean _uuid="5Ucw]yU0p7b6s0wg6gQ6tQ" name="is_valid" label="M#12cn12有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldEnum _uuid="DEqnzalgrZcT9mKgtmInrA" name="unique_cd" label="M#12cn14唯一类型" is_valid="Y" note="M#12cn219C：目录唯一\nN：节点唯一\nU：不限制" is_null="Y" is_store="Y" is_abstract="N" data_name="UNIQUE_CD" data_size="1" data_code="logic.business.role.unique" />
+  <FieldTemplate _uuid="rUQ0Ptcwz3TIYbsESIuOig" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="XEPVBqQJI[uo9kqHsMskpA" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

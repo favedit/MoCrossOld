@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<TreeView>
+
+   <!-- Types -->
+   <Types page_svc='mgr.db.oracle.catalog'>
+
+      <!-- Default -->
+      <Type name='default'>
+         <Sheet name='inf' icon='sys.info' label='trs:page.information|Information' action='/inc/Empty.wa'/>
+      </Type>
+
+      <!-- User -->
+      <Type name='user.user.list' tree_svc='wfc.admin.navigator'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/inc/wfc/frame/Process.wa?hc=Y&amp;fn=com.security.tbwUser'/>
+      </Type>
+      <Type name='user.group.list'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/inc/wfc/frame/Process.wa?hc=Y&amp;fn=com.security.tbwGroup'/>
+      </Type>
+
+      <!-- Security -->
+      <Type name='security.action.list'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/inc/wfc/frame/Process.wa?hc=Y&amp;fn=com.security.tbwAction'/>
+      </Type>
+      <Type name='security.module.list'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/inc/wfc/frame/Process.wa?hc=Y&amp;fn=com.security.tbwModule'/>
+      </Type>
+      <Type name='security.role.list'>
+         <Sheet name='info' icon='sys.info' label='trs:page.information|Information' action='/inc/wfc/frame/Process.wa?hc=Y&amp;fn=com.security.tbwRole'/>
+      </Type>
+
+   </Types>
+
+   <!-- Tree -->
+   <Nodes/>
+
+   <!-- <Nodes tree_svc='wfc.admin.navigator'>
+      <Node type='user' icon='msc.floder' label='trs:tree.user|Users' child='Y' node_type='catalog'>
+         <Node type='user.user.list' icon='msc.tbw' label='trs:tree.user.user|User - Overview'/>
+         <Node type='user.group.list' icon='msc.tbw' label='trs:tree.user.group|Group - Overview'/>
+      </Node>
+      <Node type='security' icon='msc.floder' label='trs:tree.security|Security' child='Y'  node_type='catalog'>
+         <Node type='security.action.list' icon='msc.tbw' label='trs:tree.permission.action|Action - Overview'/>
+         <Node type='security.module.list' icon='msc.tbw' label='trs:tree.permission.module|Module - Overview'/>
+         <Node type='security.role.list' icon='msc.tbw' label='trs:tree.permission.role|Role - Overview'/>
+      </Node>
+      <Node type='hint' icon='msc.floder' label='trs:tree.hint|Hint' child='Y'  node_type='catalog'>
+         <Node type='hint.type.list' icon='msc.tbw' label='trs:tree.hint.type.list|Type - Overview'/>
+         <Node type='hint.range.list' icon='msc.tbw' label='trs:tree.hint.range.list|Range - Overview'/>
+         <Node type='hint.param.list' icon='msc.tbw' label='trs:tree.hint.param.list|Param - Overview'/>
+         <Node type='hint.content.list' icon='msc.tbw' label='trs:tree.hint.content.list|Content - Overview'/>
+      </Node>
+      <Node type='wfc.nav.groups' icon='msc.floder' label='trs:tree.navigator|Navigator' child='Y'/>
+   </Nodes> -->
+
+</TreeView>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="]kWzSFvbaI3Vwyz78BFHvQ" name="system.business.mail.event" label="M#12cn16业务邮件事件" is_valid="Y" note="M#" data_name="SY_BUSINESS_MAIL_EVENT" data_alias="SY_BUS_MAL_EVE" data_logic="SY_BUSINESS_MAIL_EVENT_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="Sk3vg6417dv7EHQiUbJ5qw" name="mail_id" label="M#12cn14邮件标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="MAIL_ID" data_alias="MAL" data_refer="system.business.mail" />
+  <FieldInteger _uuid="60Xmt75lPFbx3W3a0GXlgA" name="event_type_id" label="M#12cn16事件类型标识" is_valid="Y" note="M#" is_unique="Y" is_store="Y" is_abstract="N" data_name="EVENT_TYPE_ID" data_alias="EVE_TYP" data_refer="logic.event.type" />
+  <FieldBoolean _uuid="D0]OZ7[5jm0NHYqfDxWeoQ" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldTemplate _uuid="g0wZngwDyPNpRa2OhjfHjg" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="UkKgvV5yHrm4KPTWdLmJow" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

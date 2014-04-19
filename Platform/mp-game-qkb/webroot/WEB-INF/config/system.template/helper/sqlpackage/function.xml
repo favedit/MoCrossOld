@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="i0COO78iRaoDPoSUczGNlQ" name="helper.sqlpackage.function" is_valid="Y" note="M#">
+  <Source _uuid="ikKiEUrAzDFoUoYDNpU0nw" is_valid="Y" note="M#"><![CDATA[<jt:include source='helper.title'/>
+
+<!------------------------导航--------------------------------->
+<jt:include source='helper.navBegin'/>
+<IMG src='../../../ars/icon/tools/home.gif'/> <span><a href="#">主页</a></span>
+<IMG src='../../../ars/icon/tools/next.gif'/> <span><a href="../package/<jt:item source='$function.package_name'/>.html"><jt:item source='$function.package_name'/></a></span>
+<IMG src='../../../ars/icon/tools/next.gif'/> <span><jt:item source='$function.name'/></a></span>
+<jt:include source='helper.navEnd'/>
+<!-- Head Begin ------------------------------------------->
+<TABLE width='100%' border='0' cellspacing='8' cellpadding='0'>
+<TR>
+	<TD class='headTitle'><jt:item source='$function.package_name'/>.<jt:item source='$function.name'/></TD>
+	<TD align='right' valign='bottom' class='headVersion'>version:1.0.0</TD>
+</TR>
+<TR><TD colspan='2'>
+	<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+		<TR height='1' bgcolor='#999999'><TD></TD></TR>
+		<TR height='1' bgcolor='#000000'><TD></TD></TR>
+	</TABLE>
+</TD></TR>
+</TABLE>
+<!-- Head End --------------------------------------------->
+<TABLE width='100%' border='0' cellspacing='8' cellpadding='16'>
+	<TR>
+	<TD>		
+		<!-----------------------函数---------------------------------->
+		<BR>
+		<span><B>说明</B></span>
+		<TABLE width='100%' border='0' cellspacing='1' cellpadding='4'>
+		<TR><TD style='padding-left:25'>
+			<jt:equals source='$function.has_description' value='Y'>
+			<jt:item source='$function#Description:text' format='html'/>
+			</jt:equals>
+		</TD></TR>
+		</TABLE>
+		<BR>
+		<TABLE width='100%' border='0' cellspacing='0' cellpadding='2'>
+		<TR bgcolor='#FFFFFF'><TD>
+			<jt:equals source='$function.has_parameters' value='Y'>
+			<span><B>参数</B></span>
+			<TABLE width='90%' align='center' bgcolor='#999999' cellspacing='0' cellpadding='2'>
+			<jt:define source='$function#Parameters' alias='parameters'/>
+			<jt:loop source='$parameters' alias='param'>
+			<TR bgcolor='#F0FFF0'>
+			<TD width='200' nowrap>
+				<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+				<TR><TD><IMG src='../../../ars/icon/helper/javascript/parameter.gif' border='0' align='absmiddle'> 
+				<jt:item source='$param.name'/></TD>
+				<TD width='60'><jt:item source='$param.direction'/></TD>
+				</TR></TABLE></TD>
+			<TD width='260'>
+				<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+				<TR>
+					<TD width='80%'><jt:item source='$param.data_type'/>
+					<js:NotEmpty source='$param.java_type'> (<jt:item source='$param.java_type'/>)</js:NotEmpty>
+					</TD>
+					<TD width='20%'><jt:item source='$param.value'/></TD>
+				</TR>
+				</TABLE>
+			</TD>
+			<TD align='left'><jt:item source='$param.description'/></TD>
+			</TR>
+			</jt:loop>
+			</table>
+			</jt:equals>
+			<jt:equals source='$function.has_see' value='Y'>
+			<BR>
+			<span><B>调用</B></span>
+			<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+				<jt:define source='$function#See' alias='see'/>
+				<TR>
+				<TD width='200' nowrap  style='padding-left:20'><jt:item source='$see.type'/></TD>
+				<TD width='400' align='left'>
+				<A href='../procedure/<jt:item source='$see.type'/>_<jt:item source='$see.method'/>.html'>
+				<jt:item source='$see.method'/></A></TD>
+				<TD>&nbsp;</TD>
+				</TR>
+			</table>
+			</jt:equals>
+			<jt:equals source='$methods.has_return' value='Y'>
+			<BR>
+			<span><B>返回</B></span>
+			<TABLE width='90%' align='center' bgcolor='#999999' cellspacing='0' cellpadding='2'>
+			<jt:define source='$methods#Return' alias='return'/>
+			<TR bgcolor='#F0FFF0'>
+			<TD width='160' nowrap><jt:item source='$return.type'/></TD>
+			<TD nowrap align='left'><jt:item source='$return.description'/></TD>
+			<TD>&nbsp;</TD>
+			</TR>
+			</table>
+			</jt:equals>
+		</TD></TR>
+		</TABLE>
+		<!-----------------------代码---------------------------------->
+		<jt:equals source='$function.has_code' value='Y'>
+		<jt:define source='$function#Code' alias='code'/>
+		<BR>
+		<span><B>代码</B></span>
+		<TABLE width='100%' border='0' cellspacing='1' cellpadding='4'>
+		<TR><TD style='padding-left:25'><jt:item source='$code:text'/></TD></TR>
+		</TABLE>
+		</jt:equals>
+	</TD>
+	</TR>
+</table>
+<!-- Body End --------------------------------------------->
+<jt:include source='helper.footer'/>]]></Source>
+</Template>
+

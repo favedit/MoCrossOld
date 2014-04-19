@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="30Y6ZMPUqF1]8nSd44xwhg" name="manage.game.proxy" label="代理服务器管理" is_valid="Y" note="M#" is_server="Y" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" source_name="MoMgManageGameProxy" code="Mgp" full_code="ManageGameProxy" display_index="71">
+  <Message _uuid="eE1wjB0[A3jhKu0gK2phiQ" name="session.list.request" label="查询代理务器客户端" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="SessionList" is_udp="N" message_type="Request" is_session="N" is_manage="Y" source_type="CLT" target_type="GPX" code_value="0x0001" code_fix="N" />
+  <Message _uuid="cEu6dJYtGFIfVuUuEKExlg" name="session.list.response" label="查询代理服务器客户端应答" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="SessionList" is_udp="N" message_type="Response" is_session="N" is_manage="Y" source_type="GPX" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Enum _uuid="1kiO87azY]LGDrjjfEumrg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="ik02z1jr3B4EyjfUp4q6oA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="CksFqokDPlXvCuSxLXl9iw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="z0JWwebq]51LD[tB6iSVsA" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="BkrCywmrv]HiEIG5vMz7oA" name="items" label="项目列表" is_valid="Y" note="M#" type="Object" type_name="SGmSessionInfo" is_collection="Y" data_size="1024" />
+  </Message>
+  <Message _uuid="lELfQ7[RVaDqpfIMBwmmmA" name="session.query.request" label="会话查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="SessionQuery" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="Y" source_type="CLT" target_type="GPX" code_value="0x0003" code_fix="N" />
+  <Message _uuid="E0OXTNychYQJLVsMd26isw" name="session.query.response" label="会话查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="SessionQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="Y" source_type="GPX" target_type="CLT" code_value="0x0004" code_fix="N">
+    <Enum _uuid="d0VNiMxknL51ZByFea6bpQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="t0cw1bQCM]ZEdcr3O0]aow" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="OUXyjALxsjPXlQVPhtQvqA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="1koSLeYssTYd9qujgrJ6lQ" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+</Group>
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CsvImport _uuid="[kIFdhatyzz6d6kTU[nngw" name="logic.person.user.company.rest.vacation" label="假期-年假CSV信息" is_valid="Y" head_lines="1">
+  <Columns _uuid="uUxKfW7KLI3Ac1MSuGobjA" name="Columns" label="列集合" is_valid="Y">
+    <Column _uuid="RkNkDg3rETY86hJfbCrhpw" name="record_id" label="编号" is_valid="Y" data_name="RECORD_ID" is_require="Y" />
+    <Column _uuid="T0[Yjjd84Nr84g[4AyAdmg" name="organization_label" label="部门名称" is_valid="Y" data_name="ORGANIZATION_LABEL" />
+    <Column _uuid="D0CaGI[stKTlvxC[SoVknw" name="work_number" label="工号" is_valid="Y" data_name="WORK_NUMBER" is_require="Y" />
+    <Column _uuid="LU8BHQmB2vjnWfLw2x89nA" name="user_full_label" label="姓名" is_valid="Y" data_name="USER_FULL_LABEL" is_require="Y" />
+    <Column _uuid="RECN5QulGBsf]k8eXsQFow" name="work_age" label="工龄" is_valid="Y" data_name="WORK_AGE" is_require="Y" />
+    <Column _uuid="xEsG6KrZw2rPLBwOTrUKlg" name="total_vacation" label="总年假" is_valid="Y" data_name="TOTAL_VACATION" is_require="Y" />
+    <Column _uuid="QU4vMBaajUTpIvSYN3u7mw" name="remain_vacation" label="剩余年假" is_valid="Y" data_name="REMAIN_VACATION" is_require="Y" />
+    <Column _uuid="OECCexofhx6HZIqQ[IFRrg" name="total_times" label="请假次数" is_valid="Y" data_name="TOTAL_TIMES" is_require="Y" />
+    <Column _uuid="EkFNYi[[cHdqrJgfGpxpmQ" name="total_time" label="累计时间" is_valid="Y" data_name="TOTAL_TIME" is_require="Y" />
+    <Column _uuid="LEAWpbxL5Elg4RcrJTxYig" name="entry_date" label="入职日期" is_valid="Y" data_name="ENTRY_DATE" is_require="Y" />
+  </Columns>
+  <Export _uuid="iUwmi05OD]wxoeVikc6YvA" name="sql" label="年假" is_valid="Y" sql="SELECT ROWNUM RECORD_ID,\n       WORK_NUMBER,\n       ORGANIZATION_ID,\n       ORGANIZATION_LABEL,\n       USER_FULL_LABEL,\n       WORK_AGE,\n       TOTAL_VACATION,\n       REMAIN_VACATION,\n       TOTAL_TIMES,\n       TOTAL_TIME,\n       ENTRY_DATE\n  FROM (SELECT PM_USER_COMPANY_DI.Get_Work_Number_By_User_Id(USER_ID) WORK_NUMBER,\n               PM_ORGANIZATION_DI.Find_Main_Organization_By_User(USER_ID) ORGANIZATION_ID,\n               PM_ORGANIZATION_DI.Get_Label(PM_ORGANIZATION_DI.Find_Main_Organization_By_User(USER_ID)) ORGANIZATION_LABEL,\n               PM_USER_DI.Get_Full_Label(USER_ID) USER_FULL_LABEL,\n               PM_USER_COMPANY_DI.Calculate_Work_Age(USER_ID) WORK_AGE,\n               PM_USER_COMPANY_REST_DI.Format_Time_Span_By_Time(PM_USER_COMPANY_REST_DI.Get_Total_Vacation(USER_ID)) TOTAL_VACATION,\n               PM_USER_COMPANY_REST_DI.Format_Time_Span_By_Time(PM_USER_COMPANY_REST_DI.Calculate_Remain_Vacation(USER_ID)) REMAIN_VACATION,\n               PM_USER_COMPANY_REST_DI.Get_Summaries_Times('VT',\n                                                           USER_ID,\n                                                           '${BEGIN_DATE}',\n                                                           '${END_DATE}') TOTAL_TIMES,\n               PM_USER_COMPANY_REST_DI.Format_Time_Span_By_Time(PM_USER_COMPANY_REST_DI.Get_Summaries_Apply_Time('VT',USER_ID,'${BEGIN_DATE}', '${END_DATE}')) TOTAL_TIME,\n               TO_CHAR(ENTRY_DATE, 'YYYY-MM-DD') ENTRY_DATE\n          FROM PM_USER_COMPANY\n         ORDER BY ORGANIZATION_ID)\n" display_command="N" display_head="N" display_label="Y" display_valid="N" is_open="N" export_name="假期月报{YYMMDD-HH24MI}" />
+</CsvImport>
+

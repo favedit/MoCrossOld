@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="b0ERdkbmwojmo0m1jWnAsg" name="person.duty.level.config" label="M#12cn14职级设定" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="PM_DUTY_LEVEL_CONFIG" data_alias="PM_DTY_LVL_CFG" data_logic="PM_DUTY_LEVEL_CONFIG_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="3ERZqc[[jW1xLelCh1cztw" name="type_id" label="M#12cn14设定标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_refer="person.user.config.type" data_uniques="level" />
+  <FieldInteger _uuid="cUSWep]QD1p]9wH0uFt]jw" name="level_id" label="M#12cn14职级标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LEVEL_ID" data_refer="person.duty.level" data_uniques="level" />
+  <FieldBoolean _uuid="CUxmosucnhWRRlrj6Plniw" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldString _uuid="4UfBnC0fRMXmX5bUstfmoQ" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="80" />
+  <FieldContent _uuid="00cBCoti11t3Dvv57bd3iQ" name="data_value" label="M#12cn14数据内容" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DATA_VALUE" />
+  <FieldDate _uuid="pUZ41jq4D50APMAnPct5jQ" name="create_date" label="M#12cn14创建日期" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_type="Date" data_default="SYSDATE" />
+  <FieldContent _uuid="iku6Hp[Tqx61[pAel6AiiA" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" data_type="Content" />
+</DataStore>
+

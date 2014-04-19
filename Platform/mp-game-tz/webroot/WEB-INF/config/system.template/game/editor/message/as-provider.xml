@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template ads="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define ads="]E[MIOeUo79dXfu13d2wsA" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source ads="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T>游戏场景消息定义。</T>
+//
+// @enum
+//============================================================
+package mo.ms
+{
+   import mo.cm.stream.*;
+   import mo.cr.message.*;
+   import mo.ms.common.*;
+<jt:loop source='$config' alias='group' filter='$group.is_client_as=Y'>
+   import mo.ms.<jt:item source='$group.full_code' format='lower'/>.FNet<jt:item source='$group.full_code'/>Message;
+</jt:loop>
+
+   //============================================================
+   public class FNetMessageProvider implements INetMessageProvider
+   {
+      //============================================================
+      // <T>根据消息代码号，获得消息对象。</T>
+      //
+      // @param code 消息代码
+      // @return 消息对象
+      //============================================================
+      public function message(code:int):FNetMessage{
+         var group:int = code & 0xFF00;
+         switch(group){
+<jt:loop source='$config' alias='group' filter='$group.is_client_as=Y'>
+            // <jt:item source='$group.label'/>
+            case ENetMessageGroup.<jt:item source='$group.full_code'/>:
+               return RNetMessage.<jt:item source='$group.full_code' format='lower.first'/>.message(code);
+</jt:loop>
+         }
+         return null;
+      }
+   }
+}
+]]></Source>
+</Template>

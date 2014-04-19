@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="ykB7GkwI]s9mIvKXdFiStQ" name="person.user.education" label="M#12cn17用户-教育经历" is_valid="Y" note="M#" data_name="PM_USER_EDUCATION" data_alias="OM_USER_EDU" data_logic="PM_USER_EDUCATION_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="5U66aHB0hZoPPSDU9ct1tg" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#" is_store="Y" data_name="USER_ID" data_type="Integer" data_refer="person.user" />
+  <FieldEnum _uuid="5kRBfPRUck7r5MezRe]vpQ" name="type_cd" label="M#12cn14教育类型" is_valid="Y" note="M#12cn235F=FullTime(全日制)\nN=NotFullTime(非全日制)" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_type="Enum" data_size="1" data_code="person.user.education.type" />
+  <FieldEnum _uuid="1E5bb3H6QM0t0ho0W2pDhQ" name="school_type_cd" label="M#12cn14学校类型" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="SCHOOL_TYPE_CD" data_size="1" data_code="person.user.school" />
+  <FieldEnum _uuid="10EkAo8jUNVcBwTar4QSqg" name="privacy_cd" label="M#12cn14隐私设置" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRIVACY_CD" data_type="Enum" data_size="1" data_code="person.user.privacy" />
+  <FieldBoolean _uuid="HE[[8kj1nicCUk5X3i2EtQ" name="disp_able" label="M#12cn14显示可能" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DISP_ABLE" />
+  <FieldString _uuid="[04XoARwKTGxXpRSyQP2vg" name="school_name" label="M#12cn14学校名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SCHOOL_NAME" data_type="String" data_size="80" />
+  <FieldString _uuid="pk1G2mY52iTQbcBcuWtztg" name="major" label="M#12cn12专业" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MAJOR" data_size="40" />
+  <FieldDate _uuid="G00n[2tZ37pH6w11esVWnw" name="begin_date" label="M#12cn14入学日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BEGIN_DATE" data_type="Date" />
+  <FieldDate _uuid="UEhMa2fDDIwvVLKpdXVevg" name="end_date" label="M#12cn14毕业日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="END_DATE" data_type="Date" />
+  <FieldEnum _uuid="CkoXpygHma85C]TBxyhFvw" name="education_cd" label="M#12cn14取得学历" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EDUCATION_CD" data_size="1" data_code="person.user.education.level" />
+  <FieldString _uuid="rUYJZFK0Wx[7WOQL4jXBoA" name="references" label="M#12cn13证明人" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REFERENCES" data_size="40" />
+  <FieldString _uuid="tECQE0BCkLfigyBi5cNNlg" name="references_phone" label="M#12cn15证明人电话" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REFERENCES_PHONE" data_size="12" />
+  <FieldContent _uuid="Nk[Jxb3Bwn2e[2bx8[OFow" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

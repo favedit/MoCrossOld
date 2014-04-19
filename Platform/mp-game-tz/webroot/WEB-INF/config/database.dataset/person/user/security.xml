@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="I0QBIqzJBPqgc6MyC6G7tA" name="person.user.security" label="M#12cn17用户-认证信息" is_valid="Y" note="M#" access_insert="Y" access_update="Y" data_name="PM_USER_SECURITY" data_alias="PM_USER_SEC" data_logic="PM_USER_SECURITY_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="RU1RE]djTj1afSAffWCLgQ" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="USER_ID" data_type="Integer" data_refer="person.user" />
+  <FieldEnum _uuid="SkuzZizV0fq797rcRMLQrg" name="type_cd" label="M#12cn14认证类型" is_valid="Y" note="M#12cn224I=IP(IP类型)\nN=Name(计算机名称)" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="person.user.security.type" />
+  <FieldEnum _uuid="zkmBm1hAMI6nTQWD5Bnsog" name="status_cd" label="M#12cn14状态类型" is_valid="Y" note="M#12cn18激活/暂停/其他" is_null="Y" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="person.user.security.status" />
+  <FieldEnum _uuid="lEXfBhqNBvPpe2jTLxNErw" name="check_cd" label="M#12cn14认证方式" is_valid="Y" note="M#12cn14IP限制" is_null="Y" is_store="Y" is_abstract="N" data_name="CHECK_CD" data_size="1" data_code="person.user.security.way" />
+  <FieldString _uuid="rkoB5ilvuvh4t0Wxdw4Puw" name="parameters" label="M#12cn14设置参数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PARAMETERS" data_type="String" data_size="2000" />
+</DataStore>
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="JUWZMheuR87vN21fbN2jkg" name="logic.business.process.proxy.detail" label="M#12cn17代理审核详细表" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_BUSINESS_CATALOG_PRC_DTL" data_alias="LG_BUS_CAT_PRC_DTL" data_logic="LG_BUSINESS_CATALOG_PRC_DTL_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="qUKlv7HuSL298NZjWuXZkg" name="proxy_id" label="M#12cn16代理审核标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROXY_ID" data_refer="logic.business.process.proxy" />
+  <FieldInteger _uuid="fUgjnI8aZrEJr3AND4NdmA" name="parent_id" label="M#12cn19代理审核详细表标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PARENT_ID" data_refer="logic.business.process.proxy.detail" />
+  <FieldInteger _uuid="t0qO0LYFcHIh1rVd9uxyhA" name="business_id" label="M#12cn14业务标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BUSINESS_ID" data_refer="logic.business" />
+  <FieldInteger _uuid="B0]6hLDBswz5Dx[Ul[1Uig" name="catalog_id" label="M#12cn16审核目录标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CATALOG_ID" data_refer="logic.business.catalog" />
+  <FieldInteger _uuid="DEtYLZzRdI5veF4j7qwvmw" name="relation_id" label="M#12cn16流程关联标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RELATION_ID" data_refer="logic.business.catalog.process" />
+  <FieldEnum _uuid="ekkMUwMNhdljQ4WXNHotmQ" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_size="1" data_default="'Y'" />
+  <FieldInteger _uuid="[kXUiy07sfZG5sxBEUl6sQ" name="proxy_user_id" label="M#12cn16审核人员标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROXY_USER_ID" data_alias="PXY_USR" data_refer="person.user" />
+  <FieldDate _uuid="ZULIyNmUBuLjY4ps27fWpw" name="begin_date" label="M#12cn14开始时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BEGIN_DATE" />
+  <FieldDate _uuid="HUEx3gx8Bi7u8hDWor1hjA" name="end_date" label="M#12cn14结束时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="END_DATE" />
+  <FieldTemplate _uuid="nUYLLXKH[kokEKr3sfWIlQ" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="yUjAmP0Yrfgw3IV]GPp2rw" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

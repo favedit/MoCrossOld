@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="mEDHNoON9Bd7lyi98snvsA" name="logic.guide" label="引导系统" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" source_name="MoMgLogicGuide" code="Lgd" full_code="LogicGuide" display_index="58">
+  <Message _uuid="]Ek0LbPh]cxgeRhs17cMvA" name="newer.guide.notify" label="新手指引通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="NewerGuide" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0001" code_fix="N">
+    <Enum _uuid="4UuJhcRiZ3ayfcdmcBuUiQ" name="EGuideCd" label="引导状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="40Sh6S]eAImegp10lpX7tA" name="IncreaseGuide" label="增加引导" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="K0rH8a[Vev74DbaKHr2PqA" name="DecreaseGuide" label="删除引导" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Struct _uuid="A0gsiU6xKTLQz03sLNY6sg" name="SGuideContent" label="引导内容结构" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="00RYXjiqimW]3IDXIOeehQ" name="guideContentTypeCd" label="内容类型" is_valid="Y" note="M#" type="Enum" type_name="EGmGuideContentType" is_collection="N" />
+      <Item _uuid="bkI6gNY7JJVaSVW7t7TDkg" name="guideCloseTypeCd" label="关闭类型" is_valid="Y" note="M#" type="Enum" type_name="EGmGuideCloseType" is_collection="N" />
+      <Item _uuid="VUHc3tNjqftiGCBBhXBMmg" name="arrowDirection" label="箭头方向" is_valid="Y" note="M#" type="Enum" type_name="EGmDirection" is_collection="N" />
+      <Item _uuid="aEWFgSebycZA3DSzw9M8vQ" name="screeningOtherButton" label="屏蔽其他按钮" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+      <Item _uuid="6UB[6]3VrQjqZ310FsHZiQ" name="isClickContinueCd" label="点击是否继续" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+      <Item _uuid="JE3RulEJqxmTcHdqVeCrrQ" name="isLockTotalPage" label="是否锁整个界面" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+      <Item _uuid="KUe]bxP75rnJUuwAM5CKhw" name="parameter1" label="参数1" is_valid="Y" note="M#" type="String" is_collection="N" data_size="newer.guide.parameters.max-length" />
+      <Item _uuid="EEfnkluDlZ8bG]ktfuC3sQ" name="parameter2" label="参数2" is_valid="Y" note="M#" type="String" is_collection="N" data_size="newer.guide.parameters.max-length" />
+      <Item _uuid="T0vLhJ4T6jHPhq54JDSvpA" name="parameter3" label="参数3" is_valid="Y" note="M#" type="String" is_collection="N" data_size="newer.guide.parameters.max-length" />
+      <Item _uuid="8k[ZynXYeEvxs4HQfHrTrg" name="parameter4" label="参数4" is_valid="Y" note="M#" type="String" is_collection="N" data_size="newer.guide.parameters.max-length" />
+      <Item _uuid="AUEYaKmoI3U[V1BYfGhGvw" name="parameter5" label="参数5" is_valid="Y" note="M#" type="String" is_collection="N" data_size="newer.guide.parameters.max-length" />
+      <Item _uuid="IkuKRztBhzgyghL]B0a4lw" name="parameter6" label="参数6" is_valid="Y" note="M#" type="String" is_collection="N" data_size="newer.guide.parameters.max-length" />
+      <Item _uuid="7EgpfiWIZHcbVeXWwb9gnA" name="parameter7" label="参数7" is_valid="Y" note="M#" type="String" is_collection="N" data_size="newer.guide.parameters.max-length" />
+      <Item _uuid="VkBPDZWm5cBo3POnRrN]hQ" name="parameter8" label="参数8" is_valid="Y" note="M#" type="String" is_collection="N" data_size="newer.guide.parameters.max-length" />
+      <Item _uuid="eUsHmTRLUZNj7y5rejSZuA" name="parameter9" label="参数9" is_valid="Y" note="M#" type="String" is_collection="N" data_size="newer.guide.parameters.max-length" />
+    </Struct>
+    <Item _uuid="80PlM3sKNC]6YpQq68pdmg" name="guideContentList" label="引导内容链表" is_valid="Y" note="M#" type="Object" type_name="SGuideContent" is_collection="Y" data_size="newer.guide.content.max-count" />
+    <Item _uuid="gEiFma8hebUB6xfamePpqw" name="guideTid" label="引导模板编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="OkUoxz4KkRsu2lBuG5p5gg" name="guideCd" label="引导状态" is_valid="Y" note="M#" type="Enum" type_name="EGuideCd" is_collection="N" />
+    <Item _uuid="7klk]ikCueWOM[H9M79Ntw" name="activeBreakPathCd" label="触发是否打断寻路" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="UEARi8omZzwX0z5p]mO1tg" name="finishCloseUiCd" label="完成是否关闭界面" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="dkVT2dZV8Efjqsfq43MmhA" name="finishCountinePathCd" label="完成是否继续寻路" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="iUKHGXac7LM2JgT4L4FvrA" name="uiName" label="ui名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="SULxMyuvb2KJZN2OR5E0gA" name="talkContentSet" label="谈话框内容" is_valid="Y" note="M#" type="Object" type_name="SGsTalkContentSet" is_collection="N" />
+    <Item _uuid="yUuCNqX79Fdvmg]kA6W9sg" name="guideEnum" label="引导枚举" is_valid="Y" note="M#" type="Enum" type_name="EGmGuideClientNotify" is_collection="N" />
+    <Item _uuid="B0N]3rvwtjD3zh1o]a7Bvw" name="isDialogCurrelation" label="是否跟对话有关" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="WUuJm9uEiC3Q67Od6c81tQ" name="newer.guide.get.prop.notify" label="新手指引得到物品通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="NewerGuideGetProp" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Item _uuid="U0YeLMaM5EaEKtBa]GUdjA" name="itemInformation" label="道具信息" is_valid="Y" note="M#" type="Object" type_name="SGsItemToolTip" is_collection="N" />
+    <Item _uuid="Rk7aWOhHi5]Ehun6SW5wtg" name="itemOid" label="物品oid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="CU5EJRiKPrdj7kBZh1hGjw" name="current.can.do.system.notify" label="当前可做系统通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="CurrentCanDoSystem" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0003" code_fix="N">
+    <Item _uuid="30SeJEeogvQADp4Q1cy2kg" name="currentSystem" label="可做系统" is_valid="Y" note="M#" type="Object" type_name="SGsCurrentSystem" is_collection="Y" data_size="current.system.store.max-count" />
+  </Message>
+  <Message _uuid="aUR3U1xyw]GJ9D2TEHGbrg" name="current.can.do.system.domain.request" label="当前可做系统主域请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="CrrentCanDoSystemDomain" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0004" code_fix="N">
+    <Item _uuid="qUglM87u0Se99fQV4c13kg" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="hkTxBN2DzXLf8BpcQkg]kQ" name="tid" label="模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="n05paurlg4gRWU1GLS2lsw" name="current.can.do.system.domain.response" label="当前可做系统主域响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="CrrentCanDoSystemDomain" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0005" code_fix="N">
+    <Enum _uuid="fUlw[ox20VyAExhqwOJkiw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="2kZl9Qy2qeFYxX5F25q9gA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="8EAUF3AtGbqQ219X2buZoQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="c0b]1iJokXBwsk2Wt[6Trw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="f0MDL[fS5vxbuD1hagAbnA" name="tid" label="模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="K0Lm4F5yAZvj]pcYUm2RpA" name="timesCount" label="当前可做系统记数" is_valid="Y" note="M#" type="Object" type_name="SGsCurrentCanDoSystemCount" is_collection="N" />
+    <Item _uuid="XUVKaFCbmy8CegM1hNkmhA" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="yk0fxKKw7FseK1G94PVksA" name="function.preview.notify" label="功能预告" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FunctionPreview" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0006" code_fix="N">
+    <Item _uuid="8UX2RroZUFRAE]3sUXKSqw" name="tid" label="模板tid" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="SUnThx7SARIg3QqYTQFCrw" name="mainPageIconTid" label="主界面图标编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="LUrtlhrF50w1vBkoZnQmpA" name="mainPageContent" label="主界面文字" is_valid="Y" note="M#" type="String" is_collection="N" data_size="100" />
+  </Message>
+  <Message _uuid="0Ueuz6YVgeGjLgpwd2EvkQ" name="function.preview.request" label="功能预告请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FunctionPreview" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0007" code_fix="N">
+    <Enum _uuid="okYNyMDBnDzYVDYUCaUVmA" name="EOperateType" label="操作类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="HUd2AZrwQ9pnEeac8NhXnw" name="Query" label="查询" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="MkZeGzYZRVx4N46HxEv4lw" name="GetReward" label="获得奖励" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="90h2jiCLou73SdYFqY1flA" name="tid" label="模板tid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="DEMQKgB7i3LODAPGQwZ7og" name="operateType" label="操作类型" is_valid="Y" note="M#" type="Enum" type_name="EOperateType" is_collection="N" />
+    <Item _uuid="dUWbCOUtQhI5sh7Rowdjog" name="isGetRewardCondition" label="是否达到领取奖励条件" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="jE5rzcJ8oTB]KhCMQ1CjqQ" name="function.preview.response" label="功能预告响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="FunctionPreview" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0008" code_fix="N">
+    <Enum _uuid="jExFpqEKDHvF5tRUy4Nxqg" name="EOperateType" label="操作类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="rE]McllqwZsNWdZbqdOFnw" name="Query" label="查询" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="[kdt7HWwhyxRkzaJPowilw" name="GetReward" label="获得奖励" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Enum _uuid="Z0OWFbhL1AAGjbkR[kYguw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="AUZ6nJBU1xYJBRzVYij2jg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="zkfVuIDJg9rlOb]tYHXwhg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="OUATf00B5PfWz3]1u0MluA" name="tid" label="模板编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="l0BE0KpoTYuSS3mSlkrflQ" name="rewardList" label="奖励链表" is_valid="Y" note="M#" type="Object" type_name="SGsFunctionPreviewReward" is_collection="Y" data_size="function.preview.reward.max-count" />
+    <Item _uuid="gk8cbNxpCz8AWYqdumtwuQ" name="contentState" label="文本说明" is_valid="Y" note="M#" type="String" is_collection="N" data_size="800" />
+    <Item _uuid="W0Qlx]lHRfOMIXzI8ih3hQ" name="buttonState" label="按钮说明" is_valid="Y" note="M#" type="String" is_collection="N" data_size="20" />
+    <Item _uuid="hEQ67DKB]PS5GJ2A]G4tvQ" name="isEnd" label="是否完毕" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="]U7v9H4MnNj3aHdvnIlcow" name="isReachGetReardConditon" label="是否达到领取奖励条件" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="yUPv1ZNhV2oPopO1gN2OtQ" name="requireLevel" label="所需等级" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="y0LOx22TV6IZio6JbMHQpA" name="operateType" label="操作类型" is_valid="Y" note="M#" type="Enum" type_name="EOperateType" is_collection="N" />
+    <Item _uuid="x0]lvNPq]CtZy3SrEYiAlA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="x0khheQgAoMSbbD9lLB6lw" name="close.collect.web.guide.notify" label="关闭收藏官网通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="CloseCollectWebGuide" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0009" code_fix="N" />
+  <Message _uuid="]UK4Ff7QxG9qaYkSrnlWqA" name="close.current.can.do.system.scene.notify" label="关闭当前可做系统场景通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="CloseCurrentCanDoSystemScene" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x000A" code_fix="N">
+    <Item _uuid="x0G61QxaRYbs4IAp5YMuoA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="gkz2czY82sU5v1EF7PdriQ" name="tid" label="模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="3EcewHSWbkWCgnVNKOvuuQ" name="role.login.function.open.notify" label="玩家登陆功能开启通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RoleLoginFunctionOpen" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000B" code_fix="N">
+    <Item _uuid="rUGcrZHQ]fr3aDX8qEqrlQ" name="tenSwordOpen" label="十大神剑开启" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="0E6H9]p]dR]8gBkIcc1vgA" name="petOpen" label="宠物开启" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="GUW[7uPuJGscuIxI[OVwlA" name="rideOpen" label="坐骑开启" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="KEXDUbPl]8noSNPvWpPekw" name="gangOpen" label="帮会开启" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="UUFtuep5Q9uwXn9wbWqijw" name="mergeOpen" label="铸造开启" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="eE1XkhPxyXYF2rxNWYSqqQ" name="practiceOpen" label="修炼开启" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="qkEw9FK1nTTX19m6cHyqmA" name="summonCatOpen" label="召唤灵猫开启" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="nUDn[Vg4bk0qlUnmAuIdqQ" name="campOpen" label="阵营开启" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="pUzQzoVITbcTY2Uef3c8oA" name="officalOpen" label="官职开启" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="AUFaVS7g5uQIg[mv7gRApA" name="newer.guide.play.flash" label="新手引导播放特效" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="NewerGuidePlayFlash" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000C" code_fix="N">
+    <Item _uuid="3kB3xz3kRAlsCxfcMhv9ig" name="resourceId" label="资源编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="7UA5IBG[PrLTGx0GUlMdpQ" name="system.push.client.notify" label="系统推送客户端通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="SystemPushClient" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000D" code_fix="N">
+    <Item _uuid="IElDt7XfQn30rL3TnFWzqA" name="pushSystemList" label="推送系统列表" is_valid="Y" note="M#" type="Object" type_name="SGsCurrentSystem" is_collection="Y" data_size="push.system.store.max-count" />
+  </Message>
+  <Message _uuid="9UAbxmNREpeXfzU8nDUOqw" name="new.fuction.notify" label="新系统通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="NewFuction" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000E" code_fix="N">
+    <Item _uuid="dke[RPtO6[SYe7QQscmXsg" name="resourceTid" label="资源编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="UUvRzUA01G8GHq5sCaU[rg" name="description" label="描述" is_valid="Y" note="M#" type="String" is_collection="N" data_size="500" />
+    <Item _uuid="p05cGW3lhvFPkkoiQImpkg" name="order" label="顺序" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+    <Item _uuid="i07vWcshUrpljCbUJ1V7hA" name="isClose" label="是否关闭" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+</Group>
+

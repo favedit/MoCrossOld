@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+
+   <!-- ============================================================ -->
+   <!-- Develop.Builder.Console                                      -->
+   <!-- 开发构建控制台                                                -->
+   <!--  P:valid    - 有效性                                         -->
+   <!--  P:interval - 间隔                                           -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'com.zq.platform.builder.IDevelopBuilderConsole'
+         class = 'com.zq.platform.builder.FDevelopBuilderConsole'
+         scope = 'single'>
+      <Property name='valid'>1</Property>
+      <!-- ============================================================ -->
+      <Initialize name='register'>
+         <Parameter>
+            <Component class = 'com.zq.platform.builder.FDevelopGameBuilder'>
+               <Property name='valid'>1</Property>
+               <Property name='interval'>60000</Property>
+               <Property name='user'>root</Property>
+               <Property name='command_update'>
+                  <Component class = 'com.zq.platform.builder.FDevelopBuilderCommand'>
+                     <Property name='path'>~/ZW-TZ-Server.WK</Property>
+                     <Property name='command'>svn up</Property>
+                  </Component>
+               </Property>
+               <Property name='command_clear'>
+                  <Component class = 'com.zq.platform.builder.FDevelopBuilderCommand'>
+                     <Property name='path'>~/ZW-TZ-Server.WK/Bin</Property>
+                     <Property name='command'>./pmc_project_clean_all.sh</Property>
+                  </Component>
+               </Property>
+               <Property name='command_build'>
+                  <Component class = 'com.zq.platform.builder.FDevelopBuilderCommand'>
+                     <Property name='path'>~/ZW-TZ-Server.WK/Bin</Property>
+                     <Property name='command'>./pmd_project_make_all.sh</Property>
+                  </Component>
+               </Property>
+            </Component>
+         </Parameter>
+      </Initialize>
+   </Component>
+
+</Config>

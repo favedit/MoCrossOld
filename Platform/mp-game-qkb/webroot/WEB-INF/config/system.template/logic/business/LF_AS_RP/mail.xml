@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="pEJJpeb]eYRjuPBc69vfsg" name="logic.business.LF_AS_RP.mail" label="招聘面试" is_valid="Y" note="M#">
+  <Source _uuid="GUxoSE[ow3jFKLhmxaqslg" name="sign.head" label="签到提醒-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【招聘面试】 <jt:item source='$config.to_user_labels'/>您好，<jt:item source='$config.sign_date'/>待签到应聘人员名单。]]></Source>
+  <Source _uuid="ek5PzAxBmcC3dX1hYa4cmw" name="sign.body" label="签到提醒-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='招聘面试 → 待签到' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><FONT COLOR='336699'></FONT></TD></TR>
+     <TR><TD></TD></TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.user_lists'>
+      <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'><jt:item source='$config.sign_date'/>待签到列表：</B>
+      <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' width='40' align="center">编号</td>
+         <TD class='ItemHead' width='100' align="center">预约时间</td>
+         <TD class='ItemHead' width='60' align="center">当前阶段</td>
+         <TD class='ItemHead' width='80' align="center">面试官</td>
+         <TD class='ItemHead' width='80' align="center">应聘者</td>
+         <TD class='ItemHead' width='120' align="center">应聘部门</td>
+         <TD class='ItemHead' align="center">应聘岗位</td>
+         <TD class='ItemHead' align="center">性别</td>
+         <TD class='ItemHead' align="center">移动电话</td>
+      </TR>
+      <jt:loop source='$parameter.user_lists' alias='user_info'>
+         <TR>
+            <TD class='ItemData' align="left" width='20'><jt:item source='$user_info.row_id'/></TD>
+            <TD class='ItemData' align="left" width='100'><jt:item source='$user_info.order_date'/></TD>
+            <TD class='ItemData' align="center" width='60'><jt:item source='$user_info.stage_label'/></TD>
+            <TD class='ItemData' align="center" width='80'><jt:item source='$user_info.interview_label'/></TD>
+            <TD class='ItemData' align="center" width='80'><jt:item source='$user_info.user_label'/></TD>
+            <TD class='ItemData' align="center" width='120'><jt:item source='$user_info.department_label'/></TD>
+            <TD class='ItemData' align="center"><jt:item source='$user_info.job_label'/></TD>
+            <TD class='ItemData' align="center"><jt:item source='$user_info.gender_label'/></TD>
+            <TD class='ItemData' align="center"><jt:item source='$user_info.mobile_phone'/></TD>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="u0x6rv7Mao92aV7RZkcFtw" name="hr.operate.head" label="HR操作提醒-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【招聘面试】 <jt:item source='$config.to_user_labels'/>您好，请确认面试阶段。]]></Source>
+  <Source _uuid="J0EMPCBuf0oMCFTSQqCetA" name="hr.operate.body" label="HR操作提醒-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='招聘面试 → 确认面试阶段' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><FONT COLOR='336699'></FONT></TD></TR>
+     <TR><TD></TD></TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.user_lists'>
+      <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'><jt:item source='$config.interview_date'/>面试人员列表：</B>
+      <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' width='80' align="center">预约时间</td>
+         <TD class='ItemHead' width='100' align="center">当前阶段</td>
+         <TD class='ItemHead' width='80' align="center">应聘者</td>
+         <TD class='ItemHead' width='120' align="center">应聘部门</td>
+         <TD class='ItemHead' align="center">应聘岗位</td>
+         <TD class='ItemHead' align="center">性别</td>
+         <TD class='ItemHead' align="center">应聘者邮箱</td>
+         <TD class='ItemHead' align="center">移动电话</td>
+      </TR>
+      <jt:loop source='$parameter.user_lists' alias='user_info'>
+         <TR>
+            <TD class='ItemData' align="left" width='80'></td>
+            <TD class='ItemData' align="center" width='100'></td>
+            <TD class='ItemData' align="center" width='80'></td>
+            <TD class='ItemData' align="center" width='120'></td>
+            <TD class='ItemData' align="center"></td>
+            <TD class='ItemData' align="center"></td>
+            <TD class='ItemData' align="center"></td>
+            <TD class='ItemData' align="right"></td>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="ZU]gbkqrf7OJerJo]0hAvw" name="interview.head" label="面试提醒-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【招聘面试】 <jt:item source='$config.to_user_labels'/>您好，<jt:item source='$config.interview_date'/>面试人员名单。]]></Source>
+  <Source _uuid="jUe1v5lt[]hM[6DgF4QGgQ" name="interview.body" label="面试提醒-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='招聘面试 → 面试' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><FONT COLOR='336699'></FONT></TD></TR>
+     <TR><TD></TD></TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.user_lists'>
+      <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'><jt:item source='$config.interview_date'/>面试人员列表：</B>
+      <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' width='40' align="center">编号</td>
+         <TD class='ItemHead' width='100' align="center">预约时间</td>
+         <TD class='ItemHead' width='60' align="center">当前阶段</td>
+         <TD class='ItemHead' width='80' align="center">应聘者</td>
+         <TD class='ItemHead' width='120' align="center">应聘部门</td>
+         <TD class='ItemHead' align="center">应聘岗位</td>
+         <TD class='ItemHead' align="center">性别</td>
+         <TD class='ItemHead' align="center">移动电话</td>
+         <TD class='ItemHead' width='60' align="center">预约者</td>
+      </TR>
+      <jt:loop source='$parameter.user_lists' alias='user_info'>
+         <TR>
+            <TD class='ItemData' align="left" width='40'><jt:item source='$user_info.row_id'/></TD>
+            <TD class='ItemData' align="left" width='100'><jt:item source='$user_info.order_date'/></TD>
+            <TD class='ItemData' align="center" width='60'><jt:item source='$user_info.stage_label'/></TD>
+            <TD class='ItemData' align="center" width='80'><jt:item source='$user_info.user_label'/></TD>
+            <TD class='ItemData' align="center" width='120'><jt:item source='$user_info.department_label'/></TD>
+            <TD class='ItemData' align="center"><jt:item source='$user_info.job_label'/></TD>
+            <TD class='ItemData' align="center"><jt:item source='$user_info.gender_label'/></TD>
+            <TD class='ItemData' align="right"><jt:item source='$user_info.mobile_phone'/></TD>
+            <TD class='ItemData' align="center"><jt:item source='$user_info.order_user_label'/></TD>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+  <Source _uuid="fks7Egy3dbl3C7Cmgf9ZjA" name="hr.day.head" label="HR日报-邮件标题" is_valid="Y" note="M#"><![CDATA[【eUIS】【招聘面试】 <jt:item source='$config.to_user_labels'/>您好，<jt:item source='$config.current_date'/>面试日报汇总。]]></Source>
+  <Source _uuid="SUA4WU2e9CBFi5VWtSnEjw" name="hr.day.body" label="HR日报-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='招聘面试 → HR日报汇总' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <FONT COLOR='#336699'>您好！</FONT><BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+     <TR><TD><FONT COLOR='#336699'><jt:item source='$config.current_date'/>面试日报汇总。</FONT></TD></TR>
+     <TR><TD><FONT COLOR='#336699'>查看招聘面试日报地址为：</FONT><A href="<jt:context/>/apl/logic/form/WebRedirect.wa?flag=<jt:item source='$config.redirect'/>"><B style='color:#d8571d'>请点击这里</B></A></TD></TR>
+   </TABLE>
+   <jt:notEmpty source='$parameter.require_lists'>
+      <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'><jt:item source='$config.interview_date'/>招聘需求信息列表：</B>
+      <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' width='40' align="center">编号</td>
+         <TD class='ItemHead' align="center">招聘组织</td>
+         <TD class='ItemHead' width='180' align="center">招聘岗位</td>
+         <TD class='ItemHead' width='100' align="center">预招人数（人）</td>
+         <TD class='ItemHead' width='100' align="center">已招人数（人）</td>
+         <TD class='ItemHead' width='100' align="center">需求申请者</td>
+      </TR>
+      <jt:loop source='$parameter.require_lists' alias='require_list'>
+         <TR>
+            <TD class='ItemData' align="left" width='40'><jt:item source='$require_list.row_id'/></TD>
+            <TD class='ItemData' align="left"><jt:item source='$require_list.apply_organization_label'/></TD>
+            <TD class='ItemData' align="left" width='180'><jt:item source='$require_list.apply_job_label'/></TD>
+            <TD class='ItemData' align="center" width='100'><jt:item source='$require_list.apply_recruit_count'/></TD>
+            <TD class='ItemData' align="center" width='100'><jt:item source='$require_list.has_recruit_count'/></TD>
+            <TD class='ItemData' align="left" width='100'><jt:item source='$require_list.apply_user_label'/></TD>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.order_lists'>
+      <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'><jt:item source='$config.interview_date'/>预约信息列表：</B>
+      <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' width='40' align="center">编号</td>
+         <TD class='ItemHead' align="center">预约者</td>
+         <TD class='ItemHead' width='100' align="center">已预约（人）</td>
+         <TD class='ItemHead' width='100' align="center">预约成功（人）</td>
+         <TD class='ItemHead' width='100' align="center">预约失败（人）</td>
+         <TD class='ItemHead' width='100' align="center">下次预约（人）</td>
+      </TR>
+      <jt:loop source='$parameter.order_lists' alias='order_list'>
+         <TR>
+            <TD class='ItemData' align="left" width='40'><jt:item source='$order_list.row_id'/></TD>
+            <TD class='ItemData' align="left"><jt:item source='$order_list.order_user_label'/></TD>
+            <TD class='ItemData' align="center" width='100'><jt:item source='$order_list.order_count'/></TD>
+            <TD class='ItemData' align="center" width='100'><jt:item source='$order_list.order_success_count'/></TD>
+            <TD class='ItemData' align="center" width='100'><jt:item source='$order_list.order_fail_count'/></TD>
+            <TD class='ItemData' align="center" width='100'><jt:item source='$order_list.order_next_count'/></TD>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+   <jt:notEmpty source='$parameter.sign_lists'>
+      <BR><BR>
+      <img src="<jt:context/>/apl/login/images/arrow.jpg"> <B style='color:#014d99'><jt:item source='$config.interview_date'/>签到信息列表：<jt:item source='$config.current_date'/>待签到<jt:item source='$config.remain_sign_count'/>人。</B>
+      <TABLE width='100%' cellpadding='1' cellspacing='1' bgcolor="#9fc5ea" style='border:0 solid #9fc5ea;margin:0'>
+      <TR>
+         <TD class='ItemHead' width='40' align="center">编号</td>
+         <TD class='ItemHead' align="center">签到者</td>
+         <TD class='ItemHead' width='200' align="center">已签到（人）</td>
+      </TR>
+      <jt:loop source='$parameter.sign_lists' alias='sign_list'>
+         <TR>
+            <TD class='ItemData' align="left" width='40'><jt:item source='$sign_list.row_id'/></TD>
+            <TD class='ItemData' align="left"><jt:item source='$sign_list.sign_user_label'/></TD>
+            <TD class='ItemData' align="center" width='200'><jt:item source='$sign_list.sign_count'/></TD>
+         </TR>
+      </jt:loop>
+      </TABLE>
+   </jt:notEmpty>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="Q0KnIvO4o3hiXlhZY14vkg" name="develop.approval.program.version" label="M#12cn211版本管理 - 提交流程" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="DP_APPROVAL_PROGRAM_VERSION" data_alias="DP_APP_VES" data_logic="DP_APPROVAL_PROGRAM_VERSION_DI" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="F0]9R0OHh8ccobj97BDroA" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="Z0qCjbBnuZ2PWzaUGKT]sA" name="name" label="M#12cn14模板名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="40" />
+  <FieldContent _uuid="S0zhbWHj9uaWxp]3uke]qQ" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#12cn14中文名称" is_store="Y" is_abstract="N" data_name="LABEL" data_type="Content" />
+  <FieldInteger _uuid="7kP4IKydXo16O]s2rEunvQ" name="apply_user_id" label="M#12cn16申请用户标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="APPLY_USER_ID" data_refer="person.user" />
+  <FieldDate _uuid="6UKNya]MYzQ]CtKUFA5BhQ" name="apply_date" label="M#12cn14申请时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="APPLY_DATE" />
+  <FieldEnum _uuid="9UhqqTfjNMlUzO]iinoQgg" name="scope_cd" label="M#12cn14范围类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SCOPE_CD" data_size="1" data_code="develop.approval.program.version.scope" />
+  <FieldEnum _uuid="50cdbopSwK7GFUG9jdPgkQ" name="modify_cd" label="M#12cn14修改类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MODIFY_CD" data_size="1" data_code="develop.approval.program.version.modify" />
+  <FieldInteger _uuid="cUmoYv6ev5bEt]2MYuFZpQ" name="program_user_id" label="M#12cn15程序负责人" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROGRAM_USER_ID" data_alias="PRO_USR" data_refer="person.user" />
+  <FieldDate _uuid="H0DoqQi]VDCBF[orWrl]gA" name="program_date" label="M#12cn19程序负责人审批时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROGRAM_DATE" />
+  <FieldInteger _uuid="M0Vr]0PY5PGMmpFGmJJJlQ" name="design_user_id" label="M#12cn15策划负责人" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DESIGN_USER_ID" data_alias="DES_USR" data_refer="person.user" />
+  <FieldDate _uuid="1UDeS]pdY1RA1yTU7sR8sg" name="design_date" label="M#12cn19策划负责人审批时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DESIGN_DATE" />
+  <FieldInteger _uuid="6k8f4MPBMaUOidYPOW05hw" name="tool_user_id" label="M#12cn15工具负责人" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TOOL_USER_ID" data_alias="TOL" data_refer="person.user" />
+  <FieldDate _uuid="b0Ajz9ObMXI0PF5SQ2AjlA" name="tool_date" label="M#12cn19工具负责人审批时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TOOL_DATE" />
+  <FieldInteger _uuid="F0q0qaKdNnaGUHHNVORKvw" name="manage_user_id" label="M#12cn15管理负责人" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MANAGE_USER_ID" data_alias="MAG" data_refer="person.user" />
+  <FieldDate _uuid="EkcLzbWTnZPRHQo[P444uw" name="manage_date" label="M#12cn19管理负责人审批时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MANAGE_DATE" />
+  <FieldContent _uuid="TEV[zG0DaPtNuvxXOJ8Rkw" name="change_note" label="M#12cn14修订说明" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CHANGE_NOTE" data_size="2000" />
+  <FieldTemplate _uuid="HEtK4eNYPMeRDnfBTiC0oA" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

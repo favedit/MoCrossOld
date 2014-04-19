@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="]kcgcY4Mrqhi9rOG]Wk6lg" name="game.template.tournament" label="M#12cn12竞技" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_TOURNAMENT" data_alias="GM_TPL_TRM" data_logic="GM_TPL_TOURNAMENT_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="vUnEWtma[sU6Tvtb0p2eow" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="MULrCBodBNljYaoJ7wJPkw" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="SEs12EV7AbP1WKxeJeESkQ" name="label" label="M#12cn12标题" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldInteger _uuid="00xBMfKzJAElukY1E4M9kA" name="schedule_tid" label="M#12cn16计划模板编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SCHEDULE_TID" data_alias="SHL_TID" data_refer="game.template.schedule" />
+  <FieldEnum _uuid="3UTVEyaWMz2etxuGfgUgow" name="tournament_cd" label="M#12cn14竞技类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TOURNAMENT_CD" data_size="2" data_code="game.template.tournament.type" />
+  <FieldInteger _uuid="KkiawT4ZXWPBM9ky5rMZmw" name="prepare_duplicate_tid" label="M#12cn18准备副本模板编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PREPARE_DUPLICATE_TID" data_alias="PRD" data_refer="game.template.duplicate" />
+  <FieldInteger _uuid="[EdEyfeJXxDsAKb4CL7RmA" name="tournament_duplicate_tid" label="M#12cn18竞技副本模板编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TOURNAMENT_DUPLICATE_TID" data_alias="TND" data_refer="game.template.duplicate" />
+  <FieldInteger _uuid="dkmca47FEJJ81T94qnOBmA" name="out_map_tid" label="M#12cn16传出地图编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OUT_MAP_TID" data_alias="OTM" data_refer="game.template.map" />
+  <FieldString _uuid="NU04RRjDP1i5R67aYoFlrg" name="out_map_coordinator" label="M#12cn16传出地图坐标" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OUT_MAP_COORDINATOR" data_size="200" />
+  <FieldInteger _uuid="3UdNiyJQgseud412YG0Xrw" name="area_number_max" label="M#12cn16战区人数上限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="AREA_NUMBER_MAX" />
+  <FieldInteger _uuid="3kcQIeo7e0NRnYtHfoA6rQ" name="area_number_min" label="M#12cn16战区人数下限" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="AREA_NUMBER_MIN" />
+  <FieldInteger _uuid="[0Wn1USfQzsJe0GmrJbRkA" name="death_count" label="M#12cn16玩家死亡次数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DEATH_COUNT" />
+  <FieldInteger _uuid="gUS5rqCJV7e0dsZlFNviiA" name="item_bag_tid" label="M#12cn15奖励物品包" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ITEM_BAG_TID" data_alias="ITB" data_refer="game.template.item.bag" />
+  <FieldInteger _uuid="60DAL5M62SlyypOxuYFtkQ" name="duplicate_style_resource_tid" label="M#12cn18副本图标模板编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DUPLICATE_SLRS_TID" data_alias="DSR" data_refer="game.template.style.resource" />
+  <FieldTemplate _uuid="mkVbwJL1Mzy7lxeQ0P0dkg" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

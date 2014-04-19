@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="VEf7PT65OGIHbls7Oc1nnA" name="person.component" label="M#12cn14组件信息" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="PM_COMPONENT" data_logic="PM_COMPONENT_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="l0Zb4ZfZSBinpgNyzbeHnQ" name="type_id" label="M#12cn16模块类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_refer="person.component.type" />
+  <FieldString _uuid="DUs6dD1URDoYj2WkUAEvhA" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldBoolean _uuid="G0oN1CujwbSo[IXdpBtMog" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="'Y'" />
+  <FieldBoolean _uuid="M0gLeZRp56ICY[6TLz2xpQ" name="is_permission" label="M#12cn14是否授权" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_PERMISSION" data_default="'Y'" />
+  <FieldString _uuid="kUsNnZJrugXVuwKcLtu3kA" name="name" label="M#12cn14英文简称" is_valid="Y" note="M#" is_unique="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="40" />
+  <FieldString _uuid="0kG7zxgeJq5olyEo0m1HjQ" name="full_name" label="M#12cn14英文全称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FULL_NAME" data_size="80" />
+  <FieldContent _uuid="4E8JQifGHYY8H6ejz]CBqA" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldString _uuid="0ExaVqZBFtCP6yhhx6dOug" name="tree_name" label="M#12cn14目录名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TREE_NAME" data_size="120" group="N" />
+  <FieldInteger _uuid="i09ruN4wpraGjNwFQjsbmg" name="module_id" label="M#12cn16系统模块标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MODULE_ID" data_refer="system.module" />
+  <FieldInteger _uuid="PUZ7dOD4eECCdaBj9vsOrw" name="icon_id" label="M#12cn14图标标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ICON_ID" data_refer="common.icon" />
+  <FieldEnum _uuid="PkWEe4KS2oTrHgfnwS2Rmg" name="do_type" label="M#12cn14跳转类型" is_valid="Y" note="M#12cn254目前共有两种类型\nM-module  模块类型\nR-redirect直接转向URL\nB-browser 浏览" is_null="Y" is_store="Y" is_abstract="N" data_name="DO_TYPE" data_size="1" data_code="person.component.redirect" />
+  <FieldString _uuid="WkNcmjZFsMpLtpxMbdWRiQ" name="do_redirect" label="M#12cn14跳转地址" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DO_REDIRECT" data_size="2000" />
+  <FieldString _uuid="z04]CsIdd1mXkqZjpE84rA" name="do_message" label="M#12cn14消息处理" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DO_MESSAGE" data_size="80" />
+  <FieldInteger _uuid="z0QbAuIgVPMLQCP[H5]qgw" name="disp_order" label="M#12cn14显示顺序" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DISP_ORDER" />
+  <FieldDate _uuid="MUJogJaB8mKWQ6ztLHvHgw" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CREATE_DATE" data_default="SYSDATE" />
+  <FieldContent _uuid="BUcoeQdzzE[oLphg]U[Yqg" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="[k6i26X[CjxOFbPut9Fhmg" name="logic.person.training" label="M#12cn19人事管理-员工培训" note="M#" is_valid="Y">
+  <GroupConfig _uuid="wk5lfpQga5XBISMCJfoWlQ" name="smtp_host" label="M#12cn15邮件服务器" note="M#" is_valid="Y" data_value="${logic.mail|smtp_host}" />
+  <GroupConfig _uuid="H0aOaeXas3XvOiz2d]5Ivw" name="smtp_port" label="M#12cn17邮件服务器端口" note="M#" is_valid="Y" data_value="${logic.mail|smtp_port}" />
+  <GroupConfig _uuid="uE5rOaQ]fafHB6zcGdi7sg" name="smtp_user" label="M#12cn14邮件帐户" note="M#" is_valid="Y" data_value="${logic.mail|smtp_user}" />
+  <GroupConfig _uuid="WUF31[I]lq[KZ5F8dyuIgw" name="smtp_password" label="M#12cn16邮件帐户密码" note="M#" is_valid="Y" data_value="${logic.mail|smtp_password}" />
+  <GroupConfig _uuid="gU40]XbDoiKQdjPVHx5wjg" name="smtp_authentic" label="M#12cn14邮件认证" note="M#" is_valid="Y" data_value="${logic.mail|smtp_authentic}" />
+  <GroupConfig _uuid="2k0IU79T5OsW1VQlqo5Aqg" name="from_user" label="M#12cn13发送者" note="M#" is_valid="Y" data_value="${logic.mail|from_user}" />
+  <Type _uuid="skPEWVqMiEjxccQc[MGXnw" name="mail.send.training" label="M#12cn18邮件发送培训计划" note="M#" is_valid="Y" process_cd="J" process_invoke="process@org.mobj.logic.event.handler.IMailEventHander">
+    <TypeConfig _uuid="gUi0olRCeVc54Waulusnkw" name="template_head" label="M#12cn16邮件标题模板" note="M#" is_valid="Y" data_value="mail.send.training.head@logic.develop.LF_TR_MG.mail" />
+    <TypeConfig _uuid="ZUjaaFgkcEBUU9VHO2XRuw" name="template_body" label="M#12cn16邮件内容模板" note="M#" is_valid="Y" data_value="mail.send.training.body@logic.develop.LF_TR_MG.mail" />
+  </Type>
+</Group>
+

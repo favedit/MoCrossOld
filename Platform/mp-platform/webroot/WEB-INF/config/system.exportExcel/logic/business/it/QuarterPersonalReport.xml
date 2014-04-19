@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="]kqgOSjdi4lm[v3Xmx0NvA" name="logic.business.it.QuarterPersonalReport" label="工作日志-季报(个人统计)" is_valid="Y" fileName="reportLog(QuarterPersonal)[${QUERY_DATE}].xls" template="logic.business.it.quarterPersonalReport">
+  <Sql _uuid="K0X4WWIP[CQ13og5CgZaow" name="log_list" label="个人统计列表" is_valid="Y"><![CDATA[SELECT * FROM(
+SELECT PERSON_ID,
+BS_IT_LOG_DI.Get_Dispose_User_Label('S',PERSON_ID) PERSON_NAME, 
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID, QUERY_DATE||'-1-1', TO_CHAR(LAST_DAY(CP_DATE.Parse(QUERY_DATE||'-3-1')), 'YYYY-MM-DD')) YI_NUM ,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID, QUERY_DATE||'-4-1', TO_CHAR(LAST_DAY(CP_DATE.Parse(QUERY_DATE||'-6-1')), 'YYYY-MM-DD')) ER_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID, QUERY_DATE||'-7-1', TO_CHAR(LAST_DAY(CP_DATE.Parse(QUERY_DATE||'-9-1')), 'YYYY-MM-DD')) SAN_NUM,
+BS_IT_LOG_DI.Get_Personal_Count(PERSON_ID, QUERY_DATE||'-10-1', TO_CHAR(LAST_DAY(CP_DATE.Parse(QUERY_DATE||'-12-1')), 'YYYY-MM-DD')) SI_NUM
+FROM (SELECT DISPOSE_ID PERSON_ID, TO_CHAR(CP_DATE.Parse('${QUERY_DATE}'), 'YYYY') QUERY_DATE FROM BS_IT_LOG  WHERE DISPOSE_CD = 'S' GROUP BY DISPOSE_ID))]]></Sql>
+  <Sql _uuid="7U89Zw6JgfM94I5yTauBlg" name="date_config" label="当前时间" is_valid="Y"><![CDATA[SELECT  TO_CHAR(CP_DATE.PARSE('${QUERY_DATE}'), 'YYYY') NOW_DATE FROM DUAL]]></Sql>
+</ExportExcel>
+

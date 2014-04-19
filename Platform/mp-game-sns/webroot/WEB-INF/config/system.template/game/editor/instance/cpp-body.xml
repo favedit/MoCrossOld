@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template ads="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define ads="]E[MIOeUo79dXfu13d2wsA" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source ads="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T><jt:item source='$group.label'/>实体定义。</T>
+//
+// @version 1.0.1
+// @auto 代码器管理的代码，如需修改请在手动修改标出的地方修改。
+//============================================================
+#include "<jt:item source='$group.source_name'/>.h"
+
+MO_NAMESPACE_BEGIN
+<jt:loop source='$group' alias='entity'>
+<jt:equals source='$entity:name' value='Instance'>
+
+//============================================================
+<jt:loop source='$entity' alias='field'>
+// @property <jt:item source='$field.label'/>定义
+SPropertyInfo K<jt:item source='$entity.name'/>_<jt:item source='$field.name' format='upper.first'/>Property = SPropertyInfo(<jt:true source='$field.is_property'><jt:item source='$field.property_full'/></jt:true><jt:false source='$field.is_property'><jt:item source='$field.property_id'/></jt:false>, TC("<jt:item source='$field.name' format='db.func.lower'/>"), EType_<jt:item source='$field.type'/>);
+</jt:loop>
+
+//============================================================
+// <T>获得当前结构体的大小。</T>
+//
+// @return 消息大小
+//============================================================
+TInt S<jt:item source='$entity.name'/>::Capacity(){
+   // 序列化消息
+<jt:empty source='$entity.parent_name'>
+   TInt capacity = 0;
+</jt:empty>
+<jt:notEmpty source='$entity.parent_name'>
+   TSize capacity = S<jt:item source='$entity.parent_name'/>::Capacity();
+</jt:notEmpty>
+<jt:loop source='$entity' alias='field'>
+<jt:true source='$field.is_collection'>
+   capacity += <jt:item source='$field.name'/>.Capacity();
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Type|Struct'>
+   capacity += sizeof(<jt:item source='$field.type_name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Enum'>
+   capacity += sizeof(TInt32);
+</jt:equals>
+<jt:equals source='$field.type' value='Bool|Char|Byte|Int16|Int32|Int64|Uint16|Uint32|Uint64|Float|Double|TimeTick|TimeSpan|DateTime'>
+   capacity += sizeof(T<jt:item source='$field.type'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Set|Bytes|String|Object|Types'>
+   capacity += <jt:item source='$field.name'/>.Capacity();
+</jt:equals>
+</jt:false>
+</jt:loop>
+   return capacity;
+}
+
+//============================================================
+// <T>判断自己和指定对象将是否相等。</T>
+//
+// @param value 指定对象
+// @return 是否相等
+//============================================================
+TBool S<jt:item source='$entity.name'/>::Equals(S<jt:item source='$entity.name'/>* pValue){
+   // 检查参数
+   if(pValue == NULL){
+      return EFalse;
+   }
+<jt:empty source='$entity.parent_name'>
+   // 比较内容
+   TBool result = ETrue;
+</jt:empty>
+<jt:notEmpty source='$entity.parent_name'>
+   // 比较父内容
+   TBool result = S<jt:item source='$entity.parent_name'/>::Equals(pValue);
+   if(!result){
+      return EFalse;
+   }
+   // 比较内容
+</jt:notEmpty>
+<jt:loop source='$entity' alias='field'>
+<jt:false source='$field.is_collection'>
+<jt:false source='$field.is_system'>
+<jt:equals source='$field.type' value='Type|Enum|Set|Bool|Int8|Int16|Int32|Int64|Uint8|Uint16|Uint32|Uint64|Float|Double|TimeTick|TimeSpan|DateTime|Struct'>
+   if(<jt:item source='$field.name'/> != pValue-><jt:item source='$field.name'/>){
+      return EFalse;
+   }
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   if(!<jt:item source='$field.name'/>.Equals(pValue-><jt:item source='$field.name'/>)){
+      return EFalse;
+   }
+</jt:equals>
+</jt:false>
+</jt:false>
+</jt:loop>
+   return result;
+}
+
+//============================================================
+// <T>复制指定对象信息到自己内部。</T>
+//
+// @param value 指定对象
+//============================================================
+TResult S<jt:item source='$entity.name'/>::Assign(S<jt:item source='$entity.name'/>* pValue){
+   // 检查参数
+   if(pValue == NULL){
+      return EFailure;
+   }
+   // 复制内容
+<jt:loop source='$entity' alias='field'>
+<jt:false source='$field.is_collection'>
+<jt:false source='$field.is_system'>
+<jt:equals source='$field.type' value='Type|Enum|Set|Bool|Int8|Int16|Int32|Int64|Uint8|Uint16|Uint32|Uint64|Float|Double|TimeTick|TimeSpan|DateTime|Struct'>
+   <jt:item source='$field.name'/> = pValue-><jt:item source='$field.name'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   <jt:item source='$field.name'/>.Assign(pValue-><jt:item source='$field.name'/>);
+</jt:equals>
+</jt:false>
+</jt:false>
+</jt:loop>
+   return ETrue;
+}
+
+//============================================================
+// <T>序列化信息到结构体。</T>
+//
+// @param pMemory 内存指针
+// @param size 内存大小
+// @return 序列化后大小
+//============================================================
+TResult S<jt:item source='$entity.name'/>::Serialize(IDataOutput* pOutput){
+   // 序列化消息
+<jt:empty source='$entity.parent_name'>
+   TResult result = ESuccess;
+</jt:empty>
+<jt:notEmpty source='$entity.parent_name'>
+   TResult result = S<jt:item source='$entity.parent_name'/>::Serialize(pOutput);
+   if(result != ESuccess){
+      return result;
+   }
+</jt:notEmpty>
+<jt:loop source='$entity' alias='field'>
+   // 序列化<jt:item source='$field.label'/>
+<jt:true source='$field.is_collection'>
+   <jt:item source='$field.name'/>.Serialize(pOutput);
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Type|Struct'>
+   pOutput->Write(&<jt:item source='$field.name'/>, sizeof(<jt:item source='$field.type_name'/>));
+</jt:equals>
+<jt:equals source='$field.type' value='Enum'>
+   pOutput->WriteInt32((TInt32)<jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Set'>
+   pOutput->WriteInt32((TInt32)<jt:item source='$field.name'/>.Get());
+</jt:equals>
+<jt:equals source='$field.type' value='Bool|Int8|Int16|Int32|Int64|Uint8|Uint16|Uint32|Uint64|Float|Double'>
+   pOutput->Write<jt:item source='$field.type'/>(<jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='TimeSpan'>
+   pOutput->WriteInt64(<jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='TimeTick|DateTime'>
+   pOutput->WriteUint64(<jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='String|Bytes|Object|Types'>
+   <jt:item source='$field.name'/>.Serialize(pOutput);
+</jt:equals>
+</jt:false>
+</jt:loop>
+   return result;
+}
+
+//============================================================
+// <T>反序列化数据流到结构体。</T>
+//
+// @param pMemory 内存指针
+// @param size 内存大小
+// @return 序列化后大小
+//============================================================
+TResult S<jt:item source='$entity.name'/>::Unserialize(IDataInput* pInput){
+   // 反序列化消息
+<jt:empty source='$entity.parent_name'>
+   TResult result = ESuccess;
+</jt:empty>
+<jt:notEmpty source='$entity.parent_name'>
+   TResult result = S<jt:item source='$entity.parent_name'/>::Unserialize(pInput);
+   if(result != ESuccess){
+      return result;
+   }
+</jt:notEmpty>
+<jt:loop source='$entity' alias='field'>
+   // 反序列化<jt:item source='$field.label'/>
+<jt:true source='$field.is_collection'>
+   <jt:item source='$field.name'/>.Unserialize(pInput);
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Type|Struct'>
+   pInput->Read(&<jt:item source='$field.name'/>, sizeof(<jt:item source='$field.type_name'/>));
+</jt:equals>
+<jt:equals source='$field.type' value='Enum'>
+   <jt:item source='$field.name'/> = (<jt:item source='$field.type_name'/>)pInput->ReadInt32();
+</jt:equals>
+<jt:equals source='$field.type' value='Set'>
+   <jt:item source='$field.name'/>.Modify(pInput->ReadInt32());
+</jt:equals>
+<jt:equals source='$field.type' value='Bool|Int8|Int16|Int32|Int64|Uint8|Uint16|Uint32|Uint64|Float|Double'>
+   <jt:item source='$field.name'/> = pInput->Read<jt:item source='$field.type'/>();
+</jt:equals>
+<jt:equals source='$field.type' value='TimeSpan'>
+   <jt:item source='$field.name'/> = pInput->ReadInt64();
+</jt:equals>
+<jt:equals source='$field.type' value='TimeTick|DateTime'>
+   <jt:item source='$field.name'/> = pInput->ReadUint64();
+</jt:equals>
+<jt:equals source='$field.type' value='String|Bytes|Object|Types'>
+   <jt:item source='$field.name'/>.Unserialize(pInput);
+</jt:equals>
+</jt:false>
+</jt:loop>
+   return result;
+}
+
+//============================================================
+// <T>重置内部消息。</T>
+//============================================================
+void S<jt:item source='$entity.name'/>::Reset(){
+<jt:notEmpty source='$entity.parent_name'>
+   // 父类重置数据
+   S<jt:item source='$entity.parent_name'/>::Reset();
+</jt:notEmpty>
+   // 重置内容数据
+<jt:loop source='$entity' alias='field'>
+<jt:false source='$field.is_persistence'>
+<jt:true source='$field.is_collection'>
+   <jt:item source='$field.name'/>.Reset();
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Bool'>
+   <jt:item source='$field.name'/> = EFalse;
+</jt:equals>
+<jt:equals source='$field.type' value='Type'>
+   <jt:item source='$field.name'/> = 0;
+</jt:equals>
+<jt:equals source='$field.type' value='Enum'>
+   <jt:item source='$field.name'/> = (<jt:item source='$field.type_name'/>)0;
+</jt:equals>
+<jt:equals source='$field.type' value='Set'>
+   <jt:item source='$field.name'/>.Clear();
+</jt:equals>
+<jt:equals source='$field.type' value='Byte|Int8|Int16|Int32|Int64|Uint8|Uint16|Uint32|Uint64|Double|DateTime|TimeTick|TimeSpan'>
+   <jt:item source='$field.name'/> = 0;
+</jt:equals>
+<jt:equals source='$field.type' value='Float'>
+   <jt:item source='$field.name'/> = 0.0f;
+</jt:equals>
+<jt:equals source='$field.type' value='Bytes|String|FixBytes|FixString'>
+   <jt:item source='$field.name'/>.Clear();
+</jt:equals>
+<jt:equals source='$field.type' value='Object'>
+   <jt:item source='$field.name'/>.Reset();
+</jt:equals>
+</jt:false>
+</jt:false>
+</jt:loop>
+}
+<jt:equals source='$entity:name' value='Struct'>
+
+//============================================================
+// <T>分解字符串。</T>
+//
+// @param pValue 字符串
+//============================================================
+TBool S<jt:item source='$entity.name'/>::Parse(TCharC* pValue){
+<jt:empty source='$entity.parent_name'>
+   TBool result = EFalse;
+</jt:empty>
+<jt:notEmpty source='$entity.parent_name'>
+   TBool result = S<jt:item source='$entity.parent_name'/>::Parse(pValue);
+</jt:notEmpty>
+   // @manual (S<jt:item source='$entity.name'/>.Parse.Begin)
+   //------------------------------------------------------------
+<jt:empty source='$entity.build_parse'>
+   //------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$entity.build_parse'>
+<jt:item source='$entity.build_parse'/>//------------------------------------------------------------
+</jt:notEmpty>
+   // @manual (S<jt:item source='$entity.name'/>.Parse.End)
+   return result;
+}
+
+//============================================================
+// <T>格式化为字符串。</T>
+//
+// @param pValue 字符串
+// @param capacity 容量
+// @return 字符串
+//============================================================
+TCharC* S<jt:item source='$entity.name'/>::ToString(TChar* pValue, TSize capacity){
+<jt:notEmpty source='$entity.parent_name'>
+   S<jt:item source='$entity.parent_name'/>::ToString(pValue, capacity);
+</jt:notEmpty>
+   // @manual (S<jt:item source='$entity.name'/>.ToString.Begin)
+   //------------------------------------------------------------
+<jt:empty source='$entity.build_string'>
+   //------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$entity.build_string'>
+<jt:item source='$entity.build_string'/>//------------------------------------------------------------
+</jt:notEmpty>
+   // @manual (S<jt:item source='$entity.name'/>.ToString.End)
+   return pValue;
+}
+
+//============================================================
+// <T>格式化为显示字符串。</T>
+//
+// @param pValue 字符串
+// @param capacity 容量
+// @return 字符串
+//============================================================
+TCharC* S<jt:item source='$entity.name'/>::ToDisplay(TChar* pValue, TSize capacity){
+<jt:notEmpty source='$entity.parent_name'>
+   S<jt:item source='$entity.parent_name'/>::ToDisplay(pValue, capacity);
+</jt:notEmpty>
+   // @manual (S<jt:item source='$entity.name'/>.ToDisplay.Begin)
+   //------------------------------------------------------------
+<jt:empty source='$entity.build_display'>
+   //------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$entity.build_display'>
+<jt:item source='$entity.build_display'/>//------------------------------------------------------------
+</jt:notEmpty>
+   // @manual (S<jt:item source='$entity.name'/>.ToDisplay.End)
+   return pValue;
+}
+</jt:equals>
+
+//============================================================
+// <T>获得内部消息。</T>
+//
+// @param pValue 字符串
+// @param capacity 容量
+// @param level 层级
+// @return 字符串
+//============================================================
+TCharC* S<jt:item source='$entity.name'/>::Track(MString* pTrack, TInt level){
+   MO_ASSERT(pTrack);
+   // 追加数据内容信息
+<jt:notEmpty source='$entity.parent_name'>
+   S<jt:item source='$entity.parent_name'/>::Track(pTrack, level);
+</jt:notEmpty>
+<jt:loop source='$entity' alias='field'>
+   pTrack->AppendRepeat(MO_DUMP_INDENT, level);
+<jt:true source='$field.is_collection'>
+   if(<jt:item source='$field.name'/>.IsEmpty()){
+      pTrack->Append(" => [<jt:item source='$field.type' rpad='14'/>] <jt:item source='$field.name'/> = [empty]\n");
+   }else{
+<jt:equals source='$field.type' value='Struct'>
+      TInt count = <jt:item source='$field.name'/>.Length();
+      TInt loop = MO_MIN(MO_TRACK_ITEMS_MAXCOUNT, count);
+      pTrack->AppendFormat(" => [<jt:item source='$field.type' rpad='14'/>] <jt:item source='$field.name'/> = [count=%d]\n", count);
+      for(TInt n=0; n < loop; n++){
+         pTrack->AppendRepeat(MO_DUMP_INDENT, level + 1);
+         pTrack->AppendFormat("[%d] <jt:item source='$field.type_name'/>\n", n);
+         <jt:item source='$field.name'/>.Get(n).Track(pTrack, level + 2);
+      }
+      if(loop < count){
+         pTrack->AppendRepeat(MO_DUMP_INDENT, level + 1);
+         pTrack->Append("...\n");
+      }
+</jt:equals>
+<jt:equals source='$field.type' value='Object'>
+      TInt count = <jt:item source='$field.name'/>.Count();
+      TInt loop = MO_MIN(MO_TRACK_ITEMS_MAXCOUNT, count);
+      pTrack->AppendFormat(" => [<jt:item source='$field.type' rpad='14'/>] <jt:item source='$field.name'/> = [count=%d]\n", count);
+      for(TInt n=0; n < loop; n++){
+         pTrack->AppendRepeat(MO_DUMP_INDENT, level + 1);
+         pTrack->AppendFormat("[%d] <jt:item source='$field.type_name'/>\n", n);
+         <jt:item source='$field.name'/>.Get(n).Track(pTrack, level + 2);
+      }
+      if(loop < count){
+         pTrack->AppendRepeat(MO_DUMP_INDENT, level + 1);
+         pTrack->Append("...\n");
+      }
+</jt:equals>
+   }
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Bool'>
+   pTrack->AppendFormat(" => [<jt:item source='$field.type' rpad='14'/>] <jt:item source='$field.name'/> = 0x%08X (%s = %d)\n", <jt:item source='$field.name'/>, RBool::ToDisplay(<jt:item source='$field.name'/>), <jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Enum'>
+   pTrack->AppendFormat(" => [<jt:item source='$field.type' rpad='14'/>] <jt:item source='$field.name'/> = 0x%08X (<jt:item source='$field.type_name'/>::%s = %d)\n", <jt:item source='$field.name'/>, REnum<jt:item source='$field.type_name' removeFirst='E'/>::ToString(<jt:item source='$field.name'/>), <jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Set'>
+   TFsText <jt:item source='$field.name'/>Text = <jt:item source='$field.name'/>.ToString();
+   pTrack->AppendFormat(" => [<jt:item source='$field.type' rpad='14'/>] <jt:item source='$field.name'/> = 0x%08X (<jt:item source='$field.type_name'/>[%s] = %d)\n", <jt:item source='$field.name'/>.Get(), (TCharC*)<jt:item source='$field.name'/>Text, <jt:item source='$field.name'/>.Get());
+</jt:equals>
+<jt:equals source='$field.type' value='Type'>
+   pTrack->AppendFormat(" => [<jt:item source='$field.type_name' rpad='14'/>] <jt:item source='$field.name'/> = [%s]\n", TFs<jt:item source='$field.type_name' removeFirst='T'/>(<jt:item source='$field.name'/>).Format());
+</jt:equals>
+<jt:equals source='$field.type' value='Int8|Uint8'>
+   pTrack->AppendFormat(" => [<jt:item source='$field.type' rpad='14'/>] <jt:item source='$field.name'/> = 0x%02X (%d)\n", <jt:item source='$field.name'/>, <jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Int16|Uint16'>
+   pTrack->AppendFormat(" => [<jt:item source='$field.type' rpad='14'/>] <jt:item source='$field.name'/> = 0x%04X (%d)\n", <jt:item source='$field.name'/>, <jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Int32|Uint32'>
+   pTrack->AppendFormat(" => [<jt:item source='$field.type' rpad='14'/>] <jt:item source='$field.name'/> = 0x%08X (%d)\n", <jt:item source='$field.name'/>, <jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Int64|Uint64|TimeTick|TimeSpan|DateTime'>
+   pTrack->AppendFormat(" => [<jt:item source='$field.type' rpad='14'/>] <jt:item source='$field.name'/> = 0x%016X (%ld)\n", <jt:item source='$field.name'/>, <jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='Float|Double'>
+   pTrack->AppendFormat(" => [<jt:item source='$field.type' rpad='14'/>] <jt:item source='$field.name'/> = %f\n", <jt:item source='$field.name'/>);
+</jt:equals>
+<jt:equals source='$field.type' value='String|FixString'>
+   pTrack->AppendFormat(" => [<jt:item source='$field.type' rpad='14'/>] <jt:item source='$field.name'/> = %d:[%s]\n", <jt:item source='$field.name'/>.Length(), <jt:item source='$field.name'/>.MemoryC());
+</jt:equals>
+<jt:equals source='$field.type' value='Bytes|FixBytes'>
+   pTrack->Append(" => [<jt:item source='$field.type' rpad='14'/>] <jt:item source='$field.name'/> (<jt:item source='$field.type_name'/>)\n");
+   <jt:item source='$field.name'/>.Track(pTrack, level + 1);
+</jt:equals>
+<jt:equals source='$field.type' value='Struct'>
+<jt:true source='$field.is_system'>
+   pTrack->AppendFormat(" => [<jt:item source='$field.type_name' rpad='14'/>] <jt:item source='$field.name'/> = [%s]\n", TFs<jt:item source='$field.type_name' removeFirst='S'/>(<jt:item source='$field.name'/>).Format());
+</jt:true>
+<jt:false source='$field.is_system'>
+   pTrack->AppendFormat(" => [<jt:item source='$field.type_name' rpad='14'/>] <jt:item source='$field.name'/> = [%s]\n", <jt:item source='$field.name'/>.ToDisplay((TChar*)TFsText(), TFsText::Size()));
+</jt:false>
+</jt:equals>
+<jt:equals source='$field.type' value='Object'>
+   pTrack->Append(" => [<jt:item source='$field.type' rpad='14'/>] <jt:item source='$field.name'/> (<jt:item source='$field.type_name'/>)\n");
+   <jt:item source='$field.name'/>.Track(pTrack, level + 1);
+</jt:equals>
+</jt:false>
+</jt:loop>
+   return pTrack->MemoryC();
+}
+
+// @manual (S<jt:item source='$entity.name'/>.Begin)
+//------------------------------------------------------------
+<jt:empty source='$entity.build_source'>
+//------------------------------------------------------------
+</jt:empty>
+<jt:notEmpty source='$entity.build_source'>
+<jt:item source='$entity.build_source'/>//------------------------------------------------------------
+</jt:notEmpty>
+// @manual (S<jt:item source='$entity.name'/>.End)
+</jt:equals>
+</jt:loop>
+
+MO_NAMESPACE_END
+]]></Source>
+</Template>

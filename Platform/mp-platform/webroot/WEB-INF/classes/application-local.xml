@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+   <!-- 应用定义 -->
+   <Define name='application'>D:/ZW-Platform.WK</Define>
+   <Define name='application.name'>mp-platform</Define>
+   <Define name='application.root'>${application}/${application.name}</Define>
+   <Define name='application.deploy'>${application.root}/deploy</Define>
+   <Define name='application.web'>${application.root}/webroot</Define>
+   <Define name='application.config'>${application.web}/WEB-INF/classes</Define>
+   <Define name='application.space'>${application.web}/WEB-INF/config</Define>
+   <Define name='application.temp'>${application}/mt-temp/${application.name}</Define>
+
+   <!-- 包含：系统设定 -->
+   <Include>${application.config}/common/define.xml</Include>
+   <Include>${application.config}/common/core.xml</Include>
+   <Include>${application.config}/common/engine.xml</Include>
+   <Include>${application.config}/common/data.xml</Include>
+   <Include>${application.config}/common/web.xml</Include>
+   <Include>${application.config}/common/web-face.xml</Include>
+
+   <!-- 包含：逻辑设定 -->
+   <Include>${application.config}/logic/face.xml</Include>
+   <Include>${application.config}/logic/game/service.xml</Include>
+   
+   <!-- 包含：环境设定 -->
+   <Include>${application.config}/environment/local/database.xml</Include>
+</Configuration>

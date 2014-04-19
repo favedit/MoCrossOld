@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="s00fLsWxffhWyEpXX84phA" name="logic.petride" label="宠物坐骑" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" source_name="MoMgLogicPetride" code="Ltp" full_code="LogicPetride" display_index="61">
+  <Message _uuid="IUrN6ZsCD8YpN6hX8BEWsQ" name="ride.train.query.request" label="坐骑培养查询" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RideTrainQuery" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0001" code_fix="N">
+    <Item _uuid="u0wvZi3X61yjnadyeu1NqA" name="rideOid" label="坐骑对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+  </Message>
+  <Message _uuid="j0CMOPoPsP2Cm0SRZJ3Sug" name="ride.train.query.response" label="坐骑培养查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RideTrainQuery" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Item _uuid="tUGK8JTgZSVwSB631Zhfpw" name="goldWaste" label="普通培养消耗" is_valid="Y" note="M#" type="Struct" type_name="SGmCurrency" is_collection="N" />
+    <Item _uuid="jkl[sTfh0vIsDYpnpE4Lrw" name="goldExp" label="普通培养经验" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="ukJENx95aWr]8EW3oEfRpw" name="moneyWaste" label="高级培养消耗" is_valid="Y" note="M#" type="Struct" type_name="SGmCurrency" is_collection="N" />
+    <Item _uuid="dE7cYQUi90W]nAjobc6Gsw" name="moneyExp" label="高级培养经验" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="69dc6d11-1930-4808-bb53-55435208ccb5" name="nextRideLevel" label="下个坐骑等级" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="e17b0a6c-3bc3-4dc0-b0f6-5491a955035a" name="nextHpArg" label="下等级气血" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="72e9cff5-2d26-402c-b8ae-898689e6a31f" name="nextMpArg" label="下等级魔法" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="8430f95c-fdb4-448f-b29a-2a27719e98c1" name="nextAttackPhysicalArg" label="下等级物攻" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="3a28c541-cd62-4359-96cb-2bd9a5648ffd" name="nextDefencePhysicalArg" label="下等级物防" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="7f43729c-fe22-434f-a38b-7321433ce895" name="nextAttackMagicArg" label="下等级法攻" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="3a9f1aad-9caa-4b72-9cbb-4a7a3d1f968f" name="nextDefenceMagicArg" label="下等级法防" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="FkdvEnFoONZ39kBai3oxhA" name="ride.train.request" label="坐骑培养" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RideTrain" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0003" code_fix="N">
+    <Item _uuid="A0bS8rcoxjj6Qvwii]Lgiw" name="rideOid" label="坐骑对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="70ozgNMaWwkskbPAkdS4iw" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmRideFosterBotton" is_collection="N" />
+  </Message>
+  <Message _uuid="10AUl4fFhRhcn7YHFnRjtg" name="ride.train.response" label="坐骑培养应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RideTrain" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0004" code_fix="N" />
+  <Message _uuid="CUxK8lITWz3NG1TMYAMjuQ" name="ride.skill.prop.request" label="坐骑技能道具索搜" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RideSkillProp" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0005" code_fix="N" />
+  <Message _uuid="zUwiVx3IfvKRYZ1zNiVYsA" name="ride.skill.prop.response" label="坐骑技能道具搜索" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RideSkillProp" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0006" code_fix="N">
+    <Item _uuid="ekyaUvruq4Bua096jld8ig" name="item" label="物品相关" is_valid="Y" note="M#" type="Object" type_name="SGsBagItemSet" is_collection="N" />
+  </Message>
+  <Message _uuid="uEVZp[8rqFwuUR1sLaWzrg" name="ride.study.skill.request" label="坐骑学习技能" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RideStudySkill" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0007" code_fix="N">
+    <Item _uuid="UkXpMllOSOhF[mUKImPwuw" name="propOid" label="道具实体对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="M0yF2EcVuMuR6pX2FjvdiA" name="rideOid" label="实体对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+  </Message>
+  <Message _uuid="bUekd2ingqlP0lMM9CUWmw" name="ride.study.skill.response" label="坐骑学习技能" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RideStudySkill" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0008" code_fix="N">
+    <Item _uuid="2k4WAOblVEc3uJR[zj]9lw" name="result" label="结果" is_valid="Y" note="M#" type="Enum" type_name="EGmResult" is_collection="N" />
+    <Item _uuid="JEa00DFrzmcbppkQPIjqhQ" name="item" label="使用道具" is_valid="Y" note="M#" type="Object" type_name="SGsItemStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="lE2uIZkvC[yD]k[JjzcFtw" name="ride.skill.replace.request" label="坐骑技能替换" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RideSkillReplace" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0009" code_fix="N">
+    <Item _uuid="BUz64Zkggs6fRbELyt0AtA" name="skillOid" label="技能编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="Qk]jDV31HwdWkNK1D8lLrQ" name="propOid" label="道具编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+  </Message>
+  <Message _uuid="6EzVrc4rUEM8Gfh5CNV9vg" name="ride.skill.replace.response" label="坐骑技能替换" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RideSkillReplace" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000A" code_fix="N">
+    <Item _uuid="2k4WAOblVEu3uJR[zj]9lw" name="result" label="结果" is_valid="Y" note="M#" type="Enum" type_name="EGmResult" is_collection="N" />
+    <Item _uuid="JEa00DFrzmcbppnQPIjqhQ" name="item" label="使用道具" is_valid="Y" note="M#" type="Object" type_name="SGsItemStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="qEOsqmI4Hrcc8zW2daxjgg" name="ride.skill.level.up.request" label="坐骑技能升级" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RideSkillLevelUp" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x000B" code_fix="N">
+    <Item _uuid="f0Pm89skYVM0uBWLtn4imw" name="skillOid" label="技能对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Struct _uuid="9UAGIZDCpT1u[oy7pc2AgQ" name="SProp" label="道具" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="cE2Xwn[o5G4fl8VP0Uldvw" name="propOid" label="道具对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    </Struct>
+    <Item _uuid="PEZu2NwHivxl2xrxuvJztQ" name="propList" label="道具列表" is_valid="Y" note="M#" type="Object" type_name="SProp" is_collection="Y" data_size="32" />
+    <Item _uuid="iEdgE5Lsm0[tAjHnZVvpmA" name="isDisposable" label="是否消耗单本" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="ZE4FY4myAllqCyGTXaxVtw" name="ride.skill.level.up.response" label="坐骑技能升级" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RideSkillLevelUp" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000C" code_fix="N" />
+  <Message _uuid="a4303981-1d7a-4ca3-b06f-0a71a8806d60" name="pet.develop.request" label="宠物光环培养请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetDevelop" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x000D" code_fix="N">
+    <Item _uuid="e134c394-2a46-4812-8e39-d0046d6f5601" name="petOid" label="宠物对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="51dd7241-2a5e-49f5-bd26-0b874e19eb30" name="isUseMoney" label="成长石不够时,是否消耗元宝" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="49bba1e7-066e-4a7d-8e76-6d2807cecd60" name="pet.circle.info.request" label="宠物光环信息请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetCircleInfo" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x000E" code_fix="N">
+    <Item _uuid="873d840b-433c-4421-a5c0-261269e3bf7c" name="petOid" label="宠物对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+  </Message>
+  <Message _uuid="3cf91e0d-58ea-4b47-b004-6052427948da" name="pet.circle.info.response" label="宠物光环信息回复" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetCircleInfo" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000F" code_fix="N">
+    <Item _uuid="bb07d12f-fa1c-4e45-891b-6f42b12b6be0" name="petQuality" label="宠物光环等级" is_valid="Y" note="M#" type="Enum" type_name="EGmPetQuailty" is_collection="N" />
+    <Item _uuid="17849f07-4b69-4318-8328-6828ae7ed8cc" name="levelRequire" label="光环培养所需等级" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="dcd3b610-a664-46e3-8e94-074768c73df9" name="needDevelopStoneCount" label="单次消耗成长石数量" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="d5f2172b-ece6-42be-9487-94e2c39c6727" name="circleAlreadyDevelopCount" label="光环已培养次数" is_valid="Y" note="M#" type="Uint8" is_collection="N" />
+    <Item _uuid="7fa3cdd1-495e-4b45-9d86-012f72176ecc" name="developCountRequire" label="光环培养所需次数" is_valid="Y" note="M#" type="Uint8" is_collection="N" />
+    <Item _uuid="acb6d9d7-0e0a-4a00-a327-017cc49ef4fe" name="developStoneCurCount" label="成长石当前数量" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Struct _uuid="1fc76039-1847-42a5-a5b1-22d486ae6d75" name="SPetGiftPropCurCount" label="宠物天赋提升道具当前数量" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="007f30a1-6229-4386-9672-82b7be516472" name="propTid" label="道具模板id" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="a8c8fe33-7c29-4a59-b6e1-35d06e750af7" name="curCount" label="道具当前数量" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    </Struct>
+    <Item _uuid="33cb2225-3905-421e-84a9-73f64d66a8c8" name="petGiftPropCurCountList" label="宠物天赋提升道具当前数量列表" is_valid="Y" note="M#" type="Object" type_name="SPetGiftPropCurCount" is_collection="Y" data_size="6" />
+  </Message>
+  <Message _uuid="e1017de1-a682-454a-9bd5-77c6e794f229" name="pet.develop.response" label="宠物光环培养回复" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetDevelop" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0010" code_fix="N">
+    <Item _uuid="c86c11da-99ac-4e59-8927-d4968ae1e19d" name="developResult" label="光环培养结果" is_valid="Y" note="M#" type="Enum" type_name="EGmPetDevelopResult" is_collection="N" />
+    <Item _uuid="b776c6a9-16f7-43a6-9e9e-9c246a0f3d7d" name="petQuality" label="宠物光环等级" is_valid="Y" note="M#" type="Enum" type_name="EGmPetQuailty" is_collection="N" />
+    <Item _uuid="c4ff15df-fb01-4073-9f9b-a6ebf131844f" name="levelRequire" label="光环培养所需等级" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="a8b76c8c-8326-40cc-ab46-623394bdbebb" name="needDevelopStoneCount" label="单次消耗成长石数量" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="1573906d-1662-4221-ba17-f03b42afab05" name="circleAlreadyDevelopCount" label="光环已培养次数" is_valid="Y" note="M#" type="Uint8" is_collection="N" />
+    <Item _uuid="0b7a7242-2a30-4e19-b3d9-04e277799244" name="developCountRequire" label="光环培养所需次数" is_valid="Y" note="M#" type="Uint8" is_collection="N" />
+    <Item _uuid="a0899cc1-de45-4651-87c5-21b801b8130e" name="developStoneCurCount" label="成长石当前数量" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="23934ced-e50f-4faa-8432-a9f84c36e8a3" name="pet.gift.improve.request" label="宠物天赋提升请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetGiftImprove" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0011" code_fix="N">
+    <Item _uuid="f574ac66-561d-4b1b-8d0b-fbd38142a0ee" name="petOid" label="宠物对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="7f65e4a9-e3c4-4e03-b4b8-8411a966388e" name="propertyType" label="属性类型" is_valid="Y" note="M#" type="Enum" type_name="EGmPetPropertyType" is_collection="N" />
+    <Item _uuid="66f31982-6df6-4e5e-8e20-f07c2f4a980f" name="isFastImprove" label="是否是一键提升" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="6502fd01-5afc-427e-809f-6aeac15c1c06" name="pet.gift.improve.response" label="宠物天赋提升回复" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetGiftImprove" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0012" code_fix="N">
+    <Item _uuid="eb0eb33e-1648-47f0-ba23-8a442efb3bee" name="result" label="结果" is_valid="Y" note="M#" type="Enum" type_name="EGmResult" is_collection="N" />
+    <Struct _uuid="795d4be4-615a-4f44-910c-df91d69acd87" name="SPetGiftPropCurCount" label="宠物天赋提升道具当前数量" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="d702ea31-0279-4fc3-869d-b8660cf209bb" name="propTid" label="道具模板id" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="6f322d43-4b41-497a-b4db-6ad27f27fa56" name="curCount" label="道具当前数量" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    </Struct>
+    <Item _uuid="039a21f1-d88a-4999-9bcc-4997b4322fa9" name="petGiftPropCurCountList" label="宠物天赋提升道具当前数量列表" is_valid="Y" note="M#" type="Object" type_name="SPetGiftPropCurCount" is_collection="Y" data_size="6" />
+  </Message>
+  <Message _uuid="816af050-773a-4f2c-894f-06349c85c361" name="pet.skill.clean.request" label="宠物技能清除请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetSkillClean" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0013" code_fix="N">
+    <Item _uuid="042c1333-8aea-445b-80a7-7dc4d0a2093e" name="petOid" label="宠物对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="42067f0f-d787-457a-8db3-07b8fbaa961d" name="skillOid" label="技能对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+  </Message>
+  <Message _uuid="c2d3ac80-466b-4b22-b4d4-af30cdcf9f34" name="pet.skill.clean.response" label="宠物技能清除回复" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetSkillClean" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0014" code_fix="N">
+    <Item _uuid="176560a3-4669-42a4-a603-56cc173a3d9d" name="result" label="结果" is_valid="Y" note="M#" type="Enum" type_name="EGmResult" is_collection="N" />
+    <Item _uuid="2adc243c-19cd-49c9-a29e-48990860e35d" name="petOid" label="宠物对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="59a9a15d-dc8f-494c-8279-d02c2d7a2319" name="cleanSkillOid" label="删除的技能对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+  </Message>
+  <Message _uuid="68fb9631-961d-4807-99c7-ee63481788d4" name="pet.skill.recommend.request" label="宠物技能推荐请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetSkillRecommend" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0015" code_fix="N">
+    <Item _uuid="8c0093e0-43ae-4412-8a6c-1e2023c3c519" name="petOid" label="宠物对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+  </Message>
+  <Message _uuid="f098110d-9710-47a2-8717-117121386155" name="pet.skill.recommend.response" label="宠物技能推荐回复" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetSkillRecommendResponse" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0016" code_fix="N">
+    <Item _uuid="ffb9e9cf-cd1b-4095-8e59-c36ae4785704" name="result" label="结果" is_valid="Y" note="M#" type="Enum" type_name="EGmResult" is_collection="N" />
+    <Item _uuid="77542382-d252-4c0c-ad53-e80e7f66d048" name="recommendSkillList" label="推荐技能列表" is_valid="Y" note="M#" type="Object" type_name="SGsPetSkillSet" is_collection="N" />
+  </Message>
+  <Message _uuid="41eb9bf4-182a-4f7b-94e3-8db2dc6b7e7f" name="pet.ward.extra.property.info.request" label="宠物守护额外属性信息请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetWardExtraPropertyInfo" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0017" code_fix="N" />
+  <Message _uuid="3c8a2235-fae1-4515-9fd7-0bc1630845c9" name="pet.ward.extra.property.info.response" label="宠物守护额外属性信息回复" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetWardExtraPropertyInfo" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0018" code_fix="N">
+    <Struct _uuid="29bedc40-8be7-4cb1-87f6-2321d209998d" name="SPetWardExtraPropertyInfo" label="宠物守护额外属性信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="bf27fba2-25a2-44e5-b0c4-dd9812b36041" name="petWardConditionType" label="守护条件类型" is_valid="Y" note="M#" type="Enum" type_name="EGmPetWardConditionType" is_collection="N" />
+      <Item _uuid="5226a734-a725-4db6-84bb-813af3e90120" name="param" label="参数" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="f059c1b8-bea5-4b1e-97b5-b1112cd05295" name="addHp" label="气血增加值" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="5b5a41e1-71bd-41ca-9a1b-0da94a27a4ea" name="addPd" label="物防增加值" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="00f598c8-a63e-45e6-9e8c-20aa2bdc88c4" name="addMd" label="法防增加值" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="e82c7594-26c7-4506-a6ab-82f0ca39deb6" name="addPa" label="物攻增加值" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="2305ae44-b25f-46e0-9ecc-bed209c8f378" name="addMa" label="法攻增加值" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="da845850-7fa3-4eca-8230-bc906af2b6ec" name="addSpeed" label="速度增加值" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="b76ad942-4649-4e5a-a8b7-8a133bf44d8f" name="addMp" label="魔法增加值" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="9f8e0017-19bc-47dd-8ada-72a9acf11bff" name="addHit" label="精准增加值" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    </Struct>
+    <Item _uuid="059ebbea-27b7-4e0f-8208-2237086cd954" name="petWardExtraPropertyInfoList" label="宠物守护额外属性信息列表" is_valid="Y" note="M#" type="Object" type_name="SPetWardExtraPropertyInfo" is_collection="Y" data_size="12" />
+  </Message>
+  <Message _uuid="b88a8da6-7698-4a00-8e3f-9beea3e1584b" name="pet.skill.buy.request" label="宠物购买技能请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetSkillBuy" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0019" code_fix="N" />
+  <Message _uuid="5d1080cf-48f7-4310-ac79-987373a4b232" name="pet.skill.buy.response" label="宠物购买技能回复" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetSkillBuy" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x001A" code_fix="N">
+    <Item _uuid="d484130a-28ed-4360-b59f-363a97b56058" name="result" label="结果" is_valid="Y" note="M#" type="Enum" type_name="EGmResult" is_collection="N" />
+  </Message>
+  <Message _uuid="d94fd346-7fa7-4961-890e-59a73d6db6bc" name="pet.mix.info.request" label="宠物融合信息请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetMixInfo" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x001B" code_fix="N">
+    <Item _uuid="2498a993-7273-421e-a9cf-7fc9bbd465ea" name="mainPetOid" label="主宠对象id" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="59661056-b201-4ce2-84db-f0bc6c495ec0" name="aidPetOid" label="副宠对象id" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+  </Message>
+  <Message _uuid="f0dc9cc7-c4e5-45a3-b7dc-46d869f2d0e5" name="pet.mix.info.response" label="宠物融合信息回复" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetMixInfo" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x001C" code_fix="N">
+    <Item _uuid="a5b5a2a6-b40e-4b1e-bb91-0daba3e4b35d" name="mixPetDetail" label="融合后宠物信息" is_valid="Y" note="M#" type="Object" type_name="SGsPetDetail" is_collection="N" />
+  </Message>
+</Group>
+

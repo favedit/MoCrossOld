@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="c0[wlCuOh108xPHLXDHdjQ" name="game.item" label="游戏物品" is_valid="Y" note="M#" is_server="N" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" source_name="MoMgStructItem" code="Sim" full_code="StructItem" display_index="25" project_name="/Common/MoDefineEntity" project_code="MgEt">
+  <Entity _uuid="]0D]c5gcMy99pJMxN4fvuA" name="GmItem" label="物品" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" is_final="N">
+    <Item _uuid="VEZcOut3bixziMtGXXRkkQ" name="index" label="索引" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="kkanNfJFNhiwQ[9JL5uvmw" name="typeGroup" label="类型组" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="60MEQvMMDJnhNz2btl03pA" name="type" label="类型" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="0EIQGLUcgJqTiOv7]tNjiQ" name="typeIndex" label="类型索引" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="qExB2ajW9Tf]5bpuroDVnA" name="typeNext" label="类型次节点索引" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="aUyXHThk73CPwFBXtHsXpQ" name="objectType" label="对象类型" is_valid="Y" note="M#" type="Enum" type_name="EGmObject" is_collection="N" />
+    <Item _uuid="yUHJDoCbGazvDoiy35l6sQ" name="objectId" label="对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="qUOh0U]WB]xJo3n0ebS3iw" name="linkId" label="关联编号" is_valid="Y" note="M#" is_server="N" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" type="Type" type_name="TLinkId" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="AkZqvSLo4UKT6cPs1xr9rQ" name="uniqueId" label="唯一编号" is_valid="Y" note="M#" type="Type" type_name="TUniqueId" is_collection="N" />
+    <Item _uuid="H0eDFARqwwVEWHiCdzZVqg" name="templateId" label="模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="FkoCiSGeMDw9gYfh29tNpw" name="label" label="标签" is_valid="Y" note="M#" type="String" is_collection="N" data_size="item.label.max-length" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="KEyAMNEZXkQ0XKxB9WfEvQ" name="flags" label="标志" is_valid="Y" note="M#" type="Set" type_name="TGmItemFlagSet" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="FkZta38q[8ATcdJNaPoPvA" name="GmPropItem" label="道具物品" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmItem">
+    <Item _uuid="CUFeC4P1hN5wyCptir89gA" name="propTid" label="道具模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="rEbVJk4XiQB1eYgQkjrJqg" name="GmEquipSolt" label="装备插槽" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="N">
+    <Item _uuid="G0sBDe9wY8MVfFNaFDN7qA" name="itemId" label="物品编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Entity>
+  <Entity _uuid="2EW77WKmk5KfXntKLXb1mQ" name="GmEquipItem" label="装备物品" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" parent_name="GmItem">
+    <Item _uuid="NUM7xgFwrDzWTa0q8GlKuw" name="soltList" label="插槽列表" is_valid="Y" note="M#" type="Object" type_name="SGmEquipSolt" is_collection="Y" data_size="equip.slot.max-count" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="Xk5FT5pHTKdR9IitFDMsuA" name="GmSkillItem" label="技能物品" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="Y" is_final="N" parent_name="GmItem">
+    <Item _uuid="z0QFV4p1OawDHl7Iiw6TiQ" name="skillId" label="技能编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="Y0xbX4[C9nYEiJYCIp]UlA" name="skillTid" label="技能模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="pkduYRJ8PR]dFTKYIEfDqw" name="GmBagItem" label="背包物品" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="UUXls5h1Mc7izahOSrI0qA" name="bagOid" label="背包对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="R04xLMFX0suAJxFTv9dqhg" name="usable" label="能否使用" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="v0FQeV4z]v1q0yI2iAEdng" name="index" label="物品索引" is_valid="Y" note="M#" type="Uint8" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="0UuXYGmQ7lE[N5CgKE0VqQ" name="itemType" label="物品类型" is_valid="Y" note="M#" type="Enum" type_name="EGmItem" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="pkbsEcPQaF4uxglzdi8flw" name="itemId" label="物品编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="gUnOuElUQx5aVRVQJlKMuw" name="itemOid" label="物品对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="Rk5imiVBYWz6yxv4dHnegQ" name="GmBagItemSet" label="背包物品集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="]Uf0lgAhsg7Am8fi8GZ7lw" name="item" label="物品列表" is_valid="Y" note="M#" type="Object" type_name="SGmBagItem" is_collection="Y" data_size="role.item.max-count" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="[ULD80wfV]mLR6bQuQLcqw" name="GmBagPet" label="背包宠物" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="AUjPpBxnNJE6WXUUEsEJqQ" name="petId" label="宠物编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="CkCE2WBnSgPfT8NkR645pQ" name="petOid" label="宠物对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="R0YcUx371O88IhgHgdhInQ" name="flags" label="标志" is_valid="Y" note="M#" type="Set" type_name="TGmPetFlagSet" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="pEiXFDwQL7QkdPJHCd0dug" name="GmBagPetSet" label="背包宠物集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="FURMOA9ZN4eSkPOMMCxmrg" name="item" label="宠物列表" is_valid="Y" note="M#" type="Object" type_name="SGmBagPet" is_collection="Y" data_size="role.bag.pet.max-count" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="bU0zZI5BXxmbAQcJGE8ulA" name="GmBagSkill" label="背包技能" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="AU]zYg0MHAw]kS8NneOklQ" name="skillId" label="技能编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="OE3rp[Jp8g1LQo8HwtyZmA" name="skillOid" label="技能对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="eEq4EWoDe42KfHq9e2Y1qQ" name="usable" label="能否使用" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="W0nFMROb9FR3wGjjGHiTqA" name="belongCd" label="归属类型" is_valid="Y" note="M#" type="Enum" type_name="EGmSkillBelong" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="RkqxA5cMeRzVwD07rkNvoA" name="GmBagSkillSet" label="背包技能集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="PkggMCXG89AVTnqujdRbuQ" name="items" label="技能列表" is_valid="Y" note="M#" type="Object" type_name="SGmBagSkill" is_collection="Y" data_size="role.skill.max-count" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="REj5]1JkMHrS1soCYOrKjA" name="GmBagShortcut" label="快捷栏" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="50sgi1oW96ljkJ1qsHECnw" name="itemOid" label="物品对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="OEQYrnIcaAbbLkiw6SNOqw" name="itemId" label="物品编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+    <Item _uuid="e04e9[pkg3Kf]HGgnoVZiw" name="usable" label="能否使用" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+  <Entity _uuid="rEwQ0ZQetmCa6XI4ALlKnA" name="GmBagShortcutSet" label="快捷栏集合" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_class="N" is_final="N">
+    <Item _uuid="VUXHFFSrEpx1zf2pMHNUmw" name="items" label="物品列表" is_valid="Y" note="M#" type="Object" type_name="SGmBagShortcut" is_collection="Y" data_size="role.bag.shortcut.max-count" is_persistence="N" is_system="N" is_lock="N" is_get="N" is_set="N" />
+  </Entity>
+</Group>
+

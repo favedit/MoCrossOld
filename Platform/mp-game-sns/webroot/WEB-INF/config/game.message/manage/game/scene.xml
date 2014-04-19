@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="JUFiv5nDuKwUVLSf[MArrA" name="manage.game.scene" label="管理逻辑" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" source_name="MoMgManageGameScene" code="Mgs" full_code="ManageGameScene" display_index="63">
+  <Message _uuid="70cUNcJfZjv5mWpOIxTMog" name="role.list.request" label="角色列表请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="RoleList" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0001" code_fix="N">
+    <Item _uuid="N0fj2665RJlFYtX4wk1ynA" name="pageIndex" label="页索引                                                                                      " is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="nkY0C9SEvXj9b1zqFFPQrg" name="pageEntry" label="页角色条数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+  </Message>
+  <Message _uuid="nUFK03LlCS]dTIbf]2L9mw" name="role.list.response" label="角色列表应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="RoleList" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Enum _uuid="Jkq04uyKwpYwNLbn33KbkQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="8UI5uhKYontsEpSEo3X1uA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="70HV8HL8em2Y[C3HQplJjA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="xUrPPR9p6ugD1XGbTFhbkw" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="n0yBcIJquHfW[TfSBYDZqA" name="roleListTotal" label="角色列表总数" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="10lrqTklbHyVaj9kpWqVnw" name="pageIndex" label="页索引" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="VU0PSNNz5vYaymfVoYtijw" name="playerSet" label="玩家集合" is_valid="Y" note="M#" type="Object" type_name="SGsPlayerSet" is_collection="N" />
+  </Message>
+  <Message _uuid="60VPgPYiVmgKuPnSIyCvuA" name="role.detail.request" label="角色详细请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="RoleDetail" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0003" code_fix="N">
+    <Item _uuid="tkgEdjkBJ2cSzJg8r3jzuQ" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+  </Message>
+  <Message _uuid="SURp3bj8cz63HZTUxAcRuw" name="role.detail.response" label="角色详细应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="RoleDetail" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0004" code_fix="N">
+    <Enum _uuid="MkWhqq[9jWtzIYmDW5[Xmw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="T0FSosMkRxUrgs]STJHgkg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="Bka4Qf[GU7mprI7MkEr4rg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="e0QR4OObAJOCfLZC[ci9tA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+</Group>
+

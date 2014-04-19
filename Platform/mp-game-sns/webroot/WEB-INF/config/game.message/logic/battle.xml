@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="y0dt7Qvln71AopTmaqwwmw" name="logic.battle" label="战斗逻辑" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" source_name="MoMgLogicBattle" code="Lbt" full_code="LogicBattle" display_index="49">
+  <Message _uuid="YEetix1dWyN8qW942TmvgQ" name="enter.room.request" label="进入房间请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EnterRoom" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GBT" code_value="0x0001" code_fix="N">
+    <Item _uuid="v0Kh0PvklHTzX]cO4uIaqw" name="roleOid" label="角色对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="40CYBVQCBRUolYsmdRwJsg" name="sessionId" label="会话编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+  </Message>
+  <Message _uuid="skj6VdeCR]c1UpPFcO88ow" name="enter.room.response" label="进入房间应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EnterRoom" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Enum _uuid="vkkHnupPS0qJzyKxgKFzpw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="rk1f3NxO9au8gW5c2qExpQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="EUGLyTgnZ6Gal1urKd]ooQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="Vk4bf]VZJON0wNqZ9c31nA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="bERM5Bey6432YAfZueNvqQ" name="role" label="玩家角色信息" is_valid="Y" note="M#" type="Object" type_name="SGsPlayer" is_collection="N" />
+    <Item _uuid="S0vcPK0YZYCKabjxLHcvjw" name="roomPlayers" label="房间其他角色集合" is_valid="Y" note="M#" type="Object" type_name="SGsRolePublic" is_collection="Y" data_size="room.role.max-count" />
+  </Message>
+  <Message _uuid="gkagWdTdAp1d3]Hl1QpVmw" name="leave.room.request" label="离开房间请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="LeaveRoom" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GBT" code_value="0x0003" code_fix="N" />
+  <Message _uuid="LEdVqqFhSfL07JHzYo5IjQ" name="leave.room.response" label="离开房间请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="LeaveRoom" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GBT" target_type="CLT" code_value="0x0004" code_fix="N">
+    <Enum _uuid="HEHazfSU8D3]EdtHbELisw" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="kEfVALIby2ut2S[6O3Kalw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="nUVb8CYjncuHQgY8wHiQgg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="vEjUl0DBABL7s6r54aWEkg" name="roleOidFromScene" label="角色对象编号场景" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+  </Message>
+  <Message _uuid="AkjH02JIUV4MHxdpfchiqg" name="ready.battle.requset" label="准备战斗请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ReadyBattle" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GBT" code_value="0x0005" code_fix="N" />
+  <Message _uuid="Tk4cm6kJjsfJQ4iVdJZOpg" name="ready.battle.response" label="准备战斗应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GBT" target_type="CLT" code_value="0x0006" code_fix="N" />
+  <Message _uuid="zkrGeRQ64r8o906Db92iqQ" name="cancel.ready.request" label="取消准备请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="CancelReady" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GBT" code_value="0x0007" code_fix="N" />
+  <Message _uuid="Rkk]nA]oMzaLOjdQ62lirg" name="cancel.ready.response" label="取消准备应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="CancelReady" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GBT" target_type="CLT" code_value="0x0008" code_fix="N" />
+</Group>
+

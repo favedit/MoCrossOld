@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="tkCoQwSbYrllZa8nihxXrA" name="game.template.random.refresh" label="M#12cn16实体刷新模板" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_RANDOM_REFRESH" data_alias="GM_TPL_RDM_RFS" data_logic="GM_TPL_RANDOM_REFRESH_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="eU1JswGEON9IjwdiWC0gmQ" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="TE7CSdnP5QB9Pdc6A9Gevg" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldInteger _uuid="GE8nMiG1m7izWbE5wy70ig" name="refresh_id" label="M#12cn14刷新ID" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REFRESH_ID" data_alias="REF" data_refer="game.template.actor" />
+  <FieldInteger _uuid="yEnXnUel8q0nKI]QnM1jlg" name="refresh_number" label="M#12cn14刷新数量" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REFRESH_NUMBER" />
+  <FieldInteger _uuid="tEbAhmDPzZIYnDW1jVwfmQ" name="schedule_tid" label="M#12cn210刷新时间计划模板编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SCHEDULE_TID" data_alias="SCD" data_refer="game.template.schedule" />
+  <FieldInteger _uuid="bkangdQRqVeFxoK6MMVUsA" name="active_subsection_time" label="M#12cn18固定刷新间隔时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ACTIVE_SUBSECTION_TIME" />
+  <FieldInteger _uuid="DkajzZQim4Czo7eZp4WlnA" name="fix_next_refresh_tid" label="M#12cn18固定下次刷新ID" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FIX_NEXT_REFRESH_TID" data_alias="FNRT" data_refer="game.template.random.refresh" />
+  <FieldInteger _uuid="m0Gk6UYOFlu34PNqNx0dgg" name="fix_refresh_count" label="M#12cn16固定刷新次数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FIX_REFRESH_COUNT" />
+  <FieldInteger _uuid="g0SSMsTTmjsjRjBLcmsSlA" name="death_space_time" label="M#12cn18死亡刷新间隔时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DEATH_SPACE_TIME" />
+  <FieldInteger _uuid="8Ee2wik7Ruyv135]JiysmA" name="dead_next_refresh_tid" label="M#12cn210死亡下次刷新ID编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DEAD_NEXT_REFRESH_TID" data_alias="DNRD" data_refer="game.template.random.refresh" />
+  <FieldInteger _uuid="e0pxkj3eNQKhaux5Y54UlQ" name="show_reward_items" label="M#12cn17展示奖励物品包" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SHOW_REWARD_ITEMS" />
+  <FieldInteger _uuid="DUepYvHDtAwIVdRCyXkPtQ" name="level_up_parameter" label="M#12cn14升级参数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LEVEL_UP_PARAMETER" />
+  <FieldEnum _uuid="Y0B78LXiL3shKG[xnRYVtg" name="level_up_type_cd" label="M#12cn14升级类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LEVEL_UP_TYPE_CD" data_size="1" data_code="game.template.boss.level.up.type" />
+  <FieldEnum _uuid="FE8UBP0qiWkkt5ocsNcTuQ" name="boss_type_cd" label="M#12cn16boss类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="BOSS_TYPE_CD" data_size="3" data_code="game.template.boss.type" />
+  <FieldInteger _uuid="5U]W3iXILtfXLITwLJAKlw" name="father_tid" label="M#12cn15父刷新模板" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="FATHER_TID" data_refer="game.template.random.refresh" />
+  <FieldString _uuid="hEI3ot97uYnjuzSG1kgZhA" name="description" label="M#12cn12描述" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DESCRIPTION" data_size="1024" />
+  <FieldString _uuid="1kvsp3sJ7amymcvG8Q3UqA" name="reward_description" label="M#12cn14奖励描述" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REWARD_DESCRIPTION" data_size="1024" />
+  <FieldTemplate _uuid="RUpSGj48YS79St85MgEXhw" name="describe" label="M#12cn14描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

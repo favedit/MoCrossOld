@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+   
+   <!-- ============================================================ -->
+   <!-- DatabaseConsole: 数据库控制台                                -->
+   <!-- ============================================================ -->
+   <Component
+         face  = 'org.mo.eng.data.IDatabaseConsole'
+         class = 'org.mo.eng.data.FDatabaseConsole'
+         scope = 'global'>
+      <Property name='default'>domain</Property>
+      <Initialize name='add'>
+         <Parameter>
+            <!-- ============================================================ -->
+			   <!-- 主域链接控制台                                               -->
+            <!-- ============================================================ -->
+            <Component
+                  class = 'org.mo.eng.data.FConnectionConsole'>
+               <Property name='name'>domain</Property>
+               <Property name='driver_class'>org.mo.data.driver.FSqlMysqlConnection</Property>
+               <Property name='driver_name'>com.mysql.jdbc.Driver</Property>
+               <Property name='url'>jdbc:mysql://127.0.0.1:3306/domain</Property>
+               <Property name='passport'>root</Property>
+               <Property name='password'>123456</Property>
+               <Property name='initConnectionNumber'>4</Property>
+               <Property name='maxConnectionNumber'>64</Property>
+               <Property name='activeTimeLimit'>360000000</Property>
+               <Property name='connectionTimeLimit'>3600000000</Property>
+               <Property name='retryCount'>10</Property>
+               <Property name='retryDelay'>10</Property>
+               <Property name='testSql'>SELECT 1 FROM DUAL</Property>
+               <Property name='testTime'>60000</Property>
+               <Property name='closeTimeLimit'>5000</Property>
+            </Component>
+         </Parameter>
+      </Initialize>
+      <Initialize name='add'>
+         <Parameter>
+            <!-- ============================================================ -->
+            <!-- 分析链接控制台                                               -->
+            <!-- ============================================================ -->
+            <Component
+                  class = 'org.mo.eng.data.FConnectionConsole'>
+               <Property name='name'>analysis</Property>
+               <Property name='driver_class'>org.mo.data.driver.FSqlMysqlConnection</Property>
+               <Property name='driver_name'>com.mysql.jdbc.Driver</Property>
+               <Property name='url'>jdbc:mysql://127.0.0.1:3306/analysis</Property>
+               <Property name='passport'>root</Property>
+               <Property name='password'>123456</Property>
+               <Property name='initConnectionNumber'>4</Property>
+               <Property name='maxConnectionNumber'>64</Property>
+               <Property name='activeTimeLimit'>360000000</Property>
+               <Property name='connectionTimeLimit'>3600000000</Property>
+               <Property name='retryCount'>10</Property>
+               <Property name='retryDelay'>10</Property>
+               <Property name='testSql'>SELECT 1 FROM DUAL</Property>
+               <Property name='testTime'>60000</Property>
+               <Property name='closeTimeLimit'>5000</Property>
+            </Component>
+         </Parameter>
+      </Initialize>
+      <Release name='releaseAll'/>
+   </Component>
+
+</Config>

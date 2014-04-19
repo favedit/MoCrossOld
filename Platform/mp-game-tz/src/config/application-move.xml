@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+
+   <!-- 系统工作路径 -->
+   <Define name='home'>E:/WP-Console/mo-game</Define>
+   <Define name='store'>E:/WP-Console/mo-store</Define>
+   <Define name='home.config'>${home}/webroot/WEB-INF/classes</Define>
+
+   <!-- 游戏导出路径 -->
+   <Define name='game.export.server'>D:/WP-Server</Define>
+   <Define name='game.export.client'>D:/WP-Client</Define>
+   <Define name='game.export.tools'>D:/WP-Tools</Define>
+
+   <!-- 包含：系统环境设定 -->
+   <Include>${home.config}/common/config.xml</Include>
+   <Include>${home.config}/common/environment.xml</Include>
+
+   <!-- 包含：系统服务设定 -->
+   <Include>${home.config}/common/mobj-core.xml</Include>
+   <Include>${home.config}/common/mobj-eng.xml</Include>
+   <Include>${home.config}/common/mobj-data.xml</Include>
+   <Include>${home.config}/common/mobj-web.xml</Include>
+   <Include>${home.config}/common/mobj-jfa.xml</Include>
+   <Include>${home.config}/common/mobj-servlet.xml</Include>
+   <Include>${home.config}/common/mobj-logic.xml</Include>
+
+   <!-- 包含：公司在线管理系统设定 -->
+   <Include>${home.config}/core/core.xml</Include>
+   <Include>${home.config}/core/service.xml</Include>
+   <Include>${home.config}/core/environment.xml</Include>
+   <Include>${home.config}/core/design.xml</Include>
+
+</Configuration>

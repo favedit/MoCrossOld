@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Persistence _uuid="03fced69-976a-48a0-b062-733448b56ddd" name="logic.property" label="M#12cn15业务-属性" is_valid="Y" note="M#" template="xmlobject" source="${export.logic.logic.source}">
+   <Interface _uuid="3cdba644-7b00-4ac8-b499-746a1bbb311c" name="IObject" label="M#12cn12对象" is_valid="Y" note="M#12jp16オブジェクト" class_name="org.mo.logic.property.common.XObjectFace">
+      <Attribute _uuid="c0816a6e-1a73-46c2-83bc-9e94dc854fdc" name="name" label="M#12cn12名称" is_valid="Y" note="M#12jp12名称" type="String" is_store="Y" is_config="Y" />
+      <Attribute _uuid="e038af34-37f5-4f67-add6-a78cbf45e009" name="label" label="M#12cn12标签" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+      <Attribute _uuid="d15ac70b-1077-4e2e-a8b7-4a1a5e598839" name="ovld" label="M#12cn13有效性" is_valid="Y" note="M#" type="Boolean" is_store="Y" is_config="Y" is_default="N" />
+      <Attribute _uuid="4a0eaefa-3955-4514-92da-15e1ec21bec5" name="note" label="M#12cn12注释" is_valid="Y" note="M#" type="MultiString" is_store="Y" is_config="Y" />
+      <Attribute _uuid="d19e6ea4-2458-4754-94b9-2e0a21b21a1e" name="_type" label="M#12cn12类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="8cf22b59-5c45-4180-8d28-63d2dd486fb2" name="ouid" label="M#12cn12标识" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="40197f44-8338-4970-ba9b-3f6605499093" name="object_valid" label="M#12cn15数据有效性" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="6b21bf19-44b0-4bcc-9cd2-9ebf734032eb" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Interface>
+   <Component _uuid="bc77f981-ee3d-4e79-b869-3e65e69a1d31" name="Group" label="M#12cn14属性分组" is_valid="Y" note="M#12jp12名称" class_name="org.mo.logic.property.common.XGroup" base_name="org.mo.logic.property.base.XBaseGroup" inherits="IObject">
+      <Attribute _uuid="b7c13f0c-8902-4edc-b621-b09bbc055d22" name="dataset" label="M#12cn13数据集" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+   <Component _uuid="51a89f21-8fb9-447f-904c-8424b8d18e20" name="Type" label="M#12cn14属性类型" is_valid="Y" note="M#12jp12項目" class_name="org.mo.logic.property.common.XType" base_name="org.mo.logic.property.base.XBaseType" inherits="IObject" />
+   <Component _uuid="0534ab74-44f9-46cb-82db-91ced8c6b866" name="Property" label="M#12cn14属性设置" is_valid="Y" note="M#" class_name="org.mo.logic.property.common.XProperty" base_name="org.mo.logic.property.base.XBaseProperty" inherits="IObject">
+      <Attribute _uuid="aac2b32d-229e-4d98-9ff0-36ccfcf905b4" name="data_type" label="M#12cn14数据类型" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="38d72f0f-c691-425c-b2a5-68253dd98e7b" name="data_default" label="M#12cn14默认内容" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+      <Attribute _uuid="c3f9df29-49bf-4b34-be4d-f5bba3ac494b" name="data_require" label="M#12cn14数据必须" is_valid="Y" note="M#" type="String" is_store="Y" is_config="Y" is_default="Y" />
+   </Component>
+</Persistence>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="dUJaXvfmUm30qRzGfvP4sA" name="logic.business.catalog.process" label="M#12cn16业务目录流程" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_BUSINESS_CATALOG_PROCESS" data_alias="LG_BUS_CAT_PRC" data_logic="LG_BUSINESS_CATALOG_PROCESS_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldBoolean _uuid="zEs8P7faM]6BgDv6EoNEsw" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldInteger _uuid="skw0lxT8S4MHKc3zhMf0hw" name="catalog_id" label="M#12cn14目录标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CATALOG_ID" data_alias="CAT" data_refer="logic.business.catalog" />
+  <FieldInteger _uuid="cUQAoOqi2waxFl4[n9kWmg" name="process_type_id" label="M#12cn16流程类型标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROCESS_TYPE_ID" data_alias="PRC" data_refer="logic.business.process.type" />
+  <FieldInteger _uuid="0UvA9DAOe1rhBf[Gu0pGrg" name="process_step_id" label="M#12cn16流程阶段标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROCESS_STEP_ID" />
+  <FieldString _uuid="okUwvUjO6aQ2R7V88egZtg" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_unique="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="80" />
+  <FieldString _uuid="1kCnN2u2XWCNHqtOAxgqgg" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="RE6vQrcZXiDKSDSagIPplg" name="label" label="M#12cn12标签" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldTemplate _uuid="XE[2srFhAyiji4lrHjuasA" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="M0PYuMba6hbxgSVv3KZQtg" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+  <FieldString _uuid="7E0cpVqIgJd2gRXAOCfWig" name="examinelevel" label="M#12cn14审核等级" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EXAMINE_LEVEL" data_size="40" />
+</DataStore>
+

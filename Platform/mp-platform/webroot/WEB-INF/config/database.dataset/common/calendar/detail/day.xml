@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="DUA8DjAU8HgCeQoN4p7XpQ" name="common.calendar.detail.day" label="M#12cn15日历天详细" is_valid="Y" note="M#" data_name="CM_CALENDAR_DETAIL_DAY" data_alias="CM_CLD_DTL_DAY" data_logic="CM_CALENDAR_DETAIL_DAY_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="t0RfL3[UdbJ6PBvOTiDqvw" name="calendar_id" label="M#12cn14日历标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CALENDAR_ID" data_alias="CAL_ID" data_type="Integer" data_refer="common.calendar" data_uniques="day" />
+  <FieldBoolean _uuid="E0GUcQCO7nXW9HXEiFJ6vg" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldDate _uuid="t0vWsJztAWJme3QgevWniQ" name="record_date" label="M#12cn14记录日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="RECORD_DATE" data_type="Date" data_uniques="day" />
+  <FieldEnum _uuid="6UjH078Y0R3IHrHNcupHpQ" name="type_cd" label="M#12cn12类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" data_code="common.calendar.day.type" />
+  <FieldEnum _uuid="GURYgZHaxYeCfV8oly[nnA" name="source_cd" label="M#12cn14来源类型" is_valid="Y" note="M#12cn223W=Week\nH=Holiday\nU=User" is_null="Y" is_store="Y" is_abstract="N" data_name="SOURCE_CD" data_size="1" data_code="common.calendar.detail.day.source" />
+  <FieldDate _uuid="NEa3CIRbqXDazGXg5iFnrg" name="work_begin_time" label="M#12cn16工作开始时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="WORK_BEGIN_TIME" />
+  <FieldDate _uuid="R0sp[0eCky9cldqvsCVFtw" name="work_end_time" label="M#12cn16工作结束时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="WORK_END_TIME" />
+  <FieldTimeSpan _uuid="7kmxuVaZvUT7l0nRfr8vlQ" name="work_ts" label="M#12cn15工作时间段" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="WORK_TS" />
+  <FieldContent _uuid="i00uW2pYrj5HHJvGCBWpvQ" name="note" label="M#12cn12注释" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

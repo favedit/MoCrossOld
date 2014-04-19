@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="rkn7bY5wdwJgzIY5jrOsvA" name="helper.sqlpackage.property" is_valid="Y" note="M#">
+  <Source _uuid="RECI[yMRxm5OPDJ]Ig6omw" is_valid="Y" note="M#"><![CDATA[<jt:include source='helper.title'/>
+
+<!------------------------导航--------------------------------->
+<jt:include source='helper.navBegin'/>
+<IMG src='../../../ars/icon/tools/home.gif'/> <span><a href="#">主页</a></span>
+<IMG src='../../../ars/icon/tools/next.gif'/> <span><a href="../package/<jt:item source='$property.package_name'/>.html"><jt:item source='$property.package_name'/></a></span>
+<IMG src='../../../ars/icon/tools/next.gif'/> <span><jt:item source='$property.name'/></a></span>
+<jt:include source='helper.navEnd'/>
+<!-- Head Begin ------------------------------------------->
+<TABLE width='100%' border='0' cellspacing='8' cellpadding='0'>
+<TR>
+	<TD class='headTitle'><jt:item source='$property.package_name'/>.<jt:item source='$property.name'/></TD>
+	<TD align='right' valign='bottom' class='headVersion'>version:1.0.0</TD>
+</TR>
+<TR><TD colspan='2'>
+	<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+		<TR height='1' bgcolor='#999999'><TD></TD></TR>
+		<TR height='1' bgcolor='#000000'><TD></TD></TR>
+	</TABLE>
+</TD></TR>
+</TABLE>
+<!-- Head End --------------------------------------------->
+<TABLE width='100%' border='0' cellspacing='8' cellpadding='16'>
+	<TR>
+	<TD>
+		<!------------------------属性--------------------------------->
+		</BR>
+		<span><B>说明</B></span>
+		<TABLE width='100%' border='0' cellspacing='1' cellpadding='4'>
+		<TR><TD style='padding-left:25'><jt:item source='$property.description'/></TD></TR>
+		</TABLE>
+		<BR>
+		<span><B>类型</B></span>
+		<TABLE width='100%' border='0' cellspacing='1' cellpadding='4'>
+		<TR><TD style='padding-left:25'><jt:item source='$property.type'/></TD></TR>
+		</TABLE>
+		<BR>
+		<span><B>值</B></span>
+		<TABLE width='100%' border='0' cellspacing='1' cellpadding='4'>
+		<TR><TD style='padding-left:25'><jt:item source='$property.value'/></TD></TR>
+		</TABLE>
+	</TD>
+	</TR>
+</table>
+<!-- Body End --------------------------------------------->
+<jt:include source='helper.footer'/>]]></Source>
+</Template>
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="Z08FJu2bQ[LfLHrLDPMZtw" name="develop.progress.task.manhour" label="M#12cn16项目任务工时" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="DP_PROGRESS_TASK_MANHOUR" data_alias="DP_PRG_TSK_MNH" data_logic="DP_PROGRESS_TASK_MANHOUR_DI" parent_name="template.store" data_type="D">
+  <FieldBoolean _uuid="8EIq8MRJTJTYy9DX]5ymmg" name="is_valid" label="M#12cn14是否有效" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="'Y'" />
+  <FieldInteger _uuid="mUdG0BCnhJZtzB5qViSLqg" name="project_id" label="M#12cn14项目标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldInteger _uuid="qUKUhAwakdilb99KXd6tog" name="module_id" label="M#12cn14模块标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="MODULE_ID" data_alias="MOD" data_refer="develop.describe.module" />
+  <FieldInteger _uuid="YkRd]vZ35jGH5d[Rqb7gng" name="task_id" label="M#12cn14任务标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TASK_ID" data_alias="TSK" data_refer="develop.progress.task" data_uniques="RCD" />
+  <FieldDate _uuid="YUeHSrBNMi]s6HGyPK5fkA" name="record_date" label="M#12cn14记录日期" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="RECORD_DATE" data_uniques="RCD" />
+  <FieldInteger _uuid="Z0PAD7fVuH0TpLcNbPWBpg" name="user_id" label="M#12cn14用户标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="USER_ID" data_alias="USR" data_refer="person.user" data_uniques="RCD" data_insert="CP_SESSION.Get_User_Id()" data_update="CP_SESSION.Get_User_Id()" />
+  <FieldEnum _uuid="LEWj7570m]NOSJQslG6Rpg" name="status_cd" label="M#12cn12状态" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" data_code="develop.progress.task.manhour.status" />
+  <FieldFloat _uuid="wEUFqn5zAmj]B1gOvz9Xuw" name="work_manhour" label="M#12cn14工作工时" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="WORK_MANHOUR" />
+  <FieldFloat _uuid="h0K7L4U9YaCfNreIuaM1tQ" name="remain_manhour" label="M#12cn14剩余工时" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="REMAIN_MANHOUR" />
+  <FieldTemplate _uuid="8EcaKmfrJGAum02sDKXfvQ" name="describe" label="M#12cn16数据描述模板" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="7UXLKXDfqLVpWQeLS9d8rA" name="game.storage" label="游戏存储服务器" is_valid="Y" note="M#" is_server="Y" is_server_cpp="N" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" source_name="MoMgGameStorage" code="Gsr" full_code="GameStorage" display_index="37">
+  <Message _uuid="5Eby0CCnFNnAcOCxUMFygA" name="echo.request" label="应答请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="Echo" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GSR" code_value="0x0001" code_fix="N">
+    <Item _uuid="b07EmJ[tMfvq3QTNRnvNmg" name="id" label="编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="WEWJeagzlM[wJQi47H1JmQ" name="datetime" label="时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="T0s0IC5ME4dBg]U]vnp8nA" name="data" label="数据内容" is_valid="Y" note="M#" type="Bytes" is_collection="N" data_size="16384" />
+  </Message>
+  <Message _uuid="n0uUO3zY9V6dtfouzWpykw" name="echo.response" label="应答回应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="Y" is_client_java="N" code="Echo" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Item _uuid="nUXTdiDBCaWOZ82evrENlQ" name="id" label="编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="pEiqFnyS7q57kYTwA]eyrA" name="datetime" label="时间" is_valid="Y" note="M#" type="DateTime" is_collection="N" />
+    <Item _uuid="cE[Ws[tH38yq]djk1MhPgQ" name="data" label="数据内容" is_valid="Y" note="M#" type="Bytes" is_collection="N" data_size="16384" />
+  </Message>
+  <Message _uuid="fkFilHqXW37tLBeCVqDspw" name="register.request" label="注册请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Register" is_udp="N" message_type="Request" is_session="N" is_manage="N" source_type="GSR" target_type="GPX" code_value="0x0003" code_fix="N">
+    <Item _uuid="mEgSbu][sgdU34hd6tTDtw" name="id" label="编号" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+    <Item _uuid="zE2oldtmA6wT6f2zR8yHgw" name="name" label="名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="CU7UpkCrsU0VLbsNW2s4mw" name="host" label="主机" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="uEgfy2Wk0QOK4EP[Gc6lkw" name="port" label="端口" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+  </Message>
+  <Message _uuid="6Ub1sSs]2Jn]gKmbKfPVhg" name="register.response" label="注册应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Register" is_udp="N" message_type="Response" is_session="N" is_manage="N" source_type="GPX" target_type="GSR" code_value="0x0004" code_fix="N">
+    <Enum _uuid="4UgnpK5WVzVC]Va5mmhIkA" name="EStatus" label="状态" is_valid="Y" note="M#">
+      <Member _uuid="7kjAThKYTVYGeUqKEOWRgQ" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="D0HGwASpU7ZFzd6yCqapkA" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="hE069SyUvjbbqJ6l3cZMnA" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="TkR8]qytpVTYQNP4a73skA" name="status.notify" label="状态通知" is_valid="Y" note="M#" is_server="N" is_server_cpp="Y" is_server_java="N" is_client="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Status" is_udp="N" message_type="Notify" is_session="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x0005" code_fix="N">
+    <Item _uuid="8USe6mG[jqjQJHTx63ailQ" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EGmServerStatus" is_collection="N" />
+    <Item _uuid="YEexNTeobnHGbGtTbljIpQ" name="clientCount" label="客户端数目" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="zEURBzB4j2fkcq41pZSwgA" name="ready.storage.response" label="存储服务器准备应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ReadyStorage" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x0006" code_fix="N" />
+</Group>
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="SEgNWEsgw9sehYAmoJQ[kQ" name="business.catalog.operate" label="M#12cn14业务操作" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="BS_CATALOG_OPERATE" data_alias="BS_CAT_OPT" data_logic="BS_CATALOG_OPERATE_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="p0gBan]4aQzXZ76hPsSjgQ" name="type_id" label="M#12cn14类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TYPE_ID" data_alias="TYP" data_refer="business.catalog.operate.type" />
+  <FieldInteger _uuid="uUYFhc4zhTTlEJLQpX4]gw" name="record_id" label="M#12cn14记录标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="RECORD_ID" />
+  <FieldEnum _uuid="Lkqgsuxe2oVvfGHPQ5dzrA" name="type_cd" label="M#12cn14操做类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" />
+  <FieldEnum _uuid="OkJnhF8Z3Gyq[0ZtbW8nvw" name="prior_status_cd" label="M#12cn15变更前状态" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PRIOR_STATUS_CD" data_size="1" />
+  <FieldEnum _uuid="Q0LdbN0vdeyAhU5kpNqclQ" name="status_cd" label="M#12cn15变更后状态" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="STATUS_CD" data_size="1" />
+  <FieldEnum _uuid="lktGIp[bz3LVS0NgvKlKvQ" name="operate_cd" label="M#12cn12操作" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OPERATE_CD" data_size="1" />
+  <FieldInteger _uuid="QkIVzHjLpkKZbH4q08MEhg" name="operate_user_id" label="M#12cn15操做人标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OPERATE_USER_ID" data_refer="person.user" />
+  <FieldDate _uuid="Zk[qX8CthGTXDnk0Vmnolw" name="operate_date" label="M#12cn14操做日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OPERATE_DATE" data_default="SYSDATE" />
+  <FieldContent _uuid="dUWYJr]ua1KPj1i0yd5Wuw" name="operate_note" label="M#12cn14操做备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="OPERATE_NOTE" />
+  <FieldInteger _uuid="LkOPiyL2][ETRbTWQp7ohQ" name="create_user_id" label="M#12cn15创建者标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CREATE_USER_ID" data_alias="CRT_USR" data_refer="person.user" />
+  <FieldDate _uuid="3EHRTVmCGHFSuS8qEKKYhQ" name="create_date" label="M#12cn14创建时间" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CREATE_DATE" />
+  <FieldContent _uuid="2EJsaT7Y9tqcgxAlHrESjg" name="note" label="M#12cn12备注" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NOTE" />
+</DataStore>
+

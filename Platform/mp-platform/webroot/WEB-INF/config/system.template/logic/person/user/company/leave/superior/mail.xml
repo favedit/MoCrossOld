@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="8UurqvJQ0d8BTLhxQJNvnw" name="logic.person.user.company.leave.mail" label="离职上级提醒" is_valid="Y" note="M#">
+  <Source _uuid="tk2LXwhJAM0ALErq[17Cvg" name="birthday.head" label="离职提醒-邮件标题" is_valid="Y" note="M#"><![CDATA[<jt:item source='$config.examine_user_label'/>离职提醒！]]></Source>
+  <Source _uuid="RELdDSnCGvWaMbRXW9nYtg" name="birthday.body" label="离职提醒-邮件正文" is_valid="Y" note="M#"><![CDATA[<jt:define source='公司→ 离职提醒' alias='navigator_label'/>
+<jt:include source='public.body.begin@logic.mail'/>
+<!-- Body - begin ----------------------------------------->
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   您好！<BR>
+   <TABLE width='100%' cellpadding='4' cellspacing='0' style='margin:8'>
+      <TR><TD>员工XXX正式离职，特此通知。</TD></TR>
+   </TABLE>
+   <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+
+   </TABLE>
+   <BR><BR>
+</TD></TR>
+</TABLE>
+<!-- Body - end ------------------------------------------->
+<jt:include source='public.body.end@logic.mail'/>]]></Source>
+</Template>
+

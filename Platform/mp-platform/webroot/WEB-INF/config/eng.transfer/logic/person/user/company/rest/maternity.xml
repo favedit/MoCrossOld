@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CsvImport _uuid="LUQKmzCwjl1OoIMvqA3phw" name="logic.person.user.company.rest.maternity" label="假期-产假CSV信息" is_valid="Y" head_lines="1">
+  <Columns _uuid="fUYTu7AZs8m3rBlHNKMrlA" name="Columns" label="列集合" is_valid="Y">
+    <Column _uuid="O0Aa2msmMzmU3l[n5Suqvg" name="record_id" label="编号" is_valid="Y" data_name="RECORD_ID" is_require="Y" />
+    <Column _uuid="yUriESGiMImF9thtIvJ6sA" name="organization_label" label="部门名称" is_valid="Y" data_name="ORGANIZATION_LABEL" is_require="Y" />
+    <Column _uuid="9E1I8qBe2yeEyRC1rrZEmA" name="work_number" label="工号" is_valid="Y" data_name="work_number" is_require="Y" />
+    <Column _uuid="ikwKDpVEzSgH3EZLg5BZgw" name="user_full_label" label="姓名" is_valid="Y" data_name="user_full_label" is_require="Y" />
+    <Column _uuid="R09dVSARcjQDEtQUZRdJpw" name="entry_date" label="入职日期" is_valid="Y" data_name="ENTRY_DATE" is_require="Y" />
+    <Column _uuid="wkfJV2WW4MghJO0WPp3Ztg" name="maternity" label="生育产假" is_valid="Y" data_name="MATERNITY" is_require="Y" />
+    <Column _uuid="bEvZiNSdgVt]lRUFg[WugQ" name="nursing" label="哺乳假" is_valid="Y" data_name="NURSING" is_require="Y" />
+    <Column _uuid="7kj5bCyDeEAK0HQPTh]rqQ" name="miscarriage" label="流产假" is_valid="Y" data_name="MISCARRIAGE" is_require="Y" />
+    <Column _uuid="800C]HdXJm[Bq0aHKCdrhg" name="visit" label="产检假" is_valid="Y" data_name="VISIT" is_require="Y" />
+    <Column _uuid="OUBeSdoDQDuHL7QPcKUFqA" name="paternity" label="陪产假" is_valid="Y" data_name="PATERNITY" is_require="Y" />
+    <Column _uuid="lk5[u1Ints2BKEPr4B9irg" name="total" label="总计" is_valid="Y" data_name="TOTAL" is_require="Y" />
+  </Columns>
+  <Export _uuid="p0qO2ApkUhtXG9FdAoPfow" name="sql" label="事假" is_valid="Y" sql="SELECT ROWNUM RECORD_ID,\n       ORGANIZATION_ID,\n       ORGANIZATION_LABEL,\n       WORK_NUMBER,\n       USER_FULL_LABEL,\n       ENTRY_DATE,\n       MATERNITY,\n       NURSING,\n       MISCARRIAGE,\n       VISIT,\n       PATERNITY,\n       TOTAL\n  FROM (SELECT PM_ORGANIZATION_DI.Find_Main_Organization_By_User(USER_ID) ORGANIZATION_ID,\n               PM_ORGANIZATION_DI.Find_Main_Org_Label_By_User(USER_ID) ORGANIZATION_LABEL,\n               PM_USER_COMPANY_DI.Get_Work_Number_By_User_Id(USER_ID) WORK_NUMBER,\n               PM_USER_DI.Get_Full_Label(USER_ID) USER_FULL_LABEL,\n               TO_CHAR(ENTRY_DATE, 'YYYY-MM-DD') ENTRY_DATE,\n               PM_USER_COMPANY_REST_DI.Format_Time_Span_By_Time(PM_USER_COMPANY_REST_DI.Get_Summaries_Apply_Time('PL', USER_ID,'${BEGIN_DATE}', '${END_DATE}')) MATERNITY,\n               PM_USER_COMPANY_REST_DI.Format_Time_Span_By_Time(PM_USER_COMPANY_REST_DI.Get_Summaries_Apply_Time('NU',USER_ID, '${BEGIN_DATE}','${END_DATE}')) NURSING,\n               PM_USER_COMPANY_REST_DI.Format_Time_Span_By_Time(PM_USER_COMPANY_REST_DI.Get_Summaries_Apply_Time('MI', USER_ID,'${BEGIN_DATE}', '${END_DATE}')) MISCARRIAGE,\n               PM_USER_COMPANY_REST_DI.Format_Time_Span_By_Time(PM_USER_COMPANY_REST_DI.Get_Summaries_Apply_Time('PV',USER_ID,'${BEGIN_DATE}','${END_DATE}')) VISIT,\n               PM_USER_COMPANY_REST_DI.Format_Time_Span_By_Time(PM_USER_COMPANY_REST_DI.Get_Summaries_Apply_Time('PA',USER_ID,'${BEGIN_DATE}','${END_DATE}')) PATERNITY,\n               PM_USER_COMPANY_REST_DI.Format_Time_Span_By_Time(PM_USER_COMPANY_REST_DI.Get_Summaries_Maternity_Time(USER_ID,'${BEGIN_DATE}','${END_DATE}')) TOTAL\n          FROM PM_USER_COMPANY\n         ORDER BY ORGANIZATION_ID)\n" display_command="N" display_head="N" display_label="Y" display_valid="N" is_open="N" export_name="产假报表{YYMMDD-HH24MI}" />
+</CsvImport>
+

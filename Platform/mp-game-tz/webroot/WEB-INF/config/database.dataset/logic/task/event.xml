@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="[0f2oxuR7T2malVfo[Bznw" name="logic.task.event" label="M#12cn14任务事件" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="LG_TASK_EVENT" data_alias="LG_TASK_EVT" data_logic="LG_TASK_EVENT_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="PktVZIwlXyonC88Qtyd8rw" name="task_type_id" label="M#12cn16任务类型标志" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TASK_TYPE_ID" data_refer="logic.task.type" />
+  <FieldInteger _uuid="jEkaYKG8SDx]urhVsdKMjA" name="condition_id" label="M#12cn14条件标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="CONDITION_ID" data_refer="logic.task.condition" data_uniques="link" />
+  <FieldString _uuid="1UrtXhl3ybjGz8Z0nDFksg" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="NAME" data_size="40" data_uniques="link" />
+  <FieldContent _uuid="PUHbM9anzN4uwEqdPP9eng" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldEnum _uuid="dEwA9vMNRQZ2[QnmukuTqw" name="event_execute" label="M#12cn14执行类型" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="EVENT_EXECUTE" data_size="1" data_code="logic.process.event.execute" />
+  <FieldInteger _uuid="AUb8XBM[NI1]RMbC78jKvA" name="event_group_id" label="M#12cn16事件分组标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EVENT_GROUP_ID" data_refer="logic.event.group" />
+  <FieldInteger _uuid="Mk4[2Ztr37y1OVohUKDRoQ" name="event_type_id" label="M#12cn16事件类型标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="EVENT_TYPE_ID" data_refer="logic.event.type" />
+  <FieldEnum _uuid="0EojmklUc633M2kbUo9KjQ" name="event_priority_cd" label="M#12cn13优先级" is_valid="Y" note="M#" is_store="Y" data_name="EVENT_PRIORITY_CD" data_size="1" />
+  <FieldInteger _uuid="z0EPcpvK2SG2JYuzG]6Rog" name="process_order" label="M#12cn14处理顺序" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROCESS_ORDER" />
+  <FieldString _uuid="hkidInrlWe6LqtCevCzxvQ" name="process_result" label="M#12cn14处理结果" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROCESS_RESULT" data_size="2000" />
+  <FieldDate _uuid="IkyJCAQUcCzMk6QgTpg9iw" name="create_date" label="M#12cn14创建日期" is_valid="Y" note="M#" is_store="Y" data_name="CREATE_DATE" data_default="SYSDATE" />
+  <FieldContent _uuid="OUTH8QocNBjOmp0tXnZ6jw" name="note" label="M#12cn14描述信息" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" />
+</DataStore>
+

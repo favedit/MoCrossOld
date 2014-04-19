@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<Root>
+   <Sql>
+      <Catalog>
+         <Node>
+            SELECT *
+            FROM MSC_CATALOG_NODE_DS
+            WHERE GROUP_ID={group_id}
+               AND NODE_ID={node_id}
+         </Node>
+         <NodeList>
+            SELECT
+               n.GROUP_ID,
+               n.NODE_ID,
+               n.NODE_TYPE,
+               n.DISP_NAME,
+               n.DISP_LABEL,
+               n.FULL_PATH,
+               n.FULL_PARAMETER,
+               n.ICON_ID,
+               n.CHILD_COUNT,
+               n.HINT,
+               l.DISP_ORDER
+            FROM MSC_CATALOG_LINK l, MSC_CATALOG_NODE n
+            WHERE l.PARENT_NODE_ID = {parent_node_id}
+               AND l.GROUP_ID = {group_id}
+               AND n.GROUP_ID = {group_id}
+               AND l.NODE_ID = n.NODE_ID
+            ORDER BY l.DISP_ORDER
+         </NodeList>
+      </Catalog>
+      <Permission>
+         <Control>
+            SELECT
+               r.ROLE_NAME,
+               r.DESCRIPTION ROLE_DESC,
+               cr.GROUP_ID,
+               cr.WINDOW_ID,
+               cr.CONTROL_ID,
+               cr.IS_VALID,
+               cr.DISPLAY_ABLE,
+               cr.EDIT_ABLE,
+               cr.INSERT_ABLE,
+               cr.UPDATE_ABLE,
+               cr.DELETE_ABLE,
+               cr.EXECUTE_ABLE
+            FROM COM_PMS_ROLE r, (
+                  SELECT *
+                  FROM MSC_CTL_ROLE_DS
+                  WHERE GROUP_ID = {group_id}
+                     AND WINDOW_ID = (SELECT WINDOW_ID FROM MSC_CTL_WINDOW WHERE WINDOW_NAME={window_name})
+                     AND CONTROL_ID = (SELECT CONTROL_ID FROM MSC_CTL_CONTROL WHERE CONTROL_NAME={control_name})) cr
+            WHERE r.ROLE_NAME = cr.ROLE_NAME(+)
+         </Control>
+         <UserNodes>
+            SELECT
+               n.GROUP_ID,
+               n.NODE_ID,
+               n.NODE_TYPE,
+               n.DISP_NAME,
+               n.DISP_LABEL,
+               n.FULL_PATH,
+               n.FULL_PARAMETER,
+               n.ICON_ID,
+               n.CHILD_COUNT,
+               n.HINT
+            FROM MSC_CATALOG_LINK l, MSC_CATALOG_NODE n
+            WHERE l.PARENT_NODE_ID = {parent_node_id}
+               AND l.GROUP_ID = {group_id}
+               AND n.GROUP_ID = {group_id}
+               AND l.NODE_ID = n.NODE_ID
+               AND n.IS_VALID = 'Y'
+               AND MSC_CATALOG_ROLE_DI.Has_Permission({group_id}, n.NODE_ID) = 'Y'
+            ORDER BY l.DISP_ORDER
+         </UserNodes>
+         <UserContros>
+            SELECT
+               c.CONTROL_NAME,
+               r.DISPLAY_ABLE,
+               r.EDIT_ABLE,
+               r.INSERT_ABLE,
+               r.UPDATE_ABLE,
+               r.DELETE_ABLE,
+               r.EXECUTE_ABLE
+            FROM MSC_CTL_WINDOW w, MSC_CTL_CONTROL c, (
+               SELECT CONTROL_ID,
+                  MAX(DISPLAY_ABLE) DISPLAY_ABLE,
+                  MAX(EDIT_ABLE) EDIT_ABLE,
+                  MAX(INSERT_ABLE) INSERT_ABLE,
+                  MAX(UPDATE_ABLE) UPDATE_ABLE,
+                  MAX(DELETE_ABLE) DELETE_ABLE,
+                  MAX(EXECUTE_ABLE) EXECUTE_ABLE
+               FROM MSC_CTL_ROLE
+               WHERE GROUP_ID={group_id}
+                  AND WINDOW_ID={window_id}
+                  AND IS_VALID='Y'
+                  AND SYS_APP_SECURITY.Has_Role(ROLE_NAME) = 'Y'
+               GROUP BY CONTROL_ID ) r
+            WHERE w.WINDOW_ID = {window_id}
+               AND w.WINDOW_ID = c.WINDOW_ID
+         </UserContros>
+      </Permission>
+   </Sql>
+</Root>

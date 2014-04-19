@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="akUphsg3115Oh[0OTT6wig" name="person.organization.catalog" label="M#12cn14组织目录" is_valid="Y" note="M#" data_name="PM_ORGANIZATION_CATALOG" data_alias="PM_ORG_CATALOG" data_logic="PM_ORGANIZATION_CATALOG_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="Z0NYAC6wZVsQTRBs1co7kw" name="view_id" label="M#12cn14视角标识" is_valid="Y" note="M#12cn14视角标识" is_store="Y" is_abstract="N" data_name="VIEW_ID" data_type="Integer" data_refer="person.business.view" />
+  <FieldInteger _uuid="HEPYxbtHT3F68P4LfUTdnw" name="parent_id" label="M#12cn15父目录标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="PARENT_ID" data_type="Integer" data_default="0" />
+  <FieldInteger _uuid="LEb0YcIVLVvw0[u9Zgomiw" name="organization_id" label="M#12cn14组织标识" is_valid="Y" note="M#12cn14组织标识" is_null="Y" is_store="Y" data_name="ORGANIZATION_ID" data_alias="ORG_ID" data_type="Integer" data_refer="person.organization" />
+  <FieldInteger _uuid="dUX6KzYrro431[qoohJDlQ" name="type_id" label="M#12cn14目录类型" is_valid="Y" note="M#" is_store="Y" data_name="TYPE_ID" data_type="Integer" data_refer="person.organization.catalog.type" />
+  <FieldString _uuid="mUGJzNQ]z1P[eRtxPeSmjw" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="20" />
+  <FieldString _uuid="KESd9d0HzhldDr9iSdbqvg" name="name" label="M#12cn14英文名称" is_valid="Y" note="M#12cn19组织目录的英文名称" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_type="String" data_size="80" />
+  <FieldContent _uuid="jUm6sX8]ogpmwmwD]]XEjQ" name="label" label="M#12cn14中文名称" is_valid="Y" note="M#12cn19组织目录的中文名称" is_store="Y" is_abstract="N" data_name="LABEL" data_type="Content" />
+  <FieldInteger _uuid="hU1ljdT14jVcOLma1g9NpA" name="display_order" label="M#12cn14显示顺序" is_valid="Y" note="M#12cn19组织目录的显示顺序" is_null="Y" is_store="Y" data_name="DISP_ORDER" data_type="Integer" />
+  <FieldDate _uuid="G0DTSfks0ru8L9WAMhHFoQ" name="create_date" label="M#12cn14创建日期" is_valid="Y" note="M#12cn19组织目录的创建时间" is_store="Y" data_name="CREATE_DATE" data_type="Date" data_default="SYSDATE" />
+  <FieldContent _uuid="]EBRSH23tNJnQ1t6RNrPoA" name="note" label="M#12cn12备注" is_valid="Y" note="M#12cn17组织目录的注释" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

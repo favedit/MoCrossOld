@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="aUe[gk3k3woW]E69xNn1qQ" name="helper.sqlpackage.hhk" is_valid="Y" note="M#">
+  <Source _uuid="V0wXR1osa8Z7QxpSfBe]sg" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+<jt:loop source='$config' alias='space'>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="<jt:item source='$space.name'/>">
+		<param name="Local" value="src/javascript/space/<jt:item source='$space.name' format='path.lower'/>.html">
+		</OBJECT>
+</jt:loop>
+<!---------------------------------------------------------------------->
+<jt:loop source='$config' alias='package'>
+	<LI> <OBJECT type="text/sitemap">
+	<param name="Name" value="<jt:item source='$package.name'/>">
+	<param name="Local" value="src/sqlpackage/package/<jt:item source='$package.name' format='path.lower'/>.html">
+	</OBJECT>
+	<jt:define source='$package#Properties' alias='properties'/>
+	<jt:loop source='$properties' alias='property'>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="<jt:item source='$property.name'/>">
+			<param name="Local" value="src/sqlpackage/property/<jt:item source='$package.name'/>_<jt:item source='$property.name'/>.html">
+			</OBJECT>
+	</jt:loop>
+	<jt:define source='$package#Methods' alias='methods'/>
+	<jt:loop source='$methods' alias='method'>
+		<jt:equals source='$method:name' value='Function'>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="<jt:item source='$method.name'/>">
+			<param name="Local" value="src/sqlpackage/function/<jt:item source='$package.name'/>_<jt:item source='$method.name'/><jt:item source='$method.name_id'/>.html">
+			</OBJECT>
+		</jt:equals>
+	</jt:loop>
+	<jt:define source='$package#Methods' alias='methods'/>
+	<jt:loop source='$methods' alias='method'>
+		<jt:equals source='$method:name' value='Procedure'>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="<jt:item source='$method.name'/>">
+			<param name="Local" value="src/sqlpackage/procedure/<jt:item source='$package.name'/>_<jt:item source='$method.name'/><jt:item source='$method.name_id'/>.html">
+			</OBJECT>
+		</jt:equals>
+	</jt:loop>
+</jt:loop>
+</UL>
+</BODY></HTML>]]></Source>
+</Template>
+

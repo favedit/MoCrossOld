@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="yEwqNeiT[vWmHJTf[xA0hw" name="game.template.item.merge.item" label="M#12cn16物品合成物品" is_valid="Y" note="M#" access_insert="Y" access_update="Y" access_delete="Y" data_name="GM_TPL_ITEM_MERGE_ITEM" data_alias="GM_TPL_ITM_MGR_ITM" data_logic="GM_TPL_ITEM_MERGE_ITEM_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="9kEQxzetXPf3MIhSVaPKkg" name="project_id" label="M#12cn14项目编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="PROJECT_ID" data_alias="PRJ" data_refer="develop.project" />
+  <FieldString _uuid="NEx4IrqBIZgQ0wulJUyJhA" name="code" label="M#12cn12代码" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="CODE" data_size="40" />
+  <FieldInteger _uuid="a0Dn2Oka2zHqhkvm6iB1kg" name="target_item_tid" label="M#12cn18目标道具模版编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="TARGET_ITEM_TID" />
+  <FieldInteger _uuid="C0e1RA84Y9YxG8egg4FomA" name="spend_item_tid" label="M#12cn18花费道具模版编号" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="SPEND_ITEM_TID" data_alias="SIT" data_refer="game.template.prop" />
+  <FieldInteger _uuid="fEZXQ5108FxtXavM3LgqlQ" name="spend_count" label="M#12cn14花费个数" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="SPEND_COUNT" />
+  <FieldEnum _uuid="nEy84jijsWp5ZUKL]Z3bsQ" name="item_type_cd" label="M#12cn14物品类型" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ITEM_TYPE_CD" data_size="2" data_code="game.template.item" />
+  <FieldInteger _uuid="1kBsZF9N0ptC2WnRMuNhqg" name="item_merge_tid" label="M#12cn16物品合成物品" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ITEM_MERGE_TID" data_alias="ITM_MRG" data_refer="game.template.item.merge" />
+  <FieldInteger _uuid="LUTlfPdKMAG3DBVC4CwkjQ" name="equip_quality_tid" label="M#12cn16装备品级编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="EQUIP_QUALITY_TID" data_alias="EQT" data_refer="game.template.item.quality" />
+  <FieldBoolean _uuid="DEiO]EiNCkrMusSoe0iUgQ" name="is_aid_prop_need" label="M#12cn18是否需要辅助道具" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_AID_PROP_NEED" />
+  <FieldInteger _uuid="IUQCxHASgTlJJb8do2yKmA" name="aid_prop_tid" label="M#12cn18辅助道具模板编号" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="AID_PROP_TID" data_alias="APT" data_refer="game.template.prop" />
+  <FieldInteger _uuid="Y0KO[lTB]kvpRsA2VCHojQ" name="aid_prop_count" label="M#12cn16辅助道具数量" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="AID_PROP_COUNT" />
+  <FieldEnum _uuid="69452139-b6cb-4f8c-a9cd-4454383bf4e7" name="item_merge_type" label="M#12cn16物品合成分类" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="ITEM_MERGE_TYPE" data_size="2" data_code="game.template.item.merge.type" />
+  <FieldTemplate _uuid="J0UN48Zow7C]JTXPoAbdkw" name="describe" label="M#12cn14模版编号" is_valid="Y" note="M#" template_name="template.describe" />
+</DataStore>
+

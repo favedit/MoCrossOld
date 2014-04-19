@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="MkH9dAh]aHPVkg9jecsyjw" name="logic.chat" label="聊天系统" is_valid="Y" note="M#" is_server="Y" is_server_cpp="N" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" source_name="MoMgLogicChat" code="Lch" full_code="LogicChat" display_index="48">
+  <Message _uuid="fkHbqxxoFrsyWxSRUH1utw" name="talk.request" label="聊天请求" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="Talk" is_udp="N" message_type="Request" is_session="Y" is_manage="N" source_type="CLT" target_type="GCT" code_value="0x0001" code_fix="N">
+    <Item _uuid="zEj]lCqhlMqDWvm9CAuTrw" name="channel" label="频道" is_valid="Y" note="M#" type="Enum" type_name="EGmChatChannel" is_collection="N" />
+    <Item _uuid="x022PMQGBXZzrW]IRYcovA" name="typeCd" label="显示类型" is_valid="Y" note="M#" type="Enum" type_name="EGmType" is_collection="N" />
+    <Item _uuid="jkZMWBKq3vcih23fn459tA" name="targetId" label="目标编号" is_valid="Y" note="M#12cn14角色编号" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="HUPv1]FZ4hXFqe36oaVtpg" name="message" label="内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+    <Item _uuid="yktWKkil91voINfu2KoStw" name="label" label="玩家的名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    <Item _uuid="ik6RghRU71AK5jmsFUK7sg" name="hornType" label="喇叭类型" is_valid="Y" note="M#" type="Enum" type_name="EGmSpecialHornType" is_collection="N" />
+    <Struct _uuid="hUSyLC]EiBJhhIgzqI6tkA" name="SHyperLink" label="超链接信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="rUcJa4G9BC1umP8eS9pEvw" name="itemOid" label="物品对象编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="i0hRewTDjllxJE5gxEB2mQ" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmItem" is_collection="N" />
+      <Item _uuid="fUn1iXp4nauI77smYwudgg" name="itemQualityTid" label="品质" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="Uk95HvUjOtWf8C8KaRU0gw" name="label" label="链接的名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="hyper.link.label.max-length" />
+      <Item _uuid="RkKgiXvFdwhO5qNmjvi2tA" name="itemId" label="物品Id" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    </Struct>
+    <Item _uuid="uka7DABNwmG4coNk6DMkmA" name="hyperLinkList" label="超链接列表" is_valid="Y" note="M#" type="Object" type_name="SHyperLink" is_collection="Y" data_size="5" />
+    <Item _uuid="f0CmrccDwBbiKOzytT0HkA" name="itemOid" label="物品oid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="ikzvBEre1JdO2ngm0Rvtpw" name="talk.notify" label="聊天通知" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="Talk" is_udp="N" message_type="Notify" is_session="N" is_manage="N" source_type="GCT" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Item _uuid="7ET2Q8tZQYmqF0nwBjF0sA" name="channel" label="频道" is_valid="Y" note="M#" type="Enum" type_name="EGmChatChannel" is_collection="N" />
+    <Item _uuid="ZkGT[P5Vp5f9LhPLbRyajg" name="typeCd" label="显示类型" is_valid="Y" note="M#" type="Enum" type_name="EGmType" is_collection="N" />
+    <Item _uuid="KEVzqeh7KwQfCZ7r7qulrA" name="sennderId" label="发送者编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="pkKXSf9Wkju9mOGVNBxOuw" name="senderLabel" label="发送者名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    <Item _uuid="xUI9xsZqM2hR6dDdLcxBuQ" name="senderGenderTid" label="发送者性别模板编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="r02BEKQ6AAOohu]RaEmphg" name="receiverId" label="接收者编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="MkLP6GS4CUmaxZtIlu1tvA" name="receiverLabel" label="接收者名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="]kd4bmmNGHbs4]Upv6sNrQ" name="receiverGenderTid" label="接收人性别模板编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="m0YwFWa6O7wwZ]nTeVMYqQ" name="vipLevel" label="vip等级" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+    <Item _uuid="fkQdBaFIo2Yez1ICj8BdgQ" name="message" label="内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+    <Struct _uuid="oUd]yjIoCWM2bOqtSRhohw" name="SHyperLink" label="超链接信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="A0dBJNyL4k6u83K03LEhmw" name="itemOid" label="物品对象编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="9kCD]E4RRIurUJzm7B9CjA" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmItem" is_collection="N" />
+      <Item _uuid="BE4mRWBdYyJk4uHGRLoPmg" name="itemQualityTid" label="品质" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="eUyuOT4HxdKHa2K7nWhItw" name="label" label="链接的名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="hyper.link.label.max-length" />
+      <Item _uuid="YklOVUlpAu03La1timmSjQ" name="itemId" label="物品ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    </Struct>
+    <Item _uuid="H0Y1E6SGK9uClRMV0zRjpg" name="hyperLinkList" label="超链接列表" is_valid="Y" note="M#" type="Object" type_name="SHyperLink" is_collection="Y" data_size="5" />
+  </Message>
+  <Message _uuid="aUO]oz8CjgqKFTN8fZtwkQ" name="talk.response" label="聊天应答" is_valid="Y" note="M#" is_server="Y" is_server_cpp="Y" is_server_java="N" is_client="Y" is_client_cpp="N" is_client_as="Y" is_client_cs="Y" is_client_java="N" code="Talk" is_udp="N" message_type="Response" is_session="Y" is_manage="N" source_type="GCT" target_type="CLT" code_value="0x0003" code_fix="N">
+    <Enum _uuid="rUvVdRY8M6JZOC0djYcDqw" name="EStatus" label="状态" is_valid="Y" note="M#">
+      <Member _uuid="hkReNeYWjydLZcWgXkbakA" name="Success" label="成功" is_valid="Y" note="M#" />
+      <Member _uuid="WUeEKu9APxRsOpsWk7U2jg" name="Failure" label="失败" is_valid="Y" note="M#" />
+    </Enum>
+    <Item _uuid="pUYzAE1tdc77xB2uriyKmw" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="tk3SilMSjkaFeY7pOhJuvw" name="playerId" label="玩家编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="m0eKS3YMaMMrMc4hRNtMig" name="relationCd" label="添加关系" is_valid="Y" note="M#" type="Enum" type_name="EGmFriendRelation" is_collection="N" />
+    <Struct _uuid="Vkn7NVZQdvNyBxT6yjqrlQ" name="SHyperLink" label="超链接信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="UUV2BfWdeoNpS3dkna3NiA" name="itemOid" label="物品对象编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="skLmNdivjKAyE4CsYT8tug" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmItem" is_collection="N" />
+      <Item _uuid="wUToBNLN]5ZtBDh8yjZRsQ" name="itemQualityTid" label="品质" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="]kjlalu8[OKWX1zXwmBaoA" name="label" label="链接的名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="hyper.link.label.max-length" />
+    </Struct>
+    <Item _uuid="AkLTjwNcFkJiBxIVyNTjjw" name="hyperLinkList" label="超链接列表" is_valid="Y" note="M#" type="Object" type_name="SHyperLink" is_collection="Y" data_size="5" />
+  </Message>
+  <Message _uuid="hkDvOoKlNYCKWpcY]HnslA" name="horn.request" label="使用喇叭场景请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Horn" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="GSC" code_value="0x0005" code_fix="Y">
+    <Item _uuid="[EC1c[7DRIOFwYZ]h7yLtw" name="type" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmSpecialHornType" is_collection="N" />
+    <Item _uuid="jUucil22oUOtbXdntYaXtg" name="message" label="内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+    <Struct _uuid="uEZ1ybb9afZGn0URIEhrqw" name="SHyperLink" label="超链接信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="JEuUyT6x[R]3Cs1]a0cugw" name="itemOid" label="物品对象编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="bEt2fU0p[5CkKS2gVBxNmg" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmItem" is_collection="N" />
+      <Item _uuid="fEU[bBrcubtuYZj[yPlFnQ" name="itemQualityTid" label="品质" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="eEDqNt9jZ[TY1hqQA[28hQ" name="label" label="链接的名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="hyper.link.label.max-length" />
+      <Item _uuid="RUEgSI[AUGbNZW12hA0amQ" name="itemId" label="物品Id" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    </Struct>
+    <Item _uuid="PU[XcAVUnARnkegimNpMrQ" name="hyperLinkList" label="超链接列表" is_valid="Y" note="M#" type="Object" type_name="SHyperLink" is_collection="Y" data_size="5" />
+    <Item _uuid="XUk2mcZDCkqWvNWTyynZuA" name="itemOid" label="物品oid" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="sk7Bh8bPRzW8fNXb[0ASpw" name="horn.response" label="使用喇叭场景应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="Horn" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GCT" code_value="0x0006" code_fix="N">
+    <Enum _uuid="qUnbngNaq8A9CHvfXqqEqg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="vEkoKrd54bScZxyOyAHotw" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="CkWPDQPsK1eqpDRsGnq1kQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="MklC4cEDzqF08ZA3wIJJgA" name="statusCd" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="fkHm7f0tzvPm2dgFCZaVig" name="message" label="内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+    <Struct _uuid="tE2MDX4lKnZR30[GsPaHhg" name="SHyperLink" label="超链接信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="jEv7HAWUZEfgRTQSQ70Sgw" name="itemOid" label="物品对象编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="lkoN1xPLEqOAU2A2TgY3lw" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmItem" is_collection="N" />
+      <Item _uuid="pEY7YPmLjBlcbL5PCWpnuA" name="itemQualityTid" label="品质" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="hkvlB]XPNHMkQQrBE3tKpQ" name="label" label="链接的名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="hyper.link.label.max-length" />
+      <Item _uuid="RUPLWx[GvpRH558jUF7shg" name="itemId" label="物品Id" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    </Struct>
+    <Item _uuid="w0XzZwHXLr2dnL]dsarDpQ" name="hyperLinkList" label="超链接列表" is_valid="Y" note="M#" type="Object" type_name="SHyperLink" is_collection="Y" data_size="5" />
+  </Message>
+  <Message _uuid="YUwA5jJux1]fKnodYhJPog" name="item.hyperlink.request" label="查看超链接请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ItemHyperlink" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="CLT" target_type="GDM" code_value="0x0007" code_fix="N">
+    <Item _uuid="UE[Y9oF0knyKKqbLyPlxow" name="itemId" label="物品ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="qU65n88[xPeOUBWOU46ysw" name="itemOid" label="物品对象编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="aE4b[eL234Fd497PLkwrjg" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmItem" is_collection="N" />
+  </Message>
+  <Message _uuid="WkyWZ0WyAnPB[S9jaNw0sw" name="item.hyperlink.scene.request" label="查看超链接场景请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ItemHyperlinkScene" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0008" code_fix="N">
+    <Item _uuid="wkKf4cOJ[uXVzNI5Lwy0og" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="00FaYis5iJKb0VKTnajjsA" name="itemOid" label="物品对象编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="2k[r7OEM2bWCUTwNXC7Kng" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmItem" is_collection="N" />
+    <Item _uuid="G0YDXkadth5lV9PhO]PuhA" name="itemId" label="物品Id" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="xE9PZqhCbsy8HA9DxV60mw" name="item.hyperlink.scene.response" label="查询超链接场景应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ItemHyperlinkScene" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0009" code_fix="N">
+    <Enum _uuid="SU[6hX[yBpBNyoCNujIvmA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="9UqU]rgUKOgSVyf0PgYPjQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="AEHl0cCss]TCHn3VUxDSiQ" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="[09nExOg6TugJ7oP[SACkw" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="bkhE4fcB4EOLGPPuYnh6jw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="6kWF84WPh8[bAoEZESvnlQ" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmItem" is_collection="N" />
+    <Item _uuid="rUa[5DELZGKl]KY]0AS6sQ" name="itemDetail" label="物品详细信息" is_valid="Y" note="M#" type="Object" type_name="SGsHyperItem" is_collection="N" />
+  </Message>
+  <Message _uuid="zEq5J8ZA2tnyeCL3Tbk]iQ" name="item.hyperlink.response" label="查询超链接应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ItemHyperlink" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x000A" code_fix="N">
+    <Enum _uuid="MUsFeIbr2UwSjWacbx[1pQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="kU7ezslvtxxJQQ3qXSIsgg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="zEUXoPT61nvIRniHkWfyvA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="qk5LwGHfjCWiOWHZvkheoQ" name="statusCd" label="状态类型" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="Rk[[gUHRVqY1]Gip1nf7nw" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmItem" is_collection="N" />
+    <Item _uuid="h09wfI]dFEmrHPXy2D]egQ" name="itemDetail" label="物品详细信息" is_valid="Y" note="M#" type="Object" type_name="SGsHyperItem" is_collection="N" />
+  </Message>
+  <Message _uuid="[0O1bcM4cSkiBbltZZSMog" name="map.tid.chat.notify" label="角色当前地图模板编号聊天服务器通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="MapTidChat" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GCT" code_value="0x000B" code_fix="N">
+    <Item _uuid="z0w2UVbiici9B95sgZoSpg" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="tkIGb[cDRV4c4HOHu4Tfug" name="mapTid" label="地图模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="b0nisyN0mZf[FyOlmYyXuA" name="domain.query.notice.request" label="通告查询主域服务器请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DomainQueryNotice" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="GDM" code_value="0x000C" code_fix="N" />
+  <Message _uuid="BEKX]rcpPcwgC6vjVlbEig" name="domain.query.notice.response" label="通告查询主域服务器应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DomainQueryNotice" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GCT" code_value="0x000D" code_fix="N">
+    <Item _uuid="C029pgjnRTMSv3Q8KiRVhA" name="noticList" label="通告列表" is_valid="Y" note="M#" type="Object" type_name="SGpNotice" is_collection="Y" data_size="notice.max-length" />
+  </Message>
+  <Message _uuid="xUAPI0l8mePmjQiE4M9gtQ" name="storage.query.notice.request" label="通告查询存储服务器请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="StorageQueryNotice" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x000E" code_fix="N" />
+  <Message _uuid="c09NJA8yQ1sjCH4klL0Tuw" name="storage.query.notice.response" label="通告查询存储服务器应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="StorageQueryNotice" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x000F" code_fix="N">
+    <Item _uuid="HEVHxlh74Xhd]qDZA5VWng" name="noticList" label="通告列表" is_valid="Y" note="M#" type="Object" type_name="SGpNotice" is_collection="Y" data_size="notice.content.max-lengh" />
+  </Message>
+  <Message _uuid="xEHLxvX31GgMkka4r9Kdvg" name="chat.bubble.scene.notify" label="聊天泡泡场景通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ChatBubbleScene" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="GSC" code_value="0x0010" code_fix="N">
+    <Item _uuid="vE2TiZRWBQxbxHtQaGuYsg" name="roleId" label="玩家ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="ZUPWUI3T7JoWJ1TtTjygsQ" name="chatContent" label="聊天内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+  </Message>
+  <Message _uuid="7k9q6ZS0IKqgxBykw04Dtg" name="chat.bubble.battle.notify" label="聊天泡泡战斗通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ChatBubbleBattle" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="GBT" code_value="0x0011" code_fix="N">
+    <Item _uuid="8EI4oMMCRvRFrwnHY24JtA" name="roleId" label="玩家ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="lkCvhaN1P4opmObNsuNNkA" name="chatContent" label="聊天内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+  </Message>
+  <Message _uuid="Kkc6fVZ0NqWWYOAtQQyYqQ" name="increase.closevalue.domain.notify" label="增加亲密度主域通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="IncreaseClosevalueDomain" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="GDM" code_value="0x0012" code_fix="N">
+    <Item _uuid="IUBt7TtzlO[ncPBdgvKIhA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="60GLiFYp8kgPhlttrZm5qw" name="friendRoleId" label="好友角色ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="REs0f3k9mKiG4kIXZ4uKiw" name="closeValue" label="增加的亲密度" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="c0iY[H4RA60Mb2aaBMtfrA" name="broadcast.Scene.notify" label="场景广播通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="BoradcastScene" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GCT" code_value="0x0013" code_fix="N">
+    <Item _uuid="pkqHRu0N8de6nbXohajRvw" name="code" label="通知代码" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="tkfchvRDMynmFe1ixy9aiA" name="parameter1" label="参数1" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+    <Item _uuid="Ok51P5LQCh[NN2v[nYrrkw" name="parameter2" label="参数2" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+    <Item _uuid="]Uk6hsxIy7Hq[rqgY55agg" name="parameter3" label="参数3" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+    <Item _uuid="CUsROiFpx3U]XOUgSDnhuw" name="parameter4" label="参数4" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+    <Item _uuid="vkwD9QBDdWtFBrfzCp6[kA" name="parameter5" label="参数5" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+    <Item _uuid="l0Wryggfpbjo3vagK1d4tw" name="parameter6" label="参数6" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+  </Message>
+  <Message _uuid="cU91aUfps[SNm3[yNdjQpw" name="private.talk.request" label="私聊请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PrivateTalk" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GCT" code_value="0x0014" code_fix="N">
+    <Item _uuid="ckB[OkPEbSdws8cyGqahqw" name="targetRoleId" label="目标角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="CE122VWvDlcj7WKeY[OgkQ" name="societyId" label="帮会ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="w0yN39NfbxaSPKvb]y4ijw" name="private.talk.response" label="私聊应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PrivateTlk" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="CLT" code_value="0x0015" code_fix="N">
+    <Item _uuid="IUvLYfkXucf1u3c3j7Kftw" name="roleId" label="玩家编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="h0eZ]63UX70r3Gze38nmmQ" name="roleLevel" label="玩家的等级" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="Z0Hes8gFnD64qH2DVK99tQ" name="styleIconTid" label="玩家的图标TID" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="aEgV7SeC19co]ZnEDklcrw" name="roleSocietLabel" label="玩家帮会名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="society.name.max-count" />
+    <Item _uuid="p08OrEtI[t49v]PoW0u8tQ" name="closeValue" label="亲密度" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="NUqxrEko0ogkbPfHTGtpvA" name="relationCd" label="关系" is_valid="Y" note="M#" type="Enum" type_name="EGmFriendRelation" is_collection="N" />
+    <Item _uuid="JEHIkMtOfl1mWA4ilV[grQ" name="label" label="对方角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+    <Item _uuid="sE6XYQb0JEdrRLc]rhiypw" name="gradePoint" label="战力" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="RUu9Hk9k6CzattG7Nljkgg" name="metierTid" label="门派模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="mEGhME38QS[fz0ziCznusA" name="private.talk.notify" label="私聊消息通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PrivateTalk" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="CLT" code_value="0x0016" code_fix="N">
+    <Item _uuid="2ECYui0TA0faMHMu1WI6uQ" name="senderId" label="发送者编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="O0cANXrrc6m27mGnnLNUog" name="senderLabel" label="发送者名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    <Item _uuid="oEX7mxSOmNDlKcYeJAMQlQ" name="senderLevel" label="发送者等级" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="gEuefw2gUTTP82OmBkILrg" name="senderStyleIconTid" label="发送者玩家的图标TID" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="UES179XvC]jfUXuqsW48lA" name="senderSocietLabel" label="发送玩家帮会名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="society.name.max-count" />
+    <Item _uuid="lUI88euVx6NQujYfXq82jw" name="senderGradePoint" label="发送者的战力" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="UUbbqizUPTUgDrutjsWPjg" name="senderMetierTid" label="发送者门派模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="FU58SmUdB5ZkMKm3YX6Anw" name="receiverId" label="接收者编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="BEMqGc[SLl6NLh6MK1WfgQ" name="receiverLabel" label="接收者名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    <Item _uuid="w0zPVihKM9YtHSB]geobnA" name="revieverLevel" label="接受者等级" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="80thwkXUTR3fJRv70Ee7kg" name="recieverStyleIconTid" label="接受玩家的图标TID" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="Jk97SUwrUPPx5h8OhwPmgA" name="recieverSocietLabel" label="接受玩家帮会名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="society.name.max-count" />
+    <Item _uuid="ykzuXI]BvyhHCcOxztYmug" name="recieverGradePoint" label="接受者战力" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="U0yP6mVXv[P8ji1ClRTtug" name="recieverMetierTid" label="接受者门派模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="3kuBp1iY3ezuSajN7J5Mog" name="messageContent" label="内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+    <Item _uuid="]kaEwrjhVK37oa]O1t4OlQ" name="closeValue" label="亲密度" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="fEVE6M3OiWcSHnBrmC1iog" name="relationCd" label="关系" is_valid="Y" note="M#" type="Enum" type_name="EGmFriendRelation" is_collection="N" />
+  </Message>
+  <Message _uuid="t01nJQPrpeLLKZUwfHw5rA" name="recently.domain.notify" label="最近联系人主域通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="recentlyDomain" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="GDM" code_value="0x0017" code_fix="N">
+    <Item _uuid="e0JXn7bePNE2QJ98BGqPuQ" name="recentlyLink" label="最近联系人列表" is_valid="Y" note="M#" type="Object" type_name="SGmRecentlyLink" is_collection="N" />
+    <Item _uuid="fU7mZOXg4RCW2HP99KLzgA" name="roleId" label="玩家编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="F0pQDj52w7Y[a[KbvLlxkw" name="ancient.chat.notify" label="挖宝聊天通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AncientChat" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GCT" code_value="0x0018" code_fix="N">
+    <Item _uuid="F053haETRR4EtwTcFetZsA" name="items" label="列表" is_valid="Y" note="M#" type="Object" type_name="SGmStoreItem" is_collection="Y" data_size="50" />
+    <Item _uuid="VENlvan9BosAllYwplx4lQ" name="roleLabel" label="角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+    <Item _uuid="dEEqd1kQeBg7QeWHUV9YoQ" name="type" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmAncientRuinsCostProp" is_collection="N" />
+  </Message>
+  <Message _uuid="YUz06ljJyk8DyreugDwPlg" name="ancient.player.notify" label="挖宝玩家通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="AncientPlayer" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="CLT" code_value="0x0019" code_fix="N">
+    <Item _uuid="tUuTAzsTnqIgrLqWOfSnqQ" name="items" label="列表" is_valid="Y" note="M#" type="Object" type_name="SGsItemToolTip" is_collection="Y" data_size="50" />
+    <Item _uuid="KEVu1AiDf3UW6RjL59XDmA" name="roleLabel" label="角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+    <Item _uuid="o0i3a9A1O0JysDZ3mv[0uw" name="type" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmAncientRuinsCostProp" is_collection="N" />
+  </Message>
+  <Message _uuid="hkOT15ly0qD1HXv6ijmqpw" name="equip.starup.chat.notify" label="装备强化聊天通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="EquipStarupChat" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GCT" code_value="0x001A" code_fix="N" />
+  <Message _uuid="fEz3tMqrBtsd7gRnA78Xqg" name="equip.starup.player.notify" label="装备强化玩家通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EquipStarupPlayer" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="CLT" code_value="0x001B" code_fix="N" />
+  <Message _uuid="A0poy8vr1rt[MI8Zd]mbjg" name="send.flower.all.world.broadcast.notify" label="主域赠送鲜花全世界通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SendFlowerAllWorldBroadcast" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GCT" code_value="0x001C" code_fix="N">
+    <Item _uuid="2U7MGy16dX6N9HkotbuJuw" name="code" label="通知代码" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="1EhxD9fY2[kvkp2s3EpvpA" name="parameter1" label="参数1" is_valid="Y" note="M#" type="String" is_collection="N" data_size="150" />
+    <Item _uuid="oUMX2EL]fVkqJgjUx[pIiA" name="parameter2" label="参数2" is_valid="Y" note="M#" type="String" is_collection="N" data_size="150" />
+    <Item _uuid="Fkwi1r8IK1Au4c5b4HwLmg" name="parameter3" label="参数3" is_valid="Y" note="M#" type="String" is_collection="N" data_size="150" />
+    <Item _uuid="rUCmb7SXsmXJBx0YnBCemA" name="parameter4" label="参数4" is_valid="Y" note="M#" type="String" is_collection="N" data_size="150" />
+  </Message>
+  <Message _uuid="ckEr61]Ihtp616m]RTjJvg" name="query.society.leader.request" label="查询帮主ID" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="QuerySocietyLeader" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="GDM" code_value="0x001D" code_fix="N">
+    <Item _uuid="zEhI0AndsJU]IH9P5gxKrA" name="roleId" label="角色ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="q0uv584GNJSLon5r[tIckA" name="societyId" label="帮会ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="nkX]ysYyHGFRuwzEnW6crw" name="query.society.leader.response" label="查询帮主ID" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="QuerySocietyLeader" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GCT" code_value="0x001E" code_fix="N">
+    <Item _uuid="Zk4tgc3350aPpTXRWsTSkw" name="roleId" label="角色ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="yEsc0hz5uCr3]S7nHiuJuA" name="targetId" label="帮主ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="NkRm81dMOF0feYt5f1wXqw" name="answer.query.request" label="题目查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="AnswerQuery" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GCT" code_value="0x001F" code_fix="N" />
+  <Message _uuid="A0ghPRqsry5q8PMgBOUCuA" name="answer.query.response" label="题目查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="AnswerQuery" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="GCT" target_type="CLT" code_value="0x0020" code_fix="N">
+    <Struct _uuid="AUD[TdnUqfofJpCe2V3ujQ" name="SGmOption" label="信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="[E9Z[kkqNkQwxVENA04shA" name="option" label="选项" is_valid="Y" note="M#" type="String" is_collection="N" data_size="100" />
+      <Item _uuid="JkcWH9qZWzxDcvFya]XxnQ" name="index" label="索引" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+    </Struct>
+    <Struct _uuid="qkCqFyEyS1U0ThS0folruA" name="SGmRank" label="排行信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="M0s38CV2FRbyGdoxgGu[rQ" name="roleLabel" label="角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+      <Item _uuid="uk94yoSt7D0CUv[uFG9DkQ" name="point" label="得分" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="OEC1sXIorsR3Kyia0X7YiA" name="title" label="头衔" is_valid="Y" note="M#" type="Enum" type_name="EGmExam" is_collection="N" />
+    </Struct>
+    <Struct _uuid="YkdfjkZrOo]EBN3s0rA3ng" name="SGmCheat" label="可用作弊器列表" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="GUi]DP53[O9Yjc]BTtrtlg" name="cheatType" label="作弊器类型" is_valid="Y" note="M#" type="Enum" type_name="EGmExamCheat" is_collection="N" />
+      <Item _uuid="g0FOhFz2P1JjDQNASun0iA" name="count" label="可用次数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+    </Struct>
+    <Item _uuid="UEudKKAeTrvdntc0WXa1ow" name="label" label="题目" is_valid="Y" note="M#" type="String" is_collection="N" data_size="200" />
+    <Item _uuid="f0NNoXG6Ske84V7uFmhrhQ" name="options" label="选项列表" is_valid="Y" note="M#" type="Object" type_name="SGmOption" is_collection="Y" data_size="10" />
+    <Item _uuid="3kYSnDfRtIS0ycOyShLclA" name="rankList" label="排行列表" is_valid="Y" note="M#" type="Object" type_name="SGmRank" is_collection="Y" data_size="15" />
+    <Item _uuid="f0jFLKiJ1fJT06bXpjyvpA" name="surCount" label="剩余数量" is_valid="Y" note="M#" type="Int16" is_collection="N" />
+    <Item _uuid="00FOVmV]hKlWtcP6wkLWoA" name="answerTid" label="问题模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+    <Item _uuid="p02aRlOSjitLe]3HlZ[6kA" name="cheatList" label="作弊器列表" is_valid="Y" note="M#" type="Object" type_name="SGmCheat" is_collection="Y" data_size="3" />
+    <Item _uuid="A0tqv]HHs4m6pMRPv807hQ" name="surTime" label="剩余时间" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+    <Item _uuid="E0bVotWN]VK0l1mpqo39oQ" name="isFirst" label="是否是第一名" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="40lUxVWUDh2ZRrlf0Y]5kQ" name="isAnswered" label="是否已达过" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="]0Eigb]jgUK1mhS3bd4JiA" name="answerIndex" label="已达索引" is_valid="Y" note="M#" type="Int16" is_collection="N" />
+    <Item _uuid="7kG9QgYhntpUDeOBNrNarg" name="myRanking" label="我的排名" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="z0psolMBeS8DzT9tkaD[iw" name="isRefresh" label="是否是刷新" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="]kyL64ecXrSboREJNZUbhQ" name="answer.request" label="答题请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Answer" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GCT" code_value="0x0021" code_fix="N">
+    <Item _uuid="M0fjHwVOGEXaVlQzmMyBkA" name="index" label="选择索引" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+    <Item _uuid="yUAIdM0Qo4mA0ocJc0E5qA" name="cheatType" label="作弊类型" is_valid="Y" note="M#" type="Enum" type_name="EGmExamCheat" is_collection="N" />
+    <Item _uuid="zkGu[mnb6xxCD4oHGNtslA" name="answerTid" label="问题模版编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="yUKsqDVy8dL[CA2ppEEprQ" name="answer.response" label="答题应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Answer" is_udp="N" message_type="Response" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="GCT" target_type="CLT" code_value="0x0022" code_fix="N">
+    <Enum _uuid="kEuLpVj8NI2q9[EgJsH8lA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="hEHL2vmik5srD1sk2OdLsA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="OkaeSXs6I3faNauNZ45bqA" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="nEx2DwCxt[L7[S3xhVgBig" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="D0[cy6Fvi]ugGSD[VGfqgw" name="point" label="玩家得分" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="RUzg4CfaQlAZznGlrubqog" name="continuation" label="连续答对数量" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="X0[NJy149nB8fOglj]V1rg" name="myRanking" label="我的排名" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="Ekf3iW30GDz]7[4AHFINrw" name="answer.start.notify" label="开始答题" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AnswerStart" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GCT" code_value="0x0023" code_fix="N" />
+  <Message _uuid="IERaWimYpFkXh56wBU5gnQ" name="answer.reward.scene.notify" label="答题奖励场景通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AnswerRewardScene" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="GSC" code_value="0x0024" code_fix="N">
+    <Struct _uuid="oELXabOAPZa9gqws60Qvig" name="SGmReward" label="奖励结构" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="P0autnZzm65WMZb5h0CjnA" name="isFirst" label="是否是第一名" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+      <Item _uuid="AEjOLAXF]nPrr5qDrRmXrg" name="point" label="得分" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+      <Item _uuid="NU6BOM8QeKj1Y2NQAu[avQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+      <Item _uuid="JkvC[MYD6mnsKLmzlWMepA" name="rank" label="名次" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    </Struct>
+    <Item _uuid="J0Wc4y5cAJOgJC3d[rBtrA" name="items" label="数组" is_valid="Y" note="M#" type="Object" type_name="SGmReward" is_collection="Y" data_size="100" />
+    <Item _uuid="mkTcOq0lkI4HTe8FnUSRiQ" name="isItemReward" label="是否是物品奖励" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="kUkxE[Ga5Iq[nftTv6salQ" name="answer.update.scene.notify" label="答题更新场景通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="AnswerUpdateScene" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="GSC" code_value="0x0025" code_fix="N">
+    <Struct _uuid="TEYW4oSkIv3uc4VX7OSXog" name="SGmAnswerUp" label="答题更新结构" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="P0xeL8DwRV5hsoLjYPStoA" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+      <Item _uuid="x0]i11hYkdl11LQnc3MAmA" name="detail" label="信息" is_valid="Y" note="M#" type="Object" type_name="SGmRoleAnswer" is_collection="N" />
+    </Struct>
+    <Item _uuid="tUQnusrnybk4VFQkk[XWrg" name="items" label="数组" is_valid="Y" note="M#" type="Object" type_name="SGmAnswerUp" is_collection="Y" data_size="100" />
+  </Message>
+  <Message _uuid="fkb2Ch9bi7DcFTFvPXporg" name="answer.finish.notify" label="答题结束通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="AnswerFinish" is_udp="N" message_type="Notify" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0026" code_fix="N">
+    <Item _uuid="FUIe]iQi6SXLnPh0ARdtnA" name="isFirst" label="是否第一名" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="K0jCr2AdPWWeKUDkMPsPjQ" name="currency" label="货币" is_valid="Y" note="M#" type="Struct" type_name="SGmCurrency" is_collection="N" />
+    <Item _uuid="YkESkDndDBa5wOrs[y7MkQ" name="exp" label="经验" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="w0LO4Bf5oSwHZzjyzkYegA" name="cry" label="真远" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="J0UJMz6tJUtR[fhywYZhnQ" name="mystery.chat.notify" label="神秘商店物品聊天通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="MysteryChat" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GCT" code_value="0x0027" code_fix="N">
+    <Item _uuid="REdBeaLfr7[LGaQKkqTMjA" name="item" label="信息" is_valid="Y" note="M#" type="Object" type_name="SGmStoreItem" is_collection="N" />
+    <Item _uuid="Ak6HbFOFlyoHGN2IvQ3buQ" name="roleLabel" label="角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+    <Item _uuid="TEUTKhdICnTgGlY42Y1sjg" name="type" label="神秘商店分页类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMysteryMallType" is_collection="N" />
+  </Message>
+  <Message _uuid="BURXTRRncnxR0Oa8bflxnA" name="mystery.player.notify" label="神秘商店物品玩家通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="MysteryPlayer" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="CLT" code_value="0x0028" code_fix="N">
+    <Item _uuid="8EMviCl4QOcHUBgJAOCNqg" name="item" label="属性" is_valid="Y" note="M#" type="Object" type_name="SGsItemToolTip" is_collection="N" />
+    <Item _uuid="4kAbTXFC0YILEDifZGzuqQ" name="roleLabel" label="角色名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="entity.label.max-length" />
+    <Item _uuid="bEwuEgRrDaFAMOgNYb3oog" name="type" label="神秘商店分页类型" is_valid="Y" note="M#" type="Enum" type_name="EGmMysteryMallType" is_collection="N" />
+  </Message>
+  <Message _uuid="[Ew17pAssO]lLovq]khuow" name="role.data.change.chat.notify" label="玩家数据改变聊天通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleDataChangeChat" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GCT" code_value="0x0029" code_fix="N">
+    <Item _uuid="8k]c]j2wA9RAL0vmszX[jA" name="roleDetail" label="玩家信息" is_valid="Y" note="M#" type="Object" type_name="SGpRole" is_collection="N" />
+  </Message>
+  <Message _uuid="fUKhSBd[27[THKhsTqIhpg" name="society.chat.query.request" label="帮会聊天查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="SocietyChatQuery" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GDM" code_value="0x002A" code_fix="N" />
+  <Message _uuid="5UZWpUFroYq89QgjS2Rrjg" name="society.chat.query.response" label="帮会聊天查询响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="SocietyChatQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x002B" code_fix="N">
+    <Item _uuid="CUtlEwvLPfs1W]4W1T9ynQ" name="placard" label="帮会公告" is_valid="Y" note="M#" type="String" is_collection="N" data_size="society.manifesto.max-count" />
+    <Item _uuid="C03D1PgEp3DvVBmuJPyCpw" name="memberList" label="帮会成员列表" is_valid="Y" note="M#" type="Object" type_name="SGsSocietyMember" is_collection="Y" data_size="society.member.max-count" />
+  </Message>
+  <Message _uuid="WkkD3DMLjlFkvWKzqbxagg" name="society.chat.request" label="帮会聊天通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="SocietyChat" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GDM" code_value="0x002C" code_fix="N">
+    <Item _uuid="nkiPe95HGS[jaHafY[O4nQ" name="message" label="内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+  </Message>
+  <Message _uuid="rUbj9hnyHqGyCFWn72Mnlw" name="society.chat.response" label="帮会聊天应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="SocietyChat" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x002D" code_fix="N">
+    <Enum _uuid="4EykHF2WW3KJqy4VjYBJvA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="LEK6Dq8vvVgTkWCFl3Tvsg" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="kUvY3vrzyTyfgfUdy7Oknw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="1ErkEMjr6H1WyMBkZCa3rg" name="senderId" label="发送者编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="8EwkKqt7uoVm5f4dUT]jhQ" name="senderLabel" label="发送者名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    <Item _uuid="Mk]HimA5qdGzjFbgAj0aow" name="message" label="内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+    <Item _uuid="8EDWJ3h35T3HaqaKP9E4og" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="LE4TpYz1mBQ5jBvu7c5bnw" name="society.data.change.chat.notify" label="帮会数据变化聊天通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SocietyDataChangeChat" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GCT" code_value="0x002E" code_fix="N">
+    <Item _uuid="QUDuvBOacdDaRyW5ohTgtg" name="societyDetail" label="帮会信息" is_valid="Y" note="M#" type="Object" type_name="SGpSociety" is_collection="N" />
+  </Message>
+  <Message _uuid="W0NSIsIVcL4Zs1yptaHrvQ" name="society.chat.notify" label="帮会聊天通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="SocietyChat" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x002F" code_fix="N">
+    <Item _uuid="G03unHD8oyauEGnVjm8Plw" name="senderId" label="发送者编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="CEUGzc288cVZTg9cOj]3mA" name="senderLabel" label="发送者名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="role.label.max-length" />
+    <Item _uuid="8U82s5XdF]4]dWCGjhDOig" name="message" label="内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+    <Item _uuid="7Ep[S4vTtqYuHa2xJk9Usg" name="societyJob" label="帮会职位" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+  </Message>
+  <Message _uuid="rU4ZZK[wIl4y]1nFqfREoQ" name="chat.talk.notify" label="聊天通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="ChatTalk" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GCT" code_value="0x0030" code_fix="N">
+    <Item _uuid="H04BdMByf8tqM[WrRhzNmw" name="senderId" label="TRecordId" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="XEFlshaUFYgXCyH0bXn1sQ" name="channel" label="频道" is_valid="Y" note="M#" type="Enum" type_name="EGmChatChannel" is_collection="N" />
+    <Item _uuid="NkBUx3NwpsRnjvfUjOkGvg" name="typeCd" label="显示类型" is_valid="Y" note="M#" type="Enum" type_name="EGmType" is_collection="N" />
+    <Item _uuid="EkTRjUOA53f35CTU1M5avQ" name="message" label="内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+    <Struct _uuid="x0c9coMqqJwHf2nRj4QAuw" name="SHyperLink" label="超链接信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="Tk0FKDUUN3nvv3ibZlA3hA" name="itemOid" label="物品对象编号" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+      <Item _uuid="X0mdoob4O[bHnqkgaU8zng" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmItem" is_collection="N" />
+      <Item _uuid="5UHM0ebsGFjZHmlYCgBFvQ" name="itemQualityTid" label="品质" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="fU1Cfh1A9]vXWJVdmgx]uA" name="label" label="链接的名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="hyper.link.label.max-length" />
+      <Item _uuid="aUQ3p1v09YPCThG0i1GiqQ" name="itemId" label="物品ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    </Struct>
+    <Item _uuid="FUtyXmc6I7FcJx]Tzsq]nQ" name="hyperLinkList" label="超链接列表" is_valid="Y" note="M#" type="Object" type_name="SHyperLink" is_collection="Y" data_size="5" />
+    <Struct _uuid="1EEuqnadKvgj3gvmy33mrg" name="StructPlayer" label="玩家结构体" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Item _uuid="xk[zIImU5MdwXKsJze48mA" name="label" label="名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+      <Item _uuid="0kubkMH14zxJg9t5aIVBpg" name="genderTid" label="接收人性别模板编号" is_valid="Y" note="M#" type="Uint8" is_collection="N" />
+      <Item _uuid="JU51yGK1az]dlQIuGG6ptw" name="vipLevel" label="vip等级" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+    </Struct>
+    <Item _uuid="ykSdBHMx06WJEOnWrzZglw" name="playerList" label="玩家列表" is_valid="Y" note="M#" type="Object" type_name="StructPlayer" is_collection="Y" data_size="society.member.max-count" />
+  </Message>
+  <Message _uuid="2U77CSg9rdZDP2fJBWI3mA" name="societ.chat.domain.notify" label="帮会聊天主域通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="SocietyChatDomain" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="GDM" code_value="0x0031" code_fix="N">
+    <Item _uuid="X0tjBNU2qy6ceZesjLqmqw" name="senderId" label="发送者编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="MUYe]CbCacRSlkPfOm7Nqw" name="message" label="内容" is_valid="Y" note="M#" type="String" is_collection="N" data_size="chat.content.max-length" />
+  </Message>
+  <Message _uuid="RUi8LJSUy25GxyttG4]avA" name="screen.society.chat.requset" label="屏蔽帮会聊天请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ScreenSocietyChat" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0032" code_fix="N">
+    <Item _uuid="60OdXs[cZg70ADz98zATlQ" name="screenOporate" label="屏蔽操作" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="3k1MiJbKlXSybq5flH3rhw" name="screen.society.chat.response" label="屏蔽帮会聊天响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ScreenSocietyChat" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0033" code_fix="N">
+    <Enum _uuid="XE8j7nTJisg]X4tWs8Lfjg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="z0bi6tBJCKkdbkN5wMwUjQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="Hkw1JM9DgTU4vbToqvKcvw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="60AdprsXvasHvpmmeo95hA" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="6E2iADWeIf4xAU52OMsRqQ" name="talk.record.storage.notify" label="聊天记录存储通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="TalkRecordStorage" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GCT" target_type="GSR" code_value="0x0034" code_fix="N">
+    <Item _uuid="j0tKgdf6x10hWxXc6ulVqw" name="chatRecordList" label="聊天记录列表" is_valid="Y" note="M#" type="Object" type_name="SGmChatRecord" is_collection="Y" data_size="chat.record.max-count" />
+  </Message>
+</Group>
+

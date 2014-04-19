@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebForm _uuid="YUrBBclTW4l2DTrmsYMvlg" name="database.dataset.DataCacheForm" label="M#12cn16数据缓冲表单" is_valid="Y" note="M#" style_refer="database.dataset.ControlStyle" dataset="com.navigator.node.type" edit_insert="Y" edit_update="Y" action="/system/database/dataset/Dataset.wa">
+  <Template _uuid="CENmAW[a0depYKk89Pe7jQ" name="dataTemplate" label="M#12cn14基本信息" is_valid="Y" note="M#" template_name="database.dataset.cache.CacheTemplate" />
+  <ToolBar _uuid="LEeJxgOum7RQ2Ci5O8wPpg" name="toolBar" label="M#12cn13工具栏" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" width="100%" height="24">
+    <ToolButtonSplit _uuid="9045yFLZQLWSysoVgTzMpg" name="split2Button" label="M#12cn13分割线" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButtonMenu _uuid="TUt]FSU4lmX2ccNbwOSwtQ" name="sqlButton" label="M#12cn15SQL代码" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#tools.build" page="buildSource@#/database/dataset/Dataset.wa?page=NotHistory">
+      <MenuButton _uuid="6klfQTsUvwRbQ1co4iPRpA" name="sqlTableButton" label="M#12cn19SQL - 数据表" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#database.dataset.source" page="build@#/database/dataset/Dataset.wa?type=SqlTableCache" />
+      <MenuButton _uuid="fUyn]oWZKugPZfUhI[pdig" name="sqlViewButton" label="M#12cn210SQL - 数据视图" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#database.dataset.source" page="build@#/database/dataset/Dataset.wa?type=SqlView" />
+      <MenuButton _uuid="BUbgMmzdH7mm3hLqbyeWug" name="sqlSequenceButton" label="M#12cn18SQL - 序列" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#database.dataset.source" page="build@#/database/dataset/Dataset.wa?type=SqlSequence" />
+      <MenuButton _uuid="HE3XIiSoGdaReJv6IKZyig" name="sqlPackageHeadButton" label="M#12cn210PLSQL - 包头" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#database.dataset.source" page="build@#/database/dataset/Dataset.wa?type=PackageHead" />
+      <MenuButton _uuid="F0LgustO]KiHM6PnH8l2jA" name="sqlPackageBodyButton" label="M#12cn210PLSQL - 包体" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#database.dataset.source" page="build@#/database/dataset/Dataset.wa?type=PackageBody" />
+    </ToolButtonMenu>
+    <ToolButtonMenu _uuid="R0r]btJXlNgdemMI5ouHiw" name="javaButton" label="M#12cn16JAVA代码" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#tools.build">
+      <MenuButton _uuid="cksM85vrU[DeVgmOtDAsjg" name="javaEntityButton" label="M#12cn14单元对象" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#database.dataset.source" />
+      <MenuButton _uuid="1kDcssJwQfDHg]64ce2wsA" name="javaDaoButton" label="M#12cn16数据代理接口" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#database.dataset.source" />
+    </ToolButtonMenu>
+    <ToolButtonMenu _uuid="CkI[s97jThRorkIB1xpZmw" name="dataButton" label="M#12cn14数据操作" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#design.webform.data">
+      <MenuButton _uuid="X0gikLZBWw55aUlVVIKgjA" name="dataStoreButton" label="M#12cn14数据保存" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#database.dataset.source" page="dataStore@#/database/dataset/Dataset.wa" />
+      <MenuButton _uuid="KEd]PjhwG2C7nuD3IeVotQ" name="dataRestoreButton" label="M#12cn14数据恢复" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#database.dataset.source" page="dataRestore@#/database/dataset/Dataset.wa" />
+      <MenuButton _uuid="bkQXj8xWkxNSrhvbhHjGsw" name="dataRestoreAllButtonn" label="M#12cn14全部恢复" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#database.dataset.source" page="dataRestoreAll@#/database/dataset/Dataset.wa" />
+    </ToolButtonMenu>
+    <ToolButtonSplit _uuid="1U1i[adkr6C1MSsUD[4Inw" name="split3Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButtonMenu _uuid="sUo4JcELgafjWPtrwyzFsw" name="syncButton" label="M#12cn12提交" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#tools.commit">
+      <MenuButton _uuid="tExaGjmrKKwA4RRZtBnetw" name="syncTranslateButton" label="M#12cn14提交翻译" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#tools.commit" page="syncTranslate@#/database/dataset/Dataset.wa" attributes="sel_type=collection" />
+      <MenuButton _uuid="HUue1YzpBn2c2qaVzeBDtg" name="syncModuleButton" label="M#12cn14提交模块" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#tools.commit" page="syncModule@#/database/dataset/Dataset.wa" attributes="sel_type=collection" />
+      <MenuButton _uuid="BkdzSv]QqGLqDpltnj5HqA" name="sqlAllButton" label="M#12cn14全部生成" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#tools.commit" page="buildSource@#/database/dataset/Dataset.wa" />
+    </ToolButtonMenu>
+    <ToolButtonSplit _uuid="JEgZhFZnSDOmUCw]XMY[vg" name="split5Button" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButton _uuid="Kk7Z[jXV6MJfpde12oWFhg" name="helpButton" label="M#12cn12帮助" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#tools.help" page="help@#/database/dataset/Dataset.wa" attributes="sel_type=collection" />
+  </ToolBar>
+</WebForm>
+

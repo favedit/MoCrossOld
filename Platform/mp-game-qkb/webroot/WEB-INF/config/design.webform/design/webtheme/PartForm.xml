@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebForm _uuid="g07IuKxj[hKZ6sAKK6bumQ" name="design.webtheme.PartForm" label="M#12cn19主题控件-部分表单" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" style_refer="design.webtheme.ControlStyle" edit_insert="Y" edit_update="Y" action="/system/design/webform/WebForm.wa?type=field">
+  <DataAction _uuid="4UFs]r9UdnHXIu7[Elc6tg" name="insertAction" label="M#12cn14新建命令" is_valid="Y" note="M#" service="insert@design.webtheme" />
+  <DataAction _uuid="eEwT8ww0DWYeES0qS5jrvQ" name="updateAction" label="M#12cn14保存命令" is_valid="Y" note="M#" service="update@design.webtheme" />
+  <DataAction _uuid="8E]9hAbBfOBkX9Sbpy]Rug" name="deleteAction" label="M#12cn14删除命令" is_valid="Y" note="M#" service="delete@design.webtheme" />
+  <ToolBar _uuid="TEpulGcGeaYBjqeRjw1klQ" name="toolBar" label="M#12cn13工具栏" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" width="100%" height="24">
+    <ToolButton _uuid="EEhkztw6s3Ezd6n964xojA" name="saveButton" label="M#12cn12保存" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="#tools.save" hotkey="F8" action="doSave()" />
+    <ToolButton _uuid="mE]x687BQC7jMxEQ4Qcnug" name="deleteButton" label="M#12cn12删除" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_update="Y" disp_delete="Y" icon="#tools.delete" hotkey="F6" action="doDelete()" />
+    <ToolButtonSplit _uuid="GU10[wEHGIPJIq9bKprDmQ" name="spile11" label="M#12cn12分割" is_valid="Y" note="M#" disp_list="Y" disp_update="Y" disp_delete="Y" />
+    <ToolButtonMenu _uuid="bkOCyv0l4HLXiGgzN12ogg" name="insertFilter" label="M#12cn14新建滤镜" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" icon="tool.insert">
+      <MenuButton _uuid="PUKj0S1RVHRuUlFqCQofnw" name="filterAlpha" label="M#12cn16过滤器-透明" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" page="insert@#/design/webtheme/WebTheme.wa" attributes="_type=FilterAlpha\nsel_type=component\nform_name=design.webtheme.FilterAlphaForm" />
+      <MenuButton _uuid="BkbFuSLaY2wVDxVLVU50pA" name="filterBasicImage" label="M#12cn18过滤器-图片效果" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" page="insert@#/design/webtheme/WebTheme.wa" attributes="_type=FilterBasicImage\nsel_type=component\nform_name=design.webtheme.FilterBasicImageForm" />
+      <MenuButton _uuid="Kk6sBwsnhU2agTyGX9]OsA" name="FilterGradient" label="M#12cn18过滤器-定制色彩" is_valid="Y" note="M#" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" page="insert@#/design/webtheme/WebTheme.wa" attributes="_type=FilterGradient\nsel_type=component\nform_name=design.webtheme.FilterGradientForm" />
+    </ToolButtonMenu>
+  </ToolBar>
+  <Select _uuid="GkniXa7Z1tCSIuqBLJapoQ" name="type" label="M#12cn14控件类型" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" nowrap="Y" style_refer="select" data_name="_TYPE" valid_insert="Y" valid_update="Y" edit_refer="design.webtheme.ComponentType" />
+  <Check _uuid="Sk9xD8PbH3UptW09V6Zoqg" name="isValid" label="M#12cn13有效性" is_valid="Y" note="M#" disp_search="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" style_refer="check" data_name="IS_VALID" data_default="Y" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" />
+  <Edit _uuid="f0[3yaFmFVC7BujbUqzevg" name="name" label="M#12cn12名称" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" disp_print="Y" nowrap="Y" style_refer="edit" data_name="NAME" edit_insert="Y" edit_update="Y" label_icon="#common.require" valid_insert="Y" valid_update="Y" />
+  <Check _uuid="]ECwRjcjlcYC7Nz4YDaRkQ" name="nowrap" label="M#12cn12续行" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" style_refer="check" data_name="NOWRAP" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" />
+  <Edit _uuid="0E9L]sUsBwC[OuhPxXVNow" name="label" label="M#12cn12标签" is_valid="Y" note="M#" disp_search="Y" disp_picker="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" style_refer="editWide" data_name="LABEL" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" />
+  <Template _uuid="YkMVCSi8Ev6qmfzmb0w]gA" name="styleTemplate" label="M#12cn12样式" is_valid="Y" note="M#" template_name="design.webtheme.StyleTemplate" />
+  <Template _uuid="q0weYJh2vTKSmgtsG4kVpg" name="borderStyle" label="M#12cn14边框信息" is_valid="Y" note="M#" template_name="design.webtheme.BorderStyleTemplate" />
+  <Template _uuid="5ks[4bZO]2rEQ9e0nZRwqA" name="colorImage" label="M#12cn16颜色图片信息" is_valid="Y" note="M#" template_name="design.webtheme.ColorImageTemplate" />
+  <Template _uuid="]Ey4IoecQ]zDbflksZCong" name="fontTextGroup" label="M#12cn16字体文本控制" is_valid="Y" note="M#" template_name="design.webtheme.FontTextTemplate" />
+  <Split _uuid="tkcAXsmOACRekgMOOTAgjQ" name="split" label="M#12cn14描述信息" is_valid="Y" note="M#" disp_display="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" disp_type="H" />
+  <Memo _uuid="TU82UaIkQS]MzX06NSImlQ" name="note" label="M#12cn12注释" is_valid="Y" note="M#" disp_search="Y" disp_list="Y" disp_insert="Y" disp_update="Y" disp_delete="Y" data_name="NOTE" edit_insert="Y" edit_update="Y" valid_insert="Y" valid_update="Y" label_position="left" />
+</WebForm>
+

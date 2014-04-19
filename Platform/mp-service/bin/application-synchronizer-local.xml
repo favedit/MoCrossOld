@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+   <!-- 应用定义 -->
+   <Define name='application'>D:/ZW-Platform.WK</Define>
+   <Define name='application.name'>mp-service</Define>
+   <Define name='application.root'>${application}/${application.name}</Define>
+   <Define name='application.deploy'>${application.root}/deploy</Define>
+   <Define name='application.web'>${application.root}/webroot</Define>
+   <Define name='application.config'>${application.root}/src/config</Define>
+   <Define name='application.space'>D:/ZW-Platform.WK/mp-platform/webroot/WEB-INF/config</Define>
+   <Define name='application.temp'>${application}/mt-temp/${application.name}</Define>
+
+   <!-- 包含：系统设定 -->
+   <Include>${application.config}/common/define.xml</Include>
+   <Include>${application.config}/common/core.xml</Include>
+   <Include>${application.config}/common/engine.xml</Include>
+   <Include>${application.config}/common/data.xml</Include>
+   <Include>${application.config}/common/web.xml</Include>
+   <Include>${application.config}/common/web-face.xml</Include>
+</Configuration>

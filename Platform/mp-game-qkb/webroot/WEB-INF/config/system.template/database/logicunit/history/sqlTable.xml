@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="jk9g02Ur2c4K4QyVz88Qng" name="database.logicunit.history.sqlTable" is_valid="Y" note="M#">
+<Source _uuid="p0PJnZHC]uorqMNq8zZVrw" is_valid="Y" note="M#">
+<![CDATA[CREATE TABLE <jt:item source='$dataset.data_name' format='field'/>_HS
+(
+   OUHD                 INTEGER NOT NULL,
+   OUHD_ACTION          CHAR(1),
+   OUHD_DATE            DATE,
+<jt:loop source='$fields' alias='field'>
+   <jt:item source='$field.data_name' format='field' rpad='20'/> <jt:item source='$field.data_type'/><jt:notEquals source='$field.is_null' value='Y'> NOT NULL</jt:notEquals><jt:position type='last' source='$field' elseValue=','/>
+</jt:loop>
+)<jt:equals source='$dataset.config' value='logic'> TABLESPACE GMHS</jt:equals>;
+
+ALTER TABLE <jt:item source='$dataset.data_name' format='field'/>_HS
+   ADD CONSTRAINT <jt:empty source='$dataset.data_alias' value='$dataset.data_name' elseValue='$dataset.data_alias' format='Upper'/>_HK PRIMARY KEY ( OUHD )<jt:equals source='$dataset.config' value='logic'> USING INDEX TABLESPACE GMHS</jt:equals>;
+<jt:loop source='$fields' alias='field' filter='$field.is_unique=Y'>]]>
+</Source>
+</Template>
+

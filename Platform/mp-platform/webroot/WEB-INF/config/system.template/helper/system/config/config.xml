@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="OUGwm0EBU2obatb4eJSPow" name="helper.system.config.config" is_valid="Y" note="M#">
+  <Source _uuid="H0[iRGl35eOFpRdoTCydjA" is_valid="Y" note="M#"><![CDATA[<jt:include source='helper.title'/>
+
+<jt:include source='helper.navBegin'/>
+	<A href='#home'><IMG src='<jt:item source='$path'/>/ars/icon/tools/home.gif' align='absmiddle'> 主页</A> 
+	<A href='../list.html'><IMG src='<jt:item source='$path'/>/ars/icon/tools/next.gif' align='absmiddle'> 配置列表</A> 
+	<IMG src='<jt:item source='$path'/>/ars/icon/tools/next.gif' align='absmiddle'> <jt:item source='$config.label'/> (<jt:item source='$config.name'/>)
+<jt:include source='helper.navEnd'/>
+
+<!-- Head Begin ------------------------------------------->
+<TABLE width='100%' border='0' cellspacing='8' cellpadding='0'>
+<TR>
+	<TD class='headTitle'><jt:item source='$config.name' format='upper'/></TD>
+	<TD align='right' valign='bottom' class='headVersion'>version:1.0.0</TD>
+</TR>
+<TR><TD colspan='2'>
+	<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+		<TR height='1' bgcolor='#999999'><TD></TD></TR>
+		<TR height='1' bgcolor='#000000'><TD></TD></TR>
+	</TABLE>
+</TD></TR>
+<TR><TD colspan='2'>
+	<B><jt:item source='$config.label' format='html'/></B><BR>
+	<jt:item source='$config.note' format='html'/>
+</TD></TR>
+</TABLE>
+<!-- Head End --------------------------------------------->
+
+<!-- Body Begin ------------------------------------------->
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='12'>
+<TR><TD>
+
+<!-- Details Begin ---------------------------------------->
+<TABLE width='100%' bgcolor='#666666' border='0' cellspacing='1' cellpadding='2'>
+<TR bgcolor='#dddddd' align='center'>
+    <TD class='fieldTitle'>名称</TD>
+	<TD class='fieldTitle'>中文名称</TD>
+	<TD class='fieldTitle'>类型</TD>
+	<TD class='fieldTitle'>有效性</TD>
+</TR>
+<jt:loop source='$config' alias='item'>
+<TR bgcolor='#F8F8F8'>
+	<TD width='140'>
+		<IMG src='<jt:item source='$path'/>/ars/icon/system/config/<jt:item source='$item:name' removeFirst='item' format='lower'/>.gif' align='absmiddle'> 
+		<A href='../item/<jt:item source='$config.name' format='path.lower'/>.<jt:item source='$item.name' format='lower'/>.html'><jt:item source='$item.name'/></A>
+	</TD>
+	<TD width='100'><jt:item source='$item.label'/></TD>
+	<TD width='40'><jt:item source='$item.type'/></TD>
+	<TD width='40'><jt:item source='$item.is_valid'/></TD>
+</TR>
+</jt:loop>
+</TABLE>
+<BR> 
+<jt:loop source='$config' alias='item'>
+<BR>
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='2'>
+<TR bgcolor='#FFFFFF'>
+	<TD bgcolor='#FFFFF0' style='border:1 solid #CCCCCC' class='listElementTitle'>
+		<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+			<TR>
+				<TD>
+					<A name='<jt:item source='$item.name'/>'></A>
+					<IMG src='<jt:item source='$path'/>/ars/icon/tools/nl1.gif' align='absmiddle'>
+					<jt:item source='$item.name'/> [ <jt:item source='$item.label'/> ]
+				</TD>
+				<TD align='right'>
+					<A href='#top'><IMG src='<jt:item source='$path'/>/ars/icon/tools/top.gif' align='absmiddle'></A> 
+					<A href='../item/<jt:item source='$config.name' format='path.lower'/>.<jt:item source='$item.name' format='lower'/>.html'>
+						<IMG src='<jt:item source='$path'/>/ars/icon/tools/detail.gif' align='absmiddle'>
+					</A>
+				</TD>
+			</TR>
+		</TABLE>
+	</TD>
+</TR>
+<TR>
+	<TD style='padding-left:30'>
+		<TABLE width='100%' border='0' cellspacing='0' cellpadding='2'>
+		<TR>
+			<TD bgcolor='#dddddd' width='120'>工具名称</TD>
+			<TD>
+				<IMG src='<jt:item source='$path'/>/ars/icon/system/config/<jt:item source='$item:name' removeFirst='item' format='lower'/>.gif' align='absmiddle'> 
+				<jt:item source='$item.name'/>
+			</TD>
+		</TR>
+		<TR>
+			<TD bgcolor='#dddddd' class='fieldTitle'>中文名称</TD>
+			<TD><jt:item source='$item.label'/></TD>
+		</TR>
+		<TR>
+			<TD bgcolor='#dddddd' class='fieldTitle'>有效性</TD>
+			<TD bgcolor='#FFFFFF'><jt:item source='$item.isValid'/></TD>
+		</TR>
+		<TR>
+			<TD bgcolor='#dddddd' class='fieldTitle'>数据类型</TD>
+			<TD bgcolor='#FFFFFF'><jt:item source='$item.type' removeFirst='item'/></TD>
+		</TR>
+		<TR>
+			<TD bgcolor='#dddddd' class='fieldTitle'>中文说明</TD>
+			<TD bgcolor='#FFFFFF'><jt:item source='$item.note'/></TD>
+		</TR>
+		</TABLE>
+	</TD>
+</TR>
+</TABLE>
+</jt:loop>
+<!-- Details End ------------------------------------------>
+
+
+
+</TD></TR>
+</TABLE>
+<!-- Body End --------------------------------------------->
+
+<jt:include source='helper.footer'/>]]></Source>
+</Template>
+

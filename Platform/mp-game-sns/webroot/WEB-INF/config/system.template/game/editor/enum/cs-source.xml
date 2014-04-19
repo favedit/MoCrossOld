@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T><jt:item source='$enum.label'/>。</T>
+//
+// @version 1.0.1
+//============================================================
+using System;
+using System.Text;
+
+namespace MO.Message.Enum
+{
+   //============================================================
+   // <T><jt:item source='$enum.label'/>枚举定义。</T>
+   //
+   // @enum
+   //============================================================
+   public enum E<jt:item source='$enum.name'/> : int
+   {
+<jt:loop source='$enum' alias='member'>
+      // <jt:item source='$member.label'/>。
+<jt:equals source='$member.value' value=''>
+      <jt:item source='$member.name'/> = <jt:item source='$member-position'/>,
+</jt:equals>
+<jt:notEmpty source='$member.value'>
+      <jt:item source='$member.name'/> = <jt:notEmpty source='$enum.refer_value'><jt:item source='$enum.refer_value'/> + </jt:notEmpty><jt:item source='$member.value'/>,
+</jt:notEmpty>
+
+</jt:loop>
+   }
+<jt:true source='$enum.is_set'>
+
+   //============================================================
+   // <T><jt:item source='$enum.label'/>集合定义。</T>
+   //
+   // @enum
+   //============================================================
+   public class T<jt:item source='$enum.name'/>Set{
+
+      protected int _value;
+
+      //============================================================
+      // <T>设置和获得内容。</T>
+      //============================================================
+      public uint InnerValue{
+         get{ return (uint)_value; }
+         set{ _value = (int)value; }
+      }
+
+<jt:loop source='$enum' alias='member'>
+      //============================================================
+      // <T>设置和获得<jt:item source='$enum.label'/>。</T>
+      //============================================================
+      public bool <jt:item source='$member.name'/>{
+         get{
+            int index = (int)E<jt:item source='$enum.name'/>.<jt:item source='$member.name'/>;
+            int temp = (1 << index);
+            return (_value & temp) > 0;
+         }
+         set{
+            int index = (int)E<jt:item source='$enum.name'/>.<jt:item source='$member.name'/>;
+            int temp = (1 << index);
+            if(value){
+               _value |= temp;
+            }else{
+               _value &= ~temp;
+            }
+         }
+      }
+
+</jt:loop>
+      //============================================================
+      // <T>设置和获得容量。</T>
+      //============================================================
+      public int Capacity(){
+         // return sizeof(<jt:item source='$enum.set_data_type'/>);
+         return sizeof(uint);
+      }
+
+      //============================================================
+      // <T>获得字符串。</T>
+      //============================================================
+      public override string ToString(){
+         StringBuilder builder = new StringBuilder();
+<jt:loop source='$enum' alias='member'>
+         builder.Append(<jt:item source='$member.name'/> ? "<jt:item source='$member.flag'/>" : "_");
+</jt:loop>
+         return builder.ToString();
+      }
+   }
+</jt:true>
+
+   //============================================================
+   // <T><jt:item source='$enum.label'/>管理定义。</T>
+   //
+   // @enum
+   //============================================================
+   public class REnum<jt:item source='$enum.name'/>
+   {
+      //============================================================
+      // <T>解析一个字符串成为枚举值。</T>
+      //
+      // @param value 字符串
+      // @return 枚举值
+      //============================================================
+      public static E<jt:item source='$enum.name'/> Parse(string value){
+         switch(value){
+<jt:loop source='$enum' alias='member'>
+            case "<jt:item source='$member.name'/>":
+               return E<jt:item source='$enum.name'/>.<jt:item source='$member.name'/>;
+</jt:loop>
+         }
+         return 0;
+      }
+
+      //============================================================
+      // <T>格式化枚举值成为一个字符串。</T>
+      //
+      // @param value 枚举值
+      // @return 字符串
+      //============================================================
+      public static string ToString(E<jt:item source='$enum.name'/> value){
+         switch(value){
+<jt:loop source='$enum' alias='member'>
+            case E<jt:item source='$enum.name'/>.<jt:item source='$member.name'/>:
+               return "<jt:item source='$member.name'/>";
+</jt:loop>
+         }
+         return "Unknown";
+      }
+
+      //============================================================
+      // <T>格式化枚举值成为一个显示字符串。</T>
+      //
+      // @param value 枚举值
+      // @return 显示字符串
+      //============================================================
+      public static string ToDisplay(E<jt:item source='$enum.name'/> value){
+         switch(value){
+<jt:loop source='$enum' alias='member'>
+            case E<jt:item source='$enum.name'/>.<jt:item source='$member.name'/>:
+               return "<jt:item source='$member.label'/>";
+</jt:loop>
+         }
+         return "未知";
+      }
+   }
+}
+]]></Source>
+</Template>

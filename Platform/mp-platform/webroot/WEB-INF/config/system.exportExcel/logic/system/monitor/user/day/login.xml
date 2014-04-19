@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportExcel _uuid="yktUPf[D[hQznNAjYI[shg" name="logic.system.monitor.user.day.login" label="日登录统计" is_valid="Y" fileName="reportLogin(Day)[{YYYY-MM-DD}].xls" template="logic.system.monitor.user.daylogin">
+  <Date _uuid="akm6etRu37IUXxNQkZ2Oqw" name="daysList" label="日统计列表" is_valid="Y" data_value="1" />
+  <Sql _uuid="6kFV6ECAgBNHvp3PaIrxhg" name="login_list" label="sql" is_valid="Y"><![CDATA[SELECT * FROM (SELECT A.DAYS_CD || '号' DAYS_CD,
+      PM_USER_LOGIN_DI.Get_Activation_Number(CP_DATE.Parse(QUERY_DATE))  DAY_ACTIVATION_NUMBER,
+      PM_USER_LOGIN_DI.Get_Login_Person_Number(CP_DATE.Parse(QUERY_DATE),
+                    CP_DATE.Parse(QUERY_DATE)) DAY_LOGIN_NUMBER         
+ FROM (SELECT ('${CURRENT_DATE}'|| '-' || DAYS_CD) QUERY_DATE,
+                DAYS_CD 
+         FROM (SELECT DAYS_CD FROM (SELECT ROWNUM AS DAYS_CD FROM DUAL CONNECT BY LEVEL <= 31)
+                     WHERE DAYS_CD <= CP_INTEGER.Parse(TO_CHAR(LAST_DAY(CP_DATE.Parse('${CURRENT_DATE}')), 'DD' ) ) ) ) A )]]></Sql>
+  <Sql _uuid="c0uUMrPycWdIrWsvroSWkg" name="date_config" label="当前时间" is_valid="Y"><![CDATA[SELECT  '${CURRENT_DATE}' NOW_DATE FROM DUAL]]></Sql>
+</ExportExcel>
+

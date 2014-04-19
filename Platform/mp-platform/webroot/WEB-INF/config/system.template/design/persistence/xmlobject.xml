@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define _uuid="]E[MIOeUo79dXfu13d2wsA" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source _uuid="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[package <jt:Item source='$component.class' format='class.package'/>;
+
+import org.mo.com.lang.FMultiString;
+import org.mo.com.lang.RBoolean;
+import org.mo.com.lang.RString;
+import org.mo.com.lang.face.AName;
+import org.mo.com.xml.EXmlConfig;
+import org.mo.com.xml.FXmlNode;
+import org.mo.com.xml.FXmlObject;
+import org.mo.com.xml.IXmlObject;
+<jt:loop source='$imports' alias='import'>
+import <jt:item source='$import.class_name'/>;
+</jt:loop>
+
+//============================================================
+// <T><jt:Item source='$component.label'/>对象的XML节点基类。</T>
+//============================================================
+public abstract class <jt:Item source='$component.class' format='class.name'/>
+      extends FXmlObject<jt:hasItem source='$imports'>
+      implements
+<jt:loop source='$imports' alias='import'>
+         <jt:item source='$import.class_name' format='class.name'/><jt:position source='$import' type='last' elseValue=','/>
+</jt:loop></jt:hasItem>
+{
+   // 名称定义
+   public static final String NAME = "<jt:Item source='$component.name'/>";
+
+   //============================================================
+   // <T>获得名称定义。</T>
+   //
+   // @return 名称定义
+   //============================================================
+   public String name(){
+      return NAME;
+   }
+
+   //============================================================
+   // <T>判断是否指定名称。</T>
+   //
+   // @param name 名称
+   // @return 是否指定
+   //============================================================
+   public static boolean isName(String name){
+      return NAME.equals(name);
+   }
+
+   //============================================================
+   // <T>判断是否指定实例。</T>
+   //
+   // @param xobject 对象
+   // @return 是否指定
+   //============================================================
+   public static boolean isInstance(IXmlObject xobject){
+      return NAME.equals(xobject.name());
+   }
+<jt:loop source='$attributes' order='asc' alias='attribute'>
+
+   // <jt:Item source="$attribute.label"/>的名称定义
+   public static final String PTY_<jt:Item format='upper' source='$attribute.name'/> = "<jt:Item source='$attribute.name'/>";
+</jt:loop>
+<jt:loop source='$attributes' order='asc' alias='attribute'>
+<jt:False source='$attribute.is_abstract'>
+
+   // <jt:Item source="$attribute.label"/>的定义
+   @AName("<jt:Item format='lower' source='$attribute.name'/>")
+<jt:equals source='$attribute.type' value="Boolean">
+   protected Boolean _<jt:Item source='$attribute.name' format='method'/> = Boolean.FALSE;
+</jt:equals>
+<jt:equals source='$attribute.type' value="Date">
+   protected Date _<jt:Item source='$attribute.name' format='method'/> = DATE.getCurrentDate();
+</jt:equals>
+<jt:equals source='$attribute.type' value="String">
+   protected String _<jt:Item source='$attribute.name' format='method'/>;
+</jt:equals>
+<jt:equals source='$attribute.type' value="MultiString">
+   protected FMultiString _<jt:Item source='$attribute.name' format='method'/> = new FMultiString();
+</jt:equals>
+</jt:False>
+</jt:loop>
+<jt:loop source='$attributes' order='asc' alias='attribute'>
+<jt:True source='$attribute.is_abstract'>
+
+   //============================================================
+   // <T>获得<jt:Item source="$attribute.label"/>的内容。</T>
+   //
+   // @return <jt:Item source="$attribute.label"/>
+   //============================================================
+   public abstract <jt:Item source="$attribute.type"/> get<jt:Item format='class' source='$attribute.name' />();
+
+   //============================================================
+   // <T>设置<jt:Item source="$attribute.label"/>的内容。</T>
+   //
+   // @param value <jt:Item source="$attribute.label"/>
+   //============================================================
+   public abstract void set<jt:Item format='class' source='$attribute.name' />(<jt:Item source="$attribute.type"/> value);
+</jt:True>
+<jt:False source='$attribute.is_abstract'>
+<jt:equals source='$attribute.type' value="MultiString">
+
+   //============================================================
+   // <T>获得<jt:Item source="$attribute.label"/>的内容。</T>
+   //
+   // @return <jt:Item source="$attribute.label"/>
+   //============================================================
+   public String get<jt:Item format='class' source='$attribute.name' />(){
+      return _<jt:Item source='$attribute.name' format='method'/>.get();
+   }
+
+   //============================================================
+   // <T>设置<jt:Item source="$attribute.label"/>的内容。</T>
+   //
+   // @param value <jt:Item source="$attribute.label"/>
+   //============================================================
+   public void set<jt:Item format='class' source='$attribute.name' />(String value){
+      _<jt:Item source='$attribute.name' format='method'/>.set(value);
+   }
+</jt:equals>
+<jt:NotEquals source='$attribute.type' value="MultiString">
+
+   //============================================================
+   // <T>获得<jt:Item source="$attribute.label"/>的内容。</T>
+   //
+   // @return <jt:Item source="$attribute.label"/>
+   //============================================================
+   public <jt:Item source="$attribute.type"/> get<jt:Item format='class' source='$attribute.name' />(){
+      return _<jt:Item source='$attribute.name' format='method'/>;
+   }
+
+   //============================================================
+   // <T>设置<jt:Item source="$attribute.label"/>的内容。</T>
+   //
+   // @param value <jt:Item source="$attribute.label"/>
+   //============================================================
+   public void set<jt:Item format='class' source='$attribute.name' />(<jt:Item source="$attribute.type"/> value){
+      _<jt:Item source='$attribute.name' format='method'/> = value;
+   }
+</jt:NotEquals>
+</jt:False>
+</jt:loop>
+
+   //============================================================
+   // <T>内部获得内容置信息。</T>
+   //
+   // @param name 名称
+   // @return 内容
+   //============================================================
+   public String innerGet(String name){
+      if(RString.isEmpty(name)){
+         return null;
+<jt:loop source='$attributes' order='asc' alias='attribute'>
+      }else if(PTY_<jt:Item format='upper' source='$attribute.name'/>.equalsIgnoreCase(name)){
+<jt:equals source='$attribute.type' value='Boolean'>
+         return RBoolean.toString(get<jt:Item format='class' source='$attribute.name' />());
+</jt:equals>
+<jt:equals source='$attribute.type' value='String|MultiString'>
+         return get<jt:Item format='class' source='$attribute.name' />();
+</jt:equals>
+</jt:loop>
+      }
+      return null;
+   }
+
+   //============================================================
+   // <T>内部设置内容置信息。</T>
+   //
+   // @param name 名称
+   // @param value 内容
+   //============================================================
+   public void innerSet(String name, String value){
+      if(RString.isEmpty(name)){
+         return;
+<jt:loop source='$attributes' order='asc' alias='attribute'>
+      }else if(PTY_<jt:Item format='upper' source='$attribute.name'/>.equalsIgnoreCase(name)){
+<jt:equals source='$attribute.type' value='Boolean'>
+         set<jt:Item format='class' source='$attribute.name' />(RBoolean.parse(value));
+</jt:equals>
+<jt:equals source='$attribute.type' value='String|MultiString'>
+         set<jt:Item format='class' source='$attribute.name' />(value);
+</jt:equals>
+</jt:loop>
+      }
+   }
+
+   //============================================================
+   // <T>加载设置信息。</T>
+   //
+   // @param config 设置信息
+   // @param type 类型
+   //============================================================
+   public void loadConfig(FXmlNode config, EXmlConfig type){
+      super.loadConfig(config, type);
+      if(EXmlConfig.Full == type){
+<jt:loop source='$attributes' order='asc' alias='attribute' filter='$attribute.is_store=Y'>
+         if(config.contains("<jt:Item format='lower' source='$attribute.name'/>")){
+<jt:equals source='$attribute.type' value='Boolean'>
+            set<jt:Item format='class' source='$attribute.name' />(RBoolean.parse(config.get(PTY_<jt:Item format='upper' source='$attribute.name'/>)));
+</jt:equals>
+<jt:equals source='$attribute.type' value='String'>
+            set<jt:Item format='class' source='$attribute.name' />(config.get(PTY_<jt:Item format='upper' source='$attribute.name'/>));
+</jt:equals>
+<jt:equals source='$attribute.type' value='MultiString'>
+            _<jt:Item source='$attribute.name' format='method'/>.unpack(config.get(PTY_<jt:Item format='upper' source='$attribute.name'/>));
+</jt:equals>
+         }
+</jt:loop>
+      }else if(EXmlConfig.Simple == type){
+<jt:loop source='$attributes' order='asc' alias='attribute' filter='$attribute.is_config=Y'>
+         if(config.contains("<jt:Item format='lower' source='$attribute.name'/>")){
+<jt:equals source='$attribute.type' value='Boolean'>
+            set<jt:Item format='class' source='$attribute.name' />(RBoolean.parse(config.get(PTY_<jt:Item format='upper' source='$attribute.name'/>)));
+</jt:equals>
+<jt:equals source='$attribute.type' value='String|MultiString'>
+            set<jt:Item format='class' source='$attribute.name' />(config.get(PTY_<jt:Item format='upper' source='$attribute.name'/>));
+</jt:equals>
+         }
+</jt:loop>
+      }else if(EXmlConfig.Value == type){
+<jt:loop source='$attributes' order='asc' alias='attribute'>
+         if(config.contains("<jt:Item format='lower' source='$attribute.name'/>")){
+<jt:equals source='$attribute.type' value='Boolean'>
+            set<jt:Item format='class' source='$attribute.name' />(RBoolean.parse(config.get(PTY_<jt:Item format='upper' source='$attribute.name'/>)));
+</jt:equals>
+<jt:equals source='$attribute.type' value='String|MultiString'>
+            set<jt:Item format='class' source='$attribute.name' />(config.get(PTY_<jt:Item format='upper' source='$attribute.name'/>));
+</jt:equals>
+         }
+</jt:loop>
+      }else if(EXmlConfig.Default == type){
+<jt:loop source='$attributes' order='asc' alias='attribute' filter='$attribute.is_default=Y'>
+         if(RString.isEmpty(get<jt:Item format='class' source='$attribute.name' />())){
+            if(config.contains("<jt:Item format='lower' source='$attribute.name'/>")){
+<jt:equals source='$attribute.type' value='Boolean'>
+               set<jt:Item format='class' source='$attribute.name' />(RBoolean.parse(config.get(PTY_<jt:Item format='upper' source='$attribute.name'/>)));
+</jt:equals>
+<jt:equals source='$attribute.type' value='String|MultiString'>
+               set<jt:Item format='class' source='$attribute.name' />(config.get(PTY_<jt:Item format='upper' source='$attribute.name'/>));
+</jt:equals>
+            }
+         }
+</jt:loop>
+      }
+   }
+
+   //============================================================
+   // <T>保存设置信息。</T>
+   //
+   // @param config 设置信息
+   // @param type 类型
+   //============================================================
+   public void saveConfig(FXmlNode config, EXmlConfig type){
+      config.setName(NAME);
+      super.saveConfig(config, type);
+      if(EXmlConfig.Full == type){
+<jt:loop source='$attributes' order='asc' alias='attribute' filter='$attribute.is_store=Y'>
+<jt:equals source='$attribute.type' value='Boolean'>
+         if(RBoolean.parse(get<jt:Item format='class' source='$attribute.name' />())){
+            config.set(PTY_<jt:Item format='upper' source='$attribute.name'/>, RBoolean.toString(get<jt:Item format='class' source='$attribute.name' />()));
+         }
+</jt:equals>
+<jt:equals source='$attribute.type' value='String'>
+         if(RString.isNotEmpty(get<jt:Item format='class' source='$attribute.name' />())){
+            config.set(PTY_<jt:Item format='upper' source='$attribute.name'/>, get<jt:Item format='class' source='$attribute.name' />());
+         }
+</jt:equals>
+<jt:equals source='$attribute.type' value='MultiString'>
+         String <jt:Item source='$attribute.name' format='method'/> = _<jt:Item source='$attribute.name' format='method'/>.pack().toString();
+         if(RString.isNotEmpty(<jt:Item source='$attribute.name' format='method'/>)){
+            config.set(PTY_<jt:Item format='upper' source='$attribute.name'/>, <jt:Item source='$attribute.name' format='method'/>);
+         }
+</jt:equals>
+</jt:loop>
+      }else if(EXmlConfig.Simple == type){
+<jt:loop source='$attributes' order='asc' alias='attribute' filter='$attribute.is_config=Y'>
+<jt:equals source='$attribute.type' value='Boolean'>
+         if(RBoolean.parse(get<jt:Item format='class' source='$attribute.name' />())){
+            config.set(PTY_<jt:Item format='upper' source='$attribute.name'/>, RBoolean.toString(get<jt:Item format='class' source='$attribute.name' />()));
+         }
+</jt:equals>
+<jt:equals source='$attribute.type' value='String|MultiString'>
+         if(RString.isNotEmpty(get<jt:Item format='class' source='$attribute.name' />())){
+            config.set(PTY_<jt:Item format='upper' source='$attribute.name'/>, get<jt:Item format='class' source='$attribute.name' />());
+         }
+</jt:equals>
+</jt:loop>
+      }else if(EXmlConfig.Value == type){
+<jt:loop source='$attributes' order='asc' alias='attribute'>
+<jt:equals source='$attribute.type' value='Boolean'>
+         Boolean b<jt:Item source='$attribute.name' format='class'/> = get<jt:Item format='class' source='$attribute.name' />();
+         if(RBoolean.parse(b<jt:Item source='$attribute.name' format='class'/>)){
+            config.set(PTY_<jt:Item format='upper' source='$attribute.name'/>, RBoolean.toString(b<jt:Item source='$attribute.name' format='class'/>));
+         }
+</jt:equals>
+<jt:equals source='$attribute.type' value='String|MultiString'>
+         String s<jt:Item source='$attribute.name' format='class'/> = get<jt:Item format='class' source='$attribute.name' />();
+         if(RString.isNotEmpty(s<jt:Item source='$attribute.name' format='class'/>)){
+            config.set(PTY_<jt:Item format='upper' source='$attribute.name'/>, s<jt:Item source='$attribute.name' format='class'/>);
+         }
+</jt:equals>
+</jt:loop>
+      }else if(EXmlConfig.Default == type){
+<jt:loop source='$attributes' order='asc' alias='attribute' filter='$attribute.is_default=Y'>
+<jt:equals source='$attribute.type' value='Boolean'>
+         Boolean b<jt:Item source='$attribute.name' format='class'/> = get<jt:Item format='class' source='$attribute.name' />();
+         if(RBoolean.parse(b<jt:Item source='$attribute.name' format='class'/>)){
+            config.set(PTY_<jt:Item format='upper' source='$attribute.name'/>, RBoolean.toString(b<jt:Item source='$attribute.name' format='class'/>));
+         }
+</jt:equals>
+<jt:equals source='$attribute.type' value='String|MultiString'>
+         String s<jt:Item source='$attribute.name' format='class'/> = get<jt:Item format='class' source='$attribute.name' />();
+         if(RString.isNotEmpty(s<jt:Item source='$attribute.name' format='class'/>)){
+            config.set(PTY_<jt:Item format='upper' source='$attribute.name'/>, s<jt:Item source='$attribute.name' format='class'/>);
+         }
+</jt:equals>
+</jt:loop>
+      }
+   }
+}]]></Source>
+</Template>

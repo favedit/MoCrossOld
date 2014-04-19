@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="l0tAdfLeb72Pcr2auPVwiw" name="helper.database.dataset.hhc" is_valid="Y" note="M#">
+  <Source _uuid="ak]neuhV6W58R2B8j3tkjA" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="树目录列表">
+		<param name="Local" value="src\database.dataset\list.html">
+		</OBJECT>
+	<UL>
+<jt:loop source='$config' alias='dataset'>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="<jt:item source='$dataset.name'/> (<jt:item source='$dataset.label'/>)">
+		<param name="Local" value="src\database.dataset\dataset\<jt:item source='$dataset.name' format='path.lower'/>.html">
+		</OBJECT>
+		<UL>
+		<jt:loop source='$dataset' alias='field'>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="<jt:item source='$field.name'/> (<jt:item source='$field.label'/>)">
+				<param name="Local" value="src\database.dataset\field\<jt:item source='$dataset.name' format='path.lower'/>.<jt:item source='$field.name' format='lower'/>.html">
+				</OBJECT>
+		</jt:loop>
+		</UL>
+</jt:loop>
+	</UL>
+</UL>
+</BODY></HTML>]]></Source>
+</Template>
+

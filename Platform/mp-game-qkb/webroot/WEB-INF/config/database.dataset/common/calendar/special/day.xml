@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStore _uuid="YEFhSCwUk9yi3Eh1BXFJqw" name="common.calendar.special.day" label="M#12cn17日历特殊日定义" is_valid="Y" note="M#" data_name="CM_CALENDAR_SPECIAL_DAY" data_alias="CM_CLD_SPC_DAY" data_logic="CM_CALENDAR_SPECIAL_DAY_DI" logic_insert="doInsert" logic_update="doUpdate" logic_delete="doDelete" parent_name="template.store" data_type="D">
+  <FieldInteger _uuid="0U1k8uIhAAc7ypW[ZIwIlA" name="special_id" label="M#12cn14期间标识" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="SPECIAL_ID" data_alias="SPC" data_type="Integer" data_refer="common.calendar.special" />
+  <FieldEnum _uuid="tExYojcgSkr]9Qst4Lpygg" name="type_cd" label="M#12cn12类型" is_valid="Y" note="M#12cn213R=Rest\nW=Work" is_null="Y" is_store="Y" is_abstract="N" data_name="TYPE_CD" data_size="1" />
+  <FieldBoolean _uuid="PUAiQntfOdBkLgiRjwmxmg" name="is_valid" label="M#12cn13有效性" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="IS_VALID" data_default="CP_BOOLEAN_EI.ETrue" />
+  <FieldString _uuid="fE2YfpPQqP9a]XB1d7FZsA" name="name" label="M#12cn12名称" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="NAME" data_size="80" />
+  <FieldContent _uuid="8Eks6XRUDq7[MSCuLFkNsg" name="label" label="M#12cn12标签" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="LABEL" />
+  <FieldDate _uuid="okyOnm996Z9h44DCTsByow" name="begin_date" label="M#12cn14开始日期" is_valid="Y" note="M#" is_store="Y" is_abstract="N" data_name="BEGIN_DATE" data_type="Date" />
+  <FieldDate _uuid="HkyF5nwR0FIOn3Wtaoc1sA" name="end_date" label="M#12cn14结束日期" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="END_DATE" />
+  <FieldInteger _uuid="]EVuHE5jfpMT6kwEyQ8hvw" name="day_id" label="M#12cn13日标识" is_valid="Y" note="M#" is_null="Y" is_store="Y" is_abstract="N" data_name="DAY_ID" data_alias="DAY" data_refer="common.calendar.day" />
+  <FieldTemplate _uuid="C0JmeMGu7zevwP6bMRTPgQ" name="track" label="M#12cn12跟踪" is_valid="Y" note="M#" template_name="template.track" />
+  <FieldContent _uuid="uUGX]46MZJQOWqFFXND6iQ" name="note" label="M#12cn12注释" is_valid="Y" note="M#" is_null="Y" is_store="Y" data_name="NOTE" data_type="Content" />
+</DataStore>
+

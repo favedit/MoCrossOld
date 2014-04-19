@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="0kACicXeUEd]D8aMlbqkhA" name="helper.design.webtheme.hhk" is_valid="Y" note="M#">
+  <Source _uuid="W0w7oF3nmZwfTmSBls]IsA" is_valid="Y" note="M#"><![CDATA[<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+<jt:loop source='$config' alias='webtheme'>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="<jt:item source='$webtheme.name'/>">
+			<param name="Local" value="src\design.webtheme\bulid\<jt:item source='$form.name' format='path.lower'/>.html">
+			</OBJECT>
+		<jt:loop source='$webtheme' alias='package'>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="<jt:item source='$webtheme.name'/>.<jt:item source='$package.name'/>">
+				<param name="Local" value="src/design.webtheme/bulid/<jt:item source='$webtheme.name' format='path.lower'/>.<jt:item source='$package.name' format='lower'/>.html">
+				</OBJECT>
+			<jt:loop source='$package' alias='control'>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="<jt:item source='$webtheme.name'/>.<jt:item source='$control.name'/>">
+					<param name="Local" value="src/design.webtheme/bulid/<jt:item source='$webtheme.name' format='path.lower'/>.<jt:item source='$control.name' format='lower'/>.html">
+					</OBJECT>
+				<jt:loop source='$control' alias='part'>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="<jt:item source='$webtheme.name'/>.<jt:item source='$part.name'/>">
+						<param name="Local" value="src/design.webtheme/bulid/<jt:item source='$webtheme.name' format='path.lower'/>.<jt:item source='$part.name' format='lower'/>.html">
+						</OBJECT>
+				</jt:loop>
+				   <jt:loop source='$part' alias='filter'>
+					   <LI> <OBJECT type="text/sitemap">
+						  <param name="Name" value="<jt:item source='$webtheme.name'/>.<jt:item source='$filter.name'/>">
+						  <param name="Local" value="src/design.webtheme/bulid/<jt:item source='$webtheme.name' format='path.lower'/>.<jt:item source='$filter.name' format='lower'/>.html">
+						  </OBJECT>
+				  </jt:loop>
+			</jt:loop>
+		</jt:loop>
+</jt:loop>
+</UL>
+</BODY></HTML>]]></Source>
+</Template>
+

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="bkqKIn[JJWbRI5qAvCT8lg" name="logic.vip" label="会员系统" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" source_name="MoMgLogicVip" code="Lvp" full_code="LogicVip" display_index="60">
+  <Message _uuid="gEMxw9F][xX9ec5oIg[xtQ" name="vip.query.request" label="会员信息查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="VipQuery" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0001" code_fix="N" />
+  <Message _uuid="kEjixLS1v0rH]SiZKpHxsA" name="vip.query.response" label="会员信息查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="VipQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Item _uuid="I0sXm3uxy1KxkneWtBLonQ" name="vipInfo" label="会员信息" is_valid="Y" note="M#" type="Object" type_name="SVIPInfo" is_collection="Y" data_size="5" />
+    <Struct _uuid="de81e08c-b3ed-4687-bdeb-50b711eb1b0a" name="SItemInfo" label="物品信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N">
+      <Item _uuid="44ffad3a-eb1d-496e-901c-46e293920e31" name="tid" label="tid" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="b29208ec-6f2c-4b72-9d87-9c49c10d37f9" name="count" label="个数" is_valid="Y" note="M#" type="Int16" is_collection="N" />
+    </Struct>
+    <Struct _uuid="a168054f-0901-4a91-b547-614e02e0fbe6" name="SVIPInfo" label="会员信息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N">
+      <Item _uuid="ac8508a2-ebab-4c44-8168-913c85a1ef66" name="type" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EGmVipCardType" is_collection="N" />
+      <Item _uuid="546e1456-c7c5-4ed7-8c12-65aa51927117" name="name" label="名称" is_valid="Y" note="M#" type="String" is_collection="N" data_size="20" />
+      <Item _uuid="2e82c23d-9018-4387-bcf1-cddf41ebde85" name="cdTime" label="CD" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+      <Item _uuid="a8e4dde9-adeb-452a-8454-f9427957f70e" name="dayGiftitemBagTid" label="每日礼包物品包TID" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" />
+      <Item _uuid="ee8caaaf-133a-41c3-ad6d-33222dfcf262" name="dayGiftItemTidList" label="每日礼包物品TID列表" is_valid="Y" note="M#" type="Object" type_name="SItemInfo" is_collection="Y" data_size="8" />
+      <Item _uuid="8d517b51-0890-40c4-b75d-08d158316790" name="buyGiftItemBagTid" label="购买礼包物品包TID" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+      <Item _uuid="0a2666a9-04e0-4dac-ae86-89c314280e97" name="buyGiftItemPropTid" label="购买大道具TID" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+      <Item _uuid="c9f984fa-50c6-41a3-9f5d-5ee1f962783c" name="buyGiftItemTidList" label="购买礼包物品TID列表" is_valid="Y" note="M#" type="Object" type_name="SItemInfo" is_collection="Y" data_size="8" />
+      <Item _uuid="8e80c40a-4f9e-4727-aa4a-c1765432b96f" name="buyGiftItemBagTidFullCost" label="购买礼包物品包原价" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+      <Item _uuid="258433be-f3c7-4d65-b39f-758d11f519e6" name="buyGiftItemBagTidCurCost" label="购买礼包物品包现价" is_valid="Y" note="M#" type="Int32" is_collection="N" />
+      <Item _uuid="aab88172-e52a-4b8c-9bbc-5fe83c2c7f56" name="escortTaskAddCount" label="押镖任务增加次数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="d0f9a586-5f5e-4786-ad03-ab71df5589fd" name="moneyDuplicateAddCount" label="金钱副本增加次数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="b460f21d-d763-4863-91d4-60589eb4c21d" name="fightDuplicateAddCount" label="挑战副本增加次数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="7e2ebe91-118d-4266-8f2d-b19c62d320a4" name="equipDuplicateAddCount" label="装备副本增加次数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="b29f6e41-1346-4f4c-95f9-8d24c8253acf" name="titleShowAddCount" label="称号携带增加次数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="31aeccb4-040c-4dcc-9f9f-83a373aa6ecb" name="metierArenaClearCDCount" label="师门竞技清除cd次数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="e7ffc3c8-0c83-46ee-97e4-8f1ecf6bb4c7" name="sanguoEquipClearCDAddCount" label="三国名器清除CD次数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="6b25e4cb-52c4-4746-9f6b-3fe7e7328628" name="isOpenSanguoEquipOnekeyFulllevel" label="是否开启三国名器一键满级" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="a203842a-8e3e-40b7-aecc-3480ee0505d5" name="wulinFightResetCount" label="武林重置挑战次数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="f8ca3e2e-d3f8-40a4-bcca-237c818f5903" name="dayFreeFlyCount" label="每日免费飞行次数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="fe357885-68d2-4d71-923e-b550eba9bd1d" name="isOpenStreetMall" label="是否开启街市" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="c7ef0879-f952-4a3b-8b2d-99d8b870239f" name="isOpenBlackMall" label="是否开启黑市" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="b8e76198-db24-432d-950a-8367962b4f0e" name="secretMallOpenStatus" label="神秘市场状态" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="b867a666-6d9b-489e-887c-c9a2fcaa2970" name="isOpenGoldMallInside" label="藏宝阁内层是否开启" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="692ed80e-b6c8-44f3-8793-7ff830fac1e8" name="isOpenGoldMallCoreside" label="藏宝阁核心是否开启" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="419e4e7a-3eb0-4a04-88b4-1ceef57c84d1" name="goldTowerStatus" label="藏宝阁开启状态" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="07f002fc-1172-43dd-9c28-f6361a9668e1" name="isOpenRemoteRepair" label="是否开启远程修理" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="2a440717-c00e-44c8-92be-60f5cb585012" name="isOpenCarryOnDepot" label="是否开启随身仓库" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="9bbc6b04-cec6-4597-b30b-dc364757837d" name="isOpenCarryOnShop" label="是否开启随身商店" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="2c74f2ce-7d43-4be6-91eb-04ce593c6004" name="isOpenOnHookCatch" label="是否开启挂机自动捕捉宠物" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+      <Item _uuid="14c63a0d-5420-4585-95eb-fd0dbd135414" name="isOpenOnHookFeed" label="是否开启挂机自动喂养宠物" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+    </Struct>
+  </Message>
+  <Message _uuid="oEjT[My2HiE]B][qc3O1iA" name="gift.query.request" label="礼包查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GiftQuery" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0003" code_fix="N">
+    <Item _uuid="lEsIhkDYIHemQr4xtAOTrA" name="giftType" label="礼包分属类型" is_valid="Y" note="M#" type="Enum" type_name="EGmVIPPacksType" is_collection="N" />
+  </Message>
+  <Message _uuid="REVyPXX935uVct8[A7qUug" name="gift.query.response" label="礼包查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GiftQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0004" code_fix="N">
+    <Item _uuid="pE5lxOfMrlUdBTnMYkvgqA" name="giftSet" label="礼包集合" is_valid="Y" note="M#" type="Object" type_name="SGsVipGift" is_collection="Y" data_size="16" />
+    <Item _uuid="RU03gE0MH713RKvGVXMymQ" name="giftGetFlag" label="礼包领取标志" is_valid="Y" note="M#" type="Set" type_name="TGmVipReceiveSet" is_collection="N" />
+    <Item _uuid="RUXESHwK5nmFFT6FmaX3ug" name="giftType" label="礼包分属类型" is_valid="Y" note="M#" type="Enum" type_name="EGmVIPPacksType" is_collection="N" />
+  </Message>
+  <Message _uuid="cEt2b3X]ywpQIdt14HvBrg" name="get.gift.request" label="领取礼包请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetGift" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0005" code_fix="N">
+    <Item _uuid="IUeFIq6N4lY8wTaGhbjHrw" name="giftCd" label="礼包类型" is_valid="Y" note="M#" type="Enum" type_name="EGmVipReceive" is_collection="N" />
+    <Item _uuid="gEWBBVpEQtw]AYgVL]kTuA" name="giftType" label="礼包分属类型" is_valid="Y" note="M#" type="Enum" type_name="EGmVIPPacksType" is_collection="N" />
+  </Message>
+  <Message _uuid="yELG2PvPe10]ZNpGH0j4mw" name="get.gift.response" label="领取礼包应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetGift" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0006" code_fix="N">
+    <Enum _uuid="AUKrdDVTQIfXjozQqs2Ovg" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="Y03B0y2qT5ywymwyWRLChA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="KEu]w3tBcGQ0LLNtYUrgsg" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="2ECAJc71eq6RBXbSqOrjrA" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Item _uuid="5EWhnkPxMTSRG4ovOo[Tmw" name="giftCd" label="礼包类型" is_valid="Y" note="M#" type="Enum" type_name="EGmVipReceive" is_collection="N" />
+    <Item _uuid="z0L8MwrCEcNUsin0UfvOmA" name="giftType" label="礼包分属类型" is_valid="Y" note="M#" type="Enum" type_name="EGmVIPPacksType" is_collection="N" />
+  </Message>
+  <Message _uuid="HUsojNdPuKgRQ355zBpniA" name="lock.request" label="加锁请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Lock" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0007" code_fix="N">
+    <Item _uuid="Xklo9bOsrgbCGuETHJPPkA" name="questionOne" label="问题一" is_valid="Y" note="M#" type="Enum" type_name="EGmCodeQuestions" is_collection="N" />
+    <Item _uuid="U0i3ni8dSNzzMZp9oWA6mg" name="answerOne" label="回答一" is_valid="Y" note="M#" type="String" is_collection="N" data_size="50" />
+    <Item _uuid="nEUoMVBafQ86HKsyivzRhA" name="questionTwo" label="问题二" is_valid="Y" note="M#" type="Enum" type_name="EGmCodeQuestions" is_collection="N" />
+    <Item _uuid="4EwddBDJBPUf4Y57Cb]8jA" name="answerTwo" label="回答二" is_valid="Y" note="M#" type="String" is_collection="N" data_size="50" />
+    <Item _uuid="ekh7jZJdJ9giyxD3KKasng" name="password" label="密码" is_valid="Y" note="M#" type="String" is_collection="N" data_size="10" />
+  </Message>
+  <Message _uuid="4kyeXGOCW2i[e]grsIachA" name="lock.response" label="加锁应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Lock" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0008" code_fix="N" />
+  <Message _uuid="ekxUtKmeBwXPazgg3nMijQ" name="unlock.request" label="解除锁定请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Unlock" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0009" code_fix="N">
+    <Item _uuid="2Evvt[LKE8KQTnouXknvug" name="password" label="密码" is_valid="Y" note="M#" type="String" is_collection="N" data_size="10" />
+  </Message>
+  <Message _uuid="E0lSUreFFMBMlyJIQuNhgw" name="unlock.response" label="解锁应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="Unlock" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000A" code_fix="N" />
+  <Message _uuid="WkoVgbEwBgnht643HftCiA" name="change.password.request" label="修改密码请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ChangePassword" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x000B" code_fix="N">
+    <Item _uuid="3U2POd95KaStgGUEwY6TkQ" name="oldPassword" label="旧密码" is_valid="Y" note="M#" type="String" is_collection="N" data_size="10" />
+    <Item _uuid="8E]OEHhCmbolDEnDe6O3lg" name="newPassword" label="新密码" is_valid="Y" note="M#" type="String" is_collection="N" data_size="10" />
+  </Message>
+  <Message _uuid="VkCRJ]YqVpmQMq1agX0gvw" name="change.password.response" label="修改密码应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="ChangePassword" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000C" code_fix="N" />
+  <Message _uuid="l0G3[WKCfTjJsLqAYmNepw" name="delete.password.request" label="删除密码请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DeletePassword" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x000D" code_fix="N">
+    <Item _uuid="jkS0FPsrGZeLIyEZbLRtlA" name="questionOne" label="问题一" is_valid="Y" note="M#" type="Enum" type_name="EGmCodeQuestions" is_collection="N" />
+    <Item _uuid="AkVZ][9sQLhaw9bKwsu7qw" name="answerOne" label="回答一" is_valid="Y" note="M#" type="String" is_collection="N" data_size="50" />
+    <Item _uuid="]ULkhHj2HO1hdYndlXDQpA" name="questionTwo" label="问题二" is_valid="Y" note="M#" type="Enum" type_name="EGmCodeQuestions" is_collection="N" />
+    <Item _uuid="bkFZncOzgQQ4zwFFMaq[kw" name="answerTwo" label="回答二" is_valid="Y" note="M#" type="String" is_collection="N" data_size="50" />
+  </Message>
+  <Message _uuid="j0ib5ZFCLUxgz27KjKsGhw" name="delete.password.response" label="删除密码应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DeletePassword" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x000E" code_fix="N" />
+  <Message _uuid="S0wF2iNAsWYwRQggt23Vmw" name="code.password.query.request" label="二级密码查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="CodePasswordQuery" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x000F" code_fix="N" />
+  <Message _uuid="P0QIbt1[tkSRSYOm2GqDhQ" name="code.password.query.response" label="二级密码查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="CodePasswordQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0010" code_fix="N">
+    <Item _uuid="X0HEc3ZELXmSuBNs0dPyuQ" name="questionOne" label="问题一" is_valid="Y" note="M#" type="Enum" type_name="EGmCodeQuestions" is_collection="N" />
+    <Item _uuid="4kaHInyhAuPVY8lEUywCpQ" name="questionTwo" label="问题二" is_valid="Y" note="M#" type="Enum" type_name="EGmCodeQuestions" is_collection="N" />
+  </Message>
+  <Message _uuid="uEwsIMjmlBBX2Ej2HOgpsg" name="vip.gift.get.notify" label="会员礼包领取通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="VipGiftGet" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0011" code_fix="N" />
+  <Message _uuid="4knsMobpCoxTIRs2mIf9kw" name="government.post.chapter.request" label="官职系统篇章个人信息请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GovernmentPostChapter" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0012" code_fix="N">
+    <Item _uuid="KkJJeVAIhnM3jDHMDXfEiQ" name="chapterType" label="篇章类型" is_valid="Y" note="M#" type="Enum" type_name="EGmOfficialChapter" is_collection="N" />
+  </Message>
+  <Message _uuid="hU2nb0hAS9hVlFyyep1qkw" name="government.post.chapter.response" label="官职系统个人信息查寻响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GovernmentPostChapter" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="Y" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0013" code_fix="N">
+    <Item _uuid="IELBbQt2UA6hCicNMzZZqA" name="governmentPostResResult" label="官职系统响应结果" is_valid="Y" note="M#" type="Object" type_name="SGsGovernmentPostResInfo" is_collection="N" />
+    <Item _uuid="g0CEum2LpQTLJ8PUiQtPgA" name="chapterType" label="篇章类型" is_valid="Y" note="M#" type="Enum" type_name="EGmOfficialChapter" is_collection="N" />
+  </Message>
+  <Message _uuid="G0WjNvpYkCj42BGrBhb0hw" name="government.post.get.request" label="官职领取请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GovernmentPostGet" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0014" code_fix="N">
+    <Item _uuid="yUxd5jzBRl0BSLye4Hbvrg" name="chapter" label="篇章" is_valid="Y" note="M#" type="Enum" type_name="EGmOfficialChapter" is_collection="N" />
+    <Item _uuid="709kkKO6SsY63NaOp26rgA" name="level" label="要领取的等级" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+  </Message>
+  <Message _uuid="ck5Kzev6T8qi]cd0UZZlqQ" name="government.post.get.notify" label="领取官职奖励后更新信息通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GovernmentPostGet" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0015" code_fix="N">
+    <Item _uuid="dEObYX07VymkIDd3PRwrhg" name="governmentPostResResult" label="官职系统响应消息" is_valid="Y" note="M#" type="Object" type_name="SGsGovernmentPostResInfo" is_collection="N" />
+  </Message>
+  <Message _uuid="Bkax2WPelOiVbmrcvqGrsQ" name="government.salary.request" label="官职俸禄领取请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GovernmentSalary" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0016" code_fix="N" />
+  <Message _uuid="TEwenkRfveB9cylFVdd8ng" name="government.salary.response" label="官职俸禄请求响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GovernmentSalary" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0017" code_fix="N">
+    <Item _uuid="V02niwmrk3jZ]3ZFuIMSvw" name="salaryFlag" label="俸禄领取标记" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="OU9lcjOFiM1]tJv65Cn2nQ" name="qi.cuo.request" label="切磋请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="QiCuo" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0018" code_fix="N">
+    <Item _uuid="2kA5eyHbaeb[pQfF5g9eiQ" name="playerRanking" label="玩家名次" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+  </Message>
+  <Message _uuid="P0j0TWFkuN2HJ1g64hprpA" name="qi.cuo.count.add.request" label="切磋次数增加请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="QiCuoCountAdd" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0019" code_fix="N" />
+  <Message _uuid="akAFMJkmzl]99pOfYcfSrw" name="qi.cuo.count.add.response" label="切磋次数增加响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="QiCuoCountAdd" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x001A" code_fix="N">
+    <Item _uuid="tE6Zzbk3XU]y7VLQ7bmIjw" name="remainderFightingCount" label="剩余切磋次数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+  </Message>
+  <Message _uuid="lkemAqSgOe69XAHuMQAzgw" name="government.post.salary.query.request" label="官职俸禄查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GovernmentPostSalaryQuery" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x001B" code_fix="N" />
+  <Message _uuid="n0U[6ZnGW3mj5AMQl2ucrg" name="government.post.salary.query.response" label="官职俸禄查询响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GovernmentPostSalaryQuery" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x001C" code_fix="N">
+    <Item _uuid="kEjLuyELi3PMmvjZhkDuqQ" name="currentSalary" label="当前俸禄" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+    <Item _uuid="ZE2l43uE7aQ[0sMvAF3Khg" name="nextSalary" label="下一官职俸禄" is_valid="Y" note="M#" type="String" is_collection="N" data_size="40" />
+  </Message>
+  <Message _uuid="KkxqcWq55M4AxYOKKsF1lQ" name="qi.cuo.count.add.money.query.request" label="切磋次数所需元宝查询" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="QiCuoCountAddMoneyQuery" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x001D" code_fix="N" />
+  <Message _uuid="v0IEm[WOuW]rn4vP1Vz0ow" name="qi.cuo.count.add.money.query.response" label="切磋次数所需元宝数目响应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="QiCuoCountAddMoneyQuery" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x001E" code_fix="N">
+    <Item _uuid="iUgY7aZVH73ogkalMg07oA" name="money" label="需要元宝数量" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+    <Item _uuid="ikEPweRdfOCh400LkV6nkA" name="addFightingCount" label="一次元宝增加的挑战次数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+    <Item _uuid="Wkes]nk[BLDaaQQG0J[]uA" name="useMoneyCount" label="可使用元宝次数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+  </Message>
+  <Message _uuid="wUGzQhQeJfko1S7PjoRLug" name="offical.zhuanshu.query.request" label="官职专属查询" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="OfficalZhuanshuQuery" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x001F" code_fix="N">
+    <Item _uuid="wEttA735jen[CDfC76azvg" name="chapter" label="篇章" is_valid="Y" note="M#" type="Enum" type_name="EGmOfficialChapter" is_collection="N" />
+  </Message>
+  <Message _uuid="HksEZ4jcUufh7FRWi2xssg" name="vip.welfare.query.request" label="会员福利查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="VipWelFareQuery" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0020" code_fix="N" />
+  <Message _uuid="M068ZwRR7B4nIDuHy71NvQ" name="vip.welfare.query.response" label="会员福利查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="VipWelfareQuery" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0021" code_fix="N">
+    <Item _uuid="G0xeeVlRdaeevEB6gWqyqg" name="currentWelfare" label="当前福利" is_valid="Y" note="M#" type="Object" type_name="SGsItemToolTip" is_collection="Y" data_size="2" />
+    <Item _uuid="x09QnA6fw1SxjlfcjtLmvw" name="nextWelfare" label="下级福利" is_valid="Y" note="M#" type="Object" type_name="SGsItemToolTip" is_collection="Y" data_size="2" />
+    <Item _uuid="IE5oPpTLHb5xTs9CZmxfsg" name="isGot" label="是否领取" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="YEDPmU3sBKQuPWNKbgzJug" name="offical.zhuanshu.query.response" label="官职专属查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="OfficalZhuanshuQuery" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0022" code_fix="N">
+    <Item _uuid="UEJEk61xQk4koq2UU9Vdqg" name="currentReward" label="当前奖励" is_valid="Y" note="M#" type="Object" type_name="SGsItemToolTipSet" is_collection="N" />
+    <Item _uuid="3EkNutJbMDfCJM8e4EkCiA" name="previewReward" label="奖励预览" is_valid="Y" note="M#" type="Object" type_name="SGsItemToolTipSet" is_collection="N" />
+    <Item _uuid="80ozVvXUca9SU3k1OXgdrg" name="isGet" label="是否可领取" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+    <Item _uuid="wUC4blJdEdFWxwqwthuXpg" name="chapter" label="篇章" is_valid="Y" note="M#" type="Enum" type_name="EGmOfficialChapter" is_collection="N" />
+  </Message>
+  <Message _uuid="PkoVsoQOFeMvjDJbpt4Zlw" name="get.offical.zhuanshu.request" label="领取专属请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetOfficalZhuanshu" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0023" code_fix="N">
+    <Item _uuid="PUiORCV14ZrP]hsAK1j2sA" name="chapter" label="篇章" is_valid="Y" note="M#" type="Enum" type_name="EGmOfficialChapter" is_collection="N" />
+  </Message>
+  <Message _uuid="5Eaa92uBkgU85huH1]2huQ" name="get.offical.zhuanshu.response" label="领取专属应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="GetOfficalZhuanshu" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0024" code_fix="N">
+    <Item _uuid="MUTqwIJlDMISEyh8Y5duhw" name="chapter" label="篇章" is_valid="Y" note="M#" type="Enum" type_name="EGmOfficialChapter" is_collection="N" />
+  </Message>
+  <Message _uuid="62d87099-bedf-45ef-9686-30cdad3c6f01" name="vip.day.gift.get.request" label="会员每日礼包领取请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="VipDayGiftGet" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0025" code_fix="N" />
+  <Message _uuid="a579cbf5-704f-4edb-97c1-d78e3bd8197c" name="vip.day.gift.get.response" label="会员每日礼包领取应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="VipDayGiftGet" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0026" code_fix="N">
+    <Enum _uuid="61022383-4294-4003-bd20-c3e575cd44fe" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="07a52521-fb06-46d6-be41-829c379e5ad7" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="96c534b9-2156-4b9e-97e8-822c26defe02" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="abf83501-b056-4741-8027-c2681b47f63b" name="HasGetDayGift" label="已经领取" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="7ad10cd0-4d70-4be8-bcf2-f3d32a6062a2" name="GetDayGiftError" label="领取出错" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="5dd7fb94-ad32-47b3-a459-7aa663bb96a2" name="NotVIP" label="不是VIP" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="816ba774-aa7b-4750-b21c-5a38b844150c" name="BagNotHasEmptySlot" label="背包没有空间" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="927e8e91-270e-4d95-abd7-da21935b5dd7" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="3e990089-44b7-4cfe-995b-0d9c541f5f20" name="vip.buy.gift.request" label="会员购买礼包请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="VipBuyGift" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0027" code_fix="N">
+    <Item _uuid="c52ac41e-db71-473e-a6d0-bca65ef8e199" name="buyGiftItemPropTid" label="购买大道具TID" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="9a0ddec9-03cf-4135-8593-fa3c6fe65e47" name="vip.buy.gift.response" label="会员购买礼包回应" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="VipBuyGift" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0028" code_fix="N">
+    <Enum _uuid="3f523a8f-e5b3-4c23-87fe-db832ad1dcfb" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="d2e6f0c3-5aca-4111-b78e-9c76f0292bbd" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="73c8667f-901b-4cab-a602-24f239275ec7" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="749891b1-9213-4242-a729-ca32212be13a" name="HasBuyGift" label="已经购买礼包" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="cbc872d1-7a5b-40a8-9094-0a3f5132c846" name="NotVIP" label="不是VIP" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="c4978f12-5d4c-4c1b-b6fd-62aa28a95b15" name="HasNotMoney" label="金钱不够" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="7ec4f461-d292-44f5-954f-b984e46f8a96" name="BagNotHasEmptySlot" label="背包没有空间" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="c4584052-d63a-46f1-a6e3-748753c73d36" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+  </Message>
+  <Message _uuid="47502833-f430-467d-a7bb-6f11cf87e151" name="wulin.query.request" label="武林查询信息请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="WulinQuery" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0029" code_fix="N" />
+  <Message _uuid="3702a360-e2c1-4e59-b612-8ffcd7581235" name="wulin.query.response" label="玩家武林信息返回" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="WulinQuery" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x002A" code_fix="N">
+    <Item _uuid="7b1cfbc1-9cbe-4feb-aaf9-eeb2d8750196" name="warriorLevel" label="武者总等级" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+    <Item _uuid="412fdd3d-bb9a-42db-8278-bfcb9cc7f44f" name="wulinFame" label="武林声望" is_valid="Y" note="M#" type="Uint32" is_collection="N" />
+    <Item _uuid="6459388a-bfea-499e-bace-57eb7fdc5336" name="wulinInfo" label="挑战玩家数据" is_valid="Y" note="M#" type="Object" type_name="SGmWulinChallengePlayerSet" is_collection="N" />
+    <Item _uuid="c431e539-7a5f-4e2e-9926-c9f47073c838" name="dailyFightingCount" label="剩余挑战次数" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+    <Item _uuid="bab6da70-77fd-40b4-8247-f30b55ea3a87" name="useMoneyAddCount" label="剩余重置次数" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+  </Message>
+  <Message _uuid="afdfbf71-7e10-4c40-ba89-c8240318f97e" name="wulin.challenge.player.request" label="武林挑战玩家请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="WulinChallengePlayer" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x002B" code_fix="N">
+    <Item _uuid="9a21e7ae-c2be-4573-b641-e191110bb543" name="challengePlayer" label="挑战的玩家ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="2c0afc8b-12a0-4ca1-865e-fd270c9d54f4" name="wulin.challenge.player.response" label="武林挑战玩家应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="WulinChallengePlayer" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x002C" code_fix="N">
+    <Item _uuid="05656c47-1563-4d0d-89e5-b43a66e8f1b5" name="success" label="是否成功" is_valid="Y" note="M#" type="Enum" type_name="EGmBool" is_collection="N" />
+  </Message>
+  <Message _uuid="d80a55bd-f619-4204-a8f8-97694c406795" name="wulin.query.player.request" label="武林请求挑战玩家列表" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="WulinQueryPlayer" is_udp="N" message_type="Request" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GSR" code_value="0x002D" code_fix="N">
+    <Item _uuid="b32a54d1-ca19-4ed8-a5f5-4c264f5187a1" name="roleId" label="请求的玩家ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="14b2ef07-b795-4f9e-ab55-0ff43f3e48a6" name="warriorLevel" label="武者总等级" is_valid="Y" note="M#" type="Uint16" is_collection="N" />
+  </Message>
+  <Message _uuid="7641cee4-0f1e-4ced-b28a-4de788c81c31" name="wulin.query.player.response" label="武林请求挑战玩家列表应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="WulinQueryPlayer" is_udp="N" message_type="Response" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GSC" code_value="0x002E" code_fix="N">
+    <Item _uuid="9638a776-d169-4d28-9eec-dd6e44374ebd" name="roleId" label="请求的玩家ID" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="cc79e1bb-363f-4be4-b779-80508372217c" name="wulinInfo" label="挑战玩家数据存储" is_valid="Y" note="M#" type="Object" type_name="SGmWulinChallengePlayerSet" is_collection="N" />
+  </Message>
+  <Message _uuid="e66c6b76-72c8-4732-9ff1-9b17a141cc73" name="vip.buy.vipcard.request" label="玩家购买VIP卡请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="VipBuyVipCard" is_udp="N" message_type="Request" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x002F" code_fix="N">
+    <Item _uuid="f438ac95-7027-443d-b452-c9a34206103a" name="vipCardItemtid" label="会员卡道具模板TID" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+  <Message _uuid="57c8bc3e-5fa8-4bfe-8dd4-14abf9218229" name="vip.buy.vipcard.response" label="玩家购买VIP卡应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="VipBuyVipCard" is_udp="N" message_type="Response" is_asynchronous="N" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0030" code_fix="N">
+    <Item _uuid="49e79952-c87f-4b03-85ba-f5d5d105e408" name="shopOid" label="商城物品对象编号" is_valid="Y" note="M#" type="Type" type_name="TObjectId" is_collection="N" />
+    <Item _uuid="ea6f106a-01ce-47db-a0ef-328b98e8acdc" name="shopDetail" label="商城物品详细信息" is_valid="Y" note="M#" type="Object" type_name="SGsShopItem" is_collection="N" />
+  </Message>
+</Group>
+

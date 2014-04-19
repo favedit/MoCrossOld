@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CsvImport _uuid="sEKr]2cDYdeYN9Kn6OrIkQ" name="logic.business.asset.manage.book.summaryLend" label="图书借阅统计" is_valid="Y" head_lines="1">
+  <Columns _uuid="EkOYDVFgt1tBImTbIoaEqA" name="Columns" label="列集合" is_valid="Y">
+    <Column _uuid="cUgSGbtbevtgsGo97P3yuA" name="rownum" label="编号" is_valid="Y" data_name="ROWNUM" />
+    <Column _uuid="HkFisojhuZhclGTe2IeLiw" name="model_label" label="图书类型" is_valid="Y" data_name="MODEL_LABEL" />
+    <Column _uuid="p0CLTUP7YtI7Xhn1sJFMqg" name="code" label="图书代码" is_valid="Y" data_name="CODE" />
+    <Column _uuid="1kX]utIzFFmeP5y4e9s1qA" name="label" label="图书名称" is_valid="Y" data_name="LABEL" />
+    <Column _uuid="aUULlm9C1eUmreVxuTYpsA" name="lend_all_count" label="借阅总数量" is_valid="Y" data_name="LEND_ALL_COUNT" />
+    <Column _uuid="PkktIEzKhFibz1un1JQ[ow" name="author" label="作者" is_valid="Y" data_name="AUTHOR" />
+    <Column _uuid="tUul8uWtnIFtKJYti1urgg" name="publisher" label="出版社" is_valid="Y" data_name="PUBLISHER" />
+    <Column _uuid="y0KLkQ0ljScGWbSSXMIIpw" name="publish_date" label="出版日期" is_valid="Y" data_name="PUBLISH_DATE" />
+  </Columns>
+  <Export _uuid="EU58Ni2PJ0szHuLQbF7npw" name="sql" label="图书-借阅统计" is_valid="Y" sql=" SELECT ROWNUM,\n        MODEL_LABEL,\n        CODE,\n        LABEL,\n        LEND_ALL_COUNT,\n        AUTHOR,\n        PUBLISHER,\n        PUBLISH_DATE\n FROM (SELECT OUID,\n          BS_ASSET_MODEL_DI.Get_Label_Path(MODEL_ID) MODEL_LABEL,\n          CODE,\n          LABEL,\n          BS_ASSET_ORDER_PB_BK_DI.Get_Asset_Lend_All_Count(OUID, CP_DATE.Parse('${BEGIN_DATE}'), CP_DATE.Parse('${END_DATE}')) LEND_ALL_COUNT,\n          AUTHOR,\n          PUBLISHER,\n          PUBLISH_DATE\n       FROM BS_ASSET_PB_BK\n       WHERE IS_VALID = 'Y'\n       AND STATUS_CD = 'U')\n       ORDER BY LEND_ALL_COUNT DESC, CODE" display_command="N" display_command_tag="N" display_head="N" display_head_tag="N" display_label="Y" display_label_tag="N" display_valid="N" display_valid_tag="N" is_open="N" export_name="eUIS-图书管理-借阅统计报表[${SETTLEMENT_BEGIN_DATE}-${SETTLEMENT_END_DATE}]" export_charset="GB18030" disp_data_start_tag="N" disp_data_end_tag="N" dataset_parameters="SELECT\n   TO_CHAR(CP_DATE.Parse('${BEGIN_DATE}'), 'YYYYMMDD') SETTLEMENT_BEGIN_DATE,\n   TO_CHAR(CP_DATE.Parse('${END_DATE}'), 'YYYYMMDD') SETTLEMENT_END_DATE\nFROM DUAL" />
+</CsvImport>
+

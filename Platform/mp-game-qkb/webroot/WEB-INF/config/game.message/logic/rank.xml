@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group _uuid="ZEtPxtZZhhfkprs3WIvFjA" name="logic.rank" label="排行榜系统" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" source_name="MoMgLogicRank" code="Lrk" full_code="LogicRank" display_index="57">
+  <Message _uuid="Nkuu87v7j80S]Zk6tLZKqw" name="rank.query.request" label="排行榜查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RankQuery" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GDM" code_value="0x0001" code_fix="N">
+    <Item _uuid="20DTQCtWmto49vEU1]O0vg" name="rankType" label="排行榜类型" is_valid="Y" note="M#" type="Enum" type_name="EGmRankName" is_collection="N" />
+  </Message>
+  <Message _uuid="cEJ7FiS4K45etNAQPr8etA" name="rank.query.response" label="排行榜查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RankQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x0002" code_fix="N">
+    <Item _uuid="AU]iMr]7]XBnJi5VRAWivw" name="rank" label="排行榜" is_valid="Y" note="M#" type="Object" type_name="SGsRank" is_collection="N" />
+    <Item _uuid="EExuYz7iip2rjatDNLeuuA" name="rankTitle" label="排行榜称号" is_valid="Y" note="M#" type="Object" type_name="SGsRankTitle" is_collection="Y" data_size="4" />
+    <Item _uuid="vE]LvnYakema7fyxCc5Oiw" name="worldLevel" label="世界等级" is_valid="Y" note="M#" type="Int16" is_collection="N" />
+  </Message>
+  <Message _uuid="K0plJIYzKihBPbPHopS9oQ" name="disdain.worship.request" label="鄙视膜拜请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DisdainWorship" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GSC" code_value="0x0003" code_fix="N">
+    <Enum _uuid="3E1pqnhSSCfLl97dfyFArA" name="EType" label="类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="V0vD8x]7awbrs7rHB1JBoA" name="Disdain" label="鄙视" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="mEmjRXhFxZ8G5Ht5uBq[gQ" name="Wodship" label="膜拜" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="rkKc5lVadtMMUNMnKQSArQ" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EType" is_collection="N" />
+    <Item _uuid="vk0mSL3q[BStiRsi2f9Jiw" name="rankType" label="排行榜类型" is_valid="Y" note="M#" type="Enum" type_name="EGmRankName" is_collection="N" />
+    <Item _uuid="D0aciIa2X7FaXCnlTH1qnw" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="HklRqpVcJUGtch8zLohxsQ" name="id" label="编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="cUy06cwdLZp0deb7TG4eoA" name="disdain.worship.reponse" label="鄙视膜拜应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="DisdainWorship" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="CLT" code_value="0x0004" code_fix="N">
+    <Enum _uuid="GENM1dZyqDgl9Eu4R4]4hA" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="pkYzAE[tqWpJ]bZI3zHQiQ" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="dkEmvVM8T3F2u]FqeGG]gw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="QUoYQoWPgjTWK1i0LyxerA" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Enum _uuid="kEP5kVNW9bmD9uYd9iHIng" name="EType" label="类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="DUsZiC5dlZuueB78Y1hIpw" name="Disdain" label="鄙视" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="UkCPAvPBsX0cwPImWgN4vw" name="Wodship" label="膜拜" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="xk2anhOucVduD44q4cTmjw" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EType" is_collection="N" />
+  </Message>
+  <Message _uuid="yUcEfc0j1laoJgKbIfufrQ" name="rank.update.notify" label="排行榜更新通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RankUpdate" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x0005" code_fix="N">
+    <Item _uuid="nEKX[FPgRiAaFHgspWjctQ" name="rankList" label="排行榜列表" is_valid="Y" note="M#" type="Object" type_name="SGmStorageRank" is_collection="Y" data_size="50" />
+  </Message>
+  <Message _uuid="U0RjaHfRjUebHPpPIuGwqA" name="role.query.request" label="角色信息查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RoleQuery" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GDM" code_value="0x0006" code_fix="N">
+    <Item _uuid="gkR[4zcqWHXbvo5WMk7nvQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="d71f6309-0661-4ee9-b560-048d05bf204f" name="queryType" label="查询类型" is_valid="Y" note="M#" type="Enum" type_name="EGmQueryRoleInfoRank" is_collection="N" />
+  </Message>
+  <Message _uuid="8kxJnIQMQHDSDoefIFI6ow" name="role.query.response" label="角色信息查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RoleQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x0007" code_fix="N">
+    <Item _uuid="1kTfbbrdsTDCLbvlAQElhg" name="roleDetail" label="角色信息" is_valid="Y" note="M#" type="Object" type_name="SGsRoleDetail" is_collection="N" />
+    <Item _uuid="1kTOTD7T1xWs2VAgSgIcvw" name="equipSet" label="装备集合" is_valid="Y" note="M#" type="Object" type_name="SGsBagEquipSet" is_collection="N" />
+    <Item _uuid="C0M1NbGWRumycDRmham6mg" name="styleActionSet" label="样式动作集合" is_valid="Y" note="M#" type="Object" type_name="SGmStyleActionSet" is_collection="N" />
+    <Item _uuid="z06SVSj8JI6Tsy9EFrMGvQ" name="disdainWorshipCount" label="鄙视膜拜次数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+    <Item _uuid="3UYy1bwhM0A5Qv[VnDpRtw" name="disdainWorshipMaxCount" label="鄙视膜拜最大次数" is_valid="Y" note="M#" type="Int8" is_collection="N" />
+    <Enum _uuid="Gkkth16x]aI432iI1UvGuQ" name="EOnline" label="在线" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="f0seN7HERXXUpUmBhZQPog" name="Yes" label="是" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="p0[qz92JTVBIulXOsZ4yhA" name="No" label="否" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="hkytTG282cHx4RWmk3EIgQ" name="isOnline" label="是否在线" is_valid="Y" note="M#" type="Enum" type_name="EOnline" is_collection="N" />
+    <Item _uuid="8e36c421-089b-4310-906c-d725f73d09b6" name="queryType" label="查询类型" is_valid="Y" note="M#" type="Enum" type_name="EGmQueryRoleInfoRank" is_collection="N" />
+  </Message>
+  <Message _uuid="RELatr2SqsLsKs6SmJo3rA" name="pet.query.request" label="宠物信息查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetQuery" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GDM" code_value="0x0008" code_fix="N">
+    <Item _uuid="NkZZGbDvGsh4IRdlAb1yug" name="petId" label="宠物编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="fEVQGvQvx[o3ajS8rbkKrQ" name="pet.query.response" label="宠物信息查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="PetQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x0009" code_fix="N">
+    <Item _uuid="5kocR77k89iWpUaLBM15tg" name="petDetail" label="宠物信息" is_valid="Y" note="M#" type="Object" type_name="SGsPetDetail" is_collection="N" />
+    <Enum _uuid="]kVZdIpFDr2YgoPw[ZM0rw" name="EOnline" label="在线" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="2EMfqPLK0pWN3NpIN1kNrg" name="Yes" label="是" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="5Eq1qFFAUsOGhkJN6GqKow" name="No" label="否" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="O0fXr9ypmBI7jxTFsgj7vg" name="isOnline" label="是否在线" is_valid="Y" note="M#" type="Enum" type_name="EOnline" is_collection="N" />
+    <Item _uuid="3EUHuKl7U4aYT1rI0qcRqA" name="rankRole" label="角色信息" is_valid="Y" note="M#" type="Object" type_name="SGsRankRole" is_collection="N" />
+  </Message>
+  <Message _uuid="vEv41D0Bw7OSOYNU3pwsnQ" name="ride.query.request" label="坐骑信息查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RideQuery" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GDM" code_value="0x000A" code_fix="N">
+    <Item _uuid="7UuHJ7snWE8Cp6H3ecb[tg" name="rideId" label="坐骑编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="20NVCn7tJzOyW8MFz9eXjA" name="ride.query.response" label="坐骑信息查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="RideQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x000B" code_fix="N">
+    <Item _uuid="ZEcyrlYf42HIszRsZps9gg" name="rideDetail" label="坐骑信息" is_valid="Y" note="M#" type="Object" type_name="SGsRideDetail" is_collection="N" />
+    <Enum _uuid="pU9b4ven[]nniAZgpycRiQ" name="EOnline" label="在线" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="XkDnVpyTS8Ga9YPz2Jwyuw" name="Yes" label="是" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="GEsC2f8gndcCY0[55Omuhw" name="No" label="否" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="bkLm]3gwunXufkPxmhT7hw" name="isOnline" label="是否在线" is_valid="Y" note="M#" type="Enum" type_name="EOnline" is_collection="N" />
+    <Item _uuid="6UENYxb4j52nhByYvU]Emg" name="rankRole" label="角色信息" is_valid="Y" note="M#" type="Object" type_name="SGsRankRole" is_collection="N" />
+  </Message>
+  <Message _uuid="dE6e64KXkmsyDImUvENipw" name="equip.query.request" label="装备信息查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EquipQuery" is_udp="N" message_type="Request" is_session="Y" is_login="N" is_login_role="Y" is_manage="N" source_type="CLT" target_type="GDM" code_value="0x000C" code_fix="N">
+    <Item _uuid="3EtKnBZ9ImWwgDvlUghSnA" name="equipId" label="装备编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="T0z2dcmEUIN3AzZRKYp2uA" name="equip.query.reponse" label="装备信息查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="Y" is_client_cs="N" is_client_java="N" code="EquipQuery" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="CLT" code_value="0x000D" code_fix="N">
+    <Item _uuid="]04VM7bklqE92wMUObC[ow" name="equipDetail" label="装备信息" is_valid="Y" note="M#" type="Object" type_name="SGsBagEquip" is_collection="N" />
+    <Enum _uuid="YkV5MmB1Tv3LuMZKuNjLog" name="EOnline" label="在线" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="YE9mZJyyC5GZNWtUNodDvg" name="Yes" label="是" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="50YMS34Er4ytlyvtE13nhw" name="No" label="否" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="uUNA6L[eRG69EqyU]IrusA" name="isOnline" label="是否在线" is_valid="Y" note="M#" type="Enum" type_name="EOnline" is_collection="N" />
+    <Item _uuid="JUt]Ck4zzKSWdsyNIf5[vQ" name="rankRole" label="角色信息" is_valid="Y" note="M#" type="Object" type_name="SGsRankRole" is_collection="N" />
+  </Message>
+  <Message _uuid="wkKLUFpY0KFRzuNAJPk1iw" name="role.offline.request" label="角色下线查询请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleOffline" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSR" code_value="0x000E" code_fix="N">
+    <Item _uuid="SkHJHi9NuTYipysEumEElA" name="roleRankList" label="角色排行列表" is_valid="Y" note="M#" type="Object" type_name="SGmRoleRankSet" is_collection="Y" data_size="32" />
+  </Message>
+  <Message _uuid="JkZ25HUHhCrYB0XGx]zJgw" name="role.offline.response" label="角色下线查询应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleOffline" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x000F" code_fix="N">
+    <Item _uuid="yExqYHx0LlnjuMXNiqhFlg" name="roleRankList" label="角色排行列表" is_valid="Y" note="M#" type="Object" type_name="SGmRoleRankSet" is_collection="Y" data_size="32" />
+  </Message>
+  <Message _uuid="4EAa9cpYMRjif5ICNPF1lQ" name="disdain.worship.domain.request" label="鄙视膜拜主域请求" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DisdainWorshipDomain" is_udp="N" message_type="Request" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0010" code_fix="N">
+    <Enum _uuid="mk8PPuuk9aJOQcGc80pQmA" name="EType" label="类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="[UkJvIkXbU7RFvWZ03vsrA" name="Disdain" label="鄙视" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="50Bz1chwJ45mzu6aoEQZjg" name="Wodship" label="膜拜" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="rUxdJWyyXBBzIfUrsy[FlQ" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EType" is_collection="N" />
+    <Item _uuid="OkES4pMYxmICCo0fSIVNug" name="rankType" label="排行榜类型" is_valid="Y" note="M#" type="Enum" type_name="EGmRankName" is_collection="N" />
+    <Item _uuid="U05L6daC3cjNegjboygMlg" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="tEnzyDJJX8gYteDbxcI]hA" name="id" label="编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+    <Item _uuid="tUeZ8KgpHWEUlpotxyzfmw" name="operateRoleId" label="操作角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="Fk]ak4vV1Tvyfu4g9SPWqg" name="disdain.worship.domain.response" label="鄙视膜拜主域应答" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="DisdainWorshipDomain" is_udp="N" message_type="Response" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GDM" target_type="GSC" code_value="0x0011" code_fix="N">
+    <Enum _uuid="U0I9p4rzHuSzZJUtO4F4jQ" name="EStatus" label="状态" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="wkz9yDbuxT]aKMgbv4vMjA" name="Success" label="成功" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="eUanL2lsKWTIhDOts3AUlw" name="Failure" label="失败" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="2UFKDNWgWfB1LJdlKpXYgw" name="status" label="状态" is_valid="Y" note="M#" type="Enum" type_name="EStatus" is_collection="N" />
+    <Enum _uuid="Fkgja[][Zf87UrDDzgQbgA" name="EType" label="类型" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N">
+      <Member _uuid="0Ed9y9wh8h1gDMSqVr]Eiw" name="Disdain" label="鄙视" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+      <Member _uuid="fUB4WHoGXvBFoRyLSd5njg" name="Wodship" label="膜拜" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" />
+    </Enum>
+    <Item _uuid="SEOQ]7NxBSRMK37Kk[Abog" name="typeCd" label="类型" is_valid="Y" note="M#" type="Enum" type_name="EType" is_collection="N" />
+    <Item _uuid="pkcJqEAhcZtICplOPr8uhg" name="operateRoleId" label="操作角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="ZEF4TjyFyWCtsZXGKiVerQ" name="role.delete.notify" label="角色删除通知" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RoleDelete" is_udp="N" message_type="Notify" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSR" target_type="GDM" code_value="0x0012" code_fix="N">
+    <Item _uuid="tUIK6lZuUd9h0hLnFR6lmQ" name="roleId" label="角色编号" is_valid="Y" note="M#" type="Type" type_name="TRecordId" is_collection="N" />
+  </Message>
+  <Message _uuid="RkQFH9UIyZvicN[KnZ]xoQ" name="rank.clear.notify" label="排行榜清楚消息" is_valid="Y" note="M#" is_server_cpp="Y" is_server_java="N" is_client_cpp="N" is_client_as="N" is_client_cs="N" is_client_java="N" code="RankClear" is_udp="N" message_type="Notify" is_asynchronous="N" is_session="N" is_login="N" is_login_role="N" is_manage="N" source_type="GSC" target_type="GDM" code_value="0x0013" code_fix="N">
+    <Item _uuid="SUz]gpULaGtObg6GSXONug" name="scheduleTid" label="计划模板编号" is_valid="Y" note="M#" type="Type" type_name="TTemplateId" is_collection="N" />
+  </Message>
+</Group>
+

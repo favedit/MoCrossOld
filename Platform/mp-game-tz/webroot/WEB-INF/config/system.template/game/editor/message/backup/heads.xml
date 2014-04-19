@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template asd="nEBb4EhA2r2RfQR7XSlSug" name="design.persistence.xmlobject" is_valid="Y" note="M#">
+  <Define asd="]E[MIOeUo79dXfu13d2wsA" name="package" is_valid="Y" note="M#" value="org.mobj.mylife.data.base" />
+  <Source asd="WkcEiMRQuJETYp5z2XC0pg" is_valid="Y" note="M#"><![CDATA[//============================================================
+// <T><jt:item source='$group.label'/>。</T>
+//
+// @version 1.0.1
+//============================================================
+#ifndef __MO_GM_MSG_<jt:item source='$group.full_code' format='upper'/>_H__
+#define __MO_GM_MSG_<jt:item source='$group.full_code' format='upper'/>_H__
+
+#ifndef __MO_GM_COMMON_H__
+#include "MoGmCommon.h"
+#endif // __MO_GM_COMMON_H__
+
+#ifndef __MO_GM_STRUCT_H__
+#include "MoGmStruct.h"
+#endif // __MO_GM_STRUCT_H__
+
+MO_NAMESPACE_BEGIN
+
+//============================================================
+// <T><jt:item source='$group.label'/>消息类型定义。</T>
+//
+// @enum
+//============================================================
+enum ENet<jt:item source='$group.full_code'/>Message{
+<jt:loop source='$group' alias='message' filter='$message:name=Message'>
+   // @member <jt:item source='$message.label'/>
+   ENetMessage_<jt:item source='$message.source_type'/>2<jt:item source='$message.target_type'/>_<jt:item source='$group.code'/><jt:item source='$message.code'/><jt:item source='$message.message_type'/> = ENetMessageGroup_<jt:item source='$group.full_code'/> | <jt:item source='$message.code_value'/>,
+</jt:loop>
+};
+
+<jt:loop source='$group' alias='enum' filter='$enum:name=Enum'>
+//============================================================
+// <T><jt:item source='$enum.label'/>枚举定义。</T>
+//
+// @struct
+//============================================================
+enum <jt:item source='$enum.name'/>{
+<jt:loop source='$enum' alias='member'>
+<jt:equals source='$member.data_value' value=''>
+   <jt:item source='$enum.name'/>_<jt:item source='$member.name' last=',' rpad='15'/> // <jt:item source='$member.label'/>
+</jt:equals>
+<jt:notEmpty source='$member.data_value'>
+   <jt:item source='$enum.name'/>_<jt:item source='$member.name' rpad='14'/> = <jt:item source='$member.data_value'/>, // <jt:item source='$member.label'/>
+</jt:notEmpty>
+</jt:loop>
+};
+
+</jt:loop>
+<jt:loop source='$group' alias='struct' filter='$struct:name=Struct'>
+//============================================================
+// <T><jt:item source='$struct.label'/>结构定义。</T>
+//
+// @struct
+//============================================================
+#pragma pack(1)
+struct MO_GM_DECLARE <jt:item source='$struct.name'/>{
+public:
+<jt:loop source='$struct' alias='field'>
+   // @property <jt:item source='$field.label'/>
+<jt:true source='$field.is_collection'>
+<jt:equals source='$field.type' value='String|Object'>
+   TNetObjects<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>> <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:notEquals source='$field.type' value='String|Object'>
+<jt:empty source='$field.data_size'>
+   TNetTypes<<jt:item source='$field.type_name'/>> <jt:item source='$field.name'/>;
+</jt:empty>
+<jt:notEmpty source='$field.data_size'>
+   TNetFixTypes<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>> <jt:item source='$field.name'/>;
+</jt:notEmpty>
+</jt:notEquals>
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Type|Enum'>
+   <jt:item source='$field.type_name'/> <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Struct|Object'>
+   <jt:item source='$field.type_name'/> <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Bytes'>
+   TNetBytes <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+<jt:empty source='$field.data_size'>
+   TNetString <jt:item source='$field.name'/>;
+</jt:empty>
+<jt:notEmpty source='$field.data_size'>
+   TNetFixString<<jt:item source='$field.data_size'/>> <jt:item source='$field.name'/>;
+</jt:notEmpty>
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Struct|String|Object'>
+   T<jt:item source='$field.type'/> <jt:item source='$field.name'/><jt:notEmpty source='$field.data_size'>[<jt:item source='$field.data_size'/>]</jt:notEmpty>;
+</jt:notEquals>
+</jt:false>
+</jt:loop>
+public:
+   //------------------------------------------------------------
+   // <T>构造结构体。</T>
+   <jt:item source='$struct.name'/>(){
+      Initialize();
+   }
+   //------------------------------------------------------------
+   // <T>构造结构体。</T>
+   <jt:item source='$struct.name'/>(TAnyC* pMemory){
+      MO_ASSERT(pMemory);
+      Initialize();
+      Unserialize(pMemory);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>初始化信息。</T>
+   inline void Initialize(){
+<jt:loop source='$struct' alias='field'>
+<jt:equals source='$field.type' value='Char|Byte|Int16|Int32|Int64|Uint16|Uint32|Uint64|TFloat|TDouble'>
+      this-><jt:item source='$field.name'/> = 0;
+</jt:equals>
+</jt:loop>
+   }
+public:
+   //------------------------------------------------------------
+   // <T>重载赋值操作符。</T>
+   void operator=(TAnyC* pMemory){
+      Unserialize(pMemory);
+   }
+public:
+<jt:loop source='$struct' alias='field'>
+<jt:true source='$field.is_collection'>
+   //------------------------------------------------------------
+   // <T>获得<jt:item source='$field.label'/>信息</T>
+<jt:equals source='$field.type' value='String|Object'>
+   inline TNetObjects<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+      return this-><jt:item source='$field.name'/>;
+   };
+</jt:equals>
+<jt:notEquals source='$field.type' value='String|Object'>
+<jt:empty source='$field.data_size'>
+   inline TNetTypes<<jt:item source='$field.type_name'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:empty>
+<jt:notEmpty source='$field.data_size'>
+   inline TNetFixTypes<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:notEmpty>
+      return this-><jt:item source='$field.name'/>;
+   };
+</jt:notEquals>
+</jt:true>
+<jt:false source='$field.is_collection'>
+   //------------------------------------------------------------
+   // <T>获得<jt:item source='$field.label'/>信息</T>
+<jt:equals source='$field.type' value='Type|Enum'>
+   inline <jt:item source='$field.type_name'/> <jt:item source='$field.name' format='upper.first'/>(){
+</jt:equals>
+<jt:equals source='$field.type' value='Struct|Object'>
+   inline <jt:item source='$field.type_name'/>& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+<jt:empty source='$field.data_size'>
+   inline TNetString& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:empty>
+<jt:notEmpty source='$field.data_size'>
+   inline TNetFixString<<jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:notEmpty>
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Struct|String|Object'>
+   inline T<jt:item source='$field.type'/> <jt:item source='$field.name' format='upper.first'/>(){
+</jt:notEquals>
+      return this-><jt:item source='$field.name'/>;
+   };
+   //------------------------------------------------------------
+   // <T>设置<jt:item source='$field.label'/>信息</T>
+<jt:equals source='$field.type' value='Type|Enum'>
+   inline void Set<jt:item source='$field.name' format='upper.first'/>(<jt:item source='$field.type_name'/> value){
+      this-><jt:item source='$field.name'/> = value;
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='Struct'>
+   inline void Set<jt:item source='$field.name' format='upper.first'/>(<jt:item source='$field.type_name'/>& value){
+      this-><jt:item source='$field.name'/> = value;
+   };
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Struct|String|Object'>
+   inline void Set<jt:item source='$field.name' format='upper.first'/>(T<jt:item source='$field.type'/> value){
+      this-><jt:item source='$field.name'/> = value;
+   };
+</jt:notEquals>
+</jt:false>
+</jt:loop>
+public:
+   TSize Capacity();
+   void Assign(<jt:item source='$struct.name'/>& value);
+   TInt Serialize(TAny* pMemory);
+   TInt Unserialize(TAnyC* pMemory);
+   TCharC* Track(TChar* pTrack, TSize capacity, TInt level=0);
+};
+#pragma pack()
+//------------------------------------------------------------
+template class MO_GM_DECLARE TNetTypes<<jt:item source='$struct.name'/>>;
+
+</jt:loop>
+<jt:loop source='$group' alias='message' filter='$message:name=Message'>
+//============================================================
+// <T><jt:item source='$message.label'/>消息定义。</T>
+// <P>消息成员：
+<jt:loop source='$message' alias='field' filter='$field:name=Item'>
+<jt:true source='$field.is_collection'>
+<jt:equals source='$field.type' value='String|Object'>
+//    - <jt:item source='$field.name' rpad='14'/> [TNetObjects<<jt:item source='$field.type_name'/>>]：<jt:item source='$field.label'/>
+</jt:equals>
+<jt:notEquals source='$field.type' value='String|Object'>
+//    - <jt:item source='$field.name' rpad='14'/> [TNetTypes<<jt:item source='$field.type_name'/>>]：<jt:item source='$field.label'/>
+</jt:notEquals>
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Type|Enum|Struct'>
+//    - <jt:item source='$field.name' rpad='14'/> [<jt:item source='$field.type_name'/>]：<jt:item source='$field.label'/>
+</jt:equals>
+<jt:equals source='$field.type' value='Bytes'>
+//    - <jt:item source='$field.name' rpad='14'/> [TNetBytes]：<jt:item source='$field.label'/>
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+//    - <jt:item source='$field.name' rpad='14'/> [TNetString]：<jt:item source='$field.label'/>
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Struct|String|Objects'>
+//    - <jt:item source='$field.name' rpad='14'/> [T<jt:item source='$field.type'/>]：<jt:item source='$field.label'/>
+</jt:notEquals>
+</jt:false>
+</jt:loop>
+// </P>
+//
+// @class
+//============================================================
+#pragma pack(1)
+class MO_GM_DECLARE TNm<jt:item source='$group.code'/><jt:item source='$message.code'/><jt:item source='$message.message_type'/> : public TNetMessage{
+public:
+   static TNetMessageInfo INFO;
+public:
+   //============================================================
+   enum{
+      TYPE            = ENetMessage_<jt:item source='$message.message_type'/>,
+<jt:false source='$message.is_udp'>
+      SIGN            = ENetMessageSign_Unknown,
+</jt:false>
+<jt:true source='$message.is_udp'>
+      SIGN            = ENetMessageSign_Udp,
+</jt:true>
+      CODE            = ENetMessage_<jt:item source='$message.source_type'/>2<jt:item source='$message.target_type'/>_<jt:item source='$group.code'/><jt:item source='$message.code'/><jt:item source='$message.message_type'/>,
+      SOURCE_TERMINAL = ENetTerminalShort_<jt:item source='$message.source_type'/>,
+      TARGET_TERMINAL = ENetTerminalShort_<jt:item source='$message.target_type'/>,
+   };
+<jt:loop source='$message' alias='enum' filter='$enum:name=Enum'>
+   //============================================================
+   enum <jt:item source='$enum.name'/>{
+<jt:loop source='$enum' alias='member'>
+      <jt:item source='$enum.name'/>_<jt:item source='$member.name' last=',' rpad='14'/> // <jt:item source='$member.label'/>
+</jt:loop>
+   };
+</jt:loop>
+<jt:loop source='$message' alias='struct' filter='$struct:name=Struct'>
+   //============================================================
+   struct MO_GM_DECLARE <jt:item source='$struct.name'/>{
+   public:
+<jt:loop source='$struct' alias='field'>
+      // @property <jt:item source='$field.label'/>
+<jt:true source='$field.is_collection'>
+<jt:equals source='$field.type' value='String|Object'>
+      TNetObjects<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>> <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:notEquals source='$field.type' value='String|Object'>
+<jt:empty source='$field.data_size'>
+      TNetTypes<<jt:item source='$field.type_name'/>> <jt:item source='$field.name'/>;
+</jt:empty>
+<jt:notEmpty source='$field.data_size'>
+      TNetFixTypes<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>> <jt:item source='$field.name'/>;
+</jt:notEmpty>
+</jt:notEquals>
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Type|Enum'>
+      <jt:item source='$field.type_name'/> <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Struct|Object'>
+      <jt:item source='$field.type_name'/> <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Bytes'>
+      TNetBytes <jt:item source='$field.name'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+<jt:empty source='$field.data_size'>
+      TNetString <jt:item source='$field.name'/>;
+</jt:empty>
+<jt:notEmpty source='$field.data_size'>
+      TNetFixString<<jt:item source='$field.data_size'/>> <jt:item source='$field.name'/>;
+</jt:notEmpty>
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Struct|Bytes|String|Object'>
+      T<jt:item source='$field.type'/> <jt:item source='$field.name'/><jt:notEmpty source='$field.data_size'>[<jt:item source='$field.data_size'/>]</jt:notEmpty>;
+</jt:notEquals>
+</jt:false>
+</jt:loop>
+   public:
+      //------------------------------------------------------------
+      // <T>构造结构体。</T>
+      <jt:item source='$struct.name'/>(){
+         Initialize();
+      }
+      //------------------------------------------------------------
+      // <T>构造结构体。</T>
+      <jt:item source='$struct.name'/>(TAnyC* pMemory){
+         MO_ASSERT(pMemory);
+         Initialize();
+         Unserialize(pMemory);
+      }
+   public:
+      //------------------------------------------------------------
+      // <T>初始化信息。</T>
+      inline void Initialize(){
+<jt:loop source='$struct' alias='field'>
+<jt:equals source='$field.type' value='Char|Byte|Int16|Int32|Int64|Uint16|Uint32|Uint64|TFloat|TDouble'>
+         this-><jt:item source='$field.name'/> = 0;
+</jt:equals>
+</jt:loop>
+      }
+   public:
+      //------------------------------------------------------------
+      // <T>重载赋值操作符。</T>
+      void operator=(TAnyC* pMemory){
+         Unserialize(pMemory);
+      }
+   public:
+<jt:loop source='$struct' alias='field'>
+<jt:true source='$field.is_collection'>
+      //------------------------------------------------------------
+      // <T>获得<jt:item source='$field.label'/>信息</T>
+<jt:equals source='$field.type' value='String|Object'>
+      inline TNetObjects<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+         return this-><jt:item source='$field.name'/>;
+      };
+</jt:equals>
+<jt:notEquals source='$field.type' value='String|Object'>
+<jt:empty source='$field.data_size'>
+      inline TNetTypes<<jt:item source='$field.type_name'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:empty>
+<jt:notEmpty source='$field.data_size'>
+      inline TNetFixTypes<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:notEmpty>
+         return this-><jt:item source='$field.name'/>;
+      };
+</jt:notEquals>
+</jt:true>
+<jt:false source='$field.is_collection'>
+      //------------------------------------------------------------
+      // <T>获得<jt:item source='$field.label'/>信息</T>
+<jt:equals source='$field.type' value='Type|Enum'>
+      inline <jt:item source='$field.type_name'/> <jt:item source='$field.name' format='upper.first'/>(){
+</jt:equals>
+<jt:equals source='$field.type' value='Struct|Object'>
+      inline <jt:item source='$field.type_name'/>& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+<jt:empty source='$field.data_size'>
+      inline TNetString& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:empty>
+<jt:notEmpty source='$field.data_size'>
+      inline TNetFixString<<jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:notEmpty>
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Struct|Bytes|String|Object'>
+      inline T<jt:item source='$field.type'/> <jt:item source='$field.name' format='upper.first'/>(){
+</jt:notEquals>
+         return this-><jt:item source='$field.name'/>;
+      };
+      //------------------------------------------------------------
+      // <T>设置<jt:item source='$field.label'/>信息</T>
+<jt:equals source='$field.type' value='Type|Enum'>
+      inline void Set<jt:item source='$field.name' format='upper.first'/>(<jt:item source='$field.type_name'/> value){
+         this-><jt:item source='$field.name'/> = value;
+      };
+</jt:equals>
+<jt:equals source='$field.type' value='Struct'>
+      inline void Set<jt:item source='$field.name' format='upper.first'/>(<jt:item source='$field.type_name'/>& value){
+         this-><jt:item source='$field.name'/> = value;
+      };
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Struct|Bytes|String|Object'>
+      inline void Set<jt:item source='$field.name' format='upper.first'/>(T<jt:item source='$field.type'/> value){
+         this-><jt:item source='$field.name'/> = value;
+      };
+</jt:notEquals>
+</jt:false>
+</jt:loop>
+   public:
+      TSize Capacity();
+      void Assign(<jt:item source='$struct.name'/>& value);
+      TInt Serialize(TAny* pMemory);
+      TInt Unserialize(TAnyC* pMemory);
+      TCharC* Track(TChar* pTrack, TSize capacity, TInt level=0);
+   };
+</jt:loop>
+protected:
+<jt:loop source='$message' alias='field' filter='$field:name=Item'>
+   // @property <jt:item source='$field.label'/>
+<jt:true source='$field.is_collection'>
+<jt:equals source='$field.type' value='String|Object'>
+   TNetObjects<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>> _<jt:item source='$field.name'/>;
+</jt:equals>
+<jt:notEquals source='$field.type' value='String|Object'>
+<jt:empty source='$field.data_size'>
+   TNetTypes<<jt:item source='$field.type_name'/>> _<jt:item source='$field.name'/>;
+</jt:empty>
+<jt:notEmpty source='$field.data_size'>
+   TNetFixTypes<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>> _<jt:item source='$field.name'/>;
+</jt:notEmpty>
+</jt:notEquals>
+</jt:true>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Type|Enum|Struct|Object'>
+   <jt:item source='$field.type_name'/> _<jt:item source='$field.name'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='Bytes'>
+   TNetBytes _<jt:item source='$field.name'/>;
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   TNetString _<jt:item source='$field.name'/>;
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Struct|Bytes|String|Object'>
+   T<jt:item source='$field.type'/> _<jt:item source='$field.name'/><jt:notEmpty source='$field.data_size'>[<jt:item source='$field.data_size'/>]</jt:notEmpty>;
+</jt:notEquals>
+</jt:false>
+</jt:loop>
+public:
+   //------------------------------------------------------------
+   // <T>构造消息。</T>
+   TNm<jt:item source='$group.code'/><jt:item source='$message.code'/><jt:item source='$message.message_type'/>(){
+      InnerInitialize();
+   }
+   //------------------------------------------------------------
+   // <T>构造消息。</T>
+   TNm<jt:item source='$group.code'/><jt:item source='$message.code'/><jt:item source='$message.message_type'/>(const TNetMessage* pMessage){
+      MO_ASSERT(pMessage);
+      InnerInitialize();
+      Assign(pMessage);
+   }
+protected:
+   //------------------------------------------------------------
+   // <T>初始化信息。</T>
+   inline void InnerInitialize(){
+      SNetMessageHead& data = _messageHead.Data();
+      data.type = TYPE;
+      data.code = CODE;
+<jt:loop source='$message' alias='field'>
+<jt:false source='$field.is_collection'>
+<jt:equals source='$field.type' value='Char|Byte|Int16|Int32|Int64|Uint16|Uint32|Uint64|TFloat|TDouble'>
+      _<jt:item source='$field.name'/> = 0;
+</jt:equals>
+</jt:false>
+</jt:loop>
+   }
+public:
+   //------------------------------------------------------------
+   // <T>复制信息。</T>
+   void operator=(const TNetMessage* pMessage){
+      MO_ASSERT(pMessage);
+      Assign(pMessage);
+   }
+public:
+<jt:loop source='$message' alias='field' filter='$field:name=Item'>
+<jt:true source='$field.is_collection'>
+   //------------------------------------------------------------
+   // <T>获得<jt:item source='$field.label'/>信息</T>
+<jt:equals source='$field.type' value='String|Object'>
+   inline TNetObjects<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+      return _<jt:item source='$field.name'/>;
+   };
+</jt:equals>
+<jt:notEquals source='$field.type' value='String|Object'>
+<jt:empty source='$field.data_size'>
+   inline TNetTypes<<jt:item source='$field.type_name'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:empty>
+<jt:notEmpty source='$field.data_size'>
+   inline TNetFixTypes<<jt:item source='$field.type_name'/>, <jt:item source='$field.data_size'/>>& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:notEmpty>
+      return _<jt:item source='$field.name'/>;
+   };
+</jt:notEquals>
+</jt:true>
+<jt:false source='$field.is_collection'>
+   //------------------------------------------------------------
+   // <T>获得<jt:item source='$field.label'/>信息</T>
+<jt:equals source='$field.type' value='Type|Enum'>
+   inline <jt:item source='$field.type_name'/> <jt:item source='$field.name' format='upper.first'/>(){
+</jt:equals>
+<jt:equals source='$field.type' value='Struct|Object'>
+   inline <jt:item source='$field.type_name'/>& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:equals>
+<jt:equals source='$field.type' value='Bytes'>
+   inline TNetBytes& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   inline TNetString& <jt:item source='$field.name' format='upper.first'/>(){
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Struct|Bytes|String|Object'>
+   inline T<jt:item source='$field.type'/><jt:equals source='$field.type' value='NetString'>&</jt:equals> <jt:item source='$field.name' format='upper.first'/>(){
+</jt:notEquals>
+      return _<jt:item source='$field.name'/>;
+   };
+<jt:notEquals source='$field.type' value='Object|Bytes|Types'>
+   //------------------------------------------------------------
+   // <T>设置<jt:item source='$field.label'/>信息</T>
+</jt:notEquals>
+<jt:equals source='$field.type' value='Type|Enum'>
+   inline void Set<jt:item source='$field.name' format='upper.first'/>(<jt:item source='$field.type_name'/> value){
+      _<jt:item source='$field.name'/> = value;
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='Struct'>
+   inline void Set<jt:item source='$field.name' format='upper.first'/>(<jt:item source='$field.type_name'/> value){
+      _<jt:item source='$field.name'/> = value;
+   };
+</jt:equals>
+<jt:equals source='$field.type' value='String'>
+   inline void Set<jt:item source='$field.name' format='upper.first'/>(TCharC* pValue){
+      _<jt:item source='$field.name'/>.Set(pValue);
+   };
+</jt:equals>
+<jt:notEquals source='$field.type' value='Type|Enum|Struct|Bytes|String|Object'>
+   inline void Set<jt:item source='$field.name' format='upper.first'/>(T<jt:item source='$field.type'/> value){
+      _<jt:item source='$field.name'/> = value;
+   };
+</jt:notEquals>
+</jt:false>
+</jt:loop>
+public:
+   MO_OVERRIDE( TNetMessageInfo* MessageInfo() );
+   MO_OVERRIDE( TSize CapacityData() );
+public:
+   MO_OVERRIDE( TBool DoSerializeData() );
+   MO_OVERRIDE( TBool DoUnserializeData() );
+public:
+   MO_OVERRIDE( TInt SerializeData(TAny* pMemory) );
+   MO_OVERRIDE( TInt UnserializeData(TAnyC* pMemory) );
+   MO_OVERRIDE( void Reset() );
+public:
+   MO_OVERRIDE( TCharC* TrackData(TChar* pTrack, TSize capacity) );
+};
+#pragma pack()
+
+</jt:loop>
+//============================================================
+// <T><jt:item source='$message.label'/>消息管理器。</T>
+//
+// @class
+//============================================================
+class MO_GM_DECLARE RNm<jt:item source='$group.full_code'/>Message{
+public:
+   static TCharC* CodeName(TInt code);
+   static TNetMessageInfo* CodeInfo(TInt code);
+   static TCharC* DumpData(TNetMessage* pMessage, TChar* pTrack, TSize capacity);
+};
+
+MO_NAMESPACE_END
+
+#endif // __MO_GM_MSG_<jt:item source='$group.full_code' format='upper'/>_H__
+]]></Source>
+</Template>

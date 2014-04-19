@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="j0ijIGb7oRKOmOTAsTookg" name="helper.design.webform.attribute" is_valid="Y" note="M#">
+  <Source _uuid="2E99hBfz5xV0NozcXX]Knw" is_valid="Y" note="M#"><![CDATA[<jt:include source='helper.title'/>
+
+<jt:include source='helper.navBegin'/>
+	<A href='#home'><IMG src='<jt:item source='$path'/>/ars/icon/tools/home.gif' align='absmiddle'> 主页</A> 
+	<A href='../list.html'><IMG src='<jt:item source='$path'/>/ars/icon/tools/next.gif' align='absmiddle'> 表单和表格列表</A> 
+	<A href='../bulidAllList/<jt:item source='$form.name' format='path.lower'/>.html'><IMG src='<jt:item source='$path'/>/ars/icon/tools/next.gif' align='absmiddle'> <jt:item source='$form.label'/> (<jt:item source='$form.name'/>)</A> 
+	<IMG src='<jt:item source='$path'/>/ars/icon/tools/next.gif' align='absmiddle'> <jt:item source='$control.label'/> (<jt:item source='$control.name'/>)
+<jt:include source='helper.navEnd'/>
+
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='12'>
+<TR><TD>
+
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+<TR>
+	<TD class='title'><jt:item source='$control.name'/></TD>
+	<TD align='right' valign='bottom'>version:1.0.0</TD>
+</TR>
+<TR><TD colspan='2'><HR></TD></TR>
+</TABLE>
+
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='0'>
+<TR><TD><jt:item source='$control.note' format='html'/></TD></TR>
+</TABLE>
+
+<BR>
+<TABLE width='100%' bgcolor='#666666' border='0' cellspacing='1' cellpadding='2'>
+<TR>
+	<TD width='120' bgcolor='#dddddd' class='fieldTitle'>名称</TD>
+	<TD bgcolor='#FFFFFF'>
+		<IMG src='<jt:item source='$path'/>/ars/icon/design/form/<jt:item source='$control:name' removeFirst='field' format='lower'/>.gif' align='absmiddle'> 
+		<jt:item source='$control.name'/>
+	</TD>
+</TR>
+<TR>
+	<TD bgcolor='#dddddd' class='fieldTitle'>标签</TD>
+	<TD bgcolor='#FFFFFF'><jt:item source='$control.label'/></TD>
+</TR>
+<TR>
+	<TD bgcolor='#dddddd' class='fieldTitle'>有效性</TD>
+	<TD bgcolor='#FFFFFF'><jt:item source='$control.is_valid'/></TD>
+</TR>
+
+<TR>
+	<TD bgcolor='#dddddd' class='fieldTitle'>数据名称</TD>
+	<TD bgcolor='#FFFFFF'><jt:item source='$control.data_name'/></TD>
+</TR>
+<TR>
+	<TD bgcolor='#dddddd' class='fieldTitle'>描述信息</TD>
+	<TD bgcolor='#FFFFFF'><jt:item source='$control.note'/></TD>
+</TR>
+</TABLE>
+
+</TD></TR>
+</TABLE>
+
+<jt:include source='helper.footer'/>]]></Source>
+</Template>
+

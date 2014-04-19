@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template _uuid="tkjnhvpOL2k6ygZiU3buuQ" name="logic.mail" label="业务邮件" is_valid="Y" note="M#">
+  <Source _uuid="Ukj4dvByXQafgJQFtOzjmg" name="public.body.begin" label="公共正文开始" is_valid="Y" note="M#"><![CDATA[<HTML>
+<HEAD>
+<TITLE>eUIS</TITLE>
+<META http-equiv='content-type' content='text/html; charset=utf-8'/>
+<META http-equiv='content-language' content='zh-cn'/>
+<STYLE type='text/css'>
+BODY {
+   margin: 0px;
+   padding: 0px;
+}
+TD {
+   font-family:'NSimSun';
+   font-size: 9pt;
+}
+.NavTitle {
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-weight: bold;
+	font-size: 14px;
+	color: #FFFFFF;
+}
+.NavText {
+	color: #19497A;
+}
+.BodyText {
+   margin: 0px;
+   padding: 0px;
+}
+.ItemHead {
+   padding:3 8;
+   background-color:#D0E8FF;
+}
+.ItemData {
+   padding:3 8;
+   background-color:#E6F3FF;
+}
+.HelpHead {
+   padding:3 8;
+   background-color:#EBFFD6;
+}
+.HelpText {
+   padding:3 8;
+   background-color:#D5DAFD;
+}
+.HelpData {
+   padding:3 8;
+   background-color:#F8FFEA;
+}
+</STYLE>
+</HEAD>
+<BODY>
+
+<!-- Title - begin ---------------------------------------->
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='3'>
+<TR>
+	<TD width='200' bgcolor='#3399FF' align='center' valign='top' class='NavTitle'>LIN<FONT color='#FF6A6A'>E</FONT>KONG <FONT color='#FF6A6A'>e</FONT>UIS</TD>
+	<TD bgcolor='#d5eaff' align='right' valign='bottom' class='NavText'><B class='NavText' style='padding-right:20'><jt:item source='$navigator_label'/></B></TD>
+</TR>
+</TABLE>
+<TABLE class='BodyText'>
+<TR><TD style='padding:8 6'>
+<jt:notEmpty source='$config.to_user_labels'><B>TO：<jt:item source='$config.to_user_labels'/></B><BR/></jt:notEmpty>
+<jt:notEmpty source='$config.cc_user_labels'><B>CC：<jt:item source='$config.cc_user_labels'/></B><BR/></jt:notEmpty>
+<jt:notEmpty source='$config.fr_user_label'><B>FR：<jt:item source='$config.fr_user_label'/></B></jt:notEmpty></TD>
+</TR>
+</TABLE>
+<!-- Title - end ------------------------------------------>]]></Source>
+  <Source _uuid="D0b4M9B6aK5P7DQssaqMlg" name="public.body.end" label="公共正文结束" is_valid="Y" note="M#"><![CDATA[<!-- System - begin --------------------------------------->
+<BR>
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <TABLE width='100%' border='0' cellpadding='1' cellspacing='0' bgcolor='#E6FFCC'>
+   <TR><TD style='padding:3 10'><B>系统帮助：</B></TD></TR>
+   <TR><TD height='1' bgcolor='#FFFFFF'></TD></TR>
+   <TR><TD height='1' bgcolor='#85BC4C'></TD></TR>
+   <TR><TD bgcolor='#FFFFFF' style='padding:4'>
+      ※ 请不要直接回复此邮件,您可以通过联系方式咨询常见问题。<BR>
+      <TABLE width='100%' cellpadding='1' cellspacing='1' style='border:1 solid #999999;margin:4'>
+      <TR>
+         <TD width='1px' bgcolor='#6B9D00'></TD>
+         <TD class='HelpHead' width='15%'>公司首页</TD>
+         <TD class='HelpData'><A href="http://www.linekong.com/" target="_blank">www.linekong.com</A></TD>
+      </TR>
+      <TR>
+         <TD width='1px' bgcolor='#6B9D00'></TD>
+         <TD class='HelpHead' width='15%'>公司地址</TD>
+         <TD class='HelpData'>北京市海淀区中关村北一街2号首创拓展大厦10层（邮编：100080）</TD>
+      </TR>
+      <TR>
+         <TD width='1px' bgcolor='#6B9D00'></TD>
+         <TD class='HelpHead' width='15%'>平台首页</TD>
+         <TD class='HelpData'><A href='http://192.168.41.191'>euis.linekong.com</A></TD>
+      </TR>
+      <TR>
+         <TD width='1px' bgcolor='#6B9D00'></TD>
+         <TD class='HelpHead' width='15%'>平台邮箱</TD>
+         <TD class='HelpData'><A href='mailto:euis-system@linekong.com'>euis-system@linekong.com</A></TD>
+      </TR>
+      <TR>
+         <TD width='1px' bgcolor='#6B9D00'></TD>
+         <TD class='HelpHead' width='15%'>平台分机</TD>
+         <TD class='HelpData'>64855888-6901</TD>
+      </TR>
+      </TABLE>
+      ※ 欢迎您使用信息管理系统，祝您一切顺利！
+   </TD></TR>
+   </TABLE>
+</TD></TR>
+</TABLE>
+<!-- System - end ----------------------------------------->
+
+<!-- Help - begin ----------------------------------------->
+<BR>
+<TABLE width='100%' class='BodyText'>
+<TR><TD style='padding:0 20;'>
+   <TABLE width='100%' border='0' cellpadding='0' cellspacing='0' bgcolor='#e6ffcc'>
+   <TR><TD style='padding:3 10'><B>系统提示：</B></TD></TR>
+   <TR><TD height='1' bgcolor='#FFFFFF'></TD></TR>
+   <TR><TD height='1' bgcolor='#85BC4C'></TD></TR>
+   <TR><TD bgcolor='#FFFFFF' style='color:#666666;padding:4'>
+      本邮件可能载有机密内容，非指定收件人请勿打开、复制本邮件或依赖本邮件的内容而采取任何行动。若误收到本邮件，请立即通知发送人，并删除本邮件及其附件。谢谢！<BR>
+      This message contains information which may be confidential and privileged. If you received the message by mistake, please inform the sender and delete the message as soon as possible，thanks. 
+   </TD></TR>
+   </TABLE>
+</TD></TR>
+</TABLE>
+<!-- Help - end ------------------------------------------->
+
+<!-- Help - begin ----------------------------------------->
+<BR>
+<TABLE width='100%' class='BodyText'>
+<TR><TD>
+   <TABLE width='100%' border='0' cellpadding='0' cellspacing='0'>
+   <TR><TD height='1' bgcolor='#ff9900'></TD></TR>
+   <TR><TD align='center' bgcolor='#FFFFFF' style='color:#999999'>
+      <BR>
+      蓝港在线（北京）科技有限公司<BR>
+      LineKong Entertainment Technology Co.,Ltd<BR><BR>
+   </TD></TR>
+   </TABLE>
+</TD></TR>
+</TABLE>
+<!-- Help - end ------------------------------------------->
+
+
+</BODY>
+</HTML>]]></Source>
+</Template>
+
