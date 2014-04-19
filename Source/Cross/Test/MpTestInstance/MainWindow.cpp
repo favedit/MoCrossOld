@@ -4,8 +4,8 @@
 #include <MoEngine.h>
 #include <MoEngineFace.h>
 #include <MoEngineRender.h>
-#include <MoEngineOpenGL.h>
-#include <MoEngineWindows.h>
+#include <MoPlatformOpenGLES2.h>
+#include <MoPlatformWindows.h>
 #include <MoGameEngine.h>
 #include "MoTestLogic.h"
 #include "MpMain.h"
@@ -120,14 +120,6 @@ TResult OnEnterFrame(SFrameEvent* pEvent){
 //============================================================
 TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine, TInt nCmdShow){
    // 初始化处理
-   MoInitialize();
-   MoCoreInitialize();
-   MoFeatureGraphicsInitialize();
-   MoEngineInitialize();
-   MoEngine3dInitialize();
-   MoEngineFaceInitialize();
-   MoEngineOpenGLInitialize();
-   MoEngineWindowsInitialize();
    MoGameEngineInitialize();
    //............................................................
    // 设置信息
@@ -154,20 +146,13 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    // 获得屏幕尺寸
    FScreenDevice* pScreenDevice = RDeviceManager::Instance().Find<FScreenDevice>();
    //SIntSize2& screenSize = pScreenDevice->Size();
-   RTechniqueManager::Instance().SetOptionInstance(EFalse);
    // 初始化渲染设备
    FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
    pRenderDevice->Setup();
    // 初始化舞台
-   MoFeatureGraphicsStartup();
-   MoEngineStartup();
-   MoEngine3dStartup();
-   MoEngineOpenGLStartup();
-   MoEngineRenderStartup();
-   //MoEngineFaceStartup();
+   MoGameEngineStartup();
    // 选择渲染方式
    RPipelineManager::Instance().SelectPipeline("simple");
-   RTechniqueManager::Instance().SetOptionInstance(ETrue);
    //RPipelineManager::Instance().SelectPipeline("shadow");
    // 注册字体
    FEoFont* pFont = FEoFont::InstanceCreate();
@@ -211,7 +196,7 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    FRenderView* pView = FRenderView::InstanceCreate();
    pView->SetCamera(pCamera);
    pView->SetViewport(pViewport);
-   stage->SceneFrame()->Views()->Push(pView);
+   stage->Views()->Push(pView);
    // 设置投影
    FPerspectiveProjection* pLightProjection = FPerspectiveProjection::InstanceCreate();
    pLightProjection->Size().Set(1024, 1024);
@@ -253,20 +238,10 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    // 处理窗口
    pWindow->Startup();
    pWindow->Process();
-  //............................................................
-   MoFeatureGraphicsShutdown();
-   MoEngine3dShutdown();
-   MoEngineShutdown();
+   //............................................................
+   MoGameEngineShutdown();
    //............................................................
    // 释放处理
    MoGameEngineRelease();
-   MoEngineWindowsRelease();
-   MoEngineOpenGLRelease();
-   MoEngineFaceRelease();
-   MoEngineRelease();
-   MoFeatureGraphicsRelease();
-   MoCoreRelease();
-   RClassManager::Instance().TrackActive();
-   MoRelease();
 	return 0;
 }

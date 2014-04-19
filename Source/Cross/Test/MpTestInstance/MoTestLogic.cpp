@@ -2,8 +2,8 @@
 #include FT_FREETYPE_H 
 #include <MoEngine.h>
 #include <MoEngineFace.h>
-#include <MoEngineOpenGL.h>
-//#include <MoEngineWindows.h>
+#include <MoPlatformOpenGLES2.h>
+#include <MoPlatformWindows.h>
 #include "MoTestLogic.h"
 
 MO_NAMESPACE_BEGIN
