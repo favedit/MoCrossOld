@@ -19,58 +19,36 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\builds\win32\ftdebug.c" />
-    <ClCompile Include="..\source\autofit\autofit.c" />
-    <ClCompile Include="..\source\base\ftbase.c" />
-    <ClCompile Include="..\source\base\ftbbox.c" />
-    <ClCompile Include="..\source\base\ftbitmap.c" />
-    <ClCompile Include="..\source\base\ftfstype.c" />
-    <ClCompile Include="..\source\base\ftgasp.c" />
-    <ClCompile Include="..\source\base\ftglyph.c" />
-    <ClCompile Include="..\source\base\ftgxval.c" />
-    <ClCompile Include="..\source\base\ftinit.c" />
-    <ClCompile Include="..\source\base\ftlcdfil.c" />
-    <ClCompile Include="..\source\base\ftmm.c" />
-    <ClCompile Include="..\source\base\ftotval.c" />
-    <ClCompile Include="..\source\base\ftpatent.c" />
-    <ClCompile Include="..\source\base\ftpfr.c" />
-    <ClCompile Include="..\source\base\ftstroke.c" />
-    <ClCompile Include="..\source\base\ftsynth.c" />
-    <ClCompile Include="..\source\base\ftsystem.c" />
-    <ClCompile Include="..\source\base\fttype1.c" />
-    <ClCompile Include="..\source\base\ftwinfnt.c" />
-    <ClCompile Include="..\source\base\ftxf86.c" />
-    <ClCompile Include="..\source\bdf\bdf.c" />
-    <ClCompile Include="..\source\cache\ftccache.c" />
-    <ClCompile Include="..\source\cff\cff.c" />
-    <ClCompile Include="..\source\cid\type1cid.c" />
-    <ClCompile Include="..\source\gzip\ftgzip.c" />
-    <ClCompile Include="..\source\lzw\ftlzw.c" />
-    <ClCompile Include="..\source\pcf\pcf.c" />
-    <ClCompile Include="..\source\pfr\pfr.c" />
-    <ClCompile Include="..\source\psaux\psaux.c" />
-    <ClCompile Include="..\source\pshinter\pshinter.c" />
-    <ClCompile Include="..\source\psnames\psmodule.c" />
-    <ClCompile Include="..\source\raster\raster.c" />
-    <ClCompile Include="..\source\sfnt\sfnt.c" />
-    <ClCompile Include="..\source\smooth\smooth.c" />
-    <ClCompile Include="..\source\truetype\truetype.c" />
-    <ClCompile Include="..\source\type1\type1.c" />
-    <ClCompile Include="..\source\type42\type42.c" />
-    <ClCompile Include="..\source\winfonts\winfnt.c" />
+    <ClCompile Include="..\png.c" />
+    <ClCompile Include="..\pngerror.c" />
+    <ClCompile Include="..\pngget.c" />
+    <ClCompile Include="..\pngmem.c" />
+    <ClCompile Include="..\pngpread.c" />
+    <ClCompile Include="..\pngread.c" />
+    <ClCompile Include="..\pngrio.c" />
+    <ClCompile Include="..\pngrtran.c" />
+    <ClCompile Include="..\pngrutil.c" />
+    <ClCompile Include="..\pngset.c" />
+    <ClCompile Include="..\pngtest.c" />
+    <ClCompile Include="..\pngtrans.c" />
+    <ClCompile Include="..\pngwio.c" />
+    <ClCompile Include="..\pngwrite.c" />
+    <ClCompile Include="..\pngwtran.c" />
+    <ClCompile Include="..\pngwutil.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\freetype\config\ftconfig.h" />
-    <ClInclude Include="..\freetype\config\ftheader.h" />
-    <ClInclude Include="..\freetype\config\ftmodule.h" />
-    <ClInclude Include="..\freetype\config\ftoption.h" />
-    <ClInclude Include="..\freetype\config\ftstdlib.h" />
-    <ClInclude Include="..\ft2build.h" />
+    <ClInclude Include="..\png.h" />
+    <ClInclude Include="..\pngconf.h" />
+    <ClInclude Include="..\pngdebug.h" />
+    <ClInclude Include="..\pnginfo.h" />
+    <ClInclude Include="..\pnglibconf.h" />
+    <ClInclude Include="..\pngpriv.h" />
+    <ClInclude Include="..\pngstruct.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D7254008-F26C-4F8E-9EEA-263F4C079353}</ProjectGuid>
+    <ProjectGuid>{2B6A1D87-5CC1-40C7-A306-505E706754FF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>MoFreeType</RootNamespace>
+    <RootNamespace>LibPng</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -111,7 +89,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(ProjectDir)..\..\..\..\Build\Debug_x86\</OutDir>
     <TargetName>$(ProjectName)D</TargetName>
-    <IncludePath>..;..\freetype;..\freetype\config;..\freetype\internal;..\freetype\internal\services;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\..\..\Library\LibZip;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)..\..\..\Build\Debug_x64\</OutDir>
@@ -121,7 +100,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)..\..\..\..\Build\Release_x86\</OutDir>
-    <IncludePath>..;..\freetype;..\freetype\config;..\freetype\internal;..\freetype\internal\services;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\..\..\Library\MoZLib;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\Build\Release_x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)..\..\..\Build\Release_x64\</OutDir>
@@ -132,7 +112,8 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;FT_DEBUG_LEVEL_ERROR;FT_DEBUG_LEVEL_TRACE;FT2_BUILD_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_MO_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -147,7 +128,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;FT_DEBUG_LEVEL_ERROR;FT2_BUILD_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_MO_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

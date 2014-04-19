@@ -19,36 +19,41 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\png.c" />
-    <ClCompile Include="..\pngerror.c" />
-    <ClCompile Include="..\pngget.c" />
-    <ClCompile Include="..\pngmem.c" />
-    <ClCompile Include="..\pngpread.c" />
-    <ClCompile Include="..\pngread.c" />
-    <ClCompile Include="..\pngrio.c" />
-    <ClCompile Include="..\pngrtran.c" />
-    <ClCompile Include="..\pngrutil.c" />
-    <ClCompile Include="..\pngset.c" />
-    <ClCompile Include="..\pngtest.c" />
-    <ClCompile Include="..\pngtrans.c" />
-    <ClCompile Include="..\pngwio.c" />
-    <ClCompile Include="..\pngwrite.c" />
-    <ClCompile Include="..\pngwtran.c" />
-    <ClCompile Include="..\pngwutil.c" />
+    <ClCompile Include="..\Alloc.c" />
+    <ClCompile Include="..\Bra.c" />
+    <ClCompile Include="..\LzFind.c" />
+    <ClCompile Include="..\LzFindMt.c" />
+    <ClCompile Include="..\Lzma2Dec.c" />
+    <ClCompile Include="..\Lzma2Enc.c" />
+    <ClCompile Include="..\Lzma86Dec.c" />
+    <ClCompile Include="..\Lzma86Enc.c" />
+    <ClCompile Include="..\LzmaDec.c" />
+    <ClCompile Include="..\LzmaEnc.c" />
+    <ClCompile Include="..\LzmaLib.c" />
+    <ClCompile Include="..\MtCoder.c" />
+    <ClCompile Include="..\Threads.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\png.h" />
-    <ClInclude Include="..\pngconf.h" />
-    <ClInclude Include="..\pngdebug.h" />
-    <ClInclude Include="..\pnginfo.h" />
-    <ClInclude Include="..\pnglibconf.h" />
-    <ClInclude Include="..\pngpriv.h" />
-    <ClInclude Include="..\pngstruct.h" />
+    <ClInclude Include="..\Alloc.h" />
+    <ClInclude Include="..\Bra.h" />
+    <ClInclude Include="..\LzFind.h" />
+    <ClInclude Include="..\LzFindMt.h" />
+    <ClInclude Include="..\LzHash.h" />
+    <ClInclude Include="..\Lzma2Dec.h" />
+    <ClInclude Include="..\Lzma2Enc.h" />
+    <ClInclude Include="..\Lzma86.h" />
+    <ClInclude Include="..\LzmaDec.h" />
+    <ClInclude Include="..\LzmaEnc.h" />
+    <ClInclude Include="..\LzmaLib.h" />
+    <ClInclude Include="..\MoLzma.h" />
+    <ClInclude Include="..\MtCoder.h" />
+    <ClInclude Include="..\Threads.h" />
+    <ClInclude Include="..\Types.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{2B6A1D87-5CC1-40C7-A306-505E706754FF}</ProjectGuid>
+    <ProjectGuid>{65E0E5D3-810E-4CCB-A972-0402BE66C40E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>MoPng</RootNamespace>
+    <RootNamespace>LibLzma</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -89,8 +94,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(ProjectDir)..\..\..\..\Build\Debug_x86\</OutDir>
     <TargetName>$(ProjectName)D</TargetName>
-    <IncludePath>$(ProjectDir)..\..\..\Library\MoZLib;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)..\..\..\Build\Debug_x64\</OutDir>
@@ -100,8 +103,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)..\..\..\..\Build\Release_x86\</OutDir>
-    <IncludePath>$(ProjectDir)..\..\..\Library\MoZLib;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\..\..\Build\Release_x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)..\..\..\Build\Release_x64\</OutDir>
@@ -113,7 +114,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_MO_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -128,7 +128,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;_LIB;_MO_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

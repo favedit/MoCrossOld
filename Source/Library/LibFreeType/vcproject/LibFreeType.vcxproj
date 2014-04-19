@@ -19,41 +19,58 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Alloc.c" />
-    <ClCompile Include="..\Bra.c" />
-    <ClCompile Include="..\LzFind.c" />
-    <ClCompile Include="..\LzFindMt.c" />
-    <ClCompile Include="..\Lzma2Dec.c" />
-    <ClCompile Include="..\Lzma2Enc.c" />
-    <ClCompile Include="..\Lzma86Dec.c" />
-    <ClCompile Include="..\Lzma86Enc.c" />
-    <ClCompile Include="..\LzmaDec.c" />
-    <ClCompile Include="..\LzmaEnc.c" />
-    <ClCompile Include="..\LzmaLib.c" />
-    <ClCompile Include="..\MtCoder.c" />
-    <ClCompile Include="..\Threads.c" />
+    <ClCompile Include="..\builds\win32\ftdebug.c" />
+    <ClCompile Include="..\source\autofit\autofit.c" />
+    <ClCompile Include="..\source\base\ftbase.c" />
+    <ClCompile Include="..\source\base\ftbbox.c" />
+    <ClCompile Include="..\source\base\ftbitmap.c" />
+    <ClCompile Include="..\source\base\ftfstype.c" />
+    <ClCompile Include="..\source\base\ftgasp.c" />
+    <ClCompile Include="..\source\base\ftglyph.c" />
+    <ClCompile Include="..\source\base\ftgxval.c" />
+    <ClCompile Include="..\source\base\ftinit.c" />
+    <ClCompile Include="..\source\base\ftlcdfil.c" />
+    <ClCompile Include="..\source\base\ftmm.c" />
+    <ClCompile Include="..\source\base\ftotval.c" />
+    <ClCompile Include="..\source\base\ftpatent.c" />
+    <ClCompile Include="..\source\base\ftpfr.c" />
+    <ClCompile Include="..\source\base\ftstroke.c" />
+    <ClCompile Include="..\source\base\ftsynth.c" />
+    <ClCompile Include="..\source\base\ftsystem.c" />
+    <ClCompile Include="..\source\base\fttype1.c" />
+    <ClCompile Include="..\source\base\ftwinfnt.c" />
+    <ClCompile Include="..\source\base\ftxf86.c" />
+    <ClCompile Include="..\source\bdf\bdf.c" />
+    <ClCompile Include="..\source\cache\ftccache.c" />
+    <ClCompile Include="..\source\cff\cff.c" />
+    <ClCompile Include="..\source\cid\type1cid.c" />
+    <ClCompile Include="..\source\gzip\ftgzip.c" />
+    <ClCompile Include="..\source\lzw\ftlzw.c" />
+    <ClCompile Include="..\source\pcf\pcf.c" />
+    <ClCompile Include="..\source\pfr\pfr.c" />
+    <ClCompile Include="..\source\psaux\psaux.c" />
+    <ClCompile Include="..\source\pshinter\pshinter.c" />
+    <ClCompile Include="..\source\psnames\psmodule.c" />
+    <ClCompile Include="..\source\raster\raster.c" />
+    <ClCompile Include="..\source\sfnt\sfnt.c" />
+    <ClCompile Include="..\source\smooth\smooth.c" />
+    <ClCompile Include="..\source\truetype\truetype.c" />
+    <ClCompile Include="..\source\type1\type1.c" />
+    <ClCompile Include="..\source\type42\type42.c" />
+    <ClCompile Include="..\source\winfonts\winfnt.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Alloc.h" />
-    <ClInclude Include="..\Bra.h" />
-    <ClInclude Include="..\LzFind.h" />
-    <ClInclude Include="..\LzFindMt.h" />
-    <ClInclude Include="..\LzHash.h" />
-    <ClInclude Include="..\Lzma2Dec.h" />
-    <ClInclude Include="..\Lzma2Enc.h" />
-    <ClInclude Include="..\Lzma86.h" />
-    <ClInclude Include="..\LzmaDec.h" />
-    <ClInclude Include="..\LzmaEnc.h" />
-    <ClInclude Include="..\LzmaLib.h" />
-    <ClInclude Include="..\MoLzma.h" />
-    <ClInclude Include="..\MtCoder.h" />
-    <ClInclude Include="..\Threads.h" />
-    <ClInclude Include="..\Types.h" />
+    <ClInclude Include="..\freetype\config\ftconfig.h" />
+    <ClInclude Include="..\freetype\config\ftheader.h" />
+    <ClInclude Include="..\freetype\config\ftmodule.h" />
+    <ClInclude Include="..\freetype\config\ftoption.h" />
+    <ClInclude Include="..\freetype\config\ftstdlib.h" />
+    <ClInclude Include="..\ft2build.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{65E0E5D3-810E-4CCB-A972-0402BE66C40E}</ProjectGuid>
+    <ProjectGuid>{D7254008-F26C-4F8E-9EEA-263F4C079353}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>MoLzma</RootNamespace>
+    <RootNamespace>LibFreeType</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -94,6 +111,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(ProjectDir)..\..\..\..\Build\Debug_x86\</OutDir>
     <TargetName>$(ProjectName)D</TargetName>
+    <IncludePath>..;..\freetype;..\freetype\config;..\freetype\internal;..\freetype\internal\services;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)..\..\..\Build\Debug_x64\</OutDir>
@@ -103,6 +121,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)..\..\..\..\Build\Release_x86\</OutDir>
+    <IncludePath>..;..\freetype;..\freetype\config;..\freetype\internal;..\freetype\internal\services;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)..\..\..\Build\Release_x64\</OutDir>
@@ -113,7 +132,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_MO_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;FT_DEBUG_LEVEL_ERROR;FT_DEBUG_LEVEL_TRACE;FT2_BUILD_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -128,7 +147,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;FT_DEBUG_LEVEL_ERROR;FT2_BUILD_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
