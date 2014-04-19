@@ -1,0 +1,185 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Configuration>
+   <Node type='folder' name='system' label='系统管理'>
+      <Node type='folder' name='system.common' label='共通管理'>
+         <Node type='folder' name='system.common.local' label='地域管理'>
+            <Node type='table' name='system.common.country_list' label='国家列表' form_name='MO.DataForms.Function.Common.Country.QCmCountryListForm'/>
+            <Node type='table' name='system.common.area_list' label='区域列表' form_name='MO.DataForms.Function.Common.Area.QCmAreaListForm'/>
+            <Node type='table' name='system.common.province_list' label='省份列表' form_name='MO.DataForms.Function.Common.Province.QCmProvinceListForm'/>
+            <Node type='table' name='system.common.city_list' label='城市列表' form_name='MO.DataForms.Function.Common.City.QCmCityListForm'/>
+         </Node>
+         <Node type='folder' name='tndSyDate' label='日历管理' form_name=''>
+            <Node type='table' name='tndSyDateList' label='日历列表' form_name='MO.DataForms.Function.Common.Calendar.QCmCalendarListForm'/>
+         </Node>
+      </Node>
+   </Node>
+   <Node type='folder' name='tndLogic' label='业务管理'>
+      <Node type='folder' name='tndProJect' label='事件管理' form_name=''/>
+      <Node type='folder' name='tndPlan' label='计划管理' form_name='' />
+   </Node>
+   <Node type='folder' name='tndCompany' label='公司管理'>
+      <Node type='table' name='tndOrganization' label='组织管理' form_name='' />
+      <Node type='folder' name='tndPerson' label='人员管理' form_name=''> 
+      <Node type='table' name='UserList' label='用户列表' form_name='MO.DataForms.Function.Person.QPmUserListForm'/>
+   </Node>
+   <Node type='folder' name='tndRole' label='角色管理' >
+      <Node type='table' name='tndRoleList' label='角色列表' form_name=''/>
+   </Node>
+   </Node>
+   <Node type='folder' name='develop' label='开发管理'>
+      <Node type='folder' name='develop.project' label='项目管理'>
+         <Node type='table' name='develop.project.progresstasktime' label='项目任务工时列表' form_name='MO.Business.Function.Develop.Progress.Task.QDpTaskHourListForm'/>
+         <Node type='table' name='develop.project.tasktime' label='任务时限列表' form_name='MO.Business.Function.Develop.TaskTime.QDpTaskTimeListForm'/>
+         <Node type='table' name='develop.project.type' label='项目类型列表' form_name='MO.Business.Function.Develop.Project.Type.QDpProjectTypeListForm'/>
+         <Node type='table' name='develop.project.project' label='项目列表' form_name='MO.Business.Function.Develop.Project.QDpProjectListForm'/>
+         <Node type='table' name='develop.project.mileston' label='系统列表' form_name='MO.Business.Function.Develop.Describe.SubSystem.QDpSubsystemListForm'/>
+         <Node type='table' name='develop.project.iteration' label='模块列表' form_name='MO.Business.Function.Develop.Describe.Module.QDpDescribeModuleListForm'/>
+         <Node type='table' name='develop.project.task' label='任务列表' form_name='MO.Business.Function.Develop.Task.QDpTaskListForm'/>
+      </Node>
+      <Node type='folder' name='develop.test.defect' label='缺陷管理'>
+<Node type='table' name='develop.project.testcaseresult' label='测试用例结果列表' form_name='MO.Business.Function.Develop.Test.Case.Result.QGmCaseResultListForm'/>
+<Node type='table' name='develop.project.testcasetype' label='测试用例类型列表' form_name='MO.Business.Function.Develop.Test.Case.Type.QGmCaseTypeListForm'/>
+<Node type='table' name='develop.project.testcase' label='测试用例列表' form_name='MO.Business.Function.Develop.Test.Case.QGmCaseListForm'/>
+<Node type='table' name='develop.project.testcaserequiretype' label='测试需求类型列表' form_name='MO.Business.Function.Develop.Test.Require.Type.QGmRequireTypeListForm'/>
+<Node type='table' name='develop.project.testcaserequire' label='测试需求列表' form_name='MO.Business.Function.Develop.Test.Require.QGmRequireListForm'/>
+         <Node type='table' name='develop.test.defect.defect' label='缺陷类型列表' form_name='MO.Business.Function.Develop.Test.Defect.Type.DpDefectDetailListForm'/>
+         <Node type='table' name='develop.test.defect.defect.type' label='缺陷列表' form_name='MO.Business.Function.Develop.Test.Defect.QDpDefectListForm'/>
+      </Node>
+      <Node type='folder' name='develop.game.rolename' label='游戏管理'>
+         <Node type='folder' name='function.game' label='角色姓名管理'>
+            <Node type='table' name='function.game.name' label='角色姓名管理' form_name='MO.Business.Function.Game.RoleName.QGmRoleNameListForm'/>
+         </Node>
+         <Node type='folder' name='develop.game.template' label='Backup-0104'>
+               <Node type='table' name='develop.game.template.style.icon' label='样式图标信息列表' form_name='MO.Business.Function.Game.Template.Style.Icon.QGmIconListForm'/>
+               <Node type='table' name='develop.game.template.style.action' label='样式动作信息列表' form_name='MO.Business.Function.Game.Template.Style.Action.QGmActionListForm'/>
+               <Node type='table' name='develop.game.template.style.effect' label='样式特效信息列表' form_name='MO.Business.Function.Game.Template.Style.Effect.QGmEffectListForm'/>
+               <Node type='table' name='develop.game.template.style.styleeffectpart' label='样式特效部分信息列表' form_name='MO.Business.Function.Game.Template.Style.StyleEffectPart.QGmStyleEffectPartListForm'/>
+               <Node type='table' name='develop.game.template.audio' label='音效信息列表' form_name='MO.Business.Function.Game.Template.Sound.QGmSoundListForm'/>
+               <Node type='table' name='develop.game.template.map.goodsbagitembag.itemgroup' label='地图组信息列表' form_name='MO.Business.Function.Game.Template.MapGroup.QGmMapGroupListForm'/>
+               <Node type='table' name='develop.game.template.map' label='地图信息列表' form_name='MO.Business.Function.Game.Template.Map.QGmMapListForm'/>
+               <Node type='table' name='develop.game.template.map.mappath' label='地图寻路信息列表' form_name='MO.Business.Function.Game.Template.Map.MapPath.QGmMapPathListForm'/>
+               <Node type='table' name='develop.game.template.map.MapPathLocation' label='地图寻路坐标信息列表' form_name='MO.Business.Function.Game.Template.Map.MapPathLocation.QGmMapPathLocationListForm'/>
+            	<Node type='table' name='develop.game.template.time' label='时代信息列表' form_name='MO.Business.Function.Game.Template.Time.QGmTimeListForm'/>
+               <Node type='table' name='develop.game.template.gender' label='性别列表' form_name='MO.Business.Function.Game.Template.Gender.QGmgEnderListForm'/>
+               <Node type='table' name='develop.game.template.race' label='种族列表' form_name='MO.Business.Function.Game.Template.Race.QGmRaceListForm'/>
+               <Node type='table' name='develop.game.template.metier' label='职业列表' form_name='MO.Business.Function.Game.Template.Metier.QGmMetierListForm'/>
+               <Node type='table' name='develop.game.template.goodsbagitembag.itemquality' label='物品品质信息列表' form_name='MO.Business.Function.Game.Template.ItemType.ItemQuality.QGmItemQualityListForm'/>
+               <Node type='table' name='develop.game.template.equip' label='装备信息列表' form_name='MO.Business.Function.Game.Template.Equip.QGmEquipListForm'/>
+               <Node type='table' name='develop.game.template.prop' label='道具信息列表' form_name='MO.Business.Function.Game.Template.Prop.QGmPropListForm'/>
+               <Node type='table' name='develop.game.template.ride.skillgroup' label='技能分组信息列表' form_name='MO.Business.Function.Game.Template.Skill.SkillGroup.QGmSkillGroupListForm'/>
+               <Node type='table' name='develop.game.template.book' label='心法列表' form_name='MO.Business.Function.Game.Template.Book.QGmBookListForm'/>
+               <Node type='table' name='develop.game.template.book.bookgroup' label='心法分组信息列表' form_name='MO.Business.Function.Game.Template.Book.BookGroup.QGmBookGroupListForm'/>
+               <Node type='table' name='develop.game.template.book.booklevel' label='心法级别信息列表' form_name='MO.Business.Function.Game.Template.Book.BookLevel.QGmBookLevelListForm'/>
+               <Node type='table' name='develop.game.template.book.bookleveleffect' label='心法级别效果信息列表' form_name='MO.Business.Function.Game.Template.Book.BookLevelEffect.QGmBookLevelEffectListForm'/>
+               <Node type='table' name='develop.game.template.map.mapfindway' label='地图寻路路径信息列表' form_name='MO.Business.Function.Game.Template.Map.MapPathWay.QGmMapPathWayListForm'/>
+               <Node type='table' name='develop.game.template.rewardbag' label='全局信息列表' form_name='MO.Business.Function.Game.Template.Global.QGmGlobalListForm'/>
+               <Node type='table' name='develop.game.template.propeffect' label='道具效果信息列表' form_name='MO.Business.Function.Game.Template.Prop.PropEffect.QGmPropEffectListForm'/>
+         </Node>
+         <Node type='folder' name='develop.game.template' label='Backup-0105'>
+               <Node type='table' name='develop.game.template.battlefieldmatrix' label='系统功能信息列表' form_name='MO.Business.Function.Game.Template.Function.QGmFunctionListForm'/>
+               <Node type='table' name='develop.game.template.notify' label='系统通知信息列表' form_name='MO.Business.Function.Game.Template.Notify.QGmNotifyListForm'/>
+               <Node type='table' name='develop.game.template.wuxing' label='五行信息列表' form_name='MO.Business.Function.Game.Template.WuXing.QGmWuXingListForm'/>
+               <Node type='table' name='develop.game.template.goodsbagbag' label='物品类型信息列表' form_name='MO.Business.Function.Game.Template.ItemType.QGmItemTypeListForm'/>
+               <Node type='table' name='develop.game.template.itemgroup' label='物品分组信息列表' form_name='MO.Business.Function.Game.Template.ItemType.ItemGroup.QGmItemGroupListForm'/>
+               <Node type='table' name='develop.game.template.bag' label='包裹列表' form_name='MO.Business.Function.Game.Template.Bag.QGmBagFormListForm'/>
+               <Node type='table' name='develop.game.template.ride.skillscope' label='技能范围信息列表' form_name='MO.Business.Function.Game.Template.Skill.SkillScope.QGmSkillScopeListForm'/>
+               <Node type='table' name='develop.game.template.ride.skillscopestance' label='技能范围站位信息列表' form_name='MO.Business.Function.Game.Template.Skill.SkillScopeStance.QGmSkillScopeStanceListForm'/>              
+               <Node type='table' name='develop.game.template.skill' label='技能列表' form_name='MO.Business.Function.Game.Template.Skill.QGmSkillListForm'/>               
+               <Node type='table' name='develop.game.template.ride.skilllevel' label='技能级别信息列表' form_name='MO.Business.Function.Game.Template.Skill.SkillLevel.QGmSkillLevelListForm'/>               
+               <Node type='table' name='develop.game.template.ride.skillgroup' label='技能公式信息列表' form_name='MO.Business.Function.Game.Template.Skill.SkillFormula.QGmSkillFormulaListForm'/>
+               <Node type='table' name='develop.game.template.buffgroup' label='BUFF分组' form_name='MO.Business.Function.Game.Template.Buff.BuffGroup.QGmBuffGroupListForm'/>
+               <Node type='table' name='develop.game.template.buff' label='BUFF' form_name='MO.Business.Function.Game.Template.Buff.QGmBuffListForm'/>
+               <Node type='table' name='develop.game.template.goodsbagitembag.itembag' label='物品包信息列表' form_name='MO.Business.Function.Game.Template.ItemBag.QGmItemBagListForm'/>
+               <Node type='table' name='develop.game.template.goodsbagitembag.itembagitem' label='物品包物品信息列表' form_name='MO.Business.Function.Game.Template.ItemBag.ItemBagItem.QGmItemBagItemListForm'/>
+               <Node type='table' name='develop.game.template.dropbag' label='掉落包信息列表' form_name='MO.Business.Function.Game.Template.DropBag.QGmDropBagListForm'/>
+               <Node type='table' name='develop.game.template.dropbag.dropbagitembag' label='掉落包物品包信息列表' form_name='MO.Business.Function.Game.Template.DropBag.DropBagItemBag.QGmDropBagItemBagListForm'/>
+               <Node type='table' name='develop.game.template.goodsbagbag' label='商品包信息列表' form_name='MO.Business.Function.Game.Template.GoodsBag.QGmGoodsBagListForm'/>
+               <Node type='table' name='develop.game.template.goodsbagitembag' label='商品包物品信息列表' form_name='MO.Business.Function.Game.Template.GoodsBag.GoodsBagItemBag.QGmGoodsBagItemBagListForm'/>
+               <Node type='table' name='develop.game.template.rewardbag' label='奖励包信息列表' form_name='MO.Business.Function.Game.Template.RewardBag.QGmRewardBagListForm'/>
+               <Node type='table' name='develop.game.template.goodsbagitembag.itemskillbag' label='技能包信息列表' form_name='MO.Business.Function.Game.Template.ItemType.ItemSkillBag.QGmItemSkillBagListForm'/>
+               <Node type='table' name='develop.game.template.goodsbagitembag.itemskillbagskill' label='技能包技能信息列表' form_name='MO.Business.Function.Game.Template.ItemType.ItemSkillBagSkill.QGmItemSkillBagSkillListForm'/>
+               <Node type='table' name='develop.game.template.WasteBag' label='消耗包信息列表' form_name='MO.Business.Function.Game.Template.WasteBag.QGmWasteBagListForm'/>
+               <Node type='table' name='develop.game.template.WasteBag.WasteBagitem' label='消耗包物品信息列表' form_name='MO.Business.Function.Game.Template.WasteBag.WasteBagItem.QGmWasteBagItemListForm'/>
+               <Node type='table' name='develop.game.template.npc.category' label='NPC类别信息表' form_name='MO.Business.Function.Game.Template.Npc.CateGory.QGmCateGoryListForm'/>
+               <Node type='table' name='develop.game.template.npc' label='NPC列表' form_name='MO.Business.Function.Game.Template.Npc.QGmNpcListForm'/>
+               <Node type='table' name='develop.game.template.npc.npcskill' label='NPC技能信息列表' form_name='MO.Business.Function.Game.Template.Npc.NpcSkill.QGmNpcSkilllistForm'/>
+               <Node type='table' name='develop.game.template.petgroup' label='宠物分组信息列表' form_name='MO.Business.Function.Game.Template.Petgroup.QGmPetGroupListForm'/>
+               <Node type='table' name='develop.game.template.pet' label='宠物信息模板' form_name='MO.Business.Function.Game.Template.Pet.QGmPetListForm'/>
+               <Node type='table' name='develop.game.template.ride.ridegroup' label='坐骑分组信息列表' form_name='MO.Business.Function.Game.Template.Ride.RideGroup.QGmRideGroupListForm'/>
+               <Node type='table' name='develop.game.template.ride' label='坐骑信息列表' form_name='MO.Business.Function.Game.Template.Ride.QGmRideListForm'/>
+               <Node type='table' name='develop.game.template.ride.ridelevel' label='坐骑级别信息列表' form_name='MO.Business.Function.Game.Template.Ride.RideLevel.QGmRideLevelListForm'/>
+               <Node type='table' name='develop.game.template.tasktrack' label='任务跟踪信息列表' form_name='MO.Business.Function.Game.Template.Task.TaskTrack.QGmTaskTrackListForm'/>
+               <Node type='table' name='develop.game.template.taskgroup' label='任务组信息列表' form_name='MO.Business.Function.Game.Template.Task.TaskGroup.QGmTaskGroupListForm'/>
+               <Node type='table' name='develop.game.template.task' label='任务信息列表' form_name='MO.Business.Function.Game.Template.Task.QGmTaskListForm'/>
+               <Node type='table' name='develop.game.template.taskpart' label='任务部分信息列表' form_name='MO.Business.Function.Game.Template.Task.TaskPart.QGmTaskPartListForm'/>
+               <Node type='table' name='develop.game.template.taskpartlimitgroup' label='任务部分条件分组信息列表' form_name='MO.Business.Function.Game.Template.Task.TaskPartLimitGroup.QGmTaskPartLimitGroupListForm'/>
+               <Node type='table' name='develop.game.template.taskpartLimit' label='任务部分条件信息列表' form_name='MO.Business.Function.Game.Template.Task.TaskPartLimit.QGmTaskPartLimitListForm'/>
+               <Node type='table' name='develop.game.template.taskpartrewardgroup' label='任务部分奖励分组信息列表' form_name='MO.Business.Function.Game.Template.Task.TaskPartRewardGroup.QGmTaskPartRewardGroupListForm'/>
+               <Node type='table' name='develop.game.template.taskpartreward' label='任务部分奖励信息列表' form_name='MO.Business.Function.Game.Template.Task.TaskPartReward.QGmTaskPartRewardListForm'/>
+               <Node type='table' name='develop.game.template.taskbag' label='任务包信息列表' form_name='MO.Business.Function.Game.Template.Task.TaskBag.QGmTaskBagListForm'/>
+               <Node type='table' name='develop.game.template.talk.talkbag' label='对话包信息列表' form_name='MO.Business.Function.Game.Template.Talk.TalkBag.QGmTalkBagListForm'/>
+               <Node type='table' name='develop.game.template.talk.talkbaggroup' label='对话包分组信息列表' form_name='MO.Business.Function.Game.Template.Talk.TalkBagGroup.QGmTalkBagGroupListForm'/>
+               <Node type='table' name='develop.game.template.talk.talkbaggrouptalk' label='对话包分组对话列表' form_name='MO.Business.Function.Game.Template.Talk.TalkBagGroupTalk.QGmTalkBagGroupTalkListForm'/>
+               <Node type='table' name='develop.game.template.talk.talkbagcontent' label='对话包内容信息列表' form_name='MO.Business.Function.Game.Template.Talk.TalkBagContent.QGmTalkBagContentListForm'/>
+               <Node type='table' name='develop.game.template.matrix' label='阵型信息列表' form_name='MO.Business.Function.Game.Template.Matrix.QGmMatrixListForm'/>
+               <Node type='table' name='develop.game.template.matrixstance' label='阵型位置信息列表' form_name='MO.Business.Function.Game.Template.MatrixStance.QGmgMatrixStanceListForm'/>
+               <Node type='table' name='develop.game.template.battlefield' label='战场信息列表' form_name='MO.Business.Function.Game.Template.BattleField.QGmBattleFieldListForm'/>
+               <Node type='table' name='develop.game.template.battlefieldmatrix' label='战场阵型信息列表' form_name='MO.Business.Function.Game.Template.BattleField.Matrix.QGmMatrixListForm'/>
+               <Node type='table' name='develop.game.template.battlefieldmatrixstance' label='战场阵型位置信息列表' form_name='MO.Business.Function.Game.Template.BattleField.BattleFieldMatrixStance.QGmBattleFieldMatrixStanceListForm'/>
+               <Node type='table' name='develop.game.template.battlegroundgroup' label='战场底图组信息列表' form_name='MO.Business.Function.Game.Template.BattleField.BattleGroundGroup.QGMBattleGroundGroupListForm'/>
+               <Node type='table' name='develop.game.template.battlegroundgroupground' label='战场底图组底图信息列表' form_name='MO.Business.Function.Game.Template.BattleField.BattleGroundGroupGround.QGmBattleGroundGroupGroundListForm'/>
+               <Node type='table' name='develop.game.template.npc.bag' label='NPC包信息表' form_name='MO.Business.Function.Game.Template.Npc.Bag.QGmBagListForm'/>
+               <Node type='table' name='develop.game.template.npc.npcbagnpc' label='NPC包NPC信息表' form_name='MO.Business.Function.Game.Template.Npc.NpcBagNpc.QGmNpcBagNpcListForm'/>
+               <Node type='table' name='develop.game.template.battlebag' label='战斗包列表' form_name='MO.Business.Function.Game.Template.BattleBag.QGmBattleBagListForm'/>
+               <Node type='table' name='develop.game.template.battlebag.battlebagstance' label='战斗包位置列表' form_name='MO.Business.Function.Game.Template.BattleBag.BattleBagStance.QGmBattleBagStanceListForm'/>
+               <Node type='table' name='develop.game.template.battlebag.battlebagstanceplayer' label='战斗位置人数列表' form_name='MO.Business.Function.Game.Template.BattleBag.Stance.Player.QGmBattleBagStancePlayerListForm'/>
+               <Node type='table' name='develop.game.template.actor' label='演员列表' form_name='MO.Business.Function.Game.Template.Actor.QGmActorListForm'/>
+         </Node>
+               <Node type='folder' name='develop.game.template' label='Backup-0106'>
+                     <Node type='table' name='develop.game.template.persistence' label='系统存储信息列表' form_name='MO.Business.Function.Game.Template.Persistence.QGmPersistenceListForm'/>
+                     <Node type='table' name='develop.game.template.message' label='消息信息列表' form_name='MO.Business.Function.Game.Template.Message.QGmMessageListForm'/>
+                     <Node type='table' name='develop.game.template.translate' label='翻译信息列表' form_name='MO.Business.Function.Game.Template.Translate.QGmTranslateListForm'/>
+                     <Node type='table' name='develop.game.template.world' label='世界信息列表' form_name='MO.Business.Function.Game.Template.World.QGmWorldListForm'/>
+                     <Node type='table' name='develop.game.template.area' label='区域信息列表' form_name='MO.Business.Function.Game.Template.Area.QGmAreaListForm'/>
+                     <Node type='table' name='develop.game.template.line' label='分线信息列表' form_name='MO.Business.Function.Game.Template.Line.QGmLineListForm'/>
+                     <Node type='table' name='develop.game.template.ride.skillbuff' label='技能BUFF信息列表' form_name='MO.Business.Function.Game.Template.Skill.SkillBuff.QGmSkillBuffListForm'/>
+                     <Node type='table' name='develop.game.template.bufflevel' label='BUFF级别' form_name='MO.Business.Function.Game.Template.Buff.BuffLevel.QGmBuffLevelListForm'/>
+                     <Node type='table' name='develop.game.template.pet.pettype' label='宠物类别信息列表' form_name='MO.Business.Function.Game.Template.Pet.PetType.QGmPetTypeListForm'/>
+                     <Node type='table' name='develop.game.template.static' label='静态信息列表' form_name='MO.Business.Function.Game.Template.Static.QGmStaticListForm'/>
+                     <Node type='table' name='develop.game.template.taskbagtask' label='任务包任务信息列表' form_name='MO.Business.Function.Game.Template.Task.TaskBagTask.QGmTaskBagTaskListForm'/>
+                     <Node type='table' name='develop.game.template.map.mapbattlefield' label='地图战场信息列表' form_name='MO.Business.Function.Game.Template.Map.MapBattleField.QGmMapBattleFieldListForm'/>
+                     <Node type='table' name='develop.game.template.map.mapbattlebag' label='地图战斗包信息列表' form_name='MO.Business.Function.Game.Template.Map.MapBattleBag.QGmMapBattleBagListForm'/>
+                     <Node type='table' name='develop.game.template.actor.actorgoodsbag' label='演员商品包列表' form_name='MO.Business.Function.Game.Template.Actor.ActorGoodsBag.QGmActorGoodsBagListForm'/>
+                     <Node type='table' name='develop.game.template.actor.actorbattlebag' label='演员战斗包列表' form_name='MO.Business.Function.Game.Template.Actor.ActorBattleBag.QGmActorBattleBagListForm'/>
+                     <Node type='table' name='develop.game.template.actor.actortaskbag' label='演员任务包列表' form_name='MO.Business.Function.Game.Template.Actor.ActorTaskBag.QGmActorTaskBagListForm'/>
+                     <Node type='table' name='develop.game.template.actor.actorteleport' label='演员传送点列表' form_name='MO.Business.Function.Game.Template.Actor.ActorTeleport.QGmActorTeleportListForm'/>
+                     <Node type='table' name='develop.game.template.actor.actorfactory' label='演员工厂列表' form_name='MO.Business.Function.Game.Template.Actor.ActorFactory.QGmActorFactoryListForm'/>
+                     <Node type='table' name='develop.game.template.actor.actorfactoryactor' label='演员工厂演员列表' form_name='MO.Business.Function.Game.Template.Actor.ActorFactoryActor.QGmActorFactoryActorListForm'/>
+                     <Node type='table' name='develop.game.template.still' label='静物信息列表' form_name='MO.Business.Function.Game.Template.Still.QGmStillListForm'/> 
+                     <Node type='table' name='develop.game.template.ride.societytype' label='组织类型列表' form_name='MO.Business.Function.Game.Template.Society.SocietyType.QGmSocietyTypeListForm'/>               
+                     <Node type='table' name='develop.game.template.ride.societyganglevel' label='组织级别信息列表' form_name='MO.Business.Function.Game.Template.Society.SocietyGangLevel.QGmSocietyGangLevelListForm'/>
+                     <Node type='table' name='develop.game.template.role' label='主角信息列表' form_name='MO.Business.Function.Game.Template.Role.QGmRoleListForm'/>
+                     <Node type='table' name='develop.game.template.roleequuip' label='主角装备信息列表' form_name='MO.Business.Function.Game.Template.Role.RoleEquip.QGmRoleEquipListForm'/>
+                     <Node type='table' name='develop.game.template.roleride' label='主角坐骑信息列表' form_name='MO.Business.Function.Game.Template.Role.RoleRide.QGmRoleRideListForm'/>
+                     <Node type='table' name='develop.game.template.player' label='玩家列表' form_name='MO.Business.Function.Game.Template.Player.QGmPlayerListForm'/>
+                     <Node type='table' name='develop.game.template.player.Playerbag' label='玩家包裹信息列表' form_name='MO.Business.Function.Game.Template.Player.PlayerBag.QGmPlayerBagListForm'/>
+                     <Node type='table' name='develop.game.template.player.playerprop' label='玩家道具信息列表' form_name='MO.Business.Function.Game.Template.Player.PlayerProp.QGmPlayerPropListForm'/>
+                     <Node type='table' name='develop.game.template.player.playerskill' label='玩家技能信息列表' form_name='MO.Business.Function.Game.Template.Player.PlayerSkill.QGmPlayerSkillListForm'/>
+                     <Node type='table' name='develop.game.template.player.Playerequip' label='玩家装备信息列表' form_name='MO.Business.Function.Game.Template.Player.PlayerEquip.QGmPlayerEquipListForm'/>
+                     <Node type='table' name='develop.game.template.player.Playerpet' label='玩家宠物信息列表' form_name='MO.Business.Function.Game.Template.Player.PlayerPet.QGmPlayerPetListForm'/>
+                     <Node type='table' name='develop.game.template.player.playerride' label='玩家坐骑信息列表' form_name='MO.Business.Function.Game.Template.Player.PlayerRide.QGmPlayerRideListForm'/>
+                     <Node type='table' name='develop.game.template.rolelevel' label='主角级别信息列表' form_name='MO.Business.Function.Game.Template.Role.RoleLevel.QGmRoleLevelListForm'/>                  
+               </Node>
+               <Node type='folder' name='develop.game.template' label='Backup-0107'>
+                  <Node type='table' name='develop.game.template.pet.petlevelup' label='宠物升级信息列表' form_name='MO.Business.Function.Game.Template.Pet.PetLevelUp.QGmPetLevelUpListForm'/>
+                  <Node type='table' name='develop.game.template.tasktrigger' label='任务触发信息列表' form_name='MO.Business.Function.Game.Template.Task.TaskTrigger.QGmTaskTriggerListForm'/>
+                  <Node type='table' name='develop.game.template.ride.societyposition' label='社会组织官职列表' form_name='MO.Business.Function.Game.Template.Society.SocietyPosition.QGmSocietyPositionListForm'/>
+                  <Node type='table' name='develop.game.template.ride.societymembertype' label='社会组织成员类型信息列表' form_name='MO.Business.Function.Game.Template.Society.SocietyMembertype.QGmSocietyMembertypeListForm'/>
+                  <Node type='table' name='develop.game.template.ride.societyfunctiondistribution' label='社会组织功能分配信息列表' form_name='MO.Business.Function.Game.Template.Society.SocietyFunctionDistribution.QGmSocietyFunctionDistributionListForm'/>
+</Node>
+      </Node>
+   </Node>
+   <Node type='folder' name='develop.business' label='业务管理'>
+      <Node type='table' name='tndCheckingin' label='考勤管理' form_name='' />
+   </Node>
+</Configuration>

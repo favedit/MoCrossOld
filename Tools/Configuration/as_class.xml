@@ -1,0 +1,527 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Class name="Property">
+    <Property valid='Y'   name="value"             group='4-控件属性' label='内容'     type='string' default='null'  note='存储字符串内容。'/>
+  </Class>
+  <Class name="StaticLabel">
+    <Property valid='Y'   name="font_name"         group='4-控件属性' label='字体名称' type='string' default='null'     note='文本字体。'/>
+    <Property valid='Y'   name="font_color"        group='4-控件属性' label='字体颜色' type='color'  default='0xFFFFFF' note='标签上的颜色。'/>
+    <Property valid='Y'   name="font_size"         group='4-控件属性' label='字体大小' type='int'    default='0'        note='文本大小。'/>
+  </Class>
+  <Class name="Label">
+    <Property valid='Y'   name="font_name"         group='4-控件属性' label='字体名称' type='string' default='null'     note='文本字体。'/>
+    <Property valid='Y'   name="font_color"        group='4-控件属性' label='字体颜色' type='color'  default='0xFFFFFF' note='标签上的颜色。'/>
+    <Property valid='Y'   name="font_size"         group='4-控件属性' label='字体大小' type='int'    default='0'        note='文本大小。'/>
+  </Class>
+  <Class valid='Y' name="Button" label='按键'>
+    <Property valid='Y'   name="option_select"     group='2-配置信息' label='配置选中' type='bool'   default='false' note='按键上是否可以被选中。'/>
+    <Property valid='Y'   name="option_hover"      group='2-配置信息' label='配置热点' type='bool'   default='false' note='按键上是否可以有热点。'/>
+    <Property valid='Y'   name="option_label"      group='2-配置信息' label='配置标签' type='bool'   default='false' note='按键上是否含有可设置文字。'/>
+    <Property valid='Y'   name="style_normal"      group='2-配置信息' label='样式普通' type='bool'   default='false' note='背景图片上是否含有普通位图。'/>
+    <Property valid='Y'   name="style_hover"       group='2-配置信息' label='样式热点' type='bool'   default='false' note='背景图片上是否含有热点位图。'/>
+    <Property valid='Y'   name="style_select"      group='2-配置信息' label='样式选择' type='bool'   default='false' note='背景图片上是否含有选择位图。'/>
+    <Property valid='Y'   name="style_disable"     group='2-配置信息' label='样式禁止' type='bool'   default='false' note='背景图片上是否含有禁止位图。'/>
+    <Property valid='Y'   name="valid_interval"    group='4-控件属性' label='有效间隔' type='int'    default='0'     note='按键事件处理的最小间隔。'/>
+    <Property valid='Y'   name="label_color"       group='4-控件属性' label='标签颜色' type='string' default='null'  note='标签上的颜色。'/>
+    <Property valid='Y'   name="visible"           convert='option_visible'/>
+    <Property valid='Y'   name="mouse_select_able" convert='option_select'/>
+    <Property valid='Y'   name="mouse_over_able"   convert='option_hover'/>
+    <Property valid='Y'   name="color"             convert='label_color'/>
+    <Property valid='Y'   name="hover_rid"         convert='ground_rid:hover'/>
+    <Property valid='Y'   name="unground_rid"      convert='ground_rid:select'/>
+    <Property valid='Y'   name="down_rid"          convert='ground_rid:select'/>
+    <Property invalid='Y' name="display_cd"        note='未使用过'/>
+    <Property invalid='Y' name="operate_cd"        note='未使用过'/>
+    <Property invalid='Y' name="choose"            note='未使用过'/>
+    <Property invalid='Y' name="package_rid"       note='未使用过'/>
+    <Property invalid='Y' name="unlock_rid"        note='未使用过'/>
+    <Property invalid='Y' name="is_select"         note='未使用过'/>
+    <Property invalid='Y' name="is_change_style"   note='未使用过'/>
+  </Class>
+  <Class name="Radio" parent='FUiDataControl' >
+    <Property valid='Y' name="option_check"       group='4-控件属性' label='配置选择'     type='bool'   default='false' note='是否已经选中。'/>
+    <Property valid='Y' name="label_width"        group='4-控件属性' label='标签宽度'     type='int'    default='0'     note='标签宽度。'/>
+    <Property valid='Y' name="label_color"        group='4-控件属性' label='标签颜色'     type='string' default='null'  note='标签上的颜色。'/>
+    <Property valid='Y' name="label_ground_color" group='4-控件属性' label='标签背景颜色' type='string' default='null'  note='标签背景颜色。'/>
+    <Property valid='Y' name="edit_width"         group='4-控件属性' label='编辑宽度'     type='int'    default='0'     note='编辑宽度。'/>
+    <Property valid='Y' name="label_bg_color"     convert='label_ground_color'/>
+    <Property name="group" />
+    <Property name="type" />
+    <Property name="value" />
+    <Property name="border" />
+    <Property name="display_cd" />
+    <Property name="operate_cd" />
+    <Property name="label_visible" />
+    <Property name="edit_visible" />
+    <Property name="edit_bg_color" />
+  </Class>
+  <Class valid='Y' name="Check" parent='FUiDataControl' label='复选框'>
+    <Property valid='Y' name="option_check"       group='4-控件属性' label='配置选择'     type='bool'   default='false' note='是否已经选中。'/>
+    <Property valid='Y' name="label_width"        group='4-控件属性' label='标签宽度'     type='int'    default='0'     note='标签宽度。'/>
+    <Property valid='Y' name="label_color"        group='4-控件属性' label='标签颜色'     type='string' default='null'  note='标签上的颜色。'/>
+    <Property valid='Y' name="label_ground_color" group='4-控件属性' label='标签背景颜色' type='string' default='null'  note='标签背景颜色。'/>
+    <Property valid='Y' name="edit_width"         group='4-控件属性' label='编辑宽度'     type='int'    default='0'     note='编辑宽度。'/>
+    <Property valid='Y' name="border"             convert='option_border'/>
+    <Property valid='Y' name="label_bg_color"     convert='label_ground_color'/>
+  </Class>
+  <Class name="SelectItem" parent='FUiControl'>
+    <Property valid='Y'   name="data_name"        group='4-控件属性' label='数据名称'     type='string'   default='null' note='数据内容。'/>
+    <Property valid='Y'   name="data_value"       group='4-控件属性' label='数据内容'     type='string'   default='null' note='数据名称。'/>
+  </Class>
+  <Class name="Select" parent='FUiDataContainer'>
+    <Property valid='Y'   name="button"           group='4-控件属性' label='按键资源'    type='resource' default='null' note='按键的资源编号。'/>
+    <Property name="button_size" />
+    <Property name="display_cd" />
+    <Property name="panel_border_color" />
+    <Property name="panel_alpha" />
+    <Property name="operate_cd" />
+    <Property name="alpha" />
+    <Property name="max_size" />
+    <Property name="has_item" />
+    <Property name="itemname" />
+    <Property name="itemvalue" />
+  </Class>
+  <Class name="Edit" parent='FUiDataControl' >
+    <Property valid='Y'   name="option_number"      group='2-配置信息' label='配置数字'     type='bool'   default='false' note='是否只能输入数字。'/>
+    <Property valid='Y'   name="option_lines"       group='2-配置信息' label='配置多行'     type='bool'   default='false' note='是否可以输入多行文本。'/>
+    <Property valid='Y'   name="option_html"        group='2-配置信息' label='配置页面'     type='bool'   default='false' note='是否使用HTML文本。'/>
+    <Property valid='Y'   name="label_visible"      group='4-控件属性' label='标签可见'     type='bool'   default='false' note='标签可见。'/>
+    <Property valid='Y'   name="label_width"        group='4-控件属性' label='标签宽度'     type='int'    default='0'     note='标签宽度。'/>
+    <Property valid='Y'   name="label_color"        group='4-控件属性' label='标签颜色'     type='string' default='null'  note='标签颜色。'/>
+    <Property valid='Y'   name="label_ground_color" group='4-控件属性' label='标签背景颜色' type='string' default='null'  note='标签背景颜色。'/>
+    <Property valid='Y'   name="edit_visible"       group='4-控件属性' label='编辑可见'     type='bool'   default='false' note='编辑可见。'/>
+    <Property valid='Y'   name="edit_border"        group='4-控件属性' label='编辑边框'     type='bool'   default='false' note='编辑边框。'/>
+    <Property valid='Y'   name="edit_able"          group='4-控件属性' label='编辑可'       type='bool'   default='false' note='编辑可。'/>
+    <Property valid='Y'   name="edit_width"         group='4-控件属性' label='编辑宽度'     type='int'    default='0'     note='编辑宽度。'/>
+    <Property valid='Y'   name="edit_color"         group='4-控件属性' label='编辑颜色'     type='string' default='null'  note='编辑颜色。'/>
+    <Property valid='Y'   name="edit_ground"        group='4-控件属性' label='编辑背景'     type='bool'   default='false' note='编辑背景。'/>
+    <Property valid='Y'   name="edit_ground_color"  group='4-控件属性' label='编辑背景颜色' type='string' default='null'  note='编辑背景颜色。'/>
+    <Property valid='Y'   name="font_name"          group='4-控件属性' label='字体名称'     type='string' default='null'  note='字体名称。'/>
+    <Property valid='Y'   name="font_size"          group='4-控件属性' label='字体大小'     type='int'    default='0'     note='字体大小。'/>
+    <Property valid='Y'   name="default_text"       group='4-控件属性' label='默认文本'     type='string' default='null'  note='默认文本。'/>
+    <Property valid='Y'   name="is_number"          convert='option_number'/>
+    <Property valid='Y'   name="multi_line"         convert='option_lines'/>
+    <Property valid='Y'   name="default_type"       convert='option_html'/>
+    <Property valid='Y'   name="label_bg_color"     convert='label_ground_color'/>
+    <Property valid='Y'   name="border"             convert='edit_border'/>
+    <Property valid='Y'   name="edit_bg_color"      convert='edit_ground_color'/>
+    <Property invalid='Y' name="is_border"          note='未使用过'/>
+    <Property invalid='Y' name="font_color"         note='未使用过'/>
+    <Property name="height" />
+    <Property name="value_min" />
+    <Property name="value_max" />
+    <Property name="label_location" />
+    <Property name="has_extact_button" />
+    <Property name="valid_able" />
+    <Property name="type" />
+    <Property name="display_cd" />
+    <Property name="operate_cd" />
+    <Property name="package_rid" />
+    <Property name="allow_space" />
+    <Property name="max_size" />
+    <Property name="bg_color" />
+    <Property name="word_wrap" />
+    <Property name="italic" />
+    <Property name="underLine" />
+    <Property name="select_able" />
+    <Property name="scroll" />
+    <Property name="validable" />
+    <Property name="location_x" />
+    <Property name="location_y" />
+    <Property name="check_able" />
+    <Property name="link_able" />
+    <Property name="link_type" />
+    <Property name="editType" />
+  </Class>
+  <Class name="RichText" parent='FUiDataControl' >
+    <Property name="edit_width" />
+    <Property name="label_visible" />
+    <Property name="edit_visible" />
+    <Property name="label_location" />
+    <Property name="border" />
+    <Property name="label_bg_color" />
+    <Property name="label_color" />
+    <Property name="edit_bg_color" />
+    <Property name="edit_color" />
+    <Property name="has_extact_button" />
+    <Property name="valid_able" />
+    <Property name="default_type" />
+    <Property name="default_text" />
+  </Class>
+  <Class valid='Y' name="Slot" parent='FUiDataControl' >
+    <Property invalid='Y' name="itemStartLocation" convert='content_location'/>
+    <Property invalid='Y' name="display_cd"  note='未使用过'/>
+    <Property invalid='Y' name="operate_cd"  note='未使用过'/>
+    <Property invalid='Y' name="package_rid" note='未使用过'/>
+    <Property invalid='Y' name="index"       note='未使用过'/>
+    <Property invalid='Y' name="style"       note='未使用过'/>
+  </Class>
+  <Class valid='Y' name="PictureBox" label='图片框' parent='FUiDataControl' >
+    <Property valid='Y'   name="resource_rids" group='4-控件属性' label='图片框' type='string' default='null'/>
+    <Property invalid='Y' name="resources" convert='resource_rids'/>
+    <Property name="resource_rid" />
+    <Property name="isItemFormat" />
+    <Property name="unground_rid" />
+    <Property name="package_rid" />
+    <Property name="ground_rid_dark" />
+    <Property name="ground_rid_light" />
+    <Property name="ground_rid_purple" />
+    <Property name="ground_rid_orange" />
+    <Property name="type" />
+  </Class>
+  <Class name="ProgressBar" parent='FUiDataControl' >
+    <Property valid='Y'   name="option_label" group='2-配置信息' label='配置标签' type='bool'   default='false' note='按键上是否含有可设置文字。'/>
+    <Property invalid='Y' name="label_show"   convert='option_label'/>
+    <Property name="font_size" />
+    <Property name="font_height" />
+  </Class>
+  <Class name="ArtFont" parent='FUiDataControl' >
+    <Property valid='Y' name="value"     group='4-控件属性' label='内容'     type='string' default='null'/>
+    <Property name="curentAble" />
+    <Property name="mouseOverAble" />
+    <Property name="mouseChildren" />
+    <Property name="useHandCursor" />
+    <Property name="resource_id_0" />
+    <Property name="resource_id_1" />
+    <Property name="resource_id_2" />
+    <Property name="resource_id_3" />
+    <Property name="resource_id_4" />
+    <Property name="resource_id_5" />
+    <Property name="resource_id_6" />
+    <Property name="resource_id_7" />
+    <Property name="resource_id_8" />
+    <Property name="resource_id_9" />
+  </Class>
+  <Class name="Group" parent='FUiContainer'>
+    <Property name="type" />
+    <Property name="display_cd" />
+    <Property name="operate_cd" />
+  </Class>
+  <Class name="Slider" parent='FUiDataControl' >
+    <Property name="min" />
+    <Property name="max" />
+    <Property name="value" />
+  </Class>
+  <Class name="Movie" parent='FUiDataControl' >
+    <Property name="edit_width" />
+    <Property name="label_visible" />
+    <Property name="edit_visible" />
+    <Property name="label_location" />
+    <Property name="border" />
+    <Property name="label_bg_color" />
+    <Property name="label_color" />
+    <Property name="edit_bg_color" />
+    <Property name="edit_color" />
+    <Property name="has_extact_button" />
+    <Property name="valid_able" />
+    <Property name="effect_style" />
+  </Class>
+  <Class name="Calendar" parent='FUiDataControl' >
+    <Property name="title_height" />
+    <Property name="week_title_height" />
+    <Property name="day_width" />
+    <Property name="day_height" />
+    <Property name="title_color" />
+    <Property name="weekTitle_color" />
+  </Class>
+  <Class valid='Y' name="MenuButton" label='菜单按键'>
+    <Property valid='Y'   name="option_select"   group='2-配置信息' label='配置选中' type='bool'   default='false' note='按键上是否可以被选中。'/>
+    <Property valid='Y'   name="option_hover"    group='2-配置信息' label='配置热点' type='bool'   default='false' note='按键上是否可以有热点。'/>
+    <Property valid='Y'   name="option_label"    group='2-配置信息' label='配置标签' type='bool'   default='false' note='按键上是否含有可设置文字。'/>
+    <Property valid='Y'   name="style_normal"    group='2-配置信息' label='样式普通' type='bool'   default='false' note='背景图片上是否含有普通位图。'/>
+    <Property valid='Y'   name="style_hover"     group='2-配置信息' label='样式热点' type='bool'   default='false' note='背景图片上是否含有热点位图。'/>
+    <Property valid='Y'   name="style_select"    group='2-配置信息' label='样式选择' type='bool'   default='false' note='背景图片上是否含有选择位图。'/>
+    <Property valid='Y'   name="style_disable"   group='2-配置信息' label='样式禁止' type='bool'   default='false' note='背景图片上是否含有禁止位图。'/>
+    <Property valid='Y'   name="valid_interval"  group='4-控件属性' label='有效间隔' type='int'    default='0'     note='按键事件处理的最小间隔。'/>
+    <Property valid='Y'   name="label_color"     group='4-控件属性' label='标签颜色' type='color'  default='0xFFFFFF' note='标签上的颜色。'/>
+  </Class>
+  <Class valid='Y' name="Panel" label='面板' parent='FUiScrollBox'>
+    <Property name="bg_color" />
+    <Property name="border" />
+    <Property name="alpha" />
+    <Property name="edit_width" />
+    <Property name="label_visible" />
+    <Property name="edit_visible" />
+    <Property name="label_location" />
+    <Property name="label_bg_color" />
+    <Property name="label_color" />
+    <Property name="edit_bg_color" />
+    <Property name="edit_color" />
+    <Property name="has_extact_button" />
+    <Property name="valid_able" />
+    <Property name="display_cd" />
+    <Property name="operate_cd" />
+    <Property name="multi_line" />
+    <Property name="default_type" />
+    <Property name="default_text" />
+  </Class>
+  <Class valid='Y' name="ListItem" label='列表项目' parent='FUiScrollItem'>
+  </Class>
+  <Class valid='Y' name="ListView" label='列表视图' parent='FUiScrollView'>
+  </Class>
+  <Class valid='Y' name="Item" label='项目' parent='FUiContainer'>
+    <Property name="type" />
+  </Class>
+  <Class valid='Y' name="List" label='列表' parent='FUiScrollBox'>
+    <Property name="bg_color" />
+    <Property name="alpha" />
+    <Property name="display_cd" />
+    <Property name="operate_cd" />
+    <Property name="button_lock_rid" />
+    <Property name="button_unlock_rid" />
+  </Class>
+  <Class valid='Y' name="Page" label='页控件' parent='FUiScrollBox'>
+    <Property valid='Y' name="default_display" group='4-控件属性' label='默认显示' type='bool'   default='false' note='默认显示。'/>
+    <Property valid='Y' name="link_control"    group='4-控件属性' label='关联控件' type='string' default='null'/>
+    <Property name="package_rid" />
+    <Property name="tag_value" />
+    <Property name="slot_rid" />
+    <Property name="lock_slot_rid" />
+    <Property name="display_cd" />
+    <Property name="operate_cd" />
+    <Property valid='N' name="ground_loocatin" />
+    <Property name="list_item_rid" />
+    <Property name="item_o_resource" />
+    <Property name="height" />
+    <Property name="width" />
+    <Property name="page_id" />
+  </Class>
+  <Class valid='Y' name="PageControl" label='分页控件' parent='FUiContainer'/>
+
+  <Class valid='Y' name="TreeNodeType" label='树目录类型' parent='FUiComponent'>
+  </Class>
+  <Class valid='Y' name="TreeNodeLevel" label='树目录层级' parent='FUiComponent'>
+  </Class>
+  <Class valid='Y' name="TreeNode" label='树目录节点' parent='FUiContainer'>
+    <Property valid='Y'   name="option_expand"      group='4-控件属性' label='展开标志'     type='bool'     default='false' note='是否展开子节点。'/>
+    <Property valid='Y'   name="option_expand_icon" group='4-控件属性' label='展开图标显示' type='bool'     default='true'  note='展开图标是否显示。'/>
+    <Property valid='Y'   name="icon"               group='4-控件属性' label='图标资源'     type='resource' default='null'  note='图标的资源编号。'/>
+  </Class>
+  <Class valid='Y' name="TreeView" label='树目录' parent='FUiScrollBox'>
+    <Property valid='Y'   name="indent"         group='4-控件属性' label='节点缩进'     type='int'      default='16'   note='子节点比父节点的缩进大小。'/>
+    <Property valid='Y'   name="node_height"    group='4-控件属性' label='节点高度'     type='int'      default='22'   note='子节点高度。'/>
+    <Property valid='Y'   name="expand_indent"  group='4-控件属性' label='展开图标缩进' type='int'      default='4'    note='子节点展开图标两边的缩进。'/>
+    <Property valid='Y'   name="expand_open"    group='4-控件属性' label='展开图标资源' type='resource' default='null' note='子节点的展开资源编号。'/>
+    <Property valid='Y'   name="expand_close"   group='4-控件属性' label='关闭图标资源' type='resource' default='null' note='子节点的关闭资源编号。'/>
+    <Property valid='Y'   name="node_select"    group='4-控件属性' label='图标选中资源' type='resource' default='null' note='子节点的选中资源编号。'/>
+    <Property valid='Y'   name="on_node_click"  group='4-控件属性' label='节点点击事件' type='string'   default='null' note='鼠标单击子节点。'/>
+    <Property valid='Y'   name="on_node_select" group='4-控件属性' label='节点选中事件' type='string'   default='null' note='鼠标选中子节点。'/>
+  </Class>
+
+  <Class name="Bar" parent='FUiFrame'>
+    <Property name="display_cd" />
+    <Property name="operate_cd" />
+    <Property name="package_rid" />
+    <Property name="display_mode" />
+    <Property name="padding_top" />
+    <Property name="padding_right" />
+    <Property name="padding_bottom" />
+    <Property name="spacing" />
+    <Property name="tag_value" />
+  </Class>
+  <Class name="Form" parent='FUiFrame'>
+    <Property name="package_rid" />
+    <Property name="display_cd" />
+    <Property name="operate_cd" />
+    <Property name="battle_close" />
+    <Property name="page_id" />
+    <Property name="slider_able" />
+    <Property name="from_bar" />
+    <Property name="from_location" />
+    <Property name="item_resource_id" />
+    <Property name="item_o_rid" />
+    <Property name="slot_rid" />
+    <Property name="sng_rid" />
+    <Property name="snd_rid" />
+    <Property name="item_slot_rid" />
+    <Property name="item_btn_rid" />
+    <Property name="money_pic" />
+    <Property name="bind_money_pic" />
+    <Property name="spacing" />
+    <Property name="tag_value" />
+  </Class>
+  <Class name="Menu" parent='FUiFrame'>
+    <Property valid='Y' name="item_span" group='4-控件属性' label='项目间隔' type='int' default='6'/>
+    <Property name="display_cd" />
+    <Property name="operate_cd" />
+    <Property name="package_rid" />
+    <Property name="tag_value" />
+  </Class>
+  <Class name="Widget" parent='FUiFrame'>
+    <Property name="visible" />
+    <Property name="time_able" />
+    <Property name="package_rid" />
+    <Property name="tag_value" />
+  </Class>
+
+  <Class name="Resource">
+    <Property name="gold_pic" />
+    <Property name="money_pic" />
+    <Property name="tlinfo_o_resource" />
+    <Property name="tlinfo_slot_rid" />
+    <Property name="tlinfo_btn_rid" />
+    <Property name="tlinfo_resource_id" />
+    <Property name="tlgoods_o_resource" />
+    <Property name="tlgoods_slot_rid" />
+    <Property name="tlgoods_btn_rid" />
+    <Property name="tlgoods_resource_id" />
+    <Property name="itemOver" />
+    <Property name="resource_id" />
+  </Class>
+  <Class name="Node" />
+  <Class name="NodeChild">
+    <Property name="oresource" />
+    <Property name="select_able" />
+    <Property name="titlePic" />
+    <Property name="tipCon" />
+    <Property name="star" />
+    <Property name="op" />
+  </Class>
+  <Class name="Head" />
+  <Class name="Board" />
+  <Class name="Side">
+    <Property name="lock_ground_rid" />
+    <Property name="lock_location" />
+    <Property name="unlock_ground_rid" />
+    <Property name="unlock_location" />
+  </Class>
+  <Class name="Uilist">
+    <Property name="bgcolor" />
+    <Property name="valid_able" />
+    <Property name="alpha" />
+  </Class>
+  <Class name="ItemList">
+    <Property name="display_cd" />
+    <Property name="operate_cd" />
+    <Property name="alpha" />
+  </Class>
+  <Class name="BloodLevel">
+    <Property name="rid_1" />
+    <Property name="rid_2" />
+    <Property name="rid_3" />
+    <Property name="rid_4" />
+    <Property name="rid_5" />
+    <Property name="rid_6" />
+    <Property name="rid_7" />
+    <Property name="rid_8" />
+    <Property name="rid_9" />
+    <Property name="rid_10" />
+    <Property name="rid_0" />
+  </Class>
+  <Class name="Bandit">
+    <Property name="resource_id" />
+  </Class>
+  <Class name="Arm">
+    <Property name="dvalue" />
+    <Property name="up_resource_id" />
+    <Property name="down_resource_id" />
+  </Class>
+  <Class name="ScrollList" />
+  <Class name="BanditScroll">
+    <Property name="speed" />
+    <Property name="item_width" />
+  </Class>
+  <Class name="BanditScrollItem">
+    <Property name="resource_id" />
+    <Property name="value" />
+  </Class>
+  <Class name="BadgExplain" />
+  <Class name="PageAccepted">
+    <Property name="default_display" />
+  </Class>
+  <Class name="PageAcceptable">
+    <Property name="default_display" />
+  </Class>
+  <Class name="Explain" />
+  <Class name="DrawerView" />
+  <Class name="Area">
+    <Property name="package_rid" />
+  </Class>
+  <Class name="ItemPictureBox">
+    <Property name="display_cd" />
+    <Property name="operate_cd" />
+  </Class>
+  <Class name="ItemChoosePic" />
+  <Class name="ItemLabel">
+    <Property name="edit_width" />
+    <Property name="label_visible" />
+    <Property name="edit_visible" />
+    <Property name="label_location" />
+    <Property name="border" />
+    <Property name="label_bg_color" />
+    <Property name="label_color" />
+    <Property name="edit_bg_color" />
+    <Property name="edit_color" />
+    <Property name="has_extact_button" />
+    <Property name="valid_able" />
+  </Class>
+  <Class name="ItemSort">
+    <Property name="edit_width" />
+    <Property name="label_visible" />
+    <Property name="edit_visible" />
+    <Property name="label_location" />
+    <Property name="border" />
+    <Property name="label_bg_color" />
+    <Property name="label_color" />
+    <Property name="edit_bg_color" />
+    <Property name="edit_color" />
+    <Property name="has_extact_button" />
+    <Property name="valid_able" />
+  </Class>
+  <Class name="ItemSlot" />
+  <Class name="PanelMain">
+    <Property name="edit_width" />
+    <Property name="label_visible" />
+    <Property name="edit_visible" />
+    <Property name="label_location" />
+    <Property name="border" />
+    <Property name="label_bg_color" />
+    <Property name="label_color" />
+    <Property name="edit_bg_color" />
+    <Property name="edit_color" />
+    <Property name="has_extact_button" />
+    <Property name="valid_able" />
+  </Class>
+  <Class name="PanelVice">
+    <Property name="edit_width" />
+    <Property name="label_visible" />
+    <Property name="edit_visible" />
+    <Property name="label_location" />
+    <Property name="border" />
+    <Property name="label_bg_color" />
+    <Property name="label_color" />
+    <Property name="edit_bg_color" />
+    <Property name="edit_color" />
+    <Property name="has_extact_button" />
+    <Property name="valid_able" />
+  </Class>
+  <Class name="PetItem">
+    <Property name="haspetrid" />
+    <Property name="nopetrid" />
+  </Class>
+  <Class name="GroundRid" />
+  <Class name="Data" />
+  <Class name="Notice">
+    <Property name="package_rid" />
+    <Property name="tag_value" />
+    <Property name="display_cd" />
+    <Property name="operate_cd" />
+  </Class>
+  <Class name="LiftItem">
+    <Property name="index_rid" />
+    <Property name="index_size" />
+    <Property name="ground_unrid" />
+    <Property name="index_cd" />
+  </Class>
+  <Class name="GiftItem">
+    <Property name="text" />
+    <Property name="gift" />
+    <Property name="level_index" />
+    <Property name="resource_id" />
+  </Class>
+  <Class name="Channels" />
+  <Class name="Channel">
+    <Property name="channel_id" />
+    <Property name="unground_rid" />
+  </Class>
+</Configuration>

@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F996742E-5053-4630-BFED-E2906073FFC9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MO.Direct2d</RootNamespace>
+    <AssemblyName>MoDirect2d</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>..\..\Build\Debug_x64\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>..\..\Build\Release_x64\</OutputPath>
+    <Optimize>true</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\Build\Debug_x86\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Oracle.DataAccess">
+      <HintPath>..\..\Reference\x86\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="SlimDX">
+      <HintPath>..\..\Reference\x86\SlimDX.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\EDxCapStyle.cs" />
+    <Compile Include="Common\EDxDashStyle.cs" />
+    <Compile Include="Common\EDxParagraphAlignment.cs" />
+    <Compile Include="Common\EDxTextAlignment.cs" />
+    <Compile Include="Common\FDxObject2d.cs" />
+    <Compile Include="Device\FDxContext2d.cs" />
+    <Compile Include="Device\FDxDevice2d.cs" />
+    <Compile Include="Draw\FDxBitmap.cs" />
+    <Compile Include="Draw\FDxBitmapBrush.cs" />
+    <Compile Include="Draw\FDxBrush.cs" />
+    <Compile Include="Draw\FDxLayer.cs" />
+    <Compile Include="Draw\FDxSolidBrush.cs" />
+    <Compile Include="Draw\FDxStrokeStyle.cs" />
+    <Compile Include="Draw\FDxTextFormat.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoCommon\MoCommon.csproj">
+      <Project>{199103bc-b3fe-4d93-9b02-0515ef4fb63d}</Project>
+      <Name>MoCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoCompress\MoCompress.vcxproj">
+      <Project>{b1a34040-3125-4381-88dd-d2f3a2adafd6}</Project>
+      <Name>MoCompress</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoCore\MoCore.csproj">
+      <Project>{9cec2262-f3e8-4880-b5d8-ef909958f0c6}</Project>
+      <Name>MoCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

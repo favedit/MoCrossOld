@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+
+   <!-- Reference -->
+   <Reference name="MoCommon"/>
+
+   <Reference name="MoCore"/>
+
+   <!-- Config -->
+   <Config name="Define"
+         type="MO.Core.Aop.Config.XAopDefine"
+         collection="MO.Core.Aop.Config.XAopDefineCollection"/>
+
+   <Config name="Include"
+         type="MO.Core.Aop.Config.XAopInclude"/>
+
+   <Config name="Component"
+         type="MO.Core.Aop.Config.XAopComponent"
+         collection="MO.Core.Aop.Config.XAopComponentCollection"/>
+
+   <Config name="Components"
+         type="MO.Core.Aop.Config.XAopComponents"
+         collection="MO.Core.Aop.Config.XAopComponentsCollection"/>
+
+   <!-- Component -->
+   <Component
+         face="MO.Core.Monitor.IMonitorConsole"
+         type="MO.Core.Monitor.FMonitorConsole"
+         scope="global"/>
+
+   <Components
+         face="*.I*"
+         type="*.F*"
+         scope="global"/>
+
+</Configuration>

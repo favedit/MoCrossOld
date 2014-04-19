@@ -1,0 +1,859 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9CEC2262-F3E8-4880-B5D8-EF909958F0C6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MO.Core</RootNamespace>
+    <AssemblyName>MoCore</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Build\Debug_AnyCPU\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Build\Release_AnyCPU\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\Build\Debug_x64\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\MoCore.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>..\..\Build\Release_x64\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\MoCore.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\Build\Debug_x86\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\Build\Release_x86\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Aop\ALinkerAttribute.cs" />
+    <Compile Include="Aop\APropertyAttribute.cs" />
+    <Compile Include="Aop\AProxyFaceAttribute.cs" />
+    <Compile Include="Aop\AProxyMethodAttribute.cs" />
+    <Compile Include="Aop\AProxyTypeAttribute.cs" />
+    <Compile Include="Aop\Component\FAbsAopProxy.cs" />
+    <Compile Include="Aop\Component\FAopComponentBuilder.cs" />
+    <Compile Include="Aop\Component\FAopComponentConsole.cs" />
+    <Compile Include="Aop\Component\FAopComponentFactory.cs" />
+    <Compile Include="Aop\Component\FAopDescriptor.cs" />
+    <Compile Include="Aop\Component\FAopLinker.cs" />
+    <Compile Include="Aop\Component\FAopLinkers.cs" />
+    <Compile Include="Aop\Component\FAopMethod.cs" />
+    <Compile Include="Aop\Component\FAopProperties.cs" />
+    <Compile Include="Aop\Component\FAopProperty.cs" />
+    <Compile Include="Aop\Component\FAopProxy.cs" />
+    <Compile Include="Aop\Component\FAopProxyFactory.cs" />
+    <Compile Include="Aop\Component\RAopProxy.cs" />
+    <Compile Include="Aop\Config\EAopParameterType.cs" />
+    <Compile Include="Aop\Config\EScope.cs" />
+    <Compile Include="Aop\Config\FAopConfigConsole.cs" />
+    <Compile Include="Aop\Config\IAopConfigConsole.cs" />
+    <Compile Include="Aop\Config\IAopNode.cs" />
+    <Compile Include="Aop\Config\IAopNodes.cs" />
+    <Compile Include="Aop\Config\XAbsAopComponent.cs" />
+    <Compile Include="Aop\Config\XAopComponent.cs" />
+    <Compile Include="Aop\Config\XAopComponentCollection.cs" />
+    <Compile Include="Aop\Config\XAopComponents.cs" />
+    <Compile Include="Aop\Config\XAopComponentsCollection.cs" />
+    <Compile Include="Aop\Config\XAopConfig.cs" />
+    <Compile Include="Aop\Config\XAopConfigCollection.cs" />
+    <Compile Include="Aop\Config\XAopConstructor.cs" />
+    <Compile Include="Aop\Config\XAopDefine.cs" />
+    <Compile Include="Aop\Config\XAopDefineCollection.cs" />
+    <Compile Include="Aop\Config\XAopInclude.cs" />
+    <Compile Include="Aop\Config\XAopInitialize.cs" />
+    <Compile Include="Aop\Config\XAopMethod.cs" />
+    <Compile Include="Aop\Config\XAopMethods.cs" />
+    <Compile Include="Aop\Config\XAopNode.cs" />
+    <Compile Include="Aop\Config\XAopNodeCollection.cs" />
+    <Compile Include="Aop\Config\XAopNodesCollection.cs" />
+    <Compile Include="Aop\Config\XAopParameter.cs" />
+    <Compile Include="Aop\Config\XAopParameters.cs" />
+    <Compile Include="Aop\Config\XAopProperties.cs" />
+    <Compile Include="Aop\Config\XAopProperty.cs" />
+    <Compile Include="Aop\Config\XAopReference.cs" />
+    <Compile Include="Aop\Config\XAopReferenceCollection.cs" />
+    <Compile Include="Aop\Config\XAopRelation.cs" />
+    <Compile Include="Aop\Config\XAopRelease.cs" />
+    <Compile Include="Aop\FAopObject.cs" />
+    <Compile Include="Aop\Formator\FAopEnvFormator.cs" />
+    <Compile Include="Aop\IAopProxy.cs" />
+    <Compile Include="Aop\IAopProxyFactory.cs" />
+    <Compile Include="Aop\RAop.cs" />
+    <Compile Include="Content\Catalog\FCfgComponent.cs" />
+    <Compile Include="Content\Catalog\FCfgFolder.cs" />
+    <Compile Include="Content\Catalog\FCfgObject.cs" />
+    <Compile Include="Content\Catalog\ICfgFactory.cs" />
+    <Compile Include="Content\Drawing\EBitmap.cs" />
+    <Compile Include="Content\Drawing\EBitmapChannel.cs" />
+    <Compile Include="Content\Drawing\EBitmapChannels.cs" />
+    <Compile Include="Content\Drawing\EBitmapOption.cs" />
+    <Compile Include="Content\Drawing\FBitmap.cs" />
+    <Compile Include="Content\Drawing\FGraphics.cs" />
+    <Compile Include="Content\Drawing\FImage.cs" />
+    <Compile Include="Content\Drawing\FIndexBitmap.cs" />
+    <Compile Include="Content\Drawing\RBitmap.cs" />
+    <Compile Include="Content\Picture\FCompressPicture.cs" />
+    <Compile Include="Content\Picture\FPictureQuantizer.cs" />
+    <Compile Include="Content\Picture\Helpers\RQuantizationHelper.cs" />
+    <Compile Include="Content\Picture\Quantizers\EColorQuantizer.cs" />
+    <Compile Include="Content\Picture\Quantizers\HSB\SColorInfo.cs" />
+    <Compile Include="Content\Picture\Quantizers\HSB\FPaletteQuantizer.cs" />
+    <Compile Include="Content\Picture\Quantizers\IColorQuantizer.cs" />
+    <Compile Include="Content\Picture\Quantizers\Median\FMedianCutCube.cs" />
+    <Compile Include="Content\Picture\Quantizers\Median\FMedianCutQuantizer.cs" />
+    <Compile Include="Content\Picture\Quantizers\Octree16\FOctreeNode16.cs" />
+    <Compile Include="Content\Picture\Quantizers\Octree16\FOctreeNode16s.cs" />
+    <Compile Include="Content\Picture\Quantizers\Octree16\FOctreeNode16Sorter.cs" />
+    <Compile Include="Content\Picture\Quantizers\Octree16\FOctreeQuantizer16.cs" />
+    <Compile Include="Content\Picture\Quantizers\Octree\FOctreeNode.cs" />
+    <Compile Include="Content\Picture\Quantizers\Octree\FOctreeNodes.cs" />
+    <Compile Include="Content\Picture\Quantizers\Octree\FOctreeNodeSorter.cs" />
+    <Compile Include="Content\Picture\Quantizers\Octree\FOctreeQuantizer.cs" />
+    <Compile Include="Content\Picture\Quantizers\Popularity\FPopularityColorSlot.cs" />
+    <Compile Include="Content\Picture\Quantizers\Popularity\FPopularityQuantizer.cs" />
+    <Compile Include="Content\Picture\Quantizers\Uniform\SUniformColorSlot.cs" />
+    <Compile Include="Content\Picture\Quantizers\Uniform\FUniformQuantizer.cs" />
+    <Compile Include="Content\Register\FRegister.cs" />
+    <Compile Include="Content\Register\FRegisterPath.cs" />
+    <Compile Include="Content\Register\ERegister.cs" />
+    <Compile Include="Content\Register\RRegister.cs" />
+    <Compile Include="Content\Xls\FXlsColumn.cs" />
+    <Compile Include="Content\Xls\FXlsDocument.cs" />
+    <Compile Include="Content\Xls\FXlsRow.cs" />
+    <Compile Include="Forms\Common\EBorderStyle.cs" />
+    <Compile Include="Forms\Common\ELineStyle.cs" />
+    <Compile Include="Forms\Common\FBaseCollection.cs" />
+    <Compile Include="Forms\Common\FBorderStyle.cs" />
+    <Compile Include="Forms\Common\FComponentCollection.cs" />
+    <Compile Include="Forms\Common\FControlCollection.cs" />
+    <Compile Include="Forms\Common\FLineStyle.cs" />
+    <Compile Include="Forms\Common\FMoveCompent.cs" />
+    <Compile Include="Forms\Common\IBaseCollection.cs" />
+    <Compile Include="Forms\Common\IComponentCollection.cs" />
+    <Compile Include="Forms\Common\IConfiguration.cs" />
+    <Compile Include="Forms\Common\IControlCollection.cs" />
+    <Compile Include="Forms\Common\RColor.cs" />
+    <Compile Include="Forms\Controls\EPictureBoxMode.cs" />
+    <Compile Include="Forms\Controls\FListViewColumnComparer.cs" />
+    <Compile Include="Forms\Controls\FPropertiesConverter.cs" />
+    <Compile Include="Forms\Controls\FPropertiesEditor.cs" />
+    <Compile Include="Forms\Controls\QCalendar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QCalendar.Designer.cs">
+      <DependentUpon>QCalendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\QCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QCheckBox.Designer.cs">
+      <DependentUpon>QCheckBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\QColorPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QColorPicker.Designer.cs">
+      <DependentUpon>QColorPicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\QFloatColor4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QFloatColor4.Designer.cs">
+      <DependentUpon>QFloatColor4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\QConfigCatalog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QConfigCatalog.Designer.cs">
+      <DependentUpon>QConfigCatalog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\QGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QGridView.Designer.cs">
+      <DependentUpon>QGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\QListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QManagerListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QManagerListView.Designer.cs">
+      <DependentUpon>QManagerListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\QPictureBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QPictureBox.Designer.cs">
+      <DependentUpon>QPictureBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\QPropertiesEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QPropertiesEditorForm.Designer.cs">
+      <DependentUpon>QPropertiesEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\QSplitContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QStyleLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QStyleLine.Designer.cs">
+      <DependentUpon>QStyleLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\QTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QTextBox.Designer.cs">
+      <DependentUpon>QTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\QTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QTreeView.Designer.cs">
+      <DependentUpon>QTreeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Core\FBitmap.cs" />
+    <Compile Include="Forms\Core\FGraphics.cs" />
+    <Compile Include="Forms\Core\FImage.cs" />
+    <Compile Include="Forms\Design\QDesignErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Design\QDesignErrorForm.Designer.cs">
+      <DependentUpon>QDesignErrorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Design\RDesigner.cs" />
+    <Compile Include="Forms\Device\EMouseButton.cs" />
+    <Compile Include="Forms\Device\EKeyCode.cs" />
+    <Compile Include="Forms\Device\EKeyStatus.cs" />
+    <Compile Include="Forms\Device\RKeybord.cs" />
+    <Compile Include="Forms\Device\RMouse.cs" />
+    <Compile Include="Forms\Dialog\QExceptionDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\QExceptionDialogForm.Designer.cs">
+      <DependentUpon>QExceptionDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\RDialog.cs" />
+    <Compile Include="Forms\Geom\FIntPoint2.cs" />
+    <Compile Include="Forms\Geom\FIntPoint2Converter.cs" />
+    <Compile Include="Forms\Geom\FIntPoint3.cs" />
+    <Compile Include="Forms\Geom\FIntSize2.cs" />
+    <Compile Include="Forms\Geom\FIntSize2Converter.cs" />
+    <Compile Include="Forms\Geom\FIntPaddingConverter.cs" />
+    <Compile Include="Forms\Module\Configuration\FApplicationConfig2.cs" />
+    <Compile Include="Forms\Module\Configuration\FApplicationConfigs.cs" />
+    <Compile Include="Forms\Module\Configuration\FConfigurationStorage.cs" />
+    <Compile Include="Forms\Common\FConfiguration.cs" />
+    <Compile Include="Forms\Geom\FIntPadding.cs" />
+    <Compile Include="Forms\Common\IConfigControl.cs" />
+    <Compile Include="Forms\Module\Configuration\FConfigurationConsole.cs" />
+    <Compile Include="Forms\Controls\QButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QControl.Designer.cs">
+      <DependentUpon>QControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\QLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QLabel.Designer.cs">
+      <DependentUpon>QLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\QTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\QTable.Designer.cs">
+      <DependentUpon>QTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\QForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\QForm.designer.cs">
+      <DependentUpon>QForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\QInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\QInputForm.Designer.cs">
+      <DependentUpon>QInputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\QMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\QMessageBox.Designer.cs">
+      <DependentUpon>QMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RKeyboard.cs" />
+    <Compile Include="Forms\SKey.cs" />
+    <Compile Include="Help\Common\FCrConvertEncoding.cs" />
+    <Compile Include="Help\Common\FCrHelper.cs" />
+    <Compile Include="Help\Common\FCrHelpMaker.cs" />
+    <Compile Include="Help\Common\FCrHelpParser.cs" />
+    <Compile Include="Help\Common\FCrHelpNode.cs" />
+    <Compile Include="Help\Common\FCrHelpNodeCollection.cs" />
+    <Compile Include="Help\Common\ICrHelper.cs" />
+    <Compile Include="Help\Common\ICrHelpMaker.cs" />
+    <Compile Include="Help\Common\ICrHelpParser.cs" />
+    <Compile Include="Help\Parser\ActionScript\FAsClass.cs" />
+    <Compile Include="Help\Parser\ActionScript\FAsClassIndexTable.cs" />
+    <Compile Include="Help\Parser\ActionScript\FAsField.cs" />
+    <Compile Include="Help\Parser\ActionScript\FAsMethod.cs" />
+    <Compile Include="Help\Parser\ActionScript\FAsPackage.cs" />
+    <Compile Include="Help\Parser\ActionScript\FAsParameter.cs" />
+    <Compile Include="Help\Parser\ActionScript\FAsParser.cs" />
+    <Compile Include="Help\Parser\ActionScript\FAsProperty.cs" />
+    <Compile Include="Help\Parser\Cpp\FCppClass.cs" />
+    <Compile Include="Help\Parser\Cpp\FCppClassesIndexTable.cs" />
+    <Compile Include="Help\Parser\Cpp\FCppField.cs" />
+    <Compile Include="Help\Parser\Cpp\FCppFriend.cs" />
+    <Compile Include="Help\Parser\Cpp\FCppInline.cs" />
+    <Compile Include="Help\Parser\Cpp\FCppMethod.cs" />
+    <Compile Include="Help\Parser\Cpp\FCppParameter.cs" />
+    <Compile Include="Help\Parser\Cpp\FCppParser.cs" />
+    <Compile Include="Help\Parser\CSharp\FClassesIndexTable.cs" />
+    <Compile Include="Help\Parser\CSharp\FCsProperty.cs" />
+    <Compile Include="Help\Parser\CSharp\FCsClass.cs" />
+    <Compile Include="Help\Parser\CSharp\FCsField.cs" />
+    <Compile Include="Help\Parser\CSharp\FCsMethod.cs" />
+    <Compile Include="Help\Parser\CSharp\FCsParameter.cs" />
+    <Compile Include="Help\Parser\CSharp\FCsParser.cs" />
+    <Compile Include="Help\Parser\CSharp\FCsSpace.cs" />
+    <Compile Include="IO\FLzmaFile.cs" />
+    <Compile Include="IO\Lzma\Common\CommandLineParser.cs" />
+    <Compile Include="IO\Lzma\Common\CRC.cs" />
+    <Compile Include="IO\Lzma\Common\InBuffer.cs" />
+    <Compile Include="IO\Lzma\Common\OutBuffer.cs" />
+    <Compile Include="IO\Lzma\Compress\LZMA\LzmaBase.cs" />
+    <Compile Include="IO\Lzma\Compress\LZMA\LzmaDecoder.cs" />
+    <Compile Include="IO\Lzma\Compress\LZMA\LzmaEncoder.cs" />
+    <Compile Include="IO\Lzma\Compress\LZ\IMatchFinder.cs" />
+    <Compile Include="IO\Lzma\Compress\LZ\LzBinTree.cs" />
+    <Compile Include="IO\Lzma\Compress\LZ\LzInWindow.cs" />
+    <Compile Include="IO\Lzma\Compress\LZ\LzOutWindow.cs" />
+    <Compile Include="IO\Lzma\Compress\RangeCoder\RangeCoder.cs" />
+    <Compile Include="IO\Lzma\Compress\RangeCoder\RangeCoderBit.cs" />
+    <Compile Include="IO\Lzma\Compress\RangeCoder\RangeCoderBitTree.cs" />
+    <Compile Include="IO\Lzma\ICoder.cs" />
+    <Compile Include="Logic\BusinessProcess\FBusinessProcessConsole.cs" />
+    <Compile Include="Logic\BusinessProcess\IBusinessProcessConsole.cs" />
+    <Compile Include="Logic\Chat\FChatConsole.cs" />
+    <Compile Include="Logic\Chat\IChatConsole.cs" />
+    <Compile Include="Logic\Client\EInfoProtocol.cs" />
+    <Compile Include="Logic\Client\FAbsInfoClient.cs" />
+    <Compile Include="Logic\Client\FInfoCommandClient.cs" />
+    <Compile Include="Logic\Client\FInfoConsole.cs" />
+    <Compile Include="Logic\Client\FInfoDataClient.cs" />
+    <Compile Include="Logic\Client\FInfoDebugClient.cs" />
+    <Compile Include="Logic\Client\IInfoClient.cs" />
+    <Compile Include="Logic\Client\IInfoConsole.cs" />
+    <Compile Include="Logic\Notify\FNotifyConsole.cs" />
+    <Compile Include="Logic\Notify\INotifyConsole.cs" />
+    <Compile Include="Logic\Task\FTask.cs" />
+    <Compile Include="Logic\Task\FTaskConsole.cs" />
+    <Compile Include="Logic\Task\FTaskThread.cs" />
+    <Compile Include="Logic\Task\ITask.cs" />
+    <Compile Include="Logic\Task\ITaskConsole.cs" />
+    <Compile Include="Logic\Task\QTaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logic\Task\QTaskForm.Designer.cs">
+      <DependentUpon>QTaskForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\Track\FTrack.cs" />
+    <Compile Include="Logic\Track\FTrackConsole.cs" />
+    <Compile Include="Logic\Track\QTrackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logic\Track\QTrackForm.Designer.cs">
+      <DependentUpon>QTrackForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RMoCore.cs" />
+    <Compile Include="System\Compiler\Class1.cs" />
+    <Compile Include="System\Compiler\Test.cs" />
+    <Compile Include="System\Monitor\FAbsMonitorConsole.cs" />
+    <Compile Include="System\Monitor\FMonitorConsole.cs" />
+    <Compile Include="System\Monitor\IMonitorConsole.cs" />
+    <Compile Include="System\Schedule\EScheduleConditionType.cs" />
+    <Compile Include="System\Schedule\EScheduleEventType.cs" />
+    <Compile Include="System\Schedule\EScheduleMonth.cs" />
+    <Compile Include="System\Schedule\EScheduleMonthType.cs" />
+    <Compile Include="System\Schedule\EScheduleMonthWeek.cs" />
+    <Compile Include="System\Schedule\EScheduleTaskType.cs" />
+    <Compile Include="System\Schedule\EScheduleWeekDay.cs" />
+    <Compile Include="System\Schedule\FSchedule.cs" />
+    <Compile Include="System\Schedule\FScheduleCondition.cs" />
+    <Compile Include="System\Schedule\FScheduleConditionFile.cs" />
+    <Compile Include="System\Schedule\FScheduleConditions.cs" />
+    <Compile Include="System\Schedule\FScheduleConsole.cs" />
+    <Compile Include="System\Schedule\FScheduleEvent.cs" />
+    <Compile Include="System\Schedule\FScheduleEventExecute.cs" />
+    <Compile Include="System\Schedule\FScheduleEvents.cs" />
+    <Compile Include="System\Schedule\FScheduleFactory.cs" />
+    <Compile Include="System\Schedule\FScheduleJob.cs" />
+    <Compile Include="System\Schedule\FScheduleJobs.cs" />
+    <Compile Include="System\Schedule\FSchedulePool.cs" />
+    <Compile Include="System\Schedule\FSchedules.cs" />
+    <Compile Include="System\Schedule\FScheduleTask.cs" />
+    <Compile Include="System\Schedule\FScheduleTaskDaily.cs" />
+    <Compile Include="System\Schedule\FScheduleTaskMonthly.cs" />
+    <Compile Include="System\Schedule\FScheduleTaskOnce.cs" />
+    <Compile Include="System\Schedule\FScheduleTasks.cs" />
+    <Compile Include="System\Schedule\FScheduleTaskWeekly.cs" />
+    <Compile Include="System\Schedule\FScheduleThread.cs" />
+    <Compile Include="System\Schedule\FScheduleTimer.cs" />
+    <Compile Include="System\Schedule\ISchedule.cs" />
+    <Compile Include="System\Schedule\IScheduleCondition.cs" />
+    <Compile Include="System\Schedule\IScheduleConsole.cs" />
+    <Compile Include="System\Schedule\IScheduleEvent.cs" />
+    <Compile Include="System\Schedule\IScheduleFactory.cs" />
+    <Compile Include="System\Schedule\IScheduleTask.cs" />
+    <Compile Include="Window\Api\ECbtHook.cs" />
+    <Compile Include="Window\Api\ECmf.cs" />
+    <Compile Include="Window\Api\ECsidl.cs" />
+    <Compile Include="Window\Api\EFileAttribute.cs" />
+    <Compile Include="Window\Api\EGetCommandStringInformations.cs" />
+    <Compile Include="Window\Api\EImageDirectoryEntry.cs" />
+    <Compile Include="Window\Api\EImageFileCharacteristics.cs" />
+    <Compile Include="Window\Api\EImageFileMachine.cs" />
+    <Compile Include="Window\Api\EImageSignature.cs" />
+    <Compile Include="Window\Api\EMem.cs" />
+    <Compile Include="Window\Api\EMft.cs" />
+    <Compile Include="Window\Api\EPage.cs" />
+    <Compile Include="Window\Api\EProcessAccess.cs" />
+    <Compile Include="Window\Api\EProcessToken.cs" />
+    <Compile Include="Window\Api\ESePrivilege.cs" />
+    <Compile Include="Window\Api\ESfgao.cs" />
+    <Compile Include="Window\Api\EShcne.cs" />
+    <Compile Include="Window\Api\EShcnf.cs" />
+    <Compile Include="Window\Api\EShcnrf.cs" />
+    <Compile Include="Window\Api\EShcontf.cs" />
+    <Compile Include="Window\Api\EShellSpecialFolders.cs" />
+    <Compile Include="Window\Api\EShGetFileInfo.cs" />
+    <Compile Include="Window\Api\EShgfi.cs" />
+    <Compile Include="Window\Api\EShgno.cs" />
+    <Compile Include="Window\Api\ETernaryRasterOperations.cs" />
+    <Compile Include="Window\Api\ETh32cs.cs" />
+    <Compile Include="Window\Api\ETrackPopupMenu.cs" />
+    <Compile Include="Window\Api\ETreeView.cs" />
+    <Compile Include="Window\Api\EWindowMessage.cs" />
+    <Compile Include="Window\Api\FFilterByExtension.cs" />
+    <Compile Include="Window\Api\FMLangConvertCharset.cs" />
+    <Compile Include="Window\Api\FMLangConvertCharsetClass.cs" />
+    <Compile Include="Window\Api\FMLangString.cs" />
+    <Compile Include="Window\Api\FMLangStringClass.cs" />
+    <Compile Include="Window\Api\FMultiLanguage.cs" />
+    <Compile Include="Window\Api\FMultiLanguageClass.cs" />
+    <Compile Include="Window\Api\IContextMenu.cs" />
+    <Compile Include="Window\Api\IEnumCodePage.cs" />
+    <Compile Include="Window\Api\IEnumIDList.cs" />
+    <Compile Include="Window\Api\IEnumRfc1766.cs" />
+    <Compile Include="Window\Api\IEnumScript.cs" />
+    <Compile Include="Window\Api\IFolderFilter.cs" />
+    <Compile Include="Window\Api\IFolderFilterSite.cs" />
+    <Compile Include="Window\Api\IMalloc.cs" />
+    <Compile Include="Window\Api\IMLangCodePages.cs" />
+    <Compile Include="Window\Api\IMLangConvertCharset.cs" />
+    <Compile Include="Window\Api\IMLangFontLink.cs" />
+    <Compile Include="Window\Api\IMLangFontLink2.cs" />
+    <Compile Include="Window\Api\IMLangLineBreakConsole.cs" />
+    <Compile Include="Window\Api\IMLangString.cs" />
+    <Compile Include="Window\Api\IMLangStringAStr.cs" />
+    <Compile Include="Window\Api\IMLangStringBufA.cs" />
+    <Compile Include="Window\Api\IMLangStringBufW.cs" />
+    <Compile Include="Window\Api\IMLangStringWStr.cs" />
+    <Compile Include="Window\Api\IMultiLanguage.cs" />
+    <Compile Include="Window\Api\IMultiLanguage2.cs" />
+    <Compile Include="Window\Api\IMultiLanguage3.cs" />
+    <Compile Include="Window\Api\ISequentialStream.cs" />
+    <Compile Include="Window\Api\IShellBrowser.cs" />
+    <Compile Include="Window\Api\IShellFolder.cs" />
+    <Compile Include="Window\Api\IShellView.cs" />
+    <Compile Include="Window\Api\IStream.cs" />
+    <Compile Include="Window\Api\RAdvapi32.cs" />
+    <Compile Include="Window\Api\RApi.cs" />
+    <Compile Include="Window\Api\RGdi32.cs" />
+    <Compile Include="Window\Api\RKernel32.cs" />
+    <Compile Include="Window\Api\RShell32.cs" />
+    <Compile Include="Window\Api\RShlwapi.cs" />
+    <Compile Include="Window\Api\RUser32.cs" />
+    <Compile Include="Window\Api\RVersion.cs" />
+    <Compile Include="Window\Api\SCmInvokeCommandInfoEX.cs" />
+    <Compile Include="Window\Api\SCopyData.cs" />
+    <Compile Include="Window\Api\SDetectEncodingInfo.cs" />
+    <Compile Include="Window\Api\SFileTime.cs" />
+    <Compile Include="Window\Api\SFolderSettings.cs" />
+    <Compile Include="Window\Api\SHChangeNotifyEntry.cs" />
+    <Compile Include="Window\Api\SImageCor20Header.cs" />
+    <Compile Include="Window\Api\SImageDataDirectory.cs" />
+    <Compile Include="Window\Api\SImageDosHeader.cs" />
+    <Compile Include="Window\Api\SImageExportDirectory.cs" />
+    <Compile Include="Window\Api\SImageFileHeader.cs" />
+    <Compile Include="Window\Api\SImageFunctionEntry.cs" />
+    <Compile Include="Window\Api\SImageImportByName.cs" />
+    <Compile Include="Window\Api\SImageImportDescriptor.cs" />
+    <Compile Include="Window\Api\SImageNtHeaders.cs" />
+    <Compile Include="Window\Api\SImageOptionalHeader.cs" />
+    <Compile Include="Window\Api\SImageSectionHeader.cs" />
+    <Compile Include="Window\Api\SImageThunkData32.cs" />
+    <Compile Include="Window\Api\SLargeInteger.cs" />
+    <Compile Include="Window\Api\SLuid.cs" />
+    <Compile Include="Window\Api\SLuidAndAttributes.cs" />
+    <Compile Include="Window\Api\SMemoryBasicInformation.cs" />
+    <Compile Include="Window\Api\SMidlIWinTypes0009.cs" />
+    <Compile Include="Window\Api\SMimeContf.cs" />
+    <Compile Include="Window\Api\SMimeCpInfo.cs" />
+    <Compile Include="Window\Api\SMimeCsetInfo.cs" />
+    <Compile Include="Window\Api\SMlCpf.cs" />
+    <Compile Include="Window\Api\SMlDetectCp.cs" />
+    <Compile Include="Window\Api\SMlStrFlags.cs" />
+    <Compile Include="Window\Api\SModuleEntry32.cs" />
+    <Compile Include="Window\Api\SModuleInfo.cs" />
+    <Compile Include="Window\Api\SMsg.cs" />
+    <Compile Include="Window\Api\SOleMenuGroupWidths.cs" />
+    <Compile Include="Window\Api\SPoint.cs" />
+    <Compile Include="Window\Api\SProcessEntry32.cs" />
+    <Compile Include="Window\Api\SRect.cs" />
+    <Compile Include="Window\Api\SRemotableHandle.cs" />
+    <Compile Include="Window\Api\SRfc1766Info.cs" />
+    <Compile Include="Window\Api\SScripFontInfo.cs" />
+    <Compile Include="Window\Api\SScriptInfo.cs" />
+    <Compile Include="Window\Api\SSecurityAttributes.cs" />
+    <Compile Include="Window\Api\SShFileInfo.cs" />
+    <Compile Include="Window\Api\SStatsTg.cs" />
+    <Compile Include="Window\Api\SSystemInfo.cs" />
+    <Compile Include="Window\Api\STbButton.cs" />
+    <Compile Include="Window\Api\SThreadEntry32.cs" />
+    <Compile Include="Window\Api\STokenPrivileges.cs" />
+    <Compile Include="Window\Api\SUlargeInteger.cs" />
+    <Compile Include="Window\Api\SUnicodeRange.cs" />
+    <Compile Include="Window\Content\Code\FAsmAaa.cs" />
+    <Compile Include="Window\Content\Code\FAsmAad.cs" />
+    <Compile Include="Window\Content\Code\FAsmAam.cs" />
+    <Compile Include="Window\Content\Code\FAsmAas.cs" />
+    <Compile Include="Window\Content\Code\FAsmAdc.cs" />
+    <Compile Include="Window\Content\Code\FAsmAdd.cs" />
+    <Compile Include="Window\Content\Code\FAsmAnd.cs" />
+    <Compile Include="Window\Content\Code\FAsmArpl.cs" />
+    <Compile Include="Window\Content\Code\FAsmCall.cs" />
+    <Compile Include="Window\Content\Code\FAsmInc.cs" />
+    <Compile Include="Window\Content\Code\FAsmInt.cs" />
+    <Compile Include="Window\Content\Code\FAsmJcc.cs" />
+    <Compile Include="Window\Content\Code\FAsmJcxe.cs" />
+    <Compile Include="Window\Content\Code\FAsmJcxz.cs" />
+    <Compile Include="Window\Content\Code\FAsmJecxe.cs" />
+    <Compile Include="Window\Content\Code\FAsmJecxz.cs" />
+    <Compile Include="Window\Content\Code\FAsmJmp.cs" />
+    <Compile Include="Window\Content\Code\FAsmLea.cs" />
+    <Compile Include="Window\Content\Code\FAsmMov.cs" />
+    <Compile Include="Window\Content\Code\FAsmNop.cs" />
+    <Compile Include="Window\Content\Code\FAsmPop.cs" />
+    <Compile Include="Window\Content\Code\FAsmPush.cs" />
+    <Compile Include="Window\Content\Code\FAsmPusha.cs" />
+    <Compile Include="Window\Content\Code\FAsmPushad.cs" />
+    <Compile Include="Window\Content\Code\FAsmPushd.cs" />
+    <Compile Include="Window\Content\Code\FAsmPushf.cs" />
+    <Compile Include="Window\Content\Code\FAsmPushfd.cs" />
+    <Compile Include="Window\Content\Code\FAsmPushw.cs" />
+    <Compile Include="Window\Content\Code\FAsmRep.cs" />
+    <Compile Include="Window\Content\Code\FAsmRet.cs" />
+    <Compile Include="Window\Content\Code\FAsmSub.cs" />
+    <Compile Include="Window\Content\Code\FAsmXor.cs" />
+    <Compile Include="Window\Content\FAsmCommand.cs" />
+    <Compile Include="Window\Content\FAsmCommands.cs" />
+    <Compile Include="Window\Content\FAsmOpCode.cs" />
+    <Compile Include="Window\Content\FAsmOpCodes.cs" />
+    <Compile Include="Window\Content\FAsmOpObject.cs" />
+    <Compile Include="Window\Content\FAsmOpPath.cs" />
+    <Compile Include="Window\Content\FAsmParser.cs" />
+    <Compile Include="Window\Content\FPeExport.cs" />
+    <Compile Include="Window\Content\FPeFile.cs" />
+    <Compile Include="Window\Content\FPeImport.cs" />
+    <Compile Include="Window\Content\FTrunkInfo.cs" />
+    <Compile Include="Window\Content\FTrunkInfoCollection.cs" />
+    <Compile Include="Window\Content\IAsmOpCode.cs" />
+    <Compile Include="Window\Content\RAsm.cs" />
+    <Compile Include="Window\Core\EHookScope.cs" />
+    <Compile Include="Window\Core\EHookType.cs" />
+    <Compile Include="Window\Core\EVirtualKeys.cs" />
+    <Compile Include="Window\Core\FCbtHook.cs" />
+    <Compile Include="Window\Core\FContextMenu.cs" />
+    <Compile Include="Window\Core\FFunctionInfo.cs" />
+    <Compile Include="Window\Core\FFunctionInfos.cs" />
+    <Compile Include="Window\Core\FKeyHook.cs" />
+    <Compile Include="Window\Core\FMemoryInfo.cs" />
+    <Compile Include="Window\Core\FMemoryInfos.cs" />
+    <Compile Include="Window\Core\FModuleInfo.cs" />
+    <Compile Include="Window\Core\FModuleInfoCollection.cs" />
+    <Compile Include="Window\Core\FMouseHook.cs" />
+    <Compile Include="Window\Core\FPidl.cs" />
+    <Compile Include="Window\Core\FProcess.cs" />
+    <Compile Include="Window\Core\FProcessInfo.cs" />
+    <Compile Include="Window\Core\FProcessInfoCollection.cs" />
+    <Compile Include="Window\Core\FShellDesktop.cs" />
+    <Compile Include="Window\Core\FShellFile.cs" />
+    <Compile Include="Window\Core\FShellFolder.cs" />
+    <Compile Include="Window\Core\FShellObject.cs" />
+    <Compile Include="Window\Core\FShellView.cs" />
+    <Compile Include="Window\Core\FThreadInfo.cs" />
+    <Compile Include="Window\Core\FThreadInfoCollection.cs" />
+    <Compile Include="Window\Core\FWindowHook.cs" />
+    <Compile Include="Window\Core\GetCommandStringInformations.cs" />
+    <Compile Include="Window\Core\Guids.cs" />
+    <Compile Include="Window\Core\HardwareInfo.cs" />
+    <Compile Include="Window\Core\RAdvapi.cs" />
+    <Compile Include="Window\Core\RDotNet.cs" />
+    <Compile Include="Window\Core\REncoding.cs" />
+    <Compile Include="Window\Core\RHookApi.cs" />
+    <Compile Include="Window\Core\RKernel.cs" />
+    <Compile Include="Window\Core\RMemory.cs" />
+    <Compile Include="Window\Core\RModule.cs" />
+    <Compile Include="Window\Core\RProcess.cs" />
+    <Compile Include="Window\Core\RShellFileExtension.cs" />
+    <Compile Include="Window\Core\RUser.cs" />
+    <Compile Include="Window\Core\RWinShell.cs" />
+    <Compile Include="Window\Core\SHookInfo.cs" />
+    <Compile Include="Window\Services\EAppIsolated.cs" />
+    <Compile Include="Window\Services\EAuthFlags.cs" />
+    <Compile Include="Window\Services\EWebAccess.cs" />
+    <Compile Include="Window\Services\FAdConnectInfo.cs" />
+    <Compile Include="Window\Services\FAdConnection.cs" />
+    <Compile Include="Window\Services\FAdDirectory.cs" />
+    <Compile Include="Window\Services\FAdGroup.cs" />
+    <Compile Include="Window\Services\FAdGroups.cs" />
+    <Compile Include="Window\Services\FAdObject.cs" />
+    <Compile Include="Window\Services\FAdObjectConfig.cs" />
+    <Compile Include="Window\Services\FAdObjects.cs" />
+    <Compile Include="Window\Services\FAdOrganizationalUnit.cs" />
+    <Compile Include="Window\Services\FAdOrganizationalUnits.cs" />
+    <Compile Include="Window\Services\FAdUser.cs" />
+    <Compile Include="Window\Services\FAdUsers.cs" />
+    <Compile Include="Window\Services\FIisAppPool.cs" />
+    <Compile Include="Window\Services\FIisAppPoolCollection.cs" />
+    <Compile Include="Window\Services\FIisConnection.cs" />
+    <Compile Include="Window\Services\FIisServer.cs" />
+    <Compile Include="Window\Services\FIisServerCollection.cs" />
+    <Compile Include="Window\Services\FIisVirtualDir.cs" />
+    <Compile Include="Window\Services\IAdConnection.cs" />
+    <Compile Include="Window\Services\RAdManager.cs" />
+    <Compile Include="Window\Services\RIisManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Help\Parser\JavaScript\" />
+    <Folder Include="Logic\Event\" />
+    <Folder Include="Logic\Schedule\" />
+    <Folder Include="Logic\Timer\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Aop\RAop.xml" />
+    <Content Include="Forms\Resources\ctl-drop.down.gif" />
+    <Content Include="Forms\Resources\lable.gif" />
+    <None Include="Resources\ctl-text-drop.gif" />
+    <None Include="Resources\ctl-text-sign.gif" />
+    <Content Include="System\Schedule\EScheduleMonthWeek.xml" />
+    <Content Include="System\Schedule\EScheduleWeekDay.xml" />
+    <Content Include="System\Schedule\FScheduleConditionFile.xml" />
+    <Content Include="System\Schedule\FScheduleEventExecute.xml" />
+    <Content Include="System\Schedule\FScheduleFactory.xml" />
+    <Content Include="System\Schedule\FScheduleTask.xml" />
+    <Content Include="System\Schedule\FScheduleTaskDaily.xml" />
+    <Content Include="System\Schedule\FScheduleTaskMonthly.xml" />
+    <Content Include="System\Schedule\FScheduleTaskOnce.xml" />
+    <Content Include="System\Schedule\FScheduleTaskWeekly.xml" />
+    <EmbeddedResource Include="Forms\Controls\QCalendar.resx">
+      <DependentUpon>QCalendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\QColorPicker.resx">
+      <DependentUpon>QColorPicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\QControl.resx">
+      <DependentUpon>QControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\QFloatColor4.resx">
+      <DependentUpon>QFloatColor4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\QGridView.resx">
+      <DependentUpon>QGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\QManagerListView.resx">
+      <DependentUpon>QManagerListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\QPictureBox.resx">
+      <DependentUpon>QPictureBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\QPropertiesEditorForm.resx">
+      <DependentUpon>QPropertiesEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\QTable.resx">
+      <DependentUpon>QTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\QTextBox.resx">
+      <DependentUpon>QTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Design\QDesignErrorForm.resx">
+      <DependentUpon>QDesignErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\QExceptionDialogForm.resx">
+      <DependentUpon>QExceptionDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\QForm.resx">
+      <DependentUpon>QForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\QMessageBox.resx">
+      <DependentUpon>QMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logic\Task\QTaskForm.resx">
+      <DependentUpon>QTaskForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logic\Track\QTrackForm.resx">
+      <DependentUpon>QTrackForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoCommon\MoCommon.csproj">
+      <Project>{199103bc-b3fe-4d93-9b02-0515ef4fb63d}</Project>
+      <Name>MoCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoCompress\MoCompress.vcxproj">
+      <Project>{b1a34040-3125-4381-88dd-d2f3a2adafd6}</Project>
+      <Name>MoCompress</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

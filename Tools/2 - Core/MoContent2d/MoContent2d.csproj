@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C294A5EA-C707-4CA9-A066-FB32967002DC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MO.Content2d</RootNamespace>
+    <AssemblyName>MoContent2d</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Build\Debug_x64\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Build\Release_x64\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\Build\Debug_x64\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\MoResource.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>..\..\Build\Release_x64\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\MoResource.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\Build\Debug_x86\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\Build\Release_x86\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ERsCompress.cs" />
+    <Compile Include="Common\ERsExportMode.cs" />
+    <Compile Include="Common\ERsResourceQuality.cs" />
+    <Compile Include="Common\ERsResource.cs" />
+    <Compile Include="Common\ERsTimeout.cs" />
+    <Compile Include="Common\FRsExportTask.cs" />
+    <Compile Include="Common\IRsExport.cs" />
+    <Compile Include="Common\IRsImport.cs" />
+    <Compile Include="Constant\FTplConstant.cs" />
+    <Compile Include="Constant\FTplConstantConsole.cs" />
+    <Compile Include="Core\ERsBitmap.cs" />
+    <Compile Include="Core\ERsBitmapChannel.cs" />
+    <Compile Include="Core\FRsBitmap.cs" />
+    <Compile Include="Core\FRsBitmapBlockIndex.cs" />
+    <Compile Include="Core\FRsBitmapIndex.cs" />
+    <Compile Include="Core\FRsBitmapJpg.cs" />
+    <Compile Include="Core\FRsBitmapTexture.cs" />
+    <Compile Include="Core\FRsCompressFile.cs" />
+    <Compile Include="Data\FRsDataConsole.cs" />
+    <Compile Include="Data\FRsDataRow.cs" />
+    <Compile Include="Data\FRsDataset.cs" />
+    <Compile Include="Frame\Common\EDataSearch.cs" />
+    <Compile Include="Frame\Common\EDataType.cs" />
+    <Compile Include="Frame\Common\ERcAlign.cs" />
+    <Compile Include="Frame\Common\ERcComponent.cs" />
+    <Compile Include="Frame\Common\ERcDock.cs" />
+    <Compile Include="Frame\Common\ERcFlag.cs" />
+    <Compile Include="Frame\Common\ERcHorizontalDock.cs" />
+    <Compile Include="Frame\Common\ERcHoverStyle.cs" />
+    <Compile Include="Frame\Common\ERcLineStyle.cs" />
+    <Compile Include="Frame\Common\ERcPictureAlign.cs" />
+    <Compile Include="Frame\Common\ERcScrollStyle.cs" />
+    <Compile Include="Frame\Common\ERcSpread.cs" />
+    <Compile Include="Frame\Common\ERcTextAlign.cs" />
+    <Compile Include="Frame\Common\ERcTextInput.cs" />
+    <Compile Include="Frame\Common\ERcVerticalDock.cs" />
+    <Compile Include="Frame\Common\FRcBorder.cs" />
+    <Compile Include="Frame\Common\FRcBorderConverter.cs" />
+    <Compile Include="Frame\Common\FRcColor.cs" />
+    <Compile Include="Frame\Common\FRcColorConverter.cs" />
+    <Compile Include="Frame\Common\FRcComponent.cs" />
+    <Compile Include="Frame\Common\FRcComponentCollection.cs" />
+    <Compile Include="Frame\Common\FRcContainer.cs" />
+    <Compile Include="Frame\Common\FRcControl.cs" />
+    <Compile Include="Frame\Common\FRcDataColumns.cs" />
+    <Compile Include="Frame\Common\FRcDataContainer.cs" />
+    <Compile Include="Frame\Common\FRcDataControl.cs" />
+    <Compile Include="Frame\Common\FRcFont.cs" />
+    <Compile Include="Frame\Common\FRcFontConverter.cs" />
+    <Compile Include="Frame\Common\FRcFrame.cs" />
+    <Compile Include="Frame\Common\FRcLine.cs" />
+    <Compile Include="Frame\Common\FRcLineConverter.cs" />
+    <Compile Include="Frame\Common\FRcObject.cs" />
+    <Compile Include="Frame\Common\FRcPicture.cs" />
+    <Compile Include="Frame\Common\FRcPictureConverter.cs" />
+    <Compile Include="Frame\Common\FRcProperties.cs" />
+    <Compile Include="Frame\Common\FRcScrollBox.cs" />
+    <Compile Include="Frame\Common\FRcScrollItem.cs" />
+    <Compile Include="Frame\Common\FRcScrollView.cs" />
+    <Compile Include="Frame\Common\RRcUtil.cs" />
+    <Compile Include="Frame\Frame\FRcBar.cs" />
+    <Compile Include="Frame\Controls\FRcButton.cs" />
+    <Compile Include="Frame\Controls\FRcCalendar.cs" />
+    <Compile Include="Frame\Controls\FRcCheck.cs" />
+    <Compile Include="Frame\Controls\FRcEdit.cs" />
+    <Compile Include="Frame\Controls\FRcFontBox.cs" />
+    <Compile Include="Frame\Frame\FRcForm.cs" />
+    <Compile Include="Frame\Controls\FRcLabel.cs" />
+    <Compile Include="Frame\Container\FRcListItem.cs" />
+    <Compile Include="Frame\Container\FRcListView.cs" />
+    <Compile Include="Frame\Container\FRcMenu.cs" />
+    <Compile Include="Frame\Controls\FRcMovieBox.cs" />
+    <Compile Include="Frame\Controls\FRcNumber.cs" />
+    <Compile Include="Frame\Container\FRcPage.cs" />
+    <Compile Include="Frame\Container\FRcPageControl.cs" />
+    <Compile Include="Frame\Container\FRcPanel.cs" />
+    <Compile Include="Frame\Controls\FRcPictureBox.cs" />
+    <Compile Include="Frame\Controls\FRcProgressBar.cs" />
+    <Compile Include="Frame\Controls\FRcRadio.cs" />
+    <Compile Include="Frame\Controls\FRcRichEdit.cs" />
+    <Compile Include="Frame\Controls\FRcScrollBar.cs" />
+    <Compile Include="Frame\Container\FRcSelect.cs" />
+    <Compile Include="Frame\Container\FRcSelectItem.cs" />
+    <Compile Include="Frame\Controls\FRcSlider.cs" />
+    <Compile Include="Frame\Controls\FRcSlot.cs" />
+    <Compile Include="Frame\Controls\FRcSlotItem.cs" />
+    <Compile Include="Frame\Controls\FRcStaticLabel.cs" />
+    <Compile Include="Frame\Container\FRcTreeNode.cs" />
+    <Compile Include="Frame\Container\FRcTreeNodeLevel.cs" />
+    <Compile Include="Frame\Container\FRcTreeNodeType.cs" />
+    <Compile Include="Frame\Container\FRcTreeView.cs" />
+    <Compile Include="Frame\Frame\FRcTable.cs" />
+    <Compile Include="Frame\Frame\FRcWidget.cs" />
+    <Compile Include="Frame\Frame\FRcWindow.cs" />
+    <Compile Include="Frame\Container\FRcMenuItem.cs" />
+    <Compile Include="Frame\FRcFrameConsole.cs" />
+    <Compile Include="Frame\Grid\FRcGridCell.cs" />
+    <Compile Include="Frame\Grid\FRcGridCellCheck.cs" />
+    <Compile Include="Frame\Grid\FRcGridCellNumber.cs" />
+    <Compile Include="Frame\Grid\FRcGridCellText.cs" />
+    <Compile Include="Frame\Grid\FRcGridColumn.cs" />
+    <Compile Include="Frame\Grid\FRcGridColumnCheck.cs" />
+    <Compile Include="Frame\Grid\FRcGridColumnNumber.cs" />
+    <Compile Include="Frame\Grid\FRcGridColumnText.cs" />
+    <Compile Include="Frame\Grid\FRcGridRow.cs" />
+    <Compile Include="Frame\Grid\FRcGridView.cs" />
+    <Compile Include="Resource\Animation\ERsDirection.cs" />
+    <Compile Include="Resource\Animation\ERsIsCheckd.cs" />
+    <Compile Include="Resource\Animation\ERsReverse.cs" />
+    <Compile Include="Resource\Animation\FRsResourceAnimation.cs" />
+    <Compile Include="Resource\Animation\FRsResourceClip.cs" />
+    <Compile Include="Resource\Animation\FRsResourceFrame.cs" />
+    <Compile Include="Resource\Common\FRsResource.cs" />
+    <Compile Include="Resource\Common\FRsResourceFolder.cs" />
+    <Compile Include="Resource\Common\FRsResourceGroup.cs" />
+    <Compile Include="Resource\Common\FRsResourceDictionary.cs" />
+    <Compile Include="Resource\FRsResourceConsole.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RContent2dManager.cs" />
+    <Compile Include="Resource\Music\FRsResourceMusic.cs" />
+    <Compile Include="Resource\Picture\EPictureType.cs" />
+    <Compile Include="Resource\Picture\FRsResourcePicture.cs" />
+    <Compile Include="Resource\Sound\FRsResourceSound.cs" />
+    <Compile Include="Style\FTplColorMatrixFilter.cs" />
+    <Compile Include="Style\FTplDropShadowFilter.cs" />
+    <Compile Include="Style\FTplFilter.cs" />
+    <Compile Include="Style\FTplGlowFilter.cs" />
+    <Compile Include="Style\FTplGradientGlowFilter.cs" />
+    <Compile Include="Style\FTplStyle.cs" />
+    <Compile Include="Style\FTplStyleConsole.cs" />
+    <Compile Include="Style\FTplStyleProperty.cs" />
+    <Compile Include="Style\STplEffect.cs" />
+    <Compile Include="Theme\FTplTheme.cs" />
+    <Compile Include="Theme\FTplThemeConsole.cs" />
+    <Compile Include="Theme\FTplThemeStyle.cs" />
+    <Compile Include="Theme\FTplThemeStyleProperty.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\1 - Common\MoCommon\MoCommon.csproj">
+      <Project>{199103BC-B3FE-4D93-9B02-0515EF4FB63D}</Project>
+      <Name>MoCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1 - Common\MoCompress\MoCompress.vcxproj">
+      <Project>{B1A34040-3125-4381-88DD-D2F3A2ADAFD6}</Project>
+      <Name>MoCompress</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1 - Common\MoCore\MoCore.csproj">
+      <Project>{9CEC2262-F3E8-4880-B5D8-EF909958F0C6}</Project>
+      <Name>MoCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

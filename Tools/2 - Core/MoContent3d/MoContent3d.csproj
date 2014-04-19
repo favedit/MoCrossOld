@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9CFF1D91-76BB-4AD0-AA5F-03BF332ABDDC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MO.Content3d</RootNamespace>
+    <AssemblyName>MoContent3d</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Build\Debug_AnyCPU\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Build\Release_AnyCPU\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\Build\Debug_x64\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\MoDxResource.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>..\..\Build\Release_x64\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\MoDxResource.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\Build\Debug_x86\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\Build\Release_x86\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\EDrFlag.cs" />
+    <Compile Include="Resource\Common\EDrStride.cs" />
+    <Compile Include="Common\RDrColor.cs" />
+    <Compile Include="Common\FDrFolder.cs" />
+    <Compile Include="Common\FDrImageSize.cs" />
+    <Compile Include="Common\FDrMaterialBase.cs" />
+    <Compile Include="Common\RDrCompiler.cs" />
+    <Compile Include="Common\RDrUtil.cs" />
+    <Compile Include="Common\SDrIndex.cs" />
+    <Compile Include="Group\FDrResourceGroup.cs" />
+    <Compile Include="Group\FDrResourceGroupConsole.cs" />
+    <Compile Include="Group\FDrResourceGroupExportTask.cs" />
+    <Compile Include="Resource\Camera\FDrCamera.cs" />
+    <Compile Include="Resource\Camera\FDrCameraConsole.cs" />
+    <Compile Include="Resource\Common\EDrResourceType.cs" />
+    <Compile Include="Resource\Common\FDrResource.cs" />
+    <Compile Include="Resource\Common\FDrResourceConsole.cs" />
+    <Compile Include="Resource\Console\FDrResourceConsole.cs" />
+    <Compile Include="Resource\Map\FDrMapExportTask.cs" />
+    <Compile Include="Resource\Material\FDrMaterial.cs" />
+    <Compile Include="Resource\Material\FDrMaterialInfo.cs" />
+    <Compile Include="Resource\Material\FDrMaterialConsole.cs" />
+    <Compile Include="Resource\Material\FDrMaterialTexture.cs" />
+    <Compile Include="Resource\Common\EDrMoviePlay.cs" />
+    <Compile Include="Resource\Model\Animation\FDrFrameInfo.cs" />
+    <Compile Include="Resource\Model\Animation\FDrJoiner.cs" />
+    <Compile Include="Resource\Model\ERenderVertexFormat.cs" />
+    <Compile Include="Resource\Model\EVertexBuffer3d.cs" />
+    <Compile Include="Resource\Model\FDrModelMaterial.cs" />
+    <Compile Include="Resource\Model\Mesh\FDrChannel.cs" />
+    <Compile Include="Resource\Model\Mesh\FDrChannelFace.cs" />
+    <Compile Include="Resource\Scene\FDrScene.cs" />
+    <Compile Include="Resource\Scene\FDrSceneCamera.cs" />
+    <Compile Include="Resource\Scene\FDrSceneConsole.cs" />
+    <Compile Include="Resource\Scene\FDrSceneDisplay.cs" />
+    <Compile Include="Resource\Scene\FDrSceneDrawable.cs" />
+    <Compile Include="Resource\Scene\FDrSceneGroupExportTask.cs" />
+    <Compile Include="Resource\Scene\FDrSceneGroup.cs" />
+    <Compile Include="Resource\Scene\FDrSceneLight.cs" />
+    <Compile Include="Resource\Scene\FDrSceneLightShadow.cs" />
+    <Compile Include="Resource\Scene\FDrSceneMap.cs" />
+    <Compile Include="Resource\Scene\FDrSceneMaterial.cs" />
+    <Compile Include="Resource\Scene\FDrSceneMovie.cs" />
+    <Compile Include="Resource\Scene\FDrSceneNode.cs" />
+    <Compile Include="Resource\Scene\FDrScenePass.cs" />
+    <Compile Include="Resource\Scene\FDrSceneRegion.cs" />
+    <Compile Include="Resource\Scene\FDrSceneRenderable.cs" />
+    <Compile Include="Resource\Scene\FDrSceneSky.cs" />
+    <Compile Include="Resource\Scene\FDrSceneSpace.cs" />
+    <Compile Include="Resource\Scene\FDrSceneTechnique.cs" />
+    <Compile Include="Resource\Scene\FDrSceneViewport.cs" />
+    <Compile Include="Resource\Template\FDrTemplateConsole.cs" />
+    <Compile Include="Resource\Template\FDrTemplateImportTask.cs" />
+    <Compile Include="Resource\Template\FDrTemplateLightMap.cs" />
+    <Compile Include="Resource\Texture\FDrClipTexture.cs" />
+    <Compile Include="Resource\Texture\FDrColorTexture.cs" />
+    <Compile Include="Resource\Texture\FDrLayerTexture.cs" />
+    <Compile Include="Resource\Texture\FDrLightTexture.cs" />
+    <Compile Include="Resource\Texture\FDrTerrainTexture.cs" />
+    <Compile Include="Resource\Texture\FDrTextureConsole.cs" />
+    <Compile Include="Resource\Map\FDrMapConsole.cs" />
+    <Compile Include="Resource\Model\FDrModelConsole.cs" />
+    <Compile Include="RContent3dManager.cs" />
+    <Compile Include="Common\FPngMerger.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource\Template\FDrTemplateAnimation.cs" />
+    <Compile Include="Resource\Template\FDrTemplateAnimationMovie.cs" />
+    <Compile Include="Resource\Texture\EDrTexture.cs" />
+    <Compile Include="Resource\Common\EDrVertex.cs" />
+    <Compile Include="Resource\Common\FDrMatrix.cs" />
+    <Compile Include="Resource\Map\FDrMap.cs" />
+    <Compile Include="Resource\Map\FDrMapLayer.cs" />
+    <Compile Include="Resource\Model\Animation\FDrAnimation.cs" />
+    <Compile Include="Resource\Model\Animation\FDrBone.cs" />
+    <Compile Include="Resource\Model\Animation\FDrFrame.cs" />
+    <Compile Include="Resource\Model\Animation\FDrSkeleton.cs" />
+    <Compile Include="Resource\Model\Animation\FDrTrack.cs" />
+    <Compile Include="Resource\Model\Animation\FDrMovie.cs" />
+    <Compile Include="Resource\Model\FDrModel.cs" />
+    <Compile Include="Resource\Material\FDrMaterialGroup.cs" />
+    <Compile Include="Resource\Model\FDrModelMaterialCollection.cs" />
+    <Compile Include="Resource\Texture\EDrTextureExport.cs" />
+    <Compile Include="Resource\Texture\FDrTexture.cs" />
+    <Compile Include="Resource\Model\FDrModelMaterialTexture.cs" />
+    <Compile Include="Resource\Model\Mesh\FDrBinormal.cs" />
+    <Compile Include="Resource\Model\Mesh\FDrColor.cs" />
+    <Compile Include="Resource\Model\Mesh\FDrFace.cs" />
+    <Compile Include="Resource\Model\Mesh\FDrMesh.cs" />
+    <Compile Include="Resource\Model\Mesh\FDrNormal.cs" />
+    <Compile Include="Resource\Model\Mesh\FDrGeometry.cs" />
+    <Compile Include="Resource\Model\Mesh\FDrCoord.cs" />
+    <Compile Include="Resource\Model\Mesh\FDrTangent.cs" />
+    <Compile Include="Resource\Model\Mesh\FDrVertex.cs" />
+    <Compile Include="Resource\Model\Mesh\FDrVertexWeight.cs" />
+    <Compile Include="Resource\Texture\FDrTextureBitmap.cs" />
+    <Compile Include="Resource\Template\FDrTemplate.cs" />
+    <Compile Include="Resource\Template\FDrTemplateReference.cs" />
+    <Compile Include="Resource\Template\FDrTemplateRenderable.cs" />
+    <Compile Include="Resource\Theme\FDrTheme.cs" />
+    <Compile Include="Resource\Theme\FDrThemeConsole.cs" />
+    <Compile Include="Util\Growing\FDrGrowingGeometry.cs" />
+    <Compile Include="Util\Growing\FDrGrowingMap.cs" />
+    <Compile Include="Util\Light\FDrLightGeometry.cs" />
+    <Compile Include="Util\Light\FDrLightMap.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\1 - Common\MoCommon\MoCommon.csproj">
+      <Project>{199103BC-B3FE-4D93-9B02-0515EF4FB63D}</Project>
+      <Name>MoCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1 - Common\MoCore\MoCore.csproj">
+      <Project>{9CEC2262-F3E8-4880-B5D8-EF909958F0C6}</Project>
+      <Name>MoCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1 - Common\MoDirect3d\MoDirect3d.csproj">
+      <Project>{5938e9ed-49a6-4254-ba2c-281f93f9a729}</Project>
+      <Name>MoDirect3d</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoContent2d\MoContent2d.csproj">
+      <Project>{c294a5ea-c707-4ca9-a066-fb32967002dc}</Project>
+      <Name>MoContent2d</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

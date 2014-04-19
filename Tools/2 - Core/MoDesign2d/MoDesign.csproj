@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D5DF1770-3B4C-42D4-8852-99C4EAAF838F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MO.Design</RootNamespace>
+    <AssemblyName>MoDesign</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Build\Release_x86\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\Build\Debug_x86\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\Build\Release_x86\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>..\..\Build\Debug_x64\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>..\..\Build\Release_x64\</OutputPath>
+    <Optimize>true</Optimize>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\QDsDesignForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\QDsDesignForm.Designer.cs">
+      <DependentUpon>QDsDesignForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\Common\EUiAction.cs" />
+    <Compile Include="Frame\Common\EUiComponent.cs" />
+    <Compile Include="Frame\Common\EUiLineStyle.cs" />
+    <Compile Include="Frame\Common\EUiStyle.cs" />
+    <Compile Include="Frame\Common\FUiBorder.cs" />
+    <Compile Include="Frame\Common\FUiBorderConverter.cs" />
+    <Compile Include="Frame\Common\FUiColor.cs" />
+    <Compile Include="Frame\Common\FUiColorConverter.cs" />
+    <Compile Include="Frame\Common\FUiComponent.cs" />
+    <Compile Include="Frame\Common\FUiComponentCollection.cs" />
+    <Compile Include="Frame\Common\FUiContainer.cs" />
+    <Compile Include="Frame\Common\FUiContext.cs" />
+    <Compile Include="Frame\Common\FUiControl.cs" />
+    <Compile Include="Frame\Common\FUiControlCollection.cs" />
+    <Compile Include="Frame\Common\FUiDataContainer.cs" />
+    <Compile Include="Frame\Common\FUiDataControl.cs" />
+    <Compile Include="Frame\Common\FUiFont.cs" />
+    <Compile Include="Frame\Common\FUiFrame.cs" />
+    <Compile Include="Frame\Common\FUiLine.cs" />
+    <Compile Include="Frame\Common\FUiLineConverter.cs" />
+    <Compile Include="Frame\Common\FUiObject.cs" />
+    <Compile Include="Frame\Common\FUiPicture.cs" />
+    <Compile Include="Frame\Common\FUiResourceEditor.cs" />
+    <Compile Include="Frame\Common\FUiScrollBox.cs" />
+    <Compile Include="Frame\Common\FUiScrollItem.cs" />
+    <Compile Include="Frame\Common\FUiScrollView.cs" />
+    <Compile Include="Frame\Common\RUiUtil.cs" />
+    <Compile Include="Frame\Common\SUiAction.cs" />
+    <Compile Include="Frame\Common\SUiDrawArgs.cs" />
+    <Compile Include="Frame\Common\SUiResourceTag.cs" />
+    <Compile Include="Frame\Common\SUiSetupArgs.cs" />
+    <Compile Include="Frame\Common\SUiTestArgs.cs" />
+    <Compile Include="Frame\Controls\FUiBar.cs" />
+    <Compile Include="Frame\Controls\FUiButton.cs" />
+    <Compile Include="Frame\Controls\FUiForm.cs" />
+    <Compile Include="Frame\Controls\FUiLabel.cs" />
+    <Compile Include="Frame\Controls\FUiPanel.cs" />
+    <Compile Include="Frame\Core\EUiControlLocation.cs" />
+    <Compile Include="Frame\Core\EUiDesignAlign.cs" />
+    <Compile Include="Frame\Core\EUiDesignMode.cs" />
+    <Compile Include="Frame\Core\EUiDesignMove.cs" />
+    <Compile Include="Frame\Core\FUiControlDesigner.cs" />
+    <Compile Include="Frame\Core\FUiControlLayer.cs" />
+    <Compile Include="Frame\Core\FUiControlLayers.cs" />
+    <Compile Include="Frame\Core\FUiControlLocationComparer.cs" />
+    <Compile Include="Frame\Core\FUiControlSelection.cs" />
+    <Compile Include="Frame\Core\FUiFormDesigner.cs" />
+    <Compile Include="Frame\Core\FUiFormHistory.cs" />
+    <Compile Include="Frame\Core\FUiFormHistoryStep.cs" />
+    <Compile Include="Frame\Core\SUiControlPoint.cs" />
+    <Compile Include="Frame\Forms\QUiConsoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frame\Forms\QUiConsoleForm.Designer.cs">
+      <DependentUpon>QUiConsoleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\Forms\QUiControlPickerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frame\Forms\QUiControlPickerForm.Designer.cs">
+      <DependentUpon>QUiControlPickerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\Forms\QUiDesign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frame\Forms\QUiDesign.Designer.cs">
+      <DependentUpon>QUiDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\Forms\QUiDesignForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frame\Forms\QUiDesignForm.Designer.cs">
+      <DependentUpon>QUiDesignForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\Forms\QUiFrameProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frame\Forms\QUiFrameProperty.Designer.cs">
+      <DependentUpon>QUiFrameProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\Forms\QUiResourceList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frame\Forms\QUiResourceList.Designer.cs">
+      <DependentUpon>QUiResourceList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\Forms\QUiResourcePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frame\Forms\QUiResourcePicker.Designer.cs">
+      <DependentUpon>QUiResourcePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\Forms\QUiResourcePickerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frame\Forms\QUiResourcePickerForm.Designer.cs">
+      <DependentUpon>QUiResourcePickerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\FUiFrameConsole.cs" />
+    <Compile Include="Frame\Property\IUiPropertyEditor.cs" />
+    <Compile Include="Frame\Property\QUiButtonProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frame\Property\QUiButtonProperty.Designer.cs">
+      <DependentUpon>QUiButtonProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\Property\QUiComponentProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frame\Property\QUiComponentProperty.Designer.cs">
+      <DependentUpon>QUiComponentProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\Property\QUiControlProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frame\Property\QUiControlProperty.Designer.cs">
+      <DependentUpon>QUiControlProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\Property\QUiFontEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frame\Property\QUiFontEditor.Designer.cs">
+      <DependentUpon>QUiFontEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\Property\QUiObjectProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frame\Property\QUiObjectProperty.Designer.cs">
+      <DependentUpon>QUiObjectProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\Property\QUiPictureEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frame\Property\QUiPictureEditor.Designer.cs">
+      <DependentUpon>QUiPictureEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\Property\QUiProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frame\Property\QUiProperty.Designer.cs">
+      <DependentUpon>QUiProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\Property\QUiPropertyPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frame\Property\QUiPropertyPanel.Designer.cs">
+      <DependentUpon>QUiPropertyPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame\Property\QUiFrameProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frame\Property\QUiFrameProperty.Designer.cs">
+      <DependentUpon>QUiFrameProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RDesignManager.cs" />
+    <Compile Include="Resource\Controls\EDsMouseAction.cs" />
+    <Compile Include="Resource\Controls\QDsResourceClipViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsResourceClipViewer.Designer.cs">
+      <DependentUpon>QDsResourceClipViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsResourceDesign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsResourceDesign.Designer.cs">
+      <DependentUpon>QDsResourceDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsResource.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsResource.Designer.cs">
+      <DependentUpon>QDsResource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsResourceClipProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsResourceClipProperty.Designer.cs">
+      <DependentUpon>QDsResourceClipProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsResourceGroupDesign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsResourceGroupDesign.Designer.cs">
+      <DependentUpon>QDsResourceGroupDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsResourceGroupProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsResourceGroupProperty.Designer.cs">
+      <DependentUpon>QDsResourceGroupProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsResourceGroupCatalog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsResourceGroupCatalog.Designer.cs">
+      <DependentUpon>QDsResourceGroupCatalog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resource\Controls\QClipMoveControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resource\Controls\QClipMoveControl.Designer.cs">
+      <DependentUpon>QClipMoveControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resource\Controls\SDsResourceTag.cs" />
+    <Compile Include="Resource\Forms\QDsResourceConsoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Resource\Forms\QDsResourceConsoleForm.Designer.cs">
+      <DependentUpon>QDsResourceConsoleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resource\Forms\QDsResourceViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Resource\Forms\QDsResourceViewForm.Designer.cs">
+      <DependentUpon>QDsResourceViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsAnimationProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsAnimationProperty.Designer.cs">
+      <DependentUpon>QDsAnimationProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsPictureProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsPictureProperty.Designer.cs">
+      <DependentUpon>QDsPictureProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsResourceCatalog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resource\Controls\QDsResourceCatalog.Designer.cs">
+      <DependentUpon>QDsResourceCatalog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resource\Forms\QDsResourceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Resource\Forms\QDsResourceForm.Designer.cs">
+      <DependentUpon>QDsResourceForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\QDsDesignForm.resx">
+      <DependentUpon>QDsDesignForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frame\Forms\QUiConsoleForm.resx">
+      <DependentUpon>QUiConsoleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frame\Forms\QUiDesign.resx">
+      <DependentUpon>QUiDesign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frame\Forms\QUiDesignForm.resx">
+      <DependentUpon>QUiDesignForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frame\Property\QUiButtonProperty.resx">
+      <DependentUpon>QUiButtonProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frame\Property\QUiComponentProperty.resx">
+      <DependentUpon>QUiComponentProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frame\Property\QUiControlProperty.resx">
+      <DependentUpon>QUiControlProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frame\Property\QUiFontEditor.resx">
+      <DependentUpon>QUiFontEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frame\Property\QUiObjectProperty.resx">
+      <DependentUpon>QUiObjectProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frame\Property\QUiPictureEditor.resx">
+      <DependentUpon>QUiPictureEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frame\Property\QUiProperty.resx">
+      <DependentUpon>QUiProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frame\Property\QUiPropertyPanel.resx">
+      <DependentUpon>QUiPropertyPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frame\Property\QUiFrameProperty.resx">
+      <DependentUpon>QUiFrameProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Controls\QDsResourceClipViewer.resx">
+      <DependentUpon>QDsResourceClipViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Controls\QDsResourceDesign.resx">
+      <DependentUpon>QDsResourceDesign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Controls\QDsAnimationProperty.resx">
+      <DependentUpon>QDsAnimationProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Controls\QDsPictureProperty.resx">
+      <DependentUpon>QDsPictureProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Controls\QDsResource.resx">
+      <DependentUpon>QDsResource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Controls\QDsResourceCatalog.resx">
+      <DependentUpon>QDsResourceCatalog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Controls\QDsResourceClipProperty.resx">
+      <DependentUpon>QDsResourceClipProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Controls\QDsResourceGroupCatalog.resx">
+      <DependentUpon>QDsResourceGroupCatalog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Controls\QDsResourceGroupDesign.resx">
+      <DependentUpon>QDsResourceGroupDesign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Controls\QDsResourceGroupProperty.resx">
+      <DependentUpon>QDsResourceGroupProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Controls\QClipMoveControl.resx">
+      <DependentUpon>QClipMoveControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Forms\QDsResourceConsoleForm.resx">
+      <DependentUpon>QDsResourceConsoleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Forms\QDsResourceForm.resx">
+      <DependentUpon>QDsResourceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Forms\QDsResourceViewForm.resx">
+      <DependentUpon>QDsResourceViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\1 - Common\MoCommon\MoCommon.csproj">
+      <Project>{199103BC-B3FE-4D93-9B02-0515EF4FB63D}</Project>
+      <Name>MoCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1 - Common\MoCore\MoCore.csproj">
+      <Project>{9CEC2262-F3E8-4880-B5D8-EF909958F0C6}</Project>
+      <Name>MoCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1 - Common\MoDirect2d\MoDirect2d.csproj">
+      <Project>{f996742e-5053-4630-bfed-e2906073ffc9}</Project>
+      <Name>MoDirect2d</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoContent\MoContent.csproj">
+      <Project>{c294a5ea-c707-4ca9-a066-fb32967002dc}</Project>
+      <Name>MoContent</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="Core\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

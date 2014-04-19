@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E166487A-2E4E-43EA-9A8D-5F3F59D0334B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MO.Design3d</RootNamespace>
+    <AssemblyName>MoDesign3d</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Build\Debug_AnyCPU\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Build\Release_AnyCPU\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>..\..\Build\Debug_x64\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>..\..\Build\Release_x64\</OutputPath>
+    <Optimize>true</Optimize>
+    <DefineConstants>
+    </DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\Build\Debug_x86\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\Build\Release_x86\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Camera\Controls\QDsCameraDesign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Camera\Controls\QDsCameraDesign.Designer.cs">
+      <DependentUpon>QDsCameraDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Camera\Controls\QDsCameraProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Camera\Controls\QDsCameraProperty.Designer.cs">
+      <DependentUpon>QDsCameraProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Camera\Forms\QDsCameraDesignForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camera\Forms\QDsCameraDesignForm.Designer.cs">
+      <DependentUpon>QDsCameraDesignForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\EDxDesignCommand.cs" />
+    <Compile Include="Common\EDxDesignMode.cs" />
+    <Compile Include="Controls\QDsFlag.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\QDsFlag.Designer.cs">
+      <DependentUpon>QDsFlag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\QDsImageList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\QDsImageList.Designer.cs">
+      <DependentUpon>QDsImageList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\QDsPicture.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\QDsPicture.Designer.cs">
+      <DependentUpon>QDsPicture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\QDsPictureProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\QDsPictureProperty.Designer.cs">
+      <DependentUpon>QDsPictureProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Model\FDxDesignGeometry.cs" />
+    <Compile Include="Core\Scene\FDxDesignScene.cs" />
+    <Compile Include="Engine\QDsDeviceProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Engine\QDsDeviceProperty.Designer.cs">
+      <DependentUpon>QDsDeviceProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FDxDesignFactory.cs" />
+    <Compile Include="Forms\QDsConsoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\QDsConsoleForm.Designer.cs">
+      <DependentUpon>QDsConsoleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Map\Controls\QDsMapProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Map\Controls\QDsMapProperty.Designer.cs">
+      <DependentUpon>QDsMapProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Material\Controls\QDsMaterialProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Material\Controls\QDsMaterialProperty.Designer.cs">
+      <DependentUpon>QDsMaterialProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Material\Controls\QDsMaterialGroupProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Material\Controls\QDsMaterialGroupProperty.Designer.cs">
+      <DependentUpon>QDsMaterialGroupProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Material\Controls\QDsMaterialInfoProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Material\Controls\QDsMaterialInfoProperty.Designer.cs">
+      <DependentUpon>QDsMaterialInfoProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Material\Forms\QDsMaterialDesignForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Material\Forms\QDsMaterialDesignForm.Designer.cs">
+      <DependentUpon>QDsMaterialDesignForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Controls\QDsModelAnimation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Model\Controls\QDsModelAnimation.Designer.cs">
+      <DependentUpon>QDsModelAnimation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Controls\QDsModelGeometryProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Model\Controls\QDsModelGeometryProperty.Designer.cs">
+      <DependentUpon>QDsModelGeometryProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Controls\QDsModelProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Model\Controls\QDsModelProperty.Designer.cs">
+      <DependentUpon>QDsModelProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Forms\QDsModelDesignForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Model\Forms\QDsModelDesignForm.Designer.cs">
+      <DependentUpon>QDsModelDesignForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceGroup\Controls\QDsResourceGroupDesign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ResourceGroup\Controls\QDsResourceGroupDesign.Designer.cs">
+      <DependentUpon>QDsResourceGroupDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceGroup\Controls\QDsResourceGroupProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ResourceGroup\Controls\QDsResourceGroupProperty.Designer.cs">
+      <DependentUpon>QDsResourceGroupProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene\Controls\QDsSceneCameraProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scene\Controls\QDsSceneCameraProperty.Designer.cs">
+      <DependentUpon>QDsSceneCameraProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene\Controls\QDsSceneDesign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scene\Controls\QDsSceneDesign.Designer.cs">
+      <DependentUpon>QDsSceneDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene\Controls\QDsSceneEntityProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scene\Controls\QDsSceneEntityProperty.Designer.cs">
+      <DependentUpon>QDsSceneEntityProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene\Controls\QDsSceneLightProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scene\Controls\QDsSceneLightProperty.Designer.cs">
+      <DependentUpon>QDsSceneLightProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene\Controls\QDsScenePassProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scene\Controls\QDsScenePassProperty.Designer.cs">
+      <DependentUpon>QDsScenePassProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene\Controls\QDsSceneProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scene\Controls\QDsSceneProperty.Designer.cs">
+      <DependentUpon>QDsSceneProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene\Controls\QDsSceneRegionProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scene\Controls\QDsSceneRegionProperty.Designer.cs">
+      <DependentUpon>QDsSceneRegionProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene\Controls\QDsSceneTerrainProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scene\Controls\QDsSceneTerrainProperty.Designer.cs">
+      <DependentUpon>QDsSceneTerrainProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene\Forms\QDsSceneDesignForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scene\Forms\QDsSceneDesignForm.Designer.cs">
+      <DependentUpon>QDsSceneDesignForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Template\Controls\QDsTemplateDesign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Template\Controls\QDsTemplateDesign.Designer.cs">
+      <DependentUpon>QDsTemplateDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Template\Controls\QDsTemplateMovieProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Template\Controls\QDsTemplateMovieProperty.Designer.cs">
+      <DependentUpon>QDsTemplateMovieProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Template\Controls\QDsTemplateProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Template\Controls\QDsTemplateProperty.Designer.cs">
+      <DependentUpon>QDsTemplateProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Template\Controls\QDsTemplateRenderableProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Template\Controls\QDsTemplateRenderableProperty.Designer.cs">
+      <DependentUpon>QDsTemplateRenderableProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Template\Forms\QDsTemplateDesignForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Template\Forms\QDsTemplateDesignForm.Designer.cs">
+      <DependentUpon>QDsTemplateDesignForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Template\Forms\QDsTemplateEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Template\Forms\QDsTemplateEditorForm.Designer.cs">
+      <DependentUpon>QDsTemplateEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Material\Controls\QDsMaterialDesign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Material\Controls\QDsMaterialDesign.Designer.cs">
+      <DependentUpon>QDsMaterialDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Controls\QDsModelDesign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Model\Controls\QDsModelDesign.Designer.cs">
+      <DependentUpon>QDsModelDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RDesign3dManager.cs" />
+    <Compile Include="Terrain\Controls\QDsTerrainDesign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Terrain\Controls\QDsTerrainDesign.Designer.cs">
+      <DependentUpon>QDsTerrainDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Terrain\Controls\QDsTerrainProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Terrain\Controls\QDsTerrainProperty.Designer.cs">
+      <DependentUpon>QDsTerrainProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Terrain\Forms\QDsTerrainDesignForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Terrain\Forms\QDsTerrainDesignForm.Designer.cs">
+      <DependentUpon>QDsTerrainDesignForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Texture\Controls\QDsTextureDesign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Texture\Controls\QDsTextureDesign.Designer.cs">
+      <DependentUpon>QDsTextureDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Texture\Controls\QDsTextureProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Texture\Controls\QDsTextureProperty.Designer.cs">
+      <DependentUpon>QDsTextureProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Texture\Forms\QDsTextureDesignForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Texture\Forms\QDsTextureDesignForm.Designer.cs">
+      <DependentUpon>QDsTextureDesignForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Theme\Controls\QDsThemeDesign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Theme\Controls\QDsThemeDesign.Designer.cs">
+      <DependentUpon>QDsThemeDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Theme\Controls\QDsThemeProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Theme\Controls\QDsThemeProperty.Designer.cs">
+      <DependentUpon>QDsThemeProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Theme\Forms\QDsThemeDesignForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Theme\Forms\QDsThemeDesignForm.Designer.cs">
+      <DependentUpon>QDsThemeDesignForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\Normal\FDsNormalGeometry.cs" />
+    <Compile Include="Util\Normal\FDsNormalMap.cs" />
+    <Compile Include="Util\Normal\QDsNormalMapForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Util\Normal\QDsNormalMapForm.Designer.cs">
+      <DependentUpon>QDsNormalMapForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ResourceGroup\Forms\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\1 - Common\MoCommon\MoCommon.csproj">
+      <Project>{199103BC-B3FE-4D93-9B02-0515EF4FB63D}</Project>
+      <Name>MoCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1 - Common\MoCompress\MoCompress.vcxproj">
+      <Project>{b1a34040-3125-4381-88dd-d2f3a2adafd6}</Project>
+      <Name>MoCompress</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1 - Common\MoCore\MoCore.csproj">
+      <Project>{9CEC2262-F3E8-4880-B5D8-EF909958F0C6}</Project>
+      <Name>MoCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1 - Common\MoDirect2d\MoDirect2d.csproj">
+      <Project>{f996742e-5053-4630-bfed-e2906073ffc9}</Project>
+      <Name>MoDirect2d</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1 - Common\MoDirect3d\MoDirect3d.csproj">
+      <Project>{5938E9ED-49A6-4254-BA2C-281F93F9A729}</Project>
+      <Name>MoDirect3d</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoContent2d\MoContent2d.csproj">
+      <Project>{c294a5ea-c707-4ca9-a066-fb32967002dc}</Project>
+      <Name>MoContent2d</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoContent3d\MoContent3d.csproj">
+      <Project>{9cff1d91-76bb-4ad0-aa5f-03bf332abddc}</Project>
+      <Name>MoContent3d</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Camera\Forms\QDsCameraDesignForm.resx">
+      <DependentUpon>QDsCameraDesignForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Engine\QDsDeviceProperty.resx">
+      <DependentUpon>QDsDeviceProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\QDsConsoleForm.resx">
+      <DependentUpon>QDsConsoleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Map\Controls\QDsMapProperty.resx">
+      <DependentUpon>QDsMapProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Material\Controls\QDsMaterialProperty.resx">
+      <DependentUpon>QDsMaterialProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Material\Forms\QDsMaterialDesignForm.resx">
+      <DependentUpon>QDsMaterialDesignForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Controls\QDsModelDesign.resx">
+      <DependentUpon>QDsModelDesign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Controls\QDsModelProperty.resx">
+      <DependentUpon>QDsModelProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Forms\QDsModelDesignForm.resx">
+      <DependentUpon>QDsModelDesignForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scene\Controls\QDsSceneProperty.resx">
+      <DependentUpon>QDsSceneProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scene\Controls\QDsSceneTerrainProperty.resx">
+      <DependentUpon>QDsSceneTerrainProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scene\Forms\QDsSceneDesignForm.resx">
+      <DependentUpon>QDsSceneDesignForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Template\Controls\QDsTemplateDesign.resx">
+      <DependentUpon>QDsTemplateDesign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Template\Controls\QDsTemplateProperty.resx">
+      <DependentUpon>QDsTemplateProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Template\Forms\QDsTemplateDesignForm.resx">
+      <DependentUpon>QDsTemplateDesignForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Template\Forms\QDsTemplateEditorForm.resx">
+      <DependentUpon>QDsTemplateEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Material\Controls\QDsMaterialDesign.resx">
+      <DependentUpon>QDsMaterialDesign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Terrain\Controls\QDsTerrainDesign.resx">
+      <DependentUpon>QDsTerrainDesign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Terrain\Controls\QDsTerrainProperty.resx">
+      <DependentUpon>QDsTerrainProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Terrain\Forms\QDsTerrainDesignForm.resx">
+      <DependentUpon>QDsTerrainDesignForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Texture\Controls\QDsTextureDesign.resx">
+      <DependentUpon>QDsTextureDesign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Texture\Controls\QDsTextureProperty.resx">
+      <DependentUpon>QDsTextureProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Texture\Forms\QDsTextureDesignForm.resx">
+      <DependentUpon>QDsTextureDesignForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Theme\Controls\QDsThemeDesign.resx">
+      <DependentUpon>QDsThemeDesign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Theme\Controls\QDsThemeProperty.resx">
+      <DependentUpon>QDsThemeProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Theme\Forms\QDsThemeDesignForm.resx">
+      <DependentUpon>QDsThemeDesignForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Util\Normal\QDsNormalMapForm.resx">
+      <DependentUpon>QDsNormalMapForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

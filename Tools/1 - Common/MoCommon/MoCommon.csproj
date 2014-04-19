@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{199103BC-B3FE-4D93-9B02-0515EF4FB63D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MO.Common</RootNamespace>
+    <AssemblyName>MoCommon</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Build\Debug_AnyCPU\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Build\Release_AnyCPU\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>..\..\Build\Debug_x64\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>..\..\Build\Release_x64\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <Optimize>true</Optimize>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\Build\Debug_x86\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\Build\Release_x86\</OutputPath>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collection\FArray.cs" />
+    <Compile Include="Collection\FAttributes.cs" />
+    <Compile Include="Collection\FBytes.cs" />
+    <Compile Include="Collection\FChars.cs" />
+    <Compile Include="Collection\FDictionary.cs" />
+    <Compile Include="Collection\FIntDictionary.cs" />
+    <Compile Include="Collection\FIntPair.cs" />
+    <Compile Include="Collection\FIntPairEnumerator.cs" />
+    <Compile Include="Collection\FList.cs" />
+    <Compile Include="Collection\FListEntry.cs" />
+    <Compile Include="Collection\FListEnumerator.cs" />
+    <Compile Include="Collection\FLongSet.cs" />
+    <Compile Include="Collection\FMap.cs" />
+    <Compile Include="Collection\FNamePair.cs" />
+    <Compile Include="Collection\FNamePairEnumerator.cs" />
+    <Compile Include="Collection\FObjectCollection.cs" />
+    <Compile Include="Collection\FObjectDictionary.cs" />
+    <Compile Include="Collection\FObjectSet.cs" />
+    <Compile Include="Collection\FPair.cs" />
+    <Compile Include="Collection\FPairEnumerator.cs" />
+    <Compile Include="Collection\FProperties.cs" />
+    <Compile Include="Collection\FProperty.cs" />
+    <Compile Include="Collection\FSet.cs" />
+    <Compile Include="Collection\FStack.cs" />
+    <Compile Include="Collection\FStringPair.cs" />
+    <Compile Include="Collection\FStringPairEnumerator.cs" />
+    <Compile Include="Collection\FStringSet.cs" />
+    <Compile Include="Collection\FVector.cs" />
+    <Compile Include="Collection\IAttributes.cs" />
+    <Compile Include="Collection\IDictionary.cs" />
+    <Compile Include="Collection\IIntPair.cs" />
+    <Compile Include="Collection\IMap.cs" />
+    <Compile Include="Collection\INamePair.cs" />
+    <Compile Include="Collection\IObjectCollection.cs" />
+    <Compile Include="Collection\IPair.cs" />
+    <Compile Include="Collection\IStringPair.cs" />
+    <Compile Include="Collection\RAttributes.cs" />
+    <Compile Include="Collection\RHash.cs" />
+    <Compile Include="Content\ECsvWorkType.cs" />
+    <Compile Include="Content\EXmlElementType.cs" />
+    <Compile Include="Content\FCsvExport.cs" />
+    <Compile Include="Content\FCsvFile.cs" />
+    <Compile Include="Content\FCsvFormat.cs" />
+    <Compile Include="Content\FCsvFormator.cs" />
+    <Compile Include="Content\FCsvHead.cs" />
+    <Compile Include="Content\FCsvHeads.cs" />
+    <Compile Include="Content\FCsvImport.cs" />
+    <Compile Include="Content\FCsvLine.cs" />
+    <Compile Include="Content\FCsvLines.cs" />
+    <Compile Include="Content\FCsvLineType.cs" />
+    <Compile Include="Content\FCsvReader.cs" />
+    <Compile Include="Content\FCsvReadStatus.cs" />
+    <Compile Include="Content\FCsvValidator.cs" />
+    <Compile Include="Content\FCsvValidators.cs" />
+    <Compile Include="Content\FCsvWriter.cs" />
+    <Compile Include="Content\FXmlComment.cs" />
+    <Compile Include="Content\FXmlNodeAttributeComparer.cs" />
+    <Compile Include="Content\FXmlNodeComparer.cs" />
+    <Compile Include="Content\FXmlDocumentObject.cs" />
+    <Compile Include="Content\FXmlObjectContext.cs" />
+    <Compile Include="Content\FXmlDocument.cs" />
+    <Compile Include="Content\FXmlElement.cs" />
+    <Compile Include="Content\FXmlElements.cs" />
+    <Compile Include="Content\FXmlNode.cs" />
+    <Compile Include="Content\FXmlObjectConfig.cs" />
+    <Compile Include="Content\FXmlObjectConfigs.cs" />
+    <Compile Include="Content\FXmlNodeFactory.cs" />
+    <Compile Include="Content\FXmlNodeMap.cs" />
+    <Compile Include="Content\FXmlNodes.cs" />
+    <Compile Include="Content\FXmlObjectDocument.cs" />
+    <Compile Include="Content\FXmlObjects.cs" />
+    <Compile Include="Content\FZipFile.cs" />
+    <Compile Include="Content\IXmlContext.cs" />
+    <Compile Include="Content\IXmlNodeFactory.cs" />
+    <Compile Include="Content\IXmlObject.cs" />
+    <Compile Include="Content\IXmlObjectDocument.cs" />
+    <Compile Include="Content\RCsv.cs" />
+    <Compile Include="Content\RXml.cs" />
+    <Compile Include="Enum\EBool.cs" />
+    <Compile Include="Enum\EOptionBool.cs" />
+    <Compile Include="Format\RWordFormat.cs" />
+    <Compile Include="Geom\RFloatColor3.cs" />
+    <Compile Include="Geom\RFloatColor4.cs" />
+    <Compile Include="Geom\RRectangle.cs" />
+    <Compile Include="Geom\SColor.cs" />
+    <Compile Include="Geom\SFloatColor3.cs" />
+    <Compile Include="Geom\SFloatColor4.cs" />
+    <Compile Include="Geom\SFloatMatrix.cs" />
+    <Compile Include="Geom\SFloatMatrix3D.cs" />
+    <Compile Include="Geom\SFloatOutline3.cs" />
+    <Compile Include="Geom\SFloatPoint2.cs" />
+    <Compile Include="Geom\SFloatPoint3.cs" />
+    <Compile Include="Geom\SFloatPoint4.cs" />
+    <Compile Include="Geom\SFloatQuaterion.cs" />
+    <Compile Include="Geom\SFloatSize.cs" />
+    <Compile Include="Geom\SFloatVector3.cs" />
+    <Compile Include="Geom\SFloatVector4.cs" />
+    <Compile Include="Geom\SIntPadding.cs" />
+    <Compile Include="Geom\SIntPoint2.cs" />
+    <Compile Include="Geom\SIntPoint3.cs" />
+    <Compile Include="Geom\SIntRectangle.cs" />
+    <Compile Include="Geom\SIntSize.cs" />
+    <Compile Include="Geom\SIntSize2.cs" />
+    <Compile Include="Geom\SIntVarSize.cs" />
+    <Compile Include="Geom\SPoint2.cs" />
+    <Compile Include="Geom\SPoint3.cs" />
+    <Compile Include="Geom\SRectangle.cs" />
+    <Compile Include="Geom\SSize.cs" />
+    <Compile Include="Geom\SVector2.cs" />
+    <Compile Include="Geom\SVector3.cs" />
+    <Compile Include="IO\EPathType.cs" />
+    <Compile Include="IO\FArrayInput.cs" />
+    <Compile Include="IO\FByteFile.cs" />
+    <Compile Include="IO\FByteInput.cs" />
+    <Compile Include="IO\FByteOutput.cs" />
+    <Compile Include="IO\FBytePipe.cs" />
+    <Compile Include="IO\FByteStream.cs" />
+    <Compile Include="IO\FCharInput.cs" />
+    <Compile Include="IO\FCharReader.cs" />
+    <Compile Include="IO\FCharStream.cs" />
+    <Compile Include="IO\FCompressFile.cs" />
+    <Compile Include="IO\FFileInfo.cs" />
+    <Compile Include="IO\FLineFile.cs" />
+    <Compile Include="IO\FByteQueue.cs" />
+    <Compile Include="IO\FStreamReader.cs" />
+    <Compile Include="IO\FStringFile.cs" />
+    <Compile Include="IO\ICharStream.cs" />
+    <Compile Include="IO\ICompress.cs" />
+    <Compile Include="IO\IInput.cs" />
+    <Compile Include="IO\IOutput.cs" />
+    <Compile Include="IO\IPipe.cs" />
+    <Compile Include="IO\IQueue.cs" />
+    <Compile Include="IO\IReader.cs" />
+    <Compile Include="IO\IStream.cs" />
+    <Compile Include="IO\IWriter.cs" />
+    <Compile Include="IO\RDirectory.cs" />
+    <Compile Include="IO\RFile.cs" />
+    <Compile Include="Lang\EDumpLevel.cs" />
+    <Compile Include="Lang\FCollection.cs" />
+    <Compile Include="Lang\FDumpInfo.cs" />
+    <Compile Include="Lang\FLogger.cs" />
+    <Compile Include="Lang\FObject.cs" />
+    <Compile Include="Lang\FObjects.cs" />
+    <Compile Include="Lang\FObjectsEnumerator.cs" />
+    <Compile Include="Lang\FString.cs" />
+    <Compile Include="Lang\FStrings.cs" />
+    <Compile Include="Lang\FTypes.cs" />
+    <Compile Include="Lang\FTypesEnumerator.cs" />
+    <Compile Include="Lang\HExecute.cs" />
+    <Compile Include="Lang\IDump.cs" />
+    <Compile Include="Lang\IInitialize.cs" />
+    <Compile Include="Lang\IName.cs" />
+    <Compile Include="Lang\IObject.cs" />
+    <Compile Include="Lang\IObjects.cs" />
+    <Compile Include="Lang\IResource.cs" />
+    <Compile Include="Lang\IResourceConsole.cs" />
+    <Compile Include="Lang\IStringName.cs" />
+    <Compile Include="Lang\RArray.cs" />
+    <Compile Include="Lang\RAscii.cs" />
+    <Compile Include="Lang\RBase64.cs" />
+    <Compile Include="Lang\RBool.cs" />
+    <Compile Include="Lang\RByte.cs" />
+    <Compile Include="Lang\RChar.cs" />
+    <Compile Include="Lang\Reflection\RClass.cs" />
+    <Compile Include="Lang\RCulture.cs" />
+    <Compile Include="Lang\RDate.cs" />
+    <Compile Include="Lang\RDump.cs" />
+    <Compile Include="Lang\Reflection\FAppDomain.cs" />
+    <Compile Include="Lang\Reflection\FAppLoader.cs" />
+    <Compile Include="Lang\Reflection\FEnumItem.cs" />
+    <Compile Include="Lang\Reflection\FField.cs" />
+    <Compile Include="Lang\Reflection\FMethod.cs" />
+    <Compile Include="Lang\Reflection\FType.cs" />
+    <Compile Include="Lang\Reflection\RAppDomain.cs" />
+    <Compile Include="Lang\Reflection\RMethod.cs" />
+    <Compile Include="Lang\REnum.cs" />
+    <Compile Include="Lang\RFloat.cs" />
+    <Compile Include="Lang\RGuid.cs" />
+    <Compile Include="Lang\RInt.cs" />
+    <Compile Include="Lang\RLong.cs" />
+    <Compile Include="Lang\RNumber.cs" />
+    <Compile Include="Lang\RObject.cs" />
+    <Compile Include="Lang\RSha1.cs" />
+    <Compile Include="Lang\RShort.cs" />
+    <Compile Include="Lang\RSingleton.cs" />
+    <Compile Include="Lang\RString.cs" />
+    <Compile Include="Lang\RStrings.cs" />
+    <Compile Include="Lang\RStruct.cs" />
+    <Compile Include="Net\Http\EHttpHead.cs" />
+    <Compile Include="Net\Http\FHttpConnection.cs" />
+    <Compile Include="Net\Http\FHttpRequest.cs" />
+    <Compile Include="Net\Http\FHttpResponse.cs" />
+    <Compile Include="Net\Mail\FMail.cs" />
+    <Compile Include="Net\Mail\FSmtpClient.cs" />
+    <Compile Include="Net\Mail\RMail.cs" />
+    <Compile Include="Net\Mail\RSmtp.cs" />
+    <Compile Include="Net\RDns.cs" />
+    <Compile Include="Net\Sockets\ESocketPort.cs" />
+    <Compile Include="Net\Sockets\FClientSocket.cs" />
+    <Compile Include="Net\Sockets\FServerSocket.cs" />
+    <Compile Include="Net\Sockets\FSocket.cs" />
+    <Compile Include="Net\Sockets\FSocketInput.cs" />
+    <Compile Include="Net\Sockets\FSocketOutput.cs" />
+    <Compile Include="Net\Sockets\FSocketReader.cs" />
+    <Compile Include="Net\Sockets\FSocketWriter.cs" />
+    <Compile Include="Net\Sockets\FUrl.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Lang\ELoggerLevel.cs" />
+    <Compile Include="RMoCommon.cs" />
+    <Compile Include="System\FConsole.cs" />
+    <Compile Include="System\FCaller.cs" />
+    <Compile Include="System\FCallers.cs" />
+    <Compile Include="System\MInterval.cs" />
+    <Compile Include="System\MThread.cs" />
+    <Compile Include="Lang\FException.cs" />
+    <Compile Include="Lang\FFatalException.cs" />
+    <Compile Include="System\FInterval.cs" />
+    <Compile Include="System\FListener.cs" />
+    <Compile Include="System\FListeners.cs" />
+    <Compile Include="System\FLoggerConsole.cs" />
+    <Compile Include="System\FLoggerCommandListener.cs" />
+    <Compile Include="System\FLoggerFileListener.cs" />
+    <Compile Include="System\FLoggerListener.cs" />
+    <Compile Include="Lang\FLogicException.cs" />
+    <Compile Include="System\FResource.cs" />
+    <Compile Include="System\FResourceConsole.cs" />
+    <Compile Include="System\FSpeedTest.cs" />
+    <Compile Include="System\FSyncInterval.cs" />
+    <Compile Include="System\FSyncThread.cs" />
+    <Compile Include="System\FThread.cs" />
+    <Compile Include="Lang\FValidException.cs" />
+    <Compile Include="System\HSystemEnding.cs" />
+    <Compile Include="System\HThreadProcess.cs" />
+    <Compile Include="Lang\IObjectComparer.cs" />
+    <Compile Include="System\IListener.cs" />
+    <Compile Include="Lang\ILogger.cs" />
+    <Compile Include="Lang\ILoggerConsole.cs" />
+    <Compile Include="Content\IXmlConfig.cs" />
+    <Compile Include="System\IXmlResource.cs" />
+    <Compile Include="Lang\Reflection\RAssembly.cs" />
+    <Compile Include="Lang\RException.cs" />
+    <Compile Include="Lang\RLogger.cs" />
+    <Compile Include="Lang\RResource.cs" />
+    <Compile Include="System\REncrypt.cs" />
+    <Compile Include="System\RSpeedTest.cs" />
+    <Compile Include="System\RSystem.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

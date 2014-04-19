@@ -1,0 +1,60 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Configuration export_directory="D:\WP-Webroot">
+   <!-- 资源管理器 -->
+   <Console frame_delay="200" path="\资源" name="Resource"/>
+   <!-- 模板管理器 -->
+   <Console name="Template" path="\模板">
+      <Module name="EntityPlayer" path="\实体-玩家"/>
+      <Module name="EntityPet" path="\实体-宠物"/>
+      <Module name="EntityRide" path="\实体-坐骑"/>
+      <Module name="EntityNpc" path="\实体-角色"/>
+      <Module name="EntityMonster" path="\实体-怪物"/>
+      <Module name="ItemEquip" path="\物品-装备"/>
+      <Module name="ItemSkill" path="\物品-技能"/>
+   </Console>
+   <!-- 地图管理器 -->
+   <Console name="Map" path="\地图"/>
+   <!-- 战斗管理器 -->
+   <Console name="Ui" path="\界面"/>
+   <!-- 战斗管理器 -->
+   <Console name="Battle" path="\战斗"/>
+   <!-- 逻辑管理器 -->
+   <Console name="Logic" path="\逻辑"/>
+   <!-- 链接管理器 -->
+   <Console name="Game.Manage.Connection">
+      <HostList>
+         <Host label='毛春杨' ip='192.168.2.108' port='10000'/>
+         <Host label='王　鹏' ip='192.168.2.119' port='10000'/>
+         <Host label='芦　正' ip='192.168.2.117' port='10000'/>
+         <Host label='姚　嘉' ip='192.168.2.115' port='10000'/>
+         <Host label='韩　哲' ip='192.168.2.185' port='10000'/>
+         <Host label='郭程成' ip='192.168.2.113' port='10000'/>
+      </HostList>
+   </Console>
+   <!-- 消息纷发管理器 -->
+   <Console name="Game.Manage.Dispatcher">
+   </Console>
+   <!-- 消息处理管理器 -->
+   <Console name="Game.Manage.Processor">
+   </Console>
+   <!-- 数据链接控制台 -->
+   <Console name='Data.Connection.Console'>
+      <ConnectionList default='game'>
+         <Connection name='game' type='Oracle'>
+            <Property name='host'>192.168.2.1</Property>
+            <Property name='port'>1521</Property>
+            <Property name='user_name'>GAME</Property>
+            <Property name='password'>GAME</Property>
+            <Property name='instance'>ZQIS</Property>
+         </Connection>
+      </ConnectionList>
+   </Console>
+   <!-- 数据表单控制台 -->
+   <Console name='Data.Form.Console'>
+      <LibraryList>
+         <Library namespace='MO.DataForms.' library='MoDataForms'/>
+         <Library namespace='MO.Template.' library='MoTemplate'/>
+         <Library namespace='MO.Business.' library='MoBusiness'/>
+      </LibraryList>
+   </Console>
+</Configuration>

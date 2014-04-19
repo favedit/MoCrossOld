@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5938E9ED-49A6-4254-BA2C-281F93F9A729}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MO.Direct3d</RootNamespace>
+    <AssemblyName>MoDirect3d</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Build\Debug_AnyCPU\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Build\Release_AnyCPU\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>..\..\Build\Debug_x64\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>..\..\Build\Release_x64\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DefineConstants>
+    </DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\Build\Debug_x86\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\Build\Release_x86\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SlimDX">
+      <HintPath>..\..\Reference\x86\SlimDX.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Camera\FDxOrthoCamera.cs" />
+    <Compile Include="Common\Camera\FDxPerspectiveCamera.cs" />
+    <Compile Include="Common\Camera\FDxWorldCamera.cs" />
+    <Compile Include="Common\EDxObject.cs" />
+    <Compile Include="Common\EDxTexture.cs" />
+    <Compile Include="Common\FDxBufferedDepth.cs" />
+    <Compile Include="Common\FDxBufferedTexture.cs" />
+    <Compile Include="Common\FDxCamera.cs" />
+    <Compile Include="Common\FDxContextObject.cs" />
+    <Compile Include="Common\FDxDisplay.cs" />
+    <Compile Include="Common\FDxDisplayCollection.cs" />
+    <Compile Include="Common\FDxDrawable.cs" />
+    <Compile Include="Common\FDxDrawableCollection.cs" />
+    <Compile Include="Common\FDxFaceBuffer.cs" />
+    <Compile Include="Common\FDxGeometryShader.cs" />
+    <Compile Include="Common\FDxLight.cs" />
+    <Compile Include="Common\FDxMaterial.cs" />
+    <Compile Include="Common\FDxObject.cs" />
+    <Compile Include="Common\FDxPixelShader.cs" />
+    <Compile Include="Common\FDxProgram.cs" />
+    <Compile Include="Common\FDxTexture.cs" />
+    <Compile Include="Common\Geom\SDxMatrix.cs" />
+    <Compile Include="Device\FDxContext2D.cs" />
+    <Compile Include="Device\FDxDevice2D.cs" />
+    <Compile Include="Draw\FDxBrush.cs" />
+    <Compile Include="Draw\FDxObject2D.cs" />
+    <Compile Include="Draw\FDxSolidBrush.cs" />
+    <Compile Include="FDxFactory.cs" />
+    <Compile Include="Model\FDxGeometryConsole.cs" />
+    <Compile Include="Model\FDxMaterialConsole.cs" />
+    <Compile Include="Model\FDxModelConsole.cs" />
+    <Compile Include="Model\FDxModelGeometry.cs" />
+    <Compile Include="Model\FDxModelTexture.cs" />
+    <Compile Include="Model\FDxSpatial.cs" />
+    <Compile Include="Model\FDxSpatialMaterial.cs" />
+    <Compile Include="Model\FDxSpatialTexture.cs" />
+    <Compile Include="Model\FDxTextureConsole.cs" />
+    <Compile Include="Model\FDxSpatialConsole.cs" />
+    <Compile Include="Model\Geometry\FDxRectangleGeometry.cs" />
+    <Compile Include="Model\IDxModelFactory.cs" />
+    <Compile Include="Program\Effect\FDxRegion.cs" />
+    <Compile Include="Common\FDxRenderable.cs" />
+    <Compile Include="Common\FDxRenderableCollection.cs" />
+    <Compile Include="Common\FDxShader.cs" />
+    <Compile Include="Common\FDxVertexBuffer.cs" />
+    <Compile Include="Common\FDxVertexShader.cs" />
+    <Compile Include="Common\Viewport\FDxViewport.cs" />
+    <Compile Include="Common\Light\FDxLightDirectional.cs" />
+    <Compile Include="Common\Light\FDxLightPoint.cs" />
+    <Compile Include="Common\Light\FDxLightSpot.cs" />
+    <Compile Include="Device\FDxAdapter.cs" />
+    <Compile Include="Device\FDxContext3D.cs" />
+    <Compile Include="Device\FDxDevice3D.cs" />
+    <Compile Include="Model\FDxGeometry.cs" />
+    <Compile Include="Model\FDxMesh.cs" />
+    <Compile Include="Model\FDxModel.cs" />
+    <Compile Include="Model\FDxModelMaterial.cs" />
+    <Compile Include="Program\Effect\FDxEffectConsole.cs" />
+    <Compile Include="Program\Effect\FDxEffectContext.cs" />
+    <Compile Include="Program\Effect\Function\FDxDesignLineEffect.cs" />
+    <Compile Include="Program\Effect\Function\FDxDesignMergeEffect.cs" />
+    <Compile Include="Program\Effect\Function\FDxDesignSceneEffect.cs" />
+    <Compile Include="Program\Effect\Function\FDxDesignUiEffect.cs" />
+    <Compile Include="Program\Effect\Function\FDxGrowingEffect.cs" />
+    <Compile Include="Program\Effect\Function\FDxLightMapEffect.cs" />
+    <Compile Include="Program\Effect\Function\FDxNormalMapEffect.cs" />
+    <Compile Include="Program\Effect\Function\FDxTerrainEffect.cs" />
+    <Compile Include="Program\Builder\FDxBuilder.cs" />
+    <Compile Include="Program\Effect\FDxEffect.cs" />
+    <Compile Include="Program\Effect\Function\FDxSimpleEffect.cs" />
+    <Compile Include="Program\Merger\FDxMerger.cs" />
+    <Compile Include="Program\Common\FDxProgramBinder.cs" />
+    <Compile Include="Program\Common\FDxProgramHelper.cs" />
+    <Compile Include="Program\Pass\FDxAbsCameraPass.cs" />
+    <Compile Include="Program\Pass\FDxAbsFunctionPass.cs" />
+    <Compile Include="Program\Pass\FDxAbsLightPass.cs" />
+    <Compile Include="Program\Pass\FDxPassContext.cs" />
+    <Compile Include="Program\Pass\Function\FDxCameraDepthPass.cs" />
+    <Compile Include="Program\Pass\Function\FDxDesignLinePass.cs" />
+    <Compile Include="Program\Pass\Function\FDxDesignMergePass.cs" />
+    <Compile Include="Program\Pass\Function\FDxDesignScenePass.cs" />
+    <Compile Include="Program\Pass\Function\FDxDesignUiPass.cs" />
+    <Compile Include="Program\Pass\Function\FDxGrowingPass.cs" />
+    <Compile Include="Program\Pass\Function\FDxLightDepthPass.cs" />
+    <Compile Include="Program\Pass\FDxPass.cs" />
+    <Compile Include="Program\Pass\Function\FDxLightMapPass.cs" />
+    <Compile Include="Program\Pass\Function\FDxNormalMapPass.cs" />
+    <Compile Include="Program\Pass\Function\FDxShadowMapPass.cs" />
+    <Compile Include="Program\Pass\Function\FDxSimplePass.cs" />
+    <Compile Include="Program\Technique\Function\FDxDesignTechnique.cs" />
+    <Compile Include="Program\Technique\Function\FDxGrowingTechnique.cs" />
+    <Compile Include="Program\Technique\Function\FDxLightMapTechnique.cs" />
+    <Compile Include="Program\Technique\Function\FDxNormalMapTechnique.cs" />
+    <Compile Include="Program\Technique\Function\FDxShadowTechnique.cs" />
+    <Compile Include="Program\Technique\Function\FDxSimpleTechnique.cs" />
+    <Compile Include="Program\Technique\FDxTechnique.cs" />
+    <Compile Include="Program\Technique\FDxTechniqueConsole.cs" />
+    <Compile Include="Program\Technique\FDxTechniqueContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RDxCore.cs" />
+    <Compile Include="Resource\FDxRsGeometry.cs" />
+    <Compile Include="Resource\FDxRsMesh.cs" />
+    <Compile Include="Resource\FDxRsModel.cs" />
+    <Compile Include="Resource\FDxRsMaterial.cs" />
+    <Compile Include="Resource\FDxRsModelConsole.cs" />
+    <Compile Include="Resource\FDxRsTemplate.cs" />
+    <Compile Include="Resource\FDxRsTemplateConsole.cs" />
+    <Compile Include="Resource\FDxRsTemplateMaterial.cs" />
+    <Compile Include="Resource\FDxRsTemplateRenderable.cs" />
+    <Compile Include="Resource\FDxRsTemplateTexture.cs" />
+    <Compile Include="Resource\FDxRsTexturePack.cs" />
+    <Compile Include="Resource\FDxRsTextureBitmap.cs" />
+    <Compile Include="Resource\FDxRsTextureConsole.cs" />
+    <Compile Include="Resource\FDxRsTextureCubePack.cs" />
+    <Compile Include="Resource\FDxRsTextureBitmapPack.cs" />
+    <Compile Include="Resource\FDxRsTrack.cs" />
+    <Compile Include="Resource\FDxRsTrackFrame.cs" />
+    <Compile Include="Scene\Terrain\FDxTerrain.cs" />
+    <Compile Include="Scene\Terrain\FDxTerrainMaterial.cs" />
+    <Compile Include="Scene\Terrain\FDxTerrainTile.cs" />
+    <Compile Include="Stage\Common\FDxStage.cs" />
+    <Compile Include="Stage\Common\FDxStageConsole.cs" />
+    <Compile Include="Stage\Scene\FDxScene.cs" />
+    <Compile Include="Stage\Scene\FDxSceneConsole.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scene\Entity\" />
+    <Folder Include="Utility\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoCommon\MoCommon.csproj">
+      <Project>{199103bc-b3fe-4d93-9b02-0515ef4fb63d}</Project>
+      <Name>MoCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoCompress\MoCompress.vcxproj">
+      <Project>{b1a34040-3125-4381-88dd-d2f3a2adafd6}</Project>
+      <Name>MoCompress</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoCore\MoCore.csproj">
+      <Project>{9cec2262-f3e8-4880-b5d8-ef909958f0c6}</Project>
+      <Name>MoCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
