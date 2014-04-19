@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+   <!-- 导出设置 -->
+   <Export path='D:/Workspace/eUIS' output='D:/eUIS-{YYMMDD-HH24MISS}.zip' output_all='D:/eUIS-{YYMMDD-HH24MISS}-all.zip'>
+      <Include>
+         <Path location='/config'/>
+         <Path location='/webroot'/>
+      </Include>
+      <Exclude>
+         <Filter name='Thumbs.db'/>
+         <Path location='/webroot/ajs/0-runtime'/>
+         <Path location='/webroot/ajs/1-lang'/>
+         <Path location='/webroot/ajs/2-base'/>
+         <Path location='/webroot/ajs/3-core'/>
+         <Path location='/webroot/ajs/4-ctl.form'/>
+         <Path location='/webroot/ajs/4-ctl.table'/>
+         <Path location='/webroot/ajs/4-ctl.toolbar'/>
+         <Path location='/webroot/ajs/4-ctl.tree'/>
+         <Path location='/webroot/ajs/4-ctl.window'/>
+         <Path location='/webroot/ajs/6-logic'/>
+         <Path location='/webroot/ajs/6-workspace'/>
+         <Path location='/webroot/ajs/8-context'/>
+         <Path location='/webroot/ajs/9-test'/>
+         <Path location='/webroot/ajs/acs'/>
+         <Path location='/webroot/ajs/help'/>
+         <Path location='/webroot/ars/usr'/>
+         <Path location='/webroot/ars/sys/'/>
+         <Path location='/webroot/ars/tmp/'/>
+         <Path location='/webroot/hlp/src'/>
+         <Path location='/webroot/svr'/>
+         <Path location='/webroot/WEB-INF/user'/>
+         <Path location='/webroot/WEB-INF/config/system.deploy.store'/>
+      </Exclude>
+   </Export>
+   <!-- 导入设置 -->
+   <Import path='/home/euisdp/deploy/store' output='/home/euisdp/euis' >
+      <Exclude>
+         <Path location='/webroot/ars/usr'/>
+         <Path location='/webroot/ars/sys'/>
+         <Path location='/webroot/ars/tmp'/>
+         <Path location='/webroot/svr'/>
+         <Path location='/webroot/hlp/src'/>
+         <Path location='/webroot/WEB-INF/user'/>
+         <Path location='/work'/>
+      </Exclude>
+   </Import>
+</Configuration>

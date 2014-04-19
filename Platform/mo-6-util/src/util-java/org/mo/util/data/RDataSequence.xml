@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+   
+<Resource name='tables'>
+   SELECT
+      OBJECT_NAME TABLE_NAME
+   FROM USER_OBJECTS
+   WHERE OBJECT_TYPE = 'TABLE'
+      AND (OBJECT_NAME LIKE '%_DS' OR OBJECT_NAME LIKE '%_HS')
+</Resource>
+
+<Resource name='sequence'>
+	SELECT 
+	  1
+	FROM USER_OBJECTS
+	WHERE OBJECT_NAME = {sequence_name}
+	   AND OBJECT_TYPE = 'SEQUENCE'
+</Resource>
+   
+<Resource name='ouid.max'>
+   SELECT
+      MAX({field_name})
+   FROM {table_name}
+</Resource>
+
+<Resource name='sequence.cur'>
+   SELECT {sequence_name}.CURRVAL
+   FROM DUAL
+</Resource>
+
+<Resource name='sequence.max'>
+   SELECT {sequence_name}.NEXTVAL
+   FROM DUAL
+</Resource>
+
+</Configuration>

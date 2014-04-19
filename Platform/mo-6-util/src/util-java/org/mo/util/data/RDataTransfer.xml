@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+   
+<Resource name='common.packages'>
+	SELECT
+	   OBJECT_NAME PACKAGE_NAME
+	FROM USER_OBJECTS
+	WHERE OBJECT_TYPE = 'PACKAGE'
+	   AND OBJECT_NAME LIKE 'CP%'
+</Resource>
+
+<Resource name='enum.packages'>
+   SELECT
+      OBJECT_NAME PACKAGE_NAME
+   FROM USER_OBJECTS
+   WHERE OBJECT_TYPE = 'PACKAGE'
+      AND OBJECT_NAME LIKE '%EI'
+</Resource>
+
+</Configuration>
