@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Config>
+	<Resource name='code.list'>
+		SELECT DATA_VALUE VALUE, LABEL
+		FROM CM_CODE
+		WHERE LIST_ID = (SELECT OUID FROM CM_CODE_LIST WHERE NAME={name})
+		ORDER BY DISP_ORDER ASC
+	</Resource>
+</Config>

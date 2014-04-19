@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+
+	<Resource name='dataRefer.judge'>
+		SELECT 1
+		FROM USER_CONSTRAINTS
+		WHERE CONSTRAINT_TYPE = 'R'
+          AND CONSTRAINT_NAME = '{constraint}'
+	</Resource>
+
+	<Resource name='dataRefer.is_open'>
+		SELECT
+        DECODE(STATUS, 'ENABLED', 'Y', 'N') IS_VALID
+        FROM USER_CONSTRAINTS
+        WHERE CONSTRAINT_NAME = '{constraint}'
+	</Resource>
+	
+	<Resource name='dataRefer.insert'>
+		ALTER TABLE {table_name} 
+           ADD CONSTRAINT {fk_name} FOREIGN KEY( {field_name} ) REFERENCES {refer_name}( OUID )
+	</Resource>
+	
+	<Resource name='dataRefer.delete'>
+		ALTER TABLE {table_name} DROP CONSTRAINT {fk_name} 
+	</Resource>
+	
+	<Resource name='package.name'>
+		SELECT OBJECT_NAME PACKAGE_NAME
+        FROM USER_OBJECTS T
+        WHERE OBJECT_TYPE = '{package_type}' and OBJECT_NAME like '{package_prefix}'
+        ORDER BY PACKAGE_NAME
+	</Resource>
+	
+	<Resource name='package.text'>
+		SELECT TEXT
+	    FROM USER_SOURCE
+	    WHERE TYPE = '{package_type}' AND NAME='{package_name}'
+	    ORDER BY LINE
+	</Resource>
+</Config>

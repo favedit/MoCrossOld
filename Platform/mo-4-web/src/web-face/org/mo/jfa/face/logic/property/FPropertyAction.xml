@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Configuration>
+
+<Resource name='group.list'>
+SELECT *
+FROM SY_PROPERTY_GROUP
+</Resource>
+
+<Resource name='property.list'>
+SELECT *
+FROM SY_PROPERTY
+WHERE GROUP_ID IN (SELECT OUID FROM SY_PROPERTY_GROUP WHERE NAME = {group_name})
+</Resource>
+
+</Configuration>

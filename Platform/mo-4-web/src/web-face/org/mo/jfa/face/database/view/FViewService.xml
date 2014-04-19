@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Config>
+
+	<Resource name='view.list'>
+    SELECT OBJECT_NAME TABLE_NAME, STATUS
+    FROM USER_OBJECTS
+    WHERE OBJECT_TYPE = 'TABLE'
+	</Resource>
+	<Resource name='view.value'>
+   SELECT * FROM USER_VIEWS where view_name = {view_name}
+	</Resource>
+</Config>

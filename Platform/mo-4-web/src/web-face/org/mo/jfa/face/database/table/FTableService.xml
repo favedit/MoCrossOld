@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Config>
+
+	<Resource name='table.list'>
+    SELECT OBJECT_NAME TABLE_NAME, STATUS
+    FROM USER_OBJECTS
+    WHERE OBJECT_TYPE = 'TABLE'
+	</Resource>
+	<Resource name='table.value'>
+   SELECT * FROM USER_TAB_COLS where table_name = {table_name} order by column_id
+	</Resource>
+</Config>

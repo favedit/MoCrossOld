@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Root>
+
+<Resource name='resource.catalog'>
+SELECT
+      OUID,
+      NAME,
+      LABEL,
+      RS_CATALOG_DI.Get_Child_Count(OUID) CHILD_COUNT
+   FROM RS_CATALOG
+   WHERE VIEW_ID={view_id} AND PARENT_ID={catalog_id}
+   ORDER BY DISP_ORDER
+</Resource>
+
+</Root>
