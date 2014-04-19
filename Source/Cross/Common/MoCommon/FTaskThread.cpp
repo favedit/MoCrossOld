@@ -6,7 +6,7 @@ MO_NAMESPACE_BEGIN
 // <T>构造任务线程。</T>
 //============================================================
 FTaskThread::FTaskThread(){
-   _name = "Task Thread";
+   _name = TC("Task Thread");
    _interval = 10000;
    MO_CLEAR(_pTask);
 }
