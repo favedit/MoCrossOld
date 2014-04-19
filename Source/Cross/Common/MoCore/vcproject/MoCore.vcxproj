@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4B7CD24E-37ED-488F-85EA-1CCD42F4CA84}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MoCore</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(ProjectDir)..\..\..\Common\MoCommon;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)..\..\..\..\Build\Debug_x86\</OutDir>
+    <TargetName>$(ProjectName)D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(ProjectDir)..\..\..\Library\mysql-x64\include;$(ProjectDir)..\..\..\Common\MoCommon;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\Library\mysql-x64\lib;$(ProjectDir)..\..\..\Build\Debug_x64\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)..\..\..\Build\Debug_x64\</OutDir>
+    <TargetName>$(ProjectName)D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(ProjectDir)..\..\..\Common\MoCommon;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(ProjectDir)..\..\MoCommon;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>$(ProjectDir)..\..\..\..\Build\Release_x86\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)..\..\..\..\Build\Release_x86\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LibraryPath>$(ProjectDir)..\..\..\Build\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)..\..\..\Build\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_CR_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>wsock32.lib;ws2_32.lib;winmm.lib;MoCommonD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X64;_MO_CR_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+      <OmitFramePointers>false</OmitFramePointers>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>wsock32.lib;ws2_32.lib;winmm.lib;libmysql.lib;MoCommonD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_CR_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>wsock32.lib;ws2_32.lib;winmm.lib;MoCommon.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_LIB;_WINDOWS;_MO_CR_EXPORTS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>winmm.lib;MoCommon.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\FAsset.cpp" />
+    <ClCompile Include="..\FAssetConsole.cpp" />
+    <ClCompile Include="..\FAssetDirectory.cpp" />
+    <ClCompile Include="..\FAssetSpace.cpp" />
+    <ClCompile Include="..\FAssetStream.cpp" />
+    <ClCompile Include="..\FConfigurationConsole.cpp" />
+    <ClCompile Include="..\FCsvFile.cpp" />
+    <ClCompile Include="..\FCsvFooter.cpp" />
+    <ClCompile Include="..\FCsvFooters.cpp" />
+    <ClCompile Include="..\FCsvHead.cpp" />
+    <ClCompile Include="..\FCsvHeads.cpp" />
+    <ClCompile Include="..\FCsvLine.cpp" />
+    <ClCompile Include="..\FCsvLines.cpp" />
+    <ClCompile Include="..\FCsvSegment.cpp" />
+    <ClCompile Include="..\FDevice.cpp" />
+    <ClCompile Include="..\FDeviceConsole.cpp" />
+    <ClCompile Include="..\FEnvironment.cpp" />
+    <ClCompile Include="..\FEnvironmentConsole.cpp" />
+    <ClCompile Include="..\FFeature.cpp" />
+    <ClCompile Include="..\FFeatureConsole.cpp" />
+    <ClCompile Include="..\FInterruptListener.cpp" />
+    <ClCompile Include="..\FMessageLogic.cpp" />
+    <ClCompile Include="..\FNetEpollTransferReceiveThread.cpp" />
+    <ClCompile Include="..\FNetEpollTransferSendThread.cpp" />
+    <ClCompile Include="..\FNetEpollTransferServerThread.cpp" />
+    <ClCompile Include="..\FNetEpollTransferService.cpp" />
+    <ClCompile Include="..\FNetMessageService.cpp" />
+    <ClCompile Include="..\FModule.cpp" />
+    <ClCompile Include="..\FModuleConsole.cpp" />
+    <ClCompile Include="..\FMonitorService.cpp" />
+    <ClCompile Include="..\FNetBufferedClientQueueModule.cpp" />
+    <ClCompile Include="..\FNetBufferedPipe.cpp" />
+    <ClCompile Include="..\FNetBufferedQueue.cpp" />
+    <ClCompile Include="..\FNetBufferedQueueConnection.cpp" />
+    <ClCompile Include="..\FNetBufferedQueueModule.cpp" />
+    <ClCompile Include="..\FNetBufferedSocket.cpp" />
+    <ClCompile Include="..\FNetBufferedSocketModule.cpp" />
+    <ClCompile Include="..\FNetClientBufferedSocketModule.cpp" />
+    <ClCompile Include="..\FNetEpoll.cpp" />
+    <ClCompile Include="..\FNetIocpQueryThread.cpp" />
+    <ClCompile Include="..\FNetIocpSendThread.cpp" />
+    <ClCompile Include="..\FNetIocp.cpp" />
+    <ClCompile Include="..\FNetIocpServerSocket.cpp" />
+    <ClCompile Include="..\FNetIocpServerThread.cpp" />
+    <ClCompile Include="..\FNetIocpSocket.cpp" />
+    <ClCompile Include="..\FNetIocpSocketModule.cpp" />
+    <ClCompile Include="..\FNetIocpTransferReceiveThread.cpp" />
+    <ClCompile Include="..\FNetIocpTransferServerThread.cpp" />
+    <ClCompile Include="..\FNetMessageCatcher.cpp" />
+    <ClCompile Include="..\FNetMessageConnection.cpp" />
+    <ClCompile Include="..\FNetMessageConsole.cpp" />
+    <ClCompile Include="..\FNetMessageHandle.cpp" />
+    <ClCompile Include="..\FNetMessageHandles.cpp" />
+    <ClCompile Include="..\FNetMessageMachine.cpp" />
+    <ClCompile Include="..\FNetMessageProcessor.cpp" />
+    <ClCompile Include="..\FNetMessageReceiveThread.cpp" />
+    <ClCompile Include="..\FNetMessageStatisticsConsole.cpp" />
+    <ClCompile Include="..\FNetMessageStatisticsMachine.cpp" />
+    <ClCompile Include="..\FNetPipeBlockPoolModule.cpp" />
+    <ClCompile Include="..\FNetQueueBlockPoolModule.cpp" />
+    <ClCompile Include="..\FNetRouterHandle.cpp" />
+    <ClCompile Include="..\FNetRouterHandles.cpp" />
+    <ClCompile Include="..\FNetRouterProcessor.cpp" />
+    <ClCompile Include="..\FNetSingleSocketReceiveThread.cpp" />
+    <ClCompile Include="..\FNetSingleTransferSendThread.cpp" />
+    <ClCompile Include="..\FNetSingleTransferServerThread.cpp" />
+    <ClCompile Include="..\FNetSingleTransferService.cpp" />
+    <ClCompile Include="..\FNetSingleSocketSendThread.cpp" />
+    <ClCompile Include="..\FNetSocketLinkerModule.cpp" />
+    <ClCompile Include="..\FNetSocketLinkerStorage.cpp" />
+    <ClCompile Include="..\FNetTransferCommander.cpp" />
+    <ClCompile Include="..\FNetTransferHandle.cpp" />
+    <ClCompile Include="..\FNetTransferHandles.cpp" />
+    <ClCompile Include="..\FNetIocpTransferService.cpp" />
+    <ClCompile Include="..\FNetTransferProcessor.cpp" />
+    <ClCompile Include="..\FServer.cpp" />
+    <ClCompile Include="..\FService.cpp" />
+    <ClCompile Include="..\FServiceConsole.cpp" />
+    <ClCompile Include="..\FSharedModule.cpp" />
+    <ClCompile Include="..\FSharedModuleConsole.cpp" />
+    <ClCompile Include="..\FSharedNetPipe.cpp" />
+    <ClCompile Include="..\FSharedNetQueue.cpp" />
+    <ClCompile Include="..\FSharedNetQueueStorage.cpp" />
+    <ClCompile Include="..\FSharedNetSocketClient.cpp" />
+    <ClCompile Include="..\FStatistics.cpp" />
+    <ClCompile Include="..\FStatisticsConsole.cpp" />
+    <ClCompile Include="..\FStatisticsMonitor.cpp" />
+    <ClCompile Include="..\FTemplate.cpp" />
+    <ClCompile Include="..\FTemplateBuilder.cpp" />
+    <ClCompile Include="..\FTemplateConsole.cpp" />
+    <ClCompile Include="..\FTemplateContext.cpp" />
+    <ClCompile Include="..\FTemplateParser.cpp" />
+    <ClCompile Include="..\FTemplateSource.cpp" />
+    <ClCompile Include="..\FTemplateTag.cpp" />
+    <ClCompile Include="..\FTemplateTagEquals.cpp" />
+    <ClCompile Include="..\FTemplateTagFalse.cpp" />
+    <ClCompile Include="..\FTemplateTagInclude.cpp" />
+    <ClCompile Include="..\FTemplateTagText.cpp" />
+    <ClCompile Include="..\FTemplateTagTrue.cpp" />
+    <ClCompile Include="..\FTemplateTagWrite.cpp" />
+    <ClCompile Include="..\FTimerConsole.cpp" />
+    <ClCompile Include="..\FNetTransferCatcher.cpp" />
+    <ClCompile Include="..\FNetTransferReceiveThread.cpp" />
+    <ClCompile Include="..\FNetTransferSendThread.cpp" />
+    <ClCompile Include="..\FNetTransferServerThread.cpp" />
+    <ClCompile Include="..\FNetTransferService.cpp" />
+    <ClCompile Include="..\FWorker.cpp" />
+    <ClCompile Include="..\FWorkerConsole.cpp" />
+    <ClCompile Include="..\FWorkerThread.cpp" />
+    <ClCompile Include="..\FXmlContainerConsole.cpp" />
+    <ClCompile Include="..\MNetSocketLinker.cpp" />
+    <ClCompile Include="..\MoCore.cpp" />
+    <ClCompile Include="..\MoCrConstant.cpp" />
+    <ClCompile Include="..\RTimerManager.cpp" />
+    <ClCompile Include="..\TCmdParser.cpp" />
+    <ClCompile Include="..\TFsGroupId.cpp" />
+    <ClCompile Include="..\TFsLinkId.cpp" />
+    <ClCompile Include="..\TFsObjectId.cpp" />
+    <ClCompile Include="..\TFsRecordId.cpp" />
+    <ClCompile Include="..\TFsResourceId.cpp" />
+    <ClCompile Include="..\TFsTemplateId.cpp" />
+    <ClCompile Include="..\TFsUniqueId.cpp" />
+    <ClCompile Include="..\TNetData.cpp" />
+    <ClCompile Include="..\TNetHead.cpp" />
+    <ClCompile Include="..\TNetMessage.cpp" />
+    <ClCompile Include="..\TNetMessageBuffer.cpp" />
+    <ClCompile Include="..\TNetMessageHead.cpp" />
+    <ClCompile Include="..\TNetPackage.cpp" />
+    <ClCompile Include="..\TNetPackageHead.cpp" />
+    <ClCompile Include="..\TNetRouter.cpp" />
+    <ClCompile Include="..\TNetRouterHead.cpp" />
+    <ClCompile Include="..\TNetTransfer.cpp" />
+    <ClCompile Include="..\TNetTransferHead.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\MoCrDevice.h" />
+    <ClInclude Include="..\MoCrEnum.h" />
+    <ClInclude Include="..\MoCrFeature.h" />
+    <ClInclude Include="..\MoCrNetCollection.h" />
+    <ClInclude Include="..\MoCrNetEpoll.h" />
+    <ClInclude Include="..\MoCrNetIocp.h" />
+    <ClInclude Include="..\MoCore.h" />
+    <ClInclude Include="..\MoCrCommand.h" />
+    <ClInclude Include="..\MoCrCommon.h" />
+    <ClInclude Include="..\MoCrConfigruation.h" />
+    <ClInclude Include="..\MoCrConstant.h" />
+    <ClInclude Include="..\MoCrContent.h" />
+    <ClInclude Include="..\MoCrCore.h" />
+    <ClInclude Include="..\MoCrCsv.h" />
+    <ClInclude Include="..\MoCrLogic.h" />
+    <ClInclude Include="..\MoCrMessage.h" />
+    <ClInclude Include="..\MoCrModule.h" />
+    <ClInclude Include="..\MoCrMonitor.h" />
+    <ClInclude Include="..\MoCrNet.h" />
+    <ClInclude Include="..\MoCrNetConnection.h" />
+    <ClInclude Include="..\MoCrNetLinker.h" />
+    <ClInclude Include="..\MoCrNetMessage.h" />
+    <ClInclude Include="..\MoCrNetPipe.h" />
+    <ClInclude Include="..\MoCrNetSocket.h" />
+    <ClInclude Include="..\MoCrNetTransfer.h" />
+    <ClInclude Include="..\MoCrNetTransferEpoll.h" />
+    <ClInclude Include="..\MoCrNetTransferIocp.h" />
+    <ClInclude Include="..\MoCrNetTransferSingle.h" />
+    <ClInclude Include="..\MoCrServer.h" />
+    <ClInclude Include="..\MoCrService.h" />
+    <ClInclude Include="..\MoCrStatistics.h" />
+    <ClInclude Include="..\MoCrTemplate.h" />
+    <ClInclude Include="..\MoCrTimer.h" />
+    <ClInclude Include="..\MoCrAsset.h" />
+    <ClInclude Include="..\MoCrEnvironment.h" />
+    <ClInclude Include="..\MoCrWorker.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

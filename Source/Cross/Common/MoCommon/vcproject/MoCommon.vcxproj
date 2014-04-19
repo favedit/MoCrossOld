@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5CDCB38F-2BF3-441C-813B-ED2C8BA4DBBA}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MoCommon</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(ProjectDir)..\..\..\..\Build\Debug_x86\</OutDir>
+    <TargetName>$(ProjectName)D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(ProjectDir)..\..\..\..\Build\Release_x86\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(ProjectDir)..\..\..\..\Build\Debug_x64\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>$(ProjectName)D</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_CM_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_CM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X64;_MO_STACK_MIN;_MO_UNICODE;_MO_CM_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+      <Optimization>Disabled</Optimization>
+      <OmitFramePointers>false</OmitFramePointers>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\MoCmAndroid.h" />
+    <ClInclude Include="..\MoCmArray.h" />
+    <ClInclude Include="..\MoCmAttributes.h" />
+    <ClInclude Include="..\MoCmBit.h" />
+    <ClInclude Include="..\MoCmClass.h" />
+    <ClInclude Include="..\MoCmClassBase.h" />
+    <ClInclude Include="..\MoCmCollection.h" />
+    <ClInclude Include="..\MoCmCompress.h" />
+    <ClInclude Include="..\MoCmConfig.h" />
+    <ClInclude Include="..\MoCmData.h" />
+    <ClInclude Include="..\MoCmDefine.h" />
+    <ClInclude Include="..\MoCmDictionary.h" />
+    <ClInclude Include="..\MoCmPtrDictionary.h" />
+    <ClInclude Include="..\MoCmEntry.h" />
+    <ClInclude Include="..\MoCmFile.h" />
+    <ClInclude Include="..\MoCmFlasCC.h" />
+    <ClInclude Include="..\MoCmFormat.h" />
+    <ClInclude Include="..\MoCmInterface.h" />
+    <ClInclude Include="..\MoCmPtrList.h" />
+    <ClInclude Include="..\MoCmPtrLooper.h" />
+    <ClInclude Include="..\MoCmTask.h" />
+    <ClInclude Include="..\MoCmLanguage.h" />
+    <ClInclude Include="..\MoCmLinux.h" />
+    <ClInclude Include="..\MoCmLinux64.h" />
+    <ClInclude Include="..\MoCmLinux86.h" />
+    <ClInclude Include="..\MoCmList.h" />
+    <ClInclude Include="..\MoCmLock.h" />
+    <ClInclude Include="..\MoCmLooper.h" />
+    <ClInclude Include="..\MoCmMap.h" />
+    <ClInclude Include="..\MoCmMemory.h" />
+    <ClInclude Include="..\MoCmModule.h" />
+    <ClInclude Include="..\MoCmMonitor.h" />
+    <ClInclude Include="..\MoCmNet.h" />
+    <ClInclude Include="..\MoCmPipe.h" />
+    <ClInclude Include="..\MoCmPool.h" />
+    <ClInclude Include="..\MoCmProperty.h" />
+    <ClInclude Include="..\MoCmPtrs.h" />
+    <ClInclude Include="..\MoCmRuntime.h" />
+    <ClInclude Include="..\MoCmSet.h" />
+    <ClInclude Include="..\MoCmShared.h" />
+    <ClInclude Include="..\MoCmSharedArray.h" />
+    <ClInclude Include="..\MoCmSharedEntry.h" />
+    <ClInclude Include="..\MoCmSharedList.h" />
+    <ClInclude Include="..\MoCmSharedMap.h" />
+    <ClInclude Include="..\MoCmSharedSet.h" />
+    <ClInclude Include="..\MoCmSharedVector.h" />
+    <ClInclude Include="..\MoCmSingleton.h" />
+    <ClInclude Include="..\MoCmStream.h" />
+    <ClInclude Include="..\MoCmString.h" />
+    <ClInclude Include="..\MoCmString16.h" />
+    <ClInclude Include="..\MoCmString32.h" />
+    <ClInclude Include="..\MoCmString8.h" />
+    <ClInclude Include="..\MoCmSystem.h" />
+    <ClInclude Include="..\MoCmTemp.h" />
+    <ClInclude Include="..\MoCmThread.h" />
+    <ClInclude Include="..\MoCmTree.h" />
+    <ClInclude Include="..\MoCmType.h" />
+    <ClInclude Include="..\MoCmVector.h" />
+    <ClInclude Include="..\MoCmWindows.h" />
+    <ClInclude Include="..\MoCmWindows64.h" />
+    <ClInclude Include="..\MoCmWindows86.h" />
+    <ClInclude Include="..\MoCmXml.h" />
+    <ClInclude Include="..\MoCommon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\FAllocatorStorage.cpp" />
+    <ClCompile Include="..\FApplication.cpp" />
+    <ClCompile Include="..\FApplicationListener.cpp" />
+    <ClCompile Include="..\FApplicationParameter.cpp" />
+    <ClCompile Include="..\FApplicationParameters.cpp" />
+    <ClCompile Include="..\FBase.cpp" />
+    <ClCompile Include="..\FByteFileStream.cpp" />
+    <ClCompile Include="..\FBlockAllocator.cpp" />
+    <ClCompile Include="..\FBufferedPipe.cpp" />
+    <ClCompile Include="..\FBufferedPipeBlock.cpp" />
+    <ClCompile Include="..\FBufferedQueue.cpp" />
+    <ClCompile Include="..\FBufferedQueueBlock.cpp" />
+    <ClCompile Include="..\FByteStream.cpp" />
+    <ClCompile Include="..\FByteString.cpp" />
+    <ClCompile Include="..\FCatcher.cpp" />
+    <ClCompile Include="..\FCatcherConsole.cpp" />
+    <ClCompile Include="..\FClass.cpp" />
+    <ClCompile Include="..\FClassConsole.cpp" />
+    <ClCompile Include="..\FClassFactory.cpp" />
+    <ClCompile Include="..\FClassInstanceFactory.cpp" />
+    <ClCompile Include="..\FConfigBuilder.cpp" />
+    <ClCompile Include="..\FConsole.cpp" />
+    <ClCompile Include="..\FDataset.cpp" />
+    <ClCompile Include="..\FDatasetMeta.cpp" />
+    <ClCompile Include="..\FField.cpp" />
+    <ClCompile Include="..\FByteFile.cpp" />
+    <ClCompile Include="..\FFileLines.cpp" />
+    <ClCompile Include="..\FFileMapping.cpp" />
+    <ClCompile Include="..\FFileStream.cpp" />
+    <ClCompile Include="..\FFileString16.cpp" />
+    <ClCompile Include="..\FFileString32.cpp" />
+    <ClCompile Include="..\FFileString8.cpp" />
+    <ClCompile Include="..\FFree.cpp" />
+    <ClCompile Include="..\FInstance.cpp" />
+    <ClCompile Include="..\FTask.cpp" />
+    <ClCompile Include="..\FTaskConsole.cpp" />
+    <ClCompile Include="..\FTaskInvoker.cpp" />
+    <ClCompile Include="..\FTaskThread.cpp" />
+    <ClCompile Include="..\FListener.cpp" />
+    <ClCompile Include="..\FLoggerConsole.cpp" />
+    <ClCompile Include="..\FLoggerThread.cpp" />
+    <ClCompile Include="..\FLoggerWriter.cpp" />
+    <ClCompile Include="..\FManagedObject.cpp" />
+    <ClCompile Include="..\FMemoryAllocator.cpp" />
+    <ClCompile Include="..\FMemoryLockAllocator.cpp" />
+    <ClCompile Include="..\FMonitorCatcher.cpp" />
+    <ClCompile Include="..\FMonitorConsole.cpp" />
+    <ClCompile Include="..\FMonitorMachine.cpp" />
+    <ClCompile Include="..\FMonitorThread.cpp" />
+    <ClCompile Include="..\FMonitorTrigger.cpp" />
+    <ClCompile Include="..\FNetClientSocket.cpp" />
+    <ClCompile Include="..\FNetServerSocket.cpp" />
+    <ClCompile Include="..\FNetSocket.cpp" />
+    <ClCompile Include="..\FNetSocketStorage.cpp" />
+    <ClCompile Include="..\FNetUdpClientSocket.cpp" />
+    <ClCompile Include="..\FNetUdpServerSocket.cpp" />
+    <ClCompile Include="..\FObject.cpp" />
+    <ClCompile Include="..\FPack.cpp" />
+    <ClCompile Include="..\FPipe.cpp" />
+    <ClCompile Include="..\FQueue.cpp" />
+    <ClCompile Include="..\FRow.cpp" />
+    <ClCompile Include="..\FSharedConsole.cpp" />
+    <ClCompile Include="..\FSharedGroup.cpp" />
+    <ClCompile Include="..\FSharedListAllocator.cpp" />
+    <ClCompile Include="..\FSharedPipe.cpp" />
+    <ClCompile Include="..\FSharedQueue.cpp" />
+    <ClCompile Include="..\FSharedQueueConnection.cpp" />
+    <ClCompile Include="..\FShareMemory.cpp" />
+    <ClCompile Include="..\FSingletonConsole.cpp" />
+    <ClCompile Include="..\FSql.cpp" />
+    <ClCompile Include="..\FSqlConnection.cpp" />
+    <ClCompile Include="..\FSqlPool.cpp" />
+    <ClCompile Include="..\FStreamBlock.cpp" />
+    <ClCompile Include="..\FStreamBlockAllocator.cpp" />
+    <ClCompile Include="..\FStreamBlockPool.cpp" />
+    <ClCompile Include="..\FString16.cpp" />
+    <ClCompile Include="..\FString32.cpp" />
+    <ClCompile Include="..\FString8.cpp" />
+    <ClCompile Include="..\FFileStringStream.cpp" />
+    <ClCompile Include="..\FStringBuffer16.cpp" />
+    <ClCompile Include="..\FStringBuffer32.cpp" />
+    <ClCompile Include="..\FStringBuffer8.cpp" />
+    <ClCompile Include="..\FThread.cpp" />
+    <ClCompile Include="..\FThreadCatcher.cpp" />
+    <ClCompile Include="..\FThreadConsole.cpp" />
+    <ClCompile Include="..\FThreadGroup.cpp" />
+    <ClCompile Include="..\FThreadMemory.cpp" />
+    <ClCompile Include="..\FThreadPool.cpp" />
+    <ClCompile Include="..\FThreadRunable.cpp" />
+    <ClCompile Include="..\FThreadRunablePool.cpp" />
+    <ClCompile Include="..\FThreadRunableWorker.cpp" />
+    <ClCompile Include="..\FThreadTrap.cpp" />
+    <ClCompile Include="..\FThreadWorker.cpp" />
+    <ClCompile Include="..\FTrap.cpp" />
+    <ClCompile Include="..\FXmlBuilder.cpp" />
+    <ClCompile Include="..\FXmlDocument.cpp" />
+    <ClCompile Include="..\FXmlNode.cpp" />
+    <ClCompile Include="..\FXmlNodes.cpp" />
+    <ClCompile Include="..\FConfigParser.cpp" />
+    <ClCompile Include="..\FXmlParser.cpp" />
+    <ClCompile Include="..\MApplicationListeners.cpp" />
+    <ClCompile Include="..\FMonitor.cpp" />
+    <ClCompile Include="..\MNetSocket.cpp" />
+    <ClCompile Include="..\MoCommon.cpp" />
+    <ClCompile Include="..\MPack.cpp" />
+    <ClCompile Include="..\MPipe.cpp" />
+    <ClCompile Include="..\MProperties16.cpp" />
+    <ClCompile Include="..\MProperties32.cpp" />
+    <ClCompile Include="..\MProperties8.cpp" />
+    <ClCompile Include="..\MShared.cpp" />
+    <ClCompile Include="..\MSingleton.cpp" />
+    <ClCompile Include="..\MSql.cpp" />
+    <ClCompile Include="..\MString16.cpp" />
+    <ClCompile Include="..\MString16s.cpp" />
+    <ClCompile Include="..\MString32.cpp" />
+    <ClCompile Include="..\MString32s.cpp" />
+    <ClCompile Include="..\MString8.cpp" />
+    <ClCompile Include="..\MString8s.cpp" />
+    <ClCompile Include="..\RActivator.cpp" />
+    <ClCompile Include="..\RAllocator.cpp" />
+    <ClCompile Include="..\RApplication.cpp" />
+    <ClCompile Include="..\RBool.cpp" />
+    <ClCompile Include="..\RByte.cpp" />
+    <ClCompile Include="..\RChar16.cpp" />
+    <ClCompile Include="..\RChar32.cpp" />
+    <ClCompile Include="..\RChar8.cpp" />
+    <ClCompile Include="..\RCharEncoding.cpp" />
+    <ClCompile Include="..\RCharSet.cpp" />
+    <ClCompile Include="..\RClassManager.cpp" />
+    <ClCompile Include="..\RCompress.cpp" />
+    <ClCompile Include="..\RCpu.cpp" />
+    <ClCompile Include="..\RDateTime.cpp" />
+    <ClCompile Include="..\RDouble.cpp" />
+    <ClCompile Include="..\REnvironment.cpp" />
+    <ClCompile Include="..\RFile.cpp" />
+    <ClCompile Include="..\RFloat.cpp" />
+    <ClCompile Include="..\RGuid.cpp" />
+    <ClCompile Include="..\RInput.cpp" />
+    <ClCompile Include="..\RInt.cpp" />
+    <ClCompile Include="..\RInt16.cpp" />
+    <ClCompile Include="..\RInt32.cpp" />
+    <ClCompile Include="..\RInt64.cpp" />
+    <ClCompile Include="..\RInt8.cpp" />
+    <ClCompile Include="..\RLogger.cpp" />
+    <ClCompile Include="..\RMemory.cpp" />
+    <ClCompile Include="..\RMemoryCapacity.cpp" />
+    <ClCompile Include="..\RNetHost.cpp" />
+    <ClCompile Include="..\RNetSocket.cpp" />
+    <ClCompile Include="..\ROutput.cpp" />
+    <ClCompile Include="..\RProcess.cpp" />
+    <ClCompile Include="..\RRandom.cpp" />
+    <ClCompile Include="..\RShareMemory.cpp" />
+    <ClCompile Include="..\RSingletonManager.cpp" />
+    <ClCompile Include="..\RString16.cpp" />
+    <ClCompile Include="..\RString32.cpp" />
+    <ClCompile Include="..\RString8.cpp" />
+    <ClCompile Include="..\RSystem.cpp" />
+    <ClCompile Include="..\RThread.cpp" />
+    <ClCompile Include="..\RTimeTick.cpp" />
+    <ClCompile Include="..\RTrap.cpp" />
+    <ClCompile Include="..\RTypeConverter.cpp" />
+    <ClCompile Include="..\RUint.cpp" />
+    <ClCompile Include="..\RUint32.cpp" />
+    <ClCompile Include="..\RUint64.cpp" />
+    <ClCompile Include="..\RUint8.cpp" />
+    <ClCompile Include="..\RXml.cpp" />
+    <ClCompile Include="..\SMemoryEntry.cpp" />
+    <ClCompile Include="..\TClassInfo.cpp" />
+    <ClCompile Include="..\TDataInput.cpp" />
+    <ClCompile Include="..\TDataOutput.cpp" />
+    <ClCompile Include="..\TDataReader.cpp" />
+    <ClCompile Include="..\TDataWriter.cpp" />
+    <ClCompile Include="..\TFileFinder.cpp" />
+    <ClCompile Include="..\TFileInfo.cpp" />
+    <ClCompile Include="..\TFsDateTime.cpp" />
+    <ClCompile Include="..\TFsDouble.cpp" />
+    <ClCompile Include="..\TFsFloat.cpp" />
+    <ClCompile Include="..\TFsInteger.cpp" />
+    <ClCompile Include="..\TFsInteger64.cpp" />
+    <ClCompile Include="..\TLinkInput.cpp" />
+    <ClCompile Include="..\TLinkOutput.cpp" />
+    <ClCompile Include="..\MListeners.cpp" />
+    <ClCompile Include="..\TProperty.cpp" />
+    <ClCompile Include="..\TSharedList.cpp" />
+    <ClCompile Include="..\TSharedListIterator.cpp" />
+    <ClCompile Include="..\TShareSegment.cpp" />
+    <ClCompile Include="..\TSpeedTest.cpp" />
+    <ClCompile Include="..\TString16.cpp" />
+    <ClCompile Include="..\TString32.cpp" />
+    <ClCompile Include="..\TString8.cpp" />
+    <ClCompile Include="..\TStringBuffer16.cpp" />
+    <ClCompile Include="..\TStringBuffer32.cpp" />
+    <ClCompile Include="..\TStringBuffer8.cpp" />
+    <ClCompile Include="..\TThreadCondition.cpp" />
+    <ClCompile Include="..\TThreadMutex.cpp" />
+    <ClCompile Include="..\TThreadSection.cpp" />
+    <ClCompile Include="..\TTrapper.cpp" />
+    <ClCompile Include="..\TXmlNodeIteratorC.cpp" />
+    <ClCompile Include="..\RUint16.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

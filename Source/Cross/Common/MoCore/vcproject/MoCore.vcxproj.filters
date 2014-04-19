@@ -1,0 +1,602 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="1-Common">
+      <UniqueIdentifier>{ab9dffcf-79d3-4404-9838-4144b6872066}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2-Core">
+      <UniqueIdentifier>{225ddb11-7b1f-4a50-8ec8-806f935bee84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2-Core\Module">
+      <UniqueIdentifier>{52482d6e-f5a3-4e47-afca-dbf6ecc2895e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2-Core\Service">
+      <UniqueIdentifier>{d7781a97-1bae-4aa5-94c9-5f687e5c82d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2-Core\Server">
+      <UniqueIdentifier>{e3e2fbf1-bbe4-4bad-b6a0-0090f1da5a88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2-Core\Configuration">
+      <UniqueIdentifier>{79dff2fa-b690-4b44-842e-7e7f5404d355}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2-Core\Statistics">
+      <UniqueIdentifier>{8428bc97-2a6b-4e71-86b6-1c510470fca1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3-Device">
+      <UniqueIdentifier>{7407b8a7-9ab4-4d1b-ae77-a01beab93399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4-Logic">
+      <UniqueIdentifier>{70956f2c-7af2-42f8-a40a-40eef59e7e20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4-Logic\Timer">
+      <UniqueIdentifier>{d95a1870-7c01-4876-b0d8-7506e74d5431}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4-Logic\Message">
+      <UniqueIdentifier>{0d51f149-be43-4e26-8839-d853524e89a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4-Logic\Monitor">
+      <UniqueIdentifier>{8b94524d-fc8f-4b73-b34f-e555225ad22a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4-Logic\Template">
+      <UniqueIdentifier>{75403dd7-0f82-44bc-a38e-ed95072d0025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4-Logic\Environment">
+      <UniqueIdentifier>{29da1168-0b33-4f57-b644-bcab8da3c3f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4-Logic\Worker">
+      <UniqueIdentifier>{300a939a-31ec-483c-a20e-f271c71e2b9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5-Net">
+      <UniqueIdentifier>{d2ec9d34-dede-47d7-a163-da50fbfd2768}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5-Net\NetMessage">
+      <UniqueIdentifier>{af5ce291-e7c5-42ba-a0e3-419e447b96db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5-Net\NetLinker">
+      <UniqueIdentifier>{3c2c4edb-ff1b-476c-bfaf-a49be729f315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5-Net\NetConnection">
+      <UniqueIdentifier>{8eb5e7ff-2924-4381-a779-37918efd3d09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5-Net\NetPipe">
+      <UniqueIdentifier>{02eb3847-4ff8-4f62-9cd7-dab595866af1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5-Net\NetSocket">
+      <UniqueIdentifier>{736098e7-1e9c-43cb-bb65-a7bd6c81a544}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5-Net\NetTransfer">
+      <UniqueIdentifier>{8b752689-3f30-4514-a60b-f6b1e156e586}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5-Net\NetTransfer\Iocp">
+      <UniqueIdentifier>{2fab4531-5aec-45d2-a3fe-7bba567a57c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5-Net\NetTransfer\Epoll">
+      <UniqueIdentifier>{73b7ccd7-9bc1-4d1a-a08f-33badb733982}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5-Net\NetTransfer\Single">
+      <UniqueIdentifier>{07036524-03aa-47cf-bc3c-1f24264ec8ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6-Content">
+      <UniqueIdentifier>{0b097f4f-7bda-4c0a-9e11-9932dfab3f6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6-Content\Csv">
+      <UniqueIdentifier>{8c9e1eed-89f6-4e84-b891-35777c96656a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6-Content\Cmd">
+      <UniqueIdentifier>{5d3ac3ea-042b-496a-95d4-97e1ce794b53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6-Content\Asset">
+      <UniqueIdentifier>{c9c8c3db-f3cd-41aa-a77a-0ac55b2fa032}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4-Logic\Feature">
+      <UniqueIdentifier>{78a457f1-5eee-4183-a716-7ce66ef2af6c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\FModule.cpp">
+      <Filter>2-Core\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FModuleConsole.cpp">
+      <Filter>2-Core\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FSharedModule.cpp">
+      <Filter>2-Core\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FSharedModuleConsole.cpp">
+      <Filter>2-Core\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FServiceConsole.cpp">
+      <Filter>2-Core\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTimerConsole.cpp">
+      <Filter>4-Logic\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RTimerManager.cpp">
+      <Filter>4-Logic\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FConfigurationConsole.cpp">
+      <Filter>2-Core\Configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FServer.cpp">
+      <Filter>2-Core\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FService.cpp">
+      <Filter>2-Core\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FCsvFile.cpp">
+      <Filter>6-Content\Csv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FCsvFooter.cpp">
+      <Filter>6-Content\Csv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FCsvFooters.cpp">
+      <Filter>6-Content\Csv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FCsvHead.cpp">
+      <Filter>6-Content\Csv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FCsvHeads.cpp">
+      <Filter>6-Content\Csv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FCsvLine.cpp">
+      <Filter>6-Content\Csv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FCsvLines.cpp">
+      <Filter>6-Content\Csv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FCsvSegment.cpp">
+      <Filter>6-Content\Csv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TCmdParser.cpp">
+      <Filter>6-Content\Cmd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FXmlContainerConsole.cpp">
+      <Filter>2-Core\Configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MoCore.cpp" />
+    <ClCompile Include="..\TNetData.cpp">
+      <Filter>5-Net\NetMessage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TNetHead.cpp">
+      <Filter>5-Net\NetMessage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TNetMessage.cpp">
+      <Filter>5-Net\NetMessage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TNetMessageHead.cpp">
+      <Filter>5-Net\NetMessage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TNetPackage.cpp">
+      <Filter>5-Net\NetMessage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TNetPackageHead.cpp">
+      <Filter>5-Net\NetMessage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TNetRouter.cpp">
+      <Filter>5-Net\NetMessage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TNetRouterHead.cpp">
+      <Filter>5-Net\NetMessage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetSocketLinkerModule.cpp">
+      <Filter>5-Net\NetLinker</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetSocketLinkerStorage.cpp">
+      <Filter>5-Net\NetLinker</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MNetSocketLinker.cpp">
+      <Filter>5-Net\NetLinker</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TFsObjectId.cpp">
+      <Filter>1-Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TFsUniqueId.cpp">
+      <Filter>1-Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetMessageConnection.cpp">
+      <Filter>5-Net\NetConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetMessageConsole.cpp">
+      <Filter>5-Net\NetConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetMessageHandle.cpp">
+      <Filter>5-Net\NetConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetMessageHandles.cpp">
+      <Filter>5-Net\NetConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetMessageProcessor.cpp">
+      <Filter>5-Net\NetConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetMessageReceiveThread.cpp">
+      <Filter>5-Net\NetConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetRouterHandle.cpp">
+      <Filter>5-Net\NetConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetRouterHandles.cpp">
+      <Filter>5-Net\NetConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetRouterProcessor.cpp">
+      <Filter>5-Net\NetConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FSharedNetPipe.cpp">
+      <Filter>5-Net\NetPipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FSharedNetQueue.cpp">
+      <Filter>5-Net\NetPipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FMessageLogic.cpp">
+      <Filter>4-Logic\Message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FSharedNetSocketClient.cpp">
+      <Filter>4-Logic\Message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FInterruptListener.cpp">
+      <Filter>4-Logic\Message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FMonitorService.cpp">
+      <Filter>4-Logic\Monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TFsTemplateId.cpp">
+      <Filter>1-Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TNetMessageBuffer.cpp">
+      <Filter>5-Net\NetMessage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TFsGroupId.cpp">
+      <Filter>1-Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TFsLinkId.cpp">
+      <Filter>1-Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TFsRecordId.cpp">
+      <Filter>1-Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TFsResourceId.cpp">
+      <Filter>1-Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MoCrConstant.cpp">
+      <Filter>2-Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetMessageMachine.cpp">
+      <Filter>5-Net\NetConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetTransferHandle.cpp">
+      <Filter>5-Net\NetConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetTransferHandles.cpp">
+      <Filter>5-Net\NetConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetTransferProcessor.cpp">
+      <Filter>5-Net\NetConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TNetTransfer.cpp">
+      <Filter>5-Net\NetMessage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TNetTransferHead.cpp">
+      <Filter>5-Net\NetMessage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetMessageStatisticsMachine.cpp">
+      <Filter>5-Net\NetConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FStatisticsConsole.cpp">
+      <Filter>2-Core\Statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FStatisticsMonitor.cpp">
+      <Filter>2-Core\Statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetMessageCatcher.cpp">
+      <Filter>5-Net\NetConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetMessageStatisticsConsole.cpp">
+      <Filter>5-Net\NetConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetBufferedClientQueueModule.cpp">
+      <Filter>5-Net\NetPipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetBufferedPipe.cpp">
+      <Filter>5-Net\NetPipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetBufferedQueue.cpp">
+      <Filter>5-Net\NetPipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetBufferedQueueConnection.cpp">
+      <Filter>5-Net\NetPipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetBufferedQueueModule.cpp">
+      <Filter>5-Net\NetPipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetPipeBlockPoolModule.cpp">
+      <Filter>5-Net\NetPipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetQueueBlockPoolModule.cpp">
+      <Filter>5-Net\NetPipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FSharedNetQueueStorage.cpp">
+      <Filter>5-Net\NetPipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetBufferedSocket.cpp">
+      <Filter>5-Net\NetSocket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetBufferedSocketModule.cpp">
+      <Filter>5-Net\NetSocket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetClientBufferedSocketModule.cpp">
+      <Filter>5-Net\NetSocket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetEpoll.cpp">
+      <Filter>5-Net\NetTransfer\Epoll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetIocpQueryThread.cpp">
+      <Filter>5-Net\NetTransfer\Iocp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetIocpSocket.cpp">
+      <Filter>5-Net\NetTransfer\Iocp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetIocpSendThread.cpp">
+      <Filter>5-Net\NetTransfer\Iocp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetIocpServerThread.cpp">
+      <Filter>5-Net\NetTransfer\Iocp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetIocp.cpp">
+      <Filter>5-Net\NetTransfer\Iocp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetIocpTransferService.cpp">
+      <Filter>5-Net\NetTransfer\Iocp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetIocpTransferServerThread.cpp">
+      <Filter>5-Net\NetTransfer\Iocp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetIocpSocketModule.cpp">
+      <Filter>5-Net\NetTransfer\Iocp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetIocpServerSocket.cpp">
+      <Filter>5-Net\NetTransfer\Iocp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetIocpTransferReceiveThread.cpp">
+      <Filter>5-Net\NetTransfer\Iocp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetTransferService.cpp">
+      <Filter>5-Net\NetTransfer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetTransferServerThread.cpp">
+      <Filter>5-Net\NetTransfer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetTransferSendThread.cpp">
+      <Filter>5-Net\NetTransfer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetTransferReceiveThread.cpp">
+      <Filter>5-Net\NetTransfer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetTransferCatcher.cpp">
+      <Filter>5-Net\NetTransfer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetMessageService.cpp">
+      <Filter>5-Net\NetTransfer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetEpollTransferReceiveThread.cpp">
+      <Filter>5-Net\NetTransfer\Epoll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetEpollTransferSendThread.cpp">
+      <Filter>5-Net\NetTransfer\Epoll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetEpollTransferServerThread.cpp">
+      <Filter>5-Net\NetTransfer\Epoll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetEpollTransferService.cpp">
+      <Filter>5-Net\NetTransfer\Epoll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetSingleTransferSendThread.cpp">
+      <Filter>5-Net\NetTransfer\Single</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetSingleTransferServerThread.cpp">
+      <Filter>5-Net\NetTransfer\Single</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetSingleTransferService.cpp">
+      <Filter>5-Net\NetTransfer\Single</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetSingleSocketReceiveThread.cpp">
+      <Filter>5-Net\NetTransfer\Single</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetSingleSocketSendThread.cpp">
+      <Filter>5-Net\NetTransfer\Single</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetTransferCommander.cpp">
+      <Filter>5-Net\NetTransfer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FStatistics.cpp">
+      <Filter>2-Core\Statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTemplateConsole.cpp">
+      <Filter>4-Logic\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTemplate.cpp">
+      <Filter>4-Logic\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTemplateContext.cpp">
+      <Filter>4-Logic\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTemplateParser.cpp">
+      <Filter>4-Logic\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTemplateTagTrue.cpp">
+      <Filter>4-Logic\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTemplateTagFalse.cpp">
+      <Filter>4-Logic\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTemplateTagEquals.cpp">
+      <Filter>4-Logic\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTemplateTag.cpp">
+      <Filter>4-Logic\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTemplateTagText.cpp">
+      <Filter>4-Logic\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FAsset.cpp">
+      <Filter>6-Content\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FAssetConsole.cpp">
+      <Filter>6-Content\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FAssetDirectory.cpp">
+      <Filter>6-Content\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FAssetStream.cpp">
+      <Filter>6-Content\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FDevice.cpp">
+      <Filter>3-Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FDeviceConsole.cpp">
+      <Filter>3-Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FEnvironment.cpp">
+      <Filter>4-Logic\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FEnvironmentConsole.cpp">
+      <Filter>4-Logic\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FWorker.cpp">
+      <Filter>4-Logic\Worker</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FWorkerConsole.cpp">
+      <Filter>4-Logic\Worker</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FWorkerThread.cpp">
+      <Filter>4-Logic\Worker</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FAssetSpace.cpp">
+      <Filter>6-Content\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTemplateBuilder.cpp">
+      <Filter>4-Logic\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTemplateSource.cpp">
+      <Filter>4-Logic\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTemplateTagWrite.cpp">
+      <Filter>4-Logic\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFeature.cpp">
+      <Filter>4-Logic\Feature</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFeatureConsole.cpp">
+      <Filter>4-Logic\Feature</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTemplateTagInclude.cpp">
+      <Filter>4-Logic\Template</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\MoCore.h" />
+    <ClInclude Include="..\MoCrContent.h">
+      <Filter>6-Content</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrCommon.h">
+      <Filter>1-Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrCore.h">
+      <Filter>2-Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrNet.h">
+      <Filter>5-Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrLogic.h">
+      <Filter>4-Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrConfigruation.h">
+      <Filter>2-Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrModule.h">
+      <Filter>2-Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrServer.h">
+      <Filter>2-Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrService.h">
+      <Filter>2-Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrCommand.h">
+      <Filter>6-Content</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrCsv.h">
+      <Filter>6-Content</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrNetConnection.h">
+      <Filter>5-Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrNetLinker.h">
+      <Filter>5-Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrNetMessage.h">
+      <Filter>5-Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrNetPipe.h">
+      <Filter>5-Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrNetSocket.h">
+      <Filter>5-Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrNetTransfer.h">
+      <Filter>5-Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrTimer.h">
+      <Filter>4-Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrMessage.h">
+      <Filter>4-Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrMonitor.h">
+      <Filter>4-Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrConstant.h">
+      <Filter>2-Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrNetIocp.h">
+      <Filter>5-Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrNetEpoll.h">
+      <Filter>5-Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrEnum.h">
+      <Filter>2-Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrStatistics.h">
+      <Filter>2-Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrNetCollection.h">
+      <Filter>5-Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrNetTransferIocp.h">
+      <Filter>5-Net\NetTransfer\Iocp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrNetTransferSingle.h">
+      <Filter>5-Net\NetTransfer\Single</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrNetTransferEpoll.h">
+      <Filter>5-Net\NetTransfer\Epoll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrTemplate.h">
+      <Filter>4-Logic\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrAsset.h">
+      <Filter>6-Content\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrDevice.h">
+      <Filter>3-Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrEnvironment.h">
+      <Filter>4-Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrWorker.h">
+      <Filter>4-Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoCrFeature.h">
+      <Filter>4-Logic</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
