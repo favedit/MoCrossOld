@@ -1,0 +1,37 @@
+#include "MoEgDisplay.h"
+
+MO_NAMESPACE_BEGIN
+
+//============================================================
+// <T>构造组件属性集合。</T>
+//============================================================
+FComponentProperties::FComponentProperties(){
+   _pProperties = MO_CREATE(FComponentPropertyCollection);
+}
+
+//============================================================
+// <T>析构组件属性集合。</T>
+//============================================================
+FComponentProperties::~FComponentProperties(){
+   MO_DELETE(_pProperties);
+}
+
+//============================================================
+// <T>序列化数据内容到输出流。</T>
+//
+// @param pOutput 输出流
+//============================================================
+TResult FComponentProperties::Serialize(IDataOutput* pOutput){
+   return ESuccess;
+}
+
+//============================================================
+// <T>从输入流反序列化数据内容。</T>
+//
+// @param pInput 输入流
+//============================================================
+TResult FComponentProperties::Unserialize(IDataInput* pInput){
+   return ESuccess;
+}
+
+MO_NAMESPACE_END

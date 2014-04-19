@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BB9135B8-3F87-4E28-A507-EDC20195F4D8}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MoEngine</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)..\..\..\..\Build\Debug_x86\</OutDir>
+    <TargetName>$(ProjectName)D</TargetName>
+    <IncludePath>$(ProjectDir)..\..\..\Library\MoLzma;$(ProjectDir)..\..\..\Library\MoJpeg;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureInput;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\..\Cross\Library\Lib-x86\;$(ProjectDir)..\..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)..\..\..\..\Build\Release_x86\</OutDir>
+    <IncludePath>$(ProjectDir)..\..\..\Library\MoLzma;$(ProjectDir)..\..\..\Library\MoJpeg;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\..\Cross\Library\Lib-x86\;$(ProjectDir)..\..\..\..\Build\Release_x86\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_EG_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251;4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>MoLzmaD.lib;MoJpegD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureInputD.lib;MoFeatureGraphicD.lib;MoFeatureResourceD.lib;MoFeatureParticleD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/NODEFAULTLIB:MSVCRT %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_EG_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251;4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>MoLzma.lib;MoJpeg.lib;MoCommon.lib;MoCore.lib;MoMath.lib;MoFeatureGraphic.lib;MoFeatureResource.lib;MoFeatureParticle.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\MoEgDisplay.h" />
+    <ClInclude Include="..\MoEgCore.h" />
+    <ClInclude Include="..\MoEgCommon.h" />
+    <ClInclude Include="..\MoEgDecoder.h" />
+    <ClInclude Include="..\MoEgDevice.h" />
+    <ClInclude Include="..\MoEgFont.h" />
+    <ClInclude Include="..\MoEgNet.h" />
+    <ClInclude Include="..\MoEgPlatform.h" />
+    <ClInclude Include="..\MoEgProcessor.h" />
+    <ClInclude Include="..\MoEgPublic.h" />
+    <ClInclude Include="..\MoEgEngine.h" />
+    <ClInclude Include="..\MoEngine.h" />
+    <ClInclude Include="..\MoEgEntity.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\FBitmap.cpp" />
+    <ClCompile Include="..\FProcessor.cpp" />
+    <ClCompile Include="..\FProcessorConsole.cpp" />
+    <ClCompile Include="..\FProcessorThread.cpp" />
+    <ClCompile Include="..\FEngineConsole.cpp" />
+    <ClCompile Include="..\FEngineStatistics.cpp" />
+    <ClCompile Include="..\FEntity.cpp" />
+    <ClCompile Include="..\FEntityConsole.cpp" />
+    <ClCompile Include="..\FEntityPool.cpp" />
+    <ClCompile Include="..\FFocusConsole.cpp" />
+    <ClCompile Include="..\FFocusTester.cpp" />
+    <ClCompile Include="..\FComponentProperties.cpp" />
+    <ClCompile Include="..\FComponentProperty.cpp" />
+    <ClCompile Include="..\FDisplay.cpp" />
+    <ClCompile Include="..\FDrawable.cpp" />
+    <ClCompile Include="..\FBitmapCanvas.cpp" />
+    <ClCompile Include="..\FDisplayPool.cpp" />
+    <ClCompile Include="..\FComponent.cpp" />
+    <ClCompile Include="..\FDisplayLayer.cpp" />
+    <ClCompile Include="..\FFont.cpp" />
+    <ClCompile Include="..\FFontConsole.cpp" />
+    <ClCompile Include="..\FScreenDevice.cpp" />
+    <ClCompile Include="..\FSpatial.cpp" />
+    <ClCompile Include="..\FSpriteEntity.cpp" />
+    <ClCompile Include="..\FStage.cpp" />
+    <ClCompile Include="..\FStageConsole.cpp" />
+    <ClCompile Include="..\FStillEntity.cpp" />
+    <ClCompile Include="..\FTailController.cpp" />
+    <ClCompile Include="..\FBitmapBlockIndexDecoder.cpp" />
+    <ClCompile Include="..\FBitmapIndexDecoder.cpp" />
+    <ClCompile Include="..\FBitmapJpegLayer1Decoder.cpp" />
+    <ClCompile Include="..\FBitmapJpegLayer2Decoder.cpp" />
+    <ClCompile Include="..\FBitmapDecoder.cpp" />
+    <ClCompile Include="..\FNetConsole.cpp" />
+    <ClCompile Include="..\FNetReceiveThread.cpp" />
+    <ClCompile Include="..\FNetSendThread.cpp" />
+    <ClCompile Include="..\FDecoder.cpp" />
+    <ClCompile Include="..\FDecoderConsole.cpp" />
+    <ClCompile Include="..\FDecoderWorker.cpp" />
+    <ClCompile Include="..\FStageFrame.cpp" />
+    <ClCompile Include="..\FTimerDevice.cpp" />
+    <ClCompile Include="..\MoEngine.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

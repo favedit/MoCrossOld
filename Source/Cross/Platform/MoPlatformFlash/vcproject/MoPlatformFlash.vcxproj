@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F29DCCAE-589B-4BFD-ACCC-6AEB4C6D1BFB}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MoPlatformFlash</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)..\..\..\Build\Debug_x86\</OutDir>
+    <TargetName>$(ProjectName)D</TargetName>
+    <IncludePath>$(ProjectDir)..\..\..\Library\MoLzma;$(ProjectDir)..\..\..\Library\MoJpeg;$(ProjectDir)..\..\..\1-Common\MoCommon;$(ProjectDir)..\..\..\1-Common\MoNet;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\Library\Lib-x86\;$(ProjectDir)..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_GM_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251;4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>FlashRuntimeExtensions.lib;MoLzmaD.lib;MoJpegD.lib;MoCommonD.lib;MoNetD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/NODEFAULTLIB:MSVCRT %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;MOANEGAME_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\MoGame.h" />
+    <ClInclude Include="..\MoGmBitmap.h" />
+    <ClInclude Include="..\MoGmCommon.h" />
+    <ClInclude Include="..\MoGmCompress.h" />
+    <ClInclude Include="..\MoGmDecoder.h" />
+    <ClInclude Include="..\MoGmEnvironment.h" />
+    <ClInclude Include="..\MoGmGameStorage.h" />
+    <ClInclude Include="..\MoGmLoader.h" />
+    <ClInclude Include="..\MoGmMap.h" />
+    <ClInclude Include="..\MoGmNet.h" />
+    <ClInclude Include="..\MoGmPublic.h" />
+    <ClInclude Include="..\MoGmResource.h" />
+    <ClInclude Include="..\MoGmWorker.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\FAnimationClip.cpp" />
+    <ClCompile Include="..\FAnimationFrame.cpp" />
+    <ClCompile Include="..\FAnimationResource.cpp" />
+    <ClCompile Include="..\FBitmapBlockIndexDecoder.cpp" />
+    <ClCompile Include="..\FBitmapIndexDecoder.cpp" />
+    <ClCompile Include="..\FBitmapJpegLayer1Decoder.cpp" />
+    <ClCompile Include="..\FBitmapJpegLayer2Decoder.cpp" />
+    <ClCompile Include="..\FBitmapDecoder.cpp" />
+    <ClCompile Include="..\FCompressResource.cpp" />
+    <ClCompile Include="..\FEnvironment.cpp" />
+    <ClCompile Include="..\FEnvironmentConsole.cpp" />
+    <ClCompile Include="..\FFileLoader.cpp" />
+    <ClCompile Include="..\FGameStorageConsole.cpp" />
+    <ClCompile Include="..\FGmMapConsole.cpp" />
+    <ClCompile Include="..\FGmMapData.cpp" />
+    <ClCompile Include="..\FGmMap.cpp" />
+    <ClCompile Include="..\FGmMapCell.cpp" />
+    <ClCompile Include="..\FGmMapFinding.cpp" />
+    <ClCompile Include="..\FGmMapLoader.cpp" />
+    <ClCompile Include="..\FGmPathNode.cpp" />
+    <ClCompile Include="..\FGroundResource.cpp" />
+    <ClCompile Include="..\FLoader.cpp" />
+    <ClCompile Include="..\FLoaderConsole.cpp" />
+    <ClCompile Include="..\FLoaderWorker.cpp" />
+    <ClCompile Include="..\FNetConsole.cpp" />
+    <ClCompile Include="..\FNetReceiveThread.cpp" />
+    <ClCompile Include="..\FNetSendThread.cpp" />
+    <ClCompile Include="..\FGmPathController.cpp" />
+    <ClCompile Include="..\FPictureResource.cpp" />
+    <ClCompile Include="..\FResource.cpp" />
+    <ClCompile Include="..\FResourceConsole.cpp" />
+    <ClCompile Include="..\FResourceGroup.cpp" />
+    <ClCompile Include="..\FResourceLoader.cpp" />
+    <ClCompile Include="..\FResourceWorker.cpp" />
+    <ClCompile Include="..\FDecoder.cpp" />
+    <ClCompile Include="..\FDecoderConsole.cpp" />
+    <ClCompile Include="..\FDecoderWorker.cpp" />
+    <ClCompile Include="..\FWorker.cpp" />
+    <ClCompile Include="..\FWorkerConsole.cpp" />
+    <ClCompile Include="..\FWorkerThread.cpp" />
+    <ClCompile Include="..\MoGame.cpp" />
+    <ClCompile Include="..\RBitmap.cpp" />
+    <ClCompile Include="..\RBitmapIndex.cpp" />
+    <ClCompile Include="..\RLzma.cpp" />
+    <ClCompile Include="..\RPathHelper.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

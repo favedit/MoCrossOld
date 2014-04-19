@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\FAutomaticEffect.cpp" />
+    <ClCompile Include="..\FBlurEffect.cpp" />
+    <ClCompile Include="..\FBlurPass.cpp" />
+    <ClCompile Include="..\FColorAutomaticEffect.cpp" />
+    <ClCompile Include="..\FDeferredAutomaticEffect.cpp" />
+    <ClCompile Include="..\FDeferredPipeline.cpp" />
+    <ClCompile Include="..\FDepthAutomaticEffect.cpp" />
+    <ClCompile Include="..\FRenderPipelinePass.cpp" />
+    <ClCompile Include="..\FSampleColorAutomaticEffect.cpp" />
+    <ClCompile Include="..\FSampleColorSkeletonEffect.cpp" />
+    <ClCompile Include="..\FShadowColorAutomaticEffect.cpp" />
+    <ClCompile Include="..\FShadowColorPass.cpp" />
+    <ClCompile Include="..\FShadowColorSkeletonEffect.cpp" />
+    <ClCompile Include="..\FShadowDepthAutomaticEffect.cpp" />
+    <ClCompile Include="..\FShadowDepthPass.cpp" />
+    <ClCompile Include="..\FShadowDepthSkeletonEffect.cpp" />
+    <ClCompile Include="..\FShadowPipeline.cpp" />
+    <ClCompile Include="..\FSimpleColorPass.cpp" />
+    <ClCompile Include="..\FSimplePipeline.cpp" />
+    <ClCompile Include="..\MoEngineRender.cpp" />
+    <ClCompile Include="..\TEffectAttributeDescriptors.cpp" />
+    <ClCompile Include="..\TEffectConstDescriptors.cpp" />
+    <ClCompile Include="..\TEffectSamplerDescriptors.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\MoErDeferredPipeline.h" />
+    <ClInclude Include="..\MoErShadowPipeline.h" />
+    <ClInclude Include="..\MoErSimplePipeline.h" />
+    <ClInclude Include="..\MoErTechnique.h" />
+    <ClInclude Include="..\MoErPipeline.h" />
+    <ClInclude Include="..\MoEngineRender.h" />
+    <ClInclude Include="..\MoErCommon.h" />
+    <ClInclude Include="..\MoErPublic.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{583E6321-6C63-4E9B-9809-159291E05DE5}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MoEngineRender</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)..\..\..\..\Build\Debug_x86\</OutDir>
+    <TargetName>$(ProjectName)D</TargetName>
+    <IncludePath>$(ProjectDir)..\..\..\Include\Windows-x86\Include;$(ProjectDir)..\..\..\Library\MoLzma;$(ProjectDir)..\..\..\Library\MoJpeg;$(ProjectDir)..\..\..\Library\MoFreeType;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureInput;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Engine\MoEngine;$(ProjectDir)..\..\..\Engine\MoEngine2d;$(ProjectDir)..\..\..\Engine\MoEngine3d;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\Include\Windows-x86\Library;$(ProjectDir)..\..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)..\..\..\..\Build\Release_x86\</OutDir>
+    <IncludePath>$(ProjectDir)..\..\..\Platform\Windows-x86\Include;$(ProjectDir)..\..\..\Library\MoLzma;$(ProjectDir)..\..\..\Library\MoJpeg;$(ProjectDir)..\..\..\Library\MoFreeType;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Engine\MoEngine;$(ProjectDir)..\..\..\Engine\MoEngine3d;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\Platform\Windows-x86\Library;$(ProjectDir)..\..\..\..\Build\Release_x86\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_ER_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251;4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;MoLzmaD.lib;MoJpegD.lib;MoFreeTypeD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureInputD.lib;MoFeatureResourceD.lib;MoFeatureGraphicD.lib;MoEngineD.lib;MoEngine2dD.lib;MoEngine3dD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/NODEFAULTLIB:MSVCRT %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_ER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251;4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;MoLzma.lib;MoJpeg.lib;MoFreeType.lib;MoCommon.lib;MoCore.lib;MoMath.lib;MoFeatureResource.lib;MoFeatureGraphic.lib;MoEngine.lib;MoEngine3d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

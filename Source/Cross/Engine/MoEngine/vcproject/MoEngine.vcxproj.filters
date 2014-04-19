@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="1-Public">
+      <UniqueIdentifier>{fcdcb5ab-15cf-42bf-b4f8-c18b834412b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3-Core">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="3-Core\Font">
+      <UniqueIdentifier>{bc05156c-8402-4e88-b221-b244fe3ad477}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4-Platform">
+      <UniqueIdentifier>{569c9659-8a88-4c78-9b97-d0625a397d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4-Platform\Device">
+      <UniqueIdentifier>{c1a71364-885c-4108-8a8a-e0dd33af22b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4-Platform\Net">
+      <UniqueIdentifier>{d9357a23-b769-4659-b5be-16ac7f0bcffe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4-Platform\Decoder">
+      <UniqueIdentifier>{de9f5861-5c3a-4e52-a064-3da9b8d6e8ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4-Platform\Display">
+      <UniqueIdentifier>{8c1e4540-9a21-4899-b50b-419ce8e4f445}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2-Common">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="5-Instance">
+      <UniqueIdentifier>{0bc38204-c391-43ec-a35d-4c5e66040749}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5-Instance\Entity">
+      <UniqueIdentifier>{88e983ea-26e4-4b78-96f3-6c3c76c9b128}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6-Engine">
+      <UniqueIdentifier>{5270a95a-9a8e-411b-9c7c-b95572073dc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3-Core\Processor">
+      <UniqueIdentifier>{3a38cb72-6448-4246-918f-a5b21a5c179a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\MoEgCommon.h">
+      <Filter>2-Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoEngine.h" />
+    <ClInclude Include="..\MoEgPublic.h">
+      <Filter>1-Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoEgCore.h">
+      <Filter>3-Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoEgPlatform.h">
+      <Filter>4-Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoEgNet.h">
+      <Filter>4-Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoEgEngine.h">
+      <Filter>6-Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoEgFont.h">
+      <Filter>3-Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoEgDecoder.h">
+      <Filter>4-Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoEgDevice.h">
+      <Filter>4-Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoEgDisplay.h">
+      <Filter>4-Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoEgEntity.h">
+      <Filter>5-Instance</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoEgProcessor.h">
+      <Filter>3-Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\FNetConsole.cpp">
+      <Filter>4-Platform\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetSendThread.cpp">
+      <Filter>4-Platform\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FNetReceiveThread.cpp">
+      <Filter>4-Platform\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FBitmapBlockIndexDecoder.cpp">
+      <Filter>4-Platform\Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FBitmapIndexDecoder.cpp">
+      <Filter>4-Platform\Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FBitmapJpegLayer1Decoder.cpp">
+      <Filter>4-Platform\Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FBitmapJpegLayer2Decoder.cpp">
+      <Filter>4-Platform\Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FDecoder.cpp">
+      <Filter>4-Platform\Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FBitmapDecoder.cpp">
+      <Filter>4-Platform\Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FDecoderConsole.cpp">
+      <Filter>4-Platform\Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FDecoderWorker.cpp">
+      <Filter>4-Platform\Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MoEngine.cpp" />
+    <ClCompile Include="..\FFont.cpp">
+      <Filter>3-Core\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFontConsole.cpp">
+      <Filter>3-Core\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FComponent.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FDrawable.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FDisplay.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FComponentProperty.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FComponentProperties.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FDisplayPool.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FBitmapCanvas.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFocusConsole.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFocusTester.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FStageConsole.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FEngineConsole.cpp">
+      <Filter>6-Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FScreenDevice.cpp">
+      <Filter>4-Platform\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTimerDevice.cpp">
+      <Filter>4-Platform\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FEntity.cpp">
+      <Filter>5-Instance\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FSpriteEntity.cpp">
+      <Filter>5-Instance\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FStillEntity.cpp">
+      <Filter>5-Instance\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FTailController.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FEntityConsole.cpp">
+      <Filter>5-Instance\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FEntityPool.cpp">
+      <Filter>5-Instance\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FDisplayLayer.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FSpatial.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FBitmap.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FStageFrame.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FStage.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FEngineStatistics.cpp">
+      <Filter>6-Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FProcessorThread.cpp">
+      <Filter>3-Core\Processor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FProcessor.cpp">
+      <Filter>3-Core\Processor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FProcessorConsole.cpp">
+      <Filter>3-Core\Processor</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
