@@ -19,62 +19,33 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\MoLzma.h" />
-    <ClInclude Include="..\openalpp\alpp.h" />
-    <ClInclude Include="..\openalpp\audiobase.h" />
-    <ClInclude Include="..\openalpp\audioconvert.h" />
-    <ClInclude Include="..\openalpp\audioenvironment.h" />
-    <ClInclude Include="..\openalpp\config.h" />
-    <ClInclude Include="..\openalpp\deviceupdater.h" />
-    <ClInclude Include="..\openalpp\error.h" />
-    <ClInclude Include="..\openalpp\export.h" />
-    <ClInclude Include="..\openalpp\filestream.h" />
-    <ClInclude Include="..\openalpp\filestreamupdater.h" />
-    <ClInclude Include="..\openalpp\groupsource.h" />
-    <ClInclude Include="..\openalpp\inputdevice.h" />
-    <ClInclude Include="..\openalpp\listener.h" />
-    <ClInclude Include="..\openalpp\netstream.h" />
-    <ClInclude Include="..\openalpp\netupdater.h" />
-    <ClInclude Include="..\openalpp\positionedobject.h" />
-    <ClInclude Include="..\openalpp\referenced.h" />
-    <ClInclude Include="..\openalpp\ref_ptr.h" />
-    <ClInclude Include="..\openalpp\sample.h" />
-    <ClInclude Include="..\openalpp\sounddata.h" />
-    <ClInclude Include="..\openalpp\source.h" />
-    <ClInclude Include="..\openalpp\sourcebase.h" />
-    <ClInclude Include="..\openalpp\stream.h" />
-    <ClInclude Include="..\openalpp\streamupdater.h" />
-    <ClInclude Include="..\openalpp\windowsstuff.h" />
+    <ClCompile Include="..\adler32.c" />
+    <ClCompile Include="..\compress.c" />
+    <ClCompile Include="..\crc32.c" />
+    <ClCompile Include="..\deflate.c" />
+    <ClCompile Include="..\infback.c" />
+    <ClCompile Include="..\inffast.c" />
+    <ClCompile Include="..\inflate.c" />
+    <ClCompile Include="..\inftrees.c" />
+    <ClCompile Include="..\trees.c" />
+    <ClCompile Include="..\uncompr.c" />
+    <ClCompile Include="..\zutil.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\audiobase.cpp" />
-    <ClCompile Include="..\audioconvert.cpp" />
-    <ClCompile Include="..\audioenvironment.cpp" />
-    <ClCompile Include="..\deviceupdater.cpp" />
-    <ClCompile Include="..\error.cpp" />
-    <ClCompile Include="..\filestream.cpp" />
-    <ClCompile Include="..\filestreamupdater.cpp" />
-    <ClCompile Include="..\groupsource.cpp" />
-    <ClCompile Include="..\inputdevice.cpp" />
-    <ClCompile Include="..\listener.cpp" />
-    <ClCompile Include="..\netstream.cpp" />
-    <ClCompile Include="..\netupdater.cpp" />
-    <ClCompile Include="..\nofilestream.cpp" />
-    <ClCompile Include="..\noinputdevice.cpp" />
-    <ClCompile Include="..\nostreaming.cpp" />
-    <ClCompile Include="..\openalpp.cpp" />
-    <ClCompile Include="..\referenced.cpp" />
-    <ClCompile Include="..\sample.cpp" />
-    <ClCompile Include="..\sounddata.cpp" />
-    <ClCompile Include="..\source.cpp" />
-    <ClCompile Include="..\sourcebase.cpp" />
-    <ClCompile Include="..\stream.cpp" />
-    <ClCompile Include="..\streamupdater.cpp" />
+    <ClInclude Include="..\crc32.h" />
+    <ClInclude Include="..\deflate.h" />
+    <ClInclude Include="..\inffast.h" />
+    <ClInclude Include="..\inflate.h" />
+    <ClInclude Include="..\inftrees.h" />
+    <ClInclude Include="..\trees.h" />
+    <ClInclude Include="..\zconf.h" />
+    <ClInclude Include="..\zlib.h" />
+    <ClInclude Include="..\zutil.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{788B8EB4-2F34-4C27-BC69-C0789A4B3D09}</ProjectGuid>
+    <ProjectGuid>{C8F42F64-1DFE-4C30-9628-AE1D931B4E3D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>MoOpenAL</RootNamespace>
+    <RootNamespace>LibZip</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -115,7 +86,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(ProjectDir)..\..\..\..\Build\Debug_x86\</OutDir>
     <TargetName>$(ProjectName)D</TargetName>
-    <IncludePath>$(ProjectDir)..\..\..\Include\Windows-x86\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)..\..\..\Build\Debug_x64\</OutDir>
@@ -136,7 +106,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_MO_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -151,7 +120,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_MO_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
