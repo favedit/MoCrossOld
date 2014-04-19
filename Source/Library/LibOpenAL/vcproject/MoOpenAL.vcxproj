@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\MoLzma.h" />
+    <ClInclude Include="..\openalpp\alpp.h" />
+    <ClInclude Include="..\openalpp\audiobase.h" />
+    <ClInclude Include="..\openalpp\audioconvert.h" />
+    <ClInclude Include="..\openalpp\audioenvironment.h" />
+    <ClInclude Include="..\openalpp\config.h" />
+    <ClInclude Include="..\openalpp\deviceupdater.h" />
+    <ClInclude Include="..\openalpp\error.h" />
+    <ClInclude Include="..\openalpp\export.h" />
+    <ClInclude Include="..\openalpp\filestream.h" />
+    <ClInclude Include="..\openalpp\filestreamupdater.h" />
+    <ClInclude Include="..\openalpp\groupsource.h" />
+    <ClInclude Include="..\openalpp\inputdevice.h" />
+    <ClInclude Include="..\openalpp\listener.h" />
+    <ClInclude Include="..\openalpp\netstream.h" />
+    <ClInclude Include="..\openalpp\netupdater.h" />
+    <ClInclude Include="..\openalpp\positionedobject.h" />
+    <ClInclude Include="..\openalpp\referenced.h" />
+    <ClInclude Include="..\openalpp\ref_ptr.h" />
+    <ClInclude Include="..\openalpp\sample.h" />
+    <ClInclude Include="..\openalpp\sounddata.h" />
+    <ClInclude Include="..\openalpp\source.h" />
+    <ClInclude Include="..\openalpp\sourcebase.h" />
+    <ClInclude Include="..\openalpp\stream.h" />
+    <ClInclude Include="..\openalpp\streamupdater.h" />
+    <ClInclude Include="..\openalpp\windowsstuff.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\audiobase.cpp" />
+    <ClCompile Include="..\audioconvert.cpp" />
+    <ClCompile Include="..\audioenvironment.cpp" />
+    <ClCompile Include="..\deviceupdater.cpp" />
+    <ClCompile Include="..\error.cpp" />
+    <ClCompile Include="..\filestream.cpp" />
+    <ClCompile Include="..\filestreamupdater.cpp" />
+    <ClCompile Include="..\groupsource.cpp" />
+    <ClCompile Include="..\inputdevice.cpp" />
+    <ClCompile Include="..\listener.cpp" />
+    <ClCompile Include="..\netstream.cpp" />
+    <ClCompile Include="..\netupdater.cpp" />
+    <ClCompile Include="..\nofilestream.cpp" />
+    <ClCompile Include="..\noinputdevice.cpp" />
+    <ClCompile Include="..\nostreaming.cpp" />
+    <ClCompile Include="..\openalpp.cpp" />
+    <ClCompile Include="..\referenced.cpp" />
+    <ClCompile Include="..\sample.cpp" />
+    <ClCompile Include="..\sounddata.cpp" />
+    <ClCompile Include="..\source.cpp" />
+    <ClCompile Include="..\sourcebase.cpp" />
+    <ClCompile Include="..\stream.cpp" />
+    <ClCompile Include="..\streamupdater.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{788B8EB4-2F34-4C27-BC69-C0789A4B3D09}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MoOpenAL</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(ProjectDir)..\..\..\..\Build\Debug_x86\</OutDir>
+    <TargetName>$(ProjectName)D</TargetName>
+    <IncludePath>$(ProjectDir)..\..\..\Include\Windows-x86\Include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(ProjectDir)..\..\..\Build\Debug_x64\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>$(ProjectName)D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(ProjectDir)..\..\..\..\Build\Release_x86\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir)..\..\..\Build\Release_x64\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_MO_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

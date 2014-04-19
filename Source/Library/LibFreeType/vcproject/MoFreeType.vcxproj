@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\builds\win32\ftdebug.c" />
+    <ClCompile Include="..\source\autofit\autofit.c" />
+    <ClCompile Include="..\source\base\ftbase.c" />
+    <ClCompile Include="..\source\base\ftbbox.c" />
+    <ClCompile Include="..\source\base\ftbitmap.c" />
+    <ClCompile Include="..\source\base\ftfstype.c" />
+    <ClCompile Include="..\source\base\ftgasp.c" />
+    <ClCompile Include="..\source\base\ftglyph.c" />
+    <ClCompile Include="..\source\base\ftgxval.c" />
+    <ClCompile Include="..\source\base\ftinit.c" />
+    <ClCompile Include="..\source\base\ftlcdfil.c" />
+    <ClCompile Include="..\source\base\ftmm.c" />
+    <ClCompile Include="..\source\base\ftotval.c" />
+    <ClCompile Include="..\source\base\ftpatent.c" />
+    <ClCompile Include="..\source\base\ftpfr.c" />
+    <ClCompile Include="..\source\base\ftstroke.c" />
+    <ClCompile Include="..\source\base\ftsynth.c" />
+    <ClCompile Include="..\source\base\ftsystem.c" />
+    <ClCompile Include="..\source\base\fttype1.c" />
+    <ClCompile Include="..\source\base\ftwinfnt.c" />
+    <ClCompile Include="..\source\base\ftxf86.c" />
+    <ClCompile Include="..\source\bdf\bdf.c" />
+    <ClCompile Include="..\source\cache\ftccache.c" />
+    <ClCompile Include="..\source\cff\cff.c" />
+    <ClCompile Include="..\source\cid\type1cid.c" />
+    <ClCompile Include="..\source\gzip\ftgzip.c" />
+    <ClCompile Include="..\source\lzw\ftlzw.c" />
+    <ClCompile Include="..\source\pcf\pcf.c" />
+    <ClCompile Include="..\source\pfr\pfr.c" />
+    <ClCompile Include="..\source\psaux\psaux.c" />
+    <ClCompile Include="..\source\pshinter\pshinter.c" />
+    <ClCompile Include="..\source\psnames\psmodule.c" />
+    <ClCompile Include="..\source\raster\raster.c" />
+    <ClCompile Include="..\source\sfnt\sfnt.c" />
+    <ClCompile Include="..\source\smooth\smooth.c" />
+    <ClCompile Include="..\source\truetype\truetype.c" />
+    <ClCompile Include="..\source\type1\type1.c" />
+    <ClCompile Include="..\source\type42\type42.c" />
+    <ClCompile Include="..\source\winfonts\winfnt.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\freetype\config\ftconfig.h" />
+    <ClInclude Include="..\freetype\config\ftheader.h" />
+    <ClInclude Include="..\freetype\config\ftmodule.h" />
+    <ClInclude Include="..\freetype\config\ftoption.h" />
+    <ClInclude Include="..\freetype\config\ftstdlib.h" />
+    <ClInclude Include="..\ft2build.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D7254008-F26C-4F8E-9EEA-263F4C079353}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MoFreeType</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(ProjectDir)..\..\..\..\Build\Debug_x86\</OutDir>
+    <TargetName>$(ProjectName)D</TargetName>
+    <IncludePath>..;..\freetype;..\freetype\config;..\freetype\internal;..\freetype\internal\services;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(ProjectDir)..\..\..\Build\Debug_x64\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>$(ProjectName)D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(ProjectDir)..\..\..\..\Build\Release_x86\</OutDir>
+    <IncludePath>..;..\freetype;..\freetype\config;..\freetype\internal;..\freetype\internal\services;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir)..\..\..\Build\Release_x64\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;FT_DEBUG_LEVEL_ERROR;FT_DEBUG_LEVEL_TRACE;FT2_BUILD_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;FT_DEBUG_LEVEL_ERROR;FT2_BUILD_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
