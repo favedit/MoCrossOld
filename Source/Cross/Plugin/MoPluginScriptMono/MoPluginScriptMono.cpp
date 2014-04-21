@@ -1,37 +1,33 @@
-#include "MoScript.h"
-
+#include "MoPluginScriptMono.h"
+      
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FScriptObject, FInstance);
-
 //============================================================
-// <T>构造脚本对象。</T>
+// <T>初始化窗口引擎处理。</T>
 //============================================================
-FScriptObject::FScriptObject(){
+void MoPluginScriptMonoInitialize(){
+   MO_STATIC_INFO("Plugin script mono initialize.");
 }
 
 //============================================================
-// <T>析构脚本对象。</T>
+// <T>启动窗口引擎处理。</T>
 //============================================================
-FScriptObject::~FScriptObject(){
+void MoPluginScriptMonoStartup(){
+   MO_STATIC_INFO("Plugin script mono startup.");
 }
 
 //============================================================
-// <T>打开处理。</T>
-//
-// @return 处理结果
+// <T>关闭窗口引擎处理。</T>
 //============================================================
-TResult FScriptObject::Open(){
-   return ESuccess;
+void MoPluginScriptMonoShutdown(){
+   MO_STATIC_INFO("Plugin script mono shutdown.");
 }
 
 //============================================================
-// <T>关闭处理。</T>
-//
-// @return 处理结果
+// <T>释放窗口引擎处理。</T>
 //============================================================
-TResult FScriptObject::Close(){
-   return ESuccess;
+void MoPluginScriptMonoRelease(){
+   MO_STATIC_INFO("Plugin script mono release.");
 }
 
 MO_NAMESPACE_END

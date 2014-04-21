@@ -11,38 +11,29 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\FScriptClass.cpp" />
-    <ClCompile Include="..\FScriptConsole.cpp" />
-    <ClCompile Include="..\FScriptField.cpp" />
-    <ClCompile Include="..\FScriptInstance.cpp" />
-    <ClCompile Include="..\FScriptLibrary.cpp" />
-    <ClCompile Include="..\FScriptMachine.cpp" />
-    <ClCompile Include="..\FScriptMethod.cpp" />
-    <ClCompile Include="..\FScriptObject.cpp" />
-    <ClCompile Include="..\FScriptProperty.cpp" />
-    <ClCompile Include="..\MoFeatureScript.cpp" />
+    <ClCompile Include="..\MainWindow.cpp" />
+    <ClCompile Include="..\MainAndroid.cpp" />
+    <ClCompile Include="..\MoTestLogic.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\MoFeatureScript.h" />
-    <ClInclude Include="..\MoFcCommon.h" />
-    <ClInclude Include="..\MoFcPublic.h" />
-    <ClInclude Include="..\MoScript.h" />
+    <ClInclude Include="..\MoTestLogic.h" />
+    <ClInclude Include="..\MpMain.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0B3CA00B-86CE-477D-BA8F-10098A8B4324}</ProjectGuid>
+    <ProjectGuid>{51A5AA32-6019-46C5-BEFE-79B07216E067}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>MoFeatureScript</RootNamespace>
+    <RootNamespace>MpTestScript</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>NotSet</CharacterSet>
     <CLRSupport>false</CLRSupport>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
@@ -62,13 +53,13 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)..\..\..\..\..\Build\Debug_x86\</OutDir>
     <TargetName>$(ProjectName)D</TargetName>
-    <IncludePath>$(ProjectDir)..\..\..\..\Reference\Include\Windows-x86;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\..\..\..\Reference\Library\Windows-x86;$(ProjectDir)..\..\..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\..\..\..\Reference\Include\Windows-x86;$(ProjectDir)..\..\..\..\Reference\Mono\Include;$(ProjectDir)..\..\..\..\Library\LibLzma;$(ProjectDir)..\..\..\..\Library\LibJpeg;$(ProjectDir)..\..\..\..\Library\LibFreeType;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureLogger;$(ProjectDir)..\..\..\Feature\MoFeatureInput;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Feature\MoFeatureScript;$(ProjectDir)..\..\..\Engine\MoEngine;$(ProjectDir)..\..\..\Engine\MoEngine2d;$(ProjectDir)..\..\..\Engine\MoEngine3d;$(ProjectDir)..\..\..\Engine\MoEngineRender;$(ProjectDir)..\..\..\Engine\MoEngineFace;$(ProjectDir)..\..\..\Platform\MoPlatformOpenGLES2;$(ProjectDir)..\..\..\Platform\MoPlatformWindows;$(ProjectDir)..\..\..\Plugin\MoPluginScriptMono;$(ProjectDir)..\..\..\Game\MoGameEngine;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\..\Reference\Library\Windows-x86\;$(ProjectDir)..\..\..\..\Reference\Mono\Library;$(ProjectDir)..\..\..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)..\..\..\..\Build\Release_x86\</OutDir>
-    <IncludePath>$(ProjectDir)..\..\..\Platform\Windows-x86\Include;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\..\..\Platform\Windows-x86\Include;$(ProjectDir)..\..\..\Library\MoLzma;$(ProjectDir)..\..\..\Library\MoJpeg;$(ProjectDir)..\..\..\Library\MoFreeType;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Engine\MoEngine;$(ProjectDir)..\..\..\Engine\MoEngine2d;$(ProjectDir)..\..\..\Engine\MoEngine3d;$(ProjectDir)..\..\..\Engine\MoEngineRender;$(ProjectDir)..\..\..\Engine\MoEngineFace;$(ProjectDir)..\..\..\Engine\MoEngineOpenGL;$(ProjectDir)..\..\..\Engine\MoEngineWindows;$(ProjectDir)..\..\..\Game\MoGameEngine;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)..\..\..\Platform\Windows-x86\Library;$(ProjectDir)..\..\..\..\Build\Release_x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -76,14 +67,16 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_FC_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4251;4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>MoCommonD.lib;MoCoreD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;mono-2.0.lib;LibLzmaD.lib;LibJpegD.lib;LibFreeTypeD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureLoggerD.lib;MoFeatureInputD.lib;MoFeatureGraphicD.lib;MoFeatureResourceD.lib;MoFeatureParticleD.lib;MoFeatureScriptD.lib;MoEngineD.lib;MoEngine2dD.lib;MoEngine3dD.lib;MoEngineRenderD.lib;MoEngineFaceD.lib;MoPlatformOpenGLES2D.lib;MoPlatformWindowsD.lib;MoPluginScriptMonoD.lib;MoGameEngineD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:MSVCRT %(AdditionalOptions)</AdditionalOptions>
+      <HeapReserveSize>64000000</HeapReserveSize>
+      <StackReserveSize>16000000</StackReserveSize>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -97,7 +90,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_FS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4251;4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -105,7 +98,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>MoCommon.lib;MoCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;MoLzma.lib;MoJpeg.lib;MoFreeType.lib;MoCommon.lib;MoCore.lib;MoMath.lib;MoFeatureGraphic.lib;MoFeatureResource.lib;MoFeatureParticle.lib;MoEngine.lib;MoEngine2d.lib;MoEngine3d.lib;MoEngineRender.lib;MoEngineFace.lib;MoEngineOpenGL.lib;MoEngineWindows.lib;MoGameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <HeapReserveSize>64000000</HeapReserveSize>
+      <StackReserveSize>16000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

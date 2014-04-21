@@ -5,6 +5,10 @@
 #include "MoFcCommon.h"
 #endif // __MO_FC_COMMON_H__
 
+#ifndef __MO_FC_SCRIPT_H__
+#include "MoScript.h"
+#endif // __MO_FC_SCRIPT_H__
+
 MO_NAMESPACE_BEGIN
 
 MO_FC_DECLARE void MoFeatureScriptInitialize();

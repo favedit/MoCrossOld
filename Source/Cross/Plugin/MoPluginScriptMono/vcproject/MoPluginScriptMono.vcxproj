@@ -11,27 +11,25 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\FScriptClass.cpp" />
-    <ClCompile Include="..\FScriptConsole.cpp" />
-    <ClCompile Include="..\FScriptField.cpp" />
-    <ClCompile Include="..\FScriptInstance.cpp" />
-    <ClCompile Include="..\FScriptLibrary.cpp" />
-    <ClCompile Include="..\FScriptMachine.cpp" />
-    <ClCompile Include="..\FScriptMethod.cpp" />
-    <ClCompile Include="..\FScriptObject.cpp" />
-    <ClCompile Include="..\FScriptProperty.cpp" />
-    <ClCompile Include="..\MoFeatureScript.cpp" />
+    <ClCompile Include="..\FMonoField.cpp" />
+    <ClCompile Include="..\FMonoInstance.cpp" />
+    <ClCompile Include="..\FMonoMachine.cpp" />
+    <ClCompile Include="..\FMonoLibrary.cpp" />
+    <ClCompile Include="..\FMonoClass.cpp" />
+    <ClCompile Include="..\FMonoMethod.cpp" />
+    <ClCompile Include="..\FMonoProperty.cpp" />
+    <ClCompile Include="..\MoPluginScriptMono.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\MoFeatureScript.h" />
-    <ClInclude Include="..\MoFcCommon.h" />
-    <ClInclude Include="..\MoFcPublic.h" />
-    <ClInclude Include="..\MoScript.h" />
+    <ClInclude Include="..\MoPluginScriptMono.h" />
+    <ClInclude Include="..\MoPsmCommon.h" />
+    <ClInclude Include="..\MoPsmPublic.h" />
+    <ClInclude Include="..\MoPsmScript.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0B3CA00B-86CE-477D-BA8F-10098A8B4324}</ProjectGuid>
+    <ProjectGuid>{C69A0C9E-1ECC-4CD4-ADD8-0132F066D04B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>MoFeatureScript</RootNamespace>
+    <RootNamespace>MoPluginScriptMono</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -62,13 +60,13 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)..\..\..\..\..\Build\Debug_x86\</OutDir>
     <TargetName>$(ProjectName)D</TargetName>
-    <IncludePath>$(ProjectDir)..\..\..\..\Reference\Include\Windows-x86;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\..\..\..\Reference\Library\Windows-x86;$(ProjectDir)..\..\..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\..\..\..\Reference\Include\Windows-x86;$(ProjectDir)..\..\..\..\Reference\Mono\Include;$(ProjectDir)..\..\..\..\Library\LibLzma;$(ProjectDir)..\..\..\..\Library\LibJpeg;$(ProjectDir)..\..\..\..\Library\LibFreeType;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureInput;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(ProjectDir)..\..\..\Feature\MoFeatureScript;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\..\Reference\Library\Windows-x86\;$(ProjectDir)..\..\..\..\Reference\Mono\Library;$(ProjectDir)..\..\..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)..\..\..\..\Build\Release_x86\</OutDir>
-    <IncludePath>$(ProjectDir)..\..\..\Platform\Windows-x86\Include;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\..\..\Platform\Windows-x86\Include;$(ProjectDir)..\..\..\Library\MoLzma;$(ProjectDir)..\..\..\Library\MoJpeg;$(ProjectDir)..\..\..\Library\MoFreeType;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(ProjectDir)..\..\..\Engine\MoEngine;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)..\..\..\Platform\Windows-x86\Library;$(ProjectDir)..\..\..\..\Build\Release_x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -76,13 +74,13 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_FC_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_PSM_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4251;4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>MoCommonD.lib;MoCoreD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mono-2.0.lib;LibLzmaD.lib;LibJpegD.lib;LibFreeTypeD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureInputD.lib;MoFeatureGraphicD.lib;MoFeatureParticleD.lib;MoFeatureScriptD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:MSVCRT %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
@@ -97,7 +95,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_FS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_EW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4251;4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -105,7 +103,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>MoCommon.lib;MoCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;MoLzma.lib;MoJpeg.lib;MoFreeType.lib;MoCommon.lib;MoCore.lib;MoMath.lib;MoFeatureGraphic.lib;MoFeatureParticle.lib;MoEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

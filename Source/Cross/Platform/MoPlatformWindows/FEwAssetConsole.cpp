@@ -30,6 +30,10 @@ TResult FEwAssetConsole::Setup(){
    path.AssignFormat("%s/Asset", pHomePath);
    path.Replace('\\', '/');
    RegisterSpace("asset", path);
+   // ×¢²áÂ·¾¶
+   path.AssignFormat("%s/Script", pHomePath);
+   path.Replace('\\', '/');
+   RegisterSpace("script", path);
    return ESuccess;
 }
 

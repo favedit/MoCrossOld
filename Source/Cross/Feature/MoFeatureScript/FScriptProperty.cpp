@@ -2,35 +2,42 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FScriptObject, FInstance);
+MO_CLASS_IMPLEMENT_INHERITS(FScriptProperty, FScriptObject);
 
 //============================================================
-// <T>构造脚本对象。</T>
+// <T>构造脚本属性。</T>
 //============================================================
-FScriptObject::FScriptObject(){
+FScriptProperty::FScriptProperty(){
+   MO_CLEAR(_pScriptClass);
 }
 
 //============================================================
-// <T>析构脚本对象。</T>
+// <T>析构脚本属性。</T>
 //============================================================
-FScriptObject::~FScriptObject(){
+FScriptProperty::~FScriptProperty(){
 }
 
 //============================================================
-// <T>打开处理。</T>
+// <T>获得属性内容。</T>
 //
+// @param pInstance 实例
+// @param pValue 内容
 // @return 处理结果
 //============================================================
-TResult FScriptObject::Open(){
+TResult FScriptProperty::Get(FScriptInstance* pInstance, TAny* pValue){
+   MO_FATAL_UNSUPPORT();
    return ESuccess;
 }
 
 //============================================================
-// <T>关闭处理。</T>
+// <T>设置属性内容。</T>
 //
+// @param pInstance 实例
+// @param pValue 内容
 // @return 处理结果
 //============================================================
-TResult FScriptObject::Close(){
+TResult FScriptProperty::Set(FScriptInstance* pInstance, TAny* pValue){
+   MO_FATAL_UNSUPPORT();
    return ESuccess;
 }
 
