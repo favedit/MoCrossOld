@@ -31,58 +31,6 @@ public:
 typedef MO_EG_DECLARE TListeners<SResizeEvent> TResizeListeners;
 
 //============================================================
-// <T>渲染项目信息。</T>
-//============================================================
-struct MO_EG_DECLARE SRenderableItem{
-public:
-   // 坐标
-   SFloatPoint3 location;
-   // 尺寸
-   SFloatSize3 size;
-   // 旋转
-   SFloatVector3 rotation;
-   // 背景颜色
-   SFloatColor4 groundColor;
-   // 纹理坐标
-   SFloatCoord coord;
-   // 矩阵
-   SFloatMatrix3d matrix;
-public:
-   //------------------------------------------------------------
-   // <T>构造浮点数颜色。</T>
-   MO_INLINE SRenderableItem(){
-   }
-};
-//------------------------------------------------------------
-typedef MO_EG_DECLARE TFixVector<SRenderableItem, 64> SRenderableItems;
-
-//============================================================
-// <T>渲染信息。</T>
-//============================================================
-struct MO_EG_DECLARE SRenderable{
-public:
-   SRenderableItems items;
-public:
-   //------------------------------------------------------------
-   // <T>构造浮点数颜色。</T>
-   MO_INLINE SRenderable(){
-   }
-public:
-   //------------------------------------------------------------
-   // <T>收集一个项目。</T>
-   MO_INLINE SRenderableItem& Alloc(){
-      TInt index = items.Count();
-      items.SetCount(index + 1);
-      return items.Get(index);
-   }
-   //------------------------------------------------------------
-   // <T>增加要给项目。</T>
-   MO_INLINE void Push(SRenderableItem& item){
-      items.Push(item);
-   }
-};
-
-//============================================================
 // <T>空间定义。</T>
 //============================================================
 struct MO_EG_DECLARE SFloatSpace{

@@ -32,6 +32,10 @@
 #include <MoFeatureParticle.h>
 #endif // __MO_FEATURE_PARTICLE_H__
 
+#ifndef __MO_FEATURE_SCRIPT_H__
+#include <MoFeatureScript.h>
+#endif // __MO_FEATURE_SCRIPT_H__
+
 //============================================================
 /// @define 导出定义
 #ifdef _MO_EG_EXPORTS

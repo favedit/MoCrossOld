@@ -19,68 +19,37 @@ class IFocusable;
 class IDragable;
 // 类型定义
 class FComponent;
-typedef MO_EG_DECLARE FObjects<FComponent*> FComponentCollection;
 class FDrawable;
-typedef MO_EG_DECLARE FObjects<FDrawable*> FDrawableCollection;
-class FRenderable2;
 class FDisplay;
-typedef MO_EG_DECLARE FObjects<FDisplay*> FDisplayCollection;
-typedef MO_EG_DECLARE FList<FDisplay*> FDisplayList;
 class FStageFrame;
 class FStage;
 class FParticleController;
 class FFocusTester;
+// 集合定义
+typedef MO_EG_DECLARE FObjects<FComponent*> FComponentCollection;
+typedef MO_EG_DECLARE FObjects<FDrawable*> FDrawableCollection;
+typedef MO_EG_DECLARE FObjects<FDisplay*> FDisplayCollection;
+typedef MO_EG_DECLARE FList<FDisplay*> FDisplayList;
 
 //==========================================================
-// <T>组件类型</T>
+// <T>组件配置</T>
 //==========================================================
-enum EComponent{
-   // 对象
-   EComponent_Object = 0x0001,
-   // 组件
-   EComponent_Component = 0x0002,
-   // 可绘制对象
-   EComponent_Drawable = 0x0004,
-   // 可绘制对象层
-   EComponent_DrawableLayer = 0x0008,
-   // 渲染对象
-   EComponent_Renderable = 0x0010,
-   // 可获得鼠标对象
-   EComponent_Mouseable = 0x0020,
-   // 可获得热点对象
-   EComponent_Hoverable = 0x0040,
-   // 可获得焦点对象
-   EComponent_Focusable = 0x0080,
-   // 可移动对象
-   EComponent_Move = 0x0100,
-   // 显示舞台
-   EComponent_Stage = 0x0200,
-   // 显示对象
-   EComponent_Display = 0x0400,
-   // 显示容器
-   EComponent_DisplayContainer = 0x0800,
-   // 空间对象
-   EComponent_Spatial = 0x1000,
-   // 控件对象
-   EComponent_Control = 0x2000,
-   // 控件容器
-   EComponent_ControlContainer = 0x4000,
-   // 顶层容器
-   EComponent_Frame = 0x8000,
+enum EComponentOption{
+   // 有效
+   EComponentOption_Valid = 0x01,
 };
 
 //==========================================================
-// <T>显示类型</T>
+// <T>组件状态</T>
 //==========================================================
-enum EDisplay{
-   // 对象
-   EDisplay_2d = 1,
-   // 组件
-   EDisplay_3d = 2,
+enum EComponentStatus{
+   // 构建
+   EComponentStatus_Construct = 0x01,
+   // 配置
+   EComponentStatus_Setup = 0x02,
+   // 准备
+   EComponentStatus_Ready = 0x04,
 };
-//----------------------------------------------------------
-typedef TInt TComponentType;
-typedef TInt TDisplayType;
 
 //==========================================================
 // <T>显示层类型</T>
@@ -190,76 +159,11 @@ public:
 };
 
 //============================================================
-// <T>跟踪信息。</T>
-//============================================================
-struct MO_EG_DECLARE STailInfo{
-public:
-   // 坐标
-   SFloatPoint3 location;
-   // 尺寸
-   SFloatSize3 size;
-   // 旋转
-   SFloatVector3 rotation;
-   // 背景颜色
-   SFloatColor4 groundColor;
-   // 纹理坐标
-   SFloatCoord coord;
-public:
-   //------------------------------------------------------------
-   // <T>构造跟踪信息。</T>
-   STailInfo(){
-   }
-};
-//------------------------------------------------------------
-typedef MO_EG_DECLARE TFixVector<STailInfo, 64> TFsTailInfoVector;
-
-//============================================================
-// <T>跟踪控制器。</T>
-//============================================================
-class MO_EG_DECLARE FTailController : public FObject{
-protected:
-   TInt _limit;
-   TInt _interval;
-   TFsTailInfoVector _infos;
-   TTimeTick _lastTick;
-public:
-   FTailController();
-   MO_ABSTRACT ~FTailController();
-public:
-   //------------------------------------------------------------
-   // <T>获得极限数量。</T>
-   MO_INLINE TInt Limit(){
-      return _limit;
-   }
-   //------------------------------------------------------------
-   // <T>设置极限数量。</T>
-   MO_INLINE void SetLimit(TInt limit){
-      _limit = limit;
-   }
-   //------------------------------------------------------------
-   // <T>获得毫秒间隔。</T>
-   MO_INLINE TInt Interval(){
-      return _interval;
-   }
-   //------------------------------------------------------------
-   // <T>设置极限数量。</T>
-   MO_INLINE void SetInterval(TInt interval){
-      _interval = interval;
-   }
-   //------------------------------------------------------------
-   // <T>构造信息集合。</T>
-   MO_INLINE TFsTailInfoVector& Infos(){
-      return _infos;
-   }
-public:
-   TResult Push(STailInfo& info);
-   TResult Reset();
-};
-
-//============================================================
 // <T>组件属性。</T>
 //============================================================
-class MO_EG_DECLARE FComponentProperty{
+class MO_EG_DECLARE FComponentProperty : public FInstance
+{
+   MO_CLASS_DECLARE_INHERITS(FComponentProperty, FInstance);
 protected:
    TString _name;
 public:
@@ -281,22 +185,24 @@ public:
    TResult Unserialize(IDataInput* pInput);
 };
 //----------------------------------------------------------
-typedef FVector<FComponentProperty*> FComponentPropertyCollection;
+typedef MO_EG_DECLARE GPtrDictionary<FComponentProperty> GComponentPropertyDictionary;
 
 //============================================================
 // <T>组件属性集合。</T>
 //============================================================
-class MO_EG_DECLARE FComponentProperties{
+class MO_EG_DECLARE FComponentProperties : public FInstance
+{
+   MO_CLASS_DECLARE_INHERITS(FComponentProperties, FInstance);
 protected:
-   FComponentPropertyCollection* _pProperties;
+   GComponentPropertyDictionary _properties;
 public:
    FComponentProperties();
    MO_ABSTRACT ~FComponentProperties();
 public:
    //------------------------------------------------------------
    // <T>判断属性集合。</T>
-   MO_INLINE FComponentPropertyCollection* Properties(){
-      return _pProperties;
+   MO_INLINE GComponentPropertyDictionary& Properties(){
+      return _properties;
    }
 public:
    TResult Serialize(IDataOutput* pOutput);
@@ -325,15 +231,10 @@ class MO_EG_DECLARE FComponent : public FInstance
    MO_CLASS_DECLARE_INHERITS(FComponent, FInstance);
 protected:
    TString _name;
-   TBool _optionValid;
-   TComponentType _objectCd;
-   TInt _flagCd;
+   TInt _optionFlag;
+   TInt _statusFlag;
    FComponent* _pParent;
-   // FComponentCollection* _pChildren;
-   FComponentProperties* _pProperties;
-   TBool _statusConstruct;
-   TBool _statusSetup;
-   TBool _statusReady;
+   GPtr<FComponentProperties> _properties;
    TTimeTick _lastUpdate;
 public:
    FComponent();
@@ -355,9 +256,32 @@ public:
       _name = pName;
    }
    //------------------------------------------------------------
-   // <T>判断是否指定对象。</T>
-   MO_INLINE TBool IsObject(TInt value){
-      return (_objectCd & value) == value;
+   // <T>判断是否处于指定配置。</T>
+   MO_INLINE TBool IsOption(TInt value){
+      return (_optionFlag & value) == value;
+   }
+   //------------------------------------------------------------
+   // <T>设置配置内容。</T>
+   MO_INLINE void SetOption(TInt flag, TBool value){
+      if(value){
+         _optionFlag |= flag;
+      }else{
+         _optionFlag &= ~flag;
+      }
+   }
+   //------------------------------------------------------------
+   // <T>判断是否处于指定状态。</T>
+   MO_INLINE TBool IsStatus(TInt value){
+      return (_statusFlag & value) == value;
+   }
+   //------------------------------------------------------------
+   // <T>设置状态内容。</T>
+   MO_INLINE void SetStatus(TInt flag, TBool value){
+      if(value){
+         _statusFlag |= flag;
+      }else{
+         _statusFlag &= ~flag;
+      }
    }
    //------------------------------------------------------------
    // <T>获得是否有父组件。</T>
@@ -374,29 +298,11 @@ public:
    MO_INLINE void SetParent(FComponent* pParent){
       _pParent = pParent;
    }
-   ////------------------------------------------------------------
-   //// <T>判断是否含有子组件。</T>
-   //MO_INLINE TBool HasChild(){
-   //   return (_pChildren != NULL) ? !_pChildren->IsEmpty() : EFalse;
-   //}
-   ////------------------------------------------------------------
-   //// <T>获得子组件总数。</T>
-   //MO_INLINE TInt ChildCount(){
-   //   return (_pChildren != NULL) ? _pChildren->Count() : 0;
-   //}
-   ////------------------------------------------------------------
-   //// <T>获得子组件集合。</T>
-   //MO_INLINE FComponentCollection* Children(){
-   //   if(_pChildren == NULL){
-   //      _pChildren = MO_CREATE(FComponentCollection);
-   //   }
-   //   return _pChildren;
-   //}
-   ////------------------------------------------------------------
-   //// <T>获得指定索引位置的子组件。</T>
-   //MO_INLINE FComponent* Child(TInt index){
-   //   return _pChildren->Get(index);
-   //}
+   //------------------------------------------------------------
+   // <T>获得属性集合。</T>
+   MO_INLINE FComponentProperties* Properties(){
+      return _properties;
+   }
    //------------------------------------------------------------
    // <T>获得最后更新时间。</T>
    MO_INLINE TTimeTick LastUpdate(){
@@ -404,15 +310,6 @@ public:
    }
 public:
    MO_ABSTRACT FComponent* TopComponent();
-   //MO_ABSTRACT TResult RemoveFromParent();
-   //FComponent* ChildGet(TCharC* pName);
-   //FComponent* ChildFind(TCharC* pName);
-   //FComponent* ChildSearch(TCharC* pName);
-   //MO_ABSTRACT TResult ChildPush(FComponent* pComponent);
-   //MO_ABSTRACT TResult ChildPushDirect(FComponent* pComponent);
-   //MO_ABSTRACT TResult ChildRemove(FComponent* pComponent);
-   //MO_ABSTRACT TResult ChildSwap(FComponent* pSource, FComponent* pTarget);
-   //MO_ABSTRACT TResult ChildClear();
 public:
    MO_ABSTRACT TResult OnConstruct();
    MO_ABSTRACT TResult OnSerialize(IDataOutput* pOutput);
@@ -429,6 +326,33 @@ public:
    MO_ABSTRACT TResult ProcessBefore(SProcessContext* pContext);
    MO_ABSTRACT TResult ProcessAfter(SProcessContext* pContext);
    MO_ABSTRACT TResult Dispose();
+};
+
+//============================================================
+// <T>脚本对象。</T>
+//============================================================
+class MO_EG_DECLARE FScriptable : public FComponent
+{
+   MO_CLASS_DECLARE_INHERITS(FScriptable, FComponent);
+protected:
+   GPtr<FScriptInstance> _scriptInstance;
+public:
+   FScriptable();
+   MO_ABSTRACT ~FScriptable();
+public:
+   //------------------------------------------------------------
+   // <T>获得脚本实例。</T>
+   MO_INLINE FScriptInstance* ScriptInstance(){
+      return _scriptInstance;
+   }
+   //------------------------------------------------------------
+   // <T>设置脚本实例。</T>
+   MO_INLINE void SetScriptInstance(FScriptInstance* pScriptInstance){
+      _scriptInstance = pScriptInstance;
+   }
+public:
+   MO_ABSTRACT TResult ProcessBefore(SProcessContext* pContext);
+   MO_ABSTRACT TResult ProcessAfter(SProcessContext* pContext);
 };
 
 //============================================================
@@ -536,8 +460,6 @@ public:
       return _matrixFinal;
    }
 public:
-   MO_ABSTRACT TAny* Convert(EComponent componentCd);
-public:
    MO_ABSTRACT TResult OnPaint();
    MO_ABSTRACT TResult OnFocusTest(FFocusTester* pTester);
 public:
@@ -590,18 +512,12 @@ class MO_EG_DECLARE FDisplay : public FDrawable
 {
    MO_CLASS_DECLARE_INHERITS(FDisplay, FDrawable);
 protected:
-   TDisplayType _typeCd;
    FDisplayCollection* _pDisplays;
    FRenderableCollection* _pRenderables;
 public:
    FDisplay();
    MO_ABSTRACT ~FDisplay();
 public:
-   //------------------------------------------------------------
-   // <T>获得类型。</T>
-   MO_INLINE TDisplayType TypeCd(){
-      return _typeCd;
-   }
    //------------------------------------------------------------
    // <T>获得显示集合。</T>
    MO_INLINE FDisplayCollection* Displays(){
@@ -635,17 +551,9 @@ public:
 // <T>显示缓冲池。</T>
 //============================================================
 class MO_EG_DECLARE FDisplayPool : public FPool<FDrawable*>{
-protected:
-   TDisplayType _typeCd;
 public:
    FDisplayPool();
    MO_ABSTRACT ~FDisplayPool();
-public:
-   //------------------------------------------------------------
-   // <T>获得类型。</T>
-   MO_INLINE TDisplayType TypeCd(){
-      return _typeCd;
-   }
 public:
    MO_VIRTUAL FDrawable* Create() = 0;
 public:
@@ -1095,143 +1003,6 @@ public:
 // <T>舞台管理器。</T>
 //============================================================
 class MO_EG_DECLARE RStageManager : public RSingleton<FStageConsole>{
-};
-
-//============================================================
-// <T>焦点测试器。</T>
-//============================================================
-class MO_EG_DECLARE FFocusTester : public FObject{
-public:
-   TBool _statusInRange;
-   TBool _statusChildren;
-   TInt _level;
-   SIntPoint2 _location;
-   FDrawableCollection* _pDrawables;
-public:
-   FFocusTester();
-   MO_ABSTRACT ~FFocusTester();
-public:
-   //------------------------------------------------------------
-   // <T>获得是否在范围内。</T>
-   MO_INLINE TBool StatusInRange(){
-      return _statusInRange;
-   }
-   //------------------------------------------------------------
-   // <T>设置是否在范围内。</T>
-   MO_INLINE void SetStatusInRange(TBool statusInRange){
-      _statusInRange = statusInRange;
-   }
-   //------------------------------------------------------------
-   // <T>获得是否查询子对象。</T>
-   MO_INLINE TBool StatusChildren(){
-      return _statusChildren;
-   }
-   //------------------------------------------------------------
-   // <T>设置是否查询子对象。</T>
-   MO_INLINE void SetStatusChildren(TBool statusChildren){
-      _statusChildren = statusChildren;
-   }
-   //------------------------------------------------------------
-   // <T>获得层级。</T>
-   MO_INLINE TInt Level(){
-      return _level;
-   }
-   //------------------------------------------------------------
-   // <T>设置层级。</T>
-   MO_INLINE void SetLevel(TInt level){
-      _level = level;
-   }
-   //------------------------------------------------------------
-   // <T>获得位置。</T>
-   MO_INLINE SIntPoint2& Location(){
-      return _location;
-   }
-   //------------------------------------------------------------
-   // <T>获得可绘制对象集合。</T>
-   MO_INLINE FDrawableCollection* Drawables(){
-      return _pDrawables;
-   }
-public:
-   //------------------------------------------------------------
-   // <T>获得激活的对象。</T>
-   MO_INLINE FDrawable* ActiveDrawable(){
-      return _pDrawables->IsEmpty() ? NULL : _pDrawables->First();
-   }
-   //------------------------------------------------------------
-   // <T>增加一个对象。</T>
-   MO_INLINE void Push(FDrawable* pDrawable){
-      _pDrawables->Push(pDrawable);
-   }
-   //------------------------------------------------------------
-   // <T>清空内容。</T>
-   MO_INLINE void TestReset(){
-      _statusInRange = EFalse;
-      _statusChildren = EFalse;
-   }
-   //------------------------------------------------------------
-   // <T>清空内容。</T>
-   MO_INLINE void Clear(){
-      _level = 0;
-      _pDrawables->Clear();
-   }
-};
-
-//============================================================
-// <T>焦点控制台。</T>
-//============================================================
-class MO_EG_DECLARE FFocusConsole : public FConsole{
-public:
-   SIntPoint2 _focusLocation;
-   FDrawable* _pHoverDrawable;
-   FDrawable* _pFocusDrawable;
-   FDrawable* _pDragDrawable;
-   SIntPoint2 _startLocation;
-   SIntPoint2 _dragLocation;
-   SIntPoint2 _dragDrawableLocation;
-   FDrawableCollection* _pFocusDrawables;
-   FFocusTester* _pTester;
-public:
-   FFocusConsole();
-   MO_ABSTRACT ~FFocusConsole();
-public:
-   //------------------------------------------------------------
-   // <T>获得焦点位置。</T>
-   MO_INLINE SIntPoint2& FocusLocation(){
-      return _focusLocation;
-   }
-   //------------------------------------------------------------
-   // <T>获得热点对象。</T>
-   MO_INLINE FDrawable* HoverDrawable(){
-      return _pHoverDrawable;
-   }
-   //------------------------------------------------------------
-   // <T>获得焦点对象。</T>
-   MO_INLINE FDrawable* FocusDrawable(){
-      return _pFocusDrawable;
-   }
-   //------------------------------------------------------------
-   // <T>获得焦点对象集合。</T>
-   MO_INLINE FDrawableCollection* FocusDrawables(){
-      return _pFocusDrawables;
-   }
-protected:
-   FFocusTester* TestPosition(TInt x, TInt y);
-public:
-   TResult OnMouseDown(SMouseEvent* pEvent);
-   TResult OnMouseMove(SMouseEvent* pEvent);
-   TResult OnMouseUp(SMouseEvent* pEvent);
-public:
-   TResult Setup();
-   TResult HoverDrawable(FDrawable* pDrawable);
-   TResult FocusDrawable(FDrawable* pDrawable);
-   TResult DragDrawable(FDrawable* pDrawable, TInt x, TInt y);
-   TResult Process(EMouseButton buttonCd, TInt x, TInt y);
-};
-
-//============================================================
-// <T>焦点管理器。</T>
-//============================================================
-class MO_EG_DECLARE RFocusManager : public RSingleton<FFocusConsole>{
 };
 
 MO_NAMESPACE_END

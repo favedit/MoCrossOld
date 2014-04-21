@@ -6,7 +6,6 @@ MO_NAMESPACE_BEGIN
 // <T>构造空间体。</T>
 //============================================================
 FSpatial::FSpatial(){
-   _objectCd |= EComponent_Spatial;
    MO_CLEAR(_pDisplays);
 }
 

@@ -2,35 +2,35 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FComponentProperty, FInstance);
+MO_CLASS_IMPLEMENT_INHERITS(FScriptable, FComponent);
 
 //============================================================
-// <T>构造组件属性。</T>
+// <T>构造脚本对象。</T>
 //============================================================
-FComponentProperty::FComponentProperty(){
+FScriptable::FScriptable(){
 }
 
 //============================================================
-// <T>析构组件属性。</T>
+// <T>析构脚本对象。</T>
 //============================================================
-FComponentProperty::~FComponentProperty(){
+FScriptable::~FScriptable(){
 }
 
 //============================================================
-// <T>序列化数据内容到输出流。</T>
+// <T>功能前置处理。</T>
 //
-// @param pOutput 输出流
+// @return 处理结果
 //============================================================
-TResult FComponentProperty::Serialize(IDataOutput* pOutput){
+TResult FScriptable::ProcessBefore(SProcessContext* pContext){
    return ESuccess;
 }
 
 //============================================================
-// <T>从输入流反序列化数据内容。</T>
+// <T>功能后置处理。</T>
 //
-// @param pInput 输入流
+// @return 处理结果
 //============================================================
-TResult FComponentProperty::Unserialize(IDataInput* pInput){
+TResult FScriptable::ProcessAfter(SProcessContext* pContext){
    return ESuccess;
 }
 

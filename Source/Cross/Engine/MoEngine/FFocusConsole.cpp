@@ -1,5 +1,5 @@
 #include "MoEgDevice.h"
-#include "MoEgDisplay.h"
+#include "MoEgFocus.h"
 
 MO_NAMESPACE_BEGIN
 
@@ -63,10 +63,10 @@ TResult FFocusConsole::OnMouseDown(SMouseEvent* pEvent){
    // 鼠标落下事件
    FDrawable* pDrawable = pTester->ActiveDrawable();
    if(pDrawable != NULL){
-      IMouseable* pMouseable = (IMouseable*)pDrawable->Convert(EComponent_Mouseable);
-      if(pMouseable != NULL){
-         pMouseable->MouseDown(pEvent);
-      }
+      //IMouseable* pMouseable = (IMouseable*)pDrawable->Convert(EComponent_Mouseable);
+      //if(pMouseable != NULL){
+      //   pMouseable->MouseDown(pEvent);
+      //}
    }
    return ESuccess;
 }
@@ -89,10 +89,10 @@ TResult FFocusConsole::OnMouseMove(SMouseEvent* pEvent){
    // 鼠标落下事件
    FDrawable* pDrawable = pTester->ActiveDrawable();
    if(pDrawable != NULL){
-      IMouseable* pMouseable = (IMouseable*)pDrawable->Convert(EComponent_Mouseable);
-      if(pMouseable != NULL){
-         pMouseable->MouseMove(pEvent);
-      }
+      //IMouseable* pMouseable = (IMouseable*)pDrawable->Convert(EComponent_Mouseable);
+      //if(pMouseable != NULL){
+      //   pMouseable->MouseMove(pEvent);
+      //}
    }
    // 热点选择处理
    HoverDrawable(pDrawable);
@@ -125,10 +125,10 @@ TResult FFocusConsole::OnMouseUp(SMouseEvent* pEvent){
    // 鼠标抬起事件
    FDrawable* pDrawable = pTester->ActiveDrawable();
    if(pDrawable != NULL){
-      IMouseable* pMouseable = (IMouseable*)pDrawable->Convert(EComponent_Mouseable);
-      if(pMouseable != NULL){
-         pMouseable->MouseUp(pEvent);
-      }
+      //IMouseable* pMouseable = (IMouseable*)pDrawable->Convert(EComponent_Mouseable);
+      //if(pMouseable != NULL){
+      //   pMouseable->MouseUp(pEvent);
+      //}
    }
    //............................................................
    // 停止拖拽处理
@@ -161,19 +161,19 @@ TResult FFocusConsole::HoverDrawable(FDrawable* pDrawable){
    }
    // 取消上个热点对象激活
    if(_pHoverDrawable != NULL){
-      IHoverable* pHoverable = (IHoverable*)_pHoverDrawable->Convert(EComponent_Hoverable);
-      if(pHoverable != NULL){
-         pHoverable->HoverLeave();
-      }
-      _pHoverDrawable = NULL;
+      //IHoverable* pHoverable = (IHoverable*)_pHoverDrawable->Convert(EComponent_Hoverable);
+      //if(pHoverable != NULL){
+      //   pHoverable->HoverLeave();
+      //}
+      //_pHoverDrawable = NULL;
    }
    // 激活当前热点对象
    if(pDrawable != NULL){
-      IHoverable* pHoverable = (IHoverable*)pDrawable->Convert(EComponent_Hoverable);
-      if(pHoverable != NULL){
-         pHoverable->HoverEnter();
-         _pHoverDrawable = pDrawable;
-      }
+      //IHoverable* pHoverable = (IHoverable*)pDrawable->Convert(EComponent_Hoverable);
+      //if(pHoverable != NULL){
+      //   pHoverable->HoverEnter();
+      //   _pHoverDrawable = pDrawable;
+      //}
    }
    return ESuccess;
 }

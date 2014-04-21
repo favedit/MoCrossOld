@@ -6,7 +6,6 @@ MO_NAMESPACE_BEGIN
 // <T>¹¹Ôì±à¼­¿Ø¼þ¡£</T>
 //============================================================
 FUiEdit::FUiEdit(){
-   _objectCd |= EComponent_Renderable;
    _controlCd = EControlType_Edit;
    _textAlignCd = EControlTextAlign_None;
 }

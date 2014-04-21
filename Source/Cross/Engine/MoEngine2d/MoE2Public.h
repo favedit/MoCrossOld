@@ -24,6 +24,10 @@
 #include <MoFeatureResource.h>
 #endif // __MO_FEATURE_RESOURCE_H__
 
+#ifndef __MO_FEATURE_PHYSICS_H__
+#include <MoFeaturePhysics.h>
+#endif // __MO_FEATURE_PHYSICS_H__
+
 #ifndef __MO_ENGINE_H__
 #include <MoEngine.h>
 #endif // __MO_ENGINE_H__

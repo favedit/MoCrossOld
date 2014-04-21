@@ -6,7 +6,6 @@ MO_NAMESPACE_BEGIN
 // <T>构造控件对象。</T>
 //============================================================
 FUiControl::FUiControl(){
-   _objectCd |= EComponent_Control;
    _controlCd = EControlType_Unknown;
    _flags = 0;
    _optionEnable = ETrue;
@@ -23,27 +22,6 @@ FUiControl::FUiControl(){
 FUiControl::~FUiControl(){
    MO_DELETE(_pMaterial);
    MO_DELETE(_pCanvas);
-}
-
-//============================================================
-// <T>转换类型。</T>
-//
-// @param componentCd 类型
-// @return 对象
-//============================================================
-TAny* FUiControl::Convert(EComponent componentCd){
-   // 父转换类型
-   TAny* pResult = FDrawable::Convert(componentCd);
-   if(pResult != NULL){
-      return pResult;
-   }
-   // 转换类型
-   if(componentCd == EComponent_Control){
-      return (FUiControl*)this;
-   }else if(componentCd == EComponent_Renderable){
-      return (FRenderable*)this;
-   }
-   return NULL;
 }
 
 //============================================================
@@ -200,12 +178,12 @@ TResult FUiControl::CalculateRenderable(SRenderable& renderable){
    FComponent* pFind = this;
    item.location.Reset();
    while(pFind != NULL){
-      if(pFind->IsObject(EComponent_Drawable)){
-         FDrawable* pDrawable = (FDrawable*)pFind;
-         item.location.Add(pDrawable->Location());
-      }
+      //if(pFind->IsObject(EComponent_Drawable)){
+      //   FDrawable* pDrawable = (FDrawable*)pFind;
+      //   item.location.Add(pDrawable->Location());
+      //}
       pFind = pFind->Parent();
-      level++;
+      //level++;
    }
    // 设置属性
    item.size.Assign(_size);

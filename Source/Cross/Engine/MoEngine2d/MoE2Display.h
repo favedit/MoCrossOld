@@ -38,7 +38,9 @@ struct SDisplayArgs{
 //============================================================
 class MO_E2_DECLARE FDisplay2d :
       public FRenderable,
-      public IParticleAble{
+      public IParticleAble
+{
+   MO_CLASS_DECLARE_INHERITS(FDisplay2d, FRenderable);
 protected:
    // 类型
    TDisplayType _typeCd;
@@ -66,8 +68,6 @@ public:
       return _pMaterial;
    }
 public:
-   MO_OVERRIDE TAny* Convert(EComponent componentCd);
-public:
    TResult SetMaterial(FMaterial* pMaterial);
 public:
    MO_OVERRIDE TResult CalculateRenderable(SRenderable& renderable);
@@ -78,7 +78,9 @@ public:
 //============================================================
 // <T>跟踪显示对象。</T>
 //============================================================
-class MO_E2_DECLARE FTailDisplay2d : public FDisplay2d{
+class MO_E2_DECLARE FTailDisplay2d : public FDisplay2d
+{
+   MO_CLASS_DECLARE_INHERITS(FTailDisplay2d, FDisplay2d);
 protected:
    // 是否使用跟踪
    TBool _optionTail;
@@ -116,7 +118,9 @@ public:
 //============================================================
 // <T>位图对象。</T>
 //============================================================
-class MO_E2_DECLARE FPicture : public FTailDisplay2d{
+class MO_E2_DECLARE FPicture : public FTailDisplay2d
+{
+   MO_CLASS_DECLARE_INHERITS(FPicture, FTailDisplay2d);
 protected:
    FPictureResource* _pResource;
 public:
@@ -133,25 +137,6 @@ public:
 };
 
 //============================================================
-// <T>位图对象对象池。</T>
-//============================================================
-class MO_E2_DECLARE FPicturePool : public FDisplayPool{
-public:
-   //------------------------------------------------------------
-   // <T>构造移动粒子对象池。</T>
-   FPicturePool(){
-      _typeCd = EDisplayType_Picture;
-   }
-public:
-   //------------------------------------------------------------
-   // <T>创建一个粒子对象。</T>
-   MO_OVERRIDE FDrawable* Create(){
-      //return MO_CREATE(FPicture);
-      return NULL;
-   }
-};
-
-//============================================================
 // <T>显示形状。</T>
 //============================================================
 class MO_E2_DECLARE FShape : public FDisplay2d{
@@ -161,50 +146,12 @@ public:
 };
 
 //============================================================
-// <T>显示形状对象池。</T>
-//============================================================
-class MO_E2_DECLARE FShapePool : public FDisplayPool{
-public:
-   //------------------------------------------------------------
-   // <T>构造移动粒子对象池。</T>
-   FShapePool(){
-      _typeCd = EDisplayType_Shape;
-   }
-public:
-   //------------------------------------------------------------
-   // <T>创建一个粒子对象。</T>
-   MO_OVERRIDE FDrawable* Create(){
-      //return MO_CREATE(FShape);
-      return NULL;
-   }
-};
-
-//============================================================
 // <T>显示精灵。</T>
 //============================================================
 class MO_E2_DECLARE FSprite : public FDisplay2dContainer{
 public:
    FSprite();
    MO_ABSTRACT ~FSprite();
-};
-
-//============================================================
-// <T>显示精灵对象池。</T>
-//============================================================
-class MO_E2_DECLARE FSpritePool : public FDisplayPool{
-public:
-   //------------------------------------------------------------
-   // <T>构造移动粒子对象池。</T>
-   FSpritePool(){
-      _typeCd = EDisplayType_Sprite;
-   }
-public:
-   //------------------------------------------------------------
-   // <T>创建一个粒子对象。</T>
-   MO_OVERRIDE FDrawable* Create(){
-      //return MO_CREATE(FSprite);
-      return NULL;
-   }
 };
 
 //============================================================
@@ -252,39 +199,19 @@ public:
 };
 
 //============================================================
-// <T>位图对象对象池。</T>
-//============================================================
-class MO_E2_DECLARE FMoviePool : public FDisplayPool{
-public:
-   //------------------------------------------------------------
-   // <T>构造移动粒子对象池。</T>
-   FMoviePool(){
-      _typeCd = EDisplayType_Movie;
-   }
-public:
-   //------------------------------------------------------------
-   // <T>创建一个粒子对象。</T>
-   MO_OVERRIDE FDrawable* Create(){
-      //return MO_CREATE(FMovie);
-      return NULL;
-   }
-};
-
-//============================================================
 // <T>显示对象控制台。</T>
 //============================================================
 class MO_E2_DECLARE FDisplay2dConsole : public FConsole{
 protected:
-   // 显示缓冲池集合
-   FDisplayPoolCollection* _pPools;
+   GPtr<FClassFactory> _classFactory;
 public:
    FDisplay2dConsole();
    MO_ABSTRACT ~FDisplay2dConsole();
 public:
    //------------------------------------------------------------
-   // <T>获得显示缓冲池集合。</T>
-   MO_INLINE FDisplayPoolCollection* Pools(){
-      return _pPools;
+   // <T>获得类对象工厂。</T>
+   MO_INLINE FClassFactory* ClassFactory(){
+      return _classFactory;
    }
 public:
    FDisplay2d* DisplayAlloc(TDisplayType typeCd);
@@ -292,8 +219,6 @@ public:
 public:
    MO_ABSTRACT void Setup();
    MO_ABSTRACT FDisplayPool* PoolFind(TDisplayType typeCd);
-   MO_ABSTRACT void PoolRegister(FDisplayPool* pPool);
-   MO_ABSTRACT void PoolUnregister(FDisplayPool* pPool);
    MO_ABSTRACT TResult Dispose();
 };
 

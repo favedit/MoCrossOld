@@ -6,7 +6,6 @@ MO_NAMESPACE_BEGIN
 // <T>构造标签控件。</T>
 //============================================================
 FUiRadio::FUiRadio(){
-   _objectCd |= EComponent_Renderable;
    _controlCd = EControlType_Radio;
    _textAlignCd = EControlTextAlign_None;
 }

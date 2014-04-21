@@ -6,7 +6,6 @@ MO_NAMESPACE_BEGIN
 // <T>构造标签控件。</T>
 //============================================================
 FUiCheck::FUiCheck(){
-   _objectCd |= EComponent_Renderable;
    _controlCd = EControlType_Check;
    _textAlignCd = EControlTextAlign_None;
 }

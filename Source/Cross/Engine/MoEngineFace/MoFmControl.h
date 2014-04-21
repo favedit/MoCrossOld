@@ -316,8 +316,6 @@ public:
    MO_OVERRIDE TResult OnUnserialize(IDataInput* pInput);
    MO_OVERRIDE TResult OnPaint();
 public:
-   MO_OVERRIDE TAny* Convert(EComponent componentCd);
-public:
    MO_OVERRIDE TResult MouseDown(SMouseEvent* pEvent);
    MO_OVERRIDE TResult MouseMove(SMouseEvent* pEvent);
    MO_OVERRIDE TResult MouseUp(SMouseEvent* pEvent);

@@ -691,12 +691,14 @@ enum EResult{
    ENull = -7,
    // @member 不存在错误
    ENotExists  = -8,
+   // @member 不存在错误
+   EOutRange = -9,
    // @member 重复错误
-   EDuplicate  = -9,
+   EDuplicate  = -10,
    // @member 未支持错误
-   EUnsupport = -10,
+   EUnsupport = -11,
    // @member 非法错误
-   EInvalid = -11,
+   EInvalid = -12,
 };
 
 //============================================================

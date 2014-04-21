@@ -6,7 +6,6 @@ MO_NAMESPACE_BEGIN
 // <T>构造顶层窗口。</T>
 //============================================================
 FUiWindow::FUiWindow(){
-   _objectCd |= EComponent_Mouseable;
    _controlCd = EControlType_Window;
    _titleHeight = 28;
 }
@@ -15,25 +14,6 @@ FUiWindow::FUiWindow(){
 // <T>析构顶层窗口。</T>
 //============================================================
 FUiWindow::~FUiWindow(){
-}
-
-//============================================================
-// <T>转换类型。</T>
-//
-// @param componentCd 类型
-// @return 对象
-//============================================================
-TAny* FUiWindow::Convert(EComponent componentCd){
-   // 父转换类型
-   TAny* pResult = FUiControl::Convert(componentCd);
-   if(pResult != NULL){
-      return pResult;
-   }
-   // 转换类型
-   if(componentCd == EComponent_Mouseable){
-      return (IMouseable*)this;
-   }
-   return pResult;
 }
 
 //============================================================

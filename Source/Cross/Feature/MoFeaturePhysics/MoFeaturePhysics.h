@@ -5,6 +5,10 @@
 #include "MoFpCommon.h"
 #endif // __MO_FP_COMMON_H__
 
+#ifndef __MO_FP_TAIL_H__
+#include "MoFpTail.h"
+#endif // __MO_FP_TAIL_H__
+
 MO_NAMESPACE_BEGIN
 
 MO_FP_DECLARE void MoFeaturePhysicsInitialize();

@@ -2,11 +2,12 @@
 
 MO_NAMESPACE_BEGIN
 
+MO_CLASS_IMPLEMENT_INHERITS(FDisplay2d, FRenderable);
+
 //============================================================
 // <T>构造显示对象。</T>
 //============================================================
 FDisplay2d::FDisplay2d(){
-   //_objectCd |= EComponent_Display | EComponent_Renderable;
    _typeCd = 0;
 }
 
@@ -14,24 +15,6 @@ FDisplay2d::FDisplay2d(){
 // <T>析构显示对象。</T>
 //============================================================
 FDisplay2d::~FDisplay2d(){
-}
-
-//============================================================
-// <T>转换类型。</T>
-//
-// @param componentCd 类型
-// @return 对象
-//============================================================
-TAny* FDisplay2d::Convert(EComponent componentCd){
-   //TAny* pResult = FDrawable::Convert(componentCd);
-   //if(pResult == NULL){
-   //   if(componentCd == EComponent_Display){
-   //      return (FDisplay2d*)this;
-   //   }else if(componentCd == EComponent_Renderable){
-   //      return (FRenderable*)this;
-   //   }
-   //}
-   return NULL;
 }
 
 //============================================================

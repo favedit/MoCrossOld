@@ -8,7 +8,6 @@ MO_CLASS_IMPLEMENT_INHERITS(FDrawable, FComponent);
 // <T>构造可绘制对象。</T>
 //============================================================
 FDrawable::FDrawable(){
-   _objectCd |= EComponent_Drawable;
    _statusVisible = ETrue;
    _statusDirty = ETrue;
    _groundColor.Set(1.0f, 1.0f, 1.0f, 1.0f);
@@ -22,28 +21,15 @@ FDrawable::~FDrawable(){
 }
 
 //============================================================
-// <T>转换类型。</T>
-//
-// @param componentCd 类型
-// @return 对象
-//============================================================
-TAny* FDrawable::Convert(EComponent componentCd){
-   if(componentCd == EComponent_Drawable){
-      return (FDrawable*)this;
-   }
-   return NULL;
-}
-
-//============================================================
 // <T>测试是否可以绘制。</T>
 //
 // @return 是否可以绘制
 //============================================================
 TBool FDrawable::TestDrawable(){
    // 检查对象类型
-   if(!IsObject(EComponent_Renderable)){
-      return EFalse;
-   }
+   //if(!IsObject(EComponent_Renderable)){
+   //   return EFalse;
+   //}
    return ETrue;
 }
 
@@ -63,13 +49,13 @@ TResult FDrawable::OnPaint(){
 // @return 处理结果
 //============================================================
 TResult FDrawable::OnFocusTest(FFocusTester* pTester){
-   SIntRectangle rectangle;
-   CalculateRectangle(&rectangle);
-   SIntPoint2& location = pTester->Location();
-   if(rectangle.TestInRange(location.x, location.y)){
-      pTester->SetStatusInRange(ETrue);
-      //pTester->SetStatusChildren(_pChildren != NULL);
-   }
+   //SIntRectangle rectangle;
+   //CalculateRectangle(&rectangle);
+   //SIntPoint2& location = pTester->Location();
+   //if(rectangle.TestInRange(location.x, location.y)){
+   //   pTester->SetStatusInRange(ETrue);
+   //   //pTester->SetStatusChildren(_pChildren != NULL);
+   //}
    return ESuccess;
 }
 
@@ -84,15 +70,15 @@ TResult FDrawable::CalculateRectangle(SIntRectangle* pRectangle){
    // 计算坐标位置
    FComponent* pFind = this;
    pRectangle->Reset();
-   while(pFind != NULL){
-      if(pFind->IsObject(EComponent_Drawable)){
-         FDrawable* pDrawable = (FDrawable*)pFind;
-         SFloatPoint3& position = pDrawable->Location();
-         pRectangle->left += (TInt)position.x;
-         pRectangle->top += (TInt)position.y;
-      }
-      pFind = pFind->Parent();
-   }
+   //while(pFind != NULL){
+   //   if(pFind->IsObject(EComponent_Drawable)){
+   //      FDrawable* pDrawable = (FDrawable*)pFind;
+   //      SFloatPoint3& position = pDrawable->Location();
+   //      pRectangle->left += (TInt)position.x;
+   //      pRectangle->top += (TInt)position.y;
+   //   }
+   //   pFind = pFind->Parent();
+   //}
    pRectangle->SetSize((TInt)_size.width, (TInt)_size.height);
    return ESuccess;
 }
@@ -187,30 +173,30 @@ TResult FDrawable::SetVisible(TBool visible){
 //============================================================
 TResult FDrawable::FocusTest(FFocusTester* pTester){
    MO_CHECK(pTester, return ENull);
-   // 检查可见状态
-   if(!_statusVisible){
-      return EFalse;
-   }
-   // 测试处理
-   pTester->TestReset();
-   TResult result = OnFocusTest(pTester);
-   TBool inRange = pTester->StatusInRange();
-   TBool children = pTester->StatusChildren();
-   // 测试子组件集合
-   if(children){
-      //TInt childCount = ChildCount();
-      //for(TInt n = 0; n < childCount; n++){
-      //   FComponent* pComponent = _pChildren->Get(n);
-      //   if(pComponent->IsObject(EComponent_Drawable)){
-      //      FRenderable* pDrawable = (FRenderable*)pComponent;
-      //      pDrawable->FocusTest(pTester);
-      //   }
-      //}
-   }
-   // 增加到集合内
-   if(inRange){
-      pTester->Push(this);
-   }
+   //// 检查可见状态
+   //if(!_statusVisible){
+   //   return EFalse;
+   //}
+   //// 测试处理
+   //pTester->TestReset();
+   //TResult result = OnFocusTest(pTester);
+   //TBool inRange = pTester->StatusInRange();
+   //TBool children = pTester->StatusChildren();
+   //// 测试子组件集合
+   //if(children){
+   //   //TInt childCount = ChildCount();
+   //   //for(TInt n = 0; n < childCount; n++){
+   //   //   FComponent* pComponent = _pChildren->Get(n);
+   //   //   if(pComponent->IsObject(EComponent_Drawable)){
+   //   //      FRenderable* pDrawable = (FRenderable*)pComponent;
+   //   //      pDrawable->FocusTest(pTester);
+   //   //   }
+   //   //}
+   //}
+   //// 增加到集合内
+   //if(inRange){
+   //   pTester->Push(this);
+   //}
    return ESuccess;
 }
 

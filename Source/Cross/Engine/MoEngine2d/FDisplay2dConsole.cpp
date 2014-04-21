@@ -6,14 +6,12 @@ MO_NAMESPACE_BEGIN
 // <T>ππ‘Ïœ‘ æ∂‘œÛøÿ÷∆Ã®°£</T>
 //============================================================
 FDisplay2dConsole::FDisplay2dConsole(){
-   _pPools = MO_CREATE(FDisplayPoolCollection);
 }
 
 //============================================================
 // <T>Œˆππœ‘ æ∂‘œÛøÿ÷∆Ã®°£</T>
 //============================================================
 FDisplay2dConsole::~FDisplay2dConsole(){
-   MO_DELETE(_pPools);
 }
 
 //============================================================
@@ -44,18 +42,10 @@ void FDisplay2dConsole::DisplayFree(FDisplay2d* pDisplay){
 // <T>≈‰÷√¥¶¿Ì</T>
 //============================================================
 void FDisplay2dConsole::Setup(){
-   // ◊¢≤·Õº∆¨ª∫≥Â≥ÿ
-   FPicturePool* pPicturePool = MO_CREATE(FPicturePool);
-   PoolRegister(pPicturePool);
-   // ◊¢≤·–Œ◊¥ª∫≥Â≥ÿ
-   FShapePool* pShapePool = MO_CREATE(FShapePool);
-   PoolRegister(pShapePool);
-   // ◊¢≤·æ´¡Èª∫≥Â≥ÿ
-   FSpritePool* pSpritePool = MO_CREATE(FSpritePool);
-   PoolRegister(pSpritePool);
-   // ◊¢≤·∂Øª≠ª∫≥Â≥ÿ
-   FMoviePool* pMoviePool = MO_CREATE(FMoviePool);
-   PoolRegister(pMoviePool);
+   _classFactory->Register("Picture", FPicture::Class());
+   _classFactory->Register("Shape", FShape::Class());
+   _classFactory->Register("Sprite", FSprite::Class());
+   _classFactory->Register("Movie", FMovie::Class());
 }
 
 //============================================================
@@ -65,32 +55,14 @@ void FDisplay2dConsole::Setup(){
 // @return ª∫≥Â≥ÿ
 //============================================================
 FDisplayPool* FDisplay2dConsole::PoolFind(TDisplayType typeCd){
-   TInt count = _pPools->Count();
-   for(TInt n = 0; n < count; n++){
-      FDisplayPool* pPool = _pPools->Get(n);
-      if(pPool->TypeCd() == typeCd){
-         return pPool;
-      }
-   }
+   //TInt count = _pPools->Count();
+   //for(TInt n = 0; n < count; n++){
+   //   FDisplayPool* pPool = _pPools->Get(n);
+   //   if(pPool->TypeCd() == typeCd){
+   //      return pPool;
+   //   }
+   //}
    return NULL;
-}
-
-//============================================================
-// <T>◊¢≤·ª∫≥Â≥ÿ°£</T>
-//
-// @param pPool ª∫≥Â≥ÿ
-//============================================================
-void FDisplay2dConsole::PoolRegister(FDisplayPool* pPool){
-   _pPools->Push(pPool);
-}
-
-//============================================================
-// <T>◊¢œ˙ª∫≥Â≥ÿ°£</T>
-//
-// @param pPool ª∫≥Â≥ÿ
-//============================================================
-void FDisplay2dConsole::PoolUnregister(FDisplayPool* pPool){
-   _pPools->Remove(pPool);
 }
 
 //============================================================

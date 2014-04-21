@@ -6,7 +6,6 @@ MO_NAMESPACE_BEGIN
 // <T>构造静态标签控件。</T>
 //============================================================
 FUiStaticLabel::FUiStaticLabel(){
-   _objectCd |= EComponent_Renderable;
    _controlCd = EControlType_StaticLabel;
    _textAlignCd = EControlTextAlign_None;
 }

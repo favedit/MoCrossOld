@@ -1,5 +1,4 @@
-#include "MoEgDevice.h"
-#include "MoEgDisplay.h"
+#include "MoFpTail.h"
 
 MO_NAMESPACE_BEGIN
 
@@ -25,24 +24,24 @@ FTailController::~FTailController(){
 // @return 处理结果
 //============================================================
 TResult FTailController::Push(STailInfo& info){
-   // 检查时间间隔
-   FTimerDevice* pTimerDevice = RDeviceManager::Instance().Find<FTimerDevice>();
-   TTimeTick currentTick = pTimerDevice->CurrentTick();
-   if(_lastTick == 0){
-      _lastTick = currentTick;
-   }else{
-      if(currentTick - _lastTick < _interval){
-         return ESuccess;
-      }
-      _lastTick = currentTick;
-   }
-   // 检查是否已经到达极限
-   TInt count = _infos.Count();
-   if(count > _limit){
-      _infos.Pop();
-   }
-   // 从开始位置插入
-   _infos.Unshift(info);
+   //// 检查时间间隔
+   //FTimerDevice* pTimerDevice = RDeviceManager::Instance().Find<FTimerDevice>();
+   //TTimeTick currentTick = pTimerDevice->CurrentTick();
+   //if(_lastTick == 0){
+   //   _lastTick = currentTick;
+   //}else{
+   //   if(currentTick - _lastTick < _interval){
+   //      return ESuccess;
+   //   }
+   //   _lastTick = currentTick;
+   //}
+   //// 检查是否已经到达极限
+   //TInt count = _infos.Count();
+   //if(count > _limit){
+   //   _infos.Pop();
+   //}
+   //// 从开始位置插入
+   //_infos.Unshift(info);
    return ESuccess;
 }
 

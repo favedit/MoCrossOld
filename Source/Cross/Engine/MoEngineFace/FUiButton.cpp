@@ -6,7 +6,6 @@ MO_NAMESPACE_BEGIN
 // <T>构造控件对象。</T>
 //============================================================
 FUiButton::FUiButton(){
-   _objectCd |= EComponent_Renderable | EComponent_Mouseable | EComponent_Hoverable;
    _controlCd = EControlType_Button;
    _optionHand = EFalse;
    _statusDown = EFalse;
@@ -51,27 +50,6 @@ TResult FUiButton::SetText(TWideCharC* pText){
    // 设置内容
    _text = pText;
    return Dirty();
-}
-
-//============================================================
-// <T>转换类型。</T>
-//
-// @param componentCd 类型
-// @return 对象
-//============================================================
-TAny* FUiButton::Convert(EComponent componentCd){
-   // 父转换类型
-   TAny* pResult = FUiControl::Convert(componentCd);
-   if(pResult != NULL){
-      return pResult;
-   }
-   // 转换类型
-   if(componentCd == EComponent_Mouseable){
-      return (IMouseable*)this;
-   }else if(componentCd == EComponent_Hoverable){
-      return (IHoverable*)this;
-   }
-   return pResult;
 }
 
 //============================================================

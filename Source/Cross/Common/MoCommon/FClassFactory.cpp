@@ -1,6 +1,9 @@
 #include "MoCmClassBase.h"
+#include "MoCmClass.h"
 
 MO_NAMESPACE_BEGIN
+
+MO_CLASS_IMPLEMENT_INHERITS(FClassFactory, FInstance);
 
 //============================================================
 // <T>构造类工厂。</T>

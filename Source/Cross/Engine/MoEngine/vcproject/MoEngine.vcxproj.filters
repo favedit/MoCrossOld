@@ -42,6 +42,9 @@
     <Filter Include="3-Core\Processor">
       <UniqueIdentifier>{3a38cb72-6448-4246-918f-a5b21a5c179a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="4-Platform\Focus">
+      <UniqueIdentifier>{149dac81-2306-4115-be67-63df55a24e49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\MoEgCommon.h">
@@ -80,6 +83,9 @@
     </ClInclude>
     <ClInclude Include="..\MoEgProcessor.h">
       <Filter>3-Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoEgFocus.h">
+      <Filter>4-Platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -144,12 +150,6 @@
     <ClCompile Include="..\FBitmapCanvas.cpp">
       <Filter>4-Platform\Display</Filter>
     </ClCompile>
-    <ClCompile Include="..\FFocusConsole.cpp">
-      <Filter>4-Platform\Display</Filter>
-    </ClCompile>
-    <ClCompile Include="..\FFocusTester.cpp">
-      <Filter>4-Platform\Display</Filter>
-    </ClCompile>
     <ClCompile Include="..\FStageConsole.cpp">
       <Filter>4-Platform\Display</Filter>
     </ClCompile>
@@ -170,9 +170,6 @@
     </ClCompile>
     <ClCompile Include="..\FStillEntity.cpp">
       <Filter>5-Instance\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="..\FTailController.cpp">
-      <Filter>4-Platform\Display</Filter>
     </ClCompile>
     <ClCompile Include="..\FEntityConsole.cpp">
       <Filter>5-Instance\Entity</Filter>
@@ -206,6 +203,15 @@
     </ClCompile>
     <ClCompile Include="..\FProcessorConsole.cpp">
       <Filter>3-Core\Processor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FScriptable.cpp">
+      <Filter>4-Platform\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFocusTester.cpp">
+      <Filter>4-Platform\Focus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFocusConsole.cpp">
+      <Filter>4-Platform\Focus</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

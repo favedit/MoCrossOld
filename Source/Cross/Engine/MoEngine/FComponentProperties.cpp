@@ -2,18 +2,18 @@
 
 MO_NAMESPACE_BEGIN
 
+MO_CLASS_IMPLEMENT_INHERITS(FComponentProperties, FInstance);
+
 //============================================================
 // <T>构造组件属性集合。</T>
 //============================================================
 FComponentProperties::FComponentProperties(){
-   _pProperties = MO_CREATE(FComponentPropertyCollection);
 }
 
 //============================================================
 // <T>析构组件属性集合。</T>
 //============================================================
 FComponentProperties::~FComponentProperties(){
-   MO_DELETE(_pProperties);
 }
 
 //============================================================

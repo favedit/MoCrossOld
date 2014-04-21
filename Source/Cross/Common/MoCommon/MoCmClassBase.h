@@ -631,7 +631,9 @@ public:
 // @class
 // @history 140308 MAOCY 创建
 //============================================================
-class MO_CM_DECLARE FClassFactory : public FObject{
+class MO_CM_DECLARE FClassFactory : public FInstance
+{
+   MO_CLASS_DECLARE_INHERITS(FClassFactory, FInstance);
 protected:
    FClassDictionary* _pClasses;
 public:
@@ -678,7 +680,9 @@ public:
 // @class
 // @history 140315 MAOCY 创建
 //============================================================
-class MO_CM_DECLARE FClassInstanceFactory : public FObject{
+class MO_CM_DECLARE FClassInstanceFactory : public FInstance
+{
+   MO_CLASS_DECLARE_INHERITS(FClassInstanceFactory, FInstance);
 protected:
    FClassDictionary* _pClasses;
    FInstanceDictionary* _pInstances;

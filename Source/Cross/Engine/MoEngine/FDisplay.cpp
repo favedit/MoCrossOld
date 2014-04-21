@@ -8,8 +8,6 @@ MO_CLASS_IMPLEMENT_INHERITS(FDisplay, FDrawable);
 // <T>构造显示对象。</T>
 //============================================================
 FDisplay::FDisplay(){
-   _objectCd |= EComponent_Display;
-   _typeCd = 0;
    MO_CLEAR(_pDisplays);
    MO_CLEAR(_pRenderables);
 }

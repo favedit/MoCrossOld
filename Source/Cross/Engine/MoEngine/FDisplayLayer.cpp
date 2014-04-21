@@ -8,7 +8,6 @@ MO_CLASS_IMPLEMENT_INHERITS(FDisplayLayer, FDisplay);
 // <T>构造可绘制对象层。</T>
 //============================================================
 FDisplayLayer::FDisplayLayer(){
-   _objectCd |= EComponent_DrawableLayer;
    _layerCd = EDisplayLayer_Unknown;
    MO_CLEAR(_pStageFrame);
    MO_CLEAR(_pDisplays);
@@ -29,7 +28,7 @@ FDisplayLayer::~FDisplayLayer(){
 // @return 处理结果
 //============================================================
 TResult FDisplayLayer::OnFocusTest(FFocusTester* pTester){
-   pTester->SetStatusInRange(EFalse);
+   //pTester->SetStatusInRange(EFalse);
    //pTester->SetStatusChildren(_pChildren != NULL);
    return ESuccess;
 }

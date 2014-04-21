@@ -44,7 +44,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)..\..\..\..\..\Build\Debug_x86\</OutDir>
     <TargetName>$(ProjectName)D</TargetName>
-    <IncludePath>$(ProjectDir)..\..\..\..\Library\LibLzma;$(ProjectDir)..\..\..\..\Library\LibJpeg;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureInput;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\..\..\..\Library\LibLzma;$(ProjectDir)..\..\..\..\Library\LibJpeg;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureInput;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(ProjectDir)..\..\..\Feature\MoFeatureScript;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)..\..\..\..\..\Reference\Library\Windows-x86\;$(ProjectDir)..\..\..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -64,7 +64,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>LibLzmaD.lib;LibJpegD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureInputD.lib;MoFeatureGraphicD.lib;MoFeatureResourceD.lib;MoFeatureParticleD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibLzmaD.lib;LibJpegD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureInputD.lib;MoFeatureGraphicD.lib;MoFeatureResourceD.lib;MoFeatureParticleD.lib;MoFeatureScriptD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:MSVCRT %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
@@ -91,6 +91,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\MoEgFocus.h" />
     <ClInclude Include="..\MoEgDisplay.h" />
     <ClInclude Include="..\MoEgCore.h" />
     <ClInclude Include="..\MoEgCommon.h" />
@@ -128,12 +129,12 @@
     <ClCompile Include="..\FFont.cpp" />
     <ClCompile Include="..\FFontConsole.cpp" />
     <ClCompile Include="..\FScreenDevice.cpp" />
+    <ClCompile Include="..\FScriptable.cpp" />
     <ClCompile Include="..\FSpatial.cpp" />
     <ClCompile Include="..\FSpriteEntity.cpp" />
     <ClCompile Include="..\FStage.cpp" />
     <ClCompile Include="..\FStageConsole.cpp" />
     <ClCompile Include="..\FStillEntity.cpp" />
-    <ClCompile Include="..\FTailController.cpp" />
     <ClCompile Include="..\FBitmapBlockIndexDecoder.cpp" />
     <ClCompile Include="..\FBitmapIndexDecoder.cpp" />
     <ClCompile Include="..\FBitmapJpegLayer1Decoder.cpp" />

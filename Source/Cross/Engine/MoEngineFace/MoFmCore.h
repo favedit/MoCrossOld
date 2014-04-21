@@ -428,7 +428,6 @@ public:
       _location.Set((TFloat)x, (TFloat)y);
    }
 public:
-   MO_OVERRIDE TAny* Convert(EComponent componentCd);
    FUiControl* ControlGet(TInt index, EControlType controlCd);
 public:
    MO_ABSTRACT TResult OnUnserialize(IDataInput* pInput);

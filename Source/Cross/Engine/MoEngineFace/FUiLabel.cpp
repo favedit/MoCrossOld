@@ -6,7 +6,6 @@ MO_NAMESPACE_BEGIN
 // <T>构造标签控件。</T>
 //============================================================
 FUiLabel::FUiLabel(){
-   _objectCd |= EComponent_Renderable;
    _controlCd = EControlType_Label;
    _textAlignCd = EControlTextAlign_None;
 }

@@ -47,8 +47,6 @@ public:
    FUiWindow();
    MO_ABSTRACT ~FUiWindow();
 public:
-   TAny* Convert(EComponent componentCd);
-public:
    MO_OVERRIDE TResult OnPaint();
 public:
    MO_OVERRIDE TResult PaintTitle(FUiCanvas* pCanvas, SIntRectangle* pRectangle);
