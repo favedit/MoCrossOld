@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{190D9ABF-F5CC-46F9-8BB9-F45CB401406D}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MoArchitectureAndroid</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(ProjectDir)..\..\..\Common\MoCommon;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)..\..\..\..\..\Build\Debug_x86\</OutDir>
+    <TargetName>$(ProjectName)D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(ProjectDir)..\..\..\Library\mysql-x64\include;$(ProjectDir)..\..\..\Common\MoCommon;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\Library\mysql-x64\lib;$(ProjectDir)..\..\..\Build\Debug_x64\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)..\..\..\Build\Debug_x64\</OutDir>
+    <TargetName>$(ProjectName)D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(ProjectDir)..\..\..\Common\MoCommon;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(ProjectDir)..\..\MoCommon;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>$(ProjectDir)..\..\..\..\Build\Release_x86\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)..\..\..\..\Build\Release_x86\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LibraryPath>$(ProjectDir)..\..\..\Build\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)..\..\..\Build\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_MT_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>wsock32.lib;ws2_32.lib;winmm.lib;MoCommonD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X64;_MO_CR_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+      <OmitFramePointers>false</OmitFramePointers>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>wsock32.lib;ws2_32.lib;winmm.lib;libmysql.lib;MoCommonD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_MT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>wsock32.lib;ws2_32.lib;winmm.lib;MoCommon.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_LIB;_WINDOWS;_MO_CR_EXPORTS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>winmm.lib;MoCommon.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\MoMath.cpp" />
+    <ClCompile Include="..\RGeomUtil.cpp" />
+    <ClCompile Include="..\SDoubleMatrix3d.cpp" />
+    <ClCompile Include="..\SDoubleMatrix4x4.cpp" />
+    <ClCompile Include="..\SDoublePadding.cpp" />
+    <ClCompile Include="..\SDoublePoint2.cpp" />
+    <ClCompile Include="..\SDoublePoint3.cpp" />
+    <ClCompile Include="..\SDoublePoint4.cpp" />
+    <ClCompile Include="..\SDoubleRange.cpp" />
+    <ClCompile Include="..\SDoubleRectangle.cpp" />
+    <ClCompile Include="..\SDoubleSize2.cpp" />
+    <ClCompile Include="..\SDoubleSize3.cpp" />
+    <ClCompile Include="..\SDoubleVector2.cpp" />
+    <ClCompile Include="..\SDoubleVector3.cpp" />
+    <ClCompile Include="..\SDoubleVector4.cpp" />
+    <ClCompile Include="..\SFloat4.cpp" />
+    <ClCompile Include="..\SFloatColor4.cpp" />
+    <ClCompile Include="..\SFloatMatrix3d.cpp" />
+    <ClCompile Include="..\SFloatMatrix4x4.cpp" />
+    <ClCompile Include="..\SFloatOutline3.cpp" />
+    <ClCompile Include="..\SFloatPadding.cpp" />
+    <ClCompile Include="..\SFloatPoint2.cpp" />
+    <ClCompile Include="..\SFloatPoint3.cpp" />
+    <ClCompile Include="..\SFloatPoint4.cpp" />
+    <ClCompile Include="..\SFloatRange.cpp" />
+    <ClCompile Include="..\SFloatRectangle.cpp" />
+    <ClCompile Include="..\SFloatSize2.cpp" />
+    <ClCompile Include="..\SFloatSize3.cpp" />
+    <ClCompile Include="..\SFloatVector2.cpp" />
+    <ClCompile Include="..\SFloatVector3.cpp" />
+    <ClCompile Include="..\SFloatVector4.cpp" />
+    <ClCompile Include="..\SIntPadding.cpp" />
+    <ClCompile Include="..\SIntPoint2.cpp" />
+    <ClCompile Include="..\SIntPoint3.cpp" />
+    <ClCompile Include="..\SIntPoint4.cpp" />
+    <ClCompile Include="..\SIntRange.cpp" />
+    <ClCompile Include="..\SIntRectangle.cpp" />
+    <ClCompile Include="..\SIntSize2.cpp" />
+    <ClCompile Include="..\SIntSize3.cpp" />
+    <ClCompile Include="..\SIntVector2.cpp" />
+    <ClCompile Include="..\SIntVector3.cpp" />
+    <ClCompile Include="..\SIntVector4.cpp" />
+    <ClCompile Include="..\TFsFloatPoint3.cpp" />
+    <ClCompile Include="..\TFsFloatRange.cpp" />
+    <ClCompile Include="..\TFsFloatSize.cpp" />
+    <ClCompile Include="..\TFsFloatVector3.cpp" />
+    <ClCompile Include="..\TFsIntPoint2.cpp" />
+    <ClCompile Include="..\TFsIntPoint3.cpp" />
+    <ClCompile Include="..\TFsIntSize.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\MoMtFloat.h" />
+    <ClInclude Include="..\MoMtFormat.h" />
+    <ClInclude Include="..\MoMtGeom.h" />
+    <ClInclude Include="..\MoMath.h" />
+    <ClInclude Include="..\MoMtMatrix.h" />
+    <ClInclude Include="..\MoMtOutline.h" />
+    <ClInclude Include="..\MoMtPoint.h" />
+    <ClInclude Include="..\MoMtPublic.h" />
+    <ClInclude Include="..\MoMtCommon.h" />
+    <ClInclude Include="..\MoMtQuaternion.h" />
+    <ClInclude Include="..\MoMtSize.h" />
+    <ClInclude Include="..\MoMtVector.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
