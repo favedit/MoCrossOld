@@ -10,25 +10,25 @@ Cross Platform Game Engine
 ### 已经实现功能
 
 - 渲染设备
-   . OpenGL2.0
+   -- OpenGL2.0
 
 - 渲染管道：
-   . 简单绘制：VertexColor + AmbientColor + DiffuseColor + ViewDiffuseColor + SpecularColor + ViewSpecularColor + ReflectColor(Cube3d)
-   . 阴影绘制：ShadowMapColor
-   . 后期处理：Blur
+   -- 简单绘制：VertexColor + AmbientColor + DiffuseColor + ViewDiffuseColor + SpecularColor + ViewSpecularColor + ReflectColor(Cube3d)
+   -- 阴影绘制：ShadowMapColor
+   -- 后期处理：Blur
 
 - 渲染技术：
-   . 异步空间排序剔除
-   . 异步动画播放
-   . 实例绘制(支持移动设备)
-   . 场景空间合并(静态版本)
+   -- 异步空间排序剔除
+   -- 异步动画播放
+   -- 实例绘制(支持移动设备)
+   -- 场景空间合并(静态版本)
 
 ### 路线图
 
-2014年06月，完成基础代码构架。
-2014年12月，提供简单的可视化工具。
-2015年06月，完善可视化工具，提供可用的场景编辑器，界面编辑器。
-2015年12月，完善引擎，开始追求更高效率和效果。
+- 2014年06月，完成基础代码构架。
+- 2014年12月，提供简单的可视化工具。
+- 2015年06月，完善可视化工具，提供可用的场景编辑器，界面编辑器。
+- 2015年12月，完善引擎，开始追求更高效率和效果。
 
 ### 文档
 
@@ -51,8 +51,8 @@ Cross Platform Game Engine
 
 ### 关于
 
-FavEdit => Favorite Edit 表示愿意编辑，写写代码的意思。
-   网页Stage3D CoolLight - 炫光引擎 的制作者。
+- FavEdit => Favorite Edit 表示愿意编辑，写写代码的意思。
+- 网页 Stage3D CoolLight - 炫光引擎 的制作者。
 
-### 期望
-   现在因为是只有个人制作，希望能遇到有同样追求，想做3D引擎的人加入。
+### 加入
+   现在因为是只有个人制作，能力有限，期望能遇到有同样追求，想做3D引擎的人加入。
