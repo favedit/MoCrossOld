@@ -10,7 +10,7 @@ Engine Source
 ### Document
 
 文档区
-- [设计文档.pptx](Document/设计文档.pptx)：整个系统的设计说明。(完善中...)
+- 设计文档：整个系统的设计说明。(完善中...)
 
 ### Library / Reference
 
