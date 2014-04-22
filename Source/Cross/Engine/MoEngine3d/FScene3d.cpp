@@ -115,7 +115,7 @@ TResult FScene3d::LoadDisplayResource(FDisplayLayer* pLayer, FRs3dSceneDisplay* 
    // 读取渲染对象集合
    FMaterial* pLightMaterial = _directionalLight->Material();
    if(pDisplay->Renderables() != NULL){
-      FRenderableCollection::TIteratorC iterator = pDisplay->Renderables()->IteratorC();
+      GRenderablePtrs::TIteratorC iterator = pDisplay->Renderables().IteratorC();
       while(iterator.Next()){
          FTemplate3dRenderable* pRenderable = (*iterator)->Convert<FTemplate3dRenderable>();
          pRenderable->UpdateMaterial(pLightMaterial);
@@ -198,7 +198,7 @@ TResult FScene3d::Setup(){
    // 构件场景帧
    _sceneFrame = FScene3dFrame::InstanceCreate();
    _sceneFrame->Setup();
-   _pFrames->Push(_sceneFrame);
+   _layers.Push(_sceneFrame);
    return resultCd;
 }
 

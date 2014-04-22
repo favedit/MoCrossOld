@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FScene3dFrame, FStageFrame);
+MO_CLASS_IMPLEMENT_INHERITS(FScene3dFrame, FStageLayer);
 
 //============================================================
 // <T>构造实体3D场景帧。</T>
@@ -23,7 +23,7 @@ FScene3dFrame::~FScene3dFrame(){
 // @return 处理结果
 //============================================================
 TResult FScene3dFrame::Setup(){
-   TResult resultCd = FStageFrame::Setup();
+   TResult resultCd = FStageLayer::Setup();
    // 构件天空层
    _skyLayer = FDisplayLayer::InstanceCreate();
    _skyLayer->SetName("sky.layer");

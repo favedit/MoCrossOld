@@ -16,7 +16,6 @@ FModel3d::FModel3d(){
 // <T>析构实体3D模型。</T>
 //============================================================
 FModel3d::~FModel3d(){
-   MO_DELETE(_pRenderables);
    MO_DELETE(_pAnimation);
 }
 

@@ -100,10 +100,10 @@ TResult FTemplate3d::LoadResource(FRs3dTemplate* pResource){
    }
    //............................................................
    // 为渲染对象分配骨头
-   if(_pRenderables != NULL){
-      renderableCount = _pRenderables->Count();
+   if(!_renderables.IsEmpty()){
+      renderableCount = _renderables.Count();
       for(TInt n = 0; n < renderableCount; n++){
-         FRenderable* pRenderable = _pRenderables->Get(n);
+         FRenderable* pRenderable = _renderables.Get(n);
          if(pRenderable->GetClass() == FTemplate3dRenderable::Class()){
             FTemplate3dRenderable* pTemplateRenderable = (FTemplate3dRenderable*)pRenderable;
             FBone3dCollection* pBones = pTemplateRenderable->Bones();

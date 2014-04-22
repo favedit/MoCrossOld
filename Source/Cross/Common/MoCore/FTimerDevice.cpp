@@ -1,4 +1,4 @@
-#include "MoEgDevice.h"
+#include "MoCrDevice.h"
 
 MO_NAMESPACE_BEGIN
 
@@ -21,6 +21,10 @@ FTimerDevice::~FTimerDevice(){
 }
 
 //============================================================
+// <T>获得每秒帧数。</T>
+//
+// @return 帧数
+//============================================================
 TInt FTimerDevice::FramePerSecond(){
    if(_frameCount == 0){
       return 0;
@@ -31,6 +35,8 @@ TInt FTimerDevice::FramePerSecond(){
 
 //============================================================
 // <T>配置处理。</T>
+//
+// @return 处理结果
 //============================================================
 TResult FTimerDevice::Setup(){
    _frameCount = 0;
@@ -41,6 +47,8 @@ TResult FTimerDevice::Setup(){
 
 //============================================================
 // <T>更新处理。</T>
+//
+// @return 处理结果
 //============================================================
 TResult FTimerDevice::Update(){
    _frameCount++;

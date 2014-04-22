@@ -13,20 +13,15 @@
 MO_NAMESPACE_BEGIN
 
 //============================================================
-// 接口定义
-class IHoverable;
-class IFocusable;
-class IDragable;
 // 类型定义
 class FComponent;
 class FDrawable;
 class FDisplay;
-class FStageFrame;
+class FStageLayer;
 class FStage;
 class FParticleController;
 class FFocusTester;
 // 集合定义
-typedef MO_EG_DECLARE FObjects<FComponent*> FComponentCollection;
 typedef MO_EG_DECLARE FObjects<FDrawable*> FDrawableCollection;
 typedef MO_EG_DECLARE FObjects<FDisplay*> FDisplayCollection;
 typedef MO_EG_DECLARE FList<FDisplay*> FDisplayList;
@@ -51,113 +46,6 @@ enum EComponentStatus{
    EComponentStatus_Ready = 0x04,
 };
 
-//==========================================================
-// <T>显示层类型</T>
-//==========================================================
-enum EDisplayLayer{
-   // 未知
-   EDisplayLayer_Unknown = 0,
-   // 界面层
-   EDisplayLayer_Face = 1,
-   // 前景层
-   EDisplayLayer_Fore = 2,
-   // 粒子层
-   EDisplayLayer_Particle = 3,
-   // 精灵层
-   EDisplayLayer_Sprite = 4,
-   // 精灵层
-   EDisplayLayer_Terrain = 5,
-   // 背景层
-   EDisplayLayer_Ground = 6,
-   // 后景层
-   EDisplayLayer_Back = 7,
-};
-
-//==========================================================
-// <T>舞台帧类型</T>
-//==========================================================
-enum EStageFrame{
-   // 未知
-   EStageFrame_Unknown = 0,
-   // 背景帧
-   EStageFrame_Ground = 1,
-   // 场景帧
-   EStageFrame_Scene = 2,
-   // 界面帧
-   EStageFrame_Face = 3,
-};
-
-//============================================================
-// <T>画板接口。</T>
-//============================================================
-class MO_EG_DECLARE ICanvas{
-public:
-   //------------------------------------------------------------
-   // <T>析构画板接口。</T>
-   MO_ABSTRACT ~ICanvas(){
-   }
-public:
-   MO_VIRTUAL TResult Update() = 0;
-};
-
-//============================================================
-// <T>可获得鼠标接口。</T>
-//============================================================
-class MO_EG_DECLARE IMouseable{
-public:
-   //------------------------------------------------------------
-   // <T>析构可获得鼠标接口。</T>
-   MO_ABSTRACT ~IMouseable(){
-   }
-public:
-   MO_VIRTUAL TResult MouseDown(SMouseEvent* pEvent) = 0;
-   MO_VIRTUAL TResult MouseMove(SMouseEvent* pEvent) = 0;
-   MO_VIRTUAL TResult MouseUp(SMouseEvent* pEvent) = 0;
-};
-
-//============================================================
-// <T>可获得焦点接口。</T>
-//============================================================
-class MO_EG_DECLARE IFocusable{
-public:
-   //------------------------------------------------------------
-   // <T>析构可获得焦点接口。</T>
-   MO_ABSTRACT ~IFocusable(){
-   }
-public:
-   MO_VIRTUAL TResult FocusEnter() = 0;
-   MO_VIRTUAL TResult FocusLeave() = 0;
-};
-
-//============================================================
-// <T>可获得热点接口。</T>
-//============================================================
-class MO_EG_DECLARE IHoverable{
-public:
-   //------------------------------------------------------------
-   // <T>析构可获得热点接口。</T>
-   MO_ABSTRACT ~IHoverable(){
-   }
-public:
-   MO_VIRTUAL TResult HoverEnter() = 0;
-   MO_VIRTUAL TResult HoverLeave() = 0;
-};
-
-//============================================================
-// <T>可拖拽接口。</T>
-//============================================================
-class MO_EG_DECLARE IDragable{
-public:
-   //------------------------------------------------------------
-   // <T>析构可拖拽接口。</T>
-   MO_ABSTRACT ~IDragable(){
-   }
-public:
-   MO_VIRTUAL TResult DragBegin() = 0;
-   MO_VIRTUAL TResult DragMove() = 0;
-   MO_VIRTUAL TResult DragEnd() = 0;
-};
-
 //============================================================
 // <T>组件属性。</T>
 //============================================================
@@ -166,12 +54,13 @@ class MO_EG_DECLARE FComponentProperty : public FInstance
    MO_CLASS_DECLARE_INHERITS(FComponentProperty, FInstance);
 protected:
    TString _name;
+   TInt _version;
 public:
    FComponentProperty();
    MO_ABSTRACT ~FComponentProperty();
 public:
    //------------------------------------------------------------
-   // <T>判断名称。</T>
+   // <T>获得名称。</T>
    MO_INLINE TCharC* Name(){
       return _name;
    }
@@ -180,9 +69,19 @@ public:
    MO_INLINE void SetName(TCharC* pName){
       _name = pName;
    }
+   //------------------------------------------------------------
+   // <T>获得版本。</T>
+   MO_INLINE TInt Version(){
+      return _version;
+   }
+   //------------------------------------------------------------
+   // <T>设置版本。</T>
+   MO_INLINE void SetVersion(TInt version){
+      _version = version;
+   }
 public:
-   TResult Serialize(IDataOutput* pOutput);
-   TResult Unserialize(IDataInput* pInput);
+   MO_ABSTRACT TResult Serialize(IDataOutput* pOutput);
+   MO_ABSTRACT TResult Unserialize(IDataInput* pInput);
 };
 //----------------------------------------------------------
 typedef MO_EG_DECLARE GPtrDictionary<FComponentProperty> GComponentPropertyDictionary;
@@ -205,22 +104,8 @@ public:
       return _properties;
    }
 public:
-   TResult Serialize(IDataOutput* pOutput);
-   TResult Unserialize(IDataInput* pInput);
-};
-
-//============================================================
-// <T>处理上下文。</T>
-//============================================================
-class MO_EG_DECLARE SProcessContext{
-public:
-   FInstance* senderPtr;
-public:
-   //------------------------------------------------------------
-   // <T>构造处理上下文。</T>
-   SProcessContext(){
-      MO_CLEAR(senderPtr);
-   }
+   MO_ABSTRACT TResult Serialize(IDataOutput* pOutput);
+   MO_ABSTRACT TResult Unserialize(IDataInput* pInput);
 };
 
 //============================================================
@@ -322,11 +207,13 @@ public:
    MO_ABSTRACT TResult Serialize(IDataOutput* pOutput);
    MO_ABSTRACT TResult Unserialize(IDataInput* pInput);
    MO_ABSTRACT TResult Setup();
-   MO_ABSTRACT TResult Update();
+   MO_ABSTRACT TResult Update(SProcessContext* pContext);
    MO_ABSTRACT TResult ProcessBefore(SProcessContext* pContext);
    MO_ABSTRACT TResult ProcessAfter(SProcessContext* pContext);
    MO_ABSTRACT TResult Dispose();
 };
+//------------------------------------------------------------
+typedef MO_EG_DECLARE GPtrs<FComponent> GComponentPtrs;
 
 //============================================================
 // <T>脚本对象。</T>
@@ -354,21 +241,18 @@ public:
    MO_ABSTRACT TResult ProcessBefore(SProcessContext* pContext);
    MO_ABSTRACT TResult ProcessAfter(SProcessContext* pContext);
 };
+//------------------------------------------------------------
+typedef MO_EG_DECLARE GPtrs<FScriptable> GScriptablePtrs;
 
 //============================================================
 // <T>绘制环境。</T>
 //============================================================
 struct MO_EG_DECLARE SDrawableContext{
 public:
-   //const TInt LevelHigh = 1;
-   //const TInt LevelLower = 2;
    TInt interval;
    TBool delay;
    TInt delayLevel;
    TBool dirty;
-   //FCamera* cameraPtr;
-   //FLight lightPtr;
-   //FByteStream* dataPtr:
 };
 
 //============================================================
@@ -388,18 +272,18 @@ protected:
    SFloatSize3 _size;
    // 旋转
    SFloatVector3 _rotation;
+   // 前景颜色
+   SFloatColor4 _foreColor;
    // 背景颜色
    SFloatColor4 _groundColor;
    // 纹理坐标
    SFloatCoord _coord;
    // 变换矩阵
    SFloatMatrix3d _matrix;
-   // 模型变换矩阵
+   // 模型矩阵
    SFloatMatrix3d _matrixModel;
-   // 形状变换矩阵
+   // 变换矩阵
    SFloatMatrix3d _matrixTransform;
-   // 最终变换矩阵
-   SFloatMatrix3d _matrixFinal;
 public:
    FDrawable();
    MO_ABSTRACT ~FDrawable();
@@ -407,7 +291,7 @@ public:
    //------------------------------------------------------------
    // <T>获得父绘制组件。</T>
    MO_INLINE FDrawable* ParentDrawable(){
-      return (FDrawable*)_pParent;
+      return _pParent->Convert<FDrawable>();
    }
    //------------------------------------------------------------
    // <T>获得可见状态。</T>
@@ -435,6 +319,11 @@ public:
       return _rotation;
    }
    //------------------------------------------------------------
+   // <T>获得前景颜色。</T>
+   MO_INLINE SFloatColor4& ForeColor(){
+      return _foreColor;
+   }
+   //------------------------------------------------------------
    // <T>获得背景颜色。</T>
    MO_INLINE SFloatColor4& GroundColor(){
       return _groundColor;
@@ -445,19 +334,19 @@ public:
       return _coord;
    }
    //------------------------------------------------------------
-   // <T>获得变换矩阵。</T>
+   // <T>获得矩阵。</T>
    MO_INLINE SFloatMatrix3d& Matrix(){
       return _matrix;
    }
    //------------------------------------------------------------
-   // <T>获得模型变换矩阵。</T>
+   // <T>获得模型矩阵。</T>
    MO_INLINE SFloatMatrix3d& MatrixModel(){
       return _matrixModel;
    }
    //------------------------------------------------------------
-   // <T>获得即时变换矩阵。</T>
-   MO_INLINE SFloatMatrix3d& MatrixFinal(){
-      return _matrixFinal;
+   // <T>获得变换矩阵。</T>
+   MO_INLINE SFloatMatrix3d& MatrixTransform(){
+      return _matrixTransform;
    }
 public:
    MO_ABSTRACT TResult OnPaint();
@@ -467,18 +356,18 @@ public:
    MO_ABSTRACT TResult CalculateRectangle(SIntRectangle* pRectangle);
    MO_ABSTRACT TResult FilterRegion(FRenderRegion* pRegion);
 public:
-   MO_ABSTRACT void UpdateSelftMatrix(SDrawableContext* pContext);
-   MO_ABSTRACT void UpdateParentMatrix();
-   MO_ABSTRACT void UpdateMatrix();
-   MO_ABSTRACT void UpdateAllMatrix(SDrawableContext* pContext);
-   MO_ABSTRACT void UpdateDirty(SDrawableContext* pContext);
+   MO_ABSTRACT TResult UpdateSelftMatrix(SDrawableContext* pContext);
+   MO_ABSTRACT TResult UpdateParentMatrix();
+   MO_ABSTRACT TResult UpdateMatrix();
+   MO_ABSTRACT TResult UpdateAllMatrix(SDrawableContext* pContext);
+   MO_ABSTRACT TResult UpdateDirty(SDrawableContext* pContext);
 public:
    MO_ABSTRACT TResult SetVisible(TBool visible);
    MO_ABSTRACT TResult FocusTest(FFocusTester* pTester);
    MO_ABSTRACT TResult Dirty(TBool force = EFalse);
    MO_ABSTRACT TResult Paint();
-   MO_ABSTRACT TResult Update();
 public:
+   MO_OVERRIDE TResult Update(SProcessContext* pContext);
    MO_OVERRIDE TResult ProcessBefore(SProcessContext* pContext);
    MO_OVERRIDE TResult ProcessAfter(SProcessContext* pContext);
 public:
@@ -488,56 +377,50 @@ public:
 };
 
 //============================================================
-// <T>渲染内容。</T>
-//============================================================
-struct SRenderableContent{
-public:
-   FRenderVertexStreams* vertexStreamsPtr;
-   FRenderIndexBuffer* indexBufferPtr;
-   FRenderTextures* texturesPtr;
-public:
-   //------------------------------------------------------------
-   // <T>构造渲染参数。</T>
-   SRenderableContent(){
-      MO_CLEAR(vertexStreamsPtr);
-      MO_CLEAR(indexBufferPtr);
-      MO_CLEAR(texturesPtr);
-   }
-};
-
-//============================================================
 // <T>显示对象。</T>
 //============================================================
 class MO_EG_DECLARE FDisplay : public FDrawable
 {
    MO_CLASS_DECLARE_INHERITS(FDisplay, FDrawable);
+public:
+   typedef GPtrs<FDisplay> GDisplayPtrs;
 protected:
-   FDisplayCollection* _pDisplays;
-   FRenderableCollection* _pRenderables;
+   GDisplayPtrs _displays;
+   GRenderablePtrs _renderables;
+   GScriptablePtrs _scriptables;
 public:
    FDisplay();
    MO_ABSTRACT ~FDisplay();
 public:
    //------------------------------------------------------------
    // <T>获得显示集合。</T>
-   MO_INLINE FDisplayCollection* Displays(){
-      return _pDisplays;
+   MO_INLINE GDisplayPtrs& Displays(){
+      return _displays;
    }
    //------------------------------------------------------------
    // <T>获得渲染集合。</T>
-   MO_INLINE FRenderableCollection* Renderables(){
-      return _pRenderables;
+   MO_INLINE GRenderablePtrs& Renderables(){
+      return _renderables;
+   }
+   //------------------------------------------------------------
+   // <T>获得脚本集合。</T>
+   MO_INLINE GScriptablePtrs& Scriptables(){
+      return _scriptables;
    }
 public:
-   MO_ABSTRACT TResult DisplayPush(FDisplay* pDisplay);
-   MO_ABSTRACT TResult DisplayRemove(FDisplay* pDisplay);
-   MO_ABSTRACT TResult DisplayClear();
    MO_ABSTRACT TResult RenderablePush(FRenderable* pRenderable);
    MO_ABSTRACT TResult RenderableRemove(FRenderable* pRenderable);
    MO_ABSTRACT TResult RenderableClear();
+   MO_ABSTRACT TResult DisplayPush(FDisplay* pDisplay);
+   MO_ABSTRACT TResult DisplayRemove(FDisplay* pDisplay);
+   MO_ABSTRACT TResult DisplayClear();
+   MO_ABSTRACT TResult ScriptablePush(FScriptable* pScriptable);
+   MO_ABSTRACT TResult ScriptableRemove(FScriptable* pScriptable);
+   MO_ABSTRACT TResult ScriptableClear();
 public:
    MO_OVERRIDE TResult FilterRegion(FRenderRegion* pRegion);
-   MO_OVERRIDE void UpdateAllMatrix(SDrawableContext* pContext);
+   MO_OVERRIDE TResult UpdateAllMatrix(SDrawableContext* pContext);
+   MO_OVERRIDE TResult Update(SProcessContext* pContext);
    MO_OVERRIDE TResult ProcessBefore(SProcessContext* pContext);
    MO_OVERRIDE TResult ProcessAfter(SProcessContext* pContext);
    MO_OVERRIDE TResult Free();
@@ -546,22 +429,8 @@ public:
    MO_OVERRIDE TResult Resume();
    MO_OVERRIDE TResult Dispose();
 };
-
-//============================================================
-// <T>显示缓冲池。</T>
-//============================================================
-class MO_EG_DECLARE FDisplayPool : public FPool<FDrawable*>{
-public:
-   FDisplayPool();
-   MO_ABSTRACT ~FDisplayPool();
-public:
-   MO_VIRTUAL FDrawable* Create() = 0;
-public:
-   FDrawable* Alloc();
-   void Free(FDrawable* pParticle);
-};
 //------------------------------------------------------------
-typedef MO_EG_DECLARE FObjects<FDisplayPool*> FDisplayPoolCollection;
+typedef MO_EG_DECLARE GPtrs<FDisplay> GDisplayPtrs;
 
 //============================================================
 // <T>可绘制对象层。</T>
@@ -570,8 +439,7 @@ class MO_EG_DECLARE FDisplayLayer : public FDisplay
 {
    MO_CLASS_DECLARE_INHERITS(FDisplayLayer, FDisplay);
 protected:
-   EDisplayLayer _layerCd;
-   FStageFrame* _pStageFrame;
+   FStageLayer* _pStageLayer;
    FParticleController* _pParticleController;
    GPtr<FVisualRegion> _visualRegion;
 public:
@@ -579,24 +447,14 @@ public:
    MO_ABSTRACT ~FDisplayLayer();
 public:
    //------------------------------------------------------------
-   // <T>获得显示层类型。</T>
-   MO_INLINE EDisplayLayer LayerCd(){
-      return _layerCd;
+   // <T>获得舞台层。</T>
+   MO_INLINE FStageLayer* StageLayer(){
+      return _pStageLayer;
    }
    //------------------------------------------------------------
-   // <T>设置显示层类型。</T>
-   MO_INLINE void SetLayerCd(EDisplayLayer layerCd){
-      _layerCd = layerCd;
-   }
-   //------------------------------------------------------------
-   // <T>获得舞台。</T>
-   MO_INLINE FStageFrame* StageFrame(){
-      return _pStageFrame;
-   }
-   //------------------------------------------------------------
-   // <T>设置舞台。</T>
-   MO_INLINE void SetStageFrame(FStageFrame* pStage){
-      _pStageFrame = pStage;
+   // <T>设置舞台层。</T>
+   MO_INLINE void SetStageLayer(FStageLayer* pStageLayer){
+      _pStageLayer = pStageLayer;
    }
    //------------------------------------------------------------
    // <T>获得粒子控制器。</T>
@@ -620,147 +478,6 @@ public:
 typedef MO_EG_DECLARE FVector<FDisplayLayer*> FDisplayLayerCollection;
 
 //============================================================
-// <T>空间体。</T>
-//============================================================
-class MO_EG_DECLARE FSpatial : public FDrawable{
-protected:
-   FDisplayCollection* _pDisplays;
-public:
-   FSpatial();
-   MO_ABSTRACT ~FSpatial();
-public:
-   //------------------------------------------------------------
-   // <T>获得显示集合。</T>
-   MO_INLINE FDisplayCollection* Displays(){
-      return _pDisplays;
-   }
-public:
-   MO_ABSTRACT TResult DisplayPush(FDisplay* pDisplay);
-   MO_ABSTRACT TResult DisplayRemove(FDisplay* pDisplay);
-   MO_ABSTRACT TResult DisplayClear();
-public:
-   MO_OVERRIDE TResult FilterRegion(FRenderRegion* pRegion);
-   MO_OVERRIDE void UpdateAllMatrix(SDrawableContext* pContext);
-   MO_OVERRIDE TResult ProcessBefore(SProcessContext* pContext);
-   MO_OVERRIDE TResult ProcessAfter(SProcessContext* pContext);
-   MO_OVERRIDE TResult Free();
-};
-
-//============================================================
-// <T>位图纹理。</T>
-//============================================================
-class MO_EG_DECLARE FBitmap : public FDrawable{
-protected:
-   GPtr<FBitmapData> _data;
-   GPtr<FRenderTexture> _texture;
-   SIntSize2 _size;
-public:
-   FBitmap();
-   MO_ABSTRACT ~FBitmap();
-public:
-   //------------------------------------------------------------
-   // <T>获得数据。</T>
-   FBitmapData* Data(){
-      return _data;
-   }
-   //------------------------------------------------------------
-   // <T>获得纹理。</T>
-   FRenderTexture* Texture(){
-      return _texture;
-   }
-public:
-   MO_ABSTRACT TResult Setup();
-public:
-   MO_OVERRIDE TResult FilterRegion(FRenderRegion* pRegion);
-public:
-   MO_OVERRIDE TResult Resize(TInt width, TInt height);
-   MO_ABSTRACT TResult Clear(TColor color);
-   MO_ABSTRACT TResult Clear(TColor color, SIntRectangle* pRectangle);
-   MO_ABSTRACT TResult Update();
-public:
-   MO_ABSTRACT void FreeBitmap();
-   MO_ABSTRACT void FreeTexture();
-};
-
-//============================================================
-// <T>位图画板。</T>
-//============================================================
-class MO_EG_DECLARE FBitmapCanvas :
-      public FBitmap,
-      public ICanvas{
-protected:
-   SIntRectangle _clientRectangle;
-   SIntRectangle _clipRectangle;
-public:
-   FBitmapCanvas();
-   MO_ABSTRACT ~FBitmapCanvas();
-public:
-   //------------------------------------------------------------
-   // <T>获得客户范围。</T>
-   MO_INLINE SIntRectangle& ClientRectangle(){
-      return _clientRectangle;
-   }
-   //------------------------------------------------------------
-   // <T>获得剪裁区域。</T>
-   MO_INLINE SIntRectangle& ClipRectangle(){
-      return _clipRectangle;
-   }
-public:
-   MO_OVERRIDE TResult Setup();
-   MO_OVERRIDE TResult Update();
-public:
-   MO_OVERRIDE TResult DrawLine(TColor color, TInt x1, TInt y1, TInt x2, TInt y2);
-   MO_OVERRIDE TResult DrawLineHorizontal(TColor color, TInt x1, TInt x2, TInt y);
-   MO_OVERRIDE TResult DrawLineVertical(TColor color, TInt y1, TInt y2, TInt x);
-   MO_OVERRIDE TResult DrawTriangle(TColor color, TInt x1, TInt y1, TInt x2, TInt y2, TInt x3, TInt y3);
-   MO_OVERRIDE TResult DrawRectangle(TColor color, TInt x1, TInt y1, TInt x2, TInt y2);
-   MO_OVERRIDE TResult DrawRectangle(TColor color, SIntRectangle* pRectangle);
-public:
-   MO_OVERRIDE TResult FillTriangle(TColor color, TInt x1, TInt y1, TInt x2, TInt y2, TInt x3, TInt y3);
-   MO_OVERRIDE TResult FillRectangle(TColor color, TInt x1, TInt y1, TInt x2, TInt y2);
-   MO_OVERRIDE TResult FillRectangle(TColor color, SIntRectangle* pRectangle);
-public:
-   MO_OVERRIDE TResult DrawBitmap(FBitmapData* pBitmapData, TBool alpha, TInt x, TInt y);
-   MO_OVERRIDE TResult DrawBitmap(FBitmapData* pBitmapData, TBool alpha, SIntRectangle* pSourceRectangle, TInt x, TInt y);
-   MO_OVERRIDE TResult DrawBitmap(FBitmapData* pBitmapData, TBool alpha, SIntRectangle* pSourceRectangle, SIntRectangle* pTargetRectangle);
-   MO_OVERRIDE TResult DrawBitmapGrid9(FBitmapData* pBitmapData, TBool alpha, SIntPadding* pSourcePadding, SIntRectangle* pTargetRectangle);
-   MO_OVERRIDE TResult DrawBitmapGrid9(FBitmapData* pBitmapData, TBool alpha, SIntRectangle* pSourceRectangle, SIntPadding* pSourcePadding, SIntRectangle* pTargetRectangle);
-};
-
-//============================================================
-// <T>显示动画命令类型。</T>
-//============================================================
-enum EMovieAction{
-   EMovieAction_Play,
-   EMovieAction_Visible,
-   EMovieAction_Dispose,
-};
-
-//============================================================
-// <T>显示动画命令。</T>
-//============================================================
-struct MO_EG_DECLARE SMovieAction{
-public:
-   // 命令类型
-   EMovieAction actionCd;
-   // 可见性
-   TBool visible;
-   // 方向
-   TInt directionCd;
-   // 循环次数
-   TInt loop;
-   // 速率
-   TFloat rate;
-public:
-   //------------------------------------------------------------
-   // <T>构造显示动画命令。</T>
-   SMovieAction(){
-   }
-};
-//------------------------------------------------------------
-typedef MO_EG_DECLARE TList<SMovieAction> TMovieActionList;
-
-//============================================================
 // <T>帧处理事件。</T>
 //============================================================
 class MO_EG_DECLARE SFrameEvent : public SEvent{
@@ -776,16 +493,14 @@ typedef MO_EG_DECLARE TListeners<SFrameEvent> TFrameListeners;
 //============================================================
 // <T>舞台对象。</T>
 //============================================================
-class MO_EG_DECLARE FStageFrame : public FInstance
+class MO_EG_DECLARE FStageLayer : public FInstance
 {
-   MO_CLASS_DECLARE_INHERITS(FStageFrame, FInstance);
+   MO_CLASS_DECLARE_INHERITS(FStageLayer, FInstance);
 protected:
    // 名称
    TString _name;
    // 舞台
    FStage* _pStage;
-   // 帧类型
-   EStageFrame _frameCd;
    // 背景颜色
    SFloatColor4 _backgroundColor;
    // 渲染目标
@@ -793,8 +508,8 @@ protected:
    // 显示层集合
    FDisplayLayerCollection* _pLayers;
 public:
-   FStageFrame();
-   MO_ABSTRACT ~FStageFrame();
+   FStageLayer();
+   MO_ABSTRACT ~FStageLayer();
 public:
    //------------------------------------------------------------
    // <T>获得名称。</T>
@@ -815,16 +530,6 @@ public:
    // <T>设置舞台。</T>
    MO_INLINE void SetStage(FStage* pStage){
       _pStage = pStage;
-   }
-   //------------------------------------------------------------
-   // <T>获得帧类型。</T>
-   MO_INLINE EStageFrame FrameCd(){
-      return _frameCd;
-   }
-   //------------------------------------------------------------
-   // <T>设置帧类型。</T>
-   MO_INLINE void SetFrameCd(EStageFrame frameCd){
-      _frameCd = frameCd;
    }
    //------------------------------------------------------------
    // <T>获得背景颜色。</T>
@@ -849,10 +554,10 @@ public:
 public:
    MO_ABSTRACT TResult Setup();
 public:
-   FDisplayLayer* LayerFind(EDisplayLayer frameCd);
-   void LayerClear();
-   void LayerPush(FDisplayLayer* pFrame);
-   void LayerRemove(FDisplayLayer* pFrame);
+   FDisplayLayer* LayerFind(TCharC* pName);
+   TResult LayerPush(FDisplayLayer* pLayer);
+   TResult LayerRemove(FDisplayLayer* pLayer);
+   TResult LayerClear();
 public:
    MO_ABSTRACT TResult FocusTest(FFocusTester* pTester);
 public:
@@ -861,6 +566,7 @@ public:
 public:
    MO_ABSTRACT TResult BuildRegion(FRenderRegion* pRegion);
 public:
+   MO_ABSTRACT TResult Update(SProcessContext* pContext);
    MO_ABSTRACT TResult ProcessBefore(SProcessContext* pContext);
    MO_ABSTRACT TResult ProcessInput();
    MO_ABSTRACT TResult ProcessLogic();
@@ -871,7 +577,7 @@ public:
    MO_ABSTRACT TResult Dispose();
 };
 //------------------------------------------------------------
-typedef MO_EG_DECLARE FObjects<FStageFrame*> FStageFrameCollection;
+typedef MO_EG_DECLARE GPtrs<FStageLayer> GStageLayerPtrs;
 
 //============================================================
 // <T>舞台。</T>
@@ -889,8 +595,8 @@ protected:
    GPtr<FDirectionalLight> _directionalLight;
    // 光源集合
    FLightCollection* _pLights;
-   // 舞台帧集合
-   FStageFrameCollection* _pFrames;
+   // 场景层集合
+   GStageLayerPtrs _layers;
    // 帧进入监听集合
    TFrameListeners _listenersFrameEnter;
    // 帧离开监听集合
@@ -925,9 +631,9 @@ public:
       return _pLights;
    }
    //------------------------------------------------------------
-   // <T>获得帧集合。</T>
-   MO_INLINE FStageFrameCollection* Frames(){
-      return _pFrames;
+   // <T>获得场景层集合。</T>
+   MO_INLINE GStageLayerPtrs& Layers(){
+      return _layers;
    }
    //------------------------------------------------------------
    // <T>获得帧进入监听集合。</T>
@@ -940,10 +646,10 @@ public:
       return _listenersFrameLeave;
    }
 public:
-   FStageFrame* FrameFind(EStageFrame frameCd);
-   void FrameClear();
-   void FramePush(FStageFrame* pLayer);
-   void FrameRemove(FStageFrame* pLayer);
+   FStageLayer* LayerFind(TCharC* pName);
+   TResult LayerPush(FStageLayer* pLayer);
+   TResult LayerRemove(FStageLayer* pLayer);
+   TResult LayerClear();
 public:
    MO_OVERRIDE TResult Setup();
 public:
@@ -952,6 +658,7 @@ public:
 public:
    MO_ABSTRACT TResult BuildRegion(FRenderRegion* pRegion);
 public:
+   MO_ABSTRACT TResult Update(SProcessContext* pContext);
    MO_ABSTRACT TResult ProcessBefore(SProcessContext* pContext);
    MO_ABSTRACT TResult ProcessInput();
    MO_ABSTRACT TResult ProcessLogic();
@@ -993,7 +700,7 @@ public:
       return _renderableProcessor;
    }
 public:
-   MO_ABSTRACT void Setup();
+   MO_ABSTRACT TResult Startup();
    MO_ABSTRACT TResult Shutdown();
 public:
    MO_ABSTRACT TResult SelectStage(FStage* pStage);

@@ -8,81 +8,12 @@ MO_CLASS_IMPLEMENT_INHERITS(FDisplay, FDrawable);
 // <T>构造显示对象。</T>
 //============================================================
 FDisplay::FDisplay(){
-   MO_CLEAR(_pDisplays);
-   MO_CLEAR(_pRenderables);
 }
 
 //============================================================
 // <T>析构显示对象。</T>
 //============================================================
 FDisplay::~FDisplay(){
-}
-
-//============================================================
-// <T>增加一个子显示对象。</T>
-//
-// @param pDisplay 子显示对象
-// @return 处理结果
-//============================================================
-TResult FDisplay::DisplayPush(FDisplay* pDisplay){
-   MO_ASSERT(pDisplay);
-   // 获得显示集合
-   if(_pDisplays == NULL){
-      _pDisplays = MO_CREATE(FDisplayCollection);
-   }
-   // 检查是否已经存在
-   if(_pDisplays->Contains(pDisplay)){
-      // 检查父组件是否为自己
-      FComponent* pParent = pDisplay->Parent();
-      if(pParent != NULL){
-         MO_DEBUG_WARN("Child has already, but parent is null. (display=0x%08X)", pDisplay);
-      }else if(pParent != this){
-         MO_DEBUG_WARN("Child has already, but parent is not this. (display=0x%08X, parent=0x%08X)", pDisplay, pParent);
-      }else{
-         MO_DEBUG_WARN("Child has already. (display=0x%08X)", pDisplay);
-      }
-      return EFailure;
-   }
-   // 从父组件中脱离
-   // pDisplay->RemoveFromParent();
-   // 放入子组件集合
-   pDisplay->SetParent(this);
-   _pDisplays->Push(pDisplay);
-   return ESuccess;
-}
-
-//============================================================
-// <T>移除一个子显示对象。</T>
-//
-// @param pDisplay 子显示对象
-// @return 处理结果
-//============================================================
-TResult FDisplay::DisplayRemove(FDisplay* pDisplay){
-   MO_ASSERT(pDisplay);
-   if(_pDisplays == NULL){
-      MO_DEBUG_WARN("Children is empty, can't remove any child. (display=0x%08X)", pDisplay);
-      return EFailure;
-   }
-#ifdef _MO_DEBUG
-   if(!_pDisplays->Contains(pDisplay)){
-      MO_DEBUG_WARN("Children not contains this child. (display=0x%08X)", pDisplay);
-      return EFailure;
-   }
-#endif // _MO_DEBUG
-   _pDisplays->Remove(pDisplay);
-   return ESuccess;
-}
-
-//============================================================
-// <T>清空子显示对象。</T>
-//
-// @return 处理结果
-//============================================================
-TResult FDisplay::DisplayClear(){
-   if(_pDisplays != NULL){
-      _pDisplays->Clear();
-   }
-   return ESuccess;
 }
 
 //============================================================
@@ -93,28 +24,18 @@ TResult FDisplay::DisplayClear(){
 //============================================================
 TResult FDisplay::RenderablePush(FRenderable* pRenderable){
    MO_ASSERT(pRenderable);
-   // 获得显示集合
-   if(_pRenderables == NULL){
-      _pRenderables = MO_CREATE(FRenderableCollection);
-   }
    // 检查是否已经存在
-   if(_pRenderables->Contains(pRenderable)){
-      // 检查父组件是否为自己
-      //FComponent* pParent = pRenderable->Parent();
-      //if(pParent != NULL){
-      //   MO_DEBUG_WARN("Child has already, but parent is null. (renderable=0x%08X)", pRenderable);
-      //}else if(pParent != this){
-      //   MO_DEBUG_WARN("Child has already, but parent is not this. (renderable=0x%08X, parent=0x%08X)", pRenderable, pParent);
-      //}else{
-      //   MO_DEBUG_WARN("Child has already. (renderable=0x%08X)", pRenderable);
-      //}
+#ifdef _MO_DEBUG
+   if(_renderables.Contains(pRenderable)){
+      MO_FATAL("Child renderable has already. (renderable=0x%08X)", pRenderable);
       return EFailure;
    }
+#endif // _MO_DEBUG
    // 从父组件中脱离
    // pDisplay->RemoveFromParent();
    // 放入子组件集合
    //pRenderable->SetParent(this);
-   _pRenderables->Push(pRenderable);
+   _renderables.Push(pRenderable);
    return ESuccess;
 }
 
@@ -126,17 +47,13 @@ TResult FDisplay::RenderablePush(FRenderable* pRenderable){
 //============================================================
 TResult FDisplay::RenderableRemove(FRenderable* pRenderable){
    MO_ASSERT(pRenderable);
-   if(_pRenderables == NULL){
-      MO_DEBUG_WARN("Children is empty, can't remove any child. (renderable=0x%08X)", pRenderable);
-      return EFailure;
-   }
 #ifdef _MO_DEBUG
-   if(!_pRenderables->Contains(pRenderable)){
+   if(!_renderables.Contains(pRenderable)){
       MO_DEBUG_WARN("Children not contains this child. (renderable=0x%08X)", pRenderable);
       return EFailure;
    }
 #endif // _MO_DEBUG
-   _pRenderables->Remove(pRenderable);
+   _renderables.Remove(pRenderable);
    return ESuccess;
 }
 
@@ -146,9 +63,97 @@ TResult FDisplay::RenderableRemove(FRenderable* pRenderable){
 // @return 处理结果
 //============================================================
 TResult FDisplay::RenderableClear(){
-   if(_pRenderables != NULL){
-      _pRenderables->Clear();
+   _renderables.Clear();
+   return ESuccess;
+}
+
+//============================================================
+// <T>增加一个子显示对象。</T>
+//
+// @param pDisplay 子显示对象
+// @return 处理结果
+//============================================================
+TResult FDisplay::DisplayPush(FDisplay* pDisplay){
+   MO_ASSERT(pDisplay);
+   // 检查是否已经存在
+#ifdef _MO_DEBUG
+   if(_displays.Contains(pDisplay)){
+      MO_FATAL("Child display has already. (renderable=0x%08X)", pDisplay);
+      return EFailure;
    }
+#endif // _MO_DEBUG
+   // 从父组件中脱离
+   // pDisplay->RemoveFromParent();
+   // 放入子组件集合
+   pDisplay->SetParent(this);
+   _displays.Push(pDisplay);
+   return ESuccess;
+}
+
+//============================================================
+// <T>移除一个子显示对象。</T>
+//
+// @param pDisplay 子显示对象
+// @return 处理结果
+//============================================================
+TResult FDisplay::DisplayRemove(FDisplay* pDisplay){
+   MO_ASSERT(pDisplay);
+#ifdef _MO_DEBUG
+   if(!_displays.Contains(pDisplay)){
+      MO_DEBUG_WARN("Children not contains this child. (display=0x%08X)", pDisplay);
+      return EFailure;
+   }
+#endif // _MO_DEBUG
+   _displays.Remove(pDisplay);
+   return ESuccess;
+}
+
+//============================================================
+// <T>清空子显示对象。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FDisplay::DisplayClear(){
+   _displays.Clear();
+   return ESuccess;
+}
+
+//============================================================
+// <T>添加一个脚本对象。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FDisplay::ScriptablePush(FScriptable* pScriptable){
+   MO_CHECK(pScriptable, return ENull);
+   // 检查是否已经存在
+#ifdef _MO_DEBUG
+   if(_scriptables.Contains(pScriptable)){
+      MO_FATAL("Child scriptable has already. (renderable=0x%08X)", pScriptable);
+      return EFailure;
+   }
+#endif // _MO_DEBUG
+   _scriptables.Push(pScriptable);
+   return ESuccess;
+}
+
+//============================================================
+// <T>移除一个脚本对象。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FDisplay::ScriptableRemove(FScriptable* pScriptable){
+   MO_CHECK(pScriptable, return ENull);
+   _scriptables.Remove(pScriptable);
+   return ESuccess;
+}
+
+//============================================================
+// <T>清空脚本对象集合。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FDisplay::ScriptableClear(){
+   _scriptables.Clear();
    return ESuccess;
 }
 
@@ -166,22 +171,20 @@ TResult FDisplay::FilterRegion(FRenderRegion* pRegion){
    }
    //............................................................
    // 处理所有子节点
-   if(_pRenderables != NULL){
-      TInt count = _pRenderables->Count();
-      if(count > 0){
-         FRenderableCollection* pRenderables = pRegion->Renderables();
-         for(TInt n = 0; n < count; n++){
-            FRenderable* pRenderable = _pRenderables->Get(n);
-            pRenderables->Push(pRenderable);
-         }
+   if(!_renderables.IsEmpty()){
+      TInt count = _renderables.Count();
+      FRenderableCollection* pRenderables = pRegion->Renderables();
+      for(TInt n = 0; n < count; n++){
+         FRenderable* pRenderable = _renderables.Get(n);
+         pRenderables->Push(pRenderable);
       }
    }
    //............................................................
    // 处理所有子显示对象
-   if(_pDisplays != NULL){
-      TInt count = _pDisplays->Count();
+   if(!_displays.IsEmpty()){
+      TInt count = _displays.Count();
       for(TInt n = 0; n < count; n++){
-         FDisplay* pDisplay = _pDisplays->Get(n);
+         FDisplay* pDisplay = _displays.Get(n);
          pDisplay->FilterRegion(pRegion);
       }
    }
@@ -191,25 +194,53 @@ TResult FDisplay::FilterRegion(FRenderRegion* pRegion){
 //============================================================
 // <T>更新当前所有变换矩阵。</T>
 //============================================================
-void FDisplay::UpdateAllMatrix(SDrawableContext* pContext){
+TResult FDisplay::UpdateAllMatrix(SDrawableContext* pContext){
    // 更新自矩阵
    UpdateSelftMatrix(pContext);
    // 更新子显示对象
-   if(_pRenderables != NULL){
-      TInt count = _pRenderables->Count();
+   if(!_renderables.IsEmpty()){
+      TInt count = _renderables.Count();
       for(TInt n = 0; n < count; n++){
-         FRenderable* pRenderable = (FRenderable*)_pRenderables->Get(n);
+         FRenderable* pRenderable = _renderables.Get(n);
          pRenderable->Matrix().Assign(_matrix);
       }
    }
    // 更新子显示对象
-   if(_pDisplays != NULL){
-      TInt count = _pDisplays->Count();
+   if(!_displays.IsEmpty()){
+      TInt count = _displays.Count();
       for(TInt n = 0; n < count; n++){
-         FDisplay* pDisplay = _pDisplays->Get(n);
+         FDisplay* pDisplay = _displays.Get(n);
          pDisplay->UpdateAllMatrix(pContext);
       }
    }
+   return ESuccess;
+}
+
+//============================================================
+// <T>更新处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FDisplay::Update(SProcessContext* pContext){
+   // 逻辑前置处理
+   TResult resultCd = FDrawable::Update(pContext);
+   // 处理所有子节点
+   if(!_renderables.IsEmpty()){
+      TInt count = _renderables.Count();
+      for(TInt n = 0; n < count; n++){
+         FRenderable* pRenderable = _renderables.Get(n);
+         pRenderable->Update(pContext);
+      }
+   }
+   // 处理所有子节点
+   if(!_displays.IsEmpty()){
+      TInt count = _displays.Count();
+      for(TInt n = 0; n < count; n++){
+         FDisplay* pDisplay = _displays.Get(n);
+         pDisplay->Update(pContext);
+      }
+   }
+   return resultCd;
 }
 
 //============================================================
@@ -221,18 +252,18 @@ TResult FDisplay::ProcessBefore(SProcessContext* pContext){
    // 逻辑前置处理
    FDrawable::ProcessBefore(pContext);
    // 处理所有子节点
-   if(_pRenderables != NULL){
-      TInt count = _pRenderables->Count();
+   if(!_renderables.IsEmpty()){
+      TInt count = _renderables.Count();
       for(TInt n = 0; n < count; n++){
-         FRenderable* pRenderable = (FRenderable*)_pRenderables->Get(n);
+         FRenderable* pRenderable = _renderables.Get(n);
          pRenderable->ProcessBefore(pContext);
       }
    }
    // 处理所有子节点
-   if(_pDisplays != NULL){
-      TInt count = _pDisplays->Count();
+   if(!_displays.IsEmpty()){
+      TInt count = _displays.Count();
       for(TInt n = 0; n < count; n++){
-         FDisplay* pDisplay = _pDisplays->Get(n);
+         FDisplay* pDisplay = _displays.Get(n);
          pDisplay->ProcessBefore(pContext);
       }
    }
@@ -248,18 +279,18 @@ TResult FDisplay::ProcessAfter(SProcessContext* pContext){
    // 逻辑前置处理
    FDrawable::ProcessAfter(pContext);
    // 处理所有子节点
-   if(_pRenderables != NULL){
-      TInt count = _pRenderables->Count();
+   if(!_renderables.IsEmpty()){
+      TInt count = _renderables.Count();
       for(TInt n = 0; n < count; n++){
-         FRenderable* pRenderable = (FRenderable*)_pRenderables->Get(n);
+         FRenderable* pRenderable = _renderables.Get(n);
          pRenderable->ProcessAfter(pContext);
       }
    }
    // 处理所有子节点
-   if(_pDisplays != NULL){
-      TInt count = _pDisplays->Count();
+   if(!_displays.IsEmpty()){
+      TInt count = _displays.Count();
       for(TInt n = 0; n < count; n++){
-         FDisplay* pDisplay = _pDisplays->Get(n);
+         FDisplay* pDisplay = _displays.Get(n);
          pDisplay->ProcessAfter(pContext);
       }
    }
@@ -282,18 +313,18 @@ TResult FDisplay::Free(){
 //============================================================
 TResult FDisplay::Suspend(){
    // 处理所有子节点
-   if(_pDisplays != NULL){
-      TInt count = _pDisplays->Count();
+   if(!_displays.IsEmpty()){
+      TInt count = _displays.Count();
       for(TInt n = 0; n < count; n++){
-         FDisplay* pDisplay = _pDisplays->Get(n);
+         FDisplay* pDisplay = _displays.Get(n);
          pDisplay->Suspend();
       }
    }
    // 处理所有子节点
-   if(_pRenderables != NULL){
-      TInt count = _pRenderables->Count();
+   if(!_renderables.IsEmpty()){
+      TInt count = _renderables.Count();
       for(TInt n = 0; n < count; n++){
-         FRenderable* pRenderable = (FRenderable*)_pRenderables->Get(n);
+         FRenderable* pRenderable = _renderables.Get(n);
          pRenderable->Suspend();
       }
    }
@@ -307,18 +338,18 @@ TResult FDisplay::Suspend(){
 //============================================================
 TResult FDisplay::Resume(){
    // 处理所有子节点
-   if(_pDisplays != NULL){
-      TInt count = _pDisplays->Count();
+   if(!_displays.IsEmpty()){
+      TInt count = _displays.Count();
       for(TInt n = 0; n < count; n++){
-         FDisplay* pDisplay = _pDisplays->Get(n);
+         FDisplay* pDisplay = _displays.Get(n);
          pDisplay->Resume();
       }
    }
    // 处理所有子节点
-   if(_pRenderables != NULL){
-      TInt count = _pRenderables->Count();
+   if(!_renderables.IsEmpty()){
+      TInt count = _renderables.Count();
       for(TInt n = 0; n < count; n++){
-         FRenderable* pRenderable = (FRenderable*)_pRenderables->Get(n);
+         FRenderable* pRenderable = _renderables.Get(n);
          pRenderable->Resume();
       }
    }

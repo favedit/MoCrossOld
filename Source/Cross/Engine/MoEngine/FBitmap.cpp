@@ -1,4 +1,4 @@
-#include "MoEgDisplay.h"
+#include "MoEgBitmap.h"
 
 MO_NAMESPACE_BEGIN
 

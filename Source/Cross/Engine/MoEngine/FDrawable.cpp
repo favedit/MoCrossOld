@@ -97,7 +97,7 @@ TResult FDrawable::FilterRegion(FRenderRegion* pRegion){
 //============================================================
 // <T>更新自己变换矩阵。</T>
 //============================================================
-void FDrawable::UpdateSelftMatrix(SDrawableContext* pContext){
+TResult FDrawable::UpdateSelftMatrix(SDrawableContext* pContext){
    // 追加变换矩阵
    _matrix.Assign(_matrixTransform);
    // 追加模型矩阵
@@ -107,12 +107,13 @@ void FDrawable::UpdateSelftMatrix(SDrawableContext* pContext){
       FDrawable* pDrawable = (FDrawable*)_pParent;
       _matrix.Append(pDrawable->Matrix());
    }
+   return ESuccess;
 }
 
 //============================================================
 // <T>更新父级变换矩阵。</T>
 //============================================================
-void FDrawable::UpdateParentMatrix(){
+TResult FDrawable::UpdateParentMatrix(){
    if(_pParent != NULL){
       FDrawable* pParent = ParentDrawable();
       while(pParent != NULL){
@@ -120,12 +121,13 @@ void FDrawable::UpdateParentMatrix(){
          pParent = pParent->ParentDrawable();
       }
    }
+   return ESuccess;
 }
 
 //============================================================
 // <T>更新当前变换矩阵。</T>
 //============================================================
-void FDrawable::UpdateMatrix(){
+TResult FDrawable::UpdateMatrix(){
    // 追加自己信息
    _matrix.Assign(_matrixModel);
    // 追加父信息
@@ -134,14 +136,16 @@ void FDrawable::UpdateMatrix(){
       _matrix.Append(pParent->Matrix());
       pParent = pParent->ParentDrawable();
    }
+   return ESuccess;
 }
 
 //============================================================
 // <T>更新当前所有变换矩阵。</T>
 //============================================================
-void FDrawable::UpdateAllMatrix(SDrawableContext* pContext){
+TResult FDrawable::UpdateAllMatrix(SDrawableContext* pContext){
    // 更新自矩阵
    UpdateSelftMatrix(pContext);
+   return ESuccess;
 }
       
 //============================================================
@@ -149,9 +153,10 @@ void FDrawable::UpdateAllMatrix(SDrawableContext* pContext){
 //
 // @param p:context 环境
 //============================================================
-void FDrawable::UpdateDirty(SDrawableContext* pContext){
+TResult FDrawable::UpdateDirty(SDrawableContext* pContext){
    //dirty = false;
    // _logger.debug("updateDirty", "Update dirty. (name={1})", name);
+   return ESuccess;
 }
 
 //============================================================
@@ -229,10 +234,11 @@ TResult FDrawable::Paint(){
 //============================================================
 // <T>更新处理。</T>
 //
+// @param pContext 处理环境
 // @return 处理结果
 //============================================================
-TResult FDrawable::Update(){
-   TResult result = FComponent::Update();
+TResult FDrawable::Update(SProcessContext* pContext){
+   TResult result = FComponent::Update(pContext);
    // 如果脏了则绘制一次
    if(_statusDirty){
       Paint();
@@ -244,6 +250,7 @@ TResult FDrawable::Update(){
 //============================================================
 // <T>功能前置处理。</T>
 //
+// @param pContext 处理环境
 // @return 处理结果
 //============================================================
 TResult FDrawable::ProcessBefore(SProcessContext* pContext){
@@ -257,6 +264,7 @@ TResult FDrawable::ProcessBefore(SProcessContext* pContext){
 //============================================================
 // <T>逻辑后置处理。</T>
 //
+// @param pContext 处理环境
 // @return 处理结果
 //============================================================
 TResult FDrawable::ProcessAfter(SProcessContext* pContext){

@@ -133,8 +133,19 @@ FRenderTexture* FRenderable::GetTexture(ERenderSampler samplerCd){
 }
 
 //============================================================
+// <T>更新处理。</T>
+//
+// @param pContext 环境
+// @return 处理结果
+//============================================================
+TResult FRenderable::Update(TAny* pContext){
+   return ESuccess;
+}
+
+//============================================================
 // <T>功能前置处理。</T>
 //
+// @param pContext 环境
 // @return 处理结果
 //============================================================
 TResult FRenderable::ProcessBefore(TAny* pParameter){
@@ -144,6 +155,7 @@ TResult FRenderable::ProcessBefore(TAny* pParameter){
 //============================================================
 // <T>功能后置处理。</T>
 //
+// @param pContext 环境
 // @return 处理结果
 //============================================================
 TResult FRenderable::ProcessAfter(TAny* pParameter){

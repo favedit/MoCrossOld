@@ -11,7 +11,6 @@ FStage::FStage(){
    _backgroundColor.Set(0.0f, 0.0f, 0.0f, 1.0f);
    _pViews = MO_CREATE(FRenderViewCollection);
    _pLights = MO_CREATE(FLightCollection);
-   _pFrames = MO_CREATE(FStageFrameCollection);
 }
 
 //============================================================
@@ -20,20 +19,19 @@ FStage::FStage(){
 FStage::~FStage(){
    MO_DELETE(_pViews);
    MO_DELETE(_pLights);
-   MO_DELETE(_pFrames);
 }
 
 //============================================================
-// <T>查找指定类型的舞台帧。</T>
+// <T>查找指定名称的舞台层。</T>
 //
-// @param frameCd 帧类型
-// @return 舞台帧
+// @param pName 名称
+// @return 舞台层
 //============================================================
-FStageFrame* FStage::FrameFind(EStageFrame frameCd){
-   TInt count = _pFrames->Count();
+FStageLayer* FStage::LayerFind(TCharC* pName){
+   TInt count = _layers.Count();
    for(TInt n = 0; n < count; n++){
-      FStageFrame* pFrame = _pFrames->Get(n);
-      if(pFrame->FrameCd() == frameCd){
+      FStageLayer* pFrame = _layers.Get(n);
+      if(RString::Equals(pFrame->Name(), pName)){
          return pFrame;
       }
    }
@@ -41,32 +39,38 @@ FStageFrame* FStage::FrameFind(EStageFrame frameCd){
 }
 
 //============================================================
-// <T>清空所有舞台帧。</T>
+// <T>增加一个舞台层。</T>
+//
+// @param pLayer 舞台层
 //============================================================
-void FStage::FrameClear(){
-   _pFrames->Clear();
+TResult FStage::LayerPush(FStageLayer* pLayer){
+   MO_ASSERT(pLayer);
+   pLayer->SetStage(this);
+   _layers.Push(pLayer);
+   return ESuccess;
 }
 
 //============================================================
-// <T>增加一个舞台帧。</T>
+// <T>移除一个舞台层。</T>
 //
-// @param pFrame 舞台帧
+// @param pLayer 舞台层
+// @return 处理结果
 //============================================================
-void FStage::FramePush(FStageFrame* pFrame){
-   MO_ASSERT(pFrame);
-   pFrame->SetStage(this);
-   _pFrames->Push(pFrame);
+TResult FStage::LayerRemove(FStageLayer* pLayer){
+   MO_ASSERT(pLayer);
+   _layers.Remove(pLayer);
+   pLayer->SetStage(NULL);
+   return ESuccess;
 }
 
 //============================================================
-// <T>移除一个舞台帧。</T>
+// <T>清空舞台层集合。</T>
 //
-// @param pFrame 舞台帧
+// @return 处理结果
 //============================================================
-void FStage::FrameRemove(FStageFrame* pFrame){
-   MO_ASSERT(pFrame);
-   _pFrames->Remove(pFrame);
-   pFrame->SetStage(NULL);
+TResult FStage::LayerClear(){
+   _layers.Clear();
+   return ESuccess;
 }
 
 //============================================================
@@ -84,9 +88,9 @@ TResult FStage::Setup(){
 // @return 处理结果
 //============================================================
 TResult FStage::Active(){
-   TInt count = _pFrames->Count();
+   TInt count = _layers.Count();
    for(TInt n = 0; n < count; n++){
-      FStageFrame* pFrame = _pFrames->Get(n);
+      FStageLayer* pFrame = _layers.Get(n);
       pFrame->Active();
    }
    return ESuccess;
@@ -98,9 +102,9 @@ TResult FStage::Active(){
 // @return 处理结果
 //============================================================
 TResult FStage::Deactive(){
-   TInt count = _pFrames->Count();
+   TInt count = _layers.Count();
    for(TInt n = 0; n < count; n++){
-      FStageFrame* pFrame = _pFrames->Get(n);
+      FStageLayer* pFrame = _layers.Get(n);
       pFrame->Deactive();
    }
    return ESuccess;
@@ -128,6 +132,20 @@ TResult FStage::BuildRegion(FRenderRegion* pRegion){
 }
 
 //============================================================
+// <T>更新处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FStage::Update(SProcessContext* pContext){
+   TInt frameCount = _layers.Count();
+   for(TInt n = 0; n < frameCount; n++){
+      FStageLayer* pFrame = _layers.Get(n);
+      pFrame->Update(pContext);
+   }
+   return ESuccess;
+}
+
+//============================================================
 // <T>功能前置处理。</T>
 //
 // @return 处理结果
@@ -137,9 +155,9 @@ TResult FStage::ProcessBefore(SProcessContext* pContext){
    SFrameEvent event(this);
    _listenersFrameEnter.Process(&event);
    // 处理所有帧开始
-   TInt frameCount = _pFrames->Count();
+   TInt frameCount = _layers.Count();
    for(TInt n = 0; n < frameCount; n++){
-      FStageFrame* pFrame = _pFrames->Get(n);
+      FStageLayer* pFrame = _layers.Get(n);
       pFrame->ProcessBefore(pContext);
    }
    return ESuccess;
@@ -151,9 +169,9 @@ TResult FStage::ProcessBefore(SProcessContext* pContext){
 // @return 处理结果
 //============================================================
 TResult FStage::ProcessInput(){
-   TInt frameCount = _pFrames->Count();
+   TInt frameCount = _layers.Count();
    for(TInt n = 0; n < frameCount; n++){
-      FStageFrame* pFrame = _pFrames->Get(n);
+      FStageLayer* pFrame = _layers.Get(n);
       pFrame->ProcessInput();
    }
    return ESuccess;
@@ -165,9 +183,9 @@ TResult FStage::ProcessInput(){
 // @return 处理结果
 //============================================================
 TResult FStage::ProcessLogic(){
-   TInt frameCount = _pFrames->Count();
+   TInt frameCount = _layers.Count();
    for(TInt n = 0; n < frameCount; n++){
-      FStageFrame* pFrame = _pFrames->Get(n);
+      FStageLayer* pFrame = _layers.Get(n);
       pFrame->ProcessLogic();
    }
    return ESuccess;
@@ -183,9 +201,9 @@ TResult FStage::ProcessAfter(SProcessContext* pContext){
    SFrameEvent event(this);
    _listenersFrameLeave.Process(&event);
    // 处理所有帧结束
-   TInt frameCount = _pFrames->Count();
+   TInt frameCount = _layers.Count();
    for(TInt n = 0; n < frameCount; n++){
-      FStageFrame* pFrame = _pFrames->Get(n);
+      FStageLayer* pFrame = _layers.Get(n);
       pFrame->ProcessAfter(pContext);
    }
    return ESuccess;
@@ -197,9 +215,9 @@ TResult FStage::ProcessAfter(SProcessContext* pContext){
 // @return 处理结果
 //============================================================
 TResult FStage::Suspend(){
-   TInt count = _pFrames->Count();
+   TInt count = _layers.Count();
    for(TInt n = 0; n < count; n++){
-      FStageFrame* pFrame = _pFrames->Get(n);
+      FStageLayer* pFrame = _layers.Get(n);
       pFrame->Suspend();
    }
    return ESuccess;
@@ -211,9 +229,9 @@ TResult FStage::Suspend(){
 // @return 处理结果
 //============================================================
 TResult FStage::Resume(){
-   TInt count = _pFrames->Count();
+   TInt count = _layers.Count();
    for(TInt n = 0; n < count; n++){
-      FStageFrame* pFrame = _pFrames->Get(n);
+      FStageLayer* pFrame = _layers.Get(n);
       pFrame->Resume();
    }
    return ESuccess;

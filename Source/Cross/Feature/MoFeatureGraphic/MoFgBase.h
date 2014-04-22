@@ -644,6 +644,7 @@ public:
    FRenderTexture* FindTexture(ERenderSampler samplerCd);
    FRenderTexture* GetTexture(ERenderSampler samplerCd);
 public:
+   MO_ABSTRACT TResult Update(TAny* pParameter = NULL);
    MO_ABSTRACT TResult ProcessBefore(TAny* pParameter = NULL);
    MO_ABSTRACT TResult ProcessAfter(TAny* pParameter = NULL);
    MO_ABSTRACT TResult Free();
@@ -654,6 +655,7 @@ public:
 };
 //------------------------------------------------------------
 typedef MO_FG_DECLARE FObjects<FRenderable*> FRenderableCollection;
+typedef MO_FG_DECLARE GPtrs<FRenderable> GRenderablePtrs;
 
 MO_NAMESPACE_END
 

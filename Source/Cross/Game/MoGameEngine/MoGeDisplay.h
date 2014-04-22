@@ -19,9 +19,9 @@ protected:
 protected:
    FDisplayLayer* _pSpriteLayer;
 protected:
-   FStageFrame* _pGroundFrame;
-   FStageFrame* _pSceneFrame;
-   FStageFrame* _pFaceFrame;
+   FStageLayer* _pGroundFrame;
+   FStageLayer* _pSceneFrame;
+   FStageLayer* _pFaceFrame;
 public:
    FGameStage();
    MO_ABSTRACT ~FGameStage();
@@ -40,17 +40,17 @@ public:
 public:
    //------------------------------------------------------------
    // <T>获得背景帧。</T>
-   MO_INLINE FStageFrame* GroundFrame(){
+   MO_INLINE FStageLayer* GroundFrame(){
       return _pGroundFrame;
    }
    //------------------------------------------------------------
    // <T>获得场景帧。</T>
-   MO_INLINE FStageFrame* SceneFrame(){
+   MO_INLINE FStageLayer* SceneFrame(){
       return _pSceneFrame;
    }
    //------------------------------------------------------------
    // <T>获得界面帧。</T>
-   MO_INLINE FStageFrame* FaceFrame(){
+   MO_INLINE FStageLayer* FaceFrame(){
       return _pFaceFrame;
    }
 public:

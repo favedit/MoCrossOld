@@ -62,7 +62,7 @@ void MoEngineStartup(){
    // 配置焦点管理器
    RFocusManager::Instance().Setup();
    // 配置舞台管理器
-   RStageManager::Instance().Setup();
+   RStageManager::Instance().Startup();
    //// 配置引擎处理
    //REngineManager::Create();
    //// 启动工作管理器

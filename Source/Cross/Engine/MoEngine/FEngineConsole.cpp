@@ -1,4 +1,5 @@
 #include "MoEgDevice.h"
+#include "MoEgDisplay.h"
 #include "MoEgEngine.h"
 
 MO_NAMESPACE_BEGIN
@@ -19,8 +20,10 @@ FEngineConsole::~FEngineConsole(){
 
 //============================================================
 // <T>配置处理。</T>
+//
+// @return 处理结果
 //============================================================
-void FEngineConsole::Setup(){
+TResult FEngineConsole::Setup(){
    // 构造统计信息
    _statistics = FEngineStatistics::InstanceCreate();
    _statistics->Setup();
@@ -32,12 +35,14 @@ void FEngineConsole::Setup(){
    // 创建渲染对象
    _renderRectangle = FRenderRectangle::InstanceCreate();
    _renderRectangle->Setup();
+   return ESuccess;
 }
 
 //============================================================
 // <T>变更大小处理。</T>
 //
 // @param pEvent 事件
+// @return 处理结果
 //============================================================
 TResult FEngineConsole::OnResize(SResizeEvent* pEvent){
    TInt width = pEvent->size.width;
@@ -80,7 +85,7 @@ TResult FEngineConsole::ProcessLayer(FDisplayLayer* pLayer){
 // @param pFrame 舞台层
 // @return 处理结果
 //============================================================
-TResult FEngineConsole::ProcessFrame(FStageFrame* pFrame){
+TResult FEngineConsole::ProcessFrame(FStageLayer* pFrame){
    MO_ASSERT(pFrame);
    // 获得设备
    FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
@@ -146,20 +151,24 @@ TResult FEngineConsole::Process(){
    }
    pFrameStatistics->Begin();
    pStage->BuildRegion(_pRegion);
-   FStageFrameCollection* pFrames = pStage->Frames();
+   GStageLayerPtrs& layers = pStage->Layers();
    //............................................................
    // 更新时间
    FTimerDevice* pTimerDevice = RDeviceManager::Instance().Find<FTimerDevice>();
    pTimerDevice->Update();
    //............................................................
-   // 开始舞台处理
+   // 更新处理
    SProcessContext processContext;
-   pFrameProcessBeforeStatistics->Begin();
+   processContext.currentTick = pTimerDevice->CurrentTick();
+   pStage->Update(&processContext);
+   //............................................................
    // 处理帧进入
    SFrameEvent enterEvent(this);
+   pFrameProcessBeforeStatistics->Begin();
    _listenersFrameEnter.Process(&enterEvent);
    pStage->ProcessBefore(&processContext);
    pFrameProcessBeforeStatistics->Finish();
+   // 处理帧输入
    pStage->ProcessInput();
    // 处理帧逻辑
    SFrameEvent logicEvent(this);
@@ -180,9 +189,9 @@ TResult FEngineConsole::Process(){
       FRenderView* pView = *viewIterator;
       _pRegion->SetActiveView(pView);
       // 渲染过程集合处理
-      FStageFrameCollection::TIteratorC frameIterator = pFrames->IteratorC();
-      while(frameIterator.Next()){
-         FStageFrame* pFrame = *frameIterator;
+      GStageLayerPtrs::TIteratorC layerIterator = layers.IteratorC();
+      while(layerIterator.Next()){
+         FStageLayer* pFrame = *layerIterator;
          ProcessFrame(pFrame);
       }
    }
@@ -193,11 +202,10 @@ TResult FEngineConsole::Process(){
    // 帧处理结束
    pRenderDevice->FrameEnd();
    //............................................................
-   // 结束舞台处理
-   pFrameProcessAfterStatistics->Begin();
    // 处理帧离开
-   pStage->ProcessAfter(&processContext);
    SFrameEvent leaveEvent(this);
+   pFrameProcessAfterStatistics->Begin();
+   pStage->ProcessAfter(&processContext);
    _listenersFrameLeave.Process(&leaveEvent);
    pFrameProcessAfterStatistics->Finish();
    pFrameStatistics->Finish();

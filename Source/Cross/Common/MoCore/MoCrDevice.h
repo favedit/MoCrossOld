@@ -50,6 +50,47 @@ public:
 typedef MO_CR_DECLARE GPtrs<FDevice> GDevicePtrs;
 
 //============================================================
+// <T>时间设备。</T>
+//============================================================
+class MO_CR_DECLARE FTimerDevice : public FDevice
+{
+   MO_CLASS_DECLARE_INHERITS(FTimerDevice, FDevice);
+protected:
+   TInt _frameCount;
+   TTimeTick _startTick;
+   TTimeTick _currentTick;
+public:
+   FTimerDevice();
+   MO_ABSTRACT ~FTimerDevice();
+public:
+   //------------------------------------------------------------
+   // <T>获得开始时刻。</T>
+   MO_INLINE TTimeTick StartTick(){
+      return _startTick;
+   }
+   //------------------------------------------------------------
+   // <T>获得当前时刻。</T>
+   MO_INLINE TTimeTick CurrentTick(){
+      return _currentTick;
+   }
+   //------------------------------------------------------------
+   // <T>获得间隔。</T>
+   MO_INLINE TInt SpanTick(TTimeTick tick){
+      return (TInt)(_currentTick - tick);
+   }
+   //------------------------------------------------------------
+   // <T>获得间隔秒。</T>
+   MO_INLINE TFloat SpanSecond(TTimeTick tick){
+      return (TFloat)(_currentTick - tick) / 1000000.0f;
+   }
+public:
+   MO_ABSTRACT TInt FramePerSecond();
+public:
+   MO_ABSTRACT TResult Setup();
+   MO_ABSTRACT TResult Update();
+};
+
+//============================================================
 // <T>设备控制台。</T>
 //============================================================
 class MO_CR_DECLARE FDeviceConsole : public FConsole

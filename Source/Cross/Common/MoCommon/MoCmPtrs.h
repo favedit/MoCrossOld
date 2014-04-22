@@ -424,31 +424,30 @@ public:
    //------------------------------------------------------------
    // <T>从当前数组中是否含有指定数据。</T>
    MO_INLINE TBool Contains(T* pValue) const{
-      TInt result = RTypes<T>::IndexOf(_pPtrs, _count, pValue);
-      return (ENotFound != result);
+      TInt result = IndexOf(pValue);
+      return (result != ENotFound);
    }
    //------------------------------------------------------------
    // 从当前数组中查找指定值出现的索引位置。
    MO_INLINE TInt IndexOf(T* pValue) const{
-      return RTypes<T>::IndexOf(_pPtrs, _count, pValue);
-   }
-   //------------------------------------------------------------
-   // 从当前数组中，从指定位置之后查找指定值出现的索引位置。
-   MO_INLINE TInt IndexOf(T* pValue, TInt offset) const{
-      MO_ASSERT_RANGE(offset, 0, _count);
-      TInt result = RTypes<T>::IndexOf(_pPtrs + offset, _count - offset, pValue);
-      return (ENotFound == result) ? result : offset + result;
+      for(TInt n = 0; n < _count; n++){
+         GPtr<T>& ptr = _pPtrs[n];
+         if(ptr.Get() == pValue){
+            return n;
+         }
+      }
+      return ENotFound;
    }
    //------------------------------------------------------------
    // 从当前数组中查找最后出现的索引位置。
    MO_INLINE TInt LastIndexOf(T* pValue) const{
-      return RTypes<T>::LastIndexOf(_pPtrs, _count, pValue);
-   }
-   //------------------------------------------------------------
-   // 从当前数组中查找最后出现的索引位置。
-   MO_INLINE TInt LastIndexOf(T* pValue, TInt offset) const{
-      MO_ASSERT_RANGE(offset, 0, _count);
-      return RTypes<T>::LastIndexOf(_pPtrs, _count - offset, pValue);
+      for(TInt n = count - 1; n >= 0; n--){
+         GPtr<T>& ptr = _pPtrs[n];
+         if(ptr.Get() == pValue){
+            return n;
+         }
+      }
+      return ENotFound;
    }
 public:
    //------------------------------------------------------------

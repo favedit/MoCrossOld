@@ -2,6 +2,10 @@
 #define __MO_EG_ENGINE_H__
 //************************************************************
 
+#ifndef __MO_EG_COMMON_H__
+#include "MoEgCommon.h"
+#endif // __MO_EG_COMMON_H__
+
 #ifndef __MO_EG_PLATFORM_H__
 #include "MoEgPlatform.h"
 #endif // __MO_EG_PLATFORM_H__
@@ -88,12 +92,12 @@ public:
       return _statistics;
    }
 public:
-   MO_ABSTRACT void Setup();
+   MO_ABSTRACT TResult Setup();
 public:
    MO_ABSTRACT TResult OnResize(SResizeEvent* pEvent);
 public:
    MO_ABSTRACT TResult ProcessLayer(FDisplayLayer* pLayer);
-   MO_ABSTRACT TResult ProcessFrame(FStageFrame* pFrame);
+   MO_ABSTRACT TResult ProcessFrame(FStageLayer* pFrame);
    MO_ABSTRACT TResult Process();
 };
 

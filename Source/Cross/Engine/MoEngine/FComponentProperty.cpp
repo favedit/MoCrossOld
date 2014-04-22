@@ -8,6 +8,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FComponentProperty, FInstance);
 // <T>构造组件属性。</T>
 //============================================================
 FComponentProperty::FComponentProperty(){
+   _version = 0;
 }
 
 //============================================================

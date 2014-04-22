@@ -16,19 +16,28 @@ FStageConsole::~FStageConsole(){
 }
 
 //============================================================
-// <T>配置处理。</T>
+// <T>启动处理。</T>
+//
+// @return 处理结果
 //============================================================
-void FStageConsole::Setup(){
+TResult FStageConsole::Startup(){
    // 创建显示处理器
+   MO_CHECK(!_displayProcessor, return ENull);
    _displayProcessor = FProcessor::InstanceCreate();
    _displayProcessor->Startup();
    RProcessorManager::Instance().Register(_displayProcessor);
    // 创建渲染处理器
+   MO_CHECK(!_renderableProcessor, return ENull);
    _renderableProcessor = FProcessor::InstanceCreate();
    _renderableProcessor->Startup();
    RProcessorManager::Instance().Register(_renderableProcessor);
+   return ESuccess;
 }
 
+//============================================================
+// <T>关闭处理。</T>
+//
+// @return 处理结果
 //============================================================
 TResult FStageConsole::Shutdown(){
    _displayProcessor->Shutdown();

@@ -54,13 +54,14 @@ TResult FScene3dDisplay::LoadSceneResource(FRs3dSceneDisplay* pResource){
 // <T>加载资源。</T>
 //
 // @param pResource 资源对象
+// @return 处理结果
 //============================================================
 TResult FScene3dDisplay::LoadResource(FRs3dTemplate* pResource){
    MO_CHECK(pResource, return ENull);
    TResult resultCd = FTemplate3d::LoadResource(pResource);
    // 读取渲染对象集合
-   if(_pRenderables != NULL){
-      FRenderableCollection::TIteratorC iterator = _pRenderables->IteratorC();
+   if(!_renderables.IsEmpty()){
+      GRenderablePtrs::TIteratorC iterator = _renderables.IteratorC();
       while(iterator.Next()){
          FTemplate3dRenderable* pRenderable = (*iterator)->Convert<FTemplate3dRenderable>();
          TCharC* pMaterialName = pRenderable->Material()->Name();

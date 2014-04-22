@@ -29,6 +29,10 @@
 #include "MoCrFeature.h"
 #endif // __MO_CR_FEATURE_H__
 
+#ifndef __MO_CR_PROCESSOR_H__
+#include "MoCrProcessor.h"
+#endif // __MO_CR_PROCESSOR_H__
+
 MO_NAMESPACE_BEGIN
 
 MO_NAMESPACE_END

@@ -8,9 +8,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FDisplayLayer, FDisplay);
 // <T>构造可绘制对象层。</T>
 //============================================================
 FDisplayLayer::FDisplayLayer(){
-   _layerCd = EDisplayLayer_Unknown;
-   MO_CLEAR(_pStageFrame);
-   MO_CLEAR(_pDisplays);
+   MO_CLEAR(_pStageLayer);
    MO_CLEAR(_pParticleController);
 }
 

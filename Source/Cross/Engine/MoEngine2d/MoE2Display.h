@@ -218,7 +218,6 @@ public:
    void DisplayFree(FDisplay2d* pDisplay);
 public:
    MO_ABSTRACT void Setup();
-   MO_ABSTRACT FDisplayPool* PoolFind(TDisplayType typeCd);
    MO_ABSTRACT TResult Dispose();
 };
 

@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FGameStage, FStageFrame);
+MO_CLASS_IMPLEMENT_INHERITS(FGameStage, FStageLayer);
 
 //============================================================
 // <T>构造简单舞台对象。</T>
@@ -50,7 +50,7 @@ TResult FGameStage::Setup(){
    //pGroundLayer->SetLayerCd(EDisplayLayer_Ground);
    //pGroundLayer->Setup();
    //// 创建背景帧
-   //_pGroundFrame = MO_CREATE(FStageFrame);
+   //_pGroundFrame = MO_CREATE(FStageLayer);
    //_pGroundFrame->SetFrameCd(EStageFrame_Ground);
    //_pGroundFrame->LayerPush(pGroundLayer);
    //_pGroundFrame->SetRenderTarget(pGroundTarget);
@@ -72,21 +72,21 @@ TResult FGameStage::Setup(){
    //pTerrainLayer->Setup();
    // 创建精灵层
    _pSpriteLayer = FDisplayLayer::InstanceCreate();
-   _pSpriteLayer->SetLayerCd(EDisplayLayer_Sprite);
+   _pSpriteLayer->SetName("Sprite");
    _pSpriteLayer->Setup();
    // 创建精灵层
    //FDisplayLayer* pParticleLayer = MO_CREATE(FDisplayLayer);
    //pParticleLayer->SetLayerCd(EDisplayLayer_Particle);
    //pParticleLayer->Setup();
    // 创建场景帧
-   _pSceneFrame = FStageFrame::InstanceCreate();
-   _pSceneFrame->SetFrameCd(EStageFrame_Scene);
+   _pSceneFrame = FStageLayer::InstanceCreate();
+   _pSceneFrame->SetName("Scene");
    //_pSceneFrame->LayerPush(pTerrainLayer);
    _pSceneFrame->LayerPush(_pSpriteLayer);
    //_pSceneFrame->LayerPush(pParticleLayer);
    //_pSceneFrame->SetRenderTarget(pSceneTarget);
    _pSceneFrame->Setup();
-   FramePush(_pSceneFrame);
+   LayerPush(_pSceneFrame);
    //............................................................
    //// 创建渲染目标
    //FRenderTexture* pFaceTexture = pRenderDevice->CreateFlatTexture();
@@ -101,7 +101,7 @@ TResult FGameStage::Setup(){
    //pFaceLayer->SetLayerCd(EDisplayLayer_Face);
    //pFaceLayer->Setup();
    //// 创建界面帧
-   //_pFaceFrame = MO_CREATE(FStageFrame);
+   //_pFaceFrame = MO_CREATE(FStageLayer);
    //_pFaceFrame->SetFrameCd(EStageFrame_Face);
    //_pFaceFrame->LayerPush(pFaceLayer);
    //_pFaceFrame->SetRenderTarget(pFaceTarget);

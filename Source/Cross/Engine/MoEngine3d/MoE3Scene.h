@@ -101,9 +101,9 @@ public:
 //============================================================
 // <T>ÊµÌå3D³¡¾°Ö¡¡£</T>
 //============================================================
-class MO_E3_DECLARE FScene3dFrame : public FStageFrame
+class MO_E3_DECLARE FScene3dFrame : public FStageLayer
 {
-   MO_CLASS_DECLARE_INHERITS(FScene3dFrame, FStageFrame);
+   MO_CLASS_DECLARE_INHERITS(FScene3dFrame, FStageLayer);
 protected:
    GPtr<FDisplayLayer> _skyLayer;
    GPtr<FDisplayLayer> _mapLayer;

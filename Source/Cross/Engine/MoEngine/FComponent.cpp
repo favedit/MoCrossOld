@@ -152,17 +152,19 @@ TResult FComponent::Setup(){
 // <T>更新处理。</T>
 // <P>只要是舞台内对象全部参与处理，无论是否有效，是否被显示。</P>
 //
+// @param pContext 处理环境
 // @return 处理结果
 //============================================================
-TResult FComponent::Update(){
-   FTimerDevice* pTimerDevice = RDeviceManager::Instance().Find<FTimerDevice>();
-   _lastUpdate = pTimerDevice->CurrentTick();
+TResult FComponent::Update(SProcessContext* pContext){
+   MO_CHECK(pContext, return ENull);
+   _lastUpdate = pContext->currentTick;
    return ESuccess;
 }
 
 //============================================================
 // <T>功能前置处理。</T>
 //
+// @param pContext 处理环境
 // @return 处理结果
 //============================================================
 TResult FComponent::ProcessBefore(SProcessContext* pContext){
@@ -172,6 +174,7 @@ TResult FComponent::ProcessBefore(SProcessContext* pContext){
 //============================================================
 // <T>功能后置处理。</T>
 //
+// @param pContext 处理环境
 // @return 处理结果
 //============================================================
 TResult FComponent::ProcessAfter(SProcessContext* pContext){

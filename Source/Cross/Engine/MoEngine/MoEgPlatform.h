@@ -18,6 +18,10 @@
 #include "MoEgDisplay.h"
 #endif // __MO_EG_DISPLAY_H__
 
+#ifndef __MO_EG_BITMAP_H__
+#include "MoEgBitmap.h"
+#endif // __MO_EG_BITMAP_H__
+
 #ifndef __MO_EG_FOCUS_H__
 #include "MoEgFocus.h"
 #endif // __MO_EG_FOCUS_H__

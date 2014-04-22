@@ -17,7 +17,6 @@ FDynamicModel3d::FDynamicModel3d(){
 //============================================================
 FDynamicModel3d::~FDynamicModel3d(){
    MO_DELETE(_pModelRenderables);
-   MO_DELETE(_pRenderables);
 }
 
 //============================================================
