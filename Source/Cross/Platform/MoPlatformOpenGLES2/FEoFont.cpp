@@ -10,7 +10,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FEoFont, FFont);
 //============================================================
 FEoFont::FEoFont(){
    RType<FT_Face>::Clear(&_face);
-   _pData = MO_CREATE(FBytes);
+   _pData = MO_CREATE(FByteStream);
 }
 
 //============================================================

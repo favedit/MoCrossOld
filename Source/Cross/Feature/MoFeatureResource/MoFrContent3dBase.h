@@ -6,6 +6,10 @@
 #include "MoFrCommon.h"
 #endif // __MO_FR_COMMON_H__
 
+#ifndef __MO_FR_CONTENT_H__
+#include "MoFrContent.h"
+#endif // __MO_FR_CONTENT_H__
+
 MO_NAMESPACE_BEGIN
 
 //============================================================
@@ -392,9 +396,9 @@ public:
 //============================================================
 // <T>×ÊÔ´3D¡£</T>
 //============================================================
-class MO_FR_DECLARE FResource3d : public FInstance
+class MO_FR_DECLARE FResource3d : public FContent
 {
-   MO_CLASS_DECLARE_INHERITS(FResource3d, FInstance);
+   MO_CLASS_DECLARE_INHERITS(FResource3d, FContent);
 protected:
    EResource3d _typeCd;
    TResourceHandle _handle;
@@ -462,7 +466,6 @@ public:
    MO_ABSTRACT TResult OnOpen();
    MO_ABSTRACT TResult OnClose();
 public:
-   MO_ABSTRACT TBool Process();
    TResult Open();
    TResult Close();
 };
@@ -520,6 +523,8 @@ public:
    }
 public:
    MO_ABSTRACT TResult Setup();
+   MO_OVERRIDE TResult Startup();
+   MO_OVERRIDE TResult Shutdown();
 };
 
 //============================================================

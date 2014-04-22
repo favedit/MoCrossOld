@@ -142,14 +142,19 @@ public:
    void RenderableClear();
 };
 //------------------------------------------------------------
-typedef MO_FR_DECLARE FSet<TResourceId, FRs3dTemplate*> FRs3dTemplateSet;
+typedef MO_FR_DECLARE FLooper<FRs3dTemplate*> FRs3dTemplateLooper;
 typedef MO_FR_DECLARE FDictionary<FRs3dTemplate*> FRs3dTemplateDictionary;
 
 //============================================================
 // <T>资源3D模板管理器。</T>
 //============================================================
-class MO_FR_DECLARE FRs3dTemplateConsole : public FConsole{
+class MO_FR_DECLARE FRs3dTemplateConsole :
+      public FConsole,
+      public IMonitorTrigger{
 protected:
+   TInt _processLimit;
+   GMonitorTriggerPtr _trigger;
+   FRs3dTemplateLooper* _pLooper;
    FRs3dTemplateDictionary* _pTemplates;
 public:
    FRs3dTemplateConsole();
@@ -165,7 +170,10 @@ public:
 public:
    FRs3dTemplate* Find(TCharC* pName);
 public:
-   void Clear();
+   MO_OVERRIDE TResult TriggerRefresh(TTimeTick currentTick);
+   MO_OVERRIDE TResult Startup();
+   MO_OVERRIDE TResult Shutdown();
+   MO_OVERRIDE TResult Clear();
 };
 
 MO_NAMESPACE_END

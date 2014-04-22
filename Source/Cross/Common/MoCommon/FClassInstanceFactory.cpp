@@ -9,6 +9,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FClassInstanceFactory, FInstance);
 // <T>构造实例类工厂。</T>
 //============================================================
 FClassInstanceFactory::FClassInstanceFactory(){
+   MO_CLEAR(_pDefaultClass);
    _pClasses = MO_CREATE(FClassDictionary);
    _pInstances = MO_CREATE(FInstanceDictionary);
 }
@@ -54,12 +55,25 @@ TResult FClassInstanceFactory::Unregister(TCharC* pName){
 // @return 实例
 //============================================================
 FInstance* FClassInstanceFactory::Find(TCharC* pName){
-   MO_ASSERT(pName);
-   FInstance* pInstance = _pInstances->Find(pName);
+   // 查找实例
+   FInstance* pInstance = NULL;
+   if(pName != NULL){
+      pInstance = _pInstances->Find(pName);
+   }
    if(pInstance == NULL){
       FClass* pClass = _pClasses->Find(pName);
       if(pClass != NULL){
          pInstance = pClass->InstanceCreate();
+         _pInstances->Set(pName, pInstance);
+      }
+   }
+   // 使用默认实例
+   if(pInstance == NULL){
+      if(_defaultInstance.IsValid()){
+         pInstance = _defaultInstance;
+      }else if(_pDefaultClass != NULL){
+         _defaultInstance = _pDefaultClass->InstanceCreate();
+         pInstance = _defaultInstance;
       }
    }
    return pInstance;
@@ -72,13 +86,9 @@ FInstance* FClassInstanceFactory::Find(TCharC* pName){
 // @return 实例
 //============================================================
 FInstance* FClassInstanceFactory::Get(TCharC* pName){
-   MO_ASSERT(pName);
-   FInstance* pInstance = _pInstances->Find(pName);
-   if(pInstance == NULL){
-      FClass* pClass = _pClasses->Get(pName);
-      pInstance = pClass->InstanceCreate();
-      _pInstances->Set(pName, pInstance);
-   }
+   MO_CHECK(pName, return NULL);
+   FInstance* pInstance = Find(pName);
+   MO_FATAL_CHECK(pInstance, return NULL, "Can't find insance. (name=%s)", pName);
    return pInstance;
 }
 
@@ -87,13 +97,14 @@ FInstance* FClassInstanceFactory::Get(TCharC* pName){
 //
 // @param pName 名称
 //============================================================
-void FClassInstanceFactory::Free(TCharC* pName){
-   MO_ASSERT(pName);
+TResult FClassInstanceFactory::Free(TCharC* pName){
+   MO_CHECK(pName, return ENull);
    FInstance* pInstance = _pInstances->Find(pName);
    if(pInstance != NULL){
       _pInstances->Remove(pName);
       MO_DELETE(pInstance);
    }
+   return ESuccess;
 }
 
 //============================================================

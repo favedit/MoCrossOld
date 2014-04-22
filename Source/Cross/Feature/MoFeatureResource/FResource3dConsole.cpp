@@ -49,4 +49,29 @@ TResult FResource3dConsole::Setup(){
    return ESuccess;
 }
 
+//============================================================
+// <T>启动处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FResource3dConsole::Startup(){
+   //_pThemeConsole = MO_CREATE(FRs3dThemeConsole);
+   //_pModelConsole = MO_CREATE(FRs3dModelConsole);
+   //_pMaterialConsole = MO_CREATE(FRs3dMaterialConsole);
+   //_pTextureConsole = MO_CREATE(FRs3dTextureConsole);
+   _pTemplateConsole->Startup();
+   //_pSceneConsole = MO_CREATE(FRs3dSceneConsole);
+   return ESuccess;
+}
+
+//============================================================
+// <T>关闭处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FResource3dConsole::Shutdown(){
+   _pTemplateConsole->Shutdown();
+   return ESuccess;
+}
+
 MO_NAMESPACE_END

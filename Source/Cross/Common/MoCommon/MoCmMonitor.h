@@ -151,7 +151,9 @@ public:
 //
 // @class
 //============================================================
-class MO_CM_DECLARE FMonitorTrigger : public FMonitor{
+class MO_CM_DECLARE FMonitorTrigger : public FMonitor
+{
+   MO_CLASS_DECLARE_INHERITS(FMonitorTrigger, FMonitor);
 protected:
    IMonitorTrigger* _pTrigger;
 public:
@@ -171,6 +173,8 @@ public:
 public:
    MO_OVERRIDE TResult Process();
 };
+//------------------------------------------------------------
+typedef MO_CM_DECLARE GPtr<FMonitorTrigger> GMonitorTriggerPtr;
 
 //============================================================
 // <T>ÄÚ´æÏÝÚå¿é¶¨Òå¡£</T>

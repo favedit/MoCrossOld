@@ -8,6 +8,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FContent, FInstance);
 // <T>构造内容。</T>
 //============================================================
 FContent::FContent(){
+   _statusReady = EFalse;
    _timeoutSpan = 0;
    _updateTick = 0;
 }
@@ -24,7 +25,7 @@ FContent::~FContent(){
 // @return 是否准备好。</T>
 //============================================================
 TBool FContent::TestReady(){
-   return EFalse;
+   return _statusReady;
 }
 
 //============================================================
@@ -43,6 +44,16 @@ TBool FContent::TestValid(){
 // @return 处理结果
 //============================================================
 TResult FContent::Unserialize(IDataInput* pInput){
+   return ESuccess;
+}
+
+//============================================================
+// <T>数据处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FContent::Complete(){
+   _statusReady = ETrue;
    return ESuccess;
 }
 

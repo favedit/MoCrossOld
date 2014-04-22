@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FResource3d, FInstance);
+MO_CLASS_IMPLEMENT_INHERITS(FResource3d, FContent);
 
 //============================================================
 // <T>构造资源。</T>
@@ -70,15 +70,6 @@ TResult FResource3d::Unserialize(IDataInput* pInput){
    // _code = pInput->ReadInt32();
    // _timeout = pInput->ReadInt32();
    return ESuccess;
-}
-
-//============================================================
-// <T>数据处理。</T>
-//
-// @return 处理结果
-//============================================================
-TBool FResource3d::Process(){
-   return ETrue;
 }
 
 //============================================================

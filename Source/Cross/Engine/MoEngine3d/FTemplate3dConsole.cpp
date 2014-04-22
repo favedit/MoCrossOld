@@ -7,6 +7,9 @@ MO_NAMESPACE_BEGIN
 // <T>构造实体3D模型管理器。</T>
 //============================================================
 FTemplate3dConsole::FTemplate3dConsole(){
+   _processLimit = 16;
+   _trigger = FMonitorTrigger::InstanceCreate();
+   _pLooper = MO_CREATE(FTemplate3dLooper);
    _pPools = MO_CREATE(FTemplate3dPoolDictionary);
 }
 
@@ -24,6 +27,7 @@ FTemplate3dConsole::~FTemplate3dConsole(){
       MO_DELETE(pPool);
    }
    MO_DELETE(_pPools);
+   MO_DELETE(_pLooper);
 }
 
 //============================================================
@@ -102,6 +106,37 @@ TResult FTemplate3dConsole::Free(FTemplate3d* pTemplate){
 }
 
 //============================================================
+// <T>触发刷新处理。</T>
+//
+// @param 当前时刻
+// @return 处理结果
+//============================================================
+TResult FTemplate3dConsole::TriggerRefresh(TTimeTick currentTick){
+   _pLooper->Record();
+   for(TInt n = 0; n < _processLimit; n++){
+      FTemplate3d* pTemplate = _pLooper->Next();
+      if(pTemplate == NULL){
+         break;
+      }
+      TResult processResultCd = pTemplate->LoadProcess();
+      if(processResultCd == ESuccess){
+         _pLooper->RemoveCurrent();
+      }
+   }
+   return ESuccess;
+}
+
+//============================================================
+// <T>启动处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FTemplate3dConsole::Startup(){
+   RMonitorManager::Instance().Register(_trigger);
+   return ESuccess;
+}
+
+//============================================================
 // <T>挂起处理。</T>
 //
 // @return 处理结果
@@ -116,6 +151,25 @@ TResult FTemplate3dConsole::Suspend(){
 // @return 处理结果
 //============================================================
 TResult FTemplate3dConsole::Resume(){
+   return ESuccess;
+}
+
+//============================================================
+// <T>关闭处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FTemplate3dConsole::Shutdown(){
+   RMonitorManager::Instance().Unregister(_trigger);
+   return ESuccess;
+}
+
+//============================================================
+// <T>清空内容。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FTemplate3dConsole::Clear(){
    return ESuccess;
 }
 

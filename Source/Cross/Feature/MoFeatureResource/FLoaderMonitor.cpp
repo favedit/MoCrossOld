@@ -32,10 +32,10 @@ TResult FLoaderMonitor::Process(){
          MO_DEBUG(TC("Process loader success. (loader=0x%08X)"), pLoader);
       }else{
          MO_ERROR(TC("Process loader failure. (loader=0x%08X)"), pLoader);
+         result = EFailure;
       }
       // 释放资源
-      MO_DELETE(pLoader);
-      result = EFailure;
+      pLoader->ReferDecrease();
    }
    //............................................................
    return result;

@@ -8,6 +8,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FDrawable, FComponent);
 // <T>构造可绘制对象。</T>
 //============================================================
 FDrawable::FDrawable(){
+   _statusReady = ETrue;
    _statusVisible = ETrue;
    _statusDirty = ETrue;
    _groundColor.Set(1.0f, 1.0f, 1.0f, 1.0f);
@@ -21,15 +22,20 @@ FDrawable::~FDrawable(){
 }
 
 //============================================================
+// <T>测试准备好。</T>
+//
+// @return 是否准备好
+//============================================================
+TBool FDrawable::TestReady(){
+   return _statusReady;
+}
+
+//============================================================
 // <T>测试是否可以绘制。</T>
 //
 // @return 是否可以绘制
 //============================================================
 TBool FDrawable::TestDrawable(){
-   // 检查对象类型
-   //if(!IsObject(EComponent_Renderable)){
-   //   return EFalse;
-   //}
    return ETrue;
 }
 

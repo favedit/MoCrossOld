@@ -614,16 +614,21 @@ public:
 };
 //------------------------------------------------------------
 typedef MO_FR_DECLARE FObjects<FRs3dModel*> FRs3dModelCollection;
-typedef MO_FR_DECLARE FSet<TResourceId, FRs3dModel*> FRs3dModelSet;
+typedef MO_FR_DECLARE FLooper<FRs3dModel*> FRs3dModelLooper;
 typedef MO_FR_DECLARE GPtrDictionary<FRs3dModel> GRs3dModelPtrDictionary;
 
 //============================================================
 // <T>资源3D模型管理器。</T>
 //============================================================
-class MO_FR_DECLARE FRs3dModelConsole : public FConsole
+class MO_FR_DECLARE FRs3dModelConsole :
+      public FConsole,
+      public IMonitorTrigger
 {
    MO_CLASS_DECLARE_INHERITS(FRs3dModelConsole, FConsole);
 protected:
+   TInt _processLimit;
+   GMonitorTriggerPtr _trigger;
+   FRs3dModelLooper* _pLooper;
    GRs3dModelPtrDictionary _models;
 public:
    FRs3dModelConsole();
@@ -640,7 +645,10 @@ public:
    FRs3dModel* Find(TCharC* pName);
    FRs3dModel* Open(TCharC* pName);
 public:
-   void Clear();
+   MO_OVERRIDE TResult TriggerRefresh(TTimeTick currentTick);
+   MO_OVERRIDE TResult Startup();
+   MO_OVERRIDE TResult Shutdown();
+   MO_OVERRIDE TResult Clear();
 };
 
 MO_NAMESPACE_END

@@ -262,6 +262,8 @@ class MO_EG_DECLARE FDrawable : public FComponent
 {
    MO_CLASS_DECLARE_INHERITS(FDrawable, FComponent);
 protected:
+   // 状态准备好
+   TBool _statusReady;
    // 状态可见
    TBool _statusVisible;
    // 状态脏
@@ -292,6 +294,11 @@ public:
    // <T>获得父绘制组件。</T>
    MO_INLINE FDrawable* ParentDrawable(){
       return _pParent->Convert<FDrawable>();
+   }
+   //------------------------------------------------------------
+   // <T>获得准备状态。</T>
+   MO_INLINE TBool StatusReady(){
+      return _statusReady;
    }
    //------------------------------------------------------------
    // <T>获得可见状态。</T>
@@ -352,6 +359,7 @@ public:
    MO_ABSTRACT TResult OnPaint();
    MO_ABSTRACT TResult OnFocusTest(FFocusTester* pTester);
 public:
+   MO_ABSTRACT TBool TestReady();
    MO_ABSTRACT TBool TestDrawable();
    MO_ABSTRACT TResult CalculateRectangle(SIntRectangle* pRectangle);
    MO_ABSTRACT TResult FilterRegion(FRenderRegion* pRegion);

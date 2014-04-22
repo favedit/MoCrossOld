@@ -624,6 +624,8 @@ public:
 #endif // _MO_DEBUG
    }
 };
+//------------------------------------------------------------
+typedef MO_CM_DECLARE GPtr<FInstance> GInstancePtr;
 
 //============================================================
 // <T>类工厂。</T>
@@ -684,12 +686,24 @@ class MO_CM_DECLARE FClassInstanceFactory : public FInstance
 {
    MO_CLASS_DECLARE_INHERITS(FClassInstanceFactory, FInstance);
 protected:
+   FClass* _pDefaultClass;
    FClassDictionary* _pClasses;
+   GInstancePtr _defaultInstance;
    FInstanceDictionary* _pInstances;
 public:
    FClassInstanceFactory();
    MO_ABSTRACT ~FClassInstanceFactory();
 public:
+   //------------------------------------------------------------
+   // <T>获得默认类。</T>
+   MO_INLINE FClass* DefaultClass(){
+      return _pDefaultClass;
+   }
+   //------------------------------------------------------------
+   // <T>设置默认类。</T>
+   MO_INLINE void SetDefaultClass(FClass* pClass){
+      _pDefaultClass = pClass;
+   }
    //------------------------------------------------------------
    // <T>获得类字典。</T>
    MO_INLINE FClassDictionary* Classes(){
@@ -706,7 +720,7 @@ public:
 public:
    FInstance* Find(TCharC* pName);
    FInstance* Get(TCharC* pName);
-   void Free(TCharC* pName);
+   TResult Free(TCharC* pName);
 public:
    TCharC* Dump(TChar* pDump, TInt capacity);
 };

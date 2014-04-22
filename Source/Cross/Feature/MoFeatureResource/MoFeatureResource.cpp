@@ -7,6 +7,8 @@ MO_NAMESPACE_BEGIN
 //============================================================
 void MoFeatureResourceInitialize(){
    MO_STATIC_INFO("Feature resource initialize.");
+   RLoaderManager::Create();
+   RContentManager::Create();
 }
 
 //============================================================
@@ -14,6 +16,7 @@ void MoFeatureResourceInitialize(){
 //============================================================
 void MoFeatureResourceStartup(){
    MO_STATIC_INFO("Feature resource startup.");
+   RLoaderManager::Instance().Startup();
 }
 
 //============================================================
@@ -21,6 +24,7 @@ void MoFeatureResourceStartup(){
 //============================================================
 void MoFeatureResourceShutdown(){
    MO_STATIC_INFO("Feature resource shutdown.");
+   RLoaderManager::Instance().Shutdown();
 }
 
 //============================================================
@@ -28,6 +32,8 @@ void MoFeatureResourceShutdown(){
 //============================================================
 void MoFeatureResourceRelease(){
    MO_STATIC_INFO("Feature resource release.");
+   RLoaderManager::Destroy();
+   RContentManager::Destroy();
 }
 
 MO_NAMESPACE_END

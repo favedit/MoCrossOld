@@ -12,6 +12,10 @@
 
 MO_NAMESPACE_BEGIN
 
+class FContent;
+class FContentLoader;
+class FContentConsole;
+
 //============================================================
 // <T>内容。</T>
 //============================================================
@@ -22,6 +26,7 @@ protected:
    TString _typeName;
    TString _name;
    TTimeSpan _timeoutSpan;
+   TBool _statusReady;
    TTimeTick _updateTick;
 public:
    FContent();
@@ -72,6 +77,7 @@ public:
    MO_ABSTRACT TBool TestValid();
 public:
    MO_ABSTRACT TResult Unserialize(IDataInput* pInput);
+   MO_ABSTRACT TResult Complete();
 public:
    MO_ABSTRACT TResult Process();
 };
@@ -80,27 +86,38 @@ typedef MO_FR_DECLARE GPtr<FContent>  GContentPtr;
 typedef MO_FR_DECLARE GPtrs<FContent> GContentPtrs;
 
 //============================================================
-// <T>内容管道。</T>
+// <T>内容加载器。</T>
 //============================================================
-class MO_FR_DECLARE FContentPipeline : public FInstance
+class MO_FR_DECLARE FContentLoader : public FLoader
 {
-   MO_CLASS_DECLARE_INHERITS(FContent, FInstance);
+   MO_CLASS_DECLARE_INHERITS(FContentLoader, FLoader);
 protected:
-   GByteStreamPtr _stream;
+   FContentConsole* _pConsole;
+   TString _assetName;
    GContentPtr _content;
 public:
-   FContentPipeline();
-   MO_ABSTRACT ~FContentPipeline();
+   FContentLoader();
+   MO_ABSTRACT ~FContentLoader();
 public:
    //------------------------------------------------------------
-   // <T>获得数据流。</T>
-   MO_INLINE FByteStream* Stream(){
-      return _stream;
+   // <T>获得控制台。</T>
+   MO_INLINE FContentConsole* Console(){
+      return _pConsole;
    }
    //------------------------------------------------------------
-   // <T>设置数据流。</T>
-   MO_INLINE void SetStream(FByteStream* pStream){
-      _stream = pStream;
+   // <T>设置控制台。</T>
+   MO_INLINE void SetConsole(FContentConsole* pConsole){
+      _pConsole = pConsole;
+   }
+   //------------------------------------------------------------
+   // <T>获得资源名称。</T>
+   MO_INLINE TCharC* AssetName(){
+      return _assetName;
+   }
+   //------------------------------------------------------------
+   // <T>设置资源名称。</T>
+   MO_INLINE void SetAssetName(TCharC* pAssetName){
+      _assetName = pAssetName;
    }
    //------------------------------------------------------------
    // <T>获得内容。</T>
@@ -113,38 +130,8 @@ public:
       _content = pContent;
    }
 public:
-   MO_ABSTRACT TResult Process();
-};
-//------------------------------------------------------------
-typedef MO_FR_DECLARE GPtr<FContentPipeline> GContentPipelinePtr;
-
-//============================================================
-// <T>内容加载器。</T>
-//============================================================
-class MO_FR_DECLARE FContentLoader : public FLoader
-{
-   MO_CLASS_DECLARE_INHERITS(FContentLoader, FLoader);
-protected:
-   GContentPtr _resource;
-public:
-   FContentLoader();
-   MO_ABSTRACT ~FContentLoader();
-public:
-   //------------------------------------------------------------
-   // <T>获得资源。</T>
-   MO_INLINE FContent* Content(){
-      return _resource;
-   }
-   //------------------------------------------------------------
-   // <T>设置资源。</T>
-   MO_INLINE void SetContent(FContent* pContent){
-      _resource = pContent;
-   }
-public:
    MO_OVERRIDE TResult Process();
 };
-//------------------------------------------------------------
-typedef MO_FR_DECLARE GPtrs<FContent> GContentPtrs;
 
 //============================================================
 // <T>内容控制台。</T>
@@ -164,13 +151,13 @@ public:
       return _pipelineFactory;
    }
 public:
-   MO_ABSTRACT TResult Load(FContent* pContent);
+   MO_ABSTRACT TResult PushLoader(FContentLoader* pLoader);
 };
 
 //============================================================
 // <T>内容管理器。</T>
 //============================================================
-class MO_FR_DECLARE RContentManager : RSingleton<FContentConsole>{
+class MO_FR_DECLARE RContentManager : public RSingleton<FContentConsole>{
 };
 
 MO_NAMESPACE_END

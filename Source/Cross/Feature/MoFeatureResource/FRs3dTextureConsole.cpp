@@ -24,13 +24,20 @@ FRs3dTextureConsole::~FRs3dTextureConsole(){
 //============================================================
 FRs3dTexture* FRs3dTextureConsole::Load(TCharC* pName){
    MO_CHECK(pName, return NULL);
-   FAssetStream* pStream = RAssetManager::Instance().OpenAssetStreamFormat("asset:/texture/%s.ser", pName);
+   TFsPath path;
+   path.AppendFormat("asset:/texture/%s.ser", pName);
+   // 创建纹理
+   FRs3dTexture* pTexture = FRs3dTexture::InstanceCreate();
+   FAssetStream* pStream = RAssetManager::Instance().OpenAssetStream(path);
    MO_ERROR_CHECK(pStream, return NULL, "Open texture stream failure. (resource=%s)", pName);
    // 创建纹理
-   FRs3dTexture* pTexture = MO_CREATE(FRs3dTexture);
    pTexture->Unserialize(pStream);
    // 释放资源
    RAssetManager::Instance().CloseAssetStream(pStream);
+   // 创建加载器
+   //FContentLoader* pLoader = FContentLoader::InstanceCreate();
+   //pLoader->SetContent(pTexture);
+   //RContentManager::Instance().PushLoader(pLoader);
    return pTexture;
 }
 

@@ -2,6 +2,8 @@
 
 MO_NAMESPACE_BEGIN
 
+MO_CLASS_IMPLEMENT_INHERITS(FMonitorTrigger, FMonitor);
+
 //============================================================
 // <T>构造监视器对象的实例。</T>
 //

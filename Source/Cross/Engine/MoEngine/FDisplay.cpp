@@ -165,9 +165,13 @@ TResult FDisplay::ScriptableClear(){
 //============================================================
 TResult FDisplay::FilterRegion(FRenderRegion* pRegion){
    MO_CHECK(pRegion, return ENull);
+   // 检查准备好
+   if(!TestReady()){
+      return EContinue;
+   }
    // 检查可见状态
    if(!_statusVisible){
-      return EFalse;
+      return EContinue;
    }
    //............................................................
    // 处理所有子节点

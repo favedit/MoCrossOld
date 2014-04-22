@@ -15,8 +15,6 @@ void MoEngineInitialize(){
    RWorkerManager::Create();
    // 初始化解码管理器
    RDecoderManager::Create();
-   // 初始化加载管理器
-   RLoaderManager::Create();
    // 初始化处理管理器
    RProcessorManager::Create();
    //............................................................
@@ -69,8 +67,6 @@ void MoEngineStartup(){
    //RWorkerManager::Instance().Startup();
    //// 启动资源管理器
    //RResourceManager::Instance().Startup();
-   //// 启动加载管理器
-   //RLoaderManager::Instance().Startup();
 }
 
 //============================================================
@@ -80,8 +76,6 @@ void MoEngineShutdown(){
    MO_STATIC_INFO("Engine shutdown.");
    // 停止舞台管理器
    RStageManager::Instance().Shutdown();
-   //// 停止加载管理器
-   //RLoaderManager::Instance().Shutdown();
    //// 停止工作管理器
    //RResourceManager::Instance().Shutdown();
    //// 停止资源管理器
@@ -110,8 +104,6 @@ void MoEngineRelease(){
    //............................................................
    // 释放处理管理器
    RProcessorManager::Destroy();
-   // 释放加载管理器 
-   RLoaderManager::Destroy();
    // 释放解码管理器
    RDecoderManager::Destroy();
    // 释放工作管理器

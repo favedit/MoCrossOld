@@ -99,7 +99,9 @@ public:
 //============================================================
 // <T>资源流。</T>
 //============================================================
-class MO_CR_DECLARE FAssetStream : public FByteStream{
+class MO_CR_DECLARE FAssetStream : public FByteStream
+{
+   MO_CLASS_DECLARE_INHERITS(FAssetStream, FByteStream);
 protected:
    TString _name;
 public:
@@ -117,6 +119,8 @@ public:
       _name = pName;
    }
 };
+//------------------------------------------------------------
+typedef MO_CR_DECLARE GPtr<FAssetStream> GAssetStreamPtr;
 
 //============================================================
 // <T>资源控制台。</T>

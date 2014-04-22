@@ -139,17 +139,24 @@ public:
 public:
    MO_OVERRIDE TResult Update();
    MO_OVERRIDE TResult ProcessBefore(SProcessContext* pContext);
+   MO_OVERRIDE TResult LoadProcess();
    MO_OVERRIDE TResult AnsyProcess();
 };
 //------------------------------------------------------------
+typedef MO_E3_DECLARE FLooper<FTemplate3d*> FTemplate3dLooper;
 typedef MO_E3_DECLARE FPool<FTemplate3d*> FTemplate3dPool;
 typedef MO_E3_DECLARE FDictionary<FTemplate3dPool*> FTemplate3dPoolDictionary;
 
 //============================================================
 // <T>实体3D模型管理器。</T>
 //============================================================
-class MO_E3_DECLARE FTemplate3dConsole : public FConsole{
+class MO_E3_DECLARE FTemplate3dConsole :
+      public FConsole,
+      public IMonitorTrigger{
 protected:
+   TInt _processLimit;
+   GMonitorTriggerPtr _trigger;
+   FTemplate3dLooper* _pLooper;
    FTemplate3dPoolDictionary* _pPools;
 public:
    FTemplate3dConsole();
@@ -166,10 +173,13 @@ public:
    TResult Load(FTemplate3d* pTemplate, TCharC* pName);
    TResult Free(FTemplate3d* pTemplate);
 public:
-   void Clear();
+   MO_OVERRIDE TResult TriggerRefresh(TTimeTick currentTick);
 public:
+   MO_OVERRIDE TResult Startup();
    MO_OVERRIDE TResult Suspend();
    MO_OVERRIDE TResult Resume();
+   MO_OVERRIDE TResult Shutdown();
+   MO_OVERRIDE TResult Clear();
    MO_OVERRIDE TResult Dispose();
 };
 

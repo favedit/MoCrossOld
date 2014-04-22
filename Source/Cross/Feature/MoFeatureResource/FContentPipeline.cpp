@@ -1,4 +1,4 @@
-#include "MoFrContent.h"
+#include "MoFrContentPipeline.h"
 
 MO_NAMESPACE_BEGIN
 
@@ -19,9 +19,11 @@ FContentPipeline::~FContentPipeline(){
 //============================================================
 // <T>数据处理。</T>
 //
+// @param pLoader 加载器
 // @return 处理结果
 //============================================================
-TResult FContentPipeline::Process(){
+TResult FContentPipeline::Process(FContentLoader* pLoader){
+   MO_FATAL_UNSUPPORT();
    return ESuccess;
 }
 

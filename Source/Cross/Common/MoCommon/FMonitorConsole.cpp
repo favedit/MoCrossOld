@@ -6,6 +6,7 @@ MO_NAMESPACE_BEGIN
 // <T>构造监视器控制台。</T>
 //============================================================
 FMonitorConsole::FMonitorConsole(){
+   _machine = FMonitorMachine::InstanceCreate();
    MO_CLEAR(_pThread);
 }
 

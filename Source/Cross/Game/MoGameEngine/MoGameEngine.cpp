@@ -23,6 +23,7 @@ void MoGameEngineInitialize(){
    MoCoreInitialize();
    MoFeatureLoggerInitialize();
    MoFeatureGraphicsInitialize();
+   MoFeatureResourceInitialize();
    MoEngineInitialize();
    MoEngine3dInitialize();
    MoEngineFaceInitialize();
@@ -43,6 +44,7 @@ void MoGameEngineInitialize(){
 void MoGameEngineStartup(){
    MO_STATIC_INFO("Game engine startup.");
    MoFeatureGraphicsStartup();
+   MoFeatureResourceStartup();
    MoEngineStartup();
    MoEngine3dStartup();
    MoEngineOpenGLES2Startup();
@@ -56,6 +58,7 @@ void MoGameEngineStartup(){
 void MoGameEngineShutdown(){
    MO_STATIC_INFO("Game engine shutdown.");
    MoFeatureGraphicsShutdown();
+   MoFeatureResourceShutdown();
    MoEngine3dShutdown();
    MoEngineShutdown();
 }
@@ -76,6 +79,7 @@ void MoGameEngineRelease(){
    MoEngineOpenGLES2Release();
    MoEngineFaceRelease();
    MoEngineRelease();
+   MoFeatureResourceRelease();
    MoFeatureGraphicsRelease();
    MoCoreRelease();
    RClassManager::Instance().TrackActive();

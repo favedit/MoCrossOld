@@ -8,6 +8,9 @@ MO_CLASS_IMPLEMENT_INHERITS(FRs3dModelConsole, FConsole);
 // <T>构造资源3D模型管理器。</T>
 //============================================================
 FRs3dModelConsole::FRs3dModelConsole(){
+   _processLimit = 16;
+   _trigger = FMonitorTrigger::InstanceCreate();
+   _pLooper = MO_CREATE(FRs3dModelLooper);
 }
 
 //============================================================
@@ -63,10 +66,54 @@ FRs3dModel* FRs3dModelConsole::Open(TCharC* pName){
 }
 
 //============================================================
-// <T>清空内容。</T>
+// <T>触发刷新处理。</T>
+//
+// @param 当前时刻
+// @return 处理结果
 //============================================================
-void FRs3dModelConsole::Clear(){
+TResult FRs3dModelConsole::TriggerRefresh(TTimeTick currentTick){
+   _pLooper->Record();
+   for(TInt n = 0; n < _processLimit; n++){
+      FRs3dModel* pModel = _pLooper->Next();
+      if(pModel == NULL){
+         break;
+      }
+      TResult processResultCd = pModel->Process();
+      if(processResultCd == ESuccess){
+         _pLooper->RemoveCurrent();
+      }
+   }
+   return ESuccess;
+}
+
+//============================================================
+// <T>启动处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FRs3dModelConsole::Startup(){
+   RMonitorManager::Instance().Register(_trigger);
+   return ESuccess;
+}
+
+//============================================================
+// <T>关闭处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FRs3dModelConsole::Shutdown(){
+   RMonitorManager::Instance().Unregister(_trigger);
+   return ESuccess;
+}
+
+//============================================================
+// <T>清空内容。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FRs3dModelConsole::Clear(){
    _models.Clear();
+   return ESuccess;
 }
 
 MO_NAMESPACE_END
