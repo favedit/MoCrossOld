@@ -13,9 +13,18 @@ Cross Platform Game Engine
    - OpenGL2.0
 
 - 渲染管道：
-   - 简单绘制：VertexColor + AmbientColor + DiffuseColor + ViewDiffuseColor + SpecularColor + ViewSpecularColor + ReflectColor(Cube3d)
-   - 阴影绘制：ShadowMapColor
-   - 后期处理：Blur
+   - 简单绘制：
+      - VertexColor
+      - AmbientColor
+      - DiffuseColor
+      - ViewDiffuseColor
+      - SpecularColor
+      - ViewSpecularColor
+      - ReflectColor(Cube3d)
+   - 阴影绘制：
+      - ShadowMapColor
+   - 后期处理：
+      - Blur
 
 - 渲染技术：
    - 异步空间排序剔除
@@ -57,11 +66,11 @@ Cross Platform Game Engine
 
 ### 更新
 
-2014年01月 - 搭建基础库。
-2014年02月 - 增加资源管理(MoFeatureResource)，图形管理(MoFeatureGraphics)。 
-2014年03月 - 增加引擎基础(Engine)，引擎2D(Engine2D)，引擎3D(Engine3D)部分
+- 2014年01月 - 搭建基础库。
+- 2014年02月 - 增加资源管理(MoFeatureResource)，图形管理(MoFeatureGraphics)。 
+- 2014年03月 - 增加引擎基础(Engine)，引擎2D(Engine2D)，引擎3D(Engine3D)部分
              增加渲染代码生成管理(Shader Template)，完善渲染管道(Render Pipeline)
-2014年04月 - 增加Mono的C#脚本框架 MoFeatureScript / MoPluginScriptMono
+- 2014年04月 - 增加Mono的C#脚本框架 MoFeatureScript / MoPluginScriptMono
 
 ### 关于
 
@@ -69,5 +78,6 @@ Cross Platform Game Engine
 - 网页 Stage3D CoolLight - 炫光引擎 的制作者。
 
 ### 加入
-- 制作引擎的目的不是为了商业化盈利，纯粹是个人兴趣，希望能自己用自己引擎做出有特色的游戏，完成儿时的梦想。
+- 制作引擎的目的不是为了商业化盈利，纯粹是个人兴趣。
+- 希望能自己用自己引擎做出有特色的游戏，算是一个梦想吧。
 - 现在因为是只有个人制作，能力有限，期望能遇到有同样追求，想做3D引擎的人加入。
