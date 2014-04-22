@@ -3,6 +3,8 @@
 
 MO_NAMESPACE_BEGIN
 
+MO_CLASS_IMPLEMENT_INHERITS(FMonitorMachine, FInstance);
+
 //============================================================
 // <T>构造监视器管理机。</T>
 //============================================================
@@ -46,9 +48,11 @@ IMonitor* FMonitorMachine::FindByName(TCharC* pName){
 //
 // @param pMonitor 监视器
 //============================================================
-void FMonitorMachine::Register(IMonitor* pMonitor){
+TResult FMonitorMachine::Register(IMonitor* pMonitor){
+   MO_CHECK(pMonitor, return ENull);
    _pMonitors->Push(pMonitor);
    _pLooper->Push(pMonitor);
+   return ESuccess;
 }
 
 //============================================================
@@ -56,9 +60,11 @@ void FMonitorMachine::Register(IMonitor* pMonitor){
 //
 // @param pMonitor 监视器
 //============================================================
-void FMonitorMachine::Unregister(IMonitor* pMonitor){
+TResult FMonitorMachine::Unregister(IMonitor* pMonitor){
+   MO_CHECK(pMonitor, return ENull);
    _pMonitors->Remove(pMonitor);
    _pLooper->Remove(pMonitor);
+   return ESuccess;
 }
 
 //============================================================
@@ -87,8 +93,10 @@ TBool FMonitorMachine::LoadConfig(FXmlNode* pConfig){
 
 //============================================================
 // <T>启动处理。</T>
+//
+// @return 处理结果
 //============================================================
-void FMonitorMachine::Startup(){
+TResult FMonitorMachine::Startup(){
    // 安装捕捉器
    _pCatcher->Install();
    // 关联监视器
@@ -96,12 +104,15 @@ void FMonitorMachine::Startup(){
    while(iterator.Next()){
       iterator->SetCatcher(_pCatcher);
    }
+   return ESuccess;
 }
 
 //============================================================
 // <T>执行处理。</T>
+//
+// @return 处理结果
 //============================================================
-void FMonitorMachine::Execute(){
+TResult FMonitorMachine::Execute(){
    TDateTime currentTime = RDateTime::Current();
    TListIteratorC<IMonitor*> iterator = _pMonitors->IteratorC();
    while(iterator.Next()){
@@ -115,12 +126,15 @@ void FMonitorMachine::Execute(){
          pMonitor->Execute(currentTime);
       }
    }
+   return ESuccess;
 }
 
 //============================================================
 // <T>循环处理。</T>
+//
+// @return 处理结果
 //============================================================
-void FMonitorMachine::Process(){
+TResult FMonitorMachine::Process(){
    // 处理所有监视器
    TInt count = _pLooper->Count();
    for(TInt n = 0; n < count; n++){
@@ -142,6 +156,7 @@ void FMonitorMachine::Process(){
          }
       }
    }
+   return ESuccess;
 }
 
 MO_NAMESPACE_END

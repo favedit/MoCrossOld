@@ -2,11 +2,13 @@
 
 MO_NAMESPACE_BEGIN
 
+MO_CLASS_IMPLEMENT_INHERITS(FLoaderConsole, FConsole);
+
 //============================================================
 // <T>构造加载器控制台。</T>
 //============================================================
 FLoaderConsole::FLoaderConsole(){
-   _pWorker = MO_CREATE(FLoaderWorker);
+   _monitor = FLoaderMonitor::InstanceCreate();
    _pWaitLoaders = MO_CREATE(FLoaderList);
 }
 
@@ -14,39 +16,47 @@ FLoaderConsole::FLoaderConsole(){
 // <T>析构加载器控制台。</T>
 //============================================================
 FLoaderConsole::~FLoaderConsole(){
-   MO_DELETE(_pWorker);
    MO_DELETE(_pWaitLoaders);
 }
 
 //============================================================
 // <T>启动处理。</T>
+//
+// @return 处理结果
 //============================================================
-void FLoaderConsole::Startup(){
-   RWorkerManager::Instance().Register(_pWorker);
+TResult FLoaderConsole::Startup(){
+   RMonitorManager::Instance().Register(_monitor);
+   return ESuccess;
 }
 
 //============================================================
 // <T>关闭处理。</T>
+//
+// @return 处理结果
 //============================================================
-void FLoaderConsole::Shutdown(){
-   RWorkerManager::Instance().Unregister(_pWorker);
+TResult FLoaderConsole::Shutdown(){
+   RMonitorManager::Instance().Unregister(_monitor);
+   return ESuccess;
 }
 
 //============================================================
 // <T>放入一个等待处理的加载器。</T>
 //
 // @param pLoader 加载器
+// @return 处理结果
 //============================================================
-void FLoaderConsole::PushWaitLoader(FLoader* pLoader){
+TResult FLoaderConsole::PushWaitLoader(FLoader* pLoader){
+   MO_CHECK(pLoader, return ENull);
    _locker.Enter();
    _pWaitLoaders->Push(pLoader);
    _locker.Leave();
-   return;
+   return ESuccess;
 }
 
 //============================================================
 // <T>弹出一个等待处理的加载器。</T>
 //
+// @return 加载器
 //============================================================
 FLoader* FLoaderConsole::PopWaitLoader(){
    FLoader* pLoader = NULL;

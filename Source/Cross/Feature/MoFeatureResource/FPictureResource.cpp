@@ -27,7 +27,7 @@ FPictureResource::~FPictureResource(){
 //============================================================
 TResult FPictureResource::Unserialize(IDataInput* pInput){
    // 读取基本属性
-   FResource::Unserialize(pInput);
+   FResource2d::Unserialize(pInput);
    // 读取资源属性
    _optionPadding = pInput->ReadBool();
    _optionAlpha = pInput->ReadBool();

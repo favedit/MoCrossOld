@@ -149,7 +149,7 @@ public:
    MO_ABSTRACT FAssetStream* OpenAssetStreamFormat(TCharC* pFormat, ...);
    MO_ABSTRACT TResult CloseAssetStream(FAssetStream* pAssetStream);
 public:
-   MO_ABSTRACT TResult OpenData(FBytes* pData, TCharC* pName);
+   MO_ABSTRACT TResult OpenData(FByteStream* pData, TCharC* pName);
 public:
    MO_ABSTRACT TResult Setup();
 };

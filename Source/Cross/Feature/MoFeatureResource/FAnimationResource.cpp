@@ -70,7 +70,7 @@ TInt FAnimationResource::CalculateFrameIndex(TInt span){
 //============================================================
 TResult FAnimationResource::Unserialize(IDataInput* pInput){
    // 读取基本属性
-   FResource::Unserialize(pInput);
+   FResource2d::Unserialize(pInput);
    // 读取资源属性
    _size.Unserialize16(pInput);
    _baryCenter.Unserialize16(pInput);

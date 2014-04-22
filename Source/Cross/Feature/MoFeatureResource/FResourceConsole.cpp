@@ -22,7 +22,7 @@ FResourceConsole::~FResourceConsole(){
 // @param typeCd 类型
 // @return 资源对象
 //============================================================
-FResource* FResourceConsole::CreateResource(TResourceType typeCd){
+FResource2d* FResourceConsole::CreateResource(TResourceType typeCd){
    switch(typeCd){
       case EResourceType_Picture:
          return MO_CREATE(FPictureResource);
@@ -50,9 +50,9 @@ void FResourceConsole::Shutdown(){
 // @param resourceId 资源编号
 // @return 资源对象
 //============================================================
-FResource* FResourceConsole::Find(TResourceId resourceId){
+FResource2d* FResourceConsole::Find(TResourceId resourceId){
    // 查找资源
-   FResource* pResource = _pResources->Find(resourceId);
+   FResource2d* pResource = _pResources->Find(resourceId);
    if(pResource != NULL){
       return pResource;
    }

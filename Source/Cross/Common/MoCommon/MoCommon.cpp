@@ -52,12 +52,20 @@ void MoInitialize(){
 #ifdef _MO_LINUX
    xmlInitParser();
 #endif // _MO_LINUX
+   //............................................................
+   // 启动监视器线程
+   RMonitorManager::Create();
+   RMonitorManager::Instance().Startup();
 }
 
 //============================================================
 // <T>释放运行库。</T>
 //============================================================
 void MoRelease(){
+   // 关闭监视器线程
+   RMonitorManager::Instance().Shutdown();
+   RMonitorManager::Destroy();
+   //............................................................
    // 关闭网络
    RNetSocket::Cleanup();
    // 关闭日志

@@ -15,69 +15,42 @@ class FLoaderWorker;
 //============================================================
 // <T>加载器。</T>
 //============================================================
-class MO_FR_DECLARE FLoader : public FObject{
+class MO_FR_DECLARE FLoader : public FInstance
+{
+   MO_CLASS_DECLARE_INHERITS(FLoader, FInstance);
 public:
    FLoader();
    MO_ABSTRACT ~FLoader();
 public:
-   MO_ABSTRACT TBool Process();
+   MO_ABSTRACT TResult Process();
 };
 //------------------------------------------------------------
 typedef MO_FR_DECLARE FList<FLoader*> FLoaderList;
 
 //============================================================
-// <T>文件加载器。</T>
+// <T>加载器监视器。</T>
 //============================================================
-class MO_FR_DECLARE FFileLoader : public FLoader{
-protected:
-   TInt _sourceId;
-   FByteFile* _pByteFile;
+class MO_FR_DECLARE FLoaderMonitor : public FMonitor
+{
+   MO_CLASS_DECLARE_INHERITS(FLoaderMonitor, FMonitor);
 public:
-   FFileLoader();
-   MO_ABSTRACT ~FFileLoader();
+   FLoaderMonitor();
+   MO_ABSTRACT ~FLoaderMonitor();
 public:
-   //------------------------------------------------------------
-   // <T>取得资源编号。</T>
-   MO_INLINE TInt SourceId(){
-      return _sourceId;
-   }
-   //------------------------------------------------------------
-   // <T>设置资源编号。</T>
-   MO_INLINE void SetSourceId(TInt sourceId){
-      _sourceId = sourceId;
-   }
-   //------------------------------------------------------------
-   // <T>取得加载数据。</T>
-   MO_INLINE FByteStream* LoadData(){
-      return _pByteFile;
-   }
-   ////------------------------------------------------------------
-   //// <T>加载文件。</T>
-   //MO_INLINE( TBool LoadFile(TChar* pFileName) ){
-   //   return _pByteFile->LoadFile(pFileName);
-   //}
-public:
-   TBool LoadFile();
+   MO_OVERRIDE TResult Process();
 };
-
-//============================================================
-// <T>加载器工作器。</T>
-//============================================================
-class MO_FR_DECLARE FLoaderWorker : public FWorker{
-public:
-   FLoaderWorker();
-   MO_ABSTRACT ~FLoaderWorker();
-public:
-   MO_OVERRIDE TResult OnProcess();
-};
+//------------------------------------------------------------
+typedef MO_FR_DECLARE GPtr<FLoaderMonitor> GLoaderMonitorPtr;
 
 //============================================================
 // <T>加载器控制台。</T>
 //============================================================
-class MO_FR_DECLARE FLoaderConsole : public FConsole{
+class MO_FR_DECLARE FLoaderConsole : public FConsole
+{
+   MO_CLASS_DECLARE_INHERITS(FLoaderConsole, FConsole);
 protected:
    TThreadLocker _locker;
-   FLoaderWorker* _pWorker;
+   GLoaderMonitorPtr _monitor;
    FLoaderList* _pWaitLoaders;
 public:
    FLoaderConsole();
@@ -89,10 +62,10 @@ public:
       return _pWaitLoaders;
    }
 public:
-   void Startup();
-   void Shutdown();
+   TResult Startup();
+   TResult Shutdown();
 public:
-   void PushWaitLoader(FLoader* pLoader);
+   TResult PushWaitLoader(FLoader* pLoader);
    FLoader* PopWaitLoader();
 };
 

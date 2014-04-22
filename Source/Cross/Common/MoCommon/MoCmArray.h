@@ -951,6 +951,85 @@ typedef MO_CM_DECLARE MChar8s MChars;
 #endif // _UNICODE
 
 //============================================================
+// <T>变长堆数组。</T>
+//
+// @tool
+// @type T 数据类型
+// @history 091225 MAOCY 创建
+//============================================================
+template <typename T>
+class MArrayData : public MArray<T>{
+public:
+   //------------------------------------------------------------
+   // <T>构造变长数组。</T>
+   MArrayData(){
+   }
+   //------------------------------------------------------------
+   // <T>析构变长数组。</T>
+   MO_ABSTRACT ~MArrayData(){
+      MO_FREE(this->_pMemory);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>将当前内容设置为指定数据指针。</T>
+   MO_INLINE void operator=(const TPtrC<T>& ptr){
+      Assign(ptr.MemoryC(), ptr.Length());
+   }
+   //------------------------------------------------------------
+   // <T>将当前内容设置为指定数据数组。</T>
+   MO_INLINE void operator=(const MArray<T>& values){
+      Assign(values.MemoryC(), values.Length());
+   }
+   //------------------------------------------------------------
+   // <T>将当前内容设置为指定数据数组。</T>
+   MO_INLINE void operator=(const MArrayData<T>& values){
+      Assign(values.MemoryC(), values.Length());
+   }
+protected:
+   //------------------------------------------------------------
+   // <T>调整内存大小。</T>
+   MO_OVERRIDE void InnerResize(TInt size, TBool copy, TBool extends, TBool force){
+      // 释放内存
+      if(size == 0){
+         this->_capacity = 0;
+         MO_FREE(this->_pMemory);
+         return;
+      }
+      // 检查大小
+      if(!force){
+         if(size <= this->_capacity){
+            return;
+         }
+      }
+      // 当内存不足时，重新计算内存容量
+      TInt capacity = size;
+      if(extends){
+         capacity = RTypes<T>::CalculateTypeCapacity(this->_capacity, size);
+      }
+      // 如果收集不成功，则不进行复制数据处理
+      T* pAlloc = MO_TYPES_ALLOC(T, capacity);
+      MO_ASSERT(pAlloc);
+      RTypes<T>::Clear(pAlloc, capacity);
+      // 如果存在以前内存
+      if(NULL != this->_pMemory){
+         // 如果是缩小内存，则检查长度
+         if(this->_length > capacity){
+            this->_length = capacity;
+         }
+         // 复制有效数据
+         if(copy && (this->_length > 0)){
+            MO_LIB_TYPES_COPY(T, pAlloc, capacity, this->_pMemory, this->_length);
+         }
+         // 释放以前内存
+         MO_FREE(this->_pMemory);
+      }
+      // 设置新的内存
+      this->_pMemory = pAlloc;
+      this->_capacity = capacity;
+   }
+};
+
+//============================================================
 // <T>变长栈数组。</T>
 //
 // @tool

@@ -1,6 +1,3 @@
-#ifdef _MO_LINUX
-#include <unistd.h>
-#endif
 #include "MoCmMonitor.h"
 
 MO_NAMESPACE_BEGIN
@@ -8,8 +5,13 @@ MO_NAMESPACE_BEGIN
 //============================================================
 // <T>构造监视器线程。</T>
 //============================================================
-FMonitorThread::FMonitorThread(FMonitorMachine* pMachine){
-   _pMachine = pMachine;
+FMonitorThread::FMonitorThread(){
+}
+
+//============================================================
+// <T>析构监视器线程。</T>
+//============================================================
+FMonitorThread::~FMonitorThread(){
 }
 
 //============================================================
@@ -19,11 +21,11 @@ FMonitorThread::FMonitorThread(FMonitorMachine* pMachine){
 //============================================================
 TResult FMonitorThread::Process(){
    // 获得属性
-   TTimeSpan interval = _pMachine->Interval();
+   TTimeSpan interval = _machine->Interval();
    // 循环处理
    while(!IsStop()){
       // 处理内容
-      _pMachine->Process();
+      _machine->Process();
       // 休眠
       MO_LIB_SLEEP(interval);
    }

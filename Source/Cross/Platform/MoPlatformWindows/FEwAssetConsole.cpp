@@ -100,7 +100,7 @@ TResult FEwAssetConsole::OpenAssetString(MString* pSource, TCharC* pName){
 // @param pName 名称
 // @return 资源流
 //============================================================
-TResult FEwAssetConsole::OpenData(FBytes* pData, TCharC* pName){
+TResult FEwAssetConsole::OpenData(FByteStream* pData, TCharC* pName){
    // 检查参数
    MO_CHECK(pData, return ENull);
    MO_CHECK(pName, return ENull);

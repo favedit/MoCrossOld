@@ -1,27 +1,28 @@
-#include "MoFrLoader.h"
+#include "MoFrContent.h"
 
 MO_NAMESPACE_BEGIN
 
+MO_CLASS_IMPLEMENT_INHERITS(FContentLoader, FLoader);
+
 //============================================================
-// <T>æ„é€ æ–‡ä»¶åŠ è½½å™¨ã€‚</T>
+// <T>¹¹ÔìÄÚÈİ¼ÓÔØÆ÷¡£</T>
 //============================================================
-FFileLoader::FFileLoader(){
-   _sourceId = 0;
-   _pByteFile = MO_CREATE(FByteFile);
+FContentLoader::FContentLoader(){
 }
 
 //============================================================
-// <T>ææ„æ–‡ä»¶åŠ è½½å™¨ã€‚</T>
+// <T>Îö¹¹ÄÚÈİ¼ÓÔØÆ÷¡£</T>
 //============================================================
-FFileLoader::~FFileLoader(){
-   MO_DELETE(_pByteFile);
+FContentLoader::~FContentLoader(){
 }
 
 //============================================================
-// <T>åŠ è½½æ–‡ä»¶ã€‚</T>
+// <T>Êı¾İ´¦Àí¡£</T>
+//
+// @return ´¦Àí½á¹û
 //============================================================
-TBool FFileLoader::LoadFile(){
-   return ETrue;
+TResult FContentLoader::Process(){
+   return ESuccess;
 }
 
 MO_NAMESPACE_END

@@ -1,27 +1,25 @@
-#include "MoFrLoader.h"
+#include "MoFrContent.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FLoader, FInstance);
+MO_CLASS_IMPLEMENT_INHERITS(FContentConsole, FLoader);
 
 //============================================================
-// <T>æ„é€ åŠ è½½å™¨ã€‚</T>
+// <T>¹¹ÔìÄÚÈİ¿ØÖÆÌ¨¡£</T>
 //============================================================
-FLoader::FLoader(){
+FContentConsole::FContentConsole(){
 }
 
 //============================================================
-// <T>ææ„åŠ è½½å™¨ã€‚</T>
+// <T>Îö¹¹ÄÚÈİ¿ØÖÆÌ¨¡£</T>
 //============================================================
-FLoader::~FLoader(){
+FContentConsole::~FContentConsole(){
 }
 
 //============================================================
-// <T>æ•°æ®å¤„ç†ã€‚</T>
-//
-// @return å¤„ç†ç»“æœ
+// <T>¼ÓÔØÄÚÈİ¡£</T>
 //============================================================
-TResult FLoader::Process(){
+TResult FContentConsole::Load(FContent* pContent){
    return ESuccess;
 }
 

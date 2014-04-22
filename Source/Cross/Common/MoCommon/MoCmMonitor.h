@@ -69,8 +69,10 @@ public:
 // @history 100324 MAOCY 创建
 //============================================================
 class MO_CM_DECLARE FMonitor :
-      public FObject,
-      public IMonitor{
+      public FInstance,
+      public IMonitor
+{
+   MO_CLASS_ABSTRACT_DECLARE_INHERITS(FMonitor, FInstance);
 protected:
    TFsName _name;
    TBool _lock;
@@ -173,7 +175,9 @@ public:
 //============================================================
 // <T>内存陷阱块定义。</T>
 //============================================================
-class MO_CM_DECLARE FMonitorMachine : public FObject{
+class MO_CM_DECLARE FMonitorMachine : public FInstance
+{
+   MO_CLASS_DECLARE_INHERITS(FMonitorMachine, FInstance);
 protected:
    TTimeSpan _interval;
    TTimeTick _trackTick;
@@ -215,22 +219,36 @@ public:
 public:
    TBool LoadConfig(FXmlNode* pConfig);
 public:
-   void Register(IMonitor* pMonitor);
-   void Unregister(IMonitor* pMonitor);
+   TResult Register(IMonitor* pMonitor);
+   TResult Unregister(IMonitor* pMonitor);
 public:
-   void Startup();
-   void Execute();
-   void Process();
+   TResult Startup();
+   TResult Execute();
+   TResult Process();
 };
+//------------------------------------------------------------
+typedef MO_CM_DECLARE GPtr<FMonitorMachine> GMonitorMachinePtr;
 
 //============================================================
 // <T>监视器线程。</T>
 //============================================================
 class MO_CM_DECLARE FMonitorThread : public FThread{
 protected:
-   FMonitorMachine* _pMachine;
+   GMonitorMachinePtr _machine;
 public:
-   FMonitorThread(FMonitorMachine* pMachine);
+   FMonitorThread();
+   MO_ABSTRACT ~FMonitorThread();
+public:
+   //------------------------------------------------------------
+   // <T>获得工作机。</T>
+   MO_INLINE FMonitorMachine* Machine(){
+      return _machine;
+   }
+   //------------------------------------------------------------
+   // <T>设置工作机。</T>
+   MO_INLINE void SetMachine(FMonitorMachine* pMachine){
+      _machine = pMachine;
+   }
 public:
    MO_OVERRIDE TResult Process();
 };
@@ -241,20 +259,34 @@ public:
 class MO_CM_DECLARE FMonitorConsole : public FConsole{
 protected:
    TThreadLocker _locker;
+   GMonitorMachinePtr _machine;
    FMonitorThread* _pThread;
-   FMonitorMachine* _pMachine;
 public:
    FMonitorConsole();
    MO_ABSTRACT ~FMonitorConsole();
 public:
-   FMonitorMachine* Machine();
-   TTimeSpan Interval();
-   void SetInterval(TTimeSpan interval);
-   void Register(IMonitor* pMonitor);
-   void Unregister(IMonitor* pMonitor);
-   void Startup();
-   void Shutdown();
-   void Execute();
+   //------------------------------------------------------------
+   // <T>获得工作机。</T>
+   MO_INLINE FMonitorMachine* Machine(){
+      return _machine;
+   }
+   //------------------------------------------------------------
+   // <T>获得处理间隔。</T>
+   MO_INLINE TTimeSpan Interval(){
+      return _machine->Interval();
+   }
+   //------------------------------------------------------------
+   // <T>设置处理间隔。</T>
+   MO_INLINE void SetInterval(TTimeSpan interval){
+      _machine->SetInterval(interval);
+   }
+public:
+   TResult Register(IMonitor* pMonitor);
+   TResult Unregister(IMonitor* pMonitor);
+public:
+   TResult Startup();
+   TResult Execute();
+   TResult Shutdown();
 };
 //------------------------------------------------------------
 class MO_CM_DECLARE RMonitorManager : public RSingleton<FMonitorConsole>{

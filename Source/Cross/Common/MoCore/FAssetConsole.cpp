@@ -237,7 +237,7 @@ TResult FAssetConsole::CloseAssetStream(FAssetStream* pAssetStream){
 // @param pName 名称
 // @return 处理结果
 //============================================================
-TResult FAssetConsole::OpenData(FBytes* pData, TCharC* pName){
+TResult FAssetConsole::OpenData(FByteStream* pData, TCharC* pName){
    return EUnsupport;
 }
 

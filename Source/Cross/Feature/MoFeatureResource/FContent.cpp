@@ -1,21 +1,21 @@
-#include "MoFrContent2d.h"
+#include "MoFrContent.h"
 
 MO_NAMESPACE_BEGIN
 
+MO_CLASS_IMPLEMENT_INHERITS(FContent, FInstance);
+
 //============================================================
-// <T>构造资源。</T>
+// <T>构造内容。</T>
 //============================================================
-FResource::FResource(){
-   _typeCd = EResourceType_Unknown;
-   _code = 0;
-   _timeout = 0;
+FContent::FContent(){
+   _timeoutSpan = 0;
+   _updateTick = 0;
 }
 
 //============================================================
-// <T>析构资源。</T>
+// <T>析构内容。</T>
 //============================================================
-FResource::~FResource(){
-   MO_DEBUG_INFO(TC("Release resource. (code=%d)"), _code);
+FContent::~FContent(){
 }
 
 //============================================================
@@ -23,7 +23,7 @@ FResource::~FResource(){
 //
 // @return 是否准备好。</T>
 //============================================================
-TBool FResource::TestReady(){
+TBool FContent::TestReady(){
    return EFalse;
 }
 
@@ -32,7 +32,7 @@ TBool FResource::TestReady(){
 //
 // @return 是否有效
 //============================================================
-TBool FResource::TestValid(){
+TBool FContent::TestValid(){
    return ETrue;
 }
 
@@ -42,9 +42,7 @@ TBool FResource::TestValid(){
 // @param pInput 输入流
 // @return 处理结果
 //============================================================
-TResult FResource::Unserialize(IDataInput* pInput){
-   _code = pInput->ReadInt32();
-   _timeout = pInput->ReadInt32();
+TResult FContent::Unserialize(IDataInput* pInput){
    return ESuccess;
 }
 
@@ -53,8 +51,8 @@ TResult FResource::Unserialize(IDataInput* pInput){
 //
 // @return 处理结果
 //============================================================
-TBool FResource::Process(){
-   return ETrue;
+TResult FContent::Process(){
+   return ESuccess;
 }
 
 MO_NAMESPACE_END

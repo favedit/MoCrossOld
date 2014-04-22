@@ -41,14 +41,14 @@ typedef FVector<TInt> FIntVector;
 //============================================================
 // <T>资源。</T>
 //============================================================
-class MO_FR_DECLARE FResource : public FObject{
+class MO_FR_DECLARE FResource2d : public FObject{
 protected:
    TResourceType _typeCd;
    TInt _code;
    TInt _timeout;
 public:
-   FResource();
-   MO_ABSTRACT ~FResource();
+   FResource2d();
+   MO_ABSTRACT ~FResource2d();
 public:
    //------------------------------------------------------------
    // <T>获得类型。</T>
@@ -89,14 +89,14 @@ public:
    MO_ABSTRACT TBool Process();
 };
 //------------------------------------------------------------
-typedef MO_FR_DECLARE FVector<FResource*> FResourceVector;
-typedef MO_FR_DECLARE FList<FResource*> FResourceList;
-typedef MO_FR_DECLARE FSet<TResourceId, FResource*> FResourceSet;
+typedef MO_FR_DECLARE FVector<FResource2d*> FResourceVector;
+typedef MO_FR_DECLARE FList<FResource2d*> FResourceList;
+typedef MO_FR_DECLARE FSet<TResourceId, FResource2d*> FResourceSet;
 
 //============================================================
 // <T>图片资源。</T>
 //============================================================
-class MO_FR_DECLARE FPictureResource : public FResource{
+class MO_FR_DECLARE FPictureResource : public FResource2d{
 protected:
    TBool _optionPadding;
    TBool _optionAlpha;
@@ -238,7 +238,7 @@ typedef MO_FR_DECLARE FVector<FAnimationFrame*> FAnimationFrameVector;
 //============================================================
 // <T>动画段。</T>
 //============================================================
-class MO_FR_DECLARE FAnimationClip : public FResource{
+class MO_FR_DECLARE FAnimationClip : public FResource2d{
 protected:
    FAnimationResource* _pAnimation;
    TBool _optionData;
@@ -355,7 +355,7 @@ typedef MO_FR_DECLARE FVector<FAnimationClip*> FAnimationClipVector;
 //============================================================
 // <T>动画资源。</T>
 //============================================================
-class MO_FR_DECLARE FAnimationResource : public FResource{
+class MO_FR_DECLARE FAnimationResource : public FResource2d{
 protected:
    SIntSize2 _size;
    SIntPoint2 _baryCenter;
@@ -419,7 +419,7 @@ public:
 //============================================================
 // <T>地图资源。</T>
 //============================================================
-class MO_FR_DECLARE FGroundResource : public FResource{
+class MO_FR_DECLARE FGroundResource : public FResource2d{
 protected:
    SIntSize2 _size;
    FByteStream* _pOutputStream;
@@ -557,12 +557,12 @@ public:
       return _pResources;
    }
 public:
-   FResource* CreateResource(TResourceType typeCd);
+   FResource2d* CreateResource(TResourceType typeCd);
 public:
    void Startup();
    void Shutdown();
 public:
-   FResource* Find(TResourceId resourceId);
+   FResource2d* Find(TResourceId resourceId);
 };
 
 //============================================================

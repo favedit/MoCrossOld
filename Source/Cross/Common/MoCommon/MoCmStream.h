@@ -9,6 +9,10 @@
 #include "MoCmLock.h"
 #endif // __MO_CM_LOCK_H__
 
+#ifndef __MO_CM_CLASS_H__
+#include "MoCmClass.h"
+#endif // __MO_CM_CLASS_H__
+
 #ifndef __MO_CM_STRING_H__
 #include "MoCmString.h"
 #endif // __MO_CM_STRING_H__
@@ -364,9 +368,12 @@ public:
 // @history 100526 MAOCY 创建
 //============================================================
 class MO_CM_DECLARE FByteStream :
-      public FBytes,
+      public FInstance,
+      public MArrayData<TByte>,
       public IDataInput,
-      public IDataOutput{
+      public IDataOutput
+{
+   MO_CLASS_DECLARE_INHERITS(FByteStream, FInstance);
 protected:
    TInt _position;
 public:
@@ -422,6 +429,8 @@ public:
 public:
    MO_OVERRIDE void Reset();
 };
+//------------------------------------------------------------
+typedef MO_CM_DECLARE GPtr<FByteStream> GByteStreamPtr;
 
 //============================================================
 // <T>字节数据流。</T>

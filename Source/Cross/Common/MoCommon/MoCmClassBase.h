@@ -611,12 +611,12 @@ public:
    TBool IsInstanceOf(FClass* pClass);
    TBool IsInheritsFrom(TCharC* pClassName);
    TBool IsInheritsFrom(FClass* pClass);
-public:
    FInstance* Convert(FClass* pClass);
+public:
    //------------------------------------------------------------
    // <T>×ª»»ÀàÐÍ¡£</T>
    template <class T>
-   T* Convert(){
+   MO_INLINE T* Convert(){
 #ifdef _MO_DEBUG
       return (T*)Convert(T::Class());
 #else
@@ -710,6 +710,8 @@ public:
 public:
    TCharC* Dump(TChar* pDump, TInt capacity);
 };
+//------------------------------------------------------------
+typedef MO_CM_DECLARE GPtr<FClassInstanceFactory> GClassInstanceFactoryPtr;
    
 MO_NAMESPACE_END
 

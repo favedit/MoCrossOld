@@ -3,52 +3,75 @@
 MO_NAMESPACE_BEGIN
 
 //============================================================
-// <T>获得线程标识。</T>
-//
-// @return 当前实例指针
+// <T>构造监视器控制台。</T>
 //============================================================
 FMonitorConsole::FMonitorConsole(){
-   _pMachine = MO_CREATE(FMonitorMachine);
-   _pThread = NULL;
-
+   MO_CLEAR(_pThread);
 }
+
+//============================================================
+// <T>析构监视器控制台。</T>
 //============================================================
 FMonitorConsole::~FMonitorConsole(){
-   MO_DELETE(_pMachine);
 }
 
 //============================================================
-FMonitorMachine* FMonitorConsole::Machine(){
-   return _pMachine;
+// <T>注册监视器。</T>
+//
+// @param pMonitor 监视器
+//============================================================
+TResult FMonitorConsole::Register(IMonitor* pMonitor){
+   MO_CHECK(pMonitor, return ENull);
+   TResult resultCd = _machine->Register(pMonitor);
+   return resultCd;
 }
 
 //============================================================
-void FMonitorConsole::Register(IMonitor* pMonitor){
-   _pMachine->Register(pMonitor);
+// <T>注销监视器。</T>
+//
+// @param pMonitor 监视器
+//============================================================
+TResult FMonitorConsole::Unregister(IMonitor* pMonitor){
+   MO_CHECK(pMonitor, return ENull);
+   TResult resultCd = _machine->Unregister(pMonitor);
+   return resultCd;
 }
 
 //============================================================
-void FMonitorConsole::Unregister(IMonitor* pMonitor){
-   _pMachine->Unregister(pMonitor);
-}
-
+// <T>启动处理。</T>
+//
+// @return 处理结果
 //============================================================
-void FMonitorConsole::Startup(){
+TResult FMonitorConsole::Startup(){
+   MO_CHECK(!_pThread, return EFailure);
    // 启动处理机
-   _pMachine->Startup();
+   _machine->Startup();
    // 启动监听线程
-   _pThread = MO_CREATE(FMonitorThread, _pMachine);
+   _pThread = MO_CREATE(FMonitorThread);
+   _pThread->SetMachine(_machine);
    _pThread->Start();
+   return ESuccess;
 }
 
 //============================================================
-void FMonitorConsole::Shutdown(){
+// <T>执行处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FMonitorConsole::Execute(){
+   _machine->Execute();
+   return ESuccess;
+}
+
+//============================================================
+// <T>关闭处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FMonitorConsole::Shutdown(){
    MO_ASSERT(_pThread);
    _pThread->Stop();
-}
-
-void FMonitorConsole::Execute(){
-   _pMachine->Execute();
+   return ESuccess;
 }
 
 MO_NAMESPACE_END
