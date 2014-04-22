@@ -159,8 +159,8 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    // 初始化舞台
    MoGameEngineStartup();
    // 选择渲染方式
-   RPipelineManager::Instance().SelectPipeline("simple");
-   //RPipelineManager::Instance().SelectPipeline("shadow");
+   //RPipelineManager::Instance().SelectPipeline("simple");
+   RPipelineManager::Instance().SelectPipeline("shadow");
    // 注册字体
    FEoFont* pFont = FEoFont::InstanceCreate();
    pFont->CharSize().Set(14, 14);
