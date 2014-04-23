@@ -35,7 +35,7 @@ Cross Platform Game Engine
 ### 路线图
 
 - 2014年06月，完成基础代码构架。
-- 2014年12月，提供简单的可视化工具。
+- 2014年12月，提供初步的可视化工具。
 - 2015年06月，完善可视化工具，提供可用的场景编辑器，界面编辑器。
 - 2015年12月，完善引擎，开始追求更高效率和效果。
 
@@ -70,8 +70,22 @@ Cross Platform Game Engine
 - 2014年01月 - 搭建基础库。
 - 2014年02月 - 增加资源管理(MoFeatureResource)，图形管理(MoFeatureGraphics)。 
 - 2014年03月 - 增加引擎基础(Engine)，引擎2D(Engine2D)，引擎3D(Engine3D)部分
-             增加渲染代码生成管理(Shader Template)，完善渲染管道(Render Pipeline)
+               增加渲染代码生成管理(Shader Template)，完善渲染管道(Render Pipeline)
 - 2014年04月 - 增加Mono的C#脚本框架 MoFeatureScript / MoPluginScriptMono
+
+### 进行中
+
+- 内容异步加载技术。 (Content Ansy Load)
+- 内容管道技术，可以自己扩充内容格式和指定加载方式。 (Content Pipeline)
+
+### 计划功能
+
+- Shader HLSL/GLSL 转换和优化。 (借用第三方插件：考虑 hlsl2glslfork/MojoShader)
+- C#端脚本库接口建立。
+- 提供底层Profile机制。
+- 可视化分析工具 MpScout.
+- 可视化界面工具 MpFace.
+- 可视化场景工具 MpScene.
 
 ### 关于
 
