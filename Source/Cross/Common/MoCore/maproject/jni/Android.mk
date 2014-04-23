@@ -56,7 +56,7 @@ LOCAL_SRC_FILES += \
 LOCAL_SRC_FILES += \
    ../../FDevice.cpp \
    ../../FDeviceConsole.cpp \
-
+   ../../FTimerDevice.cpp \
 
 # Logic
 LOCAL_SRC_FILES += \
@@ -79,11 +79,12 @@ LOCAL_SRC_FILES += \
    ../../FTemplateParser.cpp \
    ../../FTemplateSource.cpp \
    ../../FTemplateTag.cpp \
-   ../../FTemplateTagText.cpp \
-   ../../FTemplateTagWrite.cpp \
-   ../../FTemplateTagTrue.cpp \
-   ../../FTemplateTagFalse.cpp \
    ../../FTemplateTagEquals.cpp \
+   ../../FTemplateTagFalse.cpp \
+   ../../FTemplateTagInclude.cpp \
+   ../../FTemplateTagText.cpp \
+   ../../FTemplateTagTrue.cpp \
+   ../../FTemplateTagWrite.cpp \
    \
    ../../FTimerConsole.cpp \
    ../../RTimerManager.cpp \

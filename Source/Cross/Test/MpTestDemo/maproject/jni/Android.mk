@@ -2,20 +2,20 @@ LOCAL_PATH := $(call my-dir)
 
 #------------------------------------------------------------
 include $(CLEAR_VARS)
-LOCAL_MODULE := MoLzma
-LOCAL_SRC_FILES := libMoLzma.a
+LOCAL_MODULE := LibLzma
+LOCAL_SRC_FILES := libLibLzma.a
 include $(PREBUILT_STATIC_LIBRARY)
 
 #------------------------------------------------------------
 include $(CLEAR_VARS)
-LOCAL_MODULE := MoJpeg
-LOCAL_SRC_FILES := libMoJpeg.a
+LOCAL_MODULE := LibJpeg
+LOCAL_SRC_FILES := libLibJpeg.a
 include $(PREBUILT_STATIC_LIBRARY)
 
 #------------------------------------------------------------
 include $(CLEAR_VARS)
-LOCAL_MODULE := MoFreeType
-LOCAL_SRC_FILES := libMoFreeType.a
+LOCAL_MODULE := LibFreeType
+LOCAL_SRC_FILES := libLibFreeType.a
 include $(PREBUILT_STATIC_LIBRARY)
 
 #------------------------------------------------------------
@@ -34,6 +34,12 @@ include $(PREBUILT_STATIC_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_MODULE := MoMath
 LOCAL_SRC_FILES := libMoMath.a
+include $(PREBUILT_STATIC_LIBRARY)
+
+#------------------------------------------------------------
+include $(CLEAR_VARS)
+LOCAL_MODULE := MoFeatureLogger
+LOCAL_SRC_FILES := libMoFeatureLogger.a
 include $(PREBUILT_STATIC_LIBRARY)
 
 #------------------------------------------------------------
@@ -134,18 +140,20 @@ LOCAL_CPP_EXTENSION    := .cpp
 
 #............................................................
 LOCAL_C_INCLUDES       := \
-   $(LOCAL_PATH)/../../../../../Cross/Library/MoJpeg \
-   $(LOCAL_PATH)/../../../../../Cross/Library/MoLzma \
-   $(LOCAL_PATH)/../../../../../Cross/Library/MoFreeType \
+   $(LOCAL_PATH)/../../../../../Library/LibJpeg \
+   $(LOCAL_PATH)/../../../../../Library/LibLzma \
+   $(LOCAL_PATH)/../../../../../Library/LibFreeType \
    $(LOCAL_PATH)/../../../../../Cross/Common/MoCommon \
    $(LOCAL_PATH)/../../../../../Cross/Common/MoCore \
    $(LOCAL_PATH)/../../../../../Cross/Common/MoMath \
+   $(LOCAL_PATH)/../../../../../Cross/Feature/MoFeatureLogger \
    $(LOCAL_PATH)/../../../../../Cross/Feature/MoFeatureInput \
    $(LOCAL_PATH)/../../../../../Cross/Feature/MoFeatureGraphic \
    $(LOCAL_PATH)/../../../../../Cross/Feature/MoFeatureParticle \
    $(LOCAL_PATH)/../../../../../Cross/Feature/MoFeaturePhysics \
    $(LOCAL_PATH)/../../../../../Cross/Feature/MoFeatureResource \
    $(LOCAL_PATH)/../../../../../Cross/Feature/MoFeatureSound \
+   $(LOCAL_PATH)/../../../../../Cross/Feature/MoFeatureScript \
    $(LOCAL_PATH)/../../../../../Cross/Engine/MoEngine \
    $(LOCAL_PATH)/../../../../../Cross/Engine/MoEngine2d \
    $(LOCAL_PATH)/../../../../../Cross/Engine/MoEngine3d \
@@ -174,14 +182,15 @@ LOCAL_SHARED_LIBRARIES := \
    MoFeatureResource \
    MoFeatureSound \
    MoFeatureInput \
+   MoFeatureLogger \
    \
    MoMath \
    MoCore \
    MoCommon \
    \
-   MoFreeType \
-   MoJpeg \
-   MoLzma \
+   LibFreeType \
+   LibJpeg \
+   LibLzma \
 
 #............................................................
 LOCAL_SRC_FILES        := \

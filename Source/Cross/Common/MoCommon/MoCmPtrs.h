@@ -441,7 +441,7 @@ public:
    //------------------------------------------------------------
    // 从当前数组中查找最后出现的索引位置。
    MO_INLINE TInt LastIndexOf(T* pValue) const{
-      for(TInt n = count - 1; n >= 0; n--){
+      for(TInt n = _count - 1; n >= 0; n--){
          GPtr<T>& ptr = _pPtrs[n];
          if(ptr.Get() == pValue){
             return n;

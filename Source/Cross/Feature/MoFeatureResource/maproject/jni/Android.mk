@@ -30,10 +30,18 @@ LOCAL_SRC_FILES += \
 
 # Loader
 LOCAL_SRC_FILES += \
-   ../../FFileLoader.cpp \
    ../../FLoader.cpp \
    ../../FLoaderConsole.cpp \
-   ../../FLoaderWorker.cpp \
+   ../../FLoaderMonitor.cpp \
+
+# Content
+LOCAL_SRC_FILES += \
+   ../../FContent.cpp \
+   ../../FContentConsole.cpp \
+   ../../FContentLoader.cpp \
+   \
+   ../../FContentPipeline.cpp \
+   ../../FContentAssetPipeline.cpp \
 
 # Content2d
 LOCAL_SRC_FILES += \
@@ -42,10 +50,10 @@ LOCAL_SRC_FILES += \
    ../../FAnimationResource.cpp \
    ../../FGroundResource.cpp \
    ../../FPictureResource.cpp \
-   ../../FResource.cpp \
+   ../../FResource2d.cpp \
    ../../FResourceConsole.cpp \
    ../../FResourceGroup.cpp \
-   ../../FResourceLoader.cpp \
+   ../../FResourceLoader2.cpp \
    ../../FResourceWorker.cpp \
 
 # Content3d

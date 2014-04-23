@@ -6,7 +6,7 @@ MO_NAMESPACE_BEGIN
 // <T>构造可见线程。</T>
 //============================================================
 FVisualThread::FVisualThread(){
-   _interval = 10000;
+   _interval = 100000;
    MO_CLEAR(_pConsole);
 }
 

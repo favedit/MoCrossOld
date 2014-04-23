@@ -27,6 +27,7 @@ LOCAL_C_INCLUDES       := \
    $(LOCAL_PATH)/../../../../Feature/MoFeaturePhysics \
    $(LOCAL_PATH)/../../../../Feature/MoFeatureResource \
    $(LOCAL_PATH)/../../../../Feature/MoFeatureSound \
+   $(LOCAL_PATH)/../../../../Feature/MoFeatureScript \
 
 #............................................................
 LOCAL_SRC_FILES :=
@@ -42,6 +43,9 @@ LOCAL_SRC_FILES += \
 
 # Platform
 LOCAL_SRC_FILES += \
+   ../../FBitmap.cpp \
+   ../../FBitmapCanvas.cpp \
+   \
    ../../FBitmapBlockIndexDecoder.cpp \
    ../../FBitmapDecoder.cpp \
    ../../FBitmapIndexDecoder.cpp \
@@ -52,24 +56,20 @@ LOCAL_SRC_FILES += \
    ../../FDecoderWorker.cpp \
    \
    ../../FScreenDevice.cpp \
-   ../../FTimerDevice.cpp \
    \
-   ../../FBitmap.cpp \
-   ../../FBitmapCanvas.cpp \
    ../../FComponent.cpp \
    ../../FComponentProperties.cpp \
    ../../FComponentProperty.cpp \
    ../../FDisplay.cpp \
    ../../FDisplayLayer.cpp \
-   ../../FDisplayPool.cpp \
    ../../FDrawable.cpp \
-   ../../FFocusConsole.cpp \
-   ../../FFocusTester.cpp \
-   ../../FSpatial.cpp \
+   ../../FScriptable.cpp \
    ../../FStage.cpp \
    ../../FStageConsole.cpp \
-   ../../FStageFrame.cpp \
-   ../../FTailController.cpp \
+   ../../FStageLayer.cpp \
+   \
+   ../../FFocusConsole.cpp \
+   ../../FFocusTester.cpp \
    \
    ../../FNetConsole.cpp \
    ../../FNetReceiveThread.cpp \

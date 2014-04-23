@@ -3,14 +3,15 @@ SET MO_HOME=%MO_ROOT%\Cross\Test\MpTestDemo\maproject
 DEL /S /Q %MO_HOME%\libs
 DEL /S /Q %MO_HOME%\obj
 
-COPY /Y %MO_ROOT%\Cross\Library\MoLzma\maproject\obj\local\armeabi\libMoLzma.a                            %MO_HOME%\jni\libMoLzma.a
-COPY /Y %MO_ROOT%\Cross\Library\MoJpeg\maproject\obj\local\armeabi\libMoJpeg.a                            %MO_HOME%\jni\libMoJpeg.a
-COPY /Y %MO_ROOT%\Cross\Library\MoFreeType\maproject\obj\local\armeabi\libMoFreeType.a                    %MO_HOME%\jni\libMoFreeType.a
+COPY /Y %MO_ROOT%\Library\LibLzma\maproject\obj\local\armeabi\libLibLzma.a                                %MO_HOME%\jni\libLibLzma.a
+COPY /Y %MO_ROOT%\Library\LibJpeg\maproject\obj\local\armeabi\libLibJpeg.a                                %MO_HOME%\jni\libLibJpeg.a
+COPY /Y %MO_ROOT%\Library\LibFreeType\maproject\obj\local\armeabi\libLibFreeType.a                        %MO_HOME%\jni\libLibFreeType.a
 
 COPY /Y %MO_ROOT%\Cross\Common\MoCommon\maproject\obj\local\armeabi\libMoCommon.a                         %MO_HOME%\jni\libMoCommon.a
 COPY /Y %MO_ROOT%\Cross\Common\MoCore\maproject\obj\local\armeabi\libMoCore.a                             %MO_HOME%\jni\libMoCore.a
 COPY /Y %MO_ROOT%\Cross\Common\MoMath\maproject\obj\local\armeabi\libMoMath.a                             %MO_HOME%\jni\libMoMath.a
 
+COPY /Y %MO_ROOT%\Cross\Feature\MoFeatureLogger\maproject\obj\local\armeabi\libMoFeatureLogger.a          %MO_HOME%\jni\libMoFeatureLogger.a
 COPY /Y %MO_ROOT%\Cross\Feature\MoFeatureInput\maproject\obj\local\armeabi\libMoFeatureInput.a            %MO_HOME%\jni\libMoFeatureInput.a
 COPY /Y %MO_ROOT%\Cross\Feature\MoFeatureGraphic\maproject\obj\local\armeabi\libMoFeatureGraphic.a        %MO_HOME%\jni\libMoFeatureGraphic.a
 COPY /Y %MO_ROOT%\Cross\Feature\MoFeatureParticle\maproject\obj\local\armeabi\libMoFeatureParticle.a      %MO_HOME%\jni\libMoFeatureParticle.a
@@ -35,5 +36,5 @@ SET NDK_TOOLCHAIN=arm-linux-androideabi-4.8
 
 call "%NDK_ROOT%\ndk-build" NDK_DEBUG=0
 
-COPY /Y %MO_HOME%\libs\armeabi\libMpCoolLight.so %MO_ROOT%\Android\MpTestDemo\libs\armeabi\libMpCoolLight.so
-COPY /Y %MO_HOME%\libs\armeabi\libMpCoolLight.so %MO_ROOT%\Android\MpTestGLES3\libs\armeabi\libMpCoolLight.so
+ECHO COPY /Y %MO_HOME%\libs\armeabi\libMpCoolLight.so %MO_ROOT%\..\Demo\Android\MpTestDemo\libs\armeabi\libMpCoolLight.so
+COPY /Y %MO_HOME%\libs\armeabi\libMpCoolLight.so %MO_ROOT%\..\Demo\Android\MpTestDemo\libs\armeabi\libMpCoolLight.so

@@ -26,6 +26,8 @@ LOCAL_SRC_FILES :=
 
 # Core
 LOCAL_SRC_FILES += \
+   ../../FTailController.cpp \
+   \
    ../../TPhysics.cpp \
    ../../TPhysicsCircleTrack.cpp \
    ../../TPhysicsJump.cpp \

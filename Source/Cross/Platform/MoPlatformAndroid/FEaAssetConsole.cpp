@@ -34,6 +34,7 @@ void FEaAssetConsole::Link(JNIEnv* pEnvironment, jobject assetManager){
 //============================================================
 TResult FEaAssetConsole::Setup(){
    RegisterSpace("asset", "Asset");
+   RegisterSpace("script", "Script");
    return ESuccess;
 }
 
@@ -139,7 +140,7 @@ TResult FEaAssetConsole::OpenAssetString(MString* pSource, TCharC* pName){
 // @param pFileName 文件名称
 // @return 处理结果
 //============================================================
-TResult FEaAssetConsole::OpenData(FBytes* pData, TCharC* pName){
+TResult FEaAssetConsole::OpenData(FByteStream* pData, TCharC* pName){
    MO_CHECK(pData, return ENull);
    MO_CHECK(pName, return ENull);
    // 获得名称

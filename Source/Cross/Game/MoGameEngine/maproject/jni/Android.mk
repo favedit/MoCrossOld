@@ -27,6 +27,7 @@ LOCAL_C_INCLUDES       := \
    $(LOCAL_PATH)/../../../../Feature/MoFeaturePhysics \
    $(LOCAL_PATH)/../../../../Feature/MoFeatureResource \
    $(LOCAL_PATH)/../../../../Feature/MoFeatureSound \
+   $(LOCAL_PATH)/../../../../Feature/MoFeatureScript \
    $(LOCAL_PATH)/../../../../Engine/MoEngine \
    $(LOCAL_PATH)/../../../../Engine/MoEngine2d \
    $(LOCAL_PATH)/../../../../Engine/MoEngine3d \

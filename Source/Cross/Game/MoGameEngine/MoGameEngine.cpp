@@ -32,7 +32,7 @@ void MoGameEngineInitialize(){
    MoPlatformWindowsInitialize();
 #endif // _MO_WINDOWS
 #ifdef _MO_ANDROID
-   MoEngineAndroidInitialize();
+   MoPlatformAndroidInitialize();
 #endif // _MO_ANDROID
    //............................................................
    RGameSceneManager::Create();
@@ -74,7 +74,7 @@ void MoGameEngineRelease(){
    MoPlatformWindowsRelease();
 #endif // _MO_WINDOWS
 #ifdef _MO_ANDROID
-   MoEngineAndroidRelease();
+   MoPlatformAndroidRelease();
 #endif // _MO_ANDROID
    MoEngineOpenGLES2Release();
    MoEngineFaceRelease();

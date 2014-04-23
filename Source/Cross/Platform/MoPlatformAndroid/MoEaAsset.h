@@ -91,7 +91,7 @@ public:
    MO_OVERRIDE FAssetDirectory* OpenDirectory(TCharC* pDirectory);
    MO_OVERRIDE FAsset* OpenAsset(TCharC* pName);
    TResult OpenAssetString(MString* pSource, TCharC* pName);
-   MO_OVERRIDE TResult OpenData(FBytes* pData, TCharC* pName);
+   MO_OVERRIDE TResult OpenData(FByteStream* pData, TCharC* pName);
 };
 
 MO_NAMESPACE_END

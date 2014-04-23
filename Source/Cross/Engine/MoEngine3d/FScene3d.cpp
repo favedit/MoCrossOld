@@ -127,6 +127,25 @@ TResult FScene3d::LoadDisplayResource(FDisplayLayer* pLayer, FRs3dSceneDisplay* 
 }
 
 //============================================================
+// <T>加载天空资源。</T>
+//
+// @param pResource 资源对象
+// @return 处理结果
+//============================================================
+TResult FScene3d::LoadSkyResource(FRs3dSceneSky* pResource){
+   MO_CHECK(pResource, return ENull);
+   GRs3dSceneDisplayPtrs::TIteratorC displayIterator = pResource->Displays().IteratorC();
+   while(displayIterator.Next()){
+      FRs3dSceneDisplay* pDisplay = *displayIterator;
+      TResult resultCd = LoadDisplayResource(_sceneFrame->MapLayer(), pDisplay);
+      if(resultCd != ESuccess){
+         return resultCd;
+      }
+   }
+   return ESuccess;
+}
+
+//============================================================
 // <T>加载地图资源。</T>
 //
 // @param pResource 资源对象
@@ -179,6 +198,9 @@ TResult FScene3d::LoadResource(FRs3dScene* pResource){
    // 加载区域资源
    FRs3dSceneRegion* pRegionResource = pResource->Region();
    LoadRegionResource(pRegionResource);
+   // 加载天空资源
+   FRs3dSceneSky* pSkyResource = pResource->Sky();
+   LoadSkyResource(pSkyResource);
    // 加载地图资源
    FRs3dSceneMap* pMapResource = pResource->Map();
    LoadMapResource(pMapResource);

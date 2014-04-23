@@ -7,7 +7,7 @@ MO_NAMESPACE_BEGIN
 //============================================================
 FProcessorThread::FProcessorThread(){
    _name = "processor.thread";
-   _interval = 1000;
+   _interval = 10000;
    _looperLimit = 16;
    _pLooper = MO_CREATE(FProcessorLooper);
 }

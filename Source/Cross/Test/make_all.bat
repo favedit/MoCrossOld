@@ -46,4 +46,3 @@ CALL %MO_ROOT%\Cross\Test\MpTest003\maproject\make.bat
 
 CALL %MO_ROOT%\Cross\Engine\MoEngineOpenGL\maproject\make.bat
 CALL %MO_ROOT%\Cross\Test\MpTestDemo\maproject\make.bat
-

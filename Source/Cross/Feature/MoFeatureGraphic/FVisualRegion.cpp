@@ -130,51 +130,51 @@ TResult FVisualRegion::Process(){
    if(visualCount == 0){
       return EContinue;
    }
-   //............................................................
-   // 清空材质
-   _pAlphaMaterial->Reset();
-   TInt materialCount = _pMaterials->Count();
-   for(TInt n = 0 ; n < materialCount; n++){
-      FVisualMaterial* pVisualMaterial = _pMaterials->Get(n);
-      pVisualMaterial->Reset();
-   }
-   // 分配材质
-   for(TInt n = 0; n < visualCount; n++){
-      FVisualNode* pVisual = _pVisuals->Get(n);
-      FRenderable* pRenderable =  pVisual->Renderable();
-      if(pRenderable->ActiveEffect() == NULL){
-         continue;
-      }
-      FMaterial* pMaterial = pRenderable->MaterialReference();
-      MO_CHECK(pMaterial, continue);
-      if(pMaterial->OptionAlpha()){
-         _pAlphaMaterial->Push(pVisual);
-      }else{
-         FVisualMaterial* pVisualMaterial = FindMaterial(pMaterial);
-         if(pVisualMaterial == NULL){
-            pVisualMaterial = FVisualMaterial::InstanceCreate();
-            pVisualMaterial->SetMaterial(pMaterial);
-            _pMaterials->Push(pVisualMaterial);
-         }
-         pVisualMaterial->Push(pVisual);
-      }
-   }
-   //............................................................
-   // 材质排序
-   _pMaterials->SortValue(&VisualRegionMaterialComparer);
-   // 材质内处理
-   _pVisuals->Clear();
-   for(TInt n = 0 ; n < materialCount; n++){
-      FVisualMaterial* pVisualMaterial = _pMaterials->Get(n);
-      if(!pVisualMaterial->Visuals()->IsEmpty()){
-         pVisualMaterial->Process();
-         _pVisuals->AppendPointer(pVisualMaterial->Visuals());
-      }
-   }
-   if(!_pAlphaMaterial->Visuals()->IsEmpty()){
-      _pAlphaMaterial->Process();
-      _pVisuals->AppendPointer(_pAlphaMaterial->Visuals());
-   }
+   ////............................................................
+   //// 清空材质
+   //_pAlphaMaterial->Reset();
+   //TInt materialCount = _pMaterials->Count();
+   //for(TInt n = 0 ; n < materialCount; n++){
+   //   FVisualMaterial* pVisualMaterial = _pMaterials->Get(n);
+   //   pVisualMaterial->Reset();
+   //}
+   //// 分配材质
+   //for(TInt n = 0; n < visualCount; n++){
+   //   FVisualNode* pVisual = _pVisuals->Get(n);
+   //   FRenderable* pRenderable =  pVisual->Renderable();
+   //   if(pRenderable->ActiveEffect() == NULL){
+   //      continue;
+   //   }
+   //   FMaterial* pMaterial = pRenderable->MaterialReference();
+   //   MO_CHECK(pMaterial, continue);
+   //   if(pMaterial->OptionAlpha()){
+   //      _pAlphaMaterial->Push(pVisual);
+   //   }else{
+   //      FVisualMaterial* pVisualMaterial = FindMaterial(pMaterial);
+   //      if(pVisualMaterial == NULL){
+   //         pVisualMaterial = FVisualMaterial::InstanceCreate();
+   //         pVisualMaterial->SetMaterial(pMaterial);
+   //         _pMaterials->Push(pVisualMaterial);
+   //      }
+   //      pVisualMaterial->Push(pVisual);
+   //   }
+   //}
+   ////............................................................
+   //// 材质排序
+   //_pMaterials->SortValue(&VisualRegionMaterialComparer);
+   //// 材质内处理
+   //_pVisuals->Clear();
+   //for(TInt n = 0 ; n < materialCount; n++){
+   //   FVisualMaterial* pVisualMaterial = _pMaterials->Get(n);
+   //   if(!pVisualMaterial->Visuals()->IsEmpty()){
+   //      pVisualMaterial->Process();
+   //      _pVisuals->AppendPointer(pVisualMaterial->Visuals());
+   //   }
+   //}
+   //if(!_pAlphaMaterial->Visuals()->IsEmpty()){
+   //   _pAlphaMaterial->Process();
+   //   _pVisuals->AppendPointer(_pAlphaMaterial->Visuals());
+   //}
    //............................................................
    // 输出结果
    _outputLocker.Enter();

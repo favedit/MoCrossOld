@@ -26,6 +26,7 @@ LOCAL_C_INCLUDES       := \
    $(LOCAL_PATH)/../../../../Feature/MoFeaturePhysics \
    $(LOCAL_PATH)/../../../../Feature/MoFeatureResource \
    $(LOCAL_PATH)/../../../../Feature/MoFeatureSound \
+   $(LOCAL_PATH)/../../../../Feature/MoFeatureScript \
    $(LOCAL_PATH)/../../../../Engine/MoEngine \
    $(LOCAL_PATH)/../../../../Engine/MoEngine2d \
    $(LOCAL_PATH)/../../../../Engine/MoEngine3d \
@@ -39,8 +40,10 @@ LOCAL_SRC_FILES += \
    \
    ../../FShadowColorAutomaticEffect.cpp \
    ../../FShadowColorPass.cpp \
+   ../../FShadowColorSkeletonEffect.cpp \
    ../../FShadowDepthAutomaticEffect.cpp \
    ../../FShadowDepthPass.cpp \
+   ../../FShadowDepthSkeletonEffect.cpp \
    \
    ../../FSampleColorAutomaticEffect.cpp \
    ../../FSampleColorSkeletonEffect.cpp \
@@ -52,11 +55,13 @@ LOCAL_SRC_FILES += \
    ../../FRenderPipelinePass.cpp \
    ../../FShadowPipeline.cpp \
    ../../FSimplePipeline.cpp \
-   \
+
+# Render
+LOCAL_SRC_FILES += \
    ../../FAutomaticEffect.cpp \
+   ../../FBlurEffect.cpp \
    ../../FColorAutomaticEffect.cpp \
    ../../FDepthAutomaticEffect.cpp \
-   ../../FBlurEffect.cpp \
    ../../TEffectAttributeDescriptors.cpp \
    ../../TEffectConstDescriptors.cpp \
    ../../TEffectSamplerDescriptors.cpp \

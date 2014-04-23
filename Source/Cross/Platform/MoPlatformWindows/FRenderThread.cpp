@@ -6,7 +6,7 @@ MO_NAMESPACE_BEGIN
 // <T>构造渲染线程。</T>
 //============================================================
 FRenderThread::FRenderThread(){
-   _interval = 1;
+   _interval = 10000;
    MO_CLEAR(_pWindow);
 }
 

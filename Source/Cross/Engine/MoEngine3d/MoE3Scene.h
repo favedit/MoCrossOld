@@ -162,6 +162,7 @@ public:
    TResult LoadTechniqueResource(FRs3dSceneTechnique* pResource);
    TResult LoadRegionResource(FRs3dSceneRegion* pResource);
    TResult LoadDisplayResource(FDisplayLayer* pLayer, FRs3dSceneDisplay* pResource);
+   TResult LoadSkyResource(FRs3dSceneSky* pResource);
    TResult LoadMapResource(FRs3dSceneMap* pResource);
    TResult LoadSpaceResource(FRs3dSceneSpace* pResource);
    TResult LoadResource(FRs3dScene* pResource);

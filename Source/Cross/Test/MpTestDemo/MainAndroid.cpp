@@ -2,7 +2,7 @@
 #include <MoEngine.h>
 #include <MoEngineFace.h>
 #include <MoEngineRender.h>
-#include <MoEngineAndroid.h>
+#include <MoPlatformAndroid.h>
 #include <MoPlatformOpenGLES2.h>
 #include <MoGameEngine.h>
 #include "MoTestLogic.h"
@@ -113,14 +113,14 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* pJavaVM, void* pReserved){
 //============================================================
 JNIEXPORT void JNICALL Java_mo_android_api_RNativeApi_initialize(JNIEnv * pEnvironment, jobject pObject, jobject assetManager){
    // 初始化处理
-   MoInitialize();
-   MoCoreInitialize();
-   MoFeatureGraphicsInitialize();
-   MoEngineInitialize();
-   MoEngine3dInitialize();
-   MoEngineFaceInitialize();
-   MoEngineOpenGLES2Initialize();
-   MoEngineAndroidInitialize();
+   //MoInitialize();
+   //MoCoreInitialize();
+   //MoFeatureGraphicsInitialize();
+   //MoEngineInitialize();
+   //MoEngine3dInitialize();
+   //MoEngineFaceInitialize();
+   //MoEngineOpenGLES2Initialize();
+   //MoPlatformAndroidInitialize();
    MoGameEngineInitialize();
    //............................................................
    // 设置资源管理器
@@ -177,25 +177,24 @@ JNIEXPORT void JNICALL Java_mo_android_api_RNativeApi_setup(JNIEnv * pEnvironmen
    // 更改画板大小
    //............................................................
    //RTechniqueManager::Instance().Capability().optionInstance = ETrue;
-   RTechniqueManager::Instance().Capability().optionMerge = ETrue;
+   //RTechniqueManager::Instance().Capability().optionMerge = ETrue;
    // 配置设备
    FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
    pRenderDevice->Setup();
-   pRenderDevice->SetBackBuffer(screenSize.width, screenSize.height, 1);
-   // 初始化舞台管理器
-   RStageManager::Create();
-   RStageManager::Instance().Setup();
+   //pRenderDevice->SetBackBuffer(screenSize.width, screenSize.height, 1);
+   // 初始化舞台
+   MoGameEngineStartup();
    //............................................................
    // 初始化舞台
-   MoFeatureGraphicsStartup();
-   MoEngineStartup();
-   MoEngine3dStartup();
-   MoEngineOpenGLES2Startup();
-   MoEngineRenderStartup();
+   //MoFeatureGraphicsStartup();
+   //MoEngineStartup();
+   //MoEngine3dStartup();
+   //MoEngineOpenGLES2Startup();
+   //MoEngineRenderStartup();
    //MoEngineFaceStartup();
    // 选择渲染方式
-   RPipelineManager::Instance().SelectPipeline("simple");
    //RPipelineManager::Instance().SelectPipeline("shadow");
+   RPipelineManager::Instance().SelectPipeline("shadow");
    // 注册字体
    FEoFont* pFont = MO_CREATE(FEoFont);
    pFont->CharSize().Set(14, 14);
@@ -203,7 +202,7 @@ JNIEXPORT void JNICALL Java_mo_android_api_RNativeApi_setup(JNIEnv * pEnvironmen
    //RFontManager::Instance().RegisterFont(pFont);
    //............................................................
    // 打开资源管理器
-   RResource3dManager::Instance().ThemeConsole()->Open("asset:/theme/color.ser");
+   RResource3dManager::Instance().ThemeConsole()->Open("asset:/theme/shadow.ser");
    //............................................................
    // 注册事件
    FMouseDevice* pMouseDevice = RDeviceManager::Instance().Find<FMouseDevice>();
@@ -212,8 +211,8 @@ JNIEXPORT void JNICALL Java_mo_android_api_RNativeApi_setup(JNIEnv * pEnvironmen
    pMouseDevice->ListenersMouseUp().Register(&OnMouseUp);
    //............................................................
    // 激活舞台
-   //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.001");
-   FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.courtyard.scene");
+   FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.001");
+   //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.courtyard.scene");
    pScene->ListenersFrameEnter().Register(&OnEnterFrame);
    RStageManager::Instance().SelectStage(pScene);
    // 开始时钟
@@ -296,13 +295,13 @@ JNIEXPORT void JNICALL Java_mo_android_api_RNativeApi_resume(JNIEnv* pEnvironmen
 JNIEXPORT void JNICALL Java_mo_android_api_RNativeApi_release(JNIEnv * pEnvironment, jobject pObject){
    MO_STATIC_INFO("Native api release.");
    MoGameEngineRelease();
-   MoEngineAndroidRelease();
-   MoEngineOpenGLES2Release();
-   MoEngineFaceRelease();
-   MoEngineRelease();
-   MoFeatureGraphicsRelease();
-   MoCoreRelease();
-   MoRelease();
+   //MoPlatformAndroidRelease();
+   //MoEngineOpenGLES2Release();
+   //MoEngineFaceRelease();
+   //MoEngineRelease();
+   //MoFeatureGraphicsRelease();
+   //MoCoreRelease();
+   //MoRelease();
 }
 
 //============================================================
