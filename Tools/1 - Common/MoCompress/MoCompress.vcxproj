@@ -76,8 +76,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>..\..\Build\Debug_x64\</OutDir>
     <TargetName>$(ProjectName)D</TargetName>
-    <IncludePath>$(ProjectDir)..\..\Library\MoLzma;$(ProjectDir)..\..\Library\MoJpeg;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\..\Build\Debug_x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\..\..\Source\Library\LibLzma;$(ProjectDir)..\..\..\Source\Library\LibJpeg;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\Build\Debug_x64;$(ProjectDir)..\..\Build\Debug_x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\Build\Release_x86\</OutDir>
@@ -100,7 +100,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Link>
-      <AdditionalDependencies>MoLzmaD.lib;MoJpegD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibLzmaD.lib;LibJpegD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <ClCompile>
