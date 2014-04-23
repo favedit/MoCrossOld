@@ -96,7 +96,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_MT_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_AM_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -159,69 +159,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\MoMath.cpp" />
-    <ClCompile Include="..\RGeomUtil.cpp" />
-    <ClCompile Include="..\SDoubleMatrix3d.cpp" />
-    <ClCompile Include="..\SDoubleMatrix4x4.cpp" />
-    <ClCompile Include="..\SDoublePadding.cpp" />
-    <ClCompile Include="..\SDoublePoint2.cpp" />
-    <ClCompile Include="..\SDoublePoint3.cpp" />
-    <ClCompile Include="..\SDoublePoint4.cpp" />
-    <ClCompile Include="..\SDoubleRange.cpp" />
-    <ClCompile Include="..\SDoubleRectangle.cpp" />
-    <ClCompile Include="..\SDoubleSize2.cpp" />
-    <ClCompile Include="..\SDoubleSize3.cpp" />
-    <ClCompile Include="..\SDoubleVector2.cpp" />
-    <ClCompile Include="..\SDoubleVector3.cpp" />
-    <ClCompile Include="..\SDoubleVector4.cpp" />
-    <ClCompile Include="..\SFloat4.cpp" />
-    <ClCompile Include="..\SFloatColor4.cpp" />
-    <ClCompile Include="..\SFloatMatrix3d.cpp" />
-    <ClCompile Include="..\SFloatMatrix4x4.cpp" />
-    <ClCompile Include="..\SFloatOutline3.cpp" />
-    <ClCompile Include="..\SFloatPadding.cpp" />
-    <ClCompile Include="..\SFloatPoint2.cpp" />
-    <ClCompile Include="..\SFloatPoint3.cpp" />
-    <ClCompile Include="..\SFloatPoint4.cpp" />
-    <ClCompile Include="..\SFloatRange.cpp" />
-    <ClCompile Include="..\SFloatRectangle.cpp" />
-    <ClCompile Include="..\SFloatSize2.cpp" />
-    <ClCompile Include="..\SFloatSize3.cpp" />
-    <ClCompile Include="..\SFloatVector2.cpp" />
-    <ClCompile Include="..\SFloatVector3.cpp" />
-    <ClCompile Include="..\SFloatVector4.cpp" />
-    <ClCompile Include="..\SIntPadding.cpp" />
-    <ClCompile Include="..\SIntPoint2.cpp" />
-    <ClCompile Include="..\SIntPoint3.cpp" />
-    <ClCompile Include="..\SIntPoint4.cpp" />
-    <ClCompile Include="..\SIntRange.cpp" />
-    <ClCompile Include="..\SIntRectangle.cpp" />
-    <ClCompile Include="..\SIntSize2.cpp" />
-    <ClCompile Include="..\SIntSize3.cpp" />
-    <ClCompile Include="..\SIntVector2.cpp" />
-    <ClCompile Include="..\SIntVector3.cpp" />
-    <ClCompile Include="..\SIntVector4.cpp" />
-    <ClCompile Include="..\TFsFloatPoint3.cpp" />
-    <ClCompile Include="..\TFsFloatRange.cpp" />
-    <ClCompile Include="..\TFsFloatSize.cpp" />
-    <ClCompile Include="..\TFsFloatVector3.cpp" />
-    <ClCompile Include="..\TFsIntPoint2.cpp" />
-    <ClCompile Include="..\TFsIntPoint3.cpp" />
-    <ClCompile Include="..\TFsIntSize.cpp" />
+    <ClCompile Include="..\MoArchitectureMac.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\MoMtFloat.h" />
-    <ClInclude Include="..\MoMtFormat.h" />
-    <ClInclude Include="..\MoMtGeom.h" />
-    <ClInclude Include="..\MoMath.h" />
-    <ClInclude Include="..\MoMtMatrix.h" />
-    <ClInclude Include="..\MoMtOutline.h" />
-    <ClInclude Include="..\MoMtPoint.h" />
-    <ClInclude Include="..\MoMtPublic.h" />
-    <ClInclude Include="..\MoMtCommon.h" />
-    <ClInclude Include="..\MoMtQuaternion.h" />
-    <ClInclude Include="..\MoMtSize.h" />
-    <ClInclude Include="..\MoMtVector.h" />
+    <ClInclude Include="..\MoArchitectureMac.h" />
+    <ClInclude Include="..\MoAmPublic.h" />
+    <ClInclude Include="..\MoAmCommon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
