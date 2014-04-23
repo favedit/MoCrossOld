@@ -63,6 +63,7 @@ Cross Platform Game Engine
 - 提供 \Source\MoCrossSolution.sln 文件，可以在VS2012下编译通过，可以运行 MpTestDemo 实例。
 - 可以在Android NDK下编译通过，可以在手机上正常运行。
 ![MoCross](/Document/Resource/TestDemo01.jpg)
+![MoCross](/Document/Resource/TestDemo02.jpg)
 
 ### 更新
 
