@@ -1,0 +1,78 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Panel="clr-namespace:MoScout.Panel"
+        xmlns:MoScout="clr-namespace:MoScout"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="MoScout.Console.WConsole"
+        xmlns:local="clr-namespace:MoScout"
+        Title="Engine Scout" Height="800" Width="1280" VerticalAlignment="Top" HorizontalAlignment="Left" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowStyle="None">
+   <Window.Resources>
+      <ResourceDictionary Source="/MoScout;component/Themes/Generic.xaml"/>
+   </Window.Resources>
+   <DockPanel Margin="0" Background="#FF535353" >
+      <Grid DockPanel.Dock="Top">
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="60"/>
+         </Grid.ColumnDefinitions>
+         <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Height="24" VerticalAlignment="Top">
+            <Image VerticalAlignment="Top" Source="/Resources/Application.png" Width="24" Height="24"/>
+            <Menu VerticalAlignment="Top" Background="#FF535353" HorizontalAlignment="Left" Height="24">
+               <MenuItem Header="File" Foreground="White">
+                  <MenuItem Header="Open" HorizontalAlignment="Left" Width="149"/>
+                  <Separator/>
+                  <MenuItem Header="Exit" HorizontalAlignment="Left" Width="149"/>
+               </MenuItem>
+               <MenuItem Header="Edit" Foreground="White"/>
+               <MenuItem Header="View" Foreground="White"/>
+               <MenuItem Header="Search" Foreground="White"/>
+               <MenuItem Header="Window" Foreground="White"/>
+               <MenuItem Header="Help" Foreground="White"/>
+            </Menu>
+            <Border Margin="8,0,0,0"/>
+            <RadioButton Margin="8,0,0,0" Style="{DynamicResource OpStateRadioButtonStyle}">
+               <Image Height="21" Width="21" Source="/Resources/Application.png"/>
+            </RadioButton>
+            <RadioButton Margin="8,0,0,0" Style="{DynamicResource OpStateRadioButtonStyle}">
+               <Image Height="21" Width="21" Source="/MoScout;component/Resources/Application.png"/>
+            </RadioButton>
+            <RadioButton Margin="8,0,0,0" Style="{DynamicResource OpStateRadioButtonStyle}">
+               <Image Height="21" Width="21" Source="/MoScout;component/Resources/Application.png"/>
+            </RadioButton>
+            <RadioButton Margin="8,0,0,0" Style="{DynamicResource OpStateRadioButtonStyle}">
+               <Image Height="21" Width="21" Source="/MoScout;component/Resources/Application.png"/>
+            </RadioButton>
+            <RadioButton Margin="8,0,0,0" Style="{DynamicResource OpStateRadioButtonStyle}">
+               <Image Height="21" Width="21" Source="/MoScout;component/Resources/Application.png"/>
+            </RadioButton>
+         </StackPanel>
+         <Button Content="关闭" Width="60" DockPanel.Dock="Right" HorizontalAlignment="Right" Background="#FF535353" Foreground="#FFCCCCCC" Grid.Column="1"/>
+      </Grid>
+      <Grid DockPanel.Dock="Top">
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="300"/>
+         </Grid.ColumnDefinitions>
+         <Panel:WCatalog HorizontalAlignment="Left" Width="200" Grid.Column="0"/>
+         <GridSplitter HorizontalAlignment="Left" Width="3" Background="#FF434343" ResizeDirection="Columns" ShowsPreview="True" Grid.Column="1"/>
+         <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+               <RowDefinition Height="*"/>
+               <RowDefinition Height="300"/>
+            </Grid.RowDefinitions>
+            <Panel:WStatistics Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,-5,0,5" RenderTransformOrigin="0.485,0.476" DockPanel.Dock="Top"/>
+            <Panel:WTracker Grid.Row="1" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch" Background="#FF2548E8" DockPanel.Dock="Top"/>
+         </Grid>
+         <GridSplitter HorizontalAlignment="Left" Width="4" Background="#FF434343" ResizeDirection="Columns" ShowsPreview="True" Grid.Column="3"/>
+         <DockPanel LastChildFill="False" Grid.Column="4" Width="300">
+            <Panel:WSummary Background="#FF8FAC86" Width="300"/>
+         </DockPanel>
+      </Grid>
+   </DockPanel>
+</Window>
