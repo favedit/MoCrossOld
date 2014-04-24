@@ -114,7 +114,9 @@ namespace MO.Common.System
       // @return 是否输出
       //============================================================
       public bool ErrorAble {
-         get { return (RLogger.Level & ELoggerLevel.Error) == ELoggerLevel.Error; }
+         get {
+            return (RLogger.Level & ELoggerLevel.Error) == ELoggerLevel.Error; 
+         }
       }
 
       //============================================================

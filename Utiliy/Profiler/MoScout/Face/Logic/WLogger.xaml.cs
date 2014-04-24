@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MoScout.Logic
+namespace MO.Scout.Face.Logic
 {
    /// <summary>
    /// WLogger.xaml 的交互逻辑

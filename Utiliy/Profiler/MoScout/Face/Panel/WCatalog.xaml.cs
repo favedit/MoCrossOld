@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MoScout.Panel
+namespace MO.Scout.Face.Panel
 {
    /// <summary>
    /// WCatalog.xaml 的交互逻辑

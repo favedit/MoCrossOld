@@ -1,11 +1,6 @@
 ﻿using MO.Common.System;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MoScout.Service
+namespace MO.Scout.Service.Data
 {
    //============================================================
    // <T>网络数据服务线程。</T>

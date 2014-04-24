@@ -2,13 +2,8 @@
 using MO.Common.Net.Sockets;
 using MO.Common.System;
 using MoScout.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MoScout.Service
+namespace MO.Scout.Service.Data
 {
    //============================================================
    // <T>网络数据服务。</T>
@@ -43,6 +38,16 @@ namespace MoScout.Service
       }
 
       //============================================================
+      // <T>关闭处理。</T>
+      //============================================================
+      public void Shutdown() {
+         // 关闭服务线程
+         _serviceThread.Abort();
+         // 关闭监听线程
+         _listenThread.Shutdown();
+      }
+
+      //============================================================
       // <T>增加网络端口。</T>
       //============================================================
       public void SocketPush(FSocket socket) {
@@ -60,9 +65,6 @@ namespace MoScout.Service
       //============================================================
       public void SocketThreadRemove(FNetDataThread thread) {
          _socketThreads.Remove(thread);
-      }
-
-      public void Shutdown() {
       }
    }
 }

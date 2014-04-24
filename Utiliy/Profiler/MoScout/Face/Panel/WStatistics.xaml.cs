@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace MoScout.Panel
+namespace MO.Scout.Face.Panel
 {
    /// <summary>
    /// WStatistics.xaml 的交互逻辑
@@ -40,19 +40,46 @@ namespace MoScout.Panel
 
       private void Button_Click(object sender, RoutedEventArgs e) {
          FApplicationInfo info = RScoutManager.InfoConsole.ActiveInfo;
-
+         if (info == null) {
+            return;
+         }
          if(imgCanvas.Source == null) {
             visual = new DrawingVisual();
             bitmap = new RenderTargetBitmap(1024, 1024, 96, 96, PixelFormats.Pbgra32);
             imgCanvas.Source = bitmap;
          }
-
          SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
          Pen pen = new Pen(brush, 1);
          DrawingContext context = visual.RenderOpen();
          int width = 10;
          int count = info.Frames.Count;
          for(int n = 0; n < count; n++) {
+            FFrameInfo frameInfo = info.Frames.Get(n);
+            int loggerCount = frameInfo.Loggers.Count;
+            int y = 150 - loggerCount;
+            context.DrawRectangle(brush, pen, new Rect(width * n, y, width * n + 8, 200 - y));
+         }
+         context.Close();
+         bitmap.Clear();
+         bitmap.Render(visual);
+      }
+
+      public void DataRefresh() {
+         FApplicationInfo info = RScoutManager.InfoConsole.ActiveInfo;
+         if (info == null) {
+            return;
+         }
+         if (imgCanvas.Source == null) {
+            visual = new DrawingVisual();
+            bitmap = new RenderTargetBitmap(1024, 1024, 96, 96, PixelFormats.Pbgra32);
+            imgCanvas.Source = bitmap;
+         }
+         SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+         Pen pen = new Pen(brush, 1);
+         DrawingContext context = visual.RenderOpen();
+         int width = 10;
+         int count = info.Frames.Count;
+         for (int n = 0; n < count; n++) {
             FFrameInfo frameInfo = info.Frames.Get(n);
             int loggerCount = frameInfo.Loggers.Count;
             int y = 150 - loggerCount;

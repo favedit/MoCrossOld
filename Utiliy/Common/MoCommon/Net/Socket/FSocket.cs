@@ -1,3 +1,4 @@
+using MO.Common.System;
 using System;
 using System.Net.Sockets;
 
@@ -10,6 +11,8 @@ namespace MO.Common.Net.Sockets
    //============================================================
    public class FSocket : IDisposable
    {
+      private static ILogger _logger = RLogger.Find(typeof(FSocket));
+
       protected Socket _socket;
 
       protected string _host;
@@ -109,8 +112,11 @@ namespace MO.Common.Net.Sockets
       // <T>断开连接。</T>
       //============================================================
       public void Disconnect() {
-         _socket.Disconnect(false);
-         //_socket.Dispose();
+         try {
+            _socket.Close();
+         }catch(Exception e){
+            _logger.Error(this, "Disconnect", e);
+         }
       }
 
       //============================================================

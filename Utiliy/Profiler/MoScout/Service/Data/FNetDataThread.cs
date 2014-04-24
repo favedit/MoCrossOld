@@ -7,7 +7,7 @@ using MoScout.Core;
 using MoScout.Core.Logger;
 using System.Text;
 
-namespace MoScout.Service
+namespace MO.Scout.Service.Data
 {
    //============================================================
    // <T>数据线程。</T>

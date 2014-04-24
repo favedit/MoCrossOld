@@ -1,5 +1,5 @@
-﻿using MoScout;
-using MoScout.Console;
+﻿using MO.Scout;
+using MO.Scout.Face.Forms;
 using System.Windows;
 
 namespace MpScout
@@ -11,7 +11,6 @@ namespace MpScout
    {
       protected override void OnStartup(StartupEventArgs e) {
          base.OnStartup(e);
-         RScoutManager.MessageService.Startup();
          // 启动窗口
          WConsole console = new WConsole();
          console.Show();

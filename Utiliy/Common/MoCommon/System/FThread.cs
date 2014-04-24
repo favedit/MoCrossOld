@@ -1,5 +1,4 @@
 ﻿using System.Threading;
-using MO.Common.Collection;
 
 namespace MO.Common.System
 {
@@ -164,8 +163,18 @@ namespace MO.Common.System
       // <T>停止线程。</T>
       //============================================================
       public void Stop() {
-         if(null != _thread) {
+         if(_thread != null) {
             _stop = true;
+         }
+      }
+
+      //============================================================
+      // <T>推出线程。</T>
+      //============================================================
+      public void Abort() {
+         if (_thread != null) {
+            _thread.Abort();
+            _thread = null;
          }
       }
    }

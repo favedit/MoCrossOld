@@ -1,7 +1,7 @@
-﻿using MoScout.Core;
-using MoScout.Service;
+﻿using MO.Scout.Service.Data;
+using MoScout.Core;
 
-namespace MoScout
+namespace MO.Scout
 {
    //============================================================
    // <T>效率管理器。</T>
@@ -38,12 +38,14 @@ namespace MoScout
       // <T>开始处理。</T>
       //============================================================
       public static void Startup() {
+         _messageService.Startup();
       }
 
       //============================================================
       // <T>关闭处理。</T>
       //============================================================
       public static void Shutdown() {
+         _messageService.Shutdown();
       }
    }
 }

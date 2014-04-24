@@ -29,7 +29,12 @@ namespace MO.Common.System
       // @return 日志级别
       //============================================================
       public static ELoggerLevel Level {
-         get { return _console.Level; }
+         get {
+            if (_console == null) {
+               return 0;
+            }
+            return _console.Level; 
+         }
       }
 
       //============================================================

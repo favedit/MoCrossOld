@@ -39,6 +39,7 @@ namespace MO.Common.Net.Sockets
          _socket.Bind(ipPoint);
          // _socket.Blocking = false;
          _socket.Listen(_backlog);
+         //_socket.Blocking = false;
          //BeginAccept(_socket, null);
       }
 
@@ -46,12 +47,17 @@ namespace MO.Common.Net.Sockets
       // <T>接收一个网络链接。</T>
       //============================================================
       public FSocket Accept() {
-         FSocket socket = null;
+         //SocketAsyncEventArgs args = new SocketAsyncEventArgs();
+         //args.Completed += args_Completed;
+         //_socket.AcceptAsync(args);
          Socket nativeSocket = _socket.Accept();
-         if (null != nativeSocket) {
-            socket = new FSocket(nativeSocket);
-         }
+         FSocket socket = new FSocket(nativeSocket);
          return socket;
+      }
+
+      void args_Completed(object sender, SocketAsyncEventArgs e) {
+         //FSocket socket = new FSocket(e.AcceptSocket);
+         //throw new NotImplementedException();
       }
 
       //============================================================
