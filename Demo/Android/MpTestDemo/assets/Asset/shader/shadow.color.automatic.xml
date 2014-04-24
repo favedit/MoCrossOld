@@ -231,7 +231,7 @@ void main(){
       shadowRate += 1.0;
    }
    shadowRate /= 6.0;
-   vec4 shadow = fc_shadow_material * shadowRate + fc_shadow_material_inv + 0.2;
+   vec4 shadow = fc_shadow_material * shadowRate + fc_shadow_material_inv;
    //............................................................
    // Calculate ambient color
 <shader:true source='support.ambient'>
