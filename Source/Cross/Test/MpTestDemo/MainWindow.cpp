@@ -136,8 +136,8 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    FNetLoggerWriter* pWriter = FNetLoggerWriter::InstanceCreate();
    pWriter->SetHost("127.0.0.1");
    pWriter->SetPort(9999);
-   //pWriter->Open();
-   //RLoggerFeature::Instance().NetLoggerConsole()->Register(pWriter);
+   pWriter->Open();
+   RLoggerFeature::Instance().NetLoggerConsole()->Register(pWriter);
    // 注册环境信息
    //TCharC* pHomePath = RApplication::Instance().Parameters()->FindValue("-home");
    //TCharC* pConfigName = RApplication::Instance().Parameters()->FindValue("-config");

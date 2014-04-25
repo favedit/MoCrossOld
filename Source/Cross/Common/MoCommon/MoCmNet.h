@@ -386,9 +386,9 @@ public:
 public:
    MO_OVERRIDE SNetSocketInfo* Info();
 public:
-   TBool Connect();
-   TBool Connect(TCharC* pHost, TUint16 port);
-   TBool Disconnect();
+   TResult Connect();
+   TResult Connect(TCharC* pHost, TUint16 port);
+   TResult Disconnect();
 };
 //------------------------------------------------------------
 typedef MO_CM_DECLARE FList<FNetClientSocket*> FNetClientSocketList;

@@ -110,16 +110,25 @@ void FLoggerWriter::SetForceToFlush(TBool isForceFlush){
 }
 
 //============================================================
+// <T>获得日志写入器的编号。</T>
+//
+// @return 日志写入器的编号。
+//============================================================
+TInt FLoggerWriter::Code(){
+   return _code;
+}
+
+//============================================================
 // <T>打开日志写入器。</T>
 //
 // @return 日否打开成功。
 //============================================================
-TBool FLoggerWriter::Open(){
+TResult FLoggerWriter::Open(){
    _locker.Enter();
    if(!RFile::ExistPath(_path)){
       RFile::CreateFullDirectory((TCharC*)_path);
    }
-   TBool ret = EFalse;
+   TResult resultCd = ESuccess;
 #ifdef _MO_LINUX
    _fileCount = 1;
    TFsDateTime fsDate = RDateTime::Current();
@@ -171,7 +180,7 @@ TBool FLoggerWriter::Open(){
    }
 #endif
    _locker.Leave();
-   return ret;
+   return resultCd;
 }
 
 //============================================================
@@ -179,7 +188,7 @@ TBool FLoggerWriter::Open(){
 //
 // @return 是否创建成功。
 //============================================================
-TBool FLoggerWriter::Create(){
+TResult FLoggerWriter::Create(){
    _locker.Enter();
    //TInt count = GetCountFromName(_pStream->FileName());
    _fileCount++;
@@ -206,16 +215,7 @@ TBool FLoggerWriter::Create(){
    _pStream->Open((TCharC*)fullName);
    _length = 0;
    _locker.Leave();
-   return ETrue;
-}
-
-//============================================================
-// <T>获得日志写入器的编号。</T>
-//
-// @return 日志写入器的编号。
-//============================================================
-TInt FLoggerWriter::Code(){
-   return _code;
+   return ESuccess;
 }
 
 //============================================================
@@ -225,7 +225,7 @@ TInt FLoggerWriter::Code(){
 // @param TSize length 消息的长度。
 // @return 是否记录成功。
 //============================================================
-TBool FLoggerWriter::Write(TDateTime time, TCharC* pMessage, TInt length){
+TResult FLoggerWriter::Write(TDateTime time, TCharC* pMessage, TInt length){
    time /= (TDateTime)MO_DATA_DAY_US;
    // 检查文件是否需要切换
    _length += length;
@@ -233,28 +233,28 @@ TBool FLoggerWriter::Write(TDateTime time, TCharC* pMessage, TInt length){
       Create();
    }
    // 写入日志
-   TBool result = EFalse;
+   TResult resultCd = EFailure;
    _locker.Enter();
    // 写入数据
    TInt lengthWrite = _pStream->Write(pMessage, length);
    if(lengthWrite == length){
-      result = ETrue;
+      resultCd = ESuccess;
    }
    // 写入换行
-   if(result){
+   if(resultCd == ESuccess){
       lengthWrite = _pStream->Write(TC("\n"), sizeof(TChar));
       if(lengthWrite == sizeof(TChar)){
-         result = ETrue;
+         resultCd = ESuccess;
       }
    }
    // 是否要强制刷新
-   if(result){
+   if(resultCd){
       if(_forceToFlush){
          _pStream->Flush();
       }
    }
    _locker.Leave();
-   return result;
+   return resultCd;
 }
 
 //============================================================
@@ -262,8 +262,8 @@ TBool FLoggerWriter::Write(TDateTime time, TCharC* pMessage, TInt length){
 //
 // @return 处理结果
 //============================================================
-TBool FLoggerWriter::Flush(){
-   TBool result = EFalse;
+TResult FLoggerWriter::Flush(){
+   TResult result = ESuccess;
    _locker.Enter();
    result = _pStream->Flush();
    _locker.Leave();
@@ -275,8 +275,8 @@ TBool FLoggerWriter::Flush(){
 //
 // @return 关闭是否成功。
 //============================================================
-TBool FLoggerWriter::Close(){
-   TBool result = EFalse;
+TResult FLoggerWriter::Close(){
+   TResult result = ESuccess;
    _locker.Enter();
    result = _pStream->Close();
    _locker.Leave();
@@ -286,10 +286,10 @@ TBool FLoggerWriter::Close(){
 //============================================================
 // <T>关闭日志写入器。</T>
 //
-// @return 关闭是否成功。
+// @return 处理结果
 //============================================================
-TBool FLoggerWriter::Refresh(){
-   return ETrue;
+TResult FLoggerWriter::Refresh(){
+   return ESuccess;
 }
 
 MO_NAMESPACE_END

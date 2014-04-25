@@ -58,7 +58,7 @@ SNetSocketInfo* FNetClientSocket::Info(){
 //    <L value='ETrue'>成功</L>
 //    <L value='EFalse'>失败</L>
 //============================================================
-TBool FNetClientSocket::Connect(){
+TResult FNetClientSocket::Connect(){
    // 创建链接
    TSocket handle = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
    if(INVALID_SOCKET == handle){
@@ -70,39 +70,55 @@ TBool FNetClientSocket::Connect(){
    address.sin_family = AF_INET;
    if(_host.IsEmpty()){
       address.sin_addr.s_addr = htonl(INADDR_ANY);
-   }else{
-#ifdef _UNICODE
-#else
-      address.sin_addr.s_addr = inet_addr((TCharC*)_host);
-#endif
    }
+#ifdef _UNICODE
+   TFsCode8 host;
+   host.Assign8(_host);
+   if(_host.IsNotEmpty()){
+      address.sin_addr.s_addr = inet_addr((TCharC*)host);
+   }
+#else
+   if(_host.IsNotEmpty()){
+      address.sin_addr.s_addr = inet_addr((TCharC*)_host);
+   }
+#endif // _UNICODE
    address.sin_port = htons(_info.port);
    memset(address.sin_zero, 0, sizeof(address.sin_zero));
    if(ESuccess != connect(handle, (struct sockaddr*)&address, sizeof(struct sockaddr_in))){
       MO_ERROR(TC("Connect socket error. (host=%s, port=%d)"), (TCharC*)_host, _info.port);
-      MO_PFATAL(connect);
+      MO_PERROR(connect);
       // 关闭已经打开的链接句柄
 #ifdef _MO_WINDOWS
       if(ESuccess != closesocket(handle)){
-         MO_PFATAL(closesocket);
+         MO_PERROR(closesocket);
       }
 #else
       if(ESuccess != close(handle)){
          MO_PERROR(close);
       }
-#endif
-      return EFalse;
+#endif // _MO_WINDOWS
+      return EFailure;
    }
+   // 设置信息
    _info.handle = handle;
    _isConnected = ETrue;
-   return ETrue;
+   return ESuccess;
 }
 
 //============================================================
-TBool FNetClientSocket::Connect(TCharC* pHost, TUint16 port){
+// <T>链接指定服务器。</T>
+//
+// @param pHost 主机
+// @param port 端口
+// @return 处理结果
+//============================================================
+TResult FNetClientSocket::Connect(TCharC* pHost, TUint16 port){
+   // 设置信息
    SetHost(pHost);
    SetPort(port);
-   return Connect();
+   // 链接处理
+   TResult result = Connect();
+   return result;
 }
 
 //============================================================
@@ -112,18 +128,17 @@ TBool FNetClientSocket::Connect(TCharC* pHost, TUint16 port){
 //    <L value='ETrue'>成功</L>
 //    <L value='EFalse'>失败</L>
 //============================================================
-TBool FNetClientSocket::Disconnect(){
-   _isConnected = EFalse;
+TResult FNetClientSocket::Disconnect(){
    if(INVALID_SOCKET == _info.handle){
 #ifdef _MO_WINDOWS
       closesocket(_info.handle);
 #else
       close(_info.handle);
-#endif
+#endif // _MO_WINDOWS
       _info.handle = INVALID_SOCKET;
-      return ETrue;
    }
-   return EFalse;
+   _isConnected = EFalse;
+   return ESuccess;
 }
 
 MO_NAMESPACE_END

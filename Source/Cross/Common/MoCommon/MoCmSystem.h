@@ -646,20 +646,22 @@ public:
 //============================================================
 class MO_CM_DECLARE ILoggerWriter{
 public:
+   //------------------------------------------------------------
+   // <T>析构日志输出接口。</T>
    MO_ABSTRACT ~ILoggerWriter(){
    }
 public:
-   MO_VIRTUAL TBool Open() = 0;
-   MO_VIRTUAL TBool Create() = 0;
    MO_VIRTUAL TInt Code() = 0;
-   MO_VIRTUAL TBool Write(TDateTime time, TCharC* pMessage, TInt length) = 0;
-   MO_VIRTUAL TBool Flush() = 0;
-   MO_VIRTUAL TBool Close() = 0;
 public:
-   MO_VIRTUAL TBool Refresh() = 0;
+   MO_VIRTUAL TResult Open() = 0;
+   MO_VIRTUAL TResult Create() = 0;
+   MO_VIRTUAL TResult Write(TDateTime time, TCharC* pMessage, TInt length) = 0;
+   MO_VIRTUAL TResult Flush() = 0;
+   MO_VIRTUAL TResult Refresh() = 0;
+   MO_VIRTUAL TResult Close() = 0;
 };
 //------------------------------------------------------------
-typedef FList<ILoggerWriter*> FLoggerWriterList;
+typedef MO_CM_DECLARE FList<ILoggerWriter*> FLoggerWriterList;
 
 //============================================================
 // <T>日志写出器。</T>
@@ -692,14 +694,14 @@ public:
    void SetCapacity(TSize capacity);
    void SetForceToFlush(TBool isForceFlush);
 public:
-   MO_OVERRIDE TBool Open();
-   MO_OVERRIDE TBool Create();
    MO_OVERRIDE TInt Code();
-   MO_OVERRIDE TBool Write(TDateTime time, TCharC* pMessage, TInt length);
-   MO_OVERRIDE TBool Flush();
-   MO_OVERRIDE TBool Close();
 public:
-   MO_OVERRIDE TBool Refresh();
+   MO_OVERRIDE TResult Open();
+   MO_OVERRIDE TResult Create();
+   MO_OVERRIDE TResult Write(TDateTime time, TCharC* pMessage, TInt length);
+   MO_OVERRIDE TResult Flush();
+   MO_OVERRIDE TResult Refresh();
+   MO_OVERRIDE TResult Close();
 };
 
 //============================================================
