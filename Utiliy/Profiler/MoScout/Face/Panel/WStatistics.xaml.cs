@@ -1,4 +1,6 @@
-﻿using MoScout.Core;
+﻿using MO.Common.Lang;
+using MoScout.Core;
+using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,23 +9,58 @@ using System.Windows.Media.Imaging;
 
 namespace MO.Scout.Face.Panel
 {
-   /// <summary>
-   /// WStatistics.xaml 的交互逻辑
-   /// </summary>
+   //============================================================
+   // <T>统计信息面板。</T>
+   //
+   // @history MAOCY 140425
+   //============================================================
    public partial class WStatistics : UserControl
    {
-      DrawingVisual visual;
+      protected bool _statusSetup;
 
-      RenderTargetBitmap bitmap;
+      protected RenderTargetBitmap _bitmap;
 
+      protected DrawingVisual _visual;
+
+      protected SolidColorBrush _brush;
+
+      protected Pen _pen;
+
+      protected int _drawFrameWidth = 10;
+
+      protected FObjects<FFrameInfo> _activeFrames = new FObjects<FFrameInfo>();
+
+      //============================================================
+      // <T>构造统计信息面板。</T>
+      //============================================================
       public WStatistics() {
          InitializeComponent();
       }
 
-      public void RefreshTime() { 
-         //cvTracker.
+      //============================================================
+      // <T>加载完成处理。</T>
+      //============================================================
+      private void UserControl_Loaded(object sender, RoutedEventArgs e) {
+         int width = (int)cvTracker.ActualWidth;
+         int height = (int)cvTracker.ActualHeight;
+         _visual = new DrawingVisual();
+         _bitmap = new RenderTargetBitmap(width, height, 96, 96, PixelFormats.Pbgra32);
+         imgCanvas.Source = _bitmap;
+         _brush = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+         SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
+         _pen = new Pen(brush, 1);
+         _statusSetup = true;
       }
 
+      //============================================================
+      // <T>卸载完成处理。</T>
+      //============================================================
+      private void UserControl_Unloaded(object sender, RoutedEventArgs e) {
+      }
+
+      //============================================================
+      // <T>保存图形。</T>
+      //============================================================
       public void SaveCanvas() {
          string path = "C:\\Test.jpg";
          FileStream fs = new FileStream(path, FileMode.Create); //文件流对象  
@@ -38,56 +75,48 @@ namespace MO.Scout.Face.Panel
          fs.Close();
       }
 
-      private void Button_Click(object sender, RoutedEventArgs e) {
-         FApplicationInfo info = RScoutManager.InfoConsole.ActiveInfo;
-         if (info == null) {
-            return;
-         }
-         if(imgCanvas.Source == null) {
-            visual = new DrawingVisual();
-            bitmap = new RenderTargetBitmap(1024, 1024, 96, 96, PixelFormats.Pbgra32);
-            imgCanvas.Source = bitmap;
-         }
-         SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
-         Pen pen = new Pen(brush, 1);
-         DrawingContext context = visual.RenderOpen();
-         int width = 10;
-         int count = info.Frames.Count;
-         for(int n = 0; n < count; n++) {
-            FFrameInfo frameInfo = info.Frames.Get(n);
-            int loggerCount = frameInfo.Loggers.Count;
-            int y = 150 - loggerCount;
-            context.DrawRectangle(brush, pen, new Rect(width * n, y, width * n + 8, 200 - y));
-         }
-         context.Close();
-         bitmap.Clear();
-         bitmap.Render(visual);
+      //============================================================
+      // <T>数据刷新处理。</T>
+      //============================================================
+      public void DrawFrame(DrawingContext context, FFrameInfo frameInfo) {
+         int loggerCount = frameInfo.Loggers.Count;
+         int index = frameInfo.Index;
+         int left = _drawFrameWidth * index;
+         int top = 150 - loggerCount;
+         context.DrawRectangle(_brush, _pen, new Rect(left, top, left + _drawFrameWidth - 1, 200 - top));
       }
 
+      //============================================================
+      // <T>数据刷新处理。</T>
+      //============================================================
       public void DataRefresh() {
+         // 获得信息
          FApplicationInfo info = RScoutManager.InfoConsole.ActiveInfo;
-         if (info == null) {
-            return;
-         }
-         if (imgCanvas.Source == null) {
-            visual = new DrawingVisual();
-            bitmap = new RenderTargetBitmap(1024, 1024, 96, 96, PixelFormats.Pbgra32);
-            imgCanvas.Source = bitmap;
-         }
-         SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
-         Pen pen = new Pen(brush, 1);
-         DrawingContext context = visual.RenderOpen();
-         int width = 10;
+         DrawingContext context = _visual.RenderOpen();
+         // 绘制所有帧
          int count = info.Frames.Count;
          for (int n = 0; n < count; n++) {
             FFrameInfo frameInfo = info.Frames.Get(n);
-            int loggerCount = frameInfo.Loggers.Count;
-            int y = 150 - loggerCount;
-            context.DrawRectangle(brush, pen, new Rect(width * n, y, width * n + 8, 200 - y));
+            DrawFrame(context, frameInfo);
          }
          context.Close();
-         bitmap.Clear();
-         bitmap.Render(visual);
+         // 绘制处理
+         _bitmap.Clear();
+         _bitmap.Render(_visual);
+      }
+
+      //============================================================
+      // <T>异步数据刷新处理。</T>
+      //============================================================
+      public void AnsyDataRefresh() {
+         if (!_statusSetup) {
+            return;
+         }
+         FApplicationInfo info = RScoutManager.InfoConsole.ActiveInfo;
+         if(info == null) {
+            return;
+         }
+         Dispatcher.InvokeAsync(new Action(DataRefresh));
       }
    }
 }

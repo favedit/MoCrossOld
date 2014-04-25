@@ -1,4 +1,5 @@
-﻿using MO.Common.Lang;
+﻿using MO.Common.IO;
+using MO.Common.Lang;
 using MoScout.Core.Invoker;
 using MoScout.Core.Logger;
 
@@ -11,6 +12,10 @@ namespace MoScout.Core
    //============================================================
    public class FFrameInfo : FObject
    {
+      // 索引
+      protected int _index;
+
+      // 时刻
       protected long _tick;
 
       // 日志集合
@@ -23,6 +28,14 @@ namespace MoScout.Core
       // <T>构造帧信息。</T>
       //============================================================
       public FFrameInfo() {
+      }
+
+      //============================================================
+      // <T>获得索引。</T>
+      //============================================================
+      public int Index {
+         get { return _index; }
+         set { _index = value; }
       }
 
       //============================================================
@@ -45,6 +58,38 @@ namespace MoScout.Core
       //============================================================
       public FObjects<FInvokerInfo> Invokers {
          get { return _invokers; }
+      }
+
+      //============================================================
+      // <T>序列化数据到输出流。</T>
+      //
+      // @param output 输出流
+      // @return 处理结果
+      //============================================================
+      public EResult Serialize(IDataOutput output) {
+         int count = _loggers.Count;
+         output.WriteInt32(count);
+         for(int n = 0; n < count; n++) {
+            FLoggerInfo loggerInfo = _loggers.Get(n);
+            loggerInfo.Serialize(output);
+         }
+         return EResult.Success;
+      }
+
+      //============================================================
+      // <T>从输入流中反序列化数据。</T>
+      //
+      // @param input 输入流
+      // @return 处理结果
+      //============================================================
+      public EResult Unserialize(IDataInput input) {
+         int count = input.ReadInt32();
+         for(int n = 0; n < count; n++) {
+            FLoggerInfo loggerInfo = new FLoggerInfo();
+            loggerInfo.Unserialize(input);
+            _loggers.Push(loggerInfo);
+         }
+         return EResult.Success;
       }
    }
 }

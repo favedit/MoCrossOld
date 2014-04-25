@@ -176,73 +176,10 @@ namespace MO.Common.IO
       public string ReadString() {
          string value = string.Empty;
          int length = (int)ReadUint16();
-         if(length > 0) {
+         if (length > 0) {
             value = Encoding.UTF8.GetString(_memory, _position, length);
          }
          _position += length;
-         return value;
-      }
-
-      //============================================================
-      // <T>读取一个串字符。</T>
-      //
-      // @return 字符串
-      //============================================================
-      public string ReadStringA16() {
-         string value = string.Empty;
-         int length = (int)ReadUint16();
-         if(length > 0) {
-            value = Encoding.ASCII.GetString(_memory, _position, length);
-         }
-         _position += length;
-         return value;
-      }
-
-      //============================================================
-      // <T>读取一个串字符。</T>
-      //
-      // @return 字符串
-      //============================================================
-      public string ReadStringA32() {
-         string value = string.Empty;
-         int length = (int)ReadUint32();
-         if(length > 0) {
-            value = Encoding.ASCII.GetString(_memory, _position, length);
-         }
-         _position += length;
-         return value;
-      }
-
-      //============================================================
-      // <T>读取一个UTF-8的字符串。</T>
-      //
-      // @return UTF-8字符串
-      //============================================================
-      public string ReadUTFString() {
-         string value = string.Empty;
-         int length = (int)ReadUint16();
-         if(length > 0) {
-            value = Encoding.UTF8.GetString(_memory, _position, length);
-         }
-         _position += length;
-         return value;
-      }
-
-      //============================================================
-      // <T>读取一个宽字符串。</T>
-      //
-      // @return 字符串
-      //============================================================
-      public string ReadWideString() {
-         string value = string.Empty;
-         int length = (int)ReadUint16();
-         if(length > 0) {
-            char[] chars = new char[length];
-            for(int n = 0; n < length; n++) {
-               chars[n] = (char)ReadUint16();
-            }
-            value = new string(chars);
-         }
          return value;
       }
 
@@ -280,7 +217,7 @@ namespace MO.Common.IO
          EnsureSize(_position + 1);
          _memory[_position] = (byte)(value ? 1 : 0);
          _position++;
-         if(_position > _length) {
+         if (_position > _length) {
             _length = _position;
          }
       }
@@ -295,7 +232,7 @@ namespace MO.Common.IO
          Byte[] bytes = BitConverter.GetBytes(value);
          _memory[_position] = bytes[0];
          _position++;
-         if(_position > _length) {
+         if (_position > _length) {
             _length = _position;
          }
       }
@@ -311,7 +248,7 @@ namespace MO.Common.IO
          _memory[_position] = bytes[0];
          _memory[_position + 1] = bytes[1];
          _position += 2;
-         if(_position > _length) {
+         if (_position > _length) {
             _length = _position;
          }
       }
@@ -329,7 +266,7 @@ namespace MO.Common.IO
          _memory[_position + 2] = bytes[2];
          _memory[_position + 3] = bytes[3];
          _position += 4;
-         if(_position > _length) {
+         if (_position > _length) {
             _length = _position;
          }
       }
@@ -344,7 +281,7 @@ namespace MO.Common.IO
          Byte[] bytes = BitConverter.GetBytes(value);
          Array.Copy(bytes, 0, _memory, _position, bytes.Length);
          _position += 8;
-         if(_position > _length) {
+         if (_position > _length) {
             _length = _position;
          }
       }
@@ -358,7 +295,7 @@ namespace MO.Common.IO
          EnsureSize(_position + 1);
          _memory[_position] = value;
          _position++;
-         if(_position > _length) {
+         if (_position > _length) {
             _length = _position;
          }
       }
@@ -374,7 +311,7 @@ namespace MO.Common.IO
          _memory[_position] = bytes[0];
          _memory[_position + 1] = bytes[1];
          _position += 2;
-         if(_position > _length) {
+         if (_position > _length) {
             _length = _position;
          }
       }
@@ -392,7 +329,7 @@ namespace MO.Common.IO
          _memory[_position + 2] = bytes[2];
          _memory[_position + 3] = bytes[3];
          _position += 4;
-         if(_position > _length) {
+         if (_position > _length) {
             _length = _position;
          }
       }
@@ -407,7 +344,7 @@ namespace MO.Common.IO
          Byte[] bytes = BitConverter.GetBytes(value);
          Array.Copy(bytes, 0, _memory, _position, bytes.Length);
          _position += 8;
-         if(_position > _length) {
+         if (_position > _length) {
             _length = _position;
          }
       }
@@ -425,7 +362,7 @@ namespace MO.Common.IO
          _memory[_position + 2] = bytes[2];
          _memory[_position + 3] = bytes[3];
          _position += 4;
-         if(_position > _length) {
+         if (_position > _length) {
             _length = _position;
          }
       }
@@ -440,7 +377,7 @@ namespace MO.Common.IO
          Byte[] bytes = BitConverter.GetBytes(value);
          Array.Copy(bytes, 0, _memory, _position, bytes.Length);
          _position += 8;
-         if(_position > _length) {
+         if (_position > _length) {
             _length = _position;
          }
       }
@@ -451,34 +388,9 @@ namespace MO.Common.IO
       // @param value 字符串
       //============================================================
       public void WriteString(string value) {
-         WriteUint8(1);
-         if(value == null) {
+         if (value == null) {
             WriteUint16(0);
-         } else if(value.Length == 0) {
-            WriteUint16(0);
-         } else {
-            Byte[] bytes = Encoding.ASCII.GetBytes(value);
-            int length = bytes.Length;
-            WriteUint16((ushort)length);
-            EnsureSize(_position + length);
-            Array.Copy(bytes, 0, _memory, _position, bytes.Length);
-            _position += bytes.Length;
-            if(_position > _length) {
-               _length = _position;
-            }
-         }
-      }
-
-      //============================================================
-      // <T>写入一个UTF-8字符串。</T>
-      //
-      // @param value UTF-8字符串
-      //============================================================
-      public void WriteUTFString(string value) {
-         WriteUint8(2);
-         if(value == null) {
-            WriteUint16(0);
-         } else if(value.Length == 0) {
+         } else if (value.Length == 0) {
             WriteUint16(0);
          } else {
             Byte[] bytes = Encoding.UTF8.GetBytes(value);
@@ -487,32 +399,7 @@ namespace MO.Common.IO
             EnsureSize(_position + length);
             Array.Copy(bytes, 0, _memory, _position, bytes.Length);
             _position += bytes.Length;
-            if(_position > _length) {
-               _length = _position;
-            }
-         }
-      }
-
-      //============================================================
-      // <T>写入一个宽字符串。</T>
-      //
-      // @param value 字符串
-      //============================================================
-      public void WriteWideString(string value) {
-         WriteUint8(3);
-         if(value == null) {
-            WriteUint16(0);
-         } else if(value.Length == 0) {
-            WriteUint16(0);
-         } else {
-            char[] chars = value.ToCharArray();
-            int byteLength = 4 * chars.Length;
-            WriteUint16((ushort)chars.Length);
-            EnsureSize(_position + byteLength);
-            foreach(char ch in chars) {
-               WriteUint32(ch);
-            }
-            if(_position > _length) {
+            if (_position > _length) {
                _length = _position;
             }
          }
@@ -529,7 +416,7 @@ namespace MO.Common.IO
          EnsureSize(_position + length);
          Array.Copy(bytes, offset, _memory, _position, length);
          _position += length;
-         if(_position > _length) {
+         if (_position > _length) {
             _length = _position;
          }
          return length;

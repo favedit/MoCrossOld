@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="800" Background="#FF404040">
+             d:DesignHeight="400" d:DesignWidth="800" Background="#FF404040" Loaded="UserControl_Loaded" Unloaded="UserControl_Unloaded">
    <Grid>
       <Grid.ColumnDefinitions>
          <ColumnDefinition Width="20"/>
@@ -19,9 +19,9 @@
          <Button Content="CPU" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Background="#FF909090" Foreground="#FFF0F0F0"/>
          <Button Content="GPU" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Background="#FF909090" Foreground="#FFF0F0F0"/>
          <Button Content="内存" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Background="#FF909090" Foreground="#FFF0F0F0"/>
-         <Button Content="帧速" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Background="#FF909090" Foreground="#FFF0F0F0" Click="Button_Click"/>
+         <Button Content="帧速" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Background="#FF909090" Foreground="#FFF0F0F0"/>
       </StackPanel>
-      <Canvas x:Name="cvTracker" Background="#FF2d2d2d" Grid.Column="1" Grid.Row="1">
+      <Canvas x:Name="cvTracker" Background="#FF2d2d2d" Grid.Column="1" Grid.Row="1" Margin="2">
          <Image x:Name="imgCanvas" Canvas.Left="10" Canvas.Top="10" Margin="4"/>
       </Canvas>
       <Slider HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical" Grid.Column="0" Grid.Row="1" Minimum="-100" Maximum="100" Value="0"/>

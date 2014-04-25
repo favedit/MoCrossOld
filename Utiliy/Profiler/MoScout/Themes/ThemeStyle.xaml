@@ -108,7 +108,7 @@
    <Geometry x:Key="RightArrow">M 0,0 L 4,3.5 L 0,7 Z</Geometry>
 
    <!--RadioButton-->
-   <Style x:Key="OpStateRadioButtonStyle" TargetType="{x:Type RadioButton}">
+   <Style x:Key="StateRadioButtonStyle" TargetType="{x:Type RadioButton}">
       <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
       <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
       <Setter Property="Background" Value="{StaticResource D3Brush}"/>
@@ -118,8 +118,8 @@
       <Setter Property="HorizontalContentAlignment" Value="Center"/>
       <Setter Property="VerticalContentAlignment" Value="Center"/>
       <Setter Property="Padding" Value="1"/>
-      <Setter Property="Width" Value="32"/>
-      <Setter Property="Height" Value="32"/>
+      <Setter Property="Width" Value="21"/>
+      <Setter Property="Height" Value="21"/>
       <Setter Property="Template">
          <Setter.Value>
             <ControlTemplate TargetType="{x:Type RadioButton}">
@@ -162,10 +162,10 @@
                      </VisualStateGroup>
                   </VisualStateManager.VisualStateGroups>
                   <Border x:Name="Background" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding Border.CornerRadius}" />
-                  <Border x:Name="MouseOverBorder" Opacity="0" Background="{StaticResource D4Brush}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding Border.CornerRadius}" />
-                  <Border x:Name="PressedBorder" Opacity="0" Background="{StaticResource D2Brush}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding Border.CornerRadius}" />
-                  <Border x:Name="DisabledBorder" Opacity="0" Background="{StaticResource DisabledBackgroundBrush}" BorderBrush="{StaticResource DisabledBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding Border.CornerRadius}" />
-                  <Border x:Name="CheckedBGMaskBorder" Opacity="0" Background="{StaticResource ActiveBrush}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding Border.CornerRadius}" />
+                  <Border x:Name="MouseOverBorder" Background="{StaticResource D4Brush}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding Border.CornerRadius}" />
+                  <Border x:Name="PressedBorder" Background="{StaticResource D2Brush}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding Border.CornerRadius}" />
+                  <Border x:Name="DisabledBorder" Background="{StaticResource DisabledBackgroundBrush}" BorderBrush="{StaticResource DisabledBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding Border.CornerRadius}" />
+                  <Border x:Name="CheckedBGMaskBorder" Background="{StaticResource ActiveBrush}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding Border.CornerRadius}" />
                   <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
                </Grid>
             </ControlTemplate>

@@ -1,4 +1,5 @@
-﻿using MO.Common.Lang;
+﻿using MO.Common.IO;
+using MO.Common.Lang;
 
 namespace MoScout.Core.Logger
 {
@@ -55,6 +56,34 @@ namespace MoScout.Core.Logger
       public string Message {
          get { return _message; }
          set { _message = value; }
+      }
+
+      //============================================================
+      // <T>序列化数据到输出流。</T>
+      //
+      // @param output 输出流
+      // @return 处理结果
+      //============================================================
+      public EResult Serialize(IDataOutput output) {
+         output.WriteInt64(_tick);
+         output.WriteInt32(_level);
+         output.WriteString(_method);
+         output.WriteString(_message);
+         return EResult.Success;
+      }
+
+      //============================================================
+      // <T>从输入流中反序列化数据。</T>
+      //
+      // @param input 输入流
+      // @return 处理结果
+      //============================================================
+      public EResult Unserialize(IDataInput input) {
+         _tick = input.ReadInt64();
+         _level = input.ReadInt32();
+         _method = input.ReadString();
+         _message = input.ReadString();
+         return EResult.Success;
       }
    }
 }

@@ -31,6 +31,8 @@ namespace MO.Scout.Face.Forms
          // 添加一个消息过滤器
          IntPtr hwnd = new WindowInteropHelper(this).Handle;
          HwndSource.FromHwnd(hwnd).AddHook(new HwndSourceHook(WindowHandleProcess));
+         // 恢复文件
+         RScoutManager.InfoConsole.RestoreFiles();
          // 启动处理
          RScoutManager.Startup();
          // 启动处理线程
@@ -63,9 +65,25 @@ namespace MO.Scout.Face.Forms
       // @return 是否窗口栏
       //============================================================
       private bool isOnTitleBar(Point position) {
-         if (position.X >= 0 && position.X <= imgTitle.Width && position.Y > 0 && position.Y < imgTitle.Height) {
+         // 检查位置
+         Point titleStart = grdTitle.TranslatePoint(new Point(0, 0), this);
+         Point titleStop = grdTitle.TranslatePoint(new Point(grdTitle.ActualWidth, grdTitle.ActualHeight), this);
+         if((position.X < titleStart.X) || (position.X > titleStop.X) || (position.Y < titleStart.Y) || (position.Y > titleStop.Y)) {
+            return false;
+         }
+         // 在图标区
+         Point imageStart = imgTitle.TranslatePoint(new Point(), this);
+         Point imageStop = imgTitle.TranslatePoint(new Point(imgTitle.ActualWidth, imgTitle.ActualHeight), this);
+         if((position.X >= imageStart.X) && (position.X <= imageStop.X) && (position.Y >= imageStart.Y) && (position.Y <= imageStop.Y)) {
             return true;
          }
+         // 在标题区
+         Point canvasStart = cvsTitle.TranslatePoint(new Point(), this);
+         Point canvasStop = cvsTitle.TranslatePoint(new Point(cvsTitle.ActualWidth, cvsTitle.ActualHeight), this);
+         if((position.X >= canvasStart.X) && (position.X <= canvasStop.X) && (position.Y >= canvasStart.Y) && (position.Y <= canvasStop.Y)) {
+            return true;
+         }
+         // 返回结果
          return false;
       }
 
@@ -92,7 +110,23 @@ namespace MO.Scout.Face.Forms
       // <T>数据刷新。</T>
       //============================================================
       public void DataRefresh() {
-         ctlStatistics.DataRefresh();
+         ctlStatistics.AnsyDataRefresh();
+      }
+
+      //============================================================
+      // <T>加载处理。</T>
+      //============================================================
+      private void btnLoad_Click(object sender, RoutedEventArgs e) {
+         RScoutManager.InfoConsole.RestoreFiles();
+         MessageBox.Show("Restore files success.");
+      }
+
+      //============================================================
+      // <T>保存处理。</T>
+      //============================================================
+      private void btnSave_Click(object sender, RoutedEventArgs e) {
+         RScoutManager.InfoConsole.StoreFiles();
+         MessageBox.Show("Store files success.");
       }
    }
 }

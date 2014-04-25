@@ -14,14 +14,15 @@
       <ResourceDictionary Source="/MoScout;component/Themes/Generic.xaml"/>
    </Window.Resources>
    <DockPanel Margin="0" Background="#FF535353" >
-      <Grid DockPanel.Dock="Top">
+      <Grid x:Name="grdTitle" DockPanel.Dock="Top" Background="#FF434343" >
          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="420"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="60"/>
          </Grid.ColumnDefinitions>
-         <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Height="24" VerticalAlignment="Top">
-            <Image x:Name="imgTitle" VerticalAlignment="Top" Source="/Resources/Application.png" Width="24" Height="24"/>
-            <Menu VerticalAlignment="Top" Background="#FF535353" HorizontalAlignment="Left" Height="24">
+         <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Grid.Column="0">
+            <Image x:Name="imgTitle" VerticalAlignment="Top" Source="/MoScout;component/Resources/Application.png" Width="24" Height="24"/>
+            <Menu x:Name="mnuTitle" VerticalAlignment="Top" Background="#FF434343" HorizontalAlignment="Left" Height="24">
                <MenuItem Header="File" Foreground="White">
                   <MenuItem Header="Open" HorizontalAlignment="Left" Width="149"/>
                   <Separator/>
@@ -34,23 +35,26 @@
                <MenuItem Header="Help" Foreground="White"/>
             </Menu>
             <Border Margin="8,0,0,0"/>
-            <RadioButton Margin="8,0,0,0" Style="{DynamicResource OpStateRadioButtonStyle}">
-               <Image Height="21" Width="21" Source="/Resources/Application.png"/>
+            <RadioButton x:Name="btnLoad" Margin="2,0,0,0" Style="{DynamicResource StateRadioButtonStyle}" Click="btnLoad_Click">
+               <Image Margin="1,1,0,0" Height="16" Width="16" Source="/MoScout;component/Resources/Tools/Open.gif" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </RadioButton>
-            <RadioButton Margin="8,0,0,0" Style="{DynamicResource OpStateRadioButtonStyle}">
-               <Image Height="21" Width="21" Source="/MoScout;component/Resources/Application.png"/>
+            <RadioButton x:Name="btnSave" Margin="2,0,0,0" Style="{DynamicResource StateRadioButtonStyle}" Click="btnSave_Click">
+               <Image Margin="1,1,0,0" Height="16" Width="16" Source="/MoScout;component/Resources/Tools/Save.gif" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </RadioButton>
-            <RadioButton Margin="8,0,0,0" Style="{DynamicResource OpStateRadioButtonStyle}">
-               <Image Height="21" Width="21" Source="/MoScout;component/Resources/Application.png"/>
+            <RadioButton x:Name="btnSearch" Margin="2,0,0,0" Style="{DynamicResource StateRadioButtonStyle}">
+               <Image Margin="1,1,0,0" Height="16" Width="16" Source="/MoScout;component/Resources/Tools/Search.gif" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </RadioButton>
-            <RadioButton Margin="8,0,0,0" Style="{DynamicResource OpStateRadioButtonStyle}">
-               <Image Height="21" Width="21" Source="/MoScout;component/Resources/Application.png"/>
+            <RadioButton x:Name="btnEdit" Margin="2,0,0,0" Style="{DynamicResource StateRadioButtonStyle}">
+               <Image Margin="1,1,0,0" Height="16" Width="16" Source="/MoScout;component/Resources/Tools/Edit.gif" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </RadioButton>
-            <RadioButton Margin="8,0,0,0" Style="{DynamicResource OpStateRadioButtonStyle}">
-               <Image Height="21" Width="21" Source="/MoScout;component/Resources/Application.png"/>
+            <RadioButton x:Name="btnConfig" Margin="2,0,0,0" Style="{DynamicResource StateRadioButtonStyle}">
+               <Image Margin="1,1,0,0" Height="16" Width="16" Source="/MoScout;component/Resources/Tools/Config.gif" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </RadioButton>
          </StackPanel>
-         <Button Content="关闭" Width="60" DockPanel.Dock="Right" HorizontalAlignment="Right" Background="#FF535353" Foreground="#FFCCCCCC" Grid.Column="1" Click="Button_Click"/>
+         <Canvas x:Name="cvsTitle" Grid.Column="1"/>
+         <StackPanel Grid.Column="2" HorizontalAlignment="Right" Width="60">
+            <Button Content="关闭" Width="60" HorizontalAlignment="Right" Background="#FF535353" Foreground="#FFCCCCCC" Click="Button_Click" Height="24"/>
+         </StackPanel>
       </Grid>
       <Grid DockPanel.Dock="Top">
          <Grid.ColumnDefinitions>
@@ -67,7 +71,7 @@
                <RowDefinition Height="*"/>
                <RowDefinition Height="300"/>
             </Grid.RowDefinitions>
-            <Panel:WStatistics x:Name="ctlStatistics" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,-5,0,5" RenderTransformOrigin="0.485,0.476" DockPanel.Dock="Top"/>
+            <Panel:WStatistics x:Name="ctlStatistics" Grid.Row="0" HorizontalAlignment="Stretch" RenderTransformOrigin="0.485,0.476" DockPanel.Dock="Top" Margin="0,1"/>
             <Panel:WTracker Grid.Row="1" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch" Background="#FF2548E8" DockPanel.Dock="Top"/>
          </Grid>
          <GridSplitter HorizontalAlignment="Left" Width="4" Background="#FF434343" ResizeDirection="Columns" ShowsPreview="True" Grid.Column="3"/>

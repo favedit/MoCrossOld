@@ -1,6 +1,7 @@
+using MO.Common.System;
+using System;
 using System.Net;
 using System.Net.Sockets;
-using System;
 
 namespace MO.Common.Net.Sockets
 {
@@ -9,6 +10,9 @@ namespace MO.Common.Net.Sockets
    //============================================================
    public class FServerSocket : FSocket
    {
+      // 日志输出接口
+      private static ILogger _logger = RLogger.Find(typeof(FServerSocket));
+
       protected int _backlog = 64;
 
       //============================================================
@@ -50,8 +54,13 @@ namespace MO.Common.Net.Sockets
          //SocketAsyncEventArgs args = new SocketAsyncEventArgs();
          //args.Completed += args_Completed;
          //_socket.AcceptAsync(args);
-         Socket nativeSocket = _socket.Accept();
-         FSocket socket = new FSocket(nativeSocket);
+         FSocket socket = null;
+         try {
+            Socket nativeSocket = _socket.Accept();
+            socket = new FSocket(nativeSocket);
+         }catch(Exception e){
+            _logger.Error(this, "Disconnect", e);
+         }
          return socket;
       }
 

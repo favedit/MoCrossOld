@@ -13,6 +13,8 @@ namespace MO.Common.IO
       private FileInfo _info;
 
       //============================================================
+      // <T>构造文件信息。</T>
+      //============================================================
       public FFileInfo(string filename) {
          _info = new FileInfo(filename);
       }

@@ -11,6 +11,7 @@ namespace MO.Common.Net.Sockets
    //============================================================
    public class FSocket : IDisposable
    {
+      // 日志输出接口
       private static ILogger _logger = RLogger.Find(typeof(FSocket));
 
       protected Socket _socket;

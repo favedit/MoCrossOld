@@ -668,13 +668,13 @@ namespace MO.Common.Content
       //============================================================
       protected void InnerSerialize(IDataOutput output, FXmlElement element) {
          if(element.Type == EXmlElementType.Node){
-            output.WriteUTFString(element.Name);
-            output.WriteUTFString(element.Text);
+            output.WriteString(element.Name);
+            output.WriteString(element.Text);
             if(element.HasAttribute()) {
                output.WriteInt16((short)element.Attributes.Count);
                foreach(IStringPair pair in element.Attributes) {
-                  output.WriteUTFString(pair.Name);
-                  output.WriteUTFString(pair.Value);
+                  output.WriteString(pair.Name);
+                  output.WriteString(pair.Value);
                }
             } else {
                output.WriteInt16(0);
