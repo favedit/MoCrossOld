@@ -4,18 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8274ED77-C09C-4115-AF86-C7D9AFDDCB8F}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{8FA60969-120F-4339-BB44-272CF071E6BA}</ProjectGuid>
+    <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MpScout</RootNamespace>
-    <AssemblyName>MpScout</AssemblyName>
+    <RootNamespace>MO.Face</RootNamespace>
+    <AssemblyName>MoFace</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +24,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -49,16 +47,44 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="Common\FComponent.cs" />
+    <Compile Include="Common\FControl.cs" />
+    <Compile Include="Container\FBar.xaml.cs">
+      <DependentUpon>FBar.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="Container\FForm.xaml.cs">
+      <DependentUpon>FForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Container\FWindow.xaml.cs">
+      <DependentUpon>FWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FButton.xaml.cs">
+      <DependentUpon>FButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FEdit.xaml.cs">
+      <DependentUpon>FEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FLabel.xaml.cs">
+      <DependentUpon>FLabel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FListBox.xaml.cs">
+      <DependentUpon>FListBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FListItem.xaml.cs">
+      <DependentUpon>FListItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FListView.xaml.cs">
+      <DependentUpon>FListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FPanel.xaml.cs">
+      <DependentUpon>FPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FPicture.xaml.cs">
+      <DependentUpon>FPicture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FTreeView.xaml.cs">
+      <DependentUpon>FTreeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -83,20 +109,56 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
+    <Page Include="Container\FBar.xaml">
       <SubType>Designer</SubType>
-    </None>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Container\FForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Container\FWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FLabel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FListBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FPicture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\MoCommon\MoCommon.csproj">
-      <Project>{c1b9e7de-6fa2-4bdd-aa46-768bf5d008d3}</Project>
-      <Name>MoCommon</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoScout\MoScout.csproj">
-      <Project>{5feaa20b-8ae6-4563-83ec-68e0043d1dc7}</Project>
-      <Name>MoScout</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
