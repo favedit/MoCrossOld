@@ -47,23 +47,50 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Face\Forms\WConsole.xaml">
+    <Page Include="Face\Forms\WSceneWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControl1.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Compile Include="Face\Forms\WSceneWindow.xaml.cs">
+      <DependentUpon>WSceneWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Face\Frame\WContentFrame.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="Face\Forms\WConsole.xaml.cs">
-      <DependentUpon>WConsole.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="Face\Frame\WGroupFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Face\Frame\WProjectFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Face\Frame\WPropertyFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Face\Frame\WSceneFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Face\Frame\WContentFrame.xaml.cs">
+      <DependentUpon>WContentFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Face\Frame\WGroupFrame.xaml.cs">
+      <DependentUpon>WGroupFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Face\Frame\WProjectFrame.xaml.cs">
+      <DependentUpon>WProjectFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Face\Frame\WPropertyFrame.xaml.cs">
+      <DependentUpon>WPropertyFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Face\Frame\WSceneFrame.xaml.cs">
+      <DependentUpon>WSceneFrame.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -90,7 +117,6 @@
   <ItemGroup>
     <Folder Include="Console\" />
     <Folder Include="Face\Content\" />
-    <Folder Include="Face\Frame\" />
     <Folder Include="Face\Terrain\" />
     <Folder Include="Face\Toolbar\" />
   </ItemGroup>

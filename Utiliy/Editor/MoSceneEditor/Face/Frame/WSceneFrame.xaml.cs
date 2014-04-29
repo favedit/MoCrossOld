@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MO.SceneEditor.Face.Forms
+namespace MO.SceneEditor.Face.Frame
 {
    /// <summary>
-   /// WConsole.xaml 的交互逻辑
+   /// WSceneFrame.xaml 的交互逻辑
    /// </summary>
-   public partial class WConsole : Window
+   public partial class WSceneFrame : UserControl
    {
-      public WConsole() {
+      public WSceneFrame() {
          InitializeComponent();
       }
    }
