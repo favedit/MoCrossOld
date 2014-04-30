@@ -10,10 +10,6 @@
 #include "MoEgDecoder.h"
 #endif // __MO_EG_DECODER_H__
 
-#ifndef __MO_EG_DEVICE_H__
-#include "MoEgDevice.h"
-#endif // __MO_EG_DEVICE_H__
-
 #ifndef __MO_EG_DISPLAY_H__
 #include "MoEgDisplay.h"
 #endif // __MO_EG_DISPLAY_H__

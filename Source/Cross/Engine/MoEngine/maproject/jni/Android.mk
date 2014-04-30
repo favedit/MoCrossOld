@@ -34,9 +34,6 @@ LOCAL_SRC_FILES :=
 
 # Core
 LOCAL_SRC_FILES += \
-   ../../FFont.cpp \
-   ../../FFontConsole.cpp \
-   \
    ../../FProcessor.cpp \
    ../../FProcessorConsole.cpp \
    ../../FProcessorThread.cpp \
@@ -54,8 +51,6 @@ LOCAL_SRC_FILES += \
    ../../FDecoder.cpp \
    ../../FDecoderConsole.cpp \
    ../../FDecoderWorker.cpp \
-   \
-   ../../FScreenDevice.cpp \
    \
    ../../FComponent.cpp \
    ../../FComponentProperties.cpp \

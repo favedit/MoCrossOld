@@ -1,4 +1,4 @@
-#include "MoEgDevice.h"
+#include "MoFgDevice.h"
 
 MO_NAMESPACE_BEGIN
 
@@ -36,7 +36,7 @@ TResult FScreenDevice::Resize(TInt width, TInt height){
    _size.Set(width, height);
    _rectangle.SetSize(width, height);
    // 分发处理
-   SResizeEvent event(this, width, height);
+   SScreenResizeEvent event(this, width, height);
    _listenersResize.Process(&event);
    return ESuccess;
 }

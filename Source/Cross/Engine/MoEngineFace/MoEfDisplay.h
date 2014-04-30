@@ -1,10 +1,10 @@
-#ifndef __MO_FM_CORE_H__
-#define __MO_FM_CORE_H__
+#ifndef __MO_EF_DISPLAY_H__
+#define __MO_EF_DISPLAY_H__
 //************************************************************
 
-#ifndef __MO_FM_COMMON_H__
-#include "MoFmCommon.h"
-#endif // __MO_FM_COMMON_H__
+#ifndef __MO_EF_COMMON_H__
+#include "MoEfCommon.h"
+#endif // __MO_EF_COMMON_H__
 
 MO_NAMESPACE_BEGIN
 
@@ -238,7 +238,7 @@ enum EUiLineStyle{
 //============================================================
 // <T>界面线。</T>
 //============================================================
-struct MO_FM_DECLARE SUiLine{
+struct MO_EF_DECLARE SUiLine{
 public:
    TColor color;
    TInt width;
@@ -252,7 +252,7 @@ public:
 //============================================================
 // <T>界面边框。</T>
 //============================================================
-struct MO_FM_DECLARE SUiBorder{
+struct MO_EF_DECLARE SUiBorder{
 public:
    SUiLine left;
    SUiLine top;
@@ -273,7 +273,7 @@ public:
 //============================================================
 // <T>交界面字体。</T>
 //============================================================
-struct MO_FM_DECLARE SUiFont{
+struct MO_EF_DECLARE SUiFont{
 public:
    TString fontName;
    TInt color;
@@ -294,7 +294,7 @@ public:
 //============================================================
 // <T>界面图片。</T>
 //============================================================
-struct MO_FM_DECLARE SUiPicture{
+struct MO_EF_DECLARE SUiPicture{
 public:
    TResourceId resourceId;
    EControlImageAlign alignCd;
@@ -316,7 +316,7 @@ public:
 //============================================================
 // <T>界面画板。</T>
 //============================================================
-class MO_FM_DECLARE FUiCanvas : public FBitmapCanvas{
+class MO_EF_DECLARE FUiCanvas : public FBitmapCanvas{
 public:
    FUiCanvas();
    MO_ABSTRACT ~FUiCanvas();
@@ -327,7 +327,7 @@ public:
 //============================================================
 // <T>界面工具类。</T>
 //============================================================
-class MO_FM_DECLARE RUiUtil{
+class MO_EF_DECLARE RUiUtil{
 public:
    static TResult CalculateDock(SIntPoint2* pLocation, SIntRectangle* pClientRect, SIntSize2* pTargetSize, EControlDock dockCd, SIntPadding* pDockPadding = NULL);
 };
@@ -335,7 +335,7 @@ public:
 //============================================================
 // <T>控件对象。</T>
 //============================================================
-class MO_FM_DECLARE FUiControl : public FDisplay{
+class MO_EF_DECLARE FUiControl : public FDisplay{
 protected:
    EControlType _controlCd;
    TString _className;
@@ -449,7 +449,7 @@ typedef FList<FUiControl*> FUiControlList;
 //============================================================
 // <T>控件容器。</T>
 //============================================================
-class MO_FM_DECLARE FUiControlContainer : public FUiControl{
+class MO_EF_DECLARE FUiControlContainer : public FUiControl{
 public:
    FUiControlContainer();
    MO_ABSTRACT ~FUiControlContainer();
@@ -460,7 +460,7 @@ public:
 //============================================================
 // <T>控件缓冲池。</T>
 //============================================================
-class MO_FM_DECLARE FUiControlPool : public FPool<FUiControl*>{
+class MO_EF_DECLARE FUiControlPool : public FPool<FUiControl*>{
 protected:
    EControlType _typeCd;
    TCharC* _pClassName;
@@ -504,7 +504,7 @@ typedef FVector<FUiControlPool*> FUiControlPoolCollection;
 //============================================================
 // <T>控件控制台。</T>
 //============================================================
-class MO_FM_DECLARE FUiControlConsole : public FConsole{
+class MO_EF_DECLARE FUiControlConsole : public FConsole{
 protected:
    // 控件缓冲池集合
    FUiControlPoolCollection* _pPools;
@@ -533,7 +533,7 @@ public:
 //============================================================
 // <T>顶层容器。</T>
 //============================================================
-class MO_FM_DECLARE FUiFrame : public FUiControlContainer{
+class MO_EF_DECLARE FUiFrame : public FUiControlContainer{
 protected:
    TControlId _code;
    SIntPadding _dockPadding;
@@ -561,12 +561,12 @@ public:
    TResult Hide();
 };
 //------------------------------------------------------------
-typedef MO_FM_DECLARE FSet<TControlId, FUiFrame*> FUiFrameSet;
+typedef MO_EF_DECLARE FSet<TControlId, FUiFrame*> FUiFrameSet;
 
 //============================================================
 // <T>控件控制台。</T>
 //============================================================
-class MO_FM_DECLARE FUiFrameConsole : public FConsole{
+class MO_EF_DECLARE FUiFrameConsole : public FConsole{
 protected:
    // 控件缓冲池集合
    FUiControlPoolCollection* _pPools;
@@ -598,7 +598,7 @@ public:
 //============================================================
 // <T>控件控制台。</T>
 //============================================================
-class MO_FM_DECLARE FUiFaceConsole : public FConsole{
+class MO_EF_DECLARE FUiFaceConsole : public FConsole{
 protected:
    // 控件控制台
    FUiControlConsole* _pControlConsole;
@@ -626,10 +626,10 @@ public:
 //============================================================
 // <T>界面管理器。</T>
 //============================================================
-class MO_FM_DECLARE RFaceManager : public RSingleton<FUiFaceConsole>{
+class MO_EF_DECLARE RFaceManager : public RSingleton<FUiFaceConsole>{
 };
 
 MO_NAMESPACE_END
 
 //************************************************************
-#endif // __MO_FM_CORE_H__
+#endif // __MO_EF_DISPLAY_H__

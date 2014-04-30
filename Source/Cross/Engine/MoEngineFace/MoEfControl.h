@@ -1,21 +1,21 @@
-#ifndef __MO_FM_CONTROL_H__
-#define __MO_FM_CONTROL_H__
+#ifndef __MO_EF_CONTROL_H__
+#define __MO_EF_CONTROL_H__
 //************************************************************
 
-#ifndef __MO_FM_COMMON_H__
-#include "MoFmCommon.h"
-#endif // __MO_FM_COMMON_H__
+#ifndef __MO_EF_COMMON_H__
+#include "MoEfCommon.h"
+#endif // __MO_EF_COMMON_H__
 
-#ifndef __MO_FM_CORE_H__
-#include "MoFmCore.h"
-#endif // __MO_FM_CORE_H__
+#ifndef __MO_EF_CORE_H__
+#include "MoEfCore.h"
+#endif // __MO_EF_CORE_H__
 
 MO_NAMESPACE_BEGIN
 
 //============================================================
 // <T>¾²Ì¬±êÇ©¿Ø¼þ¡£</T>
 //============================================================
-class MO_FM_DECLARE FUiStaticLabel : public FUiControl{
+class MO_EF_DECLARE FUiStaticLabel : public FUiControl{
 protected:
    SUiFont _font;
    EControlTextAlign _textAlignCd;
@@ -47,12 +47,12 @@ public:
    MO_OVERRIDE TResult OnPaint();
 };
 //------------------------------------------------------------
-MO_DEF_CONTROL_POOL(MO_FM_DECLARE, FUiStaticLabelPool, FUiStaticLabel, EControlType_StaticLabel, NULL);
+MO_DEF_CONTROL_POOL(MO_EF_DECLARE, FUiStaticLabelPool, FUiStaticLabel, EControlType_StaticLabel, NULL);
 
 //============================================================
 // <T>±êÇ©¿Ø¼þ¡£</T>
 //============================================================
-class MO_FM_DECLARE FUiLabel : public FUiControl{
+class MO_EF_DECLARE FUiLabel : public FUiControl{
 protected:
    SUiFont _font;
    EControlTextAlign _textAlignCd;
@@ -84,12 +84,12 @@ public:
    MO_OVERRIDE TResult OnPaint();
 };
 //------------------------------------------------------------
-MO_DEF_CONTROL_POOL(MO_FM_DECLARE, FUiLabelPool, FUiLabel, EControlType_Label, NULL);
+MO_DEF_CONTROL_POOL(MO_EF_DECLARE, FUiLabelPool, FUiLabel, EControlType_Label, NULL);
 
 //============================================================
 // <T>¾²Ì¬±êÇ©¿Ø¼þ¡£</T>
 //============================================================
-class MO_FM_DECLARE FUiRadio : public FUiControl{
+class MO_EF_DECLARE FUiRadio : public FUiControl{
 protected:
    SUiFont _font;
    EControlTextAlign _textAlignCd;
@@ -121,12 +121,12 @@ public:
    MO_OVERRIDE TResult OnPaint();
 };
 //------------------------------------------------------------
-MO_DEF_CONTROL_POOL(MO_FM_DECLARE, FUiRadioPool, FUiRadio, EControlType_Radio, NULL);
+MO_DEF_CONTROL_POOL(MO_EF_DECLARE, FUiRadioPool, FUiRadio, EControlType_Radio, NULL);
 
 //============================================================
 // <T>¾²Ì¬±êÇ©¿Ø¼þ¡£</T>
 //============================================================
-class MO_FM_DECLARE FUiCheck : public FUiControl{
+class MO_EF_DECLARE FUiCheck : public FUiControl{
 protected:
    SUiFont _font;
    EControlTextAlign _textAlignCd;
@@ -160,12 +160,12 @@ public:
    MO_OVERRIDE TResult OnPaint();
 };
 //------------------------------------------------------------
-MO_DEF_CONTROL_POOL(MO_FM_DECLARE, FUiCheckPool, FUiCheck, EControlType_Check, NULL);
+MO_DEF_CONTROL_POOL(MO_EF_DECLARE, FUiCheckPool, FUiCheck, EControlType_Check, NULL);
 
 //============================================================
 // <T>±à¼­¿Ø¼þ¡£</T>
 //============================================================
-class MO_FM_DECLARE FUiNumber : public FUiControl{
+class MO_EF_DECLARE FUiNumber : public FUiControl{
 protected:
    SUiFont _font;
    EControlTextAlign _textAlignCd;
@@ -197,12 +197,12 @@ public:
    MO_OVERRIDE TResult OnPaint();
 };
 //------------------------------------------------------------
-MO_DEF_CONTROL_POOL(MO_FM_DECLARE, FUiNumberPool, FUiNumber, EControlType_Number, NULL);
+MO_DEF_CONTROL_POOL(MO_EF_DECLARE, FUiNumberPool, FUiNumber, EControlType_Number, NULL);
 
 //============================================================
 // <T>±à¼­¿Ø¼þ¡£</T>
 //============================================================
-class MO_FM_DECLARE FUiEdit : public FUiControl{
+class MO_EF_DECLARE FUiEdit : public FUiControl{
 protected:
    SUiFont _font;
    EControlTextAlign _textAlignCd;
@@ -234,12 +234,12 @@ public:
    MO_OVERRIDE TResult OnPaint();
 };
 //------------------------------------------------------------
-MO_DEF_CONTROL_POOL(MO_FM_DECLARE, FUiEditPool, FUiEdit, EControlType_Edit, NULL);
+MO_DEF_CONTROL_POOL(MO_EF_DECLARE, FUiEditPool, FUiEdit, EControlType_Edit, NULL);
 
 //============================================================
 // <T>±êÇ©¿Ø¼þ¡£</T>
 //============================================================
-class MO_FM_DECLARE FUiButton :
+class MO_EF_DECLARE FUiButton :
       public FUiControl,
       public IMouseable,
       public IHoverable{
@@ -324,9 +324,9 @@ public:
    MO_OVERRIDE TResult HoverLeave();
 };
 //------------------------------------------------------------
-MO_DEF_CONTROL_POOL(MO_FM_DECLARE, FUiButtonPool, FUiButton, EControlType_Button, NULL);
+MO_DEF_CONTROL_POOL(MO_EF_DECLARE, FUiButtonPool, FUiButton, EControlType_Button, NULL);
 
 MO_NAMESPACE_END
 
 //************************************************************
-#endif // __MO_FM_CONTROL_H__
+#endif // __MO_EF_CONTROL_H__

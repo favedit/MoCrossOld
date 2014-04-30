@@ -1,4 +1,3 @@
-#include "MoEgDevice.h"
 #include "MoEgDisplay.h"
 #include "MoEgEngine.h"
 
@@ -44,7 +43,7 @@ TResult FEngineConsole::Setup(){
 // @param pEvent 事件
 // @return 处理结果
 //============================================================
-TResult FEngineConsole::OnResize(SResizeEvent* pEvent){
+TResult FEngineConsole::OnResize(SScreenResizeEvent* pEvent){
    TInt width = pEvent->size.width;
    TInt height = pEvent->size.height;
    FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();

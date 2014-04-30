@@ -1,4 +1,3 @@
-#include "MoEgDevice.h"
 #include "MoEgEngine.h"
 
 MO_NAMESPACE_BEGIN

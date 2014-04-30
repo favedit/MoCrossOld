@@ -94,7 +94,7 @@ public:
 public:
    MO_ABSTRACT TResult Setup();
 public:
-   MO_ABSTRACT TResult OnResize(SResizeEvent* pEvent);
+   MO_ABSTRACT TResult OnResize(SScreenResizeEvent* pEvent);
 public:
    MO_ABSTRACT TResult ProcessLayer(FDisplayLayer* pLayer);
    MO_ABSTRACT TResult ProcessFrame(FStageLayer* pFrame);

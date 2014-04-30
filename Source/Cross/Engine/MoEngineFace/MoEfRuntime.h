@@ -1,22 +1,22 @@
-#ifndef __MO_FM_RUNTIME_H__
-#define __MO_FM_RUNTIME_H__
+#ifndef __MO_EF_RUNTIME_H__
+#define __MO_EF_RUNTIME_H__
 //************************************************************
 
-#ifndef __MO_FM_COMMON_H__
-#include "MoFmCommon.h"
-#endif // __MO_FM_COMMON_H__
+#ifndef __MO_EF_COMMON_H__
+#include "MoEfCommon.h"
+#endif // __MO_EF_COMMON_H__
 
-#ifndef __MO_FM_CORE_H__
-#include "MoFmCore.h"
-#endif // __MO_FM_CORE_H__
+#ifndef __MO_EF_CORE_H__
+#include "MoEfCore.h"
+#endif // __MO_EF_CORE_H__
 
-#ifndef __MO_FM_CONTROL_H__
-#include "MoFmControl.h"
-#endif // __MO_FM_CONTROL_H__
+#ifndef __MO_EF_CONTROL_H__
+#include "MoEfControl.h"
+#endif // __MO_EF_CONTROL_H__
 
-#ifndef __MO_FM_FRAME_H__
-#include "MoFmFrame.h"
-#endif // __MO_FM_FRAME_H__
+#ifndef __MO_EF_FRAME_H__
+#include "MoEfFrame.h"
+#endif // __MO_EF_FRAME_H__
 
 MO_NAMESPACE_BEGIN
 
@@ -29,7 +29,7 @@ enum EFmRuntime{
 //============================================================
 // <T>运行状态栏。</T>
 //============================================================
-class MO_FM_DECLARE FFmRuntimeBar : public FUiBar{
+class MO_EF_DECLARE FFmRuntimeBar : public FUiBar{
 protected:
    FUiLabel* _pInfoLabel;
    FUiButton* _pWindowButton;
@@ -47,12 +47,12 @@ public:
    MO_OVERRIDE TResult Show();
 };
 //------------------------------------------------------------
-MO_DEF_CONTROL_POOL(MO_FM_DECLARE, FFmRuntimeBarPool, FFmRuntimeBar, EControlType_Bar, "RuntimeBar");
+MO_DEF_CONTROL_POOL(MO_EF_DECLARE, FFmRuntimeBarPool, FFmRuntimeBar, EControlType_Bar, "RuntimeBar");
 
 //============================================================
 // <T>运行窗口。</T>
 //============================================================
-class MO_FM_DECLARE FFmRuntimeWindow : public FUiWindow{
+class MO_EF_DECLARE FFmRuntimeWindow : public FUiWindow{
 protected:
    FUiButton* _pCloseButton;
 public:
@@ -63,12 +63,12 @@ public:
 public:
    MO_OVERRIDE TResult OnSetupAfter();
 };
-MO_DEF_CONTROL_POOL(MO_FM_DECLARE, FFmRuntimeWindowPool, FFmRuntimeWindow, EControlType_Window, "RuntimeWindow");
+MO_DEF_CONTROL_POOL(MO_EF_DECLARE, FFmRuntimeWindowPool, FFmRuntimeWindow, EControlType_Window, "RuntimeWindow");
 
 //============================================================
 // <T>运行界面控制台。</T>
 //============================================================
-class MO_FM_DECLARE FRuntimeFrameConsole : public FConsole{
+class MO_EF_DECLARE FRuntimeFrameConsole : public FConsole{
 protected:
 public:
    FRuntimeFrameConsole();
@@ -80,10 +80,10 @@ public:
 //============================================================
 // <T>运行界面管理器。</T>
 //============================================================
-class MO_FM_DECLARE RRuntimeFrameManager : public RSingleton<FRuntimeFrameConsole>{
+class MO_EF_DECLARE RRuntimeFrameManager : public RSingleton<FRuntimeFrameConsole>{
 };
 
 MO_NAMESPACE_END
 
 //************************************************************
-#endif // __MO_FM_RUNTIME_H__
+#endif // __MO_EF_RUNTIME_H__

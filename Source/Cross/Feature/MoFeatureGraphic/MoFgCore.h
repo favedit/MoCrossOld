@@ -26,6 +26,14 @@
 #include "MoFgLight.h"
 #endif // __MO_FG_LIGHT_H__
 
+#ifndef __MO_FG_FONT_H__
+#include "MoFgFont.h"
+#endif // __MO_FG_FONT_H__
+
+#ifndef __MO_FG_DEVICE_H__
+#include "MoFgDevice.h"
+#endif // __MO_FG_DEVICE_H__
+
 MO_NAMESPACE_BEGIN
 
 MO_NAMESPACE_END

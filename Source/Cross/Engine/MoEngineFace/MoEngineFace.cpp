@@ -12,6 +12,9 @@ void MoEngineFaceInitialize(){
    RFaceManager::Instance().Setup();
    // 初始化运行管理器
    RRuntimeFrameManager::Create();
+   // 初始化字体管理器
+   RFontManager::Create(MO_CREATE(FEoFontConsole));
+   RFontManager::Instance().Open();
 }
 
 //============================================================

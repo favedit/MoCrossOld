@@ -1,10 +1,10 @@
-#ifndef __MO_EG_FONT_H__
-#define __MO_EG_FONT_H__
+#ifndef __MO_FG_FONT_H__
+#define __MO_FG_FONT_H__
 //************************************************************
 
-#ifndef __MO_EG_COMMON_H__
-#include "MoEgCommon.h"
-#endif // __MO_EG_COMMON_H__
+#ifndef __MO_FG_COMMON_H__
+#include "MoFgCommon.h"
+#endif // __MO_FG_COMMON_H__
 
 MO_NAMESPACE_BEGIN
 
@@ -48,7 +48,7 @@ public:
 //============================================================
 // <T>字体。</T>
 //============================================================
-class MO_EG_DECLARE FFont : public FInstance
+class MO_FG_DECLARE FFont : public FInstance
 {
    MO_CLASS_ABSTRACT_DECLARE_INHERITS(FFont, FInstance);
 protected:
@@ -134,13 +134,13 @@ public:
    MO_VIRTUAL TResult DrawWideText(FBitmapData* pBitmapData, SIntRectangle* pRectangle, SFontInfo* pFontInfo, TWideCharC* pText) = 0;
 };
 //------------------------------------------------------------
-typedef MO_EG_DECLARE FObjects<FFont*> FFontCollection;
-typedef MO_EG_DECLARE FList<FFont*> FFontList;
+typedef MO_FG_DECLARE FObjects<FFont*> FFontCollection;
+typedef MO_FG_DECLARE FList<FFont*> FFontList;
 
 //============================================================
 // <T>字体控制台。</T>
 //============================================================
-class MO_EG_DECLARE FFontConsole : public FConsole
+class MO_FG_DECLARE FFontConsole : public FConsole
 {
    MO_CLASS_DECLARE_INHERITS(FFontConsole, FConsole);
 public:
@@ -180,10 +180,10 @@ public:
 //============================================================
 // <T>字体管理器。</T>
 //============================================================
-class MO_EG_DECLARE RFontManager : public RSingleton<FFontConsole>{
+class MO_FG_DECLARE RFontManager : public RSingleton<FFontConsole>{
 };
 
 MO_NAMESPACE_END
 
 //************************************************************
-#endif // __MO_EG_FONT_H__
+#endif // __MO_FG_FONT_H__

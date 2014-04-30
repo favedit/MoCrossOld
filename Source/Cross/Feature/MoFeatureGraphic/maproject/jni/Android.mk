@@ -55,6 +55,11 @@ LOCAL_SRC_FILES += \
    ../../FPerspectiveProjection.cpp \
    ../../FProjection.cpp \
    ../../FViewport.cpp \
+   \
+   ../../FFont.cpp \
+   ../../FFontConsole.cpp \
+   \
+   ../../FScreenDevice.cpp \
 
 # Graphic
 LOCAL_SRC_FILES += \
