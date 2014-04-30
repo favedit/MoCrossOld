@@ -10,6 +10,19 @@ MO_CLASS_ABSTRACT_IMPLEMENT_INHERITS(FRenderDevice, FDevice);
 FRenderDevice::FRenderDevice(){
    // 创建当前信息
    MO_CLEAR(_pCapability);
+   // 初始化填充模式
+   _fillModeCd = ERenderFillMode_Unknown;
+   // 初始化深度数据
+   _optionDepth = EFalse;
+   _depthModeCd = ERenderDepthMode_None;
+   // 初始化剪裁数据
+   _optionCull = EFalse;
+   _cullModeCd = ERenderCullMode_None;
+   // 初始化融合数据
+   _statusBlend = EFalse;
+   _blendSourceCd = ERenderBlendMode_None;
+   _blendTargetCd = ERenderBlendMode_None;
+   // 初始化程序
    MO_CLEAR(_pProgram);
    _pTextures = MO_CREATE(FRenderTextureCollection);
    // 创建激活信息
@@ -18,6 +31,9 @@ FRenderDevice::FRenderDevice(){
    _pActiveVertexData = MO_CREATE(FBytes);
    _pActiveFragmentData = MO_CREATE(FBytes);
    _pActiveTextures = MO_CREATE(FRenderTextureCollection);
+   // 初始化缓冲数据
+   _pVertexConsts = MO_CREATE(FBytes);
+   _pFragmentConsts = MO_CREATE(FBytes);
    // 创建统计信息
    _statistics = FRenderStatistics::InstanceCreate();
 }
@@ -32,6 +48,9 @@ FRenderDevice::~FRenderDevice(){
    MO_DELETE(_pActiveVertexData);
    MO_DELETE(_pActiveFragmentData);
    MO_DELETE(_pActiveTextures);
+   // 删除缓冲数据
+   MO_DELETE(_pVertexConsts);
+   MO_DELETE(_pFragmentConsts);
 }
 
 //============================================================
@@ -43,6 +62,8 @@ TResult FRenderDevice::Setup(){
    MO_INFO("Render device setup.");
    // 注册一个设备统计器
    RStatisticsManager::Instance().StatisticsRegister(_statistics);
+   // 获得渲染绘制统计
+   _renderDrawStatistics = RStatisticsManager::Instance().SyncByName("render.draw");
    return ESuccess;
 }
 
@@ -142,6 +163,50 @@ TResult FRenderDevice::FrameBegin(){
 TResult FRenderDevice::FrameEnd(){
    _statistics->Update(ETrue);
    return ESuccess;
+}
+
+//============================================================
+// <T>更新常量。</T>
+// <P>如果变更则返回真，没有变更返回假。</P>
+//
+// @param shaderCd 渲染类型
+// @param slot 插槽
+// @param pData 数据
+// @param length 长度
+// @return 是否变更
+//============================================================
+TBool FRenderDevice::UpdateConsts(ERenderShader shaderCd, TInt slot, TAnyC* pData, TInt length){
+   return ETrue;
+   // 检查参数
+   MO_CHECK(slot >= 0, return EFalse);
+   MO_CHECK(pData, return EFalse);
+   MO_CHECK(length >= 0, return EFalse);
+   //............................................................
+   // 设置数据
+   FBytes* pConstBytes = NULL;
+   if(shaderCd == ERenderShader_Vertex){
+      pConstBytes = _pVertexConsts;
+   }else if(shaderCd == ERenderShader_Fragment){
+      pConstBytes = _pFragmentConsts;
+   }else{
+      MO_FATAL("Render shader type is unknown. (shaderCd=%d)", shaderCd);
+   }
+   //............................................................
+   // 获得内存
+   TInt offset = sizeof(TFloat) * 4 * slot;
+   TInt capacity = offset + length;
+   TInt memoryLength = pConstBytes->Length();
+   if(capacity > memoryLength){
+      MO_FATAL("Write buffer over. (offset=%d, length=%d, memory_length=%d)", offset, length, memoryLength);
+   }
+   TByte* pConsts = pConstBytes->Memory() + offset;
+   // 是否相等
+   if(MO_LIB_MEMORY_COMPARE(pConsts, pData, length) == 0){
+      return EFalse;
+   }
+   // 复制数据
+   MO_LIB_MEMORY_COPY(pConsts, length, pData, length);
+   return ETrue;
 }
 
 //============================================================

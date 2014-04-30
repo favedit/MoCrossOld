@@ -1,12 +1,12 @@
-#include "MoEngineOpenGL.h"
+#include "MoPlatformOpenGLES2.h"
       
 MO_NAMESPACE_BEGIN
 
 //============================================================
 // <T>初始化渲染引擎处理。</T>
 //============================================================
-void MoEngineOpenGLInitialize(){
-   MO_STATIC_INFO("Engine OpenGL initialize.");
+void MoEngineOpenGLES2Initialize(){
+   MO_STATIC_INFO("Engine OpenGLES2 initialize.");
    // 初始化字体管理器
    RFontManager::Create(MO_CREATE(FEoFontConsole));
    RFontManager::Instance().Open();
@@ -19,23 +19,23 @@ void MoEngineOpenGLInitialize(){
 //============================================================
 // <T>启动渲染引擎处理。</T>
 //============================================================
-void MoEngineOpenGLStartup(){
-   MO_STATIC_INFO("Engine OpenGL startup.");
+void MoEngineOpenGLES2Startup(){
+   MO_STATIC_INFO("Engine OpenGLES2 startup.");
    RTechniqueManager::Instance().Setup();
 }
 
 //============================================================
 // <T>关闭渲染引擎处理。</T>
 //============================================================
-void MoEngineOpenGLShutdown(){
-   MO_STATIC_INFO("Engine OpenGL shutdown.");
+void MoEngineOpenGLES2Shutdown(){
+   MO_STATIC_INFO("Engine OpenGLES2 shutdown.");
 }
 
 //============================================================
 // <T>释放渲染引擎处理。</T>
 //============================================================
-void MoEngineOpenGLRelease(){
-   MO_STATIC_INFO("Engine OpenGL release.");
+void MoEngineOpenGLES2Release(){
+   MO_STATIC_INFO("Engine OpenGLES2 release.");
 }
 
 MO_NAMESPACE_END

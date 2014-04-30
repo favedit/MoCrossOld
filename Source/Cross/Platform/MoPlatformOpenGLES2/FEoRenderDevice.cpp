@@ -9,25 +9,10 @@ MO_CLASS_IMPLEMENT_INHERITS(FEoRenderDevice, FRenderDevice);
 //============================================================
 FEoRenderDevice::FEoRenderDevice(){
    _pCapability = MO_CREATE(FRenderCapability);
-   // 初始化填充模式
-   _fillModeCd = ERenderFillMode_Unknown;
-   // 初始化深度数据
-   _optionDepth = EFalse;
-   _depthModeCd = ERenderDepthMode_None;
-   // 初始化剪裁数据
-   _optionCull = EFalse;
-   _cullModeCd = ERenderCullMode_None;
-   // 初始化融合数据
-   _statusBlend = EFalse;
-   _blendSourceCd = ERenderBlendMode_None;
-   _blendTargetCd = ERenderBlendMode_None;
-   _renderTextureActiveSlot = -1;
    // 初始化纹理数据
    _optionTexture = EFalse;
+   _renderTextureActiveSlot = -1;
    _textureLimit = 0;
-   // 初始化顶点数据
-   _pVertexConsts = MO_CREATE(FBytes);
-   _pFragmentConsts = MO_CREATE(FBytes);
    // 初始化关联集合
    _pLinkFlatTextures = MO_CREATE(FRenderFlatTextureList);
    _pLinkCubeTextures = MO_CREATE(FRenderCubeTextureList);
@@ -38,56 +23,9 @@ FEoRenderDevice::FEoRenderDevice(){
 //============================================================
 FEoRenderDevice::~FEoRenderDevice(){
    MO_DELETE(_pCapability);
-   // 删除常量集合
-   MO_DELETE(_pVertexConsts);
-   MO_DELETE(_pFragmentConsts);
    // 删除关联集合
    MO_DELETE(_pLinkFlatTextures);
    MO_DELETE(_pLinkCubeTextures);
-}
-
-//============================================================
-// <T>更新常量。</T>
-// <P>如果变更则返回真，没有变更返回假。</P>
-//
-// @param shaderCd 渲染类型
-// @param slot 插槽
-// @param pData 数据
-// @param length 长度
-// @return 是否变更
-//============================================================
-TBool FEoRenderDevice::UpdateConsts(ERenderShader shaderCd, TInt slot, TAnyC* pData, TInt length){
-   return ETrue;
-   // 检查参数
-   MO_CHECK(slot >= 0, return EFalse);
-   MO_CHECK(pData, return EFalse);
-   MO_CHECK(length >= 0, return EFalse);
-   //............................................................
-   // 设置数据
-   FBytes* pConstBytes = NULL;
-   if(shaderCd == ERenderShader_Vertex){
-      pConstBytes = _pVertexConsts;
-   }else if(shaderCd == ERenderShader_Fragment){
-      pConstBytes = _pFragmentConsts;
-   }else{
-      MO_FATAL("Render shader type is unknown. (shaderCd=%d)", shaderCd);
-   }
-   //............................................................
-   // 获得内存
-   TInt offset = sizeof(TFloat) * 4 * slot;
-   TInt capacity = offset + length;
-   TInt memoryLength = pConstBytes->Length();
-   if(capacity > memoryLength){
-      MO_FATAL("Write buffer over. (offset=%d, length=%d, memory_length=%d)", offset, length, memoryLength);
-   }
-   TByte* pConsts = pConstBytes->Memory() + offset;
-   // 是否相等
-   if(MO_LIB_MEMORY_COMPARE(pConsts, pData, length) == 0){
-      return EFalse;
-   }
-   // 复制数据
-   MO_LIB_MEMORY_COPY(pConsts, length, pData, length);
-   return ETrue;
 }
 
 //============================================================
@@ -183,8 +121,6 @@ TResult FEoRenderDevice::Setup(){
    TInt fragmentConstTotal = sizeof(SFloat4) * _pCapability->FragmentConstLimit();
    _pFragmentConsts->ForceLength(fragmentConstTotal);
    RMemory::Clear(_pFragmentConsts->Memory(), _pFragmentConsts->Length());
-   //............................................................
-   _renderDrawStatistics = RStatisticsManager::Instance().SyncByName("render.draw");
    //............................................................
    // GL_CCW表示逆时针为背面
    // glFrontFace(GL_CCW);
@@ -508,21 +444,6 @@ TResult FEoRenderDevice::SetCullingMode(TBool cull, ERenderCullMode cullCd){
 
 //============================================================
 // <T>设置合成方式。</T>
-//============================================================
-GLenum ConvertBlendFactors(ERenderBlendMode value){
-   switch(value){
-      case ERenderBlendMode_SourceAlpha:
-         return GL_SRC_ALPHA;
-      case ERenderBlendMode_OneMinusSourceAlpha:
-         return GL_ONE_MINUS_SRC_ALPHA;
-      default:
-         break;
-   }
-   return 0;
-}
-
-//============================================================
-// <T>设置合成方式。</T>
 //
 // @param blend 混合方式
 // @param sourceCd 来源类型
@@ -542,8 +463,8 @@ TResult FEoRenderDevice::SetBlendFactors(TBool blend, ERenderBlendMode sourceCd,
    }
    // 设置效果
    if(blend && ((_blendSourceCd != sourceCd) || (_blendTargetCd != targetCd))){
-      GLenum source = ConvertBlendFactors(sourceCd);
-      GLenum target = ConvertBlendFactors(targetCd);
+      GLenum source = ROpenGLES2::ConvertBlendFactors(sourceCd);
+      GLenum target = ROpenGLES2::ConvertBlendFactors(targetCd);
       glBlendFunc(source, target);
       _blendSourceCd = sourceCd;
       _blendTargetCd = targetCd;
@@ -897,7 +818,7 @@ TResult FEoRenderDevice::BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVerte
    MO_ERROR_CHECK(slot >= 0, return EFailure, "Slot value is invalid. (slot=%d)", slot);
    // 获得顶点流
    TResult result = ESuccess;
-   FEoRenderVertexBuffer* pBuffer = (FEoRenderVertexBuffer*)pVertexBuffer;
+   FEoRenderVertexBuffer* pBuffer = pVertexBuffer->Convert<FEoRenderVertexBuffer>();
    //............................................................
    // 设定顶点流
    GLuint bufferId = 0;
@@ -1034,7 +955,7 @@ TResult FEoRenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt of
    MO_ASSERT(count > 0);
    TResult result = ESuccess;
    // 获得索引流
-   FEoRenderIndexBuffer* pBuffer = (FEoRenderIndexBuffer*)pIndexBuffer;
+   FEoRenderIndexBuffer* pBuffer = pIndexBuffer->Convert<FEoRenderIndexBuffer>();
    // 绘制索引流
    GLuint bufferId = pBuffer->BufferId();
    MO_ASSERT(bufferId != 0);
@@ -1045,7 +966,8 @@ TResult FEoRenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt of
        return result;
    }
    _renderDrawStatistics->Begin();
-   glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_SHORT, (const GLvoid*)(sizeof(TUint16) * offset));
+   GLenum strideCd = ROpenGLES2::ConvertIndexStride(pIndexBuffer->StrideCd());
+   glDrawElements(GL_TRIANGLES, count, strideCd, (const GLvoid*)(sizeof(TUint16) * offset));
    _renderDrawStatistics->Finish();
    // MO_INFO("Draw elements. (buffer_id=%d, offset=%d, count=%d)", bufferId, offset, count);
    result = CheckError("glDrawElements",

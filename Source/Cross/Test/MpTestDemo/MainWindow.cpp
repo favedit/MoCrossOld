@@ -6,6 +6,7 @@
 #include <MoEngineFace.h>
 #include <MoEngineRender.h>
 #include <MoPlatformOpenGLES2.h>
+#include <MoPlatformDirectX10.h>
 #include <MoPlatformWindows.h>
 #include <MoGameEngine.h>
 #include "MoTestLogic.h"
@@ -123,6 +124,8 @@ TResult OnEnterFrame(SFrameEvent* pEvent){
 TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine, TInt nCmdShow){
    // 初始化处理
    MoGameEngineInitialize();
+   //MoEngineOpenGLES2Initialize();
+   MoEngineDirectX10Initialize();
    //............................................................
    // 设置信息
    RApplication::Instance().Parameters()->Setup(lpszCmdLine);
@@ -136,8 +139,8 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    FNetLoggerWriter* pWriter = FNetLoggerWriter::InstanceCreate();
    pWriter->SetHost("127.0.0.1");
    pWriter->SetPort(9999);
-   pWriter->Open();
-   RLoggerFeature::Instance().NetLoggerConsole()->Register(pWriter);
+   //pWriter->Open();
+   //RLoggerFeature::Instance().NetLoggerConsole()->Register(pWriter);
    // 注册环境信息
    //TCharC* pHomePath = RApplication::Instance().Parameters()->FindValue("-home");
    //TCharC* pConfigName = RApplication::Instance().Parameters()->FindValue("-config");
@@ -154,10 +157,14 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    pWindow->Size().Assign(screenSize);
    pWindow->Setup();
    // 初始化渲染设备
-   FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
+   //FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
+   FPd10RenderDevice* pRenderDevice = (FPd10RenderDevice*)RDeviceManager::Instance().Find<FRenderDevice>();
+   pRenderDevice->SetWindowHandle(pWindow->Handle());
    pRenderDevice->Setup();
    // 初始化舞台
    MoGameEngineStartup();
+   //MoEngineOpenGLES2Startup();
+   MoEngineDirectX10Startup();
    // 选择渲染方式
    //RPipelineManager::Instance().SelectPipeline("simple");
    RPipelineManager::Instance().SelectPipeline("shadow");
@@ -200,7 +207,9 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    pWindow->Process();
    //............................................................
    MoGameEngineShutdown();
-   //............................................................
+   //MoEngineOpenGLES2Release();
+   MoEngineDirectX10Release();
+  //............................................................
    // 释放处理
    MoGameEngineRelease();
 	return 0;

@@ -12,6 +12,10 @@
 #include <MoMath.h>
 #endif // __MO_MATH_H__
 
+#ifndef __MO_FEATURE_GRAPHIC_H__
+#include <MoFeatureGraphic.h>
+#endif // __MO_FEATURE_GRAPHIC_H__
+
 #ifndef __MO_ENGINE_H__
 #include <MoEngine.h>
 #endif // __MO_ENGINE_H__

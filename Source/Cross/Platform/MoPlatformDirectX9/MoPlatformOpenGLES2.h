@@ -1,5 +1,5 @@
-#ifndef __MO_ENGINE_OPENGL_H__
-#define __MO_ENGINE_OPENGL_H__
+#ifndef __MO_ENGINE_OpenGLES2_H__
+#define __MO_ENGINE_OpenGLES2_H__
 
 #ifndef __MO_EO_PUBLIC_H__
 #include "MoEoPublic.h"
@@ -22,11 +22,11 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_EO_DECLARE void MoEngineOpenGLInitialize();
-MO_EO_DECLARE void MoEngineOpenGLStartup();
-MO_EO_DECLARE void MoEngineOpenGLShutdown();
-MO_EO_DECLARE void MoEngineOpenGLRelease();
+MO_EO_DECLARE void MoEngineOpenGLES2Initialize();
+MO_EO_DECLARE void MoEngineOpenGLES2Startup();
+MO_EO_DECLARE void MoEngineOpenGLES2Shutdown();
+MO_EO_DECLARE void MoEngineOpenGLES2Release();
 
 MO_NAMESPACE_END
 
-#endif //__MO_ENGINE_OPENGL_H__
+#endif //__MO_ENGINE_OpenGLES2_H__

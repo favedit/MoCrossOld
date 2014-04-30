@@ -690,15 +690,17 @@ enum EResult{
    // @member 空错误
    ENull = -7,
    // @member 不存在错误
-   ENotExists  = -8,
+   EExists  = -8,
+   // @member 存在错误
+   ENotExists  = -9,
    // @member 不存在错误
-   EOutRange = -9,
+   EOutRange = -10,
    // @member 重复错误
-   EDuplicate  = -10,
+   EDuplicate  = -11,
    // @member 未支持错误
-   EUnsupport = -11,
+   EUnsupport = -12,
    // @member 非法错误
-   EInvalid = -12,
+   EInvalid = -13,
 };
 
 //============================================================

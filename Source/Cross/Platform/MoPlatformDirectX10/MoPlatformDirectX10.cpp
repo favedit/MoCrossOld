@@ -1,41 +1,38 @@
-#include "MoEngineOpenGL.h"
+#include "MoPlatformDirectX10.h"
       
 MO_NAMESPACE_BEGIN
 
 //============================================================
 // <T>初始化渲染引擎处理。</T>
 //============================================================
-void MoEngineOpenGLInitialize(){
-   MO_STATIC_INFO("Engine OpenGL initialize.");
-   // 初始化字体管理器
-   RFontManager::Create(MO_CREATE(FEoFontConsole));
-   RFontManager::Instance().Open();
+void MoEngineDirectX10Initialize(){
+   MO_STATIC_INFO("Engine DirectX 10 initialize.");
    // 初始化技术管理器
    RTechniqueManager::Create();
    // 注册渲染设备
-   RDeviceManager::Instance().Register(FEoRenderDevice::Class(), FRenderDevice::Class());
+   RDeviceManager::Instance().Register(FPd10RenderDevice::Class(), FRenderDevice::Class());
 }
 
 //============================================================
 // <T>启动渲染引擎处理。</T>
 //============================================================
-void MoEngineOpenGLStartup(){
-   MO_STATIC_INFO("Engine OpenGL startup.");
+void MoEngineDirectX10Startup(){
+   MO_STATIC_INFO("Engine DirectX 10 startup.");
    RTechniqueManager::Instance().Setup();
 }
 
 //============================================================
 // <T>关闭渲染引擎处理。</T>
 //============================================================
-void MoEngineOpenGLShutdown(){
-   MO_STATIC_INFO("Engine OpenGL shutdown.");
+void MoEngineDirectX10Shutdown(){
+   MO_STATIC_INFO("Engine DirectX 10 shutdown.");
 }
 
 //============================================================
 // <T>释放渲染引擎处理。</T>
 //============================================================
-void MoEngineOpenGLRelease(){
-   MO_STATIC_INFO("Engine OpenGL release.");
+void MoEngineDirectX10Release(){
+   MO_STATIC_INFO("Engine DirectX 10 release.");
 }
 
 MO_NAMESPACE_END

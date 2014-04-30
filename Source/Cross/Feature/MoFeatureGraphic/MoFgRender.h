@@ -1212,7 +1212,19 @@ class MO_FG_DECLARE FRenderDevice : public FDevice
 protected:
    // 渲染能力
    FRenderCapability* _pCapability;
-   // 当前信息
+   // 填充模式
+   ERenderFillMode _fillModeCd;
+   // 深度信息
+   TBool _optionDepth;
+   ERenderDepthMode _depthModeCd;
+   // 剪裁信息
+   TBool _optionCull;
+   ERenderCullMode _cullModeCd;
+   // 混合信息
+   TBool _statusBlend;
+   ERenderBlendMode _blendSourceCd;
+   ERenderBlendMode _blendTargetCd;
+   // 程序信息
    FRenderProgram* _pProgram;
    GRenderVertexBufferPtrs _vertexBuffers;
    FRenderTextureCollection* _pTextures;
@@ -1223,6 +1235,9 @@ protected:
    FBytes* _pActiveFragmentData;
    GRenderVertexBufferPtrs _activeVertexBuffers;
    FRenderTextureCollection* _pActiveTextures;
+   // 缓冲数据
+   FBytes* _pVertexConsts;
+   FBytes* _pFragmentConsts;
    // 存储信息
    GRenderProgramPtrLooper _storagePrograms;
    GRenderVertexBufferLooper _storageVertexBuffers;
@@ -1231,6 +1246,8 @@ protected:
    GRenderTargetPtrLooper _storageTargets;
    // 统计信息
    GPtr<FRenderStatistics> _statistics;
+   // 绘制效率统计
+   GPtr<FStatistics> _renderDrawStatistics;
 public:
    FRenderDevice();
    MO_ABSTRACT ~FRenderDevice();
@@ -1257,6 +1274,7 @@ public:
    MO_ABSTRACT TResult FrameBegin();
    MO_ABSTRACT TResult FrameEnd();
 public:
+   TBool UpdateConsts(ERenderShader shaderCd, TInt slot, TAnyC* pData, TInt length);
    MO_VIRTUAL TResult CheckError(TCharC* pCode, TCharC* pMessage, ...) = 0;
 public:
    MO_VIRTUAL FRenderVertexBuffer* CreateVertexBuffer(FClass* pClass = NULL) = 0;

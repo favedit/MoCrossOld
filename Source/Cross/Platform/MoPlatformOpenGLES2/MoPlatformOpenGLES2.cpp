@@ -7,9 +7,6 @@ MO_NAMESPACE_BEGIN
 //============================================================
 void MoEngineOpenGLES2Initialize(){
    MO_STATIC_INFO("Engine OpenGLES2 initialize.");
-   // 初始化字体管理器
-   RFontManager::Create(MO_CREATE(FEoFontConsole));
-   RFontManager::Instance().Open();
    // 初始化技术管理器
    RTechniqueManager::Create();
    // 注册渲染设备

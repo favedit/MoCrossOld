@@ -33,6 +33,15 @@
 MO_NAMESPACE_BEGIN
 
 //============================================================
+// <T>设备工具。</T>
+//============================================================
+class MO_EO_DECLARE ROpenGLES2{
+public:
+   static GLenum ConvertBlendFactors(ERenderBlendMode blendCd);
+   static GLenum ConvertIndexStride(ERenderIndexStride strideCd);
+};
+
+//============================================================
 // <T>渲染顶点缓冲。</T>
 //============================================================
 class MO_EO_DECLARE FEoRenderVertexBuffer : public FRenderVertexBuffer
@@ -288,13 +297,10 @@ protected:
    // 关联顶点缓冲集合
    FRenderFlatTextureList* _pLinkFlatTextures;
    FRenderCubeTextureList* _pLinkCubeTextures;
-   // 效率统计
-   GPtr<FStatistics> _renderDrawStatistics;
 public:
    FEoRenderDevice();
    MO_ABSTRACT ~FEoRenderDevice();
 protected:
-   TBool UpdateConsts(ERenderShader shaderCd, TInt slot, TAnyC* pData, TInt length);
    TBool UpdateContext();
 public:
    MO_OVERRIDE TResult Setup();

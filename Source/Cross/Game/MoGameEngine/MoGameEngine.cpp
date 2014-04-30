@@ -3,7 +3,6 @@
 #include <MoEngine.h>
 #include <MoEngineFace.h>
 #include <MoEngineRender.h>
-#include <MoPlatformOpenGLES2.h>
 #ifdef _MO_WINDOWS
 #include <MoPlatformWindows.h>
 #endif // _MO_WINDOWS
@@ -27,7 +26,6 @@ void MoGameEngineInitialize(){
    MoEngineInitialize();
    MoEngine3dInitialize();
    MoEngineFaceInitialize();
-   MoEngineOpenGLES2Initialize();
 #ifdef _MO_WINDOWS
    MoPlatformWindowsInitialize();
 #endif // _MO_WINDOWS
@@ -47,7 +45,6 @@ void MoGameEngineStartup(){
    MoFeatureResourceStartup();
    MoEngineStartup();
    MoEngine3dStartup();
-   MoEngineOpenGLES2Startup();
    MoEngineRenderStartup();
    //MoEngineFaceStartup();
 }
@@ -76,7 +73,6 @@ void MoGameEngineRelease(){
 #ifdef _MO_ANDROID
    MoPlatformAndroidRelease();
 #endif // _MO_ANDROID
-   MoEngineOpenGLES2Release();
    MoEngineFaceRelease();
    MoEngineRelease();
    MoFeatureResourceRelease();

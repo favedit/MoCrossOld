@@ -38,7 +38,7 @@ class MO_EO_DECLARE FEoFont : public FFont
    MO_CLASS_DECLARE_INHERITS(FEoFont, FFont);
 public:
    FT_Face _face;
-   FBytes* _pData;
+   FByteStream* _pData;
 public:
    FEoFont();
    MO_ABSTRACT ~FEoFont();

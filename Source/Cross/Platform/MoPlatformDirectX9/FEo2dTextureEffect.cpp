@@ -71,17 +71,17 @@ FEo2dTextureEffect::~FEo2dTextureEffect(){
 // <T>配置处理。</T>
 //============================================================
 TResult FEo2dTextureEffect::Setup(){
-   FScreenDevice* pScreenDevice = RDeviceManager::Instance().Find<FScreenDevice>();
+   //FScreenDevice* pScreenDevice = RDeviceManager::Instance().Find<FScreenDevice>();
    FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
    //............................................................
-   // 设置MVP矩阵
-   SIntSize2& screenSize = pScreenDevice->Size();
-   _mvpMatrix.tx = -1;
-   _mvpMatrix.ty = 1;
-   _mvpMatrix.rx = MO_PI_FLOAT;
-   _mvpMatrix.sx = 2.0f / (TFloat)screenSize.width;
-   _mvpMatrix.sy = 2.0f / (TFloat)screenSize.height;
-   _mvpMatrix.UpdateForce();
+   //// 设置MVP矩阵
+   //SIntSize2& screenSize = pScreenDevice->Size();
+   //_mvpMatrix.tx = -1;
+   //_mvpMatrix.ty = 1;
+   //_mvpMatrix.rx = MO_PI_FLOAT;
+   //_mvpMatrix.sx = 2.0f / (TFloat)screenSize.width;
+   //_mvpMatrix.sy = 2.0f / (TFloat)screenSize.height;
+   //_mvpMatrix.UpdateForce();
    //............................................................
    // 创建程序
    FEoRenderProgram* pProgram = (FEoRenderProgram*)pRenderDevice->CreateProgrom();

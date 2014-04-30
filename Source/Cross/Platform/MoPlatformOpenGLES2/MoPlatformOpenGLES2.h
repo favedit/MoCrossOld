@@ -12,6 +12,7 @@
 #ifndef __MO_EO_CORE_H__
 #include "MoEoCore.h"
 #endif // __MO_EO_CORE_H__
+
 #ifndef __MO_EO_RENDER_H__
 #include "MoEoRender.h"
 #endif // __MO_EO_RENDER_H__

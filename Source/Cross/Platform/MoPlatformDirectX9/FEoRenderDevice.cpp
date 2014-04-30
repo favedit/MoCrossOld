@@ -185,6 +185,9 @@ TResult FEoRenderDevice::Setup(){
    RMemory::Clear(_pFragmentConsts->Memory(), _pFragmentConsts->Length());
    //............................................................
    _renderDrawStatistics = RStatisticsManager::Instance().SyncByName("render.draw");
+   //............................................................
+   // GL_CCW表示逆时针为背面
+   // glFrontFace(GL_CCW);
    return ESuccess;
 }
 
@@ -897,7 +900,10 @@ TResult FEoRenderDevice::BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVerte
    FEoRenderVertexBuffer* pBuffer = (FEoRenderVertexBuffer*)pVertexBuffer;
    //............................................................
    // 设定顶点流
-   GLuint bufferId = pBuffer->BufferId();
+   GLuint bufferId = 0;
+   if(pBuffer != NULL){
+      bufferId = pBuffer->BufferId();
+   }
    glBindBuffer(GL_ARRAY_BUFFER, bufferId);
    result = CheckError("glBindBuffer", "Bind buffer. (buffer_id=%d)", bufferId);
    if(result != ESuccess){
@@ -905,9 +911,15 @@ TResult FEoRenderDevice::BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVerte
    }
    //............................................................
    // 激活顶点流
-   glEnableVertexAttribArray(slot);
-   result = CheckError("glEnableVertexAttribArray", "Enable vertex attrib array. (slot=%d)", slot);
-   if(result != ESuccess){
+   if(pBuffer != NULL){
+      glEnableVertexAttribArray(slot);
+      result = CheckError("glEnableVertexAttribArray", "Enable vertex attribute array. (slot=%d)", slot);
+      if(result != ESuccess){
+         return result;
+      }
+   }else{
+      glDisableVertexAttribArray(slot);
+      result = CheckError("glDisableVertexAttribArray", "Disable vertex attribute array. (slot=%d)", slot);
       return result;
    }
    //............................................................
