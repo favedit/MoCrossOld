@@ -77,6 +77,8 @@ Cross Platform Game Engine
 
 - 内容异步加载技术。 (Content Ansy Load)
 - 内容管道技术，可以自己扩充内容格式和指定加载方式。 (Content Pipeline)
+- 增加渲染方式。 (DirectX9/DirectX10/DirectX11)
+- 设计场景编辑器框架。 (WPF)
 
 ### 计划功能
 
@@ -95,4 +97,4 @@ Cross Platform Game Engine
 ### 加入
 - 制作引擎的目的不是为了商业化盈利，纯粹是因为兴趣。
 - 希望能用自己引擎做出有特色的游戏或者应用。
-- 因为是只有个人制作，能力有限，期望能遇到有同样追求，想做3D引擎的人加入。
+- 想做3D引擎的人可以联系加入。
