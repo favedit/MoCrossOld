@@ -1,5 +1,4 @@
-﻿using MoFaceEditor.Face.Forms;
-using System.Windows;
+﻿using System.Windows;
 
 namespace MpFaceEditor
 {
@@ -11,8 +10,8 @@ namespace MpFaceEditor
       protected override void OnStartup(StartupEventArgs e) {
          base.OnStartup(e);
          // 启动窗口
-         WFaceConsole console = new WFaceConsole();
-         console.Show();
+         //WFaceConsole console = new WFaceConsole();
+         //console.Show();
       }
    }
 }

@@ -1,5 +1,5 @@
-﻿using System.Windows;
-using MO.SceneEditor.Face.Forms;
+﻿using MO.Editor.Scene.Forms;
+using System.Windows;
 
 namespace MpSceneEditor
 {
@@ -11,8 +11,8 @@ namespace MpSceneEditor
       protected override void OnStartup(StartupEventArgs e) {
          base.OnStartup(e);
          // 启动窗口
-         WSceneWindow sceneWindow = new WSceneWindow();
-         sceneWindow.Show();
+         WConsoleWindow consoleWindow = new WConsoleWindow();
+         consoleWindow.Show();
       }
    }
 }
