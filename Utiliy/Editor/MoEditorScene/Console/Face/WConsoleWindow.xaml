@@ -1,0 +1,118 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+        xmlns:Face="clr-namespace:MO.Editor.Scene.Project.Face"
+        xmlns:Face1="clr-namespace:MO.Editor.Scene.Content.Face" xmlns:Face2="clr-namespace:MO.Editor.Scene.Scene.Face" xmlns:Face3="clr-namespace:MO.Editor.Scene.Template.Face"
+        xmlns:local="clr-namespace:MO.Editor.Scene.Console.Face"
+        xmlns:Face4="clr-namespace:MO.Editor.Scene.Online.Face"
+        x:Class="MO.Editor.Scene.Console.Face.WConsoleWindow"
+        Title="WConsoleWindow" Height="800" Width="1200" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowStyle="None" Unloaded="Window_Unloaded">
+   <Grid Background="#FFFFD07E">
+      <Grid.RowDefinitions>
+         <RowDefinition Height="48"/>
+         <RowDefinition Height="*"/>
+         <RowDefinition Height="24"/>
+      </Grid.RowDefinitions>
+      <Canvas x:Name="pnlTitle" Height="48" Grid.RowSpan="2" VerticalAlignment="Top">
+         <Image x:Name="imgTitle" Height="40" Width="40" Source="/MoEditorScene;component/Resource/Icon/Application.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4"/>
+         <Menu Height="20" Width="327" Background="#FFFFD07E" BorderThickness="48,0,0,0" Canvas.Top="4">
+            <MenuItem Header="文件(F)">
+               <MenuItem Header="Exit"/>
+            </MenuItem>
+            <MenuItem Header="编辑(E)">
+               <MenuItem Header="Exit"/>
+            </MenuItem>
+            <MenuItem Header="视图(V)">
+               <MenuItem Header="Exit"/>
+            </MenuItem>
+            <MenuItem Header="工具(T)">
+               <MenuItem Header="Exit"/>
+            </MenuItem>
+            <MenuItem Header="帮助(H)">
+               <MenuItem Header="Exit"/>
+            </MenuItem>
+         </Menu>
+         <Label Content="场景编辑器" Canvas.Left="342" Canvas.Top="1" FontWeight="Bold" Foreground="#FF800000" FontSize="14"/>
+         <StackPanel Width="200" Height="20" VerticalAlignment="Top" HorizontalAlignment="Stretch" Orientation="Horizontal" Canvas.Left="342" Canvas.Top="28">
+            <Image Height="16" Width="16" Margin="4,0,0,0" Source="/MoEditorScene;component/Resource/Icon/Save.gif" />
+            <Image Height="16" Width="16" Margin="4,0,0,0" Source="/MoEditorScene;component/Resource/Icon/Search.gif" />
+            <Image Height="16" Width="16" Margin="4,0,0,0" Source="/MoEditorScene;component/Resource/Icon/Copy.gif" />
+            <Image Height="16" Width="16" Margin="4,0,0,0" Source="/MoEditorScene;component/Resource/Icon/Paste.gif" />
+            <Image Height="16" Width="16" Margin="4,0,0,0" Source="/MoEditorScene;component/Resource/Icon/Cut.gif" />
+         </StackPanel>
+         <Button VerticalAlignment="Top" HorizontalAlignment="Right" Canvas.Right="4" Canvas.Top="4" Width="80" Background="#FFFDF7CE" BorderBrush="#FFCEDBFD" Click="CloseButton_Click">
+            <StackPanel Orientation="Horizontal">
+               <Image Height="16" Width="16" Source="/MoEditorScene;component/Resource/Icon/Exit.gif"/>
+               <TextBlock Text="关闭" />
+            </StackPanel>
+         </Button>
+         <Button VerticalAlignment="Top" HorizontalAlignment="Right" Canvas.Right="4" Canvas.Top="26" Width="100" Height="23" Background="#FFFDF7CE" BorderBrush="#FFCEDBFD" Canvas.Left="63">
+            <StackPanel Orientation="Horizontal">
+               <Image Height="16" Width="16" Source="/MoEditorScene;component/Resource/Icon/PageLocal.gif"/>
+               <TextBlock Text="当前项目" />
+            </StackPanel>
+         </Button>
+         <Button VerticalAlignment="Top" HorizontalAlignment="Right" Canvas.Right="4" Canvas.Top="26" Width="100" Height="20" Background="#FFFDF7CE" BorderBrush="#FFCEDBFD" Canvas.Left="168">
+            <StackPanel Orientation="Horizontal">
+               <Image Height="16" Width="16" Source="/MoEditorScene;component/Resource/Icon/PageOnline.gif"/>
+               <TextBlock Text="在线资源" />
+            </StackPanel>
+         </Button>
+      </Canvas>
+      <xcad:DockingManager Grid.Row="1" Background="#FFFFFCDD">
+         <xcad:DockingManager.Theme>
+            <xcad:ExpressionLightTheme/>
+         </xcad:DockingManager.Theme>
+         <xcad:DockingManager.DocumentHeaderTemplate>
+            <DataTemplate>
+               <StackPanel Orientation="Horizontal">
+                  <Image Source="{Binding IconSource}" Margin="0,0,4,0"/>
+                  <TextBlock Text="{Binding Title}" TextTrimming="CharacterEllipsis"/>
+               </StackPanel>
+            </DataTemplate>
+         </xcad:DockingManager.DocumentHeaderTemplate>
+         <xcad:LayoutRoot>
+            <xcad:LayoutPanel Orientation="Horizontal">
+               <xcad:LayoutAnchorablePaneGroup>
+                  <xcad:LayoutAnchorablePane DockWidth="240">
+                     <xcad:LayoutAnchorable ContentId="WinFormsWindow" Title="项目" ToolTip="My WinForms Tool" CanHide="False" CanClose="False" >
+                        <Face:WProjectCatalog/>
+                     </xcad:LayoutAnchorable>
+                     <xcad:LayoutAnchorable ContentId="WinFormsWindow2" Title="场景" ToolTip="My WinForms Tool" CanHide="False" CanClose="False" >
+                        <Face1:WContentCatalog HorizontalAlignment="Left" Height="100" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
+                     </xcad:LayoutAnchorable>
+                     <xcad:LayoutAnchorable ContentId="WinFormsWindow2" Title="资源" ToolTip="My WinForms Tool" CanHide="False" CanClose="False" >
+                        <Face2:WSceneCatalog HorizontalAlignment="Left" Height="100" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
+                     </xcad:LayoutAnchorable>
+                     <xcad:LayoutAnchorable ContentId="WinFormsWindow2" Title="模板" ToolTip="My WinForms Tool" CanHide="False" CanClose="False" >
+                        <Face3:WTemplateCatalog HorizontalAlignment="Left" Height="100" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
+                     </xcad:LayoutAnchorable>
+                  </xcad:LayoutAnchorablePane>
+               </xcad:LayoutAnchorablePaneGroup>
+               <xcad:LayoutAnchorablePaneGroup>
+                  <xcad:LayoutAnchorablePane>
+                     <xcad:LayoutAnchorable ContentId="WinFormsWindow" Title="场景" ToolTip="My WinForms Tool" CanHide="False" CanClose="False" >
+                        <Face2:WSceneView/>
+                     </xcad:LayoutAnchorable>
+                     <xcad:LayoutAnchorable ContentId="WinFormsWindow2" Title="运行" ToolTip="My WinForms Tool" CanHide="False" CanClose="False" >
+                        <Face2:WGameView/>
+                     </xcad:LayoutAnchorable>
+                  </xcad:LayoutAnchorablePane>
+               </xcad:LayoutAnchorablePaneGroup>
+               <xcad:LayoutAnchorablePaneGroup  DockWidth="300">
+                  <xcad:LayoutAnchorablePane>
+                     <xcad:LayoutAnchorable ContentId="WinFormsWindow" Title="属性" ToolTip="My WinForms Tool" CanHide="False" CanClose="False" >
+                        <local:WPropertyContainer HorizontalAlignment="Left" Height="100" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
+                     </xcad:LayoutAnchorable>
+                     <xcad:LayoutAnchorable ContentId="WinFormsWindow2" Title="讨论" ToolTip="My WinForms Tool" CanHide="False" CanClose="False" >
+                        <Face4:WDiscussionView HorizontalAlignment="Left" Height="100" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
+                     </xcad:LayoutAnchorable>
+                  </xcad:LayoutAnchorablePane>
+               </xcad:LayoutAnchorablePaneGroup>
+            </xcad:LayoutPanel>
+         </xcad:LayoutRoot>
+      </xcad:DockingManager>
+      <StatusBar Background="#FFFFD07E" Height="24" Grid.RowSpan="2" VerticalAlignment="Bottom" Grid.Row="2"/>
+   </Grid>
+</Window>

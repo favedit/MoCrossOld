@@ -47,8 +47,29 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\WConsoleWindow.xaml.cs">
+    <Compile Include="Console\Face\WConsoleWindow.xaml.cs">
       <DependentUpon>WConsoleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Console\Face\WPropertyContainer.xaml.cs">
+      <DependentUpon>WPropertyContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Face\WContentCatalog.xaml.cs">
+      <DependentUpon>WContentCatalog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Face\WContentView.xaml.cs">
+      <DependentUpon>WContentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Online\Face\WDiscussionView.xaml.cs">
+      <DependentUpon>WDiscussionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Project\Face\WProjectItem.xaml.cs">
+      <DependentUpon>WProjectItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Project\Face\WProjectProperty.xaml.cs">
+      <DependentUpon>WProjectProperty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Project\Face\WProjectCatalog.xaml.cs">
+      <DependentUpon>WProjectCatalog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -63,11 +84,23 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Scene\Face\WGameView.xaml.cs">
+      <DependentUpon>WGameView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Scene\Face\WSceneCatalog.xaml.cs">
+      <DependentUpon>WSceneCatalog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Scene\Face\WSceneProperty.xaml.cs">
       <DependentUpon>WSceneProperty.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Scene\Face\WSceneRender.xaml.cs">
+      <DependentUpon>WSceneRender.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Scene\Face\WSceneView.xaml.cs">
       <DependentUpon>WSceneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\Face\WTemplateCatalog.xaml.cs">
+      <DependentUpon>WTemplateCatalog.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -80,7 +113,43 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Forms\WConsoleWindow.xaml">
+    <Page Include="Console\Face\WConsoleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Console\Face\WPropertyContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\Face\WContentCatalog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\Face\WContentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Online\Face\WDiscussionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Project\Face\WProjectItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Project\Face\WProjectProperty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Project\Face\WProjectCatalog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scene\Face\WGameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scene\Face\WSceneCatalog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -88,15 +157,77 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Scene\Face\WSceneRender.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Scene\Face\WSceneView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Template\Face\WTemplateCatalog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ThemeStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Console\Frame\" />
-    <Folder Include="Content\" />
+    <Folder Include="Resource\Image\" />
+    <Folder Include="Resource\Language\" />
     <Folder Include="Terrain\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Library\Xceed.Wpf.AvalonDock.Themes.Aero\Xceed.Wpf.AvalonDock.Themes.Aero.csproj">
+      <Project>{ba72cce0-a9fb-4995-b496-7fec5c87b85b}</Project>
+      <Name>Xceed.Wpf.AvalonDock.Themes.Aero</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\Xceed.Wpf.AvalonDock.Themes.Expression\Xceed.Wpf.AvalonDock.Themes.Expression.csproj">
+      <Project>{488dd8f7-9d3c-4f53-bd1f-84a095d9bc10}</Project>
+      <Name>Xceed.Wpf.AvalonDock.Themes.Expression</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\Xceed.Wpf.AvalonDock.Themes.Metro\Xceed.Wpf.AvalonDock.Themes.Metro.csproj">
+      <Project>{89286eb4-b4a1-418c-839a-067b00f442d8}</Project>
+      <Name>Xceed.Wpf.AvalonDock.Themes.Metro</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\Xceed.Wpf.AvalonDock.Themes.VS2010\Xceed.Wpf.AvalonDock.Themes.VS2010.csproj">
+      <Project>{b3fc3e21-5f2d-4581-aea2-59f671cffc21}</Project>
+      <Name>Xceed.Wpf.AvalonDock.Themes.VS2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\Xceed.Wpf.AvalonDock\Xceed.Wpf.AvalonDock.csproj">
+      <Project>{db81988f-e0f2-45a0-a1fd-8c37f3d35244}</Project>
+      <Name>Xceed.Wpf.AvalonDock</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icon\Application.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icon\Copy.gif" />
+    <Resource Include="Resource\Icon\Cut.gif" />
+    <Resource Include="Resource\Icon\Help.gif" />
+    <Resource Include="Resource\Icon\Paste.gif" />
+    <Resource Include="Resource\Icon\Save.gif" />
+    <Resource Include="Resource\Icon\Search.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icon\Build.gif" />
+    <Resource Include="Resource\Icon\Delete.gif" />
+    <Resource Include="Resource\Icon\Exit.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icon\execute.gif" />
+    <Resource Include="Resource\Icon\PageLocal.gif" />
+    <Resource Include="Resource\Icon\PageOnline.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Preview\001.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

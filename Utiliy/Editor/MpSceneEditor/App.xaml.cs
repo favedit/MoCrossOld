@@ -1,4 +1,4 @@
-﻿using MO.Editor.Scene.Forms;
+﻿using MO.Editor.Scene.Console.Face;
 using System.Windows;
 
 namespace MpSceneEditor
