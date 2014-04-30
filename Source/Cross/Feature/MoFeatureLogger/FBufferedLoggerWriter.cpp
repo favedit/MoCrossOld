@@ -129,8 +129,8 @@ TInt FBufferedLoggerWriter::CalculateCount(TCharC* pFilePattern, TInt baseCount)
 //
 // @return 日否打开成功。
 //============================================================
-TBool FBufferedLoggerWriter::Open(){
-   TBool result = EFalse;
+TResult FBufferedLoggerWriter::Open(){
+   TResult result = ESuccess;
    // 创建文件目录
    if(!RFile::ExistPath(_path)){
       RFile::CreateFullDirectory((TCharC*)_path);
@@ -158,8 +158,8 @@ TBool FBufferedLoggerWriter::Open(){
 //
 // @return 是否创建成功。
 //============================================================
-TBool FBufferedLoggerWriter::Create(){
-   TBool result = EFalse;
+TResult FBufferedLoggerWriter::Create(){
+   TResult result = ESuccess;
    // 关闭上个文件
    _pStream->Close();
    // 获得文件名称
@@ -193,12 +193,12 @@ TInt FBufferedLoggerWriter::Code(){
 // @param TSize length 消息的长度。
 // @return 是否记录成功。
 //============================================================
-TBool FBufferedLoggerWriter::Write(TDateTime time, TCharC* pMessage, TInt length){
+TResult FBufferedLoggerWriter::Write(TDateTime time, TCharC* pMessage, TInt length){
    _section.Enter();
    _pBuffer->Append((TByteC*)pMessage, sizeof(TChar) * length);
    _pBuffer->Append((TByteC*)"\n", sizeof(TChar));
    _section.Leave();
-   return ETrue;
+   return ESuccess;
 }
 
 //============================================================
@@ -206,8 +206,8 @@ TBool FBufferedLoggerWriter::Write(TDateTime time, TCharC* pMessage, TInt length
 //
 // @return 关闭是否成功。
 //============================================================
-TBool FBufferedLoggerWriter::Close(){
-   TBool result = EFalse;
+TResult FBufferedLoggerWriter::Close(){
+   TResult result = ESuccess;
    _section.Enter();
    result = _pStream->Close();
    _section.Leave();
@@ -219,8 +219,8 @@ TBool FBufferedLoggerWriter::Close(){
 //
 // @return 关闭是否成功。
 //============================================================
-TBool FBufferedLoggerWriter::Refresh(){
-   TBool result = EFalse;
+TResult FBufferedLoggerWriter::Refresh(){
+   TResult result = ESuccess;
    TDateTime current = RDateTime::Current();
    // 写入数据
    _section.Enter();
@@ -262,8 +262,8 @@ TBool FBufferedLoggerWriter::Refresh(){
 //
 // @return 处理结果
 //============================================================
-TBool FBufferedLoggerWriter::Flush(){
-   TBool result = Refresh();
+TResult FBufferedLoggerWriter::Flush(){
+   TResult result = Refresh();
    _section.Enter();
    result = _pStream->Flush();
    _section.Leave();

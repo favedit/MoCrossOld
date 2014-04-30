@@ -36,9 +36,9 @@ FNetLoggerWriter::~FNetLoggerWriter(){
 //
 // @return 日否打开成功。
 //============================================================
-TBool FNetLoggerWriter::Open(){
+TResult FNetLoggerWriter::Open(){
    _pSocket->Connect();
-   return ETrue;
+   return ESuccess;
 }
 
 //============================================================
@@ -46,8 +46,8 @@ TBool FNetLoggerWriter::Open(){
 //
 // @return 是否创建成功。
 //============================================================
-TBool FNetLoggerWriter::Create(){
-   return ETrue;
+TResult FNetLoggerWriter::Create(){
+   return ESuccess;
 }
 
 //============================================================
@@ -66,7 +66,7 @@ TInt FNetLoggerWriter::Code(){
 // @param TSize length 消息的长度。
 // @return 是否记录成功。
 //============================================================
-TBool FNetLoggerWriter::Write(TDateTime time, TCharC* pMessage, TInt length){
+TResult FNetLoggerWriter::Write(TDateTime time, TCharC* pMessage, TInt length){
    // 设置消息头
    SNetLoggerInfo info;
    info.length = sizeof(SNetLoggerInfo) + sizeof(TChar) * length;
@@ -84,7 +84,7 @@ TBool FNetLoggerWriter::Write(TDateTime time, TCharC* pMessage, TInt length){
       _pBuffer->Skip(-sended);
    }
    _section.Leave();
-   return ETrue;
+   return ESuccess;
 }
 
 //============================================================
@@ -92,8 +92,8 @@ TBool FNetLoggerWriter::Write(TDateTime time, TCharC* pMessage, TInt length){
 //
 // @return 关闭是否成功。
 //============================================================
-TBool FNetLoggerWriter::Close(){
-   TBool result = EFalse;
+TResult FNetLoggerWriter::Close(){
+   TResult result = ESuccess;
    _section.Enter();
    _section.Leave();
    return result;
@@ -104,8 +104,8 @@ TBool FNetLoggerWriter::Close(){
 //
 // @return 关闭是否成功。
 //============================================================
-TBool FNetLoggerWriter::Refresh(){
-   TBool result = EFalse;
+TResult FNetLoggerWriter::Refresh(){
+   TResult resultCd = ESuccess;
    //TDateTime current = RDateTime::Current();
    //// 写入数据
    //_section.Enter();
@@ -139,7 +139,7 @@ TBool FNetLoggerWriter::Refresh(){
    //   Create();
    //}
    //_section.Leave();
-   return result;
+   return resultCd;
 }
 
 //============================================================
@@ -147,12 +147,12 @@ TBool FNetLoggerWriter::Refresh(){
 //
 // @return 处理结果
 //============================================================
-TBool FNetLoggerWriter::Flush(){
-   TBool result = Refresh();
+TResult FNetLoggerWriter::Flush(){
+   TResult resultCd = Refresh();
    //_section.Enter();
    //result = _pStream->Flush();
    //_section.Leave();
-   return result;
+   return resultCd;
 }
 
 MO_NAMESPACE_END

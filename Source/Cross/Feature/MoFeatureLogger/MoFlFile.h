@@ -43,14 +43,14 @@ public:
    TBool MakeFilePattern(TFsFileName& fileName);
    TInt CalculateCount(TCharC* pFilePattern, TInt baseCount = 1);
 public:
-   MO_OVERRIDE TBool Open();
-   MO_OVERRIDE TBool Create();
+   MO_OVERRIDE TResult Open();
+   MO_OVERRIDE TResult Create();
    MO_OVERRIDE TInt Code();
-   MO_OVERRIDE TBool Write(TDateTime time, TCharC* pMessage, TInt length);
-   MO_OVERRIDE TBool Close();
+   MO_OVERRIDE TResult Write(TDateTime time, TCharC* pMessage, TInt length);
+   MO_OVERRIDE TResult Close();
 public:
-   MO_OVERRIDE TBool Refresh();
-   MO_OVERRIDE TBool Flush();
+   MO_OVERRIDE TResult Refresh();
+   MO_OVERRIDE TResult Flush();
 };
 
 //============================================================
