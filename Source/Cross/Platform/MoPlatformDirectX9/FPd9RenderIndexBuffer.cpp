@@ -1,20 +1,20 @@
-#include "MoEoRender.h"
+#include "MoPd9Render.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FEoRenderIndexBuffer, FRenderVertexBuffer);
+MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderIndexBuffer, FRenderVertexBuffer);
 
 //============================================================
 // <T>构造渲染索引缓冲。</T>
 //============================================================
-FEoRenderIndexBuffer::FEoRenderIndexBuffer(){
+FPd9RenderIndexBuffer::FPd9RenderIndexBuffer(){
    _bufferId = 0;
 }
 
 //============================================================
 // <T>析构渲染索引缓冲。</T>
 //============================================================
-FEoRenderIndexBuffer::~FEoRenderIndexBuffer(){
+FPd9RenderIndexBuffer::~FPd9RenderIndexBuffer(){
 }
 
 //============================================================
@@ -22,7 +22,7 @@ FEoRenderIndexBuffer::~FEoRenderIndexBuffer(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderIndexBuffer::OnSetup(){
+TResult FPd9RenderIndexBuffer::OnSetup(){
    TResult resultCd = FRenderIndexBuffer::OnSetup();
    glGenBuffers(1, &_bufferId);
    MO_FATAL_CHECK(_bufferId != 0, return EFailure,
@@ -38,7 +38,7 @@ TResult FEoRenderIndexBuffer::OnSetup(){
 // @param length 数据长度
 // @return 处理结果
 //============================================================
-TResult FEoRenderIndexBuffer::Upload(TByteC* pData, TInt length){
+TResult FPd9RenderIndexBuffer::Upload(TByteC* pData, TInt length){
    // 检查参数
    MO_CHECK(pData, return ENull);
    MO_CHECK(length > 0, return EFailure);
@@ -57,7 +57,7 @@ TResult FEoRenderIndexBuffer::Upload(TByteC* pData, TInt length){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderIndexBuffer::Suspend(){
+TResult FPd9RenderIndexBuffer::Suspend(){
    return ESuccess;
 }
 
@@ -66,7 +66,7 @@ TResult FEoRenderIndexBuffer::Suspend(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderIndexBuffer::Resume(){
+TResult FPd9RenderIndexBuffer::Resume(){
    // 生成编号
    glGenBuffers(1, &_bufferId);
    MO_FATAL_CHECK(_bufferId != 0, return EFailure,
@@ -88,7 +88,7 @@ TResult FEoRenderIndexBuffer::Resume(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderIndexBuffer::Dispose(){
+TResult FPd9RenderIndexBuffer::Dispose(){
    if(_bufferId != 0){
       glDeleteBuffers(_dataLength, &_bufferId);
       _count = 0;

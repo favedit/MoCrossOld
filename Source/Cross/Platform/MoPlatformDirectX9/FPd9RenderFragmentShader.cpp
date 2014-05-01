@@ -1,19 +1,19 @@
-#include "MoEoRender.h"
+#include "MoPd9Render.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FEoRenderFragmentShader, FRenderVertexShader);
+MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderFragmentShader, FRenderVertexShader);
 
 //============================================================
 // <T>构造渲染程序。</T>
 //============================================================
-FEoRenderFragmentShader::FEoRenderFragmentShader(){
+FPd9RenderFragmentShader::FPd9RenderFragmentShader(){
 }
 
 //============================================================
 // <T>析构渲染程序。</T>
 //============================================================
-FEoRenderFragmentShader::~FEoRenderFragmentShader(){
+FPd9RenderFragmentShader::~FPd9RenderFragmentShader(){
 }
 
 //============================================================
@@ -21,7 +21,7 @@ FEoRenderFragmentShader::~FEoRenderFragmentShader(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderFragmentShader::Setup(){
+TResult FPd9RenderFragmentShader::Setup(){
    _renderId.uint32 = glCreateShader(GL_FRAGMENT_SHADER);
    TResult resultCd = _pDevice->CheckError("glCreateShader", "Create fragment shader failure. (shader_id=%d)", _renderId.uint32);
    return resultCd;
@@ -33,7 +33,7 @@ TResult FEoRenderFragmentShader::Setup(){
 // @param pSource 代码字符串
 // @return 处理结果
 //============================================================
-TResult FEoRenderFragmentShader::Compile(TCharC* pSource){
+TResult FPd9RenderFragmentShader::Compile(TCharC* pSource){
    // 上传代码
    const GLchar* source[1];
    source[0] = (const GLchar*)pSource;
@@ -72,7 +72,7 @@ TResult FEoRenderFragmentShader::Compile(TCharC* pSource){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderFragmentShader::Suspend(){
+TResult FPd9RenderFragmentShader::Suspend(){
    return ESuccess;
 }
 
@@ -81,7 +81,7 @@ TResult FEoRenderFragmentShader::Suspend(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderFragmentShader::Resume(){
+TResult FPd9RenderFragmentShader::Resume(){
    return ESuccess;
 }
 
@@ -90,7 +90,7 @@ TResult FEoRenderFragmentShader::Resume(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderFragmentShader::Dispose(){
+TResult FPd9RenderFragmentShader::Dispose(){
    TResult resultCd = ESuccess;
    if(_renderId.uint32 != 0){
       glDeleteShader(_renderId.uint32);

@@ -1,19 +1,19 @@
-#include "MoEoRender.h"
+#include "MoPd9Render.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FEoRenderVertexShader, FRenderVertexShader);
+MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderVertexShader, FRenderVertexShader);
 
 //============================================================
 // <T>构造渲染程序。</T>
 //============================================================
-FEoRenderVertexShader::FEoRenderVertexShader(){
+FPd9RenderVertexShader::FPd9RenderVertexShader(){
 }
 
 //============================================================
 // <T>析构渲染程序。</T>
 //============================================================
-FEoRenderVertexShader::~FEoRenderVertexShader(){
+FPd9RenderVertexShader::~FPd9RenderVertexShader(){
 }
 
 //============================================================
@@ -21,7 +21,7 @@ FEoRenderVertexShader::~FEoRenderVertexShader(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderVertexShader::Setup(){
+TResult FPd9RenderVertexShader::Setup(){
    _renderId.uint32 = glCreateShader(GL_VERTEX_SHADER);
    TResult resultCd = _pDevice->CheckError("glCreateShader", "Create vertex shader failure. (shader_id=%d)", _renderId.uint32);
    return resultCd;
@@ -33,7 +33,7 @@ TResult FEoRenderVertexShader::Setup(){
 // @param pSource 代码字符串
 // @return 处理结果
 //============================================================
-TResult FEoRenderVertexShader::Compile(TCharC* pSource){
+TResult FPd9RenderVertexShader::Compile(TCharC* pSource){
    // 上传代码
    const GLchar* source[1];
    source[0] = (const GLchar*)pSource;
@@ -71,7 +71,7 @@ TResult FEoRenderVertexShader::Compile(TCharC* pSource){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderVertexShader::Suspend(){
+TResult FPd9RenderVertexShader::Suspend(){
    return ESuccess;
 }
 
@@ -80,7 +80,7 @@ TResult FEoRenderVertexShader::Suspend(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderVertexShader::Resume(){
+TResult FPd9RenderVertexShader::Resume(){
    return ESuccess;
 }
 
@@ -89,7 +89,7 @@ TResult FEoRenderVertexShader::Resume(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderVertexShader::Dispose(){
+TResult FPd9RenderVertexShader::Dispose(){
    TResult resultCd = ESuccess;
    if(_renderId.uint32 != 0){
       glDeleteShader(_renderId.uint32);

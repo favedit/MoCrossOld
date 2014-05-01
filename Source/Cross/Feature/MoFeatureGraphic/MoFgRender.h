@@ -27,9 +27,24 @@
 MO_NAMESPACE_BEGIN
 
 //============================================================
+// <T>类定义。</T>
+//============================================================
+class FEffect;
+class FRenderable;
+class FRenderVertexStream;
+class FRenderVertexBuffer;
+class FRenderIndexBuffer;
+class FRenderTexture;
+class FRenderTextures;
+class FRenderFlatTexture;
+class FRenderCubeTexture;
+class FRenderProgram;
+class FRenderDevice;
 class FPipeline;
 class FPipelinePass;
 
+//============================================================
+// <T>渲染编号。</T>
 //============================================================
 union SRenderId{
 public:
@@ -45,29 +60,16 @@ public:
 typedef SRenderId TRenderId;
 
 //============================================================
-// <T>类定义。</T>
-//============================================================
-class FEffect;
-class FRenderable;
-class FRenderVertexStream;
-class FRenderVertexBuffer;
-class FRenderIndexBuffer;
-class FRenderTexture;
-class FRenderTextures;
-class FRenderFlatTexture;
-class FRenderCubeTexture;
-class FRenderProgram;
-class FRenderDevice;
-
-//============================================================
 // <T>渲染能力。</T>
 //============================================================
 struct MO_FG_DECLARE FRenderCapability : FInstance
 {
    MO_CLASS_DECLARE_INHERITS(FRenderCapability, FInstance);
 protected:
-   TCharC* _pVendor;
-   TCharC* _pVersion;
+   TString _vendor;
+   TString _version;
+   TString _shaderVertexVersion;
+   TString _shaderFragmentVersion;
 protected:
    TInt _vertexCountLimit;
    TInt _vertexConstLimit;
@@ -84,6 +86,47 @@ protected:
 public:
    FRenderCapability();
    MO_ABSTRACT ~FRenderCapability();
+public:
+   //------------------------------------------------------------
+   // <T>获得提供商。</T>
+   MO_INLINE TCharC* Vendor(){
+      return _vendor;
+   }
+   //------------------------------------------------------------
+   // <T>设置提供商。</T>
+   MO_INLINE void SetVendor(TCharC* pVendor){
+      _vendor = pVendor;
+   }
+   //------------------------------------------------------------
+   // <T>获得版本。</T>
+   MO_INLINE TCharC* Version(){
+      return _version;
+   }
+   //------------------------------------------------------------
+   // <T>设置版本。</T>
+   MO_INLINE void SetVersion(TCharC* pVersion){
+      _version = pVersion;
+   }
+   //------------------------------------------------------------
+   // <T>获得顶点脚本版本。</T>
+   MO_INLINE TCharC* ShaderVertexVersion(){
+      return _shaderVertexVersion;
+   }
+   //------------------------------------------------------------
+   // <T>设置顶点脚本版本。</T>
+   MO_INLINE void SetShaderVertexVersion(TCharC* pShaderVertexVersion){
+      _shaderVertexVersion = pShaderVertexVersion;
+   }
+   //------------------------------------------------------------
+   // <T>获得像素脚本版本。</T>
+   MO_INLINE TCharC* ShaderFragmentVersion(){
+      return _shaderFragmentVersion;
+   }
+   //------------------------------------------------------------
+   // <T>设置像素脚本版本。</T>
+   MO_INLINE void SetShaderFragmentVersion(TCharC* pShaderFragmentVersion){
+      _shaderFragmentVersion = pShaderFragmentVersion;
+   }
 public:
    //------------------------------------------------------------
    // <T>获得顶点个数限制。</T>
@@ -709,6 +752,7 @@ class MO_FG_DECLARE FRenderShader :
 {
    MO_CLASS_ABSTRACT_DECLARE_INHERITS(FRenderShader, FRenderInstance);
 protected:
+   FRenderProgram* _pProgram;
    FRenderSource* _pSource;
    FRenderSource* _pCompileSource;
 public:
@@ -716,9 +760,24 @@ public:
    MO_ABSTRACT ~FRenderShader();
 public:
    //------------------------------------------------------------
-   // <T>获得来源。</T>
+   // <T>获得程序。</T>
+   MO_INLINE FRenderProgram* Program(){
+      return _pProgram;
+   }
+   //------------------------------------------------------------
+   // <T>设置程序。</T>
+   MO_INLINE void SetProgram(FRenderProgram* pProgram){
+      _pProgram = pProgram;
+   }
+   //------------------------------------------------------------
+   // <T>获得脚本。</T>
    MO_INLINE FRenderSource* Source(){
       return _pSource;
+   }
+   //------------------------------------------------------------
+   // <T>获得编译脚本。</T>
+   MO_INLINE FRenderSource* CompileSource(){
+      return _pCompileSource;
    }
 public:
    MO_VIRTUAL TResult Setup() = 0;

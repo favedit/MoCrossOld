@@ -1,13 +1,13 @@
-#include "MoEoRender.h"
+#include "MoPd9Render.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FEoRenderDevice, FRenderDevice);
+MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderDevice, FRenderDevice);
 
 //============================================================
 // <T>构造舞台对象。</T>
 //============================================================
-FEoRenderDevice::FEoRenderDevice(){
+FPd9RenderDevice::FPd9RenderDevice(){
    _pCapability = MO_CREATE(FRenderCapability);
    // 初始化填充模式
    _fillModeCd = ERenderFillMode_Unknown;
@@ -36,7 +36,7 @@ FEoRenderDevice::FEoRenderDevice(){
 //============================================================
 // <T>析构舞台对象。</T>
 //============================================================
-FEoRenderDevice::~FEoRenderDevice(){
+FPd9RenderDevice::~FPd9RenderDevice(){
    MO_DELETE(_pCapability);
    // 删除常量集合
    MO_DELETE(_pVertexConsts);
@@ -56,7 +56,7 @@ FEoRenderDevice::~FEoRenderDevice(){
 // @param length 长度
 // @return 是否变更
 //============================================================
-TBool FEoRenderDevice::UpdateConsts(ERenderShader shaderCd, TInt slot, TAnyC* pData, TInt length){
+TBool FPd9RenderDevice::UpdateConsts(ERenderShader shaderCd, TInt slot, TAnyC* pData, TInt length){
    return ETrue;
    // 检查参数
    MO_CHECK(slot >= 0, return EFalse);
@@ -93,11 +93,11 @@ TBool FEoRenderDevice::UpdateConsts(ERenderShader shaderCd, TInt slot, TAnyC* pD
 //============================================================
 // <T>更新环境。</T>
 //============================================================
-TBool FEoRenderDevice::UpdateContext(){
+TBool FPd9RenderDevice::UpdateContext(){
    TBool result = EFalse;
    // 设置激活的程序
    if(_pActiveProgram != _pProgram){
-      FEoRenderProgram* pProgrom = (FEoRenderProgram*)_pProgram;
+      FPd9RenderProgram* pProgrom = (FPd9RenderProgram*)_pProgram;
       glUseProgram(pProgrom->ProgramId());
       _pProgram = _pActiveProgram;
       result = ETrue;
@@ -122,7 +122,7 @@ TInt GlRenderGetInteger(TInt code){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::Setup(){
+TResult FPd9RenderDevice::Setup(){
    // 父配置处理
    TResult result = FRenderDevice::Setup();
    //............................................................
@@ -196,7 +196,7 @@ TResult FEoRenderDevice::Setup(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::Suspend(){
+TResult FPd9RenderDevice::Suspend(){
    // 完成处理
    glFinish();
    // 清空程序
@@ -211,7 +211,7 @@ TResult FEoRenderDevice::Suspend(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::Resume(){
+TResult FPd9RenderDevice::Resume(){
    FRenderDevice::Resume();
    return ESuccess;
 }
@@ -222,7 +222,7 @@ TResult FEoRenderDevice::Resume(){
 // @param pCode 代码
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::CheckError(TCharC* pCode, TCharC* pMessage, ...){
+TResult FPd9RenderDevice::CheckError(TCharC* pCode, TCharC* pMessage, ...){
    // 获得错误原因
    TBool result = EFalse;
    GLenum errorCode = 0;
@@ -281,8 +281,8 @@ TResult FEoRenderDevice::CheckError(TCharC* pCode, TCharC* pMessage, ...){
 // @param pClass 类对象
 // @return 顶点缓冲
 //============================================================
-FRenderVertexBuffer* FEoRenderDevice::CreateVertexBuffer(FClass* pClass){
-   FRenderVertexBuffer* pVertexBuffer = FEoRenderVertexBuffer::InstanceCreate();
+FRenderVertexBuffer* FPd9RenderDevice::CreateVertexBuffer(FClass* pClass){
+   FRenderVertexBuffer* pVertexBuffer = FPd9RenderVertexBuffer::InstanceCreate();
    pVertexBuffer->SetDevice(this);
    _storageVertexBuffers.Push(pVertexBuffer);
    return pVertexBuffer;
@@ -294,8 +294,8 @@ FRenderVertexBuffer* FEoRenderDevice::CreateVertexBuffer(FClass* pClass){
 // @param pClass 类对象
 // @return 索引缓冲
 //============================================================
-FRenderIndexBuffer* FEoRenderDevice::CreateIndexBuffer(FClass* pClass){
-   FRenderIndexBuffer* pIndexBuffer = FEoRenderIndexBuffer::InstanceCreate();
+FRenderIndexBuffer* FPd9RenderDevice::CreateIndexBuffer(FClass* pClass){
+   FRenderIndexBuffer* pIndexBuffer = FPd9RenderIndexBuffer::InstanceCreate();
    pIndexBuffer->SetDevice(this);
    _storageIndexBuffers.Push(pIndexBuffer);
    return pIndexBuffer;
@@ -307,8 +307,8 @@ FRenderIndexBuffer* FEoRenderDevice::CreateIndexBuffer(FClass* pClass){
 // @param pClass 类对象
 // @return 程序
 //============================================================
-FRenderProgram* FEoRenderDevice::CreateProgrom(FClass* pClass){
-   FEoRenderProgram* pProgram = FEoRenderProgram::InstanceCreate();
+FRenderProgram* FPd9RenderDevice::CreateProgrom(FClass* pClass){
+   FPd9RenderProgram* pProgram = FPd9RenderProgram::InstanceCreate();
    pProgram->SetDevice(this);
    _storagePrograms.Push(pProgram);
    return pProgram;
@@ -320,8 +320,8 @@ FRenderProgram* FEoRenderDevice::CreateProgrom(FClass* pClass){
 // @param pClass 类对象
 // @return 渲染目标
 //============================================================
-FRenderTarget* FEoRenderDevice::CreateRenderTarget(FClass* pClass){
-   FEoRenderTarget* pRenderTarget = FEoRenderTarget::InstanceCreate();
+FRenderTarget* FPd9RenderDevice::CreateRenderTarget(FClass* pClass){
+   FPd9RenderTarget* pRenderTarget = FPd9RenderTarget::InstanceCreate();
    pRenderTarget->SetDevice(this);
    _storageTargets.Push(pRenderTarget);
    return pRenderTarget;
@@ -333,8 +333,8 @@ FRenderTarget* FEoRenderDevice::CreateRenderTarget(FClass* pClass){
 // @param pClass 类对象
 // @return 纹理
 //============================================================
-FRenderFlatTexture* FEoRenderDevice::CreateFlatTexture(FClass* pClass){
-   FEoRenderFlatTexture* pTexture = FEoRenderFlatTexture::InstanceCreate();
+FRenderFlatTexture* FPd9RenderDevice::CreateFlatTexture(FClass* pClass){
+   FPd9RenderFlatTexture* pTexture = FPd9RenderFlatTexture::InstanceCreate();
    pTexture->SetDevice(this);
    _storageTextures.Push(pTexture);
    _pLinkFlatTextures->Push(pTexture);
@@ -347,8 +347,8 @@ FRenderFlatTexture* FEoRenderDevice::CreateFlatTexture(FClass* pClass){
 // @param pClass 类对象
 // @return 纹理
 //============================================================
-FRenderCubeTexture* FEoRenderDevice::CreateCubeTexture(FClass* pClass){
-   FEoRenderCubeTexture* pTexture = FEoRenderCubeTexture::InstanceCreate();
+FRenderCubeTexture* FPd9RenderDevice::CreateCubeTexture(FClass* pClass){
+   FPd9RenderCubeTexture* pTexture = FPd9RenderCubeTexture::InstanceCreate();
    pTexture->SetDevice(this);
    _storageTextures.Push(pTexture);
    _pLinkCubeTextures->Push(pTexture);
@@ -365,7 +365,7 @@ FRenderCubeTexture* FEoRenderDevice::CreateCubeTexture(FClass* pClass){
 // @param depth 深度
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::Clear(TFloat red, TFloat green, TFloat blue, TFloat alpha, TFloat depth){
+TResult FPd9RenderDevice::Clear(TFloat red, TFloat green, TFloat blue, TFloat alpha, TFloat depth){
    glClearColor(red, green, blue, alpha);
    glClearDepthf(depth);
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -377,7 +377,7 @@ TResult FEoRenderDevice::Clear(TFloat red, TFloat green, TFloat blue, TFloat alp
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::SetBackBuffer(TInt width, TInt height, TInt antiAlias, TBool depthed){
+TResult FPd9RenderDevice::SetBackBuffer(TInt width, TInt height, TInt antiAlias, TBool depthed){
    return ESuccess;
 }
 
@@ -387,7 +387,7 @@ TResult FEoRenderDevice::SetBackBuffer(TInt width, TInt height, TInt antiAlias, 
 // @param fillModeCd 填充模式
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::SetFillMode(ERenderFillMode fillModeCd){
+TResult FPd9RenderDevice::SetFillMode(ERenderFillMode fillModeCd){
    // 检查状态
    if(_fillModeCd == fillModeCd){
       return EContinue;
@@ -421,7 +421,7 @@ TResult FEoRenderDevice::SetFillMode(ERenderFillMode fillModeCd){
 // @param depthCd 深度模式
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::SetDepthMode(TBool depth, ERenderDepthMode depthCd){
+TResult FPd9RenderDevice::SetDepthMode(TBool depth, ERenderDepthMode depthCd){
    // 检查状态
    if((_optionDepth == depth) && (_depthModeCd == depthCd)){
       return EContinue;
@@ -473,7 +473,7 @@ TResult FEoRenderDevice::SetDepthMode(TBool depth, ERenderDepthMode depthCd){
 // @param cullCd 剪裁模式
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::SetCullingMode(TBool cull, ERenderCullMode cullCd){
+TResult FPd9RenderDevice::SetCullingMode(TBool cull, ERenderCullMode cullCd){
    // 检查状态
    if((_optionCull == cull) && (_optionCull == cullCd)){
       return EContinue;
@@ -529,7 +529,7 @@ GLenum ConvertBlendFactors(ERenderBlendMode value){
 // @param targetCd 目标类型
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::SetBlendFactors(TBool blend, ERenderBlendMode sourceCd, ERenderBlendMode targetCd){
+TResult FPd9RenderDevice::SetBlendFactors(TBool blend, ERenderBlendMode sourceCd, ERenderBlendMode targetCd){
    // 设置开关
    if(_statusBlend != blend){
       if(blend){
@@ -560,7 +560,7 @@ TResult FEoRenderDevice::SetBlendFactors(TBool blend, ERenderBlendMode sourceCd,
 // @param height 高度
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::SetScissorRectangle(TInt left, TInt top, TInt width, TInt height){
+TResult FPd9RenderDevice::SetScissorRectangle(TInt left, TInt top, TInt width, TInt height){
    glScissor(left, top, width, height);
    return ETrue;
 }
@@ -571,7 +571,7 @@ TResult FEoRenderDevice::SetScissorRectangle(TInt left, TInt top, TInt width, TI
 // @param pRenderTarget 渲染目标
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::SetRenderTarget(FRenderTarget* pRenderTarget){
+TResult FPd9RenderDevice::SetRenderTarget(FRenderTarget* pRenderTarget){
    TResult result = ESuccess;
    if(pRenderTarget == NULL){
       // 解除渲染目标
@@ -613,7 +613,7 @@ TResult FEoRenderDevice::SetRenderTarget(FRenderTarget* pRenderTarget){
 // @param pProgram 程序
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::SetProgram(FRenderProgram* pProgram){
+TResult FPd9RenderDevice::SetProgram(FRenderProgram* pProgram){
    // 检查程序
    //if(_pProgram == pProgram){
    //   return EContinue;
@@ -621,7 +621,7 @@ TResult FEoRenderDevice::SetProgram(FRenderProgram* pProgram){
    // 获得程序编号
    GLuint programId = GL_ZERO;
    if(pProgram != NULL){
-      FEoRenderProgram* pRenderProgram = (FEoRenderProgram*)pProgram;
+      FPd9RenderProgram* pRenderProgram = (FPd9RenderProgram*)pProgram;
       programId = pRenderProgram->ProgramId();
    }
    // 设置程序
@@ -643,7 +643,7 @@ TResult FEoRenderDevice::SetProgram(FRenderProgram* pProgram){
 // @parma length 长度
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERenderShaderConstForamt formatCd, TAnyC* pData, TInt length){
+TResult FPd9RenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERenderShaderConstForamt formatCd, TAnyC* pData, TInt length){
    // 检查变更
    TBool changed = UpdateConsts(shaderCd, slot, pData, length);
    if(!changed){
@@ -761,7 +761,7 @@ TResult FEoRenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERende
 // @parma w W内容
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::BindConstFloat3(ERenderShader shaderCd, TInt slot, TFloat x, TFloat y, TFloat z){
+TResult FPd9RenderDevice::BindConstFloat3(ERenderShader shaderCd, TInt slot, TFloat x, TFloat y, TFloat z){
    // 检查变更
    TFloat data[3] = {x, y, z};
    TInt length = sizeof(TFloat) * 3;
@@ -788,7 +788,7 @@ TResult FEoRenderDevice::BindConstFloat3(ERenderShader shaderCd, TInt slot, TFlo
 // @parma w W内容
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::BindConstFloat4(ERenderShader shaderCd, TInt slot, TFloat x, TFloat y, TFloat z, TFloat w){
+TResult FPd9RenderDevice::BindConstFloat4(ERenderShader shaderCd, TInt slot, TFloat x, TFloat y, TFloat z, TFloat w){
    // 检查变更
    TFloat data[4] = {x, y, z, w};
    TInt length = sizeof(TFloat) * 4;
@@ -812,7 +812,7 @@ TResult FEoRenderDevice::BindConstFloat4(ERenderShader shaderCd, TInt slot, TFlo
 // @parma matrix 矩阵
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::BindConstMatrix3x3(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix){
+TResult FPd9RenderDevice::BindConstMatrix3x3(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix){
    // 检查变更
    TAnyC* pMemory = matrix.MemoryC();
    TInt length = sizeof(TFloat) * 9;
@@ -846,7 +846,7 @@ TResult FEoRenderDevice::BindConstMatrix3x3(ERenderShader shaderCd, TInt slot, c
 // @parma matrix 矩阵
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix){
+TResult FPd9RenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix){
    // 检查变更
    TAnyC* pMemory = matrix.MemoryC();
    TInt length = sizeof(TFloat) * 16;
@@ -893,11 +893,11 @@ TResult FEoRenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, c
 // @param formatCd 格式
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVertexBuffer, TInt offset, ERenderVertexFormat formatCd){
+TResult FPd9RenderDevice::BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVertexBuffer, TInt offset, ERenderVertexFormat formatCd){
    MO_ERROR_CHECK(slot >= 0, return EFailure, "Slot value is invalid. (slot=%d)", slot);
    // 获得顶点流
    TResult result = ESuccess;
-   FEoRenderVertexBuffer* pBuffer = (FEoRenderVertexBuffer*)pVertexBuffer;
+   FPd9RenderVertexBuffer* pBuffer = (FPd9RenderVertexBuffer*)pVertexBuffer;
    //............................................................
    // 设定顶点流
    GLuint bufferId = 0;
@@ -962,7 +962,7 @@ TResult FEoRenderDevice::BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVerte
 // @param pTexture 纹理
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
+TResult FPd9RenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
    TResult result = ESuccess;
    //............................................................
    // 空纹理处理
@@ -988,7 +988,7 @@ TResult FEoRenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
    ERenderTexture textureCd = pTexture->TextureCd();
    switch (textureCd){
       case ERenderTexture_Flat2d:{
-         FEoRenderFlatTexture* pFlatTexture = (FEoRenderFlatTexture*)pTexture;
+         FPd9RenderFlatTexture* pFlatTexture = (FPd9RenderFlatTexture*)pTexture;
          GLuint textureId = pFlatTexture->TextureId();
          glBindTexture(GL_TEXTURE_2D, textureId);
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -1000,7 +1000,7 @@ TResult FEoRenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
          break;
       }
       case ERenderTexture_Cube:{
-         FEoRenderCubeTexture* pCubeTexture = (FEoRenderCubeTexture*)pTexture;
+         FPd9RenderCubeTexture* pCubeTexture = (FPd9RenderCubeTexture*)pTexture;
          GLuint textureId = pCubeTexture->TextureId();
          glBindTexture(GL_TEXTURE_CUBE_MAP, textureId);
          result = CheckError("glBindTexture", "Bind texture failure. (texture_id=%d)", textureId);
@@ -1028,13 +1028,13 @@ TResult FEoRenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
 // @param count 索引总数
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt offset, TInt count){
+TResult FPd9RenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt offset, TInt count){
    MO_ASSERT(pIndexBuffer);
    MO_ASSERT(offset >= 0);
    MO_ASSERT(count > 0);
    TResult result = ESuccess;
    // 获得索引流
-   FEoRenderIndexBuffer* pBuffer = (FEoRenderIndexBuffer*)pIndexBuffer;
+   FPd9RenderIndexBuffer* pBuffer = (FPd9RenderIndexBuffer*)pIndexBuffer;
    // 绘制索引流
    GLuint bufferId = pBuffer->BufferId();
    MO_ASSERT(bufferId != 0);
@@ -1069,7 +1069,7 @@ TResult FEoRenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt of
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderDevice::Present(){
+TResult FPd9RenderDevice::Present(){
    //glFlush();
    return ESuccess;
 }

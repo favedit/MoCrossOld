@@ -1,20 +1,20 @@
-#include "MoEoRender.h"
+#include "MoPd9Render.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FEoRenderProgram, FRenderProgram);
+MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderProgram, FRenderProgram);
 
 //============================================================
 // <T>构造渲染程序。</T>
 //============================================================
-FEoRenderProgram::FEoRenderProgram(){
+FPd9RenderProgram::FPd9RenderProgram(){
    _programId = 0;
 }
 
 //============================================================
 // <T>析构渲染程序。</T>
 //============================================================
-FEoRenderProgram::~FEoRenderProgram(){
+FPd9RenderProgram::~FPd9RenderProgram(){
 }
 
 //============================================================
@@ -23,7 +23,7 @@ FEoRenderProgram::~FEoRenderProgram(){
 // @param pCode 代码
 // @return 属性索引
 //============================================================
-TInt FEoRenderProgram::FindAttribute(TCharC* pCode){
+TInt FPd9RenderProgram::FindAttribute(TCharC* pCode){
    MO_ASSERT(pCode);
    GLint slot = glGetAttribLocation(_programId, pCode);
    _pDevice->CheckError("glGetAttribLocation", "Find attribute location. (program_id=%d, code=%s)", _programId, pCode);
@@ -36,7 +36,7 @@ TInt FEoRenderProgram::FindAttribute(TCharC* pCode){
 // @param pCode 代码
 // @return 定义索引
 //============================================================
-TInt FEoRenderProgram::FindDefine(TCharC* pCode){
+TInt FPd9RenderProgram::FindDefine(TCharC* pCode){
    MO_ASSERT(pCode);
    GLint slot = glGetUniformLocation(_programId, pCode);
    _pDevice->CheckError("glGetUniformLocation", "Bind uniform location. (program_id=%d, code=%s)", _programId, pCode);
@@ -50,7 +50,7 @@ TInt FEoRenderProgram::FindDefine(TCharC* pCode){
 // @param pCode 代码
 // @return 处理结果
 //============================================================
-TResult FEoRenderProgram::BindAttribute(TInt slot, TCharC* pCode){
+TResult FPd9RenderProgram::BindAttribute(TInt slot, TCharC* pCode){
    MO_ASSERT(slot >= 0);
    MO_ASSERT(pCode);
    MO_ASSERT(_programId != 0);
@@ -64,15 +64,15 @@ TResult FEoRenderProgram::BindAttribute(TInt slot, TCharC* pCode){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderProgram::Setup(){
+TResult FPd9RenderProgram::Setup(){
    _programId = glCreateProgram();
    // 创建顶点渲染器
-   FEoRenderVertexShader* pVertexShader = FEoRenderVertexShader::InstanceCreate();
+   FPd9RenderVertexShader* pVertexShader = FPd9RenderVertexShader::InstanceCreate();
    pVertexShader->SetDevice(_pDevice);
    pVertexShader->Setup();
    _pVertexShader = pVertexShader;
    // 创建像素渲染器
-   FEoRenderFragmentShader* pFragmentShader = FEoRenderFragmentShader::InstanceCreate();
+   FPd9RenderFragmentShader* pFragmentShader = FPd9RenderFragmentShader::InstanceCreate();
    pFragmentShader->SetDevice(_pDevice);
    pFragmentShader->Setup();
    _pFragmentShader = pFragmentShader;
@@ -86,7 +86,7 @@ TResult FEoRenderProgram::Setup(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderProgram::Build(){
+TResult FPd9RenderProgram::Build(){
    TResult resultCd = ESuccess;
    // 设置顶点渲染器
    GLuint vertexShaderId = _pVertexShader->RenderId().uint32;
@@ -96,7 +96,7 @@ TResult FEoRenderProgram::Build(){
       return resultCd;
    }
    // 设置顶点渲染器
-   FEoRenderFragmentShader* pFragmentShader = (FEoRenderFragmentShader*)_pFragmentShader;
+   FPd9RenderFragmentShader* pFragmentShader = (FPd9RenderFragmentShader*)_pFragmentShader;
    GLuint fragmentShaderId = pFragmentShader->RenderId().uint32;
    glAttachShader(_programId, fragmentShaderId);
    resultCd = _pDevice->CheckError("glAttachShader", "Attach shader failure. (program_id=%d, shader_id=%d)", _programId, fragmentShaderId);
@@ -111,7 +111,7 @@ TResult FEoRenderProgram::Build(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderProgram::Link(){
+TResult FPd9RenderProgram::Link(){
    TResult resultCd = ESuccess;
    // 关联处理
    glLinkProgram(_programId);
@@ -163,7 +163,7 @@ TResult FEoRenderProgram::Link(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderProgram::Suspend(){
+TResult FPd9RenderProgram::Suspend(){
    return ESuccess;
 }
 
@@ -172,7 +172,7 @@ TResult FEoRenderProgram::Suspend(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderProgram::Resume(){
+TResult FPd9RenderProgram::Resume(){
    return ESuccess;
 }
 
@@ -181,7 +181,7 @@ TResult FEoRenderProgram::Resume(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderProgram::Dispose(){
+TResult FPd9RenderProgram::Dispose(){
    // 释放资源
    if(_programId != 0){
       glDeleteProgram(_programId);

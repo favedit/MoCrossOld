@@ -8,6 +8,7 @@ MO_CLASS_ABSTRACT_IMPLEMENT_INHERITS(FRenderShader, FRenderInstance);
 // <T>ππ‘Ï‰÷»æ∆˜°£</T>
 //============================================================
 FRenderShader::FRenderShader(){
+   MO_CLEAR(_pProgram);
    _pSource = MO_CREATE(FRenderSource);
    _pCompileSource = MO_CREATE(FRenderSource);
 }
@@ -42,7 +43,11 @@ TResult FRenderShader::Build(TCharC* pSource){
       pOptimizer->Convert(_pCompileSource, _pCompileSource);
    }
    // ±‡“ÎΩ≈±æ
-   Compile(_pCompileSource->MemoryC());
+   if(_pCompileSource->IsEmpty()){
+      Compile(_pSource->MemoryC());
+   }else{
+      Compile(_pCompileSource->MemoryC());
+   }
    return ESuccess;
 }
 

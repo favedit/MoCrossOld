@@ -1,33 +1,53 @@
-#ifndef __MO_PD10_RENDER_H__
-#define __MO_PD10_RENDER_H__
+#ifndef __MO_PD9_RENDER_H__
+#define __MO_PD9_RENDER_H__
 //************************************************************
 
-#ifndef __MO_PD10_COMMON_H__
-#include "MoPd10Common.h"
-#endif // __MO_PD10_COMMON_H__
+#ifdef _MO_WINDOWS
+#ifndef _WINDOWS_
+#include <Windows.h>
+#endif // _WINDOWS_
+#endif // _MO_WINDOWS
 
-#ifndef __MO_PD10_CORE_H__
-#include "MoPd10Core.h"
-#endif // __MO_PD10_CORE_H__
+#ifdef _MO_WINDOWS
+#ifndef __glew_h__
+#include <gl\glew.h>
+#endif // __glew_h__
+#endif // _MO_WINDOWS
+
+#ifdef _MO_ANDROID
+#ifndef __gl2_h_
+#include <GLES2\gl2.h>
+#endif // __gl2_h_
+#endif // _MO_ANDROID
+
+#ifdef _MO_ANDROID
+#ifndef __gl2ext_h_
+#include <GLES2\gl2ext.h>
+#endif // __gl2ext_h_
+#endif // _MO_ANDROID
+
+#ifndef __MO_PD9_COMMON_H__
+#include "MoPd9Common.h"
+#endif // __MO_PD9_COMMON_H__
 
 MO_NAMESPACE_BEGIN
 
 //============================================================
 // <T>渲染顶点缓冲。</T>
 //============================================================
-class MO_PD10_DECLARE FPd10RenderVertexBuffer : public FRenderVertexBuffer
+class MO_PD9_DECLARE FPd9RenderVertexBuffer : public FRenderVertexBuffer
 {
-   MO_CLASS_DECLARE_INHERITS(FPd10RenderVertexBuffer, FRenderVertexBuffer);
+   MO_CLASS_DECLARE_INHERITS(FPd9RenderVertexBuffer, FRenderVertexBuffer);
 protected:
-   ID3D10Buffer* _piBuffer;
+   GLuint _bufferId;
 public:
-   FPd10RenderVertexBuffer();
-   MO_ABSTRACT ~FPd10RenderVertexBuffer();
+   FPd9RenderVertexBuffer();
+   MO_ABSTRACT ~FPd9RenderVertexBuffer();
 public:
    //------------------------------------------------------------
-   // <T>获得本地缓冲。</T>
-   MO_INLINE ID3D10Buffer* NativeBuffer(){
-      return _piBuffer;
+   // <T>获得代码。</T>
+   MO_INLINE GLuint BufferId(){
+      return _bufferId;
    }
 public:
    MO_OVERRIDE TResult OnSetup();
@@ -42,19 +62,19 @@ public:
 //============================================================
 // <T>渲染索引缓冲。</T>
 //============================================================
-class MO_PD10_DECLARE FPd10RenderIndexBuffer : public FRenderIndexBuffer
+class MO_PD9_DECLARE FPd9RenderIndexBuffer : public FRenderIndexBuffer
 {
-   MO_CLASS_DECLARE_INHERITS(FPd10RenderIndexBuffer, FRenderVertexBuffer);
+   MO_CLASS_DECLARE_INHERITS(FPd9RenderIndexBuffer, FRenderVertexBuffer);
 protected:
-   ID3D10Buffer* _piBuffer;
+   GLuint _bufferId;
 public:
-   FPd10RenderIndexBuffer();
-   MO_ABSTRACT ~FPd10RenderIndexBuffer();
+   FPd9RenderIndexBuffer();
+   MO_ABSTRACT ~FPd9RenderIndexBuffer();
 public:
    //------------------------------------------------------------
-   // <T>获得本地缓冲。</T>
-   MO_INLINE ID3D10Buffer* NativeBuffer(){
-      return _piBuffer;
+   // <T>获得代码。</T>
+   MO_INLINE GLuint BufferId(){
+      return _bufferId;
    }
 public:
    MO_OVERRIDE TResult OnSetup();
@@ -69,26 +89,12 @@ public:
 //============================================================
 // <T>顶点渲染器。</T>
 //============================================================
-class MO_PD10_DECLARE FPd10RenderVertexShader : public FRenderVertexShader
+class MO_PD9_DECLARE FPd9RenderVertexShader : public FRenderVertexShader
 {
-   MO_CLASS_DECLARE_INHERITS(FPd10RenderVertexShader, FRenderVertexShader);
-protected:
-   ID3D10Blob* _piData;
-   ID3D10VertexShader* _piShader;
+   MO_CLASS_DECLARE_INHERITS(FPd9RenderVertexShader, FRenderVertexShader);
 public:
-   FPd10RenderVertexShader();
-   MO_ABSTRACT ~FPd10RenderVertexShader();
-public:
-   //------------------------------------------------------------
-   // <T>获得本地数据。</T>
-   MO_INLINE ID3D10Blob* NativeData(){
-      return _piData;
-   }
-   //------------------------------------------------------------
-   // <T>获得本地渲染器。</T>
-   MO_INLINE ID3D10VertexShader* NativeShader(){
-      return _piShader;
-   }
+   FPd9RenderVertexShader();
+   MO_ABSTRACT ~FPd9RenderVertexShader();
 public:
    MO_OVERRIDE TResult Setup();
 public:
@@ -102,26 +108,12 @@ public:
 //============================================================
 // <T>像素渲染器。</T>
 //============================================================
-class MO_PD10_DECLARE FPd10RenderFragmentShader : public FRenderFragmentShader
+class MO_PD9_DECLARE FPd9RenderFragmentShader : public FRenderFragmentShader
 {
-   MO_CLASS_DECLARE_INHERITS(FPd10RenderFragmentShader, FRenderVertexShader);
-protected:
-   ID3D10Blob* _piData;
-   ID3D10PixelShader* _piShader;
+   MO_CLASS_DECLARE_INHERITS(FPd9RenderFragmentShader, FRenderVertexShader);
 public:
-   FPd10RenderFragmentShader();
-   MO_ABSTRACT ~FPd10RenderFragmentShader();
-public:
-   //------------------------------------------------------------
-   // <T>获得本地数据。</T>
-   MO_INLINE ID3D10Blob* NativeData(){
-      return _piData;
-   }
-   //------------------------------------------------------------
-   // <T>获得本地渲染器。</T>
-   MO_INLINE ID3D10PixelShader* NativeShader(){
-      return _piShader;
-   }
+   FPd9RenderFragmentShader();
+   MO_ABSTRACT ~FPd9RenderFragmentShader();
 public:
    MO_OVERRIDE TResult Setup();
 public:
@@ -135,20 +127,20 @@ public:
 //============================================================
 // <T>渲染程序。</T>
 //============================================================
-class MO_PD10_DECLARE FPd10RenderProgram : public FRenderProgram
+class MO_PD9_DECLARE FPd9RenderProgram : public FRenderProgram
 {
-   MO_CLASS_DECLARE_INHERITS(FPd10RenderProgram, FRenderProgram);
+   MO_CLASS_DECLARE_INHERITS(FPd9RenderProgram, FRenderProgram);
 protected:
-   //GLuint _programId;
+   GLuint _programId;
 public:
-   FPd10RenderProgram();
-   MO_ABSTRACT ~FPd10RenderProgram();
+   FPd9RenderProgram();
+   MO_ABSTRACT ~FPd9RenderProgram();
 public:
    //------------------------------------------------------------
    // <T>获得代码。</T>
-   //MO_INLINE GLuint ProgramId(){
-   //   return _programId;
-   //}
+   MO_INLINE GLuint ProgramId(){
+      return _programId;
+   }
 public:
    MO_OVERRIDE TInt FindDefine(TCharC* pCode);
    MO_OVERRIDE TInt FindAttribute(TCharC* pCode);
@@ -166,35 +158,31 @@ public:
 //============================================================
 // <T>渲染目标。</T>
 //============================================================
-class MO_PD10_DECLARE FPd10RenderTarget : public FRenderTarget
+class MO_PD9_DECLARE FPd9RenderTarget : public FRenderTarget
 {
-   MO_CLASS_DECLARE_INHERITS(FPd10RenderTarget, FRenderTarget);
+   MO_CLASS_DECLARE_INHERITS(FPd9RenderTarget, FRenderTarget);
 protected:
-   ID3D10RenderTargetView* _piRenderTarget;
-   ID3D10DepthStencilView* _piDepthStencil;
+   GLuint _frameBufferId;
+   GLuint _depthStencilId;
+   GLuint _depthBufferId;
 public:
-   FPd10RenderTarget();
-   MO_ABSTRACT ~FPd10RenderTarget();
+   FPd9RenderTarget();
+   MO_ABSTRACT ~FPd9RenderTarget();
 public:
    //------------------------------------------------------------
-   // <T>获得本地渲染目标。</T>
-   MO_INLINE ID3D10RenderTargetView* NativeRenderTarget(){
-      return _piRenderTarget;
+   // <T>获得帧缓冲编号。</T>
+   MO_INLINE GLuint FrameBufferId(){
+      return _frameBufferId;
    }
    //------------------------------------------------------------
-   // <T>设置本地渲染目标。</T>
-   MO_INLINE void SetNativeRenderTarget(ID3D10RenderTargetView* piRenderTarget){
-      _piRenderTarget = piRenderTarget;
+   // <T>获得深度模板编号。</T>
+   MO_INLINE GLuint DepthStencilId(){
+      return _depthStencilId;
    }
    //------------------------------------------------------------
-   // <T>获得本地深度缓冲。</T>
-   MO_INLINE ID3D10DepthStencilView* NativeDepthStencil(){
-      return _piDepthStencil;
-   }
-   //------------------------------------------------------------
-   // <T>设置本地深度缓冲。</T>
-   MO_INLINE void SetNativeDepthStencil(ID3D10DepthStencilView* piDepthStencil){
-      _piDepthStencil = piDepthStencil;
+   // <T>获得深度缓冲编号。</T>
+   MO_INLINE GLuint DepthBufferId(){
+      return _depthBufferId;
    }
 public:
    MO_OVERRIDE TResult OnSetup();
@@ -207,19 +195,19 @@ public:
 //============================================================
 // <T>渲染平面纹理。</T>
 //============================================================
-class MO_PD10_DECLARE FPd10RenderFlatTexture : public FRenderFlatTexture
+class MO_PD9_DECLARE FPd9RenderFlatTexture : public FRenderFlatTexture
 {
-   MO_CLASS_DECLARE_INHERITS(FPd10RenderFlatTexture, FRenderFlatTexture);
+   MO_CLASS_DECLARE_INHERITS(FPd9RenderFlatTexture, FRenderFlatTexture);
 protected:
-   ID3D10Texture2D* _piTexture;
+   GLuint _textureId;
 public:
-   FPd10RenderFlatTexture();
-   MO_ABSTRACT ~FPd10RenderFlatTexture();
+   FPd9RenderFlatTexture();
+   MO_ABSTRACT ~FPd9RenderFlatTexture();
 public:
    //------------------------------------------------------------
-   // <T>获得本地纹理。</T>
-   MO_INLINE ID3D10Texture2D* NativeTexture(){
-      return _piTexture;
+   // <T>获得代码。</T>
+   MO_INLINE GLuint TextureId(){
+      return _textureId;
    }
 public:
    MO_OVERRIDE TResult OnSetup();
@@ -237,20 +225,20 @@ public:
 //============================================================
 // <T>渲染CUBE纹理。</T>
 //============================================================
-class MO_PD10_DECLARE FPd10RenderCubeTexture : public FRenderCubeTexture
+class MO_PD9_DECLARE FPd9RenderCubeTexture : public FRenderCubeTexture
 {
-   MO_CLASS_DECLARE_INHERITS(FPd10RenderCubeTexture, FRenderFlatTexture);
+   MO_CLASS_DECLARE_INHERITS(FPd9RenderCubeTexture, FRenderFlatTexture);
 protected:
-   //GLuint _textureId;
+   GLuint _textureId;
 public:
-   FPd10RenderCubeTexture();
-   MO_ABSTRACT ~FPd10RenderCubeTexture();
+   FPd9RenderCubeTexture();
+   MO_ABSTRACT ~FPd9RenderCubeTexture();
 public:
-   ////------------------------------------------------------------
-   //// <T>获得代码。</T>
-   //MO_INLINE GLuint TextureId(){
-   //   return _textureId;
-   //}
+   //------------------------------------------------------------
+   // <T>获得代码。</T>
+   MO_INLINE GLuint TextureId(){
+      return _textureId;
+   }
 public:
    MO_OVERRIDE TResult OnSetup();
 public:
@@ -267,9 +255,9 @@ public:
 //============================================================
 // <T>渲染设备。</T>
 //============================================================
-class MO_PD10_DECLARE FPd10RenderDevice : public FRenderDevice
+class MO_PD9_DECLARE FPd9RenderDevice : public FRenderDevice
 {
-   MO_CLASS_DECLARE_INHERITS(FPd10RenderDevice, FRenderDevice);
+   MO_CLASS_DECLARE_INHERITS(FPd9RenderDevice, FRenderDevice);
 protected:
    // 填充模式
    ERenderFillMode _fillModeCd;
@@ -286,50 +274,28 @@ protected:
    TInt _renderTextureActiveSlot;
    // 纹理信息
    TBool _optionTexture;
-   //GLint _vertexConstLimit;
-   //GLint _vertexAttributeLimit;
-   //GLint _fragmentConstLimit;
-   //GLint _varyingLimit;
-   //GLint _textureLimit;
-   //GLint _textureSizeLimit;
-   //GLint _textureTotalLimit;
-   //GLint _renderTargetLimit;
+   GLint _vertexConstLimit;
+   GLint _vertexAttributeLimit;
+   GLint _fragmentConstLimit;
+   GLint _varyingLimit;
+   GLint _textureLimit;
+   GLint _textureSizeLimit;
+   GLint _textureTotalLimit;
+   GLint _renderTargetLimit;
+   // 顶点数据
+   FBytes* _pVertexConsts;
+   FBytes* _pFragmentConsts;
    // 关联顶点缓冲集合
    FRenderFlatTextureList* _pLinkFlatTextures;
    FRenderCubeTextureList* _pLinkCubeTextures;
    // 效率统计
    GPtr<FStatistics> _renderDrawStatistics;
-   // 接口指针
-   HWND _windowHandle;
-   IDXGISwapChain* _piSwapChain;
-   ID3D10Device* _piDevice;
-   GPtr<FPd10RenderTarget> _defaultRenderTarget;
 public:
-   FPd10RenderDevice();
-   MO_ABSTRACT ~FPd10RenderDevice();
+   FPd9RenderDevice();
+   MO_ABSTRACT ~FPd9RenderDevice();
 protected:
+   TBool UpdateConsts(ERenderShader shaderCd, TInt slot, TAnyC* pData, TInt length);
    TBool UpdateContext();
-public:
-   //------------------------------------------------------------
-   // <T>获得窗口句柄。</T>
-   MO_INLINE HWND WindowHandle(){
-      return _windowHandle;
-   }
-   //------------------------------------------------------------
-   // <T>设置窗口句柄。</T>
-   MO_INLINE void SetWindowHandle(HWND handle){
-      _windowHandle = handle;
-   }
-   //------------------------------------------------------------
-   // <T>获得本地交换链。</T>
-   MO_INLINE IDXGISwapChain* NativeSwapChain(){
-      return _piSwapChain;
-   }
-   //------------------------------------------------------------
-   // <T>获得本地设备。</T>
-   MO_INLINE ID3D10Device* NativeDevice(){
-      return _piDevice;
-   }
 public:
    MO_OVERRIDE TResult Setup();
    MO_ABSTRACT TResult Suspend();
@@ -367,4 +333,4 @@ public:
 MO_NAMESPACE_END
 
 //************************************************************
-#endif // __MO_PD10_RENDER_H__
+#endif // __MO_PD9_RENDER_H__

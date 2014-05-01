@@ -1,20 +1,20 @@
-#include "MoPd10Render.h"
+#include "MoPd11Render.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd10RenderProgram, FRenderProgram);
+MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderProgram, FRenderProgram);
 
 //============================================================
 // <T>构造渲染程序。</T>
 //============================================================
-FPd10RenderProgram::FPd10RenderProgram(){
+FPd11RenderProgram::FPd11RenderProgram(){
    //_programId = 0;
 }
 
 //============================================================
 // <T>析构渲染程序。</T>
 //============================================================
-FPd10RenderProgram::~FPd10RenderProgram(){
+FPd11RenderProgram::~FPd11RenderProgram(){
 }
 
 //============================================================
@@ -23,7 +23,7 @@ FPd10RenderProgram::~FPd10RenderProgram(){
 // @param pCode 代码
 // @return 属性索引
 //============================================================
-TInt FPd10RenderProgram::FindAttribute(TCharC* pCode){
+TInt FPd11RenderProgram::FindAttribute(TCharC* pCode){
    MO_ASSERT(pCode);
    //GLint slot = glGetAttribLocation(_programId, pCode);
    //_pDevice->CheckError("glGetAttribLocation", "Find attribute location. (program_id=%d, code=%s)", _programId, pCode);
@@ -37,7 +37,7 @@ TInt FPd10RenderProgram::FindAttribute(TCharC* pCode){
 // @param pCode 代码
 // @return 定义索引
 //============================================================
-TInt FPd10RenderProgram::FindDefine(TCharC* pCode){
+TInt FPd11RenderProgram::FindDefine(TCharC* pCode){
    MO_ASSERT(pCode);
    //GLint slot = glGetUniformLocation(_programId, pCode);
    //_pDevice->CheckError("glGetUniformLocation", "Bind uniform location. (program_id=%d, code=%s)", _programId, pCode);
@@ -52,7 +52,7 @@ TInt FPd10RenderProgram::FindDefine(TCharC* pCode){
 // @param pCode 代码
 // @return 处理结果
 //============================================================
-TResult FPd10RenderProgram::BindAttribute(TInt slot, TCharC* pCode){
+TResult FPd11RenderProgram::BindAttribute(TInt slot, TCharC* pCode){
    MO_ASSERT(slot >= 0);
    MO_ASSERT(pCode);
    //MO_ASSERT(_programId != 0);
@@ -67,17 +67,17 @@ TResult FPd10RenderProgram::BindAttribute(TInt slot, TCharC* pCode){
 //
 // @return 处理结果
 //============================================================
-TResult FPd10RenderProgram::Setup(){
+TResult FPd11RenderProgram::Setup(){
    MO_CHECK(_pDevice, return ENull);
-   FPd10RenderDevice* pRenderDevice = _pDevice->Convert<FPd10RenderDevice>();
+   FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
    // 创建顶点渲染器
-   FPd10RenderVertexShader* pVertexShader = FPd10RenderVertexShader::InstanceCreate();
+   FPd11RenderVertexShader* pVertexShader = FPd11RenderVertexShader::InstanceCreate();
    pVertexShader->SetDevice(_pDevice);
    pVertexShader->SetProgram(this);
    pVertexShader->Setup();
    _pVertexShader = pVertexShader;
    // 创建像素渲染器
-   FPd10RenderFragmentShader* pFragmentShader = FPd10RenderFragmentShader::InstanceCreate();
+   FPd11RenderFragmentShader* pFragmentShader = FPd11RenderFragmentShader::InstanceCreate();
    pFragmentShader->SetDevice(_pDevice);
    pFragmentShader->SetProgram(this);
    pFragmentShader->Setup();
@@ -91,21 +91,22 @@ TResult FPd10RenderProgram::Setup(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd10RenderProgram::Build(){
+TResult FPd11RenderProgram::Build(){
    MO_CHECK(_pDevice, return ENull);
-   FPd10RenderDevice* pRenderDevice = _pDevice->Convert<FPd10RenderDevice>();
+   FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
    //pRenderDevice->NativeDevice()->VSSetShader();
    //pRenderDevice->NativeDevice()->PSSetShader();
 
-   FPd10RenderVertexShader* pVertexShader = _pVertexShader->Convert<FPd10RenderVertexShader>();
+   FPd11RenderVertexShader* pVertexShader = _pVertexShader->Convert<FPd11RenderVertexShader>();
    TAny* pVertexData = pVertexShader->NativeData()->GetBufferPointer();
    TInt vertexDataLength = pVertexShader->NativeData()->GetBufferSize();
 
-   D3D10_INPUT_ELEMENT_DESC layout[] = {
-      {"POSITION",  0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D10_INPUT_PER_VERTEX_DATA, 0},
+   D3D11_INPUT_ELEMENT_DESC layout[] = {
+      {"POSITION",  0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
+      {"TEXCOORD0", 1, DXGI_FORMAT_R32G32_FLOAT,    0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
    };
    UINT numElements = ARRAYSIZE(layout);
-   ID3D10InputLayout* _pInputLayout;
+   ID3D11InputLayout* _pInputLayout;
    HRESULT dxResult = pRenderDevice->NativeDevice()->CreateInputLayout(layout, numElements, pVertexData, vertexDataLength, &_pInputLayout);
    if(FAILED(dxResult)){
       MO_FATAL("Create input layout failure.");
@@ -122,7 +123,7 @@ TResult FPd10RenderProgram::Build(){
    //   return resultCd;
    //}
    //// 设置顶点渲染器
-   //FPd10RenderFragmentShader* pFragmentShader = (FPd10RenderFragmentShader*)_pFragmentShader;
+   //FPd11RenderFragmentShader* pFragmentShader = (FPd11RenderFragmentShader*)_pFragmentShader;
    //GLuint fragmentShaderId = pFragmentShader->RenderId().uint32;
    //glAttachShader(_programId, fragmentShaderId);
    //resultCd = _pDevice->CheckError("glAttachShader", "Attach shader failure. (program_id=%d, shader_id=%d)", _programId, fragmentShaderId);
@@ -137,7 +138,7 @@ TResult FPd10RenderProgram::Build(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd10RenderProgram::Link(){
+TResult FPd11RenderProgram::Link(){
    TResult resultCd = ESuccess;
   // // 关联处理
   // glLinkProgram(_programId);
@@ -189,7 +190,7 @@ TResult FPd10RenderProgram::Link(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd10RenderProgram::Suspend(){
+TResult FPd11RenderProgram::Suspend(){
    return ESuccess;
 }
 
@@ -198,7 +199,7 @@ TResult FPd10RenderProgram::Suspend(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd10RenderProgram::Resume(){
+TResult FPd11RenderProgram::Resume(){
    return ESuccess;
 }
 
@@ -207,7 +208,7 @@ TResult FPd10RenderProgram::Resume(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd10RenderProgram::Dispose(){
+TResult FPd11RenderProgram::Dispose(){
    //// 释放资源
    //if(_programId != 0){
    //   glDeleteProgram(_programId);

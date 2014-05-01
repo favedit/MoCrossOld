@@ -8,8 +8,6 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderCapability, FInstance);
 // <T>ππ‘ÏŒ∆¿Ì°£</T>
 //============================================================
 FRenderCapability::FRenderCapability(){
-   MO_CLEAR(_pVendor);
-   MO_CLEAR(_pVersion);
    _vertexCountLimit = 65536;
    _vertexConstLimit = 0;
    _vertexAttributeLimit = 0;
@@ -39,7 +37,6 @@ void FRenderCapability::Track(){
    MO_INFO("Render capability. (fragment_const=%d)", _fragmentConstLimit);
    MO_INFO("Render capability. (sampler=%d, sampler_size=%d)", _samplerLimit, _samplerSizeLimit);
    MO_INFO("Render capability. (render_target=%d)", _renderTargetLimit);
-   //MO_INFO("OpenGL setup. (texture=%d, texture_size=%d, texture_total=%d)", _textureLimit, _textureSizeLimit, _textureTotalLimit);
 }
 
 MO_NAMESPACE_END

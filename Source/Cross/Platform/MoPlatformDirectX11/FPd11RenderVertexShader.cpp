@@ -1,13 +1,13 @@
-#include "MoPd10Render.h"
+#include "MoPd11Render.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd10RenderVertexShader, FRenderVertexShader);
+MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderVertexShader, FRenderVertexShader);
 
 //============================================================
 // <T>构造渲染程序。</T>
 //============================================================
-FPd10RenderVertexShader::FPd10RenderVertexShader(){
+FPd11RenderVertexShader::FPd11RenderVertexShader(){
    MO_CLEAR(_piData);
    MO_CLEAR(_piShader);
 }
@@ -15,7 +15,7 @@ FPd10RenderVertexShader::FPd10RenderVertexShader(){
 //============================================================
 // <T>析构渲染程序。</T>
 //============================================================
-FPd10RenderVertexShader::~FPd10RenderVertexShader(){
+FPd11RenderVertexShader::~FPd11RenderVertexShader(){
    MO_RELEASE(_piData);
    MO_RELEASE(_piShader);
 }
@@ -25,7 +25,7 @@ FPd10RenderVertexShader::~FPd10RenderVertexShader(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd10RenderVertexShader::Setup(){
+TResult FPd11RenderVertexShader::Setup(){
    //_renderId.uint32 = glCreateShader(GL_VERTEX_SHADER);
    //TResult resultCd = _pDevice->CheckError("glCreateShader", "Create vertex shader failure. (shader_id=%d)", _renderId.uint32);
    //return resultCd;
@@ -38,17 +38,17 @@ TResult FPd10RenderVertexShader::Setup(){
 // @param pSource 代码字符串
 // @return 处理结果
 //============================================================
-TResult FPd10RenderVertexShader::Compile(TCharC* pSource){
+TResult FPd11RenderVertexShader::Compile(TCharC* pSource){
    // 获得设备信息
    MO_CHECK(_pDevice, return ENull);
-   FPd10RenderDevice* pRenderDevice = _pDevice->Convert<FPd10RenderDevice>();
+   FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
    FRenderCapability* pCapability = pRenderDevice->Capability();
    TCharC* pShaderVersion = pCapability->ShaderVertexVersion();
    // 上传代码
    TInt length = RString::Length(pSource);
    ID3D10Blob* piError = NULL;
    HRESULT shaderResult = S_OK;
-   HRESULT dxResult = D3DX10CompileFromMemory(pSource, length, NULL, NULL, NULL, "main", pShaderVersion, 0, 0, NULL, &_piData, &piError, &shaderResult);
+   HRESULT dxResult = D3DX11CompileFromMemory(pSource, length, NULL, NULL, NULL, "main", pShaderVersion, 0, 0, NULL, &_piData, &piError, &shaderResult);
    if(FAILED(dxResult) || FAILED(shaderResult)){
       TCharC* pBuffer = (TCharC*)piError->GetBufferPointer();
       MO_ERROR("Compile from memory failure.\n%s", pBuffer);
@@ -59,7 +59,7 @@ TResult FPd10RenderVertexShader::Compile(TCharC* pSource){
    // 创建渲染器
    TAny* pData = _piData->GetBufferPointer();
    TInt dataSize = _piData->GetBufferSize();
-   dxResult = pRenderDevice->NativeDevice()->CreateVertexShader(pData, dataSize, &_piShader);
+   dxResult = pRenderDevice->NativeDevice()->CreateVertexShader(pData, dataSize, NULL, &_piShader);
    if(FAILED(dxResult)){
       MO_FATAL("Create vertex shader failure.");
       return EFailure;
@@ -73,7 +73,7 @@ TResult FPd10RenderVertexShader::Compile(TCharC* pSource){
 //
 // @return 处理结果
 //============================================================
-TResult FPd10RenderVertexShader::Suspend(){
+TResult FPd11RenderVertexShader::Suspend(){
    return ESuccess;
 }
 
@@ -82,7 +82,7 @@ TResult FPd10RenderVertexShader::Suspend(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd10RenderVertexShader::Resume(){
+TResult FPd11RenderVertexShader::Resume(){
    return ESuccess;
 }
 
@@ -91,7 +91,7 @@ TResult FPd10RenderVertexShader::Resume(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd10RenderVertexShader::Dispose(){
+TResult FPd11RenderVertexShader::Dispose(){
    //TResult resultCd = ESuccess;
    //if(_renderId.uint32 != 0){
    //   glDeleteShader(_renderId.uint32);

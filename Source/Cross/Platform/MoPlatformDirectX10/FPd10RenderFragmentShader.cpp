@@ -8,6 +8,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd10RenderFragmentShader, FRenderVertexShader);
 // <T>构造渲染程序。</T>
 //============================================================
 FPd10RenderFragmentShader::FPd10RenderFragmentShader(){
+   MO_CLEAR(_piData);
    MO_CLEAR(_piShader);
 }
 
@@ -15,6 +16,7 @@ FPd10RenderFragmentShader::FPd10RenderFragmentShader(){
 // <T>析构渲染程序。</T>
 //============================================================
 FPd10RenderFragmentShader::~FPd10RenderFragmentShader(){
+   MO_RELEASE(_piData);
    MO_RELEASE(_piShader);
 }
 
@@ -37,36 +39,32 @@ TResult FPd10RenderFragmentShader::Setup(){
 // @return 处理结果
 //============================================================
 TResult FPd10RenderFragmentShader::Compile(TCharC* pSource){
-  // // 上传代码
-  // const GLchar* source[1];
-  // source[0] = (const GLchar*)pSource;
-  // glShaderSource(_renderId.uint32, 1, source, NULL);
-  // // 编译处理
-  // glCompileShader(_renderId.uint32);
-  // // 测试编译结果
-  // GLint status;
-  // glGetShaderiv(_renderId.uint32, GL_COMPILE_STATUS, &status);
-  // if(!status){
-  //    // 获得代码
-  //    GLsizei sourceLength;
-  //    glGetShaderiv(_renderId.uint32, GL_SHADER_SOURCE_LENGTH, &sourceLength);
-		//GLchar* pShaderSource = MO_TYPES_ALLOC(GLchar, sourceLength);
-
-		//glGetShaderSource(_renderId.uint32, sourceLength, NULL, pShaderSource);
-  //    // 获得原因
-  //    GLsizei reasonLength = 0;
-  //    glGetShaderiv(_renderId.uint32, GL_INFO_LOG_LENGTH, &reasonLength);
-  //    GLchar* pReason = MO_TYPES_ALLOC(GLchar, reasonLength);
-  //    glGetShaderInfoLog(_renderId.uint32, reasonLength, NULL, pReason);  
-  //    MO_FATAL("Create fragment shader failure. (status=%d)\n%s\n%s", status, pReason, pShaderSource);
-  //    // 释放资源
-  //    MO_DELETE(pShaderSource);
-  //    MO_DELETE(pReason);
-  //    glDeleteShader(_renderId.uint32); 
-  //    _renderId.uint32 = -1;
-  // }else{
-  //    MO_INFO("Create fragment shader success. (status=%d)\n%s", status, pSource);
-  // }
+   // 获得设备信息
+   MO_CHECK(_pDevice, return ENull);
+   FPd10RenderDevice* pRenderDevice = _pDevice->Convert<FPd10RenderDevice>();
+   FRenderCapability* pCapability = pRenderDevice->Capability();
+   TCharC* pShaderVersion = pCapability->ShaderFragmentVersion();
+   // 上传代码
+   TInt length = RString::Length(pSource);
+   ID3D10Blob* piError = NULL;
+   HRESULT shaderResult = S_OK;
+   HRESULT dxResult = D3DX10CompileFromMemory(pSource, length, NULL, NULL, NULL, "main", pShaderVersion, 0, 0, NULL, &_piData, &piError, &shaderResult);
+   if(FAILED(dxResult) || FAILED(shaderResult)){
+      TCharC* pBuffer = (TCharC*)piError->GetBufferPointer();
+      MO_ERROR("Compile from memory failure.\n%s", pBuffer);
+      MO_RELEASE(piError);
+      MO_FATAL("Compile failure.");
+      return EFailure;
+   }
+   // 创建渲染器
+   TAny* pData = _piData->GetBufferPointer();
+   TInt dataSize = _piData->GetBufferSize();
+   dxResult = pRenderDevice->NativeDevice()->CreatePixelShader(pData, dataSize, &_piShader);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create fragment shader failure.");
+      return EFailure;
+   }
+   MO_INFO("Create fragment shader success. (status=%d)\n%s", dxResult, pSource);
    return ESuccess;
 }
 

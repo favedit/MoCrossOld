@@ -11,28 +11,29 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\FPd9RenderCubeTexture.cpp" />
-    <ClCompile Include="..\FPd9RenderDevice.cpp" />
-    <ClCompile Include="..\FPd9RenderFlatTexture.cpp" />
-    <ClCompile Include="..\FPd9RenderFragmentShader.cpp" />
-    <ClCompile Include="..\FPd9RenderIndexBuffer.cpp" />
-    <ClCompile Include="..\FPd9RenderProgram.cpp" />
-    <ClCompile Include="..\FPd9RenderTarget.cpp" />
-    <ClCompile Include="..\FPd9RenderVertexBuffer.cpp" />
-    <ClCompile Include="..\FPd9RenderVertexShader.cpp" />
-    <ClCompile Include="..\MoPlatformDirectX9.cpp" />
+    <ClCompile Include="..\FPd11RenderCubeTexture.cpp" />
+    <ClCompile Include="..\FPd11RenderDevice.cpp" />
+    <ClCompile Include="..\FPd11RenderFlatTexture.cpp" />
+    <ClCompile Include="..\FPd11RenderFragmentShader.cpp" />
+    <ClCompile Include="..\FPd11RenderIndexBuffer.cpp" />
+    <ClCompile Include="..\FPd11RenderProgram.cpp" />
+    <ClCompile Include="..\FPd11RenderTarget.cpp" />
+    <ClCompile Include="..\FPd11RenderVertexBuffer.cpp" />
+    <ClCompile Include="..\FPd11RenderVertexShader.cpp" />
+    <ClCompile Include="..\MoPlatformDirectX11.cpp" />
+    <ClCompile Include="..\RDirectX11.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\MoPlatformDirectX9.h" />
-    <ClInclude Include="..\MoPd9Common.h" />
-    <ClInclude Include="..\MoPd9Core.h" />
-    <ClInclude Include="..\MoPd9Public.h" />
-    <ClInclude Include="..\MoPd9Render.h" />
+    <ClInclude Include="..\MoPlatformDirectX11.h" />
+    <ClInclude Include="..\MoPd11Common.h" />
+    <ClInclude Include="..\MoPd11Core.h" />
+    <ClInclude Include="..\MoPd11Public.h" />
+    <ClInclude Include="..\MoPd11Render.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{25832B6D-1DD1-4F6F-B5A9-BF22252BDCF0}</ProjectGuid>
+    <ProjectGuid>{96E2B8EF-0886-4ED6-A17A-0CF0BF5867A6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>MoPlatformDirectX9</RootNamespace>
+    <RootNamespace>MoPlatformDirectX11</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -63,8 +64,8 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)..\..\..\..\..\Build\Debug_x86\</OutDir>
     <TargetName>$(ProjectName)D</TargetName>
-    <IncludePath>$(ProjectDir)..\..\..\..\Reference\Include\Windows-x86;$(ProjectDir)..\..\..\..\Library\LibLzma;$(ProjectDir)..\..\..\..\Library\LibJpeg;$(ProjectDir)..\..\..\..\Library\LibFreeType;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureInput;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(ProjectDir)..\..\..\Feature\MoFeatureScript;$(ProjectDir)..\..\..\Engine\MoEngine;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\..\..\..\Reference\Library\Windows-x86\;$(ProjectDir)..\..\..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\..\..\..\Reference\Include\Windows-x86;$(ProjectDir)..\..\..\..\Reference\DxSDK\Include;$(ProjectDir)..\..\..\..\Library\LibLzma;$(ProjectDir)..\..\..\..\Library\LibJpeg;$(ProjectDir)..\..\..\..\Library\LibFreeType;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureInput;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(ProjectDir)..\..\..\Feature\MoFeatureScript;$(ProjectDir)..\..\..\Engine\MoEngine;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\..\Reference\Library\Windows-x86\;$(ProjectDir)..\..\..\..\Reference\DxSDK\Lib\x86\;$(ProjectDir)..\..\..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -77,13 +78,13 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_PD9_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <DisableSpecificWarnings>4251;4819</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_PD11_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4005;4251;4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;LibLzmaD.lib;LibJpegD.lib;LibFreeTypeD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureInputD.lib;MoFeatureGraphicD.lib;MoEngineD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dxgi.lib;dxguid.lib;d3d11.lib;d3dx11.lib;opengl32.lib;glew32.lib;LibLzmaD.lib;LibJpegD.lib;LibFreeTypeD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureInputD.lib;MoFeatureGraphicD.lib;MoEngineD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:MSVCRT %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>

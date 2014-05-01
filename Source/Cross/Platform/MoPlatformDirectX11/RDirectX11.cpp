@@ -1,4 +1,4 @@
-#include "MoPd10Core.h"
+#include "MoPd11Core.h"
 
 MO_NAMESPACE_BEGIN
 
@@ -8,15 +8,15 @@ MO_NAMESPACE_BEGIN
 // @param fillCd 填充模式
 // @return 处理结果
 //============================================================
-D3D10_FILL_MODE RDirectX10::ConvertFillMode(ERenderFillMode fillCd){
+D3D11_FILL_MODE RDirectX11::ConvertFillMode(ERenderFillMode fillCd){
    switch(fillCd){
       case ERenderFillMode_Line:
-         return D3D10_FILL_WIREFRAME;
+         return D3D11_FILL_WIREFRAME;
       case ERenderFillMode_Fill:
-         return D3D10_FILL_SOLID;
+         return D3D11_FILL_SOLID;
    }
    MO_STATIC_FATAL("Convert fill mode failure. (fill=%d)", fillCd);
-   return D3D10_FILL_SOLID;
+   return D3D11_FILL_SOLID;
 }
 
 //============================================================
@@ -25,17 +25,17 @@ D3D10_FILL_MODE RDirectX10::ConvertFillMode(ERenderFillMode fillCd){
 // @param cullCd 剔除模式
 // @return 处理结果
 //============================================================
-D3D10_CULL_MODE RDirectX10::ConvertCullMode(ERenderCullMode cullCd){
+D3D11_CULL_MODE RDirectX11::ConvertCullMode(ERenderCullMode cullCd){
    switch(cullCd){
       case ERenderCullMode_Front:
-         return D3D10_CULL_FRONT;
+         return D3D11_CULL_FRONT;
       case ERenderCullMode_Back:
-         return D3D10_CULL_BACK;
+         return D3D11_CULL_BACK;
       case ERenderCullMode_Both:
-         return D3D10_CULL_NONE;
+         return D3D11_CULL_NONE;
    }
    MO_STATIC_FATAL("Convert cull mode failure. (cull=%d)", cullCd);
-   return D3D10_CULL_NONE;
+   return D3D11_CULL_NONE;
 }
 
 //============================================================
@@ -44,7 +44,7 @@ D3D10_CULL_MODE RDirectX10::ConvertCullMode(ERenderCullMode cullCd){
 // @param strideCd 索引宽度
 // @return 处理结果
 //============================================================
-DXGI_FORMAT RDirectX10::ConvertIndexStride(ERenderIndexStride strideCd){
+DXGI_FORMAT RDirectX11::ConvertIndexStride(ERenderIndexStride strideCd){
    switch(strideCd){
       case ERenderIndexStride_Uint16:
          return DXGI_FORMAT_R16_UINT;

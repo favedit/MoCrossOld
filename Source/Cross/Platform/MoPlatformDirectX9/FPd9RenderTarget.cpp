@@ -1,13 +1,13 @@
-#include "MoEoRender.h"
+#include "MoPd9Render.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FEoRenderTarget, FRenderTarget);
+MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderTarget, FRenderTarget);
 
 //============================================================
 // <T>构造平面纹理。</T>
 //============================================================
-FEoRenderTarget::FEoRenderTarget(){
+FPd9RenderTarget::FPd9RenderTarget(){
    _frameBufferId = 0;
    _depthStencilId = 0;
    _depthBufferId = 0;
@@ -16,7 +16,7 @@ FEoRenderTarget::FEoRenderTarget(){
 //============================================================
 // <T>析构平面纹理。</T>
 //============================================================
-FEoRenderTarget::~FEoRenderTarget(){
+FPd9RenderTarget::~FPd9RenderTarget(){
 }
 
 //============================================================
@@ -24,7 +24,7 @@ FEoRenderTarget::~FEoRenderTarget(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderTarget::OnSetup(){
+TResult FPd9RenderTarget::OnSetup(){
    TResult resultCd = ESuccess;
    //............................................................
    // 获得存储缓冲
@@ -157,7 +157,7 @@ TResult FEoRenderTarget::OnSetup(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderTarget::Suspend(){
+TResult FPd9RenderTarget::Suspend(){
    TResult resultCd = ESuccess;
    if(_depthBufferId != 0){
       glDeleteRenderbuffers(1, &_depthBufferId);
@@ -179,7 +179,7 @@ TResult FEoRenderTarget::Suspend(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderTarget::Resume(){
+TResult FPd9RenderTarget::Resume(){
    OnSetup();
    MO_INFO("Resume rendertarget. (target_id=%d)", _frameBufferId);
    return ESuccess;
@@ -190,7 +190,7 @@ TResult FEoRenderTarget::Resume(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderTarget::Dispose(){
+TResult FPd9RenderTarget::Dispose(){
    return ESuccess;
 }
 

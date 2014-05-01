@@ -1,20 +1,20 @@
-#include "MoEoRender.h"
+#include "MoPd9Render.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FEoRenderCubeTexture, FRenderFlatTexture);
+MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderCubeTexture, FRenderFlatTexture);
 
 //============================================================
 // <T>构造渲染CUBE纹理。</T>
 //============================================================
-FEoRenderCubeTexture::FEoRenderCubeTexture(){
+FPd9RenderCubeTexture::FPd9RenderCubeTexture(){
    _textureId = 0;
 }
 
 //============================================================
 // <T>析构渲染CUBE纹理。</T>
 //============================================================
-FEoRenderCubeTexture::~FEoRenderCubeTexture(){
+FPd9RenderCubeTexture::~FPd9RenderCubeTexture(){
 }
 
 //============================================================
@@ -22,7 +22,7 @@ FEoRenderCubeTexture::~FEoRenderCubeTexture(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderCubeTexture::OnSetup(){
+TResult FPd9RenderCubeTexture::OnSetup(){
    glGenTextures(1, &_textureId);
    MO_FATAL_CHECK(_textureId != 0, return EFailure,
          "Generate cube texture id failure. (texture_id=%d)", _textureId);
@@ -37,7 +37,7 @@ TResult FEoRenderCubeTexture::OnSetup(){
 // @param height 高度
 // @return 处理结果
 //============================================================
-TResult FEoRenderCubeTexture::Resize(TInt size){
+TResult FPd9RenderCubeTexture::Resize(TInt size){
    _size.Set(size, size);
    return ESuccess;
 }
@@ -47,7 +47,7 @@ TResult FEoRenderCubeTexture::Resize(TInt size){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderCubeTexture::Upload(TByteC* pData, TInt length){
+TResult FPd9RenderCubeTexture::Upload(TByteC* pData, TInt length){
    // 检查参数
    MO_CHECK(pData, return ENull);
    MO_CHECK(length > 0, return ENull);
@@ -112,7 +112,7 @@ TResult FEoRenderCubeTexture::Upload(TByteC* pData, TInt length){
 // @return pInput 输入流
 // @return 处理结果
 //============================================================
-TResult FEoRenderCubeTexture::Unserialize(IDataInput* pInput){
+TResult FPd9RenderCubeTexture::Unserialize(IDataInput* pInput){
    // 检查参数
    MO_CHECK(pInput, return ENull);
    // 读取尺寸
@@ -126,7 +126,7 @@ TResult FEoRenderCubeTexture::Unserialize(IDataInput* pInput){
 //============================================================
 // <T>加载数据文件。</T>
 //============================================================
-TResult FEoRenderCubeTexture::LoadDataFile(TCharC* pFileName){
+TResult FPd9RenderCubeTexture::LoadDataFile(TCharC* pFileName){
    // 检查参数
    MO_CHECK(pFileName, return ENull);
    // 读取文件
@@ -144,7 +144,7 @@ TResult FEoRenderCubeTexture::LoadDataFile(TCharC* pFileName){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderCubeTexture::Suspend(){
+TResult FPd9RenderCubeTexture::Suspend(){
    return ESuccess;
 }
 
@@ -153,7 +153,7 @@ TResult FEoRenderCubeTexture::Suspend(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderCubeTexture::Resume(){
+TResult FPd9RenderCubeTexture::Resume(){
    OnSetup();
    //if(!_pData->IsEmpty()){
    Upload(_pData->MemoryC(), _pData->Length());
@@ -166,7 +166,7 @@ TResult FEoRenderCubeTexture::Resume(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderCubeTexture::Dispose(){
+TResult FPd9RenderCubeTexture::Dispose(){
    return ESuccess;
 }
 

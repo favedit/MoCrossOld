@@ -26,8 +26,8 @@ TResult FEffect::Setup(){
    // ´´½¨³ÌÐò
    _program = _renderDevice->CreateProgrom();
    _program->Setup();
-   _program->VertexShader()->Compile(_vertexSource);
-   _program->FragmentShader()->Compile(_fragmentSource);
+   _program->VertexShader()->Build(_vertexSource);
+   _program->FragmentShader()->Build(_fragmentSource);
    _program->Build();
    _program->Link();
    return ESuccess;

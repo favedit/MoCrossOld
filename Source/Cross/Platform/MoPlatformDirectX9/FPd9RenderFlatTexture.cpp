@@ -1,21 +1,20 @@
-#include "MoPd10Render.h"
+#include "MoPd9Render.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd10RenderFlatTexture, FRenderFlatTexture);
+MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderFlatTexture, FRenderFlatTexture);
 
 //============================================================
 // <T>构造平面纹理。</T>
 //============================================================
-FPd10RenderFlatTexture::FPd10RenderFlatTexture(){
-   MO_CLEAR(_piTexture);
+FPd9RenderFlatTexture::FPd9RenderFlatTexture(){
+   _textureId = 0;
 }
 
 //============================================================
 // <T>析构平面纹理。</T>
 //============================================================
-FPd10RenderFlatTexture::~FPd10RenderFlatTexture(){
-   MO_RELEASE(_piTexture);
+FPd9RenderFlatTexture::~FPd9RenderFlatTexture(){
 }
 
 //============================================================
@@ -23,13 +22,13 @@ FPd10RenderFlatTexture::~FPd10RenderFlatTexture(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd10RenderFlatTexture::OnSetup(){
+TResult FPd9RenderFlatTexture::OnSetup(){
    FRenderFlatTexture::OnSetup();
-   //glGenTextures(1, &_textureId);
-   //_graphicHandle.data.uint32 = _textureId;
-   //MO_FATAL_CHECK(_textureId != 0, return EFailure,
-   //      "Generate flat texture id failure. (texture_id=%d)", _textureId);
-   //glBindTexture(GL_TEXTURE_2D, _textureId);
+   glGenTextures(1, &_textureId);
+   _graphicHandle.data.uint32 = _textureId;
+   MO_FATAL_CHECK(_textureId != 0, return EFailure,
+         "Generate flat texture id failure. (texture_id=%d)", _textureId);
+   glBindTexture(GL_TEXTURE_2D, _textureId);
    return ESuccess;
 }
 
@@ -40,7 +39,7 @@ TResult FPd10RenderFlatTexture::OnSetup(){
 // @param height 高度
 // @return 处理结果
 //============================================================
-TResult FPd10RenderFlatTexture::Resize(TInt width, TInt height){
+TResult FPd9RenderFlatTexture::Resize(TInt width, TInt height){
    _size.Set(width, height);
    return ESuccess;
 }
@@ -50,41 +49,42 @@ TResult FPd10RenderFlatTexture::Resize(TInt width, TInt height){
 //
 // @return 处理结果
 //============================================================
-TResult FPd10RenderFlatTexture::Upload(TByteC* pData, TInt length){
+TResult FPd9RenderFlatTexture::Upload(TByteC* pData, TInt length){
    // 检查参数
    MO_CHECK(pData, return ENull);
    MO_CHECK(length > 0, return ENull);
-   MO_CHECK(_pDevice, return ENull);
-   FPd10RenderDevice* pRenderDevice = _pDevice->Convert<FPd10RenderDevice>();
-   // 设置参数
-   D3D10_TEXTURE2D_DESC descriptor;
-   RType<D3D10_TEXTURE2D_DESC>::Clear(&descriptor);
-   descriptor.Width = _size.width;
-   descriptor.Height = _size.height;
-   descriptor.MipLevels = 1;
-   descriptor.ArraySize = 1;
-   descriptor.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-   descriptor.SampleDesc.Count = 1;
-   descriptor.Usage = D3D10_USAGE_DYNAMIC;
-   descriptor.BindFlags = D3D10_BIND_SHADER_RESOURCE;
-   descriptor.CPUAccessFlags = D3D10_CPU_ACCESS_WRITE;
-   descriptor.MiscFlags = 0;
-   // 设置内存
-   D3D10_SUBRESOURCE_DATA data;
-   RType<D3D10_SUBRESOURCE_DATA>::Clear(&data);
-   data.pSysMem = pData;
-   // 创建纹理
-   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateTexture2D(&descriptor, &data, &_piTexture);
-   if(FAILED(dxResult)){
-      MO_FATAL("Create buffer failure.");
-      return EFailure;
+   // 检查编号
+   MO_FATAL_CHECK(_textureId != 0, return EFailure,
+         "Texture id is invalid. (texture_id=%d)", _textureId);
+   // 绑定纹理
+   glBindTexture(GL_TEXTURE_2D, _textureId);
+   // 设置过滤
+   switch(_filterCd){
+      case ERenderTextureFilter_Nearest:
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+         break;
+      case ERenderTextureFilter_Linear:
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+         break;
    }
+   // 设置展开
+   switch(_wrapCd){
+      case MO::ERenderTextureWrap_Clamp:
+         //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+         break;
+      case MO::ERenderTextureWrap_Repeat:
+         //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+         break;
+   }
+   //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+   //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
    // 上传数据
-   //D3D10_MAPPED_TEXTURE2D mappedData;
-   //_piTexture->Map(D3D10CalcSubresource(0, 0, 1), D3D10_MAP_WRITE_DISCARD, 0, &mappedData);
-   //TByte* pMappedData = (TByte*)mappedData.pData;
-   //MO_LIB_MEMORY_COPY(pMappedData, length, pData, length);
-   //_piTexture->Unmap(D3D10CalcSubresource(0, 0, 1));
+   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _size.width, _size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, (const GLvoid*)pData);
+   if(_pData->MemoryC() != pData){
+      _pData->Assign(pData, length);
+   }
    return ESuccess;
 }
 
@@ -94,7 +94,7 @@ TResult FPd10RenderFlatTexture::Upload(TByteC* pData, TInt length){
 // @return pInput 输入流
 // @return 处理结果
 //============================================================
-TResult FPd10RenderFlatTexture::Unserialize(IDataInput* pInput){
+TResult FPd9RenderFlatTexture::Unserialize(IDataInput* pInput){
    // 检查参数
    MO_CHECK(pInput, return ENull);
    // 读取尺寸
@@ -108,7 +108,7 @@ TResult FPd10RenderFlatTexture::Unserialize(IDataInput* pInput){
 //============================================================
 // <T>加载数据文件。</T>
 //============================================================
-TResult FPd10RenderFlatTexture::LoadDataFile(TCharC* pFileName){
+TResult FPd9RenderFlatTexture::LoadDataFile(TCharC* pFileName){
    // 检查参数
    MO_CHECK(pFileName, return ENull);
    // 读取文件
@@ -126,7 +126,7 @@ TResult FPd10RenderFlatTexture::LoadDataFile(TCharC* pFileName){
 //
 // @return 处理结果
 //============================================================
-TResult FPd10RenderFlatTexture::Suspend(){
+TResult FPd9RenderFlatTexture::Suspend(){
    return ESuccess;
 }
 
@@ -135,12 +135,12 @@ TResult FPd10RenderFlatTexture::Suspend(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd10RenderFlatTexture::Resume(){
+TResult FPd9RenderFlatTexture::Resume(){
    OnSetup();
    if(!_pData->IsEmpty()){
       Upload(_pData->MemoryC(), _pData->Length());
    }
-   //MO_INFO("Resume texture. (texture_id=%d, size=%dx%d, data_length=%d)", _textureId, _size.width, _size.height, _pData->Length());
+   MO_INFO("Resume texture. (texture_id=%d, size=%dx%d, data_length=%d)", _textureId, _size.width, _size.height, _pData->Length());
    return ESuccess;
 }
 
@@ -149,7 +149,7 @@ TResult FPd10RenderFlatTexture::Resume(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd10RenderFlatTexture::Dispose(){
+TResult FPd9RenderFlatTexture::Dispose(){
    return ESuccess;
 }
 

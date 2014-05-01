@@ -1,20 +1,20 @@
-#include "MoEoRender.h"
+#include "MoPd9Render.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FEoRenderVertexBuffer, FRenderVertexBuffer);
+MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderVertexBuffer, FRenderVertexBuffer);
 
 //============================================================
 // <T>构造渲染顶点缓冲。</T>
 //============================================================
-FEoRenderVertexBuffer::FEoRenderVertexBuffer(){
+FPd9RenderVertexBuffer::FPd9RenderVertexBuffer(){
    _bufferId = 0;
 }
 
 //============================================================
 // <T>析构渲染顶点缓冲。</T>
 //============================================================
-FEoRenderVertexBuffer::~FEoRenderVertexBuffer(){
+FPd9RenderVertexBuffer::~FPd9RenderVertexBuffer(){
 }
 
 //============================================================
@@ -22,7 +22,7 @@ FEoRenderVertexBuffer::~FEoRenderVertexBuffer(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderVertexBuffer::OnSetup(){
+TResult FPd9RenderVertexBuffer::OnSetup(){
    glGenBuffers(1, &_bufferId);
    MO_FATAL_CHECK(_bufferId != 0, return EFailure,
          "Generate vertex buffer id failure. (buffer_id=%d)", _bufferId);
@@ -37,7 +37,7 @@ TResult FEoRenderVertexBuffer::OnSetup(){
 // @param length 数据长度
 // @return 处理结果
 //============================================================
-TResult FEoRenderVertexBuffer::Upload(TByteC* pData, TInt length){
+TResult FPd9RenderVertexBuffer::Upload(TByteC* pData, TInt length){
    // 检查参数
    MO_CHECK(pData, return ENull);
    MO_CHECK(length > 0, return EFailure);
@@ -57,7 +57,7 @@ TResult FEoRenderVertexBuffer::Upload(TByteC* pData, TInt length){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderVertexBuffer::Suspend(){
+TResult FPd9RenderVertexBuffer::Suspend(){
    return ESuccess;
 }
 
@@ -66,7 +66,7 @@ TResult FEoRenderVertexBuffer::Suspend(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderVertexBuffer::Resume(){
+TResult FPd9RenderVertexBuffer::Resume(){
    // 生成编号
    glGenBuffers(1, &_bufferId);
    MO_FATAL_CHECK(_bufferId != 0, return EFailure,
@@ -87,7 +87,7 @@ TResult FEoRenderVertexBuffer::Resume(){
 //
 // @return 处理结果
 //============================================================
-TResult FEoRenderVertexBuffer::Dispose(){
+TResult FPd9RenderVertexBuffer::Dispose(){
    if(_bufferId != 0){
       TInt size = _stride * _count;
       glDeleteBuffers(size, &_bufferId);
