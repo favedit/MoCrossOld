@@ -124,6 +124,14 @@ TResult OnEnterFrame(SFrameEvent* pEvent){
 TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine, TInt nCmdShow){
    // 初始化处理
    MoGameEngineInitialize();
+
+   TString value;
+   value.Append("float4 UniformGlobal;\n");
+   value.Append("float4 main( uniform float4 UniformParam ) : POSITION\n");
+   value.Append("{return UniformGlobal * UniformParam;}\n");
+   FPoRenderShaderTransformer* pTransformer = FPoRenderShaderTransformer::InstanceCreate();
+   pTransformer->Convert(NULL, &value);
+
    //MoEngineOpenGLES2Initialize();
    MoEngineDirectX10Initialize();
    //............................................................

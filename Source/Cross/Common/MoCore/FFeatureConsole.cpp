@@ -9,30 +9,56 @@ MO_CLASS_IMPLEMENT_INHERITS(FFeatureConsole, FConsole);
 //============================================================
 FFeatureConsole::FFeatureConsole(){
    _name = "Feature.Console";
+   _pClasses = MO_CREATE(FClassCollection);
 }
 
 //============================================================
 // <T>析构功能控制台。</T>
 //============================================================
 FFeatureConsole::~FFeatureConsole(){
+   MO_DELETE(_pClasses);
 }
 
 //============================================================
 // <T>注册一个功能。</T>
 //
-// @param pFeature 功能
+// @param pClass 功能类
+// @return 处理结果
 //============================================================
-void FFeatureConsole::Register(FFeature* pFeature){
-   _features.Push(pFeature);
+TResult FFeatureConsole::Register(FClass* pClass){
+   MO_CHECK(pClass, return ENull);
+   _pClasses->Push(pClass);
+   return ESuccess;
 }
 
 //============================================================
 // <T>注销一个功能。</T>
 //
-// @param pFeature 功能
+// @param pClass 功能类
+// @return 处理结果
 //============================================================
-void FFeatureConsole::Unregister(FFeature* pFeature){
-   _features.Remove(pFeature);
+TResult FFeatureConsole::Unregister(FClass* pClass){
+   MO_CHECK(pClass, return ENull);
+   _pClasses->Remove(pClass);
+   return ESuccess;
+}
+
+//============================================================
+// <T>构造类对象。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FFeatureConsole::Construct(){
+   TResult resultCd = FConsole::Construct();
+   // 构造功能集合
+   TInt count = _pClasses->Count();
+   for(TInt n = 0; n < count; n++){
+      FClass* pClass = _pClasses->Get(n);
+      FFeature* pFeature =  pClass->InstanceInheritCreate<FFeature>();
+      pFeature->Construct();
+      _features.Push(pFeature);
+   }
+   return resultCd;
 }
 
 //============================================================
@@ -89,6 +115,22 @@ TResult FFeatureConsole::Shutdown(){
       pFeature->Shutdown();
    }
    return ESuccess;
+}
+
+//============================================================
+// <T>释放类对象。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FFeatureConsole::Dispose(){
+   TResult resultCd = FConsole::Dispose();
+   // 析构功能集合
+   TInt count = _features.Count();
+   for(TInt n = 0; n < count; n++){
+      FFeature* pFeature = _features.Get(n);
+      pFeature->Dispose();
+   }
+   return resultCd;
 }
 
 MO_NAMESPACE_END

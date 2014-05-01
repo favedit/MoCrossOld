@@ -710,6 +710,7 @@ class MO_FG_DECLARE FRenderShader :
    MO_CLASS_ABSTRACT_DECLARE_INHERITS(FRenderShader, FRenderInstance);
 protected:
    FRenderSource* _pSource;
+   FRenderSource* _pCompileSource;
 public:
    FRenderShader();
    MO_ABSTRACT ~FRenderShader();
@@ -722,6 +723,8 @@ public:
 public:
    MO_VIRTUAL TResult Setup() = 0;
    MO_VIRTUAL TResult Compile(TCharC* pSource) = 0;
+public:
+   TResult Build(TCharC* pSource);
 };
 
 //============================================================
@@ -745,6 +748,38 @@ public:
    FRenderFragmentShader();
    MO_ABSTRACT ~FRenderFragmentShader();
 };
+
+//============================================================
+// <T>渲染脚本变换器。</T>
+//============================================================
+class MO_FG_DECLARE FRenderShaderTransformer : public FInstance
+{
+   MO_CLASS_DECLARE_INHERITS(FRenderShaderTransformer, FInstance);
+protected:
+public:
+   FRenderShaderTransformer();
+   MO_ABSTRACT ~FRenderShaderTransformer();
+public:
+   MO_ABSTRACT TResult Convert(MString* pOutputScript, MString* pInputScript);
+};
+//------------------------------------------------------------
+typedef MO_FG_DECLARE GPtr<FRenderShaderTransformer> GRenderShaderTransformerPtr;
+
+//============================================================
+// <T>渲染脚本优化器。</T>
+//============================================================
+class MO_FG_DECLARE FRenderShaderOptimizer : public FInstance
+{
+   MO_CLASS_DECLARE_INHERITS(FRenderShaderOptimizer, FInstance);
+protected:
+public:
+   FRenderShaderOptimizer();
+   MO_ABSTRACT ~FRenderShaderOptimizer();
+public:
+   MO_ABSTRACT TResult Convert(MString* pOutputScript, MString* pInputScript);
+};
+//------------------------------------------------------------
+typedef MO_FG_DECLARE GPtr<FRenderShaderOptimizer> GRenderShaderOptimizerPtr;
 
 //============================================================
 // <T>渲染程序。</T>
@@ -1244,10 +1279,13 @@ protected:
    GRenderIndexBufferPtrLooper _storageIndexBuffers;
    GRenderTexturePtrLooper _storageTextures;
    GRenderTargetPtrLooper _storageTargets;
+   // 脚本处理器
+   GRenderShaderTransformerPtr _shaderTransformer;
+   GRenderShaderOptimizerPtr _shaderOptimizer;
    // 统计信息
    GPtr<FRenderStatistics> _statistics;
    // 绘制效率统计
-   GPtr<FStatistics> _renderDrawStatistics;
+   GStatisticsPtr _renderDrawStatistics;
 public:
    FRenderDevice();
    MO_ABSTRACT ~FRenderDevice();
@@ -1266,6 +1304,16 @@ public:
    // <T>获得渲染程序。</T>
    MO_INLINE FRenderProgram* Program(){
       return _pProgram;
+   }
+   //------------------------------------------------------------
+   // <T>获得脚本变换器。</T>
+   MO_INLINE FRenderShaderTransformer* ShaderTransformer(){
+      return _shaderTransformer;
+   }
+   //------------------------------------------------------------
+   // <T>获得脚本优化器。</T>
+   MO_INLINE FRenderShaderOptimizer* ShaderOptimizer(){
+      return _shaderOptimizer;
    }
 public:
    MO_ABSTRACT TResult Setup();

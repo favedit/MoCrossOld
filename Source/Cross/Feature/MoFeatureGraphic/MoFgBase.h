@@ -28,6 +28,30 @@ class FRenderDevice;
 typedef TInt32 TColor;
 
 //============================================================
+// <T>渲染设备类型。</T>
+//============================================================
+enum ERenderDevice{
+   ERenderDevice_Unknown,
+   ERenderDevice_DirectX9,
+   ERenderDevice_DirectX10,
+   ERenderDevice_DirectX11,
+   ERenderDevice_Opgl2,
+   ERenderDevice_Opgl3,
+   ERenderDevice_Opgl4,
+   ERenderDevice_OpglEs2,
+   ERenderDevice_OpglEs3,
+};
+
+//============================================================
+// <T>渲染脚本类型。</T>
+//============================================================
+enum ERenderScript{
+   ERenderScript_Unknown,
+   ERenderScript_Hlsl,
+   ERenderScript_Glsl,
+};
+
+//============================================================
 // <T>渲染面模式。</T>
 //============================================================
 enum ERenderFillMode{

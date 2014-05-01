@@ -1,4 +1,4 @@
-#include "MoEoTechnique.h"
+#include "MoPoe2Technique.h"
 
 MO_NAMESPACE_BEGIN
 
@@ -47,7 +47,7 @@ static TCharC* SourceFragmentShader =
 //============================================================
 // <T>构造显示渲染技术。</T>
 //============================================================
-FEo3dSkeleton4Effect::FEo3dSkeleton4Effect(){
+FPoe23dSkeleton4Effect::FPoe23dSkeleton4Effect(){
    _pBoneStream = MO_CREATE(FByteStream);
    // 清空内容
    for(TInt n = 0; n < EEffectVertexAttribute_Count; n++){
@@ -61,41 +61,41 @@ FEo3dSkeleton4Effect::FEo3dSkeleton4Effect(){
 //============================================================
 // <T>析构显示渲染技术。</T>
 //============================================================
-FEo3dSkeleton4Effect::~FEo3dSkeleton4Effect(){
+FPoe23dSkeleton4Effect::~FPoe23dSkeleton4Effect(){
    MO_DELETE(_pBoneStream);
 }
 
 //============================================================
 // <T>配置处理。</T>
 //============================================================
-TResult FEo3dSkeleton4Effect::Setup(){
-   FScreenDevice* pScreenDevice = RDeviceManager::Instance().Find<FScreenDevice>();
-   FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
-   //............................................................
-   // 设置MVP矩阵
-   SIntSize2& screenSize = pScreenDevice->Size();
-   Resize(screenSize.width, screenSize.height);
-   //............................................................
-   // 创建程序
-   FEoRenderProgram* pProgram = (FEoRenderProgram*)pRenderDevice->CreateProgrom();
-   pProgram->Setup();
-   pProgram->VertexShader()->Compile(SourceVertexShader);
-   pProgram->FragmentShader()->Compile(SourceFragmentShader);
-   pProgram->Build();
-   // 绑定常量位置
- //  GLuint progromId = pProgram->ProgramId();
-	//_effectConsts[EEffectVertexConst_MvpMat4] = glGetUniformLocation(progromId, "vc_mvp_matrix");
- //  _effectConsts[EEffectVertexConst_BoneMatrixs] = glGetUniformLocation(progromId, "vc_bone_matrixs");
- //  // 绑定属性位置
- //  _effectAttributes[EEffectVertexAttribute_Position] = glGetAttribLocation(progromId, "va_position");
- //  _effectAttributes[EEffectVertexAttribute_Color] = glGetAttribLocation(progromId, "va_color");
- //  _effectAttributes[EEffectVertexAttribute_Coord] = glGetAttribLocation(progromId, "va_coord");
- //  _effectAttributes[EEffectVertexAttribute_BoneIndex] = glGetAttribLocation(progromId, "va_bone_index");
- //  _effectAttributes[EEffectVertexAttribute_BoneWeight] = glGetAttribLocation(progromId, "va_bone_weight");
- //  // 绑定属性位置
- //  _effectSamplers[EEffectSampler_Color] = glGetUniformLocation(progromId, "fs_color");
-   // 程序关联处理
-   _program = pProgram;
+TResult FPoe23dSkeleton4Effect::Setup(){
+ //  FScreenDevice* pScreenDevice = RDeviceManager::Instance().Find<FScreenDevice>();
+ //  FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
+ //  //............................................................
+ //  // 设置MVP矩阵
+ //  SIntSize2& screenSize = pScreenDevice->Size();
+ //  Resize(screenSize.width, screenSize.height);
+ //  //............................................................
+ //  // 创建程序
+ //  FPoe2RenderProgram* pProgram = (FPoe2RenderProgram*)pRenderDevice->CreateProgrom();
+ //  pProgram->Setup();
+ //  pProgram->VertexShader()->Compile(SourceVertexShader);
+ //  pProgram->FragmentShader()->Compile(SourceFragmentShader);
+ //  pProgram->Build();
+ //  // 绑定常量位置
+ ////  GLuint progromId = pProgram->ProgramId();
+	////_effectConsts[EEffectVertexConst_MvpMat4] = glGetUniformLocation(progromId, "vc_mvp_matrix");
+ ////  _effectConsts[EEffectVertexConst_BoneMatrixs] = glGetUniformLocation(progromId, "vc_bone_matrixs");
+ ////  // 绑定属性位置
+ ////  _effectAttributes[EEffectVertexAttribute_Position] = glGetAttribLocation(progromId, "va_position");
+ ////  _effectAttributes[EEffectVertexAttribute_Color] = glGetAttribLocation(progromId, "va_color");
+ ////  _effectAttributes[EEffectVertexAttribute_Coord] = glGetAttribLocation(progromId, "va_coord");
+ ////  _effectAttributes[EEffectVertexAttribute_BoneIndex] = glGetAttribLocation(progromId, "va_bone_index");
+ ////  _effectAttributes[EEffectVertexAttribute_BoneWeight] = glGetAttribLocation(progromId, "va_bone_weight");
+ ////  // 绑定属性位置
+ ////  _effectSamplers[EEffectSampler_Color] = glGetUniformLocation(progromId, "fs_color");
+ //  // 程序关联处理
+ //  _program = pProgram;
    return ESuccess;
 }
 
@@ -104,7 +104,7 @@ TResult FEo3dSkeleton4Effect::Setup(){
 //
 // @return 处理结果
 //============================================================
-TResult FEo3dSkeleton4Effect::Resize(TInt width, TInt height){
+TResult FPoe23dSkeleton4Effect::Resize(TInt width, TInt height){
    // 计算MVP矩阵
    _mvpMatrix.tx = -1.0f;
    _mvpMatrix.ty = 1.0f;
@@ -121,7 +121,7 @@ TResult FEo3dSkeleton4Effect::Resize(TInt width, TInt height){
 // @param pRenderable 渲染对象
 // @return 处理结果
 //============================================================
-TResult FEo3dSkeleton4Effect::Draw(FRenderRegion* pRegion, FRenderable* pRenderable){
+TResult FPoe23dSkeleton4Effect::Draw(FRenderRegion* pRegion, FRenderable* pRenderable){
    // 获得设备
    //FRenderDevice* pRenderDevice = RDeviceManager::Instance().RenderDevice();
    //FTemplate3dRenderable* pTemplateRenderable = (FTemplate3dRenderable*)pRenderable;
@@ -197,7 +197,7 @@ TResult FEo3dSkeleton4Effect::Draw(FRenderRegion* pRegion, FRenderable* pRendera
 // @param count 总数
 // @return 处理结果
 //============================================================
-TResult FEo3dSkeleton4Effect::DrawGroup(FRenderRegion* pRegion, TInt offset, TInt count){
+TResult FPoe23dSkeleton4Effect::DrawGroup(FRenderRegion* pRegion, TInt offset, TInt count){
    //MO_CHECK(pRegion, return ENull);
    //// 计算变换矩阵
    //FCamera3d* pCamera = (FCamera3d*)pRegion->Camera();

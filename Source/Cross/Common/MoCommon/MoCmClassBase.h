@@ -141,6 +141,7 @@ public:
    MO_OVERRIDE TCharC* Dump(TChar* pDump, TInt capacity);
 };
 //------------------------------------------------------------
+typedef MO_CM_DECLARE FVector<FClass*> FClassCollection;
 typedef MO_CM_DECLARE TLooper<FClass*> TClassLooper;
 typedef MO_CM_DECLARE FDictionary<FClass*> FClassDictionary;
 typedef MO_CM_DECLARE TDictionary<FClass*> TClassDictionary;

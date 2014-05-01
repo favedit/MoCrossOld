@@ -11,32 +11,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\FEo3dSkeleton4Effect.cpp" />
-    <ClCompile Include="..\FEo3dSkeleton4Program.cpp" />
-    <ClCompile Include="..\FEo3dTextureEffect.cpp" />
-    <ClCompile Include="..\FEo2dColorEffect.cpp" />
-    <ClCompile Include="..\FEo2dTextureEffect.cpp" />
-    <ClCompile Include="..\FEoFont.cpp" />
-    <ClCompile Include="..\FEoFontConsole.cpp" />
-    <ClCompile Include="..\FEoRenderCubeTexture.cpp" />
-    <ClCompile Include="..\FEoRenderDevice.cpp" />
-    <ClCompile Include="..\FEoRenderFlatTexture.cpp" />
-    <ClCompile Include="..\FEoRenderFragmentShader.cpp" />
-    <ClCompile Include="..\FEoRenderIndexBuffer.cpp" />
-    <ClCompile Include="..\FEoRenderProgram.cpp" />
-    <ClCompile Include="..\FEoRenderTarget.cpp" />
-    <ClCompile Include="..\FEoRenderVertexBuffer.cpp" />
-    <ClCompile Include="..\FEoRenderVertexShader.cpp" />
-    <ClCompile Include="..\MoEngineOpenGL.cpp" />
+    <ClCompile Include="..\FPoe3RenderDevice.cpp" />
+    <ClCompile Include="..\MoPlatformOpenGLES3.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\MoEngineOpenGL.h" />
-    <ClInclude Include="..\MoEoCommon.h" />
-    <ClInclude Include="..\MoEoCore.h" />
-    <ClInclude Include="..\MoEoPublic.h" />
-    <ClInclude Include="..\MoEoRender.h" />
-    <ClInclude Include="..\MoEoTechnique.h" />
-    <ClInclude Include="..\MoEoFont.h" />
+    <ClInclude Include="..\MoPlatformOpenGLES3.h" />
+    <ClInclude Include="..\MoPoe3Common.h" />
+    <ClInclude Include="..\MoPoe3Core.h" />
+    <ClInclude Include="..\MoPoe3Public.h" />
+    <ClInclude Include="..\MoPoe3Render.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8F37B1AF-6879-406F-9365-1601BF0FC6A7}</ProjectGuid>
@@ -72,8 +55,8 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)..\..\..\..\Build\Debug_x86\</OutDir>
     <TargetName>$(ProjectName)D</TargetName>
-    <IncludePath>$(ProjectDir)..\..\..\Include\Windows-x86\Include;$(ProjectDir)..\..\..\Library\MoLzma;$(ProjectDir)..\..\..\Library\MoJpeg;$(ProjectDir)..\..\..\Library\MoFreeType;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureInput;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(ProjectDir)..\..\..\Engine\MoEngine;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\..\..\Include\Windows-x86\Library;$(ProjectDir)..\..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\..\..\..\Reference\Include\Windows-x86;$(ProjectDir)..\..\..\..\Library\LibLzma;$(ProjectDir)..\..\..\..\Library\LibJpeg;$(ProjectDir)..\..\..\..\Library\LibFreeType;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureInput;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(ProjectDir)..\..\..\Feature\MoFeatureScript;$(ProjectDir)..\..\..\Engine\MoEngine;$(ProjectDir)..\..\..\Platform\MoPlatformOpenGL;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\..\Reference\Library\Windows-x86\;$(ProjectDir)..\..\..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -86,13 +69,13 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_EO_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_POE3_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4251;4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;MoLzmaD.lib;MoJpegD.lib;MoFreeTypeD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureInputD.lib;MoFeatureGraphicD.lib;MoEngineD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;LibLzmaD.lib;LibJpegD.lib;LibFreeTypeD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureGraphicD.lib;MoPlatformOpenGLD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:MSVCRT %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>

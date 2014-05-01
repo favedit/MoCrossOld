@@ -1,11 +1,11 @@
-#include "MoEoTechnique.h"
+#include "MoPoe2Technique.h"
 
 MO_NAMESPACE_BEGIN
 
 //============================================================
 // <T>构造显示渲染技术。</T>
 //============================================================
-FEo3dSkeleton4Program::FEo3dSkeleton4Program(){
+FPoe23dSkeleton4Program::FPoe23dSkeleton4Program(){
    // 清空数据
    _boneCount = 0;
    _weightCount = 0;
@@ -25,7 +25,7 @@ FEo3dSkeleton4Program::FEo3dSkeleton4Program(){
 //============================================================
 // <T>析构显示渲染技术。</T>
 //============================================================
-FEo3dSkeleton4Program::~FEo3dSkeleton4Program(){
+FPoe23dSkeleton4Program::~FPoe23dSkeleton4Program(){
 }
 
 //============================================================
@@ -34,7 +34,7 @@ FEo3dSkeleton4Program::~FEo3dSkeleton4Program(){
 // @param pSource 渲染来源
 // @return 处理结果
 //============================================================
-TResult FEo3dSkeleton4Program::MakeVertexSource(FRenderSource* pSource){
+TResult FPoe23dSkeleton4Program::MakeVertexSource(FRenderSource* pSource){
    pSource->Clear();
    // 常量定义
    pSource->AppendSource("uniform mat4 vc_mvp_matrix;");
@@ -68,7 +68,7 @@ TResult FEo3dSkeleton4Program::MakeVertexSource(FRenderSource* pSource){
 // @param pSource 渲染来源
 // @return 处理结果
 //============================================================
-TResult FEo3dSkeleton4Program::MakeFragmentSource(FRenderSource* pSource){
+TResult FPoe23dSkeleton4Program::MakeFragmentSource(FRenderSource* pSource){
    pSource->Clear();
    // 平台定义
 #ifdef _MO_ANDROID
@@ -92,26 +92,26 @@ TResult FEo3dSkeleton4Program::MakeFragmentSource(FRenderSource* pSource){
 //============================================================
 // <T>配置处理。</T>
 //============================================================
-TResult FEo3dSkeleton4Program::Build(){
-   FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
-   //............................................................
-   // 创建程序
-   MakeVertexSource(_pVertexShader->Source());
-   _pVertexShader->Compile(_pVertexShader->Source()->MemoryC());
-   MakeFragmentSource(_pFragmentShader->Source());
-   _pFragmentShader->Compile(_pFragmentShader->Source()->MemoryC());
-   FEoRenderProgram::Build();
-   // 绑定常量位置
-	_vertexConstMvpMatrix = glGetUniformLocation(_programId, "vc_mvp_matrix");
-   _vertexConstBoneMatrixs = glGetUniformLocation(_programId, "vc_bone_matrixs");
-   // 绑定属性位置
-   _attributePosition = glGetAttribLocation(_programId, "va_position");
-   _attributeColor = glGetAttribLocation(_programId, "va_color");
-   _attributeCoord = glGetAttribLocation(_programId, "va_coord");
-   _attributeBoneIndex = glGetAttribLocation(_programId, "va_bone_index");
-   _attributeBoneWeight = glGetAttribLocation(_programId, "va_bone_weight");
-   // 清空纹理位置
-   _samplerColor = glGetUniformLocation(_programId, "fs_color");
+TResult FPoe23dSkeleton4Program::Build(){
+ //  FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
+ //  //............................................................
+ //  // 创建程序
+ //  MakeVertexSource(_pVertexShader->Source());
+ //  _pVertexShader->Compile(_pVertexShader->Source()->MemoryC());
+ //  MakeFragmentSource(_pFragmentShader->Source());
+ //  _pFragmentShader->Compile(_pFragmentShader->Source()->MemoryC());
+ //  FPoe2RenderProgram::Build();
+ //  // 绑定常量位置
+	//_vertexConstMvpMatrix = glGetUniformLocation(_programId, "vc_mvp_matrix");
+ //  _vertexConstBoneMatrixs = glGetUniformLocation(_programId, "vc_bone_matrixs");
+ //  // 绑定属性位置
+ //  _attributePosition = glGetAttribLocation(_programId, "va_position");
+ //  _attributeColor = glGetAttribLocation(_programId, "va_color");
+ //  _attributeCoord = glGetAttribLocation(_programId, "va_coord");
+ //  _attributeBoneIndex = glGetAttribLocation(_programId, "va_bone_index");
+ //  _attributeBoneWeight = glGetAttribLocation(_programId, "va_bone_weight");
+ //  // 清空纹理位置
+ //  _samplerColor = glGetUniformLocation(_programId, "fs_color");
    return ESuccess;
 }
 

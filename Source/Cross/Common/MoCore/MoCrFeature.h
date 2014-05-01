@@ -36,18 +36,21 @@ class MO_CR_DECLARE FFeatureConsole : public FConsole
 {
    MO_CLASS_DECLARE_INHERITS(FFeatureConsole, FConsole);
 protected:
+   FClassCollection* _pClasses;
    GFeaturePtrs _features;
 public:
    FFeatureConsole();
    MO_ABSTRACT ~FFeatureConsole();
 public:
-   void Register(FFeature* pFeature);
-   void Unregister(FFeature* pFeature);
+   TResult Register(FClass* pClass);
+   TResult Unregister(FClass* pClass);
 public:
+   MO_OVERRIDE TResult Construct();
    MO_ABSTRACT TResult Startup();
    MO_ABSTRACT TResult Suspend();
    MO_ABSTRACT TResult Resume();
    MO_ABSTRACT TResult Shutdown();
+   MO_OVERRIDE TResult Dispose();
 };
 
 //============================================================

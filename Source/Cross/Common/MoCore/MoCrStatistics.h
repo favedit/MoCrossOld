@@ -293,6 +293,7 @@ public:
    MO_ABSTRACT TResult Track();
 };
 //------------------------------------------------------------
+typedef MO_CR_DECLARE GPtr<FStatistics> GStatisticsPtr;
 typedef MO_CR_DECLARE FDictionary<FStatistics*> FStatisticsDictionary;
 
 //============================================================

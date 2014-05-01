@@ -1,4 +1,4 @@
-#include "MoEoTechnique.h"
+#include "MoPoe2Technique.h"
 
 MO_NAMESPACE_BEGIN
 
@@ -48,19 +48,19 @@ static TCharC* SourceFragmentShader =
 //============================================================
 // <T>构造显示渲染技术。</T>
 //============================================================
-FEo3dTextureEffect::FEo3dTextureEffect(){
+FPoe23dTextureEffect::FPoe23dTextureEffect(){
 }
 
 //============================================================
 // <T>析构显示渲染技术。</T>
 //============================================================
-FEo3dTextureEffect::~FEo3dTextureEffect(){
+FPoe23dTextureEffect::~FPoe23dTextureEffect(){
 }
 
 //============================================================
 // <T>配置处理。</T>
 //============================================================
-TResult FEo3dTextureEffect::Setup(){
+TResult FPoe23dTextureEffect::Setup(){
  //  FScreenDevice* pScreenDevice = RDeviceManager::Instance().ScreenDevice();
  //  FRenderDevice* pRenderDevice = RDeviceManager::Instance().RenderDevice();
  //  //............................................................
@@ -69,7 +69,7 @@ TResult FEo3dTextureEffect::Setup(){
  //  Resize(screenSize.width, screenSize.height);
  //  //............................................................
  //  // 创建程序
- //  FEoRenderProgram* pProgram = (FEoRenderProgram*)pRenderDevice->CreateProgrom();
+ //  FPoe2RenderProgram* pProgram = (FPoe2RenderProgram*)pRenderDevice->CreateProgrom();
  //  pProgram->Setup();
  //  pProgram->VertexShader()->Compile(SourceVertexShader);
  //  pProgram->FragmentShader()->Compile(SourceFragmentShader);
@@ -99,7 +99,7 @@ TResult FEo3dTextureEffect::Setup(){
 //
 // @return 处理结果
 //============================================================
-TResult FEo3dTextureEffect::Resize(TInt width, TInt height){
+TResult FPoe23dTextureEffect::Resize(TInt width, TInt height){
    //// 计算MVP矩阵
    //_mvpMatrix.tx = -1.0f;
    //_mvpMatrix.ty = 1.0f;
@@ -113,10 +113,10 @@ TResult FEo3dTextureEffect::Resize(TInt width, TInt height){
 //============================================================
 // <T>绘制处理。</T>
 //============================================================
-TResult FEo3dTextureEffect::Draw(FRenderable* pRenderable){
+TResult FPoe23dTextureEffect::Draw(FRenderable* pRenderable){
    // 获得设备
    FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
-   // FEoRenderProgram* pProgram = (FEoRenderProgram*)pRenderDevice->CreateProgrom();
+   // FPoe2RenderProgram* pProgram = (FPoe2RenderProgram*)pRenderDevice->CreateProgrom();
    //............................................................
    // 获得数据
    //FRenderable3d* pTemplateRenderable = (FRenderable3d*)pRenderable;
@@ -175,7 +175,7 @@ TResult FEo3dTextureEffect::Draw(FRenderable* pRenderable){
 //============================================================
 // <T>绘制处理。</T>
 //============================================================
-TResult FEo3dTextureEffect::DrawGroup(FRenderRegion* pRegion, TInt offset, TInt count){
+TResult FPoe23dTextureEffect::DrawGroup(FRenderRegion* pRegion, TInt offset, TInt count){
    //MO_CHECK(pRegion, return ENull);
    //// 计算变换矩阵
    //FCamera3d* pCamera = (FCamera3d*)pRegion->Camera();
