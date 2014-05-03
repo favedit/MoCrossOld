@@ -5,7 +5,7 @@
 #include <MoEngine.h>
 #include <MoEngineFace.h>
 #include <MoEngineRender.h>
-//#include <MoPlatformOpenGLES2.h>
+#include <MoPlatformOpenGLES2.h>
 //#include <MoPlatformDirectX10.h>
 #include <MoPlatformDirectX11.h>
 #include <MoPlatformWindows.h>
@@ -133,9 +133,10 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    //FPoRenderShaderTransformer* pTransformer = FPoRenderShaderTransformer::InstanceCreate();
    //pTransformer->Convert(NULL, &value);
 
-   //MoEngineOpenGLES2Initialize();
+   //MoEngineOpenGLES2();
+   MoEngineDirectX11();
+   RFeatureManager::Instance().Construct();
    //MoEngineDirectX10Initialize();
-   MoEngineDirectX11Initialize();
    //............................................................
    // 设置信息
    RApplication::Instance().Parameters()->Setup(lpszCmdLine);
@@ -174,9 +175,7 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    pRenderDevice->Setup();
    // 初始化舞台
    MoGameEngineStartup();
-   //MoEngineOpenGLES2Startup();
-   //MoEngineDirectX10Startup();
-   MoEngineDirectX11Startup();
+   RFeatureManager::Instance().Startup();
    // 选择渲染方式
    //RPipelineManager::Instance().SelectPipeline("simple");
    RPipelineManager::Instance().SelectPipeline("shadow");
@@ -219,9 +218,7 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    pWindow->Process();
    //............................................................
    MoGameEngineShutdown();
-   //MoEngineOpenGLES2Release();
-   //MoEngineDirectX10Release();
-   MoEngineDirectX11Release();
+   //RFeatureManager::Instance().Release();
    //............................................................
    // 释放处理
    MoGameEngineRelease();

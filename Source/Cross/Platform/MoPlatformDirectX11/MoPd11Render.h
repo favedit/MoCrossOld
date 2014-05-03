@@ -67,6 +67,30 @@ public:
 };
 
 //============================================================
+// <T>渲染器参数。</T>
+//============================================================
+class MO_FG_DECLARE FPd11RenderShaderParameter : public FRenderShaderParameter
+{
+   MO_CLASS_DECLARE_INHERITS(FPd11RenderShaderParameter, FInstance);
+protected:
+   TString _name;
+public:
+   FPd11RenderShaderParameter();
+   MO_ABSTRACT ~FPd11RenderShaderParameter();
+public:
+   //------------------------------------------------------------
+   // <T>获得名称。</T>
+   MO_INLINE TCharC* Name(){
+      return _name;
+   }
+   //------------------------------------------------------------
+   // <T>设置名称。</T>
+   MO_INLINE void SetName(TCharC* pName){
+      _name = pName;
+   }
+};
+
+//============================================================
 // <T>顶点渲染器。</T>
 //============================================================
 class MO_PD11_DECLARE FPd11RenderVertexShader : public FRenderVertexShader
@@ -74,6 +98,7 @@ class MO_PD11_DECLARE FPd11RenderVertexShader : public FRenderVertexShader
    MO_CLASS_DECLARE_INHERITS(FPd11RenderVertexShader, FRenderVertexShader);
 protected:
    ID3D10Blob* _piData;
+   ID3D11ClassLinkage* _piLinkage;
    ID3D11VertexShader* _piShader;
 public:
    FPd11RenderVertexShader();
@@ -153,6 +178,8 @@ public:
    MO_OVERRIDE TInt FindDefine(TCharC* pCode);
    MO_OVERRIDE TInt FindAttribute(TCharC* pCode);
    MO_OVERRIDE TResult BindAttribute(TInt slot, TCharC* pCode);
+protected:
+   TResult BuildShader(FRenderShader* pShader, ID3D10Blob* piData);
 public:
    MO_OVERRIDE TResult Setup();
    MO_OVERRIDE TResult Build();

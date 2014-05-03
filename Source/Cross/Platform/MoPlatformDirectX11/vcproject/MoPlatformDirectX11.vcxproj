@@ -17,9 +17,11 @@
     <ClCompile Include="..\FPd11RenderFragmentShader.cpp" />
     <ClCompile Include="..\FPd11RenderIndexBuffer.cpp" />
     <ClCompile Include="..\FPd11RenderProgram.cpp" />
+    <ClCompile Include="..\FPd11RenderShaderParameter.cpp" />
     <ClCompile Include="..\FPd11RenderTarget.cpp" />
     <ClCompile Include="..\FPd11RenderVertexBuffer.cpp" />
     <ClCompile Include="..\FPd11RenderVertexShader.cpp" />
+    <ClCompile Include="..\FPlatformDirectX11Feature.cpp" />
     <ClCompile Include="..\MoPlatformDirectX11.cpp" />
     <ClCompile Include="..\RDirectX11.cpp" />
   </ItemGroup>
@@ -84,7 +86,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>dxgi.lib;dxguid.lib;d3d11.lib;d3dx11.lib;opengl32.lib;glew32.lib;LibLzmaD.lib;LibJpegD.lib;LibFreeTypeD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureInputD.lib;MoFeatureGraphicD.lib;MoEngineD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dxgi.lib;dxguid.lib;d3d11.lib;d3dx11.lib;d3dcompiler.lib;opengl32.lib;glew32.lib;LibLzmaD.lib;LibJpegD.lib;LibFreeTypeD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureInputD.lib;MoFeatureGraphicD.lib;MoEngineD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:MSVCRT %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>

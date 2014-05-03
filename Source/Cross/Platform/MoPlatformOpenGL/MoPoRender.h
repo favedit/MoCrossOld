@@ -267,18 +267,7 @@ class MO_PO_DECLARE FPoRenderDevice : public FRenderDevice
 {
    MO_CLASS_DECLARE_INHERITS(FPoRenderDevice, FRenderDevice);
 protected:
-   // 填充模式
-   ERenderFillMode _fillModeCd;
-   // 深度信息
-   TBool _optionDepth;
-   ERenderDepthMode _depthModeCd;
-   // 剪裁信息
-   TBool _optionCull;
-   ERenderCullMode _cullModeCd;
-   // 混合信息
-   TBool _statusBlend;
-   ERenderBlendMode _blendSourceCd;
-   ERenderBlendMode _blendTargetCd;
+   // 运行信息
    TInt _renderTextureActiveSlot;
    // 纹理信息
    TBool _optionTexture;
@@ -290,9 +279,6 @@ protected:
    GLint _textureSizeLimit;
    GLint _textureTotalLimit;
    GLint _renderTargetLimit;
-   // 顶点数据
-   FBytes* _pVertexConsts;
-   FBytes* _pFragmentConsts;
    // 关联顶点缓冲集合
    FRenderFlatTextureList* _pLinkFlatTextures;
    FRenderCubeTextureList* _pLinkCubeTextures;

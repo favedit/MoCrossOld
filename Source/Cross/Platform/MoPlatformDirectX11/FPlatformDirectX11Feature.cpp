@@ -1,20 +1,20 @@
-#include "MoPlatformOpenGLES2.h"
+#include "MoPlatformDirectX11.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPlatformOpenGLES2Feature, FFeature);
+MO_CLASS_IMPLEMENT_INHERITS(FPlatformDirectX11Feature, FFeature);
 
 //============================================================
-// <T>构造平台OpenGL2功能。</T>
+// <T>构造平台DirectX11功能。</T>
 //============================================================
-FPlatformOpenGLES2Feature::FPlatformOpenGLES2Feature(){
-   _name = "OpenGLES2.0";
+FPlatformDirectX11Feature::FPlatformDirectX11Feature(){
+   _name = "DirectX 11";
 }
 
 //============================================================
-// <T>析构平台OpenGL2功能。</T>
+// <T>析构平台DirectX11功能。</T>
 //============================================================
-FPlatformOpenGLES2Feature::~FPlatformOpenGLES2Feature(){
+FPlatformDirectX11Feature::~FPlatformDirectX11Feature(){
 }
 
 //============================================================
@@ -22,10 +22,10 @@ FPlatformOpenGLES2Feature::~FPlatformOpenGLES2Feature(){
 //
 // @return 处理结果
 //============================================================
-TResult FPlatformOpenGLES2Feature::Construct(){
+TResult FPlatformDirectX11Feature::Construct(){
    TResult resultCd = FFeature::Construct();
    // 注册渲染设备
-   RDeviceManager::Instance().Register(FPoe2RenderDevice::Class(), FRenderDevice::Class());
+   RDeviceManager::Instance().Register(FPd11RenderDevice::Class(), FRenderDevice::Class());
    return resultCd;
 }
 
@@ -34,8 +34,9 @@ TResult FPlatformOpenGLES2Feature::Construct(){
 //
 // @return 处理结果
 //============================================================
-TResult FPlatformOpenGLES2Feature::Startup(){
+TResult FPlatformDirectX11Feature::Startup(){
    TResult resultCd = FFeature::Startup();
+   RTechniqueManager::Instance().Setup();
    return resultCd;
 }
 
@@ -44,7 +45,7 @@ TResult FPlatformOpenGLES2Feature::Startup(){
 //
 // @return 处理结果
 //============================================================
-TResult FPlatformOpenGLES2Feature::Suspend(){
+TResult FPlatformDirectX11Feature::Suspend(){
    TResult resultCd = FFeature::Suspend();
    return resultCd;
 }
@@ -54,7 +55,7 @@ TResult FPlatformOpenGLES2Feature::Suspend(){
 //
 // @return 处理结果
 //============================================================
-TResult FPlatformOpenGLES2Feature::Resume(){
+TResult FPlatformDirectX11Feature::Resume(){
    TResult resultCd = FFeature::Resume();
    return resultCd;
 }
@@ -64,7 +65,7 @@ TResult FPlatformOpenGLES2Feature::Resume(){
 //
 // @return 处理结果
 //============================================================
-TResult FPlatformOpenGLES2Feature::Shutdown(){
+TResult FPlatformDirectX11Feature::Shutdown(){
    TResult resultCd = FFeature::Shutdown();
    return resultCd;
 }
@@ -74,7 +75,7 @@ TResult FPlatformOpenGLES2Feature::Shutdown(){
 //
 // @return 处理结果
 //============================================================
-TResult FPlatformOpenGLES2Feature::Dispose(){
+TResult FPlatformDirectX11Feature::Dispose(){
    TResult resultCd = FFeature::Dispose();
    // 注销渲染设备
    RDeviceManager::Instance().Unregister(FRenderDevice::Class());

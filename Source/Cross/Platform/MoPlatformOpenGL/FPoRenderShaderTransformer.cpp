@@ -33,8 +33,8 @@ TResult FPoRenderShaderTransformer::Convert(MString* pOutputScript, MString* pIn
    	TInt translateOk = Hlsl2Glsl_Translate(parser, "main", ETargetGLSL_120, ETranslateOpIntermediate);
 		TCharC* infoLog = Hlsl2Glsl_GetInfoLog( parser );
 		if(translateOk){
-      	TCharC* txt = Hlsl2Glsl_GetShader(parser);
-         MO_INFO(txt);
+      	TCharC* pGlslScript = Hlsl2Glsl_GetShader(parser);
+         pOutputScript->Assign(pGlslScript);
       }
    }
    Hlsl2Glsl_DestructCompiler(parser);

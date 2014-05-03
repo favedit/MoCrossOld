@@ -20,11 +20,23 @@
 #include <d3dx11.h>
 #endif // __D3DX11_H__
 
+#ifndef __D3D11SHADER_H__
+#include <D3D11Shader.h>
+#endif // __D3D11SHADER_H__
+
+#ifndef __D3DCOMPILER_H__
+#include <D3Dcompiler.h>
+#endif // __D3DCOMPILER_H__
+
 #ifndef __MO_PD11_COMMON_H__
 #include "MoPd11Common.h"
 #endif // __MO_PD11_COMMON_H__
 
 MO_NAMESPACE_BEGIN
+
+//============================================================
+// <T>类型定义。</T>
+typedef MO_PD11_DECLARE TFixArray<D3D11_INPUT_ELEMENT_DESC, 256> MO_D3D11_INPUT_ELEMENT_DESC_ARRAY;
 
 //============================================================
 // <T>设备工具。</T>

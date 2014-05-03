@@ -27,6 +27,10 @@ FEffectConsole::~FEffectConsole(){
 //============================================================
 FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
    MO_ASSERT(pName);
+   // 获得设备
+   FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
+   TCharC* pDeviceCode = pRenderDevice->Capability()->Code();
+   //............................................................
    GPtr<FTemplateContext> context = FTemplateContext::InstanceCreate();
    context->SetSpace("shader");
    context->SetTrimBeginLine(ETrue);
@@ -36,7 +40,8 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
 #ifdef _MO_ANDROID
    context->DefineBool("os.android", ETrue);
 #endif // _MO_ANDROID
-   FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
+   //............................................................
+   // 创建效果器
    FEffect* pEffect = _pFactory->Create<FEffect>(pName);
    pEffect->SetRenderDevice(pRenderDevice);
    //............................................................
@@ -49,7 +54,7 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
    //............................................................
    // 打开模板
    TFsPath path;
-   path.AssignFormat("asset:/shader/%s.xml", pName);
+   path.AssignFormat("asset:/shader/%s/%s.xml", pDeviceCode, pName);
    FTemplate* pTemplate = RTemplateManager::Instance().Load(context, path);
    pEffect->LoadConfig(pTemplate->Config());
    //pEffect->LoadConfig(context->MergeConfig());

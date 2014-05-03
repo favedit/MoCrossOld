@@ -91,44 +91,135 @@ TResult FPd11RenderProgram::Setup(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd11RenderProgram::Build(){
+TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piData){
+   MO_CHECK(pShader, return ENull);
+   MO_CHECK(piData, return ENull);
    MO_CHECK(_pDevice, return ENull);
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
-   //pRenderDevice->NativeDevice()->VSSetShader();
-   //pRenderDevice->NativeDevice()->PSSetShader();
-
-   FPd11RenderVertexShader* pVertexShader = _pVertexShader->Convert<FPd11RenderVertexShader>();
-   TAny* pVertexData = pVertexShader->NativeData()->GetBufferPointer();
-   TInt vertexDataLength = pVertexShader->NativeData()->GetBufferSize();
-
-   D3D11_INPUT_ELEMENT_DESC layout[] = {
-      {"POSITION",  0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
-      {"TEXCOORD0", 1, DXGI_FORMAT_R32G32_FLOAT,    0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
-   };
-   UINT numElements = ARRAYSIZE(layout);
-   ID3D11InputLayout* _pInputLayout;
-   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateInputLayout(layout, numElements, pVertexData, vertexDataLength, &_pInputLayout);
+   //............................................................
+   // 获得数据
+   TAny* pData = piData->GetBufferPointer();
+   TInt dataLength = piData->GetBufferSize();
+   // 获得反射接口
+   ID3D11ShaderReflection* piReflection = NULL;
+   HRESULT dxResult = D3DReflect(pData, dataLength, IID_ID3D11ShaderReflection, (TAny**)&piReflection);
    if(FAILED(dxResult)){
-      MO_FATAL("Create input layout failure.");
+      MO_FATAL("Reflect shader failure.");
       return EFailure;
    }
+   // 获得描述
+   D3D11_SHADER_DESC shaderDescriptor;
+   dxResult = piReflection->GetDesc(&shaderDescriptor);
+   if(FAILED(dxResult)){
+      MO_FATAL("Get reflect shader description failure.");
+      return EFailure;
+   }
+   //............................................................
+   // 获得常量缓冲
+   TInt constantBufferCount = shaderDescriptor.ConstantBuffers;
+   for(TInt constantBufferIndex = 0; constantBufferIndex < constantBufferCount; constantBufferIndex++){
+      ID3D11ShaderReflectionConstantBuffer* piConstantBuffer = piReflection->GetConstantBufferByIndex(constantBufferIndex);
+      MO_CHECK(piConstantBuffer, continue);
+      // 获得缓冲信息
+      D3D11_SHADER_BUFFER_DESC bufferDescriptor;
+      dxResult = piConstantBuffer->GetDesc(&bufferDescriptor);
+      if(FAILED(dxResult)){
+         MO_FATAL("Get buffer description failure.");
+         return EFailure;
+      }
+      //............................................................
+      // 获得参数信息
+      TInt variableCount = bufferDescriptor.Variables;
+      for(TInt n = 0; n < variableCount; n++){
+         ID3D11ShaderReflectionVariable* piVariable = piConstantBuffer->GetVariableByIndex(n);
+         // 创建变量信息
+         D3D11_SHADER_VARIABLE_DESC variableDescriptor;
+         dxResult = piVariable->GetDesc(&variableDescriptor);
+         if(FAILED(dxResult)){
+            MO_FATAL("Get variable description failure.");
+            return EFailure;
+         }
+         ID3D11ShaderReflectionType* piVariableType = piVariable->GetType();
+         D3D11_SHADER_TYPE_DESC typeDescriptor;
+         dxResult = piVariableType->GetDesc(&typeDescriptor);
+         if(FAILED(dxResult)){
+            MO_FATAL("Get variable type description failure.");
+            return EFailure;
+         }
+         // 创建参数
+         FRenderShaderParameter* pParameter = FRenderShaderParameter::InstanceCreate();
+         pParameter->SetName(variableDescriptor.Name);
+         pShader->ParameterPush(pParameter);
+      }
+   }
+   //............................................................
+   // 获得常量缓冲
+   TInt attributeCount = shaderDescriptor.InputParameters;
+   if(attributeCount > 0){
+      for(TInt attributeIndex = 0; attributeIndex < attributeCount; attributeIndex++){
+         // 获得描述信息
+         D3D11_SIGNATURE_PARAMETER_DESC attributeDescriptor;
+         dxResult = piReflection->GetInputParameterDesc(attributeIndex, &attributeDescriptor);
+         if(FAILED(dxResult)){
+            MO_FATAL("Get attribute description failure.");
+            return EFailure;
+         }
+         // 创建属性
+         FRenderShaderAttribute* pAttribute = FRenderShaderAttribute::InstanceCreate();
+         pAttribute->SetName(attributeDescriptor.SemanticName);
+         pAttribute->SetIndex(attributeDescriptor.SemanticIndex);
+         pShader->AttributePush(pAttribute);
+      }
+   }
+   MO_RELEASE(piReflection);
+   return ESuccess;
+}
 
+//============================================================
+// <T>构建处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FPd11RenderProgram::Build(){
+   MO_CHECK(_pDevice, return ENull);
    TResult resultCd = ESuccess;
-   // 设置顶点渲染器
-
-   //GLuint vertexShaderId = _pVertexShader->RenderId().uint32;
-   //glAttachShader(_programId, vertexShaderId);
-   //resultCd = _pDevice->CheckError("glAttachShader", "Attach shader failure. (program_id=%d, shader_id=%d)", _programId, vertexShaderId);
-   //if(resultCd != ESuccess){
-   //   return resultCd;
+   FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
+   //............................................................
+   // 建立顶点渲染器
+   FPd11RenderVertexShader* pVertexShader = _pVertexShader->Convert<FPd11RenderVertexShader>();
+   BuildShader(pVertexShader, pVertexShader->NativeData());
+   // 建立像素渲染器
+   FPd11RenderFragmentShader* pFragmentShader = _pFragmentShader->Convert<FPd11RenderFragmentShader>();
+   BuildShader(pFragmentShader, pFragmentShader->NativeData());
+   //............................................................
+   //// 创建元素
+   //MO_D3D11_INPUT_ELEMENT_DESC_ARRAY inputElements;
+   //D3D11_INPUT_ELEMENT_DESC inputElement;
+   //RType<D3D11_INPUT_ELEMENT_DESC>::Clear(&inputElement);
+   //inputElement.SemanticName = attributeDescriptor.SemanticName;
+   //inputElement.SemanticIndex = attributeDescriptor.SemanticIndex;
+   //inputElement.Format = DXGI_FORMAT_R32G32B32_FLOAT;
+   //inputElements.Push(inputElement);
+   //ID3D11InputLayout* piInputLayout;
+   //HRESULT dxResult = pRenderDevice->NativeDevice()->CreateInputLayout(inputElements.Memory(), inputElements.Length(), pData, dataLength, &piInputLayout);
+   //if(FAILED(dxResult)){
+   //   MO_FATAL("Create input layout failure.");
+   //   return EFailure;
    //}
-   //// 设置顶点渲染器
-   //FPd11RenderFragmentShader* pFragmentShader = (FPd11RenderFragmentShader*)_pFragmentShader;
-   //GLuint fragmentShaderId = pFragmentShader->RenderId().uint32;
-   //glAttachShader(_programId, fragmentShaderId);
-   //resultCd = _pDevice->CheckError("glAttachShader", "Attach shader failure. (program_id=%d, shader_id=%d)", _programId, fragmentShaderId);
-   //if(resultCd != ESuccess){
-   //   return resultCd;
+   //TAny* pVertexData = pVertexShader->NativeData()->GetBufferPointer();
+   //TInt vertexDataLength = pVertexShader->NativeData()->GetBufferSize();
+
+   //D3D11_INPUT_ELEMENT_DESC layout[] = {
+   //   {"POSITION",  0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
+   //   {"TEXCOORD0", 1, DXGI_FORMAT_R32G32_FLOAT,    0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
+   //};
+   //UINT numElements = ARRAYSIZE(layout);
+   //ID3D11InputLayout* _pInputLayout;
+   //HRESULT dxResult = pRenderDevice->NativeDevice()->CreateInputLayout(layout, numElements, pVertexData, vertexDataLength, &_pInputLayout);
+   ////pRenderDevice->NativeContext()->IASetVertexBuffers(
+   //if(FAILED(dxResult)){
+   //   MO_FATAL("Create input layout failure.");
+   //   return EFailure;
    //}
    return resultCd;
 }
@@ -142,39 +233,7 @@ TResult FPd11RenderProgram::Link(){
    TResult resultCd = ESuccess;
   // // 关联处理
   // glLinkProgram(_programId);
-  // // 获得结果
-  // GLint linkStatus = GL_TRUE;
-  // glGetProgramiv(_programId, GL_LINK_STATUS, &linkStatus);
-  // if(linkStatus == GL_FALSE){
-  //    GLsizei length;
-  //    glGetProgramiv(_programId, GL_INFO_LOG_LENGTH, &length);
-		//GLchar* pReason = (GLchar*)MO_MEM_ALLOC(sizeof(GLchar) * length);
-		//glGetProgramInfoLog(_programId, length, NULL, pReason);
-  //    MO_FATAL("Link program failure. (status=%d, reason=%s)", linkStatus, pReason);
-  //    MO_MEM_FREE(pReason);
-  //    // 释放程序
-  //    glDeleteProgram(_programId);
-  //    _programId = 0;
-  // }
   // //............................................................
-  // // 校验程序
-  // glValidateProgram(_programId);
-  // // 获得结果
-  // GLint validateStatus = GL_TRUE;
-  // glGetProgramiv(_programId, GL_VALIDATE_STATUS, &validateStatus);
-  // if(validateStatus == GL_FALSE){
-  //    GLsizei length;
-  //    glGetProgramiv(_programId, GL_INFO_LOG_LENGTH, &length);
-		//GLchar* pReason = (GLchar*)MO_MEM_ALLOC(sizeof(GLchar) * length);
-		//glGetProgramInfoLog(_programId, length, NULL, pReason);
-  //    MO_FATAL("Validate program failure. (status=%d, reason=%s)", validateStatus, pReason);
-  //    MO_MEM_FREE(pReason);
-  //    // 释放程序
-  //    glDeleteProgram(_programId);
-  //    _programId = 0;
-  // }
-  // //............................................................
-  // glFinish();
   // resultCd = _pDevice->CheckError("glFinish",
   //       "Finish program link faliure. (program_id=%d)", _programId);
   // if(resultCd != ESuccess){

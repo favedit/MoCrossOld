@@ -32,12 +32,16 @@ void MoCoreInitialize(){
    RStatisticsManager::Create();
    // 初始化模板管理器
    RTemplateManager::Create();
+   // 初始化功能管理器
+   RFeatureManager::Create();
 }
 
 //============================================================
 // <T>释放核心库。</T>
 //============================================================
 void MoCoreRelease(){
+   // 释放功能管理器
+   RFeatureManager::Destroy();
    // 释放统计服务
    RStatisticsManager::Destroy();
    // 释放监视器服务

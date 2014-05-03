@@ -9,6 +9,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderVertexShader, FRenderVertexShader);
 //============================================================
 FPd11RenderVertexShader::FPd11RenderVertexShader(){
    MO_CLEAR(_piData);
+   MO_CLEAR(_piLinkage);
    MO_CLEAR(_piShader);
 }
 
@@ -17,6 +18,7 @@ FPd11RenderVertexShader::FPd11RenderVertexShader(){
 //============================================================
 FPd11RenderVertexShader::~FPd11RenderVertexShader(){
    MO_RELEASE(_piData);
+   MO_RELEASE(_piLinkage);
    MO_RELEASE(_piShader);
 }
 
@@ -56,14 +58,46 @@ TResult FPd11RenderVertexShader::Compile(TCharC* pSource){
       MO_FATAL("Compile failure.");
       return EFailure;
    }
+   // 创建描述器
+   dxResult = pRenderDevice->NativeDevice()->CreateClassLinkage(&_piLinkage);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create class linkage failure.");
+      return EFailure;
+   }
    // 创建渲染器
    TAny* pData = _piData->GetBufferPointer();
    TInt dataSize = _piData->GetBufferSize();
-   dxResult = pRenderDevice->NativeDevice()->CreateVertexShader(pData, dataSize, NULL, &_piShader);
+   dxResult = pRenderDevice->NativeDevice()->CreateVertexShader(pData, dataSize, _piLinkage, &_piShader);
    if(FAILED(dxResult)){
       MO_FATAL("Create vertex shader failure.");
       return EFailure;
    }
+
+   //TInt np = desc.InputParameters;
+   //for(TInt n = 0; n < np; n++){
+   //   D3D11_SIGNATURE_PARAMETER_DESC paramDesc;
+   //   piReflection->GetInputParameterDesc(0, &paramDesc);
+   //   n = n;
+   //}
+   //TInt rb = desc.BoundResources;
+   //for(TInt n = 0; n < rb; n++){
+   //   D3D11_SHADER_INPUT_BIND_DESC bdesc;
+   //   piReflection->GetResourceBindingDesc(n, &bdesc);
+   //   n = n;
+   //}
+
+   //ID3D11ShaderReflectionVariable* pVariable = piReflection->GetVariableByName("_matrix");
+   //D3D11_SHADER_VARIABLE_DESC vDesc;
+   //pVariable->GetDesc(&vDesc);
+   //ID3D11ShaderReflectionType* piReflectionType = pVariable->GetType();
+   //D3D11_SHADER_TYPE_DESC typeDesc;
+   //piReflectionType->GetDesc(&typeDesc);
+
+
+   ////ID3D11ShaderReflectionConstantBuffer* piConstantBuffer = piReflection->GetConstantBufferByName("_matrix2");
+   ////ID3D11ShaderReflectionVariable* pAmbientLightingVar = piReflection->GetVariableByName("_matrix2");
+   ////TInt slot = pAmbientLightingVar->GetInterfaceSlot(0);
+
    MO_INFO("Create vertex shader success. (status=%d)\n%s", dxResult, pSource);
    return ESuccess;
 }

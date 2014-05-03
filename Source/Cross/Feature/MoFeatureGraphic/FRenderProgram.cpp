@@ -21,6 +21,39 @@ FRenderProgram::~FRenderProgram(){
 }
 
 //============================================================
+// <T>根据类型获得渲染参数集合。</T>
+//
+// @param shaderCd 渲染类型
+// @return 渲染参数集合
+//============================================================
+GRenderShaderParameterDictionary& FRenderProgram::Parameters(ERenderShader shaderCd){
+   if(shaderCd == ERenderShader_Vertex){
+      return _pVertexShader->Parameters();
+   }else if(shaderCd == ERenderShader_Fragment){
+      return _pFragmentShader->Parameters();
+   }
+   return _parameters;
+}
+
+//============================================================
+// <T>根据类型获得渲染参数。</T>
+//
+// @param shaderCd 渲染类型
+// @return 渲染参数
+//============================================================
+FRenderShaderParameter* FRenderProgram::ParameterFind(ERenderShader shaderCd, TCharC* pName){
+   FRenderShaderParameter* pParameter = NULL;
+   if(shaderCd == ERenderShader_Vertex){
+      pParameter = _pVertexShader->ParameterFind(pName);
+   }else if(shaderCd == ERenderShader_Fragment){
+      pParameter = _pFragmentShader->ParameterFind(pName);
+   }else{
+      pParameter = _parameters.Find(pName);
+   }
+   return pParameter;
+}
+
+//============================================================
 // <T>生成顶点渲染程序。</T>
 //
 // @param pSource 渲染来源

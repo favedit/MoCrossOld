@@ -9,6 +9,8 @@ void MoFeatureGraphicsInitialize(){
    MO_STATIC_INFO("Feature Graphic initialize.");
    // 初始化可见管理器
    RVisualManager::Create();
+   // 初始化技术管理器
+   RTechniqueManager::Create();
 }
 
 //============================================================
@@ -34,6 +36,8 @@ void MoFeatureGraphicsShutdown(){
 //============================================================
 void MoFeatureGraphicsRelease(){
    MO_STATIC_INFO("Feature Graphic release.");
+   // 释放技术管理器
+   RTechniqueManager::Destroy();
    // 释放可见管理器
    RVisualManager::Destroy();
 }

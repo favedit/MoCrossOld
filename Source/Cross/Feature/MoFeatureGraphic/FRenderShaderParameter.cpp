@@ -1,20 +1,19 @@
-#include "MoPoe2Render.h"
+#include "MoFgRender.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPoe2RenderDevice, FPoRenderDevice);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderShaderParameter, FInstance);
 
 //============================================================
-// <T>构造舞台对象。</T>
+// <T>构造渲染器参数。</T>
 //============================================================
-FPoe2RenderDevice::FPoe2RenderDevice(){
-   _pCapability->SetCode("opengles2");
+FRenderShaderParameter::FRenderShaderParameter(){
 }
 
 //============================================================
-// <T>析构舞台对象。</T>
+// <T>析构渲染器参数。</T>
 //============================================================
-FPoe2RenderDevice::~FPoe2RenderDevice(){
+FRenderShaderParameter::~FRenderShaderParameter(){
 }
 
 MO_NAMESPACE_END
