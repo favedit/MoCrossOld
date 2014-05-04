@@ -12,58 +12,306 @@
    <Specular name='lightmap' value='N'/>
    <Specular name='fog'      value='N'/>
    <!-- ------------------------------------------------------------ -->
-   <Const name='vc_model_matrix'           linker='Vertex.ModelMatrix'/>
-   <Const name='vc_view_projection_matrix' linker='Vertex.ModelMatrix'/>
-   <Const name='vc_camera_position'        linker='Vertex.ModelMatrix'/>
-   <Const name='vc_light_direction'        linker='Vertex.ModelMatrix'/>
-   <Const name='fc_camera_position'        linker='Vertex.ModelMatrix'/>
-   <Const name='fc_light_direction'        linker='Vertex.ModelMatrix'/>
+   <Parameter name='vc_model_mat3'      linker='ModelMatrix'                     shader='Vertex' format='Float3x3'/>
+   <Parameter name='vc_model_mat4'      linker='ModelMatrix'                     shader='Vertex' format='Float4x4'/>
+   <Parameter name='vc_mvp_mat3'        linker='ModelViewProjectionMatrix'       shader='Vertex' format='Float3x3'/>
+   <Parameter name='vc_mvp_mat4'        linker='ModelViewProjectionMatrix'       shader='Vertex' format='Float4x4'/>
+   <Parameter name='vc_camera_position' linker='CameraPosition'                  shader='Vertex' format='Float3'/>
+   <Parameter name='vc_light_mv_mat4'   linker='LightModelMatrix'                shader='Vertex' format='Float4x4'/>
+   <Parameter name='vc_light_mvp_mat4'  linker='LightModelViewProjectrionMatrix' shader='Vertex' format='Float4x4'/>
+   <Parameter name='vc_light_direction' linker='LightDirection'                  shader='Vertex' format='Float3'/>
    <!-- ------------------------------------------------------------ -->
-   <Attribute name='va_instance' linker='Instance' format='Float1'/>
-   <Attribute name='va_position' linker='Position' format='Float4'/>
-   <Attribute name='va_color'    linker='Color'    format='ByteNormal4'/>
-   <Attribute name='va_coord'    linker='Coord'    format='Float2'/>
-   <Attribute name='va_normal'   linker='Normal'   format='ByteNormal4'/>
-   <Attribute name='va_binormal' linker='Binormal' format='ByteNormal4'/>
-   <Attribute name='va_tangent'  linker='Tangent'  format='ByteNormal4'/>
+   <Attribute name='POSITION'           linker='Position' format='Float4'/>
+   <Attribute name='TEXCOORD0'          linker='Color'    format='ByteNormal4'/>
+   <Attribute name='TEXCOORD1'          linker='Coord'    format='Float2'/>
+   <Attribute name='TEXCOORD2'          linker='Normal'   format='ByteNormal4'/>
+   <Attribute name='TEXCOORD3'          linker='Binormal' format='ByteNormal4'/>
+   <Attribute name='TEXCOORD4'          linker='Tangent'  format='ByteNormal4'/>
    <!-- ------------------------------------------------------------ -->
-   <Sampler name='fs_diffuse'     linker='Diffuse'     source='PackDiffuse'/>
-   <Sampler name='fs_normal'      linker='Normal'      source='PackNormal'/>
-   <Sampler name='fs_specular'    linker='Specular'    source='PackSpecular'/>
-   <Sampler name='fs_light'       linker='Light'       source='PackLight'/>
-   <Sampler name='fs_environment' linker='Environment' source='Environment'/>
+   <Sampler name='fs_diffuse'           linker='Diffuse'     source='PackDiffuse'/>
+   <Sampler name='fs_normal'            linker='Normal'      source='PackNormal'/>
+   <Sampler name='fs_specular'          linker='Specular'    source='PackSpecular'/>
+   <Sampler name='fs_light'             linker='Light'       source='PackLight'/>
+   <Sampler name='fs_environment'       linker='Environment' source='Environment'/>
    <!-- ------------------------------------------------------------ -->
    <Source name='vertex'><![CDATA[
-<shader:include source='asset:shader/template/vertex.common.xml' segment='declare'/>
-<shader:include source='asset:shader/template/vertex.position.xml' segment='declare'/>
-<shader:include source='asset:shader/template/vertex.coord.xml' segment='declare'/>
-<shader:include source='asset:shader/template/vertex.color.xml' segment='declare'/>
-<shader:include source='asset:shader/template/vertex.normal.xml' segment='declare'/>
+float3x3 vc_model_mat3;
+float4x4 vc_model_mat4;
+float3x3 vc_mvp_mat3;
+float4x4 vc_mvp_mat4;
+float3   vc_camera_position;
+float4x4 vc_light_mv_mat4;
+float4x4 vc_light_mvp_mat4;
+float3   vc_light_direction;
 
-void main(){
-<shader:include source='asset:shader/template/vertex.position.xml' segment='main'/>
-<shader:include source='asset:shader/template/vertex.color.xml' segment='main'/>
-<shader:include source='asset:shader/template/vertex.coord.xml' segment='main'/>
-<shader:include source='asset:shader/template/vertex.normal.xml' segment='main'/>
+struct VS_INPUT
+{
+   float4 position : POSITION;
+<shader:true source='vertex.attribute.color'>
+   float4 color    : TEXCOORD0;
+</shader:true>
+<shader:true source='vertex.attribute.coord'>
+   float2 coord    : TEXCOORD1;
+</shader:true>
+<shader:true source='vertex.attribute.normal'>
+   float3 normal   : TEXCOORD2;
+<shader:true source='vertex.attribute.normal.full'>
+   float3 binormal : TEXCOORD3;
+   float3 tangent  : TEXCOORD4;
+</shader:true>
+</shader:true>
+};
+
+struct VS_OUTPUT
+{
+   float4 position      : SV_POSITION;
+   float4 modelPosition : TEXCOORD0;
+<shader:true source='vertex.attribute.color'>
+   float4 color         : TEXCOORD1;
+</shader:true>
+<shader:true source='vertex.attribute.coord'>
+   float2 coord         : TEXCOORD2;
+</shader:true>
+<shader:true source='vertex.attribute.normal'>
+   float3 normal        : TEXCOORD3;
+<shader:true source='support.dump'>
+   float3 cameraTs      : TEXCOORD4;
+   float3 lightTs       : TEXCOORD5;
+</shader:true>
+</shader:true>
+};
+
+VS_OUTPUT main(VS_INPUT input)
+{
+   VS_OUTPUT result = (VS_OUTPUT)0;
+   // Calculate model position
+   result.modelPosition = mul(float4(input.position, 1.0), vc_model_mat4);
+   // Calculate proection position
+   result.position = mul(input.position, vc_mvp_mat4);
+   // Set varying
+<shader:true source='vertex.attribute.color'>
+   result.color = input.color;
+</shader:true>
+<shader:true source='vertex.attribute.coord'>
+   result.coord = input.coord;
+</shader:true>
+   // Calculate normal
+<shader:true source='vertex.attribute.normal'>
+   float3 normal = normalize(mul(input.normal * 2.0 - 1.0, vc_model_mat3));
+   result.normal = normal;
+<shader:true source='support.dump'>
+   float3 binormal = normalize(mul(input.binormal * 2.0 - 1.0, vc_model_mat3));
+   float3 tangent = normalize((mul(input.tangent * 2.0 - 1.0, vc_model_mat3));
+   float3x3 matrixTs = float3x3(tangent, binormal, normal);
+   float3 cameraDirection = vc_camera_position - v_model_position.xyz;
+   result.cameraTs = normalize(mul(cameraDirection, matrixTs));
+   result.lightTs = normalize(mul(vc_light_direction, matrixTs));
+</shader:true>
+</shader:true>
+   return result;
 }
    ]]></Source>
    <!-- ------------------------------------------------------------ -->
    <Source name='fragment'><![CDATA[
-<shader:include source='asset:shader/template/fragment.common.xml' segment='declare'/>
-<shader:include source='asset:shader/template/fragment.ambient.xml' segment='declare'/>
-<shader:include source='asset:shader/template/fragment.diffuse.xml' segment='declare'/>
-<shader:include source='asset:shader/template/fragment.specular.xml' segment='declare'/>
-<shader:include source='asset:shader/template/fragment.environment.xml' segment='declare'/>
-<shader:include source='asset:shader/template/fragment.color.xml' segment='declare'/>
+static const float4 lightConvert = float4(1.0, 1.0 / 256.0, 1.0 / 256.0 / 256.0, 1.0 / 256.0 / 256.0 / 256.0);
 
-void main(){
-   vec4 result = vec4(0.0, 0.0, 0.0, 1.0);
-<shader:include source='asset:shader/template/fragment.ambient.xml' segment='main'/>
-<shader:include source='asset:shader/template/fragment.diffuse.xml' segment='main'/>
-<shader:include source='asset:shader/template/fragment.specular.xml' segment='main'/>
-<shader:include source='asset:shader/template/fragment.environment.xml' segment='main'/>
-<shader:include source='asset:shader/template/fragment.color.xml' segment='main'/>
-   gl_FragColor = result;
+float3 fc_camera_position;
+float3 fc_light_direction;
+float3 fc_light_depth;
+
+float4 fc_color;
+float4 fc_alpha;
+<shader:true source='vertex.attribute.color'>
+float4 fc_vertex_color;
+</shader:true>
+<shader:true source='support.ambient'>
+float4 fc_ambient_color;
+</shader:true>
+<shader:true source='support.diffuse'>
+float4 fc_diffuse_color;
+</shader:true>
+<shader:true source='support.diffuse.view'>
+float4 fc_diffuse_view_color;
+</shader:true>
+<shader:true source='support.specular'>
+float4 fc_specular_color;
+float4 fc_specular;
+</shader:true>
+<shader:true source='support.specular.view'>
+float4 fc_specular_view_color;
+float4 fc_specular_view;
+</shader:true>
+<shader:true source='support.environment'>
+float4 fc_reflect_color;
+</shader:true>
+
+struct PS_INPUT
+{
+   float4 modelPosition : TEXCOORD0;
+<shader:true source='vertex.attribute.color'>
+   float4 color         : TEXCOORD1;
+</shader:true>
+<shader:true source='vertex.attribute.coord'>
+   float2 coord         : TEXCOORD2;
+</shader:true>
+<shader:true source='vertex.attribute.normal'>
+   float3 normal        : TEXCOORD3;
+<shader:true source='support.dump'>
+   float3 cameraTs      : TEXCOORD4;
+   float3 lightTs       : TEXCOORD5;
+</shader:true>
+</shader:true>
+};
+
+<shader:true source='support.ambient.sampler'>
+Texture2D ft_diffuse;
+SamplerState fs_diffuse = sampler_state{
+   Texture = <ft_diffuse>;
+   MipFilter = LINEAR;
+   MinFilter = LINEAR;
+   MagFilter = LINEAR;
+};
+</shader:true>
+<shader:true source='support.diffuse.dump'>
+Texture2D ft_normal;
+SamplerState fs_normal = sampler_state{
+   Texture = <ft_normal>;
+   MipFilter = LINEAR;
+   MinFilter = LINEAR;
+   MagFilter = LINEAR;
+};
+</shader:true>
+<shader:true source='support.specular'>
+Texture2D ft_specular;
+SamplerState fs_specular = sampler_state{
+   Texture = <ft_specular>;
+   MipFilter = LINEAR;
+   MinFilter = LINEAR;
+   MagFilter = LINEAR;
+};
+</shader:true>
+<shader:true source='support.light'>
+Texture2D ft_light;
+SamplerState fs_light = sampler_state{
+   Texture = <ft_light>;
+   MipFilter = LINEAR;
+   MinFilter = LINEAR;
+   MagFilter = LINEAR;
+};
+</shader:true>
+<shader:true source='support.environment'>
+Texture2D ft_environment;
+SamplerState fs_environment = sampler_state{
+   Texture = <ft_environment>;
+   MipFilter = LINEAR;
+   MinFilter = LINEAR;
+   MagFilter = LINEAR;
+};
+</shader:true>
+
+float4 main(PS_INPUT input) : SV_Target
+{
+   float4 result = float4(0.0, 0.0, 0.0, 1.0);
+   //............................................................
+   // Calculate ambient color
+<shader:true source='support.ambient.sampler'>
+   float4 color = ft_diffuse.Sample(fs_diffuse, input.coord);
+   if(color.a < fc_alpha.x){
+      discard;
+   }
+</shader:true>
+<shader:false source='support.ambient.sampler'>
+   float4 color = float4(1.0, 1.0, 1.0, 1.0);
+</shader:false>
+   //............................................................
+   // Calculate ambient color
+<shader:true source='support.ambient'>
+   result.rgb += color.xyz * fc_ambient_color.rgb;
+</shader:true>
+   //............................................................
+<shader:true source='support.diffuse.view|support.specular|support.environment'>
+   float3 cameraDirection = normalize(fc_camera_position - input.modelPosition.xyz);
+</shader:true>
+   //............................................................
+   // Calculate normal
+<shader:true source='support.diffuse.dump'>
+   float4 normal = ft_normal.Sample(fs_normal, input.coord);
+   normal.xyz = normalize(normal.xyz * 2.0 - 1.0);
+</shader:true>
+   //............................................................
+   // Calculate diffuse color
+<shader:true source='support.diffuse'>
+<shader:true source='support.diffuse.dump'>
+   float normalFactor = dot(normal.xyz, -input.light_ts);
+</shader:true>
+<shader:true source='support.diffuse.normal'>
+   float normalFactor = dot(input.normal, -fc_light_direction);
+</shader:true>
+<shader:true source='vertex.attribute.normal'>
+   normalFactor = max(normalFactor, 0.1);
+   result.rgb += color.rgb * fc_diffuse_color.rgb * normalFactor;
+</shader:true>
+</shader:true>
+   //............................................................
+   // Calculate diffuse view color
+<shader:true source='support.diffuse.view'>
+<shader:true source='support.diffuse.view.dump'>
+   float normalViewFactor = dot(normal.xyz, -input.camera_ts);
+</shader:true>
+<shader:true source='support.diffuse.view.normal'>
+   float normalViewFactor = dot(input.normal, -cameraDirection);
+</shader:true>
+   normalViewFactor = max(normalViewFactor, 0.1);
+   result.rgb += color.rgb * fc_diffuse_view_color.rgb * normalViewFactor;
+</shader:true>
+   //............................................................
+   // Calculate specular color
+<shader:true source='support.specular'>
+   float3 reflectionDirection = normalize(reflect(fc_light_direction, input.normal));
+   float specularFactor = dot(cameraDirection, reflectionDirection);
+<shader:true source='support.specular.level&vertex.attribute.normal'>
+   //specularFactor *= normal.w;
+</shader:true>
+   specularFactor = max(specularFactor, fc_specular.x);
+   specularFactor = min(specularFactor, 1.0);
+   specularFactor = pow(specularFactor, fc_specular.y);
+   result.rgb += color.rgb * fc_specular_color.rgb * specularFactor;
+</shader:true>
+   //............................................................
+   // Calculate specular view color
+<shader:true source='support.specular.view'>
+   float specularViewFactor = dot(cameraDirection, input.normal);
+<shader:true source='support.specular.level&vertex.attribute.normal'>
+   //specularViewFactor *= normal.w;
+</shader:true>
+   specularViewFactor = max(specularViewFactor, fc_specular_view.x);
+   specularViewFactor = min(specularViewFactor, 1.0);
+   specularViewFactor = pow(specularViewFactor, fc_specular_view.y);
+   result.rgb += color.rgb * fc_specular_view_color.rgb * specularViewFactor;
+</shader:true>
+   //............................................................
+<shader:true source='support.environment'>
+   float3 reflectDirection = normalize(reflect(-cameraDirection, input.normal)); 
+   float4 environmentColor = ft_environment.Sample(fs_environment, reflectDirection); 
+<shader:true source='support.light'>
+   float4 light = ft_light.Sample(fs_light, input.coord);
+   environmentColor *= light.g;
+</shader:true>
+   result.rgb *= environmentColor.rgb * fc_reflect_color.rgb;
+</shader:true>
+   //............................................................
+   // Calculate color
+<shader:true source='vertex.attribute.color'>
+   float4 vertexColor = min(input.color, fc_color.y) - fc_color.x;
+   vertexColor = vertexColor / (fc_color.y - fc_color.x);
+   vertexColor = (vertexColor - fc_color.w) * fc_color.z + 1.0;
+   result.rgb *= vertexColor.rgb;
+</shader:true>
+<shader:true source='support.alpha'>
+   result.a = color.a * fc_alpha.z;
+</shader:true>
+   //............................................................
+   return result;
 }
    ]]></Source>
 </Configuration>

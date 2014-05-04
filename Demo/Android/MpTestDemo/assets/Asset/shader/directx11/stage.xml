@@ -1,9 +1,6 @@
 <Configuration>
    <Version label='alpha 0.1' />
    <!-- ------------------------------------------------------------ -->
-   <Parameter name='vc_model_mat3' require='Y' label='MTS'/>
-   <Parameter name='vc_model_mat4' require='Y' label='MMS'/>
-   <!-- ------------------------------------------------------------ -->
    <State name='fill_mode'   value='Fill'/>
    <State name='cull_mode'   value='Front'/>
    <State name='depth_mode'  value='Less'/>
@@ -15,7 +12,7 @@
    <Specular name='lightmap' value='N'/>
    <Specular name='fog'      value='N'/>
    <!-- ------------------------------------------------------------ -->
-   <Sampler name='fs_diffuse' fill='clamp' query='linear' default='white'/>
+   <Sampler name='fs_diffuse' linker='Diffuse' source='PackDiffuse'/>
    <!-- ------------------------------------------------------------ -->
    <Source name='vertex' include='asset:global.shader'/>
    <Source name='vertex'><![CDATA[
@@ -47,7 +44,13 @@ struct PS_INPUT
 };
 
 Texture2D ft_map;
-SamplerState fs_map;
+SamplerState fs_map = sampler_state{
+
+   Texture = <ft_map>;
+   MipFilter = LINEAR;
+   MinFilter = LINEAR;
+   MagFilter = LINEAR;
+};
 
 float4 main(PS_INPUT input) : SV_Target
 {
