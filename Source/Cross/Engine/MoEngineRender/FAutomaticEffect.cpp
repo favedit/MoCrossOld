@@ -60,6 +60,15 @@ TResult FAutomaticEffect::BindDescriptors(){
       const SEffectAttributeDescriptor& descriptor = *iterator;
       _program->BindAttribute(descriptor.bindIndex, descriptor.namePtr);
    }
+   // 建立常量描述器
+   GRenderShaderParameterDictionary& parameters = _program->Parameters();
+   if(!parameters.IsEmpty()){
+      GRenderShaderParameterDictionary::TIterator iterator = parameters.Iterator();
+      while(iterator.Next()){
+         FRenderShaderParameter* pParameter = *iterator;
+         _parameterDescriptors.Register(pParameter->Linker());
+      }
+   }
    return ESuccess;
 }
 
@@ -72,9 +81,9 @@ TResult FAutomaticEffect::LinkDescriptors(){
    MO_CHECK(_program, return ENull);
    TInt fragmentConstLimit = _renderDevice->Capability()->FragmentConstLimit();
    // 关联常量集合
-   TEffectConstDescriptors::TIterator constIterator = _constDescriptors.Iterator();
-   while(constIterator.Next()){
-      SEffectConstDescriptor& descriptor = *constIterator;
+   TEffectParameterDescriptors::TIterator parameterIterator = _parameterDescriptors.Iterator();
+   while(parameterIterator.Next()){
+      SEffectParameterDescriptor& descriptor = *parameterIterator;
       if(descriptor.code != -1){
          descriptor.bindId = _program->FindDefine(descriptor.namePtr);
          MO_INFO("Find const location. (name=%s, code=%d, bind_id=%d)",
@@ -122,7 +131,7 @@ TResult FAutomaticEffect::LinkDescriptors(){
 // @param point 三维坐标
 //============================================================
 TResult FAutomaticEffect::BindConstPosition3(TInt bindCd, SFloatPoint3& point){
-   SEffectConstDescriptor& descriptor = _constDescriptors[bindCd];
+   SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
    if(descriptor.bindId != -1){
       _renderDevice->BindConstFloat3(descriptor.shaderCd, descriptor.bindId, point.x, point.y, point.z);
    }
@@ -137,7 +146,7 @@ TResult FAutomaticEffect::BindConstPosition3(TInt bindCd, SFloatPoint3& point){
 // @param vector 三维方向
 //============================================================
 TResult FAutomaticEffect::BindConstVector3(TInt bindCd, SFloatVector3& vector){
-   SEffectConstDescriptor& descriptor = _constDescriptors[bindCd];
+   SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
    if(descriptor.bindId != -1){
       _renderDevice->BindConstFloat3(descriptor.shaderCd, descriptor.bindId, vector.x, vector.y, vector.z);
    }
@@ -154,7 +163,7 @@ TResult FAutomaticEffect::BindConstVector3(TInt bindCd, SFloatVector3& vector){
 // @param w 浮点数W
 //============================================================
 TResult FAutomaticEffect::BindConstFloat4(TInt bindCd, TFloat x, TFloat y, TFloat z, TFloat w){
-   SEffectConstDescriptor& descriptor = _constDescriptors[bindCd];
+   SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
    if(descriptor.bindId != -1){
       _renderDevice->BindConstFloat4(descriptor.shaderCd, descriptor.bindId, x, y, z, w);
    }
@@ -171,7 +180,7 @@ TResult FAutomaticEffect::BindConstFloat4(TInt bindCd, TFloat x, TFloat y, TFloa
 // @param w 浮点数W
 //============================================================
 TResult FAutomaticEffect::BindConstColor4(TInt bindCd, const SFloatColor4& color){
-   SEffectConstDescriptor& descriptor = _constDescriptors[bindCd];
+   SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
    if(descriptor.bindId != -1){
       _renderDevice->BindConstFloat4(descriptor.shaderCd, descriptor.bindId, color.red, color.green, color.blue, color.alpha);
    }
@@ -186,7 +195,7 @@ TResult FAutomaticEffect::BindConstColor4(TInt bindCd, const SFloatColor4& color
 // @param matrix 4X4矩阵
 //============================================================
 TResult FAutomaticEffect::BindConstMatrix3x3(TInt bindCd, SFloatMatrix3d* pMatrix, TInt count){
-   SEffectConstDescriptor& descriptor = _constDescriptors[bindCd];
+   SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
    if((descriptor.bindId != -1) && (count > 0)){
       _renderDevice->BindConstMatrix3x3(descriptor.shaderCd, descriptor.bindId, *pMatrix);
    }
@@ -201,7 +210,7 @@ TResult FAutomaticEffect::BindConstMatrix3x3(TInt bindCd, SFloatMatrix3d* pMatri
 // @param matrix 4X4矩阵
 //============================================================
 TResult FAutomaticEffect::BindConstMatrix4x3(TInt bindCd, SFloatMatrix3d* pMatrix, TInt count){
-   SEffectConstDescriptor& descriptor = _constDescriptors[bindCd];
+   SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
    if((descriptor.bindId != -1) && (count > 0)){
       _renderDevice->BindConstMatrix4x3(descriptor.shaderCd, descriptor.bindId, pMatrix, count);
    }
@@ -216,7 +225,7 @@ TResult FAutomaticEffect::BindConstMatrix4x3(TInt bindCd, SFloatMatrix3d* pMatri
 // @param matrix 4X4矩阵
 //============================================================
 TResult FAutomaticEffect::BindConstMatrix4x4(TInt bindCd, SFloatMatrix3d* pMatrix, TInt count){
-   SEffectConstDescriptor& descriptor = _constDescriptors[bindCd];
+   SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
    if((descriptor.bindId != -1) && (count > 0)){
       _renderDevice->BindConstMatrix4x4(descriptor.shaderCd, descriptor.bindId, pMatrix, count);
    }
@@ -376,27 +385,24 @@ TResult FAutomaticEffect::OnSetup(){
 //
 // @return 处理结果
 //============================================================
-TResult FAutomaticEffect::Setup(){
-   // 设置MVP矩阵
+TResult FAutomaticEffect::Build(){
+   //............................................................
+   // 编译程序
+   _program->VertexShader()->Compile(_vertexSource);
+   _program->FragmentShader()->Compile(_fragmentSource);
+   //............................................................
+   // 建立处理
+   _program->Build();
+   BindDescriptors();
+   //............................................................
+   // 关联处理
+   _program->Link();
+   LinkDescriptors();
+   //............................................................
+   // 改变大小
    FScreenDevice* pScreenDevice = RDeviceManager::Instance().Find<FScreenDevice>();
    SIntSize2& screenSize = pScreenDevice->Size();
    Resize(screenSize.width, screenSize.height);
-   //............................................................
-   // 创建程序
-   FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
-   _program = pRenderDevice->CreateProgrom();
-   _program->Setup();
-   _program->VertexShader()->Compile(_vertexSource);
-   _program->FragmentShader()->Compile(_fragmentSource);
-   _program->Build();
-   //............................................................
-   // 配置处理
-   OnSetup();
-   //............................................................
-   // 关联处理
-   BindDescriptors();
-   _program->Link();
-   LinkDescriptors();
    return ESuccess;
 }
 

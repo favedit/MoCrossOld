@@ -24,7 +24,7 @@ FSampleColorSkeletonEffect::~FSampleColorSkeletonEffect(){
 TResult FSampleColorSkeletonEffect::OnSetup(){
    FColorAutomaticEffect::OnSetup();
    // 注册常量集合
-   _constDescriptors.Register(ERenderShader_Vertex, EEffectConst_Vertex_BoneMatrix, "vc_bone_matrix");
+   //_constDescriptors.Register(ERenderShader_Vertex, EEffectConst_Vertex_BoneMatrix, "vc_bone_matrix");
    return ESuccess;
 }
 

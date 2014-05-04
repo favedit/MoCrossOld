@@ -42,7 +42,9 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
    //............................................................
    // 创建效果器
    FEffect* pEffect = _pFactory->Create<FEffect>(pName);
+   pEffect->SetName(pName);
    pEffect->SetRenderDevice(pRenderDevice);
+   pEffect->Setup();
    //............................................................
    // 建立渲染信息
    if(pRenderable != NULL){
@@ -84,7 +86,7 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
       //............................................................
       // 建立参数定义集合
       if(pNode->IsName("Parameter")){
-         FRenderShaderParameter* pParameter = pRenderDevice->ClassFactory()->Create<FRenderShaderParameter>(MO_RENDEROBJECT_SHADERPARAMETER);
+         FRenderShaderParameter* pParameter = pRenderDevice->CreateObject<FRenderShaderParameter>(MO_RENDEROBJECT_SHADERPARAMETER);
          pParameter->LoadConfig(pNode);
          pProgram->ParameterPush(pParameter);
          continue;
@@ -92,7 +94,7 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
       //............................................................
       // 建立属性定义集合
       if(pNode->IsName("Attribute")){
-         FRenderShaderAttribute* pAttribute = pRenderDevice->ClassFactory()->Create<FRenderShaderAttribute>(MO_RENDEROBJECT_SHADERATTRIBUTE);
+         FRenderShaderAttribute* pAttribute = pRenderDevice->CreateObject<FRenderShaderAttribute>(MO_RENDEROBJECT_SHADERATTRIBUTE);
          pAttribute->LoadConfig(pNode);
          pProgram->AttributePush(pAttribute);
          continue;
@@ -100,16 +102,15 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
       //............................................................
       // 建立取样器定义集合
       if(pNode->IsName("Sampler")){
-         FRenderShaderSampler* pSampler = pRenderDevice->ClassFactory()->Create<FRenderShaderSampler>(MO_RENDEROBJECT_SHADERSAMPLER);
+         FRenderShaderSampler* pSampler = pRenderDevice->CreateObject<FRenderShaderSampler>(MO_RENDEROBJECT_SHADERSAMPLER);
          pSampler->LoadConfig(pNode);
          pProgram->SamplerPush(pSampler);
          continue;
       }
    }
    //............................................................
-   // 配置处理
-   pEffect->SetName(pName);
-   pEffect->Setup();
+   // 构建处理
+   pEffect->Build();
    return pEffect;
 }
 

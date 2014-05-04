@@ -22,22 +22,22 @@ FColorAutomaticEffect::~FColorAutomaticEffect(){
 //============================================================
 TResult FColorAutomaticEffect::OnSetup(){
    FAutomaticEffect::OnSetup();
-   // 注册顶点常量
-   _constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_ModelMatrix,          "vc_model_matrix");
-   _constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_ViewProjectionMatrix, "vc_view_projection_matrix");
-   _constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_CameraPosition,       "vc_camera_position");
-   _constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_LightDirection,       "vc_light_direction");
-   // 注册像素常量
-   _constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_CameraPosition,     "fc_camera_position");
-   _constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_LightDirection,     "fc_light_direction");
-   // 注册材质常量
-   _constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_Color,              "fc_color");
-   _constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_Alpha,              "fc_alpha");
-   _constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_AmbientColor,       "fc_ambient_color");
-   _constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_DiffuseColor,       "fc_diffuse_color");
-   _constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_SpecularColor,      "fc_specular_color");
-   _constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_Specular,           "fc_specular");
-   _constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_ReflectColor,       "fc_reflect_color");
+   //// 注册顶点常量
+   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_ModelMatrix,          "vc_model_matrix");
+   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_ViewProjectionMatrix, "vc_view_projection_matrix");
+   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_CameraPosition,       "vc_camera_position");
+   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_LightDirection,       "vc_light_direction");
+   //// 注册像素常量
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_CameraPosition,     "fc_camera_position");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_LightDirection,     "fc_light_direction");
+   //// 注册材质常量
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_Color,              "fc_color");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_Alpha,              "fc_alpha");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_AmbientColor,       "fc_ambient_color");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_DiffuseColor,       "fc_diffuse_color");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_SpecularColor,      "fc_specular_color");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_Specular,           "fc_specular");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_ReflectColor,       "fc_reflect_color");
    return ESuccess;
 }
 

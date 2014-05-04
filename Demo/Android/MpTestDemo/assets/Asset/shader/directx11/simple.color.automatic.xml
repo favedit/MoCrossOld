@@ -12,27 +12,40 @@
    <Specular name='lightmap' value='N'/>
    <Specular name='fog'      value='N'/>
    <!-- ------------------------------------------------------------ -->
-   <Parameter name='vc_model_mat3'      linker='ModelMatrix'                     shader='Vertex' format='Float3x3'/>
-   <Parameter name='vc_model_mat4'      linker='ModelMatrix'                     shader='Vertex' format='Float4x4'/>
-   <Parameter name='vc_mvp_mat3'        linker='ModelViewProjectionMatrix'       shader='Vertex' format='Float3x3'/>
-   <Parameter name='vc_mvp_mat4'        linker='ModelViewProjectionMatrix'       shader='Vertex' format='Float4x4'/>
-   <Parameter name='vc_camera_position' linker='CameraPosition'                  shader='Vertex' format='Float3'/>
-   <Parameter name='vc_light_mv_mat4'   linker='LightModelMatrix'                shader='Vertex' format='Float4x4'/>
-   <Parameter name='vc_light_mvp_mat4'  linker='LightModelViewProjectrionMatrix' shader='Vertex' format='Float4x4'/>
-   <Parameter name='vc_light_direction' linker='LightDirection'                  shader='Vertex' format='Float3'/>
+   <Parameter name='vc_model_mat3'          linker='VertexModelMatrix3x3'/>
+   <Parameter name='vc_model_mat4'          linker='VertexModelMatrix4x4'/>
+   <Parameter name='vc_mvp_mat3'            linker='VertexModelViewProjectionMatrix3x3'/>
+   <Parameter name='vc_mvp_mat4'            linker='VertexModelViewProjectionMatrix4x4'/>
+   <Parameter name='vc_camera_position'     linker='VertexCameraPosition'/>
+   <Parameter name='vc_light_mv_mat4'       linker='VertexLightModelMatrix4x4'/>
+   <Parameter name='vc_light_mvp_mat4'      linker='VertexLightModelViewProjectrionMatrix4x4'/>
+   <Parameter name='vc_light_direction'     linker='VertexLightDirection'/>
+   <Parameter name='fc_camera_position'     linker='FragmentCameraPosition'/>
+   <Parameter name='fc_light_direction'     linker='FragmentCameraDirection'/>
+   <Parameter name='fc_light_depth'         linker='FragmentLightDepth'/>
+   <Parameter name='fc_color'               linker='FragmentColor'/>
+   <Parameter name='fc_alpha'               linker='FragmentAlpha'/>
+   <Parameter name='fc_ambient_color'       linker='FragmentAmbientColor'/>
+   <Parameter name='fc_diffuse_color'       linker='FragmentDiffuseColor'/>
+   <Parameter name='fc_diffuse_view_color'  linker='FragmentDiffuseViewColor'/>
+   <Parameter name='fc_specular_color'      linker='FragmentSpecularColor'/>
+   <Parameter name='fc_specular'            linker='FragmentSpecular'/>
+   <Parameter name='fc_specular_view_color' linker='FragmentSpecularViewColor'/>
+   <Parameter name='fc_specular_view'       linker='FragmentSpecularView'/>
+   <Parameter name='fc_reflect_color'       linker='FragmentReflectColor'/>
    <!-- ------------------------------------------------------------ -->
-   <Attribute name='POSITION'           linker='Position' format='Float4'/>
-   <Attribute name='TEXCOORD0'          linker='Color'    format='ByteNormal4'/>
-   <Attribute name='TEXCOORD1'          linker='Coord'    format='Float2'/>
-   <Attribute name='TEXCOORD2'          linker='Normal'   format='ByteNormal4'/>
-   <Attribute name='TEXCOORD3'          linker='Binormal' format='ByteNormal4'/>
-   <Attribute name='TEXCOORD4'          linker='Tangent'  format='ByteNormal4'/>
+   <Attribute name='POSITION'               linker='Position' format='Float4'/>
+   <Attribute name='TEXCOORD0'              linker='Color'    format='Byte4Normal'/>
+   <Attribute name='TEXCOORD1'              linker='Coord'    format='Float2'/>
+   <Attribute name='TEXCOORD2'              linker='Normal'   format='Byte4Normal'/>
+   <Attribute name='TEXCOORD3'              linker='Binormal' format='Byte4Normal'/>
+   <Attribute name='TEXCOORD4'              linker='Tangent'  format='Byte4Normal'/>
    <!-- ------------------------------------------------------------ -->
-   <Sampler name='fs_diffuse'           linker='Diffuse'     source='PackDiffuse'/>
-   <Sampler name='fs_normal'            linker='Normal'      source='PackNormal'/>
-   <Sampler name='fs_specular'          linker='Specular'    source='PackSpecular'/>
-   <Sampler name='fs_light'             linker='Light'       source='PackLight'/>
-   <Sampler name='fs_environment'       linker='Environment' source='Environment'/>
+   <Sampler name='fs_diffuse'               linker='Diffuse'     source='PackDiffuse'/>
+   <Sampler name='fs_normal'                linker='Normal'      source='PackNormal'/>
+   <Sampler name='fs_specular'              linker='Specular'    source='PackSpecular'/>
+   <Sampler name='fs_light'                 linker='Light'       source='PackLight'/>
+   <Sampler name='fs_environment'           linker='Environment' source='Environment'/>
    <!-- ------------------------------------------------------------ -->
    <Source name='vertex'><![CDATA[
 float3x3 vc_model_mat3;
@@ -85,7 +98,7 @@ VS_OUTPUT main(VS_INPUT input)
 {
    VS_OUTPUT result = (VS_OUTPUT)0;
    // Calculate model position
-   result.modelPosition = mul(float4(input.position, 1.0), vc_model_mat4);
+   result.modelPosition = mul(input.position, vc_model_mat4);
    // Calculate proection position
    result.position = mul(input.position, vc_mvp_mat4);
    // Set varying

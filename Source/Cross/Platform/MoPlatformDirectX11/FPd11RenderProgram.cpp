@@ -172,10 +172,15 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
             return EFailure;
          }
          // 创建参数
-         FPd11RenderShaderParameter* pParameter = FPd11RenderShaderParameter::InstanceCreate();
-         pParameter->SetBuffer(pBuffer);
-         pParameter->LinkNative(piVariable);
-         pShader->ParameterPush(pParameter);
+         FPd11RenderShaderParameter* pParameter = (FPd11RenderShaderParameter*)ParameterFind(variableDescriptor.Name);
+         //MO_CHECK(pParameter, continue);
+         if(pParameter == NULL){
+            MO_WARN("Shader parameter is not found. (name=%s)", variableDescriptor.Name);
+         }else{
+            pParameter->SetShader(pShader);
+            pParameter->SetBuffer(pBuffer);
+            pParameter->LinkNative(piVariable);
+         }
       }
    }
    //............................................................
@@ -192,6 +197,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
          }
          ERenderShaderAttributeFormat formatCd = RDirectX11::ParseAttrbuteFormat(attributeDescriptor.ComponentType, attributeDescriptor.Mask);
          // 创建属性
+         FPd11RenderShaderAttribute* pAttribute = (FPd11RenderShaderAttribute*)AttributeFind(attributeDescriptor.SemanticName, attributeDescriptor.SemanticIndex);
          //FPd11RenderShaderAttribute* pAttribute = FPd11RenderShaderAttribute::InstanceCreate();
          //pAttribute->SetName(attributeDescriptor.SemanticName);
          //pAttribute->SetIndex(attributeDescriptor.SemanticIndex);

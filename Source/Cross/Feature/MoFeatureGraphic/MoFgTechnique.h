@@ -180,6 +180,7 @@ public:
    }
 public:
    MO_ABSTRACT TResult Setup();
+   MO_ABSTRACT TResult Build();
 public:
    MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);
    MO_ABSTRACT TResult BuildDescripter(SRenderableDescriptor& renderableDescriptor);

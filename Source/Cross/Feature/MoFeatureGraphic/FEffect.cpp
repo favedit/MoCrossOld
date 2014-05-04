@@ -26,8 +26,19 @@ TResult FEffect::Setup(){
    // 创建程序
    _program = _renderDevice->CreateProgrom();
    _program->Setup();
+   return ESuccess;
+}
+
+//============================================================
+// <T>建立处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FEffect::Build(){
+   // 编译代码
    _program->VertexShader()->Build(_vertexSource);
    _program->FragmentShader()->Build(_fragmentSource);
+   // 创建程序
    _program->Build();
    _program->Link();
    return ESuccess;

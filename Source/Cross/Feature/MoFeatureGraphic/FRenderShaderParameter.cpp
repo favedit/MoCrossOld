@@ -57,11 +57,15 @@ TResult FRenderShaderParameter::LoadConfig(FXmlNode* pConfig){
    // 设置关联
    _linker = pConfig->Get("linker");
    // 设置格式
-   TCharC* pShader = pConfig->Get("shader");
-   _shaderCd = RRenderShader::Parse(pShader);
+   TCharC* pShader = pConfig->Get("shader", NULL);
+   if(pShader != NULL){
+      _shaderCd = RRenderShader::Parse(pShader);
+   }
    // 设置格式
-   TCharC* pFormat = pConfig->Get("format");
-   _formatCd = RRenderShaderParameterFormat::Parse(pFormat);
+   TCharC* pFormat = pConfig->Get("format", NULL);
+   if(pFormat != NULL){
+      _formatCd = RRenderShaderParameterFormat::Parse(pFormat);
+   }
    return ESuccess;
 }
 

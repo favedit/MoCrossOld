@@ -22,9 +22,9 @@ FShadowDepthSkeletonEffect::~FShadowDepthSkeletonEffect(){
 TResult FShadowDepthSkeletonEffect::OnSetup(){
    TResult resultCd = FAutomaticEffect::OnSetup();
    // 注册常量集合
-   _constDescriptors.Register(ERenderShader_Vertex, EEffectConst_Vertex_ModelMat4, "vc_model_mat4");
-   _constDescriptors.Register(ERenderShader_Vertex, EEffectConst_Vertex_MvpMat4, "vc_mvp_mat4");
-   _constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_Camera, "fc_camera");
+   //_constDescriptors.Register(ERenderShader_Vertex, EEffectConst_Vertex_ModelMat4, "vc_model_mat4");
+   //_constDescriptors.Register(ERenderShader_Vertex, EEffectConst_Vertex_MvpMat4, "vc_mvp_mat4");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_Camera, "fc_camera");
    return resultCd;
 }
 

@@ -73,7 +73,7 @@ TResult FRenderProgram::ParameterPush(FRenderShaderParameter* pParameter){
 // @return 渲染属性
 //============================================================
 FRenderShaderAttribute* FRenderProgram::AttributeFind(TCharC* pName, TInt index){
-   TInt count = _attributes.Count();
+   //TInt count = _attributes.Count();
    //for(TInt n = 0; n < count; n++){
    //   FRenderShaderAttribute* pAttribute = _attributes.Get(n);
    //   if(RString::Equals(pAttribute->Name(), pName)){
@@ -93,11 +93,7 @@ FRenderShaderAttribute* FRenderProgram::AttributeFind(TCharC* pName, TInt index)
 //============================================================
 TResult FRenderProgram::AttributePush(FRenderShaderAttribute* pAttribute){
    MO_CHECK(pAttribute, return ENull);
-   //TCharC* pName = pAttribute->Name();
-   //TInt index = pAttribute->Index();
-   //FRenderShaderAttribute* pFindAttribute = AttributeFind(pName, index);
-   //MO_CHECK(!pFindAttribute, return EDuplicate);
-   //_attributes.Push(pAttribute);
+   _attributes.Set(pAttribute->Name(), pAttribute);
    return ESuccess;
 }
 
@@ -109,11 +105,7 @@ TResult FRenderProgram::AttributePush(FRenderShaderAttribute* pAttribute){
 //============================================================
 TResult FRenderProgram::SamplerPush(FRenderShaderSampler* pSampler){
    MO_CHECK(pSampler, return ENull);
-   //TCharC* pName = pAttribute->Name();
-   //TInt index = pAttribute->Index();
-   //FRenderShaderAttribute* pFindAttribute = AttributeFind(pName, index);
-   //MO_CHECK(!pFindAttribute, return EDuplicate);
-   //_attributes.Push(pAttribute);
+   _samplers.Set(pSampler->Name(), pSampler);
    return ESuccess;
 }
 

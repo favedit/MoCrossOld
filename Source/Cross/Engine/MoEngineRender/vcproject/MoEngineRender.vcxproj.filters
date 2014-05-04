@@ -2,71 +2,74 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\FDeferredPipeline.cpp">
-      <Filter>3-Render\Pipeline</Filter>
+      <Filter>4-Render\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="..\FShadowPipeline.cpp">
-      <Filter>3-Render\Pipeline</Filter>
+      <Filter>4-Render\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="..\FSimplePipeline.cpp">
-      <Filter>3-Render\Pipeline</Filter>
+      <Filter>4-Render\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="..\FAutomaticEffect.cpp">
-      <Filter>3-Render\Technique</Filter>
+      <Filter>4-Render\Technique</Filter>
     </ClCompile>
     <ClCompile Include="..\MoEngineRender.cpp" />
     <ClCompile Include="..\TEffectSamplerDescriptors.cpp">
-      <Filter>3-Render\Technique</Filter>
+      <Filter>4-Render\Technique</Filter>
     </ClCompile>
     <ClCompile Include="..\TEffectAttributeDescriptors.cpp">
-      <Filter>3-Render\Technique</Filter>
-    </ClCompile>
-    <ClCompile Include="..\TEffectConstDescriptors.cpp">
-      <Filter>3-Render\Technique</Filter>
+      <Filter>4-Render\Technique</Filter>
     </ClCompile>
     <ClCompile Include="..\FBlurEffect.cpp">
-      <Filter>3-Render\Technique</Filter>
+      <Filter>4-Render\Technique</Filter>
     </ClCompile>
     <ClCompile Include="..\FSimpleColorPass.cpp">
-      <Filter>3-Render\Pipeline\Simple</Filter>
+      <Filter>4-Render\Pipeline\Simple</Filter>
     </ClCompile>
     <ClCompile Include="..\FShadowColorPass.cpp">
-      <Filter>3-Render\Pipeline\Shadow</Filter>
+      <Filter>4-Render\Pipeline\Shadow</Filter>
     </ClCompile>
     <ClCompile Include="..\FShadowDepthPass.cpp">
-      <Filter>3-Render\Pipeline\Shadow</Filter>
+      <Filter>4-Render\Pipeline\Shadow</Filter>
     </ClCompile>
     <ClCompile Include="..\FBlurPass.cpp">
-      <Filter>3-Render\Pipeline\Special</Filter>
+      <Filter>4-Render\Pipeline\Special</Filter>
     </ClCompile>
     <ClCompile Include="..\FRenderPipelinePass.cpp">
-      <Filter>3-Render\Pipeline</Filter>
+      <Filter>4-Render\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="..\FSampleColorAutomaticEffect.cpp">
-      <Filter>3-Render\Pipeline\Simple</Filter>
+      <Filter>4-Render\Pipeline\Simple</Filter>
     </ClCompile>
     <ClCompile Include="..\FSampleColorSkeletonEffect.cpp">
-      <Filter>3-Render\Pipeline\Simple</Filter>
+      <Filter>4-Render\Pipeline\Simple</Filter>
     </ClCompile>
     <ClCompile Include="..\FShadowColorAutomaticEffect.cpp">
-      <Filter>3-Render\Pipeline\Shadow</Filter>
+      <Filter>4-Render\Pipeline\Shadow</Filter>
     </ClCompile>
     <ClCompile Include="..\FShadowDepthAutomaticEffect.cpp">
-      <Filter>3-Render\Pipeline\Shadow</Filter>
+      <Filter>4-Render\Pipeline\Shadow</Filter>
     </ClCompile>
     <ClCompile Include="..\FDeferredAutomaticEffect.cpp">
-      <Filter>3-Render\Pipeline\Deferred</Filter>
+      <Filter>4-Render\Pipeline\Deferred</Filter>
     </ClCompile>
     <ClCompile Include="..\FColorAutomaticEffect.cpp">
-      <Filter>3-Render\Technique</Filter>
+      <Filter>4-Render\Technique</Filter>
     </ClCompile>
     <ClCompile Include="..\FDepthAutomaticEffect.cpp">
-      <Filter>3-Render\Technique</Filter>
+      <Filter>4-Render\Technique</Filter>
     </ClCompile>
     <ClCompile Include="..\FShadowColorSkeletonEffect.cpp">
-      <Filter>3-Render\Pipeline\Shadow</Filter>
+      <Filter>4-Render\Pipeline\Shadow</Filter>
     </ClCompile>
     <ClCompile Include="..\FShadowDepthSkeletonEffect.cpp">
-      <Filter>3-Render\Pipeline\Shadow</Filter>
+      <Filter>4-Render\Pipeline\Shadow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\REffectParameter.cpp">
+      <Filter>3-Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TEffectParameterDescriptors.cpp">
+      <Filter>3-Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -78,19 +81,22 @@
     </ClInclude>
     <ClInclude Include="..\MoEngineRender.h" />
     <ClInclude Include="..\MoErSimplePipeline.h">
-      <Filter>3-Render\Pipeline</Filter>
+      <Filter>4-Render\Pipeline</Filter>
     </ClInclude>
     <ClInclude Include="..\MoErShadowPipeline.h">
-      <Filter>3-Render\Pipeline</Filter>
+      <Filter>4-Render\Pipeline</Filter>
     </ClInclude>
     <ClInclude Include="..\MoErDeferredPipeline.h">
-      <Filter>3-Render\Pipeline</Filter>
+      <Filter>4-Render\Pipeline</Filter>
     </ClInclude>
     <ClInclude Include="..\MoErTechnique.h">
-      <Filter>3-Render</Filter>
+      <Filter>4-Render</Filter>
     </ClInclude>
     <ClInclude Include="..\MoErPipeline.h">
-      <Filter>3-Render</Filter>
+      <Filter>4-Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoErCore.h">
+      <Filter>3-Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -100,26 +106,29 @@
     <Filter Include="2-Common">
       <UniqueIdentifier>{2be0ee66-41a3-4553-8138-93994f3a1657}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3-Render">
+    <Filter Include="3-Core">
+      <UniqueIdentifier>{8a7f703d-0ade-4bd2-adad-62ea9a567111}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4-Render">
       <UniqueIdentifier>{84889e2a-bc1a-4cbd-8930-5dde2a70770b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3-Render\Pipeline">
+    <Filter Include="4-Render\Pipeline">
       <UniqueIdentifier>{f2bf932d-701a-4014-9dcb-8e3a5353426d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3-Render\Technique">
-      <UniqueIdentifier>{b4de1252-c09f-43cf-8d87-a1d6c50c3568}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3-Render\Pipeline\Shadow">
+    <Filter Include="4-Render\Pipeline\Shadow">
       <UniqueIdentifier>{01510076-8da0-4c35-b564-00df1e373359}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3-Render\Pipeline\Simple">
+    <Filter Include="4-Render\Pipeline\Simple">
       <UniqueIdentifier>{2afda373-6e23-45c9-b53c-9121be2dc052}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3-Render\Pipeline\Deferred">
+    <Filter Include="4-Render\Pipeline\Deferred">
       <UniqueIdentifier>{21a046f1-d109-4885-88f4-5e96f4d536e1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3-Render\Pipeline\Special">
+    <Filter Include="4-Render\Pipeline\Special">
       <UniqueIdentifier>{41a757a3-0e2c-42b1-b750-8230af53d7e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4-Render\Technique">
+      <UniqueIdentifier>{b4de1252-c09f-43cf-8d87-a1d6c50c3568}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

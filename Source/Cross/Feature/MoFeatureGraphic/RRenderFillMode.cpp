@@ -19,6 +19,7 @@ ERenderFillMode RRenderFillMode::Parse(TCharC* pValue, ERenderFillMode fillModeC
          return ERenderFillMode_Line;
       }else if(code.Equals("fill")){
          return ERenderFillMode_Fill;
+      }else{
          MO_STATIC_FATAL("Parse fill mode failure. (value=%s)", pValue);
       }
    }

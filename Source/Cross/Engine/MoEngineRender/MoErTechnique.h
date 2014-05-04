@@ -6,6 +6,10 @@
 #include "MoErCommon.h"
 #endif // __MO_ER_COMMON_H__
 
+#ifndef __MO_ER_CORE_H__
+#include "MoErCore.h"
+#endif // __MO_ER_CORE_H__
+
 #define MO_EG_EFFECT_CONST_MAXCNT     64
 #define MO_EG_EFFECT_ATTRIBUTE_MAXCNT 32
 #define MO_EG_EFFECT_SAMPLER_MAXCNT   16
@@ -62,34 +66,6 @@ enum EEffectVertexConst{
    EEffectConst_Fragment_LightDepth,
    EEffectConst_Fragment_LightCamera,
    EEffectVertexConst_Count,
-};
-
-//============================================================
-// <T>效果常量描述。</T>
-//============================================================
-struct SEffectConstDescriptor{
-public:
-   TInt code;
-   TCharC* namePtr;
-   TInt bindId;
-   ERenderShader shaderCd;
-public:
-   SEffectConstDescriptor(){
-      code = -1;
-      MO_CLEAR(namePtr);
-      bindId = -1;
-      shaderCd = ERenderShader_Unknown;
-   }
-};
-
-//============================================================
-// <T>效果常量描述集合。</T>
-//============================================================
-class TEffectConstDescriptors : public TFixVector<SEffectConstDescriptor, MO_EG_EFFECT_CONST_MAXCNT>{
-public:
-   TEffectConstDescriptors();
-public:
-   void Register(ERenderShader shaderCd, TInt code, TCharC* pName);
 };
 
 //============================================================
@@ -164,7 +140,7 @@ protected:
    SMatrix3d _mvpMatrix;
    SMatrix3d _vpMatrix;
    SMatrix3d _lightVpMatrix;
-   TEffectConstDescriptors _constDescriptors;
+   TEffectParameterDescriptors _parameterDescriptors;
    TEffectAttributeDescriptors _attributeDescriptors;
    TEffectSamplerDescriptors _samplerDescriptors;
    SEffectDescriptor _dynamicDescriptor;
@@ -188,7 +164,7 @@ public:
    TResult BindSamplerDescriptors(FRenderable* pRenderable);
 public:
    MO_ABSTRACT TResult OnSetup();
-   MO_OVERRIDE TResult Setup();
+   MO_OVERRIDE TResult Build();
 public:
    MO_OVERRIDE TResult LoadConfig(FXmlNode* pConfig);
    MO_OVERRIDE TResult BuildDescripter(SRenderableDescriptor& renderableDescriptor);
