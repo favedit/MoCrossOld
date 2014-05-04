@@ -35,7 +35,7 @@ ERenderCullMode RRenderCullMode::Parse(TCharC* pValue, ERenderCullMode cullModeC
 // @return ×Ö·û´®
 //============================================================
 TCharC* RRenderCullMode::Format(ERenderCullMode cullModeCd){
-   switch (cullModeCd){
+   switch(cullModeCd){
       case ERenderCullMode_None:
          return "None";
       case ERenderCullMode_Front:

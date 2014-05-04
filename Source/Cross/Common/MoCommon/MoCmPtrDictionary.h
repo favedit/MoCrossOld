@@ -105,15 +105,15 @@ protected:
 public:
    //------------------------------------------------------------
    // <T>获得当前位置的数据内容。</T>
-   MO_INLINE const T& operator *() const{
+   MO_INLINE const T* operator *() const{
       MO_ASSERT(_pEntry);
-      return _pEntry->value;
+      return (T*)_pEntry->value;
    }
    //------------------------------------------------------------
    // <T>获得当前位置的数据内容。</T>
-   MO_INLINE const T operator->() const{
+   MO_INLINE const T* operator->() const{
       MO_ASSERT(_pEntry);
-      return _pEntry->value;
+      return (T*)_pEntry->value;
    }
 public:
    //------------------------------------------------------------
@@ -196,6 +196,19 @@ public:
    // <T>构造指针字典迭代器。</T>
    GPtrDictionaryIterator(SEntry** ppEntries, TInt entryCount) :
          GPtrDictionaryIteratorC<T>(ppEntries, entryCount){
+   }
+public:
+   //------------------------------------------------------------
+   // <T>获得当前位置的数据内容。</T>
+   MO_INLINE T* operator *(){
+      MO_ASSERT(this->_pEntry);
+      return (T*)this->_pEntry->value;
+   }
+   //------------------------------------------------------------
+   // <T>获得当前位置的数据内容。</T>
+   MO_INLINE T* operator->(){
+      MO_ASSERT(this->_pEntry);
+      return (T*)this->_pEntry->value;
    }
 public:
    //------------------------------------------------------------

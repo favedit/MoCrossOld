@@ -13,6 +13,19 @@
 MO_NAMESPACE_BEGIN
 
 //==========================================================
+#define MO_RENDEROBJECT_SHADERPARAMETER "ShaderParameter"
+#define MO_RENDEROBJECT_SHADERATTRIBUTE "ShaderAttribute"
+#define MO_RENDEROBJECT_SHADERSAMPLER   "ShaderSampler"
+#define MO_RENDEROBJECT_VERTEXBUFFER    "VertexBuffer"
+#define MO_RENDEROBJECT_INDEXBUFFER     "IndexBuffer"
+#define MO_RENDEROBJECT_TEXTURE2D       "Texture2d"
+#define MO_RENDEROBJECT_TEXTURE3D       "Texture3d"
+#define MO_RENDEROBJECT_TARGET          "Target"
+#define MO_RENDEROBJECT_VERTEXSHADER    "VertexShader"
+#define MO_RENDEROBJECT_FRAGMENTSHADER  "FragmentShader"
+#define MO_RENDEROBJECT_PROGRAM         "Program"
+
+//==========================================================
 class FMaterial;
 class FRenderable;
 class FRenderTexture;
@@ -208,16 +221,57 @@ enum ERenderShader{
 };
 
 //============================================================
+// <T>渲染程序类型工具。</T>
+//============================================================
+class MO_FG_DECLARE RRenderShader{
+public:
+   static ERenderShader Parse(TCharC* pValue, ERenderShader shaderCd = ERenderShader_Unknown);
+   static TCharC* Format(ERenderShader shaderCd);
+};
+
+//============================================================
 // <T>渲染程序常量类型。</T>
 //============================================================
-enum ERenderShaderConstForamt{
-   ERenderShaderConstForamt_Float1,
-   ERenderShaderConstForamt_Float2,
-   ERenderShaderConstForamt_Float3,
-   ERenderShaderConstForamt_Float4,
-   ERenderShaderConstForamt_Matrix3x3,
-   ERenderShaderConstForamt_Matrix4x3,
-   ERenderShaderConstForamt_Matrix4x4,
+enum ERenderShaderParameterFormat{
+   ERenderShaderParameterFormat_Unknown,
+   ERenderShaderParameterFormat_Float1,
+   ERenderShaderParameterFormat_Float2,
+   ERenderShaderParameterFormat_Float3,
+   ERenderShaderParameterFormat_Float4,
+   ERenderShaderParameterFormat_Float3x3,
+   ERenderShaderParameterFormat_Float4x3,
+   ERenderShaderParameterFormat_Float4x4,
+};
+
+//============================================================
+// <T>渲染程序常量工具。</T>
+//============================================================
+class MO_FG_DECLARE RRenderShaderParameterFormat{
+public:
+   static ERenderShaderParameterFormat Parse(TCharC* pValue, ERenderShaderParameterFormat formatCd = ERenderShaderParameterFormat_Unknown);
+   static TCharC* Format(ERenderShaderParameterFormat formatCd);
+};
+
+//============================================================
+// <T>渲染程序属性类型。</T>
+//============================================================
+enum ERenderShaderAttributeFormat{
+   ERenderShaderAttributeFormat_Unknown,
+   ERenderShaderAttributeFormat_Float1,
+   ERenderShaderAttributeFormat_Float2,
+   ERenderShaderAttributeFormat_Float3,
+   ERenderShaderAttributeFormat_Float4,
+   ERenderShaderAttributeFormat_Byte4,
+   ERenderShaderAttributeFormat_Byte4Normal,
+};
+
+//============================================================
+// <T>渲染程序属性工具。</T>
+//============================================================
+class MO_FG_DECLARE RRenderShaderAttributeFormat{
+public:
+   static ERenderShaderAttributeFormat Parse(TCharC* pValue, ERenderShaderAttributeFormat formatCd = ERenderShaderAttributeFormat_Unknown);
+   static TCharC* Format(ERenderShaderAttributeFormat formatCd);
 };
 
 //============================================================

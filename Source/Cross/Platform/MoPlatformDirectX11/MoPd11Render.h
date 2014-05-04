@@ -67,16 +67,22 @@ public:
 };
 
 //============================================================
-// <T>渲染器参数。</T>
+// <T>渲染器缓冲。</T>
 //============================================================
-class MO_FG_DECLARE FPd11RenderShaderParameter : public FRenderShaderParameter
+class MO_PD11_DECLARE FPd11RenderShaderBuffer : public FRenderObject
 {
-   MO_CLASS_DECLARE_INHERITS(FPd11RenderShaderParameter, FInstance);
+   MO_CLASS_DECLARE_INHERITS(FPd11RenderShaderBuffer, FRenderObject);
 protected:
    TString _name;
+   TInt _dataLength;
+   FBytes* _pData;
+   FBytes* _pCommit;
+   TInt _commitLength;
+   TInt _slot;
+   ID3D11Buffer* _piBuffer;
 public:
-   FPd11RenderShaderParameter();
-   MO_ABSTRACT ~FPd11RenderShaderParameter();
+   FPd11RenderShaderBuffer();
+   MO_ABSTRACT ~FPd11RenderShaderBuffer();
 public:
    //------------------------------------------------------------
    // <T>获得名称。</T>
@@ -88,6 +94,100 @@ public:
    MO_INLINE void SetName(TCharC* pName){
       _name = pName;
    }
+   //------------------------------------------------------------
+   // <T>获得数据长度。</T>
+   MO_INLINE TInt DataLength(){
+      return _dataLength;
+   }
+   //------------------------------------------------------------
+   // <T>设置数据长度。</T>
+   MO_INLINE void SetDataLength(TInt dataLength){
+      _dataLength = dataLength;
+   }
+   //------------------------------------------------------------
+   // <T>获得数据。</T>
+   MO_INLINE FBytes* Data(){
+      return _pData;
+   }
+   //------------------------------------------------------------
+   // <T>获得插槽。</T>
+   MO_INLINE TInt Solt(){
+      return _slot;
+   }
+   //------------------------------------------------------------
+   // <T>设置插槽。</T>
+   MO_INLINE void SetSolt(TInt slot){
+      _slot = slot;
+   }
+   //------------------------------------------------------------
+   // <T>获得本地缓冲。</T>
+   MO_INLINE ID3D11Buffer* NativeiBuffer(){
+      return _piBuffer;
+   }
+   //------------------------------------------------------------
+   // <T>设置本地缓冲。</T>
+   MO_INLINE void SetNativeiBuffer(ID3D11Buffer* piBuffer){
+      _piBuffer = piBuffer;
+   }
+public:
+   TResult Setup();
+   TResult SetData(TInt index, TAnyC* pData, TInt length);
+   TResult Update();
+};
+//------------------------------------------------------------
+typedef MO_PD11_DECLARE GPtr<FPd11RenderShaderBuffer> GPd11RenderShaderBufferPtr;
+typedef MO_PD11_DECLARE GPtrs<FPd11RenderShaderBuffer> GPd11RenderShaderBufferPtrs;
+
+//============================================================
+// <T>渲染器参数。</T>
+//============================================================
+class MO_PD11_DECLARE FPd11RenderShaderParameter : public FRenderShaderParameter
+{
+   MO_CLASS_DECLARE_INHERITS(FPd11RenderShaderParameter, FRenderShaderParameter);
+protected:
+   GPd11RenderShaderBufferPtr _buffer;
+   ID3D11ShaderReflectionVariable* _piVariable;
+public:
+   FPd11RenderShaderParameter();
+   MO_ABSTRACT ~FPd11RenderShaderParameter();
+public:
+   //------------------------------------------------------------
+   // <T>获得缓冲。</T>
+   MO_INLINE FPd11RenderShaderBuffer* Buffer(){
+      return _buffer;
+   }
+   //------------------------------------------------------------
+   // <T>设置缓冲。</T>
+   MO_INLINE void SetBuffer(FPd11RenderShaderBuffer* pBuffer){
+      _buffer = pBuffer;
+   }
+   //------------------------------------------------------------
+   // <T>设置缓冲。</T>
+   MO_INLINE void NativeVariable(FPd11RenderShaderBuffer* pBuffer){
+      _buffer = pBuffer;
+   }
+   //------------------------------------------------------------
+   // <T>获得本地变量。</T>
+   MO_INLINE ID3D11ShaderReflectionVariable* NativeVariable(){
+      return _piVariable;
+   }
+public:
+   TResult LinkNative(ID3D11ShaderReflectionVariable* piVariable);
+public:
+   MO_OVERRIDE TResult Get(TAny* pData, TInt capacity);
+   MO_OVERRIDE TResult Set(TAny* pData, TInt length);
+};
+
+//============================================================
+// <T>渲染器属性。</T>
+//============================================================
+class MO_PD11_DECLARE FPd11RenderShaderAttribute : public FRenderShaderAttribute
+{
+   MO_CLASS_DECLARE_INHERITS(FPd11RenderShaderAttribute, FRenderShaderAttribute);
+protected:
+public:
+   FPd11RenderShaderAttribute();
+   MO_ABSTRACT ~FPd11RenderShaderAttribute();
 };
 
 //============================================================
@@ -164,26 +264,30 @@ class MO_PD11_DECLARE FPd11RenderProgram : public FRenderProgram
 {
    MO_CLASS_DECLARE_INHERITS(FPd11RenderProgram, FRenderProgram);
 protected:
-   //GLuint _programId;
+   GPd11RenderShaderBufferPtrs _buffers;
+   ID3D11InputLayout* _piInputLayout;
 public:
    FPd11RenderProgram();
    MO_ABSTRACT ~FPd11RenderProgram();
 public:
    //------------------------------------------------------------
-   // <T>获得代码。</T>
-   //MO_INLINE GLuint ProgramId(){
-   //   return _programId;
-   //}
+   // <T>获得缓冲集合。</T>
+   MO_INLINE GPd11RenderShaderBufferPtrs& Buffers(){
+      return _buffers;
+   }
 public:
    MO_OVERRIDE TInt FindDefine(TCharC* pCode);
    MO_OVERRIDE TInt FindAttribute(TCharC* pCode);
    MO_OVERRIDE TResult BindAttribute(TInt slot, TCharC* pCode);
 protected:
+   FPd11RenderShaderBuffer* FindBuffer(TCharC* pName);
    TResult BuildShader(FRenderShader* pShader, ID3D10Blob* piData);
 public:
    MO_OVERRIDE TResult Setup();
    MO_OVERRIDE TResult Build();
    MO_OVERRIDE TResult Link();
+public:
+   MO_OVERRIDE TResult SetConstVariable(ERenderShader shaderCd, TCharC* pName, TAnyC* pData, TInt length);
 public:
    MO_OVERRIDE TResult Suspend();
    MO_OVERRIDE TResult Resume();
@@ -298,34 +402,11 @@ class MO_PD11_DECLARE FPd11RenderDevice : public FRenderDevice
 {
    MO_CLASS_DECLARE_INHERITS(FPd11RenderDevice, FRenderDevice);
 protected:
-   // 填充模式
-   ERenderFillMode _fillModeCd;
-   // 深度信息
-   TBool _optionDepth;
-   ERenderDepthMode _depthModeCd;
-   // 剪裁信息
-   TBool _optionCull;
-   ERenderCullMode _cullModeCd;
-   // 混合信息
-   TBool _statusBlend;
-   ERenderBlendMode _blendSourceCd;
-   ERenderBlendMode _blendTargetCd;
-   TInt _renderTextureActiveSlot;
    // 纹理信息
    TBool _optionTexture;
-   //GLint _vertexConstLimit;
-   //GLint _vertexAttributeLimit;
-   //GLint _fragmentConstLimit;
-   //GLint _varyingLimit;
-   //GLint _textureLimit;
-   //GLint _textureSizeLimit;
-   //GLint _textureTotalLimit;
-   //GLint _renderTargetLimit;
    // 关联顶点缓冲集合
    FRenderFlatTextureList* _pLinkFlatTextures;
    FRenderCubeTextureList* _pLinkCubeTextures;
-   // 效率统计
-   GPtr<FStatistics> _renderDrawStatistics;
    // 接口指针
    HWND _windowHandle;
    IDXGISwapChain* _piSwapChain;
@@ -386,7 +467,7 @@ public:
    MO_OVERRIDE TResult SetScissorRectangle(TInt left, TInt top, TInt width, TInt height);
    MO_OVERRIDE TResult SetRenderTarget(FRenderTarget* pRenderTarget = NULL);
    MO_OVERRIDE TResult SetProgram(FRenderProgram* pProgram);
-   MO_OVERRIDE TResult BindConstData(ERenderShader shaderCd, TInt slot, ERenderShaderConstForamt formatCd, TAnyC* pData, TInt length);
+   MO_OVERRIDE TResult BindConstData(ERenderShader shaderCd, TInt slot, ERenderShaderParameterFormat formatCd, TAnyC* pData, TInt length);
    MO_OVERRIDE TResult BindConstFloat3(ERenderShader shaderCd, TInt slot, TFloat x = 0.0f, TFloat y = 0.0f, TFloat z = 0.0f);
    MO_OVERRIDE TResult BindConstFloat4(ERenderShader shaderCd, TInt slot, TFloat x = 0.0f, TFloat y = 0.0f, TFloat z = 0.0f, TFloat w = 1.0f);
    MO_OVERRIDE TResult BindConstMatrix3x3(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix);

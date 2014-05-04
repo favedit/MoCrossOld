@@ -54,6 +54,70 @@ FRenderShaderParameter* FRenderProgram::ParameterFind(ERenderShader shaderCd, TC
 }
 
 //============================================================
+// <T>增加一个参数。</T>
+//
+// @param pParameter 渲染参数
+// @return 处理结果
+//============================================================
+TResult FRenderProgram::ParameterPush(FRenderShaderParameter* pParameter){
+   MO_CHECK(pParameter, return ENull);
+   _parameters.Set(pParameter->Name(), pParameter);
+   return ESuccess;
+}
+
+//============================================================
+// <T>根据名称查找渲染属性。</T>
+//
+// @param pName 名称
+// @param index 索引
+// @return 渲染属性
+//============================================================
+FRenderShaderAttribute* FRenderProgram::AttributeFind(TCharC* pName, TInt index){
+   TInt count = _attributes.Count();
+   //for(TInt n = 0; n < count; n++){
+   //   FRenderShaderAttribute* pAttribute = _attributes.Get(n);
+   //   if(RString::Equals(pAttribute->Name(), pName)){
+   //      if((index == -1) || (pAttribute->Index() == index)){
+   //         return pAttribute;
+   //      }
+   //   }
+   //}
+   return NULL;
+}
+
+//============================================================
+// <T>增加一个属性。</T>
+//
+// @param pAttribute 属性
+// @return 处理结果
+//============================================================
+TResult FRenderProgram::AttributePush(FRenderShaderAttribute* pAttribute){
+   MO_CHECK(pAttribute, return ENull);
+   //TCharC* pName = pAttribute->Name();
+   //TInt index = pAttribute->Index();
+   //FRenderShaderAttribute* pFindAttribute = AttributeFind(pName, index);
+   //MO_CHECK(!pFindAttribute, return EDuplicate);
+   //_attributes.Push(pAttribute);
+   return ESuccess;
+}
+
+//============================================================
+// <T>增加一个取样。</T>
+//
+// @param pSampler 取样
+// @return 处理结果
+//============================================================
+TResult FRenderProgram::SamplerPush(FRenderShaderSampler* pSampler){
+   MO_CHECK(pSampler, return ENull);
+   //TCharC* pName = pAttribute->Name();
+   //TInt index = pAttribute->Index();
+   //FRenderShaderAttribute* pFindAttribute = AttributeFind(pName, index);
+   //MO_CHECK(!pFindAttribute, return EDuplicate);
+   //_attributes.Push(pAttribute);
+   return ESuccess;
+}
+
+//============================================================
 // <T>生成顶点渲染程序。</T>
 //
 // @param pSource 渲染来源

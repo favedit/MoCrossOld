@@ -2,20 +2,18 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FRenderShaderAttribute, FRenderObject);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderShaderSampler, FRenderObject);
 
 //============================================================
-// <T>构造渲染器属性。</T>
+// <T>构造渲染器取样。</T>
 //============================================================
-FRenderShaderAttribute::FRenderShaderAttribute(){
-   _index = -1;
-   _formatCd = ERenderShaderAttributeFormat_Unknown;
+FRenderShaderSampler::FRenderShaderSampler(){
 }
 
 //============================================================
-// <T>析构渲染器属性。</T>
+// <T>析构渲染器取样。</T>
 //============================================================
-FRenderShaderAttribute::~FRenderShaderAttribute(){
+FRenderShaderSampler::~FRenderShaderSampler(){
 }
 
 //============================================================
@@ -24,15 +22,14 @@ FRenderShaderAttribute::~FRenderShaderAttribute(){
 // @param pConfig 配置节点
 // @return 处理结果
 //============================================================
-TResult FRenderShaderAttribute::LoadConfig(FXmlNode* pConfig){
+TResult FRenderShaderSampler::LoadConfig(FXmlNode* pConfig){
    MO_CHECK(pConfig, return ENull);
    // 设置名称
    _name = pConfig->Get("name");
    // 设置关联
    _linker = pConfig->Get("linker");
-   // 设置格式
-   TCharC* pFormat = pConfig->Get("format");
-   _formatCd = RRenderShaderAttributeFormat::Parse(pFormat);
+   // 设置关联
+   _source = pConfig->Get("source");
    return ESuccess;
 }
 

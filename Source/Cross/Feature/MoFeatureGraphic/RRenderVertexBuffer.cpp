@@ -45,7 +45,7 @@ ERenderVertexBuffer RRenderVertexBuffer::Parse(TCharC* pValue, ERenderVertexBuff
 // @return ×Ö·û´®
 //============================================================
 TCharC* RRenderVertexBuffer::Format(ERenderVertexBuffer bufferCd){
-   switch (bufferCd){
+   switch(bufferCd){
       case ERenderVertexBuffer_Instance:
          return "Instance";
       case ERenderVertexBuffer_Position:

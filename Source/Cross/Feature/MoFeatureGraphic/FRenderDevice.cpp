@@ -8,6 +8,8 @@ MO_CLASS_ABSTRACT_IMPLEMENT_INHERITS(FRenderDevice, FDevice);
 // <T>构造舞台对象。</T>
 //============================================================
 FRenderDevice::FRenderDevice(){
+   // 创建类工厂
+   _pClassFactory = MO_CREATE(FClassFactory);
    // 创建当前信息
    MO_CLEAR(_pCapability);
    // 初始化填充模式
@@ -51,6 +53,8 @@ FRenderDevice::~FRenderDevice(){
    // 删除缓冲数据
    MO_DELETE(_pVertexConsts);
    MO_DELETE(_pFragmentConsts);
+   // 删除类工厂
+   MO_DELETE(_pClassFactory);
 }
 
 //============================================================
@@ -210,6 +214,16 @@ TBool FRenderDevice::UpdateConsts(ERenderShader shaderCd, TInt slot, TAnyC* pDat
 }
 
 //============================================================
+// <T>根据名称创建一个渲染对象。</T>
+//
+// @param pName 名称
+// @return 渲染对象
+//============================================================
+FRenderObject* FRenderDevice::CreateObject(TCharC* pName){
+   return _pClassFactory->Create<FRenderObject>(pName);
+}
+
+//============================================================
 // <T>绑定顶点流处理。</T>
 //
 // @param slot 插槽
@@ -263,7 +277,7 @@ TResult FRenderDevice::BindConstMatrix4x3(ERenderShader shaderCd, TInt slot, con
       *pWriter++ = matrix.data[3][2];
    }
    // 提交数据
-   TResult resultCd = BindConstData(shaderCd, slot, ERenderShaderConstForamt_Matrix4x3, data, sizeof(TFloat) * 12 * count);
+   TResult resultCd = BindConstData(shaderCd, slot, ERenderShaderParameterFormat_Float4x3, data, sizeof(TFloat) * 12 * count);
    return resultCd;
 }
 
@@ -303,7 +317,7 @@ TResult FRenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, con
       *pWriter++ = matrix.data[3][3];
    }
    // 提交数据
-   TResult resultCd = BindConstData(shaderCd, slot, ERenderShaderConstForamt_Matrix4x4, data, sizeof(TFloat) * 16 * count);
+   TResult resultCd = BindConstData(shaderCd, slot, ERenderShaderParameterFormat_Float4x4, data, sizeof(TFloat) * 16 * count);
    return resultCd;
 }
 

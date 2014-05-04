@@ -33,7 +33,7 @@ ERenderBlendMode RRenderBlendMode::Parse(TCharC* pValue, ERenderBlendMode blendM
 // @return ×Ö·û´®
 //============================================================
 TCharC* RRenderBlendMode::Format(ERenderBlendMode blendModeCd){
-   switch (blendModeCd){
+   switch(blendModeCd){
       case ERenderBlendMode_None:
          return "None";
       case ERenderBlendMode_SourceAlpha:

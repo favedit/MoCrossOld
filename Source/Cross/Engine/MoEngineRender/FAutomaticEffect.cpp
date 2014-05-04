@@ -335,7 +335,18 @@ TResult FAutomaticEffect::OnSetup(){
    while(iterator.Next()){
       FXmlNode* pNode = *iterator;
       //............................................................
-      // 建立属性节点
+      // 建立参数定义集合
+      if(pNode->IsName("Parameter")){
+         TCharC* pName = pNode->Get("name");
+         TCharC* pBuffer = pNode->Get("linker");
+         TCharC* pFormat = pNode->Get("format");
+         ERenderVertexBuffer bufferCd = RRenderVertexBuffer::Parse(pBuffer);
+         ERenderVertexFormat formatCd = RRenderVertexFormat::Parse(pFormat);
+         //_constDescriptors.Register(bufferCd, pName, formatCd);
+         continue;
+      }
+      //............................................................
+      // 建立属性定义集合
       if(pNode->IsName("Attribute")){
          TCharC* pName = pNode->Get("name");
          TCharC* pBuffer = pNode->Get("linker");
@@ -346,7 +357,7 @@ TResult FAutomaticEffect::OnSetup(){
          continue;
       }
       //............................................................
-      // 建立属性节点
+      // 建立取样器定义集合
       if(pNode->IsName("Sampler")){
          TCharC* pName = pNode->Get("name");
          TCharC* pBuffer = pNode->Get("linker");

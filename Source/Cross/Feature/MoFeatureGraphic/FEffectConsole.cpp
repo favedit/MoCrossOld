@@ -1,4 +1,3 @@
-//#include "MoEgDevice.h"
 #include "MoFgTechnique.h"
 #include "MoFgRender.h"
 
@@ -74,6 +73,38 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
       pEffect->SetFragmentSource(pFragmentCode);
    }else{
       MO_FATAL("Build fragment souce failure.");
+   }
+   //............................................................
+   FRenderProgram* pProgram = pEffect->Program();
+   // 解析定义信息
+   FXmlNode* pConfig = pTemplate->Config();
+   TXmlNodeIteratorC iterator = pConfig->NodeIteratorC();
+   while(iterator.Next()){
+      FXmlNode* pNode = *iterator;
+      //............................................................
+      // 建立参数定义集合
+      if(pNode->IsName("Parameter")){
+         FRenderShaderParameter* pParameter = pRenderDevice->ClassFactory()->Create<FRenderShaderParameter>(MO_RENDEROBJECT_SHADERPARAMETER);
+         pParameter->LoadConfig(pNode);
+         pProgram->ParameterPush(pParameter);
+         continue;
+      }
+      //............................................................
+      // 建立属性定义集合
+      if(pNode->IsName("Attribute")){
+         FRenderShaderAttribute* pAttribute = pRenderDevice->ClassFactory()->Create<FRenderShaderAttribute>(MO_RENDEROBJECT_SHADERATTRIBUTE);
+         pAttribute->LoadConfig(pNode);
+         pProgram->AttributePush(pAttribute);
+         continue;
+      }
+      //............................................................
+      // 建立取样器定义集合
+      if(pNode->IsName("Sampler")){
+         FRenderShaderSampler* pSampler = pRenderDevice->ClassFactory()->Create<FRenderShaderSampler>(MO_RENDEROBJECT_SHADERSAMPLER);
+         pSampler->LoadConfig(pNode);
+         pProgram->SamplerPush(pSampler);
+         continue;
+      }
    }
    //............................................................
    // 配置处理

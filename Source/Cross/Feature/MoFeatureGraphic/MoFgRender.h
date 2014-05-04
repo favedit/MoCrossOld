@@ -39,6 +39,7 @@ class FRenderTextures;
 class FRenderFlatTexture;
 class FRenderCubeTexture;
 class FRenderProgram;
+class FRenderShader;
 class FRenderDevice;
 class FPipeline;
 class FPipelinePass;
@@ -757,11 +758,16 @@ public:
 //============================================================
 // <T>渲染器参数。</T>
 //============================================================
-class MO_FG_DECLARE FRenderShaderParameter : public FInstance
+class MO_FG_DECLARE FRenderShaderParameter : public FRenderObject
 {
-   MO_CLASS_DECLARE_INHERITS(FRenderShaderParameter, FInstance);
+   MO_CLASS_DECLARE_INHERITS(FRenderShaderParameter, FRenderObject);
 protected:
    TString _name;
+   TString _linker;
+   ERenderShader _shaderCd;
+   ERenderShaderParameterFormat _formatCd;
+   TBool _statusUsed;
+   FRenderShader* _pShader;
 public:
    FRenderShaderParameter();
    MO_ABSTRACT ~FRenderShaderParameter();
@@ -776,6 +782,61 @@ public:
    MO_INLINE void SetName(TCharC* pName){
       _name = pName;
    }
+   //------------------------------------------------------------
+   // <T>获得关联器。</T>
+   MO_INLINE TCharC* Linker(){
+      return _linker;
+   }
+   //------------------------------------------------------------
+   // <T>设置关联器。</T>
+   MO_INLINE void SetLinker(TCharC* pLinker){
+      _linker = pLinker;
+   }
+   //------------------------------------------------------------
+   // <T>获得渲染类型。</T>
+   MO_INLINE ERenderShader ShaderCd(){
+      return _shaderCd;
+   }
+   //------------------------------------------------------------
+   // <T>设置渲染类型。</T>
+   MO_INLINE void SetFormatCd(ERenderShader shaderCd){
+      _shaderCd = shaderCd;
+   }
+   //------------------------------------------------------------
+   // <T>获得格式。</T>
+   MO_INLINE ERenderShaderParameterFormat FormatCd(){
+      return _formatCd;
+   }
+   //------------------------------------------------------------
+   // <T>设置格式。</T>
+   MO_INLINE void SetFormatCd(ERenderShaderParameterFormat formatCd){
+      _formatCd = formatCd;
+   }
+   //------------------------------------------------------------
+   // <T>获得状态是否被使用。</T>
+   MO_INLINE TBool IsStatusUsed(){
+      return _statusUsed;
+   }
+   //------------------------------------------------------------
+   // <T>设置状态是否被使用。</T>
+   MO_INLINE void SetStatusUsed(TBool statusUsed){
+      _statusUsed = statusUsed;
+   }
+   //------------------------------------------------------------
+   // <T>获得渲染器。</T>
+   MO_INLINE FRenderShader* Shader(){
+      return _pShader;
+   }
+   //------------------------------------------------------------
+   // <T>设置渲染器。</T>
+   MO_INLINE void SetShader(FRenderShader* pShader){
+      _pShader = pShader;
+   }
+public:
+   MO_ABSTRACT TResult Get(TAny* pData, TInt capacity);
+   MO_ABSTRACT TResult Set(TAny* pData, TInt length);
+public:
+   MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);
 };
 //------------------------------------------------------------
 typedef MO_FG_DECLARE GPtrDictionary<FRenderShaderParameter> GRenderShaderParameterDictionary;
@@ -783,12 +844,14 @@ typedef MO_FG_DECLARE GPtrDictionary<FRenderShaderParameter> GRenderShaderParame
 //============================================================
 // <T>渲染器属性。</T>
 //============================================================
-class MO_FG_DECLARE FRenderShaderAttribute : public FInstance
+class MO_FG_DECLARE FRenderShaderAttribute : public FRenderObject
 {
-   MO_CLASS_DECLARE_INHERITS(FRenderShaderAttribute, FInstance);
+   MO_CLASS_DECLARE_INHERITS(FRenderShaderAttribute, FRenderObject);
 protected:
    TString _name;
+   TString _linker;
    TInt _index;
+   ERenderShaderAttributeFormat _formatCd;
 public:
    FRenderShaderAttribute();
    MO_ABSTRACT ~FRenderShaderAttribute();
@@ -804,6 +867,16 @@ public:
       _name = pName;
    }
    //------------------------------------------------------------
+   // <T>获得关联器。</T>
+   MO_INLINE TCharC* Linker(){
+      return _linker;
+   }
+   //------------------------------------------------------------
+   // <T>设置关联器。</T>
+   MO_INLINE void SetLinker(TCharC* pLinker){
+      _linker = pLinker;
+   }
+   //------------------------------------------------------------
    // <T>获得索引。</T>
    MO_INLINE TInt Index(){
       return _index;
@@ -813,9 +886,72 @@ public:
    MO_INLINE void SetIndex(TInt index){
       _index = index;
    }
+   //------------------------------------------------------------
+   // <T>获得属性类型。</T>
+   MO_INLINE ERenderShaderAttributeFormat FormatCd(){
+      return _formatCd;
+   }
+   //------------------------------------------------------------
+   // <T>设置属性类型。</T>
+   MO_INLINE void SetFormatCd(ERenderShaderAttributeFormat formatCd){
+      _formatCd = formatCd;
+   }
+public:
+   MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);
 };
 //------------------------------------------------------------
+typedef MO_FG_DECLARE GPtrs<FRenderShaderAttribute> GRenderShaderAttributePtrs;
 typedef MO_FG_DECLARE GPtrDictionary<FRenderShaderAttribute> GRenderShaderAttributeDictionary;
+
+//============================================================
+// <T>渲染器取样。</T>
+//============================================================
+class MO_FG_DECLARE FRenderShaderSampler : public FRenderObject
+{
+   MO_CLASS_DECLARE_INHERITS(FRenderShaderSampler, FRenderObject);
+protected:
+   TString _name;
+   TString _linker;
+   TString _source;
+public:
+   FRenderShaderSampler();
+   MO_ABSTRACT ~FRenderShaderSampler();
+public:
+   //------------------------------------------------------------
+   // <T>获得名称。</T>
+   MO_INLINE TCharC* Name(){
+      return _name;
+   }
+   //------------------------------------------------------------
+   // <T>设置名称。</T>
+   MO_INLINE void SetName(TCharC* pName){
+      _name = pName;
+   }
+   //------------------------------------------------------------
+   // <T>获得关联器。</T>
+   MO_INLINE TCharC* Linker(){
+      return _linker;
+   }
+   //------------------------------------------------------------
+   // <T>设置关联器。</T>
+   MO_INLINE void SetLinker(TCharC* pLinker){
+      _linker = pLinker;
+   }
+   //------------------------------------------------------------
+   // <T>获得来源。</T>
+   MO_INLINE TCharC* Source(){
+      return _linker;
+   }
+   //------------------------------------------------------------
+   // <T>设置来源。</T>
+   MO_INLINE void SetSource(TCharC* pSource){
+      _source = pSource;
+   }
+public:
+   MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);
+};
+//------------------------------------------------------------
+typedef MO_FG_DECLARE GPtrDictionary<FRenderShaderSampler> GRenderShaderSamplerDictionary;
 
 //============================================================
 // <T>渲染器。</T>
@@ -830,7 +966,6 @@ protected:
    FRenderSource* _pSource;
    FRenderSource* _pCompileSource;
    GRenderShaderParameterDictionary _parameters;
-   GRenderShaderAttributeDictionary _attributes;
 public:
    FRenderShader();
    MO_ABSTRACT ~FRenderShader();
@@ -870,23 +1005,6 @@ public:
    MO_INLINE TResult ParameterPush(FRenderShaderParameter* pParameter){
       MO_CHECK(pParameter, return ENull);
       _parameters.Set(pParameter->Name(), pParameter);
-      return ESuccess;
-   }
-   //------------------------------------------------------------
-   // <T>获得渲染属性集合。</T>
-   MO_INLINE GRenderShaderAttributeDictionary& Attributes(){
-      return _attributes;
-   }
-   //------------------------------------------------------------
-   // <T>根据名称查找渲染属性。</T>
-   MO_INLINE FRenderShaderAttribute* AttributeFind(TCharC* pName){
-      return _attributes.Find(pName);
-   }
-   //------------------------------------------------------------
-   // <T>增加一个属性。</T>
-   MO_INLINE TResult AttributePush(FRenderShaderAttribute* pAttribute){
-      MO_CHECK(pAttribute, return ENull);
-      _attributes.Set(pAttribute->Name(), pAttribute);
       return ESuccess;
    }
 public:
@@ -959,23 +1077,15 @@ class MO_FG_DECLARE FRenderProgram :
 {
    MO_CLASS_ABSTRACT_DECLARE_INHERITS(FRenderProgram, FRenderObject);
 protected:
+   GRenderShaderParameterDictionary _parameters;
+   GRenderShaderAttributeDictionary _attributes;
+   GRenderShaderSamplerDictionary _samplers;
    FRenderVertexShader* _pVertexShader;
    FRenderFragmentShader* _pFragmentShader;
-   GRenderShaderParameterDictionary _parameters;
 public:
    FRenderProgram();
    MO_ABSTRACT ~FRenderProgram();
 public:
-   //------------------------------------------------------------
-   // <T>获得顶点渲染器。</T>
-   MO_INLINE FRenderVertexShader* VertexShader(){
-      return _pVertexShader;
-   }
-   //------------------------------------------------------------
-   // <T>获得像素渲染器。</T>
-   MO_INLINE FRenderFragmentShader* FragmentShader(){
-      return _pFragmentShader;
-   }
    //------------------------------------------------------------
    // <T>获得渲染参数集合。</T>
    MO_INLINE GRenderShaderParameterDictionary& Parameters(){
@@ -986,9 +1096,43 @@ public:
    MO_INLINE FRenderShaderParameter* ParameterFind(TCharC* pName){
       return _parameters.Find(pName);
    }
+   //------------------------------------------------------------
+   // <T>获得渲染属性集合。</T>
+   MO_INLINE GRenderShaderAttributeDictionary& Attributes(){
+      return _attributes;
+   }
+   //------------------------------------------------------------
+   // <T>根据名称查找渲染属性。</T>
+   MO_INLINE FRenderShaderAttribute* AttributeFind(TCharC* pName){
+      return _attributes.Find(pName);
+   }
+   //------------------------------------------------------------
+   // <T>获得渲染取样集合。</T>
+   MO_INLINE GRenderShaderSamplerDictionary& Samplers(){
+      return _samplers;
+   }
+   //------------------------------------------------------------
+   // <T>根据名称查找渲染取样。</T>
+   MO_INLINE FRenderShaderSampler* SamplerFind(TCharC* pName){
+      return _samplers.Find(pName);
+   }
+   //------------------------------------------------------------
+   // <T>获得顶点渲染器。</T>
+   MO_INLINE FRenderVertexShader* VertexShader(){
+      return _pVertexShader;
+   }
+   //------------------------------------------------------------
+   // <T>获得像素渲染器。</T>
+   MO_INLINE FRenderFragmentShader* FragmentShader(){
+      return _pFragmentShader;
+   }
 public:
    GRenderShaderParameterDictionary& Parameters(ERenderShader shaderCd);
    FRenderShaderParameter* ParameterFind(ERenderShader shaderCd, TCharC* pName);
+   TResult ParameterPush(FRenderShaderParameter* pParameter);
+   FRenderShaderAttribute* AttributeFind(TCharC* pName, TInt index = -1);
+   TResult AttributePush(FRenderShaderAttribute* pAttribute);
+   TResult SamplerPush(FRenderShaderSampler* pSampler);
 public:
    MO_ABSTRACT TResult MakeVertexSource(FRenderSource* pSource);
    MO_ABSTRACT TResult MakeFragmentSource(FRenderSource* pSource);
@@ -1428,6 +1572,8 @@ class MO_FG_DECLARE FRenderDevice : public FDevice
 {
    MO_CLASS_ABSTRACT_DECLARE_INHERITS(FRenderDevice, FDevice);
 protected:
+   // 类工厂
+   FClassFactory* _pClassFactory;
    // 渲染能力
    FRenderCapability* _pCapability;
    // 填充模式
@@ -1474,6 +1620,11 @@ public:
    MO_ABSTRACT ~FRenderDevice();
 public:
    //------------------------------------------------------------
+   // <T>获得类工厂。</T>
+   MO_INLINE FClassFactory* ClassFactory(){
+      return _pClassFactory;
+   }
+   //------------------------------------------------------------
    // <T>获得渲染能力。</T>
    MO_INLINE FRenderCapability* Capability(){
       return _pCapability;
@@ -1508,6 +1659,13 @@ public:
    TBool UpdateConsts(ERenderShader shaderCd, TInt slot, TAnyC* pData, TInt length);
    MO_VIRTUAL TResult CheckError(TCharC* pCode, TCharC* pMessage, ...) = 0;
 public:
+   MO_ABSTRACT FRenderObject* CreateObject(TCharC* pName);
+   template <class T>
+   MO_INLINE T* CreateObject(TCharC* pName){
+      FRenderObject* pRenderObject = CreateObject(pName);
+      return pRenderObject->Convert<T>();
+   }
+public:
    MO_VIRTUAL FRenderVertexBuffer* CreateVertexBuffer(FClass* pClass = NULL) = 0;
    MO_VIRTUAL FRenderIndexBuffer* CreateIndexBuffer(FClass* pClass = NULL) = 0;
    MO_VIRTUAL FRenderProgram* CreateProgrom(FClass* pClass = NULL) = 0;
@@ -1524,7 +1682,7 @@ public:
    MO_VIRTUAL TResult SetScissorRectangle(TInt left, TInt top, TInt width, TInt height) = 0;
    MO_VIRTUAL TResult SetRenderTarget(FRenderTarget* pRenderTarget = NULL) = 0;
    MO_VIRTUAL TResult SetProgram(FRenderProgram* pProgram) = 0;
-   MO_VIRTUAL TResult BindConstData(ERenderShader shaderCd, TInt slot, ERenderShaderConstForamt formatCd, TAnyC* pData, TInt length) = 0;
+   MO_VIRTUAL TResult BindConstData(ERenderShader shaderCd, TInt slot, ERenderShaderParameterFormat formatCd, TAnyC* pData, TInt length) = 0;
    MO_VIRTUAL TResult BindConstFloat3(ERenderShader shaderCd, TInt slot, TFloat x = 0.0f, TFloat y = 0.0f, TFloat z = 0.0f) = 0;
    MO_VIRTUAL TResult BindConstFloat4(ERenderShader shaderCd, TInt slot, TFloat x = 0.0f, TFloat y = 0.0f, TFloat z = 0.0f, TFloat w = 1.0f) = 0;
    MO_VIRTUAL TResult BindConstMatrix3x3(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix) = 0;

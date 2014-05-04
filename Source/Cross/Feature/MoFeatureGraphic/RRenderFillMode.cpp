@@ -32,7 +32,7 @@ ERenderFillMode RRenderFillMode::Parse(TCharC* pValue, ERenderFillMode fillModeC
 // @return ×Ö·û´®
 //============================================================
 TCharC* RRenderFillMode::Format(ERenderFillMode fillModeCd){
-   switch (fillModeCd){
+   switch(fillModeCd){
       case ERenderFillMode_Point:
          return "Point";
       case ERenderFillMode_Line:

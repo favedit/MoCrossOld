@@ -56,6 +56,8 @@ TResult FPd11RenderFlatTexture::Upload(TByteC* pData, TInt length){
    MO_CHECK(length > 0, return ENull);
    MO_CHECK(_pDevice, return ENull);
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
+   // 释放资源
+   MO_RELEASE(_piTexture);
    // 设置参数
    D3D11_TEXTURE2D_DESC descriptor;
    RType<D3D11_TEXTURE2D_DESC>::Clear(&descriptor);
@@ -65,17 +67,17 @@ TResult FPd11RenderFlatTexture::Upload(TByteC* pData, TInt length){
    descriptor.ArraySize = 1;
    descriptor.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
    descriptor.SampleDesc.Count = 1;
-   descriptor.Usage = D3D11_USAGE_DYNAMIC;
+   descriptor.Usage = D3D11_USAGE_DEFAULT;
    descriptor.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-   descriptor.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-   descriptor.MiscFlags = 0;
    // 设置内存
    D3D11_SUBRESOURCE_DATA data;
    RType<D3D11_SUBRESOURCE_DATA>::Clear(&data);
    data.pSysMem = pData;
+   data.SysMemPitch = sizeof(TUint32) * _size.width;
    // 创建纹理
    HRESULT dxResult = pRenderDevice->NativeDevice()->CreateTexture2D(&descriptor, &data, &_piTexture);
    if(FAILED(dxResult)){
+      TInt a = GetLastError();
       MO_FATAL("Create buffer failure.");
       return EFailure;
    }
