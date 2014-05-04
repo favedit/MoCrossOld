@@ -66,7 +66,7 @@ TResult FAutomaticEffect::BindDescriptors(){
       GRenderShaderParameterDictionary::TIterator iterator = parameters.Iterator();
       while(iterator.Next()){
          FRenderShaderParameter* pParameter = *iterator;
-         _parameterDescriptors.Register(pParameter->Linker());
+         _parameterDescriptors.Link(pParameter);
       }
    }
    return ESuccess;

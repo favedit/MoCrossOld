@@ -79,12 +79,14 @@ public:
    TCharC* namePtr;
    TInt bindId;
    ERenderShader shaderCd;
+   FRenderShaderParameter* parameterPtr;
 public:
    SEffectParameterDescriptor(){
       code = -1;
       MO_CLEAR(namePtr);
       bindId = -1;
       shaderCd = ERenderShader_Unknown;
+      MO_CLEAR(parameterPtr);
    }
 };
 
@@ -95,7 +97,7 @@ class TEffectParameterDescriptors : public TFixVector<SEffectParameterDescriptor
 public:
    TEffectParameterDescriptors();
 public:
-   void Register(TCharC* pLinker);
+   TResult Link(FRenderShaderParameter* pParameter);
 };
 
 MO_NAMESPACE_END

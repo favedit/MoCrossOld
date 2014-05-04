@@ -14,7 +14,9 @@ TEffectParameterDescriptors::TEffectParameterDescriptors(){
 //
 // @param pLinker 关联信息
 //============================================================
-void TEffectParameterDescriptors::Register(TCharC* pLinker){
+TResult TEffectParameterDescriptors::Link(FRenderShaderParameter* pParameter){
+   MO_CHECK(pParameter, return ENull);
+   TCharC* pLinker = pParameter->Linker();
    // 解析内容
    EEffectParameter parameterCd = EEffectParameter_Unknown;
    ERenderShader shaderCd = ERenderShader_Unknown;
@@ -22,10 +24,12 @@ void TEffectParameterDescriptors::Register(TCharC* pLinker){
    REffectParameter::Parse(pLinker, parameterCd, shaderCd, formatCd);
    // 设置参数
    SEffectParameterDescriptor& descriptor = _memory[parameterCd];
-   descriptor.shaderCd = shaderCd;
+   descriptor.parameterPtr = pParameter;
    descriptor.code = parameterCd;
    descriptor.namePtr = pLinker;
    descriptor.bindId = -1;
+   descriptor.shaderCd = shaderCd;
+   return ESuccess;
 }
 
 MO_NAMESPACE_END
