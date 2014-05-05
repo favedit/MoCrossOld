@@ -22,7 +22,7 @@ TResult REffectAttribute::Parse(TCharC* pValue, EEffectAttribute& attributeCd, E
       formatCd = ERenderShaderAttributeFormat_Float1;
    }else if(code.Equals("position")){
       attributeCd = EEffectAttribute_Position;
-      formatCd = ERenderShaderAttributeFormat_Float4;
+      formatCd = ERenderShaderAttributeFormat_Float3;
    }else if(code.Equals("color")){
       attributeCd = EEffectAttribute_Color;
       formatCd = ERenderShaderAttributeFormat_Byte4Normal;

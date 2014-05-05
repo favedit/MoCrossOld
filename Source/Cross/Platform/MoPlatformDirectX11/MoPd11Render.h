@@ -160,7 +160,7 @@ public:
 //============================================================
 class MO_PD11_DECLARE FPd11RenderFragmentShader : public FRenderFragmentShader
 {
-   MO_CLASS_DECLARE_INHERITS(FPd11RenderFragmentShader, FRenderVertexShader);
+   MO_CLASS_DECLARE_INHERITS(FPd11RenderFragmentShader, FRenderFragmentShader);
 protected:
    ID3D10Blob* _piData;
    ID3D11PixelShader* _piShader;
@@ -196,6 +196,7 @@ class MO_PD11_DECLARE FPd11RenderProgram : public FRenderProgram
    MO_CLASS_DECLARE_INHERITS(FPd11RenderProgram, FRenderProgram);
 protected:
    ID3D11InputLayout* _piInputLayout;
+   MO_D3D11_INPUT_ELEMENT_DESC_ARRAY inputElements;
 public:
    FPd11RenderProgram();
    MO_ABSTRACT ~FPd11RenderProgram();

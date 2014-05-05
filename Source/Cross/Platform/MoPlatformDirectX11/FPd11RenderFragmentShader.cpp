@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderFragmentShader, FRenderVertexShader);
+MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderFragmentShader, FRenderFragmentShader);
 
 //============================================================
 // <T>ππ‘Ï‰÷»æ≥Ã–Ú°£</T>

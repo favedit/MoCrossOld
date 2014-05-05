@@ -200,7 +200,8 @@ TResult FPd11RenderDevice::Setup(){
    D3D11_RASTERIZER_DESC rasterDesc;
    RType<D3D11_RASTERIZER_DESC>::Clear(&rasterDesc);
    rasterDesc.AntialiasedLineEnable = false;
-   rasterDesc.CullMode = D3D11_CULL_BACK;
+   //rasterDesc.CullMode = D3D11_CULL_BACK;
+   rasterDesc.CullMode = D3D11_CULL_NONE;
    rasterDesc.DepthBias = 0;
    rasterDesc.DepthBiasClamp = 0.0f;
    rasterDesc.DepthClipEnable = true;
@@ -401,7 +402,7 @@ TResult FPd11RenderDevice::Clear(TFloat red, TFloat green, TFloat blue, TFloat a
    MO_CHECK(_pActiveRenderTarget, return ENull);
    FPd11RenderTarget* pRenderTarget = _pActiveRenderTarget->Convert<FPd11RenderTarget>();
    // 清空颜色
-   FLOAT color[4] = {red + 0.5f, green, blue, alpha};
+   FLOAT color[4] = {red + 0.2f, green, blue, alpha};
    //_piContext->ClearState();
    ID3D11RenderTargetView* pRenderTargetView = pRenderTarget->NativeRenderTarget();
    _piContext->ClearRenderTargetView(pRenderTargetView, color);
@@ -429,7 +430,6 @@ TResult FPd11RenderDevice::SetBackBuffer(TInt width, TInt height, TInt antiAlias
 // @return 处理结果
 //============================================================
 TResult FPd11RenderDevice::SetFillMode(ERenderFillMode fillModeCd){
-   return ESuccess;
    // 检查状态
    if(_fillModeCd == fillModeCd){
       return EContinue;
@@ -470,7 +470,6 @@ TResult FPd11RenderDevice::SetFillMode(ERenderFillMode fillModeCd){
 // @return 处理结果
 //============================================================
 TResult FPd11RenderDevice::SetDepthMode(TBool depth, ERenderDepthMode depthCd){
-   return ESuccess;
    // 检查状态
    if((_optionDepth == depth) && (_depthModeCd == depthCd)){
       return EContinue;
@@ -523,7 +522,6 @@ TResult FPd11RenderDevice::SetDepthMode(TBool depth, ERenderDepthMode depthCd){
 // @return 处理结果
 //============================================================
 TResult FPd11RenderDevice::SetCullingMode(TBool cull, ERenderCullMode cullCd){
-   return ESuccess;
    // 检查状态
    if((_optionCull == cull) && (_optionCull == cullCd)){
       return EContinue;
@@ -578,7 +576,6 @@ TResult FPd11RenderDevice::SetCullingMode(TBool cull, ERenderCullMode cullCd){
 // @return 处理结果
 //============================================================
 TResult FPd11RenderDevice::SetBlendFactors(TBool blend, ERenderBlendMode sourceCd, ERenderBlendMode targetCd){
-   return ESuccess;
    //// 设置开关
    //if(_statusBlend != blend){
    //   if(blend){
@@ -626,7 +623,6 @@ TResult FPd11RenderDevice::SetScissorRectangle(TInt left, TInt top, TInt width, 
 // @return 处理结果
 //============================================================
 TResult FPd11RenderDevice::SetRenderTarget(FRenderTarget* pRenderTarget){
-   return ESuccess;
    TResult result = ESuccess;
    //if(pRenderTarget == NULL){
    //   // 解除渲染目标
@@ -949,8 +945,8 @@ TResult FPd11RenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt 
       return ENull;
    }
    DXGI_FORMAT strideCd = RDirectX11::ConvertIndexStride(pIndexBuffer->StrideCd());
-   _piContext->IASetIndexBuffer(piBuffer, strideCd, offset);
    _piContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+   _piContext->IASetIndexBuffer(piBuffer, strideCd, offset);
    // 绘制三角形
    _renderDrawStatistics->Begin();
    _piContext->DrawIndexed(count, offset, 0);

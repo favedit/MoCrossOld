@@ -266,18 +266,23 @@ TResult FPd11RenderProgram::Link(){
    ID3D10Blob* piShaderData = pVertexShader->NativeData();
    //............................................................
    // 创建输入描述
-   MO_D3D11_INPUT_ELEMENT_DESC_ARRAY inputElements;
+   TInt position = 0;
    GRenderShaderAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
    while(attributeIterator.Next()){
       FRenderShaderAttribute* pAttribute = *attributeIterator;
       if(pAttribute->IsStatusUsed()){
+         ERenderShaderAttributeFormat formatCd = pAttribute->FormatCd();
          D3D11_INPUT_ELEMENT_DESC inputElement;
          RType<D3D11_INPUT_ELEMENT_DESC>::Clear(&inputElement);
          inputElement.SemanticName = pAttribute->Name();
          inputElement.SemanticIndex = pAttribute->Index();
-         inputElement.Format = RDirectX11::ConvertAttrbuteFormat(pAttribute->FormatCd()) ;
+         inputElement.Format = RDirectX11::ConvertAttrbuteFormat(formatCd) ;
+         inputElement.AlignedByteOffset = position;
+         inputElement.InputSlot = pAttribute->Slot();
+         inputElement.AlignedByteOffset = 0;
          inputElement.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
          inputElements.Push(inputElement);
+         position += RRenderShaderAttributeFormat::CalculateSize(formatCd);
       }
    }
    // 创建输入层次
@@ -302,9 +307,6 @@ TResult FPd11RenderProgram::Link(){
 TResult FPd11RenderProgram::DrawBegin(){
    MO_CHECK(_pDevice, return ENull);
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
-   //............................................................
-   // 设定层次
-   // pRenderDevice->NativeContext()->IASetInputLayout(_piInputLayout);
    //............................................................
    // 提交缓冲
    TResult resultCd = FRenderProgram::DrawBegin();

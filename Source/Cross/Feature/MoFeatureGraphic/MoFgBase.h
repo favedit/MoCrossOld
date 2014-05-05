@@ -272,6 +272,7 @@ class MO_FG_DECLARE RRenderShaderAttributeFormat{
 public:
    static ERenderShaderAttributeFormat Parse(TCharC* pValue, ERenderShaderAttributeFormat formatCd = ERenderShaderAttributeFormat_Unknown);
    static TCharC* Format(ERenderShaderAttributeFormat formatCd);
+   static TInt CalculateSize(ERenderShaderAttributeFormat formatCd);
 };
 
 //============================================================

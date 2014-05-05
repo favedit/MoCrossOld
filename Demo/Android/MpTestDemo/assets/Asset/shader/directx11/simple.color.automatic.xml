@@ -67,7 +67,7 @@ cbuffer LightBuffer{
 
 struct VS_INPUT
 {
-   float4 position : POSITION;
+   float3 position : POSITION;
 <shader:true source='vertex.attribute.color'>
    float4 color    : TEXCOORD0;
 </shader:true>
@@ -105,10 +105,12 @@ struct VS_OUTPUT
 VS_OUTPUT main(VS_INPUT input)
 {
    VS_OUTPUT result = (VS_OUTPUT)0;
+   float4 position = float4(input.position, 1.0);
    // Calculate model position
-   result.modelPosition = mul(input.position, vc_model_mat4);
+   result.modelPosition = mul(position, vc_model_mat4);
    // Calculate proection position
-   result.position = mul(input.position, vc_mvp_mat4);
+   result.position = mul(position, vc_mvp_mat4);
+   // result.position = float4(input.position.xy * 10.0, 0.0, 1.0);
    // Set varying
 <shader:true source='vertex.attribute.color'>
    result.color = input.color;
@@ -168,6 +170,7 @@ float4 fc_reflect_color;
 
 struct PS_INPUT
 {
+   float4 position      : SV_POSITION;
    float4 modelPosition : TEXCOORD0;
 <shader:true source='vertex.attribute.color'>
    float4 color         : TEXCOORD1;

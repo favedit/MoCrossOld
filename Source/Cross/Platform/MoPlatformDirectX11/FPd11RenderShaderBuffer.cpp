@@ -75,7 +75,6 @@ TResult FPd11RenderShaderBuffer::Bind(){
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
    //............................................................
    // 更新数据
-   TByte* pMemoryData = _pData->Memory();
    if(_shaderCd == ERenderShader_Vertex){
       pRenderDevice->NativeContext()->VSSetConstantBuffers(_slot, 1, &_piBuffer);
    }else if(_shaderCd == ERenderShader_Fragment){

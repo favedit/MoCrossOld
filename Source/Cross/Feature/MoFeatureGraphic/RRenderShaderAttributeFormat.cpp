@@ -60,4 +60,28 @@ TCharC* RRenderShaderAttributeFormat::Format(ERenderShaderAttributeFormat format
    return "Unknown";
 }
 
+//============================================================
+// <T>计算格式的字节大小。</T>
+//
+// @param formatCd 枚举内容
+// @return 字节大小
+//============================================================
+TInt RRenderShaderAttributeFormat::CalculateSize(ERenderShaderAttributeFormat formatCd){
+   switch(formatCd){
+      case ERenderShaderAttributeFormat_Float1:
+         return sizeof(TFloat) * 1;
+      case ERenderShaderAttributeFormat_Float2:
+         return sizeof(TFloat) * 2;
+      case ERenderShaderAttributeFormat_Float3:
+         return sizeof(TFloat) * 3;
+      case ERenderShaderAttributeFormat_Float4:
+         return sizeof(TFloat) * 4;
+      case ERenderShaderAttributeFormat_Byte4:
+         return sizeof(TByte) * 4;
+      case ERenderShaderAttributeFormat_Byte4Normal:
+         return sizeof(TByte) * 4;
+   }
+   return 0;
+}
+
 MO_NAMESPACE_END
