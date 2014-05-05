@@ -77,7 +77,7 @@ TResult FPd11RenderDevice::Setup(){
    description.BufferDesc.Width = screenSize.width;
    description.BufferDesc.Height = screenSize.height;
    description.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-   TBool m_vsync_enabled = ETrue;
+   TBool m_vsync_enabled = EFalse;
    if(m_vsync_enabled){
       description.BufferDesc.RefreshRate.Numerator = 1;
       description.BufferDesc.RefreshRate.Denominator = 60;
@@ -389,7 +389,7 @@ TResult FPd11RenderDevice::Clear(TFloat red, TFloat green, TFloat blue, TFloat a
    FPd11RenderTarget* pRenderTarget = _pActiveRenderTarget->Convert<FPd11RenderTarget>();
    // 清空颜色
    FLOAT color[4];
-   color[0] = red;
+   color[0] = 1.0;
    color[1] = green;
    color[2] = blue;
    color[3] = alpha;
@@ -1078,10 +1078,11 @@ TResult FPd11RenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt 
    MO_CHECK(pIndexBuffer, return ENull);
    MO_CHECK(offset >= 0, return EOutRange);
    MO_CHECK(count > 0, return EOutRange);
-   // 获得索引流
    TResult resultCd = ESuccess;
-   FPd11RenderIndexBuffer* pBuffer = pIndexBuffer->Convert<FPd11RenderIndexBuffer>();
+   // 程序绘制开始
+   _pProgram->DrawBegin();
    // 设置索引流
+   FPd11RenderIndexBuffer* pBuffer = pIndexBuffer->Convert<FPd11RenderIndexBuffer>();
    ID3D11Buffer* piBuffer = pBuffer->NativeBuffer();
    if(piBuffer == NULL){
       MO_FATAL("Index buffer is null.");
@@ -1093,6 +1094,8 @@ TResult FPd11RenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt 
    _renderDrawStatistics->Begin();
    _piContext->DrawIndexed(count, offset, 0);
    _renderDrawStatistics->Finish();
+   // 程序绘制结束
+   _pProgram->DrawEnd();
    // 检查错误
    _statistics->UpdateDraw(count);
    return resultCd;
@@ -1104,7 +1107,8 @@ TResult FPd11RenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt 
 // @return 处理结果
 //============================================================
 TResult FPd11RenderDevice::Present(){
-   _piSwapChain->Present(0, DXGI_PRESENT_TEST);
+   //_piSwapChain->Present(0, DXGI_PRESENT_TEST);
+   _piSwapChain->Present(0, 0);
    return ESuccess;
 }
 

@@ -756,6 +756,80 @@ public:
 };
 
 //============================================================
+// <T>渲染器缓冲。</T>
+//============================================================
+class MO_FG_DECLARE FRenderShaderBuffer : public FRenderObject
+{
+   MO_CLASS_DECLARE_INHERITS(FRenderShaderBuffer, FRenderObject);
+protected:
+   TString _name;
+   TInt _dataLength;
+   TInt _statusChanged;
+   FBytes* _pData;
+   ERenderShader _shaderCd;
+   TInt _slot;
+public:
+   FRenderShaderBuffer();
+   MO_ABSTRACT ~FRenderShaderBuffer();
+public:
+   //------------------------------------------------------------
+   // <T>获得名称。</T>
+   MO_INLINE TCharC* Name(){
+      return _name;
+   }
+   //------------------------------------------------------------
+   // <T>设置名称。</T>
+   MO_INLINE void SetName(TCharC* pName){
+      _name = pName;
+   }
+   //------------------------------------------------------------
+   // <T>获得数据长度。</T>
+   MO_INLINE TInt DataLength(){
+      return _dataLength;
+   }
+   //------------------------------------------------------------
+   // <T>设置数据长度。</T>
+   MO_INLINE void SetDataLength(TInt dataLength){
+      _dataLength = dataLength;
+   }
+   //------------------------------------------------------------
+   // <T>获得数据。</T>
+   MO_INLINE FBytes* Data(){
+      return _pData;
+   }
+   //------------------------------------------------------------
+   // <T>获得渲染类型。</T>
+   MO_INLINE ERenderShader ShaderCd(){
+      return _shaderCd;
+   }
+   //------------------------------------------------------------
+   // <T>设置渲染类型。</T>
+   MO_INLINE void SetShaderCd(ERenderShader shaderCd){
+      _shaderCd = shaderCd;
+   }
+   //------------------------------------------------------------
+   // <T>获得插槽。</T>
+   MO_INLINE TInt Slot(){
+      return _slot;
+   }
+   //------------------------------------------------------------
+   // <T>设置插槽。</T>
+   MO_INLINE void SetSlot(TInt slot){
+      _slot = slot;
+   }
+public:
+   MO_ABSTRACT TResult Setup();
+public:
+   MO_ABSTRACT TResult Set(TInt slot, TAnyC* pData, TInt length);
+public:
+   MO_ABSTRACT TResult Commit();
+   MO_ABSTRACT TResult Update();
+};
+//------------------------------------------------------------
+typedef MO_FG_DECLARE GPtr<FRenderShaderBuffer> GRenderShaderBufferPtr;
+typedef MO_FG_DECLARE GPtrs<FRenderShaderBuffer> GRenderShaderBufferPtrs;
+
+//============================================================
 // <T>渲染器参数。</T>
 //============================================================
 class MO_FG_DECLARE FRenderShaderParameter : public FRenderObject
@@ -767,7 +841,10 @@ protected:
    ERenderShader _shaderCd;
    ERenderShaderParameterFormat _formatCd;
    TBool _statusUsed;
+   TInt _slot;
+   TInt _size;
    FRenderShader* _pShader;
+   GRenderShaderBufferPtr _buffer;
 public:
    FRenderShaderParameter();
    MO_ABSTRACT ~FRenderShaderParameter();
@@ -823,6 +900,26 @@ public:
       _statusUsed = statusUsed;
    }
    //------------------------------------------------------------
+   // <T>获得插槽。</T>
+   MO_INLINE TInt Slot(){
+      return _slot;
+   }
+   //------------------------------------------------------------
+   // <T>设置插槽。</T>
+   MO_INLINE void SetSlot(TInt slot){
+      _slot = slot;
+   }
+   //------------------------------------------------------------
+   // <T>获得尺寸。</T>
+   MO_INLINE TInt Size(){
+      return _size;
+   }
+   //------------------------------------------------------------
+   // <T>设置尺寸。</T>
+   MO_INLINE void SetSize(TInt size){
+      _size = size;
+   }
+   //------------------------------------------------------------
    // <T>获得渲染器。</T>
    MO_INLINE FRenderShader* Shader(){
       return _pShader;
@@ -832,9 +929,25 @@ public:
    MO_INLINE void SetShader(FRenderShader* pShader){
       _pShader = pShader;
    }
+   //------------------------------------------------------------
+   // <T>获得缓冲。</T>
+   MO_INLINE FRenderShaderBuffer* Buffer(){
+      return _buffer;
+   }
+   //------------------------------------------------------------
+   // <T>设置缓冲。</T>
+   MO_INLINE void SetBuffer(FRenderShaderBuffer* pBuffer){
+      _buffer = pBuffer;
+   }
 public:
    MO_ABSTRACT TResult Get(TAny* pData, TInt capacity);
    MO_ABSTRACT TResult Set(TAny* pData, TInt length);
+public:
+   TResult SetFloat3(TFloat x, TFloat y, TFloat z);
+   TResult SetFloat4(TFloat x, TFloat y, TFloat z, TFloat w);
+   TResult SetMatrix3x3(const SFloatMatrix3d* pMatrix, TInt count, TBool transpose = ETrue);
+   TResult SetMatrix4x3(const SFloatMatrix3d* pMatrix, TInt count, TBool transpose = ETrue);
+   TResult SetMatrix4x4(const SFloatMatrix3d* pMatrix, TInt count, TBool transpose = ETrue);
 public:
    MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);
 };
@@ -962,6 +1075,7 @@ class MO_FG_DECLARE FRenderShader :
 {
    MO_CLASS_ABSTRACT_DECLARE_INHERITS(FRenderShader, FRenderInstance);
 protected:
+   ERenderShader _shaderCd;
    FRenderProgram* _pProgram;
    FRenderSource* _pSource;
    FRenderSource* _pCompileSource;
@@ -970,6 +1084,11 @@ public:
    FRenderShader();
    MO_ABSTRACT ~FRenderShader();
 public:
+   //------------------------------------------------------------
+   // <T>获得渲染类型。</T>
+   MO_INLINE ERenderShader ShaderCd(){
+      return _shaderCd;
+   }
    //------------------------------------------------------------
    // <T>获得程序。</T>
    MO_INLINE FRenderProgram* Program(){
@@ -1077,6 +1196,7 @@ class MO_FG_DECLARE FRenderProgram :
 {
    MO_CLASS_ABSTRACT_DECLARE_INHERITS(FRenderProgram, FRenderObject);
 protected:
+   GRenderShaderBufferPtrs _buffers;
    GRenderShaderParameterDictionary _parameters;
    GRenderShaderAttributeDictionary _attributes;
    GRenderShaderSamplerDictionary _samplers;
@@ -1086,6 +1206,11 @@ public:
    FRenderProgram();
    MO_ABSTRACT ~FRenderProgram();
 public:
+   //------------------------------------------------------------
+   // <T>获得渲染缓冲集合。</T>
+   MO_INLINE GRenderShaderBufferPtrs& Buffers(){
+      return _buffers;
+   }
    //------------------------------------------------------------
    // <T>获得渲染参数集合。</T>
    MO_INLINE GRenderShaderParameterDictionary& Parameters(){
@@ -1127,6 +1252,7 @@ public:
       return _pFragmentShader;
    }
 public:
+   FRenderShaderBuffer* BufferFind(TCharC* pName);
    GRenderShaderParameterDictionary& Parameters(ERenderShader shaderCd);
    FRenderShaderParameter* ParameterFind(ERenderShader shaderCd, TCharC* pName);
    TResult ParameterPush(FRenderShaderParameter* pParameter);
@@ -1144,8 +1270,12 @@ public:
    MO_VIRTUAL TResult Setup() = 0;
    MO_VIRTUAL TResult Build() = 0;
    MO_VIRTUAL TResult Link() = 0;
+public:
+   MO_ABSTRACT TResult DrawBegin();
+   MO_ABSTRACT TResult DrawEnd();
 };
 //------------------------------------------------------------
+typedef MO_FG_DECLARE GPtr<FRenderProgram> GRenderProgramPtr;
 typedef MO_FG_DECLARE FVector<FRenderProgram*> FRenderProgramVector;
 typedef MO_FG_DECLARE GPtrLooper<FRenderProgram> GRenderProgramPtrLooper;
 
@@ -1699,6 +1829,8 @@ public:
 public:
    MO_ABSTRACT TResult DrawInstanceTriangles(FRenderIndexBuffer* pIndexBuffer, TInt offset, TInt count);
 };
+//------------------------------------------------------------
+typedef MO_FG_DECLARE GPtr<FRenderDevice> GRenderDevicePtr;
 
 //============================================================
 // <T>渲染工具。</T>

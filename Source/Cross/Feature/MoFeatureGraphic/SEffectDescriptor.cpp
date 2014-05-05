@@ -44,6 +44,9 @@ SEffectDescriptor::SEffectDescriptor(){
 
 //============================================================
 // <T>加载配置信息。</T>
+//
+// @param pConfig 配置节点
+// @return 处理结果
 //============================================================
 TResult SEffectDescriptor::LoadConfig(FXmlNode* pConfig){
    TXmlNodeIteratorC iterator = pConfig->NodeIteratorC();

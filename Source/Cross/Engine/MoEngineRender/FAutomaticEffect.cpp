@@ -66,7 +66,9 @@ TResult FAutomaticEffect::BindDescriptors(){
       GRenderShaderParameterDictionary::TIterator iterator = parameters.Iterator();
       while(iterator.Next()){
          FRenderShaderParameter* pParameter = *iterator;
-         _parameterDescriptors.Link(pParameter);
+         if(pParameter->IsStatusUsed()){
+            _parameterDescriptors.Link(pParameter);
+         }
       }
    }
    return ESuccess;
@@ -132,8 +134,8 @@ TResult FAutomaticEffect::LinkDescriptors(){
 //============================================================
 TResult FAutomaticEffect::BindConstPosition3(TInt bindCd, SFloatPoint3& point){
    SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
-   if(descriptor.bindId != -1){
-      _renderDevice->BindConstFloat3(descriptor.shaderCd, descriptor.bindId, point.x, point.y, point.z);
+   if(descriptor.parameterPtr != NULL){
+      descriptor.parameterPtr->SetFloat3(point.x, point.y, point.z);
    }
    return ESuccess;
 }
@@ -147,8 +149,8 @@ TResult FAutomaticEffect::BindConstPosition3(TInt bindCd, SFloatPoint3& point){
 //============================================================
 TResult FAutomaticEffect::BindConstVector3(TInt bindCd, SFloatVector3& vector){
    SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
-   if(descriptor.bindId != -1){
-      _renderDevice->BindConstFloat3(descriptor.shaderCd, descriptor.bindId, vector.x, vector.y, vector.z);
+   if(descriptor.parameterPtr != NULL){
+      descriptor.parameterPtr->SetFloat3(vector.x, vector.y, vector.z);
    }
    return ESuccess;
 }
@@ -164,8 +166,8 @@ TResult FAutomaticEffect::BindConstVector3(TInt bindCd, SFloatVector3& vector){
 //============================================================
 TResult FAutomaticEffect::BindConstFloat4(TInt bindCd, TFloat x, TFloat y, TFloat z, TFloat w){
    SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
-   if(descriptor.bindId != -1){
-      _renderDevice->BindConstFloat4(descriptor.shaderCd, descriptor.bindId, x, y, z, w);
+   if(descriptor.parameterPtr != NULL){
+      descriptor.parameterPtr->SetFloat4(x, y, z, w);
    }
    return ESuccess;
 }
@@ -181,8 +183,8 @@ TResult FAutomaticEffect::BindConstFloat4(TInt bindCd, TFloat x, TFloat y, TFloa
 //============================================================
 TResult FAutomaticEffect::BindConstColor4(TInt bindCd, const SFloatColor4& color){
    SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
-   if(descriptor.bindId != -1){
-      _renderDevice->BindConstFloat4(descriptor.shaderCd, descriptor.bindId, color.red, color.green, color.blue, color.alpha);
+   if(descriptor.parameterPtr != NULL){
+      descriptor.parameterPtr->SetFloat4(color.red, color.green, color.blue, color.alpha);
    }
    return ESuccess;
 }
@@ -196,8 +198,8 @@ TResult FAutomaticEffect::BindConstColor4(TInt bindCd, const SFloatColor4& color
 //============================================================
 TResult FAutomaticEffect::BindConstMatrix3x3(TInt bindCd, SFloatMatrix3d* pMatrix, TInt count){
    SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
-   if((descriptor.bindId != -1) && (count > 0)){
-      _renderDevice->BindConstMatrix3x3(descriptor.shaderCd, descriptor.bindId, *pMatrix);
+   if((descriptor.parameterPtr != NULL) && (count > 0)){
+      descriptor.parameterPtr->SetMatrix3x3(pMatrix, count, ETrue);
    }
    return ESuccess;
 }
@@ -211,8 +213,8 @@ TResult FAutomaticEffect::BindConstMatrix3x3(TInt bindCd, SFloatMatrix3d* pMatri
 //============================================================
 TResult FAutomaticEffect::BindConstMatrix4x3(TInt bindCd, SFloatMatrix3d* pMatrix, TInt count){
    SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
-   if((descriptor.bindId != -1) && (count > 0)){
-      _renderDevice->BindConstMatrix4x3(descriptor.shaderCd, descriptor.bindId, pMatrix, count);
+   if((descriptor.parameterPtr != NULL) && (count > 0)){
+      descriptor.parameterPtr->SetMatrix4x3(pMatrix, count, ETrue);
    }
    return ESuccess;
 }
@@ -226,8 +228,8 @@ TResult FAutomaticEffect::BindConstMatrix4x3(TInt bindCd, SFloatMatrix3d* pMatri
 //============================================================
 TResult FAutomaticEffect::BindConstMatrix4x4(TInt bindCd, SFloatMatrix3d* pMatrix, TInt count){
    SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
-   if((descriptor.bindId != -1) && (count > 0)){
-      _renderDevice->BindConstMatrix4x4(descriptor.shaderCd, descriptor.bindId, pMatrix, count);
+   if((descriptor.parameterPtr != NULL) && (count > 0)){
+      descriptor.parameterPtr->SetMatrix4x4(pMatrix, count, ETrue);
    }
    return ESuccess;
 }

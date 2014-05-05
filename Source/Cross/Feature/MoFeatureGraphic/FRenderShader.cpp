@@ -8,6 +8,7 @@ MO_CLASS_ABSTRACT_IMPLEMENT_INHERITS(FRenderShader, FRenderInstance);
 // <T>ππ‘Ï‰÷»æ∆˜°£</T>
 //============================================================
 FRenderShader::FRenderShader(){
+   _shaderCd = ERenderShader_Unknown;
    MO_CLEAR(_pProgram);
    _pSource = MO_CREATE(FRenderSource);
    _pCompileSource = MO_CREATE(FRenderSource);

@@ -22,9 +22,9 @@ FShadowDepthSkeletonEffect::~FShadowDepthSkeletonEffect(){
 TResult FShadowDepthSkeletonEffect::OnSetup(){
    TResult resultCd = FAutomaticEffect::OnSetup();
    // 注册常量集合
-   //_constDescriptors.Register(ERenderShader_Vertex, EEffectConst_Vertex_ModelMat4, "vc_model_mat4");
-   //_constDescriptors.Register(ERenderShader_Vertex, EEffectConst_Vertex_MvpMat4, "vc_mvp_mat4");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_Camera, "fc_camera");
+   //_constDescriptors.Register(ERenderShader_Vertex, EEffectParameter_VertexModelMat4, "vc_model_mat4");
+   //_constDescriptors.Register(ERenderShader_Vertex, EEffectParameter_VertexMvpMat4, "vc_mvp_mat4");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentCamera, "fc_camera");
    return resultCd;
 }
 
@@ -59,8 +59,8 @@ TResult FShadowDepthSkeletonEffect::DrawRenderable(FRenderRegion* pRegion, FRend
    matrixMvp.Append(_vpMatrix);
    //............................................................
    // 设置常量
-   BindConstMatrix4x4(EEffectConst_Vertex_ModelMat4, &modelViewMatrix);
-   BindConstMatrix4x4(EEffectConst_Vertex_MvpMat4, &matrixMvp);
+   BindConstMatrix4x4(EEffectParameter_VertexModelMatrix4x4, &modelViewMatrix);
+   BindConstMatrix4x4(EEffectParameter_VertexModelViewProjectionMatrix4x4, &matrixMvp);
    //............................................................
    // 设定属性集合
    BindAttributeDescriptors(pRenderable);
@@ -91,7 +91,7 @@ TResult FShadowDepthSkeletonEffect::DrawGroup(FRenderRegion* pRegion, TInt offse
    //............................................................
    TFloat lightZnear = pLightProjection->Znear();
    TFloat lightZfar = pLightProjection->Zfar();
-   BindConstFloat4(EEffectConst_Fragment_Camera, 0.0f, 0.0f, lightZnear, 1.0f / lightZfar);
+   BindConstFloat4(EEffectParameter_FragmentCamera, 0.0f, 0.0f, lightZnear, 1.0f / lightZfar);
    //............................................................
    FAutomaticEffect::DrawGroup(pRegion, offset, count);
    //............................................................

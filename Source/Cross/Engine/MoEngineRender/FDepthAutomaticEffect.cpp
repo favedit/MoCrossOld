@@ -23,19 +23,19 @@ FDepthAutomaticEffect::~FDepthAutomaticEffect(){
 TResult FDepthAutomaticEffect::OnSetup(){
    FAutomaticEffect::OnSetup();
    // 注册常量集合
-   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_ModelMatrix,          "vc_model_matrix");
-   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_ViewProjectionMatrix, "vc_view_projection_matrix");
-   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_CameraPosition,       "vc_camera_position");
-   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_LightDirection,       "vc_light_direction");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_CameraPosition,     "fc_camera_position");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_LightDirection,     "fc_light_direction");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_Color,              "fc_color");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_Alpha,              "fc_alpha");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_AmbientColor,       "fc_ambient_color");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_DiffuseColor,       "fc_diffuse_color");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_SpecularColor,      "fc_specular_color");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_Specular,           "fc_specular");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_ReflectColor,       "fc_reflect_color");
+   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexModelMatrix,          "vc_model_matrix");
+   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexViewProjectionMatrix, "vc_view_projection_matrix");
+   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexCameraPosition,       "vc_camera_position");
+   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexLightDirection,       "vc_light_direction");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentCameraPosition,     "fc_camera_position");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentLightDirection,     "fc_light_direction");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentColor,              "fc_color");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentAlpha,              "fc_alpha");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentAmbientColor,       "fc_ambient_color");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentDiffuseColor,       "fc_diffuse_color");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentSpecularColor,      "fc_specular_color");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentSpecular,           "fc_specular");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentReflectColor,       "fc_reflect_color");
    return ESuccess;
 }
 
@@ -54,7 +54,7 @@ TResult FDepthAutomaticEffect::DrawRenderable(FRenderRegion* pRegion, FRenderabl
    modelMatrix.Append(renderableMatrix);
    //............................................................
    // 设置常量
-   BindConstMatrix4x4(EEffectConst_Vertex_ModelMatrix, &modelMatrix);
+   BindConstMatrix4x4(EEffectParameter_VertexModelMatrix4x4, &modelMatrix);
    //............................................................
    // 设定属性集合
    BindAttributeDescriptors(pRenderable);
@@ -80,7 +80,7 @@ TResult FDepthAutomaticEffect::DrawInstanceRenderable(FRenderRegion* pRegion, FI
       SFloatMatrix3d& renderableMatrix = pRenderable->Matrix();
       _modelMatrixs[n].Assign(renderableMatrix);
    }
-   BindConstMatrix4x4(EEffectConst_Vertex_ModelMatrix, _modelMatrixs, count);
+   BindConstMatrix4x4(EEffectParameter_VertexModelMatrix4x4, _modelMatrixs, count);
    //............................................................
    // 设定属性集合
    BindAttributeDescriptors(pInstanceRenderable);
@@ -110,26 +110,26 @@ TResult FDepthAutomaticEffect::DrawGroup(FRenderRegion* pRegion, TInt offset, TI
    _vpMatrix.Append(pProjection->Matrix());
    //............................................................
    // 设置常量
-   BindConstMatrix4x4(EEffectConst_Vertex_ViewProjectionMatrix, &_vpMatrix);
-   BindConstPosition3(EEffectConst_Vertex_CameraPosition, pCamera->Position());
-   BindConstPosition3(EEffectConst_Fragment_CameraPosition, pCamera->Position());
+   BindConstMatrix4x4(EEffectParameter_VertexViewProjectionMatrix4x4, &_vpMatrix);
+   BindConstPosition3(EEffectParameter_VertexCameraPosition, pCamera->Position());
+   BindConstPosition3(EEffectParameter_FragmentCameraPosition, pCamera->Position());
    FDirectionalLight* pDirectionalLight = pRegion->DirectionalLight();
    if(pDirectionalLight != NULL){
-      BindConstVector3(EEffectConst_Vertex_LightDirection, pDirectionalLight->Direction());
-      BindConstVector3(EEffectConst_Fragment_LightDirection, pDirectionalLight->Direction());
+      BindConstVector3(EEffectParameter_VertexLightDirection, pDirectionalLight->Direction());
+      BindConstVector3(EEffectParameter_FragmentLightDirection, pDirectionalLight->Direction());
    }
    //............................................................
    // 设置材质
    FRenderable* pRenderable = pRegion->VisibleRenderables()->Get(offset);
    FMaterial* pMaterial = pRenderable->Material();
    TCharC* pMaerialName = pMaterial->Name();
-   BindConstFloat4(EEffectConst_Fragment_Color,         pMaterial->Color().min, pMaterial->Color().max, pMaterial->Color().rate, pMaterial->Color().merge);
-   BindConstFloat4(EEffectConst_Fragment_Alpha,         pMaterial->Alpha().base, pMaterial->Alpha().rate, pMaterial->Alpha().level, pMaterial->Alpha().merge);
-   BindConstColor4(EEffectConst_Fragment_AmbientColor,  pMaterial->AmbientColor());
-   BindConstColor4(EEffectConst_Fragment_DiffuseColor,  pMaterial->DiffuseColor());
-   BindConstColor4(EEffectConst_Fragment_SpecularColor, pMaterial->SpecularColor());
-   BindConstFloat4(EEffectConst_Fragment_Specular,      pMaterial->SpecularInfo().base, pMaterial->SpecularInfo().rate, pMaterial->SpecularInfo().average, pMaterial->SpecularInfo().shadow);
-   BindConstColor4(EEffectConst_Fragment_ReflectColor,  pMaterial->ReflectColor());
+   BindConstFloat4(EEffectParameter_FragmentColor,         pMaterial->Color().min, pMaterial->Color().max, pMaterial->Color().rate, pMaterial->Color().merge);
+   BindConstFloat4(EEffectParameter_FragmentAlpha,         pMaterial->Alpha().base, pMaterial->Alpha().rate, pMaterial->Alpha().level, pMaterial->Alpha().merge);
+   BindConstColor4(EEffectParameter_FragmentAmbientColor,  pMaterial->AmbientColor());
+   BindConstColor4(EEffectParameter_FragmentDiffuseColor,  pMaterial->DiffuseColor());
+   BindConstColor4(EEffectParameter_FragmentSpecularColor, pMaterial->SpecularColor());
+   BindConstFloat4(EEffectParameter_FragmentSpecular,      pMaterial->SpecularInfo().base, pMaterial->SpecularInfo().rate, pMaterial->SpecularInfo().average, pMaterial->SpecularInfo().shadow);
+   BindConstColor4(EEffectParameter_FragmentReflectColor,  pMaterial->ReflectColor());
    //............................................................
    TResult resultCd = FAutomaticEffect::DrawGroup(pRegion, offset, count);
    //............................................................

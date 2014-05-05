@@ -57,8 +57,10 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
    TFsPath path;
    path.AssignFormat("asset:/shader/%s/%s.xml", pDeviceCode, pName);
    FTemplate* pTemplate = RTemplateManager::Instance().Load(context, path);
-   pEffect->LoadConfig(pTemplate->Config());
+   FXmlNode* pTemplateConfig = pTemplate->Config();
    //pEffect->LoadConfig(context->MergeConfig());
+   // 解析定义信息
+   pEffect->LoadConfig(pTemplateConfig);
    //............................................................
    // 建立顶点渲染代码
    context->SourceReset();
@@ -75,38 +77,6 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
       pEffect->SetFragmentSource(pFragmentCode);
    }else{
       MO_FATAL("Build fragment souce failure.");
-   }
-   //............................................................
-   FRenderProgram* pProgram = pEffect->Program();
-   // 解析定义信息
-   FXmlNode* pConfig = pTemplate->Config();
-   TXmlNodeIteratorC iterator = pConfig->NodeIteratorC();
-   while(iterator.Next()){
-      FXmlNode* pNode = *iterator;
-      //............................................................
-      // 建立参数定义集合
-      if(pNode->IsName("Parameter")){
-         FRenderShaderParameter* pParameter = pRenderDevice->CreateObject<FRenderShaderParameter>(MO_RENDEROBJECT_SHADERPARAMETER);
-         pParameter->LoadConfig(pNode);
-         pProgram->ParameterPush(pParameter);
-         continue;
-      }
-      //............................................................
-      // 建立属性定义集合
-      if(pNode->IsName("Attribute")){
-         FRenderShaderAttribute* pAttribute = pRenderDevice->CreateObject<FRenderShaderAttribute>(MO_RENDEROBJECT_SHADERATTRIBUTE);
-         pAttribute->LoadConfig(pNode);
-         pProgram->AttributePush(pAttribute);
-         continue;
-      }
-      //............................................................
-      // 建立取样器定义集合
-      if(pNode->IsName("Sampler")){
-         FRenderShaderSampler* pSampler = pRenderDevice->CreateObject<FRenderShaderSampler>(MO_RENDEROBJECT_SHADERSAMPLER);
-         pSampler->LoadConfig(pNode);
-         pProgram->SamplerPush(pSampler);
-         continue;
-      }
    }
    //............................................................
    // 构建处理

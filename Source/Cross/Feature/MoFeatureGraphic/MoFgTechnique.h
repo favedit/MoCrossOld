@@ -107,8 +107,8 @@ protected:
    TString _vertexSource;
    TString _fragmentSource;
    SEffectDescriptor _descriptor;
-   GPtr<FRenderProgram> _program;
-   GPtr<FRenderDevice> _renderDevice;
+   GRenderProgramPtr _program;
+   GRenderDevicePtr _renderDevice;
 public:
    FEffect();
    MO_ABSTRACT ~FEffect();
@@ -179,17 +179,14 @@ public:
       _renderDevice = pRenderDevice;
    }
 public:
+   MO_ABSTRACT TResult BuildTemplate(SRenderableDescriptor& renderableDescriptor, MString* pCode, FTemplateContext* pTemplateContext);
+   MO_ABSTRACT TResult BuildDescripter(SRenderableDescriptor& renderableDescriptor);
+public:
    MO_ABSTRACT TResult Setup();
+   MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);
    MO_ABSTRACT TResult Build();
 public:
-   MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);
-   MO_ABSTRACT TResult BuildDescripter(SRenderableDescriptor& renderableDescriptor);
-   MO_ABSTRACT TResult BuildTemplate(SRenderableDescriptor& renderableDescriptor, MString* pCode, FTemplateContext* pTemplateContext);
-public:
    MO_ABSTRACT TResult Resize(TInt width, TInt height);
-   MO_ABSTRACT TResult UpdateBegin();
-   MO_ABSTRACT TResult WriteRenderable(FRenderable* pRenderable);
-   MO_ABSTRACT TResult UpdateEnd();
    MO_ABSTRACT TResult DrawRenderable(FRenderRegion* pRegion, FRenderable* pRenderable);
    MO_ABSTRACT TResult DrawGroup(FRenderRegion* pRegion, TInt offset, TInt count);
 };

@@ -27,17 +27,20 @@ enum EEffectParameter{
    EEffectParameter_VertexViewProjectionMatrix4x4,
    EEffectParameter_VertexModelViewProjectionMatrix3x3,
    EEffectParameter_VertexModelViewProjectionMatrix4x4,
+   EEffectParameter_VertexBoneMatrix4x3,
    EEffectParameter_VertexBoneMatrix4x4,
    // 相机参数
    EEffectParameter_VertexCameraPosition,
    EEffectParameter_VertexCameraDirection,
    // 光源参数
    EEffectParameter_VertexLightModelMatrix4x4,
-   EEffectParameter_VertexLightModelViewProjectrionMatrix4x4,
+   EEffectParameter_VertexLightModelViewMatrix4x4,
+   EEffectParameter_VertexLightModelViewProjectionMatrix4x4,
    EEffectParameter_VertexLightPosition,
    EEffectParameter_VertexLightDirection,
    //............................................................
    // 相机参数
+   EEffectParameter_FragmentCamera,
    EEffectParameter_FragmentCameraPosition,
    EEffectParameter_FragmentCameraDirection,
    // 光源参数

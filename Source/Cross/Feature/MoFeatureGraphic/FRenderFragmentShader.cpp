@@ -8,6 +8,7 @@ MO_CLASS_ABSTRACT_IMPLEMENT_INHERITS(FRenderFragmentShader, FRenderShader);
 // <T>构造舞台对象。</T>
 //============================================================
 FRenderFragmentShader::FRenderFragmentShader(){
+   _shaderCd = ERenderShader_Fragment;
 }
 
 //============================================================

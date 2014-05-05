@@ -22,33 +22,33 @@ FShadowColorAutomaticEffect::~FShadowColorAutomaticEffect(){
 TResult FShadowColorAutomaticEffect::OnSetup(){
    FAutomaticEffect::OnSetup();
    //// 注册顶点常量
-   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_ModelMat3,            "vc_model_mat3");
-   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_ModelMat4,            "vc_model_mat4");
-   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_MvpMat3,              "vc_mvp_mat3");
-   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_MvpMat4,              "vc_mvp_mat4");
-   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_LightMvMat4,          "vc_light_mv_mat4");
-   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_LightMvpMat4,         "vc_light_mvp_mat4");
-   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_CameraPosition,       "vc_camera_position");
-   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectConst_Vertex_LightDirection,       "vc_light_direction");
+   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexModelMat3,            "vc_model_mat3");
+   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexModelMat4,            "vc_model_mat4");
+   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexMvpMat3,              "vc_mvp_mat3");
+   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexMvpMat4,              "vc_mvp_mat4");
+   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexLightMvMat4,          "vc_light_mv_mat4");
+   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexLightMvpMat4,         "vc_light_mvp_mat4");
+   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexCameraPosition,       "vc_camera_position");
+   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexLightDirection,       "vc_light_direction");
    //// 注册像素常量
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_Camera,             "fc_camera");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_CameraPosition,     "fc_camera_position");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_LightDepth,         "fc_light_depth");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_LightCamera,        "fc_light_camera");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_LightDirection,     "fc_light_direction");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentCamera,             "fc_camera");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentCameraPosition,     "fc_camera_position");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentLightDepth,         "fc_light_depth");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentLightCamera,        "fc_light_camera");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentLightDirection,     "fc_light_direction");
    //// 注册材质常量
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_ShadowMaterial,     "fc_shadow_material");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_ShadowMaterialInv,  "fc_shadow_material_inv");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_Color,              "fc_color");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_Alpha,              "fc_alpha");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_AmbientColor,       "fc_ambient_color");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_DiffuseColor,       "fc_diffuse_color");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_DiffuseViewColor,   "fc_diffuse_view_color");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_SpecularColor,      "fc_specular_color");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_Specular,           "fc_specular");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_SpecularViewColor,  "fc_specular_view_color");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_SpecularView,       "fc_specular_view");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectConst_Fragment_ReflectColor,       "fc_reflect_color");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentShadowMaterial,     "fc_shadow_material");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentShadowMaterialInv,  "fc_shadow_material_inv");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentColor,              "fc_color");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentAlpha,              "fc_alpha");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentAmbientColor,       "fc_ambient_color");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentDiffuseColor,       "fc_diffuse_color");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentDiffuseViewColor,   "fc_diffuse_view_color");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentSpecularColor,      "fc_specular_color");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentSpecular,           "fc_specular");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentSpecularViewColor,  "fc_specular_view_color");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentSpecularView,       "fc_specular_view");
+   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentReflectColor,       "fc_reflect_color");
    return ESuccess;
 }
 
@@ -90,11 +90,11 @@ TResult FShadowColorAutomaticEffect::DrawRenderable(FRenderRegion* pRegion, FRen
    lightMvpMatrix.Append(_lightVpMatrix);
    //............................................................
    // 设置常量
-   BindConstMatrix3x3(EEffectConst_Vertex_ModelMat3, &modelMatrix);
-   BindConstMatrix4x4(EEffectConst_Vertex_ModelMat4, &modelMatrix);
-   BindConstMatrix4x4(EEffectConst_Vertex_MvpMat4, &matrixMvp);
-   BindConstMatrix4x4(EEffectConst_Vertex_LightMvMat4, &lightMvMatrix);
-   BindConstMatrix4x4(EEffectConst_Vertex_LightMvpMat4, &lightMvpMatrix);
+   BindConstMatrix3x3(EEffectParameter_VertexModelMatrix3x3, &modelMatrix);
+   BindConstMatrix4x4(EEffectParameter_VertexModelMatrix4x4, &modelMatrix);
+   BindConstMatrix4x4(EEffectParameter_VertexModelViewProjectionMatrix4x4, &matrixMvp);
+   BindConstMatrix4x4(EEffectParameter_VertexLightModelViewMatrix4x4, &lightMvMatrix);
+   BindConstMatrix4x4(EEffectParameter_VertexLightModelViewProjectionMatrix4x4, &lightMvpMatrix);
    //............................................................
    // 设定属性集合
    BindAttributeDescriptors(pRenderable);
@@ -136,32 +136,32 @@ TResult FShadowColorAutomaticEffect::DrawGroup(FRenderRegion* pRegion, TInt offs
    pRenderDevice->SetProgram(_program);
    //............................................................
    // 设置相机信息
-   BindConstPosition3(EEffectConst_Vertex_CameraPosition, pCamera->Position());
-   BindConstPosition3(EEffectConst_Fragment_CameraPosition, pCamera->Position());
+   BindConstPosition3(EEffectParameter_VertexCameraPosition, pCamera->Position());
+   BindConstPosition3(EEffectParameter_FragmentCameraPosition, pCamera->Position());
    // 设置光源信息
-   BindConstVector3(EEffectConst_Vertex_LightDirection, lightDirection);
-   BindConstVector3(EEffectConst_Fragment_LightDirection, lightDirection);
+   BindConstVector3(EEffectParameter_VertexLightDirection, lightDirection);
+   BindConstVector3(EEffectParameter_FragmentLightDirection, lightDirection);
    // 设置光源深度
    SIntSize2& depthSize = pLightDepthTexture->Size();
    TFloat lightZnear = pLightProjection->Znear();
    TFloat lightZfar = pLightProjection->Zfar();
-   BindConstFloat4(EEffectConst_Fragment_LightDepth, -1.0f / (TFloat)depthSize.width, 1.0f / (TFloat)depthSize.width, lightZnear, 1.0f / lightZfar);
+   BindConstFloat4(EEffectParameter_FragmentLightDepth, -1.0f / (TFloat)depthSize.width, 1.0f / (TFloat)depthSize.width, lightZnear, 1.0f / lightZfar);
    //............................................................
    // 设置材质
    FRenderable* pRenderable = pRegion->VisibleRenderables()->Get(offset);
    FMaterial* pMaterial = pRenderable->Material();
-   BindConstFloat4(EEffectConst_Fragment_ShadowMaterial,    ambientShadow, diffuseShadow, specularShadow, specularViewShadow);
-   BindConstFloat4(EEffectConst_Fragment_ShadowMaterialInv, 1.0f - ambientShadow, 1.0f - diffuseShadow, 1.0f - specularShadow, 1.0f - specularViewShadow);
-   BindConstFloat4(EEffectConst_Fragment_Color,             pMaterial->Color().min, pMaterial->Color().max, pMaterial->Color().rate, pMaterial->Color().merge);
-   BindConstFloat4(EEffectConst_Fragment_Alpha,             pMaterial->Alpha().base, pMaterial->Alpha().rate, pMaterial->Alpha().level, pMaterial->Alpha().merge);
-   BindConstColor4(EEffectConst_Fragment_AmbientColor,      pMaterial->AmbientColor());
-   BindConstColor4(EEffectConst_Fragment_DiffuseColor,      pMaterial->DiffuseColor());
-   BindConstColor4(EEffectConst_Fragment_DiffuseViewColor,  pMaterial->DiffuseViewColor());
-   BindConstColor4(EEffectConst_Fragment_SpecularColor,     pMaterial->SpecularColor());
-   BindConstFloat4(EEffectConst_Fragment_Specular,          pMaterial->SpecularInfo().base, pMaterial->SpecularInfo().rate, pMaterial->SpecularInfo().average, pMaterial->SpecularInfo().shadow);
-   BindConstColor4(EEffectConst_Fragment_SpecularViewColor, pMaterial->SpecularViewColor());
-   BindConstFloat4(EEffectConst_Fragment_SpecularView,      pMaterial->SpecularViewInfo().base, pMaterial->SpecularViewInfo().rate, pMaterial->SpecularViewInfo().average, pMaterial->SpecularViewInfo().shadow);
-   BindConstColor4(EEffectConst_Fragment_ReflectColor,      pMaterial->ReflectColor());
+   BindConstFloat4(EEffectParameter_FragmentShadowMaterial,    ambientShadow, diffuseShadow, specularShadow, specularViewShadow);
+   BindConstFloat4(EEffectParameter_FragmentShadowMaterialInv, 1.0f - ambientShadow, 1.0f - diffuseShadow, 1.0f - specularShadow, 1.0f - specularViewShadow);
+   BindConstFloat4(EEffectParameter_FragmentColor,             pMaterial->Color().min, pMaterial->Color().max, pMaterial->Color().rate, pMaterial->Color().merge);
+   BindConstFloat4(EEffectParameter_FragmentAlpha,             pMaterial->Alpha().base, pMaterial->Alpha().rate, pMaterial->Alpha().level, pMaterial->Alpha().merge);
+   BindConstColor4(EEffectParameter_FragmentAmbientColor,      pMaterial->AmbientColor());
+   BindConstColor4(EEffectParameter_FragmentDiffuseColor,      pMaterial->DiffuseColor());
+   BindConstColor4(EEffectParameter_FragmentDiffuseViewColor,  pMaterial->DiffuseViewColor());
+   BindConstColor4(EEffectParameter_FragmentSpecularColor,     pMaterial->SpecularColor());
+   BindConstFloat4(EEffectParameter_FragmentSpecular,          pMaterial->SpecularInfo().base, pMaterial->SpecularInfo().rate, pMaterial->SpecularInfo().average, pMaterial->SpecularInfo().shadow);
+   BindConstColor4(EEffectParameter_FragmentSpecularViewColor, pMaterial->SpecularViewColor());
+   BindConstFloat4(EEffectParameter_FragmentSpecularView,      pMaterial->SpecularViewInfo().base, pMaterial->SpecularViewInfo().rate, pMaterial->SpecularViewInfo().average, pMaterial->SpecularViewInfo().shadow);
+   BindConstColor4(EEffectParameter_FragmentReflectColor,      pMaterial->ReflectColor());
    //............................................................
    // 设置纹理集合
    BindSampler(ERenderSampler_LightDepth, pLightDepthTexture);

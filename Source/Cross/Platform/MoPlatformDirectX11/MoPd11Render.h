@@ -69,56 +69,15 @@ public:
 //============================================================
 // <T>渲染器缓冲。</T>
 //============================================================
-class MO_PD11_DECLARE FPd11RenderShaderBuffer : public FRenderObject
+class MO_PD11_DECLARE FPd11RenderShaderBuffer : public FRenderShaderBuffer
 {
-   MO_CLASS_DECLARE_INHERITS(FPd11RenderShaderBuffer, FRenderObject);
+   MO_CLASS_DECLARE_INHERITS(FPd11RenderShaderBuffer, FRenderShaderBuffer);
 protected:
-   TString _name;
-   TInt _dataLength;
-   FBytes* _pData;
-   FBytes* _pCommit;
-   TInt _commitLength;
-   TInt _slot;
    ID3D11Buffer* _piBuffer;
 public:
    FPd11RenderShaderBuffer();
    MO_ABSTRACT ~FPd11RenderShaderBuffer();
 public:
-   //------------------------------------------------------------
-   // <T>获得名称。</T>
-   MO_INLINE TCharC* Name(){
-      return _name;
-   }
-   //------------------------------------------------------------
-   // <T>设置名称。</T>
-   MO_INLINE void SetName(TCharC* pName){
-      _name = pName;
-   }
-   //------------------------------------------------------------
-   // <T>获得数据长度。</T>
-   MO_INLINE TInt DataLength(){
-      return _dataLength;
-   }
-   //------------------------------------------------------------
-   // <T>设置数据长度。</T>
-   MO_INLINE void SetDataLength(TInt dataLength){
-      _dataLength = dataLength;
-   }
-   //------------------------------------------------------------
-   // <T>获得数据。</T>
-   MO_INLINE FBytes* Data(){
-      return _pData;
-   }
-   //------------------------------------------------------------
-   // <T>获得插槽。</T>
-   MO_INLINE TInt Solt(){
-      return _slot;
-   }
-   //------------------------------------------------------------
-   // <T>设置插槽。</T>
-   MO_INLINE void SetSolt(TInt slot){
-      _slot = slot;
-   }
    //------------------------------------------------------------
    // <T>获得本地缓冲。</T>
    MO_INLINE ID3D11Buffer* NativeiBuffer(){
@@ -130,13 +89,11 @@ public:
       _piBuffer = piBuffer;
    }
 public:
-   TResult Setup();
-   TResult SetData(TInt index, TAnyC* pData, TInt length);
-   TResult Update();
+   MO_OVERRIDE TResult Setup();
+public:
+   MO_OVERRIDE TResult Commit();
+   MO_OVERRIDE TResult Bind();
 };
-//------------------------------------------------------------
-typedef MO_PD11_DECLARE GPtr<FPd11RenderShaderBuffer> GPd11RenderShaderBufferPtr;
-typedef MO_PD11_DECLARE GPtrs<FPd11RenderShaderBuffer> GPd11RenderShaderBufferPtrs;
 
 //============================================================
 // <T>渲染器参数。</T>
@@ -145,22 +102,11 @@ class MO_PD11_DECLARE FPd11RenderShaderParameter : public FRenderShaderParameter
 {
    MO_CLASS_DECLARE_INHERITS(FPd11RenderShaderParameter, FRenderShaderParameter);
 protected:
-   GPd11RenderShaderBufferPtr _buffer;
    ID3D11ShaderReflectionVariable* _piVariable;
 public:
    FPd11RenderShaderParameter();
    MO_ABSTRACT ~FPd11RenderShaderParameter();
 public:
-   //------------------------------------------------------------
-   // <T>获得缓冲。</T>
-   MO_INLINE FPd11RenderShaderBuffer* Buffer(){
-      return _buffer;
-   }
-   //------------------------------------------------------------
-   // <T>设置缓冲。</T>
-   MO_INLINE void SetBuffer(FPd11RenderShaderBuffer* pBuffer){
-      _buffer = pBuffer;
-   }
    //------------------------------------------------------------
    // <T>设置缓冲。</T>
    MO_INLINE void NativeVariable(FPd11RenderShaderBuffer* pBuffer){
@@ -173,9 +119,6 @@ public:
    }
 public:
    TResult LinkNative(ID3D11ShaderReflectionVariable* piVariable);
-public:
-   MO_OVERRIDE TResult Get(TAny* pData, TInt capacity);
-   MO_OVERRIDE TResult Set(TAny* pData, TInt length);
 };
 
 //============================================================
@@ -264,23 +207,15 @@ class MO_PD11_DECLARE FPd11RenderProgram : public FRenderProgram
 {
    MO_CLASS_DECLARE_INHERITS(FPd11RenderProgram, FRenderProgram);
 protected:
-   GPd11RenderShaderBufferPtrs _buffers;
    ID3D11InputLayout* _piInputLayout;
 public:
    FPd11RenderProgram();
    MO_ABSTRACT ~FPd11RenderProgram();
 public:
-   //------------------------------------------------------------
-   // <T>获得缓冲集合。</T>
-   MO_INLINE GPd11RenderShaderBufferPtrs& Buffers(){
-      return _buffers;
-   }
-public:
    MO_OVERRIDE TInt FindDefine(TCharC* pCode);
    MO_OVERRIDE TInt FindAttribute(TCharC* pCode);
    MO_OVERRIDE TResult BindAttribute(TInt slot, TCharC* pCode);
 protected:
-   FPd11RenderShaderBuffer* FindBuffer(TCharC* pName);
    TResult BuildShader(FRenderShader* pShader, ID3D10Blob* piData);
 public:
    MO_OVERRIDE TResult Setup();
@@ -288,6 +223,9 @@ public:
    MO_OVERRIDE TResult Link();
 public:
    MO_OVERRIDE TResult SetConstVariable(ERenderShader shaderCd, TCharC* pName, TAnyC* pData, TInt length);
+public:
+   MO_OVERRIDE TResult DrawBegin();
+   MO_OVERRIDE TResult DrawEnd();
 public:
    MO_OVERRIDE TResult Suspend();
    MO_OVERRIDE TResult Resume();

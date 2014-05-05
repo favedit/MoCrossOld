@@ -88,23 +88,6 @@ TResult FPd11RenderProgram::Setup(){
 }
 
 //============================================================
-// <T>从代码中查找缓冲。</T>
-//
-// @param pCode 代码
-// @return 缓冲对象
-//============================================================
-FPd11RenderShaderBuffer* FPd11RenderProgram::FindBuffer(TCharC* pName){
-   TInt count = _buffers.Count();
-   for(TInt n = 0; n < count; n++){
-      FPd11RenderShaderBuffer* pBuffer = _buffers.Get(n);
-      if(RString::Equals(pBuffer->Name(), pName)){
-         return pBuffer;
-      }
-   }
-   return NULL;
-}
-
-//============================================================
 // <T>构建处理。</T>
 //
 // @return 处理结果
@@ -114,6 +97,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
    MO_CHECK(piData, return ENull);
    MO_CHECK(_pDevice, return ENull);
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
+   ERenderShader shaderCd = pShader->ShaderCd();
    //............................................................
    // 获得数据
    TAny* pData = piData->GetBufferPointer();
@@ -150,6 +134,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
       pBuffer->SetDevice(pRenderDevice);
       pBuffer->SetName(bufferDescriptor.Name);
       pBuffer->SetDataLength(bufferDescriptor.Size);
+      pBuffer->SetShaderCd(shaderCd);
       pBuffer->Setup();
       _buffers.Push(pBuffer);
       //............................................................
@@ -216,9 +201,9 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
          return EFailure;
       }
       if(bindDescriptor.Type == D3D_SIT_CBUFFER){
-         FPd11RenderShaderBuffer* pBuffer = FindBuffer(bindDescriptor.Name);
+         FPd11RenderShaderBuffer* pBuffer = (FPd11RenderShaderBuffer*)BufferFind(bindDescriptor.Name);
          MO_CHECK(pBuffer, continue);
-         pBuffer->SetSolt(bindDescriptor.BindPoint);
+         pBuffer->SetSlot(bindDescriptor.BindPoint);
       }
    }
    MO_RELEASE(piReflection);
@@ -308,9 +293,35 @@ TResult FPd11RenderProgram::SetConstVariable(ERenderShader shaderCd, TCharC* pNa
       return EFailure;
    }
    // 设置内容
-   FPd11RenderShaderBuffer* pBuffer = pParameter->Buffer();
+   //FPd11RenderShaderBuffer* pBuffer = pParameter->Buffer();
    //pBuffer->Set
    return ESuccess;
+}
+
+//============================================================
+// <T>绘制开始处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FPd11RenderProgram::DrawBegin(){
+   TResult resultCd = FRenderProgram::DrawBegin();
+   // 提交处理
+   TInt count = _buffers.Count();
+   for(TInt n = 0; n < count; n++){
+      FPd11RenderShaderBuffer* pBuffer = (FPd11RenderShaderBuffer*)_buffers.Get(n);
+      pBuffer->Bind();
+   }
+   return resultCd;
+}
+
+//============================================================
+// <T>绘制结束处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FPd11RenderProgram::DrawEnd(){
+   TResult resultCd = FRenderProgram::DrawEnd();
+   return resultCd;
 }
 
 //============================================================

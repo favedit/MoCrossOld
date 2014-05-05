@@ -65,8 +65,12 @@ TResult REffectParameter::Parse(TCharC* pValue, EEffectParameter& parameterCd, E
       parameterCd = EEffectParameter_VertexLightModelMatrix4x4;
       shaderCd = ERenderShader_Vertex;
       formatCd = ERenderShaderParameterFormat_Float4x4;
+   }else if(code.Equals("vertexlightmodelviewmatrix4x4")){
+      parameterCd = EEffectParameter_VertexLightModelViewMatrix4x4;
+      shaderCd = ERenderShader_Vertex;
+      formatCd = ERenderShaderParameterFormat_Float4x4;
    }else if(code.Equals("vertexlightmodelviewprojectrionmatrix4x4")){
-      parameterCd = EEffectParameter_VertexLightModelViewProjectrionMatrix4x4;
+      parameterCd = EEffectParameter_VertexLightModelViewProjectionMatrix4x4;
       shaderCd = ERenderShader_Vertex;
       formatCd = ERenderShaderParameterFormat_Float4x4;
    }else if(code.Equals("vertexlightposition")){

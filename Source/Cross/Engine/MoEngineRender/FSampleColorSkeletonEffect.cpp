@@ -24,7 +24,7 @@ FSampleColorSkeletonEffect::~FSampleColorSkeletonEffect(){
 TResult FSampleColorSkeletonEffect::OnSetup(){
    FColorAutomaticEffect::OnSetup();
    // 注册常量集合
-   //_constDescriptors.Register(ERenderShader_Vertex, EEffectConst_Vertex_BoneMatrix, "vc_bone_matrix");
+   //_constDescriptors.Register(ERenderShader_Vertex, EEffectParameter_VertexBoneMatrix, "vc_bone_matrix");
    return ESuccess;
 }
 
@@ -64,10 +64,10 @@ TResult FSampleColorSkeletonEffect::DrawRenderable(FRenderRegion* pRegion, FRend
    SFloatMatrix3d modelMatrix;
    pRenderable->CalculateModelMatrix(modelMatrix);
    modelMatrix.Append(pRenderable->Matrix());
-   BindConstMatrix4x4(EEffectConst_Vertex_ModelMatrix, &modelMatrix);
+   BindConstMatrix4x4(EEffectParameter_VertexModelMatrix4x4, &modelMatrix);
    // 计算骨骼矩阵
    TInt boneCount = pRenderable->CalculateBoneMatrix(_boneMatrixs);
-   BindConstMatrix4x3(EEffectConst_Vertex_BoneMatrix, (SFloatMatrix3d*)&_boneMatrixs, boneCount);
+   BindConstMatrix4x3(EEffectParameter_VertexBoneMatrix4x3, (SFloatMatrix3d*)&_boneMatrixs, boneCount);
    //............................................................
    // 设定属性集合
    BindAttributeDescriptors(pRenderable);
@@ -99,8 +99,8 @@ TResult FSampleColorSkeletonEffect::DrawInstanceRenderable(FRenderRegion* pRegio
       boneMatrixCount += boneCount;
    }
    //............................................................
-   BindConstMatrix4x4(EEffectConst_Vertex_ModelMatrix, (SFloatMatrix3d*)&_modelMatrixs, count);
-   BindConstMatrix4x3(EEffectConst_Vertex_BoneMatrix, (SFloatMatrix3d*)&_boneMatrixs, boneMatrixCount);
+   BindConstMatrix4x4(EEffectParameter_VertexModelMatrix4x4, (SFloatMatrix3d*)&_modelMatrixs, count);
+   BindConstMatrix4x3(EEffectParameter_VertexBoneMatrix4x3, (SFloatMatrix3d*)&_boneMatrixs, boneMatrixCount);
    //............................................................
    // 设定属性集合
    BindAttributeDescriptors(pInstanceRenderable);

@@ -21,6 +21,23 @@ FRenderProgram::~FRenderProgram(){
 }
 
 //============================================================
+// <T>根据名称查找缓冲。</T>
+//
+// @param pName 名称
+// @return 缓冲对象
+//============================================================
+FRenderShaderBuffer* FRenderProgram::BufferFind(TCharC* pName){
+   TInt count = _buffers.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderShaderBuffer* pBuffer = _buffers.Get(n);
+      if(RString::Equals(pBuffer->Name(), pName)){
+         return pBuffer;
+      }
+   }
+   return NULL;
+}
+
+//============================================================
 // <T>根据类型获得渲染参数集合。</T>
 //
 // @param shaderCd 渲染类型
@@ -126,6 +143,29 @@ TResult FRenderProgram::MakeVertexSource(FRenderSource* pSource){
 // @return 处理结果
 //============================================================
 TResult FRenderProgram::MakeFragmentSource(FRenderSource* pSource){
+   return ESuccess;
+}
+
+//============================================================
+// <T>绘制开始处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FRenderProgram::DrawBegin(){
+   TInt count = _buffers.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderShaderBuffer* pBuffer = _buffers.Get(n);
+      pBuffer->Update();
+   }
+   return ESuccess;
+}
+
+//============================================================
+// <T>绘制结束处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FRenderProgram::DrawEnd(){
    return ESuccess;
 }
 
