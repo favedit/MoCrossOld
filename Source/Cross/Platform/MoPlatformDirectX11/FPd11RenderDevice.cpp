@@ -393,10 +393,13 @@ TResult FPd11RenderDevice::Clear(TFloat red, TFloat green, TFloat blue, TFloat a
    color[1] = green;
    color[2] = blue;
    color[3] = alpha;
+   _piContext->ClearState();
+   ID3D11RenderTargetView* pRenderTargetView = pRenderTarget->NativeRenderTarget();
+   _piContext->OMSetRenderTargets(1, &pRenderTargetView, NULL);
    _piContext->ClearRenderTargetView(pRenderTarget->NativeRenderTarget(), color);
    // Çå¿ÕÉî¶È
    if(pRenderTarget->OptionDepth()){
-      _piContext->ClearDepthStencilView(pRenderTarget->NativeDepthStencil(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, depth, 0);
+      //_piContext->ClearDepthStencilView(pRenderTarget->NativeDepthStencil(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, depth, 0);
    }
    return ETrue;
 }

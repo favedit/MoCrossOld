@@ -118,7 +118,7 @@ DXGI_FORMAT RDirectX11::ConvertAttrbuteFormat(ERenderShaderAttributeFormat forma
       case ERenderShaderAttributeFormat_Byte4:
          return DXGI_FORMAT_R8G8B8A8_UINT;
       case ERenderShaderAttributeFormat_Byte4Normal:
-         return DXGI_FORMAT_R8G8B8A8_SNORM;
+         return DXGI_FORMAT_R8G8B8A8_UNORM;
    }
    MO_STATIC_FATAL("Convert attribute format failure. (format=%d)", formatCd);
    return DXGI_FORMAT_UNKNOWN;

@@ -965,6 +965,7 @@ protected:
    TString _linker;
    TInt _index;
    ERenderShaderAttributeFormat _formatCd;
+   TBool _statusUsed;
 public:
    FRenderShaderAttribute();
    MO_ABSTRACT ~FRenderShaderAttribute();
@@ -1008,6 +1009,16 @@ public:
    // <T>设置属性类型。</T>
    MO_INLINE void SetFormatCd(ERenderShaderAttributeFormat formatCd){
       _formatCd = formatCd;
+   }
+   //------------------------------------------------------------
+   // <T>获得状态是否被使用。</T>
+   MO_INLINE TBool IsStatusUsed(){
+      return _statusUsed;
+   }
+   //------------------------------------------------------------
+   // <T>设置状态是否被使用。</T>
+   MO_INLINE void SetStatusUsed(TBool statusUsed){
+      _statusUsed = statusUsed;
    }
 public:
    MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);
@@ -1256,7 +1267,7 @@ public:
    GRenderShaderParameterDictionary& Parameters(ERenderShader shaderCd);
    FRenderShaderParameter* ParameterFind(ERenderShader shaderCd, TCharC* pName);
    TResult ParameterPush(FRenderShaderParameter* pParameter);
-   FRenderShaderAttribute* AttributeFind(TCharC* pName, TInt index = -1);
+   FRenderShaderAttribute* AttributeFind(TCharC* pName, TInt index);
    TResult AttributePush(FRenderShaderAttribute* pAttribute);
    TResult SamplerPush(FRenderShaderSampler* pSampler);
 public:

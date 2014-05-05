@@ -222,8 +222,6 @@ public:
    MO_OVERRIDE TResult Build();
    MO_OVERRIDE TResult Link();
 public:
-   MO_OVERRIDE TResult SetConstVariable(ERenderShader shaderCd, TCharC* pName, TAnyC* pData, TInt length);
-public:
    MO_OVERRIDE TResult DrawBegin();
    MO_OVERRIDE TResult DrawEnd();
 public:

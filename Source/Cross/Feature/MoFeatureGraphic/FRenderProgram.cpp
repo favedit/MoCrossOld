@@ -90,15 +90,15 @@ TResult FRenderProgram::ParameterPush(FRenderShaderParameter* pParameter){
 // @return 渲染属性
 //============================================================
 FRenderShaderAttribute* FRenderProgram::AttributeFind(TCharC* pName, TInt index){
-   //TInt count = _attributes.Count();
-   //for(TInt n = 0; n < count; n++){
-   //   FRenderShaderAttribute* pAttribute = _attributes.Get(n);
-   //   if(RString::Equals(pAttribute->Name(), pName)){
-   //      if((index == -1) || (pAttribute->Index() == index)){
-   //         return pAttribute;
-   //      }
-   //   }
-   //}
+   GRenderShaderAttributeDictionary::TIterator iterator = _attributes.IteratorC();
+   while(iterator.Next()){
+      FRenderShaderAttribute* pAttribute = *iterator;
+      if((index == -1) || (pAttribute->Index() == index)){
+         if(RString::Equals(pAttribute->Name(), pName)){
+            return pAttribute;
+         }
+      }
+   }
    return NULL;
 }
 

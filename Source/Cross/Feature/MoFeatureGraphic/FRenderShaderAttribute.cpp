@@ -10,6 +10,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderShaderAttribute, FRenderObject);
 FRenderShaderAttribute::FRenderShaderAttribute(){
    _index = -1;
    _formatCd = ERenderShaderAttributeFormat_Unknown;
+   _statusUsed = EFalse;
 }
 
 //============================================================

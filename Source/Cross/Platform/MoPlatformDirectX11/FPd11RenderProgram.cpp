@@ -180,14 +180,21 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
             MO_FATAL("Get attribute description failure.");
             return EFailure;
          }
-         ERenderShaderAttributeFormat formatCd = RDirectX11::ParseAttrbuteFormat(attributeDescriptor.ComponentType, attributeDescriptor.Mask);
-         // 创建属性
-         FPd11RenderShaderAttribute* pAttribute = (FPd11RenderShaderAttribute*)AttributeFind(attributeDescriptor.SemanticName, attributeDescriptor.SemanticIndex);
-         //FPd11RenderShaderAttribute* pAttribute = FPd11RenderShaderAttribute::InstanceCreate();
-         //pAttribute->SetName(attributeDescriptor.SemanticName);
-         //pAttribute->SetIndex(attributeDescriptor.SemanticIndex);
-         //pAttribute->SetFormatCd(formatCd);
-         //pShader->AttributePush(pAttribute);
+         // 查找属性
+         TFsName attributeName;
+         attributeName.AppendFormat("%s%d", attributeDescriptor.SemanticName, attributeDescriptor.SemanticIndex);
+         FPd11RenderShaderAttribute* pAttribute = (FPd11RenderShaderAttribute*)AttributeFind(attributeName);
+         if(pAttribute == NULL){
+            pAttribute = (FPd11RenderShaderAttribute*)AttributeFind(attributeDescriptor.SemanticName);
+         }
+         if(pAttribute == NULL){
+            MO_WARN("Shader attribute is not found. (name=%s)", attributeDescriptor.SemanticName);
+         }else{
+            // 设置内容
+            pAttribute->SetStatusUsed(ETrue);
+            pAttribute->SetName(attributeDescriptor.SemanticName);
+            pAttribute->SetIndex(attributeDescriptor.SemanticIndex);
+         }
       }
    }
    //............................................................
@@ -244,58 +251,32 @@ TResult FPd11RenderProgram::Link(){
    ID3D10Blob* piShaderData = pVertexShader->NativeData();
    //............................................................
    // 创建输入描述
-   //MO_D3D11_INPUT_ELEMENT_DESC_ARRAY inputElements;
-   //GRenderShaderAttributePtrs::TIterator attributeIterator = pVertexShader->Attributes().Iterator();
-   //while(attributeIterator.Next()){
-   //   FRenderShaderAttribute* pAttribute = *attributeIterator;
-   //   D3D11_INPUT_ELEMENT_DESC inputElement;
-   //   RType<D3D11_INPUT_ELEMENT_DESC>::Clear(&inputElement);
-   //   inputElement.SemanticName = pAttribute->Name();
-   //   inputElement.SemanticIndex = pAttribute->Index();
-   //   inputElement.Format = RDirectX11::ConvertAttrbuteFormat(pAttribute->FormatCd()) ;
-   //   inputElement.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-   //   inputElements.Push(inputElement);
-   //}
-   //// 创建输入层次
-   //HRESULT dxResult = pRenderDevice->NativeDevice()->CreateInputLayout(
-   //      inputElements.Memory(), inputElements.Length(),
-   //      piShaderData->GetBufferPointer(), piShaderData->GetBufferSize(),
-   //      &_piInputLayout);
-   //if(FAILED(dxResult)){
-   //   MO_FATAL("Create input layout failure.");
-   //   return EFailure;
-   //}
+   MO_D3D11_INPUT_ELEMENT_DESC_ARRAY inputElements;
+   GRenderShaderAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
+   while(attributeIterator.Next()){
+      FRenderShaderAttribute* pAttribute = *attributeIterator;
+      if(pAttribute->IsStatusUsed()){
+         D3D11_INPUT_ELEMENT_DESC inputElement;
+         RType<D3D11_INPUT_ELEMENT_DESC>::Clear(&inputElement);
+         inputElement.SemanticName = pAttribute->Name();
+         inputElement.SemanticIndex = pAttribute->Index();
+         inputElement.Format = RDirectX11::ConvertAttrbuteFormat(pAttribute->FormatCd()) ;
+         inputElement.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+         inputElements.Push(inputElement);
+      }
+   }
+   // 创建输入层次
+   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateInputLayout(
+         inputElements.Memory(), inputElements.Length(),
+         piShaderData->GetBufferPointer(), piShaderData->GetBufferSize(),
+         &_piInputLayout);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create input layout failure.");
+      return EFailure;
+   }
    //............................................................
    MO_INFO("Link program success.");
    return resultCd;
-}
-
-//============================================================
-// <T>设置常量的数据内容。</T>
-//
-// @param pName 名称
-// @param pData 数据
-// @param length 长度
-// @return 处理结果
-//============================================================
-TResult FPd11RenderProgram::SetConstVariable(ERenderShader shaderCd, TCharC* pName, TAnyC* pData, TInt length){
-   // 查找参数
-   FPd11RenderShaderParameter* pParameter = NULL;
-   if(shaderCd == ERenderShader_Vertex){
-      FPd11RenderVertexShader* pVertexShader = _pVertexShader->Convert<FPd11RenderVertexShader>();
-      pParameter = (FPd11RenderShaderParameter*)pVertexShader->ParameterFind(pName);
-   }else if(shaderCd == ERenderShader_Fragment){
-      FPd11RenderFragmentShader* pFragmentShader = _pVertexShader->Convert<FPd11RenderFragmentShader>();
-      pParameter = (FPd11RenderShaderParameter*)pFragmentShader->ParameterFind(pName);
-   }
-   if(pParameter == NULL){
-      MO_FATAL("Find parameter failure. (parameter_name=%s)", pName);
-      return EFailure;
-   }
-   // 设置内容
-   //FPd11RenderShaderBuffer* pBuffer = pParameter->Buffer();
-   //pBuffer->Set
-   return ESuccess;
 }
 
 //============================================================
@@ -304,13 +285,20 @@ TResult FPd11RenderProgram::SetConstVariable(ERenderShader shaderCd, TCharC* pNa
 // @return 处理结果
 //============================================================
 TResult FPd11RenderProgram::DrawBegin(){
-   TResult resultCd = FRenderProgram::DrawBegin();
+   MO_CHECK(_pDevice, return ENull);
+   FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
+   //............................................................
    // 提交处理
+   TResult resultCd = FRenderProgram::DrawBegin();
    TInt count = _buffers.Count();
    for(TInt n = 0; n < count; n++){
       FPd11RenderShaderBuffer* pBuffer = (FPd11RenderShaderBuffer*)_buffers.Get(n);
       pBuffer->Bind();
    }
+   //............................................................
+   // 设定层次
+   pRenderDevice->NativeContext()->IASetInputLayout(_piInputLayout);
+   //pRenderDevice->NativeContext()->IASetVertexBuffers(
    return resultCd;
 }
 
