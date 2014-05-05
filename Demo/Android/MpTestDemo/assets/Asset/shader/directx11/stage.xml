@@ -12,7 +12,10 @@
    <Specular name='lightmap' value='N'/>
    <Specular name='fog'      value='N'/>
    <!-- ------------------------------------------------------------ -->
-   <Sampler name='fs_diffuse' linker='Diffuse' source='PackDiffuse'/>
+   <Attribute name='POSITION'  linker='Position' format='Float4'/>
+   <Attribute name='TEXCOORD0' linker='Color'    format='Byte4Normal'/>
+   <!-- ------------------------------------------------------------ -->
+   <Sampler name='ft_map' linker='Diffuse' source='PackDiffuse'/>
    <!-- ------------------------------------------------------------ -->
    <Source name='vertex' include='asset:global.shader'/>
    <Source name='vertex'><![CDATA[

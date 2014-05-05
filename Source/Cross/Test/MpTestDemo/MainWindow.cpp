@@ -164,7 +164,8 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    //............................................................
    // 创建窗口
    SIntSize2 screenSize(1200, 800);
-   FRenderWindow* pWindow = MO_CREATE(FRenderWindow);
+   FRenderWindow* pWindow = MO_CREATE(FRenderDirectXWindow);
+   //FRenderWindow* pWindow = MO_CREATE(FRenderOpenGLWindow);
    pWindow->Size().Assign(screenSize);
    pWindow->Setup();
    // 初始化渲染设备

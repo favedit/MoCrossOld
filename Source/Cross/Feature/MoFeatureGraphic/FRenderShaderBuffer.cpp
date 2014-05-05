@@ -53,9 +53,9 @@ TResult FRenderShaderBuffer::Set(TInt slot, TAnyC* pData, TInt length){
    // 检查数据变更
    TByte* pMemory = _pData->Memory() + slot;
    if(!_statusChanged){
-      if(MO_LIB_MEMORY_COMPARE(pMemory, pData, length) == 0){
-         return EContinue;
-      }
+      //if(MO_LIB_MEMORY_COMPARE(pMemory, pData, length) == 0){
+      //   return EContinue;
+      //}
       _statusChanged = ETrue;
    }
    // 复制内存

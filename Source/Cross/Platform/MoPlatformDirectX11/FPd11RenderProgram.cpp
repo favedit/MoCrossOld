@@ -304,7 +304,7 @@ TResult FPd11RenderProgram::DrawBegin(){
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
    //............................................................
    // 设定层次
-   pRenderDevice->NativeContext()->IASetInputLayout(_piInputLayout);
+   // pRenderDevice->NativeContext()->IASetInputLayout(_piInputLayout);
    //............................................................
    // 提交缓冲
    TResult resultCd = FRenderProgram::DrawBegin();

@@ -72,8 +72,10 @@ void FRenderWindow::RegisterClass(){
 
 //============================================================
 // <T>设置处理。</T>
+//
+// @return 处理结果
 //============================================================
-void FRenderWindow::Setup(){
+TResult FRenderWindow::Setup(){
    // 注册窗口类
    RegisterClass();
    // 创建窗口
@@ -112,23 +114,20 @@ void FRenderWindow::Setup(){
    SetPixelFormat(_hDC, pixelFormat, &descriptor);
    // 更新窗口
    UpdateWindow(_handle);
-   // 创建RC
-   _hRC = wglCreateContext(_hDC);
-   TBool makeResult = wglMakeCurrent(_hDC, _hRC);
-   MO_FATAL_CHECK(makeResult, return, "wglMakeCurrent failure.");
    // 设置窗口
    RECT rect;
    GetClientRect(_handle, &rect);
    FScreenDevice* pScreenDevice = RDeviceManager::Instance().Find<FScreenDevice>();
    pScreenDevice->Resize(rect.right, rect.bottom);
+   return ESuccess;
 }
 
 //============================================================
 // <T>启动处理。</T>
+//
+// @return 处理结果
 //============================================================
-void FRenderWindow::Startup(){
-   TBool makeResult = wglMakeCurrent(NULL, NULL);
-   MO_FATAL_CHECK(makeResult, return, "wglMakeCurrent failure.");
+TResult FRenderWindow::Startup(){
    // 创建渲染线程
    _pRenderThread = MO_CREATE(FRenderThread);
    _pRenderThread->SetWindow(this);
@@ -138,58 +137,38 @@ void FRenderWindow::Startup(){
    // 初始化时钟
    FTimerDevice* pTimerDevice = RDeviceManager::Instance().Find<FTimerDevice>();
    pTimerDevice->Setup();
+   return ESuccess;
 }
 
 //============================================================
 // <T>释放处理。</T>
+//
+// @return 处理结果
 //============================================================
-void FRenderWindow::Dispose(){
-   if(_hRC != NULL){
-      wglDeleteContext(_hRC);
-      _hRC = NULL;
-   }
-   if(_hDC != NULL){
-      ReleaseDC(_handle, _hDC);
-      _hDC = NULL;
-   }
+TResult FRenderWindow::Dispose(){
    _statusRenderable = EFalse;
+   return ESuccess;
 }
 
 //============================================================
 // <T>渲染处理。</T>
+//
+// @return 处理结果
 //============================================================
-void FRenderWindow::ProcessRender(){
+TResult FRenderWindow::ProcessRender(){
    // 检查状态
    if(!g_runable){
-      return;
+      return EContinue;
    }
    if(!_statusRenderable){
-      return;
+      return EContinue;
    }
    //............................................................
-   _locker.Enter();
-   // 选择RC作为当前线程的RC
-   TBool result = wglMakeCurrent(_hDC, _hRC);
-   if(!result){
-      return;
-   }
-   MO_FATAL_CHECK(result, return, "wglMakeCurrent failure.");
-   // 舞台管理器处理
-   if(!g_runable){
-      return;
-   }
    // 处理舞台
+   _locker.Enter();
    REngineManager::Instance().Process();
-   //交换当前缓冲区和后台缓冲区
-   if(!g_runable){
-      return;
-   }
-   result = SwapBuffers(_hDC);
-   MO_FATAL_CHECK(result, return, "SwapBuffers failure.");
-   // 取消当前线程选中的RC
-   result = wglMakeCurrent(NULL, NULL);
-   MO_FATAL_CHECK(result, return, "wglMakeCurrent failure.");
    _locker.Leave();
+   return ESuccess;
 }
 
 //============================================================

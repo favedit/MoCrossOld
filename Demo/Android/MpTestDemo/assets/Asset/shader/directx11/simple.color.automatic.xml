@@ -34,28 +34,36 @@
    <Parameter name='fc_specular_view'       linker='FragmentSpecularView'/>
    <Parameter name='fc_reflect_color'       linker='FragmentReflectColor'/>
    <!-- ------------------------------------------------------------ -->
-   <Attribute name='POSITION'               linker='Position' format='Float4'/>
-   <Attribute name='TEXCOORD0'              linker='Color'    format='Byte4Normal'/>
-   <Attribute name='TEXCOORD1'              linker='Coord'    format='Float2'/>
-   <Attribute name='TEXCOORD2'              linker='Normal'   format='Byte4Normal'/>
-   <Attribute name='TEXCOORD3'              linker='Binormal' format='Byte4Normal'/>
-   <Attribute name='TEXCOORD4'              linker='Tangent'  format='Byte4Normal'/>
+   <Attribute name='POSITION'               linker='Position'/>
+   <Attribute name='TEXCOORD0'              linker='Color'/>
+   <Attribute name='TEXCOORD1'              linker='Coord'/>
+   <Attribute name='TEXCOORD2'              linker='Normal'/>
+   <Attribute name='TEXCOORD3'              linker='Binormal'/>
+   <Attribute name='TEXCOORD4'              linker='Tangent'/>
    <!-- ------------------------------------------------------------ -->
-   <Sampler name='fs_diffuse'               linker='Diffuse'     source='PackDiffuse'/>
-   <Sampler name='fs_normal'                linker='Normal'      source='PackNormal'/>
-   <Sampler name='fs_specular'              linker='Specular'    source='PackSpecular'/>
-   <Sampler name='fs_light'                 linker='Light'       source='PackLight'/>
-   <Sampler name='fs_environment'           linker='Environment' source='Environment'/>
+   <Sampler name='ft_diffuse'               linker='Diffuse'/>
+   <Sampler name='ft_normal'                linker='Normal'/>
+   <Sampler name='ft_specular'              linker='Specular'/>
+   <Sampler name='ft_light'                 linker='Light'/>
+   <Sampler name='ft_environment'           linker='Environment'/>
    <!-- ------------------------------------------------------------ -->
    <Source name='vertex'><![CDATA[
-float3x3 vc_model_mat3;
-float4x4 vc_model_mat4;
-float3x3 vc_mvp_mat3;
-float4x4 vc_mvp_mat4;
-float3   vc_camera_position;
-float4x4 vc_light_mv_mat4;
-float4x4 vc_light_mvp_mat4;
-float3   vc_light_direction;
+cbuffer TramsformBuffer{
+   float3x3 vc_model_mat3;
+   float4x4 vc_model_mat4;
+   float3x3 vc_mvp_mat3;
+   float4x4 vc_mvp_mat4;
+}
+
+cbuffer CameraBuffer{
+   float3   vc_camera_position;
+}
+
+cbuffer LightBuffer{
+   float4x4 vc_light_mv_mat4;
+   float4x4 vc_light_mvp_mat4;
+   float3   vc_light_direction;
+}
 
 struct VS_INPUT
 {
@@ -229,9 +237,9 @@ float4 main(PS_INPUT input) : SV_Target
    // Calculate ambient color
 <shader:true source='support.ambient.sampler'>
    float4 color = ft_diffuse.Sample(fs_diffuse, input.coord);
-   if(color.a < fc_alpha.x){
-      discard;
-   }
+   //if(color.a < fc_alpha.x){
+      //discard;
+   //}
 </shader:true>
 <shader:false source='support.ambient.sampler'>
    float4 color = float4(1.0, 1.0, 1.0, 1.0);
@@ -324,7 +332,8 @@ float4 main(PS_INPUT input) : SV_Target
    result.a = color.a * fc_alpha.z;
 </shader:true>
    //............................................................
-   return result;
+   //return result;
+   return float4(1.0, 1.0, 1.0, 1.0);
 }
    ]]></Source>
 </Configuration>

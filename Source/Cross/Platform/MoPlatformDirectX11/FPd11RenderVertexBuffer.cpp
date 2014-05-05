@@ -75,6 +75,7 @@ TResult FPd11RenderVertexBuffer::Upload(TByteC* pData, TInt length){
    D3D11_SUBRESOURCE_DATA data;
    RType<D3D11_SUBRESOURCE_DATA>::Clear(&data);
    data.pSysMem = pData;
+   data.SysMemPitch = _dataLength;
    HRESULT dxResult = pRenderDevice->NativeDevice()->CreateBuffer(&description, &data, &_piBuffer);
    if(FAILED(dxResult)){
       MO_FATAL("Create buffer failure.");

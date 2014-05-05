@@ -200,6 +200,12 @@ public:
    FPd11RenderProgram();
    MO_ABSTRACT ~FPd11RenderProgram();
 public:
+   //------------------------------------------------------------
+   // <T>获得本地输入层次。</T>
+   MO_INLINE ID3D11InputLayout* NativeInputLayout(){
+      return _piInputLayout;
+   }
+public:
    MO_OVERRIDE TInt FindDefine(TCharC* pCode);
    MO_OVERRIDE TInt FindAttribute(TCharC* pCode);
    MO_OVERRIDE TResult BindAttribute(TInt slot, TCharC* pCode);

@@ -24,7 +24,6 @@ protected:
    HWND _handle;
    ATOM _atom;
    HDC _hDC;
-   HGLRC _hRC;
    FRenderThread* _pRenderThread;
    FParticleController* _pParticleController;
 public:
@@ -50,12 +49,38 @@ public:
       return _atom;
    }
 public:
-   void Setup();
-   void Dispose();
-   void Startup();
+   MO_ABSTRACT TResult Setup();
+   MO_ABSTRACT TResult Dispose();
+   MO_ABSTRACT TResult Startup();
 public:
-   void ProcessRender();
+   MO_ABSTRACT TResult ProcessRender();
    TInt Process();
+};
+
+//============================================================
+// <T>äÖÈ¾DX´°¿Ú¡£</T>
+//============================================================
+class MO_EW_DECLARE FRenderDirectXWindow : public FRenderWindow{
+public:
+   FRenderDirectXWindow();
+   MO_ABSTRACT ~FRenderDirectXWindow();
+};
+
+//============================================================
+// <T>äÖÈ¾OpenGL´°¿Ú¡£</T>
+//============================================================
+class MO_EW_DECLARE FRenderOpenGLWindow : public FRenderWindow{
+protected:
+   HGLRC _hRC;
+public:
+   FRenderOpenGLWindow();
+   MO_ABSTRACT ~FRenderOpenGLWindow();
+public:
+   MO_OVERRIDE TResult Setup();
+   MO_OVERRIDE TResult Dispose();
+   MO_OVERRIDE TResult Startup();
+public:
+   MO_OVERRIDE TResult ProcessRender();
 };
 
 //============================================================
