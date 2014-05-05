@@ -1,4 +1,4 @@
-#include "MoErTechnique.h"
+#include "MoErCore.h"
 
 MO_NAMESPACE_BEGIN
 
@@ -6,6 +6,7 @@ MO_NAMESPACE_BEGIN
 // <T>构造效果取样器描述集合。</T>
 //============================================================
 TEffectSamplerDescriptors::TEffectSamplerDescriptors(){
+   _count = _capacity;
 }
 
 //============================================================
@@ -21,6 +22,27 @@ void TEffectSamplerDescriptors::Register(TInt code, TCharC* pName, ERenderSample
    descriptor.namePtr = pName;
    descriptor.samplerCd = samplerCd;
    Push(descriptor);
+}
+
+//============================================================
+// <T>注册一个描述信息。</T>
+//
+// @param pLinker 关联信息
+//============================================================
+TResult TEffectSamplerDescriptors::Link(FRenderShaderSampler* pSampler){
+   MO_CHECK(pSampler, return ENull);
+   TCharC* pLinker = pSampler->Linker();
+   // 解析内容
+   ERenderSampler samplerCd = RRenderSampler::Parse(pLinker);
+   ERenderSampler packCd = RRenderSampler::ParsePack(samplerCd);
+   // 设置参数
+   SEffectSamplerDescriptor& descriptor = _memory[packCd];
+   descriptor.samplerPtr = pSampler;
+   descriptor.code = samplerCd;
+   descriptor.namePtr = pLinker;
+   descriptor.samplerCd = samplerCd;
+   descriptor.bindId = pSampler->Slot();
+   return ESuccess;
 }
 
 //============================================================

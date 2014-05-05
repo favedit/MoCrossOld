@@ -71,6 +71,28 @@ TResult FAutomaticEffect::BindDescriptors(){
          }
       }
    }
+   // 建立属性描述器
+   GRenderShaderAttributeDictionary& attributes = _program->Attributes();
+   if(!attributes.IsEmpty()){
+      GRenderShaderAttributeDictionary::TIterator iterator = attributes.Iterator();
+      while(iterator.Next()){
+         FRenderShaderAttribute* pAttribute = *iterator;
+         if(pAttribute->IsStatusUsed()){
+            _attributeDescriptors.Link(pAttribute);
+         }
+      }
+   }
+   // 建立属性描述器
+   GRenderShaderSamplerDictionary& sampler = _program->Samplers();
+   if(!sampler.IsEmpty()){
+      GRenderShaderSamplerDictionary::TIterator iterator = sampler.Iterator();
+      while(iterator.Next()){
+         FRenderShaderSampler* pSampler = *iterator;
+         if(pSampler->IsStatusUsed()){
+            _samplerDescriptors.Link(pSampler);
+         }
+      }
+   }
    return ESuccess;
 }
 
@@ -86,7 +108,7 @@ TResult FAutomaticEffect::LinkDescriptors(){
    TEffectParameterDescriptors::TIterator parameterIterator = _parameterDescriptors.Iterator();
    while(parameterIterator.Next()){
       SEffectParameterDescriptor& descriptor = *parameterIterator;
-      if(descriptor.code != -1){
+      if((descriptor.code != -1) && (descriptor.bindId == -1)){
          descriptor.bindId = _program->FindDefine(descriptor.namePtr);
          MO_INFO("Find const location. (name=%s, code=%d, bind_id=%d)",
                descriptor.namePtr, descriptor.code, descriptor.bindId);
@@ -96,7 +118,7 @@ TResult FAutomaticEffect::LinkDescriptors(){
    TEffectAttributeDescriptors::TIterator attributeIterator = _attributeDescriptors.Iterator();
    while(attributeIterator.Next()){
       SEffectAttributeDescriptor& descriptor = *attributeIterator;
-      if(descriptor.bindIndex != -1){
+      if((descriptor.bindIndex != -1) && (descriptor.bindId == -1)){
          descriptor.bindId = _program->FindAttribute(descriptor.namePtr);
          if(descriptor.bindId != -1){
             MO_INFO("Find attribute location. (name=%s, code=%d, bind_id=%d)",
@@ -108,12 +130,11 @@ TResult FAutomaticEffect::LinkDescriptors(){
    TEffectSamplerDescriptors::TIterator samplerIterator = _samplerDescriptors.Iterator();
    while(samplerIterator.Next()){
       SEffectSamplerDescriptor& descriptor = *samplerIterator;
-      if(descriptor.code != -1){
+      if((descriptor.code != -1) && (descriptor.bindId == -1)){
          descriptor.bindId = _program->FindDefine(descriptor.namePtr);
       }
    }
    TInt samplerIndex = 0;
-   //for(TInt n = 0; n < fragmentConstLimit; n++){
    for(TInt n = 0; n < 1024; n++){
       SEffectSamplerDescriptor* pDescriptor = _samplerDescriptors.FindByBindId(n);
       if(pDescriptor != NULL){
@@ -249,7 +270,7 @@ TResult FAutomaticEffect::BindAttributeDescriptors(FRenderable* pRenderable){
    TEffectAttributeDescriptors::TIterator attributeIterator = _attributeDescriptors.Iterator();
    while(attributeIterator.Next()){
       SEffectAttributeDescriptor& descriptor = *attributeIterator;
-      if(descriptor.bindId != -1){
+      if(descriptor.attributePtr != NULL){
          FRenderVertexStream* pVertexStream = pVertexStreams->FindStream((ERenderVertexBuffer)descriptor.code);
          if(pVertexStream != NULL){
             _renderDevice->BindVertexStream(descriptor.bindId, pVertexStream);
@@ -298,14 +319,10 @@ TResult FAutomaticEffect::BindSampler(TInt bindCd, FRenderTexture* pTexture){
    MO_CHECK(pRenderDevice, return ENull);
    //............................................................
    // 关联属性集合
-   TEffectSamplerDescriptors::TIterator samplerIterator = _samplerDescriptors.Iterator();
-   while(samplerIterator.Next()){
-      SEffectSamplerDescriptor& descriptor = *samplerIterator;
-      if((descriptor.samplerCd == bindCd) && (descriptor.bindId != -1)){
-         pTexture->SetIndex(descriptor.index);
-         pRenderDevice->BindTexture(descriptor.bindId, pTexture);
-         break;
-      }
+   SEffectSamplerDescriptor& descriptor = _samplerDescriptors[bindCd];
+   if(descriptor.samplerPtr != NULL){
+      pTexture->SetIndex(descriptor.index);
+      pRenderDevice->BindTexture(descriptor.bindId, pTexture);
    }
    return ESuccess;
 }
@@ -322,10 +339,10 @@ TResult FAutomaticEffect::BindSamplerDescriptors(FRenderable* pRenderable){
    MO_CHECK(pRenderDevice, return ENull);
    //............................................................
    // 关联属性集合
-   TEffectSamplerDescriptors::TIterator samplerIterator = _samplerDescriptors.Iterator();
-   while(samplerIterator.Next()){
-      SEffectSamplerDescriptor& descriptor = *samplerIterator;
-      if(descriptor.bindId != -1){
+   TInt count = _samplerDescriptors.Count();
+   for(TInt n = 0; n < count; n++){
+      SEffectSamplerDescriptor& descriptor = _samplerDescriptors[n];
+      if((descriptor.samplerPtr != NULL) && (descriptor.bindId != -1)){
          FRenderTexture* pTexture = pRenderable->FindTexture((ERenderSampler)descriptor.samplerCd);
          if(pTexture != NULL){
             pTexture->SetIndex(descriptor.index);

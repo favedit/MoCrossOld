@@ -9,6 +9,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderShaderAttribute, FRenderObject);
 //============================================================
 FRenderShaderAttribute::FRenderShaderAttribute(){
    _index = -1;
+   _slot = -1;
    _formatCd = ERenderShaderAttributeFormat_Unknown;
    _statusUsed = EFalse;
 }
@@ -32,8 +33,10 @@ TResult FRenderShaderAttribute::LoadConfig(FXmlNode* pConfig){
    // 设置关联
    _linker = pConfig->Get("linker");
    // 设置格式
-   TCharC* pFormat = pConfig->Get("format");
-   _formatCd = RRenderShaderAttributeFormat::Parse(pFormat);
+   TCharC* pFormat = pConfig->Get("format", NULL);
+   if(pFormat != NULL){
+      _formatCd = RRenderShaderAttributeFormat::Parse(pFormat);
+   }
    return ESuccess;
 }
 

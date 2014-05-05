@@ -68,8 +68,8 @@ protected:
    TInt _limitCount;
    TInt _count;
    SFloatMatrix3d _mvpMatrix;
-   GLint _effectAttributes[EEffectVertexAttribute_Count];
-   GLint _effectSamplers[EEffectSampler_Count];
+   //GLint _effectAttributes[EEffectVertexAttribute_Count];
+   //GLint _effectSamplers[EEffectSampler_Count];
    //FPoe2RenderVertexBuffer* _pVertexPositionBuffer;
    //FDataStream* _pPositionData;
    //FPoe2RenderVertexBuffer* _pVertexColorBuffer;
@@ -184,8 +184,8 @@ protected:
    FPoe23dSkeleton4ProgramVector* _pPrograms;
    SFloatMatrix3d _mvpMatrix;
    SFloatMatrix3d _vpMatrix;
-   GLint _effectAttributes[EEffectVertexAttribute_Count];
-   GLint _effectSamplers[EEffectSampler_Count];
+   //GLint _effectAttributes[EEffectVertexAttribute_Count];
+   //GLint _effectSamplers[EEffectSampler_Count];
    FByteStream* _pBoneStream;
 public:
    FPoe23dSkeleton4Effect();

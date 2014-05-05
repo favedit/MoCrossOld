@@ -71,6 +71,40 @@ ERenderSampler RRenderSampler::Parse(TCharC* pValue, ERenderSampler samplerCd){
 }
 
 //============================================================
+// <T>根据取样器获得打包取样器。</T>
+//
+// @param samplerCd 枚举内容
+// @return 枚举内容
+//============================================================
+ERenderSampler RRenderSampler::ParsePack(ERenderSampler samplerCd){
+   switch (samplerCd){
+      case ERenderSampler_Diffuse:
+      case ERenderSampler_Alpha:
+      case ERenderSampler_PackDiffuse:
+         break;
+      case ERenderSampler_Normal:
+      case ERenderSampler_Height:
+      case ERenderSampler_PackNormal:
+         break;
+      case ERenderSampler_SpecularColor:
+      case ERenderSampler_SpecularLevel:
+      case ERenderSampler_PackSpecular:
+         break;
+      case ERenderSampler_TransmittanceColor:
+      case ERenderSampler_TransmittanceLevel:
+      case ERenderSampler_PackTransmittance:
+         break;
+      case ERenderSampler_Light:
+      case ERenderSampler_Reflect:
+      case ERenderSampler_Refract:
+      case ERenderSampler_Emissive:
+      case ERenderSampler_PackLight:
+         break;
+   }
+   return samplerCd;
+}
+
+//============================================================
 // <T>格式化枚举内容为字符串。</T>
 //
 // @param blendModeCd 枚举内容

@@ -3,16 +3,16 @@
 MO_NAMESPACE_BEGIN
 
 //============================================================
-// <T>构造效果常量描述集合。</T>
+// <T>构造效果参数描述集合。</T>
 //============================================================
 TEffectParameterDescriptors::TEffectParameterDescriptors(){
    _count = _capacity;
 }
 
 //============================================================
-// <T>注册一个描述信息。</T>
+// <T>注册一个参数信息。</T>
 //
-// @param pLinker 关联信息
+// @param pParameter 参数
 //============================================================
 TResult TEffectParameterDescriptors::Link(FRenderShaderParameter* pParameter){
    MO_CHECK(pParameter, return ENull);

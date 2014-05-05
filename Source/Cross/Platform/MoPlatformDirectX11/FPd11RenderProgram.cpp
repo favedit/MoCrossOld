@@ -183,9 +183,9 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
          // 查找属性
          TFsName attributeName;
          attributeName.AppendFormat("%s%d", attributeDescriptor.SemanticName, attributeDescriptor.SemanticIndex);
-         FPd11RenderShaderAttribute* pAttribute = (FPd11RenderShaderAttribute*)AttributeFind(attributeName);
+         FRenderShaderAttribute* pAttribute = AttributeFind(attributeName);
          if(pAttribute == NULL){
-            pAttribute = (FPd11RenderShaderAttribute*)AttributeFind(attributeDescriptor.SemanticName);
+            pAttribute = AttributeFind(attributeDescriptor.SemanticName);
          }
          if(pAttribute == NULL){
             MO_WARN("Shader attribute is not found. (name=%s)", attributeDescriptor.SemanticName);
@@ -194,8 +194,14 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
             pAttribute->SetStatusUsed(ETrue);
             pAttribute->SetName(attributeDescriptor.SemanticName);
             pAttribute->SetIndex(attributeDescriptor.SemanticIndex);
+            pAttribute->SetSlot(attributeIndex);
          }
       }
+   }
+   //............................................................
+   // 获得取样器描述
+   TInt samplerCount = shaderDescriptor.TextureBiasInstructions;
+   if(samplerCount > 0){
    }
    //............................................................
    // 设定所有绑定点
@@ -211,6 +217,15 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
          FPd11RenderShaderBuffer* pBuffer = (FPd11RenderShaderBuffer*)BufferFind(bindDescriptor.Name);
          MO_CHECK(pBuffer, continue);
          pBuffer->SetSlot(bindDescriptor.BindPoint);
+      }
+      if(bindDescriptor.Type == D3D_SIT_TEXTURE){
+         FRenderShaderSampler* pSampler = SamplerFind(bindDescriptor.Name);
+         if(pSampler == NULL){
+            MO_ERROR("Shader sampler bound is not found. (name=%s)", bindDescriptor.Name);
+         }else{
+            pSampler->SetStatusUsed(ETrue);
+            pSampler->SetSlot(bindDescriptor.BindPoint);
+         }
       }
    }
    MO_RELEASE(piReflection);
@@ -288,17 +303,16 @@ TResult FPd11RenderProgram::DrawBegin(){
    MO_CHECK(_pDevice, return ENull);
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
    //............................................................
-   // 提交处理
+   // 设定层次
+   pRenderDevice->NativeContext()->IASetInputLayout(_piInputLayout);
+   //............................................................
+   // 提交缓冲
    TResult resultCd = FRenderProgram::DrawBegin();
    TInt count = _buffers.Count();
    for(TInt n = 0; n < count; n++){
       FPd11RenderShaderBuffer* pBuffer = (FPd11RenderShaderBuffer*)_buffers.Get(n);
       pBuffer->Bind();
    }
-   //............................................................
-   // 设定层次
-   pRenderDevice->NativeContext()->IASetInputLayout(_piInputLayout);
-   //pRenderDevice->NativeContext()->IASetVertexBuffers(
    return resultCd;
 }
 

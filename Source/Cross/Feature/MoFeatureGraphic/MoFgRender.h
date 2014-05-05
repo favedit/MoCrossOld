@@ -964,6 +964,7 @@ protected:
    TString _name;
    TString _linker;
    TInt _index;
+   TInt _slot;
    ERenderShaderAttributeFormat _formatCd;
    TBool _statusUsed;
 public:
@@ -999,6 +1000,16 @@ public:
    // <T>设置索引。</T>
    MO_INLINE void SetIndex(TInt index){
       _index = index;
+   }
+   //------------------------------------------------------------
+   // <T>获得插槽。</T>
+   MO_INLINE TInt Slot(){
+      return _slot;
+   }
+   //------------------------------------------------------------
+   // <T>设置插槽。</T>
+   MO_INLINE void SetSlot(TInt slot){
+      _slot = slot;
    }
    //------------------------------------------------------------
    // <T>获得属性类型。</T>
@@ -1037,6 +1048,8 @@ protected:
    TString _name;
    TString _linker;
    TString _source;
+   TBool _statusUsed;
+   TInt _slot;
 public:
    FRenderShaderSampler();
    MO_ABSTRACT ~FRenderShaderSampler();
@@ -1070,6 +1083,26 @@ public:
    // <T>设置来源。</T>
    MO_INLINE void SetSource(TCharC* pSource){
       _source = pSource;
+   }
+   //------------------------------------------------------------
+   // <T>获得状态是否被使用。</T>
+   MO_INLINE TBool IsStatusUsed(){
+      return _statusUsed;
+   }
+   //------------------------------------------------------------
+   // <T>设置状态是否被使用。</T>
+   MO_INLINE void SetStatusUsed(TBool statusUsed){
+      _statusUsed = statusUsed;
+   }
+   //------------------------------------------------------------
+   // <T>获得插槽。</T>
+   MO_INLINE TInt Slot(){
+      return _slot;
+   }
+   //------------------------------------------------------------
+   // <T>设置插槽。</T>
+   MO_INLINE void SetSlot(TInt slot){
+      _slot = slot;
    }
 public:
    MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);

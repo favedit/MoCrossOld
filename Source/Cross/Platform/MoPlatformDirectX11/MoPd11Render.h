@@ -122,18 +122,6 @@ public:
 };
 
 //============================================================
-// <T>渲染器属性。</T>
-//============================================================
-class MO_PD11_DECLARE FPd11RenderShaderAttribute : public FRenderShaderAttribute
-{
-   MO_CLASS_DECLARE_INHERITS(FPd11RenderShaderAttribute, FRenderShaderAttribute);
-protected:
-public:
-   FPd11RenderShaderAttribute();
-   MO_ABSTRACT ~FPd11RenderShaderAttribute();
-};
-
-//============================================================
 // <T>顶点渲染器。</T>
 //============================================================
 class MO_PD11_DECLARE FPd11RenderVertexShader : public FRenderVertexShader
@@ -279,6 +267,7 @@ class MO_PD11_DECLARE FPd11RenderFlatTexture : public FRenderFlatTexture
    MO_CLASS_DECLARE_INHERITS(FPd11RenderFlatTexture, FRenderFlatTexture);
 protected:
    ID3D11Texture2D* _piTexture;
+   ID3D11ShaderResourceView* _piView;
 public:
    FPd11RenderFlatTexture();
    MO_ABSTRACT ~FPd11RenderFlatTexture();
@@ -287,6 +276,11 @@ public:
    // <T>获得本地纹理。</T>
    MO_INLINE ID3D11Texture2D* NativeTexture(){
       return _piTexture;
+   }
+   //------------------------------------------------------------
+   // <T>获得本地视图。</T>
+   MO_INLINE ID3D11ShaderResourceView* NativeView(){
+      return _piView;
    }
 public:
    MO_OVERRIDE TResult OnSetup();
@@ -349,6 +343,7 @@ protected:
    ID3D11Device* _piDevice;
    ID3D11DeviceContext* _piContext;
    GPtr<FPd11RenderTarget> _defaultRenderTarget;
+   ID3D11RasterizerState* _piRasterizerState;
 public:
    FPd11RenderDevice();
    MO_ABSTRACT ~FPd11RenderDevice();

@@ -50,12 +50,12 @@ static TCharC* SourceFragmentShader =
 FPoe23dSkeleton4Effect::FPoe23dSkeleton4Effect(){
    _pBoneStream = MO_CREATE(FByteStream);
    // Çå¿ÕÄÚÈÝ
-   for(TInt n = 0; n < EEffectVertexAttribute_Count; n++){
-      _effectAttributes[n] = -1;
-   }
-   for(TInt n = 0; n < EEffectSampler_Count; n++){
-      _effectSamplers[n] = -1;
-   }
+   //for(TInt n = 0; n < EEffectVertexAttribute_Count; n++){
+   //   _effectAttributes[n] = -1;
+   //}
+   //for(TInt n = 0; n < EEffectSampler_Count; n++){
+   //   _effectSamplers[n] = -1;
+   //}
 }
 
 //============================================================

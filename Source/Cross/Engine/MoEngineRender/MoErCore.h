@@ -103,6 +103,120 @@ public:
    TResult Link(FRenderShaderParameter* pParameter);
 };
 
+//============================================================
+// <T>效果属性。</T>
+//============================================================
+enum EEffectAttribute{
+   EEffectAttribute_Unknown,
+   EEffectAttribute_Instance,
+   EEffectAttribute_Position,
+   EEffectAttribute_Color,
+   EEffectAttribute_Coord,
+   EEffectAttribute_Normal,
+   EEffectAttribute_Binormal,
+   EEffectAttribute_Tangent,
+   EEffectAttribute_BoneIndex,
+   EEffectAttribute_BoneWeight,
+};
+
+//============================================================
+// <T>效果属性工具。</T>
+//============================================================
+class MO_ER_DECLARE REffectAttribute{
+public:
+   static TResult Parse(TCharC* pValue, EEffectAttribute& attributeCd, ERenderShaderAttributeFormat& formatCd);
+   static TCharC* Format(EEffectAttribute attributeCd);
+};
+
+//============================================================
+// <T>效果属性描述。</T>
+//============================================================
+struct SEffectAttributeDescriptor{
+public:
+   TInt code;
+   TCharC* namePtr;
+   ERenderVertexFormat formatCd;
+   TInt bindIndex;
+   TInt bindId;
+   FRenderShaderAttribute* attributePtr;
+public:
+   SEffectAttributeDescriptor(){
+      code = -1;
+      MO_CLEAR(namePtr);
+      formatCd = ERenderVertexFormat_Unknown;
+      bindIndex = -1;
+      bindId = -1;
+      MO_CLEAR(attributePtr);
+   }
+};
+
+//============================================================
+// <T>效果属性描述集合。</T>
+//============================================================
+class TEffectAttributeDescriptors : public TFixVector<SEffectAttributeDescriptor, MO_EG_EFFECT_ATTRIBUTE_MAXCNT>{
+public:
+   TEffectAttributeDescriptors();
+public:
+   void Register(TInt code, TCharC* pName, ERenderVertexFormat formatCd);
+   TResult Link(FRenderShaderAttribute* pAttribute);
+};
+
+//============================================================
+// <T>效果取样器类型。</T>
+//============================================================
+enum EEffectSampler{
+   EEffectSampler_Diffuse,
+   EEffectSampler_Normal,
+   EEffectSampler_Specular,
+   EEffectSampler_Light,
+   EEffectSampler_Environment,
+   EEffectSampler_LightDepth,
+   EEffectSampler_Count,
+};
+
+//============================================================
+// <T>效果取样器类型工具。</T>
+//============================================================
+class MO_FG_DECLARE REffectSampler{
+public:
+   static EEffectSampler Parse(TCharC* pValue, EEffectSampler samplerCd = EEffectSampler_Diffuse);
+   static TCharC* Format(EEffectSampler samplerCd);
+};
+
+//============================================================
+// <T>效果取样器描述。</T>
+//============================================================
+struct SEffectSamplerDescriptor{
+public:
+   TInt code;
+   TCharC* namePtr;
+   ERenderSampler samplerCd;
+   TInt bindId;
+   TInt index;
+   FRenderShaderSampler* samplerPtr;
+public:
+   SEffectSamplerDescriptor(){
+      code = -1;
+      MO_CLEAR(namePtr);
+      samplerCd = ERenderSampler_Unknown;
+      bindId = -1;
+      index = -1;
+      MO_CLEAR(samplerPtr);
+   }
+};
+
+//============================================================
+// <T>效果取样器描述集合。</T>
+//============================================================
+class TEffectSamplerDescriptors : public TFixVector<SEffectSamplerDescriptor, MO_EG_EFFECT_SAMPLER_MAXCNT>{
+public:
+   TEffectSamplerDescriptors();
+public:
+   void Register(TInt code, TCharC* pName, ERenderSampler samplerCd);
+   TResult Link(FRenderShaderSampler* pSampler);
+   SEffectSamplerDescriptor* FindByBindId(TInt bindId);
+};
+
 MO_NAMESPACE_END
 
 //************************************************************

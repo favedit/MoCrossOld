@@ -8,6 +8,8 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderShaderSampler, FRenderObject);
 // <T>构造渲染器取样。</T>
 //============================================================
 FRenderShaderSampler::FRenderShaderSampler(){
+   _statusUsed = EFalse;
+   _slot = -1;
 }
 
 //============================================================
@@ -29,7 +31,7 @@ TResult FRenderShaderSampler::LoadConfig(FXmlNode* pConfig){
    // 设置关联
    _linker = pConfig->Get("linker");
    // 设置关联
-   _source = pConfig->Get("source");
+   _source = pConfig->Get("source", NULL);
    return ESuccess;
 }
 

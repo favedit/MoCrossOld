@@ -24,9 +24,11 @@ FPd11RenderDevice::FPd11RenderDevice(){
    MO_CLEAR(_piDevice);
    MO_CLEAR(_piContext);
    // 注册类集合
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERATTRIBUTE, FPd11RenderShaderAttribute::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_SHADERATTRIBUTE, FRenderShaderAttribute::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERPARAMETER, FPd11RenderShaderParameter::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERSAMPLER, FRenderShaderSampler::Class());
+   //
+   MO_CLEAR(_piRasterizerState);
 }
 
 //============================================================
@@ -70,14 +72,25 @@ TResult FPd11RenderDevice::Setup(){
    FScreenDevice* pScreenDevice = RDeviceManager::Instance().Find<FScreenDevice>();
    SIntSize2& screenSize = pScreenDevice->Size();
    //............................................................
-   // 创建交换区
-   DXGI_SWAP_CHAIN_DESC description;
-   RType<DXGI_SWAP_CHAIN_DESC>::Clear(&description);
+   // 创建设备和交换链
+   UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
+#ifdef _MO_DEBUG
+   creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
+#endif
+   D3D_FEATURE_LEVEL featureLevels[] = {
+      D3D_FEATURE_LEVEL_11_1,
+      D3D_FEATURE_LEVEL_11_0,
+      D3D_FEATURE_LEVEL_10_1,
+      D3D_FEATURE_LEVEL_10_0,
+      D3D_FEATURE_LEVEL_9_3,
+      D3D_FEATURE_LEVEL_9_1
+   };
+   DXGI_SWAP_CHAIN_DESC description = {0};
    description.BufferCount = 1;
    description.BufferDesc.Width = screenSize.width;
    description.BufferDesc.Height = screenSize.height;
    description.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-   TBool m_vsync_enabled = EFalse;
+   TBool m_vsync_enabled = ETrue;
    if(m_vsync_enabled){
       description.BufferDesc.RefreshRate.Numerator = 1;
       description.BufferDesc.RefreshRate.Denominator = 60;
@@ -89,12 +102,13 @@ TResult FPd11RenderDevice::Setup(){
    description.OutputWindow = _windowHandle;
    description.SampleDesc.Count = 1;
    description.SampleDesc.Quality = 0;
-   description.Windowed = true;
-   description.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
-   description.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
-   description.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
-   description.Flags = 0;
-   HRESULT dxResult = ::D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, 0, NULL, 0, D3D11_SDK_VERSION, &description, &_piSwapChain, &_piDevice, NULL, &_piContext);
+   description.Windowed = ETrue;
+   //description.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+   //description.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
+   //description.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
+   //description.Flags = 0;
+   HRESULT dxResult = D3D11CreateDeviceAndSwapChain(
+         NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, creationFlags, featureLevels, ARRAYSIZE(featureLevels), D3D11_SDK_VERSION, &description, &_piSwapChain, &_piDevice, NULL, &_piContext);
    if(FAILED(dxResult)){
       MO_FATAL("Create device failure.");
       return EFailure;
@@ -107,78 +121,80 @@ TResult FPd11RenderDevice::Setup(){
    ID3D11Resource* pBackBuffer = NULL;
    dxResult = _piSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
    if(FAILED(dxResult)){
-      MO_FATAL("Get backbugger failure.");
+      MO_FATAL("Get back buffer failure.");
       return EFailure;
    }
-   ID3D11RenderTargetView* pRenderTarget = NULL;
-   dxResult = _piDevice->CreateRenderTargetView(pBackBuffer, NULL, &pRenderTarget);
+   ID3D11RenderTargetView* piRenderTarget = NULL;
+   dxResult = _piDevice->CreateRenderTargetView(pBackBuffer, NULL, &piRenderTarget);
    if(FAILED(dxResult)){
       MO_FATAL("Create render target view failure.");
       return EFailure;
    }
    MO_RELEASE(pBackBuffer);
-   _defaultRenderTarget->SetNativeRenderTarget(pRenderTarget);
+   _defaultRenderTarget->SetNativeRenderTarget(piRenderTarget);
    _pActiveRenderTarget = _defaultRenderTarget;
    //............................................................
-   // 创建深度缓冲
-   D3D11_TEXTURE2D_DESC depthBufferDesc;
-   RType<D3D11_TEXTURE2D_DESC>::Clear(&depthBufferDesc);
-   depthBufferDesc.Width = screenSize.width;
-   depthBufferDesc.Height = screenSize.height;
-   depthBufferDesc.MipLevels = 1;
-   depthBufferDesc.ArraySize = 1;
-   depthBufferDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-   depthBufferDesc.SampleDesc.Count = 1;
-   depthBufferDesc.SampleDesc.Quality = 0;
-   depthBufferDesc.Usage = D3D11_USAGE_DEFAULT;
-   depthBufferDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
-   depthBufferDesc.CPUAccessFlags = 0;
-   depthBufferDesc.MiscFlags = 0;
-   ID3D11Texture2D* _pDepthStencilBuffer = NULL;
-   dxResult = _piDevice->CreateTexture2D(&depthBufferDesc, NULL, &_pDepthStencilBuffer);
-   if(FAILED(dxResult)){
-      MO_FATAL("Get backbugger failure.");
-      return EFailure;
-   }
+   _piContext->OMSetRenderTargets(1, &piRenderTarget, NULL);
    //............................................................
-   // 设置深度缓冲
-   D3D11_DEPTH_STENCIL_DESC depthStencilDesc;
-   RType<D3D11_DEPTH_STENCIL_DESC>::Clear(&depthStencilDesc);
-   depthStencilDesc.DepthEnable = true;
-   depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
-   depthStencilDesc.DepthFunc = D3D11_COMPARISON_LESS;
-   depthStencilDesc.StencilEnable = true;
-   depthStencilDesc.StencilReadMask = 0xFF;
-   depthStencilDesc.StencilWriteMask = 0xFF;
-   depthStencilDesc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
-   depthStencilDesc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
-   depthStencilDesc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
-   depthStencilDesc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
-   depthStencilDesc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
-   depthStencilDesc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_DECR;
-   depthStencilDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
-   depthStencilDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
-   ID3D11DepthStencilState* _pDepthStencilState = NULL;
-   dxResult = _piDevice->CreateDepthStencilState(&depthStencilDesc, &_pDepthStencilState);
-   if(FAILED(dxResult)){
-      MO_FATAL("Create depth stencil state failure.");
-      return EFailure;
-   }
-   //............................................................
-   // 设置深度缓冲
-   D3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc;
-   RType<D3D11_DEPTH_STENCIL_VIEW_DESC>::Clear(&depthStencilViewDesc);
-   depthStencilViewDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-   depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-   depthStencilViewDesc.Texture2D.MipSlice = 0;
-   ID3D11DepthStencilView* _pDepthStencilView = NULL;
-   dxResult = _piDevice->CreateDepthStencilView(_pDepthStencilBuffer, &depthStencilViewDesc, &_pDepthStencilView);
-   if(FAILED(dxResult)){
-      MO_FATAL("Create depth stencil view failure.");
-      return EFailure;
-   }
-   _defaultRenderTarget->SetOptionDepth(ETrue);
-   _defaultRenderTarget->SetNativeDepthStencil(_pDepthStencilView);
+   //// 创建深度缓冲
+   //D3D11_TEXTURE2D_DESC depthBufferDesc;
+   //RType<D3D11_TEXTURE2D_DESC>::Clear(&depthBufferDesc);
+   //depthBufferDesc.Width = screenSize.width;
+   //depthBufferDesc.Height = screenSize.height;
+   //depthBufferDesc.MipLevels = 1;
+   //depthBufferDesc.ArraySize = 1;
+   //depthBufferDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+   //depthBufferDesc.SampleDesc.Count = 1;
+   //depthBufferDesc.SampleDesc.Quality = 0;
+   //depthBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+   //depthBufferDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+   //depthBufferDesc.CPUAccessFlags = 0;
+   //depthBufferDesc.MiscFlags = 0;
+   //ID3D11Texture2D* _pDepthStencilBuffer = NULL;
+   //dxResult = _piDevice->CreateTexture2D(&depthBufferDesc, NULL, &_pDepthStencilBuffer);
+   //if(FAILED(dxResult)){
+   //   MO_FATAL("Get backbugger failure.");
+   //   return EFailure;
+   //}
+   ////............................................................
+   //// 设置深度缓冲
+   //D3D11_DEPTH_STENCIL_DESC depthStencilDesc;
+   //RType<D3D11_DEPTH_STENCIL_DESC>::Clear(&depthStencilDesc);
+   //depthStencilDesc.DepthEnable = true;
+   //depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+   //depthStencilDesc.DepthFunc = D3D11_COMPARISON_LESS;
+   //depthStencilDesc.StencilEnable = true;
+   //depthStencilDesc.StencilReadMask = 0xFF;
+   //depthStencilDesc.StencilWriteMask = 0xFF;
+   //depthStencilDesc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+   //depthStencilDesc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
+   //depthStencilDesc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+   //depthStencilDesc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+   //depthStencilDesc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+   //depthStencilDesc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_DECR;
+   //depthStencilDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+   //depthStencilDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+   //ID3D11DepthStencilState* _pDepthStencilState = NULL;
+   //dxResult = _piDevice->CreateDepthStencilState(&depthStencilDesc, &_pDepthStencilState);
+   //if(FAILED(dxResult)){
+   //   MO_FATAL("Create depth stencil state failure.");
+   //   return EFailure;
+   //}
+   ////............................................................
+   //// 设置深度缓冲
+   //D3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc;
+   //RType<D3D11_DEPTH_STENCIL_VIEW_DESC>::Clear(&depthStencilViewDesc);
+   //depthStencilViewDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+   //depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+   //depthStencilViewDesc.Texture2D.MipSlice = 0;
+   //ID3D11DepthStencilView* _pDepthStencilView = NULL;
+   //dxResult = _piDevice->CreateDepthStencilView(_pDepthStencilBuffer, &depthStencilViewDesc, &_pDepthStencilView);
+   //if(FAILED(dxResult)){
+   //   MO_FATAL("Create depth stencil view failure.");
+   //   return EFailure;
+   //}
+   //_defaultRenderTarget->SetOptionDepth(ETrue);
+   //_defaultRenderTarget->SetNativeDepthStencil(_pDepthStencilView);
    //............................................................
    // 设置深度缓冲
    D3D11_RASTERIZER_DESC rasterDesc;
@@ -202,14 +218,11 @@ TResult FPd11RenderDevice::Setup(){
    _piContext->RSSetState(_pRasterState);
    //............................................................
    // 设置视角
-   D3D11_VIEWPORT viewport;
-   RType<D3D11_VIEWPORT>::Clear(&viewport);
+   D3D11_VIEWPORT viewport = {0};
    viewport.Width = (TFloat)screenSize.width;
    viewport.Height = (TFloat)screenSize.height;
    viewport.MinDepth = 0.0f;
    viewport.MaxDepth = 1.0f;
-   viewport.TopLeftX = 0;
-   viewport.TopLeftY = 0;
    _piContext->RSSetViewports(1, &viewport);
    return ESuccess;
 }
@@ -386,21 +399,21 @@ FRenderCubeTexture* FPd11RenderDevice::CreateCubeTexture(FClass* pClass){
 //============================================================
 TResult FPd11RenderDevice::Clear(TFloat red, TFloat green, TFloat blue, TFloat alpha, TFloat depth){
    MO_CHECK(_pActiveRenderTarget, return ENull);
-   FPd11RenderTarget* pRenderTarget = _pActiveRenderTarget->Convert<FPd11RenderTarget>();
-   // 清空颜色
-   FLOAT color[4];
-   color[0] = 1.0;
-   color[1] = green;
-   color[2] = blue;
-   color[3] = alpha;
-   _piContext->ClearState();
-   ID3D11RenderTargetView* pRenderTargetView = pRenderTarget->NativeRenderTarget();
-   _piContext->OMSetRenderTargets(1, &pRenderTargetView, NULL);
-   _piContext->ClearRenderTargetView(pRenderTarget->NativeRenderTarget(), color);
-   // 清空深度
-   if(pRenderTarget->OptionDepth()){
-      //_piContext->ClearDepthStencilView(pRenderTarget->NativeDepthStencil(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, depth, 0);
-   }
+   //FPd11RenderTarget* pRenderTarget = _pActiveRenderTarget->Convert<FPd11RenderTarget>();
+   //// 清空颜色
+   //FLOAT color[4];
+   //color[0] = 1.0;
+   //color[1] = green;
+   //color[2] = blue;
+   //color[3] = alpha;
+   ////_piContext->ClearState();
+   //ID3D11RenderTargetView* pRenderTargetView = pRenderTarget->NativeRenderTarget();
+   ////_piContext->OMSetRenderTargets(1, &pRenderTargetView, NULL);
+   ////_piContext->ClearRenderTargetView(pRenderTargetView, color);
+   //// 清空深度
+   //if(pRenderTarget->OptionDepth()){
+   //   //_piContext->ClearDepthStencilView(pRenderTarget->NativeDepthStencil(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, depth, 0);
+   //}
    return ETrue;
 }
 
@@ -516,6 +529,19 @@ TResult FPd11RenderDevice::SetCullingMode(TBool cull, ERenderCullMode cullCd){
    if((_optionCull == cull) && (_optionCull == cullCd)){
       return EContinue;
    }
+   //RDirectX11::ConvertCullMode(cullCd);
+   if(_piRasterizerState == NULL){
+      D3D11_RASTERIZER_DESC descriptor;
+      RType<D3D11_RASTERIZER_DESC>::Clear(&descriptor);
+      descriptor.FillMode = D3D11_FILL_SOLID;
+      descriptor.CullMode = D3D11_CULL_NONE;
+      HRESULT dxResult = _piDevice->CreateRasterizerState(&descriptor, &_piRasterizerState);
+      if(FAILED(dxResult)){
+         MO_FATAL("Create rasterizer state failure.");
+         return EFailure;
+      }
+   }
+   _piContext->RSSetState(_piRasterizerState);
    //// 设置开关
    //if(_optionCull != cull){
    //   if(cull){
@@ -543,21 +569,6 @@ TResult FPd11RenderDevice::SetCullingMode(TBool cull, ERenderCullMode cullCd){
    //}
    return ESuccess;
 }
-
-//============================================================
-// <T>设置合成方式。</T>
-//============================================================
-//GLenum ConvertBlendFactors(ERenderBlendMode value){
-//   switch(value){
-//      case ERenderBlendMode_SourceAlpha:
-//         return GL_SRC_ALPHA;
-//      case ERenderBlendMode_OneMinusSourceAlpha:
-//         return GL_ONE_MINUS_SRC_ALPHA;
-//      default:
-//         break;
-//   }
-//   return 0;
-//}
 
 //============================================================
 // <T>设置合成方式。</T>
@@ -947,60 +958,12 @@ TResult FPd11RenderDevice::BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVer
    // 获得顶点流
    TResult result = ESuccess;
    FPd11RenderVertexBuffer* pBuffer = pVertexBuffer->Convert<FPd11RenderVertexBuffer>();
-   ////............................................................
-   //// 设定顶点流
-   //GLuint bufferId = 0;
-   //if(pBuffer != NULL){
-   //   bufferId = pBuffer->BufferId();
-   //}
-   //glBindBuffer(GL_ARRAY_BUFFER, bufferId);
-   //result = CheckError("glBindBuffer", "Bind buffer. (buffer_id=%d)", bufferId);
-   //if(result != ESuccess){
-   //   return result;
-   //}
-   ////............................................................
-   //// 激活顶点流
-   //if(pBuffer != NULL){
-   //   glEnableVertexAttribArray(slot);
-   //   result = CheckError("glEnableVertexAttribArray", "Enable vertex attribute array. (slot=%d)", slot);
-   //   if(result != ESuccess){
-   //      return result;
-   //   }
-   //}else{
-   //   glDisableVertexAttribArray(slot);
-   //   result = CheckError("glDisableVertexAttribArray", "Disable vertex attribute array. (slot=%d)", slot);
-   //   return result;
-   //}
-   ////............................................................
-   //// 设置顶点流
-   //TInt stride = pVertexBuffer->Stride();
-   //switch(formatCd){
-   //   case ERenderVertexFormat_Byte4:
-   //      glVertexAttribPointer(slot, 4, GL_UNSIGNED_BYTE, GL_FALSE, stride, (const GLvoid*)offset);
-   //      break;
-   //   case ERenderVertexFormat_ByteNormal4:
-   //      glVertexAttribPointer(slot, 4, GL_UNSIGNED_BYTE, GL_TRUE, stride, (const GLvoid*)offset);
-   //      break;
-   //   case ERenderVertexFormat_Float1:
-   //      glVertexAttribPointer(slot, 1, GL_FLOAT, GL_FALSE, stride, (const GLvoid*)offset);
-   //      break;
-   //   case ERenderVertexFormat_Float2:
-   //      glVertexAttribPointer(slot, 2, GL_FLOAT, GL_FALSE, stride, (const GLvoid*)offset);
-   //      break;
-   //   case ERenderVertexFormat_Float3:
-   //      glVertexAttribPointer(slot, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*)offset);
-   //      break;
-   //   case ERenderVertexFormat_Float4:
-   //      glVertexAttribPointer(slot, 4, GL_FLOAT, GL_FALSE, stride, (const GLvoid*)offset);
-   //      break;
-   //   default:
-   //      MO_FATAL("Unknown vertex format. (format_cd=%d)", formatCd);
-   //      break;
-   //}
-   //// 检查错误
-   //result = CheckError("glVertexAttribPointer", "Bind vertex attribute pointer. (slot=%d, format_cd=%d)", slot, formatCd);
-   //_statistics->UpdateVertexBufferCount();
-   //// MO_INFO("Bind vertex buffer. (slot=%d, offset=%d, format_cd=%d, stride=%d, buffer_id=%d, count=%d, length=%d)", slot, offset, formatCd, stride, bufferId, pVertexBuffer->Count(), pVertexBuffer->DataLength());
+   // 获得信息
+   ID3D11Buffer* piBuffer = pBuffer->NativeBuffer();
+   TUint bufferStride = pVertexBuffer->Stride();
+   TUint bufferOffset = offset;
+   // 设置内容
+   _piContext->IASetVertexBuffers(slot, 1, &piBuffer, &bufferStride, &bufferOffset);
    return result;
 }
 
@@ -1013,59 +976,28 @@ TResult FPd11RenderDevice::BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVer
 //============================================================
 TResult FPd11RenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
    TResult result = ESuccess;
-   ////............................................................
-   //// 空纹理处理
-   //if(pTexture == NULL){
-   //   glBindTexture(GL_TEXTURE_2D, 0);
-   //   result = CheckError("glBindTexture", "Bind texture clear failure. (slot=%d)", slot);
-   //   return result;
-   //}
-   ////............................................................
-   //// 激活纹理
-   //if(_renderTextureActiveSlot != slot){
-   //   TInt index = pTexture->Index();
-   //   glUniform1i(slot, index);
-   //   glActiveTexture(GL_TEXTURE0 + index);
-   //   result = CheckError("glActiveTexture", "Active texture failure. (slot=%d, index=%d)", slot, index);
-   //   if(result != ESuccess){
-   //      return result;
-   //   }
-   //   _renderTextureActiveSlot = slot;
-   //}
-   ////............................................................
-   //// 绑定纹理
-   //ERenderTexture textureCd = pTexture->TextureCd();
-   //switch (textureCd){
-   //   case ERenderTexture_Flat2d:{
-   //      FPd11RenderFlatTexture* pFlatTexture = (FPd11RenderFlatTexture*)pTexture;
-   //      GLuint textureId = pFlatTexture->TextureId();
-   //      glBindTexture(GL_TEXTURE_2D, textureId);
-   //      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-   //      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-   //      result = CheckError("glBindTexture", "Bind texture failure. (texture_id=%d)", textureId);
-   //      if(result != ESuccess){
-   //         return result;
-   //      }
-   //      break;
-   //   }
-   //   case ERenderTexture_Cube:{
-   //      FPd11RenderCubeTexture* pCubeTexture = (FPd11RenderCubeTexture*)pTexture;
-   //      GLuint textureId = pCubeTexture->TextureId();
-   //      glBindTexture(GL_TEXTURE_CUBE_MAP, textureId);
-   //      result = CheckError("glBindTexture", "Bind texture failure. (texture_id=%d)", textureId);
-   //      if(result != ESuccess){
-   //         return result;
-   //      }
-   //      break;
-   //   }
-   //   default:{
-   //      MO_FATAL("Unknown texture type.");
-   //      break;
-   //   }
-   //}
-   ////............................................................
-   //// 统计数据
-   //_statistics->UpdateSamplerCount();
+   //............................................................
+   // 绑定纹理
+   ERenderTexture textureCd = pTexture->TextureCd();
+   switch (textureCd){
+      case ERenderTexture_Flat2d:{
+         FPd11RenderFlatTexture* pFlatTexture = (FPd11RenderFlatTexture*)pTexture;
+         ID3D11ShaderResourceView* piTextureView = pFlatTexture->NativeView();
+         _piContext->PSSetShaderResources(slot, 1, &piTextureView);
+         break;
+      }
+      case ERenderTexture_Cube:{
+         FPd11RenderCubeTexture* pCubeTexture = (FPd11RenderCubeTexture*)pTexture;
+         break;
+      }
+      default:{
+         MO_FATAL("Unknown texture type.");
+         break;
+      }
+   }
+   //............................................................
+   // 统计数据
+   _statistics->UpdateSamplerCount();
    return result;
 }
 
@@ -1078,6 +1010,7 @@ TResult FPd11RenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
 // @return 处理结果
 //============================================================
 TResult FPd11RenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt offset, TInt count){
+   return ESuccess;
    MO_CHECK(pIndexBuffer, return ENull);
    MO_CHECK(offset >= 0, return EOutRange);
    MO_CHECK(count > 0, return EOutRange);
@@ -1093,6 +1026,7 @@ TResult FPd11RenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt 
    }
    DXGI_FORMAT strideCd = RDirectX11::ConvertIndexStride(pIndexBuffer->StrideCd());
    _piContext->IASetIndexBuffer(piBuffer, strideCd, offset);
+   _piContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
    // 绘制三角形
    _renderDrawStatistics->Begin();
    _piContext->DrawIndexed(count, offset, 0);
@@ -1111,6 +1045,11 @@ TResult FPd11RenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt 
 //============================================================
 TResult FPd11RenderDevice::Present(){
    //_piSwapChain->Present(0, DXGI_PRESENT_TEST);
+   FPd11RenderTarget* pRenderTarget = _pActiveRenderTarget->Convert<FPd11RenderTarget>();
+   // 清空颜色
+   float ClearColor[4] = { 0.0f, 0.125f, 0.6f, 1.0f }; 
+   ID3D11RenderTargetView* pRenderTargetView = pRenderTarget->NativeRenderTarget();
+   _piContext->ClearRenderTargetView(pRenderTargetView, ClearColor);
    _piSwapChain->Present(0, 0);
    return ESuccess;
 }

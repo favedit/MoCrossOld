@@ -9,6 +9,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderFlatTexture, FRenderFlatTexture);
 //============================================================
 FPd11RenderFlatTexture::FPd11RenderFlatTexture(){
    MO_CLEAR(_piTexture);
+   MO_CLEAR(_piView);
 }
 
 //============================================================
@@ -16,6 +17,7 @@ FPd11RenderFlatTexture::FPd11RenderFlatTexture(){
 //============================================================
 FPd11RenderFlatTexture::~FPd11RenderFlatTexture(){
    MO_RELEASE(_piTexture);
+   MO_RELEASE(_piView);
 }
 
 //============================================================
@@ -77,11 +79,21 @@ TResult FPd11RenderFlatTexture::Upload(TByteC* pData, TInt length){
    // 创建纹理
    HRESULT dxResult = pRenderDevice->NativeDevice()->CreateTexture2D(&descriptor, &data, &_piTexture);
    if(FAILED(dxResult)){
-      TInt a = GetLastError();
       MO_FATAL("Create buffer failure.");
       return EFailure;
    }
    // 上传数据
+   D3D11_SHADER_RESOURCE_VIEW_DESC viewDescriptor;
+   RType<D3D11_SHADER_RESOURCE_VIEW_DESC>::Clear(&viewDescriptor);
+   viewDescriptor.Format = descriptor.Format;
+   viewDescriptor.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+   viewDescriptor.Texture2D.MipLevels = descriptor.MipLevels;
+   viewDescriptor.Texture2D.MostDetailedMip = 0;
+   dxResult = pRenderDevice->NativeDevice()->CreateShaderResourceView(_piTexture, &viewDescriptor, &_piView);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create buffer failure.");
+      return EFailure;
+   }
    //D3D11_MAPPED_TEXTURE2D mappedData;
    //_piTexture->Map(D3D11CalcSubresource(0, 0, 1), D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
    //TByte* pMappedData = (TByte*)mappedData.pData;

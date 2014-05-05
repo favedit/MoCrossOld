@@ -323,6 +323,7 @@ enum ERenderSampler{
 class MO_FG_DECLARE RRenderSampler{
 public:
    static ERenderSampler Parse(TCharC* pValue, ERenderSampler samplerCd = ERenderSampler_Unknown);
+   static ERenderSampler ParsePack(ERenderSampler samplerCd);
    static TCharC* Format(ERenderSampler samplerCd);
 };
 
@@ -353,44 +354,6 @@ enum ERenderTextureWrap{
    ERenderTextureWrap_None,
    ERenderTextureWrap_Clamp,
    ERenderTextureWrap_Repeat,
-};
-
-//============================================================
-// <T>效果顶点属性。</T>
-//============================================================
-enum EEffectVertexAttribute{
-   EEffectVertexAttribute_Unknown,
-   EEffectVertexAttribute_Position,
-   EEffectVertexAttribute_Color,
-   EEffectVertexAttribute_Coord,
-   EEffectVertexAttribute_Normal,
-   EEffectVertexAttribute_Binormal,
-   EEffectVertexAttribute_Tangent,
-   EEffectVertexAttribute_BoneIndex,
-   EEffectVertexAttribute_BoneWeight,
-   EEffectVertexAttribute_Count,
-};
-
-//============================================================
-// <T>效果取样器类型。</T>
-//============================================================
-enum EEffectSampler{
-   EEffectSampler_Diffuse,
-   EEffectSampler_Normal,
-   EEffectSampler_Specular,
-   EEffectSampler_Light,
-   EEffectSampler_Environment,
-   EEffectSampler_LightDepth,
-   EEffectSampler_Count,
-};
-
-//============================================================
-// <T>效果取样器类型工具。</T>
-//============================================================
-class MO_FG_DECLARE REffectSampler{
-public:
-   static EEffectSampler Parse(TCharC* pValue, EEffectSampler samplerCd = EEffectSampler_Diffuse);
-   static TCharC* Format(EEffectSampler samplerCd);
 };
 
 //============================================================
