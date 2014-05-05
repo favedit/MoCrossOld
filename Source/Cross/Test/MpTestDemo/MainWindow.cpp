@@ -187,8 +187,8 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    RFontManager::Instance().RegisterFont(pFont);
    //............................................................
    // 打开资源管理器
-   //RResource3dManager::Instance().ThemeConsole()->Open("asset:/theme/color.ser");
-   RResource3dManager::Instance().ThemeConsole()->Open("asset:/theme/shadow.ser");
+   RResource3dManager::Instance().ThemeConsole()->Open("asset:/theme/color.ser");
+   //RResource3dManager::Instance().ThemeConsole()->Open("asset:/theme/shadow.ser");
    //RGmResourceManager::Instance().Open();
    //RGmTemplateConsole::Instance().Open();
    //............................................................

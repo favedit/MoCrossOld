@@ -134,8 +134,6 @@ TResult FPd11RenderDevice::Setup(){
    _defaultRenderTarget->SetNativeRenderTarget(piRenderTarget);
    _pActiveRenderTarget = _defaultRenderTarget;
    //............................................................
-   _piContext->OMSetRenderTargets(1, &piRenderTarget, NULL);
-   //............................................................
    // 创建深度缓冲
    D3D11_TEXTURE2D_DESC depthBufferDesc;
    RType<D3D11_TEXTURE2D_DESC>::Clear(&depthBufferDesc);
@@ -193,8 +191,11 @@ TResult FPd11RenderDevice::Setup(){
       MO_FATAL("Create depth stencil view failure.");
       return EFailure;
    }
-   _defaultRenderTarget->SetOptionDepth(ETrue);
-   _defaultRenderTarget->SetNativeDepthStencil(_pDepthStencilView);
+   //_defaultRenderTarget->SetOptionDepth(ETrue);
+   //_defaultRenderTarget->SetNativeDepthStencil(_pDepthStencilView);
+   //............................................................
+   //_piContext->OMSetRenderTargets(1, &piRenderTarget, _pDepthStencilView);
+   _piContext->OMSetRenderTargets(1, &piRenderTarget, NULL);
    //............................................................
    // 设置深度缓冲
    D3D11_RASTERIZER_DESC rasterDesc;
@@ -881,8 +882,8 @@ TResult FPd11RenderDevice::BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVer
    FPd11RenderVertexBuffer* pBuffer = pVertexBuffer->Convert<FPd11RenderVertexBuffer>();
    // 获得信息
    ID3D11Buffer* piBuffer = pBuffer->NativeBuffer();
-   TUint bufferStride = pVertexBuffer->Stride();
-   TUint bufferOffset = offset;
+   UINT bufferStride = pVertexBuffer->Stride();
+   UINT bufferOffset = offset;
    // 设置内容
    _piContext->IASetVertexBuffers(slot, 1, &piBuffer, &bufferStride, &bufferOffset);
    return result;

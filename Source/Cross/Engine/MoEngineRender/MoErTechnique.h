@@ -23,13 +23,29 @@ protected:
    SMatrix3d _mvpMatrix;
    SMatrix3d _vpMatrix;
    SMatrix3d _lightVpMatrix;
-   TEffectParameterDescriptors _parameterDescriptors;
-   TEffectAttributeDescriptors _attributeDescriptors;
-   TEffectSamplerDescriptors _samplerDescriptors;
+   FRenderShaderParameterCollection* _pParameters;
+   FRenderShaderAttributeCollection* _pAttributes;
+   FRenderShaderSamplerCollection* _pSamplers;
    SEffectDescriptor _dynamicDescriptor;
 public:
    FAutomaticEffect();
    MO_ABSTRACT ~FAutomaticEffect();
+public:
+   //------------------------------------------------------------
+   // <T>获得参数集合。</T>
+   MO_INLINE FRenderShaderParameterCollection* Parameters(){
+      return _pParameters;
+   }
+   //------------------------------------------------------------
+   // <T>获得属性集合。</T>
+   MO_INLINE FRenderShaderAttributeCollection* Attributes(){
+      return _pAttributes;
+   }
+   //------------------------------------------------------------
+   // <T>获得取样器集合。</T>
+   MO_INLINE FRenderShaderSamplerCollection* Samplers(){
+      return _pSamplers;
+   }
 public:
    MO_OVERRIDE TResult BindDescriptors();
    MO_OVERRIDE TResult LinkDescriptors();

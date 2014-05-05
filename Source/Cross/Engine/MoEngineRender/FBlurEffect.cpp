@@ -21,10 +21,10 @@ FBlurEffect::~FBlurEffect(){
 //============================================================
 TResult FBlurEffect::OnSetup(){
    // 注册属性集合
-   _attributeDescriptors.Register(ERenderVertexBuffer_Position, "va_position", ERenderVertexFormat_Float4);
-   _attributeDescriptors.Register(ERenderVertexBuffer_Color,    "va_color",    ERenderVertexFormat_ByteNormal4);
+   //_attributeDescriptors.Register(ERenderVertexBuffer_Position, "va_position", ERenderVertexFormat_Float4);
+   //_attributeDescriptors.Register(ERenderVertexBuffer_Color,    "va_color",    ERenderVertexFormat_ByteNormal4);
    // 注册纹理集合
-   _samplerDescriptors.Register(EEffectSampler_Diffuse, "fs_diffuse", ERenderSampler_PackDiffuse);
+   //_samplerDescriptors.Register(EEffectSampler_Diffuse, "fs_diffuse", ERenderSampler_PackDiffuse);
    return ESuccess;
 }
 

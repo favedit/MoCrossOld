@@ -836,6 +836,7 @@ class MO_FG_DECLARE FRenderShaderParameter : public FRenderObject
 {
    MO_CLASS_DECLARE_INHERITS(FRenderShaderParameter, FRenderObject);
 protected:
+   TInt _code;
    TString _name;
    TString _linker;
    ERenderShader _shaderCd;
@@ -849,6 +850,16 @@ public:
    FRenderShaderParameter();
    MO_ABSTRACT ~FRenderShaderParameter();
 public:
+   //------------------------------------------------------------
+   // <T>获得代码。</T>
+   MO_INLINE TInt Code(){
+      return _code;
+   }
+   //------------------------------------------------------------
+   // <T>设置代码。</T>
+   MO_INLINE void SetCode(TInt code){
+      _code = code;
+   }
    //------------------------------------------------------------
    // <T>获得名称。</T>
    MO_INLINE TCharC* Name(){
@@ -876,7 +887,7 @@ public:
    }
    //------------------------------------------------------------
    // <T>设置渲染类型。</T>
-   MO_INLINE void SetFormatCd(ERenderShader shaderCd){
+   MO_INLINE void SetShaderCd(ERenderShader shaderCd){
       _shaderCd = shaderCd;
    }
    //------------------------------------------------------------
@@ -952,6 +963,7 @@ public:
    MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);
 };
 //------------------------------------------------------------
+typedef MO_FG_DECLARE FObjects<FRenderShaderParameter*> FRenderShaderParameterCollection;
 typedef MO_FG_DECLARE GPtrDictionary<FRenderShaderParameter> GRenderShaderParameterDictionary;
 
 //============================================================
@@ -961,6 +973,7 @@ class MO_FG_DECLARE FRenderShaderAttribute : public FRenderObject
 {
    MO_CLASS_DECLARE_INHERITS(FRenderShaderAttribute, FRenderObject);
 protected:
+   TInt _code;
    TString _name;
    TString _linker;
    TInt _index;
@@ -971,6 +984,16 @@ public:
    FRenderShaderAttribute();
    MO_ABSTRACT ~FRenderShaderAttribute();
 public:
+   //------------------------------------------------------------
+   // <T>获得代码。</T>
+   MO_INLINE TInt Code(){
+      return _code;
+   }
+   //------------------------------------------------------------
+   // <T>设置代码。</T>
+   MO_INLINE void SetCode(TInt code){
+      _code = code;
+   }
    //------------------------------------------------------------
    // <T>获得名称。</T>
    MO_INLINE TCharC* Name(){
@@ -1035,6 +1058,7 @@ public:
    MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);
 };
 //------------------------------------------------------------
+typedef MO_FG_DECLARE FObjects<FRenderShaderAttribute*> FRenderShaderAttributeCollection;
 typedef MO_FG_DECLARE GPtrs<FRenderShaderAttribute> GRenderShaderAttributePtrs;
 typedef MO_FG_DECLARE GPtrDictionary<FRenderShaderAttribute> GRenderShaderAttributeDictionary;
 
@@ -1045,6 +1069,7 @@ class MO_FG_DECLARE FRenderShaderSampler : public FRenderObject
 {
    MO_CLASS_DECLARE_INHERITS(FRenderShaderSampler, FRenderObject);
 protected:
+   TInt _code;
    TString _name;
    TString _linker;
    TString _source;
@@ -1054,6 +1079,16 @@ public:
    FRenderShaderSampler();
    MO_ABSTRACT ~FRenderShaderSampler();
 public:
+   //------------------------------------------------------------
+   // <T>获得代码。</T>
+   MO_INLINE TInt Code(){
+      return _code;
+   }
+   //------------------------------------------------------------
+   // <T>设置代码。</T>
+   MO_INLINE void SetCode(TInt code){
+      _code = code;
+   }
    //------------------------------------------------------------
    // <T>获得名称。</T>
    MO_INLINE TCharC* Name(){
@@ -1108,6 +1143,7 @@ public:
    MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);
 };
 //------------------------------------------------------------
+typedef MO_FG_DECLARE FObjects<FRenderShaderSampler*> FRenderShaderSamplerCollection;
 typedef MO_FG_DECLARE GPtrDictionary<FRenderShaderSampler> GRenderShaderSamplerDictionary;
 
 //============================================================

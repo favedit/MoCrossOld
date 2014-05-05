@@ -26,9 +26,6 @@ FPd11RenderProgram::~FPd11RenderProgram(){
 //============================================================
 TInt FPd11RenderProgram::FindDefine(TCharC* pCode){
    MO_ASSERT(pCode);
-   //GLint slot = glGetUniformLocation(_programId, pCode);
-   //_pDevice->CheckError("glGetUniformLocation", "Bind uniform location. (program_id=%d, code=%s)", _programId, pCode);
-   //return slot;
    return -1;
 }
 
@@ -40,9 +37,6 @@ TInt FPd11RenderProgram::FindDefine(TCharC* pCode){
 //============================================================
 TInt FPd11RenderProgram::FindAttribute(TCharC* pCode){
    MO_ASSERT(pCode);
-   //GLint slot = glGetAttribLocation(_programId, pCode);
-   //_pDevice->CheckError("glGetAttribLocation", "Find attribute location. (program_id=%d, code=%s)", _programId, pCode);
-   //return slot;
    return -1;
 }
 
@@ -56,10 +50,6 @@ TInt FPd11RenderProgram::FindAttribute(TCharC* pCode){
 TResult FPd11RenderProgram::BindAttribute(TInt slot, TCharC* pCode){
    MO_ASSERT(slot >= 0);
    MO_ASSERT(pCode);
-   //MO_ASSERT(_programId != 0);
-   //glBindAttribLocation(_programId, slot, pCode);
-   //TResult resultCd = _pDevice->CheckError("glBindAttribLocation", "Bind attribute location. (program_id=%d, slot=%d, code=%s)", _programId, slot, pCode);
-   //return resultCd;
    return ESuccess;
 }
 
@@ -110,7 +100,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
       return EFailure;
    }
    // 获得描述
-   D3D11_SHADER_DESC shaderDescriptor;
+   D3D11_SHADER_DESC shaderDescriptor = {0};
    dxResult = piReflection->GetDesc(&shaderDescriptor);
    if(FAILED(dxResult)){
       MO_FATAL("Get reflect shader description failure.");
@@ -123,7 +113,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
       ID3D11ShaderReflectionConstantBuffer* piConstantBuffer = piReflection->GetConstantBufferByIndex(constantBufferIndex);
       MO_CHECK(piConstantBuffer, continue);
       // 获得缓冲信息
-      D3D11_SHADER_BUFFER_DESC bufferDescriptor;
+      D3D11_SHADER_BUFFER_DESC bufferDescriptor = {0};
       dxResult = piConstantBuffer->GetDesc(&bufferDescriptor);
       if(FAILED(dxResult)){
          MO_FATAL("Get buffer description failure.");
@@ -143,7 +133,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
       for(TInt n = 0; n < variableCount; n++){
          ID3D11ShaderReflectionVariable* piVariable = piConstantBuffer->GetVariableByIndex(n);
          // 创建变量信息
-         D3D11_SHADER_VARIABLE_DESC variableDescriptor;
+         D3D11_SHADER_VARIABLE_DESC variableDescriptor = {0};
          dxResult = piVariable->GetDesc(&variableDescriptor);
          if(FAILED(dxResult)){
             MO_FATAL("Get variable description failure.");
@@ -174,7 +164,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
    if(attributeCount > 0){
       for(TInt attributeIndex = 0; attributeIndex < attributeCount; attributeIndex++){
          // 获得描述信息
-         D3D11_SIGNATURE_PARAMETER_DESC attributeDescriptor;
+         D3D11_SIGNATURE_PARAMETER_DESC attributeDescriptor = {0};
          dxResult = piReflection->GetInputParameterDesc(attributeIndex, &attributeDescriptor);
          if(FAILED(dxResult)){
             MO_FATAL("Get attribute description failure.");
@@ -199,29 +189,25 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
       }
    }
    //............................................................
-   // 获得取样器描述
-   TInt samplerCount = shaderDescriptor.TextureBiasInstructions;
-   if(samplerCount > 0){
-   }
-   //............................................................
    // 设定所有绑定点
    TInt boundCount = shaderDescriptor.BoundResources;
    for(TInt boundIndex = 0; boundIndex < boundCount; boundIndex++){
-      D3D11_SHADER_INPUT_BIND_DESC bindDescriptor;
+      D3D11_SHADER_INPUT_BIND_DESC bindDescriptor = {0};
       dxResult = piReflection->GetResourceBindingDesc(boundIndex, &bindDescriptor);
       if(FAILED(dxResult)){
          MO_FATAL("Get resource binding description failure.");
          return EFailure;
       }
+      TCharC* pBindName = bindDescriptor.Name;
       if(bindDescriptor.Type == D3D_SIT_CBUFFER){
-         FPd11RenderShaderBuffer* pBuffer = (FPd11RenderShaderBuffer*)BufferFind(bindDescriptor.Name);
+         FPd11RenderShaderBuffer* pBuffer = (FPd11RenderShaderBuffer*)BufferFind(pBindName);
          MO_CHECK(pBuffer, continue);
          pBuffer->SetSlot(bindDescriptor.BindPoint);
       }
       if(bindDescriptor.Type == D3D_SIT_TEXTURE){
-         FRenderShaderSampler* pSampler = SamplerFind(bindDescriptor.Name);
+         FRenderShaderSampler* pSampler = SamplerFind(pBindName);
          if(pSampler == NULL){
-            MO_ERROR("Shader sampler bound is not found. (name=%s)", bindDescriptor.Name);
+            MO_ERROR("Shader sampler bound is not found. (name=%s)", pBindName);
          }else{
             pSampler->SetStatusUsed(ETrue);
             pSampler->SetSlot(bindDescriptor.BindPoint);

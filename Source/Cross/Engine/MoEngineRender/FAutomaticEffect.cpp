@@ -27,12 +27,22 @@ FAutomaticEffect::FAutomaticEffect(){
    _descriptor.supportRefract = ETrue;
    _descriptor.supportEmissive = ETrue;
    _descriptor.supportHeight = ETrue;
+   // 设置缓冲
+   _pParameters = MO_CREATE(FRenderShaderParameterCollection);
+   _pParameters->SetCount(EEffectParameter_Count);
+   _pAttributes = MO_CREATE(FRenderShaderAttributeCollection);
+   _pAttributes->SetCount(EEffectAttribute_Count);
+   _pSamplers = MO_CREATE(FRenderShaderSamplerCollection);
+   _pSamplers->SetCount(ERenderSampler_Count);
 }
 
 //============================================================
 // <T>析构渲染效果。</T>
 //============================================================
 FAutomaticEffect::~FAutomaticEffect(){
+   MO_DELETE(_pParameters);
+   MO_DELETE(_pAttributes);
+   MO_DELETE(_pSamplers);
 }
 
 //============================================================
@@ -55,11 +65,12 @@ TResult FAutomaticEffect::LoadConfig(FXmlNode* pConfig){
 TResult FAutomaticEffect::BindDescriptors(){
    MO_CHECK(_program, return ENull);
    // 绑定属性位置
-   TEffectAttributeDescriptors::TIteratorC iterator = _attributeDescriptors.IteratorC();
-   while(iterator.Next()){
-      const SEffectAttributeDescriptor& descriptor = *iterator;
-      _program->BindAttribute(descriptor.bindIndex, descriptor.namePtr);
-   }
+   //TEffectAttributeDescriptors::TIteratorC iterator = _attributeDescriptors.IteratorC();
+   //while(iterator.Next()){
+   //   const SEffectAttributeDescriptor& descriptor = *iterator;
+   //   _program->BindAttribute(descriptor.bindIndex, descriptor.namePtr);
+   //}
+   //............................................................
    // 建立常量描述器
    GRenderShaderParameterDictionary& parameters = _program->Parameters();
    if(!parameters.IsEmpty()){
@@ -67,10 +78,21 @@ TResult FAutomaticEffect::BindDescriptors(){
       while(iterator.Next()){
          FRenderShaderParameter* pParameter = *iterator;
          if(pParameter->IsStatusUsed()){
-            _parameterDescriptors.Link(pParameter);
+            // 解析内容
+            TCharC* pLinker = pParameter->Linker();
+            EEffectParameter parameterCd = EEffectParameter_Unknown;
+            ERenderShader shaderCd = ERenderShader_Unknown;
+            ERenderShaderParameterFormat formatCd = ERenderShaderParameterFormat_Unknown;
+            REffectParameter::Parse(pLinker, parameterCd, shaderCd, formatCd);
+            // 设置参数
+            pParameter->SetCode(parameterCd);
+            pParameter->SetShaderCd(shaderCd);
+            pParameter->SetFormatCd(formatCd);
+            _pParameters->Set(parameterCd, pParameter);
          }
       }
    }
+   //............................................................
    // 建立属性描述器
    GRenderShaderAttributeDictionary& attributes = _program->Attributes();
    if(!attributes.IsEmpty()){
@@ -78,10 +100,19 @@ TResult FAutomaticEffect::BindDescriptors(){
       while(iterator.Next()){
          FRenderShaderAttribute* pAttribute = *iterator;
          if(pAttribute->IsStatusUsed()){
-            _attributeDescriptors.Link(pAttribute);
+            // 解析内容
+            TCharC* pLinker = pAttribute->Linker();
+            EEffectAttribute attributeCd = EEffectAttribute_Unknown;
+            ERenderShaderAttributeFormat formatCd = ERenderShaderAttributeFormat_Unknown;
+            REffectAttribute::Parse(pLinker, attributeCd, formatCd);
+            // 设置参数
+            pAttribute->SetCode(attributeCd);
+            pAttribute->SetFormatCd(formatCd);
+            _pAttributes->Set(attributeCd, pAttribute);
          }
       }
    }
+   //............................................................
    // 建立属性描述器
    GRenderShaderSamplerDictionary& sampler = _program->Samplers();
    if(!sampler.IsEmpty()){
@@ -89,7 +120,14 @@ TResult FAutomaticEffect::BindDescriptors(){
       while(iterator.Next()){
          FRenderShaderSampler* pSampler = *iterator;
          if(pSampler->IsStatusUsed()){
-            _samplerDescriptors.Link(pSampler);
+            TCharC* pLinker = pSampler->Linker();
+            // 解析内容
+            ERenderSampler samplerCd = RRenderSampler::Parse(pLinker);
+            ERenderSampler packCd = RRenderSampler::ParsePack(samplerCd);
+            // 设置参数
+            pSampler->SetCode(samplerCd);
+            _pSamplers->Set(samplerCd, pSampler);
+            _pSamplers->Set(packCd, pSampler);
          }
       }
    }
@@ -103,46 +141,46 @@ TResult FAutomaticEffect::BindDescriptors(){
 //============================================================
 TResult FAutomaticEffect::LinkDescriptors(){
    MO_CHECK(_program, return ENull);
-   TInt fragmentConstLimit = _renderDevice->Capability()->FragmentConstLimit();
-   // 关联常量集合
-   TEffectParameterDescriptors::TIterator parameterIterator = _parameterDescriptors.Iterator();
-   while(parameterIterator.Next()){
-      SEffectParameterDescriptor& descriptor = *parameterIterator;
-      if((descriptor.code != -1) && (descriptor.bindId == -1)){
-         descriptor.bindId = _program->FindDefine(descriptor.namePtr);
-         MO_INFO("Find const location. (name=%s, code=%d, bind_id=%d)",
-               descriptor.namePtr, descriptor.code, descriptor.bindId);
-      }
-   }
-   // 关联属性集合
-   TEffectAttributeDescriptors::TIterator attributeIterator = _attributeDescriptors.Iterator();
-   while(attributeIterator.Next()){
-      SEffectAttributeDescriptor& descriptor = *attributeIterator;
-      if((descriptor.bindIndex != -1) && (descriptor.bindId == -1)){
-         descriptor.bindId = _program->FindAttribute(descriptor.namePtr);
-         if(descriptor.bindId != -1){
-            MO_INFO("Find attribute location. (name=%s, code=%d, bind_id=%d)",
-                  descriptor.namePtr, descriptor.code, descriptor.bindId);
-         }
-      }
-   }
-   // 关联取样器集合
-   TEffectSamplerDescriptors::TIterator samplerIterator = _samplerDescriptors.Iterator();
-   while(samplerIterator.Next()){
-      SEffectSamplerDescriptor& descriptor = *samplerIterator;
-      if((descriptor.code != -1) && (descriptor.bindId == -1)){
-         descriptor.bindId = _program->FindDefine(descriptor.namePtr);
-      }
-   }
-   TInt samplerIndex = 0;
-   for(TInt n = 0; n < 1024; n++){
-      SEffectSamplerDescriptor* pDescriptor = _samplerDescriptors.FindByBindId(n);
-      if(pDescriptor != NULL){
-         pDescriptor->index = samplerIndex++;
-         MO_INFO("Find sampler location. (name=%s, code=%d, bind_id=%d, index=%d)",
-               pDescriptor->namePtr, pDescriptor->code, pDescriptor->bindId, pDescriptor->index);
-      }
-   }
+   //TInt fragmentConstLimit = _renderDevice->Capability()->FragmentConstLimit();
+   //// 关联常量集合
+   //TEffectParameterDescriptors::TIterator parameterIterator = _parameterDescriptors.Iterator();
+   //while(parameterIterator.Next()){
+   //   SEffectParameterDescriptor& descriptor = *parameterIterator;
+   //   if((descriptor.code != -1) && (descriptor.bindId == -1)){
+   //      descriptor.bindId = _program->FindDefine(descriptor.namePtr);
+   //      MO_INFO("Find const location. (name=%s, code=%d, bind_id=%d)",
+   //            descriptor.namePtr, descriptor.code, descriptor.bindId);
+   //   }
+   //}
+   //// 关联属性集合
+   //TEffectAttributeDescriptors::TIterator attributeIterator = _attributeDescriptors.Iterator();
+   //while(attributeIterator.Next()){
+   //   SEffectAttributeDescriptor& descriptor = *attributeIterator;
+   //   if((descriptor.bindIndex != -1) && (descriptor.bindId == -1)){
+   //      descriptor.bindId = _program->FindAttribute(descriptor.namePtr);
+   //      if(descriptor.bindId != -1){
+   //         MO_INFO("Find attribute location. (name=%s, code=%d, bind_id=%d)",
+   //               descriptor.namePtr, descriptor.code, descriptor.bindId);
+   //      }
+   //   }
+   //}
+   //// 关联取样器集合
+   //TEffectSamplerDescriptors::TIterator samplerIterator = _samplerDescriptors.Iterator();
+   //while(samplerIterator.Next()){
+   //   SEffectSamplerDescriptor& descriptor = *samplerIterator;
+   //   if((descriptor.code != -1) && (descriptor.bindId == -1)){
+   //      descriptor.bindId = _program->FindDefine(descriptor.namePtr);
+   //   }
+   //}
+   //TInt samplerIndex = 0;
+   //for(TInt n = 0; n < 1024; n++){
+   //   SEffectSamplerDescriptor* pDescriptor = _samplerDescriptors.FindByBindId(n);
+   //   if(pDescriptor != NULL){
+   //      pDescriptor->index = samplerIndex++;
+   //      MO_INFO("Find sampler location. (name=%s, code=%d, bind_id=%d, index=%d)",
+   //            pDescriptor->namePtr, pDescriptor->code, pDescriptor->bindId, pDescriptor->index);
+   //   }
+   //}
    return ESuccess;
 }
 
@@ -154,9 +192,9 @@ TResult FAutomaticEffect::LinkDescriptors(){
 // @param point 三维坐标
 //============================================================
 TResult FAutomaticEffect::BindConstPosition3(TInt bindCd, SFloatPoint3& point){
-   SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
-   if(descriptor.parameterPtr != NULL){
-      descriptor.parameterPtr->SetFloat3(point.x, point.y, point.z);
+   FRenderShaderParameter* pParameter = _pParameters->Get(bindCd);
+   if(pParameter != NULL){
+      pParameter->SetFloat3(point.x, point.y, point.z);
    }
    return ESuccess;
 }
@@ -169,9 +207,9 @@ TResult FAutomaticEffect::BindConstPosition3(TInt bindCd, SFloatPoint3& point){
 // @param vector 三维方向
 //============================================================
 TResult FAutomaticEffect::BindConstVector3(TInt bindCd, SFloatVector3& vector){
-   SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
-   if(descriptor.parameterPtr != NULL){
-      descriptor.parameterPtr->SetFloat3(vector.x, vector.y, vector.z);
+   FRenderShaderParameter* pParameter = _pParameters->Get(bindCd);
+   if(pParameter != NULL){
+      pParameter->SetFloat3(vector.x, vector.y, vector.z);
    }
    return ESuccess;
 }
@@ -186,9 +224,9 @@ TResult FAutomaticEffect::BindConstVector3(TInt bindCd, SFloatVector3& vector){
 // @param w 浮点数W
 //============================================================
 TResult FAutomaticEffect::BindConstFloat4(TInt bindCd, TFloat x, TFloat y, TFloat z, TFloat w){
-   SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
-   if(descriptor.parameterPtr != NULL){
-      descriptor.parameterPtr->SetFloat4(x, y, z, w);
+   FRenderShaderParameter* pParameter = _pParameters->Get(bindCd);
+   if(pParameter != NULL){
+      pParameter->SetFloat4(x, y, z, w);
    }
    return ESuccess;
 }
@@ -203,9 +241,9 @@ TResult FAutomaticEffect::BindConstFloat4(TInt bindCd, TFloat x, TFloat y, TFloa
 // @param w 浮点数W
 //============================================================
 TResult FAutomaticEffect::BindConstColor4(TInt bindCd, const SFloatColor4& color){
-   SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
-   if(descriptor.parameterPtr != NULL){
-      descriptor.parameterPtr->SetFloat4(color.red, color.green, color.blue, color.alpha);
+   FRenderShaderParameter* pParameter = _pParameters->Get(bindCd);
+   if(pParameter != NULL){
+      pParameter->SetFloat4(color.red, color.green, color.blue, color.alpha);
    }
    return ESuccess;
 }
@@ -218,9 +256,9 @@ TResult FAutomaticEffect::BindConstColor4(TInt bindCd, const SFloatColor4& color
 // @param matrix 4X4矩阵
 //============================================================
 TResult FAutomaticEffect::BindConstMatrix3x3(TInt bindCd, SFloatMatrix3d* pMatrix, TInt count){
-   SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
-   if((descriptor.parameterPtr != NULL) && (count > 0)){
-      descriptor.parameterPtr->SetMatrix3x3(pMatrix, count, ETrue);
+   FRenderShaderParameter* pParameter = _pParameters->Get(bindCd);
+   if((pParameter != NULL) && (count > 0)){
+      pParameter->SetMatrix3x3(pMatrix, count, ETrue);
    }
    return ESuccess;
 }
@@ -233,9 +271,9 @@ TResult FAutomaticEffect::BindConstMatrix3x3(TInt bindCd, SFloatMatrix3d* pMatri
 // @param matrix 4X4矩阵
 //============================================================
 TResult FAutomaticEffect::BindConstMatrix4x3(TInt bindCd, SFloatMatrix3d* pMatrix, TInt count){
-   SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
-   if((descriptor.parameterPtr != NULL) && (count > 0)){
-      descriptor.parameterPtr->SetMatrix4x3(pMatrix, count, ETrue);
+   FRenderShaderParameter* pParameter = _pParameters->Get(bindCd);
+   if((pParameter != NULL) && (count > 0)){
+      pParameter->SetMatrix4x3(pMatrix, count, ETrue);
    }
    return ESuccess;
 }
@@ -248,9 +286,9 @@ TResult FAutomaticEffect::BindConstMatrix4x3(TInt bindCd, SFloatMatrix3d* pMatri
 // @param matrix 4X4矩阵
 //============================================================
 TResult FAutomaticEffect::BindConstMatrix4x4(TInt bindCd, SFloatMatrix3d* pMatrix, TInt count){
-   SEffectParameterDescriptor& descriptor = _parameterDescriptors[bindCd];
-   if((descriptor.parameterPtr != NULL) && (count > 0)){
-      descriptor.parameterPtr->SetMatrix4x4(pMatrix, count, ETrue);
+   FRenderShaderParameter* pParameter = _pParameters->Get(bindCd);
+   if((pParameter != NULL) && (count > 0)){
+      pParameter->SetMatrix4x4(pMatrix, count, ETrue);
    }
    return ESuccess;
 }
@@ -267,13 +305,14 @@ TResult FAutomaticEffect::BindAttributeDescriptors(FRenderable* pRenderable){
    MO_CHECK(pVertexStreams, return ENull);
    //............................................................
    // 关联属性集合
-   TEffectAttributeDescriptors::TIterator attributeIterator = _attributeDescriptors.Iterator();
-   while(attributeIterator.Next()){
-      SEffectAttributeDescriptor& descriptor = *attributeIterator;
-      if(descriptor.attributePtr != NULL){
-         FRenderVertexStream* pVertexStream = pVertexStreams->FindStream((ERenderVertexBuffer)descriptor.code);
+   GRenderShaderAttributeDictionary::TIterator iterator = _program->Attributes().IteratorC();
+   while(iterator.Next()){
+      FRenderShaderAttribute* pAttribute = *iterator;
+      if(pAttribute->IsStatusUsed()){
+         ERenderVertexBuffer bufferCd = (ERenderVertexBuffer)pAttribute->Code();
+         FRenderVertexStream* pVertexStream = pVertexStreams->FindStream(bufferCd);
          if(pVertexStream != NULL){
-            _renderDevice->BindVertexStream(descriptor.bindId, pVertexStream);
+            _renderDevice->BindVertexStream(pAttribute->Slot(), pVertexStream);
             //MO_INFO("Bind attribute stream. (name=%s, bind_id=%d, code=%d, format=%d)", descriptor.namePtr, descriptor.bindId, descriptor.code, descriptor.formatCd);
          }
       }
@@ -292,18 +331,18 @@ TResult FAutomaticEffect::UnbindAttributeDescriptors(FRenderable* pRenderable){
    FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
    MO_CHECK(pRenderDevice, return ENull);
    //............................................................
-   // 获得属性
-   FRenderVertexStreams* pVertexStreams = pRenderable->VertexStreams();
-   MO_CHECK(pVertexStreams, return ENull);
-   //............................................................
-   // 关联属性集合
-   TEffectAttributeDescriptors::TIterator attributeIterator = _attributeDescriptors.Iterator();
-   while(attributeIterator.Next()){
-      SEffectAttributeDescriptor& descriptor = *attributeIterator;
-      if(descriptor.bindId != -1){
-         pRenderDevice->BindVertexStream(descriptor.bindId, NULL);
-      }
-   }
+   //// 获得属性
+   //FRenderVertexStreams* pVertexStreams = pRenderable->VertexStreams();
+   //MO_CHECK(pVertexStreams, return ENull);
+   ////............................................................
+   //// 关联属性集合
+   //TEffectAttributeDescriptors::TIterator attributeIterator = _attributeDescriptors.Iterator();
+   //while(attributeIterator.Next()){
+   //   SEffectAttributeDescriptor& descriptor = *attributeIterator;
+   //   if(descriptor.bindId != -1){
+   //      pRenderDevice->BindVertexStream(descriptor.bindId, NULL);
+   //   }
+   //}
    return ESuccess;
 }
 
@@ -319,10 +358,10 @@ TResult FAutomaticEffect::BindSampler(TInt bindCd, FRenderTexture* pTexture){
    MO_CHECK(pRenderDevice, return ENull);
    //............................................................
    // 关联属性集合
-   SEffectSamplerDescriptor& descriptor = _samplerDescriptors[bindCd];
-   if(descriptor.samplerPtr != NULL){
-      pTexture->SetIndex(descriptor.index);
-      pRenderDevice->BindTexture(descriptor.bindId, pTexture);
+   FRenderShaderSampler* pSampler = _pSamplers->Get(bindCd);
+   if(pSampler != NULL){
+      //pTexture->SetIndex(descriptor.index);
+      pRenderDevice->BindTexture(pSampler->Slot(), pTexture);
    }
    return ESuccess;
 }
@@ -339,14 +378,15 @@ TResult FAutomaticEffect::BindSamplerDescriptors(FRenderable* pRenderable){
    MO_CHECK(pRenderDevice, return ENull);
    //............................................................
    // 关联属性集合
-   TInt count = _samplerDescriptors.Count();
-   for(TInt n = 0; n < count; n++){
-      SEffectSamplerDescriptor& descriptor = _samplerDescriptors[n];
-      if((descriptor.samplerPtr != NULL) && (descriptor.bindId != -1)){
-         FRenderTexture* pTexture = pRenderable->FindTexture((ERenderSampler)descriptor.samplerCd);
+   GRenderShaderSamplerDictionary::TIterator iterator = _program->Samplers().IteratorC();
+   while(iterator.Next()){
+      FRenderShaderSampler* pSampler = *iterator;
+      if(pSampler->IsStatusUsed()){
+         ERenderSampler samplerCd = (ERenderSampler)pSampler->Code();
+         FRenderTexture* pTexture = pRenderable->FindTexture(samplerCd);
          if(pTexture != NULL){
-            pTexture->SetIndex(descriptor.index);
-            pRenderDevice->BindTexture(descriptor.bindId, pTexture);
+            // pTexture->SetIndex(pSampler->Slot());
+            pRenderDevice->BindTexture(pSampler->Slot(), pTexture);
          }
       }
    }
@@ -360,42 +400,42 @@ TResult FAutomaticEffect::BindSamplerDescriptors(FRenderable* pRenderable){
 //============================================================
 TResult FAutomaticEffect::OnSetup(){
    TXmlNodeIteratorC iterator = _config->NodeIteratorC();
-   while(iterator.Next()){
-      FXmlNode* pNode = *iterator;
-      //............................................................
-      // 建立参数定义集合
-      if(pNode->IsName("Parameter")){
-         TCharC* pName = pNode->Get("name");
-         TCharC* pBuffer = pNode->Get("linker");
-         TCharC* pFormat = pNode->Get("format");
-         ERenderVertexBuffer bufferCd = RRenderVertexBuffer::Parse(pBuffer);
-         ERenderVertexFormat formatCd = RRenderVertexFormat::Parse(pFormat);
-         //_constDescriptors.Register(bufferCd, pName, formatCd);
-         continue;
-      }
-      //............................................................
-      // 建立属性定义集合
-      if(pNode->IsName("Attribute")){
-         TCharC* pName = pNode->Get("name");
-         TCharC* pBuffer = pNode->Get("linker");
-         TCharC* pFormat = pNode->Get("format");
-         ERenderVertexBuffer bufferCd = RRenderVertexBuffer::Parse(pBuffer);
-         ERenderVertexFormat formatCd = RRenderVertexFormat::Parse(pFormat);
-         _attributeDescriptors.Register(bufferCd, pName, formatCd);
-         continue;
-      }
-      //............................................................
-      // 建立取样器定义集合
-      if(pNode->IsName("Sampler")){
-         TCharC* pName = pNode->Get("name");
-         TCharC* pBuffer = pNode->Get("linker");
-         TCharC* pSource = pNode->Get("source");
-         EEffectSampler bufferCd = REffectSampler::Parse(pBuffer);
-         ERenderSampler samplerCd = RRenderSampler::Parse(pSource);
-         _samplerDescriptors.Register(bufferCd, pName, samplerCd);
-         continue;
-      }
-   }
+   //while(iterator.Next()){
+   //   FXmlNode* pNode = *iterator;
+   //   //............................................................
+   //   // 建立参数定义集合
+   //   if(pNode->IsName("Parameter")){
+   //      TCharC* pName = pNode->Get("name");
+   //      TCharC* pBuffer = pNode->Get("linker");
+   //      TCharC* pFormat = pNode->Get("format");
+   //      ERenderVertexBuffer bufferCd = RRenderVertexBuffer::Parse(pBuffer);
+   //      ERenderVertexFormat formatCd = RRenderVertexFormat::Parse(pFormat);
+   //      //_constDescriptors.Register(bufferCd, pName, formatCd);
+   //      continue;
+   //   }
+   //   //............................................................
+   //   // 建立属性定义集合
+   //   if(pNode->IsName("Attribute")){
+   //      TCharC* pName = pNode->Get("name");
+   //      TCharC* pBuffer = pNode->Get("linker");
+   //      TCharC* pFormat = pNode->Get("format");
+   //      ERenderVertexBuffer bufferCd = RRenderVertexBuffer::Parse(pBuffer);
+   //      ERenderVertexFormat formatCd = RRenderVertexFormat::Parse(pFormat);
+   //      //_attributeDescriptors.Register(bufferCd, pName, formatCd);
+   //      continue;
+   //   }
+   //   //............................................................
+   //   // 建立取样器定义集合
+   //   if(pNode->IsName("Sampler")){
+   //      TCharC* pName = pNode->Get("name");
+   //      TCharC* pBuffer = pNode->Get("linker");
+   //      TCharC* pSource = pNode->Get("source");
+   //      EEffectSampler bufferCd = REffectSampler::Parse(pBuffer);
+   //      ERenderSampler samplerCd = RRenderSampler::Parse(pSource);
+   //      //_samplerDescriptors.Register(bufferCd, pName, samplerCd);
+   //      continue;
+   //   }
+   //}
    return ESuccess;
 }
 

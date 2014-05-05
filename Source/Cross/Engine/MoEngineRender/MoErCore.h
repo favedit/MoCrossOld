@@ -62,6 +62,8 @@ enum EEffectParameter{
    EEffectParameter_FragmentSpecularViewColor,
    EEffectParameter_FragmentSpecularView,
    EEffectParameter_FragmentReflectColor,
+   //............................................................
+   EEffectParameter_Count,
 };
 
 //============================================================
@@ -71,36 +73,6 @@ class MO_ER_DECLARE REffectParameter{
 public:
    static TResult Parse(TCharC* pValue, EEffectParameter& parameterCd, ERenderShader& shaderCd, ERenderShaderParameterFormat& formatCd);
    static TCharC* Format(EEffectParameter parameterCd);
-};
-
-//============================================================
-// <T>效果参数描述。</T>
-//============================================================
-struct SEffectParameterDescriptor{
-public:
-   TInt code;
-   TCharC* namePtr;
-   TInt bindId;
-   ERenderShader shaderCd;
-   FRenderShaderParameter* parameterPtr;
-public:
-   SEffectParameterDescriptor(){
-      code = -1;
-      MO_CLEAR(namePtr);
-      bindId = -1;
-      shaderCd = ERenderShader_Unknown;
-      MO_CLEAR(parameterPtr);
-   }
-};
-
-//============================================================
-// <T>效果参数描述集合。</T>
-//============================================================
-class TEffectParameterDescriptors : public TFixVector<SEffectParameterDescriptor, MO_ER_EFFECT_PARAMETER_MAXCNT>{
-public:
-   TEffectParameterDescriptors();
-public:
-   TResult Link(FRenderShaderParameter* pParameter);
 };
 
 //============================================================
@@ -117,6 +89,7 @@ enum EEffectAttribute{
    EEffectAttribute_Tangent,
    EEffectAttribute_BoneIndex,
    EEffectAttribute_BoneWeight,
+   EEffectAttribute_Count,
 };
 
 //============================================================
@@ -126,39 +99,6 @@ class MO_ER_DECLARE REffectAttribute{
 public:
    static TResult Parse(TCharC* pValue, EEffectAttribute& attributeCd, ERenderShaderAttributeFormat& formatCd);
    static TCharC* Format(EEffectAttribute attributeCd);
-};
-
-//============================================================
-// <T>效果属性描述。</T>
-//============================================================
-struct SEffectAttributeDescriptor{
-public:
-   TInt code;
-   TCharC* namePtr;
-   ERenderVertexFormat formatCd;
-   TInt bindIndex;
-   TInt bindId;
-   FRenderShaderAttribute* attributePtr;
-public:
-   SEffectAttributeDescriptor(){
-      code = -1;
-      MO_CLEAR(namePtr);
-      formatCd = ERenderVertexFormat_Unknown;
-      bindIndex = -1;
-      bindId = -1;
-      MO_CLEAR(attributePtr);
-   }
-};
-
-//============================================================
-// <T>效果属性描述集合。</T>
-//============================================================
-class TEffectAttributeDescriptors : public TFixVector<SEffectAttributeDescriptor, MO_EG_EFFECT_ATTRIBUTE_MAXCNT>{
-public:
-   TEffectAttributeDescriptors();
-public:
-   void Register(TInt code, TCharC* pName, ERenderVertexFormat formatCd);
-   TResult Link(FRenderShaderAttribute* pAttribute);
 };
 
 //============================================================
@@ -181,40 +121,6 @@ class MO_FG_DECLARE REffectSampler{
 public:
    static EEffectSampler Parse(TCharC* pValue, EEffectSampler samplerCd = EEffectSampler_Diffuse);
    static TCharC* Format(EEffectSampler samplerCd);
-};
-
-//============================================================
-// <T>效果取样器描述。</T>
-//============================================================
-struct SEffectSamplerDescriptor{
-public:
-   TInt code;
-   TCharC* namePtr;
-   ERenderSampler samplerCd;
-   TInt bindId;
-   TInt index;
-   FRenderShaderSampler* samplerPtr;
-public:
-   SEffectSamplerDescriptor(){
-      code = -1;
-      MO_CLEAR(namePtr);
-      samplerCd = ERenderSampler_Unknown;
-      bindId = -1;
-      index = -1;
-      MO_CLEAR(samplerPtr);
-   }
-};
-
-//============================================================
-// <T>效果取样器描述集合。</T>
-//============================================================
-class TEffectSamplerDescriptors : public TFixVector<SEffectSamplerDescriptor, MO_EG_EFFECT_SAMPLER_MAXCNT>{
-public:
-   TEffectSamplerDescriptors();
-public:
-   void Register(TInt code, TCharC* pName, ERenderSampler samplerCd);
-   TResult Link(FRenderShaderSampler* pSampler);
-   SEffectSamplerDescriptor* FindByBindId(TInt bindId);
 };
 
 MO_NAMESPACE_END

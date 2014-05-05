@@ -82,10 +82,11 @@ TResult FRenderShaderBuffer::Update(){
    MO_CHECK(_pDevice, return ENull);
    TResult resultCd = ESuccess;
    // 提交数据
-   if(_statusChanged){
-      Commit();
-      _statusChanged = EFalse;
-   }
+   //if(_statusChanged){
+   //   Commit();
+   //   _statusChanged = EFalse;
+   //}
+   Commit();
    return ESuccess;
 }
 

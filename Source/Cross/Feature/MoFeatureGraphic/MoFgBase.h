@@ -48,11 +48,20 @@ enum ERenderDevice{
    ERenderDevice_DirectX9,
    ERenderDevice_DirectX10,
    ERenderDevice_DirectX11,
-   ERenderDevice_Opgl2,
-   ERenderDevice_Opgl3,
-   ERenderDevice_Opgl4,
-   ERenderDevice_OpglEs2,
-   ERenderDevice_OpglEs3,
+   ERenderDevice_OpenGL2,
+   ERenderDevice_OpenGL3,
+   ERenderDevice_OpenGL4,
+   ERenderDevice_OpenGLEs2,
+   ERenderDevice_OpenGLEs3,
+};
+
+//============================================================
+// <T>渲染设备工具。</T>
+//============================================================
+class MO_FG_DECLARE RRenderDevice{
+public:
+   static ERenderDevice Parse(TCharC* pValue, ERenderDevice deviceCd = ERenderDevice_Unknown);
+   static TCharC* Format(ERenderDevice deviceCd);
 };
 
 //============================================================
@@ -62,6 +71,15 @@ enum ERenderScript{
    ERenderScript_Unknown,
    ERenderScript_Hlsl,
    ERenderScript_Glsl,
+};
+
+//============================================================
+// <T>渲染脚本工具。</T>
+//============================================================
+class MO_FG_DECLARE RRenderScript{
+public:
+   static ERenderScript Parse(TCharC* pValue, ERenderScript scriptCd = ERenderScript_Unknown);
+   static TCharC* Format(ERenderScript scriptCd);
 };
 
 //============================================================
@@ -388,6 +406,7 @@ typedef MO_FG_DECLARE FObjects<FRenderableInfo*> FRenderableInfoCollection;
 //============================================================
 class MO_FG_DECLARE SRenderableDescriptor{
 public:
+   // 配置标志
    TBool setuped;
 public:
    // 配置实体
@@ -396,24 +415,24 @@ public:
    TBool optionBinder;
    // 配置材质
    TBool optionMaterial;
-   //// 配置法线
-   //TBool optionNormal;
-   //// 配置法线完整 (是否含有副法线和切线)
-   //TBool optionNormalFull;
-   //// 配置法线缩放 (是否使用法线缩放)
-   //TBool optionNormalScale;
-   //// 配置骨骼缩放
-   //TBool optionBoneScale;
-   //// 配置深度
-   //TBool optionDepth;
+   // 配置法线
+   TBool optionNormal;
+   // 配置法线完整 (是否含有副法线和切线)
+   TBool optionNormalFull;
+   // 配置法线缩放 (是否使用法线缩放)
+   TBool optionNormalScale;
+   // 配置骨骼缩放
+   TBool optionBoneScale;
+   // 配置深度
+   TBool optionDepth;
    // 配置阴影
    TBool optionShadow;
    // 配置自阴影
    TBool optionShadowSelf;
-   //// 配置光源贴图
-   //TBool optionLightMap;
-   //// 配置透射
-   //TBool optionTransmittance;
+   // 配置光源贴图
+   TBool optionLightMap;
+   // 配置透射
+   TBool optionTransmittance;
 public:
    // 支持顶点颜色技术
    TBool supportVertexColor;
@@ -430,16 +449,24 @@ public:
    TBool supportAlpha;
    // 支持凹凸技术
    TBool supportBump;
+   // 支持凹凸相机技术
+   TBool supportViewBump;
    // 支持环境技术
    TBool supportAmbient;
    // 支持散射技术
    TBool supportDiffuse;
+   // 支持环境散射技术
+   TBool supportViewDiffuse;
    // 支持法线技术
    TBool supportNormal;
    // 支持高光技术
    TBool supportSpecularColor;
    // 支持高光级别技术
    TBool supportSpecularLevel;
+   // 支持高光相机技术
+   TBool supportViewSpecular;
+   // 支持高光相机级别技术
+   TBool supportViewSpecularLevel;
    // 支持环境技术
    TBool supportEnvironment;
    // 支持受光光技术
@@ -452,14 +479,6 @@ public:
    TBool supportEmissive;
    // 支持高度技术
    TBool supportHeight;
-   //// 支持环境散射技术
-   //TBool supportDiffuseCamera;
-   //// 支持凹凸相机技术
-   //TBool supportBumpCamera;
-   //// 支持高光相机技术
-   //TBool supportSpecularCamera;
-   //// 支持高光相机级别技术
-   //TBool supportSpecularCameraLevel;
 public:
    // 顶点个数
    TBool vertexCount;
@@ -484,9 +503,9 @@ public:
       return samplers[samplerCd];
    }
 public:
-   void Assign(SRenderableDescriptor* pFlag);
-   void Build();
-   void Reset();
+   TResult Assign(SRenderableDescriptor* pFlag);
+   TResult Build();
+   TResult Reset();
 };
 
 //============================================================

@@ -8,6 +8,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderShaderSampler, FRenderObject);
 // <T>构造渲染器取样。</T>
 //============================================================
 FRenderShaderSampler::FRenderShaderSampler(){
+   _code = -1;
    _statusUsed = EFalse;
    _slot = -1;
 }

@@ -8,6 +8,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderShaderParameter, FRenderObject);
 // <T>构造渲染器参数。</T>
 //============================================================
 FRenderShaderParameter::FRenderShaderParameter(){
+   _code = -1;
    _shaderCd = ERenderShader_Unknown;
    _formatCd = ERenderShaderParameterFormat_Unknown;
    _statusUsed = EFalse;

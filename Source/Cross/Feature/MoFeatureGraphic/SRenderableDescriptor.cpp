@@ -15,7 +15,7 @@ SRenderableDescriptor::SRenderableDescriptor(){
 //
 // @return 处理结果
 //============================================================
-void SRenderableDescriptor::Assign(SRenderableDescriptor* pFlags){
+TResult SRenderableDescriptor::Assign(SRenderableDescriptor* pFlags){
    MO_ASSERT(pFlags);
    // 设置配置
    //optionMaterial = pFlags->optionMaterial;
@@ -32,12 +32,15 @@ void SRenderableDescriptor::Assign(SRenderableDescriptor* pFlags){
    MO_LIB_MEMORY_COPY(pFlags->vertexBuffers, sizeof(pFlags->vertexBuffers), vertexBuffers, sizeof(vertexBuffers));
    // 设置取样器信息
    MO_LIB_MEMORY_COPY(pFlags->samplers, sizeof(pFlags->samplers), samplers, sizeof(samplers));
+   return ESuccess;
 }
 
 //============================================================
 // <T>建立处理。</T>
+//
+// @return 处理结果
 //============================================================
-void SRenderableDescriptor::Build(){
+TResult SRenderableDescriptor::Build(){
    // 支持顶点颜色技术
    if(vertexBuffers[ERenderVertexBuffer_Color]){
       supportVertexColor = ETrue;
@@ -107,12 +110,15 @@ void SRenderableDescriptor::Build(){
    }
    // 建立成功
    setuped = ETrue;
+   return ESuccess;
 }
 
 //============================================================
 // <T>重置处理。</T>
+//
+// @return 处理结果
 //============================================================
-void SRenderableDescriptor::Reset(){
+TResult SRenderableDescriptor::Reset(){
    // 重置所有配置
    optionInstanced = EFalse;
    optionBinder = EFalse;
@@ -159,6 +165,7 @@ void SRenderableDescriptor::Reset(){
    RBools::Fill(vertexBuffers, ERenderVertexBuffer_Count, EFalse);
    // 设置取样器信息
    RBools::Fill(samplers, ERenderSampler_Count, EFalse);
+   return ESuccess;
 }
 
 MO_NAMESPACE_END

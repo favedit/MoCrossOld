@@ -8,6 +8,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderShaderAttribute, FRenderObject);
 // <T>ππ‘Ï‰÷»æ∆˜ Ù–‘°£</T>
 //============================================================
 FRenderShaderAttribute::FRenderShaderAttribute(){
+   _code = -1;
    _index = -1;
    _slot = -1;
    _formatCd = ERenderShaderAttributeFormat_Unknown;
