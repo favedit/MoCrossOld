@@ -59,8 +59,11 @@ TResult FPd11RenderShaderBuffer::Commit(){
    //............................................................
    // 更新数据
    TByte* pMemoryData = _pData->Memory();
-   //D3D11_MAPPED_SUBRESOURCE mappedResource;
+   TInt dataLength = _pData->Length();
+   //D3D11_MAPPED_SUBRESOURCE mappedResource = {0};
    //HRESULT dxResult = pRenderDevice->NativeContext()->Map(_piBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+   //MO_LIB_MEMORY_COPY(mappedResource.pData, dataLength, pMemoryData, dataLength);
+   //pRenderDevice->NativeContext()->Unmap(_piBuffer, 0);
    pRenderDevice->NativeContext()->UpdateSubresource(_piBuffer, 0, NULL, pMemoryData, 0, 0);
    //GetErrorInfo();
    return resultCd;

@@ -673,18 +673,18 @@ TResult FPd11RenderDevice::SetProgram(FRenderProgram* pProgram){
    //}
    // 设置程序
    if(pProgram != NULL){
-      // 设置顶点脚本
-      FPd11RenderVertexShader* pVertexShader = pProgram->VertexShader()->Convert<FPd11RenderVertexShader>();
-      ID3D11VertexShader* piVertexShader = pVertexShader->NativeShader();
-      _piContext->VSSetShader(piVertexShader, NULL, 0);
-      // 设置像素脚本
-      FPd11RenderFragmentShader* pFragmentShader = pProgram->VertexShader()->Convert<FPd11RenderFragmentShader>();
-      ID3D11PixelShader* piFragmentShader = pFragmentShader->NativeShader();
-      _piContext->PSSetShader(piFragmentShader, NULL, 0);
-      // 设置输入层次
-      FPd11RenderProgram* pRenderProgram = pProgram->Convert<FPd11RenderProgram>();
-      ID3D11InputLayout* piInputLayout = pRenderProgram->NativeInputLayout();
-      _piContext->IASetInputLayout(piInputLayout);
+      //// 设置顶点脚本
+      //FPd11RenderVertexShader* pVertexShader = pProgram->VertexShader()->Convert<FPd11RenderVertexShader>();
+      //ID3D11VertexShader* piVertexShader = pVertexShader->NativeShader();
+      //_piContext->VSSetShader(piVertexShader, NULL, 0);
+      //// 设置像素脚本
+      //FPd11RenderFragmentShader* pFragmentShader = pProgram->VertexShader()->Convert<FPd11RenderFragmentShader>();
+      //ID3D11PixelShader* piFragmentShader = pFragmentShader->NativeShader();
+      //_piContext->PSSetShader(piFragmentShader, NULL, 0);
+      //// 设置输入层次
+      //FPd11RenderProgram* pRenderProgram = pProgram->Convert<FPd11RenderProgram>();
+      //ID3D11InputLayout* piInputLayout = pRenderProgram->NativeInputLayout();
+      //_piContext->IASetInputLayout(piInputLayout);
    }
    _pProgram = pProgram;
    // 检查是否可以执行
