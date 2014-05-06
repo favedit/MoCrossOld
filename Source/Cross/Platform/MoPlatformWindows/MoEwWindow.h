@@ -20,6 +20,7 @@ protected:
    TFsLabel _title;
    SIntSize2 _size;
    TThreadLocker _locker;
+   TBool _statusRunning;
    TBool _statusRenderable;
    HWND _handle;
    ATOM _atom;
@@ -50,12 +51,14 @@ public:
    }
 public:
    MO_ABSTRACT TResult Setup();
-   MO_ABSTRACT TResult Dispose();
    MO_ABSTRACT TResult Startup();
+   MO_ABSTRACT TResult Shutdown();
 public:
    MO_ABSTRACT TResult ProcessRender();
    TInt Process();
 };
+//------------------------------------------------------------
+typedef MO_EW_DECLARE FObjects<FRenderWindow*> FRenderWindowCollection;
 
 //============================================================
 // <T>渲染DX窗口。</T>
@@ -77,8 +80,8 @@ public:
    MO_ABSTRACT ~FRenderOpenGLWindow();
 public:
    MO_OVERRIDE TResult Setup();
-   MO_OVERRIDE TResult Dispose();
    MO_OVERRIDE TResult Startup();
+   MO_OVERRIDE TResult Shutdown();
 public:
    MO_OVERRIDE TResult ProcessRender();
 };
@@ -106,6 +109,28 @@ public:
    }
 public:
    MO_OVERRIDE TResult Process();
+};
+
+//============================================================
+// <T>渲染窗口控制台。</T>
+//============================================================
+class MO_EW_DECLARE FRenderWindowConsole : public FConsole{
+protected:
+   FRenderWindowCollection* _pWindows;
+public:
+   FRenderWindowConsole();
+   MO_ABSTRACT ~FRenderWindowConsole();
+public:
+   FRenderWindow* FindByHandle(HWND hWindow);
+public:
+   TResult Register(FRenderWindow* pWindow);
+   TResult Unregister(FRenderWindow* pWindow);
+};
+
+//============================================================
+// <T>渲染窗口管理器。</T>
+//============================================================
+class MO_EW_DECLARE RRenderWindowManager : public RSingleton<FRenderWindowConsole>{
 };
 
 MO_NAMESPACE_END

@@ -139,7 +139,11 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    //MoEngineDirectX10Initialize();
    //............................................................
    // 设置信息
-   RApplication::Instance().Parameters()->Setup(lpszCmdLine);
+   //RApplication::Instance().Parameters()->Setup(lpszCmdLine);
+   FApplicationParameter* pApplicationParameter = MO_CREATE(FApplicationParameter);
+   pApplicationParameter->SetName("-home");
+   pApplicationParameter->SetValue("E:/ZW-MoCross/Demo/Android/MpTestDemo/assets");
+   RApplication::Instance().Parameters()->Parameters()->Push(pApplicationParameter);
    RApplication::Instance().SetHinstance(hInstance);
    RApplication::Instance().SetCommandShow(nCmdShow);
    RAssetManager::Instance().Setup();

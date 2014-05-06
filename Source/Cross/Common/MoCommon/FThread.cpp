@@ -358,8 +358,6 @@ TResult FThread::Join(IThread* pThread){
 //============================================================
 TAny* FThread::Wait(){
    // 停止时直接返回
-   _status = EThreadStatus_Wait;
-   // 停止时直接返回
    MO_ASSERT(_handle);
    TAny* pResult = NULL;
 #ifdef _MO_WINDOWS

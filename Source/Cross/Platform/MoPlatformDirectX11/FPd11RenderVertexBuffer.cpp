@@ -32,19 +32,19 @@ TResult FPd11RenderVertexBuffer::OnSetup(){
       return EContinue;
    }
    //............................................................
-   // 创建缓冲
-   D3D11_BUFFER_DESC description;
-   RType<D3D11_BUFFER_DESC>::Clear(&description);
-   description.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-   description.ByteWidth = _dataLength;
-   description.CPUAccessFlags = 0;
-   description.MiscFlags = 0;
-   description.Usage = D3D11_USAGE_STAGING;
-   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateBuffer(&description, NULL, &_piBuffer);
-   if(FAILED(dxResult)){
-      MO_FATAL("Create buffer failure.");
-      return EFailure;
-   }
+   //// 创建缓冲
+   //D3D11_BUFFER_DESC description;
+   //RType<D3D11_BUFFER_DESC>::Clear(&description);
+   //description.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+   //description.ByteWidth = _dataLength;
+   //description.CPUAccessFlags = 0;
+   //description.MiscFlags = 0;
+   //description.Usage = D3D11_USAGE_STAGING;
+   //HRESULT dxResult = pRenderDevice->NativeDevice()->CreateBuffer(&description, NULL, &_piBuffer);
+   //if(FAILED(dxResult)){
+   //   MO_FATAL("Create buffer failure.");
+   //   return EFailure;
+   //}
    return resultCd;
 }
 
@@ -64,19 +64,21 @@ TResult FPd11RenderVertexBuffer::Upload(TByteC* pData, TInt length){
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
    MO_RELEASE(_piBuffer);
    //............................................................
-   // 创建缓冲
-   D3D11_BUFFER_DESC description;
-   RType<D3D11_BUFFER_DESC>::Clear(&description);
-   description.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-   description.ByteWidth = _dataLength;
-   description.CPUAccessFlags = 0;
-   description.MiscFlags = 0;
-   description.Usage = D3D11_USAGE_DEFAULT;
-   D3D11_SUBRESOURCE_DATA data;
-   RType<D3D11_SUBRESOURCE_DATA>::Clear(&data);
+   // 设置描述
+   D3D11_BUFFER_DESC descriptor = {0};
+   descriptor.ByteWidth = _dataLength;
+   descriptor.Usage = D3D11_USAGE_DEFAULT;
+   descriptor.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+   descriptor.CPUAccessFlags = 0;
+   descriptor.MiscFlags = 0;
+   descriptor.StructureByteStride = 0;
+   // 设置数据
+   D3D11_SUBRESOURCE_DATA data = {0};
    data.pSysMem = pData;
-   data.SysMemPitch = _dataLength;
-   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateBuffer(&description, &data, &_piBuffer);
+   data.SysMemPitch = 0;
+   data.SysMemSlicePitch = 0;
+   // 创建缓冲
+   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateBuffer(&descriptor, &data, &_piBuffer);
    if(FAILED(dxResult)){
       MO_FATAL("Create buffer failure.");
       return EFailure;

@@ -72,32 +72,6 @@ TResult FPd11RenderVertexShader::Compile(TCharC* pSource){
       MO_FATAL("Create vertex shader failure.");
       return EFailure;
    }
-
-   //TInt np = desc.InputParameters;
-   //for(TInt n = 0; n < np; n++){
-   //   D3D11_SIGNATURE_PARAMETER_DESC paramDesc;
-   //   piReflection->GetInputParameterDesc(0, &paramDesc);
-   //   n = n;
-   //}
-   //TInt rb = desc.BoundResources;
-   //for(TInt n = 0; n < rb; n++){
-   //   D3D11_SHADER_INPUT_BIND_DESC bdesc;
-   //   piReflection->GetResourceBindingDesc(n, &bdesc);
-   //   n = n;
-   //}
-
-   //ID3D11ShaderReflectionVariable* pVariable = piReflection->GetVariableByName("_matrix");
-   //D3D11_SHADER_VARIABLE_DESC vDesc;
-   //pVariable->GetDesc(&vDesc);
-   //ID3D11ShaderReflectionType* piReflectionType = pVariable->GetType();
-   //D3D11_SHADER_TYPE_DESC typeDesc;
-   //piReflectionType->GetDesc(&typeDesc);
-
-
-   ////ID3D11ShaderReflectionConstantBuffer* piConstantBuffer = piReflection->GetConstantBufferByName("_matrix2");
-   ////ID3D11ShaderReflectionVariable* pAmbientLightingVar = piReflection->GetVariableByName("_matrix2");
-   ////TInt slot = pAmbientLightingVar->GetInterfaceSlot(0);
-
    MO_INFO("Create vertex shader success. (status=%d)\n%s", dxResult, pSource);
    return ESuccess;
 }

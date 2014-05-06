@@ -36,7 +36,7 @@ MO_NAMESPACE_BEGIN
 
 //============================================================
 // <T>类型定义。</T>
-typedef MO_PD11_DECLARE TFixArray<D3D11_INPUT_ELEMENT_DESC, 256> MO_D3D11_INPUT_ELEMENT_DESC_ARRAY;
+typedef MO_PD11_DECLARE TFixArray<D3D11_INPUT_ELEMENT_DESC, 64> MO_D3D11_INPUT_ELEMENT_DESC_ARRAY;
 
 //============================================================
 // <T>设备工具。</T>

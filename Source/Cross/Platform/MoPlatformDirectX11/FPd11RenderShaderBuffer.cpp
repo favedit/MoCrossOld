@@ -29,15 +29,18 @@ TResult FPd11RenderShaderBuffer::Setup(){
    MO_CHECK(_dataLength > 0, return EOutRange);
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
    // 设置描述
-   D3D11_BUFFER_DESC descriptor;
-   RType<D3D11_BUFFER_DESC>::Clear(&descriptor);
+   D3D11_BUFFER_DESC descriptor = {0};
    descriptor.ByteWidth = _dataLength;
    descriptor.Usage = D3D11_USAGE_DEFAULT;
    descriptor.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+   descriptor.CPUAccessFlags = 0;
+   descriptor.MiscFlags = 0;
+   descriptor.StructureByteStride = 0;
    // 设置数据
-   D3D11_SUBRESOURCE_DATA data;
-   RType<D3D11_SUBRESOURCE_DATA>::Clear(&data);
+   D3D11_SUBRESOURCE_DATA data = {0};
    data.pSysMem = _pData->Memory();
+   data.SysMemPitch = 0;
+   data.SysMemSlicePitch = 0;
    // 创建缓冲
    HRESULT dxResult = pRenderDevice->NativeDevice()->CreateBuffer(&descriptor, &data, &_piBuffer);
    if(FAILED(dxResult)){
@@ -60,11 +63,11 @@ TResult FPd11RenderShaderBuffer::Commit(){
    // 更新数据
    TByte* pMemoryData = _pData->Memory();
    TInt dataLength = _pData->Length();
+   pRenderDevice->NativeContext()->UpdateSubresource(_piBuffer, 0, NULL, pMemoryData, 0, 0);
    //D3D11_MAPPED_SUBRESOURCE mappedResource = {0};
    //HRESULT dxResult = pRenderDevice->NativeContext()->Map(_piBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
    //MO_LIB_MEMORY_COPY(mappedResource.pData, dataLength, pMemoryData, dataLength);
    //pRenderDevice->NativeContext()->Unmap(_piBuffer, 0);
-   pRenderDevice->NativeContext()->UpdateSubresource(_piBuffer, 0, NULL, pMemoryData, 0, 0);
    //GetErrorInfo();
    return resultCd;
 }

@@ -162,6 +162,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
    // 获得输入描述
    TInt attributeCount = shaderDescriptor.InputParameters;
    if(attributeCount > 0){
+      TInt usingIndex = 0;
       for(TInt attributeIndex = 0; attributeIndex < attributeCount; attributeIndex++){
          // 获得描述信息
          D3D11_SIGNATURE_PARAMETER_DESC attributeDescriptor = {0};
@@ -184,7 +185,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
             pAttribute->SetStatusUsed(ETrue);
             pAttribute->SetName(attributeDescriptor.SemanticName);
             pAttribute->SetIndex(attributeDescriptor.SemanticIndex);
-            pAttribute->SetSlot(attributeIndex);
+            pAttribute->SetSlot(usingIndex++);
          }
       }
    }

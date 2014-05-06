@@ -339,6 +339,8 @@ class MO_PD11_DECLARE FPd11RenderDevice : public FRenderDevice
 {
    MO_CLASS_DECLARE_INHERITS(FPd11RenderDevice, FRenderDevice);
 protected:
+   D3D_DRIVER_TYPE _driverType;
+   D3D_FEATURE_LEVEL _featureLevel;
    // 纹理信息
    TBool _optionTexture;
    // 关联顶点缓冲集合

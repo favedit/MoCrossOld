@@ -2,14 +2,13 @@
 
 MO_NAMESPACE_BEGIN
 
-static TBool g_runable = ETrue;
-
 //============================================================
 // <T>构造渲染窗口。</T>
 //============================================================
 FRenderWindow::FRenderWindow(){
    _className = "MoRenderWindow";
    _title = "Render window";
+   _statusRunning = EFalse;
    _statusRenderable = EFalse;
    _size.Set(1280, 800);
    _handle = 0;
@@ -22,10 +21,7 @@ FRenderWindow::FRenderWindow(){
 // <T>析构渲染窗口。</T>
 //============================================================
 FRenderWindow::~FRenderWindow(){
-   if(_pRenderThread != NULL){
-      _pRenderThread->Stop();
-      _pRenderThread = NULL;
-   }
+   Shutdown();
 }
 
 //============================================================
@@ -39,13 +35,57 @@ FRenderWindow::~FRenderWindow(){
 //============================================================
 LRESULT CALLBACK FRenderWindow::OnProcessMessage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam){
    switch(message){
-      case WM_DESTROY:
-         g_runable = EFalse;
+      case WM_DESTROY:{
+         FRenderWindow* pWindow =  RRenderWindowManager::Instance().FindByHandle(hWnd);
+         pWindow->Shutdown();
          PostQuitMessage(0);
          break;
+      }
       default:
          return DefWindowProc(hWnd, message, wParam, lParam);
    }
+   //FMouseDevice* pMouseDevice = RDeviceManager::Instance().Find<FMouseDevice>();
+   //FKeyboardDevice* pKeyboardDevice = RDeviceManager::Instance().Find<FKeyboardDevice>();
+   //while(GetMessage(&message, NULL, 0, 0)){
+   //   _locker.Enter();
+   //   switch(message.message){
+   //      case WM_LBUTTONDOWN:{
+   //         POINTS point = MAKEPOINTS(message.lParam);
+   //         pMouseDevice->DoMouseDown(EMouseButton_Left, point.x, point.y);
+   //         break;
+   //      }
+   //      case WM_LBUTTONUP:{
+   //         POINTS point = MAKEPOINTS(message.lParam);
+   //         pMouseDevice->DoMouseUp(EMouseButton_Left, point.x, point.y);
+   //         break;
+   //      }
+   //      case WM_MOUSEMOVE:{
+   //         POINTS point = MAKEPOINTS(message.lParam);
+   //         pMouseDevice->DoMouseMove(0, point.x, point.y);
+   //         break;
+   //      }
+   //      case WM_KEYDOWN:{
+   //         pKeyboardDevice->DoKeyDown(message.wParam);
+   //         break;
+   //      }
+   //      case WM_KEYUP:{
+   //         pKeyboardDevice->DoKeyUp(message.wParam);
+   //         break;
+   //      }
+   //      case WM_DESTROY:{
+   //         Dispose();
+   //         PostQuitMessage(0);
+   //         break;
+   //      }
+   //      default:{
+   //         // 分发消息
+   //         TranslateMessage(&message);
+   //         DispatchMessage(&message);
+   //         break;
+   //      }
+   //   }
+   //   _locker.Leave();
+   //}
    return 0;
 }
 
@@ -56,7 +96,7 @@ void FRenderWindow::RegisterClass(){
    TInstance hInstance = RApplication::Hinstance();
    WNDCLASSEX wcex;
    wcex.cbSize       = sizeof(WNDCLASSEX);
-   wcex.style			= CS_HREDRAW | CS_VREDRAW;
+   wcex.style			= CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS;
    wcex.lpfnWndProc	= (WNDPROC)OnProcessMessage;
    wcex.cbClsExtra	= 0;
    wcex.cbWndExtra	= 0;
@@ -65,7 +105,7 @@ void FRenderWindow::RegisterClass(){
    wcex.hCursor		= LoadCursor(NULL, IDC_ARROW);
    wcex.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
    wcex.lpszMenuName	 = NULL;
-   wcex.lpszClassName = _className.MemoryC();
+   wcex.lpszClassName = (TCharC*)_className;
    wcex.hIconSm		 = NULL;
    _atom = RegisterClassEx(&wcex);
 }
@@ -81,7 +121,8 @@ TResult FRenderWindow::Setup(){
    // 创建窗口
    TInstance hInstance = RApplication::Hinstance();
    _handle = CreateWindow((TCharC*)_className, (TCharC*)_title,
-         WS_SYSMENU | WS_CAPTION | WS_VISIBLE,
+         WS_OVERLAPPEDWINDOW,
+         //WS_SYSMENU | WS_CAPTION | WS_VISIBLE,
          CW_USEDEFAULT, CW_USEDEFAULT, _size.width, _size.height,
          NULL, NULL, hInstance, NULL);
    MO_ASSERT(_handle);
@@ -110,8 +151,8 @@ TResult FRenderWindow::Setup(){
    // 获得DC
    _hDC = GetDC(_handle);
    // 选择一个最适合pfd描述的像素格式索引值
-   TInt pixelFormat = ChoosePixelFormat(_hDC, &descriptor);
-   SetPixelFormat(_hDC, pixelFormat, &descriptor);
+   // TInt pixelFormat = ChoosePixelFormat(_hDC, &descriptor);
+   // SetPixelFormat(_hDC, pixelFormat, &descriptor);
    // 更新窗口
    UpdateWindow(_handle);
    // 设置窗口
@@ -119,6 +160,8 @@ TResult FRenderWindow::Setup(){
    GetClientRect(_handle, &rect);
    FScreenDevice* pScreenDevice = RDeviceManager::Instance().Find<FScreenDevice>();
    pScreenDevice->Resize(rect.right, rect.bottom);
+   // 注册窗口
+   RRenderWindowManager::Instance().Register(this);
    return ESuccess;
 }
 
@@ -133,6 +176,7 @@ TResult FRenderWindow::Startup(){
    _pRenderThread->SetWindow(this);
    _pRenderThread->Start();
    // 允许渲染
+   _statusRunning = ETrue;
    _statusRenderable = ETrue;
    // 初始化时钟
    FTimerDevice* pTimerDevice = RDeviceManager::Instance().Find<FTimerDevice>();
@@ -141,11 +185,19 @@ TResult FRenderWindow::Startup(){
 }
 
 //============================================================
-// <T>释放处理。</T>
+// <T>关闭处理。</T>
 //
 // @return 处理结果
 //============================================================
-TResult FRenderWindow::Dispose(){
+TResult FRenderWindow::Shutdown(){
+   // 关闭处理
+   if(_statusRunning){
+      // 停止线程
+      _pRenderThread->Stop();
+      _pRenderThread->Wait();
+      MO_CLEAR(_pRenderThread);
+   }
+   _statusRunning = EFalse;
    _statusRenderable = EFalse;
    return ESuccess;
 }
@@ -157,9 +209,6 @@ TResult FRenderWindow::Dispose(){
 //============================================================
 TResult FRenderWindow::ProcessRender(){
    // 检查状态
-   if(!g_runable){
-      return EContinue;
-   }
    if(!_statusRenderable){
       return EContinue;
    }
@@ -175,51 +224,15 @@ TResult FRenderWindow::ProcessRender(){
 // <T>逻辑处理。</T>
 //============================================================
 TInt FRenderWindow::Process(){
-   MSG message;
-   FMouseDevice* pMouseDevice = RDeviceManager::Instance().Find<FMouseDevice>();
-   FKeyboardDevice* pKeyboardDevice = RDeviceManager::Instance().Find<FKeyboardDevice>();
-   while(GetMessage(&message, NULL, 0, 0)){
-      _locker.Enter();
-      switch(message.message){
-         case WM_LBUTTONDOWN:{
-            POINTS point = MAKEPOINTS(message.lParam);
-            pMouseDevice->DoMouseDown(EMouseButton_Left, point.x, point.y);
-            break;
-         }
-         case WM_LBUTTONUP:{
-            POINTS point = MAKEPOINTS(message.lParam);
-            pMouseDevice->DoMouseUp(EMouseButton_Left, point.x, point.y);
-            break;
-         }
-         case WM_MOUSEMOVE:{
-            POINTS point = MAKEPOINTS(message.lParam);
-            pMouseDevice->DoMouseMove(0, point.x, point.y);
-            break;
-         }
-         case WM_KEYDOWN:{
-            pKeyboardDevice->DoKeyDown(message.wParam);
-            break;
-         }
-         case WM_KEYUP:{
-            pKeyboardDevice->DoKeyUp(message.wParam);
-            break;
-         }
-         case WM_DESTROY:{
-            Dispose();
-            PostQuitMessage(0);
-            break;
-         }
-         default:{
-            // 分发消息
-            TranslateMessage(&message);
-            DispatchMessage(&message);
-            break;
-         }
+   MSG message = {0};
+   while(message.message != WM_QUIT){
+      if(PeekMessage(&message, 0, 0, 0, PM_REMOVE)){
+         TranslateMessage(&message);
+         DispatchMessage(&message);
       }
-      _locker.Leave();
    }
-   // 停止线程
-   _pRenderThread->Stop();
+   // 注销窗口
+   RRenderWindowManager::Instance().Unregister(this);
    return message.wParam;
 }
 

@@ -43,11 +43,11 @@ TResult FRenderOpenGLWindow::Startup(){
 }
 
 //============================================================
-// <T>释放处理。</T>
+// <T>关闭处理。</T>
 //
 // @return 处理结果
 //============================================================
-TResult FRenderOpenGLWindow::Dispose(){
+TResult FRenderOpenGLWindow::Shutdown(){
    if(_hRC != NULL){
       wglDeleteContext(_hRC);
       _hRC = NULL;
@@ -56,7 +56,7 @@ TResult FRenderOpenGLWindow::Dispose(){
       ReleaseDC(_handle, _hDC);
       _hDC = NULL;
    }
-   return FRenderWindow::Dispose();
+   return FRenderWindow::Shutdown();
 }
 
 //============================================================
