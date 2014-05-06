@@ -12,7 +12,9 @@
    <Specular name='lightmap' value='N'/>
    <Specular name='fog'      value='N'/>
    <!-- ------------------------------------------------------------ -->
+   <Parameter name='vc_model_mat3'          linker='VertexModelMatrix4x4'/>
    <Parameter name='vc_model_mat4'          linker='VertexModelMatrix4x4'/>
+   <Parameter name='vc_mvp_mat3'            linker='VertexModelViewProjectionMatrix4x4'/>
    <Parameter name='vc_mvp_mat4'            linker='VertexModelViewProjectionMatrix4x4'/>
    <Parameter name='vc_camera_position'     linker='VertexCameraPosition'/>
    <Parameter name='vc_light_mv_mat4'       linker='VertexLightModelMatrix4x4'/>
@@ -60,6 +62,9 @@ cbuffer EffectLight : register(b<shader:write source='parameter.buffer.effectlig
 }
 
 cbuffer RenderTramsform : register(b<shader:write source='parameter.buffer.rendertramsform'/>){
+   float4x4 vc_model_mat3;
+   float4x4 vc_model_mat4;
+   float4x4 vc_mvp_mat3;
    float4x4 vc_mvp_mat4;
 }
 
@@ -104,11 +109,30 @@ VS_OUTPUT main(VS_INPUT input)
 {
    VS_OUTPUT result = (VS_OUTPUT)0;
    float4 position = float4(input.position, 1.0);
+   // Calculate model position
+   result.modelPosition = mul(position, vc_model_mat4);
    // Calculate proection position
    result.position = mul(position, vc_mvp_mat4);
+   // result.position = float4(input.position.xy * 10.0, 0.0, 1.0);
    // Set varying
+<shader:true source='vertex.attribute.color'>
+   result.color = input.color;
+</shader:true>
 <shader:true source='vertex.attribute.coord'>
    result.coord = input.coord;
+</shader:true>
+   // Calculate normal
+<shader:true source='vertex.attribute.normal'>
+   float3 normal = normalize(mul(input.normal * 2.0 - 1.0, vc_model_mat3));
+   result.normal = normal;
+<shader:true source='support.dump'>
+   float3 binormal = normalize(mul(input.binormal * 2.0 - 1.0, vc_model_mat3));
+   float3 tangent = normalize((mul(input.tangent * 2.0 - 1.0, vc_model_mat3));
+   float3x3 matrixTs = float3x3(tangent, binormal, normal);
+   float3 cameraDirection = vc_camera_position - v_model_position.xyz;
+   result.cameraTs = normalize(mul(cameraDirection, matrixTs));
+   result.lightTs = normalize(mul(vc_light_direction, matrixTs));
+</shader:true>
 </shader:true>
    return result;
 }
@@ -161,6 +185,7 @@ cbuffer RenderMaterial : register(b<shader:write source='parameter.buffer.render
 
 struct PS_INPUT
 {
+   float4 position      : SV_POSITION;
    float4 modelPosition : TEXCOORD0;
 <shader:true source='vertex.attribute.color'>
    float4 color         : TEXCOORD1;

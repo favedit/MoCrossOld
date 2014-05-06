@@ -220,7 +220,10 @@ TBool FRenderDevice::UpdateConsts(ERenderShader shaderCd, TInt slot, TAnyC* pDat
 // @return 渲染对象
 //============================================================
 FRenderObject* FRenderDevice::CreateObject(TCharC* pName){
-   return _pClassFactory->Create<FRenderObject>(pName);
+   FRenderObject* pObject = _pClassFactory->Create<FRenderObject>(pName);
+   MO_CHECK(pObject, return NULL);
+   pObject->SetDevice(this);
+   return pObject;
 }
 
 //============================================================
@@ -319,6 +322,16 @@ TResult FRenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, con
    // 提交数据
    TResult resultCd = BindConstData(shaderCd, slot, ERenderShaderParameterFormat_Float4x4, data, sizeof(TFloat) * 16 * count);
    return resultCd;
+}
+
+//============================================================
+// <T>设置布局。</T>
+//
+// @parma pLayout 布局
+// @return 处理结果
+//============================================================
+TResult FRenderDevice::SetLayout(FRenderLayout* pLayout){
+   return ESuccess;
 }
 
 //============================================================

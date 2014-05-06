@@ -63,7 +63,10 @@ TResult FPd11RenderShaderBuffer::Commit(){
    // 更新数据
    TByte* pMemoryData = _pData->Memory();
    TInt dataLength = _pData->Length();
+   //MO_RELEASE(_piBuffer);
+   //Setup();
    pRenderDevice->NativeContext()->UpdateSubresource(_piBuffer, 0, NULL, pMemoryData, 0, 0);
+   MO_DEBUG("Update sub resource. (name=%s, memory=0x%08X, length=%d)", (TCharC*)_name, pMemoryData, dataLength);
    //D3D11_MAPPED_SUBRESOURCE mappedResource = {0};
    //HRESULT dxResult = pRenderDevice->NativeContext()->Map(_piBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
    //MO_LIB_MEMORY_COPY(mappedResource.pData, dataLength, pMemoryData, dataLength);
@@ -86,8 +89,10 @@ TResult FPd11RenderShaderBuffer::Bind(){
    // 更新数据
    if(_shaderCd == ERenderShader_Vertex){
       pRenderDevice->NativeContext()->VSSetConstantBuffers(_slot, 1, &_piBuffer);
+      MO_DEBUG("Set vertex constant buffer. (name=%s, slot=%d, buffer=0x%08X)", (TCharC*)_name, _slot, _piBuffer);
    }else if(_shaderCd == ERenderShader_Fragment){
       pRenderDevice->NativeContext()->PSSetConstantBuffers(_slot, 1, &_piBuffer);
+      MO_DEBUG("Set pixel constant buffer. (name=%s, slot=%d, buffer=0x%08X)", (TCharC*)_name, _slot, _piBuffer);
    }else{
       MO_FATAL("Render shader type is unknown. (shader=%d)", _shaderCd);
    }

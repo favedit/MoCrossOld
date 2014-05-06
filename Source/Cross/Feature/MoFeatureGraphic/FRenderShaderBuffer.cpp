@@ -31,8 +31,10 @@ TResult FRenderShaderBuffer::Setup(){
    MO_CHECK(_pDevice, return ENull);
    MO_CHECK(_dataLength > 0, return EOutRange);
    // ÉèÖÃ»º³å
-   _pData->SetLength(_dataLength);
-   RBytes::Clear(_pData->Memory(), _dataLength);
+   if(_pData->Length() != _dataLength){
+      _pData->SetLength(_dataLength);
+      RBytes::Clear(_pData->Memory(), _dataLength);
+   }
    return ESuccess;
 }
 

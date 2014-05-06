@@ -16,6 +16,7 @@ MO_NAMESPACE_BEGIN
 #define MO_RENDEROBJECT_SHADERPARAMETER "ShaderParameter"
 #define MO_RENDEROBJECT_SHADERATTRIBUTE "ShaderAttribute"
 #define MO_RENDEROBJECT_SHADERSAMPLER   "ShaderSampler"
+#define MO_RENDEROBJECT_LAYOUT          "Layout"
 #define MO_RENDEROBJECT_VERTEXBUFFER    "VertexBuffer"
 #define MO_RENDEROBJECT_INDEXBUFFER     "IndexBuffer"
 #define MO_RENDEROBJECT_TEXTURE2D       "Texture2d"
@@ -35,6 +36,7 @@ class FRenderIndexBuffer;
 class FEffect;
 typedef MO_FG_DECLARE FObjects<FEffect*> FEffectCollection;
 typedef MO_FG_DECLARE FDictionary<FEffect*> FEffectDictionary;
+class FRenderLayout;
 class FRenderDevice;
 
 //==========================================================
@@ -561,6 +563,43 @@ public:
 };
 
 //============================================================
+// <T>渲染效果信息。</T>
+//============================================================
+struct MO_FG_DECLARE FRenderableEffect : FInstance
+{
+   MO_CLASS_DECLARE_INHERITS(FRenderableEffect, FInstance);
+public:
+   FEffect* _pEffect;
+   FRenderLayout* _pLayout;
+public:
+   FRenderableEffect();
+   MO_ABSTRACT ~FRenderableEffect();
+public:
+   //------------------------------------------------------------
+   // <T>获得效果器。</T>
+   MO_INLINE FEffect* Effect(){
+      return _pEffect;
+   }
+   //------------------------------------------------------------
+   // <T>设置效果器。</T>
+   MO_INLINE void SetEffect(FEffect* pEffect){
+      _pEffect = pEffect;
+   }
+   //------------------------------------------------------------
+   // <T>获得布局。</T>
+   MO_INLINE FRenderLayout* Layout(){
+      return _pLayout;
+   }
+   //------------------------------------------------------------
+   // <T>设置布局。</T>
+   MO_INLINE void SetLayout(FRenderLayout* pLayout){
+      _pLayout = pLayout;
+   }
+};
+//------------------------------------------------------------
+typedef MO_FG_DECLARE GPtrs<FRenderableEffect> GRenderableEffectPtrs;
+
+//============================================================
 // <T>可渲染对象。</T>
 //============================================================
 class MO_FG_DECLARE FRenderable : public FInstance
@@ -588,9 +627,9 @@ protected:
    // 索引流
    FRenderIndexBuffer* _pIndexBuffer;
    // 激活效果器
-   FEffect* _pActiveEffect;
+   FRenderableEffect* _pActiveEffect;
    // 效果器集合
-   FEffectCollection* _pEffects;
+   GRenderableEffectPtrs _effects;
 public:
    FRenderable();
    MO_ABSTRACT ~FRenderable();
@@ -682,22 +721,22 @@ public:
    }
    //------------------------------------------------------------
    // <T>获得激活效果器。</T>
-   MO_OVERRIDE FEffect* ActiveEffect(){
+   MO_OVERRIDE FRenderableEffect* ActiveEffect(){
       return _pActiveEffect;
    }
    //------------------------------------------------------------
    // <T>设置激活效果器。</T>
-   MO_INLINE void SetActiveEffect(FEffect* pEffect){
+   MO_INLINE void SetActiveEffect(FRenderableEffect* pEffect){
       _pActiveEffect = pEffect;
    }
    //------------------------------------------------------------
    // <T>获得效果器集合。</T>
-   MO_OVERRIDE FEffectCollection* Effects(){
-      return _pEffects;
+   MO_OVERRIDE GRenderableEffectPtrs& Effects(){
+      return _effects;
    }
 public:
-   FEffect* EffectFind(TCharC* pName);
-   TResult EffectBind(FEffect* pEffect);
+   FRenderableEffect* EffectFind(TCharC* pName);
+   FRenderableEffect* EffectBind(FEffect* pEffect);
 public:
    MO_ABSTRACT TResult CalculateModelMatrix(SFloatMatrix3d& matrix);
    MO_ABSTRACT TInt CalculateBoneMatrix(SFloatMatrix3d* pMatrix, TInt offset = 0, TInt capacity = 0);

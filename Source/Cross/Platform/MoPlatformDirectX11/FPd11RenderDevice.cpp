@@ -27,8 +27,10 @@ FPd11RenderDevice::FPd11RenderDevice(){
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERATTRIBUTE, FRenderShaderAttribute::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERPARAMETER, FPd11RenderShaderParameter::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERSAMPLER, FRenderShaderSampler::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT, FPd11RenderLayout::Class());
    //
    MO_CLEAR(_piRasterizerState);
+   _pLayouts = MO_CREATE(FPd11RenderLayoutCollection);
 }
 
 //============================================================
@@ -43,6 +45,7 @@ FPd11RenderDevice::~FPd11RenderDevice(){
    MO_RELEASE(_piSwapChain);
    MO_RELEASE(_piDevice);
    MO_RELEASE(_piContext);
+   MO_DELETE(_pLayouts);
 }
 
 //============================================================
@@ -226,27 +229,27 @@ TResult FPd11RenderDevice::Setup(){
    //_piContext->OMSetRenderTargets(1, &piRenderTarget, _pDepthStencilView);
    _piContext->OMSetRenderTargets(1, &piRenderTarget, NULL);
    //............................................................
-   // 设置深度缓冲
-   //D3D11_RASTERIZER_DESC rasterDesc;
-   //RType<D3D11_RASTERIZER_DESC>::Clear(&rasterDesc);
-   //rasterDesc.AntialiasedLineEnable = false;
-   ////rasterDesc.CullMode = D3D11_CULL_BACK;
-   //rasterDesc.CullMode = D3D11_CULL_NONE;
-   //rasterDesc.DepthBias = 0;
-   //rasterDesc.DepthBiasClamp = 0.0f;
-   //rasterDesc.DepthClipEnable = true;
-   //rasterDesc.FillMode = D3D11_FILL_SOLID;
-   //rasterDesc.FrontCounterClockwise = false;
-   //rasterDesc.MultisampleEnable = false;
-   //rasterDesc.ScissorEnable = false;
-   //rasterDesc.SlopeScaledDepthBias = 0.0f;
-   //ID3D11RasterizerState* _pRasterState = NULL;
-   //dxResult = _piDevice->CreateRasterizerState(&rasterDesc, &_pRasterState);
-   //if(FAILED(dxResult)){
-   //   MO_FATAL("Create rasterizer state view failure.");
-   //   return EFailure;
-   //}
-   //_piContext->RSSetState(_pRasterState);
+   // 设置光栅描述
+   D3D11_RASTERIZER_DESC rasterDesc;
+   RType<D3D11_RASTERIZER_DESC>::Clear(&rasterDesc);
+   rasterDesc.AntialiasedLineEnable = EFalse;
+   //rasterDesc.CullMode = D3D11_CULL_BACK;
+   rasterDesc.CullMode = D3D11_CULL_NONE;
+   rasterDesc.DepthBias = 0;
+   rasterDesc.DepthBiasClamp = 0.0f;
+   rasterDesc.DepthClipEnable = EFalse;
+   rasterDesc.FillMode = D3D11_FILL_SOLID;
+   rasterDesc.FrontCounterClockwise = EFalse;
+   rasterDesc.MultisampleEnable = EFalse;
+   rasterDesc.ScissorEnable = EFalse;
+   rasterDesc.SlopeScaledDepthBias = 0.0f;
+   ID3D11RasterizerState* _pRasterState = NULL;
+   dxResult = _piDevice->CreateRasterizerState(&rasterDesc, &_pRasterState);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create rasterizer state view failure.");
+      return EFailure;
+   }
+   _piContext->RSSetState(_pRasterState);
    //............................................................
    // 设置视角
    D3D11_VIEWPORT viewport = {0};
@@ -557,18 +560,18 @@ TResult FPd11RenderDevice::SetCullingMode(TBool cull, ERenderCullMode cullCd){
       return EContinue;
    }
    //RDirectX11::ConvertCullMode(cullCd);
-   if(_piRasterizerState == NULL){
-      D3D11_RASTERIZER_DESC descriptor;
-      RType<D3D11_RASTERIZER_DESC>::Clear(&descriptor);
-      descriptor.FillMode = D3D11_FILL_SOLID;
-      descriptor.CullMode = D3D11_CULL_NONE;
-      HRESULT dxResult = _piDevice->CreateRasterizerState(&descriptor, &_piRasterizerState);
-      if(FAILED(dxResult)){
-         MO_FATAL("Create rasterizer state failure.");
-         return EFailure;
-      }
-   }
-   _piContext->RSSetState(_piRasterizerState);
+   //if(_piRasterizerState == NULL){
+   //   D3D11_RASTERIZER_DESC descriptor;
+   //   RType<D3D11_RASTERIZER_DESC>::Clear(&descriptor);
+   //   descriptor.FillMode = D3D11_FILL_SOLID;
+   //   descriptor.CullMode = D3D11_CULL_NONE;
+   //   HRESULT dxResult = _piDevice->CreateRasterizerState(&descriptor, &_piRasterizerState);
+   //   if(FAILED(dxResult)){
+   //      MO_FATAL("Create rasterizer state failure.");
+   //      return EFailure;
+   //   }
+   //}
+   //_piContext->RSSetState(_piRasterizerState);
    //// 设置开关
    //if(_optionCull != cull){
    //   if(cull){
@@ -706,19 +709,46 @@ TResult FPd11RenderDevice::SetProgram(FRenderProgram* pProgram){
       FPd11RenderVertexShader* pVertexShader = pProgram->VertexShader()->Convert<FPd11RenderVertexShader>();
       ID3D11VertexShader* piVertexShader = pVertexShader->NativeShader();
       _piContext->VSSetShader(piVertexShader, NULL, 0);
+      MO_DEBUG("Set vertex shader. (shader=0x%08X)", piVertexShader);
       // 设置像素脚本
       FPd11RenderFragmentShader* pFragmentShader = pProgram->VertexShader()->Convert<FPd11RenderFragmentShader>();
       ID3D11PixelShader* piFragmentShader = pFragmentShader->NativeShader();
       _piContext->PSSetShader(piFragmentShader, NULL, 0);
+      MO_DEBUG("Set pixel shader. (shader=0x%08X)", piFragmentShader);
       // 设置输入层次
-      FPd11RenderProgram* pRenderProgram = pProgram->Convert<FPd11RenderProgram>();
-      ID3D11InputLayout* piInputLayout = pRenderProgram->NativeInputLayout();
-      _piContext->IASetInputLayout(piInputLayout);
+      //FPd11RenderProgram* pRenderProgram = pProgram->Convert<FPd11RenderProgram>();
+      //ID3D11InputLayout* piInputLayout = pRenderProgram->NativeInputLayout();
+      //_piContext->IASetInputLayout(piInputLayout);
+      //MO_DEBUG("Set input layout. (layout=0x%08X)", piInputLayout);
    }
    _pProgram = pProgram;
    // 检查是否可以执行
    _statistics->UpdateProgramCount();
    return resultCd;
+}
+
+//============================================================
+// <T>设置布局。</T>
+//
+// @parma pLayout 布局
+// @return 处理结果
+//============================================================
+TResult FPd11RenderDevice::SetLayout(FRenderLayout* pLayout){
+   MO_CHECK(pLayout, return ENull);
+   // 获得顶点流
+   TResult result = ESuccess;
+   FPd11RenderLayout* pRenderLayout = pLayout->Convert<FPd11RenderLayout>();
+   // 获得信息
+   TInt count = pRenderLayout->Count();
+   ID3D11Buffer** piBuffer = pRenderLayout->Buffer();
+   UINT* bufferStride = pRenderLayout->Stride();
+   UINT* bufferOffset = pRenderLayout->Offset();
+   // 设置内容
+   _piContext->IASetInputLayout(pRenderLayout->NativeInputLayout());
+   MO_DEBUG("Set input layout. (layout=0x%08X)", pRenderLayout->NativeInputLayout());
+   _piContext->IASetVertexBuffers(0, count, piBuffer, bufferStride, bufferOffset);
+   MO_DEBUG("Set vertex buffers. (slot=%d, count=%d)", 0, count);
+   return ESuccess;
 }
 
 //============================================================
@@ -905,16 +935,17 @@ TResult FPd11RenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot,
 // @return 处理结果
 //============================================================
 TResult FPd11RenderDevice::BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVertexBuffer, TInt offset, ERenderVertexFormat formatCd){
-   MO_ERROR_CHECK(slot >= 0, return EFailure, "Slot value is invalid. (slot=%d)", slot);
+   //MO_ERROR_CHECK(slot >= 0, return EFailure, "Slot value is invalid. (slot=%d)", slot);
    // 获得顶点流
    TResult result = ESuccess;
-   FPd11RenderVertexBuffer* pBuffer = pVertexBuffer->Convert<FPd11RenderVertexBuffer>();
-   // 获得信息
-   ID3D11Buffer* piBuffer = pBuffer->NativeBuffer();
-   UINT bufferStride = pVertexBuffer->Stride();
-   UINT bufferOffset = offset;
-   // 设置内容
-   _piContext->IASetVertexBuffers(slot, 1, &piBuffer, &bufferStride, &bufferOffset);
+   //FPd11RenderVertexBuffer* pBuffer = pVertexBuffer->Convert<FPd11RenderVertexBuffer>();
+   //// 获得信息
+   //ID3D11Buffer* piBuffer = pBuffer->NativeBuffer();
+   //UINT bufferStride = pVertexBuffer->Stride();
+   //UINT bufferOffset = offset;
+   //// 设置内容
+   //_piContext->IASetVertexBuffers(slot, 1, &piBuffer, &bufferStride, &bufferOffset);
+   //MO_DEBUG("Set vertex buffer. (slot=%d, buffer=0x%08X, stride=%d, offset=%d)", slot, piBuffer, bufferStride, bufferOffset);
    return result;
 }
 
@@ -935,10 +966,12 @@ TResult FPd11RenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
          FPd11RenderFlatTexture* pFlatTexture = (FPd11RenderFlatTexture*)pTexture;
          ID3D11ShaderResourceView* piTextureView = pFlatTexture->NativeView();
          _piContext->PSSetShaderResources(slot, 1, &piTextureView);
+         MO_DEBUG("Set texture 2d. (slot=%d, texture=0x%08X)", slot, pTexture);
          break;
       }
       case ERenderTexture_Cube:{
          FPd11RenderCubeTexture* pCubeTexture = (FPd11RenderCubeTexture*)pTexture;
+         MO_DEBUG("Set texture 3d. (slot=%d, texture=0x%08X)", slot, pTexture);
          break;
       }
       default:{
@@ -980,6 +1013,7 @@ TResult FPd11RenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt 
    // 绘制三角形
    _renderDrawStatistics->Begin();
    _piContext->DrawIndexed(count, offset, 0);
+   MO_DEBUG("Draw indexed. (offset=%d, count=%d)", offset, count);
    _renderDrawStatistics->Finish();
    // 程序绘制结束
    _pProgram->DrawEnd();
@@ -994,8 +1028,13 @@ TResult FPd11RenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt 
 // @return 处理结果
 //============================================================
 TResult FPd11RenderDevice::Present(){
-   _piSwapChain->Present(1, 0);
+   _piSwapChain->Present(0, 0);
    return ESuccess;
+}
+
+//============================================================
+FPd11RenderLayout* FPd11RenderDevice::FindLayout(FPd11RenderProgram* pProgram, FRenderVertexStreams* pStreams){
+   return NULL;
 }
 
 MO_NAMESPACE_END

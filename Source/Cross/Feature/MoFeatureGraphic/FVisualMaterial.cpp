@@ -45,9 +45,9 @@ static TInt VisualMaterialRenderableComparer(FVisualNode* pSource, FVisualNode* 
    FRenderable* pSourceRenderable = pSource->Renderable();
    FRenderable* pTargetRenderable = pTarget->Renderable();
    // 比较效果器
-   FEffect* pSourceEffect = pSourceRenderable->ActiveEffect();
+   FRenderableEffect* pSourceEffect = pSourceRenderable->ActiveEffect();
    MO_CHECK(pSourceEffect, return 0);
-   FEffect* pTargetEffect = pTargetRenderable->ActiveEffect();
+   FRenderableEffect* pTargetEffect = pTargetRenderable->ActiveEffect();
    MO_CHECK(pTargetEffect, return 0);
    if(pSourceEffect != pTargetEffect){
       return pSourceEffect - pTargetEffect;

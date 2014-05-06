@@ -52,7 +52,8 @@ TResult FColorAutomaticEffect::DrawRenderable(FRenderRegion* pRegion, FRenderabl
    SMatrix3d modelMatrix;
    pRenderable->CalculateModelMatrix(modelMatrix);
    modelMatrix.Append(pRenderable->Matrix());
-   BindConstMatrix4x4(EEffectParameter_VertexModelMatrix4x4, &modelMatrix);
+   //BindConstMatrix4x4(EEffectParameter_VertexModelMatrix4x4, &modelMatrix);
+   BindConstMatrix4x4(EEffectParameter_VertexModelViewProjectionMatrix4x4, &modelMatrix);
    //............................................................
    // 设定属性集合
    BindAttributeDescriptors(pRenderable);

@@ -304,6 +304,30 @@ TResult FAutomaticEffect::BindAttributeDescriptors(FRenderable* pRenderable){
    FRenderVertexStreams* pVertexStreams = pRenderable->VertexStreams();
    MO_CHECK(pVertexStreams, return ENull);
    //............................................................
+   // 创建布局
+   FRenderableEffect* pRenderableEffect = pRenderable->ActiveEffect();
+   FRenderLayout* pLayout = pRenderableEffect->Layout();
+   if(pLayout == NULL){
+      pLayout = _renderDevice->CreateObject<FRenderLayout>(MO_RENDEROBJECT_LAYOUT);
+      pLayout->SetProgram(_program);
+      GRenderShaderAttributeDictionary::TIterator iterator = _program->Attributes().IteratorC();
+      while(iterator.Next()){
+         FRenderShaderAttribute* pAttribute = *iterator;
+         if(pAttribute->IsStatusUsed()){
+            ERenderVertexBuffer bufferCd = (ERenderVertexBuffer)pAttribute->Code();
+            FRenderVertexStream* pVertexStream = pVertexStreams->FindStream(bufferCd);
+            if(pVertexStream != NULL){
+               FRenderLayoutElement* pElement = FRenderLayoutElement::InstanceCreate();
+               pElement->SetAttribute(pAttribute);
+               pElement->SetStream(pVertexStream);
+               pLayout->Push(pElement);
+            }
+         }
+      }
+      pLayout->Setup();
+      pRenderableEffect->SetLayout(pLayout);
+   }
+   //............................................................
    // 关联属性集合
    GRenderShaderAttributeDictionary::TIterator iterator = _program->Attributes().IteratorC();
    while(iterator.Next()){
@@ -317,6 +341,8 @@ TResult FAutomaticEffect::BindAttributeDescriptors(FRenderable* pRenderable){
          }
       }
    }
+   //............................................................
+   _renderDevice->SetLayout(pLayout);
    return ESuccess;
 }
 
@@ -484,6 +510,15 @@ TResult FAutomaticEffect::BuildDescripter(SRenderableDescriptor& renderableDescr
 // @return 处理结果
 //============================================================
 TResult FAutomaticEffect::BuildTemplate(SRenderableDescriptor& renderableDescriptor, MString* pCode, FTemplateContext* pTemplateContext){
+   // 设置缓冲编号
+   if(pTemplateContext){
+      pTemplateContext->DefineInt("parameter.buffer.global", 0);
+      pTemplateContext->DefineInt("parameter.buffer.effectcamera", 1);
+      pTemplateContext->DefineInt("parameter.buffer.effectlight", 2);
+      pTemplateContext->DefineInt("parameter.buffer.rendertramsform", 3);
+      pTemplateContext->DefineInt("parameter.buffer.rendermaterial", 3);
+   }
+   //............................................................
    // 支持顶点颜色
    _dynamicDescriptor.supportVertexColor = (_descriptor.supportVertexColor && renderableDescriptor.supportVertexColor);
    if(_dynamicDescriptor.supportVertexColor){

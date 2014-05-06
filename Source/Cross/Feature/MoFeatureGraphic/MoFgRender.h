@@ -31,6 +31,7 @@ MO_NAMESPACE_BEGIN
 //============================================================
 class FEffect;
 class FRenderable;
+class FRenderShaderAttribute;
 class FRenderVertexStream;
 class FRenderVertexBuffer;
 class FRenderIndexBuffer;
@@ -510,6 +511,78 @@ public:
 };
 
 //============================================================
+// <T>渲染布局元素。</T>
+//============================================================
+class MO_FG_DECLARE FRenderLayoutElement : public FInstance
+{
+   MO_CLASS_DECLARE_INHERITS(FRenderLayoutElement, FInstance);
+protected:
+   FRenderShaderAttribute* _pAttribute;
+   FRenderVertexStream* _pStream;
+public:
+   FRenderLayoutElement();
+   MO_ABSTRACT ~FRenderLayoutElement();
+public:
+   //------------------------------------------------------------
+   // <T>获得属性。</T>
+   MO_INLINE FRenderShaderAttribute* Attribute(){
+      return _pAttribute;
+   }
+   //------------------------------------------------------------
+   // <T>设置属性。</T>
+   MO_INLINE void SetAttribute(FRenderShaderAttribute* pAttribute){
+      _pAttribute = pAttribute;
+   }
+   //------------------------------------------------------------
+   // <T>获得缓冲。</T>
+   MO_INLINE FRenderVertexStream* Stream(){
+      return _pStream;
+   }
+   //------------------------------------------------------------
+   // <T>设置缓冲。</T>
+   MO_INLINE void SetStream(FRenderVertexStream* pStream){
+      _pStream = pStream;
+   }
+};
+//------------------------------------------------------------
+typedef MO_FG_DECLARE GPtrs<FRenderLayoutElement> GRenderLayoutElementPtrs;
+
+//============================================================
+// <T>渲染布局。</T>
+//============================================================
+class MO_FG_DECLARE FRenderLayout : public FRenderObject
+{
+   MO_CLASS_DECLARE_INHERITS(FRenderLayout, FRenderObject);
+protected:
+   FRenderProgram* _pProgram;
+   GRenderLayoutElementPtrs _elements;
+public:
+   FRenderLayout();
+   MO_ABSTRACT ~FRenderLayout();
+public:
+   //------------------------------------------------------------
+   // <T>获得程序。</T>
+   MO_INLINE FRenderProgram* Program(){
+      return _pProgram;
+   }
+   //------------------------------------------------------------
+   // <T>设置程序。</T>
+   MO_INLINE void SetProgram(FRenderProgram* pProgram){
+      _pProgram = pProgram;
+   }
+   //------------------------------------------------------------
+   // <T>获得缓冲。</T>
+   MO_INLINE GRenderLayoutElementPtrs& Elements(){
+      return _elements;
+   }
+public:
+   TResult Push(FRenderLayoutElement* pElement);
+};
+//------------------------------------------------------------
+typedef MO_FG_DECLARE GPtr<FRenderLayout> GRenderLayoutPtr;
+typedef MO_FG_DECLARE GPtrs<FRenderLayout> GRenderLayoutPtrs;
+
+//============================================================
 // <T>渲染顶点流。</T>
 //============================================================
 class MO_FG_DECLARE FRenderVertexStream : public FInstance
@@ -589,6 +662,7 @@ public:
    TInt _instanceCount;
    FRenderVertexBufferCollection* _pBuffers;
    FRenderVertexStreamCollection* _pStreams;
+   GRenderLayoutPtr _layout;
 public:
    FRenderVertexStreams();
    MO_ABSTRACT ~FRenderVertexStreams();
@@ -632,6 +706,16 @@ public:
    // <T>获得顶点流集合。</T>
    MO_INLINE FRenderVertexStreamCollection* Streams(){
       return _pStreams;
+   }
+   //------------------------------------------------------------
+   // <T>获得渲染布局。</T>
+   MO_INLINE FRenderLayout* Layout(){
+      return _layout;
+   }
+   //------------------------------------------------------------
+   // <T>设置渲染布局。</T>
+   MO_INLINE void SetLayout(FRenderLayout* pLayout){
+      _layout = pLayout;
    }
 public:
    TBool EqualsDescription(FRenderVertexStreams* pStream);
@@ -1907,6 +1991,7 @@ public:
 public:
    MO_ABSTRACT TResult BindVertexStream(TInt slot, FRenderVertexStream* pStream);
 public:
+   MO_ABSTRACT TResult SetLayout(FRenderLayout* pLayout);
    MO_ABSTRACT TResult DrawInstanceTriangles(FRenderIndexBuffer* pIndexBuffer, TInt offset, TInt count);
 };
 //------------------------------------------------------------

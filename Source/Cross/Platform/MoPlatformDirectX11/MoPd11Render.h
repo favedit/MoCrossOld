@@ -13,6 +13,55 @@
 MO_NAMESPACE_BEGIN
 
 //============================================================
+// <T>渲染层信息。</T>
+//============================================================
+class MO_PD11_DECLARE FPd11RenderLayout : public FRenderLayout
+{
+   MO_CLASS_DECLARE_INHERITS(FPd11RenderLayout, FRenderLayout);
+protected:
+   TInt _count;
+   MO_D3D11_INPUT_ELEMENT_DESC_ARRAY _inputElements;
+   ID3D11InputLayout* _piInputLayout;
+   ID3D11Buffer* _piBuffer[MO_INPUT_ELEMENT_MAXCNT];
+   UINT _strides[MO_INPUT_ELEMENT_MAXCNT];
+   UINT _offsets[MO_INPUT_ELEMENT_MAXCNT];
+public:
+   FPd11RenderLayout();
+   MO_ABSTRACT ~FPd11RenderLayout();
+public:
+   //------------------------------------------------------------
+   // <T>获得本地输入层次。</T>
+   MO_INLINE ID3D11InputLayout* NativeInputLayout(){
+      return _piInputLayout;
+   }
+   //------------------------------------------------------------
+   // <T>获得总数。</T>
+   MO_INLINE TInt Count(){
+      return _count;
+   }
+   //------------------------------------------------------------
+   // <T>获得数据。</T>
+   MO_INLINE ID3D11Buffer** Buffer(){
+      return _piBuffer;
+   }
+   //------------------------------------------------------------
+   // <T>获得宽度。</T>
+   MO_INLINE UINT* Stride(){
+      return _strides;
+   }
+   //------------------------------------------------------------
+   // <T>获得位置。</T>
+   MO_INLINE UINT* Offset(){
+      return _offsets;
+   }
+public:
+   FRenderLayoutElement* FindByAttribute(FRenderShaderAttribute* pAttribute);
+   MO_OVERRIDE TResult OnSetup();
+};
+//------------------------------------------------------------
+typedef MO_PD11_DECLARE FObjects<FPd11RenderLayout*> FPd11RenderLayoutCollection;
+
+//============================================================
 // <T>渲染顶点缓冲。</T>
 //============================================================
 class MO_PD11_DECLARE FPd11RenderVertexBuffer : public FRenderVertexBuffer
@@ -407,6 +456,7 @@ public:
    MO_OVERRIDE TResult SetScissorRectangle(TInt left, TInt top, TInt width, TInt height);
    MO_OVERRIDE TResult SetRenderTarget(FRenderTarget* pRenderTarget = NULL);
    MO_OVERRIDE TResult SetProgram(FRenderProgram* pProgram);
+   MO_OVERRIDE TResult SetLayout(FRenderLayout* pLayout);
    MO_OVERRIDE TResult BindConstData(ERenderShader shaderCd, TInt slot, ERenderShaderParameterFormat formatCd, TAnyC* pData, TInt length);
    MO_OVERRIDE TResult BindConstFloat3(ERenderShader shaderCd, TInt slot, TFloat x = 0.0f, TFloat y = 0.0f, TFloat z = 0.0f);
    MO_OVERRIDE TResult BindConstFloat4(ERenderShader shaderCd, TInt slot, TFloat x = 0.0f, TFloat y = 0.0f, TFloat z = 0.0f, TFloat w = 1.0f);
@@ -416,6 +466,9 @@ public:
    MO_OVERRIDE TResult BindTexture(TInt slot, FRenderTexture* pTexture);
    MO_OVERRIDE TResult DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt offset, TInt count);
    MO_OVERRIDE TResult Present();
+public:
+   FPd11RenderLayoutCollection* _pLayouts;
+   FPd11RenderLayout* FindLayout(FPd11RenderProgram* pProgram, FRenderVertexStreams* pStreams);
 };
 
 MO_NAMESPACE_END

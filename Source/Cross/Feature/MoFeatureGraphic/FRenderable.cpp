@@ -17,7 +17,6 @@ FRenderable::FRenderable(){
    _pVertexStreams = MO_CREATE(FRenderVertexStreams);
    MO_CLEAR(_pIndexBuffer);
    MO_CLEAR(_pActiveEffect);
-   MO_CLEAR(_pEffects);
 }
 
 //============================================================
@@ -35,19 +34,19 @@ FRenderable::~FRenderable(){
 // @param pName 名称
 // @return 效果器
 //============================================================
-FEffect* FRenderable::EffectFind(TCharC* pName){
-   FEffect* pEffect = NULL;
-   if(_pEffects != NULL){
-      TInt count = _pEffects->Count();
-      for(TInt n = 0; n < count; n++){
-         FEffect* pFind = _pEffects->Get(n);
-         if(pFind->IsName(pName)){
-            pEffect = pFind;
-            break;
+FRenderableEffect* FRenderable::EffectFind(TCharC* pName){
+   TInt count = _effects.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderableEffect* pRenderableEffect = _effects.Get(n);
+      if(pRenderableEffect != NULL){
+         FEffect* pEffect = pRenderableEffect->Effect();
+         MO_CHECK(pEffect, continue);
+         if(pEffect->IsName(pName)){
+            return pRenderableEffect;
          }
       }
    }
-   return pEffect;
+   return NULL;
 }
 
 //============================================================
@@ -56,12 +55,11 @@ FEffect* FRenderable::EffectFind(TCharC* pName){
 // @param pEffect 效果器
 // @return 处理结果
 //============================================================
-TResult FRenderable::EffectBind(FEffect* pEffect){
-   if(_pEffects == NULL){
-      _pEffects = MO_CREATE(FEffectCollection);
-   }
-   _pEffects->Push(pEffect);
-   return ESuccess;
+FRenderableEffect* FRenderable::EffectBind(FEffect* pEffect){
+   FRenderableEffect* pRenderableEffect = FRenderableEffect::InstanceCreate();
+   pRenderableEffect->SetEffect(pEffect);
+   _effects.Push(pRenderableEffect);
+   return pRenderableEffect;
 }
 
 //============================================================
@@ -176,9 +174,7 @@ TResult FRenderable::Free(){
 //============================================================
 TResult FRenderable::Suspend(){
    _pActiveEffect = NULL;
-   if(_pEffects != NULL){
-      _pEffects->Clear();
-   }
+   _effects.Clear();
    return ESuccess;
 }
 

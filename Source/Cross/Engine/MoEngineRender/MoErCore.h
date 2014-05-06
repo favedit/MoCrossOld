@@ -13,6 +13,31 @@
 MO_NAMESPACE_BEGIN
 
 //============================================================
+// <T>效果参数缓冲。</T>
+//============================================================
+enum EEffectParameterBuffer{
+   EEffectParameterBuffer_Unknown,
+   // 全局缓冲
+   EEffectParameterBuffer_Global,
+   // 效果缓冲
+   EEffectParameterBuffer_EffectCamera,
+   EEffectParameterBuffer_EffectLight,
+   // 渲染缓冲
+   EEffectParameterBuffer_RenderTramsform,
+   EEffectParameterBuffer_RenderMaterial,
+   EEffectParameterBuffer_Count,
+};
+
+//============================================================
+// <T>效果参数工具。</T>
+//============================================================
+class MO_ER_DECLARE REffectParameterBuffer{
+public:
+   static TResult Parse(TCharC* pValue, EEffectParameterBuffer& bufferCd, TInt& slot);
+   static TCharC* Format(EEffectParameterBuffer bufferCd);
+};
+
+//============================================================
 // <T>效果参数。</T>
 //============================================================
 enum EEffectParameter{

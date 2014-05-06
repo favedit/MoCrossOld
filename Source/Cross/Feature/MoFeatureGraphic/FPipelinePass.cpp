@@ -76,12 +76,12 @@ TResult FPipelinePass::DrawRegion(FRenderRegion* pRegion){
       // 获得渲染效果
       TFsName effectName = spaceName.MemoryC();
       effectName.Append(pMaterial->EffectName());
-      FEffect* pEffect = pRenderable->EffectFind(effectName);
-      if(pEffect == NULL){
-         pEffect = REffectManager::Instance().Find(effectName, pRenderable);
-         pRenderable->EffectBind(pEffect);
+      FRenderableEffect* pRenderableEffect = pRenderable->EffectFind(effectName);
+      if(pRenderableEffect == NULL){
+         FEffect* pEffect = REffectManager::Instance().Find(effectName, pRenderable);
+         pRenderableEffect = pRenderable->EffectBind(pEffect);
       }
-      pRenderable->SetActiveEffect(pEffect);
+      pRenderable->SetActiveEffect(pRenderableEffect);
    }
    _renderableActiveStatistics->Finish();
    //............................................................
@@ -99,10 +99,10 @@ TResult FPipelinePass::DrawRegion(FRenderRegion* pRegion){
       TInt groupBegin = n;
       TInt groupEnd = visibleCount;
       FRenderable* pGroupRenderable = pVisibleRenderables->Get(groupBegin);
-      FEffect* pGroupEffect = pGroupRenderable->ActiveEffect();
+      FRenderableEffect* pGroupEffect = pGroupRenderable->ActiveEffect();
       for(TInt i = n; i < visibleCount; i++){
          FRenderable* pRenderable = (FRenderable*)pVisibleRenderables->Get(i);
-         FEffect* pEffect = pRenderable->ActiveEffect();
+         FRenderableEffect* pEffect = pRenderable->ActiveEffect();
          if(pGroupEffect != pEffect){
             groupEnd = i;
             break;
@@ -110,7 +110,7 @@ TResult FPipelinePass::DrawRegion(FRenderRegion* pRegion){
          n++;
       }
       // 绘制当前渲染组
-      pGroupEffect->DrawGroup(pRegion, groupBegin, groupEnd - groupBegin);
+      pGroupEffect->Effect()->DrawGroup(pRegion, groupBegin, groupEnd - groupBegin);
    }
    _renderableDrawStatistics->Finish();
    return ESuccess;
