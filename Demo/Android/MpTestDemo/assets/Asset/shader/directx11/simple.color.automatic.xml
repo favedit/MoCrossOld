@@ -33,11 +33,6 @@
    <Parameter name='fc_reflect_color'       linker='FragmentReflectColor'/>
    <!-- ------------------------------------------------------------ -->
    <Attribute name='POSITION'               linker='Position'/>
-   <Attribute name='TEXCOORD0'              linker='Color'/>
-   <Attribute name='TEXCOORD1'              linker='Coord'/>
-   <Attribute name='TEXCOORD2'              linker='Normal'/>
-   <Attribute name='TEXCOORD3'              linker='Binormal'/>
-   <Attribute name='TEXCOORD4'              linker='Tangent'/>
    <!-- ------------------------------------------------------------ -->
    <Sampler name='ft_diffuse'               linker='Diffuse'/>
    <Sampler name='ft_normal'                linker='Normal'/>
@@ -66,50 +61,18 @@ cbuffer RenderTramsform : register(b<shader:write source='parameter.buffer.rende
 struct VS_INPUT
 {
    float3 position : POSITION;
-<shader:true source='vertex.attribute.color'>
-   float4 color    : TEXCOORD0;
-</shader:true>
-<shader:true source='vertex.attribute.coord'>
-   float2 coord    : TEXCOORD1;
-</shader:true>
-<shader:true source='vertex.attribute.normal'>
-   float3 normal   : TEXCOORD2;
-<shader:true source='vertex.attribute.normal.full'>
-   float3 binormal : TEXCOORD3;
-   float3 tangent  : TEXCOORD4;
-</shader:true>
-</shader:true>
 };
 
 struct VS_OUTPUT
 {
    float4 position      : SV_POSITION;
-   float4 modelPosition : TEXCOORD0;
-<shader:true source='vertex.attribute.color'>
-   float4 color         : TEXCOORD1;
-</shader:true>
-<shader:true source='vertex.attribute.coord'>
-   float2 coord         : TEXCOORD2;
-</shader:true>
-<shader:true source='vertex.attribute.normal'>
-   float3 normal        : TEXCOORD3;
-<shader:true source='support.dump'>
-   float3 cameraTs      : TEXCOORD4;
-   float3 lightTs       : TEXCOORD5;
-</shader:true>
-</shader:true>
 };
 
 VS_OUTPUT main(VS_INPUT input)
 {
    VS_OUTPUT result = (VS_OUTPUT)0;
    float4 position = float4(input.position, 1.0);
-   // Calculate proection position
    result.position = mul(position, vc_mvp_mat4);
-   // Set varying
-<shader:true source='vertex.attribute.coord'>
-   result.coord = input.coord;
-</shader:true>
    return result;
 }
    ]]></Source>
@@ -161,20 +124,6 @@ cbuffer RenderMaterial : register(b<shader:write source='parameter.buffer.render
 
 struct PS_INPUT
 {
-   float4 modelPosition : TEXCOORD0;
-<shader:true source='vertex.attribute.color'>
-   float4 color         : TEXCOORD1;
-</shader:true>
-<shader:true source='vertex.attribute.coord'>
-   float2 coord         : TEXCOORD2;
-</shader:true>
-<shader:true source='vertex.attribute.normal'>
-   float3 normal        : TEXCOORD3;
-<shader:true source='support.dump'>
-   float3 cameraTs      : TEXCOORD4;
-   float3 lightTs       : TEXCOORD5;
-</shader:true>
-</shader:true>
 };
 
 <shader:true source='support.ambient.sampler'>
@@ -225,107 +174,6 @@ SamplerState fs_environment = sampler_state{
 
 float4 main(PS_INPUT input) : SV_Target
 {
-   float4 result = float4(0.0, 0.0, 0.0, 1.0);
-   //............................................................
-   // Calculate ambient color
-<shader:true source='support.ambient.sampler'>
-   float4 color = ft_diffuse.Sample(fs_diffuse, input.coord);
-   //if(color.a < fc_alpha.x){
-      //discard;
-   //}
-</shader:true>
-<shader:false source='support.ambient.sampler'>
-   float4 color = float4(1.0, 1.0, 1.0, 1.0);
-</shader:false>
-   //............................................................
-   // Calculate ambient color
-<shader:true source='support.ambient'>
-   result.rgb += color.xyz * fc_ambient_color.rgb;
-</shader:true>
-   //............................................................
-<shader:true source='support.diffuse.view|support.specular|support.environment'>
-   float3 cameraDirection = normalize(fc_camera_position - input.modelPosition.xyz);
-</shader:true>
-   //............................................................
-   // Calculate normal
-<shader:true source='support.diffuse.dump'>
-   float4 normal = ft_normal.Sample(fs_normal, input.coord);
-   normal.xyz = normalize(normal.xyz * 2.0 - 1.0);
-</shader:true>
-   //............................................................
-   // Calculate diffuse color
-<shader:true source='support.diffuse'>
-<shader:true source='support.diffuse.dump'>
-   float normalFactor = dot(normal.xyz, -input.light_ts);
-</shader:true>
-<shader:true source='support.diffuse.normal'>
-   float normalFactor = dot(input.normal, -fc_light_direction);
-</shader:true>
-<shader:true source='vertex.attribute.normal'>
-   normalFactor = max(normalFactor, 0.1);
-   result.rgb += color.rgb * fc_diffuse_color.rgb * normalFactor;
-</shader:true>
-</shader:true>
-   //............................................................
-   // Calculate diffuse view color
-<shader:true source='support.diffuse.view'>
-<shader:true source='support.diffuse.view.dump'>
-   float normalViewFactor = dot(normal.xyz, -input.camera_ts);
-</shader:true>
-<shader:true source='support.diffuse.view.normal'>
-   float normalViewFactor = dot(input.normal, -cameraDirection);
-</shader:true>
-   normalViewFactor = max(normalViewFactor, 0.1);
-   result.rgb += color.rgb * fc_diffuse_view_color.rgb * normalViewFactor;
-</shader:true>
-   //............................................................
-   // Calculate specular color
-<shader:true source='support.specular'>
-   float3 reflectionDirection = normalize(reflect(fc_light_direction, input.normal));
-   float specularFactor = dot(cameraDirection, reflectionDirection);
-<shader:true source='support.specular.level&vertex.attribute.normal'>
-   //specularFactor *= normal.w;
-</shader:true>
-   specularFactor = max(specularFactor, fc_specular.x);
-   specularFactor = min(specularFactor, 1.0);
-   specularFactor = pow(specularFactor, fc_specular.y);
-   result.rgb += color.rgb * fc_specular_color.rgb * specularFactor;
-</shader:true>
-   //............................................................
-   // Calculate specular view color
-<shader:true source='support.specular.view'>
-   float specularViewFactor = dot(cameraDirection, input.normal);
-<shader:true source='support.specular.level&vertex.attribute.normal'>
-   //specularViewFactor *= normal.w;
-</shader:true>
-   specularViewFactor = max(specularViewFactor, fc_specular_view.x);
-   specularViewFactor = min(specularViewFactor, 1.0);
-   specularViewFactor = pow(specularViewFactor, fc_specular_view.y);
-   result.rgb += color.rgb * fc_specular_view_color.rgb * specularViewFactor;
-</shader:true>
-   //............................................................
-<shader:true source='support.environment'>
-   float3 reflectDirection = normalize(reflect(-cameraDirection, input.normal)); 
-   float4 environmentColor = ft_environment.Sample(fs_environment, reflectDirection); 
-<shader:true source='support.light'>
-   float4 light = ft_light.Sample(fs_light, input.coord);
-   environmentColor *= light.g;
-</shader:true>
-   result.rgb *= environmentColor.rgb * fc_reflect_color.rgb;
-</shader:true>
-   //............................................................
-   // Calculate color
-<shader:true source='vertex.attribute.color'>
-   float4 vertexColor = min(input.color, fc_color.y) - fc_color.x;
-   vertexColor = vertexColor / (fc_color.y - fc_color.x);
-   vertexColor = (vertexColor - fc_color.w) * fc_color.z + 1.0;
-   result.rgb *= vertexColor.rgb;
-</shader:true>
-<shader:true source='support.alpha'>
-   result.a = color.a * fc_alpha.z;
-</shader:true>
-   //............................................................
-   //return result;
    return float4(1.0, 1.0, 1.0, 1.0);
 }
    ]]></Source>

@@ -101,18 +101,6 @@ TResult FPd11RenderVertexBuffer::Suspend(){
 // @return 处理结果
 //============================================================
 TResult FPd11RenderVertexBuffer::Resume(){
-   //// 生成编号
-   //glGenBuffers(1, &_bufferId);
-   //MO_FATAL_CHECK(_bufferId != 0, return EFailure,
-   //      "Generate vertex buffer id failure. (buffer_id=%d)", _bufferId);
-   //// 绑定编号
-   //glBindBuffer(GL_ARRAY_BUFFER, _bufferId);
-   //_pDevice->CheckError("glBindBuffer", "Bind array buffer. (buffer_id=%d)", _bufferId);
-   //// 上传数据
-   //TInt length = _pDataStream->Length();
-   //TByteC* pData = _pDataStream->MemoryC();
-   //glBufferData(GL_ARRAY_BUFFER, length, pData, GL_STATIC_DRAW);
-   //_pDevice->CheckError("glBufferData", "Upload array buffer data. (buffer_id=%d, length=%d, data=0x%08X)", _bufferId, length, pData);
    return ESuccess;
 }
 
@@ -122,11 +110,6 @@ TResult FPd11RenderVertexBuffer::Resume(){
 // @return 处理结果
 //============================================================
 TResult FPd11RenderVertexBuffer::Dispose(){
-   //if(_bufferId != 0){
-   //   TInt size = _stride * _count;
-   //   glDeleteBuffers(size, &_bufferId);
-   //   _bufferId = 0;
-   //}
    return ESuccess;
 }
 

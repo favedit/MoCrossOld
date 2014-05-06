@@ -30,7 +30,6 @@ FPd11RenderDevice::FPd11RenderDevice(){
    _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT, FPd11RenderLayout::Class());
    //
    MO_CLEAR(_piRasterizerState);
-   _pLayouts = MO_CREATE(FPd11RenderLayoutCollection);
 }
 
 //============================================================
@@ -45,7 +44,6 @@ FPd11RenderDevice::~FPd11RenderDevice(){
    MO_RELEASE(_piSwapChain);
    MO_RELEASE(_piDevice);
    MO_RELEASE(_piContext);
-   MO_DELETE(_pLayouts);
 }
 
 //============================================================
@@ -435,7 +433,7 @@ TResult FPd11RenderDevice::Clear(TFloat red, TFloat green, TFloat blue, TFloat a
    MO_CHECK(_pActiveRenderTarget, return ENull);
    FPd11RenderTarget* pRenderTarget = _pActiveRenderTarget->Convert<FPd11RenderTarget>();
    // 清空颜色
-   FLOAT color[4] = {red + 0.75f, green, blue, alpha};
+   FLOAT color[4] = {red, green, blue, alpha};
    ID3D11RenderTargetView* pRenderTargetView = pRenderTarget->NativeRenderTarget();
    _piContext->ClearRenderTargetView(pRenderTargetView, color);
    // 清空深度
@@ -1030,11 +1028,6 @@ TResult FPd11RenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt 
 TResult FPd11RenderDevice::Present(){
    _piSwapChain->Present(0, 0);
    return ESuccess;
-}
-
-//============================================================
-FPd11RenderLayout* FPd11RenderDevice::FindLayout(FPd11RenderProgram* pProgram, FRenderVertexStreams* pStreams){
-   return NULL;
 }
 
 MO_NAMESPACE_END

@@ -28,9 +28,6 @@ FPd11RenderVertexShader::~FPd11RenderVertexShader(){
 // @return 处理结果
 //============================================================
 TResult FPd11RenderVertexShader::Setup(){
-   //_renderId.uint32 = glCreateShader(GL_VERTEX_SHADER);
-   //TResult resultCd = _pDevice->CheckError("glCreateShader", "Create vertex shader failure. (shader_id=%d)", _renderId.uint32);
-   //return resultCd;
    return ESuccess;
 }
 
@@ -100,13 +97,6 @@ TResult FPd11RenderVertexShader::Resume(){
 // @return 处理结果
 //============================================================
 TResult FPd11RenderVertexShader::Dispose(){
-   //TResult resultCd = ESuccess;
-   //if(_renderId.uint32 != 0){
-   //   glDeleteShader(_renderId.uint32);
-   //   resultCd = _pDevice->CheckError("glCreateShader", "Delete vertex shader failure. (shader_id=%d)", _renderId.uint32);
-   //   _renderId.uint32 = 0;
-   //}
-   //return resultCd;
    return ESuccess;
 }
 

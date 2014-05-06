@@ -26,9 +26,6 @@ FPd11RenderFragmentShader::~FPd11RenderFragmentShader(){
 // @return 处理结果
 //============================================================
 TResult FPd11RenderFragmentShader::Setup(){
-   //_renderId.uint32 = glCreateShader(GL_FRAGMENT_SHADER);
-   //TResult resultCd = _pDevice->CheckError("glCreateShader", "Create fragment shader failure. (shader_id=%d)", _renderId.uint32);
-   //return resultCd;
    return ESuccess;
 }
 
@@ -92,13 +89,6 @@ TResult FPd11RenderFragmentShader::Resume(){
 // @return 处理结果
 //============================================================
 TResult FPd11RenderFragmentShader::Dispose(){
-   //TResult resultCd = ESuccess;
-   //if(_renderId.uint32 != 0){
-   //   glDeleteShader(_renderId.uint32);
-   //   resultCd = _pDevice->CheckError("glCreateShader", "Delete fragment shader failure. (shader_id=%d)", _renderId.uint32);
-   //   _renderId.uint32 = 0;
-   //}
-   //return resultCd;
    return ESuccess;
 }
 

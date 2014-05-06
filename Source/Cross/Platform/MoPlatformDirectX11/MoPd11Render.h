@@ -466,9 +466,6 @@ public:
    MO_OVERRIDE TResult BindTexture(TInt slot, FRenderTexture* pTexture);
    MO_OVERRIDE TResult DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt offset, TInt count);
    MO_OVERRIDE TResult Present();
-public:
-   FPd11RenderLayoutCollection* _pLayouts;
-   FPd11RenderLayout* FindLayout(FPd11RenderProgram* pProgram, FRenderVertexStreams* pStreams);
 };
 
 MO_NAMESPACE_END

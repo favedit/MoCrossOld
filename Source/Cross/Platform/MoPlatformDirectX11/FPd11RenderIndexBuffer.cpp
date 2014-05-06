@@ -81,19 +81,6 @@ TResult FPd11RenderIndexBuffer::Suspend(){
 // @return 处理结果
 //============================================================
 TResult FPd11RenderIndexBuffer::Resume(){
-   //// 生成编号
-   //glGenBuffers(1, &_bufferId);
-   //MO_FATAL_CHECK(_bufferId != 0, return EFailure,
-   //      "Generate index buffer id failure. (buffer_id=%d)", _bufferId);
-   //// 绑定编号
-   //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _bufferId);
-   //MO_FATAL_CHECK(_bufferId != 0, return EFailure,
-   //      "Buffer id is invalid. (buffer_id=%d)", _bufferId);
-   //// 上传数据
-   //TInt length = _pDataStream->Length();
-   //TByteC* pData = _pDataStream->MemoryC();
-   //glBufferData(GL_ELEMENT_ARRAY_BUFFER, length, pData, GL_STATIC_DRAW);
-   //_pDevice->CheckError("glBufferData", "Upload array buffer data. (buffer_id=%d, length=%d, data=0x%08X)", _bufferId, length, pData);
    return ESuccess;
 }
 
