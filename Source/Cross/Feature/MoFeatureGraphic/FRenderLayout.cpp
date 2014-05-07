@@ -9,6 +9,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderLayout, FRenderObject);
 //============================================================
 FRenderLayout::FRenderLayout(){
    MO_CLEAR(_pProgram);
+   MO_CLEAR(_pRenderable);
 }
 
 //============================================================

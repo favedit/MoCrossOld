@@ -43,11 +43,17 @@ TResult FPd11RenderVertexShader::Compile(TCharC* pSource){
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
    FRenderCapability* pCapability = pRenderDevice->Capability();
    TCharC* pShaderVersion = pCapability->ShaderVertexVersion();
-   // 上传代码
+   // 设置标志
+   //TUint32 shaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
+   TUint32 shaderFlags = 0;
+#ifdef _MO_DEBUG
+    shaderFlags |= D3DCOMPILE_DEBUG;
+#endif // _MO_DEBUG
+    // 上传代码
    TInt length = RString::Length(pSource);
    ID3D10Blob* piError = NULL;
    HRESULT shaderResult = S_OK;
-   HRESULT dxResult = D3DX11CompileFromMemory(pSource, length, NULL, NULL, NULL, "main", pShaderVersion, 0, 0, NULL, &_piData, &piError, &shaderResult);
+   HRESULT dxResult = D3DX11CompileFromMemory(pSource, length, NULL, NULL, NULL, "main", pShaderVersion, shaderFlags, 0, NULL, &_piData, &piError, &shaderResult);
    if(FAILED(dxResult) || FAILED(shaderResult)){
       TCharC* pBuffer = (TCharC*)piError->GetBufferPointer();
       MO_ERROR("Compile from memory failure.\n%s", pBuffer);
@@ -55,16 +61,10 @@ TResult FPd11RenderVertexShader::Compile(TCharC* pSource){
       MO_FATAL("Compile failure.");
       return EFailure;
    }
-   // 创建描述器
-   dxResult = pRenderDevice->NativeDevice()->CreateClassLinkage(&_piLinkage);
-   if(FAILED(dxResult)){
-      MO_FATAL("Create class linkage failure.");
-      return EFailure;
-   }
    // 创建渲染器
    TAny* pData = _piData->GetBufferPointer();
    TInt dataSize = _piData->GetBufferSize();
-   dxResult = pRenderDevice->NativeDevice()->CreateVertexShader(pData, dataSize, _piLinkage, &_piShader);
+   dxResult = pRenderDevice->NativeDevice()->CreateVertexShader(pData, dataSize, NULL, &_piShader);
    if(FAILED(dxResult)){
       MO_FATAL("Create vertex shader failure.");
       return EFailure;

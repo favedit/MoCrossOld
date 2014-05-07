@@ -159,25 +159,24 @@ TResult FPd11RenderDevice::Setup(){
    }
    //............................................................
    // 创建深度缓冲
-   //D3D11_TEXTURE2D_DESC depthBufferDesc;
-   //RType<D3D11_TEXTURE2D_DESC>::Clear(&depthBufferDesc);
-   //depthBufferDesc.Width = screenSize.width;
-   //depthBufferDesc.Height = screenSize.height;
-   //depthBufferDesc.MipLevels = 1;
-   //depthBufferDesc.ArraySize = 1;
-   //depthBufferDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-   //depthBufferDesc.SampleDesc.Count = 1;
-   //depthBufferDesc.SampleDesc.Quality = 0;
-   //depthBufferDesc.Usage = D3D11_USAGE_DEFAULT;
-   //depthBufferDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
-   //depthBufferDesc.CPUAccessFlags = 0;
-   //depthBufferDesc.MiscFlags = 0;
-   //ID3D11Texture2D* _pDepthStencilBuffer = NULL;
-   //dxResult = _piDevice->CreateTexture2D(&depthBufferDesc, NULL, &_pDepthStencilBuffer);
-   //if(FAILED(dxResult)){
-   //   MO_FATAL("Get backbugger failure.");
-   //   return EFailure;
-   //}
+   D3D11_TEXTURE2D_DESC depthDescriptor = {0};
+   depthDescriptor.Width = screenSize.width;
+   depthDescriptor.Height = screenSize.height;
+   depthDescriptor.MipLevels = 1;
+   depthDescriptor.ArraySize = 1;
+   depthDescriptor.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+   depthDescriptor.SampleDesc.Count = 1;
+   depthDescriptor.SampleDesc.Quality = 0;
+   depthDescriptor.Usage = D3D11_USAGE_DEFAULT;
+   depthDescriptor.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+   depthDescriptor.CPUAccessFlags = 0;
+   depthDescriptor.MiscFlags = 0;
+   ID3D11Texture2D* piDepthStencilBuffer = NULL;
+   dxResult = _piDevice->CreateTexture2D(&depthDescriptor, NULL, &piDepthStencilBuffer);
+   if(FAILED(dxResult)){
+      MO_FATAL("Get backbugger failure.");
+      return EFailure;
+   }
    //............................................................
    // 设置测试缓冲
    //D3D11_DEPTH_STENCIL_DESC depthStencilDesc;
@@ -202,52 +201,51 @@ TResult FPd11RenderDevice::Setup(){
    //   MO_FATAL("Create depth stencil state failure.");
    //   return EFailure;
    //}
-   ////............................................................
-   //// 设置深度缓冲
-   //D3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc;
-   //RType<D3D11_DEPTH_STENCIL_VIEW_DESC>::Clear(&depthStencilViewDesc);
-   //depthStencilViewDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-   //depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-   //depthStencilViewDesc.Texture2D.MipSlice = 0;
-   //ID3D11DepthStencilView* _pDepthStencilView = NULL;
-   //dxResult = _piDevice->CreateDepthStencilView(_pDepthStencilBuffer, &depthStencilViewDesc, &_pDepthStencilView);
-   //if(FAILED(dxResult)){
-   //   MO_FATAL("Create depth stencil view failure.");
-   //   return EFailure;
-   //}
+   //............................................................
+   // 设置深度缓冲
+   D3D11_DEPTH_STENCIL_VIEW_DESC depthViewDescriptor;
+   RType<D3D11_DEPTH_STENCIL_VIEW_DESC>::Clear(&depthViewDescriptor);
+   depthViewDescriptor.Format = depthDescriptor.Format;
+   depthViewDescriptor.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+   depthViewDescriptor.Texture2D.MipSlice = 0;
+   ID3D11DepthStencilView* piDepthStencilView = NULL;
+   dxResult = _piDevice->CreateDepthStencilView(piDepthStencilBuffer, &depthViewDescriptor, &piDepthStencilView);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create depth stencil view failure.");
+      return EFailure;
+   }
    //............................................................
    _defaultRenderTarget = FPd11RenderTarget::InstanceCreate();
    _defaultRenderTarget->SetDevice(this);
    _defaultRenderTarget->Setup();
    _defaultRenderTarget->SetNativeRenderTarget(piRenderTarget);
+   _defaultRenderTarget->SetOptionDepth(ETrue);
+   _defaultRenderTarget->SetNativeDepthStencil(piDepthStencilView);
    _pActiveRenderTarget = _defaultRenderTarget;
-   //_defaultRenderTarget->SetOptionDepth(ETrue);
-   //_defaultRenderTarget->SetNativeDepthStencil(_pDepthStencilView);
    //............................................................
-   //_piContext->OMSetRenderTargets(1, &piRenderTarget, _pDepthStencilView);
-   _piContext->OMSetRenderTargets(1, &piRenderTarget, NULL);
+   _piContext->OMSetRenderTargets(1, &piRenderTarget, piDepthStencilView);
    //............................................................
    // 设置光栅描述
-   D3D11_RASTERIZER_DESC rasterDesc;
-   RType<D3D11_RASTERIZER_DESC>::Clear(&rasterDesc);
-   rasterDesc.AntialiasedLineEnable = EFalse;
-   //rasterDesc.CullMode = D3D11_CULL_BACK;
-   rasterDesc.CullMode = D3D11_CULL_NONE;
-   rasterDesc.DepthBias = 0;
-   rasterDesc.DepthBiasClamp = 0.0f;
-   rasterDesc.DepthClipEnable = EFalse;
-   rasterDesc.FillMode = D3D11_FILL_SOLID;
-   rasterDesc.FrontCounterClockwise = EFalse;
-   rasterDesc.MultisampleEnable = EFalse;
-   rasterDesc.ScissorEnable = EFalse;
-   rasterDesc.SlopeScaledDepthBias = 0.0f;
-   ID3D11RasterizerState* _pRasterState = NULL;
-   dxResult = _piDevice->CreateRasterizerState(&rasterDesc, &_pRasterState);
-   if(FAILED(dxResult)){
-      MO_FATAL("Create rasterizer state view failure.");
-      return EFailure;
-   }
-   _piContext->RSSetState(_pRasterState);
+   //D3D11_RASTERIZER_DESC rasterDesc;
+   //RType<D3D11_RASTERIZER_DESC>::Clear(&rasterDesc);
+   //rasterDesc.AntialiasedLineEnable = EFalse;
+   ////rasterDesc.CullMode = D3D11_CULL_BACK;
+   //rasterDesc.CullMode = D3D11_CULL_NONE;
+   //rasterDesc.DepthBias = 0;
+   //rasterDesc.DepthBiasClamp = 0.0f;
+   //rasterDesc.DepthClipEnable = EFalse;
+   //rasterDesc.FillMode = D3D11_FILL_SOLID;
+   //rasterDesc.FrontCounterClockwise = EFalse;
+   //rasterDesc.MultisampleEnable = EFalse;
+   //rasterDesc.ScissorEnable = EFalse;
+   //rasterDesc.SlopeScaledDepthBias = 0.0f;
+   //ID3D11RasterizerState* _pRasterState = NULL;
+   //dxResult = _piDevice->CreateRasterizerState(&rasterDesc, &_pRasterState);
+   //if(FAILED(dxResult)){
+   //   MO_FATAL("Create rasterizer state view failure.");
+   //   return EFailure;
+   //}
+   //_piContext->RSSetState(_pRasterState);
    //............................................................
    // 设置视角
    D3D11_VIEWPORT viewport = {0};
@@ -709,15 +707,15 @@ TResult FPd11RenderDevice::SetProgram(FRenderProgram* pProgram){
       _piContext->VSSetShader(piVertexShader, NULL, 0);
       MO_DEBUG("Set vertex shader. (shader=0x%08X)", piVertexShader);
       // 设置像素脚本
-      FPd11RenderFragmentShader* pFragmentShader = pProgram->VertexShader()->Convert<FPd11RenderFragmentShader>();
+      FPd11RenderFragmentShader* pFragmentShader = pProgram->FragmentShader()->Convert<FPd11RenderFragmentShader>();
       ID3D11PixelShader* piFragmentShader = pFragmentShader->NativeShader();
       _piContext->PSSetShader(piFragmentShader, NULL, 0);
       MO_DEBUG("Set pixel shader. (shader=0x%08X)", piFragmentShader);
       // 设置输入层次
-      //FPd11RenderProgram* pRenderProgram = pProgram->Convert<FPd11RenderProgram>();
-      //ID3D11InputLayout* piInputLayout = pRenderProgram->NativeInputLayout();
-      //_piContext->IASetInputLayout(piInputLayout);
-      //MO_DEBUG("Set input layout. (layout=0x%08X)", piInputLayout);
+      FPd11RenderProgram* pRenderProgram = pProgram->Convert<FPd11RenderProgram>();
+      ID3D11InputLayout* piInputLayout = pRenderProgram->NativeInputLayout();
+      _piContext->IASetInputLayout(piInputLayout);
+      MO_DEBUG("Set input layout. (layout=0x%08X)", piInputLayout);
    }
    _pProgram = pProgram;
    // 检查是否可以执行
@@ -742,8 +740,8 @@ TResult FPd11RenderDevice::SetLayout(FRenderLayout* pLayout){
    UINT* bufferStride = pRenderLayout->Stride();
    UINT* bufferOffset = pRenderLayout->Offset();
    // 设置内容
-   _piContext->IASetInputLayout(pRenderLayout->NativeInputLayout());
-   MO_DEBUG("Set input layout. (layout=0x%08X)", pRenderLayout->NativeInputLayout());
+   //_piContext->IASetInputLayout(pRenderLayout->NativeInputLayout());
+   //MO_DEBUG("Set input layout. (layout=0x%08X)", pRenderLayout->NativeInputLayout());
    _piContext->IASetVertexBuffers(0, count, piBuffer, bufferStride, bufferOffset);
    MO_DEBUG("Set vertex buffers. (slot=%d, count=%d)", 0, count);
    return ESuccess;
@@ -933,17 +931,17 @@ TResult FPd11RenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot,
 // @return 处理结果
 //============================================================
 TResult FPd11RenderDevice::BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVertexBuffer, TInt offset, ERenderVertexFormat formatCd){
-   //MO_ERROR_CHECK(slot >= 0, return EFailure, "Slot value is invalid. (slot=%d)", slot);
+   MO_ERROR_CHECK(slot >= 0, return EFailure, "Slot value is invalid. (slot=%d)", slot);
    // 获得顶点流
    TResult result = ESuccess;
-   //FPd11RenderVertexBuffer* pBuffer = pVertexBuffer->Convert<FPd11RenderVertexBuffer>();
-   //// 获得信息
-   //ID3D11Buffer* piBuffer = pBuffer->NativeBuffer();
-   //UINT bufferStride = pVertexBuffer->Stride();
-   //UINT bufferOffset = offset;
-   //// 设置内容
-   //_piContext->IASetVertexBuffers(slot, 1, &piBuffer, &bufferStride, &bufferOffset);
-   //MO_DEBUG("Set vertex buffer. (slot=%d, buffer=0x%08X, stride=%d, offset=%d)", slot, piBuffer, bufferStride, bufferOffset);
+   FPd11RenderVertexBuffer* pBuffer = pVertexBuffer->Convert<FPd11RenderVertexBuffer>();
+   // 获得信息
+   ID3D11Buffer* piBuffer = pBuffer->NativeBuffer();
+   UINT bufferStride = pVertexBuffer->Stride();
+   UINT bufferOffset = offset;
+   // 设置内容
+   _piContext->IASetVertexBuffers(slot, 1, &piBuffer, &bufferStride, &bufferOffset);
+   MO_DEBUG("Set vertex buffer. (slot=%d, buffer=0x%08X, stride=%d, offset=%d)", slot, piBuffer, bufferStride, bufferOffset);
    return result;
 }
 
@@ -1014,7 +1012,7 @@ TResult FPd11RenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt 
    MO_DEBUG("Draw indexed. (offset=%d, count=%d)", offset, count);
    _renderDrawStatistics->Finish();
    // 程序绘制结束
-   _pProgram->DrawEnd();
+   //_pProgram->DrawEnd();
    // 检查错误
    _statistics->UpdateDraw(count);
    return resultCd;

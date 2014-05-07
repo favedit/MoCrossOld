@@ -28,9 +28,10 @@ TResult FPd11RenderVertexBuffer::OnSetup(){
    MO_CHECK(_pDevice, return ENull);
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
    //............................................................
-   if(_dataLength == 0){
-      return EContinue;
-   }
+   _dataLength = _stride * _count;
+   //if(_dataLength == 0){
+   //   return EContinue;
+   //}
    //............................................................
    //// ´´½¨»º³å
    //D3D11_BUFFER_DESC description;

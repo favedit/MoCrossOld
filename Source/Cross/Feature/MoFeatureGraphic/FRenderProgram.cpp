@@ -21,20 +21,15 @@ FRenderProgram::~FRenderProgram(){
 }
 
 //============================================================
-// <T>根据名称查找缓冲。</T>
+// <T>增加一个参数。</T>
 //
-// @param pName 名称
-// @return 缓冲对象
+// @param pParameter 渲染参数
+// @return 处理结果
 //============================================================
-FRenderShaderBuffer* FRenderProgram::BufferFind(TCharC* pName){
-   TInt count = _buffers.Count();
-   for(TInt n = 0; n < count; n++){
-      FRenderShaderBuffer* pBuffer = _buffers.Get(n);
-      if(RString::Equals(pBuffer->Name(), pName)){
-         return pBuffer;
-      }
-   }
-   return NULL;
+TResult FRenderProgram::BufferPush(FRenderShaderBuffer* pBuffer){
+   MO_CHECK(pBuffer, return ENull);
+   _buffers.Set(pBuffer->Name(), pBuffer);
+   return ESuccess;
 }
 
 //============================================================
@@ -152,10 +147,9 @@ TResult FRenderProgram::MakeFragmentSource(FRenderSource* pSource){
 // @return 处理结果
 //============================================================
 TResult FRenderProgram::DrawBegin(){
-   TInt count = _buffers.Count();
-   for(TInt n = 0; n < count; n++){
-      FRenderShaderBuffer* pBuffer = _buffers.Get(n);
-      pBuffer->Update();
+   GRenderShaderBufferDictionary::TIterator iterator = _buffers.Iterator();
+   while(iterator.Next()){
+      iterator->Update();
    }
    return ESuccess;
 }

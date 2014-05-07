@@ -13,12 +13,13 @@
 MO_NAMESPACE_BEGIN
 
 //==========================================================
+#define MO_RENDEROBJECT_SHADERBUFFER    "ShaderBuffer"
 #define MO_RENDEROBJECT_SHADERPARAMETER "ShaderParameter"
 #define MO_RENDEROBJECT_SHADERATTRIBUTE "ShaderAttribute"
 #define MO_RENDEROBJECT_SHADERSAMPLER   "ShaderSampler"
-#define MO_RENDEROBJECT_LAYOUT          "Layout"
 #define MO_RENDEROBJECT_VERTEXBUFFER    "VertexBuffer"
 #define MO_RENDEROBJECT_INDEXBUFFER     "IndexBuffer"
+#define MO_RENDEROBJECT_LAYOUT          "Layout"
 #define MO_RENDEROBJECT_TEXTURE2D       "Texture2d"
 #define MO_RENDEROBJECT_TEXTURE3D       "Texture3d"
 #define MO_RENDEROBJECT_TARGET          "Target"
@@ -247,6 +248,37 @@ class MO_FG_DECLARE RRenderShader{
 public:
    static ERenderShader Parse(TCharC* pValue, ERenderShader shaderCd = ERenderShader_Unknown);
    static TCharC* Format(ERenderShader shaderCd);
+};
+
+//============================================================
+// <T>‰÷»æ≥Ã–Úª∫≥Â¿‡–Õ°£</T>
+//============================================================
+enum ERenderShaderBuffer{
+   ERenderShaderBuffer_Unknown,
+   ERenderShaderBuffer_Global,
+   ERenderShaderBuffer_GlobalStatic,
+   ERenderShaderBuffer_GlobalDynamic,
+   ERenderShaderBuffer_Technique,
+   ERenderShaderBuffer_TechniqueStatic,
+   ERenderShaderBuffer_TechniqueDynamic,
+   ERenderShaderBuffer_Effect,
+   ERenderShaderBuffer_EffectStatic,
+   ERenderShaderBuffer_EffectDynamic,
+   ERenderShaderBuffer_Renderable,
+   ERenderShaderBuffer_RenderableStatic,
+   ERenderShaderBuffer_RenderableDynamic,
+   ERenderShaderBuffer_Count,
+};
+
+//============================================================
+// <T>‰÷»æ≥Ã–Úª∫≥Âπ§æﬂ°£</T>
+//============================================================
+class MO_FG_DECLARE RRenderShaderBuffer{
+public:
+   static ERenderShaderBuffer Parse(TCharC* pValue, ERenderShaderBuffer bufferCd = ERenderShaderBuffer_Unknown);
+   static ERenderShaderBuffer ParseGroup(ERenderShaderBuffer bufferCd);
+   static TInt ParseSlot(ERenderShaderBuffer bufferCd);
+   static TCharC* Format(ERenderShaderBuffer formatCd);
 };
 
 //============================================================

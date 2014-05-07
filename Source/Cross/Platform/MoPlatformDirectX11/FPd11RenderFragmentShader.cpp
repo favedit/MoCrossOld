@@ -41,11 +41,17 @@ TResult FPd11RenderFragmentShader::Compile(TCharC* pSource){
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
    FRenderCapability* pCapability = pRenderDevice->Capability();
    TCharC* pShaderVersion = pCapability->ShaderFragmentVersion();
-   // 上传代码
+   // 设置标志
+   //TUint32 shaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
+   TUint32 shaderFlags = 0;
+#ifdef _MO_DEBUG
+    shaderFlags |= D3DCOMPILE_DEBUG;
+#endif // _MO_DEBUG
+    // 上传代码
    TInt length = RString::Length(pSource);
    ID3D10Blob* piError = NULL;
    HRESULT shaderResult = S_OK;
-   HRESULT dxResult = D3DX11CompileFromMemory(pSource, length, NULL, NULL, NULL, "main", pShaderVersion, 0, 0, NULL, &_piData, &piError, &shaderResult);
+   HRESULT dxResult = D3DX11CompileFromMemory(pSource, length, NULL, NULL, NULL, "main", pShaderVersion, shaderFlags, 0, NULL, &_piData, &piError, &shaderResult);
    if(FAILED(dxResult) || FAILED(shaderResult)){
       TCharC* pBuffer = (TCharC*)piError->GetBufferPointer();
       MO_ERROR("Compile from memory failure.\n%s", pBuffer);

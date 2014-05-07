@@ -54,7 +54,7 @@
     <OutDir>$(ProjectDir)..\..\..\..\..\Build\Debug_x86\</OutDir>
     <TargetName>$(ProjectName)D</TargetName>
     <IncludePath>$(ProjectDir)..\..\..\..\Reference\Include\Windows-x86;$(ProjectDir)..\..\..\..\Reference\DxSDK\Include;$(ProjectDir)..\..\..\..\Library\LibLzma;$(ProjectDir)..\..\..\..\Library\LibJpeg;$(ProjectDir)..\..\..\..\Library\LibFreeType;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureLogger;$(ProjectDir)..\..\..\Feature\MoFeatureInput;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Feature\MoFeatureScript;$(ProjectDir)..\..\..\Engine\MoEngine;$(ProjectDir)..\..\..\Engine\MoEngine2d;$(ProjectDir)..\..\..\Engine\MoEngine3d;$(ProjectDir)..\..\..\Engine\MoEngineRender;$(ProjectDir)..\..\..\Engine\MoEngineFace;$(ProjectDir)..\..\..\Platform\MoPlatformOpenGL;$(ProjectDir)..\..\..\Platform\MoPlatformOpenGLES2;$(ProjectDir)..\..\..\Platform\MoPlatformDirectX10;$(ProjectDir)..\..\..\Platform\MoPlatformDirectX11;$(ProjectDir)..\..\..\Platform\MoPlatformWindows;$(ProjectDir)..\..\..\Game\MoGameEngine;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\..\..\..\Reference\Library\Windows-x86\;$(ProjectDir)..\..\..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)..\..\..\..\Reference\Library\Windows-x86\;$(ProjectDir)..\..\..\..\..\Build\Debug_x86\;$(ProjectDir)..\..\..\..\Reference\DxSDK\Lib\x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -73,7 +73,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;LibLzmaD.lib;LibJpegD.lib;LibFreeTypeD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureLoggerD.lib;MoFeatureInputD.lib;MoFeatureGraphicD.lib;MoFeatureResourceD.lib;MoFeatureParticleD.lib;MoEngineD.lib;MoEngine2dD.lib;MoEngine3dD.lib;MoEngineRenderD.lib;MoEngineFaceD.lib;MoPlatformOpenGLD.lib;MoPlatformOpenGLES2D.lib;MoPlatformDirectX10D.lib;MoPlatformDirectX11D.lib;MoPlatformWindowsD.lib;MoGameEngineD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dxgi.lib;dxguid.lib;d3d11.lib;d3dx11.lib;d3dcompiler.lib;opengl32.lib;glu32.lib;glew32.lib;LibLzmaD.lib;LibJpegD.lib;LibFreeTypeD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureLoggerD.lib;MoFeatureInputD.lib;MoFeatureGraphicD.lib;MoFeatureResourceD.lib;MoFeatureParticleD.lib;MoEngineD.lib;MoEngine2dD.lib;MoEngine3dD.lib;MoEngineRenderD.lib;MoEngineFaceD.lib;MoPlatformOpenGLD.lib;MoPlatformOpenGLES2D.lib;MoPlatformDirectX10D.lib;MoPlatformDirectX11D.lib;MoPlatformWindowsD.lib;MoGameEngineD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:MSVCRT %(AdditionalOptions)</AdditionalOptions>
       <HeapReserveSize>64000000</HeapReserveSize>
       <StackReserveSize>16000000</StackReserveSize>

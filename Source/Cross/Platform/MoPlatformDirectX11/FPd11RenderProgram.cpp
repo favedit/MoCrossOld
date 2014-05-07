@@ -126,7 +126,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
       pBuffer->SetDataLength(bufferDescriptor.Size);
       pBuffer->SetShaderCd(shaderCd);
       pBuffer->Setup();
-      _buffers.Push(pBuffer);
+      BufferPush(pBuffer);
       //............................................................
       // 获得参数信息
       TInt variableCount = bufferDescriptor.Variables;
@@ -254,34 +254,34 @@ TResult FPd11RenderProgram::Link(){
    ID3D10Blob* piShaderData = pVertexShader->NativeData();
    //............................................................
    // 创建输入描述
-   //TInt position = 0;
-   //GRenderShaderAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
-   //while(attributeIterator.Next()){
-   //   FRenderShaderAttribute* pAttribute = *attributeIterator;
-   //   if(pAttribute->IsStatusUsed()){
-   //      ERenderShaderAttributeFormat formatCd = pAttribute->FormatCd();
-   //      D3D11_INPUT_ELEMENT_DESC inputElement;
-   //      RType<D3D11_INPUT_ELEMENT_DESC>::Clear(&inputElement);
-   //      inputElement.SemanticName = pAttribute->Name();
-   //      inputElement.SemanticIndex = pAttribute->Index();
-   //      inputElement.Format = RDirectX11::ConvertAttrbuteFormat(formatCd) ;
-   //      inputElement.AlignedByteOffset = position;
-   //      inputElement.InputSlot = pAttribute->Slot();
-   //      inputElement.AlignedByteOffset = 0;
-   //      inputElement.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-   //      inputElements.Push(inputElement);
-   //      position += RRenderShaderAttributeFormat::CalculateSize(formatCd);
-   //   }
-   //}
-   //// 创建输入层次
-   //HRESULT dxResult = pRenderDevice->NativeDevice()->CreateInputLayout(
-   //      inputElements.Memory(), inputElements.Length(),
-   //      piShaderData->GetBufferPointer(), piShaderData->GetBufferSize(),
-   //      &_piInputLayout);
-   //if(FAILED(dxResult)){
-   //   MO_FATAL("Create input layout failure.");
-   //   return EFailure;
-   //}
+   TInt position = 0;
+   GRenderShaderAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
+   while(attributeIterator.Next()){
+      FRenderShaderAttribute* pAttribute = *attributeIterator;
+      if(pAttribute->IsStatusUsed()){
+         ERenderShaderAttributeFormat formatCd = pAttribute->FormatCd();
+         D3D11_INPUT_ELEMENT_DESC inputElement;
+         RType<D3D11_INPUT_ELEMENT_DESC>::Clear(&inputElement);
+         inputElement.SemanticName = pAttribute->Name();
+         inputElement.SemanticIndex = pAttribute->Index();
+         inputElement.Format = RDirectX11::ConvertAttrbuteFormat(formatCd) ;
+         inputElement.AlignedByteOffset = position;
+         inputElement.InputSlot = pAttribute->Slot();
+         inputElement.AlignedByteOffset = 0;
+         inputElement.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+         inputElements.Push(inputElement);
+         position += RRenderShaderAttributeFormat::CalculateSize(formatCd);
+      }
+   }
+   // 创建输入层次
+   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateInputLayout(
+         inputElements.Memory(), inputElements.Length(),
+         piShaderData->GetBufferPointer(), piShaderData->GetBufferSize(),
+         &_piInputLayout);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create input layout failure.");
+      return EFailure;
+   }
    //............................................................
    MO_INFO("Link program success.");
    return resultCd;
@@ -293,18 +293,12 @@ TResult FPd11RenderProgram::Link(){
 // @return 处理结果
 //============================================================
 TResult FPd11RenderProgram::DrawBegin(){
-   MO_CHECK(_pDevice, return ENull);
-   FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
-   //for(TInt n = 0; n < inputElements.Length(); n++){
-   //   D3D11_INPUT_ELEMENT_DESC& inputElement = inputElements[n];
-   //   MO_DEBUG("Input element %s-%d slot=%d, offset=%d", inputElement.SemanticName, inputElement.SemanticIndex, inputElement.InputSlot, inputElement.AlignedByteOffset);
-   //}
-   //............................................................
-   // 提交缓冲
    TResult resultCd = FRenderProgram::DrawBegin();
-   TInt count = _buffers.Count();
-   for(TInt n = 0; n < count; n++){
-      FPd11RenderShaderBuffer* pBuffer = (FPd11RenderShaderBuffer*)_buffers.Get(n);
+   //............................................................
+   // 绑定缓冲
+   GRenderShaderBufferDictionary::TIterator iterator = _buffers.Iterator();
+   while(iterator.Next()){
+      FPd11RenderShaderBuffer* pBuffer = iterator->Convert<FPd11RenderShaderBuffer>();
       pBuffer->Bind();
    }
    return resultCd;

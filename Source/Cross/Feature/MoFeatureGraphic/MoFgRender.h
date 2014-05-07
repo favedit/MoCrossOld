@@ -555,6 +555,7 @@ class MO_FG_DECLARE FRenderLayout : public FRenderObject
    MO_CLASS_DECLARE_INHERITS(FRenderLayout, FRenderObject);
 protected:
    FRenderProgram* _pProgram;
+   FRenderable* _pRenderable;
    GRenderLayoutElementPtrs _elements;
 public:
    FRenderLayout();
@@ -569,6 +570,16 @@ public:
    // <T>设置程序。</T>
    MO_INLINE void SetProgram(FRenderProgram* pProgram){
       _pProgram = pProgram;
+   }
+   //------------------------------------------------------------
+   // <T>获得渲染对象。</T>
+   MO_INLINE FRenderable* Renderable(){
+      return _pRenderable;
+   }
+   //------------------------------------------------------------
+   // <T>设置渲染对象。</T>
+   MO_INLINE void SetRenderable(FRenderable* pRenderable){
+      _pRenderable = pRenderable;
    }
    //------------------------------------------------------------
    // <T>获得缓冲。</T>
@@ -912,6 +923,7 @@ public:
 //------------------------------------------------------------
 typedef MO_FG_DECLARE GPtr<FRenderShaderBuffer> GRenderShaderBufferPtr;
 typedef MO_FG_DECLARE GPtrs<FRenderShaderBuffer> GRenderShaderBufferPtrs;
+typedef MO_FG_DECLARE GPtrDictionary<FRenderShaderBuffer> GRenderShaderBufferDictionary;
 
 //============================================================
 // <T>渲染器参数。</T>
@@ -1360,7 +1372,7 @@ class MO_FG_DECLARE FRenderProgram :
 {
    MO_CLASS_ABSTRACT_DECLARE_INHERITS(FRenderProgram, FRenderObject);
 protected:
-   GRenderShaderBufferPtrs _buffers;
+   GRenderShaderBufferDictionary _buffers;
    GRenderShaderParameterDictionary _parameters;
    GRenderShaderAttributeDictionary _attributes;
    GRenderShaderSamplerDictionary _samplers;
@@ -1372,8 +1384,13 @@ public:
 public:
    //------------------------------------------------------------
    // <T>获得渲染缓冲集合。</T>
-   MO_INLINE GRenderShaderBufferPtrs& Buffers(){
+   MO_INLINE GRenderShaderBufferDictionary& Buffers(){
       return _buffers;
+   }
+   //------------------------------------------------------------
+   // <T>根据名称查找渲染缓冲。</T>
+   MO_INLINE FRenderShaderBuffer* BufferFind(TCharC* pName){
+      return _buffers.Find(pName);
    }
    //------------------------------------------------------------
    // <T>获得渲染参数集合。</T>
@@ -1416,7 +1433,7 @@ public:
       return _pFragmentShader;
    }
 public:
-   FRenderShaderBuffer* BufferFind(TCharC* pName);
+   TResult BufferPush(FRenderShaderBuffer* pBuffer);
    GRenderShaderParameterDictionary& Parameters(ERenderShader shaderCd);
    FRenderShaderParameter* ParameterFind(ERenderShader shaderCd, TCharC* pName);
    TResult ParameterPush(FRenderShaderParameter* pParameter);
