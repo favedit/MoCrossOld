@@ -41,10 +41,10 @@
    <Attribute name='TEXCOORD3'              linker='Binormal'/>
    <Attribute name='TEXCOORD4'              linker='Tangent'/>
    <!-- ------------------------------------------------------------ -->
-   <Sampler name='ft_diffuse'               linker='Diffuse'/>
-   <Sampler name='ft_normal'                linker='Normal'/>
-   <Sampler name='ft_specular'              linker='Specular'/>
-   <Sampler name='ft_light'                 linker='Light'/>
+   <Sampler name='ft_diffuse'               linker='PackDiffuse'/>
+   <Sampler name='ft_normal'                linker='PackNormal'/>
+   <Sampler name='ft_specular'              linker='PackSpecular'/>
+   <Sampler name='ft_light'                 linker='PackLight'/>
    <Sampler name='ft_environment'           linker='Environment'/>
    <!-- ------------------------------------------------------------ -->
    <Source name='vertex'><![CDATA[
@@ -146,7 +146,6 @@ cbuffer Global : register(b<shader:write source='parameter.buffer.global'/>)
 }
 
 cbuffer EffectCamera : register(b<shader:write source='parameter.buffer.effectcamera'/>){
-   float3 fc_camera_position;
 }
 
 cbuffer EffectLight : register(b<shader:write source='parameter.buffer.effectlight'/>){
