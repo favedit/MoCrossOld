@@ -100,13 +100,15 @@ TResult FColorAutomaticEffect::DrawGroup(FRenderRegion* pRegion, TInt offset, TI
    FRenderable* pRenderable = pRegion->VisibleRenderables()->Get(offset);
    FMaterial* pMaterial = pRenderable->Material();
    TCharC* pMaerialName = pMaterial->Name();
-   BindConstFloat4(EEffectParameter_FragmentColor,         pMaterial->Color().min, pMaterial->Color().max, pMaterial->Color().rate, pMaterial->Color().merge);
-   BindConstFloat4(EEffectParameter_FragmentAlpha,         pMaterial->Alpha().base, pMaterial->Alpha().rate, pMaterial->Alpha().level, pMaterial->Alpha().merge);
-   BindConstColor4(EEffectParameter_FragmentAmbientColor,  pMaterial->AmbientColor());
-   BindConstColor4(EEffectParameter_FragmentDiffuseColor,  pMaterial->DiffuseColor());
-   BindConstColor4(EEffectParameter_FragmentSpecularColor, pMaterial->SpecularColor());
-   BindConstFloat4(EEffectParameter_FragmentSpecular,      pMaterial->SpecularInfo().base, pMaterial->SpecularInfo().rate, pMaterial->SpecularInfo().average, pMaterial->SpecularInfo().shadow);
-   BindConstColor4(EEffectParameter_FragmentReflectColor,  pMaterial->ReflectColor());
+   BindConstFloat4(EEffectParameter_FragmentColor,             pMaterial->Color().min, pMaterial->Color().max, pMaterial->Color().rate, pMaterial->Color().merge);
+   BindConstFloat4(EEffectParameter_FragmentAlpha,             pMaterial->Alpha().base, pMaterial->Alpha().rate, pMaterial->Alpha().level, pMaterial->Alpha().merge);
+   BindConstColor4(EEffectParameter_FragmentAmbientColor,      pMaterial->AmbientColor());
+   BindConstColor4(EEffectParameter_FragmentDiffuseColor,      pMaterial->DiffuseColor());
+   BindConstColor4(EEffectParameter_FragmentSpecularColor,     pMaterial->SpecularColor());
+   BindConstFloat4(EEffectParameter_FragmentSpecular,          pMaterial->SpecularInfo().base, pMaterial->SpecularInfo().rate, pMaterial->SpecularInfo().average, pMaterial->SpecularInfo().shadow);
+   BindConstColor4(EEffectParameter_FragmentSpecularViewColor, pMaterial->SpecularViewColor());
+   BindConstFloat4(EEffectParameter_FragmentSpecularView,      pMaterial->SpecularViewInfo().base, pMaterial->SpecularViewInfo().rate, pMaterial->SpecularViewInfo().average, pMaterial->SpecularViewInfo().shadow);
+   BindConstColor4(EEffectParameter_FragmentReflectColor,      pMaterial->ReflectColor());
    //............................................................
    TResult resultCd = FAutomaticEffect::DrawGroup(pRegion, offset, count);
    //............................................................

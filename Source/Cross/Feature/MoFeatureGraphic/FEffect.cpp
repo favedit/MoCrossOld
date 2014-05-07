@@ -79,6 +79,7 @@ TResult FEffect::LoadConfig(FXmlNode* pConfig){
          FRenderShaderParameter* pParameter = _renderDevice->CreateObject<FRenderShaderParameter>(MO_RENDEROBJECT_SHADERPARAMETER);
          pParameter->LoadConfig(pNode);
          _program->ParameterPush(pParameter);
+         //MO_DEBUG("Build shader parameter. (name=%s, format=%d)", pParameter->Name(), pParameter->FormatCd());
          continue;
       }
       //............................................................

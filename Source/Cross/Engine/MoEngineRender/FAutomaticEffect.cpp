@@ -89,6 +89,7 @@ TResult FAutomaticEffect::BindDescriptors(){
             pParameter->SetShaderCd(shaderCd);
             pParameter->SetFormatCd(formatCd);
             _pParameters->Set(parameterCd, pParameter);
+            MO_DEBUG("Build shader parameter. (code=%d, name=%s, format=%d)", parameterCd, pParameter->Name(), pParameter->FormatCd());
          }
       }
    }

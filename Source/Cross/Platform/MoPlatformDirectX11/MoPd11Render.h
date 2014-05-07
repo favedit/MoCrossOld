@@ -355,16 +355,22 @@ class MO_PD11_DECLARE FPd11RenderCubeTexture : public FRenderCubeTexture
 {
    MO_CLASS_DECLARE_INHERITS(FPd11RenderCubeTexture, FRenderFlatTexture);
 protected:
-   //GLuint _textureId;
+   ID3D11Texture2D* _piTexture;
+   ID3D11ShaderResourceView* _piView;
 public:
    FPd11RenderCubeTexture();
    MO_ABSTRACT ~FPd11RenderCubeTexture();
 public:
-   ////------------------------------------------------------------
-   //// <T>获得代码。</T>
-   //MO_INLINE GLuint TextureId(){
-   //   return _textureId;
-   //}
+   //------------------------------------------------------------
+   // <T>获得本地纹理。</T>
+   MO_INLINE ID3D11Texture2D* NativeTexture(){
+      return _piTexture;
+   }
+   //------------------------------------------------------------
+   // <T>获得本地视图。</T>
+   MO_INLINE ID3D11ShaderResourceView* NativeView(){
+      return _piView;
+   }
 public:
    MO_OVERRIDE TResult OnSetup();
 public:

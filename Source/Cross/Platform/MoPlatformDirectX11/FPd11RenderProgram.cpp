@@ -148,7 +148,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
          FPd11RenderShaderParameter* pParameter = (FPd11RenderShaderParameter*)ParameterFind(variableDescriptor.Name);
          //MO_CHECK(pParameter, continue);
          if(pParameter == NULL){
-            MO_WARN("Shader parameter is not found. (name=%s)", variableDescriptor.Name);
+            MO_FATAL("Shader parameter is not found. (name=%s)", variableDescriptor.Name);
          }else{
             pParameter->SetShader(pShader);
             pParameter->SetBuffer(pBuffer);

@@ -83,7 +83,11 @@ TResult REffectParameter::Parse(TCharC* pValue, EEffectParameter& parameterCd, E
       formatCd = ERenderShaderParameterFormat_Float4;
    }
    //............................................................
-   else if(code.Equals("fragmentcameraposition")){
+   else if(code.Equals("fragmentcamera")){
+      parameterCd = EEffectParameter_FragmentCamera;
+      shaderCd = ERenderShader_Fragment;
+      formatCd = ERenderShaderParameterFormat_Float4;
+   }else if(code.Equals("fragmentcameraposition")){
       parameterCd = EEffectParameter_FragmentCameraPosition;
       shaderCd = ERenderShader_Fragment;
       formatCd = ERenderShaderParameterFormat_Float4;
@@ -91,6 +95,14 @@ TResult REffectParameter::Parse(TCharC* pValue, EEffectParameter& parameterCd, E
       parameterCd = EEffectParameter_FragmentCameraDirection;
       shaderCd = ERenderShader_Fragment;
       formatCd = ERenderShaderParameterFormat_Float4;
+   }else if(code.Equals("fragmentlightmodelmatrix4x4")){
+      parameterCd = EEffectParameter_FragmentLightModelMatrix4x4;
+      shaderCd = ERenderShader_Fragment;
+      formatCd = ERenderShaderParameterFormat_Float4x4;
+   }else if(code.Equals("fragmentlightmodelviewprojectrionmatrix4x4")){
+      parameterCd = EEffectParameter_FragmentLightModelViewProjectrionMatrix4x4;
+      shaderCd = ERenderShader_Fragment;
+      formatCd = ERenderShaderParameterFormat_Float4x4;
    }else if(code.Equals("fragmentlightposition")){
       parameterCd = EEffectParameter_FragmentLightPosition;
       shaderCd = ERenderShader_Fragment;
