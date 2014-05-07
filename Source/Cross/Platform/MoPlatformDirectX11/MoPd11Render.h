@@ -138,7 +138,7 @@ public:
       _piBuffer = piBuffer;
    }
 public:
-   MO_OVERRIDE TResult Setup();
+   MO_OVERRIDE TResult OnSetup();
 public:
    MO_OVERRIDE TResult Commit();
    MO_OVERRIDE TResult Bind();
@@ -265,9 +265,6 @@ public:
    MO_OVERRIDE TResult Setup();
    MO_OVERRIDE TResult Build();
    MO_OVERRIDE TResult Link();
-public:
-   MO_OVERRIDE TResult DrawBegin();
-   MO_OVERRIDE TResult DrawEnd();
 public:
    MO_OVERRIDE TResult Suspend();
    MO_OVERRIDE TResult Resume();
@@ -462,6 +459,7 @@ public:
    MO_OVERRIDE TResult BindConstFloat4(ERenderShader shaderCd, TInt slot, TFloat x = 0.0f, TFloat y = 0.0f, TFloat z = 0.0f, TFloat w = 1.0f);
    MO_OVERRIDE TResult BindConstMatrix3x3(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix);
    MO_OVERRIDE TResult BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix);
+   MO_OVERRIDE TResult BindShaderBuffer(FRenderShaderBuffer* pBuffer);
    MO_OVERRIDE TResult BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVertexBuffer, TInt offset, ERenderVertexFormat formatCd);
    MO_OVERRIDE TResult BindTexture(TInt slot, FRenderTexture* pTexture);
    MO_OVERRIDE TResult DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt offset, TInt count);

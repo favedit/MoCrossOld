@@ -23,8 +23,8 @@ FPd11RenderShaderBuffer::~FPd11RenderShaderBuffer(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd11RenderShaderBuffer::Setup(){
-   TResult resultCd = FRenderShaderBuffer::Setup();
+TResult FPd11RenderShaderBuffer::OnSetup(){
+   TResult resultCd = FRenderShaderBuffer::OnSetup();
    MO_CHECK(_pDevice, return ENull);
    MO_CHECK(_dataLength > 0, return EOutRange);
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
@@ -64,7 +64,7 @@ TResult FPd11RenderShaderBuffer::Commit(){
    TByte* pData = _pData->Memory();
    TInt length = _pData->Length();
    pRenderDevice->NativeContext()->UpdateSubresource(_piBuffer, 0, NULL, pData, 0, 0);
-   MO_DEBUG("Update sub resource. (name=%s, memory=0x%08X, length=%d)", (TCharC*)_name, pData, length);
+   //MO_DEBUG("Update sub resource. (name=%s, memory=0x%08X, length=%d)", (TCharC*)_name, pData, length);
    //GetErrorInfo();
    return resultCd;
 }
@@ -75,20 +75,31 @@ TResult FPd11RenderShaderBuffer::Commit(){
 // @return 处理结果
 //============================================================
 TResult FPd11RenderShaderBuffer::Bind(){
+   // 检查是否变更
+   if(!_statusChanged){
+      return EContinue;
+   }
+   //............................................................
    MO_CHECK(_pDevice, return ENull);
    MO_CHECK(_slot >= 0, return EOutRange);
    TResult resultCd = ESuccess;
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
    //............................................................
    // 更新数据
-   if(_shaderCd == ERenderShader_Vertex){
+   if((_groupCd == ERenderShaderBuffer_Global) || (_groupCd == ERenderShaderBuffer_Technique) || (_groupCd == ERenderShaderBuffer_Effect)){
       pRenderDevice->NativeContext()->VSSetConstantBuffers(_slot, 1, &_piBuffer);
-      MO_DEBUG("Set vertex constant buffer. (name=%s, slot=%d, buffer=0x%08X)", (TCharC*)_name, _slot, _piBuffer);
-   }else if(_shaderCd == ERenderShader_Fragment){
       pRenderDevice->NativeContext()->PSSetConstantBuffers(_slot, 1, &_piBuffer);
-      MO_DEBUG("Set pixel constant buffer. (name=%s, slot=%d, buffer=0x%08X)", (TCharC*)_name, _slot, _piBuffer);
+   }else if(_groupCd == ERenderShaderBuffer_Renderable){
+      // 更新显示相关
+      if(_shaderCd == ERenderShader_Vertex){
+         pRenderDevice->NativeContext()->VSSetConstantBuffers(_slot, 1, &_piBuffer);
+      }else if(_shaderCd == ERenderShader_Fragment){
+         pRenderDevice->NativeContext()->PSSetConstantBuffers(_slot, 1, &_piBuffer);
+      }else{
+         MO_FATAL("Render shader type is unknown. (shader=%d)", _shaderCd);
+      }
    }else{
-      MO_FATAL("Render shader type is unknown. (shader=%d)", _shaderCd);
+      MO_FATAL("Render shader group is unknown. (group=%d)", _groupCd);
    }
    return resultCd;
 }

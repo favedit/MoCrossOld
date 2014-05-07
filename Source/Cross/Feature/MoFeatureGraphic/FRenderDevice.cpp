@@ -227,6 +227,17 @@ FRenderObject* FRenderDevice::CreateObject(TCharC* pName){
 }
 
 //============================================================
+// <T>绑定渲染缓冲。</T>
+//
+// @param pBuffer 渲染缓冲
+// @return 处理结果
+//============================================================
+TResult FRenderDevice::BindShaderBuffer(FRenderShaderBuffer* pBuffer){
+   MO_FATAL_UNSUPPORT();
+   return ESuccess;
+}
+
+//============================================================
 // <T>绑定顶点流处理。</T>
 //
 // @param slot 插槽

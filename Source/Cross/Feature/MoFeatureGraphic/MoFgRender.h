@@ -858,8 +858,12 @@ class MO_FG_DECLARE FRenderShaderBuffer : public FRenderObject
    MO_CLASS_DECLARE_INHERITS(FRenderShaderBuffer, FRenderObject);
 protected:
    TString _name;
+   TString _linker;
+   ERenderShaderBuffer _groupCd;
+   ERenderShaderBuffer _bufferCd;
    TInt _dataLength;
-   TInt _statusChanged;
+   TBool _statusUsed;
+   TBool _statusChanged;
    FBytes* _pData;
    ERenderShader _shaderCd;
    TInt _slot;
@@ -878,6 +882,36 @@ public:
       _name = pName;
    }
    //------------------------------------------------------------
+   // <T>获得关联器。</T>
+   MO_INLINE TCharC* Linker(){
+      return _linker;
+   }
+   //------------------------------------------------------------
+   // <T>设置关联器。</T>
+   MO_INLINE void SetLinker(TCharC* pLinker){
+      _linker = pLinker;
+   }
+   //------------------------------------------------------------
+   // <T>获得分组类型。</T>
+   MO_INLINE ERenderShaderBuffer GroupCd(){
+      return _groupCd;
+   }
+   //------------------------------------------------------------
+   // <T>设置分组类型。</T>
+   MO_INLINE void SetGroupCd(ERenderShaderBuffer groupCd){
+      _groupCd = groupCd;
+   }
+   //------------------------------------------------------------
+   // <T>获得缓冲类型。</T>
+   MO_INLINE ERenderShaderBuffer BufferCd(){
+      return _bufferCd;
+   }
+   //------------------------------------------------------------
+   // <T>设置缓冲类型。</T>
+   MO_INLINE void SetBufferCd(ERenderShaderBuffer bufferCd){
+      _bufferCd = bufferCd;
+   }
+   //------------------------------------------------------------
    // <T>获得数据长度。</T>
    MO_INLINE TInt DataLength(){
       return _dataLength;
@@ -886,6 +920,16 @@ public:
    // <T>设置数据长度。</T>
    MO_INLINE void SetDataLength(TInt dataLength){
       _dataLength = dataLength;
+   }
+   //------------------------------------------------------------
+   // <T>获得状态是否被使用。</T>
+   MO_INLINE TBool IsStatusUsed(){
+      return _statusUsed;
+   }
+   //------------------------------------------------------------
+   // <T>设置状态是否被使用。</T>
+   MO_INLINE void SetStatusUsed(TBool statusUsed){
+      _statusUsed = statusUsed;
    }
    //------------------------------------------------------------
    // <T>获得数据。</T>
@@ -913,12 +957,14 @@ public:
       _slot = slot;
    }
 public:
-   MO_ABSTRACT TResult Setup();
+   MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);
+   MO_OVERRIDE TResult OnSetup();
 public:
    MO_ABSTRACT TResult Set(TInt slot, TAnyC* pData, TInt length);
 public:
    MO_ABSTRACT TResult Commit();
    MO_ABSTRACT TResult Update();
+   MO_ABSTRACT TResult Bind();
 };
 //------------------------------------------------------------
 typedef MO_FG_DECLARE GPtr<FRenderShaderBuffer> GRenderShaderBufferPtr;
@@ -1171,6 +1217,8 @@ protected:
    TString _source;
    TBool _statusUsed;
    TInt _slot;
+   ERenderSampler _samplerCd;
+   ERenderSampler _packCd;
 public:
    FRenderShaderSampler();
    MO_ABSTRACT ~FRenderShaderSampler();
@@ -1234,6 +1282,26 @@ public:
    // <T>设置插槽。</T>
    MO_INLINE void SetSlot(TInt slot){
       _slot = slot;
+   }
+   //------------------------------------------------------------
+   // <T>获得取样类型。</T>
+   MO_INLINE ERenderSampler SamplerCd(){
+      return _samplerCd;
+   }
+   //------------------------------------------------------------
+   // <T>设置取样类型。</T>
+   MO_INLINE void SetSamplerCd(ERenderSampler samplerCd){
+      _samplerCd = samplerCd;
+   }
+   //------------------------------------------------------------
+   // <T>获得打包类型。</T>
+   MO_INLINE ERenderSampler PackCd(){
+      return _packCd;
+   }
+   //------------------------------------------------------------
+   // <T>设置打包类型。</T>
+   MO_INLINE void SetPackCd(ERenderSampler packCd){
+      _packCd = packCd;
    }
 public:
    MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);
@@ -2006,6 +2074,7 @@ public:
    MO_ABSTRACT TResult BindConstMatrix4x3(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d* pMatrix, TInt count);
    MO_ABSTRACT TResult BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d* pMatrix, TInt count);
 public:
+   MO_ABSTRACT TResult BindShaderBuffer(FRenderShaderBuffer* pBuffer);
    MO_ABSTRACT TResult BindVertexStream(TInt slot, FRenderVertexStream* pStream);
 public:
    MO_ABSTRACT TResult SetLayout(FRenderLayout* pLayout);

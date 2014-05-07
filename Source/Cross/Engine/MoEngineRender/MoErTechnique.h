@@ -88,8 +88,6 @@ public:
    FColorAutomaticEffect();
    MO_ABSTRACT ~FColorAutomaticEffect();
 public:
-   MO_OVERRIDE TResult OnSetup();
-public:
    MO_OVERRIDE TResult DrawRenderable(FRenderRegion* pRegion, FRenderable* pRenderable);
    MO_OVERRIDE TResult DrawInstanceRenderable(FRenderRegion* pRegion, FInstanceRenderable* pInstanceRenderable, TInt offset, TInt count);
    MO_OVERRIDE TResult DrawGroup(FRenderRegion* pRegion, TInt offset, TInt count);

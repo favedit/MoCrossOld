@@ -25,10 +25,10 @@ ERenderShaderBuffer RRenderShaderBuffer::Parse(TCharC* pValue, ERenderShaderBuff
          return ERenderShaderBuffer_EffectStatic;
       }else if(code.Equals("effectdynamic")){
          return ERenderShaderBuffer_EffectDynamic;
-      }else if(code.Equals("renderablestatic")){
-         return ERenderShaderBuffer_RenderableStatic;
       }else if(code.Equals("renderabledynamic")){
          return ERenderShaderBuffer_RenderableDynamic;
+      }else if(code.Equals("renderablematerial")){
+         return ERenderShaderBuffer_RenderableMaterial;
       }else{
          MO_STATIC_FATAL("Parse shader buffer type failure. (value=%s)", pValue);
       }
@@ -57,8 +57,8 @@ ERenderShaderBuffer RRenderShaderBuffer::ParseGroup(ERenderShaderBuffer bufferCd
       case ERenderShaderBuffer_EffectDynamic:
          return ERenderShaderBuffer_Effect;
       case ERenderShaderBuffer_Renderable:
-      case ERenderShaderBuffer_RenderableStatic:
       case ERenderShaderBuffer_RenderableDynamic:
+      case ERenderShaderBuffer_RenderableMaterial:
          return ERenderShaderBuffer_Renderable;
       default:
          MO_STATIC_FATAL("Parse shader buffer group failure. (buffer=%d)", bufferCd);
@@ -86,9 +86,9 @@ TInt RRenderShaderBuffer::ParseSlot(ERenderShaderBuffer bufferCd){
          return 4;
       case ERenderShaderBuffer_EffectDynamic:
          return 5;
-      case ERenderShaderBuffer_RenderableStatic:
-         return 6;
       case ERenderShaderBuffer_RenderableDynamic:
+         return 6;
+      case ERenderShaderBuffer_RenderableMaterial:
          return 7;
       default:
          MO_STATIC_FATAL("Parse shader buffer group failure. (buffer=%d)", bufferCd);
@@ -116,10 +116,10 @@ TCharC* RRenderShaderBuffer::Format(ERenderShaderBuffer bufferCd){
          return "EffectStatic";
       case ERenderShaderBuffer_EffectDynamic:
          return "EffectDynamic";
-      case ERenderShaderBuffer_RenderableStatic:
-         return "RenderableStatic";
       case ERenderShaderBuffer_RenderableDynamic:
          return "RenderableDynamic";
+      case ERenderShaderBuffer_RenderableMaterial:
+         return "RenderableMaterial";
    }
    return "Unknown";
 }

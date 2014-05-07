@@ -18,30 +18,6 @@ FColorAutomaticEffect::~FColorAutomaticEffect(){
 }
 
 //============================================================
-// <T>配置处理。</T>
-//============================================================
-TResult FColorAutomaticEffect::OnSetup(){
-   FAutomaticEffect::OnSetup();
-   //// 注册顶点常量
-   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexModelMatrix,          "vc_model_matrix");
-   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexViewProjectionMatrix, "vc_view_projection_matrix");
-   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexCameraPosition,       "vc_camera_position");
-   //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexLightDirection,       "vc_light_direction");
-   //// 注册像素常量
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentCameraPosition,     "fc_camera_position");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentLightDirection,     "fc_light_direction");
-   //// 注册材质常量
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentColor,              "fc_color");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentAlpha,              "fc_alpha");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentAmbientColor,       "fc_ambient_color");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentDiffuseColor,       "fc_diffuse_color");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentSpecularColor,      "fc_specular_color");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentSpecular,           "fc_specular");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentReflectColor,       "fc_reflect_color");
-   return ESuccess;
-}
-
-//============================================================
 // <T>绘制处理。</T>
 //============================================================
 TResult FColorAutomaticEffect::DrawRenderable(FRenderRegion* pRegion, FRenderable* pRenderable){
@@ -52,7 +28,7 @@ TResult FColorAutomaticEffect::DrawRenderable(FRenderRegion* pRegion, FRenderabl
    SMatrix3d modelMatrix;
    pRenderable->CalculateModelMatrix(modelMatrix);
    modelMatrix.Append(pRenderable->Matrix());
-   //BindConstMatrix4x4(EEffectParameter_VertexModelMatrix4x4, &modelMatrix);
+   BindConstMatrix4x4(EEffectParameter_VertexModelMatrix4x4, &modelMatrix);
    BindConstMatrix4x4(EEffectParameter_VertexModelViewProjectionMatrix4x4, &modelMatrix);
    //............................................................
    // 设定属性集合
@@ -102,11 +78,15 @@ TResult FColorAutomaticEffect::DrawGroup(FRenderRegion* pRegion, TInt offset, TI
    // 计算变换矩阵
    FRenderView* pView = pRegion->ActiveView();
    FCamera* pCamera = pView->Camera();
-   _vpMatrix.Assign(pCamera->Matrix());
+   SFloatMatrix3d& viewMatrix = pCamera->Matrix();
+   _vpMatrix.Assign(viewMatrix);
    FProjection* pProjection = pCamera->Projection();
-   _vpMatrix.Append(pProjection->Matrix());
+   SFloatMatrix3d& projectionMatrix = pProjection->Matrix();
+   _vpMatrix.Append(projectionMatrix);
    //............................................................
    // 设置常量
+   BindConstMatrix4x4(EEffectParameter_VertexViewMatrix4x4, &viewMatrix);
+   BindConstMatrix4x4(EEffectParameter_VertexProjectionMatrix4x4, &projectionMatrix);
    BindConstMatrix4x4(EEffectParameter_VertexViewProjectionMatrix4x4, &_vpMatrix);
    BindConstPosition3(EEffectParameter_VertexCameraPosition, pCamera->Position());
    BindConstPosition3(EEffectParameter_FragmentCameraPosition, pCamera->Position());

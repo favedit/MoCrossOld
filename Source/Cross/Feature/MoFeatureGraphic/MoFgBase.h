@@ -265,8 +265,8 @@ enum ERenderShaderBuffer{
    ERenderShaderBuffer_EffectStatic,
    ERenderShaderBuffer_EffectDynamic,
    ERenderShaderBuffer_Renderable,
-   ERenderShaderBuffer_RenderableStatic,
    ERenderShaderBuffer_RenderableDynamic,
+   ERenderShaderBuffer_RenderableMaterial,
    ERenderShaderBuffer_Count,
 };
 

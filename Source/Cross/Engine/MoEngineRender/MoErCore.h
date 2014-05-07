@@ -142,7 +142,7 @@ enum EEffectSampler{
 //============================================================
 // <T>效果取样器类型工具。</T>
 //============================================================
-class MO_FG_DECLARE REffectSampler{
+class MO_ER_DECLARE REffectSampler{
 public:
    static EEffectSampler Parse(TCharC* pValue, EEffectSampler samplerCd = EEffectSampler_Diffuse);
    static TCharC* Format(EEffectSampler samplerCd);

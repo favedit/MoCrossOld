@@ -44,64 +44,30 @@ TResult FPd11RenderLayout::OnSetup(){
       if(!pAttribute->IsStatusUsed()){
          continue;
       }
+      //............................................................
       ERenderVertexBuffer bufferCd = (ERenderVertexBuffer)pAttribute->Code();
       ERenderShaderAttributeFormat formatCd = pAttribute->FormatCd();
       FRenderVertexStream* pStream = pVertexStreams->FindStream(bufferCd);
+      FRenderLayoutElement* pElement = FRenderLayoutElement::InstanceCreate();
+      pElement->SetAttribute(pAttribute);
+      pElement->SetStream(pStream);
+      Push(pElement);
+      //............................................................
+      // 设置缓冲信息
       if(pStream != NULL){
          FPd11RenderVertexBuffer* pVertexBuffer = pStream->VertexBuffer()->Convert<FPd11RenderVertexBuffer>();
-         FRenderLayoutElement* pElement = FRenderLayoutElement::InstanceCreate();
-         pElement->SetAttribute(pAttribute);
-         pElement->SetStream(pStream);
-         Push(pElement);
-         // 设置信息
-         D3D11_INPUT_ELEMENT_DESC inputElement = {0};
-         inputElement.SemanticName = pAttribute->Name();
-         inputElement.SemanticIndex = pAttribute->Index();
-         inputElement.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-         inputElement.Format = RDirectX11::ConvertAttrbuteFormat(formatCd) ;
-         inputElement.InputSlot = 0;
-         inputElement.AlignedByteOffset = position;
-         _inputElements.Push(inputElement);
-         // 修正信息
          _piBuffer[index] = pVertexBuffer->NativeBuffer();
          _strides[index] = pStream->Stride();
          _offsets[index] = pStream->Offset();
-         position += RRenderShaderAttributeFormat::CalculateSize(formatCd);
       }else{
-         FRenderLayoutElement* pElement = FRenderLayoutElement::InstanceCreate();
-         pElement->SetAttribute(pAttribute);
-         pElement->SetStream(NULL);
-         Push(pElement);
-         // 设置信息
-         D3D11_INPUT_ELEMENT_DESC inputElement = {0};
-         inputElement.SemanticName = pAttribute->Name();
-         inputElement.SemanticIndex = pAttribute->Index();
-         inputElement.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-         inputElement.Format = RDirectX11::ConvertAttrbuteFormat(formatCd) ;
-         inputElement.InputSlot = 0;
-         inputElement.AlignedByteOffset = position;
-         _inputElements.Push(inputElement);
-         // 修正信息
          _piBuffer[index] = NULL;
          _strides[index] = 0;
          _offsets[index] = 0;
-         position += RRenderShaderAttributeFormat::CalculateSize(formatCd);
       }
       index++;
+      position += RRenderShaderAttributeFormat::CalculateSize(formatCd);
    }
    _count = index;
-   //............................................................
-   //FPd11RenderVertexShader* pVertexShader = _pProgram->VertexShader()->Convert<FPd11RenderVertexShader>();
-   //ID3D10Blob* piShaderData = pVertexShader->NativeData();
-   //// 创建输入层次
-   //HRESULT dxResult = pRenderDevice->NativeDevice()->CreateInputLayout(
-   //      _inputElements.Memory(), _inputElements.Length(),
-   //      piShaderData->GetBufferPointer(), piShaderData->GetBufferSize(),
-   //      &_piInputLayout);
-   //if(FAILED(dxResult)){
-   //   MO_FATAL("Create input layout failure.");
-   //   return EFailure;
-   //}
    return ESuccess;
 }
 

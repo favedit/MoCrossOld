@@ -32,22 +32,17 @@ struct SimpleVertex
     XMFLOAT2 Tex;
 };
 
-struct CBNeverChanges
+struct STechniqueStatic
 {
     XMMATRIX mView;
-};
-
-struct CBChangeOnResize
-{
     XMMATRIX mProjection;
 };
 
-struct CBChangesEveryFrame
+struct SEffectDynamic
 {
     XMMATRIX mWorld;
     XMFLOAT4 vMeshColor;
 };
-
 
 //--------------------------------------------------------------------------------------
 // Global Variables
@@ -138,53 +133,56 @@ TResult OnKeyDown(SKeyboardEvent* pEvent){
 //============================================================
 TResult OnEnterFrame(SFrameEvent* pEvent){
    MO_STATIC_INFO("------------------------------------------------------------");
-   FPd11RenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FPd11RenderDevice>();
-    // Update our time
-    static float t = 0.0f;
-      static DWORD dwTimeStart = 0;
-      DWORD dwTimeCur = GetTickCount();
-      if( dwTimeStart == 0 )
-         dwTimeStart = dwTimeCur;
-      t = ( dwTimeCur - dwTimeStart ) / 1000.0f;
+   //FPd11RenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FPd11RenderDevice>();
+   // // Update our time
+   // static float t = 0.0f;
+   //   static DWORD dwTimeStart = 0;
+   //   DWORD dwTimeCur = GetTickCount();
+   //   if( dwTimeStart == 0 )
+   //      dwTimeStart = dwTimeCur;
+   //   t = ( dwTimeCur - dwTimeStart ) / 1000.0f;
 
-    // Rotate cube around the origin
-    g_World = XMMatrixRotationY( t );
-    // Modify the color
-    g_vMeshColor.x = ( sinf( t * 1.0f ) + 1.0f ) * 0.5f;
-    g_vMeshColor.y = ( cosf( t * 3.0f ) + 1.0f ) * 0.5f;
-    g_vMeshColor.z = ( sinf( t * 5.0f ) + 1.0f ) * 0.5f;
-    //
-    // Clear the back buffer
-    //
-    pRenderDevice->Clear(0.0f, 0.125f, 0.3f, 1.0f);
-    //
-    // Update variables that change once per frame
-    //
-    CBChangesEveryFrame cb;
-    cb.mWorld = XMMatrixTranspose( g_World );
-    cb.vMeshColor = g_vMeshColor;
+   // // Rotate cube around the origin
+   // g_World = XMMatrixRotationY( t );
+   // // Modify the color
+   // g_vMeshColor.x = ( sinf( t * 1.0f ) + 1.0f ) * 0.5f;
+   // g_vMeshColor.y = ( cosf( t * 3.0f ) + 1.0f ) * 0.5f;
+   // g_vMeshColor.z = ( sinf( t * 5.0f ) + 1.0f ) * 0.5f;
+   // //
+   // // Clear the back buffer
+   // //
+   // pRenderDevice->Clear(0.0f, 0.125f, 0.3f, 1.0f);
+   // //
+   // // Update variables that change once per frame
+   // //
+   // SEffectDynamic cb;
+   // cb.mWorld = XMMatrixTranspose( g_World );
+   // cb.vMeshColor = g_vMeshColor;
 
-   FPd11RenderProgram* pProgram = (FPd11RenderProgram*)g_pEffect->Program();
 
-    pRenderDevice->NativeContext()->UpdateSubresource( g_pCBChangesEveryFrame, 0, NULL, &cb, 0, 0 );
+   //FPd11RenderProgram* pProgram = (FPd11RenderProgram*)g_pEffect->Program();
 
-    pRenderDevice->SetProgram(g_pEffect->Program());
+   // FPd11RenderShaderBuffer* pEffectDynamicBuffer = (FPd11RenderShaderBuffer*)g_pEffect->Program()->BufferFind("EffectDynamic");
+   // pEffectDynamicBuffer->Set(0, &cb, sizeof(cb));
+   // //pRenderDevice->NativeContext()->UpdateSubresource(pBuffer2->NativeiBuffer(), 0, NULL, &cb, 0, 0 );
 
-    pRenderDevice->NativeContext()->IASetInputLayout(pProgram->NativeInputLayout());
-    //pRenderDevice->BindVertexBuffer(0, g_pVertexBuffer, 0, ERenderVertexFormat_Float3);
-    pRenderDevice->SetLayout(g_pLayout);
+   // pRenderDevice->SetProgram(g_pEffect->Program());
 
-    pRenderDevice->NativeContext()->VSSetConstantBuffers( 0, 1, &g_pCBNeverChanges );
-    pRenderDevice->NativeContext()->VSSetConstantBuffers( 1, 1, &g_pCBChangeOnResize );
-    pRenderDevice->NativeContext()->VSSetConstantBuffers( 2, 1, &g_pCBChangesEveryFrame );
+   // pRenderDevice->NativeContext()->IASetInputLayout(pProgram->NativeInputLayout());
+   // //pRenderDevice->BindVertexBuffer(0, g_pVertexBuffer, 0, ERenderVertexFormat_Float3);
+   // pRenderDevice->SetLayout(g_pLayout);
 
-    pRenderDevice->NativeContext()->PSSetConstantBuffers( 2, 1, &g_pCBChangesEveryFrame );
+   // //pRenderDevice->NativeContext()->VSSetConstantBuffers( 0, 1, &g_pCBNeverChanges );
+   // //pRenderDevice->NativeContext()->VSSetConstantBuffers( 1, 1, &g_pCBChangeOnResize );
+   // //pRenderDevice->NativeContext()->VSSetConstantBuffers( 2, 1, &g_pCBChangesEveryFrame );
 
-    ID3D11ShaderResourceView* pView = g_pTexture->NativeView();
-    pRenderDevice->NativeContext()->PSSetShaderResources(0, 1, &pView);
+   // //pRenderDevice->NativeContext()->PSSetConstantBuffers( 2, 1, &g_pCBChangesEveryFrame );
 
-    pRenderDevice->DrawTriangles(g_pIndexBuffer, 0, g_pIndexBuffer->Count());
-    pRenderDevice->Present();
+   // ID3D11ShaderResourceView* pView = g_pTexture->NativeView();
+   // pRenderDevice->NativeContext()->PSSetShaderResources(0, 1, &pView);
+
+   // pRenderDevice->DrawTriangles(g_pIndexBuffer, 0, g_pIndexBuffer->Count());
+   // pRenderDevice->Present();
 
    // return ESuccess;
    //TTimeTick currentTick = RTimeTick::Current();
@@ -227,11 +225,11 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    RFeatureManager::Instance().Construct();
    //............................................................
    // 设置信息
-   //RApplication::Instance().Parameters()->Setup(lpszCmdLine);
-   FApplicationParameter* pApplicationParameter = MO_CREATE(FApplicationParameter);
-   pApplicationParameter->SetName("-home");
-   pApplicationParameter->SetValue("E:/ZW-MoCross/Demo/Android/MpTestDemo/assets");
-   RApplication::Instance().Parameters()->Parameters()->Push(pApplicationParameter);
+   RApplication::Instance().Parameters()->Setup(lpszCmdLine);
+   //FApplicationParameter* pApplicationParameter = MO_CREATE(FApplicationParameter);
+   //pApplicationParameter->SetName("-home");
+   //pApplicationParameter->SetValue("E:/ZW-MoCross/Demo/Android/MpTestDemo/assets");
+   //RApplication::Instance().Parameters()->Parameters()->Push(pApplicationParameter);
    RApplication::Instance().SetHinstance(hInstance);
    RApplication::Instance().SetCommandShow(nCmdShow);
    RAssetManager::Instance().Setup();
@@ -329,7 +327,6 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
     UINT height = rc.bottom - rc.top;
 
     //GRenderShaderBufferPtrs& buffers = g_pEffect->Program()->Buffers();
-    //FPd11RenderShaderBuffer* pBuffer1 = (FPd11RenderShaderBuffer*)buffers.Get(0);
     //g_pCBNeverChanges = pBuffer1->NativeiBuffer();
 
     //FPd11RenderShaderBuffer* pBuffer2 = (FPd11RenderShaderBuffer*)buffers.Get(1);
@@ -347,17 +344,16 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
     XMVECTOR Up = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
     g_View = XMMatrixLookAtLH( Eye, At, Up );
 
-    CBNeverChanges cbNeverChanges;
-    cbNeverChanges.mView = XMMatrixTranspose( g_View );
-    pRenderDevice->NativeContext()->UpdateSubresource( g_pCBNeverChanges, 0, NULL, &cbNeverChanges, 0, 0 );
-
-    // Initialize the projection matrix
     g_Projection = XMMatrixPerspectiveFovLH( XM_PIDIV4, width / (FLOAT)height, 0.01f, 10000.0f );
-    
-    CBChangeOnResize cbChangesOnResize;
-    cbChangesOnResize.mProjection = XMMatrixTranspose( g_Projection );
-    pRenderDevice->NativeContext()->UpdateSubresource( g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0 );
 
+    STechniqueStatic techniqueStatic;
+    techniqueStatic.mView = XMMatrixTranspose( g_View );
+    techniqueStatic.mProjection = XMMatrixTranspose( g_Projection );
+
+    FPd11RenderShaderBuffer* pTechniqueStaticBuffer = (FPd11RenderShaderBuffer*)g_pEffect->Program()->BufferFind("TechniqueStatic");
+    pTechniqueStaticBuffer->Set(0, &techniqueStatic, sizeof(techniqueStatic));
+
+    //pRenderDevice->NativeContext()->UpdateSubresource( pBuffer1->NativeiBuffer(), 0, NULL, &techniqueStatic, 0, 0 );
    //............................................................
    // 处理窗口
    pWindow->Startup();

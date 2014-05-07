@@ -120,13 +120,11 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
          return EFailure;
       }
       // 创建缓冲
-      FPd11RenderShaderBuffer* pBuffer = FPd11RenderShaderBuffer::InstanceCreate();
-      pBuffer->SetDevice(pRenderDevice);
-      pBuffer->SetName(bufferDescriptor.Name);
-      pBuffer->SetDataLength(bufferDescriptor.Size);
+      FPd11RenderShaderBuffer* pBuffer = (FPd11RenderShaderBuffer*)BufferFind(bufferDescriptor.Name);
+      pBuffer->SetStatusUsed(ETrue);
       pBuffer->SetShaderCd(shaderCd);
+      pBuffer->SetDataLength(bufferDescriptor.Size);
       pBuffer->Setup();
-      BufferPush(pBuffer);
       //............................................................
       // 获得参数信息
       TInt variableCount = bufferDescriptor.Variables;
@@ -284,33 +282,6 @@ TResult FPd11RenderProgram::Link(){
    }
    //............................................................
    MO_INFO("Link program success.");
-   return resultCd;
-}
-
-//============================================================
-// <T>绘制开始处理。</T>
-//
-// @return 处理结果
-//============================================================
-TResult FPd11RenderProgram::DrawBegin(){
-   TResult resultCd = FRenderProgram::DrawBegin();
-   //............................................................
-   // 绑定缓冲
-   GRenderShaderBufferDictionary::TIterator iterator = _buffers.Iterator();
-   while(iterator.Next()){
-      FPd11RenderShaderBuffer* pBuffer = iterator->Convert<FPd11RenderShaderBuffer>();
-      pBuffer->Bind();
-   }
-   return resultCd;
-}
-
-//============================================================
-// <T>绘制结束处理。</T>
-//
-// @return 处理结果
-//============================================================
-TResult FPd11RenderProgram::DrawEnd(){
-   TResult resultCd = FRenderProgram::DrawEnd();
    return resultCd;
 }
 

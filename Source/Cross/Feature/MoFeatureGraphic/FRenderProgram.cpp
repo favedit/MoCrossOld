@@ -149,7 +149,9 @@ TResult FRenderProgram::MakeFragmentSource(FRenderSource* pSource){
 TResult FRenderProgram::DrawBegin(){
    GRenderShaderBufferDictionary::TIterator iterator = _buffers.Iterator();
    while(iterator.Next()){
-      iterator->Update();
+      FRenderShaderBuffer* pBuffer = *iterator;
+      pBuffer->Update();
+      _pDevice->BindShaderBuffer(pBuffer);
    }
    return ESuccess;
 }

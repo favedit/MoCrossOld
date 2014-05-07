@@ -67,6 +67,14 @@ TResult FEffect::LoadConfig(FXmlNode* pConfig){
       FXmlNode* pNode = *iterator;
       //............................................................
       // 建立参数定义集合
+      if(pNode->IsName("Buffer")){
+         FRenderShaderBuffer* pBuffer = _renderDevice->CreateObject<FRenderShaderBuffer>(MO_RENDEROBJECT_SHADERBUFFER);
+         pBuffer->LoadConfig(pNode);
+         _program->BufferPush(pBuffer);
+         continue;
+      }
+      //............................................................
+      // 建立参数定义集合
       if(pNode->IsName("Parameter")){
          FRenderShaderParameter* pParameter = _renderDevice->CreateObject<FRenderShaderParameter>(MO_RENDEROBJECT_SHADERPARAMETER);
          pParameter->LoadConfig(pNode);

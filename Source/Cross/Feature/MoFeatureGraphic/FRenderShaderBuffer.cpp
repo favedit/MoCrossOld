@@ -8,7 +8,10 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderShaderBuffer, FRenderObject);
 // <T>构造渲染器缓冲。</T>
 //============================================================
 FRenderShaderBuffer::FRenderShaderBuffer(){
+   _groupCd = ERenderShaderBuffer_Unknown;
+   _bufferCd = ERenderShaderBuffer_Unknown;
    _dataLength = 0;
+   _statusUsed = EFalse;
    _statusChanged = EFalse;
    _pData = MO_CREATE(FBytes);
    _shaderCd = ERenderShader_Unknown;
@@ -23,11 +26,30 @@ FRenderShaderBuffer::~FRenderShaderBuffer(){
 }
 
 //============================================================
+// <T>加载配置。</T>
+//
+// @param pConfig 配置节点
+// @return 处理结果
+//============================================================
+TResult FRenderShaderBuffer::LoadConfig(FXmlNode* pConfig){
+   MO_CHECK(pConfig, return ENull);
+   // 设置名称
+   _name = pConfig->Get("name");
+   // 设置关联
+   _linker = pConfig->Get("linker");
+   // 设置信息
+   _bufferCd = RRenderShaderBuffer::Parse(_linker);
+   _groupCd = RRenderShaderBuffer::ParseGroup(_bufferCd);
+   _slot = RRenderShaderBuffer::ParseSlot(_bufferCd);
+   return ESuccess;
+}
+
+//============================================================
 // <T>配置处理。</T>
 //
 // @return 处理结果
 //============================================================
-TResult FRenderShaderBuffer::Setup(){
+TResult FRenderShaderBuffer::OnSetup(){
    MO_CHECK(_pDevice, return ENull);
    MO_CHECK(_dataLength > 0, return EOutRange);
    // 设置缓冲
@@ -47,6 +69,10 @@ TResult FRenderShaderBuffer::Setup(){
 // @return 处理结果
 //============================================================
 TResult FRenderShaderBuffer::Set(TInt slot, TAnyC* pData, TInt length){
+   // 检查是否使用
+   if(!_statusUsed){
+      return EContinue;
+   }
    // 检查参数
    MO_CHECK(slot >= 0, return EOutRange);
    MO_CHECK(pData, return ENull);
@@ -81,6 +107,11 @@ TResult FRenderShaderBuffer::Commit(){
 // @return 处理结果
 //============================================================
 TResult FRenderShaderBuffer::Update(){
+   // 检查是否使用
+   if(!_statusUsed){
+      return EContinue;
+   }
+   // 更新数据
    MO_CHECK(_pDevice, return ENull);
    TResult resultCd = ESuccess;
    // 提交数据
@@ -89,6 +120,15 @@ TResult FRenderShaderBuffer::Update(){
    //   _statusChanged = EFalse;
    //}
    Commit();
+   return ESuccess;
+}
+
+//============================================================
+// <T>绑定处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FRenderShaderBuffer::Bind(){
    return ESuccess;
 }
 

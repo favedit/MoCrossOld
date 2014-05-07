@@ -310,20 +310,7 @@ TResult FAutomaticEffect::BindAttributeDescriptors(FRenderable* pRenderable){
    if(pLayout == NULL){
       pLayout = _renderDevice->CreateObject<FRenderLayout>(MO_RENDEROBJECT_LAYOUT);
       pLayout->SetProgram(_program);
-      GRenderShaderAttributeDictionary::TIterator iterator = _program->Attributes().IteratorC();
-      while(iterator.Next()){
-         FRenderShaderAttribute* pAttribute = *iterator;
-         if(pAttribute->IsStatusUsed()){
-            ERenderVertexBuffer bufferCd = (ERenderVertexBuffer)pAttribute->Code();
-            FRenderVertexStream* pVertexStream = pVertexStreams->FindStream(bufferCd);
-            if(pVertexStream != NULL){
-               FRenderLayoutElement* pElement = FRenderLayoutElement::InstanceCreate();
-               pElement->SetAttribute(pAttribute);
-               pElement->SetStream(pVertexStream);
-               pLayout->Push(pElement);
-            }
-         }
-      }
+      pLayout->SetRenderable(pRenderable);
       pLayout->Setup();
       pRenderableEffect->SetLayout(pLayout);
    }
@@ -408,8 +395,8 @@ TResult FAutomaticEffect::BindSamplerDescriptors(FRenderable* pRenderable){
    while(iterator.Next()){
       FRenderShaderSampler* pSampler = *iterator;
       if(pSampler->IsStatusUsed()){
-         ERenderSampler samplerCd = (ERenderSampler)pSampler->Code();
-         FRenderTexture* pTexture = pRenderable->FindTexture(samplerCd);
+         ERenderSampler packCd = pSampler->PackCd();
+         FRenderTexture* pTexture = pRenderable->FindTexture(packCd);
          if(pTexture != NULL){
             // pTexture->SetIndex(pSampler->Slot());
             pRenderDevice->BindTexture(pSampler->Slot(), pTexture);

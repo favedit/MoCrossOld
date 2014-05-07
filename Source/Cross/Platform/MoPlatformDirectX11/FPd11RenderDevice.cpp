@@ -24,10 +24,11 @@ FPd11RenderDevice::FPd11RenderDevice(){
    MO_CLEAR(_piDevice);
    MO_CLEAR(_piContext);
    // 注册类集合
+   _pClassFactory->Register(MO_RENDEROBJECT_SHADERBUFFER,    FPd11RenderShaderBuffer::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERATTRIBUTE, FRenderShaderAttribute::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERPARAMETER, FPd11RenderShaderParameter::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERSAMPLER, FRenderShaderSampler::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT, FPd11RenderLayout::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_SHADERSAMPLER,   FRenderShaderSampler::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT,          FPd11RenderLayout::Class());
    //
    MO_CLEAR(_piRasterizerState);
 }
@@ -705,17 +706,17 @@ TResult FPd11RenderDevice::SetProgram(FRenderProgram* pProgram){
       FPd11RenderVertexShader* pVertexShader = pProgram->VertexShader()->Convert<FPd11RenderVertexShader>();
       ID3D11VertexShader* piVertexShader = pVertexShader->NativeShader();
       _piContext->VSSetShader(piVertexShader, NULL, 0);
-      MO_DEBUG("Set vertex shader. (shader=0x%08X)", piVertexShader);
+      //MO_DEBUG("Set vertex shader. (shader=0x%08X)", piVertexShader);
       // 设置像素脚本
       FPd11RenderFragmentShader* pFragmentShader = pProgram->FragmentShader()->Convert<FPd11RenderFragmentShader>();
       ID3D11PixelShader* piFragmentShader = pFragmentShader->NativeShader();
       _piContext->PSSetShader(piFragmentShader, NULL, 0);
-      MO_DEBUG("Set pixel shader. (shader=0x%08X)", piFragmentShader);
+      //MO_DEBUG("Set pixel shader. (shader=0x%08X)", piFragmentShader);
       // 设置输入层次
       FPd11RenderProgram* pRenderProgram = pProgram->Convert<FPd11RenderProgram>();
       ID3D11InputLayout* piInputLayout = pRenderProgram->NativeInputLayout();
       _piContext->IASetInputLayout(piInputLayout);
-      MO_DEBUG("Set input layout. (layout=0x%08X)", piInputLayout);
+      //MO_DEBUG("Set input layout. (layout=0x%08X)", piInputLayout);
    }
    _pProgram = pProgram;
    // 检查是否可以执行
@@ -740,10 +741,8 @@ TResult FPd11RenderDevice::SetLayout(FRenderLayout* pLayout){
    UINT* bufferStride = pRenderLayout->Stride();
    UINT* bufferOffset = pRenderLayout->Offset();
    // 设置内容
-   //_piContext->IASetInputLayout(pRenderLayout->NativeInputLayout());
-   //MO_DEBUG("Set input layout. (layout=0x%08X)", pRenderLayout->NativeInputLayout());
    _piContext->IASetVertexBuffers(0, count, piBuffer, bufferStride, bufferOffset);
-   MO_DEBUG("Set vertex buffers. (slot=%d, count=%d)", 0, count);
+   //MO_DEBUG("Set vertex buffers. (slot=%d, count=%d)", 0, count);
    return ESuccess;
 }
 
@@ -922,6 +921,41 @@ TResult FPd11RenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot,
 }
 
 //============================================================
+// <T>绑定渲染缓冲。</T>
+//
+// @param pBuffer 渲染缓冲
+// @return 处理结果
+//============================================================
+TResult FPd11RenderDevice::BindShaderBuffer(FRenderShaderBuffer* pBuffer){
+   MO_CHECK(pBuffer, return ENull);
+   if(!pBuffer->IsStatusUsed()){
+      return EContinue;
+   }
+   // 更新数据
+   FPd11RenderShaderBuffer* pRenderBuffer = pBuffer->Convert<FPd11RenderShaderBuffer>();
+   TInt slot = pRenderBuffer->Slot();
+   ERenderShader shaderCd = pRenderBuffer->ShaderCd();
+   ERenderShaderBuffer groupCd = pRenderBuffer->GroupCd();
+   ID3D11Buffer* piBuffer = pRenderBuffer->NativeiBuffer();
+   if((groupCd == ERenderShaderBuffer_Global) || (groupCd == ERenderShaderBuffer_Technique) || (groupCd == ERenderShaderBuffer_Effect)){
+      _piContext->VSSetConstantBuffers(slot, 1, &piBuffer);
+      _piContext->PSSetConstantBuffers(slot, 1, &piBuffer);
+   }else if(groupCd == ERenderShaderBuffer_Renderable){
+      // 更新显示相关
+      if(shaderCd == ERenderShader_Vertex){
+         _piContext->VSSetConstantBuffers(slot, 1, &piBuffer);
+      }else if(shaderCd == ERenderShader_Fragment){
+         _piContext->PSSetConstantBuffers(slot, 1, &piBuffer);
+      }else{
+         MO_FATAL("Render shader type is unknown. (shader=%d)", shaderCd);
+      }
+   }else{
+      MO_FATAL("Render shader group is unknown. (group=%d)", groupCd);
+   }
+   return ESuccess;
+}
+
+//============================================================
 // <T>绑定顶点缓冲。</T>
 //
 // @param slot 插槽
@@ -935,13 +969,13 @@ TResult FPd11RenderDevice::BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVer
    // 获得顶点流
    TResult result = ESuccess;
    FPd11RenderVertexBuffer* pBuffer = pVertexBuffer->Convert<FPd11RenderVertexBuffer>();
-   // 获得信息
-   ID3D11Buffer* piBuffer = pBuffer->NativeBuffer();
-   UINT bufferStride = pVertexBuffer->Stride();
-   UINT bufferOffset = offset;
-   // 设置内容
-   _piContext->IASetVertexBuffers(slot, 1, &piBuffer, &bufferStride, &bufferOffset);
-   MO_DEBUG("Set vertex buffer. (slot=%d, buffer=0x%08X, stride=%d, offset=%d)", slot, piBuffer, bufferStride, bufferOffset);
+   //// 获得信息
+   //ID3D11Buffer* piBuffer = pBuffer->NativeBuffer();
+   //UINT bufferStride = pVertexBuffer->Stride();
+   //UINT bufferOffset = offset;
+   //// 设置内容
+   //_piContext->IASetVertexBuffers(slot, 1, &piBuffer, &bufferStride, &bufferOffset);
+   //MO_DEBUG("Set vertex buffer. (slot=%d, buffer=0x%08X, stride=%d, offset=%d)", slot, piBuffer, bufferStride, bufferOffset);
    return result;
 }
 
@@ -1009,10 +1043,10 @@ TResult FPd11RenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt 
    // 绘制三角形
    _renderDrawStatistics->Begin();
    _piContext->DrawIndexed(count, offset, 0);
-   MO_DEBUG("Draw indexed. (offset=%d, count=%d)", offset, count);
+   //MO_DEBUG("Draw indexed. (offset=%d, count=%d)", offset, count);
    _renderDrawStatistics->Finish();
    // 程序绘制结束
-   //_pProgram->DrawEnd();
+   _pProgram->DrawEnd();
    // 检查错误
    _statistics->UpdateDraw(count);
    return resultCd;

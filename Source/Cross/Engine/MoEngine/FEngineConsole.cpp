@@ -182,18 +182,18 @@ TResult FEngineConsole::Process(){
    // 绘制帧集合
    pFrameDrawStatistics->Begin();
    // 获得视角集合
-   //FRenderViewCollection::TIteratorC viewIterator = _pRegion->Views()->IteratorC();
-   //while(viewIterator.Next()){
-   //   // 设置区域信息
-   //   FRenderView* pView = *viewIterator;
-   //   _pRegion->SetActiveView(pView);
-   //   // 渲染过程集合处理
-   //   GStageLayerPtrs::TIteratorC layerIterator = layers.IteratorC();
-   //   while(layerIterator.Next()){
-   //      FStageLayer* pFrame = *layerIterator;
-   //      ProcessFrame(pFrame);
-   //   }
-   //}
+   FRenderViewCollection::TIteratorC viewIterator = _pRegion->Views()->IteratorC();
+   while(viewIterator.Next()){
+      // 设置区域信息
+      FRenderView* pView = *viewIterator;
+      _pRegion->SetActiveView(pView);
+      // 渲染过程集合处理
+      GStageLayerPtrs::TIteratorC layerIterator = layers.IteratorC();
+      while(layerIterator.Next()){
+         FStageLayer* pFrame = *layerIterator;
+         ProcessFrame(pFrame);
+      }
+   }
    // 显示内容
    pRenderDevice->Present();
    pFrameDrawStatistics->Finish();

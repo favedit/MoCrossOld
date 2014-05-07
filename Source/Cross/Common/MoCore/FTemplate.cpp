@@ -96,7 +96,7 @@ TResult FTemplate::AdjustConfigNodes(FTemplateContext* pContext){
    TXmlNodeIteratorC iterator = _config->NodeIteratorC();
    while(iterator.Next()){
       FXmlNode* pConfig = *iterator;
-      MO_INFO("%s - %s", pConfig->Name(), pConfig->Get("name", NULL));
+      // MO_INFO("%s - %s", pConfig->Name(), pConfig->Get("name", NULL));
       if(!pConfig->Nodes()->Contains(pConfig)){
          pNodes->Push(pConfig);
       }

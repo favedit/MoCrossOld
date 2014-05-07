@@ -30,6 +30,7 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
    FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
    TCharC* pDeviceCode = pRenderDevice->Capability()->Code();
    //............................................................
+   // 设置环境
    GPtr<FTemplateContext> context = FTemplateContext::InstanceCreate();
    context->SetSpace("shader");
    context->SetTrimBeginLine(ETrue);
@@ -39,6 +40,15 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
 #ifdef _MO_ANDROID
    context->DefineBool("os.android", ETrue);
 #endif // _MO_ANDROID
+   context->DefineString("device.render",                  pRenderDevice->Name());
+   context->DefineInt("shader.buffer.global.static",       RRenderShaderBuffer::ParseSlot(ERenderShaderBuffer_GlobalStatic));
+   context->DefineInt("shader.buffer.global.dynamic",      RRenderShaderBuffer::ParseSlot(ERenderShaderBuffer_GlobalDynamic));
+   context->DefineInt("shader.buffer.technique.static",    RRenderShaderBuffer::ParseSlot(ERenderShaderBuffer_TechniqueStatic));
+   context->DefineInt("shader.buffer.technique.dynamic",   RRenderShaderBuffer::ParseSlot(ERenderShaderBuffer_TechniqueDynamic));
+   context->DefineInt("shader.buffer.effect.static",       RRenderShaderBuffer::ParseSlot(ERenderShaderBuffer_EffectStatic));
+   context->DefineInt("shader.buffer.effect.dynamic",      RRenderShaderBuffer::ParseSlot(ERenderShaderBuffer_EffectDynamic));
+   context->DefineInt("shader.buffer.renderable.dynamic",  RRenderShaderBuffer::ParseSlot(ERenderShaderBuffer_RenderableDynamic));
+   context->DefineInt("shader.buffer.renderable.material", RRenderShaderBuffer::ParseSlot(ERenderShaderBuffer_RenderableMaterial));
    //............................................................
    // 创建效果器
    FEffect* pEffect = _pFactory->Create<FEffect>(pName);
