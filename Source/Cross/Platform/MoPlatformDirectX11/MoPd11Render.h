@@ -417,6 +417,8 @@ protected:
    ID3D11DeviceContext* _piContext;
    GPtr<FPd11RenderTarget> _defaultRenderTarget;
    ID3D11RasterizerState* _piRasterizerState;
+   ID3D11BlendState* _piBlendEnableState;
+   ID3D11BlendState* _piBlendDisableState;
 public:
    FPd11RenderDevice();
    MO_ABSTRACT ~FPd11RenderDevice();

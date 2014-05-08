@@ -31,6 +31,8 @@ FPd11RenderDevice::FPd11RenderDevice(){
    _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT,          FPd11RenderLayout::Class());
    //
    MO_CLEAR(_piRasterizerState);
+   MO_CLEAR(_piBlendEnableState);
+   MO_CLEAR(_piBlendDisableState);
 }
 
 //============================================================
@@ -38,6 +40,8 @@ FPd11RenderDevice::FPd11RenderDevice(){
 //============================================================
 FPd11RenderDevice::~FPd11RenderDevice(){
    MO_DELETE(_pCapability);
+   MO_RELEASE(_piBlendEnableState);
+   MO_RELEASE(_piBlendDisableState);
    // 删除关联集合
    MO_DELETE(_pLinkFlatTextures);
    MO_DELETE(_pLinkCubeTextures);
@@ -227,26 +231,26 @@ TResult FPd11RenderDevice::Setup(){
    _piContext->OMSetRenderTargets(1, &piRenderTarget, piDepthStencilView);
    //............................................................
    // 设置光栅描述
-   //D3D11_RASTERIZER_DESC rasterDesc;
-   //RType<D3D11_RASTERIZER_DESC>::Clear(&rasterDesc);
-   //rasterDesc.AntialiasedLineEnable = EFalse;
-   ////rasterDesc.CullMode = D3D11_CULL_BACK;
-   //rasterDesc.CullMode = D3D11_CULL_NONE;
-   //rasterDesc.DepthBias = 0;
-   //rasterDesc.DepthBiasClamp = 0.0f;
-   //rasterDesc.DepthClipEnable = EFalse;
-   //rasterDesc.FillMode = D3D11_FILL_SOLID;
-   //rasterDesc.FrontCounterClockwise = EFalse;
-   //rasterDesc.MultisampleEnable = EFalse;
-   //rasterDesc.ScissorEnable = EFalse;
-   //rasterDesc.SlopeScaledDepthBias = 0.0f;
-   //ID3D11RasterizerState* _pRasterState = NULL;
-   //dxResult = _piDevice->CreateRasterizerState(&rasterDesc, &_pRasterState);
-   //if(FAILED(dxResult)){
-   //   MO_FATAL("Create rasterizer state view failure.");
-   //   return EFailure;
-   //}
-   //_piContext->RSSetState(_pRasterState);
+   D3D11_RASTERIZER_DESC rasterDesc;
+   RType<D3D11_RASTERIZER_DESC>::Clear(&rasterDesc);
+   rasterDesc.AntialiasedLineEnable = EFalse;
+   //rasterDesc.CullMode = D3D11_CULL_BACK;
+   rasterDesc.CullMode = D3D11_CULL_NONE;
+   rasterDesc.DepthBias = 0;
+   rasterDesc.DepthBiasClamp = 0.0f;
+   rasterDesc.DepthClipEnable = EFalse;
+   rasterDesc.FillMode = D3D11_FILL_SOLID;
+   rasterDesc.FrontCounterClockwise = EFalse;
+   rasterDesc.MultisampleEnable = EFalse;
+   rasterDesc.ScissorEnable = EFalse;
+   rasterDesc.SlopeScaledDepthBias = 0.0f;
+   ID3D11RasterizerState* _pRasterState = NULL;
+   dxResult = _piDevice->CreateRasterizerState(&rasterDesc, &_pRasterState);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create rasterizer state view failure.");
+      return EFailure;
+   }
+   _piContext->RSSetState(_pRasterState);
    //............................................................
    // 设置视角
    D3D11_VIEWPORT viewport = {0};
@@ -255,6 +259,25 @@ TResult FPd11RenderDevice::Setup(){
    viewport.MinDepth = 0.0f;
    viewport.MaxDepth = 1.0f;
    _piContext->RSSetViewports(1, &viewport);
+   //............................................................
+   D3D11_BLEND_DESC blendDescriptor = {0};
+   blendDescriptor.RenderTarget[0].BlendEnable = EFalse;
+   dxResult = _piDevice->CreateBlendState(&blendDescriptor, &_piBlendDisableState);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create blend state failure.");
+   }
+   blendDescriptor.RenderTarget[0].BlendEnable = ETrue;
+   blendDescriptor.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+   blendDescriptor.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+   blendDescriptor.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+   blendDescriptor.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+   blendDescriptor.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+   blendDescriptor.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+   blendDescriptor.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;  
+   dxResult = _piDevice->CreateBlendState(&blendDescriptor, &_piBlendEnableState);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create blend state failure.");
+   }
    return ESuccess;
 }
 
@@ -606,6 +629,13 @@ TResult FPd11RenderDevice::SetCullingMode(TBool cull, ERenderCullMode cullCd){
 // @return 处理结果
 //============================================================
 TResult FPd11RenderDevice::SetBlendFactors(TBool blend, ERenderBlendMode sourceCd, ERenderBlendMode targetCd){
+   TFloat blendFactors[4] = {0};
+   if(blend == ETrue){
+      //_piContext->OMSetBlendState(_piBlendEnableState, blendFactors, 0XFFFFFFFF);
+   }else{
+      //_piContext->OMSetBlendState(_piBlendDisableState, blendFactors, 0XFFFFFFFF);
+   }
+   _piContext->OMSetBlendState(_piBlendEnableState, blendFactors, 0XFFFFFFFF);
    //// 设置开关
    //if(_statusBlend != blend){
    //   if(blend){
@@ -1007,7 +1037,7 @@ TResult FPd11RenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
          ID3D11SamplerState* piState = pCubeTexture->NativeState();
          _piContext->PSSetShaderResources(slot, 1, &piTextureView);
          _piContext->PSSetSamplers(slot, 1, &piState);
-         //MO_DEBUG("Set texture 3d. (slot=%d, texture=0x%08X)", slot, pTexture);
+         //MO_DEBUG("Set texture cube. (slot=%d, texture=0x%08X)", slot, pTexture);
          break;
       }
       default:{

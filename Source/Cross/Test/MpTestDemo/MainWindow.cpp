@@ -20,50 +20,10 @@
 
 MO_NAMESPACE_INCLUDE;
 
-#define MO_RESOURCE_CODE 910010001
-
-
-//--------------------------------------------------------------------------------------
-// Structures
-//--------------------------------------------------------------------------------------
-struct SimpleVertex
-{
-    XMFLOAT3 Pos;
-    XMFLOAT2 Tex;
-};
-
-struct STechniqueStatic
-{
-    XMMATRIX mView;
-    XMMATRIX mProjection;
-};
-
-struct SEffectDynamic
-{
-    XMMATRIX mWorld;
-    XMFLOAT4 vMeshColor;
-};
-
-//--------------------------------------------------------------------------------------
-// Global Variables
-//--------------------------------------------------------------------------------------
-ID3D11Buffer* g_pCBNeverChanges = NULL;
-ID3D11Buffer* g_pCBChangeOnResize = NULL;
-ID3D11Buffer* g_pCBChangesEveryFrame = NULL;
-XMMATRIX      g_World;
-XMMATRIX      g_View;
-XMMATRIX      g_Projection;
-XMFLOAT4      g_vMeshColor( 0.7f, 0.7f, 0.7f, 1.0f );
-
 typedef TVector<FTemplate3d*> TTemplate3dVector;
 TTimeTick g_lastTick = 0;
 TTimeTick g_templateTick = 0;
 TTemplate3dVector g_pTemplates;
-FEffect* g_pEffect = NULL;
-FPd11RenderVertexBuffer* g_pVertexBuffer = NULL;
-FPd11RenderIndexBuffer* g_pIndexBuffer = NULL;
-FPd11RenderLayout* g_pLayout = NULL;
-FPd11RenderFlatTexture* g_pTexture = NULL;
 
 //============================================================
 // <T>鼠标事件处理。</T>

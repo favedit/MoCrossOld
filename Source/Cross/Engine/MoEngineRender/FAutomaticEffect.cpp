@@ -317,18 +317,18 @@ TResult FAutomaticEffect::BindAttributeDescriptors(FRenderable* pRenderable){
    }
    //............................................................
    // 关联属性集合
-   GRenderShaderAttributeDictionary::TIterator iterator = _program->Attributes().IteratorC();
-   while(iterator.Next()){
-      FRenderShaderAttribute* pAttribute = *iterator;
-      if(pAttribute->IsStatusUsed()){
-         ERenderVertexBuffer bufferCd = (ERenderVertexBuffer)pAttribute->Code();
-         FRenderVertexStream* pVertexStream = pVertexStreams->FindStream(bufferCd);
-         if(pVertexStream != NULL){
-            _renderDevice->BindVertexStream(pAttribute->Slot(), pVertexStream);
-            //MO_INFO("Bind attribute stream. (name=%s, bind_id=%d, code=%d, format=%d)", descriptor.namePtr, descriptor.bindId, descriptor.code, descriptor.formatCd);
-         }
-      }
-   }
+   //GRenderShaderAttributeDictionary::TIterator iterator = _program->Attributes().IteratorC();
+   //while(iterator.Next()){
+   //   FRenderShaderAttribute* pAttribute = *iterator;
+   //   if(pAttribute->IsStatusUsed()){
+   //      ERenderVertexBuffer bufferCd = (ERenderVertexBuffer)pAttribute->Code();
+   //      FRenderVertexStream* pVertexStream = pVertexStreams->FindStream(bufferCd);
+   //      if(pVertexStream != NULL){
+   //         _renderDevice->BindVertexStream(pAttribute->Slot(), pVertexStream);
+   //         //MO_INFO("Bind attribute stream. (name=%s, bind_id=%d, code=%d, format=%d)", descriptor.namePtr, descriptor.bindId, descriptor.code, descriptor.formatCd);
+   //      }
+   //   }
+   //}
    //............................................................
    _renderDevice->SetLayout(pLayout);
    return ESuccess;

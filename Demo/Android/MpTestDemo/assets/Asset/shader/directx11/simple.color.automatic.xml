@@ -1,16 +1,16 @@
 <Configuration>
    <Version label='alpha 0.1' />
    <!-- ------------------------------------------------------------ -->
-   <State name='fill_mode'   value='Fill'/>
-   <State name='cull_mode'   value='Front'/>
-   <State name='depth_mode'  value='Less'/>
-   <State name='depth_write' value='Y'/>
-   <State name='blend_mode'  value='Y' source='SourceAlpha' target='OneMinusSourceAlpha'/>
-   <State name='alpha_test'  value='N'/>
+   <State     name='fill_mode'   value='Fill'/>
+   <State     name='cull_mode'   value='Front'/>
+   <State     name='depth_mode'  value='Less'/>
+   <State     name='depth_write' value='Y'/>
+   <State     name='blend_mode'  value='Y' source='SourceAlpha' target='OneMinusSourceAlpha'/>
+   <State     name='alpha_test'  value='N'/>
    <!-- ------------------------------------------------------------ -->
-   <Specular name='shadow'   value='N'/>
-   <Specular name='lightmap' value='N'/>
-   <Specular name='fog'      value='N'/>
+   <Specular  name='shadow'      value='N'/>
+   <Specular  name='lightmap'    value='N'/>
+   <Specular  name='fog'         value='N'/>
    <!-- ------------------------------------------------------------ -->
    <Buffer    name='TechniqueStatic'        linker='TechniqueStatic'/>
    <Buffer    name='EffectDynamic'          linker='EffectDynamic'/>
@@ -29,6 +29,7 @@
    <Parameter name='fc_light_depth'         linker='FragmentLightDepth'/>
    <Parameter name='fc_color'               linker='FragmentColor'/>
    <Parameter name='fc_alpha'               linker='FragmentAlpha'/>
+   <Parameter name='fc_vertex_color'        linker='FragmentVertexColor'/>
    <Parameter name='fc_ambient_color'       linker='FragmentAmbientColor'/>
    <Parameter name='fc_diffuse_color'       linker='FragmentDiffuseColor'/>
    <Parameter name='fc_diffuse_view_color'  linker='FragmentDiffuseViewColor'/>
@@ -47,11 +48,11 @@
    <Attribute name='TEXCOORD5'              linker='BoneIndex'/>
    <Attribute name='TEXCOORD6'              linker='BoneWright'/>
    <!-- ------------------------------------------------------------ -->
-   <Sampler name='ft_diffuse'               linker='PackDiffuse'/>
-   <Sampler name='ft_normal'                linker='PackNormal'/>
-   <Sampler name='ft_specular'              linker='PackSpecular'/>
-   <Sampler name='ft_light'                 linker='PackLight'/>
-   <Sampler name='ft_environment'           linker='Environment'/>
+   <Sampler   name='ft_diffuse'             linker='PackDiffuse'/>
+   <Sampler   name='ft_normal'              linker='PackNormal'/>
+   <Sampler   name='ft_specular'            linker='PackSpecular'/>
+   <Sampler   name='ft_light'               linker='PackLight'/>
+   <Sampler   name='ft_environment'         linker='Environment'/>
    <!-- ------------------------------------------------------------ -->
    <Source name='vertex'><![CDATA[
 cbuffer TechniqueStatic : register(b<shader:write source='shader.buffer.technique.static'/>)
@@ -241,7 +242,7 @@ float4 main( PS_INPUT input) : SV_Target
    //............................................................
    // Calculate ambient color
 <shader:true source='support.ambient.sampler'>
-   float4 color = ft_diffuse.Sample(fs_diffuse, input.coord);
+   float4 color = ft_diffuse.Sample(fs_diffuse, input.coord.xy);
    if(color.a < fc_alpha.x){
       discard;
    }
@@ -256,22 +257,22 @@ float4 main( PS_INPUT input) : SV_Target
 </shader:true>
    //............................................................
 <shader:true source='support.diffuse.view|support.specular|support.environment'>
-   float3 cameraDirection = normalize(fc_camera_position - input.modelPosition.xyz);
+   float3 cameraDirection = normalize(fc_camera_position.xyz - input.modelPosition.xyz);
 </shader:true>
    //............................................................
    // Calculate normal
 <shader:true source='support.diffuse.dump'>
-   float4 normal = ft_normal.Sample(fs_normal, input.coord);
+   float4 normal = ft_normal.Sample(fs_normal, input.coord.xy);
    normal.xyz = normalize(normal.xyz * 2.0 - 1.0);
 </shader:true>
    //............................................................
    // Calculate diffuse color
 <shader:true source='support.diffuse'>
 <shader:true source='support.diffuse.dump'>
-   float normalFactor = dot(normal.xyz, -input.light_ts);
+   float normalFactor = dot(normal.xyz, -input.light_ts.xyz);
 </shader:true>
 <shader:true source='support.diffuse.normal'>
-   float normalFactor = dot(input.normal, -fc_light_direction.xyz);
+   float normalFactor = dot(input.normal.xyz, -fc_light_direction.xyz);
 </shader:true>
 <shader:true source='vertex.attribute.normal'>
    normalFactor = max(normalFactor, 0.1);
@@ -285,7 +286,7 @@ float4 main( PS_INPUT input) : SV_Target
    float normalViewFactor = dot(normal.xyz, -input.camera_ts);
 </shader:true>
 <shader:true source='support.diffuse.view.normal'>
-   float normalViewFactor = dot(input.normal, -cameraDirection);
+   float normalViewFactor = dot(input.normal, -cameraDirection.xyz);
 </shader:true>
    normalViewFactor = max(normalViewFactor, 0.1);
    result.rgb += color.rgb * fc_diffuse_view_color.rgb * normalViewFactor;
@@ -293,8 +294,8 @@ float4 main( PS_INPUT input) : SV_Target
    //............................................................
    // Calculate specular color
 <shader:true source='support.specular'>
-   float3 reflectionDirection = normalize(reflect(fc_light_direction.xyz, input.normal));
-   float specularFactor = dot(cameraDirection, reflectionDirection);
+   float3 reflectionDirection = normalize(reflect(fc_light_direction.xyz, input.normal.xyz));
+   float specularFactor = dot(cameraDirection.xyz, reflectionDirection.xyz);
 <shader:true source='support.specular.level&vertex.attribute.normal'>
    //specularFactor *= normal.w;
 </shader:true>
@@ -317,7 +318,7 @@ float4 main( PS_INPUT input) : SV_Target
 </shader:true>
    //............................................................
 <shader:true source='support.environment'>
-   float3 reflectDirection = normalize(reflect(-cameraDirection, input.normal)); 
+   float3 reflectDirection = normalize(reflect(-cameraDirection.xyz, input.normal.xyz)); 
    float4 environmentColor = ft_environment.Sample(fs_environment, reflectDirection); 
 <shader:true source='support.light'>
    float4 light = ft_light.Sample(fs_light, input.coord);

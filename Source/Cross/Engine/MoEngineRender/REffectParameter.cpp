@@ -131,6 +131,10 @@ TResult REffectParameter::Parse(TCharC* pValue, EEffectParameter& parameterCd, E
       parameterCd = EEffectParameter_FragmentAlpha;
       shaderCd = ERenderShader_Fragment;
       formatCd = ERenderShaderParameterFormat_Float4;
+   }else if(code.Equals("fragmentvertexcolor")){
+      parameterCd = EEffectParameter_FragmentVertexColor;
+      shaderCd = ERenderShader_Fragment;
+      formatCd = ERenderShaderParameterFormat_Float4;
    }else if(code.Equals("fragmentambientcolor")){
       parameterCd = EEffectParameter_FragmentAmbientColor;
       shaderCd = ERenderShader_Fragment;
@@ -223,6 +227,8 @@ TCharC* REffectParameter::Format(EEffectParameter parameterCd){
          return "FragmentColor";
       case EEffectParameter_FragmentAlpha:
          return "FragmentAlpha";
+      case EEffectParameter_FragmentVertexColor:
+         return "FragmentVertexColor";
       case EEffectParameter_FragmentAmbientColor:
          return "FragmentAmbientColor";
       case EEffectParameter_FragmentDiffuseColor:
