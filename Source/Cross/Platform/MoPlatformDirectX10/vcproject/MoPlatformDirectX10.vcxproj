@@ -16,10 +16,14 @@
     <ClCompile Include="..\FPd10RenderFlatTexture.cpp" />
     <ClCompile Include="..\FPd10RenderFragmentShader.cpp" />
     <ClCompile Include="..\FPd10RenderIndexBuffer.cpp" />
+    <ClCompile Include="..\FPd10RenderLayout.cpp" />
     <ClCompile Include="..\FPd10RenderProgram.cpp" />
+    <ClCompile Include="..\FPd10RenderShaderBuffer.cpp" />
+    <ClCompile Include="..\FPd10RenderShaderParameter.cpp" />
     <ClCompile Include="..\FPd10RenderTarget.cpp" />
     <ClCompile Include="..\FPd10RenderVertexBuffer.cpp" />
     <ClCompile Include="..\FPd10RenderVertexShader.cpp" />
+    <ClCompile Include="..\FPlatformDirectX10Feature.cpp" />
     <ClCompile Include="..\MoPlatformDirectX10.cpp" />
     <ClCompile Include="..\RDirectX10.cpp" />
   </ItemGroup>
@@ -84,7 +88,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>dxgi.lib;dxguid.lib;d3d10.lib;d3dx10.lib;opengl32.lib;glew32.lib;LibLzmaD.lib;LibJpegD.lib;LibFreeTypeD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureInputD.lib;MoFeatureGraphicD.lib;MoEngineD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dxgi.lib;dxguid.lib;d3d10.lib;d3dx10.lib;d3dcompiler.lib;LibLzmaD.lib;LibJpegD.lib;LibFreeTypeD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureInputD.lib;MoFeatureGraphicD.lib;MoEngineD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:MSVCRT %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>

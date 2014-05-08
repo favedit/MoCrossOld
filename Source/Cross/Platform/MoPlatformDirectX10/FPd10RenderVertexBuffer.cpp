@@ -28,23 +28,24 @@ TResult FPd10RenderVertexBuffer::OnSetup(){
    MO_CHECK(_pDevice, return ENull);
    FPd10RenderDevice* pRenderDevice = _pDevice->Convert<FPd10RenderDevice>();
    //............................................................
-   if(_dataLength == 0){
-      return EContinue;
-   }
+   _dataLength = _stride * _count;
+   //if(_dataLength == 0){
+   //   return EContinue;
+   //}
    //............................................................
-   // 创建缓冲
-   D3D10_BUFFER_DESC description;
-   RType<D3D10_BUFFER_DESC>::Clear(&description);
-   description.BindFlags = D3D10_BIND_VERTEX_BUFFER;
-   description.ByteWidth = _dataLength;
-   description.CPUAccessFlags = 0;
-   description.MiscFlags = 0;
-   description.Usage = D3D10_USAGE_STAGING;
-   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateBuffer(&description, NULL, &_piBuffer);
-   if(FAILED(dxResult)){
-      MO_FATAL("Create buffer failure.");
-      return EFailure;
-   }
+   //// 创建缓冲
+   //D3D10_BUFFER_DESC description;
+   //RType<D3D10_BUFFER_DESC>::Clear(&description);
+   //description.BindFlags = D3D10_BIND_VERTEX_BUFFER;
+   //description.ByteWidth = _dataLength;
+   //description.CPUAccessFlags = 0;
+   //description.MiscFlags = 0;
+   //description.Usage = D3D10_USAGE_STAGING;
+   //HRESULT dxResult = pRenderDevice->NativeDevice()->CreateBuffer(&description, NULL, &_piBuffer);
+   //if(FAILED(dxResult)){
+   //   MO_FATAL("Create buffer failure.");
+   //   return EFailure;
+   //}
    return resultCd;
 }
 
@@ -64,18 +65,20 @@ TResult FPd10RenderVertexBuffer::Upload(TByteC* pData, TInt length){
    FPd10RenderDevice* pRenderDevice = _pDevice->Convert<FPd10RenderDevice>();
    MO_RELEASE(_piBuffer);
    //............................................................
-   // 创建缓冲
-   D3D10_BUFFER_DESC description;
-   RType<D3D10_BUFFER_DESC>::Clear(&description);
-   description.BindFlags = D3D10_BIND_VERTEX_BUFFER;
-   description.ByteWidth = _dataLength;
-   description.CPUAccessFlags = 0;
-   description.MiscFlags = 0;
-   description.Usage = D3D10_USAGE_DEFAULT;
-   D3D10_SUBRESOURCE_DATA data;
-   RType<D3D10_SUBRESOURCE_DATA>::Clear(&data);
+   // 设置描述
+   D3D10_BUFFER_DESC descriptor = {0};
+   descriptor.ByteWidth = _dataLength;
+   descriptor.Usage = D3D10_USAGE_DEFAULT;
+   descriptor.BindFlags = D3D10_BIND_VERTEX_BUFFER;
+   descriptor.CPUAccessFlags = 0;
+   descriptor.MiscFlags = 0;
+   // 设置数据
+   D3D10_SUBRESOURCE_DATA data = {0};
    data.pSysMem = pData;
-   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateBuffer(&description, &data, &_piBuffer);
+   data.SysMemPitch = 0;
+   data.SysMemSlicePitch = 0;
+   // 创建缓冲
+   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateBuffer(&descriptor, &data, &_piBuffer);
    if(FAILED(dxResult)){
       MO_FATAL("Create buffer failure.");
       return EFailure;
@@ -98,18 +101,6 @@ TResult FPd10RenderVertexBuffer::Suspend(){
 // @return 处理结果
 //============================================================
 TResult FPd10RenderVertexBuffer::Resume(){
-   //// 生成编号
-   //glGenBuffers(1, &_bufferId);
-   //MO_FATAL_CHECK(_bufferId != 0, return EFailure,
-   //      "Generate vertex buffer id failure. (buffer_id=%d)", _bufferId);
-   //// 绑定编号
-   //glBindBuffer(GL_ARRAY_BUFFER, _bufferId);
-   //_pDevice->CheckError("glBindBuffer", "Bind array buffer. (buffer_id=%d)", _bufferId);
-   //// 上传数据
-   //TInt length = _pDataStream->Length();
-   //TByteC* pData = _pDataStream->MemoryC();
-   //glBufferData(GL_ARRAY_BUFFER, length, pData, GL_STATIC_DRAW);
-   //_pDevice->CheckError("glBufferData", "Upload array buffer data. (buffer_id=%d, length=%d, data=0x%08X)", _bufferId, length, pData);
    return ESuccess;
 }
 
@@ -119,11 +110,6 @@ TResult FPd10RenderVertexBuffer::Resume(){
 // @return 处理结果
 //============================================================
 TResult FPd10RenderVertexBuffer::Dispose(){
-   //if(_bufferId != 0){
-   //   TInt size = _stride * _count;
-   //   glDeleteBuffers(size, &_bufferId);
-   //   _bufferId = 0;
-   //}
    return ESuccess;
 }
 

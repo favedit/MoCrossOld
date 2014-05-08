@@ -8,13 +8,18 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd10RenderCubeTexture, FRenderFlatTexture);
 // <T>构造渲染CUBE纹理。</T>
 //============================================================
 FPd10RenderCubeTexture::FPd10RenderCubeTexture(){
-   //_textureId = 0;
+   MO_CLEAR(_piTexture);
+   MO_CLEAR(_piView);
+   MO_CLEAR(_piState);
 }
 
 //============================================================
 // <T>析构渲染CUBE纹理。</T>
 //============================================================
 FPd10RenderCubeTexture::~FPd10RenderCubeTexture(){
+   MO_RELEASE(_piTexture);
+   MO_RELEASE(_piView);
+   MO_RELEASE(_piState);
 }
 
 //============================================================
@@ -48,61 +53,73 @@ TResult FPd10RenderCubeTexture::Resize(TInt size){
 // @return 处理结果
 //============================================================
 TResult FPd10RenderCubeTexture::Upload(TByteC* pData, TInt length){
-   //// 检查参数
-   //MO_CHECK(pData, return ENull);
-   //MO_CHECK(length > 0, return ENull);
-   //// 检查编号
-   //MO_FATAL_CHECK(_textureId != 0, return EFailure, "Texture id is invalid. (texture_id=%d)", _textureId);
-   //int faceSize = _size.Square();
-   //// 上传数据
-   ////glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-   //glEnable(GL_TEXTURE_CUBE_MAP);
-   ////glEnable(GL_TEXTURE_GEN_S);   
-   ////glEnable(GL_TEXTURE_GEN_T);   
-   ////glEnable(GL_TEXTURE_GEN_R); 
-   ////glEnable(GL_NORMALIZE);
-   //glBindTexture(GL_TEXTURE_CUBE_MAP, _textureId);
-   //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-   //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-   ////glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_REFLECTION_MAP);
-   ////glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_REFLECTION_MAP);
-   ////glTexGeni(GL_R, GL_TEXTURE_GEN_MODE, GL_REFLECTION_MAP);
-   //glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGBA, _size.width, _size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, (const GLvoid*)(pData + sizeof(TUint32) * faceSize * 0));
-   //glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_RGBA, _size.width, _size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, (const GLvoid*)(pData + sizeof(TUint32) * faceSize * 1));
-   //glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_RGBA, _size.width, _size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, (const GLvoid*)(pData + sizeof(TUint32) * faceSize * 2));
-   //glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, GL_RGBA, _size.width, _size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, (const GLvoid*)(pData + sizeof(TUint32) * faceSize * 3));
-   //glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_RGBA, _size.width, _size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, (const GLvoid*)(pData + sizeof(TUint32) * faceSize * 4));
-   //glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGBA, _size.width, _size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, (const GLvoid*)(pData + sizeof(TUint32) * faceSize * 5));
-   ////glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_REPEAT);  
-   ////glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_REPEAT);  
-   ////glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_REPEAT);  
-   ////// 设置过滤
-   ////ERenderTextureFilter filterCd = pTexture->FilterCd();
-   ////switch(filterCd){
-   ////   case ERenderTextureFilter_Nearest:
-   ////      glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-   ////      break;
-   ////   case ERenderTextureFilter_Linear:
-   ////      glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-   ////      break;
-   ////}
-   //////glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); 
-   //////glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-   //////glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-   //////glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-   ////// 设置展开
-   ////ERenderTextureWrap warpCd = pTexture->WrapCd();
-   ////switch(warpCd){
-   ////   case MO::ERenderTextureWrap_Clamp:
-   ////      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-   ////      break;
-   ////   case MO::ERenderTextureWrap_Repeat:
-   ////      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-   ////      break;
-   ////}
-   //if(_pData->MemoryC() != pData){
-   //   _pData->Assign(pData, length);
-   //}
+   // 检查参数
+   MO_CHECK(pData, return ENull);
+   MO_CHECK(length > 0, return ENull);
+   MO_CHECK(_pDevice, return ENull);
+   FPd10RenderDevice* pRenderDevice = _pDevice->Convert<FPd10RenderDevice>();
+   // 释放资源
+   MO_RELEASE(_piTexture);
+   // 设置参数
+   D3D10_TEXTURE2D_DESC descriptor = {0};
+   descriptor.Width = _size.width;
+   descriptor.Height = _size.height;
+   descriptor.MipLevels = 1;
+   descriptor.ArraySize = 6;
+   descriptor.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+   descriptor.SampleDesc.Count = 1;
+   descriptor.SampleDesc.Quality = 0;
+   descriptor.Usage = D3D10_USAGE_DEFAULT;
+   descriptor.BindFlags = D3D10_BIND_SHADER_RESOURCE;
+   descriptor.CPUAccessFlags = 0;
+   descriptor.MiscFlags = D3D10_RESOURCE_MISC_TEXTURECUBE;
+   //descriptor.MiscFlags = D3D10_RESOURCE_MISC_TEXTURECUBE | D3D10_RESOURCE_MISC_GENERATE_MIPS;
+   // 设置内存
+   D3D10_SUBRESOURCE_DATA data[6] = {0};
+   for(TInt n = 0; n < 6; n++){
+      D3D10_SUBRESOURCE_DATA& item = data[n];
+      item.pSysMem = pData + sizeof(TUint32) * _size.Square() * n;
+      item.SysMemPitch = sizeof(TUint32) * _size.width;
+      item.SysMemSlicePitch = sizeof(TUint32) * _size.Square();
+   }
+   // 创建纹理
+   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateTexture2D(&descriptor, data, &_piTexture);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create buffer failure.");
+      return EFailure;
+   }
+   // 上传数据
+   D3D10_SHADER_RESOURCE_VIEW_DESC viewDescriptor;
+   RType<D3D10_SHADER_RESOURCE_VIEW_DESC>::Clear(&viewDescriptor);
+   viewDescriptor.Format = descriptor.Format;
+   viewDescriptor.ViewDimension = D3D10_SRV_DIMENSION_TEXTURECUBE;
+   viewDescriptor.TextureCube.MipLevels = -1;
+   viewDescriptor.TextureCube.MostDetailedMip = 0;
+   dxResult = pRenderDevice->NativeDevice()->CreateShaderResourceView(_piTexture, &viewDescriptor, &_piView);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create buffer failure.");
+      return EFailure;
+   }
+   // 创建取样器
+   D3D10_SAMPLER_DESC samplerDescriptor;
+   RType<D3D10_SAMPLER_DESC>::Clear(&samplerDescriptor);
+   samplerDescriptor.Filter = D3D10_FILTER_MIN_MAG_MIP_LINEAR;
+   samplerDescriptor.AddressU = D3D10_TEXTURE_ADDRESS_WRAP;
+   samplerDescriptor.AddressV = D3D10_TEXTURE_ADDRESS_WRAP;
+   samplerDescriptor.AddressW = D3D10_TEXTURE_ADDRESS_WRAP;
+   samplerDescriptor.ComparisonFunc = D3D10_COMPARISON_NEVER;
+   samplerDescriptor.MinLOD = 0;
+   samplerDescriptor.MaxLOD = D3D10_FLOAT32_MAX;
+   dxResult = pRenderDevice->NativeDevice()->CreateSamplerState(&samplerDescriptor, &_piState);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create sampler state failure.");
+      return EFailure;
+   }
+   //D3D10_MAPPED_TEXTURE2D mappedData;
+   //_piTexture->Map(D3D10CalcSubresource(0, 0, 1), D3D10_MAP_WRITE_DISCARD, 0, &mappedData);
+   //TByte* pMappedData = (TByte*)mappedData.pData;
+   //MO_LIB_MEMORY_COPY(pMappedData, length, pData, length);
+   //_piTexture->Unmap(D3D10CalcSubresource(0, 0, 1));
    return ESuccess;
 }
 

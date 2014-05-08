@@ -6,8 +6,8 @@
 #include <MoEngineFace.h>
 #include <MoEngineRender.h>
 #include <MoPlatformOpenGLES2.h>
-//#include <MoPlatformDirectX10.h>
-#include <MoPlatformDirectX11.h>
+#include <MoPlatformDirectX10.h>
+//#include <MoPlatformDirectX11.h>
 #include <MoPlatformWindows.h>
 #include <MoGameEngine.h>
 #include "MoTestLogic.h"
@@ -129,8 +129,8 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    // 初始化处理
    MoGameEngineInitialize();
    //MoEngineOpenGLES2();
-   //MoEngineDirectX10Initialize();
-   MoEngineDirectX11();
+   MoEngineDirectX10();
+   //MoEngineDirectX11();
    RFeatureManager::Instance().Construct();
    //............................................................
    // 设置信息
@@ -169,8 +169,8 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    pWindow->Setup();
    // 初始化渲染设备
    //FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
-   //FPd10RenderDevice* pRenderDevice = (FPd10RenderDevice*)RDeviceManager::Instance().Find<FRenderDevice>();
-   FPd11RenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FPd11RenderDevice>();
+   FPd10RenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FPd10RenderDevice>();
+   //FPd11RenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FPd11RenderDevice>();
    pRenderDevice->SetWindowHandle(pWindow->Handle());
    pRenderDevice->Setup();
    // 初始化舞台

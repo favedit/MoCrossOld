@@ -26,9 +26,6 @@ FPd10RenderVertexShader::~FPd10RenderVertexShader(){
 // @return 处理结果
 //============================================================
 TResult FPd10RenderVertexShader::Setup(){
-   //_renderId.uint32 = glCreateShader(GL_VERTEX_SHADER);
-   //TResult resultCd = _pDevice->CheckError("glCreateShader", "Create vertex shader failure. (shader_id=%d)", _renderId.uint32);
-   //return resultCd;
    return ESuccess;
 }
 
@@ -44,11 +41,17 @@ TResult FPd10RenderVertexShader::Compile(TCharC* pSource){
    FPd10RenderDevice* pRenderDevice = _pDevice->Convert<FPd10RenderDevice>();
    FRenderCapability* pCapability = pRenderDevice->Capability();
    TCharC* pShaderVersion = pCapability->ShaderVertexVersion();
-   // 上传代码
+   // 设置标志
+   //TUint32 shaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
+   TUint32 shaderFlags = 0;
+#ifdef _MO_DEBUG
+    shaderFlags |= D3DCOMPILE_DEBUG;
+#endif // _MO_DEBUG
+    // 上传代码
    TInt length = RString::Length(pSource);
    ID3D10Blob* piError = NULL;
    HRESULT shaderResult = S_OK;
-   HRESULT dxResult = D3DX10CompileFromMemory(pSource, length, NULL, NULL, NULL, "main", pShaderVersion, 0, 0, NULL, &_piData, &piError, &shaderResult);
+   HRESULT dxResult = D3DX10CompileFromMemory(pSource, length, NULL, NULL, NULL, "main", pShaderVersion, shaderFlags, 0, NULL, &_piData, &piError, &shaderResult);
    if(FAILED(dxResult) || FAILED(shaderResult)){
       TCharC* pBuffer = (TCharC*)piError->GetBufferPointer();
       MO_ERROR("Compile from memory failure.\n%s", pBuffer);
@@ -92,13 +95,6 @@ TResult FPd10RenderVertexShader::Resume(){
 // @return 处理结果
 //============================================================
 TResult FPd10RenderVertexShader::Dispose(){
-   //TResult resultCd = ESuccess;
-   //if(_renderId.uint32 != 0){
-   //   glDeleteShader(_renderId.uint32);
-   //   resultCd = _pDevice->CheckError("glCreateShader", "Delete vertex shader failure. (shader_id=%d)", _renderId.uint32);
-   //   _renderId.uint32 = 0;
-   //}
-   //return resultCd;
    return ESuccess;
 }
 

@@ -2,6 +2,10 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\MoPlatformDirectX10.cpp" />
+    <ClCompile Include="..\RDirectX10.cpp">
+      <Filter>3-Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FPlatformDirectX10Feature.cpp" />
     <ClCompile Include="..\FPd10RenderCubeTexture.cpp">
       <Filter>4-Engine\Render</Filter>
     </ClCompile>
@@ -17,7 +21,16 @@
     <ClCompile Include="..\FPd10RenderIndexBuffer.cpp">
       <Filter>4-Engine\Render</Filter>
     </ClCompile>
+    <ClCompile Include="..\FPd10RenderLayout.cpp">
+      <Filter>4-Engine\Render</Filter>
+    </ClCompile>
     <ClCompile Include="..\FPd10RenderProgram.cpp">
+      <Filter>4-Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FPd10RenderShaderBuffer.cpp">
+      <Filter>4-Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FPd10RenderShaderParameter.cpp">
       <Filter>4-Engine\Render</Filter>
     </ClCompile>
     <ClCompile Include="..\FPd10RenderTarget.cpp">
@@ -28,9 +41,6 @@
     </ClCompile>
     <ClCompile Include="..\FPd10RenderVertexShader.cpp">
       <Filter>4-Engine\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="..\RDirectX10.cpp">
-      <Filter>3-Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
