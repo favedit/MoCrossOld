@@ -321,6 +321,7 @@ class MO_PD11_DECLARE FPd11RenderFlatTexture : public FRenderFlatTexture
 protected:
    ID3D11Texture2D* _piTexture;
    ID3D11ShaderResourceView* _piView;
+   ID3D11SamplerState* _piState;
 public:
    FPd11RenderFlatTexture();
    MO_ABSTRACT ~FPd11RenderFlatTexture();
@@ -334,6 +335,11 @@ public:
    // <T>获得本地视图。</T>
    MO_INLINE ID3D11ShaderResourceView* NativeView(){
       return _piView;
+   }
+   //------------------------------------------------------------
+   // <T>获得取样器状态。</T>
+   MO_INLINE ID3D11SamplerState* NativeState(){
+      return _piState;
    }
 public:
    MO_OVERRIDE TResult OnSetup();
@@ -357,6 +363,7 @@ class MO_PD11_DECLARE FPd11RenderCubeTexture : public FRenderCubeTexture
 protected:
    ID3D11Texture2D* _piTexture;
    ID3D11ShaderResourceView* _piView;
+   ID3D11SamplerState* _piState;
 public:
    FPd11RenderCubeTexture();
    MO_ABSTRACT ~FPd11RenderCubeTexture();
@@ -370,6 +377,11 @@ public:
    // <T>获得本地视图。</T>
    MO_INLINE ID3D11ShaderResourceView* NativeView(){
       return _piView;
+   }
+   //------------------------------------------------------------
+   // <T>获得取样器状态。</T>
+   MO_INLINE ID3D11SamplerState* NativeState(){
+      return _piState;
    }
 public:
    MO_OVERRIDE TResult OnSetup();

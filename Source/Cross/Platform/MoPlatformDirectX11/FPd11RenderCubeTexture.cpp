@@ -10,6 +10,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderCubeTexture, FRenderFlatTexture);
 FPd11RenderCubeTexture::FPd11RenderCubeTexture(){
    MO_CLEAR(_piTexture);
    MO_CLEAR(_piView);
+   MO_CLEAR(_piState);
 }
 
 //============================================================
@@ -18,6 +19,7 @@ FPd11RenderCubeTexture::FPd11RenderCubeTexture(){
 FPd11RenderCubeTexture::~FPd11RenderCubeTexture(){
    MO_RELEASE(_piTexture);
    MO_RELEASE(_piView);
+   MO_RELEASE(_piState);
 }
 
 //============================================================
@@ -69,15 +71,19 @@ TResult FPd11RenderCubeTexture::Upload(TByteC* pData, TInt length){
    descriptor.SampleDesc.Quality = 0;
    descriptor.Usage = D3D11_USAGE_DEFAULT;
    descriptor.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+   descriptor.CPUAccessFlags = 0;
    descriptor.MiscFlags = D3D11_RESOURCE_MISC_TEXTURECUBE;
    //descriptor.MiscFlags = D3D11_RESOURCE_MISC_TEXTURECUBE | D3D11_RESOURCE_MISC_GENERATE_MIPS;
    // 设置内存
-   D3D11_SUBRESOURCE_DATA data = {0};
-   data.pSysMem = pData;
-   data.SysMemSlicePitch = sizeof(TUint32) * _size.width * _size.height;
-   //data.SysMemPitch = sizeof(TUint32) * _size.width * _size.height;
+   D3D11_SUBRESOURCE_DATA data[6] = {0};
+   for(TInt n = 0; n < 6; n++){
+      D3D11_SUBRESOURCE_DATA& item = data[n];
+      item.pSysMem = pData + sizeof(TUint32) * _size.Square() * n;
+      item.SysMemPitch = sizeof(TUint32) * _size.width;
+      item.SysMemSlicePitch = sizeof(TUint32) * _size.Square();
+   }
    // 创建纹理
-   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateTexture2D(&descriptor, &data, &_piTexture);
+   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateTexture2D(&descriptor, data, &_piTexture);
    if(FAILED(dxResult)){
       MO_FATAL("Create buffer failure.");
       return EFailure;
@@ -87,11 +93,26 @@ TResult FPd11RenderCubeTexture::Upload(TByteC* pData, TInt length){
    RType<D3D11_SHADER_RESOURCE_VIEW_DESC>::Clear(&viewDescriptor);
    viewDescriptor.Format = descriptor.Format;
    viewDescriptor.ViewDimension = D3D11_SRV_DIMENSION_TEXTURECUBE;
-   viewDescriptor.TextureCube.MipLevels = 1;
+   viewDescriptor.TextureCube.MipLevels = -1;
    viewDescriptor.TextureCube.MostDetailedMip = 0;
    dxResult = pRenderDevice->NativeDevice()->CreateShaderResourceView(_piTexture, &viewDescriptor, &_piView);
    if(FAILED(dxResult)){
       MO_FATAL("Create buffer failure.");
+      return EFailure;
+   }
+   // 创建取样器
+   D3D11_SAMPLER_DESC samplerDescriptor;
+   RType<D3D11_SAMPLER_DESC>::Clear(&samplerDescriptor);
+   samplerDescriptor.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+   samplerDescriptor.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+   samplerDescriptor.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+   samplerDescriptor.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+   samplerDescriptor.ComparisonFunc = D3D11_COMPARISON_NEVER;
+   samplerDescriptor.MinLOD = 0;
+   samplerDescriptor.MaxLOD = D3D11_FLOAT32_MAX;
+   dxResult = pRenderDevice->NativeDevice()->CreateSamplerState(&samplerDescriptor, &_piState);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create sampler state failure.");
       return EFailure;
    }
    //D3D11_MAPPED_TEXTURE2D mappedData;

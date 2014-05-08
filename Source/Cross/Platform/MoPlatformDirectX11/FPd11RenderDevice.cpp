@@ -995,13 +995,19 @@ TResult FPd11RenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
       case ERenderTexture_Flat2d:{
          FPd11RenderFlatTexture* pFlatTexture = (FPd11RenderFlatTexture*)pTexture;
          ID3D11ShaderResourceView* piTextureView = pFlatTexture->NativeView();
+         ID3D11SamplerState* piState = pFlatTexture->NativeState();
          _piContext->PSSetShaderResources(slot, 1, &piTextureView);
-         MO_DEBUG("Set texture 2d. (slot=%d, texture=0x%08X)", slot, pTexture);
+         _piContext->PSSetSamplers(slot, 1, &piState);
+         //MO_DEBUG("Set texture 2d. (slot=%d, texture=0x%08X)", slot, pTexture);
          break;
       }
       case ERenderTexture_Cube:{
          FPd11RenderCubeTexture* pCubeTexture = (FPd11RenderCubeTexture*)pTexture;
-         MO_DEBUG("Set texture 3d. (slot=%d, texture=0x%08X)", slot, pTexture);
+         ID3D11ShaderResourceView* piTextureView = pCubeTexture->NativeView();
+         ID3D11SamplerState* piState = pCubeTexture->NativeState();
+         _piContext->PSSetShaderResources(slot, 1, &piTextureView);
+         _piContext->PSSetSamplers(slot, 1, &piState);
+         //MO_DEBUG("Set texture 3d. (slot=%d, texture=0x%08X)", slot, pTexture);
          break;
       }
       default:{

@@ -10,6 +10,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderFlatTexture, FRenderFlatTexture);
 FPd11RenderFlatTexture::FPd11RenderFlatTexture(){
    MO_CLEAR(_piTexture);
    MO_CLEAR(_piView);
+   MO_CLEAR(_piState);
 }
 
 //============================================================
@@ -18,6 +19,7 @@ FPd11RenderFlatTexture::FPd11RenderFlatTexture(){
 FPd11RenderFlatTexture::~FPd11RenderFlatTexture(){
    MO_RELEASE(_piTexture);
    MO_RELEASE(_piView);
+   MO_RELEASE(_piState);
 }
 
 //============================================================
@@ -92,6 +94,21 @@ TResult FPd11RenderFlatTexture::Upload(TByteC* pData, TInt length){
    dxResult = pRenderDevice->NativeDevice()->CreateShaderResourceView(_piTexture, &viewDescriptor, &_piView);
    if(FAILED(dxResult)){
       MO_FATAL("Create buffer failure.");
+      return EFailure;
+   }
+   // 创建取样器
+   D3D11_SAMPLER_DESC samplerDescriptor;
+   RType<D3D11_SAMPLER_DESC>::Clear(&samplerDescriptor);
+   samplerDescriptor.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+   samplerDescriptor.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+   samplerDescriptor.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+   samplerDescriptor.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+   samplerDescriptor.ComparisonFunc = D3D11_COMPARISON_NEVER;
+   samplerDescriptor.MinLOD = 0;
+   samplerDescriptor.MaxLOD = D3D11_FLOAT32_MAX;
+   dxResult = pRenderDevice->NativeDevice()->CreateSamplerState(&samplerDescriptor, &_piState);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create sampler state failure.");
       return EFailure;
    }
    //D3D11_MAPPED_TEXTURE2D mappedData;

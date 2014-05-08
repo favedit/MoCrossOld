@@ -194,7 +194,6 @@ struct PS_INPUT
 <shader:true source='support.ambient.sampler'>
 Texture2D ft_diffuse;
 SamplerState fs_diffuse = sampler_state{
-   Texture = <ft_diffuse>;
    MipFilter = LINEAR;
    MinFilter = LINEAR;
    MagFilter = LINEAR;
@@ -203,7 +202,6 @@ SamplerState fs_diffuse = sampler_state{
 <shader:true source='support.diffuse.dump'>
 Texture2D ft_normal;
 SamplerState fs_normal = sampler_state{
-   Texture = <ft_normal>;
    MipFilter = LINEAR;
    MinFilter = LINEAR;
    MagFilter = LINEAR;
@@ -212,7 +210,6 @@ SamplerState fs_normal = sampler_state{
 <shader:true source='support.specular'>
 Texture2D ft_specular;
 SamplerState fs_specular = sampler_state{
-   Texture = <ft_specular>;
    MipFilter = LINEAR;
    MinFilter = LINEAR;
    MagFilter = LINEAR;
@@ -221,16 +218,14 @@ SamplerState fs_specular = sampler_state{
 <shader:true source='support.light'>
 Texture2D ft_light;
 SamplerState fs_light = sampler_state{
-   Texture = <ft_light>;
    MipFilter = LINEAR;
    MinFilter = LINEAR;
    MagFilter = LINEAR;
 };
 </shader:true>
 <shader:true source='support.environment'>
-Texture2D ft_environment;
+TextureCube ft_environment;
 SamplerState fs_environment = sampler_state{
-   Texture = <ft_environment>;
    MipFilter = LINEAR;
    MinFilter = LINEAR;
    MagFilter = LINEAR;
@@ -247,9 +242,9 @@ float4 main( PS_INPUT input) : SV_Target
    // Calculate ambient color
 <shader:true source='support.ambient.sampler'>
    float4 color = ft_diffuse.Sample(fs_diffuse, input.coord);
-   //if(color.a < fc_alpha.x){
-      //discard;
-   //}
+   if(color.a < fc_alpha.x){
+      discard;
+   }
 </shader:true>
 <shader:false source='support.ambient.sampler'>
    float4 color = float4(1.0, 1.0, 1.0, 1.0);

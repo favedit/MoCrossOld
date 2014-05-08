@@ -130,6 +130,7 @@ TResult FFeatureConsole::Dispose(){
       FFeature* pFeature = _features.Get(n);
       pFeature->Dispose();
    }
+   _features.Clear();
    return resultCd;
 }
 

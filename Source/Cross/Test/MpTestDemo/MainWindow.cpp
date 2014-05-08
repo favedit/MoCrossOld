@@ -132,59 +132,8 @@ TResult OnKeyDown(SKeyboardEvent* pEvent){
 // @return 处理结果
 //============================================================
 TResult OnEnterFrame(SFrameEvent* pEvent){
-   MO_STATIC_INFO("------------------------------------------------------------");
+   //MO_STATIC_INFO("------------------------------------------------------------");
    //FPd11RenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FPd11RenderDevice>();
-   // // Update our time
-   // static float t = 0.0f;
-   //   static DWORD dwTimeStart = 0;
-   //   DWORD dwTimeCur = GetTickCount();
-   //   if( dwTimeStart == 0 )
-   //      dwTimeStart = dwTimeCur;
-   //   t = ( dwTimeCur - dwTimeStart ) / 1000.0f;
-
-   // // Rotate cube around the origin
-   // g_World = XMMatrixRotationY( t );
-   // // Modify the color
-   // g_vMeshColor.x = ( sinf( t * 1.0f ) + 1.0f ) * 0.5f;
-   // g_vMeshColor.y = ( cosf( t * 3.0f ) + 1.0f ) * 0.5f;
-   // g_vMeshColor.z = ( sinf( t * 5.0f ) + 1.0f ) * 0.5f;
-   // //
-   // // Clear the back buffer
-   // //
-   // pRenderDevice->Clear(0.0f, 0.125f, 0.3f, 1.0f);
-   // //
-   // // Update variables that change once per frame
-   // //
-   // SEffectDynamic cb;
-   // cb.mWorld = XMMatrixTranspose( g_World );
-   // cb.vMeshColor = g_vMeshColor;
-
-
-   //FPd11RenderProgram* pProgram = (FPd11RenderProgram*)g_pEffect->Program();
-
-   // FPd11RenderShaderBuffer* pEffectDynamicBuffer = (FPd11RenderShaderBuffer*)g_pEffect->Program()->BufferFind("EffectDynamic");
-   // pEffectDynamicBuffer->Set(0, &cb, sizeof(cb));
-   // //pRenderDevice->NativeContext()->UpdateSubresource(pBuffer2->NativeiBuffer(), 0, NULL, &cb, 0, 0 );
-
-   // pRenderDevice->SetProgram(g_pEffect->Program());
-
-   // pRenderDevice->NativeContext()->IASetInputLayout(pProgram->NativeInputLayout());
-   // //pRenderDevice->BindVertexBuffer(0, g_pVertexBuffer, 0, ERenderVertexFormat_Float3);
-   // pRenderDevice->SetLayout(g_pLayout);
-
-   // //pRenderDevice->NativeContext()->VSSetConstantBuffers( 0, 1, &g_pCBNeverChanges );
-   // //pRenderDevice->NativeContext()->VSSetConstantBuffers( 1, 1, &g_pCBChangeOnResize );
-   // //pRenderDevice->NativeContext()->VSSetConstantBuffers( 2, 1, &g_pCBChangesEveryFrame );
-
-   // //pRenderDevice->NativeContext()->PSSetConstantBuffers( 2, 1, &g_pCBChangesEveryFrame );
-
-   // ID3D11ShaderResourceView* pView = g_pTexture->NativeView();
-   // pRenderDevice->NativeContext()->PSSetShaderResources(0, 1, &pView);
-
-   // pRenderDevice->DrawTriangles(g_pIndexBuffer, 0, g_pIndexBuffer->Count());
-   // pRenderDevice->Present();
-
-   // return ESuccess;
    //TTimeTick currentTick = RTimeTick::Current();
    //if(g_templateTick == 0){
    //   g_lastTick = currentTick;
@@ -261,7 +210,7 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    // 初始化渲染设备
    //FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
    //FPd10RenderDevice* pRenderDevice = (FPd10RenderDevice*)RDeviceManager::Instance().Find<FRenderDevice>();
-   FPd11RenderDevice* pRenderDevice = (FPd11RenderDevice*)RDeviceManager::Instance().Find<FRenderDevice>();
+   FPd11RenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FPd11RenderDevice>();
    pRenderDevice->SetWindowHandle(pWindow->Handle());
    pRenderDevice->Setup();
    // 初始化舞台
@@ -293,12 +242,6 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    // 激活舞台
    //RInstance3dManager::Instance().TemplateConsole()->Alloc("pvw.sc.courtyard.item.02.022");
    //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.show.item.001");
-   //FDisplayLayer* pDisplayLayer = pScene->Layers().Get(0)->Layers()->Get(2);
-   //FDisplay* pDisplay = pDisplayLayer->Displays().Get(0);
-   //FRenderable* pRenderable = pDisplay->Renderables().Get(0);
-   //g_pVertexBuffer = (FPd11RenderVertexBuffer*)pRenderable->VertexStreams()->Buffers()->Get(0);
-   //g_pIndexBuffer = (FPd11RenderIndexBuffer*)pRenderable->IndexBuffer();
-   //g_pTexture = (FPd11RenderFlatTexture*)pRenderable->Textures()->Get(0);
    FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.001");
    //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.002");
    //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.003");
@@ -309,58 +252,13 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.courtyard.scene");
    pScene->ListenersFrameEnter().Register(&OnEnterFrame);
    RStageManager::Instance().SelectStage(pScene);
-
-   //g_pEffect = REffectManager::Instance().Find("simple.color.automatic", pRenderable);
-   //FRenderableEffect* pRenderableEffect = pRenderable->EffectBind(g_pEffect);
-   //pRenderable->SetActiveEffect(pRenderableEffect);
-   //g_pLayout = pRenderDevice->CreateObject<FPd11RenderLayout>(MO_RENDEROBJECT_LAYOUT);
-   //g_pLayout->SetProgram(g_pEffect->Program());
-   //g_pLayout->SetRenderable(pRenderable);
-   //g_pLayout->Setup();
-   //pRenderableEffect->SetLayout();
-   
-    //HRESULT hr = S_OK;
-
-    //RECT rc;
-    //GetClientRect( pWindow->Handle(), &rc );
-    //UINT width = rc.right - rc.left;
-    //UINT height = rc.bottom - rc.top;
-
-    ////GRenderShaderBufferPtrs& buffers = g_pEffect->Program()->Buffers();
-    ////g_pCBNeverChanges = pBuffer1->NativeiBuffer();
-
-    ////FPd11RenderShaderBuffer* pBuffer2 = (FPd11RenderShaderBuffer*)buffers.Get(1);
-    ////g_pCBChangeOnResize = pBuffer2->NativeiBuffer();
-
-    ////FPd11RenderShaderBuffer* pBuffer3 = (FPd11RenderShaderBuffer*)buffers.Get(2);
-    ////g_pCBChangesEveryFrame = pBuffer3->NativeiBuffer();
-
-    //// Initialize the world matrices
-    //g_World = XMMatrixIdentity();
-
-    //// Initialize the view matrix
-    //XMVECTOR Eye = XMVectorSet( 0.0f, 3.0f, -6.0f, 0.0f );
-    //XMVECTOR At = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
-    //XMVECTOR Up = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
-    //g_View = XMMatrixLookAtLH( Eye, At, Up );
-
-    //g_Projection = XMMatrixPerspectiveFovLH( XM_PIDIV4, width / (FLOAT)height, 0.01f, 10000.0f );
-
-    //STechniqueStatic techniqueStatic;
-    //techniqueStatic.mView = XMMatrixTranspose( g_View );
-    //techniqueStatic.mProjection = XMMatrixTranspose( g_Projection );
-
-    //FPd11RenderShaderBuffer* pTechniqueStaticBuffer = (FPd11RenderShaderBuffer*)g_pEffect->Program()->BufferFind("TechniqueStatic");
-    //pTechniqueStaticBuffer->Set(0, &techniqueStatic, sizeof(techniqueStatic));
-
-    //pRenderDevice->NativeContext()->UpdateSubresource( pBuffer1->NativeiBuffer(), 0, NULL, &techniqueStatic, 0, 0 );
    //............................................................
    // 处理窗口
    pWindow->Startup();
    pWindow->Process();
    //............................................................
    MoGameEngineShutdown();
-   //RFeatureManager::Instance().Release();
+   RFeatureManager::Instance().Shutdown();
    //............................................................
    // 释放处理
    MoGameEngineRelease();
