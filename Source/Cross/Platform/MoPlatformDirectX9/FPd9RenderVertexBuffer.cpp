@@ -8,13 +8,14 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderVertexBuffer, FRenderVertexBuffer);
 // <T>构造渲染顶点缓冲。</T>
 //============================================================
 FPd9RenderVertexBuffer::FPd9RenderVertexBuffer(){
-   _bufferId = 0;
+   MO_CLEAR(_piBuffer);
 }
 
 //============================================================
 // <T>析构渲染顶点缓冲。</T>
 //============================================================
 FPd9RenderVertexBuffer::~FPd9RenderVertexBuffer(){
+   MO_RELEASE(_piBuffer);
 }
 
 //============================================================
@@ -23,11 +24,15 @@ FPd9RenderVertexBuffer::~FPd9RenderVertexBuffer(){
 // @return 处理结果
 //============================================================
 TResult FPd9RenderVertexBuffer::OnSetup(){
-   glGenBuffers(1, &_bufferId);
-   MO_FATAL_CHECK(_bufferId != 0, return EFailure,
-         "Generate vertex buffer id failure. (buffer_id=%d)", _bufferId);
-   glBindBuffer(GL_ARRAY_BUFFER, _bufferId);
-   return ESuccess;
+   TResult resultCd = ESuccess;
+   MO_CHECK(_pDevice, return ENull);
+   FPd9RenderDevice* pRenderDevice = _pDevice->Convert<FPd9RenderDevice>();
+   //............................................................
+   _dataLength = _stride * _count;
+   if(_dataLength == 0){
+      return EContinue;
+   }
+   return resultCd;
 }
 
 //============================================================
@@ -41,14 +46,26 @@ TResult FPd9RenderVertexBuffer::Upload(TByteC* pData, TInt length){
    // 检查参数
    MO_CHECK(pData, return ENull);
    MO_CHECK(length > 0, return EFailure);
-   // 检查编号
-   MO_FATAL_CHECK(_bufferId != 0, return EFailure,
-         "Buffer id is invalid. (buffer_id=%d)", _bufferId);
+   TResult resultCd = ESuccess;
+   MO_CHECK(_pDevice, return ENull);
+   FPd9RenderDevice* pRenderDevice = _pDevice->Convert<FPd9RenderDevice>();
+   MO_RELEASE(_piBuffer);
+   //............................................................
+   // 创建缓冲
+   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateVertexBuffer(_dataLength, 0, 0, D3DPOOL_DEFAULT, &_piBuffer, NULL);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create buffer failure.");
+      return EFailure;
+   }
    // 上传数据
-   glBindBuffer(GL_ARRAY_BUFFER, _bufferId);
-   _pDevice->CheckError("glBindBuffer", "Bind array buffer. (buffer_id=%d)", _bufferId);
-   glBufferData(GL_ARRAY_BUFFER, length, pData, GL_STATIC_DRAW);
-   _pDevice->CheckError("glBufferData", "Upload array buffer data. (buffer_id=%d, length=%d, data=0x%08X)", _bufferId, length, pData);
+   TByte* pUpload = NULL;
+   dxResult = _piBuffer->Lock( 0, 0, (TAny**)&pUpload, 0);
+   if(FAILED(dxResult)){
+      MO_FATAL("Lock buffer failure.");
+      return EFailure;
+   }
+   MO_LIB_MEMORY_COPY(pUpload, _dataLength, pData, _dataLength);
+   _piBuffer->Unlock();
    return ESuccess;
 }
 
@@ -67,18 +84,6 @@ TResult FPd9RenderVertexBuffer::Suspend(){
 // @return 处理结果
 //============================================================
 TResult FPd9RenderVertexBuffer::Resume(){
-   // 生成编号
-   glGenBuffers(1, &_bufferId);
-   MO_FATAL_CHECK(_bufferId != 0, return EFailure,
-         "Generate vertex buffer id failure. (buffer_id=%d)", _bufferId);
-   // 绑定编号
-   glBindBuffer(GL_ARRAY_BUFFER, _bufferId);
-   _pDevice->CheckError("glBindBuffer", "Bind array buffer. (buffer_id=%d)", _bufferId);
-   // 上传数据
-   TInt length = _pDataStream->Length();
-   TByteC* pData = _pDataStream->MemoryC();
-   glBufferData(GL_ARRAY_BUFFER, length, pData, GL_STATIC_DRAW);
-   _pDevice->CheckError("glBufferData", "Upload array buffer data. (buffer_id=%d, length=%d, data=0x%08X)", _bufferId, length, pData);
    return ESuccess;
 }
 
@@ -88,11 +93,6 @@ TResult FPd9RenderVertexBuffer::Resume(){
 // @return 处理结果
 //============================================================
 TResult FPd9RenderVertexBuffer::Dispose(){
-   if(_bufferId != 0){
-      TInt size = _stride * _count;
-      glDeleteBuffers(size, &_bufferId);
-      _bufferId = 0;
-   }
    return ESuccess;
 }
 

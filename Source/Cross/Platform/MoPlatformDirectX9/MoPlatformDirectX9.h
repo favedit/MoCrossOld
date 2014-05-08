@@ -1,9 +1,5 @@
-#ifndef __MO_ENGINE_OpenGLES2_H__
-#define __MO_ENGINE_OpenGLES2_H__
-
-#ifndef __MO_PD9_PUBLIC_H__
-#include "MoPd9Public.h"
-#endif // __MO_PD9_PUBLIC_H__
+#ifndef __MO_ENGINE_DIRECTX9_H__
+#define __MO_ENGINE_DIRECTX9_H__
 
 #ifndef __MO_PD9_COMMON_H__
 #include "MoPd9Common.h"
@@ -19,11 +15,27 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_PD9_DECLARE void MoEngineDirectX9Initialize();
-MO_PD9_DECLARE void MoEngineDirectX9Startup();
-MO_PD9_DECLARE void MoEngineDirectX9Shutdown();
-MO_PD9_DECLARE void MoEngineDirectX9Release();
+//============================================================
+// <T>平台DirectX9功能。</T>
+//============================================================
+class MO_PD9_DECLARE FPlatformDirectX9Feature : public FFeature
+{
+   MO_CLASS_DECLARE_INHERITS(FPlatformDirectX9Feature, FFeature);
+public:
+   FPlatformDirectX9Feature();
+   MO_ABSTRACT ~FPlatformDirectX9Feature();
+public:
+   MO_OVERRIDE TResult Construct();
+   MO_OVERRIDE TResult Startup();
+   MO_OVERRIDE TResult Suspend();
+   MO_OVERRIDE TResult Resume();
+   MO_OVERRIDE TResult Shutdown();
+   MO_OVERRIDE TResult Dispose();
+};
+
+//============================================================
+MO_PD9_DECLARE void MoEngineDirectX9();
 
 MO_NAMESPACE_END
 
-#endif //__MO_ENGINE_OpenGLES2_H__
+#endif //__MO_ENGINE_DIRECTX9_H__

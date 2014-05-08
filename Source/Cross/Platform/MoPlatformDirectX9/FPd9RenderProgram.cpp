@@ -8,26 +8,14 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderProgram, FRenderProgram);
 // <T>构造渲染程序。</T>
 //============================================================
 FPd9RenderProgram::FPd9RenderProgram(){
-   _programId = 0;
+   //MO_CLEAR(_piInputLayout);
 }
 
 //============================================================
 // <T>析构渲染程序。</T>
 //============================================================
 FPd9RenderProgram::~FPd9RenderProgram(){
-}
-
-//============================================================
-// <T>根据代码查找属性索引。</T>
-//
-// @param pCode 代码
-// @return 属性索引
-//============================================================
-TInt FPd9RenderProgram::FindAttribute(TCharC* pCode){
-   MO_ASSERT(pCode);
-   GLint slot = glGetAttribLocation(_programId, pCode);
-   _pDevice->CheckError("glGetAttribLocation", "Find attribute location. (program_id=%d, code=%s)", _programId, pCode);
-   return slot;
+   //MO_RELEASE(_piInputLayout);
 }
 
 //============================================================
@@ -38,9 +26,18 @@ TInt FPd9RenderProgram::FindAttribute(TCharC* pCode){
 //============================================================
 TInt FPd9RenderProgram::FindDefine(TCharC* pCode){
    MO_ASSERT(pCode);
-   GLint slot = glGetUniformLocation(_programId, pCode);
-   _pDevice->CheckError("glGetUniformLocation", "Bind uniform location. (program_id=%d, code=%s)", _programId, pCode);
-   return slot;
+   return -1;
+}
+
+//============================================================
+// <T>根据代码查找属性索引。</T>
+//
+// @param pCode 代码
+// @return 属性索引
+//============================================================
+TInt FPd9RenderProgram::FindAttribute(TCharC* pCode){
+   MO_ASSERT(pCode);
+   return -1;
 }
 
 //============================================================
@@ -53,10 +50,7 @@ TInt FPd9RenderProgram::FindDefine(TCharC* pCode){
 TResult FPd9RenderProgram::BindAttribute(TInt slot, TCharC* pCode){
    MO_ASSERT(slot >= 0);
    MO_ASSERT(pCode);
-   MO_ASSERT(_programId != 0);
-   glBindAttribLocation(_programId, slot, pCode);
-   TResult resultCd = _pDevice->CheckError("glBindAttribLocation", "Bind attribute location. (program_id=%d, slot=%d, code=%s)", _programId, slot, pCode);
-   return resultCd;
+   return ESuccess;
 }
 
 //============================================================
@@ -65,19 +59,21 @@ TResult FPd9RenderProgram::BindAttribute(TInt slot, TCharC* pCode){
 // @return 处理结果
 //============================================================
 TResult FPd9RenderProgram::Setup(){
-   _programId = glCreateProgram();
+   MO_CHECK(_pDevice, return ENull);
+   FPd9RenderDevice* pRenderDevice = _pDevice->Convert<FPd9RenderDevice>();
    // 创建顶点渲染器
    FPd9RenderVertexShader* pVertexShader = FPd9RenderVertexShader::InstanceCreate();
    pVertexShader->SetDevice(_pDevice);
+   pVertexShader->SetProgram(this);
    pVertexShader->Setup();
    _pVertexShader = pVertexShader;
    // 创建像素渲染器
    FPd9RenderFragmentShader* pFragmentShader = FPd9RenderFragmentShader::InstanceCreate();
    pFragmentShader->SetDevice(_pDevice);
+   pFragmentShader->SetProgram(this);
    pFragmentShader->Setup();
    _pFragmentShader = pFragmentShader;
-   MO_INFO("Create program success. (program_id=%d, vertex_id=%d, fragment=%d)",
-         _programId, pVertexShader->RenderId().uint32, pFragmentShader->RenderId().uint32);
+   MO_INFO("Create program success.");
    return ESuccess;
 }
 
@@ -86,23 +82,158 @@ TResult FPd9RenderProgram::Setup(){
 //
 // @return 处理结果
 //============================================================
+//TResult FPd9RenderProgram::BuildShader(FRenderShader* pShader, ID3D9Blob* piData){
+//   MO_CHECK(pShader, return ENull);
+//   MO_CHECK(piData, return ENull);
+//   MO_CHECK(_pDevice, return ENull);
+//   FPd9RenderDevice* pRenderDevice = _pDevice->Convert<FPd9RenderDevice>();
+//   ERenderShader shaderCd = pShader->ShaderCd();
+//   //............................................................
+//   // 获得数据
+//   TAny* pData = piData->GetBufferPointer();
+//   TInt dataLength = piData->GetBufferSize();
+//   // 获得反射接口
+//   ID3D9ShaderReflection* piReflection = NULL;
+//   HRESULT dxResult = D3D9ReflectShader(pData, dataLength, &piReflection);
+//   if(FAILED(dxResult)){
+//      MO_FATAL("Reflect shader failure.");
+//      return EFailure;
+//   }
+//   // 获得描述
+//   D3D9_SHADER_DESC shaderDescriptor = {0};
+//   dxResult = piReflection->GetDesc(&shaderDescriptor);
+//   if(FAILED(dxResult)){
+//      MO_FATAL("Get reflect shader description failure.");
+//      return EFailure;
+//   }
+//   //............................................................
+//   // 获得常量缓冲
+//   TInt constantBufferCount = shaderDescriptor.ConstantBuffers;
+//   for(TInt constantBufferIndex = 0; constantBufferIndex < constantBufferCount; constantBufferIndex++){
+//      ID3D9ShaderReflectionConstantBuffer* piConstantBuffer = piReflection->GetConstantBufferByIndex(constantBufferIndex);
+//      MO_CHECK(piConstantBuffer, continue);
+//      // 获得缓冲信息
+//      D3D9_SHADER_BUFFER_DESC bufferDescriptor = {0};
+//      dxResult = piConstantBuffer->GetDesc(&bufferDescriptor);
+//      if(FAILED(dxResult)){
+//         MO_FATAL("Get buffer description failure.");
+//         return EFailure;
+//      }
+//      // 创建缓冲
+//      FPd9RenderShaderBuffer* pBuffer = (FPd9RenderShaderBuffer*)BufferFind(bufferDescriptor.Name);
+//      pBuffer->SetStatusUsed(ETrue);
+//      pBuffer->SetShaderCd(shaderCd);
+//      pBuffer->SetDataLength(bufferDescriptor.Size);
+//      pBuffer->Setup();
+//      //............................................................
+//      // 获得参数信息
+//      TInt variableCount = bufferDescriptor.Variables;
+//      for(TInt n = 0; n < variableCount; n++){
+//         ID3D9ShaderReflectionVariable* piVariable = piConstantBuffer->GetVariableByIndex(n);
+//         // 创建变量信息
+//         D3D9_SHADER_VARIABLE_DESC variableDescriptor = {0};
+//         dxResult = piVariable->GetDesc(&variableDescriptor);
+//         if(FAILED(dxResult)){
+//            MO_FATAL("Get variable description failure.");
+//            return EFailure;
+//         }
+//         ID3D9ShaderReflectionType* piVariableType = piVariable->GetType();
+//         D3D9_SHADER_TYPE_DESC typeDescriptor;
+//         dxResult = piVariableType->GetDesc(&typeDescriptor);
+//         if(FAILED(dxResult)){
+//            MO_FATAL("Get variable type description failure.");
+//            return EFailure;
+//         }
+//         // 创建参数
+//         FPd9RenderShaderParameter* pParameter = (FPd9RenderShaderParameter*)ParameterFind(variableDescriptor.Name);
+//         //MO_CHECK(pParameter, continue);
+//         if(pParameter == NULL){
+//            MO_FATAL("Shader parameter is not found. (name=%s)", variableDescriptor.Name);
+//         }else{
+//            pParameter->SetShader(pShader);
+//            pParameter->SetBuffer(pBuffer);
+//            pParameter->LinkNative(piVariable);
+//         }
+//      }
+//   }
+//   //............................................................
+//   // 获得输入描述
+//   TInt attributeCount = shaderDescriptor.InputParameters;
+//   if((shaderCd == ERenderShader_Vertex) && (attributeCount > 0)){
+//      TInt usingIndex = 0;
+//      for(TInt attributeIndex = 0; attributeIndex < attributeCount; attributeIndex++){
+//         // 获得描述信息
+//         D3D9_SIGNATURE_PARAMETER_DESC attributeDescriptor = {0};
+//         dxResult = piReflection->GetInputParameterDesc(attributeIndex, &attributeDescriptor);
+//         if(FAILED(dxResult)){
+//            MO_FATAL("Get attribute description failure.");
+//            return EFailure;
+//         }
+//         // 查找属性
+//         TFsName attributeName;
+//         attributeName.AppendFormat("%s%d", attributeDescriptor.SemanticName, attributeDescriptor.SemanticIndex);
+//         FRenderShaderAttribute* pAttribute = AttributeFind(attributeName);
+//         if(pAttribute == NULL){
+//            pAttribute = AttributeFind(attributeDescriptor.SemanticName);
+//         }
+//         if(pAttribute == NULL){
+//            MO_WARN("Shader attribute is not found. (name=%s)", attributeDescriptor.SemanticName);
+//         }else{
+//            // 设置内容
+//            pAttribute->SetStatusUsed(ETrue);
+//            pAttribute->SetName(attributeDescriptor.SemanticName);
+//            pAttribute->SetIndex(attributeDescriptor.SemanticIndex);
+//            pAttribute->SetSlot(usingIndex++);
+//            // MO_INFO("Build attribute. (name=%s - %d)", attributeDescriptor.SemanticName, attributeDescriptor.SemanticIndex);
+//         }
+//      }
+//   }
+//   //............................................................
+//   // 设定所有绑定点
+//   TInt boundCount = shaderDescriptor.BoundResources;
+//   for(TInt boundIndex = 0; boundIndex < boundCount; boundIndex++){
+//      D3D9_SHADER_INPUT_BIND_DESC bindDescriptor = {0};
+//      dxResult = piReflection->GetResourceBindingDesc(boundIndex, &bindDescriptor);
+//      if(FAILED(dxResult)){
+//         MO_FATAL("Get resource binding description failure.");
+//         return EFailure;
+//      }
+//      TCharC* pBindName = bindDescriptor.Name;
+//      if(bindDescriptor.Type == D3D_SIT_CBUFFER){
+//         FPd9RenderShaderBuffer* pBuffer = (FPd9RenderShaderBuffer*)BufferFind(pBindName);
+//         MO_CHECK(pBuffer, continue);
+//         pBuffer->SetSlot(bindDescriptor.BindPoint);
+//      }
+//      if(bindDescriptor.Type == D3D_SIT_TEXTURE){
+//         FRenderShaderSampler* pSampler = SamplerFind(pBindName);
+//         if(pSampler == NULL){
+//            MO_ERROR("Shader sampler bound is not found. (name=%s)", pBindName);
+//         }else{
+//            pSampler->SetStatusUsed(ETrue);
+//            pSampler->SetSlot(bindDescriptor.BindPoint);
+//         }
+//      }
+//   }
+//   MO_RELEASE(piReflection);
+//   return ESuccess;
+//}
+
+//============================================================
+// <T>构建处理。</T>
+//
+// @return 处理结果
+//============================================================
 TResult FPd9RenderProgram::Build(){
+   MO_CHECK(_pDevice, return ENull);
    TResult resultCd = ESuccess;
-   // 设置顶点渲染器
-   GLuint vertexShaderId = _pVertexShader->RenderId().uint32;
-   glAttachShader(_programId, vertexShaderId);
-   resultCd = _pDevice->CheckError("glAttachShader", "Attach shader failure. (program_id=%d, shader_id=%d)", _programId, vertexShaderId);
-   if(resultCd != ESuccess){
-      return resultCd;
-   }
-   // 设置顶点渲染器
-   FPd9RenderFragmentShader* pFragmentShader = (FPd9RenderFragmentShader*)_pFragmentShader;
-   GLuint fragmentShaderId = pFragmentShader->RenderId().uint32;
-   glAttachShader(_programId, fragmentShaderId);
-   resultCd = _pDevice->CheckError("glAttachShader", "Attach shader failure. (program_id=%d, shader_id=%d)", _programId, fragmentShaderId);
-   if(resultCd != ESuccess){
-      return resultCd;
-   }
+   FPd9RenderDevice* pRenderDevice = _pDevice->Convert<FPd9RenderDevice>();
+   //............................................................
+   // 建立顶点渲染器
+   //FPd9RenderVertexShader* pVertexShader = _pVertexShader->Convert<FPd9RenderVertexShader>();
+   //BuildShader(pVertexShader, pVertexShader->NativeData());
+   //// 建立像素渲染器
+   //FPd9RenderFragmentShader* pFragmentShader = _pFragmentShader->Convert<FPd9RenderFragmentShader>();
+   //BuildShader(pFragmentShader, pFragmentShader->NativeData());
    return resultCd;
 }
 
@@ -112,49 +243,45 @@ TResult FPd9RenderProgram::Build(){
 // @return 处理结果
 //============================================================
 TResult FPd9RenderProgram::Link(){
+   MO_CHECK(_pDevice, return ENull);
    TResult resultCd = ESuccess;
-   // 关联处理
-   glLinkProgram(_programId);
-   // 获得结果
-   GLint linkStatus = GL_TRUE;
-   glGetProgramiv(_programId, GL_LINK_STATUS, &linkStatus);
-   if(linkStatus == GL_FALSE){
-      GLsizei length;
-      glGetProgramiv(_programId, GL_INFO_LOG_LENGTH, &length);
-		GLchar* pReason = (GLchar*)MO_MEM_ALLOC(sizeof(GLchar) * length);
-		glGetProgramInfoLog(_programId, length, NULL, pReason);
-      MO_FATAL("Link program failure. (status=%d, reason=%s)", linkStatus, pReason);
-      MO_MEM_FREE(pReason);
-      // 释放程序
-      glDeleteProgram(_programId);
-      _programId = 0;
-   }
+   FPd9RenderDevice* pRenderDevice = _pDevice->Convert<FPd9RenderDevice>();
    //............................................................
-   // 校验程序
-   glValidateProgram(_programId);
-   // 获得结果
-   GLint validateStatus = GL_TRUE;
-   glGetProgramiv(_programId, GL_VALIDATE_STATUS, &validateStatus);
-   if(validateStatus == GL_FALSE){
-      GLsizei length;
-      glGetProgramiv(_programId, GL_INFO_LOG_LENGTH, &length);
-		GLchar* pReason = (GLchar*)MO_MEM_ALLOC(sizeof(GLchar) * length);
-		glGetProgramInfoLog(_programId, length, NULL, pReason);
-      MO_FATAL("Validate program failure. (status=%d, reason=%s)", validateStatus, pReason);
-      MO_MEM_FREE(pReason);
-      // 释放程序
-      glDeleteProgram(_programId);
-      _programId = 0;
-   }
+   // 获得数据
+   //FPd9RenderVertexShader* pVertexShader = _pVertexShader->Convert<FPd9RenderVertexShader>();
+   //ID3D9Blob* piShaderData = pVertexShader->NativeData();
+   ////............................................................
+   //// 创建输入描述
+   //TInt position = 0;
+   //GRenderShaderAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
+   //while(attributeIterator.Next()){
+   //   FRenderShaderAttribute* pAttribute = *attributeIterator;
+   //   if(pAttribute->IsStatusUsed()){
+   //      ERenderShaderAttributeFormat formatCd = pAttribute->FormatCd();
+   //      D3D9_INPUT_ELEMENT_DESC inputElement;
+   //      RType<D3D9_INPUT_ELEMENT_DESC>::Clear(&inputElement);
+   //      inputElement.SemanticName = pAttribute->Name();
+   //      inputElement.SemanticIndex = pAttribute->Index();
+   //      inputElement.Format = RDirectX9::ConvertAttrbuteFormat(formatCd) ;
+   //      inputElement.AlignedByteOffset = position;
+   //      inputElement.InputSlot = pAttribute->Slot();
+   //      inputElement.AlignedByteOffset = 0;
+   //      inputElement.InputSlotClass = D3D9_INPUT_PER_VERTEX_DATA;
+   //      inputElements.Push(inputElement);
+   //      position += RRenderShaderAttributeFormat::CalculateSize(formatCd);
+   //   }
+   //}
+   //// 创建输入层次
+   //HRESULT dxResult = pRenderDevice->NativeDevice()->CreateInputLayout(
+   //      inputElements.Memory(), inputElements.Length(),
+   //      piShaderData->GetBufferPointer(), piShaderData->GetBufferSize(),
+   //      &_piInputLayout);
+   //if(FAILED(dxResult)){
+   //   MO_FATAL("Create input layout failure.");
+   //   return EFailure;
+   //}
    //............................................................
-   glFinish();
-   resultCd = _pDevice->CheckError("glFinish",
-         "Finish program link faliure. (program_id=%d)", _programId);
-   if(resultCd != ESuccess){
-      return resultCd;
-   }
-   //............................................................
-   MO_INFO("Link program success. (program_id=%d)", _programId);
+   MO_INFO("Link program success.");
    return resultCd;
 }
 
@@ -183,10 +310,7 @@ TResult FPd9RenderProgram::Resume(){
 //============================================================
 TResult FPd9RenderProgram::Dispose(){
    // 释放资源
-   if(_programId != 0){
-      glDeleteProgram(_programId);
-      _programId = 0;
-   }
+   //MO_RELEASE(_piInputLayout);
    // 释放程序
    MO_DELETE(_pVertexShader);
    MO_DELETE(_pFragmentShader);

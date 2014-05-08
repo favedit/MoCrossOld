@@ -6,7 +6,8 @@
 #include <MoEngineFace.h>
 #include <MoEngineRender.h>
 #include <MoPlatformOpenGLES2.h>
-#include <MoPlatformDirectX10.h>
+#include <MoPlatformDirectX9.h>
+//#include <MoPlatformDirectX10.h>
 //#include <MoPlatformDirectX11.h>
 #include <MoPlatformWindows.h>
 #include <MoGameEngine.h>
@@ -128,9 +129,10 @@ TResult OnEnterFrame(SFrameEvent* pEvent){
 TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine, TInt nCmdShow){
    // 初始化处理
    MoGameEngineInitialize();
-   //MoEngineOpenGLES2();
-   MoEngineDirectX10();
+   MoEngineDirectX9();
+   //MoEngineDirectX10();
    //MoEngineDirectX11();
+   //MoEngineOpenGLES2();
    RFeatureManager::Instance().Construct();
    //............................................................
    // 设置信息
@@ -169,7 +171,8 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    pWindow->Setup();
    // 初始化渲染设备
    //FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
-   FPd10RenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FPd10RenderDevice>();
+   FPd9RenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FPd9RenderDevice>();
+   //FPd10RenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FPd10RenderDevice>();
    //FPd11RenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FPd11RenderDevice>();
    pRenderDevice->SetWindowHandle(pWindow->Handle());
    pRenderDevice->Setup();
@@ -201,8 +204,8 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    //............................................................
    // 激活舞台
    //RInstance3dManager::Instance().TemplateConsole()->Alloc("pvw.sc.courtyard.item.02.022");
-   //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.show.item.001");
-   FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.001");
+   FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.show.item.001");
+   //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.001");
    //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.002");
    //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.003");
    //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.house.01.scene");

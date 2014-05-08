@@ -8,12 +8,16 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderVertexShader, FRenderVertexShader);
 // <T>构造渲染程序。</T>
 //============================================================
 FPd9RenderVertexShader::FPd9RenderVertexShader(){
+   MO_CLEAR(_piData);
+   MO_CLEAR(_piShader);
 }
 
 //============================================================
 // <T>析构渲染程序。</T>
 //============================================================
 FPd9RenderVertexShader::~FPd9RenderVertexShader(){
+   MO_RELEASE(_piData);
+   MO_RELEASE(_piShader);
 }
 
 //============================================================
@@ -22,9 +26,7 @@ FPd9RenderVertexShader::~FPd9RenderVertexShader(){
 // @return 处理结果
 //============================================================
 TResult FPd9RenderVertexShader::Setup(){
-   _renderId.uint32 = glCreateShader(GL_VERTEX_SHADER);
-   TResult resultCd = _pDevice->CheckError("glCreateShader", "Create vertex shader failure. (shader_id=%d)", _renderId.uint32);
-   return resultCd;
+   return ESuccess;
 }
 
 //============================================================
@@ -34,35 +36,38 @@ TResult FPd9RenderVertexShader::Setup(){
 // @return 处理结果
 //============================================================
 TResult FPd9RenderVertexShader::Compile(TCharC* pSource){
-   // 上传代码
-   const GLchar* source[1];
-   source[0] = (const GLchar*)pSource;
-   glShaderSource(_renderId.uint32, 1, source, NULL);
-   // 编译处理
-   glCompileShader(_renderId.uint32);
-   // 测试编译结果
-   GLint status;
-   glGetShaderiv(_renderId.uint32, GL_COMPILE_STATUS, &status);
-   if(!status){
-      // 获得代码
-      GLsizei sourceLength;
-      glGetShaderiv(_renderId.uint32, GL_SHADER_SOURCE_LENGTH, &sourceLength);
-		GLchar* pShaderSource = MO_TYPES_ALLOC(GLchar, sourceLength);
-		glGetShaderSource(_renderId.uint32, sourceLength, NULL, pShaderSource);
-      // 获得原因
-      GLsizei reasonLength = 0;
-      glGetShaderiv(_renderId.uint32, GL_INFO_LOG_LENGTH, &reasonLength);
-      GLchar* pReason = MO_TYPES_ALLOC(GLchar, reasonLength);
-      glGetShaderInfoLog(_renderId.uint32, reasonLength, NULL, pReason);  
-      MO_FATAL("Create vertex shader failure. (status=%d)\n%s\n%s", status, pReason, pShaderSource);
-      // 释放资源
-      MO_DELETE(pShaderSource);
-      MO_DELETE(pReason);
-      glDeleteShader(_renderId.uint32); 
-      _renderId.uint32 = 0;
-   }else{
-      MO_INFO("Create vertex shader success. (status=%d)\n%s", status, pSource);
+   // 获得设备信息
+   MO_CHECK(_pDevice, return ENull);
+   FPd9RenderDevice* pRenderDevice = _pDevice->Convert<FPd9RenderDevice>();
+   FRenderCapability* pCapability = pRenderDevice->Capability();
+   TCharC* pShaderVersion = pCapability->ShaderVertexVersion();
+   // 设置标志
+   //TUint32 shaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
+   TUint32 shaderFlags = 0;
+#ifdef _MO_DEBUG
+    shaderFlags |= D3DCOMPILE_DEBUG;
+#endif // _MO_DEBUG
+    // 上传代码
+   TInt length = RString::Length(pSource);
+   ID3DXBuffer* piError = NULL;
+   ID3DXConstantTable* piTable = NULL;
+   HRESULT dxResult = D3DXCompileShader(pSource, length, NULL, NULL, "main", pShaderVersion, shaderFlags, &_piData, &piError, &piTable);
+   if(FAILED(dxResult)){
+      TCharC* pBuffer = (TCharC*)piError->GetBufferPointer();
+      MO_ERROR("Compile from memory failure.\n%s", pBuffer);
+      MO_RELEASE(piError);
+      MO_FATAL("Compile failure.");
+      return EFailure;
    }
+   // 创建渲染器
+   TAny* pData = _piData->GetBufferPointer();
+   TInt dataSize = _piData->GetBufferSize();
+   dxResult = pRenderDevice->NativeDevice()->CreateVertexShader((const DWORD*)pData, &_piShader);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create vertex shader failure.");
+      return EFailure;
+   }
+   MO_INFO("Create vertex shader success. (status=%d)\n%s", dxResult, pSource);
    return ESuccess;
 }
 
@@ -90,13 +95,7 @@ TResult FPd9RenderVertexShader::Resume(){
 // @return 处理结果
 //============================================================
 TResult FPd9RenderVertexShader::Dispose(){
-   TResult resultCd = ESuccess;
-   if(_renderId.uint32 != 0){
-      glDeleteShader(_renderId.uint32);
-      resultCd = _pDevice->CheckError("glCreateShader", "Delete vertex shader failure. (shader_id=%d)", _renderId.uint32);
-      _renderId.uint32 = 0;
-   }
-   return resultCd;
+   return ESuccess;
 }
 
 MO_NAMESPACE_END
