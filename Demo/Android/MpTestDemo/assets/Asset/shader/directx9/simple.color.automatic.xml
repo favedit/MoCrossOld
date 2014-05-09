@@ -1,5 +1,7 @@
 <Configuration>
    <Version label='alpha 0.1' />
+   <Property name='label'        value='SimpleColor'/>
+   <Property name='description'  value='Simple color description'/>
    <!-- ------------------------------------------------------------ -->
    <State     name='fill_mode'   value='Fill'/>
    <State     name='cull_mode'   value='Front'/>
@@ -51,9 +53,9 @@
    <Sampler   name='fs_environment'         linker='Environment'/>
    <!-- ------------------------------------------------------------ -->
    <Source name='vertex'><![CDATA[
+float4x4 vc_model_mat4;
 float4x4 vc_view_mat4;
 float4x4 vc_projection_mat4;
-float4x4 vc_model_mat4;
 
 //------------------------------------------------------------
 struct VS_INPUT

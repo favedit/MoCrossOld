@@ -21,10 +21,6 @@ FShadowDepthAutomaticEffect::~FShadowDepthAutomaticEffect(){
 //============================================================
 TResult FShadowDepthAutomaticEffect::OnSetup(){
    TResult resultCd = FAutomaticEffect::OnSetup();
-   // 注册常量集合
-   //_constDescriptors.Register(ERenderShader_Vertex, EEffectParameter_VertexModelMat4, "vc_model_mat4");
-   //_constDescriptors.Register(ERenderShader_Vertex, EEffectParameter_VertexMvpMat4, "vc_mvp_mat4");
-   //_constDescriptors.Register(ERenderShader_Fragment, EEffectParameter_FragmentCamera, "fc_camera");
    return resultCd;
 }
 

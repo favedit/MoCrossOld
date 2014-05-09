@@ -36,6 +36,9 @@ public:
 //============================================================
 MO_PD9_DECLARE void MoEngineDirectX9();
 
+//============================================================
+MO_PD9_DECLARE TResult SetupFeature();
+
 MO_NAMESPACE_END
 
 #endif //__MO_ENGINE_DIRECTX9_H__

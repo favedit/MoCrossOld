@@ -123,12 +123,47 @@ TResult OnEnterFrame(SFrameEvent* pEvent){
    return ESuccess;
 }
 
+MO_EXTERN_C{
+   typedef TResult (*CallSetupFeature)();
+}
+
 //============================================================
 // <T>释放游戏库。</T>
 //============================================================
 TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine, TInt nCmdShow){
    // 初始化处理
    MoGameEngineInitialize();
+   RFeatureManager::Instance().Construct();
+
+   //MO_STATIC_INFO(TC("3DS scene export start."));
+   //// 动态加载导出库
+   //HMODULE hModule = LoadLibrary("MoPlatformDirectX9D.dll");
+   //MO_STATIC_INFO(TC("Find Mo3dsExporter library. (handle=0x%08X)"), hModule);
+   //if(NULL == hModule){
+   //   MO_STATIC_INFO(TC("3DS scene export failure. (Module is null)"));
+   //   return 0;
+   //}
+   //// 获得函数指针
+   //CallSetupFeature pfExporter = (CallSetupFeature)GetProcAddress(hModule, "SetupFeature");
+   //MO_STATIC_INFO(TC("Find DoExport method. (handle=0x%08X)"), pfExporter);
+   //if(NULL == pfExporter){
+   //   // 返回结果
+   //   TBool check = FreeLibrary(hModule);
+   //   if(!check){
+   //      MO_STATIC_INFO(TC("Free library failure. (result=%d)"), check);
+   //   }
+   //   MO_STATIC_INFO(TC("3DS scene export failure. (Method is null)"));
+   //   return 0;
+   //}
+   //// 释放导出库
+   //TBool check = FreeLibrary(hModule);
+   //if(!check){
+   //   MO_STATIC_INFO(TC("Free library failure. (handle=0x%08X, result=%d)"), hModule, check);
+   //}
+   //MO_STATIC_INFO(TC("Free library success. (handle=0x%08X, result=%d)"), hModule, check);
+   //// 返回结果
+   //MO_STATIC_INFO(TC("3DS scene export success."));
+   
    MoEngineDirectX9();
    //MoEngineDirectX10();
    //MoEngineDirectX11();
