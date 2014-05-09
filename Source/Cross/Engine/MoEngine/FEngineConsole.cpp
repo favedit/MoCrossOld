@@ -194,12 +194,11 @@ TResult FEngineConsole::Process(){
          ProcessFrame(pFrame);
       }
    }
+   // 帧处理结束
+   pRenderDevice->FrameEnd();
    // 显示内容
    pRenderDevice->Present();
    pFrameDrawStatistics->Finish();
-   //............................................................
-   // 帧处理结束
-   pRenderDevice->FrameEnd();
    //............................................................
    // 处理帧离开
    SFrameEvent leaveEvent(this);

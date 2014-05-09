@@ -19,7 +19,9 @@ class MO_PD9_DECLARE FPd9RenderLayout : public FRenderLayout
 {
    MO_CLASS_DECLARE_INHERITS(FPd9RenderLayout, FRenderLayout);
 protected:
+   TInt _total;
    TInt _count;
+   TInt _formatCd;
    IDirect3DVertexBuffer9* _piBuffer[MO_INPUT_ELEMENT_MAXCNT];
    UINT _strides[MO_INPUT_ELEMENT_MAXCNT];
    UINT _offsets[MO_INPUT_ELEMENT_MAXCNT];
@@ -29,8 +31,18 @@ public:
 public:
    //------------------------------------------------------------
    // <T>获得总数。</T>
+   MO_INLINE TInt Total(){
+      return _total;
+   }
+   //------------------------------------------------------------
+   // <T>获得总数。</T>
    MO_INLINE TInt Count(){
       return _count;
+   }
+   //------------------------------------------------------------
+   // <T>获得格式。</T>
+   MO_INLINE TInt FormatCd(){
+      return _formatCd;
    }
    //------------------------------------------------------------
    // <T>获得数据。</T>
@@ -114,22 +126,9 @@ public:
 class MO_PD9_DECLARE FPd9RenderShaderBuffer : public FRenderShaderBuffer
 {
    MO_CLASS_DECLARE_INHERITS(FPd9RenderShaderBuffer, FRenderShaderBuffer);
-protected:
-   //ID3D9Buffer* _piBuffer;
 public:
    FPd9RenderShaderBuffer();
    MO_ABSTRACT ~FPd9RenderShaderBuffer();
-public:
-   ////------------------------------------------------------------
-   //// <T>获得本地缓冲。</T>
-   //MO_INLINE ID3D9Buffer* NativeiBuffer(){
-   //   return _piBuffer;
-   //}
-   ////------------------------------------------------------------
-   //// <T>设置本地缓冲。</T>
-   //MO_INLINE void SetNativeiBuffer(ID3D9Buffer* piBuffer){
-   //   _piBuffer = piBuffer;
-   //}
 public:
    MO_OVERRIDE TResult OnSetup();
 public:
@@ -143,24 +142,9 @@ public:
 class MO_PD9_DECLARE FPd9RenderShaderParameter : public FRenderShaderParameter
 {
    MO_CLASS_DECLARE_INHERITS(FPd9RenderShaderParameter, FRenderShaderParameter);
-protected:
-   //ID3D9ShaderReflectionVariable* _piVariable;
 public:
    FPd9RenderShaderParameter();
    MO_ABSTRACT ~FPd9RenderShaderParameter();
-public:
-   ////------------------------------------------------------------
-   //// <T>设置缓冲。</T>
-   //MO_INLINE void NativeVariable(FPd9RenderShaderBuffer* pBuffer){
-   //   _buffer = pBuffer;
-   //}
-   ////------------------------------------------------------------
-   //// <T>获得本地变量。</T>
-   //MO_INLINE ID3D9ShaderReflectionVariable* NativeVariable(){
-   //   return _piVariable;
-   //}
-public:
-   //TResult LinkNative(ID3D9ShaderReflectionVariable* piVariable);
 };
 
 //============================================================
@@ -398,6 +382,8 @@ protected:
    HWND _windowHandle;
    IDirect3D9* _piDirect3d;
    IDirect3DDevice9* _piDevice;
+   TBool _inDrawing;
+   FPd9RenderLayout* _pLayout;
    //// 纹理信息
    //TBool _optionTexture;
    //// 关联顶点缓冲集合
@@ -433,7 +419,8 @@ public:
    MO_ABSTRACT TResult Suspend();
    MO_ABSTRACT TResult Resume();
 public:
-   MO_OVERRIDE TResult CheckError(TCharC* pCode, TCharC* pMessage, ...);
+   MO_OVERRIDE TResult CheckError(TCharC* pCode, TCharC* pMessage, ...){return ESuccess;}
+   MO_OVERRIDE TResult CheckError(HRESULT dxResult, TCharC* pCode, TCharC* pMessage, ...);
 public:
    MO_OVERRIDE FRenderVertexBuffer* CreateVertexBuffer(FClass* pClass = NULL);
    MO_OVERRIDE FRenderIndexBuffer* CreateIndexBuffer(FClass* pClass = NULL);
@@ -462,6 +449,8 @@ public:
    MO_OVERRIDE TResult BindTexture(TInt slot, FRenderTexture* pTexture);
    MO_OVERRIDE TResult DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt offset, TInt count);
    MO_OVERRIDE TResult Present();
+   MO_OVERRIDE TResult FrameBegin();
+   MO_OVERRIDE TResult FrameEnd();
 };
 
 MO_NAMESPACE_END

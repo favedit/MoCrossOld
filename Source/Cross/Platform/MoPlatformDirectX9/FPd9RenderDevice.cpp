@@ -26,6 +26,7 @@ FPd9RenderDevice::FPd9RenderDevice(){
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERPARAMETER, FPd9RenderShaderParameter::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERSAMPLER,   FRenderShaderSampler::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT,          FPd9RenderLayout::Class());
+   _inDrawing = EFalse;
 }
 
 //============================================================
@@ -141,57 +142,18 @@ TResult FPd9RenderDevice::Resume(){
 // @param pCode 代码
 // @return 处理结果
 //============================================================
-TResult FPd9RenderDevice::CheckError(TCharC* pCode, TCharC* pMessage, ...){
+TResult FPd9RenderDevice::CheckError(HRESULT dxResult, TCharC* pCode, TCharC* pMessage, ...){
    // 获得错误原因
-   TBool result = EFalse;
-//   GLenum errorCode = 0;
-//   TCharC* pErrorReason = NULL;
-//   while(ETrue){
-//      // 获得错误
-//      GLenum code = glGetError();
-//      if(code == GL_NO_ERROR){
-//         break;
-//      }
-//      // 获得原因
-//      switch(code){
-//         case GL_INVALID_OPERATION:
-//            pErrorReason = "Invalid operation.";
-//            break;
-//         case GL_INVALID_ENUM:
-//            pErrorReason = "Invalid enum.";
-//            break;
-//         case GL_INVALID_VALUE:
-//            pErrorReason = "Invalid value.";
-//            break;
-//         case GL_INVALID_FRAMEBUFFER_OPERATION:
-//            pErrorReason = "Invalid paramebuffer opeartion."; 
-//            break;
-//         case GL_OUT_OF_MEMORY:
-//            pErrorReason = "Out of memory.";
-//            break;
-//         default:
-//            pErrorReason = "Unknown"; 
-//            break;
-//      }
-//      result = ETrue;
-//      errorCode = code;
-//#ifdef _MO_WINDOWS
-//      break;
-//#endif // _MO_WINDOWS
-//   }
-//   //............................................................
-//   // 输出错误信息
-//   if(result){
-//      // 格式化可变参数字符串信息
-//      TFsText message;
-//      va_list params;
-//      va_start(params, pMessage);
-//      message.AppendFormatParameters(pMessage, params);
-//      va_end(params);
-//      // 输出错误信息
-//      MO_ERROR("%s (code=%s, error=0x%04X(%d), reason=%s)", (TCharC*)message, pCode, errorCode, errorCode, pErrorReason);
-//   }
-   return result;
+   TResult resultCd = ESuccess;
+   if(FAILED(dxResult)){
+      TFsText message;
+      va_list params;
+      va_start(params, pMessage);
+      message.AppendFormatParameters(pMessage, params);
+      va_end(params);
+      MO_FATAL("Call method failure. (method=%s, message=%s)", pCode, (TCharC*)message);
+   }
+   return resultCd;
 }
 
 //============================================================
@@ -612,6 +574,15 @@ TResult FPd9RenderDevice::SetLayout(FRenderLayout* pLayout){
 
       }
    }
+   // 设置格式
+   TInt fvf = pRenderLayout->FormatCd();
+   HRESULT dxResult = _piDevice->SetFVF(fvf);
+   if(FAILED(dxResult)){
+      TCharC* pMessage = DXGetErrorDescription(dxResult);
+      MO_FATAL("Draw indexed primitive failure. (error=%s)", pMessage);
+      return EFailure;
+   }
+   _pLayout = (FPd9RenderLayout*)pLayout;
    //MO_DEBUG("Set vertex buffers. (slot=%d, count=%d)", 0, count);
    return ESuccess;
 }
@@ -836,7 +807,7 @@ TResult FPd9RenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
    //............................................................
    // 绑定纹理
    ERenderTexture textureCd = pTexture->TextureCd();
-   switch (textureCd){
+   switch(textureCd){
       case ERenderTexture_Flat2d:{
          FPd9RenderFlatTexture* pFlatTexture = (FPd9RenderFlatTexture*)pTexture;
          IDirect3DTexture9* piTexture = pFlatTexture->NativeTexture();
@@ -888,24 +859,17 @@ TResult FPd9RenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt o
    // 设置索引流
    FPd9RenderIndexBuffer* pBuffer = pIndexBuffer->Convert<FPd9RenderIndexBuffer>();
    IDirect3DIndexBuffer9* piIndices = pBuffer->NativeBuffer();
-   if(piIndices == NULL){
-      MO_FATAL("Index buffer is null.");
-      return ENull;
-   }
+   MO_CHECK(piIndices, return ENull);
    HRESULT dxResult = _piDevice->SetIndices(piIndices);
    if(FAILED(dxResult)){
-      MO_FATAL("Set indices failure. (indices=0x%08X)", piIndices);
-      return EFailure;
+      return CheckError(dxResult, "SetIndices", "Set indices failure. (indices=0x%08X)", piIndices);
    }
    // 绘制三角形
    _renderDrawStatistics->Begin();
-   //_piDevice->SetFVF(D3DFVF_XYZW | D3DFVF_TEX0 | D3DFVF_TEX1 | D3DFVF_TEX2 | D3DFVF_TEX3);
-   //dxResult = _piDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 0, offset, count / 3);
-   dxResult = _piDevice->DrawPrimitive(D3DPT_TRIANGLELIST, offset, count);
+   TInt total = _pLayout->Total();
+   dxResult = _piDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, total, offset, count / 3);
    if(FAILED(dxResult)){
-      TCharC* pMessage = DXGetErrorDescription(dxResult);
-      MO_FATAL("Draw indexed primitive failure. (offset=%d, count=%d, error=%s)", offset, count, pMessage);
-      return EFailure;
+      return CheckError(dxResult, "DrawIndexedPrimitive", "Draw indexed primitive failure. (offset=%d, count=%d)", offset, count);
    }
    //MO_DEBUG("Draw indexed. (offset=%d, count=%d)", offset, count);
    _renderDrawStatistics->Finish();
@@ -922,8 +886,47 @@ TResult FPd9RenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt o
 // @return 处理结果
 //============================================================
 TResult FPd9RenderDevice::Present(){
-   _piDevice->Present(NULL, NULL, NULL, NULL);
+   HRESULT dxResult = _piDevice->Present(NULL, NULL, NULL, NULL);
+   if(FAILED(dxResult)){
+      return CheckError(dxResult, "Present", "Present.");
+   }
    return ESuccess;
+}
+
+//============================================================
+// <T>绘制帧开始处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FPd9RenderDevice::FrameBegin(){
+   TResult resultCd = FRenderDevice::FrameBegin();
+   //if(!_inDrawing){
+      HRESULT dxResult = _piDevice->BeginScene();
+      if(FAILED(dxResult)){
+         MO_FATAL("Begin scene.");
+         return EFailure;
+      }
+      _inDrawing = ETrue;
+   //}
+   return resultCd;
+}
+
+//============================================================
+// <T>绘制帧结束处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FPd9RenderDevice::FrameEnd(){
+   TResult resultCd = FRenderDevice::FrameEnd();
+   //if(_inDrawing){
+      HRESULT dxResult = _piDevice->EndScene();
+      if(FAILED(dxResult)){
+         MO_FATAL("End scene.");
+         return EFailure;
+      }
+      _inDrawing = EFalse;
+   //}
+   return resultCd;
 }
 
 MO_NAMESPACE_END

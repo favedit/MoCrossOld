@@ -51,7 +51,9 @@ TResult FRenderShaderBuffer::LoadConfig(FXmlNode* pConfig){
 //============================================================
 TResult FRenderShaderBuffer::OnSetup(){
    MO_CHECK(_pDevice, return ENull);
-   MO_CHECK(_dataLength > 0, return EOutRange);
+   if(_dataLength == 0){
+      return ESuccess;
+   }
    // ÉèÖÃ»º³å
    if(_pData->Length() != _dataLength){
       _pData->SetLength(_dataLength);

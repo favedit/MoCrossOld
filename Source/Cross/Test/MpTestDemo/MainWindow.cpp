@@ -21,10 +21,58 @@
 
 MO_NAMESPACE_INCLUDE;
 
+struct CUSTOMVERTEX
+{
+    FLOAT x, y, z;      // The untransformed, 3D position for the vertex
+    DWORD color;        // The vertex color
+};
+
+// Our custom FVF, which describes our custom vertex structure
+#define D3DFVF_CUSTOMVERTEX (D3DFVF_XYZ|D3DFVF_DIFFUSE)
+LPDIRECT3D9             g_pD3D = NULL; // Used to create the D3DDevice
+LPDIRECT3DDEVICE9       g_pd3dDevice = NULL; // Our rendering device
+LPDIRECT3DVERTEXBUFFER9 g_pVB = NULL; // Buffer to hold vertices
+
 typedef TVector<FTemplate3d*> TTemplate3dVector;
 TTimeTick g_lastTick = 0;
 TTimeTick g_templateTick = 0;
 TTemplate3dVector g_pTemplates;
+
+void SetupMatrices()
+{
+    // For our world matrix, we will just rotate the object about the y-axis.
+    D3DXMATRIXA16 matWorld;
+
+    // Set up the rotation matrix to generate 1 full rotation (2*PI radians) 
+    // every 1000 ms. To avoid the loss of precision inherent in very high 
+    // floating point numbers, the system time is modulated by the rotation 
+    // period before conversion to a radian angle.
+    UINT iTime = RTimeTick::Current() / 1000;
+    FLOAT fAngle = iTime * ( 2.0f * D3DX_PI ) / 1000.0f;
+    D3DXMatrixRotationY( &matWorld, fAngle );
+    g_pd3dDevice->SetTransform( D3DTS_WORLD, &matWorld );
+
+    // Set up our view matrix. A view matrix can be defined given an eye point,
+    // a point to lookat, and a direction for which way is up. Here, we set the
+    // eye five units back along the z-axis and up three units, look at the
+    // origin, and define "up" to be in the y-direction.
+    D3DXVECTOR3 vEyePt( 0.0f, 3.0f,-5.0f );
+    D3DXVECTOR3 vLookatPt( 0.0f, 0.0f, 0.0f );
+    D3DXVECTOR3 vUpVec( 0.0f, 1.0f, 0.0f );
+    D3DXMATRIXA16 matView;
+    D3DXMatrixLookAtLH( &matView, &vEyePt, &vLookatPt, &vUpVec );
+    g_pd3dDevice->SetTransform( D3DTS_VIEW, &matView );
+
+    // For the projection matrix, we set up a perspective transform (which
+    // transforms geometry from 3D view space to 2D viewport space, with
+    // a perspective divide making objects smaller in the distance). To build
+    // a perpsective transform, we need the field of view (1/4 pi is common),
+    // the aspect ratio, and the near and far clipping planes (which define at
+    // what distances geometry should be no longer be rendered).
+    D3DXMATRIXA16 matProj;
+    D3DXMatrixPerspectiveFovLH( &matProj, D3DX_PI / 4, 1.0f, 1.0f, 100.0f );
+    g_pd3dDevice->SetTransform( D3DTS_PROJECTION, &matProj );
+}
 
 //============================================================
 // <T>鼠标事件处理。</T>
@@ -93,8 +141,24 @@ TResult OnKeyDown(SKeyboardEvent* pEvent){
 // @return 处理结果
 //============================================================
 TResult OnEnterFrame(SFrameEvent* pEvent){
-   //MO_STATIC_INFO("------------------------------------------------------------");
-   //FPd11RenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FPd11RenderDevice>();
+   FPd9RenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FPd9RenderDevice>();
+
+   //pRenderDevice->Clear();
+
+   //HRESULT dxResult;
+   // // Begin the scene
+
+   //SetupMatrices();
+   //dxResult = g_pd3dDevice->SetStreamSource( 0, g_pVB, 0, sizeof( CUSTOMVERTEX ) );
+   //dxResult = g_pd3dDevice->SetFVF( D3DFVF_CUSTOMVERTEX );
+   //pRenderDevice->FrameBegin();
+   //dxResult = g_pd3dDevice->DrawPrimitive( D3DPT_TRIANGLESTRIP, 0, 1 );
+   //pRenderDevice->FrameEnd();
+   //pRenderDevice->CheckError(dxResult, "", "");
+
+   //pRenderDevice->Present();
+    
+    //MO_STATIC_INFO("------------------------------------------------------------");
    //TTimeTick currentTick = RTimeTick::Current();
    //if(g_templateTick == 0){
    //   g_lastTick = currentTick;
@@ -176,6 +240,7 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    //FPd11RenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FPd11RenderDevice>();
    pRenderDevice->SetWindowHandle(pWindow->Handle());
    pRenderDevice->Setup();
+   g_pd3dDevice = pRenderDevice->NativeDevice();
    // 初始化舞台
    MoGameEngineStartup();
    RFeatureManager::Instance().Startup();
@@ -216,6 +281,35 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    pScene->ListenersFrameEnter().Register(&OnEnterFrame);
    RStageManager::Instance().SelectStage(pScene);
    //............................................................
+    // Initialize three vertices for rendering a triangle
+    CUSTOMVERTEX g_Vertices[] =
+    {
+        { -1.0f,-1.0f, 0.0f, 0xffff0000, },
+        {  1.0f,-1.0f, 0.0f, 0xff0000ff, },
+        {  0.0f, 1.0f, 0.0f, 0xffffffff, },
+    };
+
+    // Create the vertex buffer.
+    if( FAILED( g_pd3dDevice->CreateVertexBuffer( 3 * sizeof( CUSTOMVERTEX ),
+                                                  0, D3DFVF_CUSTOMVERTEX,
+                                                  D3DPOOL_DEFAULT, &g_pVB, NULL ) ) )
+    {
+        return E_FAIL;
+    }
+
+    // Fill the vertex buffer.
+    VOID* pVertices;
+    if( FAILED( g_pVB->Lock( 0, sizeof( g_Vertices ), ( void** )&pVertices, 0 ) ) )
+        return E_FAIL;
+    memcpy( pVertices, g_Vertices, sizeof( g_Vertices ) );
+    g_pVB->Unlock();
+
+        // Turn off culling, so we see the front and back of the triangle
+    g_pd3dDevice->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
+
+    // Turn off D3D lighting, since we are providing our own vertex colors
+    g_pd3dDevice->SetRenderState( D3DRS_LIGHTING, FALSE );
+    //............................................................
    // 处理窗口
    pWindow->Startup();
    pWindow->Process();

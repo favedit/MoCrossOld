@@ -118,7 +118,7 @@ TResult FPd9RenderProgram::BuildShader(FRenderShader* pShader, FPd9RenderShaderB
             }else{
                pParameter->SetStatusUsed(ETrue);
                pParameter->SetBuffer(pBuffer);
-               pParameter->SetSlot(constDescriptor.RegisterIndex);
+               pParameter->SetSlot(sizeof(TFloat) * 4 * constDescriptor.RegisterIndex);
                pParameter->SetSize(constDescriptor.Bytes);
                // 计算最大位置
                TInt offset = sizeof(TFloat) * 4 * constDescriptor.RegisterIndex + constDescriptor.Bytes;

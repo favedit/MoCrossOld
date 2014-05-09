@@ -31,6 +31,32 @@ FRenderLayoutElement* FPd9RenderLayout::FindByAttribute(FRenderShaderAttribute* 
    return NULL;
 }
 
+TInt GetFvF(TInt index){
+   switch(index){
+      case 0:
+         return D3DFVF_XYZW;
+      case 1:
+         return D3DFVF_TEX0;
+      case 2:
+         return D3DFVF_TEX1;
+      case 3:
+         return D3DFVF_TEX2;
+      case 4:
+         return D3DFVF_TEX3;
+      case 5:
+         return D3DFVF_TEX4;
+      case 6:
+         return D3DFVF_TEX5;
+      case 7:
+         return D3DFVF_TEX6;
+      case 8:
+         return D3DFVF_TEX7;
+      case 9:
+         return D3DFVF_TEX8;
+   }
+   return 0;
+}
+
 //============================================================
 TResult FPd9RenderLayout::OnSetup(){
    MO_CHECK(_pDevice, return ENull);
@@ -39,6 +65,8 @@ TResult FPd9RenderLayout::OnSetup(){
    FPd9RenderDevice* pRenderDevice = _pDevice->Convert<FPd9RenderDevice>();
    FRenderVertexStreams* pVertexStreams = _pRenderable->VertexStreams();
    GRenderShaderAttributeDictionary::TIterator iterator = _pProgram->Attributes().IteratorC();
+   TInt fvf1 = 0;
+   TInt fvf2 = 0;
    while(iterator.Next()){
       FRenderShaderAttribute* pAttribute = *iterator;
       //if(!pAttribute->IsStatusUsed()){
@@ -56,9 +84,15 @@ TResult FPd9RenderLayout::OnSetup(){
       // ÉèÖÃ»º³åÐÅÏ¢
       if(pStream != NULL){
          FPd9RenderVertexBuffer* pVertexBuffer = pStream->VertexBuffer()->Convert<FPd9RenderVertexBuffer>();
+         _total = pVertexBuffer->Count();
          _piBuffer[index] = pVertexBuffer->NativeBuffer();
          _strides[index] = pStream->Stride();
          _offsets[index] = pStream->Offset();
+         if(index == 0){
+            fvf1 = GetFvF(index);
+         }else{
+            fvf2 = GetFvF(index);
+         }
       }else{
          _piBuffer[index] = NULL;
          _strides[index] = 0;
@@ -67,6 +101,7 @@ TResult FPd9RenderLayout::OnSetup(){
       index++;
       position += RRenderShaderAttributeFormat::CalculateSize(formatCd);
    }
+   _formatCd = fvf1 + fvf2;
    _count = index;
    return ESuccess;
 }
