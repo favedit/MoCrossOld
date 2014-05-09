@@ -8,16 +8,21 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderVertexShader, FRenderVertexShader);
 // <T>构造渲染程序。</T>
 //============================================================
 FPd9RenderVertexShader::FPd9RenderVertexShader(){
+   _pBuffer = MO_CREATE(FPd9RenderShaderBuffer);
+   _pBuffer->SetName("VertexBuffer");
    MO_CLEAR(_piData);
    MO_CLEAR(_piShader);
+   MO_CLEAR(_piTable);
 }
 
 //============================================================
 // <T>析构渲染程序。</T>
 //============================================================
 FPd9RenderVertexShader::~FPd9RenderVertexShader(){
+   MO_DELETE(_pBuffer);
    MO_RELEASE(_piData);
    MO_RELEASE(_piShader);
+   MO_RELEASE(_piTable);
 }
 
 //============================================================
@@ -50,8 +55,7 @@ TResult FPd9RenderVertexShader::Compile(TCharC* pSource){
     // 上传代码
    TInt length = RString::Length(pSource);
    ID3DXBuffer* piError = NULL;
-   ID3DXConstantTable* piTable = NULL;
-   HRESULT dxResult = D3DXCompileShader(pSource, length, NULL, NULL, "main", pShaderVersion, shaderFlags, &_piData, &piError, &piTable);
+   HRESULT dxResult = D3DXCompileShader(pSource, length, NULL, NULL, "main", pShaderVersion, shaderFlags, &_piData, &piError, &_piTable);
    if(FAILED(dxResult)){
       TCharC* pBuffer = (TCharC*)piError->GetBufferPointer();
       MO_ERROR("Compile from memory failure.\n%s", pBuffer);

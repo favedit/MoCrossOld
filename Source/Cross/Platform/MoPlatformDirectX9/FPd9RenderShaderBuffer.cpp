@@ -60,11 +60,24 @@ TResult FPd9RenderShaderBuffer::Commit(){
    FPd9RenderDevice* pRenderDevice = _pDevice->Convert<FPd9RenderDevice>();
    //............................................................
    // 更新数据
-   //TByte* pData = _pData->Memory();
-   //TInt length = _pData->Length();
-   //pRenderDevice->NativeDevice()->UpdateSubresource(_piBuffer, 0, NULL, pData, 0, 0);
+   TByte* pData = _pData->Memory();
+   TInt length = _pData->Length();
+   TInt count = length >> 4;
+   // 更新显示相关
+   if(_shaderCd == ERenderShader_Vertex){
+      HRESULT dxResult = pRenderDevice->NativeDevice()->SetVertexShaderConstantF(0, (TFloatC*)pData, count);
+      if(FAILED(dxResult)){
+         MO_FATAL("Set vertex shader constant failure.");
+      }
+   }else if(_shaderCd == ERenderShader_Fragment){
+      HRESULT dxResult = pRenderDevice->NativeDevice()->SetPixelShaderConstantF(0, (TFloatC*)pData, count);
+      if(FAILED(dxResult)){
+         MO_FATAL("Set pixel shader constant failure.");
+      }
+   }else{
+      MO_FATAL("Render shader type is unknown. (shader=%d)", _shaderCd);
+   }
    //MO_DEBUG("Update sub resource. (name=%s, memory=0x%08X, length=%d)", (TCharC*)_name, pData, length);
-   //GetErrorInfo();
    return resultCd;
 }
 
@@ -74,33 +87,7 @@ TResult FPd9RenderShaderBuffer::Commit(){
 // @return 处理结果
 //============================================================
 TResult FPd9RenderShaderBuffer::Bind(){
-   // 检查是否变更
-   if(!_statusChanged){
-      return EContinue;
-   }
-   //............................................................
-   MO_CHECK(_pDevice, return ENull);
-   MO_CHECK(_slot >= 0, return EOutRange);
-   TResult resultCd = ESuccess;
-   FPd9RenderDevice* pRenderDevice = _pDevice->Convert<FPd9RenderDevice>();
-   //............................................................
-   // 更新数据
-   //if((_groupCd == ERenderShaderBuffer_Global) || (_groupCd == ERenderShaderBuffer_Technique) || (_groupCd == ERenderShaderBuffer_Effect)){
-   //   pRenderDevice->NativeDevice()->VSSetConstantBuffers(_slot, 1, &_piBuffer);
-   //   pRenderDevice->NativeDevice()->PSSetConstantBuffers(_slot, 1, &_piBuffer);
-   //}else if(_groupCd == ERenderShaderBuffer_Renderable){
-   //   // 更新显示相关
-   //   if(_shaderCd == ERenderShader_Vertex){
-   //      pRenderDevice->NativeDevice()->VSSetConstantBuffers(_slot, 1, &_piBuffer);
-   //   }else if(_shaderCd == ERenderShader_Fragment){
-   //      pRenderDevice->NativeDevice()->PSSetConstantBuffers(_slot, 1, &_piBuffer);
-   //   }else{
-   //      MO_FATAL("Render shader type is unknown. (shader=%d)", _shaderCd);
-   //   }
-   //}else{
-   //   MO_FATAL("Render shader group is unknown. (group=%d)", _groupCd);
-   //}
-   return resultCd;
+   return ESuccess;
 }
 
 MO_NAMESPACE_END

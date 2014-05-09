@@ -8,16 +8,21 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderFragmentShader, FRenderFragmentShader);
 // <T>构造渲染程序。</T>
 //============================================================
 FPd9RenderFragmentShader::FPd9RenderFragmentShader(){
+   _pBuffer = MO_CREATE(FPd9RenderShaderBuffer);
+   _pBuffer->SetName("FragmentBuffer");
    MO_CLEAR(_piData);
    MO_CLEAR(_piShader);
+   MO_CLEAR(_piTable);
 }
 
 //============================================================
 // <T>析构渲染程序。</T>
 //============================================================
 FPd9RenderFragmentShader::~FPd9RenderFragmentShader(){
+   MO_DELETE(_pBuffer);
    MO_RELEASE(_piData);
    MO_RELEASE(_piShader);
+   MO_RELEASE(_piTable);
 }
 
 //============================================================
@@ -40,7 +45,7 @@ TResult FPd9RenderFragmentShader::Compile(TCharC* pSource){
    MO_CHECK(_pDevice, return ENull);
    FPd9RenderDevice* pRenderDevice = _pDevice->Convert<FPd9RenderDevice>();
    FRenderCapability* pCapability = pRenderDevice->Capability();
-   TCharC* pShaderVersion = pCapability->ShaderVertexVersion();
+   TCharC* pShaderVersion = pCapability->ShaderFragmentVersion();
    // 设置标志
    //TUint32 shaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
    TUint32 shaderFlags = 0;
@@ -50,8 +55,7 @@ TResult FPd9RenderFragmentShader::Compile(TCharC* pSource){
     // 上传代码
    TInt length = RString::Length(pSource);
    ID3DXBuffer* piError = NULL;
-   ID3DXConstantTable* piTable = NULL;
-   HRESULT dxResult = D3DXCompileShader(pSource, length, NULL, NULL, "main", pShaderVersion, shaderFlags, &_piData, &piError, &piTable);
+   HRESULT dxResult = D3DXCompileShader(pSource, length, NULL, NULL, "main", pShaderVersion, shaderFlags, &_piData, &piError, &_piTable);
    if(FAILED(dxResult)){
       TCharC* pBuffer = (TCharC*)piError->GetBufferPointer();
       MO_ERROR("Compile from memory failure.\n%s", pBuffer);

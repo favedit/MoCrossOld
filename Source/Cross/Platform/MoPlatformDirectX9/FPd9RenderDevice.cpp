@@ -11,8 +11,6 @@ FPd9RenderDevice::FPd9RenderDevice(){
    // 初始化能力描述
    _pCapability = MO_CREATE(FRenderCapability);
    _pCapability->SetCode("directx9");
-   _pCapability->SetShaderVertexVersion("vs_3_0");
-   _pCapability->SetShaderFragmentVersion("ps_3_0");
    // 初始化纹理数据
    //_optionTexture = EFalse;
    //_textureLimit = 0;
@@ -20,33 +18,28 @@ FPd9RenderDevice::FPd9RenderDevice(){
    //_pLinkFlatTextures = MO_CREATE(FRenderFlatTextureList);
    //_pLinkCubeTextures = MO_CREATE(FRenderCubeTextureList);
    // 初始化接口指针
-   //MO_CLEAR(_piSwapChain);
-   //MO_CLEAR(_piDevice);
+   MO_CLEAR(_piDirect3d);
+   MO_CLEAR(_piDevice);
    // 注册类集合
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERBUFFER,    FPd9RenderShaderBuffer::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERATTRIBUTE, FRenderShaderAttribute::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERPARAMETER, FPd9RenderShaderParameter::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERSAMPLER,   FRenderShaderSampler::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT,          FPd9RenderLayout::Class());
-   //
-   //MO_CLEAR(_piRasterizerState);
-   //MO_CLEAR(_piBlendEnableState);
-   //MO_CLEAR(_piBlendDisableState);
 }
 
 //============================================================
 // <T>析构舞台对象。</T>
 //============================================================
 FPd9RenderDevice::~FPd9RenderDevice(){
-   //MO_DELETE(_pCapability);
-   //MO_RELEASE(_piBlendEnableState);
-   //MO_RELEASE(_piBlendDisableState);
    //// 删除关联集合
    //MO_DELETE(_pLinkFlatTextures);
    //MO_DELETE(_pLinkCubeTextures);
-   //// 释放内存
-   //MO_RELEASE(_piSwapChain);
-   //MO_RELEASE(_piDevice);
+   // 释放内存
+   MO_RELEASE(_piDevice);
+   MO_RELEASE(_piDirect3d);
+   /// 删除描述
+   MO_DELETE(_pCapability);
 }
 
 //============================================================
@@ -72,9 +65,15 @@ TBool FPd9RenderDevice::UpdateContext(){
 TResult FPd9RenderDevice::Setup(){
    // 父配置处理
    TResult result = FRenderDevice::Setup();
+   //............................................................
+   RECT rect;
+   GetClientRect(_windowHandle, &rect);
+   TInt width = rect.right - rect.left;
+   TInt height = rect.bottom - rect.top;
+   //............................................................
    // 创建驱动
-   _piDirect3D = Direct3DCreate9(D3D_SDK_VERSION);
-   if(_piDirect3D == NULL){
+   _piDirect3d = Direct3DCreate9(D3D_SDK_VERSION);
+   if(_piDirect3d == NULL){
       MO_FATAL("Create direct3d 9 failure.");
       return EFailure;
    }
@@ -85,7 +84,7 @@ TResult FPd9RenderDevice::Setup(){
    deviceDescriptor.BackBufferFormat = D3DFMT_UNKNOWN;
    deviceDescriptor.EnableAutoDepthStencil = TRUE;
    deviceDescriptor.AutoDepthStencilFormat = D3DFMT_D16;
-   HRESULT dxResult = _piDirect3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, _windowHandle, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &deviceDescriptor, &_piDevice);
+   HRESULT dxResult = _piDirect3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, _windowHandle, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &deviceDescriptor, &_piDevice);
    if(FAILED(dxResult)){
       MO_FATAL("Create device failure.");
       return EFailure;
@@ -94,6 +93,24 @@ TResult FPd9RenderDevice::Setup(){
    _piDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
    _piDevice->SetRenderState(D3DRS_LIGHTING, EFalse);
    _piDevice->SetRenderState(D3DRS_ZENABLE, ETrue);
+   //............................................................
+   // 设置渲染版本
+   TCharC* pVertexShaderProfile = D3DXGetVertexShaderProfile(_piDevice);
+   _pCapability->SetShaderVertexVersion(pVertexShaderProfile);
+   TCharC* pPixelShaderProfile = D3DXGetPixelShaderProfile(_piDevice);
+   _pCapability->SetShaderFragmentVersion(pPixelShaderProfile);
+   //............................................................
+   // 设置视角
+   D3DVIEWPORT9 viewport = {0};
+   viewport.Width = width;
+   viewport.Height = height;
+   viewport.MinZ = 0.0f;
+   viewport.MaxZ = 1.0f;
+   dxResult = _piDevice->SetViewport(&viewport);
+   if(FAILED(dxResult)){
+      MO_FATAL("Create device failure.");
+      return EFailure;
+   }
    return ESuccess;
 }
 
@@ -477,12 +494,12 @@ TResult FPd9RenderDevice::SetBlendFactors(TBool blend, ERenderBlendMode sourceCd
 // @return 处理结果
 //============================================================
 TResult FPd9RenderDevice::SetScissorRectangle(TInt left, TInt top, TInt width, TInt height){
-   //D3D9_RECT rect;
-   //rect.left = left;
-   //rect.top = top;
-   //rect.right = left + width;
-   //rect.bottom = top + height;
-   //_piDevice->RSSetScissorRects(1, &rect);
+   RECT rect;
+   rect.left = left;
+   rect.top = top;
+   rect.right = left + width;
+   rect.bottom = top + height;
+   _piDevice->SetScissorRect(&rect);
    return ETrue;
 }
 
@@ -541,23 +558,26 @@ TResult FPd9RenderDevice::SetProgram(FRenderProgram* pProgram){
    //   return EContinue;
    //}
    // 设置程序
-   //if(pProgram != NULL){
-   //   // 设置顶点脚本
-   //   FPd9RenderVertexShader* pVertexShader = pProgram->VertexShader()->Convert<FPd9RenderVertexShader>();
-   //   ID3D9VertexShader* piVertexShader = pVertexShader->NativeShader();
-   //   _piDevice->VSSetShader(piVertexShader);
-   //   //MO_DEBUG("Set vertex shader. (shader=0x%08X)", piVertexShader);
-   //   // 设置像素脚本
-   //   FPd9RenderFragmentShader* pFragmentShader = pProgram->FragmentShader()->Convert<FPd9RenderFragmentShader>();
-   //   ID3D9PixelShader* piFragmentShader = pFragmentShader->NativeShader();
-   //   _piDevice->PSSetShader(piFragmentShader);
-   //   //MO_DEBUG("Set pixel shader. (shader=0x%08X)", piFragmentShader);
-   //   // 设置输入层次
-   //   FPd9RenderProgram* pRenderProgram = pProgram->Convert<FPd9RenderProgram>();
-   //   ID3D9InputLayout* piInputLayout = pRenderProgram->NativeInputLayout();
-   //   _piDevice->IASetInputLayout(piInputLayout);
-   //   //MO_DEBUG("Set input layout. (layout=0x%08X)", piInputLayout);
-   //}
+   if(pProgram != NULL){
+      // 设置顶点脚本
+      FPd9RenderVertexShader* pVertexShader = pProgram->VertexShader()->Convert<FPd9RenderVertexShader>();
+      IDirect3DVertexShader9* piVertexShader = pVertexShader->NativeShader();
+      HRESULT dxResult = _piDevice->SetVertexShader(piVertexShader);
+      if(FAILED(dxResult)){
+         MO_FATAL("Set vertex shader failure.");
+         return EFailure;
+      }
+      //MO_DEBUG("Set vertex shader. (shader=0x%08X)", piVertexShader);
+      // 设置像素脚本
+      FPd9RenderFragmentShader* pFragmentShader = pProgram->FragmentShader()->Convert<FPd9RenderFragmentShader>();
+      IDirect3DPixelShader9* piFragmentShader = pFragmentShader->NativeShader();
+      dxResult = _piDevice->SetPixelShader(piFragmentShader);
+      if(FAILED(dxResult)){
+         MO_FATAL("Set pixel shader failure.");
+         return EFailure;
+      }
+      //MO_DEBUG("Set pixel shader. (shader=0x%08X)", piFragmentShader);
+   }
    _pProgram = pProgram;
    // 检查是否可以执行
    _statistics->UpdateProgramCount();
@@ -572,16 +592,26 @@ TResult FPd9RenderDevice::SetProgram(FRenderProgram* pProgram){
 //============================================================
 TResult FPd9RenderDevice::SetLayout(FRenderLayout* pLayout){
    MO_CHECK(pLayout, return ENull);
-   //// 获得顶点流
-   //TResult result = ESuccess;
-   //FPd9RenderLayout* pRenderLayout = pLayout->Convert<FPd9RenderLayout>();
-   //// 获得信息
-   //TInt count = pRenderLayout->Count();
-   //ID3D9Buffer** piBuffer = pRenderLayout->Buffer();
-   //UINT* bufferStride = pRenderLayout->Stride();
-   //UINT* bufferOffset = pRenderLayout->Offset();
-   //// 设置内容
-   //_piDevice->IASetVertexBuffers(0, count, piBuffer, bufferStride, bufferOffset);
+   // 获得顶点流
+   TResult result = ESuccess;
+   FPd9RenderLayout* pRenderLayout = pLayout->Convert<FPd9RenderLayout>();
+   IDirect3DVertexBuffer9** piBuffers = pRenderLayout->Buffer();
+   UINT* bufferStride = pRenderLayout->Stride();
+   UINT* bufferOffset = pRenderLayout->Offset();
+   // 获得信息
+   TInt index = 0;
+   TInt count = pRenderLayout->Count();
+   for(TInt n = 0; n < count; n++){
+      IDirect3DVertexBuffer9* piBuffer = piBuffers[n];
+      if(piBuffer != NULL){
+         HRESULT dxResult = _piDevice->SetStreamSource(index++, piBuffer, bufferOffset[n], bufferStride[n]);
+         if(FAILED(dxResult)){
+            MO_FATAL("Set stream source failure. (buffer=0x%08X)", piBuffer);
+            return EFailure;
+         }
+
+      }
+   }
    //MO_DEBUG("Set vertex buffers. (slot=%d, count=%d)", 0, count);
    return ESuccess;
 }
@@ -767,31 +797,6 @@ TResult FPd9RenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, 
 // @return 处理结果
 //============================================================
 TResult FPd9RenderDevice::BindShaderBuffer(FRenderShaderBuffer* pBuffer){
-   MO_CHECK(pBuffer, return ENull);
-   if(!pBuffer->IsStatusUsed()){
-      return EContinue;
-   }
-   //// 更新数据
-   //FPd9RenderShaderBuffer* pRenderBuffer = pBuffer->Convert<FPd9RenderShaderBuffer>();
-   //TInt slot = pRenderBuffer->Slot();
-   //ERenderShader shaderCd = pRenderBuffer->ShaderCd();
-   //ERenderShaderBuffer groupCd = pRenderBuffer->GroupCd();
-   //ID3D9Buffer* piBuffer = pRenderBuffer->NativeiBuffer();
-   //if((groupCd == ERenderShaderBuffer_Global) || (groupCd == ERenderShaderBuffer_Technique) || (groupCd == ERenderShaderBuffer_Effect)){
-   //   _piDevice->VSSetConstantBuffers(slot, 1, &piBuffer);
-   //   _piDevice->PSSetConstantBuffers(slot, 1, &piBuffer);
-   //}else if(groupCd == ERenderShaderBuffer_Renderable){
-   //   // 更新显示相关
-   //   if(shaderCd == ERenderShader_Vertex){
-   //      _piDevice->VSSetConstantBuffers(slot, 1, &piBuffer);
-   //   }else if(shaderCd == ERenderShader_Fragment){
-   //      _piDevice->PSSetConstantBuffers(slot, 1, &piBuffer);
-   //   }else{
-   //      MO_FATAL("Render shader type is unknown. (shader=%d)", shaderCd);
-   //   }
-   //}else{
-   //   MO_FATAL("Render shader group is unknown. (group=%d)", groupCd);
-   //}
    return ESuccess;
 }
 
@@ -831,30 +836,34 @@ TResult FPd9RenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
    //............................................................
    // 绑定纹理
    ERenderTexture textureCd = pTexture->TextureCd();
-   //switch (textureCd){
-   //   case ERenderTexture_Flat2d:{
-   //      FPd9RenderFlatTexture* pFlatTexture = (FPd9RenderFlatTexture*)pTexture;
-   //      ID3D9ShaderResourceView* piTextureView = pFlatTexture->NativeView();
-   //      ID3D9SamplerState* piState = pFlatTexture->NativeState();
-   //      _piDevice->PSSetShaderResources(slot, 1, &piTextureView);
-   //      _piDevice->PSSetSamplers(slot, 1, &piState);
-   //      //MO_DEBUG("Set texture 2d. (slot=%d, texture=0x%08X)", slot, pTexture);
-   //      break;
-   //   }
-   //   case ERenderTexture_Cube:{
-   //      FPd9RenderCubeTexture* pCubeTexture = (FPd9RenderCubeTexture*)pTexture;
-   //      ID3D9ShaderResourceView* piTextureView = pCubeTexture->NativeView();
-   //      ID3D9SamplerState* piState = pCubeTexture->NativeState();
-   //      _piDevice->PSSetShaderResources(slot, 1, &piTextureView);
-   //      _piDevice->PSSetSamplers(slot, 1, &piState);
-   //      //MO_DEBUG("Set texture cube. (slot=%d, texture=0x%08X)", slot, pTexture);
-   //      break;
-   //   }
-   //   default:{
-   //      MO_FATAL("Unknown texture type.");
-   //      break;
-   //   }
-   //}
+   switch (textureCd){
+      case ERenderTexture_Flat2d:{
+         FPd9RenderFlatTexture* pFlatTexture = (FPd9RenderFlatTexture*)pTexture;
+         IDirect3DTexture9* piTexture = pFlatTexture->NativeTexture();
+         HRESULT dxResult = _piDevice->SetTexture(slot, piTexture);
+         if(FAILED(dxResult)){
+            MO_FATAL("Set texture failure. (texture=0x%08X)", piTexture);
+            return EFailure;
+         }
+         //MO_DEBUG("Set texture 2d. (slot=%d, texture=0x%08X)", slot, pTexture);
+         break;
+      }
+      case ERenderTexture_Cube:{
+         FPd9RenderCubeTexture* pCubeTexture = (FPd9RenderCubeTexture*)pTexture;
+         IDirect3DCubeTexture9* piTexture = pCubeTexture->NativeTexture();
+         HRESULT dxResult = _piDevice->SetTexture(slot, piTexture);
+         if(FAILED(dxResult)){
+            MO_FATAL("Set texture failure. (texture=0x%08X)", piTexture);
+            return EFailure;
+         }
+         //MO_DEBUG("Set texture cube. (slot=%d, texture=0x%08X)", slot, pTexture);
+         break;
+      }
+      default:{
+         MO_FATAL("Unknown texture type.");
+         break;
+      }
+   }
    //............................................................
    // 统计数据
    _statistics->UpdateSamplerCount();
@@ -874,27 +883,36 @@ TResult FPd9RenderDevice::DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt o
    MO_CHECK(offset >= 0, return EOutRange);
    MO_CHECK(count > 0, return EOutRange);
    TResult resultCd = ESuccess;
-   //// 程序绘制开始
-   //_pProgram->DrawBegin();
-   //// 设置索引流
-   //FPd9RenderIndexBuffer* pBuffer = pIndexBuffer->Convert<FPd9RenderIndexBuffer>();
-   //ID3D9Buffer* piBuffer = pBuffer->NativeBuffer();
-   //if(piBuffer == NULL){
-   //   MO_FATAL("Index buffer is null.");
-   //   return ENull;
-   //}
-   //DXGI_FORMAT strideCd = RDirectX9::ConvertIndexStride(pIndexBuffer->StrideCd());
-   //_piDevice->IASetPrimitiveTopology(D3D9_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-   //_piDevice->IASetIndexBuffer(piBuffer, strideCd, 0);
-   //// 绘制三角形
-   //_renderDrawStatistics->Begin();
-   //_piDevice->DrawIndexed(count, offset, 0);
-   ////MO_DEBUG("Draw indexed. (offset=%d, count=%d)", offset, count);
-   //_renderDrawStatistics->Finish();
-   //// 程序绘制结束
-   //_pProgram->DrawEnd();
-   //// 检查错误
-   //_statistics->UpdateDraw(count);
+   // 程序绘制开始
+   _pProgram->DrawBegin();
+   // 设置索引流
+   FPd9RenderIndexBuffer* pBuffer = pIndexBuffer->Convert<FPd9RenderIndexBuffer>();
+   IDirect3DIndexBuffer9* piIndices = pBuffer->NativeBuffer();
+   if(piIndices == NULL){
+      MO_FATAL("Index buffer is null.");
+      return ENull;
+   }
+   HRESULT dxResult = _piDevice->SetIndices(piIndices);
+   if(FAILED(dxResult)){
+      MO_FATAL("Set indices failure. (indices=0x%08X)", piIndices);
+      return EFailure;
+   }
+   // 绘制三角形
+   _renderDrawStatistics->Begin();
+   //_piDevice->SetFVF(D3DFVF_XYZW | D3DFVF_TEX0 | D3DFVF_TEX1 | D3DFVF_TEX2 | D3DFVF_TEX3);
+   //dxResult = _piDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 0, offset, count / 3);
+   dxResult = _piDevice->DrawPrimitive(D3DPT_TRIANGLELIST, offset, count);
+   if(FAILED(dxResult)){
+      TCharC* pMessage = DXGetErrorDescription(dxResult);
+      MO_FATAL("Draw indexed primitive failure. (offset=%d, count=%d, error=%s)", offset, count, pMessage);
+      return EFailure;
+   }
+   //MO_DEBUG("Draw indexed. (offset=%d, count=%d)", offset, count);
+   _renderDrawStatistics->Finish();
+   // 程序绘制结束
+   _pProgram->DrawEnd();
+   // 检查错误
+   _statistics->UpdateDraw(count);
    return resultCd;
 }
 

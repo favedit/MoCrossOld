@@ -41,9 +41,9 @@ TResult FPd9RenderLayout::OnSetup(){
    GRenderShaderAttributeDictionary::TIterator iterator = _pProgram->Attributes().IteratorC();
    while(iterator.Next()){
       FRenderShaderAttribute* pAttribute = *iterator;
-      if(!pAttribute->IsStatusUsed()){
-         continue;
-      }
+      //if(!pAttribute->IsStatusUsed()){
+      //   continue;
+      //}
       //............................................................
       ERenderVertexBuffer bufferCd = (ERenderVertexBuffer)pAttribute->Code();
       ERenderShaderAttributeFormat formatCd = pAttribute->FormatCd();
@@ -54,20 +54,20 @@ TResult FPd9RenderLayout::OnSetup(){
       Push(pElement);
       //............................................................
       // ÉèÖÃ»º³åÐÅÏ¢
-      //if(pStream != NULL){
-      //   FPd9RenderVertexBuffer* pVertexBuffer = pStream->VertexBuffer()->Convert<FPd9RenderVertexBuffer>();
-      //   _piBuffer[index] = pVertexBuffer->NativeBuffer();
-      //   _strides[index] = pStream->Stride();
-      //   _offsets[index] = pStream->Offset();
-      //}else{
-      //   _piBuffer[index] = NULL;
-      //   _strides[index] = 0;
-      //   _offsets[index] = 0;
-      //}
+      if(pStream != NULL){
+         FPd9RenderVertexBuffer* pVertexBuffer = pStream->VertexBuffer()->Convert<FPd9RenderVertexBuffer>();
+         _piBuffer[index] = pVertexBuffer->NativeBuffer();
+         _strides[index] = pStream->Stride();
+         _offsets[index] = pStream->Offset();
+      }else{
+         _piBuffer[index] = NULL;
+         _strides[index] = 0;
+         _offsets[index] = 0;
+      }
       index++;
       position += RRenderShaderAttributeFormat::CalculateSize(formatCd);
    }
-   //_count = index;
+   _count = index;
    return ESuccess;
 }
 

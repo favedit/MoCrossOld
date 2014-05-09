@@ -38,6 +38,7 @@ TResult FRenderShaderAttribute::LoadConfig(FXmlNode* pConfig){
    if(pFormat != NULL){
       _formatCd = RRenderShaderAttributeFormat::Parse(pFormat);
    }
+   _code = RRenderVertexBuffer::Parse(_linker);
    return ESuccess;
 }
 

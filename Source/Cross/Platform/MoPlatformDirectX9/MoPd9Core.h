@@ -20,6 +20,10 @@
 #include <d3dx9.h>
 #endif // __D3DX9_H__
 
+#ifndef _DXERR_H_
+#include <DxErr.h>
+#endif // _DXERR_H_
+
 #ifndef __D3DCOMPILER_H__
 #include <D3Dcompiler.h>
 #endif // __D3DCOMPILER_H__
@@ -29,6 +33,8 @@
 #endif // __MO_PD9_COMMON_H__
 
 MO_NAMESPACE_BEGIN
+
+#define MO_INPUT_ELEMENT_MAXCNT 64
 
 //============================================================
 // <T>设备工具。</T>

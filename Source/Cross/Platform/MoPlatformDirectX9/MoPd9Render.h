@@ -19,41 +19,34 @@ class MO_PD9_DECLARE FPd9RenderLayout : public FRenderLayout
 {
    MO_CLASS_DECLARE_INHERITS(FPd9RenderLayout, FRenderLayout);
 protected:
-   //TInt _count;
-   //MO_D3D9_INPUT_ELEMENT_DESC_ARRAY _inputElements;
-   //ID3D9InputLayout* _piInputLayout;
-   //ID3D9Buffer* _piBuffer[MO_INPUT_ELEMENT_MAXCNT];
-   //UINT _strides[MO_INPUT_ELEMENT_MAXCNT];
-   //UINT _offsets[MO_INPUT_ELEMENT_MAXCNT];
+   TInt _count;
+   IDirect3DVertexBuffer9* _piBuffer[MO_INPUT_ELEMENT_MAXCNT];
+   UINT _strides[MO_INPUT_ELEMENT_MAXCNT];
+   UINT _offsets[MO_INPUT_ELEMENT_MAXCNT];
 public:
    FPd9RenderLayout();
    MO_ABSTRACT ~FPd9RenderLayout();
 public:
-   ////------------------------------------------------------------
-   //// <T>获得本地输入层次。</T>
-   //MO_INLINE ID3D9InputLayout* NativeInputLayout(){
-   //   return _piInputLayout;
-   //}
-   ////------------------------------------------------------------
-   //// <T>获得总数。</T>
-   //MO_INLINE TInt Count(){
-   //   return _count;
-   //}
-   ////------------------------------------------------------------
-   //// <T>获得数据。</T>
-   //MO_INLINE ID3D9Buffer** Buffer(){
-   //   return _piBuffer;
-   //}
-   ////------------------------------------------------------------
-   //// <T>获得宽度。</T>
-   //MO_INLINE UINT* Stride(){
-   //   return _strides;
-   //}
-   ////------------------------------------------------------------
-   //// <T>获得位置。</T>
-   //MO_INLINE UINT* Offset(){
-   //   return _offsets;
-   //}
+   //------------------------------------------------------------
+   // <T>获得总数。</T>
+   MO_INLINE TInt Count(){
+      return _count;
+   }
+   //------------------------------------------------------------
+   // <T>获得数据。</T>
+   MO_INLINE IDirect3DVertexBuffer9** Buffer(){
+      return _piBuffer;
+   }
+   //------------------------------------------------------------
+   // <T>获得宽度。</T>
+   MO_INLINE UINT* Stride(){
+      return _strides;
+   }
+   //------------------------------------------------------------
+   // <T>获得位置。</T>
+   MO_INLINE UINT* Offset(){
+      return _offsets;
+   }
 public:
    FRenderLayoutElement* FindByAttribute(FRenderShaderAttribute* pAttribute);
    MO_OVERRIDE TResult OnSetup();
@@ -177,12 +170,19 @@ class MO_PD9_DECLARE FPd9RenderVertexShader : public FRenderVertexShader
 {
    MO_CLASS_DECLARE_INHERITS(FPd9RenderVertexShader, FRenderVertexShader);
 protected:
+   FPd9RenderShaderBuffer* _pBuffer;
    ID3DXBuffer* _piData;
    IDirect3DVertexShader9* _piShader;
+   ID3DXConstantTable* _piTable;
 public:
    FPd9RenderVertexShader();
    MO_ABSTRACT ~FPd9RenderVertexShader();
 public:
+   //------------------------------------------------------------
+   // <T>获得数据。</T>
+   MO_INLINE FPd9RenderShaderBuffer* Buffer(){
+      return _pBuffer;
+   }
    //------------------------------------------------------------
    // <T>获得本地数据。</T>
    MO_INLINE ID3DXBuffer* NativeData(){
@@ -192,6 +192,11 @@ public:
    // <T>获得本地渲染器。</T>
    MO_INLINE IDirect3DVertexShader9* NativeShader(){
       return _piShader;
+   }
+   //------------------------------------------------------------
+   // <T>获得本地渲染器。</T>
+   MO_INLINE ID3DXConstantTable* NativeTable(){
+      return _piTable;
    }
 public:
    MO_OVERRIDE TResult Setup();
@@ -210,12 +215,19 @@ class MO_PD9_DECLARE FPd9RenderFragmentShader : public FRenderFragmentShader
 {
    MO_CLASS_DECLARE_INHERITS(FPd9RenderFragmentShader, FRenderFragmentShader);
 protected:
+   FPd9RenderShaderBuffer* _pBuffer;
    ID3DXBuffer* _piData;
    IDirect3DPixelShader9* _piShader;
+   ID3DXConstantTable* _piTable;
 public:
    FPd9RenderFragmentShader();
    MO_ABSTRACT ~FPd9RenderFragmentShader();
 public:
+   //------------------------------------------------------------
+   // <T>获得数据。</T>
+   MO_INLINE FPd9RenderShaderBuffer* Buffer(){
+      return _pBuffer;
+   }
    //------------------------------------------------------------
    // <T>获得本地数据。</T>
    MO_INLINE ID3DXBuffer* NativeData(){
@@ -225,6 +237,11 @@ public:
    // <T>获得本地渲染器。</T>
    MO_INLINE IDirect3DPixelShader9* NativeShader(){
       return _piShader;
+   }
+   //------------------------------------------------------------
+   // <T>获得本地渲染器。</T>
+   MO_INLINE ID3DXConstantTable* NativeTable(){
+      return _piTable;
    }
 public:
    MO_OVERRIDE TResult Setup();
@@ -259,7 +276,7 @@ public:
    MO_OVERRIDE TInt FindAttribute(TCharC* pCode);
    MO_OVERRIDE TResult BindAttribute(TInt slot, TCharC* pCode);
 protected:
-   //TResult BuildShader(FRenderShader* pShader, ID3D9Blob* piData);
+   TResult BuildShader(FRenderShader* pShader, FPd9RenderShaderBuffer* pBuffer, ID3DXConstantTable* piTable);
 public:
    MO_OVERRIDE TResult Setup();
    MO_OVERRIDE TResult Build();
@@ -318,28 +335,16 @@ class MO_PD9_DECLARE FPd9RenderFlatTexture : public FRenderFlatTexture
 {
    MO_CLASS_DECLARE_INHERITS(FPd9RenderFlatTexture, FRenderFlatTexture);
 protected:
-   //ID3D9Texture2D* _piTexture;
-   //ID3D9ShaderResourceView* _piView;
-   //ID3D9SamplerState* _piState;
+   IDirect3DTexture9* _piTexture;
 public:
    FPd9RenderFlatTexture();
    MO_ABSTRACT ~FPd9RenderFlatTexture();
 public:
-   ////------------------------------------------------------------
-   //// <T>获得本地纹理。</T>
-   //MO_INLINE ID3D9Texture2D* NativeTexture(){
-   //   return _piTexture;
-   //}
-   ////------------------------------------------------------------
-   //// <T>获得本地视图。</T>
-   //MO_INLINE ID3D9ShaderResourceView* NativeView(){
-   //   return _piView;
-   //}
-   ////------------------------------------------------------------
-   //// <T>获得取样器状态。</T>
-   //MO_INLINE ID3D9SamplerState* NativeState(){
-   //   return _piState;
-   //}
+   //------------------------------------------------------------
+   // <T>获得本地纹理。</T>
+   MO_INLINE IDirect3DTexture9* NativeTexture(){
+      return _piTexture;
+   }
 public:
    MO_OVERRIDE TResult OnSetup();
 public:
@@ -360,28 +365,16 @@ class MO_PD9_DECLARE FPd9RenderCubeTexture : public FRenderCubeTexture
 {
    MO_CLASS_DECLARE_INHERITS(FPd9RenderCubeTexture, FRenderFlatTexture);
 protected:
-   //ID3D9Texture2D* _piTexture;
-   //ID3D9ShaderResourceView* _piView;
-   //ID3D9SamplerState* _piState;
+   IDirect3DCubeTexture9* _piTexture;
 public:
    FPd9RenderCubeTexture();
    MO_ABSTRACT ~FPd9RenderCubeTexture();
 public:
-   ////------------------------------------------------------------
-   //// <T>获得本地纹理。</T>
-   //MO_INLINE ID3D9Texture2D* NativeTexture(){
-   //   return _piTexture;
-   //}
-   ////------------------------------------------------------------
-   //// <T>获得本地视图。</T>
-   //MO_INLINE ID3D9ShaderResourceView* NativeView(){
-   //   return _piView;
-   //}
-   ////------------------------------------------------------------
-   //// <T>获得取样器状态。</T>
-   //MO_INLINE ID3D9SamplerState* NativeState(){
-   //   return _piState;
-   //}
+   //------------------------------------------------------------
+   // <T>获得本地纹理。</T>
+   MO_INLINE IDirect3DCubeTexture9* NativeTexture(){
+      return _piTexture;
+   }
 public:
    MO_OVERRIDE TResult OnSetup();
 public:
@@ -403,9 +396,8 @@ class MO_PD9_DECLARE FPd9RenderDevice : public FRenderDevice
    MO_CLASS_DECLARE_INHERITS(FPd9RenderDevice, FRenderDevice);
 protected:
    HWND _windowHandle;
-   IDirect3D9* _piDirect3D;
+   IDirect3D9* _piDirect3d;
    IDirect3DDevice9* _piDevice;
-   //D3D9_DRIVER_TYPE _driverType;
    //// 纹理信息
    //TBool _optionTexture;
    //// 关联顶点缓冲集合
@@ -415,9 +407,6 @@ protected:
    //IDXGISwapChain* _piSwapChain;
    //ID3D9Device* _piDevice;
    //GPtr<FPd9RenderTarget> _defaultRenderTarget;
-   //ID3D9RasterizerState* _piRasterizerState;
-   //ID3D9BlendState* _piBlendEnableState;
-   //ID3D9BlendState* _piBlendDisableState;
 public:
    FPd9RenderDevice();
    MO_ABSTRACT ~FPd9RenderDevice();

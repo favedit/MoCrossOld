@@ -45,7 +45,7 @@ TResult FPd9RenderIndexBuffer::Upload(TByteC* pData, TInt length){
    MO_RELEASE(_piBuffer);
    //............................................................
    // ´´½¨»º³å
-   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateIndexBuffer(_dataLength, 0, D3DFMT_D16, D3DPOOL_DEFAULT, &_piBuffer, NULL);
+   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateIndexBuffer(_dataLength, 0, D3DFMT_INDEX16, D3DPOOL_DEFAULT, &_piBuffer, NULL);
    if(FAILED(dxResult)){
       MO_FATAL("Create buffer failure.");
       return EFailure;
