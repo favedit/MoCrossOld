@@ -16,8 +16,14 @@ namespace MO.Bridge.Core
       // <T>构造脚本对象。</T>
       //============================================================
       public FBridgeObject() {
-         int result = RBridgeManager.CreateObject(out _bridgeLinker, "asd");
-         
+         int result = RBridgeManager.CreateObject(out _bridgeLinker, "Instance");
+      }
+
+      //============================================================
+      // <T>构造脚本对象。</T>
+      //============================================================
+      public int ReferCount() {
+         return RBridgeManager.Invoke(out _bridgeLinker, "ReferCount");
       }
 
       //============================================================
