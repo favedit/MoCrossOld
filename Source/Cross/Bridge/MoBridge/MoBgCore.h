@@ -64,6 +64,41 @@ public:
    }
 };
 
+//============================================================
+struct SBridgeLinker{
+   TUint32 instanceId;
+};
+
+//============================================================
+// <T>桥接控制台。</T>
+//============================================================
+class MO_BG_DECLARE FBridgeConsole : public FConsole
+{
+protected:
+   FClassFactory* _pClassFactory;
+public:
+   FBridgeConsole();
+   MO_ABSTRACT ~FBridgeConsole();
+public:
+   //------------------------------------------------------------
+   // <T>获得类工厂。</T>
+   MO_INLINE FClassFactory* ClassFactory(){
+      return _pClassFactory;
+   }
+public:
+   TInt CreateObject(SBridgeLinker* pLinker, TCharC* pClassName);
+};
+
+//============================================================
+// <T>桥接管理器。</T>
+//============================================================
+class MO_BG_DECLARE RBridgeManager : public RSingleton<FBridgeConsole>
+{
+};
+
+EXTERN_C MO_BG_DECLARE TInt RBridgeManager_CreateObject(SBridgeLinker* pLinker, TCharC* pClassName);
+EXTERN_C MO_BG_DECLARE TInt RBridgeManager_Invoke(SBridgeLinker* pLinker, TCharC* pMethodName);
+
 MO_NAMESPACE_END
 
 //************************************************************

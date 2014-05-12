@@ -12,8 +12,11 @@
 MO_NAMESPACE_BEGIN
 
 //============================================================
-MO_BG_DECLARE void MoBridge();
+EXTERN_C MO_BG_DECLARE void MoBridgeInitialize();
+EXTERN_C MO_BG_DECLARE void MoBridgeRelease();
 
 MO_NAMESPACE_END
+
+
 
 #endif //__MO_BRIDGE_H__
