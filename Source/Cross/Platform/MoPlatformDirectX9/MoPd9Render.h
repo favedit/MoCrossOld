@@ -375,11 +375,10 @@ public:
 //============================================================
 // <T>渲染设备。</T>
 //============================================================
-class MO_PD9_DECLARE FPd9RenderDevice : public FRenderDevice
+class MO_PD9_DECLARE FPd9RenderDevice : public FPdxRenderDevice
 {
-   MO_CLASS_DECLARE_INHERITS(FPd9RenderDevice, FRenderDevice);
+   MO_CLASS_DECLARE_INHERITS(FPd9RenderDevice, FPdxRenderDevice);
 protected:
-   HWND _windowHandle;
    IDirect3D9* _piDirect3d;
    IDirect3DDevice9* _piDevice;
    TBool _inDrawing;
@@ -399,16 +398,6 @@ public:
 protected:
    TBool UpdateContext();
 public:
-   //------------------------------------------------------------
-   // <T>获得窗口句柄。</T>
-   MO_INLINE HWND WindowHandle(){
-      return _windowHandle;
-   }
-   //------------------------------------------------------------
-   // <T>设置窗口句柄。</T>
-   MO_INLINE void SetWindowHandle(HWND handle){
-      _windowHandle = handle;
-   }
    //------------------------------------------------------------
    // <T>获得本地设备。</T>
    MO_INLINE IDirect3DDevice9* NativeDevice(){

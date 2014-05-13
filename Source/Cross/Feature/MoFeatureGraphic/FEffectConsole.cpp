@@ -41,6 +41,9 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
    context->DefineBool("os.android", ETrue);
 #endif // _MO_ANDROID
    context->DefineString("device.render",                  pRenderDevice->Name());
+   context->DefineInt("vertex.attribute.counter",          -1);
+   context->DefineInt("vertex.varying.counter",            -1);
+   context->DefineInt("fragment.varying.counter",          -1);
    context->DefineInt("shader.buffer.global.static",       RRenderShaderBuffer::ParseSlot(ERenderShaderBuffer_GlobalStatic));
    context->DefineInt("shader.buffer.global.dynamic",      RRenderShaderBuffer::ParseSlot(ERenderShaderBuffer_GlobalDynamic));
    context->DefineInt("shader.buffer.technique.static",    RRenderShaderBuffer::ParseSlot(ERenderShaderBuffer_TechniqueStatic));

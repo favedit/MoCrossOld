@@ -2,10 +2,10 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderDevice, FRenderDevice);
+MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderDevice, FPdxRenderDevice);
 
 //============================================================
-// <T>构造舞台对象。</T>
+// <T>构造渲染设备。</T>
 //============================================================
 FPd11RenderDevice::FPd11RenderDevice(){
    // 初始化能力描述
@@ -36,7 +36,7 @@ FPd11RenderDevice::FPd11RenderDevice(){
 }
 
 //============================================================
-// <T>析构舞台对象。</T>
+// <T>析构渲染设备。</T>
 //============================================================
 FPd11RenderDevice::~FPd11RenderDevice(){
    MO_DELETE(_pCapability);

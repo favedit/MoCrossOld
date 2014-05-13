@@ -68,7 +68,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)..\..\..\..\..\Build\Debug_x86\</OutDir>
     <TargetName>$(ProjectName)D</TargetName>
-    <IncludePath>$(ProjectDir)..\..\..\..\Reference\Include\Windows-x86;$(ProjectDir)..\..\..\..\Reference\DxSDK\Include;$(ProjectDir)..\..\..\..\Library\LibLzma;$(ProjectDir)..\..\..\..\Library\LibJpeg;$(ProjectDir)..\..\..\..\Library\LibFreeType;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureInput;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(ProjectDir)..\..\..\Feature\MoFeatureScript;$(ProjectDir)..\..\..\Engine\MoEngine;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\..\..\..\Reference\Include\Windows-x86;$(ProjectDir)..\..\..\..\Reference\DxSDK\Include;$(ProjectDir)..\..\..\..\Library\LibLzma;$(ProjectDir)..\..\..\..\Library\LibJpeg;$(ProjectDir)..\..\..\..\Library\LibFreeType;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(ProjectDir)..\..\..\Feature\MoFeatureInput;$(ProjectDir)..\..\..\Feature\MoFeatureGraphic;$(ProjectDir)..\..\..\Feature\MoFeatureResource;$(ProjectDir)..\..\..\Feature\MoFeatureParticle;$(ProjectDir)..\..\..\Feature\MoFeatureScript;$(ProjectDir)..\..\..\Engine\MoEngine;$(ProjectDir)..\..\..\Platform\MoPlatformDirectX;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)..\..\..\..\Reference\Library\Windows-x86\;$(ProjectDir)..\..\..\..\Reference\DxSDK\Lib\x86\;$(ProjectDir)..\..\..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -88,7 +88,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>dxgi.lib;dxguid.lib;d3d10.lib;d3dx10.lib;d3dcompiler.lib;LibLzmaD.lib;LibJpegD.lib;LibFreeTypeD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureInputD.lib;MoFeatureGraphicD.lib;MoEngineD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dxgi.lib;dxguid.lib;d3d10.lib;d3dx10.lib;d3dcompiler.lib;LibLzmaD.lib;LibJpegD.lib;LibFreeTypeD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;MoFeatureInputD.lib;MoFeatureGraphicD.lib;MoEngineD.lib;MoPlatformDirectXD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:MSVCRT %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>

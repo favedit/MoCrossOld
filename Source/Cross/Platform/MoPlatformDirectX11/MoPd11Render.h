@@ -399,9 +399,9 @@ public:
 //============================================================
 // <T>渲染设备。</T>
 //============================================================
-class MO_PD11_DECLARE FPd11RenderDevice : public FRenderDevice
+class MO_PD11_DECLARE FPd11RenderDevice : public FPdxRenderDevice
 {
-   MO_CLASS_DECLARE_INHERITS(FPd11RenderDevice, FRenderDevice);
+   MO_CLASS_DECLARE_INHERITS(FPd11RenderDevice, FPdxRenderDevice);
 protected:
    D3D_DRIVER_TYPE _driverType;
    D3D_FEATURE_LEVEL _featureLevel;
@@ -411,7 +411,6 @@ protected:
    FRenderFlatTextureList* _pLinkFlatTextures;
    FRenderCubeTextureList* _pLinkCubeTextures;
    // 接口指针
-   HWND _windowHandle;
    IDXGISwapChain* _piSwapChain;
    ID3D11Device* _piDevice;
    ID3D11DeviceContext* _piContext;
@@ -425,16 +424,6 @@ public:
 protected:
    TBool UpdateContext();
 public:
-   //------------------------------------------------------------
-   // <T>获得窗口句柄。</T>
-   MO_INLINE HWND WindowHandle(){
-      return _windowHandle;
-   }
-   //------------------------------------------------------------
-   // <T>设置窗口句柄。</T>
-   MO_INLINE void SetWindowHandle(HWND handle){
-      _windowHandle = handle;
-   }
    //------------------------------------------------------------
    // <T>获得本地交换链。</T>
    MO_INLINE IDXGISwapChain* NativeSwapChain(){

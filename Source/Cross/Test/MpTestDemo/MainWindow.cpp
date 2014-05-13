@@ -93,7 +93,7 @@ TResult OnKeyDown(SKeyboardEvent* pEvent){
 // @return 处理结果
 //============================================================
 TResult OnEnterFrame(SFrameEvent* pEvent){
-   FPd9RenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FPd9RenderDevice>();
+   //FPd9RenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FPd9RenderDevice>();
     //MO_STATIC_INFO("------------------------------------------------------------");
    //TTimeTick currentTick = RTimeTick::Current();
    //if(g_templateTick == 0){
@@ -133,37 +133,6 @@ MO_EXTERN_C{
 TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine, TInt nCmdShow){
    // 初始化处理
    MoGameEngineInitialize();
-   RFeatureManager::Instance().Construct();
-
-   //MO_STATIC_INFO(TC("3DS scene export start."));
-   //// 动态加载导出库
-   //HMODULE hModule = LoadLibrary("MoPlatformDirectX9D.dll");
-   //MO_STATIC_INFO(TC("Find Mo3dsExporter library. (handle=0x%08X)"), hModule);
-   //if(NULL == hModule){
-   //   MO_STATIC_INFO(TC("3DS scene export failure. (Module is null)"));
-   //   return 0;
-   //}
-   //// 获得函数指针
-   //CallSetupFeature pfExporter = (CallSetupFeature)GetProcAddress(hModule, "SetupFeature");
-   //MO_STATIC_INFO(TC("Find DoExport method. (handle=0x%08X)"), pfExporter);
-   //if(NULL == pfExporter){
-   //   // 返回结果
-   //   TBool check = FreeLibrary(hModule);
-   //   if(!check){
-   //      MO_STATIC_INFO(TC("Free library failure. (result=%d)"), check);
-   //   }
-   //   MO_STATIC_INFO(TC("3DS scene export failure. (Method is null)"));
-   //   return 0;
-   //}
-   //// 释放导出库
-   //TBool check = FreeLibrary(hModule);
-   //if(!check){
-   //   MO_STATIC_INFO(TC("Free library failure. (handle=0x%08X, result=%d)"), hModule, check);
-   //}
-   //MO_STATIC_INFO(TC("Free library success. (handle=0x%08X, result=%d)"), hModule, check);
-   //// 返回结果
-   //MO_STATIC_INFO(TC("3DS scene export success."));
-   
    MoEngineDirectX9();
    //MoEngineDirectX10();
    //MoEngineDirectX11();
@@ -171,11 +140,11 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    RFeatureManager::Instance().Construct();
    //............................................................
    // 设置信息
-   //RApplication::Instance().Parameters()->Setup(lpszCmdLine);
-   FApplicationParameter* pApplicationParameter = MO_CREATE(FApplicationParameter);
-   pApplicationParameter->SetName("-home");
-   pApplicationParameter->SetValue("E:/ZW-MoCross/Demo/Android/MpTestDemo/assets");
-   RApplication::Instance().Parameters()->Parameters()->Push(pApplicationParameter);
+   RApplication::Instance().Parameters()->Setup(lpszCmdLine);
+   //FApplicationParameter* pApplicationParameter = MO_CREATE(FApplicationParameter);
+   //pApplicationParameter->SetName("-home");
+   //pApplicationParameter->SetValue("E:/ZW-MoCross/Demo/Android/MpTestDemo/assets");
+   //RApplication::Instance().Parameters()->Parameters()->Push(pApplicationParameter);
    RApplication::Instance().SetHinstance(hInstance);
    RApplication::Instance().SetCommandShow(nCmdShow);
    RAssetManager::Instance().Setup();

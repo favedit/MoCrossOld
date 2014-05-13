@@ -34,7 +34,7 @@ FRenderLayoutElement* FPd9RenderLayout::FindByAttribute(FRenderShaderAttribute* 
 TInt GetFvF(TInt index){
    switch(index){
       case 0:
-         return D3DFVF_XYZW;
+         return D3DFVF_XYZ;
       case 1:
          return D3DFVF_TEX0;
       case 2:
@@ -93,13 +93,14 @@ TResult FPd9RenderLayout::OnSetup(){
          }else{
             fvf2 = GetFvF(index);
          }
-      }else{
-         _piBuffer[index] = NULL;
-         _strides[index] = 0;
-         _offsets[index] = 0;
+         index++;
+         //position = pStream->Offset();
+         //position += RRenderShaderAttributeFormat::CalculateSize(formatCd);
+      //}else{
+      //   _piBuffer[index] = NULL;
+      //   _strides[index] = 0;
+      //   _offsets[index] = 0;
       }
-      index++;
-      position += RRenderShaderAttributeFormat::CalculateSize(formatCd);
    }
    _formatCd = fvf1 + fvf2;
    _count = index;

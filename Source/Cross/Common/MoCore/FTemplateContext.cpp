@@ -49,6 +49,42 @@ void FTemplateContext::TrimLastLine(){
 }
 
 //============================================================
+// <T>根据名称获得定义的布尔值。</T>
+//
+// @param pName 名称
+// @param defaultValue 默认内容
+// @return 布尔值
+//============================================================
+TBool FTemplateContext::GetDefineAsBool(TCharC* pName, TBool defaultValue){
+   TBool value = _config->GetAsBool(pName, defaultValue);
+   return value;
+}
+
+//============================================================
+// <T>根据名称获得定义的整数。</T>
+//
+// @param pName 名称
+// @param defaultValue 默认内容
+// @return 整数
+//============================================================
+TInt FTemplateContext::GetDefineAsInt(TCharC* pName, TInt defaultValue){
+   TInt value = _config->GetAsInt(pName, defaultValue);
+   return value;
+}
+
+//============================================================
+// <T>根据名称获得定义的字符串。</T>
+//
+// @param pName 名称
+// @param defaultValue 默认内容
+// @return 字符串
+//============================================================
+TCharC* FTemplateContext::GetDefineAsString(TCharC* pName, TCharC* pDefaultValue){
+   TCharC* pValue = _config->Get(pName, pDefaultValue);
+   return pValue;
+}
+
+//============================================================
 // <T>定义一个布尔值。</T>
 //
 // @param pName 名称

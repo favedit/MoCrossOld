@@ -524,7 +524,7 @@ TResult FAutomaticEffect::BuildTemplate(SRenderableDescriptor& renderableDescrip
       }
    }
    // 支持法线
-   _dynamicDescriptor.supportVertexNormal = (_descriptor.supportVertexColor && renderableDescriptor.supportNormal);
+   _dynamicDescriptor.supportVertexNormal = (_descriptor.supportVertexCoord && renderableDescriptor.supportNormal);
    if(_dynamicDescriptor.supportVertexNormal){
       pCode->Append("|AN");
       if(pTemplateContext){
@@ -532,7 +532,7 @@ TResult FAutomaticEffect::BuildTemplate(SRenderableDescriptor& renderableDescrip
       }
    }
    // 支持全法线
-   _dynamicDescriptor.supportVertexNormalFull = (_descriptor.supportVertexColor && renderableDescriptor.supportNormal);
+   _dynamicDescriptor.supportVertexNormalFull = (_descriptor.supportVertexCoord && renderableDescriptor.supportVertexNormalFull);
    if(_dynamicDescriptor.supportVertexNormalFull){
       pCode->Append("|AF");
       if(pTemplateContext){

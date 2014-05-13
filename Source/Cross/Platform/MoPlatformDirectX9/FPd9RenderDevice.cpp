@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderDevice, FRenderDevice);
+MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderDevice, FPdxRenderDevice);
 
 //============================================================
 // <T>构造舞台对象。</T>

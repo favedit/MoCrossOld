@@ -20,6 +20,10 @@
 #include <MoFeatureGraphic.h>
 #endif // __MO_FEATURE_GRAPHIC_H__
 
+#ifndef __MO_ENGINE_DIRECTX_H__
+#include <MoPlatformDirectX.h>
+#endif // __MO_ENGINE_DIRECTX_H__
+
 //============================================================
 /// @define 导出定义
 #ifdef _MO_PD11_EXPORTS

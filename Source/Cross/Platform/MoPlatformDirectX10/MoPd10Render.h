@@ -398,9 +398,9 @@ public:
 //============================================================
 // <T>渲染设备。</T>
 //============================================================
-class MO_PD10_DECLARE FPd10RenderDevice : public FRenderDevice
+class MO_PD10_DECLARE FPd10RenderDevice : public FPdxRenderDevice
 {
-   MO_CLASS_DECLARE_INHERITS(FPd10RenderDevice, FRenderDevice);
+   MO_CLASS_DECLARE_INHERITS(FPd10RenderDevice, FPdxRenderDevice);
 protected:
    D3D10_DRIVER_TYPE _driverType;
    // 纹理信息

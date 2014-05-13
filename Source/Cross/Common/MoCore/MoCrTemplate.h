@@ -126,6 +126,9 @@ public:
    void SetTrimOnceFlag();
    void TrimLastLine();
 public:
+   TBool GetDefineAsBool(TCharC* pName, TBool defaultValue);
+   TInt GetDefineAsInt(TCharC* pName, TInt defaultValue);
+   TCharC* GetDefineAsString(TCharC* pName, TCharC* pDefaultValue);
    void DefineBool(TCharC* pName, TBool value);
    void DefineInt(TCharC* pName, TInt value);
    void DefineString(TCharC* pName, TCharC* pValue);
@@ -230,6 +233,35 @@ public:
 };
 
 //============================================================
+// <T>模板包含逻辑标签。</T>
+//============================================================
+class MO_CR_DECLARE FTemplateTagInclude : public FTemplateTag
+{
+   MO_CLASS_DECLARE_INHERITS(FTemplateTagInclude, FTemplateTag);
+protected:
+   TString _source;
+   TString _segment;
+   FTemplate* _pTemplate;
+   FTemplateSource* _pSource;
+   FTemplateTagIncludeCollection* _pIncludeTags;
+public:
+   FTemplateTagInclude();
+   MO_ABSTRACT ~FTemplateTagInclude();
+public:
+   //------------------------------------------------------------
+   // <T>获得根节点。</T>
+   MO_INLINE FTemplate* Template(){
+      return _pTemplate;
+   }
+public:
+   MO_OVERRIDE ETemplateTagResult OnBegin(FTemplateContext* pContext);
+   MO_OVERRIDE ETemplateTagResult OnEnd(FTemplateContext* pContext);
+public:
+   MO_OVERRIDE TResult SetAttribute(TCharC* pName, TCharC* pValue);
+   MO_OVERRIDE TResult Setup(FTemplateBuilder* pBuilder);
+};
+
+//============================================================
 // <T>模板真逻辑标签。</T>
 //============================================================
 class MO_CR_DECLARE FTemplateTagTrue : public FTemplateTag
@@ -286,32 +318,25 @@ public:
 };
 
 //============================================================
-// <T>模板包含逻辑标签。</T>
+// <T>模板计数器标签。</T>
 //============================================================
-class MO_CR_DECLARE FTemplateTagInclude : public FTemplateTag
+class MO_CR_DECLARE FTemplateTagCounter : public FTemplateTag
 {
-   MO_CLASS_DECLARE_INHERITS(FTemplateTagInclude, FTemplateTag);
+   MO_CLASS_DECLARE_INHERITS(FTemplateTagCounter, FTemplateTag);
 protected:
    TString _source;
-   TString _segment;
-   FTemplate* _pTemplate;
-   FTemplateSource* _pSource;
-   FTemplateTagIncludeCollection* _pIncludeTags;
+   TString _operator;
+   TString _value;
+   TString _define;
 public:
-   FTemplateTagInclude();
-   MO_ABSTRACT ~FTemplateTagInclude();
+   FTemplateTagCounter();
+   MO_ABSTRACT ~FTemplateTagCounter();
 public:
-   //------------------------------------------------------------
-   // <T>获得根节点。</T>
-   MO_INLINE FTemplate* Template(){
-      return _pTemplate;
-   }
 public:
    MO_OVERRIDE ETemplateTagResult OnBegin(FTemplateContext* pContext);
    MO_OVERRIDE ETemplateTagResult OnEnd(FTemplateContext* pContext);
 public:
    MO_OVERRIDE TResult SetAttribute(TCharC* pName, TCharC* pValue);
-   MO_OVERRIDE TResult Setup(FTemplateBuilder* pBuilder);
 };
 
 //============================================================
