@@ -11,12 +11,12 @@ namespace MoTest
 
       public string _testString = "hello2";
 
-      //[DllImport("__Internal", EntryPoint = "CalculateNumber")]
+      [DllImport("__Internal", EntryPoint = "CalculateNumber")]
       [MethodImplAttribute(MethodImplOptions.InternalCall)]
       public static extern int CalculateNumber(object owner, int value);
 
       public int Test(){
-         return CalculateNumber(this, 11);
+         return CalculateNumber(this, 11) + 1;
       }
    }
 }
