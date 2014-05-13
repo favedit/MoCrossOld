@@ -1,5 +1,5 @@
 ﻿using MO.Bridge;
-using MO.Feature.Graphics.Render;
+using MO.Bridge.Feature.Graphics.Render;
 
 namespace MpScriptTest
 {

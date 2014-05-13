@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace MO.Bridge.Core
 {
@@ -12,6 +13,6 @@ namespace MO.Bridge.Core
    {
       // 实例编号
       [FieldOffset(0)]
-      public int instanceId;
+      public IntPtr pointer;
    }
 }

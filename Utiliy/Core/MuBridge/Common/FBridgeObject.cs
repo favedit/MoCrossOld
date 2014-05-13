@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MO.Common.Lang;
+using System;
 
 namespace MO.Bridge.Core
 {
@@ -7,7 +8,7 @@ namespace MO.Bridge.Core
    //
    // @history MAOCY 140512
    //============================================================
-   public class FBridgeObject : IDisposable
+   public class FBridgeObject : FObject, IDisposable
    {
       // 关联指针
       protected SBridgeLinker _bridgeLinker;
@@ -16,14 +17,14 @@ namespace MO.Bridge.Core
       // <T>构造脚本对象。</T>
       //============================================================
       public FBridgeObject() {
-         int result = RBridgeManager.CreateObject(out _bridgeLinker, "Instance");
+         EResult result = RBridgeManager.CreateObject(out _bridgeLinker, "Instance");
       }
 
       //============================================================
       // <T>构造脚本对象。</T>
       //============================================================
       public int ReferCount() {
-         return RBridgeManager.Invoke(out _bridgeLinker, "ReferCount");
+         return (int)RBridgeManager.Invoke(out _bridgeLinker, "ReferCount");
       }
 
       //============================================================
