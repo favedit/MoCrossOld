@@ -72,23 +72,23 @@ TResult FMonoMachine::Setup(){
    _pMonoDomain = mono_jit_init_version("MoTest", "v2.0.50727");
    g_pMonoDomain = _pMonoDomain;
 
-   //mono_add_internal_call("MoTest.FClassTest::CalculateNumber", CalculateNumber);
+   mono_add_internal_call("MoTest.FClassTest::CalculateNumber", CalculateNumber);
 
 
-   //FMonoLibrary* pLibrary = OpenLibrary("script:MoTest.dll");
-   //FMonoClass* pClass = (FMonoClass*)pLibrary->FindClass("MoTest.FClassTest");
-   //FMonoInstance* pInstance = (FMonoInstance*)pClass->CreateInstance();
-   //TInt fieldValue = 8;
-   //pInstance->FieldSet("_testValue", &fieldValue);
-   //pInstance->FieldGet("_testValue", &fieldValue);
+   FMonoLibrary* pLibrary = OpenLibrary("script:MoTest.dll");
+   FMonoClass* pClass = (FMonoClass*)pLibrary->FindClass("MoTest.FClassTest");
+   FMonoInstance* pInstance = (FMonoInstance*)pClass->CreateInstance();
+   TInt fieldValue = 8;
+   pInstance->FieldSet("_testValue", &fieldValue);
+   pInstance->FieldGet("_testValue", &fieldValue);
 
-   //TFsName data;
-   //pInstance->FieldGetString("_testString", &data);
+   TFsName data;
+   pInstance->FieldGetString("_testString", &data);
 
-   //FMonoMethod* pMethod = (FMonoMethod*)pClass->FindMethod(":Test()");
-   //MonoObject* pResultObject = NULL;
-   //pMethod->Invoke(pInstance, (TAny**)&pResultObject);
-   //TInt returnValue = *(int*)mono_object_unbox(pResultObject);
+   FMonoMethod* pMethod = (FMonoMethod*)pClass->FindMethod(":Test()");
+   MonoObject* pResultObject = NULL;
+   pMethod->Invoke(pInstance, (TAny**)&pResultObject);
+   TInt returnValue = *(int*)mono_object_unbox(pResultObject);
 
    //mono_add_internal_call("ScriptAPI::DoSomething", &DoSomething);
    //if(!assembly){

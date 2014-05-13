@@ -84,6 +84,7 @@ public:
 // @class
 // @history 140301 MAOCY 创建
 //============================================================
+#pragma data_seg("CommonShared")
 class MO_CM_DECLARE RClassManager : public RSingleton<FClassConsole>{
 public:
    static FClass* FindClass(TCharC* pClassName);
@@ -113,6 +114,7 @@ public:
    static TResult CheckConvert(FClass* pInstanceClass, FClass* pClass);
    static TResult CheckConvert(FInstance* pInstance, FClass* pClass);
 };
+#pragma data_seg()
 
 //============================================================
 // <T>定义类实现。</T>

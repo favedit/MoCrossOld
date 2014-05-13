@@ -24,14 +24,14 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=MoEngineOpenGL
+PROJECTNAME=MoEngineFlash
 
 # Active Configuration
-DEFAULTCONF=Android-Debug
+DEFAULTCONF=FlasCC-Debug
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=Android-Debug Android-Release 
+ALLCONFS=FlasCC-Debug FlasCC-Release 
 
 
 # build

@@ -11,6 +11,9 @@
     <ClInclude Include="..\MoBgCore.h">
       <Filter>3-Core</Filter>
     </ClInclude>
+    <ClInclude Include="..\MoBgFeatureGraphic.h">
+      <Filter>4-Feature</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="1-Public">
@@ -22,14 +25,23 @@
     <Filter Include="3-Core">
       <UniqueIdentifier>{fde6c187-3a66-49f0-a2a1-9f28a0075d58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="4-Feature">
+      <UniqueIdentifier>{a5e039ee-11bb-470a-ac30-29426f249b81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4-Feature\Graphic">
+      <UniqueIdentifier>{b7b9192a-f210-4eb9-9674-c2af67d08318}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\MoBridge.cpp" />
+    <ClCompile Include="..\RBridgeManager.cpp">
+      <Filter>3-Core</Filter>
+    </ClCompile>
     <ClCompile Include="..\FBridgeConsole.cpp">
       <Filter>3-Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\RBridgeManager.cpp">
-      <Filter>3-Core</Filter>
+    <ClCompile Include="..\FBfRenderDevice.cpp">
+      <Filter>4-Feature\Graphic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -16,6 +16,10 @@
 #include <MoMath.h>
 #endif // __MO_MATH_H__
 
+#ifndef __MO_FEATURE_GRAPHIC_H__
+#include <MoFeatureGraphic.h>
+#endif // __MO_FEATURE_GRAPHIC_H__
+
 #ifndef __MO_FEATURE_SCRIPT_H__
 #include <MoFeatureScript.h>
 #endif // __MO_FEATURE_SCRIPT_H__
@@ -30,10 +34,10 @@
 
 //============================================================
 // @define 命名空间定义
-#define MO_NAMESPACE_BRIDGE_FEATURE MO:DX10
-#define MO_NAMESPACE_BRIDGE_FEATURE_BEGIN    namespace MO_NAMESPACE_BRIDGE_FEATURE{
-#define MO_NAMESPACE_BRIDGE_FEATURE_END      }
-#define MO_NAMESPACE_BRIDGE_FEATURE_INCLUDE  MO_NAMESPACE_USING(MO_NAMESPACE_BRIDGE_FEATURE);
+#define MO_NAMESPACE_BRIDGE          MO:Bridge
+#define MO_NAMESPACE_BRIDGE_BEGIN    namespace MO_NAMESPACE_BRIDGE_FEATURE{
+#define MO_NAMESPACE_BRIDGE_END      }
+#define MO_NAMESPACE_BRIDGE_INCLUDE  MO_NAMESPACE_USING(MO_NAMESPACE_BRIDGE_FEATURE);
 
 MO_NAMESPACE_BEGIN
 

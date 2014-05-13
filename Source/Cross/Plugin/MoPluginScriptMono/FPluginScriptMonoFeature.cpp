@@ -1,20 +1,20 @@
-#include "MoPlatformDirectX10.h"
+#include "MoPluginScriptMono.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPlatformDirectX10Feature, FFeature);
+MO_CLASS_IMPLEMENT_INHERITS(FPluginScriptMonoFeature, FFeature);
 
 //============================================================
-// <T>构造平台DirectX10功能。</T>
+// <T>构造平台DirectX11功能。</T>
 //============================================================
-FPlatformDirectX10Feature::FPlatformDirectX10Feature(){
-   _name = "DirectX 10";
+FPluginScriptMonoFeature::FPluginScriptMonoFeature(){
+   _name = "DirectX 11";
 }
 
 //============================================================
-// <T>析构平台DirectX10功能。</T>
+// <T>析构平台DirectX11功能。</T>
 //============================================================
-FPlatformDirectX10Feature::~FPlatformDirectX10Feature(){
+FPluginScriptMonoFeature::~FPluginScriptMonoFeature(){
 }
 
 //============================================================
@@ -22,10 +22,8 @@ FPlatformDirectX10Feature::~FPlatformDirectX10Feature(){
 //
 // @return 处理结果
 //============================================================
-TResult FPlatformDirectX10Feature::Construct(){
+TResult FPluginScriptMonoFeature::Construct(){
    TResult resultCd = FFeature::Construct();
-   // 注册渲染设备
-   RDeviceManager::Instance().Register(FPd10RenderDevice::Class(), FRenderDevice::Class());
    return resultCd;
 }
 
@@ -34,9 +32,8 @@ TResult FPlatformDirectX10Feature::Construct(){
 //
 // @return 处理结果
 //============================================================
-TResult FPlatformDirectX10Feature::Startup(){
+TResult FPluginScriptMonoFeature::Startup(){
    TResult resultCd = FFeature::Startup();
-   RTechniqueManager::Instance().Setup();
    return resultCd;
 }
 
@@ -45,7 +42,7 @@ TResult FPlatformDirectX10Feature::Startup(){
 //
 // @return 处理结果
 //============================================================
-TResult FPlatformDirectX10Feature::Suspend(){
+TResult FPluginScriptMonoFeature::Suspend(){
    TResult resultCd = FFeature::Suspend();
    return resultCd;
 }
@@ -55,7 +52,7 @@ TResult FPlatformDirectX10Feature::Suspend(){
 //
 // @return 处理结果
 //============================================================
-TResult FPlatformDirectX10Feature::Resume(){
+TResult FPluginScriptMonoFeature::Resume(){
    TResult resultCd = FFeature::Resume();
    return resultCd;
 }
@@ -65,7 +62,7 @@ TResult FPlatformDirectX10Feature::Resume(){
 //
 // @return 处理结果
 //============================================================
-TResult FPlatformDirectX10Feature::Shutdown(){
+TResult FPluginScriptMonoFeature::Shutdown(){
    TResult resultCd = FFeature::Shutdown();
    return resultCd;
 }
@@ -75,10 +72,8 @@ TResult FPlatformDirectX10Feature::Shutdown(){
 //
 // @return 处理结果
 //============================================================
-TResult FPlatformDirectX10Feature::Dispose(){
+TResult FPluginScriptMonoFeature::Dispose(){
    TResult resultCd = FFeature::Dispose();
-   // 注销渲染设备
-   RDeviceManager::Instance().Unregister(FRenderDevice::Class());
    return resultCd;
 }
 
