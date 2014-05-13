@@ -10,7 +10,10 @@ Cross Platform Game Engine
 ### 已经实现功能
 
 - 渲染设备
-   - OpenGL2.0
+   - DirectX 9.0
+   - DirectX 10.0
+   - DirectX 11.0
+   - OpenGL 2.0
 
 - 渲染管道：
    - 简单绘制：
@@ -72,13 +75,16 @@ Cross Platform Game Engine
 - 2014年03月 - 增加引擎基础(Engine)，引擎2D(Engine2D)，引擎3D(Engine3D)部分
                增加渲染代码生成管理(Shader Template)，完善渲染管道(Render Pipeline)
 - 2014年04月 - 增加Mono的C#脚本框架 MoFeatureScript / MoPluginScriptMono
+               增加了hlsl2glslfork方式，能够工作在HLSL3.0和GLSL2.0。
+- 2014年05月 - 增加渲染设备DX9/DX10/DX11，考虑渲染接口如何设计，能够兼容低级模式，并能发挥高级模式的性能。
+               (比如能在OpenGL3.0/DX10/DX11上使用ConstBuffer，在不支持的设备上使用旧方式)
+             - 设计脚本库构架。(那些部分改属于底层，那些部分属于脚本层，事件体系等初步设计)
 
 ### 进行中
 
 - 内容异步加载技术。 (Content Ansy Load)
 - 内容管道技术，可以自己扩充内容格式和指定加载方式。 (Content Pipeline)
-- 增加渲染方式。 (DirectX9/DirectX10/DirectX11)
-- 设计场景编辑器框架。 (WPF)
+- 脚本库构架设计。 (Bridge Layer)
 
 ### 计划功能
 
@@ -91,7 +97,7 @@ Cross Platform Game Engine
 
 ### 关于
 
-- FavEdit => Favorite Edit 表示愿意编辑，写写代码的意思。
+- FavEdit => Favorite Edit
 - 网页 Stage3D CoolLight - 炫光引擎 的制作者。
 
 ### 加入
