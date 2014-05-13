@@ -62,16 +62,16 @@ struct VS_INPUT
 {
    float4 position : POSITION;
 <shader:true source='vertex.attribute.color'>
-   float4 color    : TEXCOORD0;
+   float4 color    : TEXCOORD<shader:counter source='vertex.attribute.counter'/>;
 </shader:true>
 <shader:true source='vertex.attribute.coord'>
-   float2 coord    : TEXCOORD1;
+   float2 coord    : TEXCOORD<shader:counter source='vertex.attribute.counter'/>;
 </shader:true>
 <shader:true source='vertex.attribute.normal'>
-   float3 normal   : TEXCOORD2;
+   float3 normal   : TEXCOORD<shader:counter source='vertex.attribute.counter'/>;
 <shader:true source='vertex.attribute.normal.full'>
-   float3 binormal : TEXCOORD3;
-   float3 tangent  : TEXCOORD4;
+   float3 binormal : TEXCOORD<shader:counter source='vertex.attribute.counter'/>;
+   float3 tangent  : TEXCOORD<shader:counter source='vertex.attribute.counter'/>;
 </shader:true>
 </shader:true>
 };
@@ -80,18 +80,18 @@ struct VS_INPUT
 struct VS_OUTPUT
 {
    float4 position      : POSITION;
-   float4 modelPosition : TEXCOORD0;
+   float4 modelPosition : TEXCOORD<shader:counter source='vertex.varying.counter'/>;
 <shader:true source='vertex.attribute.color'>
-   float4 color         : TEXCOORD1;
+   float4 color         : TEXCOORD<shader:counter source='vertex.varying.counter'/>;
 </shader:true>
 <shader:true source='vertex.attribute.coord'>
-   float2 coord         : TEXCOORD2;
+   float2 coord         : TEXCOORD<shader:counter source='vertex.varying.counter'/>;
 </shader:true>
 <shader:true source='vertex.attribute.normal'>
-   float3 normal        : TEXCOORD3;
+   float3 normal        : TEXCOORD<shader:counter source='vertex.varying.counter'/>;
 <shader:true source='support.dump'>
-   float3 cameraTs      : TEXCOORD4;
-   float3 lightTs       : TEXCOORD5;
+   float3 cameraTs      : TEXCOORD<shader:counter source='vertex.varying.counter'/>;
+   float3 lightTs       : TEXCOORD<shader:counter source='vertex.varying.counter'/>;
 </shader:true>
 </shader:true>
 };
@@ -169,18 +169,18 @@ float4 fc_reflect_color;
 struct PS_INPUT
 {
    float4 position      : POSITION;
-   float4 modelPosition : TEXCOORD0;
+   float4 modelPosition : TEXCOORD<shader:counter source='fragment.varying.counter'/>;
 <shader:true source='vertex.attribute.color'>
-   float4 color         : TEXCOORD1;
+   float4 color         : TEXCOORD<shader:counter source='fragment.varying.counter'/>;
 </shader:true>
 <shader:true source='vertex.attribute.coord'>
-   float2 coord         : TEXCOORD2;
+   float2 coord         : TEXCOORD<shader:counter source='fragment.varying.counter'/>;
 </shader:true>
 <shader:true source='vertex.attribute.normal'>
-   float3 normal        : TEXCOORD3;
+   float3 normal        : TEXCOORD<shader:counter source='fragment.varying.counter'/>;
 <shader:true source='support.dump'>
-   float3 cameraTs      : TEXCOORD4;
-   float3 lightTs       : TEXCOORD5;
+   float3 cameraTs      : TEXCOORD<shader:counter source='fragment.varying.counter'/>;
+   float3 lightTs       : TEXCOORD<shader:counter source='fragment.varying.counter'/>;
 </shader:true>
 </shader:true>
 };
