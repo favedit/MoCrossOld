@@ -409,7 +409,6 @@ protected:
    FRenderFlatTextureList* _pLinkFlatTextures;
    FRenderCubeTextureList* _pLinkCubeTextures;
    // ½Ó¿ÚÖ¸Õë
-   HWND _windowHandle;
    IDXGISwapChain* _piSwapChain;
    ID3D10Device* _piDevice;
    GPtr<FPd10RenderTarget> _defaultRenderTarget;
