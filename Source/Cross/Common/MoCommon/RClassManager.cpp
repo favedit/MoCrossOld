@@ -3,7 +3,10 @@
 MO_NAMESPACE_BEGIN
 
 //============================================================
-// <T>注册类对象。</T>
+// <T>根据名称查找一个类对象。</T>
+//
+// @param pClassName 类名称
+// @return 类对象
 //============================================================
 FClass* RClassManager::FindClass(TCharC* pClassName){
    FClassConsole* pClassConsole = SafeInstancePtr();
@@ -11,7 +14,10 @@ FClass* RClassManager::FindClass(TCharC* pClassName){
 }
 
 //============================================================
-// <T>注册类对象。</T>
+// <T>注册一个类对象。</T>
+//
+// @param pClass 类对象
+// @return 类对象
 //============================================================
 FClass* RClassManager::Register(FClass* pClass){
    FClassConsole* pClassConsole = SafeInstancePtr();

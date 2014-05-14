@@ -35,6 +35,8 @@ void MoInitialize(){
    RSharedManager::Create();
    // 初始捕捉器管理器
    RCatcherManager::Create();
+   // 初始枚举管理器
+   REnumeratorManager::Create();
    // 打开日志
    RLogger::Link(RLoggerManager::InstancePtr());
    MO_STATIC_INFO(TC("Common framework initialize."));
@@ -73,6 +75,8 @@ void MoRelease(){
    RLogger::Link(NULL);
    // 释放捕捉器管理器
    RCatcherManager::Destroy();
+   // 释放枚举管理器
+   REnumeratorManager::Destroy();
    // 释放共享对象管理器
    RSharedManager::Destroy();
    // 释放任务管理器

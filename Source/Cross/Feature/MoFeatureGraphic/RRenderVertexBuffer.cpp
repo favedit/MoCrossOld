@@ -21,6 +21,8 @@ ERenderVertexBuffer RRenderVertexBuffer::Parse(TCharC* pValue, ERenderVertexBuff
          return ERenderVertexBuffer_Color;
       }else if(code.Equals("coord")){
          return ERenderVertexBuffer_Coord;
+      }else if(code.Equals("coordlight")){
+         return ERenderVertexBuffer_CoordLight;
       }else if(code.Equals("normal")){
          return ERenderVertexBuffer_Normal;
       }else if(code.Equals("binormal")){
@@ -54,6 +56,8 @@ TCharC* RRenderVertexBuffer::Format(ERenderVertexBuffer bufferCd){
          return "Color";
       case ERenderVertexBuffer_Coord:
          return "Coord";
+      case ERenderVertexBuffer_CoordLight:
+         return "CoordLight";
       case ERenderVertexBuffer_Normal:
          return "Normal";
       case ERenderVertexBuffer_Binormal:

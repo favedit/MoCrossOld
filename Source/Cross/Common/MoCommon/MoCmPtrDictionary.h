@@ -612,17 +612,17 @@ public:
    }
    //------------------------------------------------------------
    // <T>移除指定名称的数据。</T>
-   T Remove(TCharC* pName){
+   T* Remove(TCharC* pName){
       THashCode hash = RString::MakeHashCode(pName);
       TInt index = hash % _entryCount;
       // 查找数据出现的位置
-      T value = NULL;
+      T* pValue = NULL;
       SEntry* pPrior = NULL;
       SEntry* pEntry = _ppEntries[index];
       while(NULL != pEntry){
          if(pEntry->hash == hash){
             if(pEntry->IsName(pName)){
-               value = pEntry->value;
+               pValue = pEntry->value;
                if(NULL == pPrior){
                   // 当前对象是第一个对象时
                   _ppEntries[index] = pEntry->linkPtr;
@@ -640,7 +640,7 @@ public:
          pPrior = pEntry;
          pEntry = pEntry->linkPtr;
       }
-      return value;
+      return pValue;
    }
    //------------------------------------------------------------
    // <T>清空当前哈希表全部数据，哈希表可以再次被利用。</T>
