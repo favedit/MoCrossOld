@@ -61,15 +61,13 @@ TResult FPd9RenderFlatTexture::Upload(TByteC* pData, TInt length){
    // 创建纹理
    HRESULT dxResult = pRenderDevice->NativeDevice()->CreateTexture(_size.width, _size.height, 0, 0, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, &_piTexture, NULL);
    if(FAILED(dxResult)){
-      MO_FATAL("Create texture 2d failure.");
-      return EFailure;
+      return pRenderDevice->CheckError(dxResult, "CreateTexture", "Create flat texture failure. (size=%dx%d)", _size.width, _size.height);
    }
    // 上传数据
    D3DLOCKED_RECT rect;
    dxResult = _piTexture->LockRect(0, &rect, NULL, 0);
    if(FAILED(dxResult)){
-      MO_FATAL("Lock buffer failure.");
-      return EFailure;
+      return pRenderDevice->CheckError(dxResult, "LockRect", "Lock buffer failure.");
    }
    MO_LIB_MEMORY_COPY(rect.pBits, length, pData, length);
    _piTexture->UnlockRect(0);

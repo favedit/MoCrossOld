@@ -8,15 +8,14 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderLayout, FRenderLayout);
 // <T>构造渲染层信息。</T>
 //============================================================
 FPd9RenderLayout::FPd9RenderLayout(){
-   //_count = 0;
-   //MO_CLEAR(_piInputLayout);
+   MO_CLEAR(_piDeclaration);
 }
 
 //============================================================
 // <T>析构渲染层信息。</T>
 //============================================================
 FPd9RenderLayout::~FPd9RenderLayout(){
-   //MO_RELEASE(_piInputLayout);
+   MO_RELEASE(_piDeclaration);
 }
 
 //============================================================
@@ -67,6 +66,7 @@ TResult FPd9RenderLayout::OnSetup(){
    GRenderShaderAttributeDictionary::TIterator iterator = _pProgram->Attributes().IteratorC();
    TInt fvf1 = 0;
    TInt fvf2 = 0;
+   D3DVERTEXELEMENT9 elements[MO_INPUT_ELEMENT_MAXCNT];
    while(iterator.Next()){
       FRenderShaderAttribute* pAttribute = *iterator;
       //if(!pAttribute->IsStatusUsed()){
@@ -75,6 +75,7 @@ TResult FPd9RenderLayout::OnSetup(){
       //............................................................
       ERenderVertexBuffer bufferCd = (ERenderVertexBuffer)pAttribute->Code();
       ERenderShaderAttributeFormat formatCd = pAttribute->FormatCd();
+      
       FRenderVertexStream* pStream = pVertexStreams->FindStream(bufferCd);
       FRenderLayoutElement* pElement = FRenderLayoutElement::InstanceCreate();
       pElement->SetAttribute(pAttribute);
@@ -93,17 +94,33 @@ TResult FPd9RenderLayout::OnSetup(){
          }else{
             fvf2 = GetFvF(index);
          }
+
+         D3DDECLTYPE typeCd = RDirectX9::ConvertAttrbuteFormat(formatCd);
+         D3DDECLUSAGE usageCd;
+         TInt usageIndex;
+         RDirectX9::ConvertAttrbuteUsage(index, &usageCd, &usageIndex);
+
+         D3DVERTEXELEMENT9 element = {0};
+         element.Stream = 0;
+         element.Offset = pStream->Offset();
+         element.Type = RDirectX9::ConvertAttrbuteFormat(formatCd);
+         element.Method = D3DDECLMETHOD_DEFAULT;
+         element.Usage = usageCd;
+         element.UsageIndex = usageIndex;
+         elements[index] = element;
+
          index++;
-         //position = pStream->Offset();
-         //position += RRenderShaderAttributeFormat::CalculateSize(formatCd);
-      //}else{
-      //   _piBuffer[index] = NULL;
-      //   _strides[index] = 0;
-      //   _offsets[index] = 0;
       }
    }
    _formatCd = fvf1 + fvf2;
    _count = index;
+   // 创建顶点声明
+   D3DVERTEXELEMENT9 elementEnd = D3DDECL_END();
+   elements[index] = elementEnd;
+   HRESULT dxResult = pRenderDevice->NativeDevice()->CreateVertexDeclaration(elements, &_piDeclaration);
+   if(FAILED(dxResult)){
+      return pRenderDevice->CheckError(dxResult, "CreateVertexDeclaration", "Create vertex declaration failure. (count=%d)", _count);
+   }
    return ESuccess;
 }
 

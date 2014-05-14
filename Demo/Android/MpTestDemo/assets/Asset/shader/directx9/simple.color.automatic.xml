@@ -117,8 +117,9 @@ VS_OUTPUT main( VS_INPUT input )
    // Calculate normal
 <shader:true source='vertex.attribute.normal'>
    float3x3 modelMat3 = (float3x3)vc_model_mat4;
-   float3 normal = normalize(mul(input.normal * 2.0 - 1.0, modelMat3));
-   output.normal = normal;
+   //float3 normal = normalize(mul(input.normal * 2.0 - 1.0, modelMat3));
+   //output.normal = normal;
+   output.normal = input.normal;
 <shader:true source='support.dump'>
    float3 binormal = normalize(mul(input.binormal * 2.0 - 1.0, modelMat3));
    float3 tangent = normalize((mul(input.tangent * 2.0 - 1.0, modelMat3));
@@ -335,7 +336,7 @@ float4 main( PS_INPUT input) : COLOR
    result.a = color.a * fc_alpha.z;
 </shader:true>
    //............................................................
-   return result;
+   return result.bgra;
 }
 
    ]]></Source>

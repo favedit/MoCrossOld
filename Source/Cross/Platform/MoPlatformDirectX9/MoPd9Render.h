@@ -25,6 +25,7 @@ protected:
    IDirect3DVertexBuffer9* _piBuffer[MO_INPUT_ELEMENT_MAXCNT];
    UINT _strides[MO_INPUT_ELEMENT_MAXCNT];
    UINT _offsets[MO_INPUT_ELEMENT_MAXCNT];
+   IDirect3DVertexDeclaration9* _piDeclaration;
 public:
    FPd9RenderLayout();
    MO_ABSTRACT ~FPd9RenderLayout();
@@ -58,6 +59,11 @@ public:
    // <T>获得位置。</T>
    MO_INLINE UINT* Offset(){
       return _offsets;
+   }
+   //------------------------------------------------------------
+   // <T>获得本地声明。</T>
+   MO_INLINE IDirect3DVertexDeclaration9* NativeDeclaration(){
+      return _piDeclaration;
    }
 public:
    FRenderLayoutElement* FindByAttribute(FRenderShaderAttribute* pAttribute);

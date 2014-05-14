@@ -146,12 +146,15 @@ TResult FPd9RenderDevice::CheckError(HRESULT dxResult, TCharC* pCode, TCharC* pM
    // 获得错误原因
    TResult resultCd = ESuccess;
    if(FAILED(dxResult)){
+      // 获得描述
+      TCharC* pDescription = DXGetErrorDescription(dxResult);
+      // 生成信息
       TFsText message;
       va_list params;
       va_start(params, pMessage);
       message.AppendFormatParameters(pMessage, params);
       va_end(params);
-      MO_FATAL("Call method failure. (method=%s, message=%s)", pCode, (TCharC*)message);
+      MO_FATAL("Call method failure. (method=%s, message=%s, error=%s)", pCode, (TCharC*)message, pDescription);
    }
    return resultCd;
 }
@@ -575,8 +578,10 @@ TResult FPd9RenderDevice::SetLayout(FRenderLayout* pLayout){
       }
    }
    // 设置格式
-   TInt fvf = pRenderLayout->FormatCd();
-   HRESULT dxResult = _piDevice->SetFVF(fvf);
+   IDirect3DVertexDeclaration9* piDeclaration = pRenderLayout->NativeDeclaration();
+   HRESULT dxResult = _piDevice->SetVertexDeclaration(piDeclaration);
+   //TInt fvf = pRenderLayout->FormatCd();
+   //HRESULT dxResult = _piDevice->SetFVF(fvf);
    if(FAILED(dxResult)){
       TCharC* pMessage = DXGetErrorDescription(dxResult);
       MO_FATAL("Draw indexed primitive failure. (error=%s)", pMessage);

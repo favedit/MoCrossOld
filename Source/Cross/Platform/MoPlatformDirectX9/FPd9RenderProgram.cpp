@@ -142,6 +142,14 @@ TResult FPd9RenderProgram::BuildShader(FRenderShader* pShader, FPd9RenderShaderB
          MO_FATAL_UNSUPPORT();
       }
    }
+   //............................................................
+   // 修正属性流定义
+   GRenderShaderAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
+   while(attributeIterator.Next()){
+      FRenderShaderAttribute* pAttribute = *attributeIterator;
+      pAttribute->SetStatusUsed(ETrue);
+   }
+   //............................................................
    // 配置缓冲
    pBuffer->SetDevice(_pDevice);
    pBuffer->SetStatusUsed(ETrue);
