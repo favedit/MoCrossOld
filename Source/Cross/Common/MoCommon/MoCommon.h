@@ -29,6 +29,10 @@
 #include "MoCmClass.h"
 #endif // __MO_CM_CLASS_H__
 
+#ifndef __MO_CM_ENUMERATOR_H__
+#include "MoCmEnumerator.h"
+#endif // __MO_CM_ENUMERATOR_H__
+
 #ifndef __MO_CM_MEMORY_H__
 #include "MoCmMemory.h"
 #endif // __MO_CM_MEMORY_H__

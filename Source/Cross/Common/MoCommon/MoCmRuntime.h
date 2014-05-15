@@ -502,7 +502,7 @@ protected: \
 #define MO_DATETIME_MAXLENGTH 64
 #define MO_TIMESPAN_MAXLENGTH 64
 #define MO_ERROR_MAXLENGTH    1024*4
-#define MO_DUMP_INDENT        "   "
+#define MO_DUMP_INDENT        TC("   ")
 #define MO_DUMP_MAXLENGTH     1024*64
 
 //------------------------------------------------------------
