@@ -11,6 +11,8 @@ void MoFeatureGraphicsInitialize(){
    RVisualManager::Create();
    // 初始化技术管理器
    RTechniqueManager::Create();
+   // 枚举创建
+   RRenderSampler::Create();
 }
 
 //============================================================

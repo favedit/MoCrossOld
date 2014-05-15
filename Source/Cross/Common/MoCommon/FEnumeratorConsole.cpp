@@ -58,4 +58,22 @@ TResult FEnumeratorConsole::Unrgister(FEnumerator* pEnumerator){
    return ESuccess;
 }
 
+//============================================================
+// <T>注销一个枚举器。</T>
+//
+// @param pEnumerator 枚举
+// @return 处理结果
+//============================================================
+FEnumerator* FEnumeratorConsole::Sync(TCharC* pName){
+   MO_CHECK(pName, return NULL);
+   FEnumerator* pEnumerator = Find(pName);
+   if(pEnumerator == NULL){
+      // 创建枚举器
+      pEnumerator = FEnumerator::InstanceCreate();
+      pEnumerator->SetName(pName);
+      Register(pEnumerator);
+   }
+   return pEnumerator;
+}
+
 MO_NAMESPACE_END

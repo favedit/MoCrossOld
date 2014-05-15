@@ -13,6 +13,11 @@
 MO_NAMESPACE_BEGIN
 
 //==========================================================
+#define MO_RENDERENUM_PARAMETER         "EnumRenderParameter"
+#define MO_RENDERENUM_ATTRIBUTE         "EnumRenderAttribute"
+#define MO_RENDERENUM_SAMPLER           "EnumRenderSampler"
+
+//==========================================================
 #define MO_RENDEROBJECT_SHADERBUFFER    "ShaderBuffer"
 #define MO_RENDEROBJECT_SHADERPARAMETER "ShaderParameter"
 #define MO_RENDEROBJECT_SHADERATTRIBUTE "ShaderAttribute"
@@ -371,13 +376,27 @@ enum ERenderSampler{
 };
 
 //============================================================
+// <T>渲染取样器类型枚举。</T>
+//============================================================
+class MO_FG_DECLARE FRenderSamplerEnumerator : public FEnumerator{
+public:
+   TResult Construct();
+public:
+   ERenderSampler ParsePack(ERenderSampler samplerCd);
+   //static ERenderSampler Parse(TCharC* pValue, ERenderSampler samplerCd = ERenderSampler_Unknown);
+   //static TCharC* Format(ERenderSampler samplerCd);
+};
+
+//============================================================
 // <T>渲染取样器类型工具。</T>
 //============================================================
-class MO_FG_DECLARE RRenderSampler{
+class MO_FG_DECLARE RRenderSampler : public REnumerator<FRenderSamplerEnumerator>{
 public:
-   static ERenderSampler Parse(TCharC* pValue, ERenderSampler samplerCd = ERenderSampler_Unknown);
-   static ERenderSampler ParsePack(ERenderSampler samplerCd);
-   static TCharC* Format(ERenderSampler samplerCd);
+   //------------------------------------------------------------
+   // <T>根据取样器获得打包取样器。</T>
+   static ERenderSampler ParsePack(ERenderSampler samplerCd){
+      return _pInstance->ParsePack(samplerCd);
+   }
 };
 
 //============================================================

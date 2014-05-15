@@ -5,7 +5,7 @@
 #include <MoEngine.h>
 #include <MoEngineFace.h>
 #include <MoEngineRender.h>
-#include <MoPlatformOpenGLES2.h>
+//#include <MoPlatformOpenGLES2.h>
 //#include <MoPlatformDirectX9.h>
 //#include <MoPlatformDirectX10.h>
 #include <MoPlatformDirectX11.h>

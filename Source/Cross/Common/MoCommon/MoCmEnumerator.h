@@ -104,15 +104,89 @@ public:
    FEnumeratorItem* FindByName(TCharC* pName);
 public:
    TInt Parse(TCharC* pName);
+   TInt Parse(TCharC* pName, TInt defaultValue);
    TCharC* Format(TInt code);
+   TCharC* Format(TInt code, TCharC* pDefaultValue);
 public:
    TResult Register(FEnumeratorItem* pItem);
+   TResult Register(TInt code, TCharC* pName, TCharC* pDescription = NULL);
    TResult Unrgister(FEnumeratorItem* pItem);
 public:
    MO_ABSTRACT TResult Dump(MString* pDump);
 };
 //------------------------------------------------------------
 typedef MO_CM_DECLARE GPtrDictionary<FEnumerator> GEnumeratorDictionary;
+
+//============================================================
+// <T>枚举器工具。</T>
+//
+// @history 140515 MAOCY 创建
+//============================================================
+template <typename T>
+class REnumerator{
+protected:
+   static T* _pInstance;
+public:
+   //------------------------------------------------------------
+   // <T>初始化对象的实例。</T>
+   static void Create(){
+      // 设置内容
+      MO_ASSERT(!_pInstance);
+      _pInstance = MO_PTR_CREATE(T);
+      // 构建对象
+      _pInstance->Construct();
+   }
+   //------------------------------------------------------------
+   // <T>释放对象的实例。</T>
+   static void Destroy(){
+      MO_ASSERT(_pInstance);
+      MO_PTR_DELETE(_pInstance);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>获得是否有效。</T>
+   static TBool IsValid(){
+      return (NULL != _pInstance);
+   }
+public:
+   //------------------------------------------------------------
+   // <T>获得对象的实例。</T>
+   static MO_INLINE T& Instance(){
+      return *_pInstance;
+   }
+   //------------------------------------------------------------
+   // <T>获得对象的实例指针。</T>
+   static MO_INLINE T* InstancePtr(){
+      return _pInstance;
+   }
+public:
+   //------------------------------------------------------------
+   // <T>解析字符串为枚举内容。</T>
+   static TInt Parse(TCharC* pValue){
+      MO_CHECK(_pInstance, return 0);
+      return _pInstance->Parse(pValue);
+   }
+   //------------------------------------------------------------
+   // <T>解析字符串为枚举内容。</T>
+   static TInt Parse(TCharC* pValue, TInt defaultValue){
+      MO_CHECK(_pInstance, return defaultValue);
+      return _pInstance->Parse(pValue, defaultValue);
+   }
+   //------------------------------------------------------------
+   // <T>格式化枚举内容为字符串。</T>
+   static TCharC* Format(TInt enumValue){
+      MO_CHECK(_pInstance, return NULL);
+      return _pInstance->Format(enumValue);
+   }
+   //------------------------------------------------------------
+   // <T>格式化枚举内容为字符串。</T>
+   static TCharC* Format(TInt enumValue, TCharC* pDefaultValue){
+      MO_CHECK(_pInstance, return pDefaultValue);
+      return _pInstance->Format(enumValue, pDefaultValue);
+   }
+};
+//------------------------------------------------------------
+template <typename T> T* REnumerator<T>::_pInstance = NULL;
 
 //============================================================
 // <T>枚举器控制台。</T>
@@ -156,6 +230,7 @@ public:
 public:
    MO_ABSTRACT TResult Register(FEnumerator* pEnumerator);
    MO_ABSTRACT TResult Unrgister(FEnumerator* pEnumerator);
+   MO_ABSTRACT FEnumerator* Sync(TCharC* pName);
 };
 
 //============================================================

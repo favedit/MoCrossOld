@@ -74,6 +74,23 @@ TInt FEnumerator::Parse(TCharC* pName){
 }
 
 //============================================================
+// <T>解析名称为代码。</T>
+//
+// @param pName 名称
+// @param defaultValue 默认内容
+// @return 代码
+//============================================================
+TInt FEnumerator::Parse(TCharC* pName, TInt defaultValue){
+   MO_CHECK(pName, return defaultValue);
+   FEnumeratorItem* pItem = FindByName(pName);
+   TInt code = defaultValue;
+   if(pItem != NULL){
+      code = pItem->Code();
+   }
+   return code;
+}
+
+//============================================================
 // <T>格式代码为名称。</T>
 //
 // @param code 代码
@@ -84,6 +101,23 @@ TCharC* FEnumerator::Format(TInt code){
    FEnumeratorItem* pItem = FindByCode(code);
    MO_FATAL_CHECK(pItem, return NULL, "Parse enum name failure. (enum=%s, code=%d)", (TCharC*)_name, code);
    TCharC* pName = pItem->Name();
+   return pName;
+}
+
+//============================================================
+// <T>格式代码为名称。</T>
+//
+// @param code 代码
+// @param pDefaultValue 默认内容
+// @return 名称
+//============================================================
+TCharC* FEnumerator::Format(TInt code, TCharC* pDefaultValue){
+   MO_CHECK(code >= 0, return pDefaultValue);
+   FEnumeratorItem* pItem = FindByCode(code);
+   TCharC* pName = pDefaultValue;
+   if(pItem != NULL){
+      pName = pItem->Name();
+   }
    return pName;
 }
 
@@ -103,6 +137,27 @@ TResult FEnumerator::Register(FEnumeratorItem* pItem){
    // 设置内容
    _items.Push(pItem);
    return ESuccess;
+}
+
+//============================================================
+// <T>注册一个枚举项目。</T>
+//
+// @param code 代码
+// @param pName 名称
+// @param pDescription 注解
+// @return 处理结果
+//============================================================
+TResult FEnumerator::Register(TInt code, TCharC* pName, TCharC* pDescription){
+   MO_CHECK(code >= 0, return EOutRange);
+   MO_CHECK(pName, return ENull);
+   // 创建枚举项目
+   FEnumeratorItem* pItem = FEnumeratorItem::InstanceCreate();
+   pItem->SetCode(code);
+   pItem->SetName(pName);
+   pItem->SetDescription(pDescription);
+   // 注册枚举项目
+   TResult resultCd = Register(pItem);
+   return resultCd;
 }
 
 //============================================================

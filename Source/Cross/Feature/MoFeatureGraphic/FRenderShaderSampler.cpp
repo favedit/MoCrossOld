@@ -36,7 +36,7 @@ TResult FRenderShaderSampler::LoadConfig(FXmlNode* pConfig){
    // 设置关联
    _source = pConfig->Get("source", NULL);
    // 解析内容
-   _samplerCd = RRenderSampler::Parse(_linker);
+   _samplerCd = (ERenderSampler)RRenderSampler::Parse(_linker);
    _packCd = RRenderSampler::ParsePack(_samplerCd);
    return ESuccess;
 }
