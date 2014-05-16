@@ -497,14 +497,14 @@ typedef MO_FG_DECLARE GPtrLooper<FRenderVertexBuffer> GRenderVertexBufferLooper;
 struct MO_FG_DECLARE SRenderVertexStreamInfo
 {
 public:
-   ERenderVertexBuffer bufferCd;
+   TInt bufferCd;
    ERenderVertexFormat formatCd;
    TInt offset;
 public:
    //------------------------------------------------------------
    // <T>构造渲染顶点流信息。</T>
    SRenderVertexStreamInfo(){
-      bufferCd = ERenderVertexBuffer_Unknown;
+      bufferCd = ERenderAttribute_Unknown;
       formatCd = ERenderVertexFormat_Unknown;
       offset = 0;
    }
@@ -618,12 +618,12 @@ public:
    }
    //------------------------------------------------------------
    // <T>获得缓冲类型。</T>
-   MO_INLINE ERenderVertexBuffer BufferCd(){
+   MO_INLINE TInt BufferCd(){
       return _info.bufferCd;
    }
    //------------------------------------------------------------
    // <T>设置顶点字节数。</T>
-   MO_INLINE void SetBufferCd(ERenderVertexBuffer bufferCd){
+   MO_INLINE void SetBufferCd(TInt bufferCd){
       _info.bufferCd = bufferCd;
    }
    //------------------------------------------------------------
@@ -731,8 +731,8 @@ public:
 public:
    TBool EqualsDescription(FRenderVertexStreams* pStream);
 public:
-   FRenderVertexStream* FindStream(ERenderVertexBuffer bufferCd);
-   FRenderVertexStream* GetStream(ERenderVertexBuffer bufferCd);
+   FRenderVertexStream* FindStream(TInt bufferCode);
+   FRenderVertexStream* GetStream(TInt bufferCode);
    TResult PushStream(FRenderVertexStream* pStream);
 public:
    TResult Assign(FRenderVertexStreams* pStreams);
@@ -1217,8 +1217,8 @@ protected:
    TString _source;
    TBool _statusUsed;
    TInt _slot;
-   ERenderSampler _samplerCd;
-   ERenderSampler _packCd;
+   TInt _samplerCode;
+   TInt _packCode;
 public:
    FRenderShaderSampler();
    MO_ABSTRACT ~FRenderShaderSampler();
@@ -1284,24 +1284,24 @@ public:
       _slot = slot;
    }
    //------------------------------------------------------------
-   // <T>获得取样类型。</T>
-   MO_INLINE ERenderSampler SamplerCd(){
-      return _samplerCd;
+   // <T>获得取样代码。</T>
+   MO_INLINE TInt SamplerCd(){
+      return _samplerCode;
    }
    //------------------------------------------------------------
-   // <T>设置取样类型。</T>
-   MO_INLINE void SetSamplerCd(ERenderSampler samplerCd){
-      _samplerCd = samplerCd;
+   // <T>设置取样代码。</T>
+   MO_INLINE void SetSamplerCode(TInt samplerCode){
+      _samplerCode = samplerCode;
    }
    //------------------------------------------------------------
-   // <T>获得打包类型。</T>
-   MO_INLINE ERenderSampler PackCd(){
-      return _packCd;
+   // <T>获得打包代码。</T>
+   MO_INLINE TInt PackCode(){
+      return _packCode;
    }
    //------------------------------------------------------------
-   // <T>设置打包类型。</T>
-   MO_INLINE void SetPackCd(ERenderSampler packCd){
-      _packCd = packCd;
+   // <T>设置打包代码。</T>
+   MO_INLINE void SetPackCode(TInt packCd){
+      _packCode = packCd;
    }
 public:
    MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);

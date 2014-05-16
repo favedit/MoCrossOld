@@ -204,28 +204,33 @@ public:
 //============================================================
 // <T>渲染顶点缓冲。</T>
 //============================================================
-enum ERenderVertexBuffer{
-   ERenderVertexBuffer_Unknown = 0,
-   ERenderVertexBuffer_Instance = 1,
-   ERenderVertexBuffer_Position = 2,
-   ERenderVertexBuffer_Color = 3,
-   ERenderVertexBuffer_Coord = 4,
-   ERenderVertexBuffer_CoordLight = 5,
-   ERenderVertexBuffer_Normal = 6,
-   ERenderVertexBuffer_Binormal = 7,
-   ERenderVertexBuffer_Tangent = 8,
-   ERenderVertexBuffer_BoneIndex = 9,
-   ERenderVertexBuffer_BoneWeight = 10,
-   ERenderVertexBuffer_Count = 11,
+enum ERenderAttribute{
+   ERenderAttribute_Unknown = 0,
+   ERenderAttribute_Instance = 1,
+   ERenderAttribute_Position = 2,
+   ERenderAttribute_Color = 3,
+   ERenderAttribute_Coord = 4,
+   ERenderAttribute_CoordLight = 5,
+   ERenderAttribute_Normal = 6,
+   ERenderAttribute_Binormal = 7,
+   ERenderAttribute_Tangent = 8,
+   ERenderAttribute_BoneIndex = 9,
+   ERenderAttribute_BoneWeight = 10,
+   ERenderAttribute_Count = 11,
 };
 
 //============================================================
 // <T>渲染顶点缓冲工具。</T>
 //============================================================
-class MO_FG_DECLARE RRenderVertexBuffer{
+class MO_FG_DECLARE FRenderAttributeEnumerator : public FEnumerator{
 public:
-   static ERenderVertexBuffer Parse(TCharC* pValue, ERenderVertexBuffer bufferCd = ERenderVertexBuffer_Unknown);
-   static TCharC* Format(ERenderVertexBuffer bufferCd);
+   TResult Construct();
+};
+
+//============================================================
+// <T>渲染取样器类型工具。</T>
+//============================================================
+class MO_FG_DECLARE RRenderAttribute : public REnumerator<FRenderAttributeEnumerator>{
 };
 
 //============================================================
@@ -382,9 +387,7 @@ class MO_FG_DECLARE FRenderSamplerEnumerator : public FEnumerator{
 public:
    TResult Construct();
 public:
-   ERenderSampler ParsePack(ERenderSampler samplerCd);
-   //static ERenderSampler Parse(TCharC* pValue, ERenderSampler samplerCd = ERenderSampler_Unknown);
-   //static TCharC* Format(ERenderSampler samplerCd);
+   TInt ParsePack(TInt samplerCd);
 };
 
 //============================================================
@@ -394,7 +397,7 @@ class MO_FG_DECLARE RRenderSampler : public REnumerator<FRenderSamplerEnumerator
 public:
    //------------------------------------------------------------
    // <T>根据取样器获得打包取样器。</T>
-   static ERenderSampler ParsePack(ERenderSampler samplerCd){
+   static TInt ParsePack(TInt samplerCd){
       return _pInstance->ParsePack(samplerCd);
    }
 };
@@ -539,7 +542,7 @@ public:
    TBool boneCount;
 public:
    // 顶点缓冲
-   TBool vertexBuffers[ERenderVertexBuffer_Count];
+   TBool vertexBuffers[ERenderAttribute_Count];
    // 取样器集合
    TBool samplers[ERenderSampler_Count];
 public:
@@ -547,7 +550,7 @@ public:
 public:
    //------------------------------------------------------------
    // <T>测试是否含有指定缓冲。</T>
-   MO_INLINE TBool ContainsBuffer(ERenderVertexBuffer bufferCd){
+   MO_INLINE TBool ContainsBuffer(ERenderAttribute bufferCd){
       return vertexBuffers[bufferCd];
    }
    //------------------------------------------------------------
@@ -792,8 +795,8 @@ public:
    MO_ABSTRACT TResult CalculateModelMatrix(SFloatMatrix3d& matrix);
    MO_ABSTRACT TInt CalculateBoneMatrix(SFloatMatrix3d* pMatrix, TInt offset = 0, TInt capacity = 0);
    MO_ABSTRACT TResult BuildDescriptor();
-   FRenderTexture* FindTexture(ERenderSampler samplerCd);
-   FRenderTexture* GetTexture(ERenderSampler samplerCd);
+   FRenderTexture* FindTexture(TInt samplerCode);
+   FRenderTexture* GetTexture(TInt samplerCode);
 public:
    MO_ABSTRACT TResult Update(TAny* pParameter = NULL);
    MO_ABSTRACT TResult ProcessBefore(TAny* pParameter = NULL);

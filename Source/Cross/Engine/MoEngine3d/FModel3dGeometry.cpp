@@ -54,7 +54,7 @@ TResult FModel3dGeometry::LoadResource(FRs3dGeometry* pResource){
    for(int n = 0; n < vertexStreamCount; n++){
       // 获得顶点流信息
       FRs3dVertexStream* pRsVertexStream = rsVertexStreams.Get(n);
-      ERenderVertexBuffer bufferCd = (ERenderVertexBuffer)pRsVertexStream->BufferCd();
+      TInt bufferCd = pRsVertexStream->BufferCd();
       ERenderVertexFormat formatCd = (ERenderVertexFormat)pRsVertexStream->FormatCd();
       TInt offset = pRsVertexStream->Offset();
       // 创建渲染流

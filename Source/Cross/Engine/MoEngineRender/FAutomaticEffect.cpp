@@ -123,8 +123,8 @@ TResult FAutomaticEffect::BindDescriptors(){
          if(pSampler->IsStatusUsed()){
             TCharC* pLinker = pSampler->Linker();
             // 解析内容
-            ERenderSampler samplerCd = RRenderSampler::Parse(pLinker);
-            ERenderSampler packCd = RRenderSampler::ParsePack(samplerCd);
+            TInt samplerCd = RRenderSampler::Parse(pLinker);
+            TInt packCd = RRenderSampler::ParsePack(samplerCd);
             // 设置参数
             pSampler->SetCode(samplerCd);
             _pSamplers->Set(samplerCd, pSampler);
@@ -396,8 +396,8 @@ TResult FAutomaticEffect::BindSamplerDescriptors(FRenderable* pRenderable){
    while(iterator.Next()){
       FRenderShaderSampler* pSampler = *iterator;
       if(pSampler->IsStatusUsed()){
-         ERenderSampler packCd = pSampler->PackCd();
-         FRenderTexture* pTexture = pRenderable->FindTexture(packCd);
+         TInt packCode = pSampler->PackCode();
+         FRenderTexture* pTexture = pRenderable->FindTexture(packCode);
          if(pTexture != NULL){
             // pTexture->SetIndex(pSampler->Slot());
             pRenderDevice->BindTexture(pSampler->Slot(), pTexture);

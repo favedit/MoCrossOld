@@ -21,11 +21,12 @@ void MoGameEngineInitialize(){
    MoInitialize();
    MoCoreInitialize();
    MoFeatureLoggerInitialize();
-   MoFeatureGraphicsInitialize();
    MoFeatureResourceInitialize();
    MoEngineInitialize();
    MoEngine3dInitialize();
    MoEngineFaceInitialize();
+   MoFeatureGraphics();
+   MoEngineRender();
 #ifdef _MO_WINDOWS
    MoPlatformWindowsInitialize();
 #endif // _MO_WINDOWS
@@ -41,11 +42,9 @@ void MoGameEngineInitialize(){
 //============================================================
 void MoGameEngineStartup(){
    MO_STATIC_INFO("Game engine startup.");
-   MoFeatureGraphicsStartup();
    MoFeatureResourceStartup();
    MoEngineStartup();
    MoEngine3dStartup();
-   MoEngineRenderStartup();
    //MoEngineFaceStartup();
 }
 
@@ -54,7 +53,6 @@ void MoGameEngineStartup(){
 //============================================================
 void MoGameEngineShutdown(){
    MO_STATIC_INFO("Game engine shutdown.");
-   MoFeatureGraphicsShutdown();
    MoFeatureResourceShutdown();
    MoEngine3dShutdown();
    MoEngineShutdown();
@@ -76,7 +74,6 @@ void MoGameEngineRelease(){
    MoEngineFaceRelease();
    MoEngineRelease();
    MoFeatureResourceRelease();
-   MoFeatureGraphicsRelease();
    MoCoreRelease();
    RClassManager::Instance().TrackActive();
    MoRelease();

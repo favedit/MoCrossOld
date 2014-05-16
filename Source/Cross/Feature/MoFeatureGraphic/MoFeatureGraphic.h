@@ -41,10 +41,7 @@ public:
    MO_OVERRIDE TResult Dispose();
 };
 
-MO_FG_DECLARE void MoFeatureGraphicsInitialize();
-MO_FG_DECLARE void MoFeatureGraphicsStartup();
-MO_FG_DECLARE void MoFeatureGraphicsShutdown();
-MO_FG_DECLARE void MoFeatureGraphicsRelease();
+MO_FG_DECLARE void MoFeatureGraphics();
 
 MO_NAMESPACE_END
 

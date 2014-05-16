@@ -54,11 +54,11 @@ TBool FRenderVertexStreams::EqualsDescription(FRenderVertexStreams* pStreams){
 // @param bufferCd 流类型
 // @return 流数据
 //============================================================
-FRenderVertexStream* FRenderVertexStreams::FindStream(ERenderVertexBuffer bufferCd){
+FRenderVertexStream* FRenderVertexStreams::FindStream(TInt bufferCode){
    TInt count = _pStreams->Count();
    for(TInt n = 0; n < count; n++){
       FRenderVertexStream* pStream = _pStreams->Get(n);
-      if(pStream->BufferCd() == bufferCd){
+      if(pStream->BufferCd() == bufferCode){
          return pStream;
       }
    }
@@ -71,8 +71,8 @@ FRenderVertexStream* FRenderVertexStreams::FindStream(ERenderVertexBuffer buffer
 // @param bufferCd 流类型
 // @return 流数据
 //============================================================
-FRenderVertexStream* FRenderVertexStreams::GetStream(ERenderVertexBuffer bufferCd){
-   FRenderVertexStream* pStream = FindStream(bufferCd);
+FRenderVertexStream* FRenderVertexStreams::GetStream(TInt bufferCode){
+   FRenderVertexStream* pStream = FindStream(bufferCode);
    MO_CHECK(pStream, return NULL);
    return pStream;
 }

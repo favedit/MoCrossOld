@@ -153,7 +153,7 @@ TResult FTemplate3dRenderable::BuildDescriptor(){
    TInt count = pStreams->Count();
    for(TInt n = 0; n < count; n++){
       FRenderVertexStream* pStream = pStreams->Get(n);
-      ERenderVertexBuffer bufferCd = (ERenderVertexBuffer)pStream->BufferCd();
+      TInt bufferCd = pStream->BufferCd();
       _descriptor.vertexBuffers[bufferCd] = ETrue;
    }
    // 设置材质集合

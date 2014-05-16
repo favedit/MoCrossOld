@@ -73,9 +73,8 @@ TResult FPd9RenderLayout::OnSetup(){
       //   continue;
       //}
       //............................................................
-      ERenderVertexBuffer bufferCd = (ERenderVertexBuffer)pAttribute->Code();
+      TInt bufferCd = pAttribute->Code();
       ERenderShaderAttributeFormat formatCd = pAttribute->FormatCd();
-      
       FRenderVertexStream* pStream = pVertexStreams->FindStream(bufferCd);
       FRenderLayoutElement* pElement = FRenderLayoutElement::InstanceCreate();
       pElement->SetAttribute(pAttribute);

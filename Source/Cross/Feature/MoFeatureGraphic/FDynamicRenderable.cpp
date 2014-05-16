@@ -51,7 +51,7 @@ FRenderVertexBuffer* FDynamicRenderable::SyncVertexBuffer(FRenderVertexBuffer* p
 // @return 顶点流
 //============================================================
 FRenderVertexStream* FDynamicRenderable::SyncVertexStream(FRenderVertexStream* pStream){
-   ERenderVertexBuffer bufferCd = pStream->BufferCd();
+   TInt bufferCd = pStream->BufferCd();
    FRenderVertexStream* pMergeVertexStream = _pVertexStreams->FindStream(bufferCd);
    // 创建顶点流
    if(pMergeVertexStream == NULL){
@@ -166,11 +166,11 @@ TResult FDynamicRenderable::Setup(){
          FRenderVertexStreamCollection::TIteratorC streamIterator = pVertexStreams->Streams()->IteratorC();
          while(streamIterator.Next()){
             FRenderVertexStream* pVertexStream = *streamIterator;
-            ERenderVertexBuffer bufferCd = pVertexStream->BufferCd();
+            TInt bufferCd = pVertexStream->BufferCd();
             TInt vertexOffset = pVertexStream->Offset();
             FRenderVertexStream* pMergeVertexStream = SyncVertexStream(pVertexStream);
             FRenderVertexBuffer* pMergeVertexBuffer = pMergeVertexStream->VertexBuffer();
-            if(bufferCd == ERenderVertexBuffer_Position){
+            if(bufferCd == ERenderAttribute_Position){
                // 换算位置为世界位置
                for(TInt i = 0; i < vertexCount; i++){
                   TFloat* pVertexDataReader = (TFloat*)(pVertexData + vertexStride * i + vertexOffset);

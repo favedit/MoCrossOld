@@ -11,8 +11,8 @@ FRenderShaderSampler::FRenderShaderSampler(){
    _code = -1;
    _statusUsed = EFalse;
    _slot = -1;
-   _samplerCd = ERenderSampler_Unknown;
-   _packCd = ERenderSampler_Unknown;
+   _samplerCode = ERenderSampler_Unknown;
+   _packCode = ERenderSampler_Unknown;
 }
 
 //============================================================
@@ -36,8 +36,8 @@ TResult FRenderShaderSampler::LoadConfig(FXmlNode* pConfig){
    // 设置关联
    _source = pConfig->Get("source", NULL);
    // 解析内容
-   _samplerCd = (ERenderSampler)RRenderSampler::Parse(_linker);
-   _packCd = RRenderSampler::ParsePack(_samplerCd);
+   _samplerCode = RRenderSampler::Parse(_linker);
+   _packCode = RRenderSampler::ParsePack(_samplerCode);
    return ESuccess;
 }
 

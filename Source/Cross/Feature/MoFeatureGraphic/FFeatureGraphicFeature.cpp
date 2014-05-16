@@ -8,7 +8,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FFeatureGraphicFeature, FFeature);
 // <T>构造图形功能。</T>
 //============================================================
 FFeatureGraphicFeature::FFeatureGraphicFeature(){
-   _name = "DirectX 11";
+   _name = "Feature Graphic";
 }
 
 //============================================================
@@ -24,6 +24,13 @@ FFeatureGraphicFeature::~FFeatureGraphicFeature(){
 //============================================================
 TResult FFeatureGraphicFeature::Construct(){
    TResult resultCd = FFeature::Construct();
+   // 初始化可见管理器
+   RVisualManager::Create();
+   // 初始化技术管理器
+   RTechniqueManager::Create();
+   // 枚举创建
+   RRenderAttribute::Create();
+   RRenderSampler::Create();
    // 注册枚举信息
    return resultCd;
 }
@@ -35,6 +42,8 @@ TResult FFeatureGraphicFeature::Construct(){
 //============================================================
 TResult FFeatureGraphicFeature::Startup(){
    TResult resultCd = FFeature::Startup();
+   // 启动可见管理器
+   RVisualManager::Instance().Startup();
    return resultCd;
 }
 
@@ -65,6 +74,8 @@ TResult FFeatureGraphicFeature::Resume(){
 //============================================================
 TResult FFeatureGraphicFeature::Shutdown(){
    TResult resultCd = FFeature::Shutdown();
+   // 停止可见管理器
+   RVisualManager::Instance().Shutdown();
    return resultCd;
 }
 
@@ -75,6 +86,10 @@ TResult FFeatureGraphicFeature::Shutdown(){
 //============================================================
 TResult FFeatureGraphicFeature::Dispose(){
    TResult resultCd = FFeature::Dispose();
+   // 释放技术管理器
+   RTechniqueManager::Destroy();
+   // 释放可见管理器
+   RVisualManager::Destroy();
    return resultCd;
 }
 

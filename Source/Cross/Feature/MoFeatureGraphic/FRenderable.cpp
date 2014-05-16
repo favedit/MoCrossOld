@@ -95,7 +95,7 @@ TResult FRenderable::BuildDescriptor(){
    TInt count = pStreams->Count();
    for(TInt n = 0; n < count; n++){
       FRenderVertexStream* pStream = pStreams->Get(n);
-      ERenderVertexBuffer bufferCd = (ERenderVertexBuffer)pStream->BufferCd();
+      ERenderAttribute bufferCd = (ERenderAttribute)pStream->BufferCd();
       _descriptor.vertexBuffers[bufferCd] = ETrue;
    }
    return ESuccess;
@@ -104,14 +104,14 @@ TResult FRenderable::BuildDescriptor(){
 //============================================================
 // <T>根据差值器类型查找渲染纹理。</T>
 //
-// @param samplerCd 差值器类型
+// @param samplerCode 差值器类型
 // @return 渲染纹理
 //============================================================
-FRenderTexture* FRenderable::FindTexture(ERenderSampler samplerCd){
+FRenderTexture* FRenderable::FindTexture(TInt samplerCode){
    TInt count = _pTextures->Count();
    for(TInt n = 0; n < count; n++){
       FRenderTexture* pTexture = _pTextures->Get(n);
-      if(pTexture->SamplerCd() == samplerCd){
+      if(pTexture->SamplerCd() == samplerCode){
          return pTexture;
       }
    }
@@ -121,11 +121,11 @@ FRenderTexture* FRenderable::FindTexture(ERenderSampler samplerCd){
 //============================================================
 // <T>根据差值器类型获得渲染纹理。</T>
 //
-// @param samplerCd 差值器类型
+// @param samplerCode 差值器类型
 // @return 渲染纹理
 //============================================================
-FRenderTexture* FRenderable::GetTexture(ERenderSampler samplerCd){
-   FRenderTexture* pTexture = FindTexture(samplerCd);
+FRenderTexture* FRenderable::GetTexture(TInt samplerCode){
+   FRenderTexture* pTexture = FindTexture(samplerCode);
    MO_CHECK(pTexture, return NULL);
    return pTexture;
 }

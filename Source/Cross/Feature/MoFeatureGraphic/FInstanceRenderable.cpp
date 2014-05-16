@@ -52,7 +52,7 @@ TResult FInstanceRenderable::Setup(){
    pInstanceIndexBuffer->UploadData();
    // 创建实例编号流
    FRenderVertexStream* pInstanceIdStream = FRenderVertexStream::InstanceCreate();
-   pInstanceIdStream->SetBufferCd(ERenderVertexBuffer_Instance);
+   pInstanceIdStream->SetBufferCd(ERenderAttribute_Instance);
    pInstanceIdStream->SetFormatCd(ERenderVertexFormat_Float1);
    pInstanceIdStream->SetVertexBuffer(pInstanceIndexBuffer);
    _pVertexStreams->PushStream(pInstanceIdStream);
@@ -84,7 +84,7 @@ TResult FInstanceRenderable::Setup(){
          if(pVertexStream->VertexBuffer() != pVertexBuffer){
             continue;
          }
-         ERenderVertexBuffer bufferCd = pVertexStream->BufferCd();
+         TInt bufferCd = pVertexStream->BufferCd();
          ERenderVertexFormat formatCd = pVertexStream->FormatCd();
          TInt offset = pVertexStream->Offset();
          // 创建渲染流
@@ -95,7 +95,7 @@ TResult FInstanceRenderable::Setup(){
          pInstanceVertexStream->SetVertexBuffer(pInstanceVertexBuffer);
          _pVertexStreams->PushStream(pInstanceVertexStream);
          //// 创建顶点缓冲
-         //if(bufferCd == ERenderVertexBuffer_BoneIndex){
+         //if(bufferCd == ERenderAttribute_BoneIndex){
          //   // 重新计算骨头索引位置
          //   pInstanceVertexBuffer->SetStride(sizeof(TFloat) * 4);
          //   pInstanceVertexBuffer->Setup();

@@ -42,23 +42,23 @@ TResult SRenderableDescriptor::Assign(SRenderableDescriptor* pFlags){
 //============================================================
 TResult SRenderableDescriptor::Build(){
    // 支持顶点颜色技术
-   if(vertexBuffers[ERenderVertexBuffer_Color]){
+   if(vertexBuffers[ERenderAttribute_Color]){
       supportVertexColor = ETrue;
    }
    // 支持纹理坐标技术
-   if(vertexBuffers[ERenderVertexBuffer_Coord]){
+   if(vertexBuffers[ERenderAttribute_Coord]){
       supportVertexCoord = ETrue;
    }
    // 支持法线技术
-   if(vertexBuffers[ERenderVertexBuffer_Normal]){
+   if(vertexBuffers[ERenderAttribute_Normal]){
       supportVertexNormal = ETrue;
    }
    // 支持全法线技术
-   if(vertexBuffers[ERenderVertexBuffer_Normal] && vertexBuffers[ERenderVertexBuffer_Binormal] && vertexBuffers[ERenderVertexBuffer_Tangent]){
+   if(vertexBuffers[ERenderAttribute_Normal] && vertexBuffers[ERenderAttribute_Binormal] && vertexBuffers[ERenderAttribute_Tangent]){
       supportVertexNormalFull = ETrue;
    }
    // 支持骨头技术
-   if(vertexBuffers[ERenderVertexBuffer_BoneIndex] && vertexBuffers[ERenderVertexBuffer_BoneWeight]){
+   if(vertexBuffers[ERenderAttribute_BoneIndex] && vertexBuffers[ERenderAttribute_BoneWeight]){
       supportVertexBone = ETrue;
    }
    //............................................................
@@ -162,7 +162,7 @@ TResult SRenderableDescriptor::Reset(){
    // 设置骨头个数
    boneCount = 0;
    // 设置顶点缓冲信息
-   RBools::Fill(vertexBuffers, ERenderVertexBuffer_Count, EFalse);
+   RBools::Fill(vertexBuffers, ERenderAttribute_Count, EFalse);
    // 设置取样器信息
    RBools::Fill(samplers, ERenderSampler_Count, EFalse);
    return ESuccess;
