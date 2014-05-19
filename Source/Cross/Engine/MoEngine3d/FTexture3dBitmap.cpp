@@ -38,7 +38,7 @@ TResult FTexture3dBitmap::Open(){
    FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
    // 读取位图
    ERenderTexture textureCd = (ERenderTexture)_pResource->TextureCd();
-   ERenderSampler samplerCd = (ERenderSampler)_pResource->SamplerCd();
+   TCharC* pCode = _pResource->Code();
    FBytes* pData = _pResource->Data();
    SIntSize2& size = _pResource->Size();
    // 创建纹理
@@ -51,7 +51,7 @@ TResult FTexture3dBitmap::Open(){
    }else{
       MO_FATAL_UNSUPPORT();
    }
-   _renderTexture->SetSamplerCd(samplerCd);
+   //_renderTexture->SetSamplerCd(pCode);
    _renderTexture->SetFilterCd(ERenderTextureFilter_Linear);
    _renderTexture->Setup();
    // 上传数据

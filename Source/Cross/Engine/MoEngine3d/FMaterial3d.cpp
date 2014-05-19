@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FMaterial3d, FMaterial);
+MO_CLASS_IMPLEMENT_INHERITS(FMaterial3d, FRenderMaterial);
 
 //============================================================
 // <T>构造实体3D材质。</T>
@@ -29,37 +29,38 @@ TResult FMaterial3d::BuildDescriptor(SRenderableDescriptor& descriptor){
    TInt count = _materialTextures.Count();
    for(TInt n = 0; n < count; n++){
       FMaterial3dTexture* pTexture = _materialTextures.Get(n);
-      ERenderSampler samplerCd = (ERenderSampler)pTexture->Resource()->SamplerCd();
-      switch(samplerCd){
-         case ERenderSampler_PackDiffuse:
-            descriptor.samplers[ERenderSampler_Diffuse] = ETrue;
-            descriptor.samplers[ERenderSampler_Alpha] = ETrue;
-            break;
-         case ERenderSampler_PackNormal:
-            descriptor.samplers[ERenderSampler_Normal] = ETrue;
-            descriptor.samplers[ERenderSampler_SpecularLevel] = ETrue;
-            break;
-         case ERenderSampler_PackSpecular:
-            descriptor.samplers[ERenderSampler_SpecularColor] = ETrue;
-            descriptor.samplers[ERenderSampler_Height] = ETrue;
-            break;
-         case ERenderSampler_PackTransmittance:
-            descriptor.samplers[ERenderSampler_TransmittanceColor] = ETrue;
-            descriptor.samplers[ERenderSampler_TransmittanceLevel] = ETrue;
-            break;
-         case ERenderSampler_PackLight:
-            descriptor.samplers[ERenderSampler_Light] = ETrue;
-            descriptor.samplers[ERenderSampler_Reflect] = ETrue;
-            descriptor.samplers[ERenderSampler_Refract] = ETrue;
-            descriptor.samplers[ERenderSampler_Emissive] = ETrue;
-            break;
-         case ERenderSampler_Environment:
-            descriptor.samplers[ERenderSampler_Environment] = ETrue;
-            break;
-         default:
-            descriptor.samplers[samplerCd] = ETrue;
-            break;
-      }
+      TCharC* pTextureCode = pTexture->Code();
+      TCharC* pGroupCode = pTexture->Resource()->Code();
+      //switch(samplerCd){
+      //   case ERenderSampler_PackDiffuse:
+      //      descriptor.samplers[ERenderSampler_Diffuse] = ETrue;
+      //      descriptor.samplers[ERenderSampler_Alpha] = ETrue;
+      //      break;
+      //   case ERenderSampler_PackNormal:
+      //      descriptor.samplers[ERenderSampler_Normal] = ETrue;
+      //      descriptor.samplers[ERenderSampler_SpecularLevel] = ETrue;
+      //      break;
+      //   case ERenderSampler_PackSpecular:
+      //      descriptor.samplers[ERenderSampler_SpecularColor] = ETrue;
+      //      descriptor.samplers[ERenderSampler_Height] = ETrue;
+      //      break;
+      //   case ERenderSampler_PackTransmittance:
+      //      descriptor.samplers[ERenderSampler_TransmittanceColor] = ETrue;
+      //      descriptor.samplers[ERenderSampler_TransmittanceLevel] = ETrue;
+      //      break;
+      //   case ERenderSampler_PackLight:
+      //      descriptor.samplers[ERenderSampler_Light] = ETrue;
+      //      descriptor.samplers[ERenderSampler_Reflect] = ETrue;
+      //      descriptor.samplers[ERenderSampler_Refract] = ETrue;
+      //      descriptor.samplers[ERenderSampler_Emissive] = ETrue;
+      //      break;
+      //   case ERenderSampler_Environment:
+      //      descriptor.samplers[ERenderSampler_Environment] = ETrue;
+      //      break;
+      //   default:
+      //      descriptor.samplers[samplerCd] = ETrue;
+      //      break;
+      //}
    }
    return ESuccess;
 }

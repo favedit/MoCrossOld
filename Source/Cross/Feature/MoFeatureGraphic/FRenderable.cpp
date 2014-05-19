@@ -95,7 +95,8 @@ TResult FRenderable::BuildDescriptor(){
    TInt count = pStreams->Count();
    for(TInt n = 0; n < count; n++){
       FRenderVertexStream* pStream = pStreams->Get(n);
-      ERenderAttribute bufferCd = (ERenderAttribute)pStream->BufferCd();
+      TCharC* pCode = pStream->Code();
+      TInt bufferCd = RRenderAttribute::Parse(pCode);
       _descriptor.vertexBuffers[bufferCd] = ETrue;
    }
    return ESuccess;

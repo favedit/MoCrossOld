@@ -76,7 +76,7 @@ TResult FEffect::LoadConfig(FXmlNode* pConfig){
       //............................................................
       // 建立参数定义集合
       if(pNode->IsName("Parameter")){
-         FRenderShaderParameter* pParameter = _renderDevice->CreateObject<FRenderShaderParameter>(MO_RENDEROBJECT_SHADERPARAMETER);
+         FRenderParameter* pParameter = _renderDevice->CreateObject<FRenderParameter>(MO_RENDEROBJECT_SHADERPARAMETER);
          pParameter->LoadConfig(pNode);
          _program->ParameterPush(pParameter);
          //MO_DEBUG("Build shader parameter. (name=%s, format=%d)", pParameter->Name(), pParameter->FormatCd());
@@ -85,7 +85,7 @@ TResult FEffect::LoadConfig(FXmlNode* pConfig){
       //............................................................
       // 建立属性定义集合
       if(pNode->IsName("Attribute")){
-         FRenderShaderAttribute* pAttribute = _renderDevice->CreateObject<FRenderShaderAttribute>(MO_RENDEROBJECT_SHADERATTRIBUTE);
+         FRenderAttribute* pAttribute = _renderDevice->CreateObject<FRenderAttribute>(MO_RENDEROBJECT_SHADERATTRIBUTE);
          pAttribute->LoadConfig(pNode);
          _program->AttributePush(pAttribute);
          continue;
@@ -93,7 +93,7 @@ TResult FEffect::LoadConfig(FXmlNode* pConfig){
       //............................................................
       // 建立取样器定义集合
       if(pNode->IsName("Sampler")){
-         FRenderShaderSampler* pSampler = _renderDevice->CreateObject<FRenderShaderSampler>(MO_RENDEROBJECT_SHADERSAMPLER);
+         FRenderSampler* pSampler = _renderDevice->CreateObject<FRenderSampler>(MO_RENDEROBJECT_SHADERSAMPLER);
          pSampler->LoadConfig(pNode);
          _program->SamplerPush(pSampler);
          continue;

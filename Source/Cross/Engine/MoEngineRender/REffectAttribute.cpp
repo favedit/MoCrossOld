@@ -10,40 +10,40 @@ MO_NAMESPACE_BEGIN
 // @param formatCd 格式类型
 // @return 枚举内容
 //============================================================
-TResult REffectAttribute::Parse(TCharC* pValue, EEffectAttribute& attributeCd, ERenderShaderAttributeFormat& formatCd){
+TResult REffectAttribute::Parse(TCharC* pValue, EEffectAttribute& attributeCd, ERenderAttributeFormat& formatCd){
    MO_CHECK(pValue, return ENull);
    TFsCode code = pValue;
    code.ToLower();
    if(code.Equals("unknown")){
       attributeCd = EEffectAttribute_Unknown;
-      formatCd = ERenderShaderAttributeFormat_Float4;
+      formatCd = ERenderAttributeFormat_Float4;
    }else if(code.Equals("instance")){
       attributeCd = EEffectAttribute_Instance;
-      formatCd = ERenderShaderAttributeFormat_Float1;
+      formatCd = ERenderAttributeFormat_Float1;
    }else if(code.Equals("position")){
       attributeCd = EEffectAttribute_Position;
-      formatCd = ERenderShaderAttributeFormat_Float3;
+      formatCd = ERenderAttributeFormat_Float3;
    }else if(code.Equals("color")){
       attributeCd = EEffectAttribute_Color;
-      formatCd = ERenderShaderAttributeFormat_Byte4Normal;
+      formatCd = ERenderAttributeFormat_Byte4Normal;
    }else if(code.Equals("coord")){
       attributeCd = EEffectAttribute_Coord;
-      formatCd = ERenderShaderAttributeFormat_Float2;
+      formatCd = ERenderAttributeFormat_Float2;
    }else if(code.Equals("normal")){
       attributeCd = EEffectAttribute_Normal;
-      formatCd = ERenderShaderAttributeFormat_Byte4Normal;
+      formatCd = ERenderAttributeFormat_Byte4Normal;
    }else if(code.Equals("binormal")){
       attributeCd = EEffectAttribute_Binormal;
-      formatCd = ERenderShaderAttributeFormat_Byte4Normal;
+      formatCd = ERenderAttributeFormat_Byte4Normal;
    }else if(code.Equals("tangent")){
       attributeCd = EEffectAttribute_Tangent;
-      formatCd = ERenderShaderAttributeFormat_Byte4Normal;
+      formatCd = ERenderAttributeFormat_Byte4Normal;
    }else if(code.Equals("boneindex")){
       attributeCd = EEffectAttribute_BoneIndex;
-      formatCd = ERenderShaderAttributeFormat_Byte4;
+      formatCd = ERenderAttributeFormat_Byte4;
    }else if(code.Equals("boneweight")){
       attributeCd = EEffectAttribute_BoneWeight;
-      formatCd = ERenderShaderAttributeFormat_Byte4Normal;
+      formatCd = ERenderAttributeFormat_Byte4Normal;
    }else{
       MO_STATIC_FATAL("Parse effect parameter failure. (value=%s)", pValue);
       return EFailure;

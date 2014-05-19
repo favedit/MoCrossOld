@@ -1,19 +1,19 @@
-#include "MoPd9Render.h"
+#include "MoFgRender.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderShaderParameter, FRenderParameter);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderMaterialTexture, FInstance);
 
 //============================================================
-// <T>构造渲染器参数。</T>
+// <T>构造渲染纹理。</T>
 //============================================================
-FPd9RenderShaderParameter::FPd9RenderShaderParameter(){
+FRenderMaterialTexture::FRenderMaterialTexture(){
 }
 
 //============================================================
-// <T>析构渲染器参数。</T>
+// <T>析构渲染纹理。</T>
 //============================================================
-FPd9RenderShaderParameter::~FPd9RenderShaderParameter(){
+FRenderMaterialTexture::~FRenderMaterialTexture(){
 }
 
 MO_NAMESPACE_END

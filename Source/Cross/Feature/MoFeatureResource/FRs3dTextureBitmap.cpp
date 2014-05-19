@@ -9,7 +9,6 @@ MO_CLASS_IMPLEMENT_INHERITS(FRs3dTextureBitmap, FInstance);
 //============================================================
 FRs3dTextureBitmap::FRs3dTextureBitmap(){
    _textureCd = EContent3dTexture_Unknown;
-   _samplerCd = EContent3dSampler_Unknown;
    _pData = MO_CREATE(FBytes);
 }
 
@@ -28,9 +27,10 @@ FRs3dTextureBitmap::~FRs3dTextureBitmap(){
 //============================================================
 TResult FRs3dTextureBitmap::Unserialize(IDataInput* pInput){
    MO_CHECK(pInput, return ENull);
-   // 读取属性
+   // 读取类型
    _textureCd = (EContent3dTexture)pInput->ReadUint8();
-   _samplerCd = (EContent3dSampler)pInput->ReadUint8();
+   // 读取代码
+   _code.Unserialize(pInput);
    // 读取位图
    _size.Unserialize16(pInput);
    TInt dataLength = sizeof(TUint32) * _size.Square();

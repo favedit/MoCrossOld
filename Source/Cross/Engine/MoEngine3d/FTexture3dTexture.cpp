@@ -19,20 +19,19 @@ FTexture3dTexture::~FTexture3dTexture(){
 }
 
 //============================================================
-// <T>根据类型查找位图。</T>
+// <T>根据代码查找位图。</T>
 //
-// @param samplerCd 取样类型
+// @param pCode 代码
 // @return 位图
 //============================================================
-FTexture3dBitmap* FTexture3dTexture::FindByType(ERenderSampler samplerCd){
+FTexture3dBitmap* FTexture3dTexture::FindByType(TCharC* pCode){
    TInt count = _pBitmaps->Count();
    for(TInt n = 0; n < count; n++){
       FTexture3dBitmap* pBitmap = _pBitmaps->Get(n);
       if(pBitmap != NULL){
          FRs3dTextureBitmap* pBitmapResource = pBitmap->Resource();
          if(pBitmapResource != NULL){
-            ERenderSampler findSamplerCd = (ERenderSampler)pBitmapResource->SamplerCd();
-            if(findSamplerCd == samplerCd){
+            if(pBitmapResource->IsCode(pCode)){
                return pBitmap;
             }
          }
@@ -42,49 +41,49 @@ FTexture3dBitmap* FTexture3dTexture::FindByType(ERenderSampler samplerCd){
 }
 
 //============================================================
-// <T>根据类型查找位图。</T>
+// <T>根据代码分组查找位图。</T>
 //
-// @param samplerCd 取样类型
+// @param pCode 代码
 // @return 位图
 //============================================================
-FTexture3dBitmap* FTexture3dTexture::FindByPack(ERenderSampler samplerCd){
+FTexture3dBitmap* FTexture3dTexture::FindByPack(TCharC* pCode){
    // 获得打包类型
-   ERenderSampler packCd = samplerCd;
-   switch(samplerCd){
-      case ERenderSampler_Diffuse:
-      case ERenderSampler_Alpha:
-         packCd = ERenderSampler_PackDiffuse;
-         break;
-      case ERenderSampler_Normal:
-      case ERenderSampler_SpecularLevel:
-         packCd = ERenderSampler_PackNormal;
-         break;
-      case ERenderSampler_SpecularColor:
-      case ERenderSampler_Height:
-         packCd = ERenderSampler_PackSpecular;
-         break;
-      case ERenderSampler_TransmittanceColor:
-      case ERenderSampler_TransmittanceLevel:
-         packCd = ERenderSampler_PackTransmittance;
-         break;
-      case ERenderSampler_Light:
-      case ERenderSampler_Reflect:
-      case ERenderSampler_Refract:
-      case ERenderSampler_Emissive:
-         packCd = ERenderSampler_PackLight;
-         break;
-      default:
-         break;
-   }
-   // 查找类型
-   TInt count = _pBitmaps->Count();
-   for(TInt n = 0; n < count; n++){
-      FTexture3dBitmap* pBitmap = _pBitmaps->Get(n);
-      ERenderSampler findSamplerCd = (ERenderSampler)pBitmap->Resource()->SamplerCd();
-      if(findSamplerCd == packCd){
-         return pBitmap;
-      }
-   }
+   //ERenderSampler packCd = samplerCd;
+   //switch(samplerCd){
+   //   case ERenderSampler_Diffuse:
+   //   case ERenderSampler_Alpha:
+   //      packCd = ERenderSampler_PackDiffuse;
+   //      break;
+   //   case ERenderSampler_Normal:
+   //   case ERenderSampler_SpecularLevel:
+   //      packCd = ERenderSampler_PackNormal;
+   //      break;
+   //   case ERenderSampler_SpecularColor:
+   //   case ERenderSampler_Height:
+   //      packCd = ERenderSampler_PackSpecular;
+   //      break;
+   //   case ERenderSampler_TransmittanceColor:
+   //   case ERenderSampler_TransmittanceLevel:
+   //      packCd = ERenderSampler_PackTransmittance;
+   //      break;
+   //   case ERenderSampler_Light:
+   //   case ERenderSampler_Reflect:
+   //   case ERenderSampler_Refract:
+   //   case ERenderSampler_Emissive:
+   //      packCd = ERenderSampler_PackLight;
+   //      break;
+   //   default:
+   //      break;
+   //}
+   //// 查找类型
+   //TInt count = _pBitmaps->Count();
+   //for(TInt n = 0; n < count; n++){
+   //   FTexture3dBitmap* pBitmap = _pBitmaps->Get(n);
+   //   ERenderSampler findSamplerCd = (ERenderSampler)pBitmap->Resource()->SamplerCd();
+   //   if(findSamplerCd == packCd){
+   //      return pBitmap;
+   //   }
+   //}
    return NULL;
 }
 

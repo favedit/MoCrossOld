@@ -49,8 +49,8 @@ public:
    static D3D10_CULL_MODE ConvertCullMode(ERenderCullMode cullCd);
    static DXGI_FORMAT ConvertIndexStride(ERenderIndexStride strideCd);
 public:
-   static ERenderShaderAttributeFormat ParseAttrbuteFormat(D3D_REGISTER_COMPONENT_TYPE componentType, TInt mask);
-   static DXGI_FORMAT ConvertAttrbuteFormat(ERenderShaderAttributeFormat formatCd);
+   static ERenderAttributeFormat ParseAttrbuteFormat(D3D_REGISTER_COMPONENT_TYPE componentType, TInt mask);
+   static DXGI_FORMAT ConvertAttrbuteFormat(ERenderAttributeFormat formatCd);
 };
 
 MO_NAMESPACE_END

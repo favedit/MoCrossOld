@@ -84,24 +84,6 @@ enum EContent3dVertexFormat{
 };
 
 //============================================================
-// <T>äÖÈ¾¶¥µã»º³å¡£</T>
-//============================================================
-enum EContent3dVertexBuffer{
-   EContent3dVertexBuffer_Unknown = 0,
-   EContent3dVertexBuffer_Instance = 1,
-   EContent3dVertexBuffer_Position = 2,
-   EContent3dVertexBuffer_Color = 3,
-   EContent3dVertexBuffer_Coord = 4,
-   EContent3dVertexBuffer_CoordLight = 5,
-   EContent3dVertexBuffer_Normal = 6,
-   EContent3dVertexBuffer_Binormal = 7,
-   EContent3dVertexBuffer_Tangent = 8,
-   EContent3dVertexBuffer_BoneIndex = 9,
-   EContent3dVertexBuffer_BoneWeight = 10,
-   EContent3dVertexBuffer_Count = 11,
-};
-
-//============================================================
 // <T>äÖÈ¾Ë÷Òý¿í¶È¡£</T>
 //============================================================
 enum EContent3dIndexStride{

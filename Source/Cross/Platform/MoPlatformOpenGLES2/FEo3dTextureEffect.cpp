@@ -199,7 +199,7 @@ TResult FPoe23dTextureEffect::DrawGroup(FRenderRegion* pRegion, TInt offset, TIn
    //   pRenderDevice->BindConstData(
    //         ERenderShader_Fragment,
    //         _effectConsts[EEffectConst_Fragment_LightDirection],
-   //         ERenderShaderParameterFormat_Float3, (TAnyC*)direction, sizeof(direction));
+   //         ERenderParameterFormat_Float3, (TAnyC*)direction, sizeof(direction));
    //}
    ////............................................................
    //// 根据渲染类型进行分组

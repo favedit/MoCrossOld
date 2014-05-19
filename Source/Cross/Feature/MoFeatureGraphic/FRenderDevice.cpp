@@ -246,7 +246,7 @@ TResult FRenderDevice::BindShaderBuffer(FRenderShaderBuffer* pBuffer){
 //============================================================
 TResult FRenderDevice::BindVertexStream(TInt slot, FRenderVertexStream* pStream){
    MO_CHECK(slot >= 0, return EFailure);
-   ERenderVertexFormat formatCd = ERenderVertexFormat_Unknown;
+   ERenderAttributeFormat formatCd = ERenderAttributeFormat_Unknown;
    TInt offset = 0;
    FRenderVertexBuffer* pVertexBuffer = NULL;
    if(pStream != NULL){
@@ -291,7 +291,7 @@ TResult FRenderDevice::BindConstMatrix4x3(ERenderShader shaderCd, TInt slot, con
       *pWriter++ = matrix.data[3][2];
    }
    // 提交数据
-   TResult resultCd = BindConstData(shaderCd, slot, ERenderShaderParameterFormat_Float4x3, data, sizeof(TFloat) * 12 * count);
+   TResult resultCd = BindConstData(shaderCd, slot, ERenderParameterFormat_Float4x3, data, sizeof(TFloat) * 12 * count);
    return resultCd;
 }
 
@@ -331,7 +331,7 @@ TResult FRenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, con
       *pWriter++ = matrix.data[3][3];
    }
    // 提交数据
-   TResult resultCd = BindConstData(shaderCd, slot, ERenderShaderParameterFormat_Float4x4, data, sizeof(TFloat) * 16 * count);
+   TResult resultCd = BindConstData(shaderCd, slot, ERenderParameterFormat_Float4x4, data, sizeof(TFloat) * 16 * count);
    return resultCd;
 }
 

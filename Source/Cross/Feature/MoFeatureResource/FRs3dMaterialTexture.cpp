@@ -8,7 +8,6 @@ MO_CLASS_IMPLEMENT_INHERITS(FRs3dMaterialTexture, FInstance);
 // <T>构造资源3D材质纹理。</T>
 //============================================================
 FRs3dMaterialTexture::FRs3dMaterialTexture(){
-   _samplerCd = EContent3dSampler_Unknown;
 }
 
 //============================================================
@@ -25,7 +24,9 @@ FRs3dMaterialTexture::~FRs3dMaterialTexture(){
 //============================================================
 TResult FRs3dMaterialTexture::Unserialize(IDataInput* pInput){
    MO_CHECK(pInput, return ENull);
-   _samplerCd = (EContent3dSampler)pInput->ReadUint8();
+   // 读取代码
+   _code.Unserialize(pInput);
+   // 读取纹理名称
    _textureName.UnserializeAutomatic(pInput);
    return ESuccess;
 }

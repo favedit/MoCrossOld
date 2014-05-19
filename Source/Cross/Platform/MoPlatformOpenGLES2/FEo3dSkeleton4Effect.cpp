@@ -157,7 +157,7 @@ TResult FPoe23dSkeleton4Effect::Draw(FRenderRegion* pRegion, FRenderable* pRende
    //............................................................
    // 设置常量
    //pRenderDevice->BindConstMatrix4x4(ERenderShader_Vertex, _effectConsts[EEffectVertexConst_MvpMat4], matrixMvp);
-   //pRenderDevice->BindConstData(ERenderShader_Vertex, _effectConsts[EEffectVertexConst_BoneMatrixs], ERenderShaderParameterFormat_Matrix, _pBoneStream->MemoryC(), _pBoneStream->Position());
+   //pRenderDevice->BindConstData(ERenderShader_Vertex, _effectConsts[EEffectVertexConst_BoneMatrixs], ERenderParameterFormat_Matrix, _pBoneStream->MemoryC(), _pBoneStream->Position());
    //............................................................
    // 设定顶点流
    //FRs3dVertexStream* pPositionStream = pVertexBuffer->FindStream(ERenderVertexBuffer_Position);

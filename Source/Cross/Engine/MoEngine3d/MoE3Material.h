@@ -19,9 +19,9 @@ MO_NAMESPACE_BEGIN
 //============================================================
 // <T>实体3D材质纹理。</T>
 //============================================================
-class MO_E3_DECLARE FMaterial3dTexture : public FInstance
+class MO_E3_DECLARE FMaterial3dTexture : public FRenderMaterialTexture
 {
-   MO_CLASS_DECLARE_INHERITS(FMaterial3dTexture, FInstance);
+   MO_CLASS_DECLARE_INHERITS(FMaterial3dTexture, FRenderMaterialTexture);
 protected:
    GPtr<FRs3dMaterialTexture> _resource;
    GPtr<FRenderTexture> _renderTexture;
@@ -48,7 +48,7 @@ typedef MO_E3_DECLARE GPtrs<FMaterial3dTexture> GMaterial3dTexturePtrs;
 //============================================================
 // <T>实体3D材质。</T>
 //============================================================
-class MO_E3_DECLARE FMaterial3d : public FMaterial
+class MO_E3_DECLARE FMaterial3d : public FRenderMaterial
 {
    MO_CLASS_DECLARE_INHERITS(FMaterial3d, FMaterial);
 protected:

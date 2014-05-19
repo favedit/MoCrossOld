@@ -20,7 +20,7 @@ class MO_FR_DECLARE FRs3dTextureBitmap : public FInstance
    MO_CLASS_DECLARE_INHERITS(FRs3dTextureBitmap, FInstance);
 protected:
    EContent3dTexture _textureCd;
-   EContent3dSampler _samplerCd;
+   TString _code;
    SIntSize2 _size;
    FBytes* _pData;
 public:
@@ -33,9 +33,14 @@ public:
       return _textureCd;
    }
    //------------------------------------------------------------
-   // <T>获得取样类型。</T>
-   MO_INLINE EContent3dSampler SamplerCd(){
-      return _samplerCd;
+   // <T>判断是否指定代码。</T>
+   MO_INLINE TBool IsCode(TCharC* pCode){
+      return _code.Equals(pCode);
+   }
+   //------------------------------------------------------------
+   // <T>获得代码。</T>
+   MO_INLINE TCharC* Code(){
+      return _code;
    }
    //------------------------------------------------------------
    // <T>获得尺寸。</T>

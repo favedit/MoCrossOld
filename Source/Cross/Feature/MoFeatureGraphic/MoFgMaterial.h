@@ -531,7 +531,7 @@ public:
       return _reflectColor;
    }
 public:
-   TInt Compare(FMaterial* pMaterial);
+   MO_ABSTRACT TInt Compare(FMaterial* pMaterial);
 public:
    //void TextureClear();
    //void TextureSet(FRenderTexture* pTexture);

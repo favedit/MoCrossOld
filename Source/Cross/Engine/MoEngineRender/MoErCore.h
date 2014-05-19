@@ -97,7 +97,7 @@ enum EEffectParameter{
 //============================================================
 class MO_ER_DECLARE REffectParameter{
 public:
-   static TResult Parse(TCharC* pValue, EEffectParameter& parameterCd, ERenderShader& shaderCd, ERenderShaderParameterFormat& formatCd);
+   static TResult Parse(TCharC* pValue, EEffectParameter& parameterCd, ERenderShader& shaderCd, ERenderParameterFormat& formatCd);
    static TCharC* Format(EEffectParameter parameterCd);
 };
 
@@ -124,7 +124,7 @@ enum EEffectAttribute{
 //============================================================
 class MO_ER_DECLARE REffectAttribute{
 public:
-   static TResult Parse(TCharC* pValue, EEffectAttribute& attributeCd, ERenderShaderAttributeFormat& formatCd);
+   static TResult Parse(TCharC* pValue, EEffectAttribute& attributeCd, ERenderAttributeFormat& formatCd);
    static TCharC* Format(EEffectAttribute attributeCd);
 };
 

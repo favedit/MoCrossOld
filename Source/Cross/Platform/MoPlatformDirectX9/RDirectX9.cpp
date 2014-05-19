@@ -62,7 +62,7 @@ MO_NAMESPACE_BEGIN
 //// @param mask 遮蔽描述
 //// @return 处理结果
 ////============================================================
-//ERenderShaderAttributeFormat RDirectX9::ParseAttrbuteFormat(D3D_REGISTER_COMPONENT_TYPE componentType, TInt mask){
+//ERenderAttributeFormat RDirectX9::ParseAttrbuteFormat(D3D_REGISTER_COMPONENT_TYPE componentType, TInt mask){
 //   // 判断位数
 //   TInt count = 0;
 //   if(mask & 0x01){
@@ -85,18 +85,18 @@ MO_NAMESPACE_BEGIN
 //         break;
 //      case D3D_REGISTER_COMPONENT_FLOAT32:{
 //         if(count == 1){
-//            return ERenderShaderAttributeFormat_Float1;
+//            return ERenderAttributeFormat_Float1;
 //         }else if(count == 2){
-//            return ERenderShaderAttributeFormat_Float2;
+//            return ERenderAttributeFormat_Float2;
 //         }else if(count == 3){
-//            return ERenderShaderAttributeFormat_Float3;
+//            return ERenderAttributeFormat_Float3;
 //         }else if(count == 4){
-//            return ERenderShaderAttributeFormat_Float4;
+//            return ERenderAttributeFormat_Float4;
 //         }
 //      }
 //   }
 //   MO_STATIC_FATAL("Parse attribtue format failure. (component_type=%d)", componentType);
-//   return ERenderShaderAttributeFormat_Unknown;
+//   return ERenderAttributeFormat_Unknown;
 //}
 
 //============================================================
@@ -105,19 +105,19 @@ MO_NAMESPACE_BEGIN
 // @param formatCd 格式
 // @return 属性格式
 //============================================================
-D3DDECLTYPE RDirectX9::ConvertAttrbuteFormat(ERenderShaderAttributeFormat formatCd){
+D3DDECLTYPE RDirectX9::ConvertAttrbuteFormat(ERenderAttributeFormat formatCd){
    switch(formatCd){
-      case ERenderShaderAttributeFormat_Float1:
+      case ERenderAttributeFormat_Float1:
          return D3DDECLTYPE_FLOAT1;
-      case ERenderShaderAttributeFormat_Float2:
+      case ERenderAttributeFormat_Float2:
          return D3DDECLTYPE_FLOAT2;
-      case ERenderShaderAttributeFormat_Float3:
+      case ERenderAttributeFormat_Float3:
          return D3DDECLTYPE_FLOAT3;
-      case ERenderShaderAttributeFormat_Float4:
+      case ERenderAttributeFormat_Float4:
          return D3DDECLTYPE_FLOAT4;
-      case ERenderShaderAttributeFormat_Byte4:
+      case ERenderAttributeFormat_Byte4:
          return D3DDECLTYPE_UBYTE4;
-      case ERenderShaderAttributeFormat_Byte4Normal:
+      case ERenderAttributeFormat_Byte4Normal:
          return D3DDECLTYPE_UBYTE4N;
    }
    MO_STATIC_FATAL("Convert attribute format failure. (format=%d)", formatCd);

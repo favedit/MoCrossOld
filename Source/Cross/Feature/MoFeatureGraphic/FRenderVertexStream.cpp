@@ -8,6 +8,8 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderVertexStream, FInstance);
 // <T>ππ‘Ï‰÷»æ∂•µ„ª∫≥Â°£</T>
 //============================================================
 FRenderVertexStream::FRenderVertexStream(){
+   _formatCd = ERenderAttributeFormat_Unknown;
+   _offset = 0;
    MO_CLEAR(_pVertexBuffer);
 }
 

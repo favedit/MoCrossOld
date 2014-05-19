@@ -51,17 +51,17 @@ FRenderVertexBuffer* FDynamicRenderable::SyncVertexBuffer(FRenderVertexBuffer* p
 // @return 顶点流
 //============================================================
 FRenderVertexStream* FDynamicRenderable::SyncVertexStream(FRenderVertexStream* pStream){
-   TInt bufferCd = pStream->BufferCd();
-   FRenderVertexStream* pMergeVertexStream = _pVertexStreams->FindStream(bufferCd);
+   TCharC* pCode = pStream->Code();
+   FRenderVertexStream* pMergeVertexStream = _pVertexStreams->FindStream(pCode);
    // 创建顶点流
    if(pMergeVertexStream == NULL){
       // 查找顶点缓冲
-      SRenderVertexStreamInfo& info = pStream->Info();
       FRenderVertexBuffer* pVertexBuffer = pStream->VertexBuffer();
       FRenderVertexBuffer* pMergeVertexBuffer = SyncVertexBuffer(pVertexBuffer);
       // 创建流缓冲
       pMergeVertexStream = FRenderVertexStream::InstanceCreate();
-      pMergeVertexStream->SetInfo(info);
+      pMergeVertexStream->SetCode(pStream->Code());
+      pMergeVertexStream->SetFormatCd(pStream->FormatCd());
       pMergeVertexStream->SetVertexBuffer(pMergeVertexBuffer);
       _pVertexStreams->PushStream(pMergeVertexStream);
    }
@@ -166,11 +166,11 @@ TResult FDynamicRenderable::Setup(){
          FRenderVertexStreamCollection::TIteratorC streamIterator = pVertexStreams->Streams()->IteratorC();
          while(streamIterator.Next()){
             FRenderVertexStream* pVertexStream = *streamIterator;
-            TInt bufferCd = pVertexStream->BufferCd();
+            TCharC* pBufferCode = pVertexStream->Code();
             TInt vertexOffset = pVertexStream->Offset();
             FRenderVertexStream* pMergeVertexStream = SyncVertexStream(pVertexStream);
             FRenderVertexBuffer* pMergeVertexBuffer = pMergeVertexStream->VertexBuffer();
-            if(bufferCd == ERenderAttribute_Position){
+            if(RString::Equals(pBufferCode, "Position")){
                // 换算位置为世界位置
                for(TInt i = 0; i < vertexCount; i++){
                   TFloat* pVertexDataReader = (TFloat*)(pVertexData + vertexStride * i + vertexOffset);

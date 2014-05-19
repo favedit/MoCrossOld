@@ -172,7 +172,7 @@ TResult FPd10RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
          // 查找属性
          TFsName attributeName;
          attributeName.AppendFormat("%s%d", attributeDescriptor.SemanticName, attributeDescriptor.SemanticIndex);
-         FRenderShaderAttribute* pAttribute = AttributeFind(attributeName);
+         FRenderAttribute* pAttribute = AttributeFind(attributeName);
          if(pAttribute == NULL){
             pAttribute = AttributeFind(attributeDescriptor.SemanticName);
          }
@@ -205,7 +205,7 @@ TResult FPd10RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
          pBuffer->SetSlot(bindDescriptor.BindPoint);
       }
       if(bindDescriptor.Type == D3D_SIT_TEXTURE){
-         FRenderShaderSampler* pSampler = SamplerFind(pBindName);
+         FRenderSampler* pSampler = SamplerFind(pBindName);
          if(pSampler == NULL){
             MO_ERROR("Shader sampler bound is not found. (name=%s)", pBindName);
          }else{
@@ -255,9 +255,9 @@ TResult FPd10RenderProgram::Link(){
    TInt position = 0;
    GRenderShaderAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
    while(attributeIterator.Next()){
-      FRenderShaderAttribute* pAttribute = *attributeIterator;
+      FRenderAttribute* pAttribute = *attributeIterator;
       if(pAttribute->IsStatusUsed()){
-         ERenderShaderAttributeFormat formatCd = pAttribute->FormatCd();
+         ERenderAttributeFormat formatCd = pAttribute->FormatCd();
          D3D10_INPUT_ELEMENT_DESC inputElement;
          RType<D3D10_INPUT_ELEMENT_DESC>::Clear(&inputElement);
          inputElement.SemanticName = pAttribute->Name();
@@ -268,7 +268,7 @@ TResult FPd10RenderProgram::Link(){
          inputElement.AlignedByteOffset = 0;
          inputElement.InputSlotClass = D3D10_INPUT_PER_VERTEX_DATA;
          inputElements.Push(inputElement);
-         position += RRenderShaderAttributeFormat::CalculateSize(formatCd);
+         position += RRenderAttributeFormat::CalculateSize(formatCd);
       }
    }
    // 创建输入层次

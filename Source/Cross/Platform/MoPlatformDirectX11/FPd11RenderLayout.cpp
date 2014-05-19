@@ -20,7 +20,7 @@ FPd11RenderLayout::~FPd11RenderLayout(){
 }
 
 //============================================================
-FRenderLayoutElement* FPd11RenderLayout::FindByAttribute(FRenderShaderAttribute* pAttribute){
+FRenderLayoutElement* FPd11RenderLayout::FindByAttribute(FRenderAttribute* pAttribute){
    TInt count = _elements.Count();
    for(TInt n = 0; n < count; n++){
       FRenderLayoutElement* pElement = _elements.Get(n);
@@ -40,14 +40,15 @@ TResult FPd11RenderLayout::OnSetup(){
    FRenderVertexStreams* pVertexStreams = _pRenderable->VertexStreams();
    GRenderShaderAttributeDictionary::TIterator iterator = _pProgram->Attributes().IteratorC();
    while(iterator.Next()){
-      FRenderShaderAttribute* pAttribute = *iterator;
+      FRenderAttribute* pAttribute = *iterator;
       if(!pAttribute->IsStatusUsed()){
          continue;
       }
       //............................................................
       TInt bufferCd = pAttribute->Code();
-      ERenderShaderAttributeFormat formatCd = pAttribute->FormatCd();
-      FRenderVertexStream* pStream = pVertexStreams->FindStream(bufferCd);
+      TCharC* pBufferCode = RRenderAttribute::Format(bufferCd);
+      ERenderAttributeFormat formatCd = pAttribute->FormatCd();
+      FRenderVertexStream* pStream = pVertexStreams->FindStream(pBufferCode);
       FRenderLayoutElement* pElement = FRenderLayoutElement::InstanceCreate();
       pElement->SetAttribute(pAttribute);
       pElement->SetStream(pStream);
@@ -65,7 +66,7 @@ TResult FPd11RenderLayout::OnSetup(){
          _offsets[index] = 0;
       }
       index++;
-      position += RRenderShaderAttributeFormat::CalculateSize(formatCd);
+      position += RRenderAttributeFormat::CalculateSize(formatCd);
    }
    _count = index;
    return ESuccess;

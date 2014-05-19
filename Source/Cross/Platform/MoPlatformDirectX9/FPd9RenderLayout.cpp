@@ -19,7 +19,7 @@ FPd9RenderLayout::~FPd9RenderLayout(){
 }
 
 //============================================================
-FRenderLayoutElement* FPd9RenderLayout::FindByAttribute(FRenderShaderAttribute* pAttribute){
+FRenderLayoutElement* FPd9RenderLayout::FindByAttribute(FRenderAttribute* pAttribute){
    TInt count = _elements.Count();
    for(TInt n = 0; n < count; n++){
       FRenderLayoutElement* pElement = _elements.Get(n);
@@ -68,14 +68,15 @@ TResult FPd9RenderLayout::OnSetup(){
    TInt fvf2 = 0;
    D3DVERTEXELEMENT9 elements[MO_INPUT_ELEMENT_MAXCNT];
    while(iterator.Next()){
-      FRenderShaderAttribute* pAttribute = *iterator;
+      FRenderAttribute* pAttribute = *iterator;
       //if(!pAttribute->IsStatusUsed()){
       //   continue;
       //}
       //............................................................
       TInt bufferCd = pAttribute->Code();
-      ERenderShaderAttributeFormat formatCd = pAttribute->FormatCd();
-      FRenderVertexStream* pStream = pVertexStreams->FindStream(bufferCd);
+      TCharC* pBufferCode = RRenderAttribute::Format(bufferCd);
+      ERenderAttributeFormat formatCd = pAttribute->FormatCd();
+      FRenderVertexStream* pStream = pVertexStreams->FindStream(pBufferCode);
       FRenderLayoutElement* pElement = FRenderLayoutElement::InstanceCreate();
       pElement->SetAttribute(pAttribute);
       pElement->SetStream(pStream);

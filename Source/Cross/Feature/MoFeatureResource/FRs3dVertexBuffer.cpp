@@ -21,16 +21,16 @@ FRs3dVertexBuffer::~FRs3dVertexBuffer(){
 }
 
 //============================================================
-// <T>根据类型查找流数据。</T>
+// <T>根据代码查找流数据。</T>
 //
-// @param bufferCd 缓冲类型
+// @param pCode 代码
 // @return 流数据
 //============================================================
-FRs3dVertexStream* FRs3dVertexBuffer::FindStream(EContent3dVertexBuffer bufferCd){
+FRs3dVertexStream* FRs3dVertexBuffer::FindStream(TCharC* pCode){
    TInt count = _streams.Count();
    for(TInt n = 0; n < count; n++){
       FRs3dVertexStream* pStream = _streams.Get(n);
-      if(pStream->BufferCd() == bufferCd){
+      if(pStream->IsCode(pCode)){
          return pStream;
       }
    }

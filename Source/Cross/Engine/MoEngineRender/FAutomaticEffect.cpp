@@ -28,11 +28,11 @@ FAutomaticEffect::FAutomaticEffect(){
    _descriptor.supportEmissive = ETrue;
    _descriptor.supportHeight = ETrue;
    // 设置缓冲
-   _pParameters = MO_CREATE(FRenderShaderParameterCollection);
+   _pParameters = MO_CREATE(FRenderParameterCollection);
    _pParameters->SetCount(EEffectParameter_Count);
-   _pAttributes = MO_CREATE(FRenderShaderAttributeCollection);
+   _pAttributes = MO_CREATE(FRenderAttributeCollection);
    _pAttributes->SetCount(EEffectAttribute_Count);
-   _pSamplers = MO_CREATE(FRenderShaderSamplerCollection);
+   _pSamplers = MO_CREATE(FRenderSamplerCollection);
    _pSamplers->SetCount(ERenderSampler_Count);
 }
 
@@ -76,13 +76,13 @@ TResult FAutomaticEffect::BindDescriptors(){
    if(!parameters.IsEmpty()){
       GRenderShaderParameterDictionary::TIterator iterator = parameters.Iterator();
       while(iterator.Next()){
-         FRenderShaderParameter* pParameter = *iterator;
+         FRenderParameter* pParameter = *iterator;
          if(pParameter->IsStatusUsed()){
             // 解析内容
             TCharC* pLinker = pParameter->Linker();
             EEffectParameter parameterCd = EEffectParameter_Unknown;
             ERenderShader shaderCd = ERenderShader_Unknown;
-            ERenderShaderParameterFormat formatCd = ERenderShaderParameterFormat_Unknown;
+            ERenderParameterFormat formatCd = ERenderParameterFormat_Unknown;
             REffectParameter::Parse(pLinker, parameterCd, shaderCd, formatCd);
             // 设置参数
             pParameter->SetCode(parameterCd);
@@ -99,12 +99,12 @@ TResult FAutomaticEffect::BindDescriptors(){
    if(!attributes.IsEmpty()){
       GRenderShaderAttributeDictionary::TIterator iterator = attributes.Iterator();
       while(iterator.Next()){
-         FRenderShaderAttribute* pAttribute = *iterator;
+         FRenderAttribute* pAttribute = *iterator;
          if(pAttribute->IsStatusUsed()){
             // 解析内容
             TCharC* pLinker = pAttribute->Linker();
             EEffectAttribute attributeCd = EEffectAttribute_Unknown;
-            ERenderShaderAttributeFormat formatCd = ERenderShaderAttributeFormat_Unknown;
+            ERenderAttributeFormat formatCd = ERenderAttributeFormat_Unknown;
             REffectAttribute::Parse(pLinker, attributeCd, formatCd);
             // 设置参数
             pAttribute->SetCode(attributeCd);
@@ -119,7 +119,7 @@ TResult FAutomaticEffect::BindDescriptors(){
    if(!sampler.IsEmpty()){
       GRenderShaderSamplerDictionary::TIterator iterator = sampler.Iterator();
       while(iterator.Next()){
-         FRenderShaderSampler* pSampler = *iterator;
+         FRenderSampler* pSampler = *iterator;
          if(pSampler->IsStatusUsed()){
             TCharC* pLinker = pSampler->Linker();
             // 解析内容
@@ -193,7 +193,7 @@ TResult FAutomaticEffect::LinkDescriptors(){
 // @param point 三维坐标
 //============================================================
 TResult FAutomaticEffect::BindConstPosition3(TInt bindCd, SFloatPoint3& point){
-   FRenderShaderParameter* pParameter = _pParameters->Get(bindCd);
+   FRenderParameter* pParameter = _pParameters->Get(bindCd);
    if(pParameter != NULL){
       pParameter->SetFloat3(point.x, point.y, point.z);
    }
@@ -208,7 +208,7 @@ TResult FAutomaticEffect::BindConstPosition3(TInt bindCd, SFloatPoint3& point){
 // @param vector 三维方向
 //============================================================
 TResult FAutomaticEffect::BindConstVector3(TInt bindCd, SFloatVector3& vector){
-   FRenderShaderParameter* pParameter = _pParameters->Get(bindCd);
+   FRenderParameter* pParameter = _pParameters->Get(bindCd);
    if(pParameter != NULL){
       pParameter->SetFloat3(vector.x, vector.y, vector.z);
    }
@@ -225,7 +225,7 @@ TResult FAutomaticEffect::BindConstVector3(TInt bindCd, SFloatVector3& vector){
 // @param w 浮点数W
 //============================================================
 TResult FAutomaticEffect::BindConstFloat4(TInt bindCd, TFloat x, TFloat y, TFloat z, TFloat w){
-   FRenderShaderParameter* pParameter = _pParameters->Get(bindCd);
+   FRenderParameter* pParameter = _pParameters->Get(bindCd);
    if(pParameter != NULL){
       pParameter->SetFloat4(x, y, z, w);
    }
@@ -242,7 +242,7 @@ TResult FAutomaticEffect::BindConstFloat4(TInt bindCd, TFloat x, TFloat y, TFloa
 // @param w 浮点数W
 //============================================================
 TResult FAutomaticEffect::BindConstColor4(TInt bindCd, const SFloatColor4& color){
-   FRenderShaderParameter* pParameter = _pParameters->Get(bindCd);
+   FRenderParameter* pParameter = _pParameters->Get(bindCd);
    if(pParameter != NULL){
       pParameter->SetFloat4(color.red, color.green, color.blue, color.alpha);
    }
@@ -257,7 +257,7 @@ TResult FAutomaticEffect::BindConstColor4(TInt bindCd, const SFloatColor4& color
 // @param matrix 4X4矩阵
 //============================================================
 TResult FAutomaticEffect::BindConstMatrix3x3(TInt bindCd, SFloatMatrix3d* pMatrix, TInt count){
-   FRenderShaderParameter* pParameter = _pParameters->Get(bindCd);
+   FRenderParameter* pParameter = _pParameters->Get(bindCd);
    if((pParameter != NULL) && (count > 0)){
       pParameter->SetMatrix3x3(pMatrix, count, ETrue);
    }
@@ -272,7 +272,7 @@ TResult FAutomaticEffect::BindConstMatrix3x3(TInt bindCd, SFloatMatrix3d* pMatri
 // @param matrix 4X4矩阵
 //============================================================
 TResult FAutomaticEffect::BindConstMatrix4x3(TInt bindCd, SFloatMatrix3d* pMatrix, TInt count){
-   FRenderShaderParameter* pParameter = _pParameters->Get(bindCd);
+   FRenderParameter* pParameter = _pParameters->Get(bindCd);
    if((pParameter != NULL) && (count > 0)){
       pParameter->SetMatrix4x3(pMatrix, count, ETrue);
    }
@@ -287,7 +287,7 @@ TResult FAutomaticEffect::BindConstMatrix4x3(TInt bindCd, SFloatMatrix3d* pMatri
 // @param matrix 4X4矩阵
 //============================================================
 TResult FAutomaticEffect::BindConstMatrix4x4(TInt bindCd, SFloatMatrix3d* pMatrix, TInt count){
-   FRenderShaderParameter* pParameter = _pParameters->Get(bindCd);
+   FRenderParameter* pParameter = _pParameters->Get(bindCd);
    if((pParameter != NULL) && (count > 0)){
       pParameter->SetMatrix4x4(pMatrix, count, ETrue);
    }
@@ -319,7 +319,7 @@ TResult FAutomaticEffect::BindAttributeDescriptors(FRenderable* pRenderable){
    // 关联属性集合
    //GRenderShaderAttributeDictionary::TIterator iterator = _program->Attributes().IteratorC();
    //while(iterator.Next()){
-   //   FRenderShaderAttribute* pAttribute = *iterator;
+   //   FRenderAttribute* pAttribute = *iterator;
    //   if(pAttribute->IsStatusUsed()){
    //      ERenderVertexBuffer bufferCd = (ERenderVertexBuffer)pAttribute->Code();
    //      FRenderVertexStream* pVertexStream = pVertexStreams->FindStream(bufferCd);
@@ -372,7 +372,7 @@ TResult FAutomaticEffect::BindSampler(TInt bindCd, FRenderTexture* pTexture){
    MO_CHECK(pRenderDevice, return ENull);
    //............................................................
    // 关联属性集合
-   FRenderShaderSampler* pSampler = _pSamplers->Get(bindCd);
+   FRenderSampler* pSampler = _pSamplers->Get(bindCd);
    if(pSampler != NULL){
       //pTexture->SetIndex(descriptor.index);
       pRenderDevice->BindTexture(pSampler->Slot(), pTexture);
@@ -394,7 +394,7 @@ TResult FAutomaticEffect::BindSamplerDescriptors(FRenderable* pRenderable){
    // 关联属性集合
    GRenderShaderSamplerDictionary::TIterator iterator = _program->Samplers().IteratorC();
    while(iterator.Next()){
-      FRenderShaderSampler* pSampler = *iterator;
+      FRenderSampler* pSampler = *iterator;
       if(pSampler->IsStatusUsed()){
          TInt packCode = pSampler->PackCode();
          FRenderTexture* pTexture = pRenderable->FindTexture(packCode);

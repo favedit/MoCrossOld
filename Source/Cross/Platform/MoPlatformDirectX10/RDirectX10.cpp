@@ -62,7 +62,7 @@ DXGI_FORMAT RDirectX10::ConvertIndexStride(ERenderIndexStride strideCd){
 // @param mask 遮蔽描述
 // @return 处理结果
 //============================================================
-ERenderShaderAttributeFormat RDirectX10::ParseAttrbuteFormat(D3D_REGISTER_COMPONENT_TYPE componentType, TInt mask){
+ERenderAttributeFormat RDirectX10::ParseAttrbuteFormat(D3D_REGISTER_COMPONENT_TYPE componentType, TInt mask){
    // 判断位数
    TInt count = 0;
    if(mask & 0x01){
@@ -85,18 +85,18 @@ ERenderShaderAttributeFormat RDirectX10::ParseAttrbuteFormat(D3D_REGISTER_COMPON
          break;
       case D3D_REGISTER_COMPONENT_FLOAT32:{
          if(count == 1){
-            return ERenderShaderAttributeFormat_Float1;
+            return ERenderAttributeFormat_Float1;
          }else if(count == 2){
-            return ERenderShaderAttributeFormat_Float2;
+            return ERenderAttributeFormat_Float2;
          }else if(count == 3){
-            return ERenderShaderAttributeFormat_Float3;
+            return ERenderAttributeFormat_Float3;
          }else if(count == 4){
-            return ERenderShaderAttributeFormat_Float4;
+            return ERenderAttributeFormat_Float4;
          }
       }
    }
    MO_STATIC_FATAL("Parse attribtue format failure. (component_type=%d)", componentType);
-   return ERenderShaderAttributeFormat_Unknown;
+   return ERenderAttributeFormat_Unknown;
 }
 
 //============================================================
@@ -105,19 +105,19 @@ ERenderShaderAttributeFormat RDirectX10::ParseAttrbuteFormat(D3D_REGISTER_COMPON
 // @param formatCd 格式
 // @return 属性格式
 //============================================================
-DXGI_FORMAT RDirectX10::ConvertAttrbuteFormat(ERenderShaderAttributeFormat formatCd){
+DXGI_FORMAT RDirectX10::ConvertAttrbuteFormat(ERenderAttributeFormat formatCd){
    switch(formatCd){
-      case ERenderShaderAttributeFormat_Float1:
+      case ERenderAttributeFormat_Float1:
          return DXGI_FORMAT_R32_FLOAT;
-      case ERenderShaderAttributeFormat_Float2:
+      case ERenderAttributeFormat_Float2:
          return DXGI_FORMAT_R32G32_FLOAT;
-      case ERenderShaderAttributeFormat_Float3:
+      case ERenderAttributeFormat_Float3:
          return DXGI_FORMAT_R32G32B32_FLOAT;
-      case ERenderShaderAttributeFormat_Float4:
+      case ERenderAttributeFormat_Float4:
          return DXGI_FORMAT_R32G32B32A32_FLOAT;
-      case ERenderShaderAttributeFormat_Byte4:
+      case ERenderAttributeFormat_Byte4:
          return DXGI_FORMAT_R8G8B8A8_UINT;
-      case ERenderShaderAttributeFormat_Byte4Normal:
+      case ERenderAttributeFormat_Byte4Normal:
          return DXGI_FORMAT_R8G8B8A8_UNORM;
    }
    MO_STATIC_FATAL("Convert attribute format failure. (format=%d)", formatCd);

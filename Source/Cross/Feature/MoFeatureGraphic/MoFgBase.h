@@ -180,28 +180,6 @@ enum ERenderUsage{
 };
 
 //============================================================
-// <T>渲染顶点格式。</T>
-//============================================================
-enum ERenderVertexFormat{
-   ERenderVertexFormat_Unknown = 0,
-   ERenderVertexFormat_Float1 = 1,
-   ERenderVertexFormat_Float2 = 2,
-   ERenderVertexFormat_Float3 = 3,
-   ERenderVertexFormat_Float4 = 4,
-   ERenderVertexFormat_Byte4 = 5,
-   ERenderVertexFormat_ByteNormal4 = 6,
-};
-
-//============================================================
-// <T>渲染面模式工具。</T>
-//============================================================
-class MO_FG_DECLARE RRenderVertexFormat{
-public:
-   static ERenderVertexFormat Parse(TCharC* pValue, ERenderVertexFormat formatCd = ERenderVertexFormat_Unknown);
-   static TCharC* Format(ERenderVertexFormat formatCd);
-};
-
-//============================================================
 // <T>渲染顶点缓冲。</T>
 //============================================================
 enum ERenderAttribute{
@@ -294,47 +272,47 @@ public:
 //============================================================
 // <T>渲染程序常量类型。</T>
 //============================================================
-enum ERenderShaderParameterFormat{
-   ERenderShaderParameterFormat_Unknown,
-   ERenderShaderParameterFormat_Float1,
-   ERenderShaderParameterFormat_Float2,
-   ERenderShaderParameterFormat_Float3,
-   ERenderShaderParameterFormat_Float4,
-   ERenderShaderParameterFormat_Float3x3,
-   ERenderShaderParameterFormat_Float4x3,
-   ERenderShaderParameterFormat_Float4x4,
+enum ERenderParameterFormat{
+   ERenderParameterFormat_Unknown,
+   ERenderParameterFormat_Float1,
+   ERenderParameterFormat_Float2,
+   ERenderParameterFormat_Float3,
+   ERenderParameterFormat_Float4,
+   ERenderParameterFormat_Float3x3,
+   ERenderParameterFormat_Float4x3,
+   ERenderParameterFormat_Float4x4,
 };
 
 //============================================================
 // <T>渲染程序常量工具。</T>
 //============================================================
-class MO_FG_DECLARE RRenderShaderParameterFormat{
+class MO_FG_DECLARE RRenderParameterFormat{
 public:
-   static ERenderShaderParameterFormat Parse(TCharC* pValue, ERenderShaderParameterFormat formatCd = ERenderShaderParameterFormat_Unknown);
-   static TCharC* Format(ERenderShaderParameterFormat formatCd);
+   static ERenderParameterFormat Parse(TCharC* pValue, ERenderParameterFormat formatCd = ERenderParameterFormat_Unknown);
+   static TCharC* Format(ERenderParameterFormat formatCd);
 };
 
 //============================================================
 // <T>渲染程序属性类型。</T>
 //============================================================
-enum ERenderShaderAttributeFormat{
-   ERenderShaderAttributeFormat_Unknown,
-   ERenderShaderAttributeFormat_Float1,
-   ERenderShaderAttributeFormat_Float2,
-   ERenderShaderAttributeFormat_Float3,
-   ERenderShaderAttributeFormat_Float4,
-   ERenderShaderAttributeFormat_Byte4,
-   ERenderShaderAttributeFormat_Byte4Normal,
+enum ERenderAttributeFormat{
+   ERenderAttributeFormat_Unknown,
+   ERenderAttributeFormat_Float1,
+   ERenderAttributeFormat_Float2,
+   ERenderAttributeFormat_Float3,
+   ERenderAttributeFormat_Float4,
+   ERenderAttributeFormat_Byte4,
+   ERenderAttributeFormat_Byte4Normal,
 };
 
 //============================================================
 // <T>渲染程序属性工具。</T>
 //============================================================
-class MO_FG_DECLARE RRenderShaderAttributeFormat{
+class MO_FG_DECLARE RRenderAttributeFormat{
 public:
-   static ERenderShaderAttributeFormat Parse(TCharC* pValue, ERenderShaderAttributeFormat formatCd = ERenderShaderAttributeFormat_Unknown);
-   static TCharC* Format(ERenderShaderAttributeFormat formatCd);
-   static TInt CalculateSize(ERenderShaderAttributeFormat formatCd);
+   static ERenderAttributeFormat Parse(TCharC* pValue, ERenderAttributeFormat formatCd = ERenderAttributeFormat_Unknown);
+   static TCharC* Format(ERenderAttributeFormat formatCd);
+   static TInt CalculateSize(ERenderAttributeFormat formatCd);
 };
 
 //============================================================
@@ -347,60 +325,60 @@ enum ERenderTexture{
    ERenderTexture_Cube,
 };
 
-//============================================================
-// <T>渲染取样器类型。</T>
-//============================================================
-enum ERenderSampler{
-   ERenderSampler_Unknown,
-   ERenderSampler_Ambient,
-   ERenderSampler_Diffuse,
-   ERenderSampler_Alpha,
-   ERenderSampler_Normal,
-   ERenderSampler_Height,
-   ERenderSampler_SpecularColor,
-   ERenderSampler_SpecularLevel,
-   ERenderSampler_TransmittanceColor,
-   ERenderSampler_TransmittanceLevel,
-   ERenderSampler_Light,
-   ERenderSampler_Reflect,
-   ERenderSampler_Refract,
-   ERenderSampler_Emissive,
-   ERenderSampler_Environment,
-   ERenderSampler_LayerMerge,
-   ERenderSampler_Layer1,
-   ERenderSampler_Layer2,
-   ERenderSampler_Layer3,
-   ERenderSampler_Layer4,
-   ERenderSampler_PackDiffuse,
-   ERenderSampler_PackNormal,
-   ERenderSampler_PackSpecular,
-   ERenderSampler_PackTransmittance,
-   ERenderSampler_PackLight,
-   ERenderSampler_LightDepth,
-   ERenderSampler_Count,
-};
-
-//============================================================
-// <T>渲染取样器类型枚举。</T>
-//============================================================
-class MO_FG_DECLARE FRenderSamplerEnumerator : public FEnumerator{
-public:
-   TResult Construct();
-public:
-   TInt ParsePack(TInt samplerCd);
-};
-
-//============================================================
-// <T>渲染取样器类型工具。</T>
-//============================================================
-class MO_FG_DECLARE RRenderSampler : public REnumerator<FRenderSamplerEnumerator>{
-public:
-   //------------------------------------------------------------
-   // <T>根据取样器获得打包取样器。</T>
-   static TInt ParsePack(TInt samplerCd){
-      return _pInstance->ParsePack(samplerCd);
-   }
-};
+////============================================================
+//// <T>渲染取样器类型。</T>
+////============================================================
+//enum ERenderSampler{
+//   ERenderSampler_Unknown,
+//   ERenderSampler_Ambient,
+//   ERenderSampler_Diffuse,
+//   ERenderSampler_Alpha,
+//   ERenderSampler_Normal,
+//   ERenderSampler_Height,
+//   ERenderSampler_SpecularColor,
+//   ERenderSampler_SpecularLevel,
+//   ERenderSampler_TransmittanceColor,
+//   ERenderSampler_TransmittanceLevel,
+//   ERenderSampler_Light,
+//   ERenderSampler_Reflect,
+//   ERenderSampler_Refract,
+//   ERenderSampler_Emissive,
+//   ERenderSampler_Environment,
+//   ERenderSampler_LayerMerge,
+//   ERenderSampler_Layer1,
+//   ERenderSampler_Layer2,
+//   ERenderSampler_Layer3,
+//   ERenderSampler_Layer4,
+//   ERenderSampler_PackDiffuse,
+//   ERenderSampler_PackNormal,
+//   ERenderSampler_PackSpecular,
+//   ERenderSampler_PackTransmittance,
+//   ERenderSampler_PackLight,
+//   ERenderSampler_LightDepth,
+//   ERenderSampler_Count,
+//};
+//
+////============================================================
+//// <T>渲染取样器类型枚举。</T>
+////============================================================
+//class MO_FG_DECLARE FRenderSamplerEnumerator : public FEnumerator{
+//public:
+//   TResult Construct();
+//public:
+//   TInt ParsePack(TInt samplerCd);
+//};
+//
+////============================================================
+//// <T>渲染取样器类型工具。</T>
+////============================================================
+//class MO_FG_DECLARE RRenderSampler : public REnumerator<FRenderSamplerEnumerator>{
+//public:
+//   //------------------------------------------------------------
+//   // <T>根据取样器获得打包取样器。</T>
+//   static TInt ParsePack(TInt samplerCd){
+//      return _pInstance->ParsePack(samplerCd);
+//   }
+//};
 
 //============================================================
 // <T>渲染纹理格式。</T>
@@ -542,22 +520,22 @@ public:
    TBool boneCount;
 public:
    // 顶点缓冲
-   TBool vertexBuffers[ERenderAttribute_Count];
+   //TBool vertexBuffers[ERenderAttribute_Count];
    // 取样器集合
-   TBool samplers[ERenderSampler_Count];
+   //TBool samplers[ERenderSampler_Count];
 public:
    SRenderableDescriptor();
 public:
    //------------------------------------------------------------
    // <T>测试是否含有指定缓冲。</T>
-   MO_INLINE TBool ContainsBuffer(ERenderAttribute bufferCd){
-      return vertexBuffers[bufferCd];
-   }
+   //MO_INLINE TBool ContainsBuffer(ERenderAttribute bufferCd){
+   //   return vertexBuffers[bufferCd];
+   //}
    //------------------------------------------------------------
    // <T>测试是否含有指定取样器。</T>
-   MO_INLINE TBool ContainsSampler(ERenderSampler samplerCd){
-      return samplers[samplerCd];
-   }
+   //MO_INLINE TBool ContainsSampler(TCharC* pTextureCode){
+   //   return samplers[samplerCd];
+   //}
 public:
    TResult Assign(SRenderableDescriptor* pFlag);
    TResult Build();

@@ -54,12 +54,12 @@ TResult FModel3dGeometry::LoadResource(FRs3dGeometry* pResource){
    for(int n = 0; n < vertexStreamCount; n++){
       // 获得顶点流信息
       FRs3dVertexStream* pRsVertexStream = rsVertexStreams.Get(n);
-      TInt bufferCd = pRsVertexStream->BufferCd();
-      ERenderVertexFormat formatCd = (ERenderVertexFormat)pRsVertexStream->FormatCd();
+      TCharC* pBufferCode = pRsVertexStream->Code();
+      ERenderAttributeFormat formatCd = (ERenderAttributeFormat)pRsVertexStream->FormatCd();
       TInt offset = pRsVertexStream->Offset();
       // 创建渲染流
       FRenderVertexStream* pVertexStream = FRenderVertexStream::InstanceCreate();
-      pVertexStream->SetBufferCd(bufferCd);
+      pVertexStream->SetCode(pBufferCode);
       pVertexStream->SetFormatCd(formatCd);
       pVertexStream->SetOffset(offset);
       pVertexStream->SetVertexBuffer(pVertexBuffer);

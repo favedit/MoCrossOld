@@ -9,7 +9,6 @@ MO_CLASS_IMPLEMENT_INHERITS(FRs3dVertexStream, FInstance);
 //============================================================
 FRs3dVertexStream::FRs3dVertexStream(){
    MO_CLEAR(_pBuffer);
-   _bufferCd = EContent3dVertexBuffer_Unknown;
    _formatCd = EContent3dVertexFormat_Float4;
    _stride = 0;
    _offset = 0;
@@ -30,7 +29,7 @@ FRs3dVertexStream::~FRs3dVertexStream(){
 TResult FRs3dVertexStream::Unserialize(IDataInput* pInput){
    MO_CHECK(pInput, return ENull);
    // ¶ÁÈ¡ÊôÐÔ
-   _bufferCd = (EContent3dVertexBuffer)pInput->ReadUint8();
+   _code.Unserialize(pInput);
    _formatCd = (EContent3dVertexFormat)pInput->ReadUint8();
    _stride = pInput->ReadUint8();
    _offset = pInput->ReadUint8();

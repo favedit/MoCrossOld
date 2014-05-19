@@ -68,8 +68,8 @@ public:
       return _pBitmaps;
    }
 public:
-   FTexture3dBitmap* FindByType(ERenderSampler samplerCd);
-   FTexture3dBitmap* FindByPack(ERenderSampler samplerCd);
+   FTexture3dBitmap* FindByType(TCharC* pCode);
+   FTexture3dBitmap* FindByPack(TCharC* pCode);
 public:
    MO_ABSTRACT TResult LoadResource(FRs3dTexture* pResource);
    MO_ABSTRACT TResult Open();

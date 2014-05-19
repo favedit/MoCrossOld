@@ -19,16 +19,26 @@ class MO_FR_DECLARE FRs3dMaterialTexture : public FInstance
 {
    MO_CLASS_DECLARE_INHERITS(FRs3dMaterialTexture, FInstance);
 protected:
-   EContent3dSampler _samplerCd;
+   TString _code;
    TString _textureName;
 public:
    FRs3dMaterialTexture();
    MO_ABSTRACT ~FRs3dMaterialTexture();
 public:
    //------------------------------------------------------------
-   // <T>获得取样类型。</T>
-   MO_INLINE EContent3dSampler SamplerCd(){
-      return _samplerCd;
+   // <T>判断是否指定代码。</T>
+   MO_INLINE TBool IsCode(TCharC* pCode){
+      return _code.Equals(pCode);
+   }
+   //------------------------------------------------------------
+   // <T>获得代码。</T>
+   MO_INLINE TCharC* Code(){
+      return _code;
+   }
+   //------------------------------------------------------------
+   // <T>设置代码。</T>
+   MO_INLINE void SetCode(TCharC* pCode){
+      _code = pCode;
    }
    //------------------------------------------------------------
    // <T>获得纹理编号。</T>

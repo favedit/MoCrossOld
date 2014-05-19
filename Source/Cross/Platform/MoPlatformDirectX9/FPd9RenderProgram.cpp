@@ -128,7 +128,7 @@ TResult FPd9RenderProgram::BuildShader(FRenderShader* pShader, FPd9RenderShaderB
             }
          }else if(constDescriptor.RegisterSet == D3DXRS_SAMPLER){
             // 设置取样器
-            FRenderShaderSampler* pSampler = SamplerFind(constDescriptor.Name);
+            FRenderSampler* pSampler = SamplerFind(constDescriptor.Name);
             if(pSampler == NULL){
                MO_FATAL("Shader sampler bound is not found. (name=%s)", constDescriptor.Name);
             }else{
@@ -146,7 +146,7 @@ TResult FPd9RenderProgram::BuildShader(FRenderShader* pShader, FPd9RenderShaderB
    // 修正属性流定义
    GRenderShaderAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
    while(attributeIterator.Next()){
-      FRenderShaderAttribute* pAttribute = *attributeIterator;
+      FRenderAttribute* pAttribute = *attributeIterator;
       pAttribute->SetStatusUsed(ETrue);
    }
    //............................................................
@@ -197,9 +197,9 @@ TResult FPd9RenderProgram::Link(){
    //TInt position = 0;
    //GRenderShaderAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
    //while(attributeIterator.Next()){
-   //   FRenderShaderAttribute* pAttribute = *attributeIterator;
+   //   FRenderAttribute* pAttribute = *attributeIterator;
    //   if(pAttribute->IsStatusUsed()){
-   //      ERenderShaderAttributeFormat formatCd = pAttribute->FormatCd();
+   //      ERenderAttributeFormat formatCd = pAttribute->FormatCd();
    //      D3D9_INPUT_ELEMENT_DESC inputElement;
    //      RType<D3D9_INPUT_ELEMENT_DESC>::Clear(&inputElement);
    //      inputElement.SemanticName = pAttribute->Name();
@@ -210,7 +210,7 @@ TResult FPd9RenderProgram::Link(){
    //      inputElement.AlignedByteOffset = 0;
    //      inputElement.InputSlotClass = D3D9_INPUT_PER_VERTEX_DATA;
    //      inputElements.Push(inputElement);
-   //      position += RRenderShaderAttributeFormat::CalculateSize(formatCd);
+   //      position += RRenderAttributeFormat::CalculateSize(formatCd);
    //   }
    //}
    //// 创建输入层次

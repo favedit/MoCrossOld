@@ -35,7 +35,7 @@ TBool FRenderVertexStreams::EqualsDescription(FRenderVertexStreams* pStreams){
    for(TInt n = 0; n < count; n++){
       FRenderVertexStream* pSourceStream = pStreams->Streams()->Get(n);
       FRenderVertexStream* pStream = _pStreams->Get(n);
-      if(pStream->BufferCd() != pSourceStream->BufferCd()){
+      if(pStream->IsCode(pSourceStream->Code())){
          return EFalse;
       }
       if(pStream->FormatCd() != pSourceStream->FormatCd()){
@@ -49,16 +49,16 @@ TBool FRenderVertexStreams::EqualsDescription(FRenderVertexStreams* pStreams){
 }
 
 //============================================================
-// <T>根据类型查找流数据。</T>
+// <T>根据代码查找流数据。</T>
 //
-// @param bufferCd 流类型
+// @param pCode 代码
 // @return 流数据
 //============================================================
-FRenderVertexStream* FRenderVertexStreams::FindStream(TInt bufferCode){
+FRenderVertexStream* FRenderVertexStreams::FindStream(TCharC* pCode){
    TInt count = _pStreams->Count();
    for(TInt n = 0; n < count; n++){
       FRenderVertexStream* pStream = _pStreams->Get(n);
-      if(pStream->BufferCd() == bufferCode){
+      if(pStream->IsCode(pCode)){
          return pStream;
       }
    }
@@ -66,13 +66,13 @@ FRenderVertexStream* FRenderVertexStreams::FindStream(TInt bufferCode){
 }
 
 //============================================================
-// <T>根据类型获得流数据。</T>
+// <T>根据代码获得流数据。</T>
 //
-// @param bufferCd 流类型
+// @param bufferCd 代码
 // @return 流数据
 //============================================================
-FRenderVertexStream* FRenderVertexStreams::GetStream(TInt bufferCode){
-   FRenderVertexStream* pStream = FindStream(bufferCode);
+FRenderVertexStream* FRenderVertexStreams::GetStream(TCharC* pCode){
+   FRenderVertexStream* pStream = FindStream(pCode);
    MO_CHECK(pStream, return NULL);
    return pStream;
 }

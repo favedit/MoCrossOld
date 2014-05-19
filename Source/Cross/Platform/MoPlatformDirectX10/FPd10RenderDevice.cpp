@@ -24,9 +24,9 @@ FPd10RenderDevice::FPd10RenderDevice(){
    MO_CLEAR(_piDevice);
    // 注册类集合
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERBUFFER,    FPd10RenderShaderBuffer::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERATTRIBUTE, FRenderShaderAttribute::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_SHADERATTRIBUTE, FRenderAttribute::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERPARAMETER, FPd10RenderShaderParameter::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERSAMPLER,   FRenderShaderSampler::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_SHADERSAMPLER,   FRenderSampler::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT,          FPd10RenderLayout::Class());
    //
    MO_CLEAR(_piRasterizerState);
@@ -779,7 +779,7 @@ TResult FPd10RenderDevice::SetLayout(FRenderLayout* pLayout){
 // @parma length 长度
 // @return 处理结果
 //============================================================
-TResult FPd10RenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERenderShaderParameterFormat formatCd, TAnyC* pData, TInt length){
+TResult FPd10RenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERenderParameterFormat formatCd, TAnyC* pData, TInt length){
    // 检查变更
    TBool changed = UpdateConsts(shaderCd, slot, pData, length);
    if(!changed){
@@ -788,7 +788,7 @@ TResult FPd10RenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERen
    // 修改数据
    TResult result = ESuccess;
    //switch (formatCd){
-   //   case ERenderShaderParameterFormat_Float1:{
+   //   case ERenderParameterFormat_Float1:{
    //      // 检查长度
    //      if(length % 4 != 0){
    //         MO_ERROR("Length is invalid. (length=d)", length);
@@ -801,7 +801,7 @@ TResult FPd10RenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERen
    //      result = CheckError("glUniform1fv", "Bind const data failure. (shader_cd=%d, slot=%d, pData=0x%08X, length=%d)", shaderCd, slot, pData, length);
    //      break;
    //   }
-   //   case ERenderShaderParameterFormat_Float2:{
+   //   case ERenderParameterFormat_Float2:{
    //      // 检查长度
    //      if(length % 8 != 0){
    //         MO_ERROR("Length is invalid. (length=d)", length);
@@ -814,7 +814,7 @@ TResult FPd10RenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERen
    //      result = CheckError("glUniform2fv", "Bind const data failure. (shader_cd=%d, slot=%d, pData=0x%08X, length=%d)", shaderCd, slot, pData, length);
    //      break;
    //   }
-   //   case ERenderShaderParameterFormat_Float3:{
+   //   case ERenderParameterFormat_Float3:{
    //      // 检查长度
    //      if(length % 12 != 0){
    //         MO_ERROR("Length is invalid. (length=d)", length);
@@ -827,7 +827,7 @@ TResult FPd10RenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERen
    //      result = CheckError("glUniform3fv", "Bind const data failure. (shader_cd=%d, slot=%d, pData=0x%08X, length=%d)", shaderCd, slot, pData, length);
    //      break;
    //   }
-   //   case ERenderShaderParameterFormat_Float4:{
+   //   case ERenderParameterFormat_Float4:{
    //      // 检查长度
    //      if(length % 16 != 0){
    //         MO_ERROR("Length is invalid. (length=d)", length);
@@ -840,7 +840,7 @@ TResult FPd10RenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERen
    //      result = CheckError("glUniform4fv", "Bind const data failure. (shader_cd=%d, slot=%d, pData=0x%08X, length=%d)", shaderCd, slot, pData, length);
    //      break;
    //   }
-   //   case ERenderShaderParameterFormat_Matrix3x3:{
+   //   case ERenderParameterFormat_Matrix3x3:{
    //      // 检查长度
    //      if(length % 36 != 0){
    //         MO_ERROR("Length is invalid. (length=d)", length);
@@ -853,7 +853,7 @@ TResult FPd10RenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERen
    //      result = CheckError("glUniformMatrix4fv", "Bind const matrix3x3 failure. (shader_cd=%d, slot=%d, pData=0x%08X, length=%d)", shaderCd, slot, pData, length);
    //      break;
    //   }
-   //   case ERenderShaderParameterFormat_Matrix4x3:{
+   //   case ERenderParameterFormat_Matrix4x3:{
    //      // 检查长度
    //      if(length % 48 != 0){
    //         MO_ERROR("Length is invalid. (length=d)", length);
@@ -867,7 +867,7 @@ TResult FPd10RenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERen
    //      result = CheckError("glUniformMatrix4x3fv", "Bind const matrix4x3 failure. (shader_cd=%d, slot=%d, pData=0x%08X, length=%d)", shaderCd, slot, pData, length);
    //      break;
    //   }
-   //   case ERenderShaderParameterFormat_Matrix4x4:{
+   //   case ERenderParameterFormat_Matrix4x4:{
    //      // 检查长度
    //      if(length % 64 != 0){
    //         MO_ERROR("Length is invalid. (length=d)", length);
@@ -988,7 +988,7 @@ TResult FPd10RenderDevice::BindShaderBuffer(FRenderShaderBuffer* pBuffer){
 // @param formatCd 格式
 // @return 处理结果
 //============================================================
-TResult FPd10RenderDevice::BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVertexBuffer, TInt offset, ERenderVertexFormat formatCd){
+TResult FPd10RenderDevice::BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVertexBuffer, TInt offset, ERenderAttributeFormat formatCd){
    MO_ERROR_CHECK(slot >= 0, return EFailure, "Slot value is invalid. (slot=%d)", slot);
    // 获得顶点流
    TResult result = ESuccess;

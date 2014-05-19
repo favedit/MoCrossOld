@@ -52,8 +52,8 @@ TResult FInstanceRenderable::Setup(){
    pInstanceIndexBuffer->UploadData();
    // 创建实例编号流
    FRenderVertexStream* pInstanceIdStream = FRenderVertexStream::InstanceCreate();
-   pInstanceIdStream->SetBufferCd(ERenderAttribute_Instance);
-   pInstanceIdStream->SetFormatCd(ERenderVertexFormat_Float1);
+   pInstanceIdStream->SetCode("Instance");
+   pInstanceIdStream->SetFormatCd(ERenderAttributeFormat_Float1);
    pInstanceIdStream->SetVertexBuffer(pInstanceIndexBuffer);
    _pVertexStreams->PushStream(pInstanceIdStream);
    // 创建属性流集合
@@ -84,12 +84,12 @@ TResult FInstanceRenderable::Setup(){
          if(pVertexStream->VertexBuffer() != pVertexBuffer){
             continue;
          }
-         TInt bufferCd = pVertexStream->BufferCd();
-         ERenderVertexFormat formatCd = pVertexStream->FormatCd();
+         TCharC* pBufferCode = pVertexStream->Code();
+         ERenderAttributeFormat formatCd = pVertexStream->FormatCd();
          TInt offset = pVertexStream->Offset();
          // 创建渲染流
          FRenderVertexStream* pInstanceVertexStream = FRenderVertexStream::InstanceCreate();
-         pInstanceVertexStream->SetBufferCd(bufferCd);
+         pInstanceVertexStream->SetCode(pBufferCode);
          pInstanceVertexStream->SetFormatCd(formatCd);
          pInstanceVertexStream->SetOffset(offset);
          pInstanceVertexStream->SetVertexBuffer(pInstanceVertexBuffer);

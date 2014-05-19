@@ -387,29 +387,24 @@ class FRs3dVertexStream : public FInstance
 {
    MO_CLASS_DECLARE_INHERITS(FRs3dVertexStream, FInstance);
 protected:
-   FRs3dVertexBuffer* _pBuffer;
-   EContent3dVertexBuffer _bufferCd;
+   TString _code;
    EContent3dVertexFormat _formatCd;
    TInt _stride;
    TInt _offset;
+   FRs3dVertexBuffer* _pBuffer;
 public:
    FRs3dVertexStream();
    MO_ABSTRACT ~FRs3dVertexStream();
 public:
    //------------------------------------------------------------
-   // <T>获得缓冲。</T>
-   MO_INLINE FRs3dVertexBuffer* Buffer(){
-      return _pBuffer;
+   // <T>判断是否指定代码。</T>
+   MO_INLINE TBool IsCode(TCharC* pCode){
+      return _code.Equals(pCode);
    }
    //------------------------------------------------------------
-   // <T>设置缓冲。</T>
-   MO_INLINE void SetBuffer(FRs3dVertexBuffer* pBuffer){
-      _pBuffer = pBuffer;
-   }
-   //------------------------------------------------------------
-   // <T>获得类型。</T>
-   MO_INLINE EContent3dVertexBuffer BufferCd(){
-      return _bufferCd;
+   // <T>获得代码。</T>
+   MO_INLINE TCharC* Code(){
+      return _code;
    }
    //------------------------------------------------------------
    // <T>获得格式。</T>
@@ -425,6 +420,16 @@ public:
    // <T>获得偏移。</T>
    MO_INLINE TInt Offset(){
       return _offset;
+   }
+   //------------------------------------------------------------
+   // <T>获得缓冲。</T>
+   MO_INLINE FRs3dVertexBuffer* Buffer(){
+      return _pBuffer;
+   }
+   //------------------------------------------------------------
+   // <T>设置缓冲。</T>
+   MO_INLINE void SetBuffer(FRs3dVertexBuffer* pBuffer){
+      _pBuffer = pBuffer;
    }
 public:
    MO_ABSTRACT TResult Unserialize(IDataInput* pInput);
@@ -473,7 +478,7 @@ public:
       return _pData;
    }
 public:
-   FRs3dVertexStream* FindStream(EContent3dVertexBuffer bufferCd);
+   FRs3dVertexStream* FindStream(TCharC* pCode);
    MO_ABSTRACT TResult Unserialize(IDataInput* pInput);
    void Clear();
 };
