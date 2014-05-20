@@ -2,12 +2,12 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FRenderAttribute, FRenderObject);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramAttribute, FInstance);
 
 //============================================================
 // <T>构造渲染器属性。</T>
 //============================================================
-FRenderAttribute::FRenderAttribute(){
+FRenderProgramAttribute::FRenderProgramAttribute(){
    _code = -1;
    _index = -1;
    _slot = -1;
@@ -18,7 +18,7 @@ FRenderAttribute::FRenderAttribute(){
 //============================================================
 // <T>析构渲染器属性。</T>
 //============================================================
-FRenderAttribute::~FRenderAttribute(){
+FRenderProgramAttribute::~FRenderProgramAttribute(){
 }
 
 //============================================================
@@ -27,7 +27,7 @@ FRenderAttribute::~FRenderAttribute(){
 // @param pConfig 配置节点
 // @return 处理结果
 //============================================================
-TResult FRenderAttribute::LoadConfig(FXmlNode* pConfig){
+TResult FRenderProgramAttribute::LoadConfig(FXmlNode* pConfig){
    MO_CHECK(pConfig, return ENull);
    // 设置名称
    _name = pConfig->Get("name");
@@ -38,7 +38,7 @@ TResult FRenderAttribute::LoadConfig(FXmlNode* pConfig){
    if(pFormat != NULL){
       _formatCd = RRenderAttributeFormat::Parse(pFormat);
    }
-   _code = RRenderAttribute::Parse(_linker);
+   //_code = RRenderAttribute::Parse(_linker);
    return ESuccess;
 }
 

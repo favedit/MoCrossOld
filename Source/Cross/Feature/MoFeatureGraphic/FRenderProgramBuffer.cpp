@@ -2,12 +2,12 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FRenderShaderBuffer, FRenderObject);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramBuffer, FRenderObject);
 
 //============================================================
 // <T>构造渲染器缓冲。</T>
 //============================================================
-FRenderShaderBuffer::FRenderShaderBuffer(){
+FRenderProgramBuffer::FRenderProgramBuffer(){
    _groupCd = ERenderShaderBuffer_Unknown;
    _bufferCd = ERenderShaderBuffer_Unknown;
    _dataLength = 0;
@@ -21,7 +21,7 @@ FRenderShaderBuffer::FRenderShaderBuffer(){
 //============================================================
 // <T>析构渲染器缓冲。</T>
 //============================================================
-FRenderShaderBuffer::~FRenderShaderBuffer(){
+FRenderProgramBuffer::~FRenderProgramBuffer(){
    MO_DELETE(_pData);
 }
 
@@ -31,7 +31,7 @@ FRenderShaderBuffer::~FRenderShaderBuffer(){
 // @param pConfig 配置节点
 // @return 处理结果
 //============================================================
-TResult FRenderShaderBuffer::LoadConfig(FXmlNode* pConfig){
+TResult FRenderProgramBuffer::LoadConfig(FXmlNode* pConfig){
    MO_CHECK(pConfig, return ENull);
    // 设置名称
    _name = pConfig->Get("name");
@@ -49,7 +49,7 @@ TResult FRenderShaderBuffer::LoadConfig(FXmlNode* pConfig){
 //
 // @return 处理结果
 //============================================================
-TResult FRenderShaderBuffer::OnSetup(){
+TResult FRenderProgramBuffer::OnSetup(){
    MO_CHECK(_pDevice, return ENull);
    if(_dataLength == 0){
       return ESuccess;
@@ -70,7 +70,7 @@ TResult FRenderShaderBuffer::OnSetup(){
 // @param length 长度
 // @return 处理结果
 //============================================================
-TResult FRenderShaderBuffer::Set(TInt slot, TAnyC* pData, TInt length){
+TResult FRenderProgramBuffer::Set(TInt slot, TAnyC* pData, TInt length){
    // 检查是否使用
    if(!_statusUsed){
       return EContinue;
@@ -98,7 +98,7 @@ TResult FRenderShaderBuffer::Set(TInt slot, TAnyC* pData, TInt length){
 //
 // @return 处理结果
 //============================================================
-TResult FRenderShaderBuffer::Commit(){
+TResult FRenderProgramBuffer::Commit(){
    MO_FATAL_UNSUPPORT();
    return ESuccess;
 }
@@ -108,7 +108,7 @@ TResult FRenderShaderBuffer::Commit(){
 //
 // @return 处理结果
 //============================================================
-TResult FRenderShaderBuffer::Update(){
+TResult FRenderProgramBuffer::Update(){
    // 检查是否使用
    if(!_statusUsed){
       return EContinue;
@@ -130,7 +130,7 @@ TResult FRenderShaderBuffer::Update(){
 //
 // @return 处理结果
 //============================================================
-TResult FRenderShaderBuffer::Bind(){
+TResult FRenderProgramBuffer::Bind(){
    return ESuccess;
 }
 

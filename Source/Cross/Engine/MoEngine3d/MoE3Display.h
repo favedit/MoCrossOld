@@ -26,7 +26,7 @@ public:
    MO_ABSTRACT FAnimation3d* FindAnimation();
    MO_ABSTRACT FRs3dTrack* FindTrack();
 public:
-   MO_OVERRIDE TResult CalculateRenderable(SRenderable& renderable);
+   //MO_OVERRIDE TResult CalculateRenderable(SRenderable& renderable);
    MO_OVERRIDE TResult BuildFlags();
 };
 //------------------------------------------------------------

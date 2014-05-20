@@ -19,7 +19,7 @@ FPd9RenderLayout::~FPd9RenderLayout(){
 }
 
 //============================================================
-FRenderLayoutElement* FPd9RenderLayout::FindByAttribute(FRenderAttribute* pAttribute){
+FRenderLayoutElement* FPd9RenderLayout::FindByAttribute(FRenderProgramAttribute* pAttribute){
    TInt count = _elements.Count();
    for(TInt n = 0; n < count; n++){
       FRenderLayoutElement* pElement = _elements.Get(n);
@@ -68,7 +68,7 @@ TResult FPd9RenderLayout::OnSetup(){
    TInt fvf2 = 0;
    D3DVERTEXELEMENT9 elements[MO_INPUT_ELEMENT_MAXCNT];
    while(iterator.Next()){
-      FRenderAttribute* pAttribute = *iterator;
+      FRenderProgramAttribute* pAttribute = *iterator;
       //if(!pAttribute->IsStatusUsed()){
       //   continue;
       //}

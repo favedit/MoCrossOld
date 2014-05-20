@@ -20,7 +20,7 @@ FPd11RenderLayout::~FPd11RenderLayout(){
 }
 
 //============================================================
-FRenderLayoutElement* FPd11RenderLayout::FindByAttribute(FRenderAttribute* pAttribute){
+FRenderLayoutElement* FPd11RenderLayout::FindByAttribute(FRenderProgramAttribute* pAttribute){
    TInt count = _elements.Count();
    for(TInt n = 0; n < count; n++){
       FRenderLayoutElement* pElement = _elements.Get(n);
@@ -32,41 +32,37 @@ FRenderLayoutElement* FPd11RenderLayout::FindByAttribute(FRenderAttribute* pAttr
 }
 
 //============================================================
+// <T>配置处理。</T>
+//
+// @return 处理结果
+//============================================================
 TResult FPd11RenderLayout::OnSetup(){
-   MO_CHECK(_pDevice, return ENull);
-   TInt position = 0;
+   MO_CHECK(_pRenderable, return ENull);
    TInt index = 0;
-   FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
-   FRenderVertexStreams* pVertexStreams = _pRenderable->VertexStreams();
    GRenderShaderAttributeDictionary::TIterator iterator = _pProgram->Attributes().IteratorC();
    while(iterator.Next()){
-      FRenderAttribute* pAttribute = *iterator;
+      FRenderProgramAttribute* pAttribute = *iterator;
+      // 检查使用中
       if(!pAttribute->IsStatusUsed()){
          continue;
       }
-      //............................................................
-      TInt bufferCd = pAttribute->Code();
-      TCharC* pBufferCode = RRenderAttribute::Format(bufferCd);
-      ERenderAttributeFormat formatCd = pAttribute->FormatCd();
-      FRenderVertexStream* pStream = pVertexStreams->FindStream(pBufferCode);
-      FRenderLayoutElement* pElement = FRenderLayoutElement::InstanceCreate();
-      pElement->SetAttribute(pAttribute);
-      pElement->SetStream(pStream);
-      Push(pElement);
+      // 获得渲染属性
+      TCharC* pLinker = pAttribute->Linker();
+      FRenderableAttribute* pRenderableAttribute = _pRenderable->AttributeFind(pLinker);
+      MO_CHECK(pRenderableAttribute->CheckValid(), continue);
       //............................................................
       // 设置缓冲信息
-      if(pStream != NULL){
-         FPd11RenderVertexBuffer* pVertexBuffer = pStream->VertexBuffer()->Convert<FPd11RenderVertexBuffer>();
+      if(pRenderableAttribute != NULL){
+         FPd11RenderVertexBuffer* pVertexBuffer = pRenderableAttribute->VertexBuffer()->Convert<FPd11RenderVertexBuffer>();
          _piBuffer[index] = pVertexBuffer->NativeBuffer();
-         _strides[index] = pStream->Stride();
-         _offsets[index] = pStream->Offset();
+         _strides[index] = pVertexBuffer->Stride();
+         _offsets[index] = pRenderableAttribute->Offset();
       }else{
          _piBuffer[index] = NULL;
          _strides[index] = 0;
          _offsets[index] = 0;
       }
       index++;
-      position += RRenderAttributeFormat::CalculateSize(formatCd);
    }
    _count = index;
    return ESuccess;

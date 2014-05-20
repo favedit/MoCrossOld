@@ -128,7 +128,7 @@ TResult FPd9RenderProgram::BuildShader(FRenderShader* pShader, FPd9RenderShaderB
             }
          }else if(constDescriptor.RegisterSet == D3DXRS_SAMPLER){
             // 设置取样器
-            FRenderSampler* pSampler = SamplerFind(constDescriptor.Name);
+            FRenderProgramSampler* pSampler = SamplerFind(constDescriptor.Name);
             if(pSampler == NULL){
                MO_FATAL("Shader sampler bound is not found. (name=%s)", constDescriptor.Name);
             }else{
@@ -146,7 +146,7 @@ TResult FPd9RenderProgram::BuildShader(FRenderShader* pShader, FPd9RenderShaderB
    // 修正属性流定义
    GRenderShaderAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
    while(attributeIterator.Next()){
-      FRenderAttribute* pAttribute = *attributeIterator;
+      FRenderProgramAttribute* pAttribute = *attributeIterator;
       pAttribute->SetStatusUsed(ETrue);
    }
    //............................................................
@@ -197,7 +197,7 @@ TResult FPd9RenderProgram::Link(){
    //TInt position = 0;
    //GRenderShaderAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
    //while(attributeIterator.Next()){
-   //   FRenderAttribute* pAttribute = *attributeIterator;
+   //   FRenderProgramAttribute* pAttribute = *attributeIterator;
    //   if(pAttribute->IsStatusUsed()){
    //      ERenderAttributeFormat formatCd = pAttribute->FormatCd();
    //      D3D9_INPUT_ELEMENT_DESC inputElement;

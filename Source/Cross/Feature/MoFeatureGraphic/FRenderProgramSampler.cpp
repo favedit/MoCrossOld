@@ -2,23 +2,23 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FRenderSampler, FRenderObject);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramSampler, FInstance);
 
 //============================================================
 // <T>构造渲染器取样。</T>
 //============================================================
-FRenderSampler::FRenderSampler(){
+FRenderProgramSampler::FRenderProgramSampler(){
    _code = -1;
    _statusUsed = EFalse;
    _slot = -1;
-   _samplerCode = ERenderSampler_Unknown;
-   _packCode = ERenderSampler_Unknown;
+   //_samplerCode = ERenderSampler_Unknown;
+   //_packCode = ERenderSampler_Unknown;
 }
 
 //============================================================
 // <T>析构渲染器取样。</T>
 //============================================================
-FRenderSampler::~FRenderSampler(){
+FRenderProgramSampler::~FRenderProgramSampler(){
 }
 
 //============================================================
@@ -27,7 +27,7 @@ FRenderSampler::~FRenderSampler(){
 // @param pConfig 配置节点
 // @return 处理结果
 //============================================================
-TResult FRenderSampler::LoadConfig(FXmlNode* pConfig){
+TResult FRenderProgramSampler::LoadConfig(FXmlNode* pConfig){
    MO_CHECK(pConfig, return ENull);
    // 设置名称
    _name = pConfig->Get("name");
@@ -36,8 +36,8 @@ TResult FRenderSampler::LoadConfig(FXmlNode* pConfig){
    // 设置关联
    _source = pConfig->Get("source", NULL);
    // 解析内容
-   _samplerCode = RRenderSampler::Parse(_linker);
-   _packCode = RRenderSampler::ParsePack(_samplerCode);
+   //_samplerCode = RRenderSampler::Parse(_linker);
+   //_packCode = RRenderSampler::ParsePack(_samplerCode);
    return ESuccess;
 }
 

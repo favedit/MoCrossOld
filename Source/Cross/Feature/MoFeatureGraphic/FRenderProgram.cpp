@@ -26,7 +26,7 @@ FRenderProgram::~FRenderProgram(){
 // @param pParameter 渲染参数
 // @return 处理结果
 //============================================================
-TResult FRenderProgram::BufferPush(FRenderShaderBuffer* pBuffer){
+TResult FRenderProgram::BufferPush(FRenderProgramBuffer* pBuffer){
    MO_CHECK(pBuffer, return ENull);
    _buffers.Set(pBuffer->Name(), pBuffer);
    return ESuccess;
@@ -53,8 +53,8 @@ GRenderShaderParameterDictionary& FRenderProgram::Parameters(ERenderShader shade
 // @param shaderCd 渲染类型
 // @return 渲染参数
 //============================================================
-FRenderParameter* FRenderProgram::ParameterFind(ERenderShader shaderCd, TCharC* pName){
-   FRenderParameter* pParameter = NULL;
+FRenderProgramParameter* FRenderProgram::ParameterFind(ERenderShader shaderCd, TCharC* pName){
+   FRenderProgramParameter* pParameter = NULL;
    if(shaderCd == ERenderShader_Vertex){
       pParameter = _pVertexShader->ParameterFind(pName);
    }else if(shaderCd == ERenderShader_Fragment){
@@ -71,7 +71,7 @@ FRenderParameter* FRenderProgram::ParameterFind(ERenderShader shaderCd, TCharC* 
 // @param pParameter 渲染参数
 // @return 处理结果
 //============================================================
-TResult FRenderProgram::ParameterPush(FRenderParameter* pParameter){
+TResult FRenderProgram::ParameterPush(FRenderProgramParameter* pParameter){
    MO_CHECK(pParameter, return ENull);
    _parameters.Set(pParameter->Name(), pParameter);
    return ESuccess;
@@ -84,10 +84,10 @@ TResult FRenderProgram::ParameterPush(FRenderParameter* pParameter){
 // @param index 索引
 // @return 渲染属性
 //============================================================
-FRenderAttribute* FRenderProgram::AttributeFind(TCharC* pName, TInt index){
+FRenderProgramAttribute* FRenderProgram::AttributeFind(TCharC* pName, TInt index){
    GRenderShaderAttributeDictionary::TIterator iterator = _attributes.IteratorC();
    while(iterator.Next()){
-      FRenderAttribute* pAttribute = *iterator;
+      FRenderProgramAttribute* pAttribute = *iterator;
       if((index == -1) || (pAttribute->Index() == index)){
          if(RString::Equals(pAttribute->Name(), pName)){
             return pAttribute;
@@ -103,7 +103,7 @@ FRenderAttribute* FRenderProgram::AttributeFind(TCharC* pName, TInt index){
 // @param pAttribute 属性
 // @return 处理结果
 //============================================================
-TResult FRenderProgram::AttributePush(FRenderAttribute* pAttribute){
+TResult FRenderProgram::AttributePush(FRenderProgramAttribute* pAttribute){
    MO_CHECK(pAttribute, return ENull);
    _attributes.Set(pAttribute->Name(), pAttribute);
    return ESuccess;
@@ -115,7 +115,7 @@ TResult FRenderProgram::AttributePush(FRenderAttribute* pAttribute){
 // @param pSampler 取样
 // @return 处理结果
 //============================================================
-TResult FRenderProgram::SamplerPush(FRenderSampler* pSampler){
+TResult FRenderProgram::SamplerPush(FRenderProgramSampler* pSampler){
    MO_CHECK(pSampler, return ENull);
    _samplers.Set(pSampler->Name(), pSampler);
    return ESuccess;
@@ -149,7 +149,7 @@ TResult FRenderProgram::MakeFragmentSource(FRenderSource* pSource){
 TResult FRenderProgram::DrawBegin(){
    GRenderShaderBufferDictionary::TIterator iterator = _buffers.Iterator();
    while(iterator.Next()){
-      FRenderShaderBuffer* pBuffer = *iterator;
+      FRenderProgramBuffer* pBuffer = *iterator;
       pBuffer->Update();
       _pDevice->BindShaderBuffer(pBuffer);
    }

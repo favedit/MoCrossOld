@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd10RenderShaderParameter, FRenderParameter);
+MO_CLASS_IMPLEMENT_INHERITS(FPd10RenderShaderParameter, FRenderProgramParameter);
 
 //============================================================
 // <T>构造渲染器参数。</T>

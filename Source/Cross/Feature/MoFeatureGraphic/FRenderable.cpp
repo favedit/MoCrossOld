@@ -13,8 +13,6 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderable, FInstance);
 FRenderable::FRenderable(){
    _pVisualInfo = MO_CREATE(FVisualNode);
    _pVisualInfo->SetRenderable(this);
-   _pTextures = MO_CREATE(FRenderTextureCollection);
-   _pVertexStreams = MO_CREATE(FRenderVertexStreams);
    MO_CLEAR(_pIndexBuffer);
    MO_CLEAR(_pActiveEffect);
 }
@@ -24,8 +22,68 @@ FRenderable::FRenderable(){
 //============================================================
 FRenderable::~FRenderable(){
    MO_DELETE(_pVisualInfo);
-   MO_DELETE(_pTextures);
-   MO_DELETE(_pVertexStreams);
+}
+
+//============================================================
+// <T>查找指定代码的属性。</T>
+//
+// @param pCode 代码
+// @return 属性
+//============================================================
+FRenderableAttribute* FRenderable::AttributeFind(TCharC* pCode){
+   TInt count = _attributes.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderableAttribute* pRenderableAttribute = _attributes.Get(n);
+      if(pRenderableAttribute->IsCode(pCode)){
+         return pRenderableAttribute;
+      }
+   }
+   return NULL;
+}
+
+//============================================================
+// <T>获得指定代码的属性。</T>
+//
+// @param pCode 代码
+// @return 属性
+//============================================================
+FRenderableAttribute* FRenderable::AttributeGet(TCharC* pCode){
+   FRenderableAttribute* pRenderableAttribute = AttributeFind(pCode);
+   if(pRenderableAttribute == NULL){
+      MO_FATAL("Can't find renderable attribute. (code=%s)", pCode);
+   }
+   return pRenderableAttribute;
+}
+
+//============================================================
+// <T>查找指定代码的取样器。</T>
+//
+// @param pCode 代码
+// @return 取样器
+//============================================================
+FRenderableSampler* FRenderable::SamplerFind(TCharC* pCode){
+   TInt count = _samplers.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderableSampler* pRenderableSampler = _samplers.Get(n);
+      if(pRenderableSampler->IsCode(pCode)){
+         return pRenderableSampler;
+      }
+   }
+   return NULL;
+}
+
+//============================================================
+// <T>获得指定代码的取样器。</T>
+//
+// @param pCode 代码
+// @return 取样器
+//============================================================
+FRenderableSampler* FRenderable::SamplerGet(TCharC* pCode){
+   FRenderableSampler* pRenderableSampler = SamplerFind(pCode);
+   if(pRenderableSampler == NULL){
+      MO_FATAL("Can't find renderable sampler. (code=%s)", pCode);
+   }
+   return pRenderableSampler;
 }
 
 //============================================================
@@ -88,47 +146,18 @@ TInt FRenderable::CalculateBoneMatrix(SFloatMatrix3d* pMatrix, TInt offset, TInt
 // <T>建立标志集合。</T>
 //============================================================
 TResult FRenderable::BuildDescriptor(){
-   // 设置骨头个数
-   _descriptor.vertexCount = _pVertexStreams->VertexCount();
-   // 设置属性集合
-   FRenderVertexStreamCollection* pStreams = _pVertexStreams->Streams();
-   TInt count = pStreams->Count();
-   for(TInt n = 0; n < count; n++){
-      FRenderVertexStream* pStream = pStreams->Get(n);
-      TCharC* pCode = pStream->Code();
-      TInt bufferCd = RRenderAttribute::Parse(pCode);
-      _descriptor.vertexBuffers[bufferCd] = ETrue;
-   }
+   //// 设置骨头个数
+   //_descriptor.vertexCount = _pVertexStreams->VertexCount();
+   //// 设置属性集合
+   //FRenderVertexStreamCollection* pStreams = _pVertexStreams->Streams();
+   //TInt count = pStreams->Count();
+   //for(TInt n = 0; n < count; n++){
+   //   FRenderVertexStream* pStream = pStreams->Get(n);
+   //   TCharC* pCode = pStream->Code();
+   //   TInt bufferCd = RRenderAttribute::Parse(pCode);
+   //   _descriptor.vertexBuffers[bufferCd] = ETrue;
+   //}
    return ESuccess;
-}
-
-//============================================================
-// <T>根据差值器类型查找渲染纹理。</T>
-//
-// @param samplerCode 差值器类型
-// @return 渲染纹理
-//============================================================
-FRenderTexture* FRenderable::FindTexture(TInt samplerCode){
-   TInt count = _pTextures->Count();
-   for(TInt n = 0; n < count; n++){
-      FRenderTexture* pTexture = _pTextures->Get(n);
-      if(pTexture->SamplerCd() == samplerCode){
-         return pTexture;
-      }
-   }
-   return NULL;
-}
-
-//============================================================
-// <T>根据差值器类型获得渲染纹理。</T>
-//
-// @param samplerCode 差值器类型
-// @return 渲染纹理
-//============================================================
-FRenderTexture* FRenderable::GetTexture(TInt samplerCode){
-   FRenderTexture* pTexture = FindTexture(samplerCode);
-   MO_CHECK(pTexture, return NULL);
-   return pTexture;
 }
 
 //============================================================

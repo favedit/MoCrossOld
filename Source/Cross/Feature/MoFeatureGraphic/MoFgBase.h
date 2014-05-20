@@ -37,7 +37,9 @@ class FMaterial;
 class FRenderable;
 class FRenderTexture;
 typedef MO_FG_DECLARE FObjects<FRenderTexture*> FRenderTextureCollection;
+class FRenderVertexStream;
 class FRenderVertexStreams;
+class FRenderVertexBuffer;
 class FRenderIndexBuffer;
 class FEffect;
 typedef MO_FG_DECLARE FObjects<FEffect*> FEffectCollection;
@@ -179,37 +181,37 @@ enum ERenderUsage{
    ERenderUsage_ReadWrite,
 };
 
-//============================================================
-// <T>渲染顶点缓冲。</T>
-//============================================================
-enum ERenderAttribute{
-   ERenderAttribute_Unknown = 0,
-   ERenderAttribute_Instance = 1,
-   ERenderAttribute_Position = 2,
-   ERenderAttribute_Color = 3,
-   ERenderAttribute_Coord = 4,
-   ERenderAttribute_CoordLight = 5,
-   ERenderAttribute_Normal = 6,
-   ERenderAttribute_Binormal = 7,
-   ERenderAttribute_Tangent = 8,
-   ERenderAttribute_BoneIndex = 9,
-   ERenderAttribute_BoneWeight = 10,
-   ERenderAttribute_Count = 11,
-};
-
-//============================================================
-// <T>渲染顶点缓冲工具。</T>
-//============================================================
-class MO_FG_DECLARE FRenderAttributeEnumerator : public FEnumerator{
-public:
-   TResult Construct();
-};
-
-//============================================================
-// <T>渲染取样器类型工具。</T>
-//============================================================
-class MO_FG_DECLARE RRenderAttribute : public REnumerator<FRenderAttributeEnumerator>{
-};
+////============================================================
+//// <T>渲染顶点缓冲。</T>
+////============================================================
+//enum ERenderAttribute{
+//   ERenderAttribute_Unknown = 0,
+//   ERenderAttribute_Instance = 1,
+//   ERenderAttribute_Position = 2,
+//   ERenderAttribute_Color = 3,
+//   ERenderAttribute_Coord = 4,
+//   ERenderAttribute_CoordLight = 5,
+//   ERenderAttribute_Normal = 6,
+//   ERenderAttribute_Binormal = 7,
+//   ERenderAttribute_Tangent = 8,
+//   ERenderAttribute_BoneIndex = 9,
+//   ERenderAttribute_BoneWeight = 10,
+//   ERenderAttribute_Count = 11,
+//};
+//
+////============================================================
+//// <T>渲染顶点缓冲工具。</T>
+////============================================================
+//class MO_FG_DECLARE FRenderProgramAttributeEnumerator : public FEnumerator{
+//public:
+//   TResult Construct();
+//};
+//
+////============================================================
+//// <T>渲染取样器类型工具。</T>
+////============================================================
+//class MO_FG_DECLARE RRenderAttribute : public REnumerator<FRenderProgramAttributeEnumerator>{
+//};
 
 //============================================================
 // <T>渲染索引宽度。</T>
@@ -361,7 +363,7 @@ enum ERenderTexture{
 ////============================================================
 //// <T>渲染取样器类型枚举。</T>
 ////============================================================
-//class MO_FG_DECLARE FRenderSamplerEnumerator : public FEnumerator{
+//class MO_FG_DECLARE FRenderProgramSamplerEnumerator : public FEnumerator{
 //public:
 //   TResult Construct();
 //public:
@@ -371,7 +373,7 @@ enum ERenderTexture{
 ////============================================================
 //// <T>渲染取样器类型工具。</T>
 ////============================================================
-//class MO_FG_DECLARE RRenderSampler : public REnumerator<FRenderSamplerEnumerator>{
+//class MO_FG_DECLARE RRenderSampler : public REnumerator<FRenderProgramSamplerEnumerator>{
 //public:
 //   //------------------------------------------------------------
 //   // <T>根据取样器获得打包取样器。</T>
@@ -542,67 +544,251 @@ public:
    TResult Reset();
 };
 
+////============================================================
+//// <T>渲染项目信息。</T>
+////============================================================
+//struct MO_FG_DECLARE SRenderableItem{
+//public:
+//   // 坐标
+//   SFloatPoint3 location;
+//   // 尺寸
+//   SFloatSize3 size;
+//   // 旋转
+//   SFloatVector3 rotation;
+//   // 背景颜色
+//   SFloatColor4 groundColor;
+//   // 纹理坐标
+//   SFloatCoord coord;
+//   // 矩阵
+//   SFloatMatrix3d matrix;
+//public:
+//   //------------------------------------------------------------
+//   // <T>构造浮点数颜色。</T>
+//   MO_INLINE SRenderableItem(){
+//   }
+//};
+////------------------------------------------------------------
+//typedef MO_FG_DECLARE TFixVector<SRenderableItem, 64> SRenderableItems;
+//
+////============================================================
+//// <T>渲染信息。</T>
+////============================================================
+//struct MO_FG_DECLARE SRenderable{
+//public:
+//   SRenderableItems items;
+//public:
+//   //------------------------------------------------------------
+//   // <T>构造浮点数颜色。</T>
+//   MO_INLINE SRenderable(){
+//   }
+//public:
+//   //------------------------------------------------------------
+//   // <T>收集一个项目。</T>
+//   MO_INLINE SRenderableItem& Alloc(){
+//      TInt index = items.Count();
+//      items.SetCount(index + 1);
+//      return items.Get(index);
+//   }
+//   //------------------------------------------------------------
+//   // <T>增加要给项目。</T>
+//   MO_INLINE void Push(SRenderableItem& item){
+//      items.Push(item);
+//   }
+//};
+
 //============================================================
-// <T>渲染项目信息。</T>
+// <T>渲染配置信息。</T>
 //============================================================
-struct MO_FG_DECLARE SRenderableItem{
+class MO_FG_DECLARE SRenderableOptions{
 public:
-   // 坐标
-   SFloatPoint3 location;
-   // 尺寸
-   SFloatSize3 size;
-   // 旋转
-   SFloatVector3 rotation;
-   // 背景颜色
-   SFloatColor4 groundColor;
-   // 纹理坐标
-   SFloatCoord coord;
-   // 矩阵
-   SFloatMatrix3d matrix;
+   // 配置实例
+   TBool optionInstanced;
+   // 配置绑定器
+   TBool optionBinder;
+   // 配置材质
+   TBool optionMaterial;
+   // 配置法线
+   TBool optionNormal;
+   // 配置法线完整 (是否含有副法线和切线)
+   TBool optionNormalFull;
+   // 配置法线缩放 (是否使用法线缩放)
+   TBool optionNormalScale;
+   // 配置骨骼缩放
+   TBool optionBoneScale;
+   // 配置深度
+   TBool optionDepth;
+   // 配置阴影
+   TBool optionShadow;
+   // 配置自阴影
+   TBool optionShadowSelf;
+   // 配置光源贴图
+   TBool optionLightMap;
+   // 配置透射
+   TBool optionTransmittance;
+public:
+   SRenderableOptions();
+};
+
+//============================================================
+// <T>渲染对象属性。</T>
+//============================================================
+class MO_FG_DECLARE FRenderableAttribute : public FInstance
+{
+   MO_CLASS_DECLARE_INHERITS(FRenderableAttribute, FInstance);
+protected:
+   TBool _valid;
+   TString _code;
+   TInt _offset;
+   FRenderVertexBuffer* _pVertexBuffer;
+   //TInt _slot;
+   //ERenderAttributeFormat _formatCd;
+public:
+   FRenderableAttribute();
+   MO_ABSTRACT ~FRenderableAttribute();
 public:
    //------------------------------------------------------------
-   // <T>构造浮点数颜色。</T>
-   MO_INLINE SRenderableItem(){
+   // <T>判断是否有效。</T>
+   MO_INLINE TBool IsValid(){
+      return _valid;
+   }
+   //------------------------------------------------------------
+   // <T>判断是否指定代码。</T>
+   MO_INLINE TBool IsCode(TCharC* pCode){
+      return _code.Equals(pCode);
+   }
+   //------------------------------------------------------------
+   // <T>获得代码。</T>
+   MO_INLINE TCharC* Code(){
+      return _code;
+   }
+   //------------------------------------------------------------
+   // <T>设置代码。</T>
+   MO_INLINE void SetCode(TCharC* pCode){
+      _code = pCode;
+   }
+   //------------------------------------------------------------
+   // <T>获得偏移。</T>
+   MO_INLINE TInt Offset(){
+      return _offset;
+   }
+   //------------------------------------------------------------
+   // <T>设置偏移。</T>
+   MO_INLINE void SetOffset(TInt offset){
+      _offset = offset;
+   }
+   //------------------------------------------------------------
+   // <T>获得顶点缓冲。</T>
+   MO_INLINE FRenderVertexBuffer* VertexBuffer(){
+      return _pVertexBuffer;
+   }
+   //------------------------------------------------------------
+   // <T>设置顶点缓冲。</T>
+   MO_INLINE void SetVertexBuffer(FRenderVertexBuffer* pVertexBuffer){
+      _pVertexBuffer = pVertexBuffer;
+   }
+   ////------------------------------------------------------------
+   //// <T>获得插槽。</T>
+   //MO_INLINE TInt Slot(){
+   //   return _slot;
+   //}
+   ////------------------------------------------------------------
+   //// <T>设置插槽。</T>
+   //MO_INLINE void SetSlot(TInt slot){
+   //   _slot = slot;
+   //}
+   ////------------------------------------------------------------
+   //// <T>获得属性类型。</T>
+   //MO_INLINE ERenderAttributeFormat FormatCd(){
+   //   return _formatCd;
+   //}
+   ////------------------------------------------------------------
+   //// <T>设置属性类型。</T>
+   //MO_INLINE void SetFormatCd(ERenderAttributeFormat formatCd){
+   //   _formatCd = formatCd;
+   //}
+public:
+   TBool CheckValid();
+};
+//------------------------------------------------------------
+typedef MO_FG_DECLARE GPtr<FRenderableAttribute> GRenderableAttributePtr;
+typedef MO_FG_DECLARE GPtrs<FRenderableAttribute> GRenderableAttributePtrs;
+
+//============================================================
+// <T>渲染对象取样器。</T>
+//============================================================
+class MO_FG_DECLARE FRenderableSampler : public FInstance
+{
+   MO_CLASS_DECLARE_INHERITS(FRenderableSampler, FInstance);
+protected:
+   TString _code;
+   TInt _slot;
+   FRenderTexture* _pTexture;
+public:
+   FRenderableSampler();
+   MO_ABSTRACT ~FRenderableSampler();
+public:
+   //------------------------------------------------------------
+   // <T>判断是否指定代码。</T>
+   MO_INLINE TBool IsCode(TCharC* pCode){
+      return _code.Equals(pCode);
+   }
+   //------------------------------------------------------------
+   // <T>获得代码。</T>
+   MO_INLINE TCharC* Code(){
+      return _code;
+   }
+   //------------------------------------------------------------
+   // <T>设置代码。</T>
+   MO_INLINE void SetCode(TCharC* pCode){
+      _code = pCode;
+   }
+   //------------------------------------------------------------
+   // <T>获得插槽。</T>
+   MO_INLINE TInt Slot(){
+      return _slot;
+   }
+   //------------------------------------------------------------
+   // <T>设置插槽。</T>
+   MO_INLINE void SetSlot(TInt slot){
+      _slot = slot;
+   }
+   //------------------------------------------------------------
+   // <T>获得纹理。</T>
+   MO_INLINE FRenderTexture* Texture(){
+      return _pTexture;
+   }
+   //------------------------------------------------------------
+   // <T>设置纹理。</T>
+   MO_INLINE void SetName(FRenderTexture* _pTexture){
+      _pTexture = _pTexture;
    }
 };
 //------------------------------------------------------------
-typedef MO_FG_DECLARE TFixVector<SRenderableItem, 64> SRenderableItems;
+typedef MO_FG_DECLARE GPtr<FRenderableSampler> GRenderableSamplerPtr;
+typedef MO_FG_DECLARE GPtrs<FRenderableSampler> GRenderableSamplerPtrs;
 
 //============================================================
-// <T>渲染信息。</T>
+// <T>渲染对象布局。</T>
 //============================================================
-struct MO_FG_DECLARE SRenderable{
+class MO_FG_DECLARE FRenderableLayout : public FInstance
+{
+   MO_CLASS_DECLARE_INHERITS(FRenderableLayout, FInstance);
 public:
-   SRenderableItems items;
-public:
-   //------------------------------------------------------------
-   // <T>构造浮点数颜色。</T>
-   MO_INLINE SRenderable(){
-   }
-public:
-   //------------------------------------------------------------
-   // <T>收集一个项目。</T>
-   MO_INLINE SRenderableItem& Alloc(){
-      TInt index = items.Count();
-      items.SetCount(index + 1);
-      return items.Get(index);
-   }
-   //------------------------------------------------------------
-   // <T>增加要给项目。</T>
-   MO_INLINE void Push(SRenderableItem& item){
-      items.Push(item);
-   }
+   FRenderableLayout();
+   MO_ABSTRACT ~FRenderableLayout();
 };
+//------------------------------------------------------------
+typedef MO_FG_DECLARE GPtr<FRenderableLayout> GRenderableLayoutPtr;
 
 //============================================================
-// <T>渲染效果信息。</T>
+// <T>渲染对象效果。</T>
 //============================================================
 struct MO_FG_DECLARE FRenderableEffect : FInstance
 {
    MO_CLASS_DECLARE_INHERITS(FRenderableEffect, FInstance);
 public:
    FEffect* _pEffect;
-   FRenderLayout* _pLayout;
+   FRenderableLayout* _pLayout;
 public:
    FRenderableEffect();
    MO_ABSTRACT ~FRenderableEffect();
@@ -619,12 +805,12 @@ public:
    }
    //------------------------------------------------------------
    // <T>获得布局。</T>
-   MO_INLINE FRenderLayout* Layout(){
+   MO_INLINE FRenderableLayout* Layout(){
       return _pLayout;
    }
    //------------------------------------------------------------
    // <T>设置布局。</T>
-   MO_INLINE void SetLayout(FRenderLayout* pLayout){
+   MO_INLINE void SetLayout(FRenderableLayout* pLayout){
       _pLayout = pLayout;
    }
 };
@@ -646,18 +832,18 @@ protected:
    SMatrix3d _matrix;
    // 标志集合
    SRenderableDescriptor _descriptor;
-   // 材质
-   GPtr<FMaterial> _material;
-   // 材质
-   GPtr<FMaterial> _materialReference;
    // 渲染信息
    FRenderableInfo* _pVisualInfo;
-   // 纹理集合
-   FRenderTextureCollection* _pTextures;
-   // 顶点流集合
-   FRenderVertexStreams* _pVertexStreams;
+   // 材质
+   GMaterialPtr _material;
+   // 引用材质
+   GMaterialPtr _materialReference;
+   // 属性集合
+   GRenderableAttributePtrs _attributes;
    // 索引流
    FRenderIndexBuffer* _pIndexBuffer;
+   // 取样集合
+   GRenderableSamplerPtrs _samplers;
    // 激活效果器
    FRenderableEffect* _pActiveEffect;
    // 效果器集合
@@ -707,16 +893,6 @@ public:
       _pVisualInfo = pVisualInfo;
    }
    //------------------------------------------------------------
-   // <T>获得引用材质。</T>
-   MO_OVERRIDE FMaterial* MaterialReference(){
-      return _materialReference;
-   }
-   //------------------------------------------------------------
-   // <T>设置引用材质。</T>
-   MO_INLINE void SetMaterialReference(FMaterial* pMaterialReference){
-      _materialReference = pMaterialReference;
-   }
-   //------------------------------------------------------------
    // <T>获得材质。</T>
    MO_OVERRIDE FMaterial* Material(){
       return _material;
@@ -727,19 +903,19 @@ public:
       _material = pMaterial;
    }
    //------------------------------------------------------------
-   // <T>获得纹理集合。</T>
-   MO_INLINE FRenderTextureCollection* Textures(){
-      return _pTextures;
+   // <T>获得引用材质。</T>
+   MO_OVERRIDE FMaterial* MaterialReference(){
+      return _materialReference;
    }
    //------------------------------------------------------------
-   // <T>获得顶点流集合。</T>
-   MO_INLINE FRenderVertexStreams* VertexStreams(){
-      return _pVertexStreams;
+   // <T>设置引用材质。</T>
+   MO_INLINE void SetMaterialReference(FMaterial* pMaterialReference){
+      _materialReference = pMaterialReference;
    }
    //------------------------------------------------------------
-   // <T>设置顶点流集合。</T>
-   MO_INLINE void SetVertexStreams(FRenderVertexStreams* pVertexStreams){
-      _pVertexStreams = pVertexStreams;
+   // <T>获得属性集合。</T>
+   MO_INLINE GRenderableAttributePtrs& Attributes(){
+      return _attributes;
    }
    //------------------------------------------------------------
    // <T>获得索引流。</T>
@@ -750,6 +926,11 @@ public:
    // <T>设置索引流。</T>
    MO_INLINE void SetIndexBuffer(FRenderIndexBuffer* pIndexBuffer){
       _pIndexBuffer = pIndexBuffer;
+   }
+   //------------------------------------------------------------
+   // <T>获得取样集合。</T>
+   MO_INLINE GRenderableSamplerPtrs& Samplers(){
+      return _samplers;
    }
    //------------------------------------------------------------
    // <T>获得激活效果器。</T>
@@ -767,14 +948,16 @@ public:
       return _effects;
    }
 public:
+   FRenderableAttribute* AttributeFind(TCharC* pCode);
+   FRenderableAttribute* AttributeGet(TCharC* pCode);
+   FRenderableSampler* SamplerFind(TCharC* pCode);
+   FRenderableSampler* SamplerGet(TCharC* pCode);
    FRenderableEffect* EffectFind(TCharC* pName);
    FRenderableEffect* EffectBind(FEffect* pEffect);
 public:
    MO_ABSTRACT TResult CalculateModelMatrix(SFloatMatrix3d& matrix);
    MO_ABSTRACT TInt CalculateBoneMatrix(SFloatMatrix3d* pMatrix, TInt offset = 0, TInt capacity = 0);
    MO_ABSTRACT TResult BuildDescriptor();
-   FRenderTexture* FindTexture(TInt samplerCode);
-   FRenderTexture* GetTexture(TInt samplerCode);
 public:
    MO_ABSTRACT TResult Update(TAny* pParameter = NULL);
    MO_ABSTRACT TResult ProcessBefore(TAny* pParameter = NULL);

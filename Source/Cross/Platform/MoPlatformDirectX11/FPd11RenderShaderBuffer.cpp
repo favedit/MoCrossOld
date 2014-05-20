@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderShaderBuffer, FRenderShaderBuffer);
+MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderShaderBuffer, FRenderProgramBuffer);
 
 //============================================================
 // <T>构造渲染器缓冲。</T>
@@ -24,7 +24,7 @@ FPd11RenderShaderBuffer::~FPd11RenderShaderBuffer(){
 // @return 处理结果
 //============================================================
 TResult FPd11RenderShaderBuffer::OnSetup(){
-   TResult resultCd = FRenderShaderBuffer::OnSetup();
+   TResult resultCd = FRenderProgramBuffer::OnSetup();
    MO_CHECK(_pDevice, return ENull);
    MO_CHECK(_dataLength > 0, return EOutRange);
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();

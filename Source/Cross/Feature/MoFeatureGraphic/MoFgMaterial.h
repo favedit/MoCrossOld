@@ -546,6 +546,7 @@ public:
 //------------------------------------------------------------
 typedef MO_FG_DECLARE FObjects<FMaterial*> FMaterialCollection;
 typedef MO_FG_DECLARE FDictionary<FMaterial*> FMaterialDictionary;
+typedef MO_FG_DECLARE GPtr<FMaterial> GMaterialPtr;
 typedef MO_FG_DECLARE GPtrDictionary<FMaterial> GMaterialPtrDictionary;
 
 //============================================================

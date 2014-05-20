@@ -1,19 +1,19 @@
-#include "MoPd9Render.h"
+#include "MoFgRender.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderShaderParameter, FRenderProgramParameter);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderableLayout, FInstance);
 
 //============================================================
-// <T>构造渲染器参数。</T>
+// <T>构造渲染对象布局。</T>
 //============================================================
-FPd9RenderShaderParameter::FPd9RenderShaderParameter(){
+FRenderableLayout::FRenderableLayout(){
 }
 
 //============================================================
-// <T>析构渲染器参数。</T>
+// <T>析构渲染对象布局。</T>
 //============================================================
-FPd9RenderShaderParameter::~FPd9RenderShaderParameter(){
+FRenderableLayout::~FRenderableLayout(){
 }
 
 MO_NAMESPACE_END

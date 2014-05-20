@@ -24,9 +24,9 @@ FPd10RenderDevice::FPd10RenderDevice(){
    MO_CLEAR(_piDevice);
    // 注册类集合
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERBUFFER,    FPd10RenderShaderBuffer::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERATTRIBUTE, FRenderAttribute::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_SHADERATTRIBUTE, FRenderProgramAttribute::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_SHADERPARAMETER, FPd10RenderShaderParameter::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERSAMPLER,   FRenderSampler::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_SHADERSAMPLER,   FRenderProgramSampler::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT,          FPd10RenderLayout::Class());
    //
    MO_CLEAR(_piRasterizerState);
@@ -950,7 +950,7 @@ TResult FPd10RenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot,
 // @param pBuffer 渲染缓冲
 // @return 处理结果
 //============================================================
-TResult FPd10RenderDevice::BindShaderBuffer(FRenderShaderBuffer* pBuffer){
+TResult FPd10RenderDevice::BindShaderBuffer(FRenderProgramBuffer* pBuffer){
    MO_CHECK(pBuffer, return ENull);
    if(!pBuffer->IsStatusUsed()){
       return EContinue;

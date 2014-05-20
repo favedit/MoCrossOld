@@ -29,9 +29,9 @@ TResult SRenderableDescriptor::Assign(SRenderableDescriptor* pFlags){
    //optionLightMap = pFlags->optionLightMap;
    //optionTransmittance = pFlags->optionTransmittance;
    // 设置顶点缓冲信息
-   MO_LIB_MEMORY_COPY(pFlags->vertexBuffers, sizeof(pFlags->vertexBuffers), vertexBuffers, sizeof(vertexBuffers));
+   //MO_LIB_MEMORY_COPY(pFlags->vertexBuffers, sizeof(pFlags->vertexBuffers), vertexBuffers, sizeof(vertexBuffers));
    // 设置取样器信息
-   MO_LIB_MEMORY_COPY(pFlags->samplers, sizeof(pFlags->samplers), samplers, sizeof(samplers));
+   //MO_LIB_MEMORY_COPY(pFlags->samplers, sizeof(pFlags->samplers), samplers, sizeof(samplers));
    return ESuccess;
 }
 
@@ -41,73 +41,73 @@ TResult SRenderableDescriptor::Assign(SRenderableDescriptor* pFlags){
 // @return 处理结果
 //============================================================
 TResult SRenderableDescriptor::Build(){
-   // 支持顶点颜色技术
-   if(vertexBuffers[ERenderAttribute_Color]){
-      supportVertexColor = ETrue;
-   }
-   // 支持纹理坐标技术
-   if(vertexBuffers[ERenderAttribute_Coord]){
-      supportVertexCoord = ETrue;
-   }
-   // 支持法线技术
-   if(vertexBuffers[ERenderAttribute_Normal]){
-      supportVertexNormal = ETrue;
-   }
-   // 支持全法线技术
-   if(vertexBuffers[ERenderAttribute_Normal] && vertexBuffers[ERenderAttribute_Binormal] && vertexBuffers[ERenderAttribute_Tangent]){
-      supportVertexNormalFull = ETrue;
-   }
-   // 支持骨头技术
-   if(vertexBuffers[ERenderAttribute_BoneIndex] && vertexBuffers[ERenderAttribute_BoneWeight]){
-      supportVertexBone = ETrue;
-   }
-   //............................................................
-   // 支持环境光技术
-   supportAmbient = ETrue;
-   // 支持漫反射技术
-   if(supportVertexCoord && samplers[ERenderSampler_Diffuse]){
-      supportDiffuse = ETrue;
-   }
-   // 支持法线技术
-   if(supportVertexNormal){
-      supportNormal = ETrue;
-   }
-   // 支持凹凸技术
-   if(supportVertexCoord && supportVertexNormalFull && samplers[ERenderSampler_Normal]){
-      supportBump = ETrue;
-   }
-   // 支持高光颜色技术
-   if(supportVertexCoord && supportVertexNormal & samplers[ERenderSampler_SpecularColor]){
-      supportSpecularColor = ETrue;
-   }
-   // 支持高光级别技术
-   if(supportVertexCoord && supportVertexNormal & samplers[ERenderSampler_SpecularLevel]){
-      supportSpecularLevel = ETrue;
-   }
-   // 支持环境光技术
-   if(supportVertexNormal & samplers[ERenderSampler_Environment]){
-      supportEnvironment = ETrue;
-   }
-   // 支持受光技术
-   if(supportVertexCoord && samplers[ERenderSampler_Light]){
-      supportLight = ETrue;
-   }
-   // 支持反射技术
-   if(supportVertexCoord && samplers[ERenderSampler_Reflect]){
-      supportReflect = ETrue;
-   }
-   // 支持折射技术
-   if(supportVertexCoord && samplers[ERenderSampler_Refract]){
-      supportRefract = ETrue;
-   }
-   // 支持发光技术
-   if(supportVertexCoord && samplers[ERenderSampler_Emissive]){
-      supportEmissive = ETrue;
-   }
-   // 支持高度技术
-   if(supportVertexCoord && samplers[ERenderSampler_Height]){
-      supportHeight = ETrue;
-   }
+   //// 支持顶点颜色技术
+   //if(vertexBuffers[ERenderAttribute_Color]){
+   //   supportVertexColor = ETrue;
+   //}
+   //// 支持纹理坐标技术
+   //if(vertexBuffers[ERenderAttribute_Coord]){
+   //   supportVertexCoord = ETrue;
+   //}
+   //// 支持法线技术
+   //if(vertexBuffers[ERenderAttribute_Normal]){
+   //   supportVertexNormal = ETrue;
+   //}
+   //// 支持全法线技术
+   //if(vertexBuffers[ERenderAttribute_Normal] && vertexBuffers[ERenderAttribute_Binormal] && vertexBuffers[ERenderAttribute_Tangent]){
+   //   supportVertexNormalFull = ETrue;
+   //}
+   //// 支持骨头技术
+   //if(vertexBuffers[ERenderAttribute_BoneIndex] && vertexBuffers[ERenderAttribute_BoneWeight]){
+   //   supportVertexBone = ETrue;
+   //}
+   ////............................................................
+   //// 支持环境光技术
+   //supportAmbient = ETrue;
+   //// 支持漫反射技术
+   //if(supportVertexCoord && samplers[ERenderSampler_Diffuse]){
+   //   supportDiffuse = ETrue;
+   //}
+   //// 支持法线技术
+   //if(supportVertexNormal){
+   //   supportNormal = ETrue;
+   //}
+   //// 支持凹凸技术
+   //if(supportVertexCoord && supportVertexNormalFull && samplers[ERenderSampler_Normal]){
+   //   supportBump = ETrue;
+   //}
+   //// 支持高光颜色技术
+   //if(supportVertexCoord && supportVertexNormal & samplers[ERenderSampler_SpecularColor]){
+   //   supportSpecularColor = ETrue;
+   //}
+   //// 支持高光级别技术
+   //if(supportVertexCoord && supportVertexNormal & samplers[ERenderSampler_SpecularLevel]){
+   //   supportSpecularLevel = ETrue;
+   //}
+   //// 支持环境光技术
+   //if(supportVertexNormal & samplers[ERenderSampler_Environment]){
+   //   supportEnvironment = ETrue;
+   //}
+   //// 支持受光技术
+   //if(supportVertexCoord && samplers[ERenderSampler_Light]){
+   //   supportLight = ETrue;
+   //}
+   //// 支持反射技术
+   //if(supportVertexCoord && samplers[ERenderSampler_Reflect]){
+   //   supportReflect = ETrue;
+   //}
+   //// 支持折射技术
+   //if(supportVertexCoord && samplers[ERenderSampler_Refract]){
+   //   supportRefract = ETrue;
+   //}
+   //// 支持发光技术
+   //if(supportVertexCoord && samplers[ERenderSampler_Emissive]){
+   //   supportEmissive = ETrue;
+   //}
+   //// 支持高度技术
+   //if(supportVertexCoord && samplers[ERenderSampler_Height]){
+   //   supportHeight = ETrue;
+   //}
    // 建立成功
    setuped = ETrue;
    return ESuccess;
@@ -162,9 +162,9 @@ TResult SRenderableDescriptor::Reset(){
    // 设置骨头个数
    boneCount = 0;
    // 设置顶点缓冲信息
-   RBools::Fill(vertexBuffers, ERenderAttribute_Count, EFalse);
+   //RBools::Fill(vertexBuffers, ERenderAttribute_Count, EFalse);
    // 设置取样器信息
-   RBools::Fill(samplers, ERenderSampler_Count, EFalse);
+   //RBools::Fill(samplers, ERenderSampler_Count, EFalse);
    return ESuccess;
 }
 

@@ -23,9 +23,9 @@ protected:
    SMatrix3d _mvpMatrix;
    SMatrix3d _vpMatrix;
    SMatrix3d _lightVpMatrix;
-   FRenderParameterCollection* _pParameters;
-   FRenderAttributeCollection* _pAttributes;
-   FRenderSamplerCollection* _pSamplers;
+   FRenderProgramParameterCollection* _pParameters;
+   FRenderProgramAttributeCollection* _pAttributes;
+   FRenderProgramSamplerCollection* _pSamplers;
    SEffectDescriptor _dynamicDescriptor;
 public:
    FAutomaticEffect();
@@ -33,17 +33,17 @@ public:
 public:
    //------------------------------------------------------------
    // <T>获得参数集合。</T>
-   MO_INLINE FRenderParameterCollection* Parameters(){
+   MO_INLINE FRenderProgramParameterCollection* Parameters(){
       return _pParameters;
    }
    //------------------------------------------------------------
    // <T>获得属性集合。</T>
-   MO_INLINE FRenderAttributeCollection* Attributes(){
+   MO_INLINE FRenderProgramAttributeCollection* Attributes(){
       return _pAttributes;
    }
    //------------------------------------------------------------
    // <T>获得取样器集合。</T>
-   MO_INLINE FRenderSamplerCollection* Samplers(){
+   MO_INLINE FRenderProgramSamplerCollection* Samplers(){
       return _pSamplers;
    }
 public:

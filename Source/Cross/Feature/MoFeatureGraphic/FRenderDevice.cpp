@@ -232,7 +232,7 @@ FRenderObject* FRenderDevice::CreateObject(TCharC* pName){
 // @param pBuffer 渲染缓冲
 // @return 处理结果
 //============================================================
-TResult FRenderDevice::BindShaderBuffer(FRenderShaderBuffer* pBuffer){
+TResult FRenderDevice::BindShaderBuffer(FRenderProgramBuffer* pBuffer){
    MO_FATAL_UNSUPPORT();
    return ESuccess;
 }

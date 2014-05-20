@@ -1,19 +1,21 @@
-#include "MoPd9Render.h"
+#include "MoFgBase.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderShaderParameter, FRenderProgramParameter);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderableSampler, FInstance);
 
 //============================================================
-// <T>构造渲染器参数。</T>
+// <T>构造渲染对象取样器。</T>
 //============================================================
-FPd9RenderShaderParameter::FPd9RenderShaderParameter(){
+FRenderableSampler::FRenderableSampler(){
+   _slot = -1;
+   MO_CLEAR(_pTexture);
 }
 
 //============================================================
-// <T>析构渲染器参数。</T>
+// <T>析构渲染对象取样器。</T>
 //============================================================
-FPd9RenderShaderParameter::~FPd9RenderShaderParameter(){
+FRenderableSampler::~FRenderableSampler(){
 }
 
 MO_NAMESPACE_END

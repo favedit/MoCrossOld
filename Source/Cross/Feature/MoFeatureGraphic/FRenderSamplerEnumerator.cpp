@@ -7,7 +7,7 @@ MO_NAMESPACE_BEGIN
 ////
 //// @return 处理结果
 ////============================================================
-//TResult FRenderSamplerEnumerator::Construct(){
+//TResult FRenderProgramSamplerEnumerator::Construct(){
 //   Register(ERenderSampler_Unknown,            "Unknown");
 //   Register(ERenderSampler_Ambient,            "Ambient");
 //   Register(ERenderSampler_Diffuse,            "Diffuse");
@@ -43,7 +43,7 @@ MO_NAMESPACE_BEGIN
 //// @param samplerCd 枚举内容
 //// @return 枚举内容
 ////============================================================
-//TInt FRenderSamplerEnumerator::ParsePack(TInt samplerCd){
+//TInt FRenderProgramSamplerEnumerator::ParsePack(TInt samplerCd){
 //   switch(samplerCd){
 //      case ERenderSampler_Diffuse:
 //      case ERenderSampler_Alpha:

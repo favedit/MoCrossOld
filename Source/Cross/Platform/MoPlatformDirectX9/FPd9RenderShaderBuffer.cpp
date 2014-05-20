@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderShaderBuffer, FRenderShaderBuffer);
+MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderShaderBuffer, FRenderProgramBuffer);
 
 //============================================================
 // <T>构造渲染器缓冲。</T>
@@ -24,7 +24,7 @@ FPd9RenderShaderBuffer::~FPd9RenderShaderBuffer(){
 // @return 处理结果
 //============================================================
 TResult FPd9RenderShaderBuffer::OnSetup(){
-   TResult resultCd = FRenderShaderBuffer::OnSetup();
+   TResult resultCd = FRenderProgramBuffer::OnSetup();
    return resultCd;
 }
 

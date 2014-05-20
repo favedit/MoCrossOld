@@ -20,7 +20,7 @@ FPd10RenderLayout::~FPd10RenderLayout(){
 }
 
 //============================================================
-FRenderLayoutElement* FPd10RenderLayout::FindByAttribute(FRenderAttribute* pAttribute){
+FRenderLayoutElement* FPd10RenderLayout::FindByAttribute(FRenderProgramAttribute* pAttribute){
    TInt count = _elements.Count();
    for(TInt n = 0; n < count; n++){
       FRenderLayoutElement* pElement = _elements.Get(n);
@@ -40,7 +40,7 @@ TResult FPd10RenderLayout::OnSetup(){
    FRenderVertexStreams* pVertexStreams = _pRenderable->VertexStreams();
    GRenderShaderAttributeDictionary::TIterator iterator = _pProgram->Attributes().IteratorC();
    while(iterator.Next()){
-      FRenderAttribute* pAttribute = *iterator;
+      FRenderProgramAttribute* pAttribute = *iterator;
       if(!pAttribute->IsStatusUsed()){
          continue;
       }

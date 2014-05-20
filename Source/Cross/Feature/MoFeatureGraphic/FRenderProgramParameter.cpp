@@ -2,12 +2,12 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FRenderParameter, FRenderObject);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramParameter, FRenderObject);
 
 //============================================================
 // <T>构造渲染器参数。</T>
 //============================================================
-FRenderParameter::FRenderParameter(){
+FRenderProgramParameter::FRenderProgramParameter(){
    _code = -1;
    _shaderCd = ERenderShader_Unknown;
    _formatCd = ERenderParameterFormat_Unknown;
@@ -20,7 +20,7 @@ FRenderParameter::FRenderParameter(){
 //============================================================
 // <T>析构渲染器参数。</T>
 //============================================================
-FRenderParameter::~FRenderParameter(){
+FRenderProgramParameter::~FRenderProgramParameter(){
 }
 
 //============================================================
@@ -30,7 +30,7 @@ FRenderParameter::~FRenderParameter(){
 // @param capacity 容量
 // @return 处理结果
 //============================================================
-TResult FRenderParameter::Get(TAny* pData, TInt capacity){
+TResult FRenderProgramParameter::Get(TAny* pData, TInt capacity){
    MO_FATAL_UNSUPPORT();
    return EUnsupport;
 }
@@ -42,7 +42,7 @@ TResult FRenderParameter::Get(TAny* pData, TInt capacity){
 // @param length 长度
 // @return 处理结果
 //============================================================
-TResult FRenderParameter::Set(TAny* pData, TInt length){
+TResult FRenderProgramParameter::Set(TAny* pData, TInt length){
    MO_CHECK(_buffer, return ENull);
    _buffer->Set(_slot, pData, length);
    return EUnsupport;
@@ -56,7 +56,7 @@ TResult FRenderParameter::Set(TAny* pData, TInt length){
 // @parma transpose 是否转置
 // @return 处理结果
 //============================================================
-TResult FRenderParameter::SetFloat3(TFloat x, TFloat y, TFloat z){
+TResult FRenderProgramParameter::SetFloat3(TFloat x, TFloat y, TFloat z){
    // 设置数据
    TFloat data[3];
    data[0] = x;
@@ -75,7 +75,7 @@ TResult FRenderParameter::SetFloat3(TFloat x, TFloat y, TFloat z){
 // @parma transpose 是否转置
 // @return 处理结果
 //============================================================
-TResult FRenderParameter::SetFloat4(TFloat x, TFloat y, TFloat z, TFloat w){
+TResult FRenderProgramParameter::SetFloat4(TFloat x, TFloat y, TFloat z, TFloat w){
    // 设置数据
    TFloat data[4];
    data[0] = x;
@@ -95,7 +95,7 @@ TResult FRenderParameter::SetFloat4(TFloat x, TFloat y, TFloat z, TFloat w){
 // @parma transpose 是否转置
 // @return 处理结果
 //============================================================
-TResult FRenderParameter::SetMatrix3x3(const SFloatMatrix3d* pMatrix, TInt count, TBool transpose){
+TResult FRenderProgramParameter::SetMatrix3x3(const SFloatMatrix3d* pMatrix, TInt count, TBool transpose){
    MO_CHECK(pMatrix, return ENull);
    MO_CHECK(count > 0, return EFailure);
    MO_CHECK(count <= MO_EG_CONST_MATRIX_MAX, return EFailure);
@@ -139,7 +139,7 @@ TResult FRenderParameter::SetMatrix3x3(const SFloatMatrix3d* pMatrix, TInt count
 // @parma transpose 是否转置
 // @return 处理结果
 //============================================================
-TResult FRenderParameter::SetMatrix4x3(const SFloatMatrix3d* pMatrix, TInt count, TBool transpose){
+TResult FRenderProgramParameter::SetMatrix4x3(const SFloatMatrix3d* pMatrix, TInt count, TBool transpose){
    MO_CHECK(pMatrix, return ENull);
    MO_CHECK(count > 0, return EFailure);
    MO_CHECK(count <= MO_EG_CONST_MATRIX_MAX, return EFailure);
@@ -189,7 +189,7 @@ TResult FRenderParameter::SetMatrix4x3(const SFloatMatrix3d* pMatrix, TInt count
 // @parma transpose 是否转置
 // @return 处理结果
 //============================================================
-TResult FRenderParameter::SetMatrix4x4(const SFloatMatrix3d* pMatrix, TInt count, TBool transpose){
+TResult FRenderProgramParameter::SetMatrix4x4(const SFloatMatrix3d* pMatrix, TInt count, TBool transpose){
    MO_CHECK(pMatrix, return ENull);
    MO_CHECK(count > 0, return EFailure);
    MO_CHECK(count <= MO_EG_CONST_MATRIX_MAX, return EFailure);
@@ -245,7 +245,7 @@ TResult FRenderParameter::SetMatrix4x4(const SFloatMatrix3d* pMatrix, TInt count
 // @param pConfig 配置节点
 // @return 处理结果
 //============================================================
-TResult FRenderParameter::LoadConfig(FXmlNode* pConfig){
+TResult FRenderProgramParameter::LoadConfig(FXmlNode* pConfig){
    MO_CHECK(pConfig, return ENull);
    // 设置名称
    _name = pConfig->Get("name");

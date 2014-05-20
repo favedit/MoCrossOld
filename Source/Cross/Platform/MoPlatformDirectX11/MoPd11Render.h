@@ -55,7 +55,7 @@ public:
       return _offsets;
    }
 public:
-   FRenderLayoutElement* FindByAttribute(FRenderAttribute* pAttribute);
+   FRenderLayoutElement* FindByAttribute(FRenderProgramAttribute* pAttribute);
    MO_OVERRIDE TResult OnSetup();
 };
 //------------------------------------------------------------
@@ -118,9 +118,9 @@ public:
 //============================================================
 // <T>äÖÈ¾Æ÷»º³å¡£</T>
 //============================================================
-class MO_PD11_DECLARE FPd11RenderShaderBuffer : public FRenderShaderBuffer
+class MO_PD11_DECLARE FPd11RenderShaderBuffer : public FRenderProgramBuffer
 {
-   MO_CLASS_DECLARE_INHERITS(FPd11RenderShaderBuffer, FRenderShaderBuffer);
+   MO_CLASS_DECLARE_INHERITS(FPd11RenderShaderBuffer, FRenderProgramBuffer);
 protected:
    ID3D11Buffer* _piBuffer;
 public:
@@ -147,9 +147,9 @@ public:
 //============================================================
 // <T>äÖÈ¾Æ÷²ÎÊý¡£</T>
 //============================================================
-class MO_PD11_DECLARE FPd11RenderShaderParameter : public FRenderParameter
+class MO_PD11_DECLARE FPd11RenderShaderParameter : public FRenderProgramParameter
 {
-   MO_CLASS_DECLARE_INHERITS(FPd11RenderShaderParameter, FRenderParameter);
+   MO_CLASS_DECLARE_INHERITS(FPd11RenderShaderParameter, FRenderProgramParameter);
 protected:
    ID3D11ShaderReflectionVariable* _piVariable;
 public:
@@ -468,7 +468,7 @@ public:
    MO_OVERRIDE TResult BindConstFloat4(ERenderShader shaderCd, TInt slot, TFloat x = 0.0f, TFloat y = 0.0f, TFloat z = 0.0f, TFloat w = 1.0f);
    MO_OVERRIDE TResult BindConstMatrix3x3(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix);
    MO_OVERRIDE TResult BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix);
-   MO_OVERRIDE TResult BindShaderBuffer(FRenderShaderBuffer* pBuffer);
+   MO_OVERRIDE TResult BindShaderBuffer(FRenderProgramBuffer* pBuffer);
    MO_OVERRIDE TResult BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVertexBuffer, TInt offset, ERenderAttributeFormat formatCd);
    MO_OVERRIDE TResult BindTexture(TInt slot, FRenderTexture* pTexture);
    MO_OVERRIDE TResult DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt offset, TInt count);

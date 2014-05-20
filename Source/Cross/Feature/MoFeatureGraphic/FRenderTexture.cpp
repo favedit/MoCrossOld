@@ -12,7 +12,6 @@ FRenderTexture::FRenderTexture(){
    _index = -1;
    _textureCd = ERenderTexture_Unknown;
    _formatCd = ERenderTextureFormat_BGRA;
-   _samplerCd = ERenderSampler_Unknown;
    _filterCd = ERenderTextureFilter_Linear;
    _wrapCd = ERenderTextureWrap_Repeat;
    _pData = MO_CREATE(FBytes);

@@ -29,8 +29,8 @@ TResult FFeatureGraphicFeature::Construct(){
    // 初始化技术管理器
    RTechniqueManager::Create();
    // 枚举创建
-   RRenderAttribute::Create();
-   RRenderSampler::Create();
+   //RRenderAttribute::Create();
+   //RRenderSampler::Create();
    // 注册枚举信息
    return resultCd;
 }

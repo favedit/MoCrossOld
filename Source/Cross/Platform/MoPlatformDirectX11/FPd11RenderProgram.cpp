@@ -172,7 +172,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
          // ²éÕÒÊôÐÔ
          TFsName attributeName;
          attributeName.AppendFormat("%s%d", attributeDescriptor.SemanticName, attributeDescriptor.SemanticIndex);
-         FRenderAttribute* pAttribute = AttributeFind(attributeName);
+         FRenderProgramAttribute* pAttribute = AttributeFind(attributeName);
          if(pAttribute == NULL){
             pAttribute = AttributeFind(attributeDescriptor.SemanticName);
          }
@@ -205,7 +205,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
          pBuffer->SetSlot(bindDescriptor.BindPoint);
       }
       if(bindDescriptor.Type == D3D_SIT_TEXTURE){
-         FRenderSampler* pSampler = SamplerFind(pBindName);
+         FRenderProgramSampler* pSampler = SamplerFind(pBindName);
          if(pSampler == NULL){
             MO_ERROR("Shader sampler bound is not found. (name=%s)", pBindName);
          }else{
@@ -255,7 +255,7 @@ TResult FPd11RenderProgram::Link(){
    TInt position = 0;
    GRenderShaderAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
    while(attributeIterator.Next()){
-      FRenderAttribute* pAttribute = *attributeIterator;
+      FRenderProgramAttribute* pAttribute = *attributeIterator;
       if(pAttribute->IsStatusUsed()){
          ERenderAttributeFormat formatCd = pAttribute->FormatCd();
          D3D11_INPUT_ELEMENT_DESC inputElement;
