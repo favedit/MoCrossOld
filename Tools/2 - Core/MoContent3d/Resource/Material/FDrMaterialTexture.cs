@@ -178,7 +178,9 @@ namespace MO.Content3d.Resource.Material
       // @param output 输出流
       //============================================================
       public void Serialize(IOutput output) {
-         output.WriteUint8((byte)_typeCd);
+         string code = EDrTexture.ToString(_typeCd);
+         output.WriteAnsiString(code);
+         //output.WriteUint8((byte)_typeCd);
          if (_texture == null) {
             output.WriteString(null);
          } else {

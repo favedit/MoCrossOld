@@ -1262,7 +1262,8 @@ namespace MO.Content3d.Resource.Model.Mesh
                streamCount++;
                flags |= EDrVertex.Position;
                int vertexStride = sizeof(float) * 3;
-               stream.WriteUint8((byte)EVertexBuffer3d.Position);
+               //stream.WriteUint8((byte)EVertexBuffer3d.Position);
+               stream.WriteAnsiString(EContent3dAttribute.Position);
                stream.WriteUint8((byte)ERenderVertexFormat.Float3);
                stream.WriteUint8((byte)vertexStride);
                stream.WriteUint8((byte)offset);
@@ -1272,7 +1273,8 @@ namespace MO.Content3d.Resource.Model.Mesh
                streamCount++;
                flags |= EDrVertex.Color;
                int vertexStride = sizeof(byte) * 4;
-               stream.WriteUint8((byte)EVertexBuffer3d.Color);
+               //stream.WriteUint8((byte)EVertexBuffer3d.Color);
+               stream.WriteAnsiString(EContent3dAttribute.Color);
                stream.WriteUint8((byte)ERenderVertexFormat.ByteNormal4);
                stream.WriteUint8((byte)vertexStride);
                stream.WriteUint8((byte)offset);
@@ -1282,7 +1284,8 @@ namespace MO.Content3d.Resource.Model.Mesh
                streamCount++;
                flags |= EDrVertex.Coord;
                int vertexStride = sizeof(float) * 2;
-               stream.WriteUint8((byte)EVertexBuffer3d.Coord);
+               //stream.WriteUint8((byte)EVertexBuffer3d.Coord);
+               stream.WriteAnsiString(EContent3dAttribute.Coord);
                stream.WriteUint8((byte)ERenderVertexFormat.Float2);
                stream.WriteUint8((byte)vertexStride);
                stream.WriteUint8((byte)offset);
@@ -1292,7 +1295,8 @@ namespace MO.Content3d.Resource.Model.Mesh
                streamCount++;
                flags |= EDrVertex.CoordLight;
                int vertexStride = sizeof(float) * 2;
-               stream.WriteUint8((byte)EVertexBuffer3d.CoordLight);
+               //stream.WriteUint8((byte)EVertexBuffer3d.CoordLight);
+               stream.WriteAnsiString(EContent3dAttribute.CoordLight);
                stream.WriteUint8((byte)ERenderVertexFormat.Float2);
                stream.WriteUint8((byte)vertexStride);
                stream.WriteUint8((byte)offset);
@@ -1302,7 +1306,8 @@ namespace MO.Content3d.Resource.Model.Mesh
                streamCount++;
                flags |= EDrVertex.Normal;
                int vertexStride = sizeof(byte) * 4;
-               stream.WriteUint8((byte)EVertexBuffer3d.Normal);
+               //stream.WriteUint8((byte)EVertexBuffer3d.Normal);
+               stream.WriteAnsiString(EContent3dAttribute.Normal);
                stream.WriteUint8((byte)ERenderVertexFormat.ByteNormal4);
                stream.WriteUint8((byte)vertexStride);
                stream.WriteUint8((byte)offset);
@@ -1312,7 +1317,8 @@ namespace MO.Content3d.Resource.Model.Mesh
                streamCount++;
                flags |= EDrVertex.Binormal;
                int vertexStride = sizeof(byte) * 4;
-               stream.WriteUint8((byte)EVertexBuffer3d.Binormal);
+               //stream.WriteUint8((byte)EVertexBuffer3d.Binormal);
+               stream.WriteAnsiString(EContent3dAttribute.Binormal);
                stream.WriteUint8((byte)ERenderVertexFormat.ByteNormal4);
                stream.WriteUint8((byte)vertexStride);
                stream.WriteUint8((byte)offset);
@@ -1322,7 +1328,8 @@ namespace MO.Content3d.Resource.Model.Mesh
                streamCount++;
                flags |= EDrVertex.Tangent;
                int vertexStride = sizeof(byte) * 4;
-               stream.WriteUint8((byte)EVertexBuffer3d.Tangent);
+               //stream.WriteUint8((byte)EVertexBuffer3d.Tangent);
+               stream.WriteAnsiString(EContent3dAttribute.Tangent);
                stream.WriteUint8((byte)ERenderVertexFormat.ByteNormal4);
                stream.WriteUint8((byte)vertexStride);
                stream.WriteUint8((byte)offset);
@@ -1333,7 +1340,8 @@ namespace MO.Content3d.Resource.Model.Mesh
                streamCount++;
                flags |= EDrVertex.BoneIndex;
                int vertexStride = sizeof(byte) * 4;
-               stream.WriteUint8((byte)EVertexBuffer3d.BoneIndex);
+               //stream.WriteUint8((byte)EVertexBuffer3d.BoneIndex);
+               stream.WriteAnsiString(EContent3dAttribute.BoneIndex);
                stream.WriteUint8((byte)ERenderVertexFormat.Byte4);
                stream.WriteUint8((byte)vertexStride);
                stream.WriteUint8((byte)offset);
@@ -1342,7 +1350,8 @@ namespace MO.Content3d.Resource.Model.Mesh
                streamCount++;
                flags |= EDrVertex.BoneWeight;
                vertexStride = sizeof(byte) * 4;
-               stream.WriteUint8((byte)EVertexBuffer3d.BoneWeight);
+               //stream.WriteUint8((byte)EVertexBuffer3d.BoneWeight);
+               stream.WriteAnsiString(EContent3dAttribute.BoneWeight);
                stream.WriteUint8((byte)ERenderVertexFormat.ByteNormal4);
                stream.WriteUint8((byte)vertexStride);
                stream.WriteUint8((byte)offset);

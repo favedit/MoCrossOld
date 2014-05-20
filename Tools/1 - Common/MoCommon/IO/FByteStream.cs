@@ -453,6 +453,29 @@ namespace MO.Common.IO
       }
 
       //============================================================
+      // <T>写入一个字符串。</T>
+      //
+      // @param value 字符串
+      //============================================================
+      public void WriteAnsiString(string value) {
+         if(value == null) {
+            WriteUint16(0);
+         } else if(value.Length == 0) {
+            WriteUint16(0);
+         } else {
+            Byte[] bytes = Encoding.ASCII.GetBytes(value);
+            int length = bytes.Length;
+            WriteUint16((ushort)length);
+            EnsureSize(_position + length);
+            Array.Copy(bytes, 0, _memory, _position, bytes.Length);
+            _position += bytes.Length;
+            if(_position > _length) {
+               _length = _position;
+            }
+         }
+      }
+
+      //============================================================
       // <T>写入一个UTF-8字符串。</T>
       //
       // @param value UTF-8字符串

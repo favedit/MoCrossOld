@@ -276,7 +276,8 @@ namespace MO.Content3d.Resource.Texture
          if ((null != bitmapDiffuse) || (null != bitmapAlpha)) {
             bitmapCount++;
             bytes.WriteInt8(EDrTexture.Texture2d);
-            bytes.WriteInt8(EDrTexture.PackDiffuse);
+            //bytes.WriteInt8(EDrTexture.PackDiffuse);
+            bytes.WriteAnsiString(EContent3dSampler.PackDiffuse);
             using (FRsBitmapTexture merger = new FRsBitmapTexture()) {
                if (null != bitmapDiffuse) {
                   merger.LoadFile(path + bitmapDiffuse.Source, EBitmapChannels.RGB);
@@ -293,8 +294,9 @@ namespace MO.Content3d.Resource.Texture
          if ((null != bitmapNormal) || (null != bitmapSpecularLevel)) {
             bitmapCount++;
             bytes.WriteInt8(EDrTexture.Texture2d);
-            bytes.WriteInt8(EDrTexture.PackNormal);
-            using (FRsBitmapTexture merger = new FRsBitmapTexture()) {
+            //bytes.WriteInt8(EDrTexture.PackNormal);
+            bytes.WriteAnsiString(EContent3dSampler.PackNormal);
+            using(FRsBitmapTexture merger = new FRsBitmapTexture()) {
                if (null != bitmapNormal) {
                   merger.LoadFile(path + bitmapNormal.Source, EBitmapChannels.RGB);
                }
@@ -310,8 +312,9 @@ namespace MO.Content3d.Resource.Texture
          if ((null != bitmapSpecular) || (null != bitmapHeight)) {
             bitmapCount++;
             bytes.WriteInt8(EDrTexture.Texture2d);
-            bytes.WriteInt8(EDrTexture.PackSpecular);
-            using (FRsBitmapTexture merger = new FRsBitmapTexture()) {
+            //bytes.WriteInt8(EDrTexture.PackSpecular);
+            bytes.WriteAnsiString(EContent3dSampler.PackSpecular);
+            using(FRsBitmapTexture merger = new FRsBitmapTexture()) {
                if (null != bitmapSpecular) {
                   merger.LoadFile(path + bitmapSpecular.Source, EBitmapChannels.RGB);
                }
@@ -327,8 +330,9 @@ namespace MO.Content3d.Resource.Texture
          if ((null != bitmapTransmittanceColor) || (null != bitmapTransmittanceLevel)) {
             bitmapCount++;
             bytes.WriteInt8(EDrTexture.Texture2d);
-            bytes.WriteInt8(EDrTexture.PackTransmittance);
-            using (FRsBitmapTexture merger = new FRsBitmapTexture()) {
+            //bytes.WriteInt8(EDrTexture.PackTransmittance);
+            bytes.WriteAnsiString(EContent3dSampler.PackTransmittance);
+            using(FRsBitmapTexture merger = new FRsBitmapTexture()) {
                if (null != bitmapTransmittanceColor) {
                   merger.LoadFile(path + bitmapTransmittanceColor.Source, EBitmapChannels.RGB);
                }
@@ -346,8 +350,9 @@ namespace MO.Content3d.Resource.Texture
          if ((null != bitmapLight) || (null != bitmapReflect) || (null != bitmapRefract) || (null != bitmapEmissive)) {
             bitmapCount++;
             bytes.WriteInt8(EDrTexture.Texture2d);
-            bytes.WriteInt8(EDrTexture.PackLight);
-            using (FRsBitmapTexture merger = new FRsBitmapTexture()) {
+            //bytes.WriteInt8(EDrTexture.PackLight);
+            bytes.WriteAnsiString(EContent3dSampler.PackLight);
+            using(FRsBitmapTexture merger = new FRsBitmapTexture()) {
                if (null != bitmapLight) {
                   merger.LoadFileChannel(path + bitmapLight.Source, EBitmapChannel.R, EBitmapChannels.R);
                }
@@ -368,7 +373,8 @@ namespace MO.Content3d.Resource.Texture
          if (null != bitmapEnvironment) {
             bitmapCount++;
             bytes.WriteInt8(EDrTexture.TextureCube);
-            bytes.WriteInt8(EDrTexture.Environment);
+            bytes.WriteAnsiString(EContent3dSampler.Environment);
+            //bytes.WriteInt8(EDrTexture.Environment);
             Bitmap bitmap = new Bitmap(path + bitmapEnvironment.Source);
             int size = bitmap.Height;
             int block = bitmap.Width / bitmap.Height;
