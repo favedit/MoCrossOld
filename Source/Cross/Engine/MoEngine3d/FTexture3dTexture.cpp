@@ -24,7 +24,7 @@ FTexture3dTexture::~FTexture3dTexture(){
 // @param pCode 代码
 // @return 位图
 //============================================================
-FTexture3dBitmap* FTexture3dTexture::FindByType(TCharC* pCode){
+FTexture3dBitmap* FTexture3dTexture::FindByCode(TCharC* pCode){
    TInt count = _pBitmaps->Count();
    for(TInt n = 0; n < count; n++){
       FTexture3dBitmap* pBitmap = _pBitmaps->Get(n);
@@ -41,53 +41,6 @@ FTexture3dBitmap* FTexture3dTexture::FindByType(TCharC* pCode){
 }
 
 //============================================================
-// <T>根据代码分组查找位图。</T>
-//
-// @param pCode 代码
-// @return 位图
-//============================================================
-FTexture3dBitmap* FTexture3dTexture::FindByPack(TCharC* pCode){
-   // 获得打包类型
-   //ERenderSampler packCd = samplerCd;
-   //switch(samplerCd){
-   //   case ERenderSampler_Diffuse:
-   //   case ERenderSampler_Alpha:
-   //      packCd = ERenderSampler_PackDiffuse;
-   //      break;
-   //   case ERenderSampler_Normal:
-   //   case ERenderSampler_SpecularLevel:
-   //      packCd = ERenderSampler_PackNormal;
-   //      break;
-   //   case ERenderSampler_SpecularColor:
-   //   case ERenderSampler_Height:
-   //      packCd = ERenderSampler_PackSpecular;
-   //      break;
-   //   case ERenderSampler_TransmittanceColor:
-   //   case ERenderSampler_TransmittanceLevel:
-   //      packCd = ERenderSampler_PackTransmittance;
-   //      break;
-   //   case ERenderSampler_Light:
-   //   case ERenderSampler_Reflect:
-   //   case ERenderSampler_Refract:
-   //   case ERenderSampler_Emissive:
-   //      packCd = ERenderSampler_PackLight;
-   //      break;
-   //   default:
-   //      break;
-   //}
-   //// 查找类型
-   //TInt count = _pBitmaps->Count();
-   //for(TInt n = 0; n < count; n++){
-   //   FTexture3dBitmap* pBitmap = _pBitmaps->Get(n);
-   //   ERenderSampler findSamplerCd = (ERenderSampler)pBitmap->Resource()->SamplerCd();
-   //   if(findSamplerCd == packCd){
-   //      return pBitmap;
-   //   }
-   //}
-   return NULL;
-}
-
-//============================================================
 // <T>从输入流里反序列化信息内容</T>
 //
 // @param pInput 输入流
@@ -97,12 +50,13 @@ TResult FTexture3dTexture::LoadResource(FRs3dTexture* pResource){
    MO_CHECK(pResource, return ENull);
    _pResource = pResource;
    // 读取动位图集合
-   GRs3dTextureBitmapPtrs& rsBitmaps = pResource->Bitmaps();
-   TInt count = rsBitmaps.Count();
+   GRs3dTextureBitmapPtrs& bitmapResources = pResource->Bitmaps();
+   TInt count = bitmapResources.Count();
    for(TInt n = 0; n < count; n++){
-      FRs3dTextureBitmap* pRsBitmap = rsBitmaps.Get(n);
+      FRs3dTextureBitmap* pBitmapResource = bitmapResources.Get(n);
+      // 创建图形
       FTexture3dBitmap* pBitmap = FTexture3dBitmap::InstanceCreate();
-      pBitmap->LoadResource(pRsBitmap);
+      pBitmap->LoadResource(pBitmapResource);
       _pBitmaps->Push(pBitmap);
    }
    return ESuccess;

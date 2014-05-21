@@ -26,6 +26,7 @@ TResult FRs3dMaterialTexture::Unserialize(IDataInput* pInput){
    MO_CHECK(pInput, return ENull);
    // 读取代码
    _code.Unserialize(pInput);
+   _packCode.Unserialize(pInput);
    // 读取纹理名称
    _textureName.UnserializeAutomatic(pInput);
    return ESuccess;

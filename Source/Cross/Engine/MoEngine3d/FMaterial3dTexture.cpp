@@ -26,19 +26,21 @@ TResult FMaterial3dTexture::LoadResource(FRs3dMaterialTexture* pResource){
    MO_CHECK(pResource, return ENull);
    _resource = pResource;
    // 加载纹理
-   TCharC* pTextureCode = pResource->Code();
+   TCharC* pCode = pResource->Code();
+   TCharC* pPackCode = pResource->PackCode();
    TCharC* pTextureName = pResource->TextureName();
    // 获得纹理实体
    FTexture3dTexture* pTexture = RInstance3dManager::Instance().TextureConsole()->Load(pTextureName);
    MO_ERROR_CHECK(pTexture, return EFailure,
          "Open instance texture failure. (texture=%s)", pTextureName);
-   FTexture3dBitmap* pBitmap = pTexture->FindByPack(pTextureCode);
+   FTexture3dBitmap* pBitmap = pTexture->FindByCode(pPackCode);
    MO_ERROR_CHECK(pBitmap, return EFailure,
-         "Open resource bitmap is empty. (texture=%s, type=%s)", pTextureName, pTextureCode);
-   _code = pTextureCode;
+         "Open resource bitmap is empty. (texture=%s, type=%s)", pTextureName, pPackCode);
+   _code = pCode;
+   _packCode = pPackCode;
    _renderTexture = pBitmap->RenderTexture();
    MO_ERROR_CHECK(_renderTexture, return EFailure,
-         "Open resource bitmap failure. (texture=%s, type=%s)", pTextureName, pTextureCode);
+         "Open resource bitmap failure. (texture=%s, type=%s)", pTextureName, pPackCode);
    return ESuccess;
 }
 

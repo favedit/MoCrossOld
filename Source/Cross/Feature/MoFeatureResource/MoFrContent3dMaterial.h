@@ -20,6 +20,7 @@ class MO_FR_DECLARE FRs3dMaterialTexture : public FInstance
    MO_CLASS_DECLARE_INHERITS(FRs3dMaterialTexture, FInstance);
 protected:
    TString _code;
+   TString _packCode;
    TString _textureName;
 public:
    FRs3dMaterialTexture();
@@ -39,6 +40,16 @@ public:
    // <T>设置代码。</T>
    MO_INLINE void SetCode(TCharC* pCode){
       _code = pCode;
+   }
+   //------------------------------------------------------------
+   // <T>获得打包代码。</T>
+   MO_INLINE TCharC* PackCode(){
+      return _packCode;
+   }
+   //------------------------------------------------------------
+   // <T>设置打包代码。</T>
+   MO_INLINE void SetPackCode(TCharC* pPackCode){
+      _packCode = pPackCode;
    }
    //------------------------------------------------------------
    // <T>获得纹理编号。</T>

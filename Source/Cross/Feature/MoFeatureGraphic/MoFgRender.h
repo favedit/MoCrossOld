@@ -1680,6 +1680,7 @@ class MO_FG_DECLARE FRenderMaterialTexture : public FInstance
    MO_CLASS_DECLARE_INHERITS(FRenderMaterialTexture, FInstance);
 protected:
    TString _code;
+   TString _packCode;
    GRenderTexturePtr _texture;
 public:
    FRenderMaterialTexture();
@@ -1699,6 +1700,21 @@ public:
    // <T>设置代码。</T>
    MO_INLINE void SetCode(TCharC* pCode){
       _code = pCode;
+   }
+   //------------------------------------------------------------
+   // <T>判断是否指定代码。</T>
+   MO_INLINE TBool IsPackCode(TCharC* pPackCode){
+      return _packCode.Equals(pPackCode);
+   }
+   //------------------------------------------------------------
+   // <T>获得打包代码。</T>
+   MO_INLINE TCharC* PackCode(){
+      return _packCode;
+   }
+   //------------------------------------------------------------
+   // <T>设置打包代码。</T>
+   MO_INLINE void SetPackCode(TCharC* pPackCode){
+      _packCode = pPackCode;
    }
    //------------------------------------------------------------
    // <T>获得纹理。</T>
