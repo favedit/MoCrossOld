@@ -62,7 +62,7 @@ TResult FPd9RenderLayout::OnSetup(){
    TInt position = 0;
    TInt index = 0;
    FPd9RenderDevice* pRenderDevice = _pDevice->Convert<FPd9RenderDevice>();
-   FRenderVertexStreams* pVertexStreams = _pRenderable->VertexStreams();
+   FRenderableData* pRenderableData = _pRenderable->Data();
    GRenderShaderAttributeDictionary::TIterator iterator = _pProgram->Attributes().IteratorC();
    TInt fvf1 = 0;
    TInt fvf2 = 0;
@@ -73,42 +73,37 @@ TResult FPd9RenderLayout::OnSetup(){
       //   continue;
       //}
       //............................................................
-      TInt bufferCd = pAttribute->Code();
-      TCharC* pBufferCode = RRenderAttribute::Format(bufferCd);
-      ERenderAttributeFormat formatCd = pAttribute->FormatCd();
-      FRenderVertexStream* pStream = pVertexStreams->FindStream(pBufferCode);
-      FRenderProgramLayoutElement* pElement = FRenderProgramLayoutElement::InstanceCreate();
-      pElement->SetAttribute(pAttribute);
-      pElement->SetStream(pStream);
-      Push(pElement);
+      TCharC* pBufferCode = pAttribute->Linker();
+      FRenderableAttribute* pRenderableAttribute = pRenderableData->AttributeFind(pBufferCode);
+      //FRenderProgramLayoutElement* pElement = FRenderProgramLayoutElement::InstanceCreate();
+      //pElement->SetAttribute(pAttribute);
+      //pElement->SetStream(pStream);
+      //Push(pElement);
       //............................................................
       // 设置缓冲信息
-      if(pStream != NULL){
-         FPd9RenderVertexBuffer* pVertexBuffer = pStream->VertexBuffer()->Convert<FPd9RenderVertexBuffer>();
+      if(pAttribute != NULL){
+         FPd9RenderVertexBuffer* pVertexBuffer = pRenderableAttribute->VertexBuffer()->Convert<FPd9RenderVertexBuffer>();
          _total = pVertexBuffer->Count();
          _piBuffer[index] = pVertexBuffer->NativeBuffer();
-         _strides[index] = pStream->Stride();
-         _offsets[index] = pStream->Offset();
+         _strides[index] = pVertexBuffer->Stride();
+         _offsets[index] = pRenderableAttribute->Offset();
          if(index == 0){
             fvf1 = GetFvF(index);
          }else{
             fvf2 = GetFvF(index);
          }
-
-         D3DDECLTYPE typeCd = RDirectX9::ConvertAttrbuteFormat(formatCd);
          D3DDECLUSAGE usageCd;
          TInt usageIndex;
          RDirectX9::ConvertAttrbuteUsage(index, &usageCd, &usageIndex);
-
+         // 设置元素信息
          D3DVERTEXELEMENT9 element = {0};
          element.Stream = 0;
-         element.Offset = pStream->Offset();
-         element.Type = RDirectX9::ConvertAttrbuteFormat(formatCd);
+         element.Offset = pRenderableAttribute->Offset();
+         element.Type = RDirectX9::ConvertAttrbuteFormat(pRenderableAttribute->FormatCd());
          element.Method = D3DDECLMETHOD_DEFAULT;
          element.Usage = usageCd;
          element.UsageIndex = usageIndex;
          elements[index] = element;
-
          index++;
       }
    }

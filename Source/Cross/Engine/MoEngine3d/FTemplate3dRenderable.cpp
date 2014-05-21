@@ -122,6 +122,10 @@ TResult FTemplate3dRenderable::LoadResource(FRs3dTemplateRenderable* pResource){
          pRenderTexture->SetOwner(this);
          //_pTextures->Push(pRenderTexture);
          pMaterial3d->MaterialTextures().Push(pTexture);
+         // 增加取样器
+         FRenderableSampler* pSampler = FRenderableSampler::InstanceCreate();
+         pSampler->SetCode(pTexture->Code());
+         SamplerPush(pSampler);
       }
    }
    _material->AssignOption(pMaterial);

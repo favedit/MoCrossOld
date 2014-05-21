@@ -438,7 +438,7 @@ public:
    MO_OVERRIDE FMaterial* Material();
    MO_OVERRIDE TResult CalculateRectangle(SIntRectangle* pRectangle);
    MO_ABSTRACT TResult CalculateClientRectangle(SIntRectangle* pRectangle);
-   MO_OVERRIDE TResult CalculateRenderable(SRenderable& renderable);
+   //MO_OVERRIDE TResult CalculateRenderable(SRenderable& renderable);
    MO_ABSTRACT FUiCanvas* Canvas();
    MO_OVERRIDE TResult Free();
 };

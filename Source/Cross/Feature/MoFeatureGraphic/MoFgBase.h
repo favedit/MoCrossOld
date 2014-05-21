@@ -1010,6 +1010,8 @@ public:
    FRenderableAttribute* AttributeGet(TCharC* pCode);
    FRenderableSampler* SamplerFind(TCharC* pCode);
    FRenderableSampler* SamplerGet(TCharC* pCode);
+   TResult SamplerPush(FRenderableSampler* pSampler);
+   TResult SamplerRemove(FRenderableSampler* pSampler);
    FRenderableEffect* EffectFind(TCharC* pName);
    FRenderableEffect* EffectBind(FEffect* pEffect);
 public:

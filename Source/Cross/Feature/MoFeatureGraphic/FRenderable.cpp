@@ -75,6 +75,44 @@ FRenderableSampler* FRenderable::SamplerGet(TCharC* pCode){
 }
 
 //============================================================
+// <T>增加一个取样。</T>
+//
+// @param pSampler 取样
+// @return 处理结果
+//============================================================
+TResult FRenderable::SamplerPush(FRenderableSampler* pSampler){
+   MO_CHECK(pSampler, return ENull);
+   // 查找是否存在
+   TCharC* pCode = pSampler->Code();
+   FRenderableSampler* pFind = SamplerFind(pCode);
+   if(pFind != NULL){
+      MO_FATAL("Sampler is already exists. (code=%s)", pCode);
+      return EDuplicate;
+   }
+   // 添加属性
+   _samplers.Push(pSampler);
+   return ESuccess;
+}
+
+//============================================================
+// <T>移除一个取样。</T>
+//
+// @param pSampler 取样
+// @return 处理结果
+//============================================================
+TResult FRenderable::SamplerRemove(FRenderableSampler* pSampler){
+   MO_CHECK(pSampler, return ENull);
+   // 查找是否存在
+   if(!_samplers.Contains(pSampler)){
+      MO_FATAL("Sampler is not exists. (code=%s)", pSampler->Code());
+      return ENotExists;
+   }
+   // 添加属性
+   _samplers.Push(pSampler);
+   return ESuccess;
+}
+
+//============================================================
 // <T>查找指定名称的效果器。</T>
 //
 // @param pName 名称

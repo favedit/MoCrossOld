@@ -34,10 +34,9 @@ FRenderProgramLayoutElement* FPd10RenderLayout::FindByAttribute(FRenderProgramAt
 //============================================================
 TResult FPd10RenderLayout::OnSetup(){
    MO_CHECK(_pDevice, return ENull);
-   TInt position = 0;
    TInt index = 0;
    FPd10RenderDevice* pRenderDevice = _pDevice->Convert<FPd10RenderDevice>();
-   FRenderVertexStreams* pVertexStreams = _pRenderable->VertexStreams();
+   FRenderableData* pRenderableData = _pRenderable->Data();
    GRenderShaderAttributeDictionary::TIterator iterator = _pProgram->Attributes().IteratorC();
    while(iterator.Next()){
       FRenderProgramAttribute* pAttribute = *iterator;
@@ -47,25 +46,24 @@ TResult FPd10RenderLayout::OnSetup(){
       //............................................................
       TCharC* pLinker = pAttribute->Linker();
       ERenderAttributeFormat formatCd = pAttribute->FormatCd();
-      FRenderVertexStream* pStream = pVertexStreams->FindStream(pLinker);
-      FRenderProgramLayoutElement* pElement = FRenderProgramLayoutElement::InstanceCreate();
-      pElement->SetAttribute(pAttribute);
-      pElement->SetStream(pStream);
-      Push(pElement);
+      FRenderableAttribute* pRenderableAttribute = pRenderableData->AttributeFind(pLinker);
+      //FRenderProgramLayoutElement* pElement = FRenderProgramLayoutElement::InstanceCreate();
+      //pElement->SetAttribute(pAttribute);
+      //pElement->SetStream(pStream);
+      //Push(pElement);
       //............................................................
       // ÉèÖÃ»º³åÐÅÏ¢
-      if(pStream != NULL){
-         FPd10RenderVertexBuffer* pVertexBuffer = pStream->VertexBuffer()->Convert<FPd10RenderVertexBuffer>();
+      if(pRenderableAttribute != NULL){
+         FPd10RenderVertexBuffer* pVertexBuffer = pRenderableAttribute->VertexBuffer()->Convert<FPd10RenderVertexBuffer>();
          _piBuffer[index] = pVertexBuffer->NativeBuffer();
-         _strides[index] = pStream->Stride();
-         _offsets[index] = pStream->Offset();
+         _strides[index] = pVertexBuffer->Stride();
+         _offsets[index] = pRenderableAttribute->Offset();
       }else{
          _piBuffer[index] = NULL;
          _strides[index] = 0;
          _offsets[index] = 0;
       }
       index++;
-      position += RRenderAttributeFormat::CalculateSize(formatCd);
    }
    _count = index;
    return ESuccess;

@@ -171,31 +171,31 @@ TResult FUiControl::CalculateClientRectangle(SIntRectangle* pRectangle){
 // @param renderable 渲染信息
 // @return 处理结果
 //============================================================
-TResult FUiControl::CalculateRenderable(SRenderable& renderable){
-   SRenderableItem& item = renderable.Alloc();
-   // 计算坐标位置
-   TInt level = 0;
-   FComponent* pFind = this;
-   item.location.Reset();
-   while(pFind != NULL){
-      //if(pFind->IsObject(EComponent_Drawable)){
-      //   FDrawable* pDrawable = (FDrawable*)pFind;
-      //   item.location.Add(pDrawable->Location());
-      //}
-      pFind = pFind->Parent();
-      //level++;
-   }
-   // 设置属性
-   item.size.Assign(_size);
-   item.rotation.Assign(_rotation);
-   item.coord.Assign(_coord);
-   item.groundColor.Assign(_groundColor);
-   // 设置层级
-   if(_pMaterial != NULL){
-      //_pMaterial->SetLevel(level);
-   }
-   return ESuccess;
-}
+//TResult FUiControl::CalculateRenderable(SRenderable& renderable){
+//   SRenderableItem& item = renderable.Alloc();
+//   // 计算坐标位置
+//   TInt level = 0;
+//   FComponent* pFind = this;
+//   item.location.Reset();
+//   while(pFind != NULL){
+//      //if(pFind->IsObject(EComponent_Drawable)){
+//      //   FDrawable* pDrawable = (FDrawable*)pFind;
+//      //   item.location.Add(pDrawable->Location());
+//      //}
+//      pFind = pFind->Parent();
+//      //level++;
+//   }
+//   // 设置属性
+//   item.size.Assign(_size);
+//   item.rotation.Assign(_rotation);
+//   item.coord.Assign(_coord);
+//   item.groundColor.Assign(_groundColor);
+//   // 设置层级
+//   if(_pMaterial != NULL){
+//      //_pMaterial->SetLevel(level);
+//   }
+//   return ESuccess;
+//}
 
 //============================================================
 // <T>获得画板。</T>
