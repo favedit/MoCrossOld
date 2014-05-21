@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd10RenderLayout, FRenderLayout);
+MO_CLASS_IMPLEMENT_INHERITS(FPd10RenderLayout, FRenderProgramLayout);
 
 //============================================================
 // <T>构造渲染层信息。</T>
@@ -20,10 +20,10 @@ FPd10RenderLayout::~FPd10RenderLayout(){
 }
 
 //============================================================
-FRenderLayoutElement* FPd10RenderLayout::FindByAttribute(FRenderProgramAttribute* pAttribute){
+FRenderProgramLayoutElement* FPd10RenderLayout::FindByAttribute(FRenderProgramAttribute* pAttribute){
    TInt count = _elements.Count();
    for(TInt n = 0; n < count; n++){
-      FRenderLayoutElement* pElement = _elements.Get(n);
+      FRenderProgramLayoutElement* pElement = _elements.Get(n);
       if(pElement->Attribute() == pAttribute){
          return pElement;
       }
@@ -48,7 +48,7 @@ TResult FPd10RenderLayout::OnSetup(){
       TCharC* pLinker = pAttribute->Linker();
       ERenderAttributeFormat formatCd = pAttribute->FormatCd();
       FRenderVertexStream* pStream = pVertexStreams->FindStream(pLinker);
-      FRenderLayoutElement* pElement = FRenderLayoutElement::InstanceCreate();
+      FRenderProgramLayoutElement* pElement = FRenderProgramLayoutElement::InstanceCreate();
       pElement->SetAttribute(pAttribute);
       pElement->SetStream(pStream);
       Push(pElement);

@@ -29,9 +29,7 @@ FAutomaticEffect::FAutomaticEffect(){
    _descriptor.supportHeight = ETrue;
    // 设置缓冲
    _pParameters = MO_CREATE(FRenderProgramParameterCollection);
-   _pParameters->SetCount(EEffectParameter_Count);
    _pAttributes = MO_CREATE(FRenderProgramAttributeCollection);
-   _pAttributes->SetCount(EEffectAttribute_Count);
    _pSamplers = MO_CREATE(FRenderProgramSamplerCollection);
    //_pSamplers->SetCount(ERenderSampler_Count);
 }
@@ -43,6 +41,25 @@ FAutomaticEffect::~FAutomaticEffect(){
    MO_DELETE(_pParameters);
    MO_DELETE(_pAttributes);
    MO_DELETE(_pSamplers);
+}
+
+//============================================================
+// <T>注册一个参数。</T>
+//
+// @param pLinker 关联器
+// @param code 代码
+// @retrun 处理结果
+//============================================================
+TResult FAutomaticEffect::RegisterParameter(TCharC* pLinker, TInt code){
+   // 检查参数
+   MO_CHECK(pLinker, return ENull);
+   MO_CHECK(code >= 0, return EOutRange);
+   // 获得程序参数
+   FRenderProgramParameter* pParameter = _program->ParameterFind(pLinker);
+   MO_CHECK(pParameter, return ENull);
+   // 设置位置
+   _pParameters->ExtendSet(code, pParameter);
+   return ESuccess;
 }
 
 //============================================================
@@ -123,12 +140,12 @@ TResult FAutomaticEffect::BindDescriptors(){
          if(pSampler->IsStatusUsed()){
             TCharC* pLinker = pSampler->Linker();
             // 解析内容
-            TInt samplerCd = RRenderSampler::Parse(pLinker);
-            TInt packCd = RRenderSampler::ParsePack(samplerCd);
+            //TInt samplerCd = RRenderSampler::Parse(pLinker);
+            //TInt packCd = RRenderSampler::ParsePack(samplerCd);
             // 设置参数
-            pSampler->SetCode(samplerCd);
-            _pSamplers->Set(samplerCd, pSampler);
-            _pSamplers->Set(packCd, pSampler);
+            //pSampler->SetCode(samplerCd);
+            //_pSamplers->Set(samplerCd, pSampler);
+            //_pSamplers->Set(packCd, pSampler);
          }
       }
    }
@@ -301,14 +318,13 @@ TResult FAutomaticEffect::BindConstMatrix4x4(TInt bindCd, SFloatMatrix3d* pMatri
 // @return 处理结果
 //============================================================
 TResult FAutomaticEffect::BindAttributeDescriptors(FRenderable* pRenderable){
-   // 获得属性
-   FRenderVertexStreams* pVertexStreams = pRenderable->VertexStreams();
-   MO_CHECK(pVertexStreams, return ENull);
+   MO_CHECK(pRenderable, return ENull);
    //............................................................
-   // 创建布局
+   // 获得布局
    FRenderableEffect* pRenderableEffect = pRenderable->ActiveEffect();
    FRenderLayout* pLayout = pRenderableEffect->Layout();
    if(pLayout == NULL){
+      // 创建布局
       pLayout = _renderDevice->CreateObject<FRenderLayout>(MO_RENDEROBJECT_LAYOUT);
       pLayout->SetProgram(_program);
       pLayout->SetRenderable(pRenderable);
@@ -316,20 +332,7 @@ TResult FAutomaticEffect::BindAttributeDescriptors(FRenderable* pRenderable){
       pRenderableEffect->SetLayout(pLayout);
    }
    //............................................................
-   // 关联属性集合
-   //GRenderShaderAttributeDictionary::TIterator iterator = _program->Attributes().IteratorC();
-   //while(iterator.Next()){
-   //   FRenderProgramAttribute* pAttribute = *iterator;
-   //   if(pAttribute->IsStatusUsed()){
-   //      ERenderVertexBuffer bufferCd = (ERenderVertexBuffer)pAttribute->Code();
-   //      FRenderVertexStream* pVertexStream = pVertexStreams->FindStream(bufferCd);
-   //      if(pVertexStream != NULL){
-   //         _renderDevice->BindVertexStream(pAttribute->Slot(), pVertexStream);
-   //         //MO_INFO("Bind attribute stream. (name=%s, bind_id=%d, code=%d, format=%d)", descriptor.namePtr, descriptor.bindId, descriptor.code, descriptor.formatCd);
-   //      }
-   //   }
-   //}
-   //............................................................
+   // 设置布局
    _renderDevice->SetLayout(pLayout);
    return ESuccess;
 }
@@ -397,11 +400,12 @@ TResult FAutomaticEffect::BindSamplerDescriptors(FRenderable* pRenderable){
       FRenderProgramSampler* pSampler = *iterator;
       if(pSampler->IsStatusUsed()){
          TInt packCode = pSampler->PackCode();
-         FRenderTexture* pTexture = pRenderable->FindTexture(packCode);
-         if(pTexture != NULL){
-            // pTexture->SetIndex(pSampler->Slot());
-            pRenderDevice->BindTexture(pSampler->Slot(), pTexture);
-         }
+         //FRenderableSampler* pSampler = pRenderable->SamplerFind(packCode);
+         //if(pSampler != NULL){
+         //   pSampler->N
+         //   // pTexture->SetIndex(pSampler->Slot());
+         //   pRenderDevice->BindTexture(pSampler->Slot(), pTexture);
+         //}
       }
    }
    return ESuccess;
@@ -576,12 +580,12 @@ TResult FAutomaticEffect::BuildTemplate(SRenderableDescriptor& renderableDescrip
       if(pTemplateContext){
          pTemplateContext->DefineBool("support.ambient", ETrue);
       }
-      if(renderableDescriptor.ContainsSampler(ERenderSampler_Diffuse)){
-         pCode->Append("|TAS");
-         if(pTemplateContext){
-            pTemplateContext->DefineBool("support.ambient.sampler", ETrue);
-         }
-      }
+      //if(renderableDescriptor.ContainsSampler(ERenderSampler_Diffuse)){
+      //   pCode->Append("|TAS");
+      //   if(pTemplateContext){
+      //      pTemplateContext->DefineBool("support.ambient.sampler", ETrue);
+      //   }
+      //}
    }
    // 支持散射技术
    _dynamicDescriptor.supportDiffuse = (_descriptor.supportDiffuse && (renderableDescriptor.supportNormal || renderableDescriptor.supportBump));

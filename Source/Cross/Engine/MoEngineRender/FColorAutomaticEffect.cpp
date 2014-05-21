@@ -18,6 +18,57 @@ FColorAutomaticEffect::~FColorAutomaticEffect(){
 }
 
 //============================================================
+TResult FColorAutomaticEffect::BindDescriptors(){
+   TResult resultCd = FAutomaticEffect::BindDescriptors();
+   // 变换参数
+   RegisterParameter("VertexInstance",       EEffectParameter_VertexInstance);
+   RegisterParameter("VertexModelMatrix3x3", EEffectParameter_VertexModelMatrix3x3);
+   RegisterParameter("VertexModelMatrix4x4", EEffectParameter_VertexModelMatrix4x4);
+   RegisterParameter("VertexViewMatrix4x4", EEffectParameter_VertexViewMatrix4x4);
+   RegisterParameter("VertexProjectionMatrix4x4", EEffectParameter_VertexProjectionMatrix4x4);
+   RegisterParameter("VertexViewProjectionMatrix4x4", EEffectParameter_VertexViewProjectionMatrix4x4);
+   RegisterParameter("VertexModelViewProjectionMatrix3x3", EEffectParameter_VertexModelViewProjectionMatrix3x3);
+   RegisterParameter("VertexModelViewProjectionMatrix4x4", EEffectParameter_VertexModelViewProjectionMatrix4x4);
+   RegisterParameter("VertexBoneMatrix4x3", EEffectParameter_VertexBoneMatrix4x3);
+   RegisterParameter("VertexBoneMatrix4x4", EEffectParameter_VertexBoneMatrix4x4);
+   // 相机参数
+   RegisterParameter("VertexCameraPosition", EEffectParameter_VertexCameraPosition);
+   RegisterParameter("VertexCameraDirection", EEffectParameter_VertexCameraDirection);
+   // 光源参数
+   RegisterParameter("VertexLightModelMatrix4x4", EEffectParameter_VertexLightModelMatrix4x4);
+   RegisterParameter("VertexLightModelViewMatrix4x4", EEffectParameter_VertexLightModelViewMatrix4x4);
+   RegisterParameter("VertexLightModelViewProjectionMatrix4x4", EEffectParameter_VertexLightModelViewProjectionMatrix4x4);
+   RegisterParameter("VertexLightPosition", EEffectParameter_VertexLightPosition);
+   RegisterParameter("VertexLightDirection", EEffectParameter_VertexLightDirection);
+   //............................................................
+   // 相机参数
+   RegisterParameter("FragmentCamera",                             EEffectParameter_FragmentCamera);
+   RegisterParameter("FragmentCameraPosition",                     EEffectParameter_FragmentCameraPosition);
+   RegisterParameter("FragmentCameraDirection",                    EEffectParameter_FragmentCameraDirection);
+   // 光源参数
+   RegisterParameter("FragmentLightModelMatrix4x4",                EEffectParameter_FragmentLightModelMatrix4x4);
+   RegisterParameter("FragmentLightModelViewProjectrionMatrix4x4", EEffectParameter_FragmentLightModelViewProjectrionMatrix4x4);
+   RegisterParameter("FragmentLightPosition",                      EEffectParameter_FragmentLightPosition);
+   RegisterParameter("FragmentLightDirection",                     EEffectParameter_FragmentLightDirection);
+   RegisterParameter("FragmentLightDepth",                         EEffectParameter_FragmentLightDepth);
+   // 材质参数
+   RegisterParameter("FragmentShadowMaterial",    EEffectParameter_FragmentShadowMaterial);
+   RegisterParameter("FragmentShadowMaterialInv", EEffectParameter_FragmentShadowMaterialInv);
+   RegisterParameter("FragmentColor",             EEffectParameter_FragmentColor);
+   RegisterParameter("FragmentAlpha",             EEffectParameter_FragmentAlpha);
+   RegisterParameter("FragmentVertexColor",       EEffectParameter_FragmentVertexColor);
+   RegisterParameter("FragmentAmbientColor",      EEffectParameter_FragmentAmbientColor);
+   RegisterParameter("FragmentDiffuseColor",      EEffectParameter_FragmentDiffuseColor);
+   RegisterParameter("FragmentDiffuseViewColor",  EEffectParameter_FragmentDiffuseViewColor);
+   RegisterParameter("FragmentSpecularColor",     EEffectParameter_FragmentSpecularColor);
+   RegisterParameter("FragmentSpecular",          EEffectParameter_FragmentSpecular);
+   RegisterParameter("FragmentSpecularViewColor", EEffectParameter_FragmentSpecularViewColor);
+   RegisterParameter("FragmentSpecularView",      EEffectParameter_FragmentSpecularView);
+   RegisterParameter("FragmentReflectColor",      EEffectParameter_FragmentReflectColor);
+   return resultCd;
+}
+
+//============================================================
 // <T>绘制处理。</T>
 //============================================================
 TResult FColorAutomaticEffect::DrawRenderable(FRenderRegion* pRegion, FRenderable* pRenderable){

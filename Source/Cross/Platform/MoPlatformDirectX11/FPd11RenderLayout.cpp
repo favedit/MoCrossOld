@@ -20,18 +20,6 @@ FPd11RenderLayout::~FPd11RenderLayout(){
 }
 
 //============================================================
-FRenderLayoutElement* FPd11RenderLayout::FindByAttribute(FRenderProgramAttribute* pAttribute){
-   TInt count = _elements.Count();
-   for(TInt n = 0; n < count; n++){
-      FRenderLayoutElement* pElement = _elements.Get(n);
-      if(pElement->Attribute() == pAttribute){
-         return pElement;
-      }
-   }
-   return NULL;
-}
-
-//============================================================
 // <T>配置处理。</T>
 //
 // @return 处理结果

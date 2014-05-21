@@ -13,7 +13,6 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderable, FInstance);
 FRenderable::FRenderable(){
    _pVisualInfo = MO_CREATE(FVisualNode);
    _pVisualInfo->SetRenderable(this);
-   MO_CLEAR(_pIndexBuffer);
    MO_CLEAR(_pActiveEffect);
 }
 
@@ -31,14 +30,7 @@ FRenderable::~FRenderable(){
 // @return  Ù–‘
 //============================================================
 FRenderableAttribute* FRenderable::AttributeFind(TCharC* pCode){
-   TInt count = _attributes.Count();
-   for(TInt n = 0; n < count; n++){
-      FRenderableAttribute* pRenderableAttribute = _attributes.Get(n);
-      if(pRenderableAttribute->IsCode(pCode)){
-         return pRenderableAttribute;
-      }
-   }
-   return NULL;
+   return _data->AttributeFind(pCode);
 }
 
 //============================================================
@@ -48,11 +40,7 @@ FRenderableAttribute* FRenderable::AttributeFind(TCharC* pCode){
 // @return  Ù–‘
 //============================================================
 FRenderableAttribute* FRenderable::AttributeGet(TCharC* pCode){
-   FRenderableAttribute* pRenderableAttribute = AttributeFind(pCode);
-   if(pRenderableAttribute == NULL){
-      MO_FATAL("Can't find renderable attribute. (code=%s)", pCode);
-   }
-   return pRenderableAttribute;
+   return _data->AttributeGet(pCode);
 }
 
 //============================================================

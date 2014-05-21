@@ -754,7 +754,7 @@ TResult FPd10RenderDevice::SetProgram(FRenderProgram* pProgram){
 // @parma pLayout 布局
 // @return 处理结果
 //============================================================
-TResult FPd10RenderDevice::SetLayout(FRenderLayout* pLayout){
+TResult FPd10RenderDevice::SetLayout(FRenderProgramLayout* pLayout){
    MO_CHECK(pLayout, return ENull);
    // 获得顶点流
    TResult result = ESuccess;

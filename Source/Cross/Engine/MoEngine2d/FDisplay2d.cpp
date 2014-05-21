@@ -34,25 +34,25 @@ TResult FDisplay2d::SetMaterial(FMaterial* pMaterial){
 // @param renderable 渲染信息
 // @return 处理结果
 //============================================================
-TResult FDisplay2d::CalculateRenderable(SRenderable& renderable){
-   SRenderableItem& item = renderable.Alloc();
-   //// 设置坐标
-   //item.location.Assign(_location);
-   //// 设置尺寸
-   //item.size.Assign(_size);
-   //// 设置方向
-   //item.rotation.Assign(_rotation);
-   //// 设置纹理
-   //item.coord.Assign(_coord);
-   //// 设置背景颜色
-   //item.groundColor.Assign(_groundColor);
-   //// 设置内容
-   //item.matrix.Identity();
-   //item.matrix.Translate(-_gravityCenter.x, -_gravityCenter.y, -_gravityCenter.z);
-   //item.matrix.Rotation(_rotation.x, _rotation.y, _rotation.z);
-   //renderable.matrix.UpdateForce();
-   return ESuccess;
-}
+//TResult FDisplay2d::CalculateRenderable(SRenderable& renderable){
+//   SRenderableItem& item = renderable.Alloc();
+//   //// 设置坐标
+//   //item.location.Assign(_location);
+//   //// 设置尺寸
+//   //item.size.Assign(_size);
+//   //// 设置方向
+//   //item.rotation.Assign(_rotation);
+//   //// 设置纹理
+//   //item.coord.Assign(_coord);
+//   //// 设置背景颜色
+//   //item.groundColor.Assign(_groundColor);
+//   //// 设置内容
+//   //item.matrix.Identity();
+//   //item.matrix.Translate(-_gravityCenter.x, -_gravityCenter.y, -_gravityCenter.z);
+//   //item.matrix.Rotation(_rotation.x, _rotation.y, _rotation.z);
+//   //renderable.matrix.UpdateForce();
+//   return ESuccess;
+//}
 
 //============================================================
 // <T>粒子处理。</T>

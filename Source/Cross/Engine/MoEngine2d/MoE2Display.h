@@ -70,7 +70,7 @@ public:
 public:
    TResult SetMaterial(FMaterial* pMaterial);
 public:
-   MO_OVERRIDE TResult CalculateRenderable(SRenderable& renderable);
+   //MO_OVERRIDE TResult CalculateRenderable(SRenderable& renderable);
    MO_OVERRIDE TResult DoParticle(SParticleData& data);
    MO_OVERRIDE TResult Free();
 };
@@ -102,7 +102,7 @@ public:
    }
 public:
    TResult SetOptionTail(TBool value);
-   MO_OVERRIDE TResult CalculateRenderable(SRenderable& renderable);
+   //MO_OVERRIDE TResult CalculateRenderable(SRenderable& renderable);
    MO_OVERRIDE TResult DoParticle(SParticleData& data);
 };
 
@@ -188,7 +188,7 @@ public:
       return _pActiveFrame;
    }
 public:
-   MO_OVERRIDE TResult CalculateRenderable(SRenderable& renderable);
+   //MO_OVERRIDE TResult CalculateRenderable(SRenderable& renderable);
 public:
    void LoadResource(FAnimationResource* pResource);
 public:

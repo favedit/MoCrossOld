@@ -34,6 +34,9 @@ TResult FModel3dGeometry::LoadResource(FRs3dGeometry* pResource){
    _pResource = pResource;
    FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
    //............................................................
+   FRenderableData* pRenderableData = FRenderableData::InstanceCreate();
+   SetData(pRenderableData);
+   //............................................................
    // 获得顶点数据
    FRs3dVertexBuffer* pRsVertexBuffer = pResource->VertexBuffer();
    TInt vertexCount = pRsVertexBuffer->Count();
@@ -57,15 +60,15 @@ TResult FModel3dGeometry::LoadResource(FRs3dGeometry* pResource){
       TCharC* pBufferCode = pRsVertexStream->Code();
       ERenderAttributeFormat formatCd = (ERenderAttributeFormat)pRsVertexStream->FormatCd();
       TInt offset = pRsVertexStream->Offset();
-      // 创建渲染流
-      FRenderVertexStream* pVertexStream = FRenderVertexStream::InstanceCreate();
-      pVertexStream->SetCode(pBufferCode);
-      pVertexStream->SetFormatCd(formatCd);
-      pVertexStream->SetOffset(offset);
-      pVertexStream->SetVertexBuffer(pVertexBuffer);
-      _pVertexStreams->PushStream(pVertexStream);
+      // 创建渲染对象属性
+      FRenderableAttribute* pAttribute = FRenderableAttribute::InstanceCreate();
+      pAttribute->SetCode(pBufferCode);
+      pAttribute->SetFormatCd(formatCd);
+      pAttribute->SetOffset(offset);
+      pAttribute->SetVertexBuffer(pVertexBuffer);
+      pRenderableData->AttributePush(pAttribute);
    }
-   _pVertexStreams->SetVertexCount(vertexCount);
+   pRenderableData->SetVertexCount(vertexCount);
    //............................................................
    // 获得索引数据
    FRs3dIndexBuffer* pRsIndexBuffer = pResource->IndexBuffer();
@@ -73,15 +76,16 @@ TResult FModel3dGeometry::LoadResource(FRs3dGeometry* pResource){
    TInt indexCount = pRsIndexBuffer->Count();
    FBytes* pIndexData = pRsIndexBuffer->Data();
    // 创建索引缓冲
-   _pIndexBuffer = pRenderDevice->CreateIndexBuffer();
-   _pIndexBuffer->SetOwner(this);
-   _pIndexBuffer->SetCount(indexCount);
-   _pIndexBuffer->SetStrideCd(strideCd);
-   _pIndexBuffer->Setup();
+   FRenderIndexBuffer* pIndexBuffer = pRenderDevice->CreateIndexBuffer();
+   pIndexBuffer->SetOwner(this);
+   pIndexBuffer->SetCount(indexCount);
+   pIndexBuffer->SetStrideCd(strideCd);
+   pIndexBuffer->Setup();
    // 设置数据
-   _pIndexBuffer->BuildData();
-   _pIndexBuffer->Upload(pIndexData->MemoryC(), pIndexData->Length());
-   _pIndexBuffer->DataStream()->Assign(pIndexData->MemoryC(), pIndexData->Length());
+   pIndexBuffer->BuildData();
+   pIndexBuffer->Upload(pIndexData->MemoryC(), pIndexData->Length());
+   pIndexBuffer->DataStream()->Assign(pIndexData->MemoryC(), pIndexData->Length());
+   pRenderableData->SetIndexBuffer(pIndexBuffer);
    //............................................................
    // 设置材质
    TCharC* pMaterialName = pResource->MaterialName();

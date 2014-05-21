@@ -31,16 +31,16 @@ FMovie::~FMovie(){
 //
 // @param renderable 渲染数据
 //============================================================
-TResult FMovie::CalculateRenderable(SRenderable& renderable){
-   FDisplay2d::CalculateRenderable(renderable);
-   if(_pActiveFrame != NULL){
-      SRenderableItem& item = renderable.items.Get(0);
-      SIntPoint2& baryCenter = _pActiveFrame->ValidBarycenter();
-      item.location.x -= baryCenter.x;
-      item.location.y -= baryCenter.y;
-   }
-   return ESuccess;
-}
+//TResult FMovie::CalculateRenderable(SRenderable& renderable){
+//   FDisplay2d::CalculateRenderable(renderable);
+//   if(_pActiveFrame != NULL){
+//      SRenderableItem& item = renderable.items.Get(0);
+//      SIntPoint2& baryCenter = _pActiveFrame->ValidBarycenter();
+//      item.location.x -= baryCenter.x;
+//      item.location.y -= baryCenter.y;
+//   }
+//   return ESuccess;
+//}
 
 //============================================================
 // <T>加载资源。</T>

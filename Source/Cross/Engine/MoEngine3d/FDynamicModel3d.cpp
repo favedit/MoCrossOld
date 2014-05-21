@@ -25,21 +25,22 @@ FDynamicModel3d::~FDynamicModel3d(){
 FDynamicModel3dGeometry* FDynamicModel3d::SyncGeometryByRenderable(FModel3dRenderable* pRenderable){
    FMaterial* pMaterial = pRenderable->MaterialReference();
    // 查找几何体
-   TInt count = _pGeometrys->Count();
-   for(TInt n = 0; n < count; n++){
-      FDynamicModel3dGeometry* pGeometry = _pGeometrys->Get(n);
-      if(pGeometry->Material() == pMaterial){
-         if(pGeometry->VertexStreams()->EqualsDescription(pRenderable->VertexStreams())){
-            return pGeometry;
-         }
-      }
-   }
-   // 新建几何体
-   FDynamicModel3dGeometry* pGeometry = FDynamicModel3dGeometry::InstanceCreate();
-   pGeometry->SetMaterial(pMaterial);
-   pGeometry->VertexStreams()->Assign(pRenderable->VertexStreams());
-   _pGeometrys->Push(pGeometry);
-   return pGeometry;
+   //TInt count = _pGeometrys->Count();
+   //for(TInt n = 0; n < count; n++){
+   //   FDynamicModel3dGeometry* pGeometry = _pGeometrys->Get(n);
+   //   if(pGeometry->Material() == pMaterial){
+   //      if(pGeometry->VertexStreams()->EqualsDescription(pRenderable->VertexStreams())){
+   //         return pGeometry;
+   //      }
+   //   }
+   //}
+   //// 新建几何体
+   //FDynamicModel3dGeometry* pGeometry = FDynamicModel3dGeometry::InstanceCreate();
+   //pGeometry->SetMaterial(pMaterial);
+   //pGeometry->VertexStreams()->Assign(pRenderable->VertexStreams());
+   //_pGeometrys->Push(pGeometry);
+   //return pGeometry;
+   return NULL;
 }
 
 //============================================================

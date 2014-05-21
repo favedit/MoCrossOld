@@ -494,15 +494,15 @@ typedef MO_FG_DECLARE GPtrLooper<FRenderVertexBuffer> GRenderVertexBufferLooper;
 //============================================================
 // <T>渲染布局元素。</T>
 //============================================================
-class MO_FG_DECLARE FRenderLayoutElement : public FInstance
+class MO_FG_DECLARE FRenderProgramLayoutElement : public FInstance
 {
-   MO_CLASS_DECLARE_INHERITS(FRenderLayoutElement, FInstance);
+   MO_CLASS_DECLARE_INHERITS(FRenderProgramLayoutElement, FInstance);
 protected:
    FRenderProgramAttribute* _pAttribute;
    FRenderVertexStream* _pStream;
 public:
-   FRenderLayoutElement();
-   MO_ABSTRACT ~FRenderLayoutElement();
+   FRenderProgramLayoutElement();
+   MO_ABSTRACT ~FRenderProgramLayoutElement();
 public:
    //------------------------------------------------------------
    // <T>获得属性。</T>
@@ -526,21 +526,21 @@ public:
    }
 };
 //------------------------------------------------------------
-typedef MO_FG_DECLARE GPtrs<FRenderLayoutElement> GRenderLayoutElementPtrs;
+typedef MO_FG_DECLARE GPtrs<FRenderProgramLayoutElement> GRenderLayoutElementPtrs;
 
 //============================================================
 // <T>渲染布局。</T>
 //============================================================
-class MO_FG_DECLARE FRenderLayout : public FRenderObject
+class MO_FG_DECLARE FRenderProgramLayout : public FRenderObject
 {
-   MO_CLASS_DECLARE_INHERITS(FRenderLayout, FRenderObject);
+   MO_CLASS_DECLARE_INHERITS(FRenderProgramLayout, FRenderObject);
 protected:
    FRenderProgram* _pProgram;
    FRenderable* _pRenderable;
    GRenderLayoutElementPtrs _elements;
 public:
-   FRenderLayout();
-   MO_ABSTRACT ~FRenderLayout();
+   FRenderProgramLayout();
+   MO_ABSTRACT ~FRenderProgramLayout();
 public:
    //------------------------------------------------------------
    // <T>获得程序。</T>
@@ -568,11 +568,11 @@ public:
       return _elements;
    }
 public:
-   TResult Push(FRenderLayoutElement* pElement);
+   TResult Push(FRenderProgramLayoutElement* pElement);
 };
 //------------------------------------------------------------
-typedef MO_FG_DECLARE GPtr<FRenderLayout> GRenderLayoutPtr;
-typedef MO_FG_DECLARE GPtrs<FRenderLayout> GRenderLayoutPtrs;
+typedef MO_FG_DECLARE GPtr<FRenderProgramLayout> GRenderLayoutPtr;
+typedef MO_FG_DECLARE GPtrs<FRenderProgramLayout> GRenderLayoutPtrs;
 
 //============================================================
 // <T>渲染顶点流。</T>
@@ -698,12 +698,12 @@ public:
    }
    //------------------------------------------------------------
    // <T>获得渲染布局。</T>
-   MO_INLINE FRenderLayout* Layout(){
+   MO_INLINE FRenderProgramLayout* Layout(){
       return _layout;
    }
    //------------------------------------------------------------
    // <T>设置渲染布局。</T>
-   MO_INLINE void SetLayout(FRenderLayout* pLayout){
+   MO_INLINE void SetLayout(FRenderProgramLayout* pLayout){
       _layout = pLayout;
    }
 public:
@@ -1206,6 +1206,43 @@ public:
 };
 //------------------------------------------------------------
 typedef MO_FG_DECLARE GPtr<FRenderShaderOptimizer> GRenderShaderOptimizerPtr;
+
+//============================================================
+// <T>渲染布局。</T>
+//============================================================
+class MO_FG_DECLARE FRenderLayout : public FRenderObject
+{
+   MO_CLASS_DECLARE_INHERITS(FRenderLayout, FInstance);
+protected:
+   FRenderProgram* _pProgram;
+   FRenderable* _pRenderable;
+public:
+   FRenderLayout();
+   MO_ABSTRACT ~FRenderLayout();
+public:
+   //------------------------------------------------------------
+   // <T>获得程序。</T>
+   MO_INLINE FRenderProgram* Program(){
+      return _pProgram;
+   }
+   //------------------------------------------------------------
+   // <T>设置程序。</T>
+   MO_INLINE void SetProgram(FRenderProgram* pProgram){
+      _pProgram = pProgram;
+   }
+   //------------------------------------------------------------
+   // <T>获得渲染对象。</T>
+   MO_INLINE FRenderable* Renderable(){
+      return _pRenderable;
+   }
+   //------------------------------------------------------------
+   // <T>设置渲染对象。</T>
+   MO_INLINE void SetRenderable(FRenderable* pRenderable){
+      _pRenderable = pRenderable;
+   }
+};
+//------------------------------------------------------------
+typedef MO_FG_DECLARE GPtr<FRenderLayout> GRenderableLayoutPtr;
 
 //============================================================
 // <T>渲染器属性。</T>

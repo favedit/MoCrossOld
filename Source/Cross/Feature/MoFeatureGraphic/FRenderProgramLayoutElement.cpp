@@ -2,12 +2,12 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FRenderLayoutElement, FRenderObject);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramLayoutElement, FRenderObject);
 
 //============================================================
 // <T>构造渲染布局元素。</T>
 //============================================================
-FRenderLayoutElement::FRenderLayoutElement(){
+FRenderProgramLayoutElement::FRenderProgramLayoutElement(){
    MO_CLEAR(_pAttribute);
    MO_CLEAR(_pStream);
 }
@@ -15,7 +15,7 @@ FRenderLayoutElement::FRenderLayoutElement(){
 //============================================================
 // <T>析构渲染布局元素。</T>
 //============================================================
-FRenderLayoutElement::~FRenderLayoutElement(){
+FRenderProgramLayoutElement::~FRenderProgramLayoutElement(){
 }
 
 MO_NAMESPACE_END

@@ -42,55 +42,55 @@ TResult FTailDisplay2d::SetOptionTail(TBool value){
 // @param renderable 渲染信息
 // @return 处理结果
 //============================================================
-TResult FTailDisplay2d::CalculateRenderable(SRenderable& renderable){
-   //if(_optionTail){
-   //   TFsTailInfoVector& infos = _pTailController->Infos();
-   //   TInt count = infos.Count();
-   //   TFloat width = _size.width;
-   //   TFloat height = _size.height;
-   //   for(TInt n = 0; n < count; n++){
-   //      STailInfo& info = infos.Get(n);
-   //      SRenderableItem& item = renderable.Alloc();
-   //      // 设置坐标
-   //      item.location.Assign(info.location);
-   //      // 设置尺寸
-   //      //item.size.Assign(info.size);
-   //      item.size.Set(width, height);
-   //      width *= 0.95f;
-   //      height *= 0.95f;
-   //      // 设置方向
-   //      item.rotation.Assign(info.rotation);
-   //      // 设置纹理
-   //      //item.coord.Assign(info.coord);
-   //      item.coord.Assign(_coord);
-   //      // 设置背景颜色
-   //      //item.groundColor.Assign(info.groundColor);
-   //      item.groundColor.Assign(_groundColor);
-   //      // 设置内容
-   //      item.matrix.Identity();
-   //      item.matrix.Translate(-_gravityCenter.x, -_gravityCenter.y, -_gravityCenter.z);
-   //      item.matrix.Rotation(info.rotation.x, info.rotation.y, info.rotation.z);
-   //   }
-   //}else{
-   //   SRenderableItem& item = renderable.Alloc();
-   //   // 设置坐标
-   //   item.location.Assign(_location);
-   //   // 设置尺寸
-   //   item.size.Assign(_size);
-   //   // 设置方向
-   //   item.rotation.Assign(_rotation);
-   //   // 设置纹理
-   //   item.coord.Assign(_coord);
-   //   // 设置背景颜色
-   //   item.groundColor.Assign(_groundColor);
-   //   // 设置内容
-   //   item.matrix.Identity();
-   //   item.matrix.Translate(-_gravityCenter.x, -_gravityCenter.y, -_gravityCenter.z);
-   //   item.matrix.Rotation(_rotation.x, _rotation.y, _rotation.z);
-   //   //renderable.matrix.UpdateForce();
-   //}
-   return ESuccess;
-}
+//TResult FTailDisplay2d::CalculateRenderable(SRenderable& renderable){
+//   //if(_optionTail){
+//   //   TFsTailInfoVector& infos = _pTailController->Infos();
+//   //   TInt count = infos.Count();
+//   //   TFloat width = _size.width;
+//   //   TFloat height = _size.height;
+//   //   for(TInt n = 0; n < count; n++){
+//   //      STailInfo& info = infos.Get(n);
+//   //      SRenderableItem& item = renderable.Alloc();
+//   //      // 设置坐标
+//   //      item.location.Assign(info.location);
+//   //      // 设置尺寸
+//   //      //item.size.Assign(info.size);
+//   //      item.size.Set(width, height);
+//   //      width *= 0.95f;
+//   //      height *= 0.95f;
+//   //      // 设置方向
+//   //      item.rotation.Assign(info.rotation);
+//   //      // 设置纹理
+//   //      //item.coord.Assign(info.coord);
+//   //      item.coord.Assign(_coord);
+//   //      // 设置背景颜色
+//   //      //item.groundColor.Assign(info.groundColor);
+//   //      item.groundColor.Assign(_groundColor);
+//   //      // 设置内容
+//   //      item.matrix.Identity();
+//   //      item.matrix.Translate(-_gravityCenter.x, -_gravityCenter.y, -_gravityCenter.z);
+//   //      item.matrix.Rotation(info.rotation.x, info.rotation.y, info.rotation.z);
+//   //   }
+//   //}else{
+//   //   SRenderableItem& item = renderable.Alloc();
+//   //   // 设置坐标
+//   //   item.location.Assign(_location);
+//   //   // 设置尺寸
+//   //   item.size.Assign(_size);
+//   //   // 设置方向
+//   //   item.rotation.Assign(_rotation);
+//   //   // 设置纹理
+//   //   item.coord.Assign(_coord);
+//   //   // 设置背景颜色
+//   //   item.groundColor.Assign(_groundColor);
+//   //   // 设置内容
+//   //   item.matrix.Identity();
+//   //   item.matrix.Translate(-_gravityCenter.x, -_gravityCenter.y, -_gravityCenter.z);
+//   //   item.matrix.Rotation(_rotation.x, _rotation.y, _rotation.z);
+//   //   //renderable.matrix.UpdateForce();
+//   //}
+//   return ESuccess;
+//}
 
 //============================================================
 // <T>粒子处理。</T>

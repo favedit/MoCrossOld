@@ -42,24 +42,24 @@ FRs3dTrack* FRenderable3d::FindTrack(){
 // @param renderable 渲染信息
 // @return 处理结果
 //============================================================
-TResult FRenderable3d::CalculateRenderable(SRenderable& renderable){
-   SRenderableItem& item = renderable.Alloc();
-   // 复制数据
-   //item.location.Assign(_location);
-   //item.size.Assign(_size);
-   //item.coord.Assign(_coord);
-   //item.groundColor.Assign(_groundColor);
-   // 计算所有父矩阵
-   //FComponent* pComponent = _pParent;
-   //while(pComponent != NULL){
-   //   if(pComponent->IsObject(EComponent_Drawable)){
-   //      FDrawable* pDrawable = (FDrawable*)pComponent;
-   //      renderable.matrix.Append(pDrawable->Matrix());
-   //   }
-   //   pComponent = pComponent->Parent();
-   //}
-   return ESuccess;
-}
+//TResult FRenderable3d::CalculateRenderable(SRenderable& renderable){
+//   SRenderableItem& item = renderable.Alloc();
+//   // 复制数据
+//   //item.location.Assign(_location);
+//   //item.size.Assign(_size);
+//   //item.coord.Assign(_coord);
+//   //item.groundColor.Assign(_groundColor);
+//   // 计算所有父矩阵
+//   //FComponent* pComponent = _pParent;
+//   //while(pComponent != NULL){
+//   //   if(pComponent->IsObject(EComponent_Drawable)){
+//   //      FDrawable* pDrawable = (FDrawable*)pComponent;
+//   //      renderable.matrix.Append(pDrawable->Matrix());
+//   //   }
+//   //   pComponent = pComponent->Parent();
+//   //}
+//   return ESuccess;
+//}
 
 //============================================================
 // <T>建立标志集合。</T>

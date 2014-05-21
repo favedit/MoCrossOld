@@ -18,13 +18,14 @@ MO_NAMESPACE_BEGIN
 #define MO_RENDERENUM_SAMPLER           "EnumRenderSampler"
 
 //==========================================================
+#define MO_RENDEROBJECT_LAYOUT          "Layout"
 #define MO_RENDEROBJECT_SHADERBUFFER    "ShaderBuffer"
 #define MO_RENDEROBJECT_SHADERPARAMETER "ShaderParameter"
 #define MO_RENDEROBJECT_SHADERATTRIBUTE "ShaderAttribute"
 #define MO_RENDEROBJECT_SHADERSAMPLER   "ShaderSampler"
+#define MO_RENDEROBJECT_PROGROM_LAYOUT  "ProgromLayout"
 #define MO_RENDEROBJECT_VERTEXBUFFER    "VertexBuffer"
 #define MO_RENDEROBJECT_INDEXBUFFER     "IndexBuffer"
-#define MO_RENDEROBJECT_LAYOUT          "Layout"
 #define MO_RENDEROBJECT_TEXTURE2D       "Texture2d"
 #define MO_RENDEROBJECT_TEXTURE3D       "Texture3d"
 #define MO_RENDEROBJECT_TARGET          "Target"
@@ -41,10 +42,11 @@ class FRenderVertexStream;
 class FRenderVertexStreams;
 class FRenderVertexBuffer;
 class FRenderIndexBuffer;
+class FRenderLayout;
 class FEffect;
 typedef MO_FG_DECLARE FObjects<FEffect*> FEffectCollection;
 typedef MO_FG_DECLARE FDictionary<FEffect*> FEffectDictionary;
-class FRenderLayout;
+class FRenderProgramLayout;
 class FRenderDevice;
 
 //==========================================================
@@ -636,12 +638,17 @@ class MO_FG_DECLARE FRenderableAttribute : public FInstance
 {
    MO_CLASS_DECLARE_INHERITS(FRenderableAttribute, FInstance);
 protected:
+   // 有效性
    TBool _valid;
+   // 代码
    TString _code;
+   // 数据格式
+   ERenderAttributeFormat _formatCd;
+   // 数据缓冲中的偏移位置
    TInt _offset;
+   // 顶点数据缓冲
    FRenderVertexBuffer* _pVertexBuffer;
    //TInt _slot;
-   //ERenderAttributeFormat _formatCd;
 public:
    FRenderableAttribute();
    MO_ABSTRACT ~FRenderableAttribute();
@@ -665,6 +672,16 @@ public:
    // <T>设置代码。</T>
    MO_INLINE void SetCode(TCharC* pCode){
       _code = pCode;
+   }
+   //------------------------------------------------------------
+   // <T>获得属性类型。</T>
+   MO_INLINE ERenderAttributeFormat FormatCd(){
+      return _formatCd;
+   }
+   //------------------------------------------------------------
+   // <T>设置属性类型。</T>
+   MO_INLINE void SetFormatCd(ERenderAttributeFormat formatCd){
+      _formatCd = formatCd;
    }
    //------------------------------------------------------------
    // <T>获得偏移。</T>
@@ -696,22 +713,65 @@ public:
    //MO_INLINE void SetSlot(TInt slot){
    //   _slot = slot;
    //}
-   ////------------------------------------------------------------
-   //// <T>获得属性类型。</T>
-   //MO_INLINE ERenderAttributeFormat FormatCd(){
-   //   return _formatCd;
-   //}
-   ////------------------------------------------------------------
-   //// <T>设置属性类型。</T>
-   //MO_INLINE void SetFormatCd(ERenderAttributeFormat formatCd){
-   //   _formatCd = formatCd;
-   //}
 public:
    TBool CheckValid();
 };
 //------------------------------------------------------------
 typedef MO_FG_DECLARE GPtr<FRenderableAttribute> GRenderableAttributePtr;
 typedef MO_FG_DECLARE GPtrs<FRenderableAttribute> GRenderableAttributePtrs;
+
+//============================================================
+// <T>渲染对象数据。</T>
+//============================================================
+class MO_FG_DECLARE FRenderableData : public FInstance
+{
+   MO_CLASS_DECLARE_INHERITS(FRenderableData, FInstance);
+protected:
+   // 顶点个数
+   TInt _vertexCount;
+   // 属性集合
+   GRenderableAttributePtrs _attributes;
+   // 索引流
+   FRenderIndexBuffer* _pIndexBuffer;
+public:
+   FRenderableData();
+   MO_ABSTRACT ~FRenderableData();
+public:
+   //------------------------------------------------------------
+   // <T>获得顶点个数。</T>
+   MO_INLINE TInt VertexCount(){
+      return _vertexCount;
+   }
+   //------------------------------------------------------------
+   // <T>设置顶点个数。</T>
+   MO_INLINE void SetVertexCount(TInt vertexCount){
+      _vertexCount = vertexCount;
+   }
+   //------------------------------------------------------------
+   // <T>获得属性集合。</T>
+   MO_INLINE GRenderableAttributePtrs& Attributes(){
+      return _attributes;
+   }
+   //------------------------------------------------------------
+   // <T>获得索引流。</T>
+   MO_INLINE FRenderIndexBuffer* IndexBuffer(){
+      return _pIndexBuffer;
+   }
+   //------------------------------------------------------------
+   // <T>设置索引流。</T>
+   MO_INLINE void SetIndexBuffer(FRenderIndexBuffer* pIndexBuffer){
+      _pIndexBuffer = pIndexBuffer;
+   }
+public:
+   FRenderableAttribute* AttributeFind(TCharC* pCode);
+   FRenderableAttribute* AttributeGet(TCharC* pCode);
+   TResult AttributePush(FRenderableAttribute* pAttribute);
+   TResult AttributeRemove(FRenderableAttribute* pAttribute);
+public:
+   TResult Assign(FRenderableData* pData);
+};
+//------------------------------------------------------------
+typedef MO_FG_DECLARE GPtr<FRenderableData> GRenderableDataPtr;
 
 //============================================================
 // <T>渲染对象取样器。</T>
@@ -768,19 +828,6 @@ typedef MO_FG_DECLARE GPtr<FRenderableSampler> GRenderableSamplerPtr;
 typedef MO_FG_DECLARE GPtrs<FRenderableSampler> GRenderableSamplerPtrs;
 
 //============================================================
-// <T>渲染对象布局。</T>
-//============================================================
-class MO_FG_DECLARE FRenderableLayout : public FInstance
-{
-   MO_CLASS_DECLARE_INHERITS(FRenderableLayout, FInstance);
-public:
-   FRenderableLayout();
-   MO_ABSTRACT ~FRenderableLayout();
-};
-//------------------------------------------------------------
-typedef MO_FG_DECLARE GPtr<FRenderableLayout> GRenderableLayoutPtr;
-
-//============================================================
 // <T>渲染对象效果。</T>
 //============================================================
 struct MO_FG_DECLARE FRenderableEffect : FInstance
@@ -788,7 +835,7 @@ struct MO_FG_DECLARE FRenderableEffect : FInstance
    MO_CLASS_DECLARE_INHERITS(FRenderableEffect, FInstance);
 public:
    FEffect* _pEffect;
-   FRenderableLayout* _pLayout;
+   FRenderLayout* _pLayout;
 public:
    FRenderableEffect();
    MO_ABSTRACT ~FRenderableEffect();
@@ -805,12 +852,12 @@ public:
    }
    //------------------------------------------------------------
    // <T>获得布局。</T>
-   MO_INLINE FRenderableLayout* Layout(){
+   MO_INLINE FRenderLayout* Layout(){
       return _pLayout;
    }
    //------------------------------------------------------------
    // <T>设置布局。</T>
-   MO_INLINE void SetLayout(FRenderableLayout* pLayout){
+   MO_INLINE void SetLayout(FRenderLayout* pLayout){
       _pLayout = pLayout;
    }
 };
@@ -838,10 +885,8 @@ protected:
    GMaterialPtr _material;
    // 引用材质
    GMaterialPtr _materialReference;
-   // 属性集合
-   GRenderableAttributePtrs _attributes;
-   // 索引流
-   FRenderIndexBuffer* _pIndexBuffer;
+   // 数据
+   GRenderableDataPtr _data;
    // 取样集合
    GRenderableSamplerPtrs _samplers;
    // 激活效果器
@@ -913,19 +958,32 @@ public:
       _materialReference = pMaterialReference;
    }
    //------------------------------------------------------------
+   // <T>获得数据。</T>
+   MO_INLINE FRenderableData* Data(){
+      return _data;
+   }
+   //------------------------------------------------------------
+   // <T>设置数据。</T>
+   MO_INLINE void SetData(FRenderableData* pData){
+      return _data = pData;
+   }
+   //------------------------------------------------------------
    // <T>获得属性集合。</T>
    MO_INLINE GRenderableAttributePtrs& Attributes(){
-      return _attributes;
+      MO_ASSERT(_data);
+      return _data->Attributes();
    }
    //------------------------------------------------------------
    // <T>获得索引流。</T>
    MO_INLINE FRenderIndexBuffer* IndexBuffer(){
-      return _pIndexBuffer;
+      MO_ASSERT(_data);
+      return _data->IndexBuffer();
    }
    //------------------------------------------------------------
    // <T>设置索引流。</T>
    MO_INLINE void SetIndexBuffer(FRenderIndexBuffer* pIndexBuffer){
-      _pIndexBuffer = pIndexBuffer;
+      MO_ASSERT(_data);
+      _data->SetIndexBuffer(pIndexBuffer);
    }
    //------------------------------------------------------------
    // <T>获得取样集合。</T>

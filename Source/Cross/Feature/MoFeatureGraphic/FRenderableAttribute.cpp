@@ -9,10 +9,10 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderableAttribute, FInstance);
 //============================================================
 FRenderableAttribute::FRenderableAttribute(){
    _valid = EFalse;
+   _formatCd = ERenderAttributeFormat_Unknown;
    _offset = -1;
    MO_CLEAR(_pVertexBuffer);
    //_slot = -1;
-   //_formatCd = ERenderAttributeFormat_Unknown;
 }
 
 //============================================================
@@ -32,6 +32,10 @@ TBool FRenderableAttribute::CheckValid(){
    }
    // 检查代码
    if(_code.IsEmpty()){
+      return EFalse;
+   }
+   // 检查格式
+   if(_formatCd == ERenderAttributeFormat_Unknown){
       return EFalse;
    }
    // 检查偏移

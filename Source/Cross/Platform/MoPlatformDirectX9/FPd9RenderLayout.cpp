@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderLayout, FRenderLayout);
+MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderLayout, FRenderProgramLayout);
 
 //============================================================
 // <T>构造渲染层信息。</T>
@@ -19,10 +19,10 @@ FPd9RenderLayout::~FPd9RenderLayout(){
 }
 
 //============================================================
-FRenderLayoutElement* FPd9RenderLayout::FindByAttribute(FRenderProgramAttribute* pAttribute){
+FRenderProgramLayoutElement* FPd9RenderLayout::FindByAttribute(FRenderProgramAttribute* pAttribute){
    TInt count = _elements.Count();
    for(TInt n = 0; n < count; n++){
-      FRenderLayoutElement* pElement = _elements.Get(n);
+      FRenderProgramLayoutElement* pElement = _elements.Get(n);
       if(pElement->Attribute() == pAttribute){
          return pElement;
       }
@@ -77,7 +77,7 @@ TResult FPd9RenderLayout::OnSetup(){
       TCharC* pBufferCode = RRenderAttribute::Format(bufferCd);
       ERenderAttributeFormat formatCd = pAttribute->FormatCd();
       FRenderVertexStream* pStream = pVertexStreams->FindStream(pBufferCode);
-      FRenderLayoutElement* pElement = FRenderLayoutElement::InstanceCreate();
+      FRenderProgramLayoutElement* pElement = FRenderProgramLayoutElement::InstanceCreate();
       pElement->SetAttribute(pAttribute);
       pElement->SetStream(pStream);
       Push(pElement);

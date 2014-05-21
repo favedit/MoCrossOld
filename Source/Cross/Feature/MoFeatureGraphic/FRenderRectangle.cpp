@@ -54,15 +54,15 @@ TResult FRenderRectangle::Setup(){
    //FRenderVertexStream* pStream = MO_CREATE(FRenderVertexStream);
    //pStream->SetVertexBuffer(_pVertexBuffer);
    // ´´½¨Ë÷Òý»º³å
-   MO_ASSERT(!_pIndexBuffer);
-   _pIndexBuffer = pRenderDevice->CreateIndexBuffer();
-   _pIndexBuffer->SetCount(6);
-   _pIndexBuffer->Setup();
-   _pIndexBuffer->BuildData();
-   TUint16* pIndexWriter = (TUint16*)_pIndexBuffer->DataStream()->Memory();
-   *pIndexWriter++ = 0; *pIndexWriter++ = 1; *pIndexWriter++ = 2;
-   *pIndexWriter++ = 0; *pIndexWriter++ = 2; *pIndexWriter++ = 3;
-   _pIndexBuffer->UploadData(EFalse);
+   //MO_ASSERT(!_pIndexBuffer);
+   //_pIndexBuffer = pRenderDevice->CreateIndexBuffer();
+   //_pIndexBuffer->SetCount(6);
+   //_pIndexBuffer->Setup();
+   //_pIndexBuffer->BuildData();
+   //TUint16* pIndexWriter = (TUint16*)_pIndexBuffer->DataStream()->Memory();
+   //*pIndexWriter++ = 0; *pIndexWriter++ = 1; *pIndexWriter++ = 2;
+   //*pIndexWriter++ = 0; *pIndexWriter++ = 2; *pIndexWriter++ = 3;
+   //_pIndexBuffer->UploadData(EFalse);
    return ESuccess;
 }
 

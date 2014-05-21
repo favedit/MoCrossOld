@@ -106,9 +106,7 @@ TResult FTemplate3dRenderable::LoadResource(FRs3dTemplateRenderable* pResource){
    _pGeometry = _pModel->Geometrys()->Get(geometryIndex);
    MO_FATAL_CHECK(_pGeometry, return EFailure,
          "Model geometry is not exists. (model=%s, geometry_index=%d)", pModelName, geometryIndex);
-   TCharC* geometryName = _pGeometry->Name();
-   _pVertexStreams->Assign(_pGeometry->VertexStreams());
-   _pIndexBuffer = _pGeometry->IndexBuffer();
+   SetData(_pGeometry->Data());
    //............................................................
    // 加载材质
    FMaterial3d* pMaterial = _materialReference->Convert<FMaterial3d>();
@@ -122,7 +120,7 @@ TResult FTemplate3dRenderable::LoadResource(FRs3dTemplateRenderable* pResource){
          FMaterial3dTexture* pTexture = *iterator;
          FRenderTexture* pRenderTexture = pTexture->RenderTexture();
          pRenderTexture->SetOwner(this);
-         _pTextures->Push(pRenderTexture);
+         //_pTextures->Push(pRenderTexture);
          pMaterial3d->MaterialTextures().Push(pTexture);
       }
    }
@@ -143,22 +141,22 @@ TResult FTemplate3dRenderable::LoadResource(FRs3dTemplateRenderable* pResource){
 // @处理结果
 //============================================================
 TResult FTemplate3dRenderable::BuildDescriptor(){
-   // 设置骨头个数
-   _descriptor.vertexCount = _pVertexStreams->VertexCount();
-   if(_pBones != NULL){
-      _descriptor.boneCount = _pBones->Count();
-   }
-   // 设置属性集合
-   FRenderVertexStreamCollection* pStreams = _pVertexStreams->Streams();
-   TInt count = pStreams->Count();
-   for(TInt n = 0; n < count; n++){
-      FRenderVertexStream* pStream = pStreams->Get(n);
-      TInt bufferCd = RRenderAttribute::Parse(pStream->Code());
-      _descriptor.vertexBuffers[bufferCd] = ETrue;
-   }
-   // 设置材质集合
-   FMaterial3d* pMaterial = _material->Convert<FMaterial3d>();
-   pMaterial->BuildDescriptor(_descriptor);
+   //// 设置骨头个数
+   //_descriptor.vertexCount = _pVertexStreams->VertexCount();
+   //if(_pBones != NULL){
+   //   _descriptor.boneCount = _pBones->Count();
+   //}
+   //// 设置属性集合
+   //FRenderVertexStreamCollection* pStreams = _pVertexStreams->Streams();
+   //TInt count = pStreams->Count();
+   //for(TInt n = 0; n < count; n++){
+   //   FRenderVertexStream* pStream = pStreams->Get(n);
+   //   //TInt bufferCd = RRenderAttribute::Parse(pStream->Code());
+   //   //_descriptor.vertexBuffers[bufferCd] = ETrue;
+   //}
+   //// 设置材质集合
+   //FMaterial3d* pMaterial = _material->Convert<FMaterial3d>();
+   //pMaterial->BuildDescriptor(_descriptor);
    return ESuccess;
 }
 
