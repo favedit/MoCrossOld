@@ -2,6 +2,7 @@
 using MO.Common.IO;
 using MO.Common.Lang;
 using MO.Content3d.Common;
+using MO.Content3d.Resource.Common;
 using MO.Content3d.Resource.Texture;
 using MO.Core;
 
@@ -178,8 +179,10 @@ namespace MO.Content3d.Resource.Material
       // @param output 输出流
       //============================================================
       public void Serialize(IOutput output) {
-         string code = EDrTexture.ToString(_typeCd);
+         string code = EContent3dSampler.ToString(_typeCd);
          output.WriteAnsiString(code);
+         string packCode = EContent3dSampler.ToString(EContent3dSampler.ToPack(_typeCd));
+         output.WriteAnsiString(packCode);
          //output.WriteUint8((byte)_typeCd);
          if (_texture == null) {
             output.WriteString(null);

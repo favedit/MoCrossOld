@@ -277,7 +277,7 @@ namespace MO.Content3d.Resource.Texture
             bitmapCount++;
             bytes.WriteInt8(EDrTexture.Texture2d);
             //bytes.WriteInt8(EDrTexture.PackDiffuse);
-            bytes.WriteAnsiString(EContent3dSampler.PackDiffuse);
+            bytes.WriteAnsiString(EContent3dSampler.PackDiffuseCode);
             using (FRsBitmapTexture merger = new FRsBitmapTexture()) {
                if (null != bitmapDiffuse) {
                   merger.LoadFile(path + bitmapDiffuse.Source, EBitmapChannels.RGB);
@@ -295,7 +295,7 @@ namespace MO.Content3d.Resource.Texture
             bitmapCount++;
             bytes.WriteInt8(EDrTexture.Texture2d);
             //bytes.WriteInt8(EDrTexture.PackNormal);
-            bytes.WriteAnsiString(EContent3dSampler.PackNormal);
+            bytes.WriteAnsiString(EContent3dSampler.PackNormalCode);
             using(FRsBitmapTexture merger = new FRsBitmapTexture()) {
                if (null != bitmapNormal) {
                   merger.LoadFile(path + bitmapNormal.Source, EBitmapChannels.RGB);
@@ -313,7 +313,7 @@ namespace MO.Content3d.Resource.Texture
             bitmapCount++;
             bytes.WriteInt8(EDrTexture.Texture2d);
             //bytes.WriteInt8(EDrTexture.PackSpecular);
-            bytes.WriteAnsiString(EContent3dSampler.PackSpecular);
+            bytes.WriteAnsiString(EContent3dSampler.PackSpecularCode);
             using(FRsBitmapTexture merger = new FRsBitmapTexture()) {
                if (null != bitmapSpecular) {
                   merger.LoadFile(path + bitmapSpecular.Source, EBitmapChannels.RGB);
@@ -331,7 +331,7 @@ namespace MO.Content3d.Resource.Texture
             bitmapCount++;
             bytes.WriteInt8(EDrTexture.Texture2d);
             //bytes.WriteInt8(EDrTexture.PackTransmittance);
-            bytes.WriteAnsiString(EContent3dSampler.PackTransmittance);
+            bytes.WriteAnsiString(EContent3dSampler.PackTransmittanceCode);
             using(FRsBitmapTexture merger = new FRsBitmapTexture()) {
                if (null != bitmapTransmittanceColor) {
                   merger.LoadFile(path + bitmapTransmittanceColor.Source, EBitmapChannels.RGB);
@@ -351,7 +351,7 @@ namespace MO.Content3d.Resource.Texture
             bitmapCount++;
             bytes.WriteInt8(EDrTexture.Texture2d);
             //bytes.WriteInt8(EDrTexture.PackLight);
-            bytes.WriteAnsiString(EContent3dSampler.PackLight);
+            bytes.WriteAnsiString(EContent3dSampler.PackLightCode);
             using(FRsBitmapTexture merger = new FRsBitmapTexture()) {
                if (null != bitmapLight) {
                   merger.LoadFileChannel(path + bitmapLight.Source, EBitmapChannel.R, EBitmapChannels.R);
@@ -373,7 +373,7 @@ namespace MO.Content3d.Resource.Texture
          if (null != bitmapEnvironment) {
             bitmapCount++;
             bytes.WriteInt8(EDrTexture.TextureCube);
-            bytes.WriteAnsiString(EContent3dSampler.Environment);
+            bytes.WriteAnsiString(EContent3dSampler.EnvironmentCode);
             //bytes.WriteInt8(EDrTexture.Environment);
             Bitmap bitmap = new Bitmap(path + bitmapEnvironment.Source);
             int size = bitmap.Height;

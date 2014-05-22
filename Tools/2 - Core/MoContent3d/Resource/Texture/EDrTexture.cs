@@ -241,5 +241,34 @@ namespace MO.Content3d.Resource.Texture
          }
          throw new FFatalException("Unknown type code.");
       }
+
+      //============================================================
+      // <T>根据类型枚举获得类型名称。</T>
+      //
+      // @param typeCd 类型枚举
+      // @return 类型名称
+      //============================================================
+      public static int ToPack(int typeCd) {
+         switch(typeCd) {
+            case Diffuse:
+            case Alpha:
+               return PackDiffuse;
+            case Normal:
+            case SpecularLevel:
+               return PackNormal;
+            case Specular:
+            case Height:
+               return PackSpecular;
+            case TransmittanceColor:
+            case TransmittanceLevel:
+               return PackTransmittance;
+            case Light:
+            case Reflect:
+            case Refract:
+            case Emissive:
+               return PackLight;
+         }
+         return typeCd;
+      }
    }
 }
