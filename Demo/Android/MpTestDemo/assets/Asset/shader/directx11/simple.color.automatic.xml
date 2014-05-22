@@ -284,12 +284,14 @@ float4 main( PS_INPUT input) : SV_Target
 <shader:true source='support.diffuse.view'>
 <shader:true source='support.diffuse.view.dump'>
    float normalViewFactor = dot(normal.xyz, -input.camera_ts);
+   normalViewFactor = max(normalViewFactor, 0.1);
+   result.rgb += color.rgb * fc_diffuse_view_color.rgb * normalViewFactor;
 </shader:true>
 <shader:true source='support.diffuse.view.normal'>
    float normalViewFactor = dot(input.normal, -cameraDirection.xyz);
-</shader:true>
    normalViewFactor = max(normalViewFactor, 0.1);
    result.rgb += color.rgb * fc_diffuse_view_color.rgb * normalViewFactor;
+</shader:true>
 </shader:true>
    //............................................................
    // Calculate specular color
