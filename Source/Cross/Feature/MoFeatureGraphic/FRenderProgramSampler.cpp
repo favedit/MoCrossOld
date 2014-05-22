@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramSampler, FInstance);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramSampler, FRenderObject);
 
 //============================================================
 // <T>构造渲染器取样。</T>

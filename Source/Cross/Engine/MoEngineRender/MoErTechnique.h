@@ -48,9 +48,10 @@ public:
    }
 public:
    TResult RegisterParameter(TCharC* pLinker, TInt code);
+   TResult RegisterSampler(TCharC* pLinker, TInt code);
 public:
-   MO_OVERRIDE TResult BindDescriptors();
-   MO_OVERRIDE TResult LinkDescriptors();
+   MO_ABSTRACT TResult BindDescriptors();
+   MO_ABSTRACT TResult LinkDescriptors();
 public:
    TResult BindConstPosition3(TInt bindCd, SFloatPoint3& point);
    TResult BindConstVector3(TInt bindCd, SFloatVector3& vector);

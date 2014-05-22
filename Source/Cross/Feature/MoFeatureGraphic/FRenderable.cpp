@@ -75,6 +75,37 @@ FRenderableSampler* FRenderable::SamplerGet(TCharC* pCode){
 }
 
 //============================================================
+// <T>查找指定打包代码的取样器。</T>
+//
+// @param pPackCode 打包代码
+// @return 取样器
+//============================================================
+FRenderableSampler* FRenderable::SamplerPackFind(TCharC* pPackCode){
+   TInt count = _samplers.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderableSampler* pRenderableSampler = _samplers.Get(n);
+      if(pRenderableSampler->IsPackCode(pPackCode)){
+         return pRenderableSampler;
+      }
+   }
+   return NULL;
+}
+
+//============================================================
+// <T>获得指定打包代码的取样器。</T>
+//
+// @param pPackCode 打包代码
+// @return 取样器
+//============================================================
+FRenderableSampler* FRenderable::SamplerPackGet(TCharC* pPackCode){
+   FRenderableSampler* pRenderableSampler = SamplerFind(pPackCode);
+   if(pRenderableSampler == NULL){
+      MO_FATAL("Can't find renderable sampler. (pack_code=%s)", pPackCode);
+   }
+   return pRenderableSampler;
+}
+
+//============================================================
 // <T>增加一个取样。</T>
 //
 // @param pSampler 取样
@@ -84,6 +115,7 @@ TResult FRenderable::SamplerPush(FRenderableSampler* pSampler){
    MO_CHECK(pSampler, return ENull);
    // 查找是否存在
    TCharC* pCode = pSampler->Code();
+   MO_CHECK(pCode, return ENull);
    FRenderableSampler* pFind = SamplerFind(pCode);
    if(pFind != NULL){
       MO_FATAL("Sampler is already exists. (code=%s)", pCode);

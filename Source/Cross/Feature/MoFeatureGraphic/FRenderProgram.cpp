@@ -66,6 +66,23 @@ FRenderProgramParameter* FRenderProgram::ParameterFind(ERenderShader shaderCd, T
 }
 
 //============================================================
+// <T>根据名称查找一个参数。</T>
+//
+// @param pName 名称
+// @return 渲染参数
+//============================================================
+FRenderProgramParameter* FRenderProgram::ParameterFindByName(TCharC* pName){
+   GRenderShaderParameterDictionary::TIterator iterator = _parameters.Iterator();
+   while(iterator.Next()){
+      FRenderProgramParameter* pParameter = *iterator;
+      if(RString::Equals(pParameter->Name(), pName)){
+         return pParameter;
+      }
+   }
+   return NULL;
+}
+
+//============================================================
 // <T>增加一个参数。</T>
 //
 // @param pParameter 渲染参数
@@ -73,7 +90,9 @@ FRenderProgramParameter* FRenderProgram::ParameterFind(ERenderShader shaderCd, T
 //============================================================
 TResult FRenderProgram::ParameterPush(FRenderProgramParameter* pParameter){
    MO_CHECK(pParameter, return ENull);
-   _parameters.Set(pParameter->Name(), pParameter);
+   TCharC* pLinker = pParameter->Linker();
+   MO_CHECK(pLinker, return ENull);
+   _parameters.Set(pLinker, pParameter);
    return ESuccess;
 }
 
@@ -98,6 +117,24 @@ FRenderProgramAttribute* FRenderProgram::AttributeFind(TCharC* pName, TInt index
 }
 
 //============================================================
+// <T>根据名称查找渲染属性。</T>
+//
+// @param pName 名称
+// @param index 索引
+// @return 渲染属性
+//============================================================
+FRenderProgramAttribute* FRenderProgram::AttributeFindByName(TCharC* pName){
+   GRenderShaderAttributeDictionary::TIterator iterator = _attributes.IteratorC();
+   while(iterator.Next()){
+      FRenderProgramAttribute* pAttribute = *iterator;
+      if(RString::Equals(pAttribute->Name(), pName)){
+         return pAttribute;
+      }
+   }
+   return NULL;
+}
+
+//============================================================
 // <T>增加一个属性。</T>
 //
 // @param pAttribute 属性
@@ -105,7 +142,9 @@ FRenderProgramAttribute* FRenderProgram::AttributeFind(TCharC* pName, TInt index
 //============================================================
 TResult FRenderProgram::AttributePush(FRenderProgramAttribute* pAttribute){
    MO_CHECK(pAttribute, return ENull);
-   _attributes.Set(pAttribute->Name(), pAttribute);
+   TCharC* pLinker = pAttribute->Linker();
+   MO_CHECK(pLinker, return ENull);
+   _attributes.Set(pLinker, pAttribute);
    return ESuccess;
 }
 
@@ -117,7 +156,9 @@ TResult FRenderProgram::AttributePush(FRenderProgramAttribute* pAttribute){
 //============================================================
 TResult FRenderProgram::SamplerPush(FRenderProgramSampler* pSampler){
    MO_CHECK(pSampler, return ENull);
-   _samplers.Set(pSampler->Name(), pSampler);
+   TCharC* pLinker = pSampler->Linker();
+   MO_CHECK(pLinker, return ENull);
+   _samplers.Set(pLinker, pSampler);
    return ESuccess;
 }
 

@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramAttribute, FInstance);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramAttribute, FRenderObject);
 
 //============================================================
 // <T>ππ‘Ï‰÷»æ∆˜ Ù–‘°£</T>

@@ -108,8 +108,8 @@ class MO_FG_DECLARE FGraphicObject : public FInstance
 {
    MO_CLASS_DECLARE_INHERITS(FGraphicObject, FInstance);
 protected:
-   TBool _statusSetup;
    FInstance* _pOwner;
+   TBool _statusSetup;
 public:
    FGraphicObject();
    MO_ABSTRACT ~FGraphicObject();

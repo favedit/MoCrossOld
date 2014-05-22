@@ -22,9 +22,9 @@ class FVisualConsole;
 //============================================================
 // <T>可见节点。</T>
 //============================================================
-class MO_FG_DECLARE FVisualNode : public FRenderableInfo
+class MO_FG_DECLARE FVisualNode : public FRenderableVisual
 {
-   MO_CLASS_DECLARE_INHERITS(FVisualNode, FRenderableInfo);
+   MO_CLASS_DECLARE_INHERITS(FVisualNode, FRenderableVisual);
 public:
    FVisualNode();
    MO_ABSTRACT ~FVisualNode();

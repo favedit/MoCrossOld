@@ -577,9 +577,9 @@ typedef MO_FG_DECLARE GPtrs<FRenderProgramLayout> GRenderLayoutPtrs;
 //============================================================
 // <T>渲染顶点流。</T>
 //============================================================
-class MO_FG_DECLARE FRenderVertexStream : public FInstance
+class MO_FG_DECLARE FRenderVertexStream : public FRenderObject
 {
-   MO_CLASS_DECLARE_INHERITS(FRenderVertexStream, FInstance);
+   MO_CLASS_DECLARE_INHERITS(FRenderVertexStream, FRenderObject);
 protected:
    TString _code;
    ERenderAttributeFormat _formatCd;
@@ -1247,7 +1247,7 @@ typedef MO_FG_DECLARE GPtr<FRenderLayout> GRenderableLayoutPtr;
 //============================================================
 // <T>渲染器属性。</T>
 //============================================================
-class MO_FG_DECLARE FRenderProgramAttribute : public FInstance
+class MO_FG_DECLARE FRenderProgramAttribute : public FRenderObject
 {
    MO_CLASS_DECLARE_INHERITS(FRenderProgramAttribute, FRenderObject);
 protected:
@@ -1343,7 +1343,7 @@ typedef MO_FG_DECLARE GPtrDictionary<FRenderProgramAttribute> GRenderShaderAttri
 //============================================================
 // <T>渲染器取样。</T>
 //============================================================
-class MO_FG_DECLARE FRenderProgramSampler : public FInstance
+class MO_FG_DECLARE FRenderProgramSampler : public FRenderObject
 {
    MO_CLASS_DECLARE_INHERITS(FRenderProgramSampler, FRenderObject);
 protected:
@@ -1508,8 +1508,10 @@ public:
    TResult BufferPush(FRenderProgramBuffer* pBuffer);
    GRenderShaderParameterDictionary& Parameters(ERenderShader shaderCd);
    FRenderProgramParameter* ParameterFind(ERenderShader shaderCd, TCharC* pName);
+   FRenderProgramParameter* ParameterFindByName(TCharC* pName);
    TResult ParameterPush(FRenderProgramParameter* pParameter);
    FRenderProgramAttribute* AttributeFind(TCharC* pName, TInt index);
+   FRenderProgramAttribute* AttributeFindByName(TCharC* pName);
    TResult AttributePush(FRenderProgramAttribute* pAttribute);
    TResult SamplerPush(FRenderProgramSampler* pSampler);
 public:

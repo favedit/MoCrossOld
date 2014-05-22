@@ -145,8 +145,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
             return EFailure;
          }
          // 创建参数
-         FPd11RenderShaderParameter* pParameter = (FPd11RenderShaderParameter*)ParameterFind(variableDescriptor.Name);
-         //MO_CHECK(pParameter, continue);
+         FPd11RenderShaderParameter* pParameter = (FPd11RenderShaderParameter*)ParameterFindByName(variableDescriptor.Name);
          if(pParameter == NULL){
             MO_FATAL("Shader parameter is not found. (name=%s)", variableDescriptor.Name);
          }else{
@@ -172,12 +171,12 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
          // 查找属性
          TFsName attributeName;
          attributeName.AppendFormat("%s%d", attributeDescriptor.SemanticName, attributeDescriptor.SemanticIndex);
-         FRenderProgramAttribute* pAttribute = AttributeFind(attributeName);
+         FRenderProgramAttribute* pAttribute = AttributeFindByName(attributeName);
          if(pAttribute == NULL){
-            pAttribute = AttributeFind(attributeDescriptor.SemanticName);
+            pAttribute = AttributeFindByName(attributeDescriptor.SemanticName);
          }
          if(pAttribute == NULL){
-            MO_WARN("Shader attribute is not found. (name=%s)", attributeDescriptor.SemanticName);
+            MO_FATAL("Shader attribute is not found. (name=%s)", attributeDescriptor.SemanticName);
          }else{
             // 设置内容
             pAttribute->SetStatusUsed(ETrue);
@@ -207,7 +206,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
       if(bindDescriptor.Type == D3D_SIT_TEXTURE){
          FRenderProgramSampler* pSampler = SamplerFind(pBindName);
          if(pSampler == NULL){
-            MO_ERROR("Shader sampler bound is not found. (name=%s)", pBindName);
+            MO_FATAL("Shader sampler bound is not found. (name=%s)", pBindName);
          }else{
             pSampler->SetStatusUsed(ETrue);
             pSampler->SetSlot(bindDescriptor.BindPoint);

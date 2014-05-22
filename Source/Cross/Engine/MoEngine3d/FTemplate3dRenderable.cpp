@@ -110,21 +110,22 @@ TResult FTemplate3dRenderable::LoadResource(FRs3dTemplateRenderable* pResource){
    //............................................................
    // 加载材质
    FMaterial3d* pMaterial = _materialReference->Convert<FMaterial3d>();
-   TCharC* pMaterialName = pMaterial->Name();
-   TCharC* pEffectName = pMaterial->EffectName();
    GMaterial3dTexturePtrs& materialTextures = pMaterial->MaterialTextures();
    if(!materialTextures.IsEmpty()){
-      FMaterial3d* pMaterial3d = _material->Convert<FMaterial3d>();
       GMaterial3dTexturePtrs::TIteratorC iterator = materialTextures.IteratorC();
       while(iterator.Next()){
          FMaterial3dTexture* pTexture = *iterator;
+         FRs3dMaterialTexture* pTextureResource = pTexture->Resource();
+         // 获得属性
+         TCharC* pCode = pTextureResource->Code();
+         TCharC* pPackCode = pTextureResource->PackCode();
          FRenderTexture* pRenderTexture = pTexture->RenderTexture();
-         pRenderTexture->SetOwner(this);
-         //_pTextures->Push(pRenderTexture);
-         pMaterial3d->MaterialTextures().Push(pTexture);
+         //pRenderTexture->SetOwner(this);
          // 增加取样器
          FRenderableSampler* pSampler = FRenderableSampler::InstanceCreate();
-         pSampler->SetCode(pTexture->Code());
+         pSampler->SetCode(pCode);
+         pSampler->SetPackCode(pPackCode);
+         pSampler->SetTexture(pRenderTexture);
          SamplerPush(pSampler);
       }
    }

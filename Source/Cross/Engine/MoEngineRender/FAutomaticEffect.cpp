@@ -63,6 +63,25 @@ TResult FAutomaticEffect::RegisterParameter(TCharC* pLinker, TInt code){
 }
 
 //============================================================
+// <T>注册一个取样器。</T>
+//
+// @param pLinker 关联器
+// @param code 代码
+// @retrun 处理结果
+//============================================================
+TResult FAutomaticEffect::RegisterSampler(TCharC* pLinker, TInt code){
+   // 检查参数
+   MO_CHECK(pLinker, return ENull);
+   MO_CHECK(code >= 0, return EOutRange);
+   // 获得程序参数
+   FRenderProgramSampler* pSampler = _program->SamplerFind(pLinker);
+   MO_CHECK(pSampler, return ENull);
+   // 设置位置
+   _pSamplers->ExtendSet(code, pSampler);
+   return ESuccess;
+}
+
+//============================================================
 // <T>加载配置信息。</T>
 //
 // @param pConfig 配置处理
@@ -80,6 +99,7 @@ TResult FAutomaticEffect::LoadConfig(FXmlNode* pConfig){
 // @return 处理结果
 //============================================================
 TResult FAutomaticEffect::BindDescriptors(){
+   TResult resultCd = ESuccess;
    MO_CHECK(_program, return ENull);
    // 绑定属性位置
    //TEffectAttributeDescriptors::TIteratorC iterator = _attributeDescriptors.IteratorC();
@@ -105,7 +125,7 @@ TResult FAutomaticEffect::BindDescriptors(){
             pParameter->SetCode(parameterCd);
             pParameter->SetShaderCd(shaderCd);
             pParameter->SetFormatCd(formatCd);
-            _pParameters->Set(parameterCd, pParameter);
+            //_pParameters->ExtendSet(parameterCd, pParameter);
             MO_DEBUG("Build shader parameter. (code=%d, name=%s, format=%d)", parameterCd, pParameter->Name(), pParameter->FormatCd());
          }
       }
@@ -126,7 +146,7 @@ TResult FAutomaticEffect::BindDescriptors(){
             // 设置参数
             pAttribute->SetCode(attributeCd);
             pAttribute->SetFormatCd(formatCd);
-            _pAttributes->Set(attributeCd, pAttribute);
+            //_pAttributes->Set(attributeCd, pAttribute);
          }
       }
    }
@@ -149,7 +169,7 @@ TResult FAutomaticEffect::BindDescriptors(){
          }
       }
    }
-   return ESuccess;
+   return resultCd;
 }
 
 //============================================================

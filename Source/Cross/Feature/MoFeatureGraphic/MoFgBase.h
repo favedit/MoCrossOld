@@ -416,14 +416,14 @@ enum ERenderTextureWrap{
 //============================================================
 // <T>渲染信息。</T>
 //============================================================
-class MO_FG_DECLARE FRenderableInfo : public FInstance
+class MO_FG_DECLARE FRenderableVisual : public FInstance
 {
-   MO_CLASS_DECLARE_INHERITS(FRenderableInfo, FInstance);
+   MO_CLASS_DECLARE_INHERITS(FRenderableVisual, FInstance);
 public:
    FRenderable* _pRenderable;
 public:
-   FRenderableInfo();
-   MO_ABSTRACT ~FRenderableInfo();
+   FRenderableVisual();
+   MO_ABSTRACT ~FRenderableVisual();
 public:
    //------------------------------------------------------------
    // <T>获得渲染对象。</T>
@@ -437,7 +437,7 @@ public:
    }
 };
 //------------------------------------------------------------
-typedef MO_FG_DECLARE FObjects<FRenderableInfo*> FRenderableInfoCollection;
+typedef MO_FG_DECLARE FObjects<FRenderableVisual*> FRenderableVisualCollection;
 
 //============================================================
 // <T>渲染标志。</T>
@@ -781,6 +781,7 @@ class MO_FG_DECLARE FRenderableSampler : public FInstance
    MO_CLASS_DECLARE_INHERITS(FRenderableSampler, FInstance);
 protected:
    TString _code;
+   TString _packCode;
    TInt _slot;
    FRenderTexture* _pTexture;
 public:
@@ -803,6 +804,21 @@ public:
       _code = pCode;
    }
    //------------------------------------------------------------
+   // <T>判断是否指定打包代码。</T>
+   MO_INLINE TBool IsPackCode(TCharC* pPackCode){
+      return _packCode.Equals(pPackCode);
+   }
+   //------------------------------------------------------------
+   // <T>获得打包代码。</T>
+   MO_INLINE TCharC* PackCode(){
+      return _packCode;
+   }
+   //------------------------------------------------------------
+   // <T>设置打包代码。</T>
+   MO_INLINE void SetPackCode(TCharC* pPackCode){
+      _packCode = pPackCode;
+   }
+   //------------------------------------------------------------
    // <T>获得插槽。</T>
    MO_INLINE TInt Slot(){
       return _slot;
@@ -819,8 +835,8 @@ public:
    }
    //------------------------------------------------------------
    // <T>设置纹理。</T>
-   MO_INLINE void SetName(FRenderTexture* _pTexture){
-      _pTexture = _pTexture;
+   MO_INLINE void SetTexture(FRenderTexture* pTexture){
+      _pTexture = pTexture;
    }
 };
 //------------------------------------------------------------
@@ -880,7 +896,7 @@ protected:
    // 标志集合
    SRenderableDescriptor _descriptor;
    // 渲染信息
-   FRenderableInfo* _pVisualInfo;
+   FRenderableVisual* _pVisualInfo;
    // 材质
    GMaterialPtr _material;
    // 引用材质
@@ -929,12 +945,12 @@ public:
    }
    //------------------------------------------------------------
    // <T>获得可见信息。</T>
-   MO_OVERRIDE FRenderableInfo* VisualInfo(){
+   MO_OVERRIDE FRenderableVisual* VisualInfo(){
       return _pVisualInfo;
    }
    //------------------------------------------------------------
    // <T>设置可见信息。</T>
-   MO_INLINE void SetVisualInfo(FRenderableInfo* pVisualInfo){
+   MO_INLINE void SetVisualInfo(FRenderableVisual* pVisualInfo){
       _pVisualInfo = pVisualInfo;
    }
    //------------------------------------------------------------
@@ -1010,6 +1026,8 @@ public:
    FRenderableAttribute* AttributeGet(TCharC* pCode);
    FRenderableSampler* SamplerFind(TCharC* pCode);
    FRenderableSampler* SamplerGet(TCharC* pCode);
+   FRenderableSampler* SamplerPackFind(TCharC* pPackCode);
+   FRenderableSampler* SamplerPackGet(TCharC* pPackCode);
    TResult SamplerPush(FRenderableSampler* pSampler);
    TResult SamplerRemove(FRenderableSampler* pSampler);
    FRenderableEffect* EffectFind(TCharC* pName);
