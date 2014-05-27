@@ -26,6 +26,10 @@ TResult FFeatureGraphicFeature::Construct(){
    TResult resultCd = FFeature::Construct();
    // 初始化可见管理器
    RVisualManager::Create();
+   // 初始化效果管理器
+   REffectManager::Create();
+   // 初始化管道管理器
+   RPipelineManager::Create();
    // 初始化技术管理器
    RTechniqueManager::Create();
    // 枚举创建
@@ -88,6 +92,10 @@ TResult FFeatureGraphicFeature::Dispose(){
    TResult resultCd = FFeature::Dispose();
    // 释放技术管理器
    RTechniqueManager::Destroy();
+   // 释放管道管理器
+   RPipelineManager::Destroy();
+   // 释放效果管理器
+   REffectManager::Destroy();
    // 释放可见管理器
    RVisualManager::Destroy();
    return resultCd;

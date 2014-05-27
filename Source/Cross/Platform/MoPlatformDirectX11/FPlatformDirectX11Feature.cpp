@@ -25,7 +25,8 @@ FPlatformDirectX11Feature::~FPlatformDirectX11Feature(){
 TResult FPlatformDirectX11Feature::Construct(){
    TResult resultCd = FFeature::Construct();
    // 注册渲染设备
-   RDeviceManager::Instance().Register(FPd11RenderDevice::Class(), FRenderDevice::Class());
+   _renderDevice = FPd11RenderDevice::InstanceCreate();
+   RDeviceManager::Instance().Register(_renderDevice);
    return resultCd;
 }
 
@@ -77,8 +78,8 @@ TResult FPlatformDirectX11Feature::Shutdown(){
 //============================================================
 TResult FPlatformDirectX11Feature::Dispose(){
    TResult resultCd = FFeature::Dispose();
-   // 注销渲染设备
-   RDeviceManager::Instance().Unregister(FRenderDevice::Class());
+   // 注销设备
+   //RDeviceManager::Instance().Unregister(FRenderDevice::Class());
    return resultCd;
 }
 

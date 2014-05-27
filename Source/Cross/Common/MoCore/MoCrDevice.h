@@ -127,7 +127,8 @@ public:
    }
 public:
    TResult Register(FClass* pClass, FClass* pInheritClass = NULL);
-   TResult Unregister(FClass* pClass);
+   TResult Register(FDevice* pDevice);
+   FDevice* Unregister(FClass* pClass);
 public:
    MO_OVERRIDE TResult Suspend();
    MO_OVERRIDE TResult Resume();

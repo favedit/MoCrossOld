@@ -32,10 +32,6 @@ void MoEngineInitialize(){
    RParticleManager::Create();
    RParticleManager::Instance().Setup();
    //............................................................
-   // 初始化效果管理器
-   REffectManager::Create();
-   RPipelineManager::Create();
-   //............................................................
    // 初始化舞台管理器
    RStageManager::Create();
    // 初始化引擎管理器

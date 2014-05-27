@@ -36,11 +36,12 @@ FDevice* FDeviceConsole::Find(FClass* pClass){
    TInt count = _devices.Count();
    for(TInt n = 0; n < count; n++){
       FDevice* pDevice = _devices.Get(n);
-      if(pDevice->InheritClass() == pClass){
-         return pDevice;
-      }
-      if(pDevice->GetClass() == pClass){
-         return pDevice;
+      FClass* pFindClass = pDevice->GetClass();
+      while(pFindClass != NULL){
+         if(pFindClass == pClass){
+            return pDevice;
+         }
+         pFindClass = pFindClass->ParentClass();
       }
    }
    return NULL;
@@ -64,19 +65,33 @@ TResult FDeviceConsole::Register(FClass* pClass, FClass* pInheritClass){
 }
 
 //============================================================
+// <T>注册一个设备。</T>
+//
+// @param pClass 设备类对象
+// @param pDevice 设备对象
+// @return 处理结果
+//============================================================
+TResult FDeviceConsole::Register(FDevice* pDevice){
+   MO_CHECK(pDevice, return ENull);
+   // 放入设备集合
+   _devices.Push(pDevice);
+   return ESuccess;
+}
+
+//============================================================
 // <T>注销一个设备。</T>
 //
 // @param pDevice 设备
-// @return 处理结果
+// @return 注销的设备
 //============================================================
-TResult FDeviceConsole::Unregister(FClass* pClass){
-   MO_CHECK(pClass, return ENull);
+FDevice* FDeviceConsole::Unregister(FClass* pClass){
+   MO_CHECK(pClass, return NULL);
    // 移除设备
    FDevice* pDevice = Find(pClass);
    if(pDevice != NULL){
       _devices.Remove(pDevice);
    }
-   return ESuccess;
+   return pDevice;
 }
 
 //============================================================

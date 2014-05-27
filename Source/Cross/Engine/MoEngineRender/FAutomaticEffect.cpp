@@ -56,7 +56,11 @@ TResult FAutomaticEffect::RegisterParameter(TCharC* pLinker, TInt code){
    MO_CHECK(code >= 0, return EOutRange);
    // 获得程序参数
    FRenderProgramParameter* pParameter = _program->ParameterFind(pLinker);
-   MO_CHECK(pParameter, return ENull);
+   //MO_CHECK(pParameter, return ENull);
+   if(pParameter == NULL){
+      MO_WARN("Register parameter is not exists. (linker=%s)", pLinker);
+      return ENotExists;
+   }
    // 设置位置
    _pParameters->ExtendSet(code, pParameter);
    return ESuccess;
@@ -232,7 +236,9 @@ TResult FAutomaticEffect::LinkDescriptors(){
 TResult FAutomaticEffect::BindConstPosition3(TInt bindCd, SFloatPoint3& point){
    FRenderProgramParameter* pParameter = _pParameters->Get(bindCd);
    if(pParameter != NULL){
-      pParameter->SetFloat3(point.x, point.y, point.z);
+      if(pParameter->IsStatusUsed()){
+         pParameter->SetFloat3(point.x, point.y, point.z);
+      }
    }
    return ESuccess;
 }
@@ -247,7 +253,9 @@ TResult FAutomaticEffect::BindConstPosition3(TInt bindCd, SFloatPoint3& point){
 TResult FAutomaticEffect::BindConstVector3(TInt bindCd, SFloatVector3& vector){
    FRenderProgramParameter* pParameter = _pParameters->Get(bindCd);
    if(pParameter != NULL){
-      pParameter->SetFloat3(vector.x, vector.y, vector.z);
+      if(pParameter->IsStatusUsed()){
+         pParameter->SetFloat3(vector.x, vector.y, vector.z);
+      }
    }
    return ESuccess;
 }
@@ -264,7 +272,9 @@ TResult FAutomaticEffect::BindConstVector3(TInt bindCd, SFloatVector3& vector){
 TResult FAutomaticEffect::BindConstFloat4(TInt bindCd, TFloat x, TFloat y, TFloat z, TFloat w){
    FRenderProgramParameter* pParameter = _pParameters->Get(bindCd);
    if(pParameter != NULL){
-      pParameter->SetFloat4(x, y, z, w);
+      if(pParameter->IsStatusUsed()){
+         pParameter->SetFloat4(x, y, z, w);
+      }
    }
    return ESuccess;
 }
@@ -281,7 +291,9 @@ TResult FAutomaticEffect::BindConstFloat4(TInt bindCd, TFloat x, TFloat y, TFloa
 TResult FAutomaticEffect::BindConstColor4(TInt bindCd, const SFloatColor4& color){
    FRenderProgramParameter* pParameter = _pParameters->Get(bindCd);
    if(pParameter != NULL){
-      pParameter->SetFloat4(color.red, color.green, color.blue, color.alpha);
+      if(pParameter->IsStatusUsed()){
+         pParameter->SetFloat4(color.red, color.green, color.blue, color.alpha);
+      }
    }
    return ESuccess;
 }
@@ -296,7 +308,9 @@ TResult FAutomaticEffect::BindConstColor4(TInt bindCd, const SFloatColor4& color
 TResult FAutomaticEffect::BindConstMatrix3x3(TInt bindCd, SFloatMatrix3d* pMatrix, TInt count){
    FRenderProgramParameter* pParameter = _pParameters->Get(bindCd);
    if((pParameter != NULL) && (count > 0)){
-      pParameter->SetMatrix3x3(pMatrix, count, ETrue);
+      if(pParameter->IsStatusUsed()){
+         pParameter->SetMatrix3x3(pMatrix, count, ETrue);
+      }
    }
    return ESuccess;
 }
@@ -311,7 +325,9 @@ TResult FAutomaticEffect::BindConstMatrix3x3(TInt bindCd, SFloatMatrix3d* pMatri
 TResult FAutomaticEffect::BindConstMatrix4x3(TInt bindCd, SFloatMatrix3d* pMatrix, TInt count){
    FRenderProgramParameter* pParameter = _pParameters->Get(bindCd);
    if((pParameter != NULL) && (count > 0)){
-      pParameter->SetMatrix4x3(pMatrix, count, ETrue);
+      if(pParameter->IsStatusUsed()){
+         pParameter->SetMatrix4x3(pMatrix, count, ETrue);
+      }
    }
    return ESuccess;
 }
@@ -326,7 +342,9 @@ TResult FAutomaticEffect::BindConstMatrix4x3(TInt bindCd, SFloatMatrix3d* pMatri
 TResult FAutomaticEffect::BindConstMatrix4x4(TInt bindCd, SFloatMatrix3d* pMatrix, TInt count){
    FRenderProgramParameter* pParameter = _pParameters->Get(bindCd);
    if((pParameter != NULL) && (count > 0)){
-      pParameter->SetMatrix4x4(pMatrix, count, ETrue);
+      if(pParameter->IsStatusUsed()){
+         pParameter->SetMatrix4x4(pMatrix, count, ETrue);
+      }
    }
    return ESuccess;
 }

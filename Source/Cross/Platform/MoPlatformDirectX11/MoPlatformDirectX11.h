@@ -21,6 +21,8 @@ MO_NAMESPACE_BEGIN
 class MO_PD11_DECLARE FPlatformDirectX11Feature : public FFeature
 {
    MO_CLASS_DECLARE_INHERITS(FPlatformDirectX11Feature, FFeature);
+protected:
+   GPd11RenderDevicePtr _renderDevice;
 public:
    FPlatformDirectX11Feature();
    MO_ABSTRACT ~FPlatformDirectX11Feature();

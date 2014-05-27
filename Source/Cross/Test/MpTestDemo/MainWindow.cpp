@@ -225,6 +225,7 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    RFeatureManager::Instance().Shutdown();
    //............................................................
    // 释放处理
+   RFeatureManager::Instance().Dispose();
    MoGameEngineRelease();
 	return 0;
 }

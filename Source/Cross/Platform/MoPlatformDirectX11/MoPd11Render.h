@@ -473,6 +473,8 @@ public:
    MO_OVERRIDE TResult DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt offset, TInt count);
    MO_OVERRIDE TResult Present();
 };
+//------------------------------------------------------------
+typedef MO_PD11_DECLARE GPtr<FPd11RenderDevice> GPd11RenderDevicePtr;
 
 MO_NAMESPACE_END
 
