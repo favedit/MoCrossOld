@@ -66,13 +66,13 @@ TResult FPd11RenderProgram::Setup(){
    pVertexShader->SetDevice(_pDevice);
    pVertexShader->SetProgram(this);
    pVertexShader->Setup();
-   _pVertexShader = pVertexShader;
+   _vertexShader = pVertexShader;
    // 创建像素渲染器
    FPd11RenderFragmentShader* pFragmentShader = FPd11RenderFragmentShader::InstanceCreate();
    pFragmentShader->SetDevice(_pDevice);
    pFragmentShader->SetProgram(this);
    pFragmentShader->Setup();
-   _pFragmentShader = pFragmentShader;
+   _fragmentShader = pFragmentShader;
    MO_INFO("Create program success.");
    return ESuccess;
 }
@@ -228,10 +228,10 @@ TResult FPd11RenderProgram::Build(){
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
    //............................................................
    // 建立顶点渲染器
-   FPd11RenderVertexShader* pVertexShader = _pVertexShader->Convert<FPd11RenderVertexShader>();
+   FPd11RenderVertexShader* pVertexShader = _vertexShader->Convert<FPd11RenderVertexShader>();
    BuildShader(pVertexShader, pVertexShader->NativeData());
    // 建立像素渲染器
-   FPd11RenderFragmentShader* pFragmentShader = _pFragmentShader->Convert<FPd11RenderFragmentShader>();
+   FPd11RenderFragmentShader* pFragmentShader = _fragmentShader->Convert<FPd11RenderFragmentShader>();
    BuildShader(pFragmentShader, pFragmentShader->NativeData());
    return resultCd;
 }
@@ -247,7 +247,7 @@ TResult FPd11RenderProgram::Link(){
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
    //............................................................
    // 获得数据
-   FPd11RenderVertexShader* pVertexShader = _pVertexShader->Convert<FPd11RenderVertexShader>();
+   FPd11RenderVertexShader* pVertexShader = _vertexShader->Convert<FPd11RenderVertexShader>();
    ID3D10Blob* piShaderData = pVertexShader->NativeData();
    //............................................................
    // 创建输入描述
@@ -310,9 +310,6 @@ TResult FPd11RenderProgram::Resume(){
 TResult FPd11RenderProgram::Dispose(){
    // 释放资源
    MO_RELEASE(_piInputLayout);
-   // 释放程序
-   MO_DELETE(_pVertexShader);
-   MO_DELETE(_pFragmentShader);
    return ESuccess;
 }
 

@@ -96,6 +96,18 @@ public:
 };
 
 //============================================================
+// <T>渲染效果环境。</T>
+//============================================================
+class MO_FG_DECLARE FEffectContext : public FObject{
+public:
+   FEffectContext();
+   MO_ABSTRACT ~FEffectContext();
+};
+
+MString* pCode, FRenderable* pRenderable, FTemplateContext* pTemplateContext
+
+
+//============================================================
 // <T>渲染效果。</T>
 //============================================================
 class MO_FG_DECLARE FEffect : public FInstance
@@ -179,8 +191,7 @@ public:
       _renderDevice = pRenderDevice;
    }
 public:
-   MO_ABSTRACT TResult BuildTemplate(SRenderableDescriptor& renderableDescriptor, MString* pCode, FTemplateContext* pTemplateContext);
-   MO_ABSTRACT TResult BuildDescripter(SRenderableDescriptor& renderableDescriptor);
+   MO_ABSTRACT TResult BuildContext(MString* pCode, FRenderable* pRenderable, FTemplateContext* pTemplateContext);
 public:
    MO_ABSTRACT TResult Setup();
    MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);

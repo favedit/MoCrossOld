@@ -106,7 +106,7 @@ TResult FTemplate3dRenderable::LoadResource(FRs3dTemplateRenderable* pResource){
    _pGeometry = _pModel->Geometrys()->Get(geometryIndex);
    MO_FATAL_CHECK(_pGeometry, return EFailure,
          "Model geometry is not exists. (model=%s, geometry_index=%d)", pModelName, geometryIndex);
-   SetData(_pGeometry->Data());
+   SetGeometry(_pGeometry->Geometry());
    //............................................................
    // ¼ÓÔØ²ÄÖÊ
    FMaterial3d* pMaterial = _materialReference->Convert<FMaterial3d>();
@@ -125,7 +125,7 @@ TResult FTemplate3dRenderable::LoadResource(FRs3dTemplateRenderable* pResource){
          FRenderableSampler* pSampler = FRenderableSampler::InstanceCreate();
          pSampler->SetCode(pCode);
          pSampler->SetPackCode(pPackCode);
-         pSampler->SetTexture(pRenderTexture);
+         pSampler->SetGraphicsObject(pRenderTexture);
          SamplerPush(pSampler);
       }
    }
