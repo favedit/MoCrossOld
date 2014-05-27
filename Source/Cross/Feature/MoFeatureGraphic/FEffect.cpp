@@ -68,7 +68,7 @@ TResult FEffect::LoadConfig(FXmlNode* pConfig){
       //............................................................
       // 建立参数定义集合
       if(pNode->IsName("Buffer")){
-         FRenderProgramBuffer* pBuffer = _renderDevice->CreateObject<FRenderProgramBuffer>(MO_RENDEROBJECT_SHADERBUFFER);
+         FRenderProgramBuffer* pBuffer = _renderDevice->CreateObject<FRenderProgramBuffer>(MO_RENDEROBJECT_PROGRAM_BUFFER);
          pBuffer->LoadConfig(pNode);
          _program->BufferPush(pBuffer);
          continue;
@@ -76,7 +76,7 @@ TResult FEffect::LoadConfig(FXmlNode* pConfig){
       //............................................................
       // 建立参数定义集合
       if(pNode->IsName("Parameter")){
-         FRenderProgramParameter* pParameter = _renderDevice->CreateObject<FRenderProgramParameter>(MO_RENDEROBJECT_SHADERPARAMETER);
+         FRenderProgramParameter* pParameter = _renderDevice->CreateObject<FRenderProgramParameter>(MO_RENDEROBJECT_PROGRAM_PARAMETER);
          pParameter->LoadConfig(pNode);
          _program->ParameterPush(pParameter);
          //MO_DEBUG("Build shader parameter. (name=%s, format=%d)", pParameter->Name(), pParameter->FormatCd());
@@ -85,7 +85,7 @@ TResult FEffect::LoadConfig(FXmlNode* pConfig){
       //............................................................
       // 建立属性定义集合
       if(pNode->IsName("Attribute")){
-         FRenderProgramAttribute* pAttribute = _renderDevice->CreateObject<FRenderProgramAttribute>(MO_RENDEROBJECT_SHADERATTRIBUTE);
+         FRenderProgramAttribute* pAttribute = _renderDevice->CreateObject<FRenderProgramAttribute>(MO_RENDEROBJECT_PROGRAM_ATTRIBUTE);
          pAttribute->LoadConfig(pNode);
          _program->AttributePush(pAttribute);
          continue;
@@ -93,7 +93,7 @@ TResult FEffect::LoadConfig(FXmlNode* pConfig){
       //............................................................
       // 建立取样器定义集合
       if(pNode->IsName("Sampler")){
-         FRenderProgramSampler* pSampler = _renderDevice->CreateObject<FRenderProgramSampler>(MO_RENDEROBJECT_SHADERSAMPLER);
+         FRenderProgramSampler* pSampler = _renderDevice->CreateObject<FRenderProgramSampler>(MO_RENDEROBJECT_PROGRAM_SAMPLER);
          pSampler->LoadConfig(pNode);
          _program->SamplerPush(pSampler);
          continue;

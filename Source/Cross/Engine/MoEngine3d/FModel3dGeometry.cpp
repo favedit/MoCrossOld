@@ -34,8 +34,8 @@ TResult FModel3dGeometry::LoadResource(FRs3dGeometry* pResource){
    _pResource = pResource;
    FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
    //............................................................
-   FRenderableData* pRenderableData = FRenderableData::InstanceCreate();
-   SetData(pRenderableData);
+   FRenderableGeometry* pRenderableGeometry = FRenderableGeometry::InstanceCreate();
+   SetGeometry(pRenderableGeometry);
    //............................................................
    // 获得顶点数据
    FRs3dVertexBuffer* pRsVertexBuffer = pResource->VertexBuffer();
@@ -65,10 +65,10 @@ TResult FModel3dGeometry::LoadResource(FRs3dGeometry* pResource){
       pAttribute->SetCode(pBufferCode);
       pAttribute->SetFormatCd(formatCd);
       pAttribute->SetOffset(offset);
-      pAttribute->SetVertexBuffer(pVertexBuffer);
-      pRenderableData->AttributePush(pAttribute);
+      pAttribute->SetGraphicsObject(pVertexBuffer);
+      pRenderableGeometry->AttributePush(pAttribute);
    }
-   pRenderableData->SetVertexCount(vertexCount);
+   pRenderableGeometry->SetVertexCount(vertexCount);
    //............................................................
    // 获得索引数据
    FRs3dIndexBuffer* pRsIndexBuffer = pResource->IndexBuffer();
@@ -85,7 +85,7 @@ TResult FModel3dGeometry::LoadResource(FRs3dGeometry* pResource){
    pIndexBuffer->BuildData();
    pIndexBuffer->Upload(pIndexData->MemoryC(), pIndexData->Length());
    pIndexBuffer->DataStream()->Assign(pIndexData->MemoryC(), pIndexData->Length());
-   pRenderableData->SetIndexBuffer(pIndexBuffer);
+   pRenderableGeometry->SetIndexBuffer(pIndexBuffer);
    //............................................................
    // 设置材质
    TCharC* pMaterialName = pResource->MaterialName();

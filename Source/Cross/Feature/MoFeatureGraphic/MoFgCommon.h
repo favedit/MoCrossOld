@@ -102,17 +102,17 @@ typedef SGraphicHandle TGraphicHandle;
 typedef TVector<TGraphicHandle> TGraphicHandles;
 
 //============================================================
-// <T>构造图形对象。</T>
+// <T>构造图形实例。</T>
 //============================================================
-class MO_FG_DECLARE FGraphicObject : public FInstance
+class MO_FG_DECLARE FGraphicInstance : public FInstance
 {
-   MO_CLASS_DECLARE_INHERITS(FGraphicObject, FInstance);
+   MO_CLASS_DECLARE_INHERITS(FGraphicInstance, FInstance);
 protected:
    FInstance* _pOwner;
    TBool _statusSetup;
 public:
-   FGraphicObject();
-   MO_ABSTRACT ~FGraphicObject();
+   FGraphicInstance();
+   MO_ABSTRACT ~FGraphicInstance();
 public:
    //------------------------------------------------------------
    // <T>获得拥有者。</T>
@@ -128,6 +128,8 @@ public:
    MO_ABSTRACT TResult OnSetup();
    TResult Setup();
 };
+//------------------------------------------------------------
+typedef MO_FG_DECLARE GPtr<FGraphicInstance> GGraphicInstancePtr;
 
 MO_NAMESPACE_END
       

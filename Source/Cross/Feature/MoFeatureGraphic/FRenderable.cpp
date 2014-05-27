@@ -30,7 +30,7 @@ FRenderable::~FRenderable(){
 // @return ÊôÐÔ
 //============================================================
 FRenderableAttribute* FRenderable::AttributeFind(TCharC* pCode){
-   return _data->AttributeFind(pCode);
+   return _geometry->AttributeFind(pCode);
 }
 
 //============================================================
@@ -40,7 +40,7 @@ FRenderableAttribute* FRenderable::AttributeFind(TCharC* pCode){
 // @return ÊôÐÔ
 //============================================================
 FRenderableAttribute* FRenderable::AttributeGet(TCharC* pCode){
-   return _data->AttributeGet(pCode);
+   return _geometry->AttributeGet(pCode);
 }
 
 //============================================================

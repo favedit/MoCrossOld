@@ -373,9 +373,9 @@ public:
 //============================================================
 // <T>渲染对象。</T>
 //============================================================
-class MO_FG_DECLARE FRenderObject : public FGraphicObject
+class MO_FG_DECLARE FRenderObject : public FGraphicInstance
 {
-   MO_CLASS_DECLARE_INHERITS(FRenderObject, FGraphicObject);
+   MO_CLASS_DECLARE_INHERITS(FRenderObject, FGraphicInstance);
 protected:
    FRenderDevice* _pDevice;
 public:
@@ -1163,6 +1163,8 @@ public:
    FRenderVertexShader();
    MO_ABSTRACT ~FRenderVertexShader();
 };
+//------------------------------------------------------------
+typedef MO_FG_DECLARE GPtr<FRenderVertexShader> GRenderVertexShaderPtr;
 
 //============================================================
 // <T>像素渲染器。</T>
@@ -1174,6 +1176,8 @@ public:
    FRenderFragmentShader();
    MO_ABSTRACT ~FRenderFragmentShader();
 };
+//------------------------------------------------------------
+typedef MO_FG_DECLARE GPtr<FRenderFragmentShader> GRenderFragmentShaderPtr;
 
 //============================================================
 // <T>渲染脚本变换器。</T>
@@ -1444,16 +1448,26 @@ class MO_FG_DECLARE FRenderProgram :
 {
    MO_CLASS_ABSTRACT_DECLARE_INHERITS(FRenderProgram, FRenderObject);
 protected:
+   GRenderVertexShaderPtr _vertexShader;
+   GRenderFragmentShaderPtr _fragmentShader;
    GRenderShaderBufferDictionary _buffers;
    GRenderShaderParameterDictionary _parameters;
    GRenderShaderAttributeDictionary _attributes;
    GRenderShaderSamplerDictionary _samplers;
-   FRenderVertexShader* _pVertexShader;
-   FRenderFragmentShader* _pFragmentShader;
 public:
    FRenderProgram();
    MO_ABSTRACT ~FRenderProgram();
 public:
+   //------------------------------------------------------------
+   // <T>获得顶点渲染器。</T>
+   MO_INLINE FRenderVertexShader* VertexShader(){
+      return _vertexShader;
+   }
+   //------------------------------------------------------------
+   // <T>获得像素渲染器。</T>
+   MO_INLINE FRenderFragmentShader* FragmentShader(){
+      return _fragmentShader;
+   }
    //------------------------------------------------------------
    // <T>获得渲染缓冲集合。</T>
    MO_INLINE GRenderShaderBufferDictionary& Buffers(){
@@ -1493,16 +1507,6 @@ public:
    // <T>根据名称查找渲染取样。</T>
    MO_INLINE FRenderProgramSampler* SamplerFind(TCharC* pName){
       return _samplers.Find(pName);
-   }
-   //------------------------------------------------------------
-   // <T>获得顶点渲染器。</T>
-   MO_INLINE FRenderVertexShader* VertexShader(){
-      return _pVertexShader;
-   }
-   //------------------------------------------------------------
-   // <T>获得像素渲染器。</T>
-   MO_INLINE FRenderFragmentShader* FragmentShader(){
-      return _pFragmentShader;
    }
 public:
    TResult BufferPush(FRenderProgramBuffer* pBuffer);
@@ -1617,32 +1621,6 @@ public:
 //------------------------------------------------------------
 typedef MO_FG_DECLARE GPtr<FRenderTexture> GRenderTexturePtr;
 typedef MO_FG_DECLARE GPtrLooper<FRenderTexture> GRenderTexturePtrLooper;
-
-////============================================================
-//// <T>渲染纹理集合。</T>
-////============================================================
-//class MO_FG_DECLARE FRenderTextures : public FInstance
-//{
-//   MO_CLASS_DECLARE_INHERITS(FRenderTextures, FInstance);
-//protected:
-//   FRenderTextureCollection* _pTextures;
-//public:
-//   FRenderTextures();
-//   MO_ABSTRACT ~FRenderTextures();
-//public:
-//   //------------------------------------------------------------
-//   // <T>获得纹理集合。</T>
-//   MO_INLINE FRenderTextureCollection* Textures(){
-//      return _pTextures;
-//   }
-//public:
-//   TInt Count();
-//   FRenderTexture* Get(TInt index);
-//   void Push(FRenderTexture* pTexture);
-//public:
-//   //FRenderTexture* FindTexture(ERenderSampler samplerCd);
-//   //FRenderTexture* GetTexture(ERenderSampler samplerCd);
-//};
 
 //============================================================
 // <T>渲染平面纹理。</T>

@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FRenderObject, FGraphicObject);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderObject, FGraphicInstance);
 
 //============================================================
 // <T>构造渲染对象。</T>

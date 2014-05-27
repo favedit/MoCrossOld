@@ -8,16 +8,12 @@ MO_CLASS_ABSTRACT_IMPLEMENT_INHERITS(FRenderProgram, FRenderObject);
 // <T>构造渲染程序。</T>
 //============================================================
 FRenderProgram::FRenderProgram(){
-   MO_CLEAR(_pVertexShader);
-   MO_CLEAR(_pFragmentShader);
 }
 
 //============================================================
 // <T>析构渲染程序。</T>
 //============================================================
 FRenderProgram::~FRenderProgram(){
-   MO_DELETE(_pVertexShader);
-   MO_DELETE(_pFragmentShader);
 }
 
 //============================================================
@@ -40,9 +36,9 @@ TResult FRenderProgram::BufferPush(FRenderProgramBuffer* pBuffer){
 //============================================================
 GRenderShaderParameterDictionary& FRenderProgram::Parameters(ERenderShader shaderCd){
    if(shaderCd == ERenderShader_Vertex){
-      return _pVertexShader->Parameters();
+      return _vertexShader->Parameters();
    }else if(shaderCd == ERenderShader_Fragment){
-      return _pFragmentShader->Parameters();
+      return _fragmentShader->Parameters();
    }
    return _parameters;
 }
@@ -56,9 +52,9 @@ GRenderShaderParameterDictionary& FRenderProgram::Parameters(ERenderShader shade
 FRenderProgramParameter* FRenderProgram::ParameterFind(ERenderShader shaderCd, TCharC* pName){
    FRenderProgramParameter* pParameter = NULL;
    if(shaderCd == ERenderShader_Vertex){
-      pParameter = _pVertexShader->ParameterFind(pName);
+      pParameter = _vertexShader->ParameterFind(pName);
    }else if(shaderCd == ERenderShader_Fragment){
-      pParameter = _pFragmentShader->ParameterFind(pName);
+      pParameter = _fragmentShader->ParameterFind(pName);
    }else{
       pParameter = _parameters.Find(pName);
    }

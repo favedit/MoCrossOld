@@ -2,12 +2,12 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FRenderableData, FInstance);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderableGeometry, FInstance);
 
 //============================================================
 // <T>构造渲染对象属性。</T>
 //============================================================
-FRenderableData::FRenderableData(){
+FRenderableGeometry::FRenderableGeometry(){
    _vertexCount = 0;
    MO_CLEAR(_pIndexBuffer);
 }
@@ -15,7 +15,7 @@ FRenderableData::FRenderableData(){
 //============================================================
 // <T>析构渲染对象属性。</T>
 //============================================================
-FRenderableData::~FRenderableData(){
+FRenderableGeometry::~FRenderableGeometry(){
 }
 
 //============================================================
@@ -24,7 +24,7 @@ FRenderableData::~FRenderableData(){
 // @param pCode 代码
 // @return 属性
 //============================================================
-FRenderableAttribute* FRenderableData::AttributeFind(TCharC* pCode){
+FRenderableAttribute* FRenderableGeometry::AttributeFind(TCharC* pCode){
    MO_CHECK(pCode, return NULL);
    TInt count = _attributes.Count();
    for(TInt n = 0; n < count; n++){
@@ -42,7 +42,7 @@ FRenderableAttribute* FRenderableData::AttributeFind(TCharC* pCode){
 // @param pCode 代码
 // @return 属性
 //============================================================
-FRenderableAttribute* FRenderableData::AttributeGet(TCharC* pCode){
+FRenderableAttribute* FRenderableGeometry::AttributeGet(TCharC* pCode){
    MO_CHECK(pCode, return NULL);
    FRenderableAttribute* pRenderableAttribute = AttributeFind(pCode);
    if(pRenderableAttribute == NULL){
@@ -57,7 +57,7 @@ FRenderableAttribute* FRenderableData::AttributeGet(TCharC* pCode){
 // @param pAttribute 属性
 // @return 处理结果
 //============================================================
-TResult FRenderableData::AttributePush(FRenderableAttribute* pAttribute){
+TResult FRenderableGeometry::AttributePush(FRenderableAttribute* pAttribute){
    MO_CHECK(pAttribute, return ENull);
    // 查找是否存在
    TCharC* pCode = pAttribute->Code();
@@ -77,7 +77,7 @@ TResult FRenderableData::AttributePush(FRenderableAttribute* pAttribute){
 // @param pAttribute 属性
 // @return 处理结果
 //============================================================
-TResult FRenderableData::AttributeRemove(FRenderableAttribute* pAttribute){
+TResult FRenderableGeometry::AttributeRemove(FRenderableAttribute* pAttribute){
    MO_CHECK(pAttribute, return ENull);
    // 查找是否存在
    if(!_attributes.Contains(pAttribute)){
@@ -95,7 +95,7 @@ TResult FRenderableData::AttributeRemove(FRenderableAttribute* pAttribute){
 // @param pData 数据
 // @return 处理结果
 //============================================================
-TResult FRenderableData::Assign(FRenderableData* pData){
+TResult FRenderableGeometry::Assign(FRenderableGeometry* pData){
    MO_CHECK(pData, return ENull);
    // 设置属性
    _vertexCount = pData->VertexCount();

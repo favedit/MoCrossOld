@@ -41,7 +41,7 @@ TResult FPd11RenderLayout::OnSetup(){
       //............................................................
       // ÉèÖÃ»º³åÐÅÏ¢
       if(pRenderableAttribute != NULL){
-         FPd11RenderVertexBuffer* pVertexBuffer = pRenderableAttribute->VertexBuffer()->Convert<FPd11RenderVertexBuffer>();
+         FPd11RenderVertexBuffer* pVertexBuffer = pRenderableAttribute->GraphicsObject<FPd11RenderVertexBuffer>();
          _piBuffer[index] = pVertexBuffer->NativeBuffer();
          _strides[index] = pVertexBuffer->Stride();
          _offsets[index] = pRenderableAttribute->Offset();

@@ -24,11 +24,11 @@ FPd11RenderDevice::FPd11RenderDevice(){
    MO_CLEAR(_piDevice);
    MO_CLEAR(_piContext);
    // ×¢²áÀà¼¯ºÏ
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERBUFFER,    FPd11RenderShaderBuffer::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERATTRIBUTE, FRenderProgramAttribute::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERPARAMETER, FPd11RenderShaderParameter::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERSAMPLER,   FRenderProgramSampler::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT,          FPd11RenderLayout::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT,            FPd11RenderLayout::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_BUFFER,    FPd11RenderShaderBuffer::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_ATTRIBUTE, FRenderProgramAttribute::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_PARAMETER, FPd11RenderShaderParameter::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_SAMPLER,   FRenderProgramSampler::Class());
    //
    MO_CLEAR(_piRasterizerState);
    MO_CLEAR(_piBlendEnableState);

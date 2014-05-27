@@ -9,7 +9,6 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderableSampler, FInstance);
 //============================================================
 FRenderableSampler::FRenderableSampler(){
    _slot = -1;
-   MO_CLEAR(_pTexture);
 }
 
 //============================================================

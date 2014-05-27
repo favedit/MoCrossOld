@@ -13,25 +13,26 @@
 MO_NAMESPACE_BEGIN
 
 //==========================================================
-#define MO_RENDERENUM_PARAMETER         "EnumRenderParameter"
-#define MO_RENDERENUM_ATTRIBUTE         "EnumRenderAttribute"
-#define MO_RENDERENUM_SAMPLER           "EnumRenderSampler"
+#define MO_RENDERENUM_PARAMETER           "EnumRenderParameter"
+#define MO_RENDERENUM_ATTRIBUTE           "EnumRenderAttribute"
+#define MO_RENDERENUM_SAMPLER             "EnumRenderSampler"
 
 //==========================================================
-#define MO_RENDEROBJECT_LAYOUT          "Layout"
-#define MO_RENDEROBJECT_SHADERBUFFER    "ShaderBuffer"
-#define MO_RENDEROBJECT_SHADERPARAMETER "ShaderParameter"
-#define MO_RENDEROBJECT_SHADERATTRIBUTE "ShaderAttribute"
-#define MO_RENDEROBJECT_SHADERSAMPLER   "ShaderSampler"
-#define MO_RENDEROBJECT_PROGROM_LAYOUT  "ProgromLayout"
-#define MO_RENDEROBJECT_VERTEXBUFFER    "VertexBuffer"
-#define MO_RENDEROBJECT_INDEXBUFFER     "IndexBuffer"
-#define MO_RENDEROBJECT_TEXTURE2D       "Texture2d"
-#define MO_RENDEROBJECT_TEXTURE3D       "Texture3d"
-#define MO_RENDEROBJECT_TARGET          "Target"
-#define MO_RENDEROBJECT_VERTEXSHADER    "VertexShader"
-#define MO_RENDEROBJECT_FRAGMENTSHADER  "FragmentShader"
-#define MO_RENDEROBJECT_PROGRAM         "Program"
+#define MO_RENDEROBJECT_LAYOUT            "Layout"
+#define MO_RENDEROBJECT_BUFFER_VERTEX     "VertexBuffer"
+#define MO_RENDEROBJECT_BUFFER_INDEX      "IndexBuffer"
+#define MO_RENDEROBJECT_SHADER_VERTEX     "VertexShader"
+#define MO_RENDEROBJECT_SHADER_FRAGMENT   "FragmentShader"
+#define MO_RENDEROBJECT_PROGRAM_BUFFER    "ProgramBuffer"
+#define MO_RENDEROBJECT_PROGRAM_PARAMETER "ProgramParameter"
+#define MO_RENDEROBJECT_PROGRAM_ATTRIBUTE "ProgramAttribute"
+#define MO_RENDEROBJECT_PROGRAM_SAMPLER   "ProgramSampler"
+#define MO_RENDEROBJECT_PROGRAM_LAYOUT    "ProgramLayout"
+#define MO_RENDEROBJECT_PROGRAM           "Program"
+#define MO_RENDEROBJECT_TEXTURE_2D        "Texture2d"
+#define MO_RENDEROBJECT_TEXTURE_3D        "Texture3d"
+#define MO_RENDEROBJECT_TEXTURE_CUBE      "TextureCube"
+#define MO_RENDEROBJECT_TARGET            "Target"
 
 //==========================================================
 class FMaterial;
@@ -40,7 +41,6 @@ class FRenderTexture;
 typedef MO_FG_DECLARE FObjects<FRenderTexture*> FRenderTextureCollection;
 class FRenderVertexStream;
 class FRenderVertexStreams;
-class FRenderVertexBuffer;
 class FRenderIndexBuffer;
 class FRenderLayout;
 class FEffect;
@@ -183,38 +183,6 @@ enum ERenderUsage{
    ERenderUsage_ReadWrite,
 };
 
-////============================================================
-//// <T>渲染顶点缓冲。</T>
-////============================================================
-//enum ERenderAttribute{
-//   ERenderAttribute_Unknown = 0,
-//   ERenderAttribute_Instance = 1,
-//   ERenderAttribute_Position = 2,
-//   ERenderAttribute_Color = 3,
-//   ERenderAttribute_Coord = 4,
-//   ERenderAttribute_CoordLight = 5,
-//   ERenderAttribute_Normal = 6,
-//   ERenderAttribute_Binormal = 7,
-//   ERenderAttribute_Tangent = 8,
-//   ERenderAttribute_BoneIndex = 9,
-//   ERenderAttribute_BoneWeight = 10,
-//   ERenderAttribute_Count = 11,
-//};
-//
-////============================================================
-//// <T>渲染顶点缓冲工具。</T>
-////============================================================
-//class MO_FG_DECLARE FRenderProgramAttributeEnumerator : public FEnumerator{
-//public:
-//   TResult Construct();
-//};
-//
-////============================================================
-//// <T>渲染取样器类型工具。</T>
-////============================================================
-//class MO_FG_DECLARE RRenderAttribute : public REnumerator<FRenderProgramAttributeEnumerator>{
-//};
-
 //============================================================
 // <T>渲染索引宽度。</T>
 //============================================================
@@ -329,61 +297,6 @@ enum ERenderTexture{
    ERenderTexture_Cube,
 };
 
-////============================================================
-//// <T>渲染取样器类型。</T>
-////============================================================
-//enum ERenderSampler{
-//   ERenderSampler_Unknown,
-//   ERenderSampler_Ambient,
-//   ERenderSampler_Diffuse,
-//   ERenderSampler_Alpha,
-//   ERenderSampler_Normal,
-//   ERenderSampler_Height,
-//   ERenderSampler_SpecularColor,
-//   ERenderSampler_SpecularLevel,
-//   ERenderSampler_TransmittanceColor,
-//   ERenderSampler_TransmittanceLevel,
-//   ERenderSampler_Light,
-//   ERenderSampler_Reflect,
-//   ERenderSampler_Refract,
-//   ERenderSampler_Emissive,
-//   ERenderSampler_Environment,
-//   ERenderSampler_LayerMerge,
-//   ERenderSampler_Layer1,
-//   ERenderSampler_Layer2,
-//   ERenderSampler_Layer3,
-//   ERenderSampler_Layer4,
-//   ERenderSampler_PackDiffuse,
-//   ERenderSampler_PackNormal,
-//   ERenderSampler_PackSpecular,
-//   ERenderSampler_PackTransmittance,
-//   ERenderSampler_PackLight,
-//   ERenderSampler_LightDepth,
-//   ERenderSampler_Count,
-//};
-//
-////============================================================
-//// <T>渲染取样器类型枚举。</T>
-////============================================================
-//class MO_FG_DECLARE FRenderProgramSamplerEnumerator : public FEnumerator{
-//public:
-//   TResult Construct();
-//public:
-//   TInt ParsePack(TInt samplerCd);
-//};
-//
-////============================================================
-//// <T>渲染取样器类型工具。</T>
-////============================================================
-//class MO_FG_DECLARE RRenderSampler : public REnumerator<FRenderProgramSamplerEnumerator>{
-//public:
-//   //------------------------------------------------------------
-//   // <T>根据取样器获得打包取样器。</T>
-//   static TInt ParsePack(TInt samplerCd){
-//      return _pInstance->ParsePack(samplerCd);
-//   }
-//};
-
 //============================================================
 // <T>渲染纹理格式。</T>
 //============================================================
@@ -436,8 +349,6 @@ public:
       _pRenderable = pRenderable;
    }
 };
-//------------------------------------------------------------
-typedef MO_FG_DECLARE FObjects<FRenderableVisual*> FRenderableVisualCollection;
 
 //============================================================
 // <T>渲染标志。</T>
@@ -546,58 +457,6 @@ public:
    TResult Reset();
 };
 
-////============================================================
-//// <T>渲染项目信息。</T>
-////============================================================
-//struct MO_FG_DECLARE SRenderableItem{
-//public:
-//   // 坐标
-//   SFloatPoint3 location;
-//   // 尺寸
-//   SFloatSize3 size;
-//   // 旋转
-//   SFloatVector3 rotation;
-//   // 背景颜色
-//   SFloatColor4 groundColor;
-//   // 纹理坐标
-//   SFloatCoord coord;
-//   // 矩阵
-//   SFloatMatrix3d matrix;
-//public:
-//   //------------------------------------------------------------
-//   // <T>构造浮点数颜色。</T>
-//   MO_INLINE SRenderableItem(){
-//   }
-//};
-////------------------------------------------------------------
-//typedef MO_FG_DECLARE TFixVector<SRenderableItem, 64> SRenderableItems;
-//
-////============================================================
-//// <T>渲染信息。</T>
-////============================================================
-//struct MO_FG_DECLARE SRenderable{
-//public:
-//   SRenderableItems items;
-//public:
-//   //------------------------------------------------------------
-//   // <T>构造浮点数颜色。</T>
-//   MO_INLINE SRenderable(){
-//   }
-//public:
-//   //------------------------------------------------------------
-//   // <T>收集一个项目。</T>
-//   MO_INLINE SRenderableItem& Alloc(){
-//      TInt index = items.Count();
-//      items.SetCount(index + 1);
-//      return items.Get(index);
-//   }
-//   //------------------------------------------------------------
-//   // <T>增加要给项目。</T>
-//   MO_INLINE void Push(SRenderableItem& item){
-//      items.Push(item);
-//   }
-//};
-
 //============================================================
 // <T>渲染配置信息。</T>
 //============================================================
@@ -646,8 +505,8 @@ protected:
    ERenderAttributeFormat _formatCd;
    // 数据缓冲中的偏移位置
    TInt _offset;
-   // 顶点数据缓冲
-   FRenderVertexBuffer* _pVertexBuffer;
+   // 图元对象
+   GGraphicInstancePtr _graphicsObject;
    //TInt _slot;
 public:
    FRenderableAttribute();
@@ -694,14 +553,20 @@ public:
       _offset = offset;
    }
    //------------------------------------------------------------
-   // <T>获得顶点缓冲。</T>
-   MO_INLINE FRenderVertexBuffer* VertexBuffer(){
-      return _pVertexBuffer;
+   // <T>获得图元对象。</T>
+   MO_INLINE FGraphicInstance* GraphicsObject(){
+      return _graphicsObject;
    }
    //------------------------------------------------------------
-   // <T>设置顶点缓冲。</T>
-   MO_INLINE void SetVertexBuffer(FRenderVertexBuffer* pVertexBuffer){
-      _pVertexBuffer = pVertexBuffer;
+   // <T>获得图元对象。</T>
+   template <class T>
+   MO_INLINE T* GraphicsObject(){
+      return _graphicsObject->Convert<T>();
+   }
+   //------------------------------------------------------------
+   // <T>设置图元对象。</T>
+   MO_INLINE void SetGraphicsObject(FGraphicInstance* pGraphicsObject){
+      _graphicsObject = pGraphicsObject;
    }
    ////------------------------------------------------------------
    //// <T>获得插槽。</T>
@@ -721,11 +586,11 @@ typedef MO_FG_DECLARE GPtr<FRenderableAttribute> GRenderableAttributePtr;
 typedef MO_FG_DECLARE GPtrs<FRenderableAttribute> GRenderableAttributePtrs;
 
 //============================================================
-// <T>渲染对象数据。</T>
+// <T>渲染对象几何体。</T>
 //============================================================
-class MO_FG_DECLARE FRenderableData : public FInstance
+class MO_FG_DECLARE FRenderableGeometry : public FInstance
 {
-   MO_CLASS_DECLARE_INHERITS(FRenderableData, FInstance);
+   MO_CLASS_DECLARE_INHERITS(FRenderableGeometry, FInstance);
 protected:
    // 顶点个数
    TInt _vertexCount;
@@ -734,8 +599,8 @@ protected:
    // 索引流
    FRenderIndexBuffer* _pIndexBuffer;
 public:
-   FRenderableData();
-   MO_ABSTRACT ~FRenderableData();
+   FRenderableGeometry();
+   MO_ABSTRACT ~FRenderableGeometry();
 public:
    //------------------------------------------------------------
    // <T>获得顶点个数。</T>
@@ -768,10 +633,10 @@ public:
    TResult AttributePush(FRenderableAttribute* pAttribute);
    TResult AttributeRemove(FRenderableAttribute* pAttribute);
 public:
-   TResult Assign(FRenderableData* pData);
+   TResult Assign(FRenderableGeometry* pData);
 };
 //------------------------------------------------------------
-typedef MO_FG_DECLARE GPtr<FRenderableData> GRenderableDataPtr;
+typedef MO_FG_DECLARE GPtr<FRenderableGeometry> GRenderableGeometryPtr;
 
 //============================================================
 // <T>渲染对象取样器。</T>
@@ -783,7 +648,8 @@ protected:
    TString _code;
    TString _packCode;
    TInt _slot;
-   FRenderTexture* _pTexture;
+   // 图元对象
+   GGraphicInstancePtr _graphicsObject;
 public:
    FRenderableSampler();
    MO_ABSTRACT ~FRenderableSampler();
@@ -829,14 +695,20 @@ public:
       _slot = slot;
    }
    //------------------------------------------------------------
-   // <T>获得纹理。</T>
-   MO_INLINE FRenderTexture* Texture(){
-      return _pTexture;
+   // <T>获得图元对象。</T>
+   MO_INLINE FGraphicInstance* GraphicsObject(){
+      return _graphicsObject;
    }
    //------------------------------------------------------------
-   // <T>设置纹理。</T>
-   MO_INLINE void SetTexture(FRenderTexture* pTexture){
-      _pTexture = pTexture;
+   // <T>获得图元对象。</T>
+   template <class T>
+   MO_INLINE T* GraphicsObject(){
+      return _graphicsObject->Convert<T>();
+   }
+   //------------------------------------------------------------
+   // <T>设置图元对象。</T>
+   MO_INLINE void SetGraphicsObject(FGraphicInstance* pGraphicsObject){
+      _graphicsObject = pGraphicsObject;
    }
 };
 //------------------------------------------------------------
@@ -902,7 +774,7 @@ protected:
    // 引用材质
    GMaterialPtr _materialReference;
    // 数据
-   GRenderableDataPtr _data;
+   GRenderableGeometryPtr _geometry;
    // 取样集合
    GRenderableSamplerPtrs _samplers;
    // 激活效果器
@@ -974,32 +846,32 @@ public:
       _materialReference = pMaterialReference;
    }
    //------------------------------------------------------------
-   // <T>获得数据。</T>
-   MO_INLINE FRenderableData* Data(){
-      return _data;
+   // <T>获得几何体。</T>
+   MO_INLINE FRenderableGeometry* Geometry(){
+      return _geometry;
    }
    //------------------------------------------------------------
-   // <T>设置数据。</T>
-   MO_INLINE void SetData(FRenderableData* pData){
-      return _data = pData;
+   // <T>设置几何体。</T>
+   MO_INLINE void SetGeometry(FRenderableGeometry* pGeometry){
+      return _geometry = pGeometry;
    }
    //------------------------------------------------------------
    // <T>获得属性集合。</T>
    MO_INLINE GRenderableAttributePtrs& Attributes(){
-      MO_ASSERT(_data);
-      return _data->Attributes();
+      MO_ASSERT(_geometry);
+      return _geometry->Attributes();
    }
    //------------------------------------------------------------
    // <T>获得索引流。</T>
    MO_INLINE FRenderIndexBuffer* IndexBuffer(){
-      MO_ASSERT(_data);
-      return _data->IndexBuffer();
+      MO_ASSERT(_geometry);
+      return _geometry->IndexBuffer();
    }
    //------------------------------------------------------------
    // <T>设置索引流。</T>
    MO_INLINE void SetIndexBuffer(FRenderIndexBuffer* pIndexBuffer){
-      MO_ASSERT(_data);
-      _data->SetIndexBuffer(pIndexBuffer);
+      MO_ASSERT(_geometry);
+      _geometry->SetIndexBuffer(pIndexBuffer);
    }
    //------------------------------------------------------------
    // <T>获得取样集合。</T>

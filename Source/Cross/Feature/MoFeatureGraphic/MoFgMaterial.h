@@ -11,9 +11,9 @@ MO_NAMESPACE_BEGIN
 //============================================================
 // <T>Œ∆¿Ì∂‘œÛ°£</T>
 //============================================================
-class MO_FG_DECLARE FTexture : public FGraphicObject
+class MO_FG_DECLARE FTexture : public FGraphicInstance
 {
-   MO_CLASS_DECLARE_INHERITS(FTexture, FGraphicObject);
+   MO_CLASS_DECLARE_INHERITS(FTexture, FGraphicInstance);
 protected:
    TGraphicHandle _graphicHandle;
    SIntSize2 _size;

@@ -11,7 +11,6 @@ FRenderableAttribute::FRenderableAttribute(){
    _valid = EFalse;
    _formatCd = ERenderAttributeFormat_Unknown;
    _offset = -1;
-   MO_CLEAR(_pVertexBuffer);
    //_slot = -1;
 }
 
@@ -43,7 +42,7 @@ TBool FRenderableAttribute::CheckValid(){
       return EFalse;
    }
    // 检查缓冲
-   if(_pVertexBuffer == NULL){
+   if(!_graphicsObject.IsValid()){
       return EFalse;
    }
    // 有效处理

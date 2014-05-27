@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FTexture, FGraphicObject);
+MO_CLASS_IMPLEMENT_INHERITS(FTexture, FGraphicInstance);
 
 //============================================================
 // <T>ππ‘ÏŒ∆¿Ì°£</T>

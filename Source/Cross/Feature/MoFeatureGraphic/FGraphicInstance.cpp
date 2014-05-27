@@ -2,20 +2,20 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FGraphicObject, FInstance);
+MO_CLASS_IMPLEMENT_INHERITS(FGraphicInstance, FInstance);
 
 //============================================================
-// <T>构造图形对象。</T>
+// <T>构造图形实例。</T>
 //============================================================
-FGraphicObject::FGraphicObject(){
+FGraphicInstance::FGraphicInstance(){
    MO_CLEAR(_pOwner);
    _statusSetup = EFalse;
 }
 
 //============================================================
-// <T>析构图形对象。</T>
+// <T>析构图形实例。</T>
 //============================================================
-FGraphicObject::~FGraphicObject(){
+FGraphicInstance::~FGraphicInstance(){
 }
 
 //============================================================
@@ -23,7 +23,7 @@ FGraphicObject::~FGraphicObject(){
 //
 // @return 处理结果
 //============================================================
-TResult FGraphicObject::OnSetup(){
+TResult FGraphicInstance::OnSetup(){
    return ESuccess;
 }
 
@@ -32,7 +32,7 @@ TResult FGraphicObject::OnSetup(){
 //
 // @return 处理结果
 //============================================================
-TResult FGraphicObject::Setup(){
+TResult FGraphicInstance::Setup(){
    TResult result = EContinue;
    if(!_statusSetup){
       result = OnSetup();
