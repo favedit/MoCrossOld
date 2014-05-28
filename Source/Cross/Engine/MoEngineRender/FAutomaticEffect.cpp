@@ -31,7 +31,6 @@ FAutomaticEffect::FAutomaticEffect(){
    _pParameters = MO_CREATE(FRenderProgramParameterCollection);
    _pAttributes = MO_CREATE(FRenderProgramAttributeCollection);
    _pSamplers = MO_CREATE(FRenderProgramSamplerCollection);
-   //_pSamplers->SetCount(ERenderSampler_Count);
 }
 
 //============================================================
@@ -136,9 +135,9 @@ TResult FAutomaticEffect::BindDescriptors(){
    }
    //............................................................
    // 建立属性描述器
-   GRenderShaderAttributeDictionary& attributes = _program->Attributes();
+   GRenderProgramAttributeDictionary& attributes = _program->Attributes();
    if(!attributes.IsEmpty()){
-      GRenderShaderAttributeDictionary::TIterator iterator = attributes.Iterator();
+      GRenderProgramAttributeDictionary::TIterator iterator = attributes.Iterator();
       while(iterator.Next()){
          FRenderProgramAttribute* pAttribute = *iterator;
          if(pAttribute->IsStatusUsed()){
@@ -156,9 +155,9 @@ TResult FAutomaticEffect::BindDescriptors(){
    }
    //............................................................
    // 建立属性描述器
-   GRenderShaderSamplerDictionary& sampler = _program->Samplers();
+   GRenderProgramSamplerDictionary& sampler = _program->Samplers();
    if(!sampler.IsEmpty()){
-      GRenderShaderSamplerDictionary::TIterator iterator = sampler.Iterator();
+      GRenderProgramSamplerDictionary::TIterator iterator = sampler.Iterator();
       while(iterator.Next()){
          FRenderProgramSampler* pSampler = *iterator;
          if(pSampler->IsStatusUsed()){
@@ -223,6 +222,312 @@ TResult FAutomaticEffect::LinkDescriptors(){
    //            pDescriptor->namePtr, pDescriptor->code, pDescriptor->bindId, pDescriptor->index);
    //   }
    //}
+   return ESuccess;
+}
+
+//============================================================
+// <T>配置处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FAutomaticEffect::Setup(){
+   TResult resultCd = FEffect::Setup();
+   return resultCd;
+}
+
+//============================================================
+// <T>建立模板环境。</T>
+//
+// @param pContext 环境
+// @return 处理结果
+//============================================================
+TResult FAutomaticEffect::BuildContext(SEffectContext* pContext){
+   // 获得参数
+   MO_CHECK(pContext, return ENull);
+   TFsCode& code = pContext->code;
+   FRenderable* pRenderable = pContext->renderablePtr;
+   MO_CHECK(pRenderable, return ENull);
+   FTemplateContext* pTemplateContext = pContext->contextPtr;
+   STechniqueCapability& capability = RTechniqueManager::Instance().Capability();
+   SRenderableDescriptor& renderableDescriptor = pRenderable->Descriptor();
+   //............................................................
+   // 支持顶点颜色
+   TBool attributeColor = pRenderable->AttributeContains(MO_ER_ATTRIBUTE_COLOR);
+   _dynamicDescriptor.supportVertexColor = (_descriptor.supportVertexColor && attributeColor);
+   if(_dynamicDescriptor.supportVertexColor){
+      code.Append("|AC");
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("vertex.attribute.color", ETrue);
+      }
+   }
+   // 支持顶点纹理
+   TBool attributeCoord = pRenderable->AttributeContains(MO_ER_ATTRIBUTE_COORD);
+   _dynamicDescriptor.supportVertexCoord = (_descriptor.supportVertexCoord && attributeCoord);
+   if(_dynamicDescriptor.supportVertexCoord){
+      code.Append("|AD");
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("vertex.attribute.coord", ETrue);
+      }
+   }
+   // 支持法线
+   TBool attributeNormal = pRenderable->AttributeContains(MO_ER_ATTRIBUTE_NORMAL);
+   _dynamicDescriptor.supportVertexNormal = (_dynamicDescriptor.supportVertexCoord && attributeNormal);
+   if(_dynamicDescriptor.supportVertexNormal){
+      code.Append("|AN");
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("vertex.attribute.normal", ETrue);
+      }
+   }
+   // 支持全法线
+   TBool attributeBinormal = pRenderable->AttributeContains(MO_ER_ATTRIBUTE_BINORMAL);
+   TBool attributeTangent = pRenderable->AttributeContains(MO_ER_ATTRIBUTE_TANGENT);
+   TBool attributeNormalFull = (attributeNormal && attributeBinormal && attributeTangent);
+   _dynamicDescriptor.supportVertexNormalFull = (_dynamicDescriptor.supportVertexCoord && attributeNormalFull);
+   if(_dynamicDescriptor.supportVertexNormalFull){
+      code.Append("|AF");
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("vertex.attribute.normal.full", ETrue);
+      }
+   }
+   //............................................................
+   // 支持实例技术
+   _dynamicDescriptor.supportInstance = (_descriptor.supportInstance && capability.optionInstance);
+   if(_dynamicDescriptor.supportInstance){
+      code.Append("|SI");
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("support.instance", ETrue);
+      }
+   }
+   // 支持骨骼技术
+   _dynamicDescriptor.supportSkeleton = _descriptor.supportSkeleton;
+   if(_dynamicDescriptor.supportSkeleton){
+      code.Append("|SS");
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("support.skeleton", ETrue);
+      }
+   }
+   //............................................................
+   // 支持透明技术
+   TBool samplerDiffuse  = pRenderable->SamplerContains(MO_ER_SAMPLER_DIFFUSE);
+   TBool samplerAlpha  = pRenderable->SamplerContains(MO_ER_SAMPLER_ALPHA);
+   _dynamicDescriptor.supportAlpha = (_descriptor.supportAlpha && samplerAlpha);
+   if(_dynamicDescriptor.supportAlpha){
+      code.Append("|RA");
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("support.alpha", ETrue);
+      }
+      _descriptor.optionBlendMode = ETrue;
+   }else{
+      _descriptor.optionBlendMode = EFalse;
+   }
+   // 支持环境色技术
+   _dynamicDescriptor.supportAmbient = _descriptor.supportAmbient;
+   if(_dynamicDescriptor.supportAmbient){
+      code.Append("|TA");
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("support.ambient", ETrue);
+      }
+      if(samplerDiffuse){
+         code.Append("|TAS");
+         if(pTemplateContext){
+            pTemplateContext->DefineBool("support.ambient.sampler", ETrue);
+         }
+      }
+   }
+   //............................................................
+   // 支持散射技术
+   TBool samplerNormal = pRenderable->SamplerContains(MO_ER_SAMPLER_NORMAL);
+   _dynamicDescriptor.supportDiffuse = _descriptor.supportDiffuse && (_dynamicDescriptor.supportVertexNormal || samplerNormal);
+   if(_descriptor.supportDiffuse){
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("support.diffuse", ETrue);
+      }
+      if(samplerNormal){
+         code.Append("|TDD");
+         if(pTemplateContext){
+            pTemplateContext->DefineBool("support.diffuse.dump", ETrue);
+         }
+      }else if(_dynamicDescriptor.supportVertexNormal){
+         code.Append("|TDN");
+         if(pTemplateContext){
+            pTemplateContext->DefineBool("support.diffuse.normal", ETrue);
+         }
+      }
+   }
+   // 支持视角散射技术
+   _dynamicDescriptor.supportDiffuseView = (_descriptor.supportDiffuseView && (_dynamicDescriptor.supportVertexNormal || samplerNormal));
+   if(_descriptor.supportDiffuseView){
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("support.diffuse.view", ETrue);
+      }
+      if(samplerNormal){
+         code.Append("|TDVD");
+         if(pTemplateContext){
+            pTemplateContext->DefineBool("support.diffuse.view.dump", ETrue);
+         }
+      }else if(_dynamicDescriptor.supportVertexNormal){
+         code.Append("|TDVN");
+         if(pTemplateContext){
+            pTemplateContext->DefineBool("support.diffuse.view.normal", ETrue);
+         }
+      }
+   }
+   //............................................................
+   // 支持高光技术
+   TBool samplerSpecularColor = pRenderable->SamplerContains(MO_ER_SAMPLER_SPECULAR_COLOR);
+   TBool samplerSpecularLevel = pRenderable->SamplerContains(MO_ER_SAMPLER_SPECULAR_LEVEL);
+   _dynamicDescriptor.supportSpecularColor = (_descriptor.supportSpecularColor && samplerSpecularColor);
+   _dynamicDescriptor.supportSpecularLevel = (_descriptor.supportSpecularLevel && samplerSpecularLevel);
+   if((_dynamicDescriptor.supportSpecularColor || _dynamicDescriptor.supportSpecularLevel) && _dynamicDescriptor.supportVertexNormal){
+      code.Append("|TS");
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("support.specular", ETrue);
+      }
+      // 支持高光颜色技术
+      if(_dynamicDescriptor.supportSpecularColor){
+         code.Append("|TSC");
+         if(pTemplateContext){
+            pTemplateContext->DefineBool("support.specular.color", ETrue);
+         }
+      }
+      // 支持高光级别技术
+      if(_dynamicDescriptor.supportSpecularLevel){
+         code.Append("|TSL");
+         if(pTemplateContext){
+            pTemplateContext->DefineBool("support.specular.level", ETrue);
+         }
+      }else{
+         code.Append("|NSL");
+         if(pTemplateContext){
+            pTemplateContext->DefineBool("support.specular.normal", ETrue);
+         }
+      }
+   }
+   // 支持视角高光技术
+   _dynamicDescriptor.supportSpecularView = _descriptor.supportSpecularView;
+   if(_dynamicDescriptor.supportSpecularView && _dynamicDescriptor.supportVertexNormal){
+      code.Append("|TSV");
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("support.specular.view", ETrue);
+      }
+      // 支持高光颜色技术
+      if(_dynamicDescriptor.supportSpecularColor){
+         code.Append("|TSVC");
+         if(pTemplateContext){
+            pTemplateContext->DefineBool("support.specular.view.color", ETrue);
+         }
+      }
+      // 支持高光级别技术
+      if(_dynamicDescriptor.supportSpecularLevel){
+         code.Append("|TSVL");
+         if(pTemplateContext){
+            pTemplateContext->DefineBool("support.specular.view.level", ETrue);
+         }
+      }else{
+         code.Append("|NSVL");
+         if(pTemplateContext){
+            pTemplateContext->DefineBool("support.specular.view.normal", ETrue);
+         }
+      }
+   }
+   //............................................................
+   // 支持收光技术
+   TBool samplerLight = pRenderable->SamplerContains(MO_ER_SAMPLER_LIGHT);
+   _dynamicDescriptor.supportLight = (_descriptor.supportLight && samplerLight);
+   if(_dynamicDescriptor.supportLight){
+      code.Append("|TL");
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("support.light", ETrue);
+      }
+   }
+   // 支持反射技术
+   TBool samplerReflect = pRenderable->SamplerContains(MO_ER_SAMPLER_REFLECT);
+   _dynamicDescriptor.supportReflect = (_descriptor.supportReflect && samplerReflect);
+   if(_dynamicDescriptor.supportReflect){
+      code.Append("|TRL");
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("support.reflect", ETrue);
+      }
+   }
+   // 支持折射技术
+   TBool samplerRefract = pRenderable->SamplerContains(MO_ER_SAMPLER_REFRACT);
+   _dynamicDescriptor.supportRefract = (_descriptor.supportRefract && samplerRefract);
+   if(_dynamicDescriptor.supportRefract){
+      code.Append("|TRF");
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("support.refract", ETrue);
+      }
+   }
+   // 支持发光技术
+   TBool samplerEmissive = pRenderable->SamplerContains(MO_ER_SAMPLER_EMISSIVE);
+   _dynamicDescriptor.supportEmissive = (_descriptor.supportEmissive && samplerEmissive);
+   if(_dynamicDescriptor.supportEmissive){
+      code.Append("|TLE");
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("support.emissive", ETrue);
+      }
+   }
+   //............................................................
+   // 支持高度技术
+   TBool samplerHeight = pRenderable->SamplerContains(MO_ER_SAMPLER_HEIGHT);
+   _dynamicDescriptor.supportHeight = (_descriptor.supportHeight && samplerHeight);
+   if(_dynamicDescriptor.supportHeight){
+      code.Append("|TH");
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("support.height", ETrue);
+      }
+   }
+   //............................................................
+   // 支持环境技术
+   TBool samplerEnvironment = pRenderable->SamplerContains(MO_ER_SAMPLER_ENVIRONMENT);
+   _dynamicDescriptor.supportEnvironment = (_descriptor.supportEnvironment && samplerEnvironment);
+   if(_dynamicDescriptor.supportEnvironment){
+      code.Append("|TE");
+      if(pTemplateContext){
+         pTemplateContext->DefineBool("support.environment", ETrue);
+      }
+   }
+   //............................................................
+   // 计算最大实例个数
+   FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
+   TInt instanceCount = RRenderUtil::CalculateInstanceCount(renderableDescriptor.vertexCount, renderableDescriptor.boneCount);
+   if(_dynamicDescriptor.supportInstance && pTemplateContext){
+      pTemplateContext->DefineInt("instance.count", instanceCount);
+   }
+   // 计算骨头实例个数
+   if(_dynamicDescriptor.supportSkeleton && pTemplateContext){
+      pTemplateContext->DefineBool("support.bone.weight.1", ETrue);
+      pTemplateContext->DefineBool("support.bone.weight.2", ETrue);
+      pTemplateContext->DefineBool("support.bone.weight.3", ETrue);
+      pTemplateContext->DefineBool("support.bone.weight.4", ETrue);
+   }
+   return ESuccess;
+}
+
+//============================================================
+// <T>配置处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FAutomaticEffect::Build(){
+   //............................................................
+   // 编译顶点程序
+   _program->VertexShader()->Compile(_vertexSource);
+   // 编译像素程序
+   _program->FragmentShader()->Compile(_fragmentSource);
+   //............................................................
+   // 建立处理
+   _program->Build();
+   BindDescriptors();
+   //............................................................
+   // 关联处理
+   _program->Link();
+   LinkDescriptors();
+   //............................................................
+   // 改变大小
+   FScreenDevice* pScreenDevice = RDeviceManager::Instance().Find<FScreenDevice>();
+   SIntSize2& screenSize = pScreenDevice->Size();
+   Resize(screenSize.width, screenSize.height);
    return ESuccess;
 }
 
@@ -433,351 +738,17 @@ TResult FAutomaticEffect::BindSamplerDescriptors(FRenderable* pRenderable){
    MO_CHECK(pRenderDevice, return ENull);
    //............................................................
    // 关联属性集合
-   GRenderShaderSamplerDictionary::TIterator iterator = _program->Samplers().IteratorC();
+   GRenderProgramSamplerDictionary::TIterator iterator = _program->Samplers().IteratorC();
    while(iterator.Next()){
       FRenderProgramSampler* pSampler = *iterator;
       if(pSampler->IsStatusUsed()){
-         TInt packCode = pSampler->PackCode();
-         //FRenderableSampler* pSampler = pRenderable->SamplerFind(packCode);
-         //if(pSampler != NULL){
-         //   pSampler->N
-         //   // pTexture->SetIndex(pSampler->Slot());
-         //   pRenderDevice->BindTexture(pSampler->Slot(), pTexture);
-         //}
-      }
-   }
-   return ESuccess;
-}
-
-//============================================================
-// <T>配置处理。</T>
-//
-// @return 处理结果
-//============================================================
-TResult FAutomaticEffect::OnSetup(){
-   TXmlNodeIteratorC iterator = _config->NodeIteratorC();
-   //while(iterator.Next()){
-   //   FXmlNode* pNode = *iterator;
-   //   //............................................................
-   //   // 建立参数定义集合
-   //   if(pNode->IsName("Parameter")){
-   //      TCharC* pName = pNode->Get("name");
-   //      TCharC* pBuffer = pNode->Get("linker");
-   //      TCharC* pFormat = pNode->Get("format");
-   //      ERenderVertexBuffer bufferCd = RRenderVertexBuffer::Parse(pBuffer);
-   //      ERenderVertexFormat formatCd = RRenderVertexFormat::Parse(pFormat);
-   //      //_constDescriptors.Register(bufferCd, pName, formatCd);
-   //      continue;
-   //   }
-   //   //............................................................
-   //   // 建立属性定义集合
-   //   if(pNode->IsName("Attribute")){
-   //      TCharC* pName = pNode->Get("name");
-   //      TCharC* pBuffer = pNode->Get("linker");
-   //      TCharC* pFormat = pNode->Get("format");
-   //      ERenderVertexBuffer bufferCd = RRenderVertexBuffer::Parse(pBuffer);
-   //      ERenderVertexFormat formatCd = RRenderVertexFormat::Parse(pFormat);
-   //      //_attributeDescriptors.Register(bufferCd, pName, formatCd);
-   //      continue;
-   //   }
-   //   //............................................................
-   //   // 建立取样器定义集合
-   //   if(pNode->IsName("Sampler")){
-   //      TCharC* pName = pNode->Get("name");
-   //      TCharC* pBuffer = pNode->Get("linker");
-   //      TCharC* pSource = pNode->Get("source");
-   //      EEffectSampler bufferCd = REffectSampler::Parse(pBuffer);
-   //      ERenderSampler samplerCd = RRenderSampler::Parse(pSource);
-   //      //_samplerDescriptors.Register(bufferCd, pName, samplerCd);
-   //      continue;
-   //   }
-   //}
-   return ESuccess;
-}
-
-//============================================================
-// <T>配置处理。</T>
-//
-// @return 处理结果
-//============================================================
-TResult FAutomaticEffect::Build(){
-   //............................................................
-   // 编译程序
-   _program->VertexShader()->Compile(_vertexSource);
-   _program->FragmentShader()->Compile(_fragmentSource);
-   //............................................................
-   // 建立处理
-   _program->Build();
-   BindDescriptors();
-   //............................................................
-   // 关联处理
-   _program->Link();
-   LinkDescriptors();
-   //............................................................
-   // 改变大小
-   FScreenDevice* pScreenDevice = RDeviceManager::Instance().Find<FScreenDevice>();
-   SIntSize2& screenSize = pScreenDevice->Size();
-   Resize(screenSize.width, screenSize.height);
-   return ESuccess;
-}
-
-//============================================================
-// <T>根据渲染描述其建立效果描述器。</T>
-//
-// @param renderableDescriptor 渲染描述器
-// @return 效果描述器
-//============================================================
-TResult FAutomaticEffect::BuildDescripter(SRenderableDescriptor& renderableDescriptor){
-   return ESuccess;
-}
-
-//============================================================
-// <T>建立模板信息。</T>
-//
-// @param renderableDescriptor 渲染描述
-// @param pCode 代码
-// @param pTemplateContext 模板环境
-// @return 处理结果
-//============================================================
-TResult FAutomaticEffect::BuildTemplate(SRenderableDescriptor& renderableDescriptor, MString* pCode, FTemplateContext* pTemplateContext){
-   // 设置缓冲编号
-   if(pTemplateContext){
-      pTemplateContext->DefineInt("parameter.buffer.global", 0);
-      pTemplateContext->DefineInt("parameter.buffer.effectcamera", 1);
-      pTemplateContext->DefineInt("parameter.buffer.effectlight", 2);
-      pTemplateContext->DefineInt("parameter.buffer.rendertramsform", 3);
-      pTemplateContext->DefineInt("parameter.buffer.rendermaterial", 3);
-   }
-   //............................................................
-   // 支持顶点颜色
-   _dynamicDescriptor.supportVertexColor = (_descriptor.supportVertexColor && renderableDescriptor.supportVertexColor);
-   if(_dynamicDescriptor.supportVertexColor){
-      pCode->Append("|AC");
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("vertex.attribute.color", ETrue);
-      }
-   }
-   // 支持顶点纹理
-   _dynamicDescriptor.supportVertexCoord = (_descriptor.supportVertexCoord && renderableDescriptor.supportVertexCoord);
-   if(_dynamicDescriptor.supportVertexCoord){
-      pCode->Append("|AD");
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("vertex.attribute.coord", ETrue);
-      }
-   }
-   // 支持法线
-   _dynamicDescriptor.supportVertexNormal = (_descriptor.supportVertexCoord && renderableDescriptor.supportNormal);
-   if(_dynamicDescriptor.supportVertexNormal){
-      pCode->Append("|AN");
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("vertex.attribute.normal", ETrue);
-      }
-   }
-   // 支持全法线
-   _dynamicDescriptor.supportVertexNormalFull = (_descriptor.supportVertexCoord && renderableDescriptor.supportVertexNormalFull);
-   if(_dynamicDescriptor.supportVertexNormalFull){
-      pCode->Append("|AF");
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("vertex.attribute.normal.full", ETrue);
-      }
-   }
-   //............................................................
-   // 支持实例技术
-   TBool techniqueInstance = RTechniqueManager::Instance().Capability().optionInstance;
-   _dynamicDescriptor.supportInstance = (_descriptor.supportInstance && techniqueInstance);
-   if(_dynamicDescriptor.supportInstance){
-      pCode->Append("|SI");
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("support.instance", ETrue);
-      }
-   }
-   // 支持骨骼技术
-   _dynamicDescriptor.supportSkeleton = _descriptor.supportSkeleton;
-   if(_dynamicDescriptor.supportSkeleton){
-      pCode->Append("|SS");
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("support.skeleton", ETrue);
-      }
-   }
-   //............................................................
-   // 支持透明技术
-   _dynamicDescriptor.supportAlpha = _descriptor.supportAlpha && renderableDescriptor.supportAlpha;
-   if(_dynamicDescriptor.supportAlpha){
-      pCode->Append("|RA");
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("support.alpha", ETrue);
-      }
-      _descriptor.optionBlendMode = ETrue;
-   }else{
-      _descriptor.optionBlendMode = EFalse;
-   }
-   // 支持环境色技术
-   _dynamicDescriptor.supportAmbient = _descriptor.supportAmbient;
-   if(_dynamicDescriptor.supportAmbient){
-      pCode->Append("|TA");
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("support.ambient", ETrue);
-      }
-      //if(renderableDescriptor.ContainsSampler(ERenderSampler_Diffuse)){
-      //   pCode->Append("|TAS");
-      //   if(pTemplateContext){
-      //      pTemplateContext->DefineBool("support.ambient.sampler", ETrue);
-      //   }
-      //}
-   }
-   // 支持散射技术
-   _dynamicDescriptor.supportDiffuse = (_descriptor.supportDiffuse && (renderableDescriptor.supportNormal || renderableDescriptor.supportBump));
-   if(_descriptor.supportDiffuse){
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("support.diffuse", ETrue);
-      }
-      if(renderableDescriptor.supportBump){
-         pCode->Append("|TDD");
-         if(pTemplateContext){
-            pTemplateContext->DefineBool("support.diffuse.dump", ETrue);
-         }
-      }else if(renderableDescriptor.supportNormal){
-         pCode->Append("|TDN");
-         if(pTemplateContext){
-            pTemplateContext->DefineBool("support.diffuse.normal", ETrue);
+         TCharC* pLinker = pSampler->Linker();
+         FRenderableSampler* pRenderableSampler = pRenderable->SamplerPackFind(pLinker);
+         if(pRenderableSampler != NULL){
+            FRenderTexture* pTexture = pRenderableSampler->GraphicsObject<FRenderTexture>();
+            pRenderDevice->BindTexture(pSampler->Slot(), pTexture);
          }
       }
-   }
-   // 支持视角散射技术
-   _dynamicDescriptor.supportDiffuseView = (_descriptor.supportDiffuseView && (renderableDescriptor.supportNormal || renderableDescriptor.supportBump));
-   if(_descriptor.supportDiffuseView){
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("support.diffuse.view", ETrue);
-      }
-      if(renderableDescriptor.supportBump){
-         pCode->Append("|TDVD");
-         if(pTemplateContext){
-            pTemplateContext->DefineBool("support.diffuse.view.dump", ETrue);
-         }
-      }else if(renderableDescriptor.supportNormal){
-         pCode->Append("|TDVN");
-         if(pTemplateContext){
-            pTemplateContext->DefineBool("support.diffuse.view.normal", ETrue);
-         }
-      }
-   }
-   // 支持高光技术
-   _dynamicDescriptor.supportSpecularColor = (_descriptor.supportSpecularColor && renderableDescriptor.supportSpecularColor);
-   _dynamicDescriptor.supportSpecularLevel = (_descriptor.supportSpecularLevel && renderableDescriptor.supportSpecularLevel);
-   if((_dynamicDescriptor.supportSpecularColor || _dynamicDescriptor.supportSpecularLevel) && renderableDescriptor.supportNormal){
-      pCode->Append("|TS");
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("support.specular", ETrue);
-      }
-      // 支持高光颜色技术
-      if(_dynamicDescriptor.supportSpecularColor){
-         pCode->Append("|TSC");
-         if(pTemplateContext){
-            pTemplateContext->DefineBool("support.specular.color", ETrue);
-         }
-      }
-      // 支持高光级别技术
-      if(renderableDescriptor.supportSpecularLevel){
-         pCode->Append("|TSL");
-         if(pTemplateContext){
-            pTemplateContext->DefineBool("support.specular.level", ETrue);
-         }
-      }else{
-         pCode->Append("|NSL");
-         if(pTemplateContext){
-            pTemplateContext->DefineBool("support.specular.normal", ETrue);
-         }
-      }
-   }
-   // 支持视角高光技术
-   _dynamicDescriptor.supportSpecularView = _descriptor.supportSpecularView;
-   if(_dynamicDescriptor.supportSpecularView && renderableDescriptor.supportNormal){
-      pCode->Append("|TSV");
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("support.specular.view", ETrue);
-      }
-      // 支持高光颜色技术
-      if(_dynamicDescriptor.supportSpecularColor){
-         pCode->Append("|TSVC");
-         if(pTemplateContext){
-            pTemplateContext->DefineBool("support.specular.view.color", ETrue);
-         }
-      }
-      // 支持高光级别技术
-      if(renderableDescriptor.supportSpecularLevel){
-         pCode->Append("|TSVL");
-         if(pTemplateContext){
-            pTemplateContext->DefineBool("support.specular.view.level", ETrue);
-         }
-      }else{
-         pCode->Append("|NSVL");
-         if(pTemplateContext){
-            pTemplateContext->DefineBool("support.specular.view.normal", ETrue);
-         }
-      }
-   }
-   //............................................................
-   // 支持环境技术
-   _dynamicDescriptor.supportEnvironment = (_descriptor.supportEnvironment && renderableDescriptor.supportEnvironment);
-   if(_dynamicDescriptor.supportEnvironment){
-      pCode->Append("|TE");
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("support.environment", ETrue);
-      }
-   }
-   // 支持收光技术
-   _dynamicDescriptor.supportLight = (_descriptor.supportLight && renderableDescriptor.supportLight);
-   if(_dynamicDescriptor.supportLight){
-      pCode->Append("|TL");
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("support.light", ETrue);
-      }
-   }
-   // 支持反射技术
-   _dynamicDescriptor.supportReflect = (_descriptor.supportReflect && renderableDescriptor.supportReflect);
-   if(_dynamicDescriptor.supportReflect){
-      pCode->Append("|TRL");
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("support.reflect", ETrue);
-      }
-   }
-   // 支持折射技术
-   _dynamicDescriptor.supportRefract = (_descriptor.supportRefract && renderableDescriptor.supportRefract);
-   if(_dynamicDescriptor.supportRefract){
-      pCode->Append("|TRF");
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("support.refract", ETrue);
-      }
-   }
-   // 支持发光技术
-   _dynamicDescriptor.supportEmissive = (_descriptor.supportEmissive && renderableDescriptor.supportEmissive);
-   if(_dynamicDescriptor.supportEmissive){
-      pCode->Append("|TE");
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("support.emissive", ETrue);
-      }
-   }
-   // 支持高度技术
-   _dynamicDescriptor.supportHeight = (_descriptor.supportHeight && renderableDescriptor.supportHeight);
-   if(_dynamicDescriptor.supportHeight){
-      pCode->Append("|TH");
-      if(pTemplateContext){
-         pTemplateContext->DefineBool("support.height", ETrue);
-      }
-   }
-   //............................................................
-   // 计算最大实例个数
-   FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
-   TInt instanceCount = RRenderUtil::CalculateInstanceCount(renderableDescriptor.vertexCount, renderableDescriptor.boneCount);
-   if(_dynamicDescriptor.supportInstance && pTemplateContext){
-      pTemplateContext->DefineInt("instance.count", instanceCount);
-   }
-   // 计算骨头实例个数
-   if(_dynamicDescriptor.supportSkeleton && pTemplateContext){
-      pTemplateContext->DefineBool("support.bone.weight.1", ETrue);
-      pTemplateContext->DefineBool("support.bone.weight.2", ETrue);
-      pTemplateContext->DefineBool("support.bone.weight.3", ETrue);
-      pTemplateContext->DefineBool("support.bone.weight.4", ETrue);
    }
    return ESuccess;
 }

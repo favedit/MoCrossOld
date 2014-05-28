@@ -53,6 +53,11 @@ public:
    MO_ABSTRACT TResult BindDescriptors();
    MO_ABSTRACT TResult LinkDescriptors();
 public:
+   MO_OVERRIDE TResult Setup();
+   MO_OVERRIDE TResult LoadConfig(FXmlNode* pConfig);
+   MO_OVERRIDE TResult BuildContext(SEffectContext* pContext);
+   MO_OVERRIDE TResult Build();
+public:
    TResult BindConstPosition3(TInt bindCd, SFloatPoint3& point);
    TResult BindConstVector3(TInt bindCd, SFloatVector3& vector);
    TResult BindConstFloat4(TInt bindCd, TFloat x, TFloat y, TFloat z, TFloat w);
@@ -64,13 +69,6 @@ public:
    TResult UnbindAttributeDescriptors(FRenderable* pRenderable);
    TResult BindSampler(TInt bindCd, FRenderTexture* pTexture);
    TResult BindSamplerDescriptors(FRenderable* pRenderable);
-public:
-   MO_ABSTRACT TResult OnSetup();
-   MO_OVERRIDE TResult Build();
-public:
-   MO_OVERRIDE TResult LoadConfig(FXmlNode* pConfig);
-   MO_OVERRIDE TResult BuildDescripter(SRenderableDescriptor& renderableDescriptor);
-   MO_OVERRIDE TResult BuildTemplate(SRenderableDescriptor& renderableDescriptor, MString* pCode, FTemplateContext* pTemplateContext);
 public:
    MO_ABSTRACT TResult SetMaterialOption(FMaterial* pMaterial);
 public:
@@ -110,7 +108,7 @@ public:
    FDepthAutomaticEffect();
    MO_ABSTRACT ~FDepthAutomaticEffect();
 public:
-   MO_OVERRIDE TResult OnSetup();
+   MO_OVERRIDE TResult Setup();
 public:
    MO_OVERRIDE TResult DrawRenderable(FRenderRegion* pRegion, FRenderable* pRenderable);
    MO_OVERRIDE TResult DrawInstanceRenderable(FRenderRegion* pRegion, FInstanceRenderable* pInstanceRenderable, TInt offset, TInt count);
@@ -127,7 +125,7 @@ public:
    FBlurEffect();
    MO_ABSTRACT ~FBlurEffect();
 public:
-   MO_OVERRIDE TResult OnSetup();
+   MO_OVERRIDE TResult Setup();
 public:
    MO_OVERRIDE TResult Draw(FRenderable* pRenderable);
 };

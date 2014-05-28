@@ -19,8 +19,8 @@ FShadowColorAutomaticEffect::~FShadowColorAutomaticEffect(){
 //============================================================
 // <T>≈‰÷√¥¶¿Ì°£</T>
 //============================================================
-TResult FShadowColorAutomaticEffect::OnSetup(){
-   FAutomaticEffect::OnSetup();
+TResult FShadowColorAutomaticEffect::Setup(){
+   FAutomaticEffect::Setup();
    return ESuccess;
 }
 

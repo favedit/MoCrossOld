@@ -19,8 +19,8 @@ FShadowDepthAutomaticEffect::~FShadowDepthAutomaticEffect(){
 //============================================================
 // <T>≈‰÷√¥¶¿Ì°£</T>
 //============================================================
-TResult FShadowDepthAutomaticEffect::OnSetup(){
-   TResult resultCd = FAutomaticEffect::OnSetup();
+TResult FShadowDepthAutomaticEffect::Setup(){
+   TResult resultCd = FAutomaticEffect::Setup();
    return resultCd;
 }
 

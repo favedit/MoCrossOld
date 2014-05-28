@@ -27,7 +27,7 @@ FPd11RenderLayout::~FPd11RenderLayout(){
 TResult FPd11RenderLayout::OnSetup(){
    MO_CHECK(_pRenderable, return ENull);
    TInt index = 0;
-   GRenderShaderAttributeDictionary::TIterator iterator = _pProgram->Attributes().IteratorC();
+   GRenderProgramAttributeDictionary::TIterator iterator = _pProgram->Attributes().IteratorC();
    while(iterator.Next()){
       FRenderProgramAttribute* pAttribute = *iterator;
       // 检查使用中

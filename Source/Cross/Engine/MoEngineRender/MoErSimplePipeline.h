@@ -38,7 +38,7 @@ public:
    FSampleColorSkeletonEffect();
    MO_ABSTRACT ~FSampleColorSkeletonEffect();
 public:
-   MO_OVERRIDE TResult OnSetup();
+   MO_OVERRIDE TResult Setup();
 public:
    MO_OVERRIDE TResult BuildTemplate(SRenderableDescriptor& renderableDescriptor, MString* pCode, FTemplateContext* pTemplateContext);
 public:

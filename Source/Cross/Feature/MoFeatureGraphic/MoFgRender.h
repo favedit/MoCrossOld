@@ -1342,7 +1342,7 @@ public:
 //------------------------------------------------------------
 typedef MO_FG_DECLARE FObjects<FRenderProgramAttribute*> FRenderProgramAttributeCollection;
 typedef MO_FG_DECLARE GPtrs<FRenderProgramAttribute> GRenderShaderAttributePtrs;
-typedef MO_FG_DECLARE GPtrDictionary<FRenderProgramAttribute> GRenderShaderAttributeDictionary;
+typedef MO_FG_DECLARE GPtrDictionary<FRenderProgramAttribute> GRenderProgramAttributeDictionary;
 
 //============================================================
 // <T>渲染器取样。</T>
@@ -1437,7 +1437,7 @@ public:
 };
 //------------------------------------------------------------
 typedef MO_FG_DECLARE FObjects<FRenderProgramSampler*> FRenderProgramSamplerCollection;
-typedef MO_FG_DECLARE GPtrDictionary<FRenderProgramSampler> GRenderShaderSamplerDictionary;
+typedef MO_FG_DECLARE GPtrDictionary<FRenderProgramSampler> GRenderProgramSamplerDictionary;
 
 //============================================================
 // <T>渲染程序。</T>
@@ -1452,8 +1452,8 @@ protected:
    GRenderFragmentShaderPtr _fragmentShader;
    GRenderShaderBufferDictionary _buffers;
    GRenderShaderParameterDictionary _parameters;
-   GRenderShaderAttributeDictionary _attributes;
-   GRenderShaderSamplerDictionary _samplers;
+   GRenderProgramAttributeDictionary _attributes;
+   GRenderProgramSamplerDictionary _samplers;
 public:
    FRenderProgram();
    MO_ABSTRACT ~FRenderProgram();
@@ -1490,7 +1490,7 @@ public:
    }
    //------------------------------------------------------------
    // <T>获得渲染属性集合。</T>
-   MO_INLINE GRenderShaderAttributeDictionary& Attributes(){
+   MO_INLINE GRenderProgramAttributeDictionary& Attributes(){
       return _attributes;
    }
    //------------------------------------------------------------
@@ -1500,7 +1500,7 @@ public:
    }
    //------------------------------------------------------------
    // <T>获得渲染取样集合。</T>
-   MO_INLINE GRenderShaderSamplerDictionary& Samplers(){
+   MO_INLINE GRenderProgramSamplerDictionary& Samplers(){
       return _samplers;
    }
    //------------------------------------------------------------
@@ -1517,6 +1517,7 @@ public:
    FRenderProgramAttribute* AttributeFind(TCharC* pName, TInt index);
    FRenderProgramAttribute* AttributeFindByName(TCharC* pName);
    TResult AttributePush(FRenderProgramAttribute* pAttribute);
+   FRenderProgramSampler* SamplerFindByName(TCharC* pName);
    TResult SamplerPush(FRenderProgramSampler* pSampler);
 public:
    MO_ABSTRACT TResult MakeVertexSource(FRenderSource* pSource);

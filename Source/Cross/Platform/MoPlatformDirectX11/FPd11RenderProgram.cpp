@@ -204,7 +204,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
          pBuffer->SetSlot(bindDescriptor.BindPoint);
       }
       if(bindDescriptor.Type == D3D_SIT_TEXTURE){
-         FRenderProgramSampler* pSampler = SamplerFind(pBindName);
+         FRenderProgramSampler* pSampler = SamplerFindByName(pBindName);
          if(pSampler == NULL){
             MO_FATAL("Shader sampler bound is not found. (name=%s)", pBindName);
          }else{
@@ -252,7 +252,7 @@ TResult FPd11RenderProgram::Link(){
    //............................................................
    // ´´½¨ÊäÈëÃèÊö
    TInt position = 0;
-   GRenderShaderAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
+   GRenderProgramAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
    while(attributeIterator.Next()){
       FRenderProgramAttribute* pAttribute = *attributeIterator;
       if(pAttribute->IsStatusUsed()){

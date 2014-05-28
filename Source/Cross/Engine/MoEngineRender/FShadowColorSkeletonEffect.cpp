@@ -19,8 +19,8 @@ FShadowColorSkeletonEffect::~FShadowColorSkeletonEffect(){
 //============================================================
 // <T>≈‰÷√¥¶¿Ì°£</T>
 //============================================================
-TResult FShadowColorSkeletonEffect::OnSetup(){
-   FAutomaticEffect::OnSetup();
+TResult FShadowColorSkeletonEffect::Setup(){
+   FAutomaticEffect::Setup();
    return ESuccess;
 }
 

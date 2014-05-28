@@ -395,39 +395,39 @@ public:
    TBool supportVertexBone;
 public:
    // 支持透明技术
-   TBool supportAlpha;
+   //TBool supportAlpha;
    // 支持凹凸技术
-   TBool supportBump;
+   //TBool supportBump;
    // 支持凹凸相机技术
-   TBool supportViewBump;
+   //TBool supportViewBump;
    // 支持环境技术
-   TBool supportAmbient;
+   //TBool supportAmbient;
    // 支持散射技术
-   TBool supportDiffuse;
+   //TBool supportDiffuse;
    // 支持环境散射技术
-   TBool supportViewDiffuse;
+   //TBool supportViewDiffuse;
    // 支持法线技术
-   TBool supportNormal;
+   //TBool supportNormal;
    // 支持高光技术
-   TBool supportSpecularColor;
+   //TBool supportSpecularColor;
    // 支持高光级别技术
-   TBool supportSpecularLevel;
+   //TBool supportSpecularLevel;
    // 支持高光相机技术
-   TBool supportViewSpecular;
+   //TBool supportViewSpecular;
    // 支持高光相机级别技术
-   TBool supportViewSpecularLevel;
+   //TBool supportViewSpecularLevel;
    // 支持环境技术
-   TBool supportEnvironment;
+   //TBool supportEnvironment;
    // 支持受光光技术
-   TBool supportLight;
+   //TBool supportLight;
    // 支持反射技术
-   TBool supportReflect;
+   //TBool supportReflect;
    // 支持折射技术
-   TBool supportRefract;
+   //TBool supportRefract;
    // 支持发光技术
-   TBool supportEmissive;
+   //TBool supportEmissive;
    // 支持高度技术
-   TBool supportHeight;
+   //TBool supportHeight;
 public:
    // 顶点个数
    TBool vertexCount;
@@ -894,8 +894,10 @@ public:
       return _effects;
    }
 public:
+   TBool AttributeContains(TCharC* pCode);
    FRenderableAttribute* AttributeFind(TCharC* pCode);
    FRenderableAttribute* AttributeGet(TCharC* pCode);
+   TBool SamplerContains(TCharC* pCode);
    FRenderableSampler* SamplerFind(TCharC* pCode);
    FRenderableSampler* SamplerGet(TCharC* pCode);
    FRenderableSampler* SamplerPackFind(TCharC* pPackCode);
@@ -917,6 +919,7 @@ public:
    MO_OVERRIDE TResult Suspend();
    MO_OVERRIDE TResult Resume();
    MO_OVERRIDE TResult Dispose();
+   MO_ABSTRACT TResult Track();
 };
 //------------------------------------------------------------
 typedef MO_FG_DECLARE FObjects<FRenderable*> FRenderableCollection;

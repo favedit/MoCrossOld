@@ -89,23 +89,19 @@ public:
 //============================================================
 // <T>渲染效果环境。</T>
 //============================================================
-class MO_FG_DECLARE FEffectContext : public FObject{
+struct SEffectContext{
 public:
-   FEffectContext();
-   MO_ABSTRACT ~FEffectContext();
-};
-
-//============================================================
-// <T>渲染效果环境。</T>
-//============================================================
-class MO_FG_DECLARE FEffectContext : public FObject{
+   TFsCode code;
+   FRenderable* renderablePtr;
+   FTemplateContext* contextPtr;
 public:
-   FEffectContext();
-   MO_ABSTRACT ~FEffectContext();
+   //------------------------------------------------------------
+   // <T>构造渲染环境。</T>
+   SEffectContext(){
+      MO_CLEAR(renderablePtr);
+      MO_CLEAR(contextPtr);
+   }
 };
-
-MString* pCode, FRenderable* pRenderable, FTemplateContext* pTemplateContext
-
 
 //============================================================
 // <T>渲染效果。</T>
@@ -191,10 +187,9 @@ public:
       _renderDevice = pRenderDevice;
    }
 public:
-   MO_ABSTRACT TResult BuildContext(MString* pCode, FRenderable* pRenderable, FTemplateContext* pTemplateContext);
-public:
    MO_ABSTRACT TResult Setup();
    MO_ABSTRACT TResult LoadConfig(FXmlNode* pConfig);
+   MO_ABSTRACT TResult BuildContext(SEffectContext* pContext);
    MO_ABSTRACT TResult Build();
 public:
    MO_ABSTRACT TResult Resize(TInt width, TInt height);

@@ -270,28 +270,28 @@ float4 main( PS_INPUT input) : SV_Target
    // Calculate diffuse color
 <shader:true source='support.diffuse'>
 <shader:true source='support.diffuse.dump'>
-   float normalFactor = dot(normal.xyz, -input.light_ts.xyz);
+   //float normalFactor = dot(normal.xyz, -input.light_ts.xyz);
 </shader:true>
 <shader:true source='support.diffuse.normal'>
-   float normalFactor = dot(input.normal.xyz, -fc_light_direction.xyz);
+   //float normalFactor = dot(input.normal.xyz, -fc_light_direction.xyz);
 </shader:true>
 <shader:true source='vertex.attribute.normal'>
-   normalFactor = max(normalFactor, 0.1);
-   result.rgb += color.rgb * fc_diffuse_color.rgb * normalFactor;
+   //normalFactor = max(normalFactor, 0.1);
+   //result.rgb += color.rgb * fc_diffuse_color.rgb * normalFactor;
 </shader:true>
 </shader:true>
    //............................................................
    // Calculate diffuse view color
 <shader:true source='support.diffuse.view'>
 <shader:true source='support.diffuse.view.dump'>
-   float normalViewFactor = dot(normal.xyz, -input.camera_ts);
-   normalViewFactor = max(normalViewFactor, 0.1);
-   result.rgb += color.rgb * fc_diffuse_view_color.rgb * normalViewFactor;
+   //float normalViewFactor = dot(normal.xyz, -input.camera_ts);
+   //normalViewFactor = max(normalViewFactor, 0.1);
+   //result.rgb += color.rgb * fc_diffuse_view_color.rgb * normalViewFactor;
 </shader:true>
 <shader:true source='support.diffuse.view.normal'>
-   float normalViewFactor = dot(input.normal, -cameraDirection.xyz);
-   normalViewFactor = max(normalViewFactor, 0.1);
-   result.rgb += color.rgb * fc_diffuse_view_color.rgb * normalViewFactor;
+   //float normalViewFactor = dot(input.normal, -cameraDirection.xyz);
+   //normalViewFactor = max(normalViewFactor, 0.1);
+   //result.rgb += color.rgb * fc_diffuse_view_color.rgb * normalViewFactor;
 </shader:true>
 </shader:true>
    //............................................................

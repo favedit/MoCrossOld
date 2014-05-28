@@ -59,13 +59,6 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
    pEffect->SetRenderDevice(pRenderDevice);
    pEffect->Setup();
    //............................................................
-   // 建立渲染信息
-   if(pRenderable != NULL){
-      TFsText templateName;
-      SRenderableDescriptor& descriptor = pRenderable->Descriptor();
-      pEffect->BuildTemplate(descriptor, &templateName, context);
-   }
-   //............................................................
    // 打开模板
    TFsPath path;
    path.AssignFormat("asset:/shader/%s/%s.xml", pDeviceCode, pName);
@@ -74,6 +67,15 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
    //pEffect->LoadConfig(context->MergeConfig());
    // 解析定义信息
    pEffect->LoadConfig(pTemplateConfig);
+   //............................................................
+   // 建立渲染信息
+   if(pRenderable != NULL){
+      SRenderableDescriptor& descriptor = pRenderable->Descriptor();
+      SEffectContext effectContext;
+      effectContext.renderablePtr = pRenderable;
+      effectContext.contextPtr = context;
+      pEffect->BuildContext(&effectContext);
+   }
    //............................................................
    // 建立顶点渲染代码
    context->SourceReset();
@@ -125,8 +127,8 @@ FEffect* FEffectConsole::FindTemplate(TCharC* pName){
 //============================================================
 FEffect* FEffectConsole::Find(TCharC* pName, FRenderable* pRenderable){
    // 构建渲染识别代码
-   TFsCode flag;
-   flag.Append(pName);
+   SEffectContext context;
+   context.code.Append(pName);
    if(pRenderable != NULL){
       SRenderableDescriptor& descriptor = pRenderable->Descriptor();
       if(!descriptor.setuped){
@@ -134,14 +136,17 @@ FEffect* FEffectConsole::Find(TCharC* pName, FRenderable* pRenderable){
          descriptor.Build();
       }
       FEffect* pTemplateEffect = FindTemplate(pName);
-      pTemplateEffect->BuildTemplate(descriptor, &flag, NULL);
+      context.renderablePtr = pRenderable;
+      pTemplateEffect->BuildContext(&context);
    }
+   TCharC* pFlag = context.code;
+   //............................................................
    // 查找效果器
-   FEffect* pEffect = _effects.Find(flag);
+   FEffect* pEffect = _effects.Find(pFlag);
    if(pEffect == NULL){
       pEffect = Build(pName, pRenderable);
-      pEffect->SetFlag(flag);
-      _effects.Set(flag, pEffect);
+      pEffect->SetFlag(pFlag);
+      _effects.Set(pFlag, pEffect);
    }
    return pEffect;
 }

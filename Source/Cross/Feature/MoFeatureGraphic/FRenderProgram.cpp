@@ -100,7 +100,7 @@ TResult FRenderProgram::ParameterPush(FRenderProgramParameter* pParameter){
 // @return 渲染属性
 //============================================================
 FRenderProgramAttribute* FRenderProgram::AttributeFind(TCharC* pName, TInt index){
-   GRenderShaderAttributeDictionary::TIterator iterator = _attributes.IteratorC();
+   GRenderProgramAttributeDictionary::TIterator iterator = _attributes.IteratorC();
    while(iterator.Next()){
       FRenderProgramAttribute* pAttribute = *iterator;
       if((index == -1) || (pAttribute->Index() == index)){
@@ -116,11 +116,10 @@ FRenderProgramAttribute* FRenderProgram::AttributeFind(TCharC* pName, TInt index
 // <T>根据名称查找渲染属性。</T>
 //
 // @param pName 名称
-// @param index 索引
 // @return 渲染属性
 //============================================================
 FRenderProgramAttribute* FRenderProgram::AttributeFindByName(TCharC* pName){
-   GRenderShaderAttributeDictionary::TIterator iterator = _attributes.IteratorC();
+   GRenderProgramAttributeDictionary::TIterator iterator = _attributes.IteratorC();
    while(iterator.Next()){
       FRenderProgramAttribute* pAttribute = *iterator;
       if(RString::Equals(pAttribute->Name(), pName)){
@@ -142,6 +141,23 @@ TResult FRenderProgram::AttributePush(FRenderProgramAttribute* pAttribute){
    MO_CHECK(pLinker, return ENull);
    _attributes.Set(pLinker, pAttribute);
    return ESuccess;
+}
+
+//============================================================
+// <T>根据名称查找渲染取样。</T>
+//
+// @param pName 名称
+// @return 渲染取样
+//============================================================
+FRenderProgramSampler* FRenderProgram::SamplerFindByName(TCharC* pName){
+   GRenderProgramSamplerDictionary::TIterator iterator = _samplers.IteratorC();
+   while(iterator.Next()){
+      FRenderProgramSampler* pSampler = *iterator;
+      if(RString::Equals(pSampler->Name(), pName)){
+         return pSampler;
+      }
+   }
+   return NULL;
 }
 
 //============================================================

@@ -21,8 +21,8 @@ FSampleColorSkeletonEffect::~FSampleColorSkeletonEffect(){
 //============================================================
 // <T>配置处理。</T>
 //============================================================
-TResult FSampleColorSkeletonEffect::OnSetup(){
-   FColorAutomaticEffect::OnSetup();
+TResult FSampleColorSkeletonEffect::Setup(){
+   FColorAutomaticEffect::Setup();
    // 注册常量集合
    //_constDescriptors.Register(ERenderShader_Vertex, EEffectParameter_VertexBoneMatrix, "vc_bone_matrix");
    return ESuccess;
@@ -37,7 +37,7 @@ TResult FSampleColorSkeletonEffect::OnSetup(){
 // @return 处理结果
 //============================================================
 TResult FSampleColorSkeletonEffect::BuildTemplate(SRenderableDescriptor& renderableDescriptor, MString* pCode, FTemplateContext* pTemplateContext){
-   FAutomaticEffect::BuildTemplate(renderableDescriptor, pCode, pTemplateContext);
+   //FAutomaticEffect::BuildTemplate(renderableDescriptor, pCode, pTemplateContext);
    // 计算最大实例个数
    TInt vertexCount = renderableDescriptor.vertexCount;
    TInt boneCount = renderableDescriptor.boneCount;

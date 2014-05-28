@@ -20,8 +20,8 @@ FDepthAutomaticEffect::~FDepthAutomaticEffect(){
 //============================================================
 // <T>配置处理。</T>
 //============================================================
-TResult FDepthAutomaticEffect::OnSetup(){
-   FAutomaticEffect::OnSetup();
+TResult FDepthAutomaticEffect::Setup(){
+   FAutomaticEffect::Setup();
    // 注册常量集合
    //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexModelMatrix,          "vc_model_matrix");
    //_constDescriptors.Register(ERenderShader_Vertex,   EEffectParameter_VertexViewProjectionMatrix, "vc_view_projection_matrix");

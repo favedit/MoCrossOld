@@ -10,6 +10,28 @@
 #define MO_ER_EFFECT_ATTRIBUTE_MAXCNT 32
 #define MO_ER_EFFECT_SAMPLER_MAXCNT   32
 
+#define MO_ER_ATTRIBUTE_COLOR    TC("Color")
+#define MO_ER_ATTRIBUTE_COORD    TC("Coord")
+#define MO_ER_ATTRIBUTE_NORMAL   TC("Normal")
+#define MO_ER_ATTRIBUTE_BINORMAL TC("Binormal")
+#define MO_ER_ATTRIBUTE_TANGENT  TC("Tangent")
+
+#define MO_ER_SAMPLER_DIFFUSE        TC("Diffuse")
+#define MO_ER_SAMPLER_ALPHA          TC("Alpha")
+
+#define MO_ER_SAMPLER_NORMAL         TC("Normal")
+#define MO_ER_SAMPLER_SPECULAR_LEVEL TC("SpecularLevel")
+
+#define MO_ER_SAMPLER_SPECULAR_COLOR TC("SpecularColor")
+#define MO_ER_SAMPLER_HEIGHT         TC("Height")
+
+#define MO_ER_SAMPLER_LIGHT          TC("Light")
+#define MO_ER_SAMPLER_REFLECT        TC("Reflect")
+#define MO_ER_SAMPLER_REFRACT        TC("Refract")
+#define MO_ER_SAMPLER_EMISSIVE       TC("Emissive")
+
+#define MO_ER_SAMPLER_ENVIRONMENT    TC("Environment")
+
 MO_NAMESPACE_BEGIN
 
 //============================================================

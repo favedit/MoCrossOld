@@ -24,7 +24,7 @@ FMaterial3d::~FMaterial3d(){
 //============================================================
 TResult FMaterial3d::BuildDescriptor(SRenderableDescriptor& descriptor){
    // 设置透明支持
-   descriptor.supportAlpha = _optionAlpha;
+   //descriptor.supportAlpha = _optionAlpha;
    // 设置缓冲集合
    TInt count = _materialTextures.Count();
    for(TInt n = 0; n < count; n++){

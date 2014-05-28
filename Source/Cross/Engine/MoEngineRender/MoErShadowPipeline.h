@@ -22,7 +22,7 @@ public:
    FShadowDepthAutomaticEffect();
    MO_ABSTRACT ~FShadowDepthAutomaticEffect();
 public:
-   MO_OVERRIDE TResult OnSetup();
+   MO_OVERRIDE TResult Setup();
 public:
    MO_OVERRIDE TResult DrawRenderable(FRenderRegion* pRegion, FRenderable* pRenderable);
    MO_OVERRIDE TResult DrawGroup(FRenderRegion* pRegion, TInt offset, TInt count);
@@ -38,7 +38,7 @@ public:
    FShadowDepthSkeletonEffect();
    MO_ABSTRACT ~FShadowDepthSkeletonEffect();
 public:
-   MO_OVERRIDE TResult OnSetup();
+   MO_OVERRIDE TResult Setup();
 public:
    MO_OVERRIDE TResult DrawRenderable(FRenderRegion* pRegion, FRenderable* pRenderable);
    MO_OVERRIDE TResult DrawGroup(FRenderRegion* pRegion, TInt offset, TInt count);
@@ -54,7 +54,7 @@ public:
    FShadowColorAutomaticEffect();
    MO_ABSTRACT ~FShadowColorAutomaticEffect();
 public:
-   MO_OVERRIDE TResult OnSetup();
+   MO_OVERRIDE TResult Setup();
 public:
    MO_OVERRIDE TResult DrawRenderable(FRenderRegion* pRegion, FRenderable* pRenderable);
    MO_OVERRIDE TResult DrawGroup(FRenderRegion* pRegion, TInt offset, TInt count);
@@ -70,7 +70,7 @@ public:
    FShadowColorSkeletonEffect();
    MO_ABSTRACT ~FShadowColorSkeletonEffect();
 public:
-   MO_OVERRIDE TResult OnSetup();
+   MO_OVERRIDE TResult Setup();
 public:
    MO_OVERRIDE TResult DrawRenderable(FRenderRegion* pRegion, FRenderable* pRenderable);
    MO_OVERRIDE TResult DrawGroup(FRenderRegion* pRegion, TInt offset, TInt count);

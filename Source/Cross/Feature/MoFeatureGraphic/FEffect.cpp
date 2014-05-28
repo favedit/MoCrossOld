@@ -18,28 +18,6 @@ FEffect::~FEffect(){
 }
 
 //============================================================
-// <T>建立模板信息。</T>
-//
-// @param renderableDescriptor 渲染描述
-// @param pCode 代码
-// @param pTemplateContext 模板环境
-// @return 处理结果
-//============================================================
-TResult FEffect::BuildTemplate(SRenderableDescriptor& renderableDescriptor, MString* pCode, FTemplateContext* pTemplateContext){
-   return ESuccess;
-}
-
-//============================================================
-// <T>根据渲染描述其建立效果描述器。</T>
-//
-// @param renderableDescriptor 渲染描述器
-// @return 效果描述器
-//============================================================
-TResult FEffect::BuildDescripter(SRenderableDescriptor& renderableDescriptor){
-   return ESuccess;
-}
-
-//============================================================
 // <T>配置处理。</T>
 //
 // @return 处理结果
@@ -99,6 +77,16 @@ TResult FEffect::LoadConfig(FXmlNode* pConfig){
          continue;
       }
    }
+   return ESuccess;
+}
+
+//============================================================
+// <T>建立模板环境。</T>
+//
+// @param pContext 环境
+// @return 处理结果
+//============================================================
+TResult FEffect::BuildContext(SEffectContext* pContext){
    return ESuccess;
 }
 

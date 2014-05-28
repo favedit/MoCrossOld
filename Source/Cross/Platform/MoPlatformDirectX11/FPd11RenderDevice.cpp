@@ -760,7 +760,7 @@ TResult FPd11RenderDevice::SetProgram(FRenderProgram* pProgram){
 // @parma pLayout 布局
 // @return 处理结果
 //============================================================
-TResult FPd11RenderDevice::SetLayout(FRenderProgramLayout* pLayout){
+TResult FPd11RenderDevice::SetLayout(FRenderLayout* pLayout){
    MO_CHECK(pLayout, return ENull);
    // 获得顶点流
    TResult result = ESuccess;

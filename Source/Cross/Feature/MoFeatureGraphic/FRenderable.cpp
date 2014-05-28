@@ -24,6 +24,17 @@ FRenderable::~FRenderable(){
 }
 
 //============================================================
+// <T>查找是否含有指定代码的属性。</T>
+//
+// @param pCode 代码
+// @return 是否含有
+//============================================================
+TBool FRenderable::AttributeContains(TCharC* pCode){
+   FRenderableAttribute* pAttribute = _geometry->AttributeFind(pCode);
+   return (pAttribute != NULL);
+}
+
+//============================================================
 // <T>查找指定代码的属性。</T>
 //
 // @param pCode 代码
@@ -41,6 +52,17 @@ FRenderableAttribute* FRenderable::AttributeFind(TCharC* pCode){
 //============================================================
 FRenderableAttribute* FRenderable::AttributeGet(TCharC* pCode){
    return _geometry->AttributeGet(pCode);
+}
+
+//============================================================
+// <T>查找是否含有指定代码的取样器。</T>
+//
+// @param pCode 代码
+// @return 是否含有
+//============================================================
+TBool FRenderable::SamplerContains(TCharC* pCode){
+   FRenderableSampler* pSampler = SamplerFind(pCode);
+   return (pSampler != NULL);
 }
 
 //============================================================
@@ -281,6 +303,34 @@ TResult FRenderable::Resume(){
 // @return 处理结果
 //============================================================
 TResult FRenderable::Dispose(){
+   return ESuccess;
+}
+
+//============================================================
+// <T>跟踪处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FRenderable::Track(){
+   TString dump;
+   dump.Append("Renderable\n");
+   //............................................................
+   // 取样器信息
+   TInt attributeCount = _geometry->Attributes().Count();
+   dump.AppendFormat("Attribute (count=%d)\n", attributeCount);
+   for(TInt n = 0; n < attributeCount; n++){
+      FRenderableAttribute * pAttribute = _geometry->Attributes().Get(n);
+      dump.AppendFormat("   %s = 0x%08X\n", pAttribute->Code(), pAttribute->GraphicsObject());
+   }
+   //............................................................
+   // 取样器信息
+   TInt samplerCount = _samplers.Count();
+   dump.AppendFormat("Sampler (count=%d)\n", samplerCount);
+   for(TInt n = 0; n < samplerCount; n++){
+      FRenderableSampler* pSampler = _samplers.Get(n);
+      dump.AppendFormat("   %s = 0x%08X\n", pSampler->Code(), pSampler->GraphicsObject());
+   }
+   MO_INFO(dump);
    return ESuccess;
 }
 
