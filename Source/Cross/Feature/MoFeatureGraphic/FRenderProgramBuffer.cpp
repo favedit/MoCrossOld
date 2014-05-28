@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramBuffer, FRenderObject);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramBuffer, FRenderInstance);
 
 //============================================================
 // <T>构造渲染器缓冲。</T>
@@ -130,6 +130,18 @@ TResult FRenderProgramBuffer::Update(){
 // @return 处理结果
 //============================================================
 TResult FRenderProgramBuffer::Bind(){
+   return ESuccess;
+}
+
+//============================================================
+// <T>获得内部运行信息。</T>
+//
+// @param pDump 输出缓冲
+// @return 处理结果
+//============================================================
+TResult FRenderProgramBuffer::Dump(MString* pDump){
+   MO_CHECK(pDump, return ENull);
+   pDump->AppendFormat("Buffer: name=%s, linker=%s, slot=%d", (TCharC*)_name, (TCharC*)_linker, _slot);
    return ESuccess;
 }
 

@@ -130,11 +130,6 @@ FEffect* FEffectConsole::Find(TCharC* pName, FRenderable* pRenderable){
    SEffectContext context;
    context.code.Append(pName);
    if(pRenderable != NULL){
-      SRenderableDescriptor& descriptor = pRenderable->Descriptor();
-      if(!descriptor.setuped){
-         pRenderable->BuildDescriptor();
-         descriptor.Build();
-      }
       FEffect* pTemplateEffect = FindTemplate(pName);
       context.renderablePtr = pRenderable;
       pTemplateEffect->BuildContext(&context);

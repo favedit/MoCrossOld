@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FRenderVertexStream, FRenderObject);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderVertexStream, FRenderInstance);
 
 //============================================================
 // <T>ππ‘Ï‰÷»æ∂•µ„ª∫≥Â°£</T>

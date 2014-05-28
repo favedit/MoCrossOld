@@ -49,9 +49,7 @@ TResult FDynamicModel3dGeometry::Merge(){
    for(TInt n = 0; n < dynamicCount; n++){
       FDynamicRenderable* pDynamicRenderable = _dynamicRenderables.Get(n);
       pDynamicRenderable->Setup();
-      pDynamicRenderable->BuildDescriptor();
       _material->Convert<FMaterial3d>()->BuildDescriptor(pDynamicRenderable->Descriptor());
-      pDynamicRenderable->Descriptor().Build();
    }
    return ESuccess;
 }

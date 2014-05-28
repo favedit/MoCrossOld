@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_ABSTRACT_IMPLEMENT_INHERITS(FRenderIndexBuffer, FRenderObject);
+MO_CLASS_ABSTRACT_IMPLEMENT_INHERITS(FRenderIndexBuffer, FRenderInstance);
 
 //============================================================
 // <T>构造渲染索引缓冲。</T>

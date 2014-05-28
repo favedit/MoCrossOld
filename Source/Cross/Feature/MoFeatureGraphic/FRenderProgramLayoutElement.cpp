@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramLayoutElement, FRenderObject);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramLayoutElement, FRenderInstance);
 
 //============================================================
 // <T>构造渲染布局元素。</T>

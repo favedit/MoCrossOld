@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramParameter, FRenderObject);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramParameter, FRenderInstance);
 
 //============================================================
 // <T>构造渲染器参数。</T>
@@ -261,6 +261,18 @@ TResult FRenderProgramParameter::LoadConfig(FXmlNode* pConfig){
    if(pFormat != NULL){
       _formatCd = RRenderParameterFormat::Parse(pFormat);
    }
+   return ESuccess;
+}
+
+//============================================================
+// <T>获得内部运行信息。</T>
+//
+// @param pDump 输出缓冲
+// @return 处理结果
+//============================================================
+TResult FRenderProgramParameter::Dump(MString* pDump){
+   MO_CHECK(pDump, return ENull);
+   pDump->AppendFormat("Parameter: name=%s, linker=%s, slot=%d", (TCharC*)_name, (TCharC*)_linker, _slot);
    return ESuccess;
 }
 

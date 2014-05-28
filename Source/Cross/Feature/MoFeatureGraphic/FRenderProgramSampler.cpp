@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramSampler, FRenderObject);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramSampler, FRenderInstance);
 
 //============================================================
 // <T>构造渲染器取样。</T>
@@ -11,8 +11,6 @@ FRenderProgramSampler::FRenderProgramSampler(){
    _code = -1;
    _statusUsed = EFalse;
    _slot = -1;
-   //_samplerCode = ERenderSampler_Unknown;
-   //_packCode = ERenderSampler_Unknown;
 }
 
 //============================================================
@@ -35,9 +33,18 @@ TResult FRenderProgramSampler::LoadConfig(FXmlNode* pConfig){
    _linker = pConfig->Get("linker");
    // 设置关联
    _source = pConfig->Get("source", NULL);
-   // 解析内容
-   //_samplerCode = RRenderSampler::Parse(_linker);
-   //_packCode = RRenderSampler::ParsePack(_samplerCode);
+   return ESuccess;
+}
+
+//============================================================
+// <T>获得内部运行信息。</T>
+//
+// @param pDump 输出缓冲
+// @return 处理结果
+//============================================================
+TResult FRenderProgramSampler::Dump(MString* pDump){
+   MO_CHECK(pDump, return ENull);
+   pDump->AppendFormat("Sampler: name=%s, linker=%s, slot=%d", (TCharC*)_name, (TCharC*)_linker, _slot);
    return ESuccess;
 }
 

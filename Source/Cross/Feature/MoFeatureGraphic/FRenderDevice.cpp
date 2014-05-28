@@ -219,8 +219,8 @@ TBool FRenderDevice::UpdateConsts(ERenderShader shaderCd, TInt slot, TAnyC* pDat
 // @param pName 名称
 // @return 渲染对象
 //============================================================
-FRenderObject* FRenderDevice::CreateObject(TCharC* pName){
-   FRenderObject* pObject = _pClassFactory->Create<FRenderObject>(pName);
+FRenderInstance* FRenderDevice::CreateObject(TCharC* pName){
+   FRenderInstance* pObject = _pClassFactory->Create<FRenderInstance>(pName);
    MO_CHECK(pObject, return NULL);
    pObject->SetDevice(this);
    return pObject;

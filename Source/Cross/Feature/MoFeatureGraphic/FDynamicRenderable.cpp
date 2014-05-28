@@ -212,12 +212,4 @@ TResult FDynamicRenderable::Setup(){
    return ESuccess;
 }
 
-//============================================================
-// <T>建立标志集合。</T>
-//============================================================
-TResult FDynamicRenderable::BuildDescriptor(){
-   TResult resultCd = FRenderable::BuildDescriptor();
-   return resultCd;
-}
-
 MO_NAMESPACE_END

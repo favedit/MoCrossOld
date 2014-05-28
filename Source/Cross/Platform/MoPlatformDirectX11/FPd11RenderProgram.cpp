@@ -120,7 +120,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
          return EFailure;
       }
       // ´´½¨»º³å
-      FPd11RenderShaderBuffer* pBuffer = (FPd11RenderShaderBuffer*)BufferFind(bufferDescriptor.Name);
+      FPd11RenderShaderBuffer* pBuffer = (FPd11RenderShaderBuffer*)BufferFindByName(bufferDescriptor.Name);
       pBuffer->SetStatusUsed(ETrue);
       pBuffer->SetShaderCd(shaderCd);
       pBuffer->SetDataLength(bufferDescriptor.Size);
@@ -199,7 +199,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
       }
       TCharC* pBindName = bindDescriptor.Name;
       if(bindDescriptor.Type == D3D_SIT_CBUFFER){
-         FPd11RenderShaderBuffer* pBuffer = (FPd11RenderShaderBuffer*)BufferFind(pBindName);
+         FPd11RenderShaderBuffer* pBuffer = (FPd11RenderShaderBuffer*)BufferFindByName(pBindName);
          MO_CHECK(pBuffer, continue);
          pBuffer->SetSlot(bindDescriptor.BindPoint);
       }

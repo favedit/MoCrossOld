@@ -125,7 +125,6 @@ public:
    TResult Push(FRenderable* pRenderable);
 public:
    MO_OVERRIDE TResult Setup();
-   MO_OVERRIDE TResult BuildDescriptor();
 };
 //------------------------------------------------------------
 typedef MO_FG_DECLARE GPtrs<FDynamicRenderable> GDynamicRenderablePtrs;

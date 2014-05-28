@@ -327,7 +327,7 @@ enum ERenderTextureWrap{
 };
 
 //============================================================
-// <T>渲染信息。</T>
+// <T>渲染可视信息。</T>
 //============================================================
 class MO_FG_DECLARE FRenderableVisual : public FInstance
 {
@@ -354,9 +354,6 @@ public:
 // <T>渲染标志。</T>
 //============================================================
 class MO_FG_DECLARE SRenderableDescriptor{
-public:
-   // 配置标志
-   TBool setuped;
 public:
    // 配置实体
    TBool optionInstanced;
@@ -394,100 +391,16 @@ public:
    // 支持骨头技术
    TBool supportVertexBone;
 public:
-   // 支持透明技术
-   //TBool supportAlpha;
-   // 支持凹凸技术
-   //TBool supportBump;
-   // 支持凹凸相机技术
-   //TBool supportViewBump;
-   // 支持环境技术
-   //TBool supportAmbient;
-   // 支持散射技术
-   //TBool supportDiffuse;
-   // 支持环境散射技术
-   //TBool supportViewDiffuse;
-   // 支持法线技术
-   //TBool supportNormal;
-   // 支持高光技术
-   //TBool supportSpecularColor;
-   // 支持高光级别技术
-   //TBool supportSpecularLevel;
-   // 支持高光相机技术
-   //TBool supportViewSpecular;
-   // 支持高光相机级别技术
-   //TBool supportViewSpecularLevel;
-   // 支持环境技术
-   //TBool supportEnvironment;
-   // 支持受光光技术
-   //TBool supportLight;
-   // 支持反射技术
-   //TBool supportReflect;
-   // 支持折射技术
-   //TBool supportRefract;
-   // 支持发光技术
-   //TBool supportEmissive;
-   // 支持高度技术
-   //TBool supportHeight;
-public:
    // 顶点个数
    TBool vertexCount;
    // 骨头个数
    TBool boneCount;
 public:
-   // 顶点缓冲
-   //TBool vertexBuffers[ERenderAttribute_Count];
-   // 取样器集合
-   //TBool samplers[ERenderSampler_Count];
-public:
    SRenderableDescriptor();
-public:
-   //------------------------------------------------------------
-   // <T>测试是否含有指定缓冲。</T>
-   //MO_INLINE TBool ContainsBuffer(ERenderAttribute bufferCd){
-   //   return vertexBuffers[bufferCd];
-   //}
-   //------------------------------------------------------------
-   // <T>测试是否含有指定取样器。</T>
-   //MO_INLINE TBool ContainsSampler(TCharC* pTextureCode){
-   //   return samplers[samplerCd];
-   //}
 public:
    TResult Assign(SRenderableDescriptor* pFlag);
    TResult Build();
    TResult Reset();
-};
-
-//============================================================
-// <T>渲染配置信息。</T>
-//============================================================
-class MO_FG_DECLARE SRenderableOptions{
-public:
-   // 配置实例
-   TBool optionInstanced;
-   // 配置绑定器
-   TBool optionBinder;
-   // 配置材质
-   TBool optionMaterial;
-   // 配置法线
-   TBool optionNormal;
-   // 配置法线完整 (是否含有副法线和切线)
-   TBool optionNormalFull;
-   // 配置法线缩放 (是否使用法线缩放)
-   TBool optionNormalScale;
-   // 配置骨骼缩放
-   TBool optionBoneScale;
-   // 配置深度
-   TBool optionDepth;
-   // 配置阴影
-   TBool optionShadow;
-   // 配置自阴影
-   TBool optionShadowSelf;
-   // 配置光源贴图
-   TBool optionLightMap;
-   // 配置透射
-   TBool optionTransmittance;
-public:
-   SRenderableOptions();
 };
 
 //============================================================
@@ -909,7 +822,6 @@ public:
 public:
    MO_ABSTRACT TResult CalculateModelMatrix(SFloatMatrix3d& matrix);
    MO_ABSTRACT TInt CalculateBoneMatrix(SFloatMatrix3d* pMatrix, TInt offset = 0, TInt capacity = 0);
-   MO_ABSTRACT TResult BuildDescriptor();
 public:
    MO_ABSTRACT TResult Update(TAny* pParameter = NULL);
    MO_ABSTRACT TResult ProcessBefore(TAny* pParameter = NULL);

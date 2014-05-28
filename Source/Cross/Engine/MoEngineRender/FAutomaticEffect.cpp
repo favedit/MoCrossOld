@@ -77,7 +77,7 @@ TResult FAutomaticEffect::RegisterSampler(TCharC* pLinker, TInt code){
    MO_CHECK(pLinker, return ENull);
    MO_CHECK(code >= 0, return EOutRange);
    // 获得程序参数
-   FRenderProgramSampler* pSampler = _program->SamplerFind(pLinker);
+   FRenderProgramSampler* pSampler = _program->SamplerFindByLinker(pLinker);
    MO_CHECK(pSampler, return ENull);
    // 设置位置
    _pSamplers->ExtendSet(code, pSampler);
@@ -147,19 +147,17 @@ TResult FAutomaticEffect::BindDescriptors(){
             ERenderAttributeFormat formatCd = ERenderAttributeFormat_Unknown;
             REffectAttribute::Parse(pLinker, attributeCd, formatCd);
             // 设置参数
-            pAttribute->SetCode(attributeCd);
             pAttribute->SetFormatCd(formatCd);
-            //_pAttributes->Set(attributeCd, pAttribute);
          }
       }
    }
    //............................................................
    // 建立属性描述器
-   GRenderProgramSamplerDictionary& sampler = _program->Samplers();
-   if(!sampler.IsEmpty()){
-      GRenderProgramSamplerDictionary::TIterator iterator = sampler.Iterator();
-      while(iterator.Next()){
-         FRenderProgramSampler* pSampler = *iterator;
+   GRenderProgramSamplerPtrs& samplers = _program->Samplers();
+   if(!samplers.IsEmpty()){
+      TInt count = samplers.Count();
+      for(TInt n = 0; n < count; n++){
+         FRenderProgramSampler* pSampler = samplers.Get(n);
          if(pSampler->IsStatusUsed()){
             TCharC* pLinker = pSampler->Linker();
             // 解析内容
@@ -738,9 +736,10 @@ TResult FAutomaticEffect::BindSamplerDescriptors(FRenderable* pRenderable){
    MO_CHECK(pRenderDevice, return ENull);
    //............................................................
    // 关联属性集合
-   GRenderProgramSamplerDictionary::TIterator iterator = _program->Samplers().IteratorC();
-   while(iterator.Next()){
-      FRenderProgramSampler* pSampler = *iterator;
+   GRenderProgramSamplerPtrs& samplers = _program->Samplers();
+   TInt count = samplers.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderProgramSampler* pSampler = samplers.Get(n);
       if(pSampler->IsStatusUsed()){
          TCharC* pLinker = pSampler->Linker();
          FRenderableSampler* pRenderableSampler = pRenderable->SamplerPackFind(pLinker);

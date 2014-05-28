@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_ABSTRACT_IMPLEMENT_INHERITS(FRenderProgram, FRenderObject);
+MO_CLASS_ABSTRACT_IMPLEMENT_INHERITS(FRenderProgram, FRenderInstance);
 
 //============================================================
 // <T>构造渲染程序。</T>
@@ -17,6 +17,40 @@ FRenderProgram::~FRenderProgram(){
 }
 
 //============================================================
+// <T>根据名称查找一个程序缓冲。</T>
+//
+// @param pName 名称
+// @return 程序缓冲
+//============================================================
+FRenderProgramBuffer* FRenderProgram::BufferFindByName(TCharC* pName){
+   TInt count = _buffers.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderProgramBuffer* pBuffer = _buffers.Get(n);
+      if(RString::Equals(pBuffer->Name(), pName)){
+         return pBuffer;
+      }
+   }
+   return NULL;
+}
+
+//============================================================
+// <T>根据关联名称查找一个程序缓冲。</T>
+//
+// @param pLinker 关联名称
+// @return 程序缓冲
+//============================================================
+FRenderProgramBuffer* FRenderProgram::BufferFindByLinker(TCharC* pLinker){
+   TInt count = _buffers.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderProgramBuffer* pBuffer = _buffers.Get(n);
+      if(RString::Equals(pBuffer->Linker(), pLinker)){
+         return pBuffer;
+      }
+   }
+   return NULL;
+}
+
+//============================================================
 // <T>增加一个参数。</T>
 //
 // @param pParameter 渲染参数
@@ -24,7 +58,14 @@ FRenderProgram::~FRenderProgram(){
 //============================================================
 TResult FRenderProgram::BufferPush(FRenderProgramBuffer* pBuffer){
    MO_CHECK(pBuffer, return ENull);
-   _buffers.Set(pBuffer->Name(), pBuffer);
+   TCharC* pLinker = pBuffer->Linker();
+   MO_CHECK(pLinker, return ENull);
+   FRenderProgramBuffer* pFind = BufferFindByLinker(pLinker);
+   if(pFind != NULL){
+      MO_FATAL("Program buffer is already exists. (name=%s, linker=%s)", pBuffer->Name(), pBuffer->Linker());
+      return EDuplicate;
+   }
+   _buffers.Push(pBuffer);
    return ESuccess;
 }
 
@@ -144,16 +185,33 @@ TResult FRenderProgram::AttributePush(FRenderProgramAttribute* pAttribute){
 }
 
 //============================================================
-// <T>根据名称查找渲染取样。</T>
+// <T>根据名称查找取样器。</T>
 //
 // @param pName 名称
-// @return 渲染取样
+// @return 取样器
 //============================================================
 FRenderProgramSampler* FRenderProgram::SamplerFindByName(TCharC* pName){
-   GRenderProgramSamplerDictionary::TIterator iterator = _samplers.IteratorC();
-   while(iterator.Next()){
-      FRenderProgramSampler* pSampler = *iterator;
+   TInt count = _samplers.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderProgramSampler* pSampler = _samplers.Get(n);
       if(RString::Equals(pSampler->Name(), pName)){
+         return pSampler;
+      }
+   }
+   return NULL;
+}
+
+//============================================================
+// <T>根据名称查找取样器。</T>
+//
+// @param pLinker 关联名称
+// @return 取样器
+//============================================================
+FRenderProgramSampler* FRenderProgram::SamplerFindByLinker(TCharC* pLinker){
+   TInt count = _samplers.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderProgramSampler* pSampler = _samplers.Get(n);
+      if(RString::Equals(pSampler->Linker(), pLinker)){
          return pSampler;
       }
    }
@@ -170,7 +228,12 @@ TResult FRenderProgram::SamplerPush(FRenderProgramSampler* pSampler){
    MO_CHECK(pSampler, return ENull);
    TCharC* pLinker = pSampler->Linker();
    MO_CHECK(pLinker, return ENull);
-   _samplers.Set(pLinker, pSampler);
+   FRenderProgramBuffer* pFind = BufferFindByLinker(pLinker);
+   if(pFind != NULL){
+      MO_FATAL("Program sampler is already exists. (name=%s, linker=%s)", pSampler->Name(), pSampler->Linker());
+      return EDuplicate;
+   }
+   _samplers.Push(pSampler);
    return ESuccess;
 }
 
@@ -200,10 +263,12 @@ TResult FRenderProgram::MakeFragmentSource(FRenderSource* pSource){
 // @return 处理结果
 //============================================================
 TResult FRenderProgram::DrawBegin(){
-   GRenderShaderBufferDictionary::TIterator iterator = _buffers.Iterator();
-   while(iterator.Next()){
-      FRenderProgramBuffer* pBuffer = *iterator;
+   TInt count = _buffers.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderProgramBuffer* pBuffer = _buffers.Get(n);
+      // 更新处理
       pBuffer->Update();
+      // 绑定处理
       _pDevice->BindShaderBuffer(pBuffer);
    }
    return ESuccess;
@@ -215,6 +280,44 @@ TResult FRenderProgram::DrawBegin(){
 // @return 处理结果
 //============================================================
 TResult FRenderProgram::DrawEnd(){
+   return ESuccess;
+}
+
+//============================================================
+// <T>跟踪处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FRenderProgram::Track(){
+   TString dump;
+   dump.Append("Program\n");
+   //............................................................
+   // 缓冲信息
+   TInt bufferCount = _buffers.Count();
+   dump.AppendFormat("Buffer (count=%d)\n", bufferCount);
+   for(TInt n = 0; n < bufferCount; n++){
+      FRenderProgramBuffer* pBuffer = _buffers.Get(n);
+      dump.AppendFormat("   Buffer: name=%s, linker=%s\n", pBuffer->Name(), pBuffer->Linker());
+   }
+   //............................................................
+   // 取样器信息
+   //TInt attributeCount = _attributes.Count();
+   //dump.AppendFormat("Attribute (count=%d)\n", attributeCount);
+   //for(TInt n = 0; n < attributeCount; n++){
+   //   FRenderProgramAttribute * pAttribute = _attributes.Get(n);
+   //   dump.AppendFormat("   %s = 0x%08X\n", pAttribute->Code(), pAttribute->Slot());
+   //}
+   //............................................................
+   // 取样器信息
+   TInt samplerCount = _samplers.Count();
+   dump.AppendFormat("Sampler (count=%d)\n", samplerCount);
+   for(TInt n = 0; n < samplerCount; n++){
+      FRenderProgramSampler* pSampler = _samplers.Get(n);
+      dump.Append("   ");
+      pSampler->Dump(&dump);
+      dump.Append("\n");
+   }
+   MO_INFO(dump);
    return ESuccess;
 }
 

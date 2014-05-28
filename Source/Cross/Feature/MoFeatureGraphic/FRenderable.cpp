@@ -223,24 +223,6 @@ TInt FRenderable::CalculateBoneMatrix(SFloatMatrix3d* pMatrix, TInt offset, TInt
 }
 
 //============================================================
-// <T>建立标志集合。</T>
-//============================================================
-TResult FRenderable::BuildDescriptor(){
-   //// 设置骨头个数
-   //_descriptor.vertexCount = _pVertexStreams->VertexCount();
-   //// 设置属性集合
-   //FRenderVertexStreamCollection* pStreams = _pVertexStreams->Streams();
-   //TInt count = pStreams->Count();
-   //for(TInt n = 0; n < count; n++){
-   //   FRenderVertexStream* pStream = pStreams->Get(n);
-   //   TCharC* pCode = pStream->Code();
-   //   TInt bufferCd = RRenderAttribute::Parse(pCode);
-   //   _descriptor.vertexBuffers[bufferCd] = ETrue;
-   //}
-   return ESuccess;
-}
-
-//============================================================
 // <T>更新处理。</T>
 //
 // @param pContext 环境
