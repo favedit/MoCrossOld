@@ -2,19 +2,19 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderShaderBuffer, FRenderProgramBuffer);
+MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderProgramBuffer, FRenderProgramBuffer);
 
 //============================================================
 // <T>构造渲染器缓冲。</T>
 //============================================================
-FPd11RenderShaderBuffer::FPd11RenderShaderBuffer(){
+FPd11RenderProgramBuffer::FPd11RenderProgramBuffer(){
    MO_CLEAR(_piBuffer);
 }
 
 //============================================================
 // <T>析构渲染器缓冲。</T>
 //============================================================
-FPd11RenderShaderBuffer::~FPd11RenderShaderBuffer(){
+FPd11RenderProgramBuffer::~FPd11RenderProgramBuffer(){
    MO_RELEASE(_piBuffer);
 }
 
@@ -23,7 +23,7 @@ FPd11RenderShaderBuffer::~FPd11RenderShaderBuffer(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd11RenderShaderBuffer::OnSetup(){
+TResult FPd11RenderProgramBuffer::OnSetup(){
    TResult resultCd = FRenderProgramBuffer::OnSetup();
    MO_CHECK(_pDevice, return ENull);
    MO_CHECK(_dataLength > 0, return EOutRange);
@@ -55,7 +55,7 @@ TResult FPd11RenderShaderBuffer::OnSetup(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd11RenderShaderBuffer::Commit(){
+TResult FPd11RenderProgramBuffer::Commit(){
    MO_CHECK(_pDevice, return ENull);
    TResult resultCd = ESuccess;
    FPd11RenderDevice* pRenderDevice = _pDevice->Convert<FPd11RenderDevice>();
@@ -74,7 +74,7 @@ TResult FPd11RenderShaderBuffer::Commit(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd11RenderShaderBuffer::Bind(){
+TResult FPd11RenderProgramBuffer::Bind(){
    // 检查是否变更
    if(!_statusChanged){
       return EContinue;

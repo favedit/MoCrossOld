@@ -36,7 +36,7 @@ TResult FShadowDepthPass::Setup(){
    _pDepthTexture->Size().Assign(_depthSize);
    _pDepthTexture->Setup();
    // 创建渲染目标
-   _pRenderTarget = pRenderDevice->CreateRenderTarget();
+   _pRenderTarget = pRenderDevice->CreateTarget();
    _pRenderTarget->SetOptionDepth(ETrue);
    _pRenderTarget->Size().Assign(_depthSize);
    _pRenderTarget->Textures()->Push(_pDepthTexture);

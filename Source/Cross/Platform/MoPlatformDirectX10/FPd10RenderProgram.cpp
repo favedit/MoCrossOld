@@ -145,12 +145,12 @@ TResult FPd10RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
             return EFailure;
          }
          // 创建参数
-         FPd10RenderShaderParameter* pParameter = (FPd10RenderShaderParameter*)ParameterFind(variableDescriptor.Name);
+         FPd10RenderShaderParameter* pParameter = (FPd10RenderShaderParameter*)ParameterFindByName(variableDescriptor.Name);
          //MO_CHECK(pParameter, continue);
          if(pParameter == NULL){
             MO_FATAL("Shader parameter is not found. (name=%s)", variableDescriptor.Name);
          }else{
-            pParameter->SetShader(pShader);
+            //pParameter->SetShader(pShader);
             pParameter->SetBuffer(pBuffer);
             pParameter->LinkNative(piVariable);
          }
@@ -172,9 +172,9 @@ TResult FPd10RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
          // 查找属性
          TFsName attributeName;
          attributeName.AppendFormat("%s%d", attributeDescriptor.SemanticName, attributeDescriptor.SemanticIndex);
-         FRenderProgramAttribute* pAttribute = AttributeFind(attributeName);
+         FRenderProgramAttribute* pAttribute = AttributeFindByName(attributeName);
          if(pAttribute == NULL){
-            pAttribute = AttributeFind(attributeDescriptor.SemanticName);
+            pAttribute = AttributeFindByName(attributeDescriptor.SemanticName);
          }
          if(pAttribute == NULL){
             MO_WARN("Shader attribute is not found. (name=%s)", attributeDescriptor.SemanticName);
@@ -253,9 +253,9 @@ TResult FPd10RenderProgram::Link(){
    //............................................................
    // 创建输入描述
    TInt position = 0;
-   GRenderProgramAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
-   while(attributeIterator.Next()){
-      FRenderProgramAttribute* pAttribute = *attributeIterator;
+   TInt count = _attributes.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderProgramAttribute* pAttribute = _attributes.Get(n);
       if(pAttribute->IsStatusUsed()){
          ERenderAttributeFormat formatCd = pAttribute->FormatCd();
          D3D10_INPUT_ELEMENT_DESC inputElement;

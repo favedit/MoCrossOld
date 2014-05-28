@@ -1,22 +1,20 @@
-#include "MoPd11Render.h"
+#include "MoPoRender.h"
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderLayout, FRenderLayout);
+MO_CLASS_IMPLEMENT_INHERITS(FPoRenderLayout, FRenderLayout);
 
 //============================================================
 // <T>构造渲染层信息。</T>
 //============================================================
-FPd11RenderLayout::FPd11RenderLayout(){
+FPoRenderLayout::FPoRenderLayout(){
    _count = 0;
-   MO_CLEAR(_piInputLayout);
 }
 
 //============================================================
 // <T>析构渲染层信息。</T>
 //============================================================
-FPd11RenderLayout::~FPd11RenderLayout(){
-   MO_RELEASE(_piInputLayout);
+FPoRenderLayout::~FPoRenderLayout(){
 }
 
 //============================================================
@@ -24,8 +22,9 @@ FPd11RenderLayout::~FPd11RenderLayout(){
 //
 // @return 处理结果
 //============================================================
-TResult FPd11RenderLayout::OnSetup(){
+TResult FPoRenderLayout::OnSetup(){
    MO_CHECK(_pRenderable, return ENull);
+   TInt index = 0;
    GRenderShaderAttributePtrs& attributes = _pProgram->Attributes();
    TInt count = attributes.Count();
    for(TInt n = 0; n < count; n++){
@@ -41,17 +40,15 @@ TResult FPd11RenderLayout::OnSetup(){
       //............................................................
       // 设置缓冲信息
       if(pRenderableAttribute != NULL){
-         FPd11RenderVertexBuffer* pVertexBuffer = pRenderableAttribute->GraphicsObject<FPd11RenderVertexBuffer>();
-         _piBuffer[n] = pVertexBuffer->NativeBuffer();
-         _strides[n] = pVertexBuffer->Stride();
-         _offsets[n] = pRenderableAttribute->Offset();
-      }else{
-         _piBuffer[n] = NULL;
-         _strides[n] = 0;
-         _offsets[n] = 0;
+         FPoRenderVertexBuffer* pVertexBuffer = pRenderableAttribute->GraphicsObject<FPoRenderVertexBuffer>();
+         _pBuffers[index] = pVertexBuffer;
+         _slots[index] = pAttribute->Slot();
+         _offsets[index] = pRenderableAttribute->Offset();
+         _formats[index] = pAttribute->FormatCd();
+         index++;
       }
    }
-   _count = count;
+   _count = index;
    return ESuccess;
 }
 

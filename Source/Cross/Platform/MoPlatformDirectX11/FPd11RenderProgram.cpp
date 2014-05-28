@@ -120,7 +120,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
          return EFailure;
       }
       // 创建缓冲
-      FPd11RenderShaderBuffer* pBuffer = (FPd11RenderShaderBuffer*)BufferFindByName(bufferDescriptor.Name);
+      FPd11RenderProgramBuffer* pBuffer = (FPd11RenderProgramBuffer*)BufferFindByName(bufferDescriptor.Name);
       pBuffer->SetStatusUsed(ETrue);
       pBuffer->SetShaderCd(shaderCd);
       pBuffer->SetDataLength(bufferDescriptor.Size);
@@ -145,11 +145,11 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
             return EFailure;
          }
          // 创建参数
-         FPd11RenderShaderParameter* pParameter = (FPd11RenderShaderParameter*)ParameterFindByName(variableDescriptor.Name);
+         FPd11RenderProgramParameter* pParameter = (FPd11RenderProgramParameter*)ParameterFindByName(variableDescriptor.Name);
          if(pParameter == NULL){
             MO_FATAL("Shader parameter is not found. (name=%s)", variableDescriptor.Name);
          }else{
-            pParameter->SetShader(pShader);
+            //pParameter->SetShader(pShader);
             pParameter->SetBuffer(pBuffer);
             pParameter->LinkNative(piVariable);
          }
@@ -199,7 +199,7 @@ TResult FPd11RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
       }
       TCharC* pBindName = bindDescriptor.Name;
       if(bindDescriptor.Type == D3D_SIT_CBUFFER){
-         FPd11RenderShaderBuffer* pBuffer = (FPd11RenderShaderBuffer*)BufferFindByName(pBindName);
+         FPd11RenderProgramBuffer* pBuffer = (FPd11RenderProgramBuffer*)BufferFindByName(pBindName);
          MO_CHECK(pBuffer, continue);
          pBuffer->SetSlot(bindDescriptor.BindPoint);
       }
@@ -252,9 +252,9 @@ TResult FPd11RenderProgram::Link(){
    //............................................................
    // 创建输入描述
    TInt position = 0;
-   GRenderProgramAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
-   while(attributeIterator.Next()){
-      FRenderProgramAttribute* pAttribute = *attributeIterator;
+   TInt count = _attributes.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderProgramAttribute* pAttribute = _attributes.Get(n);
       if(pAttribute->IsStatusUsed()){
          ERenderAttributeFormat formatCd = pAttribute->FormatCd();
          D3D11_INPUT_ELEMENT_DESC inputElement;

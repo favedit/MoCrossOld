@@ -21,11 +21,17 @@ FPd9RenderDevice::FPd9RenderDevice(){
    MO_CLEAR(_piDirect3d);
    MO_CLEAR(_piDevice);
    // 注册类集合
+   _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT,            FPd9RenderLayout::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_BUFFER,    FPd9RenderShaderBuffer::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_ATTRIBUTE, FRenderProgramAttribute::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_PARAMETER, FPd9RenderShaderParameter::Class());
    _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_SAMPLER,   FRenderProgramSampler::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT,            FPd9RenderLayout::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_BUFFER_VERTEX,     FPd9RenderVertexBuffer::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_BUFFER_INDEX,      FPd9RenderIndexBuffer::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM,           FPd9RenderProgram::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_TARGET,            FPd9RenderTarget::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_TEXTURE_2D,        FPd9RenderFlatTexture::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_TEXTURE_CUBE,      FPd9RenderCubeTexture::Class());
    _inDrawing = EFalse;
 }
 
@@ -157,106 +163,6 @@ TResult FPd9RenderDevice::CheckError(HRESULT dxResult, TCharC* pCode, TCharC* pM
       MO_FATAL("Call method failure. (method=%s, message=%s, error=%s)", pCode, (TCharC*)message, pDescription);
    }
    return resultCd;
-}
-
-//============================================================
-// <T>创建顶点缓冲。</T>
-//
-// @param pClass 类对象
-// @return 顶点缓冲
-//============================================================
-FRenderVertexBuffer* FPd9RenderDevice::CreateVertexBuffer(FClass* pClass){
-   FRenderVertexBuffer* pVertexBuffer = FPd9RenderVertexBuffer::InstanceCreate();
-   pVertexBuffer->SetDevice(this);
-   _storageVertexBuffers.Push(pVertexBuffer);
-   return pVertexBuffer;
-}
-
-//============================================================
-// <T>创建索引缓冲。</T>
-//
-// @param pClass 类对象
-// @return 索引缓冲
-//============================================================
-FRenderIndexBuffer* FPd9RenderDevice::CreateIndexBuffer(FClass* pClass){
-   FRenderIndexBuffer* pIndexBuffer = FPd9RenderIndexBuffer::InstanceCreate();
-   pIndexBuffer->SetDevice(this);
-   _storageIndexBuffers.Push(pIndexBuffer);
-   return pIndexBuffer;
-}
-
-//============================================================
-// <T>创建程序。</T>
-//
-// @param pClass 类对象
-// @return 程序
-//============================================================
-FRenderProgram* FPd9RenderDevice::CreateProgrom(FClass* pClass){
-   FPd9RenderProgram* pProgram = FPd9RenderProgram::InstanceCreate();
-   pProgram->SetDevice(this);
-   _storagePrograms.Push(pProgram);
-   return pProgram;
-}
-
-//============================================================
-// <T>创建渲染目标。</T>
-//
-// @param pClass 类对象
-// @return 渲染目标
-//============================================================
-FRenderTarget* FPd9RenderDevice::CreateRenderTarget(FClass* pClass){
-   FPd9RenderTarget* pRenderTarget = FPd9RenderTarget::InstanceCreate();
-   pRenderTarget->SetDevice(this);
-   _storageTargets.Push(pRenderTarget);
-   return pRenderTarget;
-}
-
-//============================================================
-// <T>创建平面纹理。</T>
-//
-// @param pClass 类对象
-// @return 纹理
-//============================================================
-FRenderFlatTexture* FPd9RenderDevice::CreateFlatTexture(FClass* pClass){
-   FPd9RenderFlatTexture* pTexture = FPd9RenderFlatTexture::InstanceCreate();
-   pTexture->SetDevice(this);
-   _storageTextures.Push(pTexture);
-   //_pLinkFlatTextures->Push(pTexture);
-   return pTexture;
-}
-
-//============================================================
-// <T>创建空间纹理。</T>
-//
-// @param pClass 类对象
-// @return 纹理
-//============================================================
-FRenderCubeTexture* FPd9RenderDevice::CreateCubeTexture(FClass* pClass){
-   FPd9RenderCubeTexture* pTexture = FPd9RenderCubeTexture::InstanceCreate();
-   pTexture->SetDevice(this);
-   _storageTextures.Push(pTexture);
-   //_pLinkCubeTextures->Push(pTexture);
-   return pTexture;
-}
-
-//============================================================
-// <T>清空内容。</T>
-//
-// @param red 红色
-// @param green 绿色
-// @param blue 蓝色
-// @param alpha 透明
-// @param depth 深度
-// @return 处理结果
-//============================================================
-TResult FPd9RenderDevice::Clear(TFloat red, TFloat green, TFloat blue, TFloat alpha, TFloat depth){
-   TInt r = (TInt)(red * 255.0f);
-   TInt g = (TInt)(green * 255.0f);
-   TInt b = (TInt)(blue * 255.0f);
-   TInt a = (TInt)(alpha * 255.0f);
-   D3DCOLOR color = D3DCOLOR_ARGB(a, r, g, b);
-   _piDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, color, depth, 0);
-   return ETrue;
 }
 
 //============================================================
@@ -601,167 +507,7 @@ TResult FPd9RenderDevice::SetLayout(FRenderLayout* pLayout){
 // @parma length 长度
 // @return 处理结果
 //============================================================
-TResult FPd9RenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERenderParameterFormat formatCd, TAnyC* pData, TInt length){
-   // 检查变更
-   TBool changed = UpdateConsts(shaderCd, slot, pData, length);
-   if(!changed){
-      return EContinue;
-   }
-   // 修改数据
-   TResult result = ESuccess;
-   //switch (formatCd){
-   //   case ERenderParameterFormat_Float1:{
-   //      // 检查长度
-   //      if(length % 4 != 0){
-   //         MO_ERROR("Length is invalid. (length=d)", length);
-   //         return EFailure;
-   //      }
-   //      // 修改数据
-   //      TInt count = length / 4;
-   //      glUniform1fv(slot, count, (const GLfloat*)pData);
-   //      // 检查错误
-   //      result = CheckError("glUniform1fv", "Bind const data failure. (shader_cd=%d, slot=%d, pData=0x%08X, length=%d)", shaderCd, slot, pData, length);
-   //      break;
-   //   }
-   //   case ERenderParameterFormat_Float2:{
-   //      // 检查长度
-   //      if(length % 8 != 0){
-   //         MO_ERROR("Length is invalid. (length=d)", length);
-   //         return EFailure;
-   //      }
-   //      // 修改数据
-   //      TInt count = length / 8;
-   //      glUniform2fv(slot, count, (const GLfloat*)pData);
-   //      // 检查错误
-   //      result = CheckError("glUniform2fv", "Bind const data failure. (shader_cd=%d, slot=%d, pData=0x%08X, length=%d)", shaderCd, slot, pData, length);
-   //      break;
-   //   }
-   //   case ERenderParameterFormat_Float3:{
-   //      // 检查长度
-   //      if(length % 12 != 0){
-   //         MO_ERROR("Length is invalid. (length=d)", length);
-   //         return EFailure;
-   //      }
-   //      // 修改数据
-   //      TInt count = length / 12;
-   //      glUniform3fv(slot, count, (const GLfloat*)pData);
-   //      // 检查错误
-   //      result = CheckError("glUniform3fv", "Bind const data failure. (shader_cd=%d, slot=%d, pData=0x%08X, length=%d)", shaderCd, slot, pData, length);
-   //      break;
-   //   }
-   //   case ERenderParameterFormat_Float4:{
-   //      // 检查长度
-   //      if(length % 16 != 0){
-   //         MO_ERROR("Length is invalid. (length=d)", length);
-   //         return EFailure;
-   //      }
-   //      // 修改数据
-   //      TInt count = length / 16;
-   //      glUniform4fv(slot, count, (const GLfloat*)pData);
-   //      // 检查错误
-   //      result = CheckError("glUniform4fv", "Bind const data failure. (shader_cd=%d, slot=%d, pData=0x%08X, length=%d)", shaderCd, slot, pData, length);
-   //      break;
-   //   }
-   //   case ERenderParameterFormat_Matrix3x3:{
-   //      // 检查长度
-   //      if(length % 36 != 0){
-   //         MO_ERROR("Length is invalid. (length=d)", length);
-   //         return EFailure;
-   //      }
-   //      // 修改数据
-   //      TInt count = length / 36;
-   //      glUniformMatrix3fv(slot, count, GL_FALSE, (const GLfloat*)pData);
-   //      // 检查错误
-   //      result = CheckError("glUniformMatrix4fv", "Bind const matrix3x3 failure. (shader_cd=%d, slot=%d, pData=0x%08X, length=%d)", shaderCd, slot, pData, length);
-   //      break;
-   //   }
-   //   case ERenderParameterFormat_Matrix4x3:{
-   //      // 检查长度
-   //      if(length % 48 != 0){
-   //         MO_ERROR("Length is invalid. (length=d)", length);
-   //         return EFailure;
-   //      }
-   //      // 修改数据
-   //      TInt count = length / 48;
-   //      glUniform4fv(slot, count * 3, (const GLfloat*)pData);
-   //      //glUniformMatrix4x3fv(slot, count, GL_FALSE, (const GLfloat*)pData);
-   //      // 检查错误
-   //      result = CheckError("glUniformMatrix4x3fv", "Bind const matrix4x3 failure. (shader_cd=%d, slot=%d, pData=0x%08X, length=%d)", shaderCd, slot, pData, length);
-   //      break;
-   //   }
-   //   case ERenderParameterFormat_Matrix4x4:{
-   //      // 检查长度
-   //      if(length % 64 != 0){
-   //         MO_ERROR("Length is invalid. (length=d)", length);
-   //         return EFailure;
-   //      }
-   //      // 修改数据
-   //      TInt count = length >> 6;
-   //      glUniformMatrix4fv(slot, count, GL_FALSE, (const GLfloat*)pData);
-   //      // 检查错误
-   //      result = CheckError("glUniformMatrix4fv", "Bind const matrix4x4 failure. (shader_cd=%d, slot=%d, pData=0x%08X, length=%d)", shaderCd, slot, pData, length);
-   //      break;
-   //   }
-   //}
-   //// MO_INFO("Bind const buffer. (slot=%d, format_cd=%d, length=%d)", slot, formatCd, length);
-   //_statistics->UpdateProgramCount(length);
-   return ESuccess;
-}
-
-//============================================================
-// <T>绑定常量四维浮点数。</T>
-//
-// @parma shaderCd 渲染类型
-// @parma slot 插槽
-// @parma x X内容
-// @parma y Y内容
-// @parma z Z内容
-// @parma w W内容
-// @return 处理结果
-//============================================================
-TResult FPd9RenderDevice::BindConstFloat3(ERenderShader shaderCd, TInt slot, TFloat x, TFloat y, TFloat z){
-   MO_FATAL_UNSUPPORT();
-   return ESuccess;
-}
-
-//============================================================
-// <T>绑定常量四维浮点数。</T>
-//
-// @parma shaderCd 渲染类型
-// @parma slot 插槽
-// @parma x X内容
-// @parma y Y内容
-// @parma z Z内容
-// @parma w W内容
-// @return 处理结果
-//============================================================
-TResult FPd9RenderDevice::BindConstFloat4(ERenderShader shaderCd, TInt slot, TFloat x, TFloat y, TFloat z, TFloat w){
-   MO_FATAL_UNSUPPORT();
-   return ESuccess;
-}
-
-//============================================================
-// <T>绑定常量三维矩阵。</T>
-//
-// @parma shaderCd 渲染类型
-// @parma slot 插槽
-// @parma matrix 矩阵
-// @return 处理结果
-//============================================================
-TResult FPd9RenderDevice::BindConstMatrix3x3(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix){
-   MO_FATAL_UNSUPPORT();
-   return ESuccess;
-}
-
-//============================================================
-// <T>绑定常量三维矩阵。</T>
-//
-// @parma shaderCd 渲染类型
-// @parma slot 插槽
-// @parma matrix 矩阵
-// @return 处理结果
-//============================================================
-TResult FPd9RenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix){
+TResult FPd9RenderDevice::BindConst(ERenderShader shaderCd, TInt slot, ERenderParameterFormat formatCd, TAnyC* pData, TInt length){
    MO_FATAL_UNSUPPORT();
    return ESuccess;
 }
@@ -772,7 +518,8 @@ TResult FPd9RenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, 
 // @param pBuffer 渲染缓冲
 // @return 处理结果
 //============================================================
-TResult FPd9RenderDevice::BindShaderBuffer(FRenderProgramBuffer* pBuffer){
+TResult FPd9RenderDevice::BindConstBuffer(FRenderProgramBuffer* pBuffer){
+   MO_FATAL_UNSUPPORT();
    return ESuccess;
 }
 
@@ -804,10 +551,11 @@ TResult FPd9RenderDevice::BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVert
 // <T>绑定纹理。</T>
 //
 // @param slot 插槽
+// @param index 索引
 // @param pTexture 纹理
 // @return 处理结果
 //============================================================
-TResult FPd9RenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
+TResult FPd9RenderDevice::BindTexture(TInt slot, TInt index, FRenderTexture* pTexture){
    TResult result = ESuccess;
    //............................................................
    // 绑定纹理
@@ -844,6 +592,62 @@ TResult FPd9RenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
    // 统计数据
    _statistics->UpdateSamplerCount();
    return result;
+}
+
+//============================================================
+// <T>绘制帧开始处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FPd9RenderDevice::FrameBegin(){
+   TResult resultCd = FRenderDevice::FrameBegin();
+   //if(!_inDrawing){
+      HRESULT dxResult = _piDevice->BeginScene();
+      if(FAILED(dxResult)){
+         MO_FATAL("Begin scene.");
+         return EFailure;
+      }
+      _inDrawing = ETrue;
+   //}
+   return resultCd;
+}
+
+//============================================================
+// <T>绘制帧结束处理。</T>
+//
+// @return 处理结果
+//============================================================
+TResult FPd9RenderDevice::FrameEnd(){
+   TResult resultCd = FRenderDevice::FrameEnd();
+   //if(_inDrawing){
+      HRESULT dxResult = _piDevice->EndScene();
+      if(FAILED(dxResult)){
+         MO_FATAL("End scene.");
+         return EFailure;
+      }
+      _inDrawing = EFalse;
+   //}
+   return resultCd;
+}
+
+//============================================================
+// <T>清空内容。</T>
+//
+// @param red 红色
+// @param green 绿色
+// @param blue 蓝色
+// @param alpha 透明
+// @param depth 深度
+// @return 处理结果
+//============================================================
+TResult FPd9RenderDevice::Clear(TFloat red, TFloat green, TFloat blue, TFloat alpha, TFloat depth){
+   TInt r = (TInt)(red * 255.0f);
+   TInt g = (TInt)(green * 255.0f);
+   TInt b = (TInt)(blue * 255.0f);
+   TInt a = (TInt)(alpha * 255.0f);
+   D3DCOLOR color = D3DCOLOR_ARGB(a, r, g, b);
+   _piDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, color, depth, 0);
+   return ETrue;
 }
 
 //============================================================
@@ -896,42 +700,6 @@ TResult FPd9RenderDevice::Present(){
       return CheckError(dxResult, "Present", "Present.");
    }
    return ESuccess;
-}
-
-//============================================================
-// <T>绘制帧开始处理。</T>
-//
-// @return 处理结果
-//============================================================
-TResult FPd9RenderDevice::FrameBegin(){
-   TResult resultCd = FRenderDevice::FrameBegin();
-   //if(!_inDrawing){
-      HRESULT dxResult = _piDevice->BeginScene();
-      if(FAILED(dxResult)){
-         MO_FATAL("Begin scene.");
-         return EFailure;
-      }
-      _inDrawing = ETrue;
-   //}
-   return resultCd;
-}
-
-//============================================================
-// <T>绘制帧结束处理。</T>
-//
-// @return 处理结果
-//============================================================
-TResult FPd9RenderDevice::FrameEnd(){
-   TResult resultCd = FRenderDevice::FrameEnd();
-   //if(_inDrawing){
-      HRESULT dxResult = _piDevice->EndScene();
-      if(FAILED(dxResult)){
-         MO_FATAL("End scene.");
-         return EFailure;
-      }
-      _inDrawing = EFalse;
-   //}
-   return resultCd;
 }
 
 MO_NAMESPACE_END

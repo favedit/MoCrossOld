@@ -8,6 +8,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FPoRenderVertexShader, FRenderVertexShader);
 // <T>构造渲染程序。</T>
 //============================================================
 FPoRenderVertexShader::FPoRenderVertexShader(){
+   _nativeCode = 0;
 }
 
 //============================================================
@@ -22,8 +23,8 @@ FPoRenderVertexShader::~FPoRenderVertexShader(){
 // @return 处理结果
 //============================================================
 TResult FPoRenderVertexShader::Setup(){
-   _renderId.uint32 = glCreateShader(GL_VERTEX_SHADER);
-   TResult resultCd = _pDevice->CheckError("glCreateShader", "Create vertex shader failure. (shader_id=%d)", _renderId.uint32);
+   _nativeCode = glCreateShader(GL_VERTEX_SHADER);
+   TResult resultCd = _pDevice->CheckError("glCreateShader", "Create vertex shader failure. (shader_id=%d)", _nativeCode);
    return resultCd;
 }
 
@@ -37,29 +38,29 @@ TResult FPoRenderVertexShader::Compile(TCharC* pSource){
    // 上传代码
    const GLchar* source[1];
    source[0] = (const GLchar*)pSource;
-   glShaderSource(_renderId.uint32, 1, source, NULL);
+   glShaderSource(_nativeCode, 1, source, NULL);
    // 编译处理
-   glCompileShader(_renderId.uint32);
+   glCompileShader(_nativeCode);
    // 测试编译结果
    GLint status;
-   glGetShaderiv(_renderId.uint32, GL_COMPILE_STATUS, &status);
+   glGetShaderiv(_nativeCode, GL_COMPILE_STATUS, &status);
    if(!status){
       // 获得代码
       GLsizei sourceLength;
-      glGetShaderiv(_renderId.uint32, GL_SHADER_SOURCE_LENGTH, &sourceLength);
+      glGetShaderiv(_nativeCode, GL_SHADER_SOURCE_LENGTH, &sourceLength);
 		GLchar* pShaderSource = MO_TYPES_ALLOC(GLchar, sourceLength);
-		glGetShaderSource(_renderId.uint32, sourceLength, NULL, pShaderSource);
+		glGetShaderSource(_nativeCode, sourceLength, NULL, pShaderSource);
       // 获得原因
       GLsizei reasonLength = 0;
-      glGetShaderiv(_renderId.uint32, GL_INFO_LOG_LENGTH, &reasonLength);
+      glGetShaderiv(_nativeCode, GL_INFO_LOG_LENGTH, &reasonLength);
       GLchar* pReason = MO_TYPES_ALLOC(GLchar, reasonLength);
-      glGetShaderInfoLog(_renderId.uint32, reasonLength, NULL, pReason);  
+      glGetShaderInfoLog(_nativeCode, reasonLength, NULL, pReason);  
       MO_FATAL("Create vertex shader failure. (status=%d)\n%s\n%s", status, pReason, pShaderSource);
       // 释放资源
       MO_DELETE(pShaderSource);
       MO_DELETE(pReason);
-      glDeleteShader(_renderId.uint32); 
-      _renderId.uint32 = 0;
+      glDeleteShader(_nativeCode); 
+      _nativeCode = 0;
    }else{
       MO_INFO("Create vertex shader success. (status=%d)\n%s", status, pSource);
    }
@@ -91,10 +92,10 @@ TResult FPoRenderVertexShader::Resume(){
 //============================================================
 TResult FPoRenderVertexShader::Dispose(){
    TResult resultCd = ESuccess;
-   if(_renderId.uint32 != 0){
-      glDeleteShader(_renderId.uint32);
-      resultCd = _pDevice->CheckError("glCreateShader", "Delete vertex shader failure. (shader_id=%d)", _renderId.uint32);
-      _renderId.uint32 = 0;
+   if(_nativeCode != 0){
+      glDeleteShader(_nativeCode);
+      resultCd = _pDevice->CheckError("glCreateShader", "Delete vertex shader failure. (shader_id=%d)", _nativeCode);
+      _nativeCode = 0;
    }
    return resultCd;
 }

@@ -151,8 +151,8 @@ TResult FRenderWindow::Setup(){
    // 获得DC
    _hDC = GetDC(_handle);
    // 选择一个最适合pfd描述的像素格式索引值
-   // TInt pixelFormat = ChoosePixelFormat(_hDC, &descriptor);
-   // SetPixelFormat(_hDC, pixelFormat, &descriptor);
+   TInt pixelFormat = ChoosePixelFormat(_hDC, &descriptor);
+   SetPixelFormat(_hDC, pixelFormat, &descriptor);
    // 更新窗口
    UpdateWindow(_handle);
    // 设置窗口

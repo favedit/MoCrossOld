@@ -51,7 +51,6 @@ public:
    TResult RegisterSampler(TCharC* pLinker, TInt code);
 public:
    MO_ABSTRACT TResult BindDescriptors();
-   MO_ABSTRACT TResult LinkDescriptors();
 public:
    MO_OVERRIDE TResult Setup();
    MO_OVERRIDE TResult LoadConfig(FXmlNode* pConfig);

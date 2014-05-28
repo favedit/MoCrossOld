@@ -9,7 +9,6 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderTexture, FTexture);
 //============================================================
 FRenderTexture::FRenderTexture(){
    MO_CLEAR(_pDevice);
-   _index = -1;
    _textureCd = ERenderTexture_Unknown;
    _formatCd = ERenderTextureFormat_BGRA;
    _filterCd = ERenderTextureFilter_Linear;
@@ -26,6 +25,8 @@ FRenderTexture::~FRenderTexture(){
 
 //============================================================
 // <T>配置处理。</T>
+//
+// @return 处理结果
 //============================================================
 TResult FRenderTexture::OnSetup(){
    TResult result = FTexture::OnSetup();

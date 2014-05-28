@@ -8,7 +8,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FPoRenderTarget, FRenderTarget);
 // <T>构造平面纹理。</T>
 //============================================================
 FPoRenderTarget::FPoRenderTarget(){
-   _frameBufferId = 0;
+   _nativeCode = 0;
    _depthStencilId = 0;
    _depthBufferId = 0;
 }
@@ -32,15 +32,15 @@ TResult FPoRenderTarget::OnSetup(){
    // glGetIntegerv(GL_FRAMEBUFFER, &storageFrameBufferId);
    //............................................................
    // 创建帧缓冲
-   glGenFramebuffers(1, &_frameBufferId);
+   glGenFramebuffers(1, &_nativeCode);
    resultCd = _pDevice->CheckError("glGenFramebuffers",
-         "Create frame buffer faliure. (framebuffer_id=%d)", _frameBufferId);
+         "Create frame buffer faliure. (framebuffer_id=%d)", _nativeCode);
    if(resultCd != ESuccess){
       return resultCd;
    }
-   glBindFramebuffer(GL_FRAMEBUFFER, _frameBufferId);
+   glBindFramebuffer(GL_FRAMEBUFFER, _nativeCode);
    resultCd = _pDevice->CheckError("glBindFramebuffer",
-         "Bind frame buffer faliure. (framebuffer_id=%d)", _frameBufferId);
+         "Bind frame buffer faliure. (framebuffer_id=%d)", _nativeCode);
    if(resultCd != ESuccess){
       return resultCd;
    }
@@ -65,7 +65,7 @@ TResult FPoRenderTarget::OnSetup(){
       //glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, _depthStencilId, 0);
       //glFramebufferTexture2D(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_TEXTURE_2D, _depthStencilId, 0);
       //resultCd = pRenderDevice->CheckError("glFramebufferTexture2D",
-      //      "Set depth and stencil buffer to frame buffer failure. (framebuffer_id=%d, depthstencil_id=%d)", _frameBufferId, _depthStencilId);
+      //      "Set depth and stencil buffer to frame buffer failure. (framebuffer_id=%d, depthstencil_id=%d)", _nativeCode, _depthStencilId);
       //if(resultCd != ESuccess){
       //   return resultCd;
       //}
@@ -99,7 +99,7 @@ TResult FPoRenderTarget::OnSetup(){
       // 绑定深度缓冲区
       glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthBufferId);
       resultCd = _pDevice->CheckError("glFramebufferRenderbuffer",
-            "Set depth buffer to frame buffer failure. (framebuffer_id=%d, depthbuffer_id=%d)", _frameBufferId, _depthBufferId);
+            "Set depth buffer to frame buffer failure. (framebuffer_id=%d, depthbuffer_id=%d)", _nativeCode, _depthBufferId);
       if(resultCd != ESuccess){
          return resultCd;
       }
@@ -133,7 +133,7 @@ TResult FPoRenderTarget::OnSetup(){
       // 绑定数据
       glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureId, 0);
       resultCd = _pDevice->CheckError("glFramebufferTexture2D",
-            "Set color buffer into frame buffer failure. (framebuffer_id=%d, texture_id=%d)", _frameBufferId, textureId);
+            "Set color buffer into frame buffer failure. (framebuffer_id=%d, texture_id=%d)", _nativeCode, textureId);
       if(resultCd != ESuccess){
          MO_FATAL_UNSUPPORT();
          return resultCd;
@@ -145,7 +145,6 @@ TResult FPoRenderTarget::OnSetup(){
    //if(status != GL_FRAMEBUFFER_COMPLETE){
    //   MO_FATAL("Frame buffer status is invalid.");
    //}
-   _renderId.uint32 = _frameBufferId;
    //............................................................
    // 回复存储缓冲
    glBindFramebuffer(GL_FRAMEBUFFER, storageFrameBufferId);
@@ -165,11 +164,11 @@ TResult FPoRenderTarget::Suspend(){
             "Delete render depth buffer failure. (depthbuffer_id=%d)", _depthBufferId);
       _depthBufferId = 0;
    }
-   if(_frameBufferId != 0){
-      glDeleteFramebuffers(1, &_frameBufferId);
+   if(_nativeCode != 0){
+      glDeleteFramebuffers(1, &_nativeCode);
       resultCd = _pDevice->CheckError("glDeleteFramebuffers",
-            "Delete frame buffer failure. (framebuffer_id=%d)", _frameBufferId);
-      _frameBufferId = 0;
+            "Delete frame buffer failure. (framebuffer_id=%d)", _nativeCode);
+      _nativeCode = 0;
    }
    return resultCd;
 }
@@ -181,7 +180,7 @@ TResult FPoRenderTarget::Suspend(){
 //============================================================
 TResult FPoRenderTarget::Resume(){
    OnSetup();
-   MO_INFO("Resume rendertarget. (target_id=%d)", _frameBufferId);
+   MO_INFO("Resume rendertarget. (target_id=%d)", _nativeCode);
    return ESuccess;
 }
 

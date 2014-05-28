@@ -54,7 +54,7 @@ TResult FAutomaticEffect::RegisterParameter(TCharC* pLinker, TInt code){
    MO_CHECK(pLinker, return ENull);
    MO_CHECK(code >= 0, return EOutRange);
    // 获得程序参数
-   FRenderProgramParameter* pParameter = _program->ParameterFind(pLinker);
+   FRenderProgramParameter* pParameter = _program->ParameterFindByLinker(pLinker);
    //MO_CHECK(pParameter, return ENull);
    if(pParameter == NULL){
       MO_WARN("Register parameter is not exists. (linker=%s)", pLinker);
@@ -104,30 +104,23 @@ TResult FAutomaticEffect::LoadConfig(FXmlNode* pConfig){
 TResult FAutomaticEffect::BindDescriptors(){
    TResult resultCd = ESuccess;
    MO_CHECK(_program, return ENull);
-   // 绑定属性位置
-   //TEffectAttributeDescriptors::TIteratorC iterator = _attributeDescriptors.IteratorC();
-   //while(iterator.Next()){
-   //   const SEffectAttributeDescriptor& descriptor = *iterator;
-   //   _program->BindAttribute(descriptor.bindIndex, descriptor.namePtr);
-   //}
    //............................................................
    // 建立常量描述器
-   GRenderShaderParameterDictionary& parameters = _program->Parameters();
+   GRenderShaderParameterPtrs& parameters = _program->Parameters();
    if(!parameters.IsEmpty()){
-      GRenderShaderParameterDictionary::TIterator iterator = parameters.Iterator();
-      while(iterator.Next()){
-         FRenderProgramParameter* pParameter = *iterator;
+      TInt count = parameters.Count();
+      for(TInt n = 0; n < count; n++){
+         FRenderProgramParameter* pParameter = parameters.Get(n);
+         TCharC* pLinker = pParameter->Linker();
+         // 解析内容
+         EEffectParameter parameterCd = EEffectParameter_Unknown;
+         ERenderShader shaderCd = ERenderShader_Unknown;
+         ERenderParameterFormat formatCd = ERenderParameterFormat_Unknown;
+         REffectParameter::Parse(pLinker, parameterCd, shaderCd, formatCd);
+         pParameter->SetShaderCd(shaderCd);
+         pParameter->SetFormatCd(formatCd);
+         // 设置参数
          if(pParameter->IsStatusUsed()){
-            // 解析内容
-            TCharC* pLinker = pParameter->Linker();
-            EEffectParameter parameterCd = EEffectParameter_Unknown;
-            ERenderShader shaderCd = ERenderShader_Unknown;
-            ERenderParameterFormat formatCd = ERenderParameterFormat_Unknown;
-            REffectParameter::Parse(pLinker, parameterCd, shaderCd, formatCd);
-            // 设置参数
-            pParameter->SetCode(parameterCd);
-            pParameter->SetShaderCd(shaderCd);
-            pParameter->SetFormatCd(formatCd);
             //_pParameters->ExtendSet(parameterCd, pParameter);
             MO_DEBUG("Build shader parameter. (code=%d, name=%s, format=%d)", parameterCd, pParameter->Name(), pParameter->FormatCd());
          }
@@ -135,11 +128,11 @@ TResult FAutomaticEffect::BindDescriptors(){
    }
    //............................................................
    // 建立属性描述器
-   GRenderProgramAttributeDictionary& attributes = _program->Attributes();
+   GRenderShaderAttributePtrs& attributes = _program->Attributes();
    if(!attributes.IsEmpty()){
-      GRenderProgramAttributeDictionary::TIterator iterator = attributes.Iterator();
-      while(iterator.Next()){
-         FRenderProgramAttribute* pAttribute = *iterator;
+      TInt count = attributes.Count();
+      for(TInt n = 0; n < count; n++){
+         FRenderProgramAttribute* pAttribute = attributes.Get(n);;
          if(pAttribute->IsStatusUsed()){
             // 解析内容
             TCharC* pLinker = pAttribute->Linker();
@@ -171,56 +164,6 @@ TResult FAutomaticEffect::BindDescriptors(){
       }
    }
    return resultCd;
-}
-
-//============================================================
-// <T>关联描述器集合。</T>
-//
-// @return 处理结果
-//============================================================
-TResult FAutomaticEffect::LinkDescriptors(){
-   MO_CHECK(_program, return ENull);
-   //TInt fragmentConstLimit = _renderDevice->Capability()->FragmentConstLimit();
-   //// 关联常量集合
-   //TEffectParameterDescriptors::TIterator parameterIterator = _parameterDescriptors.Iterator();
-   //while(parameterIterator.Next()){
-   //   SEffectParameterDescriptor& descriptor = *parameterIterator;
-   //   if((descriptor.code != -1) && (descriptor.bindId == -1)){
-   //      descriptor.bindId = _program->FindDefine(descriptor.namePtr);
-   //      MO_INFO("Find const location. (name=%s, code=%d, bind_id=%d)",
-   //            descriptor.namePtr, descriptor.code, descriptor.bindId);
-   //   }
-   //}
-   //// 关联属性集合
-   //TEffectAttributeDescriptors::TIterator attributeIterator = _attributeDescriptors.Iterator();
-   //while(attributeIterator.Next()){
-   //   SEffectAttributeDescriptor& descriptor = *attributeIterator;
-   //   if((descriptor.bindIndex != -1) && (descriptor.bindId == -1)){
-   //      descriptor.bindId = _program->FindAttribute(descriptor.namePtr);
-   //      if(descriptor.bindId != -1){
-   //         MO_INFO("Find attribute location. (name=%s, code=%d, bind_id=%d)",
-   //               descriptor.namePtr, descriptor.code, descriptor.bindId);
-   //      }
-   //   }
-   //}
-   //// 关联取样器集合
-   //TEffectSamplerDescriptors::TIterator samplerIterator = _samplerDescriptors.Iterator();
-   //while(samplerIterator.Next()){
-   //   SEffectSamplerDescriptor& descriptor = *samplerIterator;
-   //   if((descriptor.code != -1) && (descriptor.bindId == -1)){
-   //      descriptor.bindId = _program->FindDefine(descriptor.namePtr);
-   //   }
-   //}
-   //TInt samplerIndex = 0;
-   //for(TInt n = 0; n < 1024; n++){
-   //   SEffectSamplerDescriptor* pDescriptor = _samplerDescriptors.FindByBindId(n);
-   //   if(pDescriptor != NULL){
-   //      pDescriptor->index = samplerIndex++;
-   //      MO_INFO("Find sampler location. (name=%s, code=%d, bind_id=%d, index=%d)",
-   //            pDescriptor->namePtr, pDescriptor->code, pDescriptor->bindId, pDescriptor->index);
-   //   }
-   //}
-   return ESuccess;
 }
 
 //============================================================
@@ -520,7 +463,6 @@ TResult FAutomaticEffect::Build(){
    //............................................................
    // 关联处理
    _program->Link();
-   LinkDescriptors();
    //............................................................
    // 改变大小
    FScreenDevice* pScreenDevice = RDeviceManager::Instance().Find<FScreenDevice>();
@@ -718,8 +660,7 @@ TResult FAutomaticEffect::BindSampler(TInt bindCd, FRenderTexture* pTexture){
    // 关联属性集合
    FRenderProgramSampler* pSampler = _pSamplers->Get(bindCd);
    if(pSampler != NULL){
-      //pTexture->SetIndex(descriptor.index);
-      pRenderDevice->BindTexture(pSampler->Slot(), pTexture);
+      pRenderDevice->BindTexture(pSampler->Slot(), pSampler->Index(), pTexture);
    }
    return ESuccess;
 }
@@ -745,7 +686,7 @@ TResult FAutomaticEffect::BindSamplerDescriptors(FRenderable* pRenderable){
          FRenderableSampler* pRenderableSampler = pRenderable->SamplerPackFind(pLinker);
          if(pRenderableSampler != NULL){
             FRenderTexture* pTexture = pRenderableSampler->GraphicsObject<FRenderTexture>();
-            pRenderDevice->BindTexture(pSampler->Slot(), pTexture);
+            pRenderDevice->BindTexture(pSampler->Slot(), pSampler->Index(), pTexture);
          }
       }
    }

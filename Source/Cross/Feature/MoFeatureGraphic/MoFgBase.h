@@ -35,6 +35,9 @@ MO_NAMESPACE_BEGIN
 #define MO_RENDEROBJECT_TARGET            "Target"
 
 //==========================================================
+#define MO_RENDER_ATTRIBUTE_MAXCNT        64
+
+//==========================================================
 class FMaterial;
 class FRenderable;
 class FRenderTexture;

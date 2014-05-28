@@ -139,7 +139,7 @@ TResult FRenderProgramBuffer::Bind(){
 // @param pDump 输出缓冲
 // @return 处理结果
 //============================================================
-TResult FRenderProgramBuffer::Dump(MString* pDump){
+TResult FRenderProgramBuffer::Dump(MString* pDump, TBool detail){
    MO_CHECK(pDump, return ENull);
    pDump->AppendFormat("Buffer: name=%s, linker=%s, slot=%d", (TCharC*)_name, (TCharC*)_linker, _slot);
    return ESuccess;

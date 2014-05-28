@@ -22,12 +22,11 @@ FPd10RenderLayout::~FPd10RenderLayout(){
 //============================================================
 TResult FPd10RenderLayout::OnSetup(){
    MO_CHECK(_pDevice, return ENull);
-   TInt index = 0;
    FPd10RenderDevice* pRenderDevice = _pDevice->Convert<FPd10RenderDevice>();
    FRenderableGeometry* pRenderableGeometry = _pRenderable->Geometry();
-   GRenderProgramAttributeDictionary::TIterator iterator = _pProgram->Attributes().IteratorC();
-   while(iterator.Next()){
-      FRenderProgramAttribute* pAttribute = *iterator;
+   TInt count = _pProgram->Attributes().Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderProgramAttribute* pAttribute = _pProgram->Attributes().Get(n);
       if(!pAttribute->IsStatusUsed()){
          continue;
       }
@@ -43,17 +42,16 @@ TResult FPd10RenderLayout::OnSetup(){
       // ÉèÖÃ»º³åÐÅÏ¢
       if(pRenderableAttribute != NULL){
          FPd10RenderVertexBuffer* pVertexBuffer = pRenderableAttribute->GraphicsObject<FPd10RenderVertexBuffer>();
-         _piBuffer[index] = pVertexBuffer->NativeBuffer();
-         _strides[index] = pVertexBuffer->Stride();
-         _offsets[index] = pRenderableAttribute->Offset();
+         _piBuffer[n] = pVertexBuffer->NativeBuffer();
+         _strides[n] = pVertexBuffer->Stride();
+         _offsets[n] = pRenderableAttribute->Offset();
       }else{
-         _piBuffer[index] = NULL;
-         _strides[index] = 0;
-         _offsets[index] = 0;
+         _piBuffer[n] = NULL;
+         _strides[n] = 0;
+         _offsets[n] = 0;
       }
-      index++;
    }
-   _count = index;
+   _count = count;
    return ESuccess;
 }
 

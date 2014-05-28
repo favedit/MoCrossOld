@@ -25,10 +25,10 @@ attribute vec4 va_position;
    vec4 modelPosition = va_position * vc_model_matrix;
 </shader:false>
    modelPosition.w = 1.0;
-   // Calculate model position
    v_model_position = modelPosition;
-   // Calculate proection position
-   gl_Position = modelPosition * vc_view_projection_matrix;
+   // Calculate projection position
+   vec4 viewPosition = modelPosition * vc_view_matrix;
+   gl_Position = viewPosition * vc_projection_matrix;
    ]]></Source>
    <!-- ------------------------------------------------------------ -->
 </Configuration>

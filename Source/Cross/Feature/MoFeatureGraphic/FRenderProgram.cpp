@@ -75,14 +75,14 @@ TResult FRenderProgram::BufferPush(FRenderProgramBuffer* pBuffer){
 // @param shaderCd 渲染类型
 // @return 渲染参数集合
 //============================================================
-GRenderShaderParameterDictionary& FRenderProgram::Parameters(ERenderShader shaderCd){
-   if(shaderCd == ERenderShader_Vertex){
-      return _vertexShader->Parameters();
-   }else if(shaderCd == ERenderShader_Fragment){
-      return _fragmentShader->Parameters();
-   }
-   return _parameters;
-}
+//GRenderShaderParameterDictionary& FRenderProgram::Parameters(ERenderShader shaderCd){
+//   if(shaderCd == ERenderShader_Vertex){
+//      return _vertexShader->Parameters();
+//   }else if(shaderCd == ERenderShader_Fragment){
+//      return _fragmentShader->Parameters();
+//   }
+//   return _parameters;
+//}
 
 //============================================================
 // <T>根据类型获得渲染参数。</T>
@@ -92,13 +92,13 @@ GRenderShaderParameterDictionary& FRenderProgram::Parameters(ERenderShader shade
 //============================================================
 FRenderProgramParameter* FRenderProgram::ParameterFind(ERenderShader shaderCd, TCharC* pName){
    FRenderProgramParameter* pParameter = NULL;
-   if(shaderCd == ERenderShader_Vertex){
-      pParameter = _vertexShader->ParameterFind(pName);
-   }else if(shaderCd == ERenderShader_Fragment){
-      pParameter = _fragmentShader->ParameterFind(pName);
-   }else{
-      pParameter = _parameters.Find(pName);
-   }
+   //if(shaderCd == ERenderShader_Vertex){
+   //   pParameter = _vertexShader->ParameterFind(pName);
+   //}else if(shaderCd == ERenderShader_Fragment){
+   //   pParameter = _fragmentShader->ParameterFind(pName);
+   //}else{
+   //   pParameter = _parameters.Find(pName);
+   //}
    return pParameter;
 }
 
@@ -109,10 +109,27 @@ FRenderProgramParameter* FRenderProgram::ParameterFind(ERenderShader shaderCd, T
 // @return 渲染参数
 //============================================================
 FRenderProgramParameter* FRenderProgram::ParameterFindByName(TCharC* pName){
-   GRenderShaderParameterDictionary::TIterator iterator = _parameters.Iterator();
-   while(iterator.Next()){
-      FRenderProgramParameter* pParameter = *iterator;
+   TInt count = _parameters.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderProgramParameter* pParameter = _parameters.Get(n);
       if(RString::Equals(pParameter->Name(), pName)){
+         return pParameter;
+      }
+   }
+   return NULL;
+}
+
+//============================================================
+// <T>根据关联名称查找一个参数。</T>
+//
+// @param pLinker 关联名称
+// @return 渲染参数
+//============================================================
+FRenderProgramParameter* FRenderProgram::ParameterFindByLinker(TCharC* pLinker){
+   TInt count = _parameters.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderProgramParameter* pParameter = _parameters.Get(n);
+      if(RString::Equals(pParameter->Linker(), pLinker)){
          return pParameter;
       }
    }
@@ -129,7 +146,12 @@ TResult FRenderProgram::ParameterPush(FRenderProgramParameter* pParameter){
    MO_CHECK(pParameter, return ENull);
    TCharC* pLinker = pParameter->Linker();
    MO_CHECK(pLinker, return ENull);
-   _parameters.Set(pLinker, pParameter);
+   FRenderProgramParameter* pFind = ParameterFindByLinker(pLinker);
+   if(pFind != NULL){
+      MO_FATAL("Program parameter is already exists. (name=%s, linker=%s)", pParameter->Name(), pParameter->Linker());
+      return EDuplicate;
+   }
+   _parameters.Push(pParameter);
    return ESuccess;
 }
 
@@ -141,15 +163,15 @@ TResult FRenderProgram::ParameterPush(FRenderProgramParameter* pParameter){
 // @return 渲染属性
 //============================================================
 FRenderProgramAttribute* FRenderProgram::AttributeFind(TCharC* pName, TInt index){
-   GRenderProgramAttributeDictionary::TIterator iterator = _attributes.IteratorC();
-   while(iterator.Next()){
-      FRenderProgramAttribute* pAttribute = *iterator;
-      if((index == -1) || (pAttribute->Index() == index)){
-         if(RString::Equals(pAttribute->Name(), pName)){
-            return pAttribute;
-         }
-      }
-   }
+   //GRenderProgramAttributeDictionary::TIterator iterator = _attributes.IteratorC();
+   //while(iterator.Next()){
+   //   FRenderProgramAttribute* pAttribute = *iterator;
+   //   if((index == -1) || (pAttribute->Index() == index)){
+   //      if(RString::Equals(pAttribute->Name(), pName)){
+   //         return pAttribute;
+   //      }
+   //   }
+   //}
    return NULL;
 }
 
@@ -160,10 +182,27 @@ FRenderProgramAttribute* FRenderProgram::AttributeFind(TCharC* pName, TInt index
 // @return 渲染属性
 //============================================================
 FRenderProgramAttribute* FRenderProgram::AttributeFindByName(TCharC* pName){
-   GRenderProgramAttributeDictionary::TIterator iterator = _attributes.IteratorC();
-   while(iterator.Next()){
-      FRenderProgramAttribute* pAttribute = *iterator;
+   TInt count = _attributes.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderProgramAttribute* pAttribute = _attributes.Get(n);
       if(RString::Equals(pAttribute->Name(), pName)){
+         return pAttribute;
+      }
+   }
+   return NULL;
+}
+
+//============================================================
+// <T>根据关联名称查找渲染属性。</T>
+//
+// @param pName 关联名称
+// @return 渲染属性
+//============================================================
+FRenderProgramAttribute* FRenderProgram::AttributeFindByLinker(TCharC* pLinker){
+   TInt count = _attributes.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderProgramAttribute* pAttribute = _attributes.Get(n);
+      if(RString::Equals(pAttribute->Linker(), pLinker)){
          return pAttribute;
       }
    }
@@ -180,7 +219,12 @@ TResult FRenderProgram::AttributePush(FRenderProgramAttribute* pAttribute){
    MO_CHECK(pAttribute, return ENull);
    TCharC* pLinker = pAttribute->Linker();
    MO_CHECK(pLinker, return ENull);
-   _attributes.Set(pLinker, pAttribute);
+   FRenderProgramBuffer* pFind = BufferFindByLinker(pLinker);
+   if(pFind != NULL){
+      MO_FATAL("Program attribute is already exists. (name=%s, linker=%s)", pAttribute->Name(), pAttribute->Linker());
+      return EDuplicate;
+   }
+   _attributes.Push(pAttribute);
    return ESuccess;
 }
 
@@ -269,7 +313,7 @@ TResult FRenderProgram::DrawBegin(){
       // 更新处理
       pBuffer->Update();
       // 绑定处理
-      _pDevice->BindShaderBuffer(pBuffer);
+      _pDevice->BindConstBuffer(pBuffer);
    }
    return ESuccess;
 }
@@ -286,36 +330,71 @@ TResult FRenderProgram::DrawEnd(){
 //============================================================
 // <T>跟踪处理。</T>
 //
+// @param detail 详细
 // @return 处理结果
 //============================================================
-TResult FRenderProgram::Track(){
+TResult FRenderProgram::Track(TBool detail){
    TString dump;
-   dump.Append("Program\n");
+   dump.Append("Program track.\n");
    //............................................................
-   // 缓冲信息
-   TInt bufferCount = _buffers.Count();
-   dump.AppendFormat("Buffer (count=%d)\n", bufferCount);
-   for(TInt n = 0; n < bufferCount; n++){
-      FRenderProgramBuffer* pBuffer = _buffers.Get(n);
-      dump.AppendFormat("   Buffer: name=%s, linker=%s\n", pBuffer->Name(), pBuffer->Linker());
+   // 获取缓冲集合信息
+   if(!_buffers.IsEmpty()){
+      TInt index = 0;
+      TInt count = _buffers.Count();
+      dump.AppendFormat("Buffer (count=%d)\n", count);
+      for(TInt n = 0; n < count; n++){
+         FRenderProgramBuffer* pBuffer = _buffers.Get(n);
+         if(detail || pBuffer->IsStatusUsed()){
+            dump.AppendFormat("   %2d:", index++);
+            pBuffer->Dump(&dump, detail);
+            dump.Append("\n");
+         }
+      }
    }
    //............................................................
-   // 取样器信息
-   //TInt attributeCount = _attributes.Count();
-   //dump.AppendFormat("Attribute (count=%d)\n", attributeCount);
-   //for(TInt n = 0; n < attributeCount; n++){
-   //   FRenderProgramAttribute * pAttribute = _attributes.Get(n);
-   //   dump.AppendFormat("   %s = 0x%08X\n", pAttribute->Code(), pAttribute->Slot());
-   //}
+   // 获取参数集合信息
+   if(!_parameters.IsEmpty()){
+      TInt index = 0;
+      TInt count = _parameters.Count();
+      dump.AppendFormat("Parameter (count=%d)\n", count);
+      for(TInt n = 0; n < count; n++){
+         FRenderProgramParameter* pParameter = _parameters.Get(n);
+         if(detail || pParameter->IsStatusUsed()){
+            dump.AppendFormat("   %2d:", index++);
+            pParameter->Dump(&dump, detail);
+            dump.Append("\n");
+         }
+      }
+   }
    //............................................................
-   // 取样器信息
-   TInt samplerCount = _samplers.Count();
-   dump.AppendFormat("Sampler (count=%d)\n", samplerCount);
-   for(TInt n = 0; n < samplerCount; n++){
-      FRenderProgramSampler* pSampler = _samplers.Get(n);
-      dump.Append("   ");
-      pSampler->Dump(&dump);
-      dump.Append("\n");
+   // 获取属性集合信息
+   if(!_attributes.IsEmpty()){
+      TInt index = 0;
+      TInt count = _attributes.Count();
+      dump.AppendFormat("Attribute (count=%d)\n", count);
+      for(TInt n = 0; n < count; n++){
+         FRenderProgramAttribute * pAttribute = _attributes.Get(n);
+         if(detail || pAttribute->IsStatusUsed()){
+            dump.AppendFormat("   %2d:", index++);
+            pAttribute->Dump(&dump, detail);
+            dump.Append("\n");
+         }
+      }
+   }
+   //............................................................
+   // 获取取样集合信息
+   if(!_samplers.IsEmpty()){
+      TInt index = 0;
+      TInt count = _samplers.Count();
+      dump.AppendFormat("Sampler (count=%d)\n", count);
+      for(TInt n = 0; n < count; n++){
+         FRenderProgramSampler* pSampler = _samplers.Get(n);
+         if(detail || pSampler->IsStatusUsed()){
+            dump.AppendFormat("   %2d:", index++);
+            pSampler->Dump(&dump, detail);
+            dump.Append("\n");
+         }
+      }
    }
    MO_INFO(dump);
    return ESuccess;

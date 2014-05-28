@@ -2,19 +2,19 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderShaderParameter, FRenderProgramParameter);
+MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderProgramParameter, FRenderProgramParameter);
 
 //============================================================
 // <T>构造渲染器参数。</T>
 //============================================================
-FPd11RenderShaderParameter::FPd11RenderShaderParameter(){
+FPd11RenderProgramParameter::FPd11RenderProgramParameter(){
    MO_CLEAR(_piVariable);
 }
 
 //============================================================
 // <T>析构渲染器参数。</T>
 //============================================================
-FPd11RenderShaderParameter::~FPd11RenderShaderParameter(){
+FPd11RenderProgramParameter::~FPd11RenderProgramParameter(){
 }
 
 //============================================================
@@ -23,7 +23,7 @@ FPd11RenderShaderParameter::~FPd11RenderShaderParameter(){
 // @param piVariable 参数接口
 // @return 处理结果
 //============================================================
-TResult FPd11RenderShaderParameter::LinkNative(ID3D11ShaderReflectionVariable* piVariable){
+TResult FPd11RenderProgramParameter::LinkNative(ID3D11ShaderReflectionVariable* piVariable){
    // 获得描述
    D3D11_SHADER_VARIABLE_DESC descriptor;
    HRESULT dxResult = piVariable->GetDesc(&descriptor);

@@ -58,7 +58,7 @@ TResult FBlurPass::DrawRegion(FRenderRegion* pRegion){
    //    1.0f / (TFloat)textureSize.height * rate);
    pRenderDevice->BindVertexBuffer(positionSlot, pVertexBuffer, 0, ERenderAttributeFormat_Float3);
    pRenderDevice->BindVertexBuffer(coordSlot, pVertexBuffer, sizeof(TFloat) * 3, ERenderAttributeFormat_Float2);
-   pRenderDevice->BindTexture(diffuseSlot, _inputTexture);
+   pRenderDevice->BindTexture(diffuseSlot, 0, _inputTexture);
    pRenderDevice->DrawTriangles(pIndexBuffer, 0, pIndexBuffer->Count());
    //............................................................
    // ¹Ø±Õ³ÌÐò

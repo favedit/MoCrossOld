@@ -8,13 +8,12 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramParameter, FRenderInstance);
 // <T>构造渲染器参数。</T>
 //============================================================
 FRenderProgramParameter::FRenderProgramParameter(){
-   _code = -1;
+   _statusUsed = EFalse;
    _shaderCd = ERenderShader_Unknown;
    _formatCd = ERenderParameterFormat_Unknown;
-   _statusUsed = EFalse;
    _slot = -1;
    _size = 0;
-   MO_CLEAR(_pShader);
+   //MO_CLEAR(_pShader);
 }
 
 //============================================================
@@ -270,9 +269,9 @@ TResult FRenderProgramParameter::LoadConfig(FXmlNode* pConfig){
 // @param pDump 输出缓冲
 // @return 处理结果
 //============================================================
-TResult FRenderProgramParameter::Dump(MString* pDump){
+TResult FRenderProgramParameter::Dump(MString* pDump, TBool detail){
    MO_CHECK(pDump, return ENull);
-   pDump->AppendFormat("Parameter: name=%s, linker=%s, slot=%d", (TCharC*)_name, (TCharC*)_linker, _slot);
+   pDump->AppendFormat("Parameter: name=%s, linker=%s, used=%d, slot=%d, size=%d", (TCharC*)_name, (TCharC*)_linker, _statusUsed, _slot, _size);
    return ESuccess;
 }
 

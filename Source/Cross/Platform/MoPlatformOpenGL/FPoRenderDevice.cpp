@@ -16,6 +16,18 @@ FPoRenderDevice::FPoRenderDevice(){
    // 初始化关联集合
    _pLinkFlatTextures = MO_CREATE(FRenderFlatTextureList);
    _pLinkCubeTextures = MO_CREATE(FRenderCubeTextureList);
+   // 注册类集合
+   _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT,            FPoRenderLayout::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_BUFFER,    FRenderProgramBuffer::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_PARAMETER, FPoRenderProgramParameter::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_ATTRIBUTE, FRenderProgramAttribute::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_SAMPLER,   FRenderProgramSampler::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_BUFFER_VERTEX,     FPoRenderVertexBuffer::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_BUFFER_INDEX,      FPoRenderIndexBuffer::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM,           FPoRenderProgram::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_TARGET,            FPoRenderTarget::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_TEXTURE_2D,        FPoRenderFlatTexture::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_TEXTURE_CUBE,      FPoRenderCubeTexture::Class());
 }
 
 //============================================================
@@ -35,8 +47,9 @@ TBool FPoRenderDevice::UpdateContext(){
    TBool result = EFalse;
    // 设置激活的程序
    if(_pActiveProgram != _pProgram){
-      FPoRenderProgram* pProgrom = (FPoRenderProgram*)_pProgram;
-      glUseProgram(pProgrom->ProgramId());
+      FPoRenderProgram* pProgrom = _pProgram->Convert<FPoRenderProgram>();
+      GLuint programId = pProgrom->NativeCode();
+      glUseProgram(programId);
       _pProgram = _pActiveProgram;
       result = ETrue;
    }
@@ -216,103 +229,6 @@ TResult FPoRenderDevice::CheckError(TCharC* pCode, TCharC* pMessage, ...){
 }
 
 //============================================================
-// <T>创建顶点缓冲。</T>
-//
-// @param pClass 类对象
-// @return 顶点缓冲
-//============================================================
-FRenderVertexBuffer* FPoRenderDevice::CreateVertexBuffer(FClass* pClass){
-   FRenderVertexBuffer* pVertexBuffer = FPoRenderVertexBuffer::InstanceCreate();
-   pVertexBuffer->SetDevice(this);
-   _storageVertexBuffers.Push(pVertexBuffer);
-   return pVertexBuffer;
-}
-
-//============================================================
-// <T>创建索引缓冲。</T>
-//
-// @param pClass 类对象
-// @return 索引缓冲
-//============================================================
-FRenderIndexBuffer* FPoRenderDevice::CreateIndexBuffer(FClass* pClass){
-   FRenderIndexBuffer* pIndexBuffer = FPoRenderIndexBuffer::InstanceCreate();
-   pIndexBuffer->SetDevice(this);
-   _storageIndexBuffers.Push(pIndexBuffer);
-   return pIndexBuffer;
-}
-
-//============================================================
-// <T>创建程序。</T>
-//
-// @param pClass 类对象
-// @return 程序
-//============================================================
-FRenderProgram* FPoRenderDevice::CreateProgrom(FClass* pClass){
-   FPoRenderProgram* pProgram = FPoRenderProgram::InstanceCreate();
-   pProgram->SetDevice(this);
-   _storagePrograms.Push(pProgram);
-   return pProgram;
-}
-
-//============================================================
-// <T>创建渲染目标。</T>
-//
-// @param pClass 类对象
-// @return 渲染目标
-//============================================================
-FRenderTarget* FPoRenderDevice::CreateRenderTarget(FClass* pClass){
-   FPoRenderTarget* pRenderTarget = FPoRenderTarget::InstanceCreate();
-   pRenderTarget->SetDevice(this);
-   _storageTargets.Push(pRenderTarget);
-   return pRenderTarget;
-}
-
-//============================================================
-// <T>创建平面纹理。</T>
-//
-// @param pClass 类对象
-// @return 纹理
-//============================================================
-FRenderFlatTexture* FPoRenderDevice::CreateFlatTexture(FClass* pClass){
-   FPoRenderFlatTexture* pTexture = FPoRenderFlatTexture::InstanceCreate();
-   pTexture->SetDevice(this);
-   _storageTextures.Push(pTexture);
-   _pLinkFlatTextures->Push(pTexture);
-   return pTexture;
-}
-
-//============================================================
-// <T>创建空间纹理。</T>
-//
-// @param pClass 类对象
-// @return 纹理
-//============================================================
-FRenderCubeTexture* FPoRenderDevice::CreateCubeTexture(FClass* pClass){
-   FPoRenderCubeTexture* pTexture = FPoRenderCubeTexture::InstanceCreate();
-   pTexture->SetDevice(this);
-   _storageTextures.Push(pTexture);
-   _pLinkCubeTextures->Push(pTexture);
-   return pTexture;
-}
-
-//============================================================
-// <T>清空内容。</T>
-//
-// @param red 红色
-// @param green 绿色
-// @param blue 蓝色
-// @param alpha 透明
-// @param depth 深度
-// @return 处理结果
-//============================================================
-TResult FPoRenderDevice::Clear(TFloat red, TFloat green, TFloat blue, TFloat alpha, TFloat depth){
-   glClearColor(red, green, blue, alpha);
-   glClearDepthf(depth);
-   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-   return ETrue;
-}
-
-//============================================================
 // <T>设置背景缓冲。</T>
 //
 // @return 处理结果
@@ -475,7 +391,8 @@ TResult FPoRenderDevice::SetRenderTarget(FRenderTarget* pRenderTarget){
       return ESuccess;
    }else{
       // 绑定渲染目标
-      GLuint frameBufferId = pRenderTarget->RenderId().uint32;
+      FPoRenderTarget* pGlRenderTarget = pRenderTarget->Convert<FPoRenderTarget>();
+      GLuint frameBufferId = pGlRenderTarget->NativeCode();
       glBindFramebuffer(GL_FRAMEBUFFER, frameBufferId);
       result = CheckError("glBindFramebuffer", "Bind frame buffer. (buffer_id=%d)", frameBufferId);
       if(result != ESuccess){
@@ -509,8 +426,8 @@ TResult FPoRenderDevice::SetProgram(FRenderProgram* pProgram){
    // 获得程序编号
    GLuint programId = GL_ZERO;
    if(pProgram != NULL){
-      FPoRenderProgram* pRenderProgram = (FPoRenderProgram*)pProgram;
-      programId = pRenderProgram->ProgramId();
+      FPoRenderProgram* pRenderProgram = pProgram->Convert<FPoRenderProgram>();
+      programId = pRenderProgram->NativeCode();
    }
    // 设置程序
    glUseProgram(programId);
@@ -523,6 +440,29 @@ TResult FPoRenderDevice::SetProgram(FRenderProgram* pProgram){
 }
 
 //============================================================
+// <T>设置布局。</T>
+//
+// @parma pLayout 布局
+// @return 处理结果
+//============================================================
+TResult FPoRenderDevice::SetLayout(FRenderLayout* pLayout){
+   MO_CHECK(pLayout, return ENull);
+   // 获得顶点流
+   TResult result = ESuccess;
+   FPoRenderLayout* pRenderLayout = pLayout->Convert<FPoRenderLayout>();
+   // 获得信息
+   TInt count = pRenderLayout->Count();
+   TInt* pSlots = pRenderLayout->Slots();
+   FRenderVertexBuffer** pBuffers = pRenderLayout->Buffers();
+   TInt* bufferOffset = pRenderLayout->Offset();
+   ERenderAttributeFormat* formatCds = pRenderLayout->Formats();
+   for(TInt n = 0; n < count; n++){
+      BindVertexBuffer(pSlots[n], pBuffers[n], bufferOffset[n], formatCds[n]);
+   }
+   return ESuccess;
+}
+
+//============================================================
 // <T>绑定常量数据。</T>
 //
 // @parma shaderCd 渲染类型
@@ -531,7 +471,7 @@ TResult FPoRenderDevice::SetProgram(FRenderProgram* pProgram){
 // @parma length 长度
 // @return 处理结果
 //============================================================
-TResult FPoRenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERenderParameterFormat formatCd, TAnyC* pData, TInt length){
+TResult FPoRenderDevice::BindConst(ERenderShader shaderCd, TInt slot, ERenderParameterFormat formatCd, TAnyC* pData, TInt length){
    // 检查变更
    TBool changed = UpdateConsts(shaderCd, slot, pData, length);
    if(!changed){
@@ -543,7 +483,7 @@ TResult FPoRenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERende
       case ERenderParameterFormat_Float1:{
          // 检查长度
          if(length % 4 != 0){
-            MO_ERROR("Length is invalid. (length=d)", length);
+            MO_ERROR("Length is invalid. (length=%d)", length);
             return EFailure;
          }
          // 修改数据
@@ -556,7 +496,7 @@ TResult FPoRenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERende
       case ERenderParameterFormat_Float2:{
          // 检查长度
          if(length % 8 != 0){
-            MO_ERROR("Length is invalid. (length=d)", length);
+            MO_ERROR("Length is invalid. (length=%d)", length);
             return EFailure;
          }
          // 修改数据
@@ -582,7 +522,7 @@ TResult FPoRenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERende
       case ERenderParameterFormat_Float4:{
          // 检查长度
          if(length % 16 != 0){
-            MO_ERROR("Length is invalid. (length=d)", length);
+            MO_ERROR("Length is invalid. (length=%d)", length);
             return EFailure;
          }
          // 修改数据
@@ -595,7 +535,7 @@ TResult FPoRenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERende
       case ERenderParameterFormat_Float3x3:{
          // 检查长度
          if(length % 36 != 0){
-            MO_ERROR("Length is invalid. (length=d)", length);
+            MO_ERROR("Length is invalid. (length=%d)", length);
             return EFailure;
          }
          // 修改数据
@@ -608,7 +548,7 @@ TResult FPoRenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERende
       case ERenderParameterFormat_Float4x3:{
          // 检查长度
          if(length % 48 != 0){
-            MO_ERROR("Length is invalid. (length=d)", length);
+            MO_ERROR("Length is invalid. (length=%d)", length);
             return EFailure;
          }
          // 修改数据
@@ -622,7 +562,7 @@ TResult FPoRenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERende
       case ERenderParameterFormat_Float4x4:{
          // 检查长度
          if(length % 64 != 0){
-            MO_ERROR("Length is invalid. (length=d)", length);
+            MO_ERROR("Length is invalid. (length=%d)", length);
             return EFailure;
          }
          // 修改数据
@@ -639,137 +579,14 @@ TResult FPoRenderDevice::BindConstData(ERenderShader shaderCd, TInt slot, ERende
 }
 
 //============================================================
-// <T>绑定常量四维浮点数。</T>
+// <T>绑定渲染缓冲。</T>
 //
-// @parma shaderCd 渲染类型
-// @parma slot 插槽
-// @parma x X内容
-// @parma y Y内容
-// @parma z Z内容
-// @parma w W内容
+// @param pBuffer 渲染缓冲
 // @return 处理结果
 //============================================================
-TResult FPoRenderDevice::BindConstFloat3(ERenderShader shaderCd, TInt slot, TFloat x, TFloat y, TFloat z){
-   // 检查变更
-   TFloat data[3] = {x, y, z};
-   TInt length = sizeof(TFloat) * 3;
-   TBool changed = UpdateConsts(shaderCd, slot, data, length);
-   if(!changed){
-      return EContinue;
-   }
-   // 修改数据
-   glUniform3fv(slot, 1, (const GLfloat*)data);
-   // 检查错误
-   TResult result = CheckError("glUniform3fv", "Bind const float3 failure. (shader_cd=%d, slot=%d, value=%f,%f,%f)", shaderCd, slot, x, y, z);
-   _statistics->UpdateProgramCount(sizeof(data));
-   return result;
-}
-
-//============================================================
-// <T>绑定常量四维浮点数。</T>
-//
-// @parma shaderCd 渲染类型
-// @parma slot 插槽
-// @parma x X内容
-// @parma y Y内容
-// @parma z Z内容
-// @parma w W内容
-// @return 处理结果
-//============================================================
-TResult FPoRenderDevice::BindConstFloat4(ERenderShader shaderCd, TInt slot, TFloat x, TFloat y, TFloat z, TFloat w){
-   // 检查变更
-   TFloat data[4] = {x, y, z, w};
-   TInt length = sizeof(TFloat) * 4;
-   TBool changed = UpdateConsts(shaderCd, slot, data, length);
-   if(!changed){
-      return EContinue;
-   }
-   // 修改数据
-   glUniform4fv(slot, 1, (const GLfloat*)data);
-   // 检查错误
-   TResult result = CheckError("glUniform4fv", "Bind const float4 failure. (shader_cd=%d, slot=%d, value=%f,%f,%f,%f)", shaderCd, slot, x, y, z, w);
-   _statistics->UpdateProgramCount(sizeof(data));
-   return result;
-}
-
-//============================================================
-// <T>绑定常量三维矩阵。</T>
-//
-// @parma shaderCd 渲染类型
-// @parma slot 插槽
-// @parma matrix 矩阵
-// @return 处理结果
-//============================================================
-TResult FPoRenderDevice::BindConstMatrix3x3(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix){
-   // 检查变更
-   TAnyC* pMemory = matrix.MemoryC();
-   TInt length = sizeof(TFloat) * 9;
-   TBool changed = UpdateConsts(shaderCd, slot, pMemory, length);
-   if(!changed){
-      return EContinue;
-   }
-   // 转置矩阵
-   GLfloat data[3][3];
-   data[0][0] = matrix.data[0][0];
-   data[0][1] = matrix.data[1][0];
-   data[0][2] = matrix.data[2][0];
-   data[1][0] = matrix.data[0][1];
-   data[1][1] = matrix.data[1][1];
-   data[1][2] = matrix.data[2][1];
-   data[2][0] = matrix.data[0][2];
-   data[2][1] = matrix.data[1][2];
-   data[2][2] = matrix.data[2][2];
-   glUniformMatrix3fv(slot, 1, GL_FALSE, (const GLfloat*)data);
-   // 检查错误
-   TResult result = CheckError("glUniformMatrix3fv", "Bind const matrix3x3 failure. (shader_cd=%d, slot=%d)", shaderCd, slot);
-   _statistics->UpdateProgramCount(length);
-   return result;
-}
-
-//============================================================
-// <T>绑定常量三维矩阵。</T>
-//
-// @parma shaderCd 渲染类型
-// @parma slot 插槽
-// @parma matrix 矩阵
-// @return 处理结果
-//============================================================
-TResult FPoRenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix){
-   // 检查变更
-   TAnyC* pMemory = matrix.MemoryC();
-   TInt length = sizeof(TFloat) * 16;
-   TBool changed = UpdateConsts(shaderCd, slot, pMemory, length);
-   if(!changed){
-      return EContinue;
-   }
-   // 修改数据
-#ifdef _MO_ANDROID
-   // 转置矩阵
-   GLfloat data[4][4];
-   data[0][0] = matrix.data[0][0];
-   data[0][1] = matrix.data[1][0];
-   data[0][2] = matrix.data[2][0];
-   data[0][3] = matrix.data[3][0];
-   data[1][0] = matrix.data[0][1];
-   data[1][1] = matrix.data[1][1];
-   data[1][2] = matrix.data[2][1];
-   data[1][3] = matrix.data[3][1];
-   data[2][0] = matrix.data[0][2];
-   data[2][1] = matrix.data[1][2];
-   data[2][2] = matrix.data[2][2];
-   data[2][3] = matrix.data[3][2];
-   data[3][0] = matrix.data[0][3];
-   data[3][1] = matrix.data[1][3];
-   data[3][2] = matrix.data[2][3];
-   data[3][3] = matrix.data[3][3];
-   glUniformMatrix4fv(slot, 1, GL_FALSE, (const GLfloat*)data);
-#else
-   glUniformMatrix4fv(slot, 1, GL_TRUE, (const GLfloat*)pMemory);
-#endif // _MO_ANDROID
-   // 检查错误
-   TResult result = CheckError("glUniformMatrix4fv", "Bind const matrix4x4 failure. (shader_cd=%d, slot=%d)", shaderCd, slot);
-   _statistics->UpdateProgramCount(length);
-   return result;
+TResult FPoRenderDevice::BindConstBuffer(FRenderProgramBuffer* pBuffer){
+   MO_FATAL_UNSUPPORT();
+   return ESuccess;
 }
 
 //============================================================
@@ -847,10 +664,11 @@ TResult FPoRenderDevice::BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVerte
 // <T>绑定纹理。</T>
 //
 // @param slot 插槽
+// @param index 索引
 // @param pTexture 纹理
 // @return 处理结果
 //============================================================
-TResult FPoRenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
+TResult FPoRenderDevice::BindTexture(TInt slot, TInt index, FRenderTexture* pTexture){
    TResult result = ESuccess;
    //............................................................
    // 空纹理处理
@@ -862,7 +680,7 @@ TResult FPoRenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
    //............................................................
    // 激活纹理
    if(_renderTextureActiveSlot != slot){
-      TInt index = pTexture->Index();
+      MO_CHECK(index >= 0, return EOutRange);
       glUniform1i(slot, index);
       glActiveTexture(GL_TEXTURE0 + index);
       result = CheckError("glActiveTexture", "Active texture failure. (slot=%d, index=%d)", slot, index);
@@ -906,6 +724,23 @@ TResult FPoRenderDevice::BindTexture(TInt slot, FRenderTexture* pTexture){
    // 统计数据
    _statistics->UpdateSamplerCount();
    return result;
+}
+
+//============================================================
+// <T>清空内容。</T>
+//
+// @param red 红色
+// @param green 绿色
+// @param blue 蓝色
+// @param alpha 透明
+// @param depth 深度
+// @return 处理结果
+//============================================================
+TResult FPoRenderDevice::Clear(TFloat red, TFloat green, TFloat blue, TFloat alpha, TFloat depth){
+   glClearColor(red, green, blue, alpha);
+   glClearDepthf(depth);
+   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+   return ETrue;
 }
 
 //============================================================

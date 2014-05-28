@@ -22,9 +22,9 @@ protected:
    TInt _count;
    MO_D3D10_INPUT_ELEMENT_DESC_ARRAY _inputElements;
    ID3D10InputLayout* _piInputLayout;
-   ID3D10Buffer* _piBuffer[MO_INPUT_ELEMENT_MAXCNT];
-   UINT _strides[MO_INPUT_ELEMENT_MAXCNT];
-   UINT _offsets[MO_INPUT_ELEMENT_MAXCNT];
+   ID3D10Buffer* _piBuffer[MO_RENDER_ATTRIBUTE_MAXCNT];
+   UINT _strides[MO_RENDER_ATTRIBUTE_MAXCNT];
+   UINT _offsets[MO_RENDER_ATTRIBUTE_MAXCNT];
 public:
    FPd10RenderLayout();
    MO_ABSTRACT ~FPd10RenderLayout();
@@ -447,14 +447,6 @@ public:
 public:
    MO_OVERRIDE TResult CheckError(TCharC* pCode, TCharC* pMessage, ...);
 public:
-   MO_OVERRIDE FRenderVertexBuffer* CreateVertexBuffer(FClass* pClass = NULL);
-   MO_OVERRIDE FRenderIndexBuffer* CreateIndexBuffer(FClass* pClass = NULL);
-   MO_OVERRIDE FRenderProgram* CreateProgrom(FClass* pClass = NULL);
-   MO_OVERRIDE FRenderTarget* CreateRenderTarget(FClass* pClass = NULL);
-   MO_OVERRIDE FRenderFlatTexture* CreateFlatTexture(FClass* pClass = NULL);
-   MO_OVERRIDE FRenderCubeTexture* CreateCubeTexture(FClass* pClass = NULL);
-public:
-   MO_OVERRIDE TResult Clear(TFloat red = 0.0f, TFloat green = 0.0f, TFloat blue = 0.0f, TFloat alpha = 1.0f, TFloat depth = 1.0f);
    MO_OVERRIDE TResult SetBackBuffer(TInt width, TInt height, TInt antiAlias, TBool depthed = ETrue);
    MO_OVERRIDE TResult SetFillMode(ERenderFillMode fillModeCd);
    MO_OVERRIDE TResult SetDepthMode(TBool depth, ERenderDepthMode depthCd = ERenderDepthMode_None);
@@ -464,14 +456,13 @@ public:
    MO_OVERRIDE TResult SetRenderTarget(FRenderTarget* pRenderTarget = NULL);
    MO_OVERRIDE TResult SetProgram(FRenderProgram* pProgram);
    MO_OVERRIDE TResult SetLayout(FRenderLayout* pLayout);
-   MO_OVERRIDE TResult BindConstData(ERenderShader shaderCd, TInt slot, ERenderParameterFormat formatCd, TAnyC* pData, TInt length);
-   MO_OVERRIDE TResult BindConstFloat3(ERenderShader shaderCd, TInt slot, TFloat x = 0.0f, TFloat y = 0.0f, TFloat z = 0.0f);
-   MO_OVERRIDE TResult BindConstFloat4(ERenderShader shaderCd, TInt slot, TFloat x = 0.0f, TFloat y = 0.0f, TFloat z = 0.0f, TFloat w = 1.0f);
-   MO_OVERRIDE TResult BindConstMatrix3x3(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix);
-   MO_OVERRIDE TResult BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix);
-   MO_OVERRIDE TResult BindShaderBuffer(FRenderProgramBuffer* pBuffer);
+public:
+   MO_OVERRIDE TResult BindConst(ERenderShader shaderCd, TInt slot, ERenderParameterFormat formatCd, TAnyC* pData, TInt length);
+   MO_OVERRIDE TResult BindConstBuffer(FRenderProgramBuffer* pBuffer);
    MO_OVERRIDE TResult BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVertexBuffer, TInt offset, ERenderAttributeFormat formatCd);
-   MO_OVERRIDE TResult BindTexture(TInt slot, FRenderTexture* pTexture);
+   MO_OVERRIDE TResult BindTexture(TInt slot, TInt index, FRenderTexture* pTexture);
+public:
+   MO_OVERRIDE TResult Clear(TFloat red = 0.0f, TFloat green = 0.0f, TFloat blue = 0.0f, TFloat alpha = 1.0f, TFloat depth = 1.0f);
    MO_OVERRIDE TResult DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt offset, TInt count);
    MO_OVERRIDE TResult Present();
 };

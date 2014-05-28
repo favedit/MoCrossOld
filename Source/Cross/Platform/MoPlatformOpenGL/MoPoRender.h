@@ -12,6 +12,53 @@
 
 MO_NAMESPACE_BEGIN
 
+#define MO_RENDER_ATTRIBUTE_MAXCNT 64
+
+//============================================================
+// <T>渲染层信息。</T>
+//============================================================
+class MO_PO_DECLARE FPoRenderLayout : public FRenderLayout
+{
+   MO_CLASS_DECLARE_INHERITS(FPoRenderLayout, FRenderLayout);
+protected:
+   TInt _count;
+   TInt _slots[MO_RENDER_ATTRIBUTE_MAXCNT];
+   FRenderVertexBuffer* _pBuffers[MO_RENDER_ATTRIBUTE_MAXCNT];
+   TInt _offsets[MO_RENDER_ATTRIBUTE_MAXCNT];
+   ERenderAttributeFormat _formats[MO_RENDER_ATTRIBUTE_MAXCNT];
+public:
+   FPoRenderLayout();
+   MO_ABSTRACT ~FPoRenderLayout();
+public:
+   //------------------------------------------------------------
+   // <T>获得总数。</T>
+   MO_INLINE TInt Count(){
+      return _count;
+   }
+   //------------------------------------------------------------
+   // <T>获得插槽集合。</T>
+   MO_INLINE TInt* Slots(){
+      return _slots;
+   }
+   //------------------------------------------------------------
+   // <T>获得数据。</T>
+   MO_INLINE FRenderVertexBuffer** Buffers(){
+      return _pBuffers;
+   }
+   //------------------------------------------------------------
+   // <T>获得位置。</T>
+   MO_INLINE TInt* Offset(){
+      return _offsets;
+   }
+   //------------------------------------------------------------
+   // <T>获得格式集合。</T>
+   MO_INLINE ERenderAttributeFormat* Formats(){
+      return _formats;
+   }
+public:
+   MO_OVERRIDE TResult OnSetup();
+};
+
 //============================================================
 // <T>渲染顶点缓冲。</T>
 //============================================================
@@ -72,9 +119,17 @@ public:
 class MO_PO_DECLARE FPoRenderVertexShader : public FRenderVertexShader
 {
    MO_CLASS_DECLARE_INHERITS(FPoRenderVertexShader, FRenderVertexShader);
+protected:
+   GLuint _nativeCode;
 public:
    FPoRenderVertexShader();
    MO_ABSTRACT ~FPoRenderVertexShader();
+public:
+   //------------------------------------------------------------
+   // <T>获得本地代码。</T>
+   MO_INLINE GLuint NativeCode(){
+      return _nativeCode;
+   }
 public:
    MO_OVERRIDE TResult Setup();
 public:
@@ -91,9 +146,17 @@ public:
 class MO_PO_DECLARE FPoRenderFragmentShader : public FRenderFragmentShader
 {
    MO_CLASS_DECLARE_INHERITS(FPoRenderFragmentShader, FRenderVertexShader);
+protected:
+   GLuint _nativeCode;
 public:
    FPoRenderFragmentShader();
    MO_ABSTRACT ~FPoRenderFragmentShader();
+public:
+   //------------------------------------------------------------
+   // <T>获得本地代码。</T>
+   MO_INLINE GLuint NativeCode(){
+      return _nativeCode;
+   }
 public:
    MO_OVERRIDE TResult Setup();
 public:
@@ -102,6 +165,20 @@ public:
    MO_OVERRIDE TResult Suspend();
    MO_OVERRIDE TResult Resume();
    MO_OVERRIDE TResult Dispose();
+};
+
+//============================================================
+// <T>渲染器参数。</T>
+//============================================================
+class MO_PO_DECLARE FPoRenderProgramParameter : public FRenderProgramParameter
+{
+   MO_CLASS_DECLARE_INHERITS(FPoRenderProgramParameter, FRenderProgramParameter);
+public:
+   FPoRenderProgramParameter();
+   MO_ABSTRACT ~FPoRenderProgramParameter();
+public:
+   MO_ABSTRACT TResult Get(TAny* pData, TInt capacity);
+   MO_ABSTRACT TResult Set(TAny* pData, TInt length);
 };
 
 //============================================================
@@ -139,15 +216,15 @@ class MO_PO_DECLARE FPoRenderProgram : public FRenderProgram
 {
    MO_CLASS_DECLARE_INHERITS(FPoRenderProgram, FRenderProgram);
 protected:
-   GLuint _programId;
+   GLuint _nativeCode;
 public:
    FPoRenderProgram();
    MO_ABSTRACT ~FPoRenderProgram();
 public:
    //------------------------------------------------------------
-   // <T>获得代码。</T>
-   MO_INLINE GLuint ProgramId(){
-      return _programId;
+   // <T>获得本地代码。</T>
+   MO_INLINE GLuint NativeCode(){
+      return _nativeCode;
    }
 public:
    MO_OVERRIDE TInt FindDefine(TCharC* pCode);
@@ -170,7 +247,7 @@ class MO_PO_DECLARE FPoRenderTarget : public FRenderTarget
 {
    MO_CLASS_DECLARE_INHERITS(FPoRenderTarget, FRenderTarget);
 protected:
-   GLuint _frameBufferId;
+   GLuint _nativeCode;
    GLuint _depthStencilId;
    GLuint _depthBufferId;
 public:
@@ -178,9 +255,9 @@ public:
    MO_ABSTRACT ~FPoRenderTarget();
 public:
    //------------------------------------------------------------
-   // <T>获得帧缓冲编号。</T>
-   MO_INLINE GLuint FrameBufferId(){
-      return _frameBufferId;
+   // <T>获得本地代码。</T>
+   MO_INLINE GLuint NativeCode(){
+      return _nativeCode;
    }
    //------------------------------------------------------------
    // <T>获得深度模板编号。</T>
@@ -294,14 +371,6 @@ public:
 public:
    MO_OVERRIDE TResult CheckError(TCharC* pCode, TCharC* pMessage, ...);
 public:
-   MO_OVERRIDE FRenderVertexBuffer* CreateVertexBuffer(FClass* pClass = NULL);
-   MO_OVERRIDE FRenderIndexBuffer* CreateIndexBuffer(FClass* pClass = NULL);
-   MO_OVERRIDE FRenderProgram* CreateProgrom(FClass* pClass = NULL);
-   MO_OVERRIDE FRenderTarget* CreateRenderTarget(FClass* pClass = NULL);
-   MO_OVERRIDE FRenderFlatTexture* CreateFlatTexture(FClass* pClass = NULL);
-   MO_OVERRIDE FRenderCubeTexture* CreateCubeTexture(FClass* pClass = NULL);
-public:
-   MO_OVERRIDE TResult Clear(TFloat red = 0.0f, TFloat green = 0.0f, TFloat blue = 0.0f, TFloat alpha = 1.0f, TFloat depth = 1.0f);
    MO_OVERRIDE TResult SetBackBuffer(TInt width, TInt height, TInt antiAlias, TBool depthed = ETrue);
    MO_OVERRIDE TResult SetFillMode(ERenderFillMode fillModeCd);
    MO_OVERRIDE TResult SetDepthMode(TBool depth, ERenderDepthMode depthCd = ERenderDepthMode_None);
@@ -310,13 +379,14 @@ public:
    MO_OVERRIDE TResult SetScissorRectangle(TInt left, TInt top, TInt width, TInt height);
    MO_OVERRIDE TResult SetRenderTarget(FRenderTarget* pRenderTarget = NULL);
    MO_OVERRIDE TResult SetProgram(FRenderProgram* pProgram);
-   MO_OVERRIDE TResult BindConstData(ERenderShader shaderCd, TInt slot, ERenderParameterFormat formatCd, TAnyC* pData, TInt length);
-   MO_OVERRIDE TResult BindConstFloat3(ERenderShader shaderCd, TInt slot, TFloat x = 0.0f, TFloat y = 0.0f, TFloat z = 0.0f);
-   MO_OVERRIDE TResult BindConstFloat4(ERenderShader shaderCd, TInt slot, TFloat x = 0.0f, TFloat y = 0.0f, TFloat z = 0.0f, TFloat w = 1.0f);
-   MO_OVERRIDE TResult BindConstMatrix3x3(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix);
-   MO_OVERRIDE TResult BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d& matrix);
+   MO_OVERRIDE TResult SetLayout(FRenderLayout* pLayout);
+public:
+   MO_OVERRIDE TResult BindConst(ERenderShader shaderCd, TInt slot, ERenderParameterFormat formatCd, TAnyC* pData, TInt length);
+   MO_OVERRIDE TResult BindConstBuffer(FRenderProgramBuffer* pBuffer);
    MO_OVERRIDE TResult BindVertexBuffer(TInt slot, FRenderVertexBuffer* pVertexBuffer, TInt offset, ERenderAttributeFormat formatCd);
-   MO_OVERRIDE TResult BindTexture(TInt slot, FRenderTexture* pTexture);
+   MO_OVERRIDE TResult BindTexture(TInt slot, TInt index, FRenderTexture* pTexture);
+public:
+   MO_OVERRIDE TResult Clear(TFloat red = 0.0f, TFloat green = 0.0f, TFloat blue = 0.0f, TFloat alpha = 1.0f, TFloat depth = 1.0f);
    MO_OVERRIDE TResult DrawTriangles(FRenderIndexBuffer* pIndexBuffer, TInt offset, TInt count);
    MO_OVERRIDE TResult Present();
 };

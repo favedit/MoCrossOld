@@ -226,48 +226,151 @@ FRenderInstance* FRenderDevice::CreateObject(TCharC* pName){
    return pObject;
 }
 
+
+
 //============================================================
-// <T>绑定渲染缓冲。</T>
+// <T>创建顶点缓冲。</T>
 //
-// @param pBuffer 渲染缓冲
-// @return 处理结果
+// @return 顶点缓冲
 //============================================================
-TResult FRenderDevice::BindShaderBuffer(FRenderProgramBuffer* pBuffer){
-   MO_FATAL_UNSUPPORT();
-   return ESuccess;
+FRenderVertexBuffer* FRenderDevice::CreateVertexBuffer(){
+   FRenderVertexBuffer* pVertexBuffer = CreateObject<FRenderVertexBuffer>(MO_RENDEROBJECT_BUFFER_VERTEX);
+   _storageVertexBuffers.Push(pVertexBuffer);
+   return pVertexBuffer;
 }
 
 //============================================================
-// <T>绑定顶点流处理。</T>
+// <T>创建索引缓冲。</T>
 //
-// @param slot 插槽
-// @param pStream 数据流
+// @return 索引缓冲
+//============================================================
+FRenderIndexBuffer* FRenderDevice::CreateIndexBuffer(){
+   FRenderIndexBuffer* pIndexBuffer = CreateObject<FRenderIndexBuffer>(MO_RENDEROBJECT_BUFFER_INDEX);
+   _storageIndexBuffers.Push(pIndexBuffer);
+   return pIndexBuffer;
+}
+
+//============================================================
+// <T>创建程序。</T>
+//
+// @return 程序
+//============================================================
+FRenderProgram* FRenderDevice::CreateProgrom(){
+   FRenderProgram* pProgram = CreateObject<FRenderProgram>(MO_RENDEROBJECT_PROGRAM);
+   _storagePrograms.Push(pProgram);
+   return pProgram;
+}
+
+//============================================================
+// <T>创建渲染目标。</T>
+//
+// @return 渲染目标
+//============================================================
+FRenderTarget* FRenderDevice::CreateTarget(){
+   FRenderTarget* pTarget = CreateObject<FRenderTarget>(MO_RENDEROBJECT_TARGET);
+   _storageTargets.Push(pTarget);
+   return pTarget;
+}
+
+//============================================================
+// <T>创建平面纹理。</T>
+//
+// @return 纹理
+//============================================================
+FRenderFlatTexture* FRenderDevice::CreateFlatTexture(){
+   FRenderFlatTexture* pTexture = CreateObject<FRenderFlatTexture>(MO_RENDEROBJECT_TEXTURE_2D);
+   _storageTextures.Push(pTexture);
+   return pTexture;
+}
+
+//============================================================
+// <T>创建空间纹理。</T>
+//
+// @return 纹理
+//============================================================
+FRenderCubeTexture* FRenderDevice::CreateCubeTexture(){
+   FRenderCubeTexture* pTexture = CreateObject<FRenderCubeTexture>(MO_RENDEROBJECT_TEXTURE_CUBE);
+   _storageTextures.Push(pTexture);
+   return pTexture;
+}
+
+//============================================================
+// <T>绑定常量四维浮点数。</T>
+//
+// @parma shaderCd 渲染类型
+// @parma slot 插槽
+// @parma x X内容
+// @parma y Y内容
+// @parma z Z内容
 // @return 处理结果
 //============================================================
-TResult FRenderDevice::BindVertexStream(TInt slot, FRenderVertexStream* pStream){
-   MO_CHECK(slot >= 0, return EFailure);
-   ERenderAttributeFormat formatCd = ERenderAttributeFormat_Unknown;
-   TInt offset = 0;
-   FRenderVertexBuffer* pVertexBuffer = NULL;
-   if(pStream != NULL){
-      formatCd = pStream->FormatCd();
-      offset = pStream->Offset();
-      pVertexBuffer = pStream->VertexBuffer();
-      MO_CHECK(pVertexBuffer, return ENull);
-   }
-   TResult resultCd = BindVertexBuffer(slot, pVertexBuffer, offset, formatCd);
+TResult FRenderDevice::BindConstFloat3(ERenderShader shaderCd, TInt slot, TFloat x, TFloat y, TFloat z){
+   TFloat data[3] = {x, y, z};
+   TResult resultCd = BindConst(shaderCd, slot, ERenderParameterFormat_Float3, data, sizeof(TFloat) * 3);
    return resultCd;
 }
 
 //============================================================
-// <T>绑定常量三维矩阵。</T>
+// <T>绑定常量四维浮点数。</T>
 //
 // @parma shaderCd 渲染类型
 // @parma slot 插槽
-// @parma matrix 矩阵
+// @parma x X内容
+// @parma y Y内容
+// @parma z Z内容
+// @parma w W内容
 // @return 处理结果
 //============================================================
-TResult FRenderDevice::BindConstMatrix4x3(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d* pMatrix, TInt count){
+TResult FRenderDevice::BindConstFloat4(ERenderShader shaderCd, TInt slot, TFloat x, TFloat y, TFloat z, TFloat w){
+   TFloat data[4] = {x, y, z, w};
+   TResult resultCd = BindConst(shaderCd, slot, ERenderParameterFormat_Float4, data, sizeof(TFloat) * 4);
+   return resultCd;
+}
+
+//============================================================
+// <T>绑定常量3x3矩阵。</T>
+//
+// @param shaderCd 渲染类型
+// @param slot 插槽
+// @param count 个数
+// @param matrix 矩阵
+// @return 处理结果
+//============================================================
+TResult FRenderDevice::BindConstMatrix3x3(ERenderShader shaderCd, TInt slot, TInt count, const SFloatMatrix3d* pMatrix){
+   MO_CHECK(slot >= 0, return EFailure);
+   MO_CHECK(pMatrix, return ENull);
+   MO_CHECK(count > 0, return EFailure);
+   MO_CHECK(count <= MO_EG_CONST_MATRIX_MAX, return EFailure);
+   // 生成数据
+   TFloat data[12 * MO_EG_CONST_MATRIX_MAX];
+   TFloat* pWriter = data;
+   for(TInt n = 0; n < count; n++){
+      const SFloatMatrix3d& matrix = pMatrix[n];
+      *pWriter++ = matrix.data[0][0];
+      *pWriter++ = matrix.data[1][0];
+      *pWriter++ = matrix.data[2][0];
+      *pWriter++ = matrix.data[0][1];
+      *pWriter++ = matrix.data[1][1];
+      *pWriter++ = matrix.data[2][1];
+      *pWriter++ = matrix.data[0][2];
+      *pWriter++ = matrix.data[1][2];
+      *pWriter++ = matrix.data[2][2];
+   }
+   // 提交数据
+   TResult resultCd = BindConst(shaderCd, slot, ERenderParameterFormat_Float3x3, data, sizeof(TFloat) * 9 * count);
+   return resultCd;
+}
+
+//============================================================
+// <T>绑定常量4x3矩阵。</T>
+//
+// @param shaderCd 渲染类型
+// @param slot 插槽
+// @param count 个数
+// @param matrix 矩阵
+// @return 处理结果
+//============================================================
+TResult FRenderDevice::BindConstMatrix4x3(ERenderShader shaderCd, TInt slot, TInt count, const SFloatMatrix3d* pMatrix){
    MO_CHECK(slot >= 0, return EFailure);
    MO_CHECK(pMatrix, return ENull);
    MO_CHECK(count > 0, return EFailure);
@@ -291,19 +394,20 @@ TResult FRenderDevice::BindConstMatrix4x3(ERenderShader shaderCd, TInt slot, con
       *pWriter++ = matrix.data[3][2];
    }
    // 提交数据
-   TResult resultCd = BindConstData(shaderCd, slot, ERenderParameterFormat_Float4x3, data, sizeof(TFloat) * 12 * count);
+   TResult resultCd = BindConst(shaderCd, slot, ERenderParameterFormat_Float4x3, data, sizeof(TFloat) * 12 * count);
    return resultCd;
 }
 
 //============================================================
-// <T>绑定常量三维矩阵。</T>
+// <T>绑定常量4x4矩阵。</T>
 //
-// @parma shaderCd 渲染类型
-// @parma slot 插槽
-// @parma matrix 矩阵
+// @param shaderCd 渲染类型
+// @param slot 插槽
+// @param count 个数
+// @param matrix 矩阵
 // @return 处理结果
 //============================================================
-TResult FRenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, const SFloatMatrix3d* pMatrix, TInt count){
+TResult FRenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, TInt count, const SFloatMatrix3d* pMatrix){
    MO_CHECK(slot >= 0, return EFailure);
    MO_CHECK(pMatrix, return ENull);
    MO_CHECK(count > 0, return EFailure);
@@ -331,26 +435,16 @@ TResult FRenderDevice::BindConstMatrix4x4(ERenderShader shaderCd, TInt slot, con
       *pWriter++ = matrix.data[3][3];
    }
    // 提交数据
-   TResult resultCd = BindConstData(shaderCd, slot, ERenderParameterFormat_Float4x4, data, sizeof(TFloat) * 16 * count);
+   TResult resultCd = BindConst(shaderCd, slot, ERenderParameterFormat_Float4x4, data, sizeof(TFloat) * 16 * count);
    return resultCd;
-}
-
-//============================================================
-// <T>设置布局。</T>
-//
-// @parma pLayout 布局
-// @return 处理结果
-//============================================================
-TResult FRenderDevice::SetLayout(FRenderLayout* pLayout){
-   return ESuccess;
 }
 
 //============================================================
 // <T>绘制实例网格。</T>
 //
-// @parma pIndexBuffer 顶点索引
-// @parma offset 位置
-// @parma count 实例个数
+// @param pIndexBuffer 顶点索引
+// @param offset 位置
+// @param count 实例个数
 // @return 处理结果
 //============================================================
 TResult FRenderDevice::DrawInstanceTriangles(FRenderIndexBuffer* pIndexBuffer, TInt offset, TInt count){

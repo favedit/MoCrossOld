@@ -8,10 +8,10 @@ MO_CLASS_IMPLEMENT_INHERITS(FRenderProgramAttribute, FRenderInstance);
 // <T>构造渲染器属性。</T>
 //============================================================
 FRenderProgramAttribute::FRenderProgramAttribute(){
-   _index = -1;
-   _slot = -1;
-   _formatCd = ERenderAttributeFormat_Unknown;
    _statusUsed = EFalse;
+   _slot = -1;
+   _index = -1;
+   _formatCd = ERenderAttributeFormat_Unknown;
 }
 
 //============================================================
@@ -46,9 +46,10 @@ TResult FRenderProgramAttribute::LoadConfig(FXmlNode* pConfig){
 // @param pDump 输出缓冲
 // @return 处理结果
 //============================================================
-TResult FRenderProgramAttribute::Dump(MString* pDump){
+TResult FRenderProgramAttribute::Dump(MString* pDump, TBool detail){
    MO_CHECK(pDump, return ENull);
-   pDump->AppendFormat("Buffer: name=%s, linker=%s, slot=%d", (TCharC*)_name, (TCharC*)_linker, _slot);
+   pDump->AppendFormat("Buffer: name=%s, linker=%s, used=%d, slot=%d, index=%d, format=%s",
+         (TCharC*)_name, (TCharC*)_linker, _statusUsed, _slot, _index, RRenderAttributeFormat::Format(_formatCd));
    return ESuccess;
 }
 

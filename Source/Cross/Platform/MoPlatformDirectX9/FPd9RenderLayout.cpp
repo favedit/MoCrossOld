@@ -53,10 +53,11 @@ TResult FPd9RenderLayout::OnSetup(){
    FRenderableGeometry* pRenderableGeometry = _pRenderable->Geometry();
    TInt fvf1 = 0;
    TInt fvf2 = 0;
-   D3DVERTEXELEMENT9 elements[MO_INPUT_ELEMENT_MAXCNT];
-   GRenderProgramAttributeDictionary::TIterator iterator = _pProgram->Attributes().Iterator();
-   while(iterator.Next()){
-      FRenderProgramAttribute* pAttribute = *iterator;
+   D3DVERTEXELEMENT9 elements[MO_RENDER_ATTRIBUTE_MAXCNT];
+   GRenderShaderAttributePtrs& attributes = _pProgram->Attributes();
+   TInt count = attributes.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderProgramAttribute* pAttribute = attributes.Get(n);
       //if(!pAttribute->IsStatusUsed()){
       //   continue;
       //}

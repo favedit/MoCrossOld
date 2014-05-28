@@ -112,7 +112,7 @@ TResult FPd9RenderProgram::BuildShader(FRenderShader* pShader, FPd9RenderShaderB
          D3DXCONSTANT_DESC& constDescriptor = constDescriptors[0];
          if((constDescriptor.RegisterSet == D3DXRS_BOOL) || (constDescriptor.RegisterSet == D3DXRS_INT4) || (constDescriptor.RegisterSet == D3DXRS_FLOAT4)){
             // 设置参数
-            FPd9RenderShaderParameter* pParameter = (FPd9RenderShaderParameter*)ParameterFind(constDescriptor.Name);
+            FPd9RenderShaderParameter* pParameter = (FPd9RenderShaderParameter*)ParameterFindByName(constDescriptor.Name);
             if(pParameter == NULL){
                MO_FATAL("Shader parameter is not found. (name=%s)", constDescriptor.Name);
             }else{
@@ -144,9 +144,9 @@ TResult FPd9RenderProgram::BuildShader(FRenderShader* pShader, FPd9RenderShaderB
    }
    //............................................................
    // 修正属性流定义
-   GRenderProgramAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
-   while(attributeIterator.Next()){
-      FRenderProgramAttribute* pAttribute = *attributeIterator;
+   TInt count = _attributes.Count();
+   for(TInt n = 0; n < count; n++){
+      FRenderProgramAttribute* pAttribute = _attributes.Get(n);
       pAttribute->SetStatusUsed(ETrue);
    }
    //............................................................
