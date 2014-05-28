@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderLayout, FRenderProgramLayout);
+MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderLayout, FRenderLayout);
 
 //============================================================
 // <T>构造渲染层信息。</T>
@@ -16,18 +16,6 @@ FPd9RenderLayout::FPd9RenderLayout(){
 //============================================================
 FPd9RenderLayout::~FPd9RenderLayout(){
    MO_RELEASE(_piDeclaration);
-}
-
-//============================================================
-FRenderProgramLayoutElement* FPd9RenderLayout::FindByAttribute(FRenderProgramAttribute* pAttribute){
-   TInt count = _elements.Count();
-   for(TInt n = 0; n < count; n++){
-      FRenderProgramLayoutElement* pElement = _elements.Get(n);
-      if(pElement->Attribute() == pAttribute){
-         return pElement;
-      }
-   }
-   return NULL;
 }
 
 TInt GetFvF(TInt index){
@@ -62,11 +50,11 @@ TResult FPd9RenderLayout::OnSetup(){
    TInt position = 0;
    TInt index = 0;
    FPd9RenderDevice* pRenderDevice = _pDevice->Convert<FPd9RenderDevice>();
-   FRenderableData* pRenderableData = _pRenderable->Data();
-   GRenderShaderAttributeDictionary::TIterator iterator = _pProgram->Attributes().IteratorC();
+   FRenderableGeometry* pRenderableGeometry = _pRenderable->Geometry();
    TInt fvf1 = 0;
    TInt fvf2 = 0;
    D3DVERTEXELEMENT9 elements[MO_INPUT_ELEMENT_MAXCNT];
+   GRenderProgramAttributeDictionary::TIterator iterator = _pProgram->Attributes().Iterator();
    while(iterator.Next()){
       FRenderProgramAttribute* pAttribute = *iterator;
       //if(!pAttribute->IsStatusUsed()){
@@ -74,7 +62,7 @@ TResult FPd9RenderLayout::OnSetup(){
       //}
       //............................................................
       TCharC* pBufferCode = pAttribute->Linker();
-      FRenderableAttribute* pRenderableAttribute = pRenderableData->AttributeFind(pBufferCode);
+      FRenderableAttribute* pRenderableAttribute = pRenderableGeometry->AttributeFind(pBufferCode);
       //FRenderProgramLayoutElement* pElement = FRenderProgramLayoutElement::InstanceCreate();
       //pElement->SetAttribute(pAttribute);
       //pElement->SetStream(pStream);
@@ -82,7 +70,7 @@ TResult FPd9RenderLayout::OnSetup(){
       //............................................................
       // 设置缓冲信息
       if(pAttribute != NULL){
-         FPd9RenderVertexBuffer* pVertexBuffer = pRenderableAttribute->VertexBuffer()->Convert<FPd9RenderVertexBuffer>();
+         FPd9RenderVertexBuffer* pVertexBuffer = pRenderableAttribute->GraphicsObject<FPd9RenderVertexBuffer>();
          _total = pVertexBuffer->Count();
          _piBuffer[index] = pVertexBuffer->NativeBuffer();
          _strides[index] = pVertexBuffer->Stride();

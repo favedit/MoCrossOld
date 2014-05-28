@@ -23,11 +23,11 @@ FPd10RenderDevice::FPd10RenderDevice(){
    MO_CLEAR(_piSwapChain);
    MO_CLEAR(_piDevice);
    // 注册类集合
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERBUFFER,    FPd10RenderShaderBuffer::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERATTRIBUTE, FRenderProgramAttribute::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERPARAMETER, FPd10RenderShaderParameter::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERSAMPLER,   FRenderProgramSampler::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT,          FPd10RenderLayout::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_BUFFER,    FPd10RenderShaderBuffer::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_ATTRIBUTE, FRenderProgramAttribute::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_PARAMETER, FPd10RenderShaderParameter::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_SAMPLER,   FRenderProgramSampler::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT,            FPd10RenderLayout::Class());
    //
    MO_CLEAR(_piRasterizerState);
    MO_CLEAR(_piBlendEnableState);
@@ -754,7 +754,7 @@ TResult FPd10RenderDevice::SetProgram(FRenderProgram* pProgram){
 // @parma pLayout 布局
 // @return 处理结果
 //============================================================
-TResult FPd10RenderDevice::SetLayout(FRenderProgramLayout* pLayout){
+TResult FPd10RenderDevice::SetLayout(FRenderLayout* pLayout){
    MO_CHECK(pLayout, return ENull);
    // 获得顶点流
    TResult result = ESuccess;

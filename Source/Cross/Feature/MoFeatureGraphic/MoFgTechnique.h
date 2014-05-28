@@ -326,12 +326,14 @@ struct STechniqueCapability{
 public:
    TBool optionInstance;
    TBool optionMerge;
+   TBool programStrictness;
 public:
    //------------------------------------------------------------
    // <T>构造渲染技术能力。</T>
    STechniqueCapability(){
       optionInstance = EFalse;
       optionMerge = EFalse;
+      programStrictness = EFalse;
    }
 };
 

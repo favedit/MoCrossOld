@@ -42,8 +42,7 @@ TResult FPd11RenderFragmentShader::Compile(TCharC* pSource){
    FRenderCapability* pCapability = pRenderDevice->Capability();
    TCharC* pShaderVersion = pCapability->ShaderFragmentVersion();
    // …Ë÷√±Í÷æ
-   //TUint32 shaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
-   TUint32 shaderFlags = 0;
+   TUint32 shaderFlags = RTechniqueManager::Instance().Capability().programStrictness ? D3DCOMPILE_ENABLE_STRICTNESS : 0;
 #ifdef _MO_DEBUG
     shaderFlags |= D3DCOMPILE_DEBUG;
 #endif // _MO_DEBUG

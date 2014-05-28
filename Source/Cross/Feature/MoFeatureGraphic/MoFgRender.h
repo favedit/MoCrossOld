@@ -459,89 +459,6 @@ typedef MO_FG_DECLARE GPtrs<FRenderVertexBuffer> GRenderVertexBufferPtrs;
 typedef MO_FG_DECLARE GPtrLooper<FRenderVertexBuffer> GRenderVertexBufferLooper;
 
 //============================================================
-// <T>渲染布局元素。</T>
-//============================================================
-class MO_FG_DECLARE FRenderProgramLayoutElement : public FInstance
-{
-   MO_CLASS_DECLARE_INHERITS(FRenderProgramLayoutElement, FInstance);
-protected:
-   FRenderProgramAttribute* _pAttribute;
-   FRenderVertexStream* _pStream;
-public:
-   FRenderProgramLayoutElement();
-   MO_ABSTRACT ~FRenderProgramLayoutElement();
-public:
-   //------------------------------------------------------------
-   // <T>获得属性。</T>
-   MO_INLINE FRenderProgramAttribute* Attribute(){
-      return _pAttribute;
-   }
-   //------------------------------------------------------------
-   // <T>设置属性。</T>
-   MO_INLINE void SetAttribute(FRenderProgramAttribute* pAttribute){
-      _pAttribute = pAttribute;
-   }
-   //------------------------------------------------------------
-   // <T>获得缓冲。</T>
-   MO_INLINE FRenderVertexStream* Stream(){
-      return _pStream;
-   }
-   //------------------------------------------------------------
-   // <T>设置缓冲。</T>
-   MO_INLINE void SetStream(FRenderVertexStream* pStream){
-      _pStream = pStream;
-   }
-};
-//------------------------------------------------------------
-typedef MO_FG_DECLARE GPtrs<FRenderProgramLayoutElement> GRenderLayoutElementPtrs;
-
-//============================================================
-// <T>渲染布局。</T>
-//============================================================
-class MO_FG_DECLARE FRenderProgramLayout : public FRenderInstance
-{
-   MO_CLASS_DECLARE_INHERITS(FRenderProgramLayout, FRenderInstance);
-protected:
-   FRenderProgram* _pProgram;
-   FRenderable* _pRenderable;
-   GRenderLayoutElementPtrs _elements;
-public:
-   FRenderProgramLayout();
-   MO_ABSTRACT ~FRenderProgramLayout();
-public:
-   //------------------------------------------------------------
-   // <T>获得程序。</T>
-   MO_INLINE FRenderProgram* Program(){
-      return _pProgram;
-   }
-   //------------------------------------------------------------
-   // <T>设置程序。</T>
-   MO_INLINE void SetProgram(FRenderProgram* pProgram){
-      _pProgram = pProgram;
-   }
-   //------------------------------------------------------------
-   // <T>获得渲染对象。</T>
-   MO_INLINE FRenderable* Renderable(){
-      return _pRenderable;
-   }
-   //------------------------------------------------------------
-   // <T>设置渲染对象。</T>
-   MO_INLINE void SetRenderable(FRenderable* pRenderable){
-      _pRenderable = pRenderable;
-   }
-   //------------------------------------------------------------
-   // <T>获得缓冲。</T>
-   MO_INLINE GRenderLayoutElementPtrs& Elements(){
-      return _elements;
-   }
-public:
-   TResult Push(FRenderProgramLayoutElement* pElement);
-};
-//------------------------------------------------------------
-typedef MO_FG_DECLARE GPtr<FRenderProgramLayout> GRenderLayoutPtr;
-typedef MO_FG_DECLARE GPtrs<FRenderProgramLayout> GRenderLayoutPtrs;
-
-//============================================================
 // <T>渲染顶点流。</T>
 //============================================================
 class MO_FG_DECLARE FRenderVertexStream : public FRenderInstance
@@ -618,7 +535,6 @@ public:
    TInt _instanceCount;
    FRenderVertexBufferCollection* _pBuffers;
    FRenderVertexStreamCollection* _pStreams;
-   GRenderLayoutPtr _layout;
 public:
    FRenderVertexStreams();
    MO_ABSTRACT ~FRenderVertexStreams();
@@ -662,16 +578,6 @@ public:
    // <T>获得顶点流集合。</T>
    MO_INLINE FRenderVertexStreamCollection* Streams(){
       return _pStreams;
-   }
-   //------------------------------------------------------------
-   // <T>获得渲染布局。</T>
-   MO_INLINE FRenderProgramLayout* Layout(){
-      return _layout;
-   }
-   //------------------------------------------------------------
-   // <T>设置渲染布局。</T>
-   MO_INLINE void SetLayout(FRenderProgramLayout* pLayout){
-      _layout = pLayout;
    }
 public:
    TBool EqualsDescription(FRenderVertexStreams* pStream);
@@ -1776,9 +1682,6 @@ public:
    MO_INLINE FRenderTextureCollection* Textures(){
       return _pTextures;
    }
-public:
-   MO_ABSTRACT TResult OnSetup();
-   TResult Setup();
 };
 //------------------------------------------------------------
 typedef MO_FG_DECLARE FObjects<FRenderTarget*> FRenderTargetCollection;

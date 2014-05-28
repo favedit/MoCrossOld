@@ -25,30 +25,4 @@ FRenderTarget::~FRenderTarget(){
    MO_DELETE(_pTextures);
 }
 
-//============================================================
-// <T>配置处理。</T>
-//
-// @return 处理结果
-//============================================================
-TResult FRenderTarget::OnSetup(){
-   return ESuccess;
-}
-
-//============================================================
-// <T>配置处理。</T>
-//
-// @return 处理结果
-//============================================================
-TResult FRenderTarget::Setup(){
-   TResult result = EContinue;
-   if(!_statusSetup){
-      result = OnSetup();
-      if(result){
-         MO_WARN("Setup result is not success. (result=%d)", result);
-      }
-      _statusSetup = ETrue;
-   }
-   return result;
-}
-
 MO_NAMESPACE_END

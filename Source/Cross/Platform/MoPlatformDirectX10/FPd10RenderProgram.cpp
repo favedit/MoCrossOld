@@ -66,13 +66,13 @@ TResult FPd10RenderProgram::Setup(){
    pVertexShader->SetDevice(_pDevice);
    pVertexShader->SetProgram(this);
    pVertexShader->Setup();
-   _pVertexShader = pVertexShader;
+   _vertexShader = pVertexShader;
    // 创建像素渲染器
    FPd10RenderFragmentShader* pFragmentShader = FPd10RenderFragmentShader::InstanceCreate();
    pFragmentShader->SetDevice(_pDevice);
    pFragmentShader->SetProgram(this);
    pFragmentShader->Setup();
-   _pFragmentShader = pFragmentShader;
+   _fragmentShader = pFragmentShader;
    MO_INFO("Create program success.");
    return ESuccess;
 }
@@ -120,7 +120,7 @@ TResult FPd10RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
          return EFailure;
       }
       // 创建缓冲
-      FPd10RenderShaderBuffer* pBuffer = (FPd10RenderShaderBuffer*)BufferFind(bufferDescriptor.Name);
+      FPd10RenderShaderBuffer* pBuffer = (FPd10RenderShaderBuffer*)BufferFindByName(bufferDescriptor.Name);
       pBuffer->SetStatusUsed(ETrue);
       pBuffer->SetShaderCd(shaderCd);
       pBuffer->SetDataLength(bufferDescriptor.Size);
@@ -200,12 +200,12 @@ TResult FPd10RenderProgram::BuildShader(FRenderShader* pShader, ID3D10Blob* piDa
       }
       TCharC* pBindName = bindDescriptor.Name;
       if(bindDescriptor.Type == D3D_SIT_CBUFFER){
-         FPd10RenderShaderBuffer* pBuffer = (FPd10RenderShaderBuffer*)BufferFind(pBindName);
+         FPd10RenderShaderBuffer* pBuffer = (FPd10RenderShaderBuffer*)BufferFindByName(pBindName);
          MO_CHECK(pBuffer, continue);
          pBuffer->SetSlot(bindDescriptor.BindPoint);
       }
       if(bindDescriptor.Type == D3D_SIT_TEXTURE){
-         FRenderProgramSampler* pSampler = SamplerFind(pBindName);
+         FRenderProgramSampler* pSampler = SamplerFindByName(pBindName);
          if(pSampler == NULL){
             MO_ERROR("Shader sampler bound is not found. (name=%s)", pBindName);
          }else{
@@ -229,10 +229,10 @@ TResult FPd10RenderProgram::Build(){
    FPd10RenderDevice* pRenderDevice = _pDevice->Convert<FPd10RenderDevice>();
    //............................................................
    // 建立顶点渲染器
-   FPd10RenderVertexShader* pVertexShader = _pVertexShader->Convert<FPd10RenderVertexShader>();
+   FPd10RenderVertexShader* pVertexShader = _vertexShader->Convert<FPd10RenderVertexShader>();
    BuildShader(pVertexShader, pVertexShader->NativeData());
    // 建立像素渲染器
-   FPd10RenderFragmentShader* pFragmentShader = _pFragmentShader->Convert<FPd10RenderFragmentShader>();
+   FPd10RenderFragmentShader* pFragmentShader = _fragmentShader->Convert<FPd10RenderFragmentShader>();
    BuildShader(pFragmentShader, pFragmentShader->NativeData());
    return resultCd;
 }
@@ -248,12 +248,12 @@ TResult FPd10RenderProgram::Link(){
    FPd10RenderDevice* pRenderDevice = _pDevice->Convert<FPd10RenderDevice>();
    //............................................................
    // 获得数据
-   FPd10RenderVertexShader* pVertexShader = _pVertexShader->Convert<FPd10RenderVertexShader>();
+   FPd10RenderVertexShader* pVertexShader = _vertexShader->Convert<FPd10RenderVertexShader>();
    ID3D10Blob* piShaderData = pVertexShader->NativeData();
    //............................................................
    // 创建输入描述
    TInt position = 0;
-   GRenderShaderAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
+   GRenderProgramAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
    while(attributeIterator.Next()){
       FRenderProgramAttribute* pAttribute = *attributeIterator;
       if(pAttribute->IsStatusUsed()){
@@ -311,9 +311,6 @@ TResult FPd10RenderProgram::Resume(){
 TResult FPd10RenderProgram::Dispose(){
    // 释放资源
    MO_RELEASE(_piInputLayout);
-   // 释放程序
-   MO_DELETE(_pVertexShader);
-   MO_DELETE(_pFragmentShader);
    return ESuccess;
 }
 

@@ -21,11 +21,11 @@ FPd9RenderDevice::FPd9RenderDevice(){
    MO_CLEAR(_piDirect3d);
    MO_CLEAR(_piDevice);
    // 注册类集合
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERBUFFER,    FPd9RenderShaderBuffer::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERATTRIBUTE, FRenderProgramAttribute::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERPARAMETER, FPd9RenderShaderParameter::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_SHADERSAMPLER,   FRenderProgramSampler::Class());
-   _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT,          FPd9RenderLayout::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_BUFFER,    FPd9RenderShaderBuffer::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_ATTRIBUTE, FRenderProgramAttribute::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_PARAMETER, FPd9RenderShaderParameter::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_PROGRAM_SAMPLER,   FRenderProgramSampler::Class());
+   _pClassFactory->Register(MO_RENDEROBJECT_LAYOUT,            FPd9RenderLayout::Class());
    _inDrawing = EFalse;
 }
 
@@ -555,7 +555,7 @@ TResult FPd9RenderDevice::SetProgram(FRenderProgram* pProgram){
 // @parma pLayout 布局
 // @return 处理结果
 //============================================================
-TResult FPd9RenderDevice::SetLayout(FRenderProgramLayout* pLayout){
+TResult FPd9RenderDevice::SetLayout(FRenderLayout* pLayout){
    MO_CHECK(pLayout, return ENull);
    // 获得顶点流
    TResult result = ESuccess;

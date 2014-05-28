@@ -15,9 +15,9 @@ MO_NAMESPACE_BEGIN
 //============================================================
 // <T>‰÷»æ≤„–≈œ¢°£</T>
 //============================================================
-class MO_PD10_DECLARE FPd10RenderLayout : public FRenderProgramLayout
+class MO_PD10_DECLARE FPd10RenderLayout : public FRenderLayout
 {
-   MO_CLASS_DECLARE_INHERITS(FPd10RenderLayout, FRenderProgramLayout);
+   MO_CLASS_DECLARE_INHERITS(FPd10RenderLayout, FRenderLayout);
 protected:
    TInt _count;
    MO_D3D10_INPUT_ELEMENT_DESC_ARRAY _inputElements;
@@ -55,7 +55,6 @@ public:
       return _offsets;
    }
 public:
-   FRenderProgramLayoutElement* FindByAttribute(FRenderProgramAttribute* pAttribute);
    MO_OVERRIDE TResult OnSetup();
 };
 //------------------------------------------------------------
@@ -464,7 +463,7 @@ public:
    MO_OVERRIDE TResult SetScissorRectangle(TInt left, TInt top, TInt width, TInt height);
    MO_OVERRIDE TResult SetRenderTarget(FRenderTarget* pRenderTarget = NULL);
    MO_OVERRIDE TResult SetProgram(FRenderProgram* pProgram);
-   MO_OVERRIDE TResult SetLayout(FRenderProgramLayout* pLayout);
+   MO_OVERRIDE TResult SetLayout(FRenderLayout* pLayout);
    MO_OVERRIDE TResult BindConstData(ERenderShader shaderCd, TInt slot, ERenderParameterFormat formatCd, TAnyC* pData, TInt length);
    MO_OVERRIDE TResult BindConstFloat3(ERenderShader shaderCd, TInt slot, TFloat x = 0.0f, TFloat y = 0.0f, TFloat z = 0.0f);
    MO_OVERRIDE TResult BindConstFloat4(ERenderShader shaderCd, TInt slot, TFloat x = 0.0f, TFloat y = 0.0f, TFloat z = 0.0f, TFloat w = 1.0f);

@@ -64,13 +64,13 @@ TResult FPd9RenderProgram::Setup(){
    pVertexShader->SetDevice(_pDevice);
    pVertexShader->SetProgram(this);
    pVertexShader->Setup();
-   _pVertexShader = pVertexShader;
+   _vertexShader = pVertexShader;
    // 创建像素渲染器
    FPd9RenderFragmentShader* pFragmentShader = FPd9RenderFragmentShader::InstanceCreate();
    pFragmentShader->SetDevice(_pDevice);
    pFragmentShader->SetProgram(this);
    pFragmentShader->Setup();
-   _pFragmentShader = pFragmentShader;
+   _fragmentShader = pFragmentShader;
    MO_INFO("Create program success.");
    return ESuccess;
 }
@@ -128,7 +128,7 @@ TResult FPd9RenderProgram::BuildShader(FRenderShader* pShader, FPd9RenderShaderB
             }
          }else if(constDescriptor.RegisterSet == D3DXRS_SAMPLER){
             // 设置取样器
-            FRenderProgramSampler* pSampler = SamplerFind(constDescriptor.Name);
+            FRenderProgramSampler* pSampler = SamplerFindByName(constDescriptor.Name);
             if(pSampler == NULL){
                MO_FATAL("Shader sampler bound is not found. (name=%s)", constDescriptor.Name);
             }else{
@@ -144,7 +144,7 @@ TResult FPd9RenderProgram::BuildShader(FRenderShader* pShader, FPd9RenderShaderB
    }
    //............................................................
    // 修正属性流定义
-   GRenderShaderAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
+   GRenderProgramAttributeDictionary::TIterator attributeIterator = _attributes.Iterator();
    while(attributeIterator.Next()){
       FRenderProgramAttribute* pAttribute = *attributeIterator;
       pAttribute->SetStatusUsed(ETrue);
@@ -171,10 +171,10 @@ TResult FPd9RenderProgram::Build(){
    FPd9RenderDevice* pRenderDevice = _pDevice->Convert<FPd9RenderDevice>();
    //............................................................
    // 建立顶点渲染器
-   FPd9RenderVertexShader* pVertexShader = _pVertexShader->Convert<FPd9RenderVertexShader>();
+   FPd9RenderVertexShader* pVertexShader = _vertexShader->Convert<FPd9RenderVertexShader>();
    BuildShader(pVertexShader, pVertexShader->Buffer(), pVertexShader->NativeTable());
    //// 建立像素渲染器
-   FPd9RenderFragmentShader* pFragmentShader = _pFragmentShader->Convert<FPd9RenderFragmentShader>();
+   FPd9RenderFragmentShader* pFragmentShader = _fragmentShader->Convert<FPd9RenderFragmentShader>();
    BuildShader(pFragmentShader, pFragmentShader->Buffer(), pFragmentShader->NativeTable());
    return resultCd;
 }
@@ -251,9 +251,6 @@ TResult FPd9RenderProgram::Resume(){
 // @return 处理结果
 //============================================================
 TResult FPd9RenderProgram::Dispose(){
-   // 释放程序
-   MO_DELETE(_pVertexShader);
-   MO_DELETE(_pFragmentShader);
    return ESuccess;
 }
 

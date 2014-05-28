@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FPd10RenderLayout, FRenderProgramLayout);
+MO_CLASS_IMPLEMENT_INHERITS(FPd10RenderLayout, FRenderLayout);
 
 //============================================================
 // <T>构造渲染层信息。</T>
@@ -20,24 +20,12 @@ FPd10RenderLayout::~FPd10RenderLayout(){
 }
 
 //============================================================
-FRenderProgramLayoutElement* FPd10RenderLayout::FindByAttribute(FRenderProgramAttribute* pAttribute){
-   TInt count = _elements.Count();
-   for(TInt n = 0; n < count; n++){
-      FRenderProgramLayoutElement* pElement = _elements.Get(n);
-      if(pElement->Attribute() == pAttribute){
-         return pElement;
-      }
-   }
-   return NULL;
-}
-
-//============================================================
 TResult FPd10RenderLayout::OnSetup(){
    MO_CHECK(_pDevice, return ENull);
    TInt index = 0;
    FPd10RenderDevice* pRenderDevice = _pDevice->Convert<FPd10RenderDevice>();
-   FRenderableData* pRenderableData = _pRenderable->Data();
-   GRenderShaderAttributeDictionary::TIterator iterator = _pProgram->Attributes().IteratorC();
+   FRenderableGeometry* pRenderableGeometry = _pRenderable->Geometry();
+   GRenderProgramAttributeDictionary::TIterator iterator = _pProgram->Attributes().IteratorC();
    while(iterator.Next()){
       FRenderProgramAttribute* pAttribute = *iterator;
       if(!pAttribute->IsStatusUsed()){
@@ -46,7 +34,7 @@ TResult FPd10RenderLayout::OnSetup(){
       //............................................................
       TCharC* pLinker = pAttribute->Linker();
       ERenderAttributeFormat formatCd = pAttribute->FormatCd();
-      FRenderableAttribute* pRenderableAttribute = pRenderableData->AttributeFind(pLinker);
+      FRenderableAttribute* pRenderableAttribute = pRenderableGeometry->AttributeFind(pLinker);
       //FRenderProgramLayoutElement* pElement = FRenderProgramLayoutElement::InstanceCreate();
       //pElement->SetAttribute(pAttribute);
       //pElement->SetStream(pStream);
@@ -54,7 +42,7 @@ TResult FPd10RenderLayout::OnSetup(){
       //............................................................
       // 设置缓冲信息
       if(pRenderableAttribute != NULL){
-         FPd10RenderVertexBuffer* pVertexBuffer = pRenderableAttribute->VertexBuffer()->Convert<FPd10RenderVertexBuffer>();
+         FPd10RenderVertexBuffer* pVertexBuffer = pRenderableAttribute->GraphicsObject<FPd10RenderVertexBuffer>();
          _piBuffer[index] = pVertexBuffer->NativeBuffer();
          _strides[index] = pVertexBuffer->Stride();
          _offsets[index] = pRenderableAttribute->Offset();
