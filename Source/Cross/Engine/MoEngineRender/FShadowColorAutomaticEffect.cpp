@@ -62,11 +62,10 @@ TResult FShadowColorAutomaticEffect::DrawRenderable(FRenderRegion* pRegion, FRen
    lightMvpMatrix.Append(_lightVpMatrix);
    //............................................................
    // 设置常量
-   BindConstMatrix3x3(EEffectParameter_VertexModelMatrix3x3, &modelMatrix);
-   BindConstMatrix4x4(EEffectParameter_VertexModelMatrix4x4, &modelMatrix);
-   BindConstMatrix4x4(EEffectParameter_VertexModelViewProjectionMatrix4x4, &matrixMvp);
-   BindConstMatrix4x4(EEffectParameter_VertexLightModelViewMatrix4x4, &lightMvMatrix);
-   BindConstMatrix4x4(EEffectParameter_VertexLightModelViewProjectionMatrix4x4, &lightMvpMatrix);
+   BindConstMatrix4x4(EEffectParameter_VertexModelMatrix, &modelMatrix);
+   BindConstMatrix4x4(EEffectParameter_VertexModelViewProjectionMatrix, &matrixMvp);
+   //BindConstMatrix4x4(EEffectParameter_VertexLightModelViewMatrix, &lightMvMatrix);
+   //BindConstMatrix4x4(EEffectParameter_VertexLightModelViewProjectionMatrix, &lightMvpMatrix);
    //............................................................
    // 设定属性集合
    BindAttributeDescriptors(pRenderable);
@@ -108,16 +107,16 @@ TResult FShadowColorAutomaticEffect::DrawGroup(FRenderRegion* pRegion, TInt offs
    pRenderDevice->SetProgram(_program);
    //............................................................
    // 设置相机信息
-   BindConstPosition3(EEffectParameter_VertexCameraPosition, pCamera->Position());
-   BindConstPosition3(EEffectParameter_FragmentCameraPosition, pCamera->Position());
+   //BindConstPosition3(EEffectParameter_VertexCameraPosition, pCamera->Position());
+   //BindConstPosition3(EEffectParameter_FragmentCameraPosition, pCamera->Position());
    // 设置光源信息
-   BindConstVector3(EEffectParameter_VertexLightDirection, lightDirection);
-   BindConstVector3(EEffectParameter_FragmentLightDirection, lightDirection);
+   //BindConstVector3(EEffectParameter_VertexLightDirection, lightDirection);
+   //BindConstVector3(EEffectParameter_FragmentLightDirection, lightDirection);
    // 设置光源深度
    SIntSize2& depthSize = pLightDepthTexture->Size();
    TFloat lightZnear = pLightProjection->Znear();
    TFloat lightZfar = pLightProjection->Zfar();
-   BindConstFloat4(EEffectParameter_FragmentLightDepth, -1.0f / (TFloat)depthSize.width, 1.0f / (TFloat)depthSize.width, lightZnear, 1.0f / lightZfar);
+   //BindConstFloat4(EEffectParameter_FragmentLightDepth, -1.0f / (TFloat)depthSize.width, 1.0f / (TFloat)depthSize.width, lightZnear, 1.0f / lightZfar);
    //............................................................
    // 设置材质
    FRenderable* pRenderable = pRegion->VisibleRenderables()->Get(offset);
@@ -130,9 +129,9 @@ TResult FShadowColorAutomaticEffect::DrawGroup(FRenderRegion* pRegion, TInt offs
    BindConstColor4(EEffectParameter_FragmentDiffuseColor,      pMaterial->DiffuseColor());
    BindConstColor4(EEffectParameter_FragmentDiffuseViewColor,  pMaterial->DiffuseViewColor());
    BindConstColor4(EEffectParameter_FragmentSpecularColor,     pMaterial->SpecularColor());
-   BindConstFloat4(EEffectParameter_FragmentSpecular,          pMaterial->SpecularInfo().base, pMaterial->SpecularInfo().rate, pMaterial->SpecularInfo().average, pMaterial->SpecularInfo().shadow);
+   BindConstFloat4(EEffectParameter_FragmentSpecularRate,      pMaterial->SpecularInfo().base, pMaterial->SpecularInfo().rate, pMaterial->SpecularInfo().average, pMaterial->SpecularInfo().shadow);
    BindConstColor4(EEffectParameter_FragmentSpecularViewColor, pMaterial->SpecularViewColor());
-   BindConstFloat4(EEffectParameter_FragmentSpecularView,      pMaterial->SpecularViewInfo().base, pMaterial->SpecularViewInfo().rate, pMaterial->SpecularViewInfo().average, pMaterial->SpecularViewInfo().shadow);
+   BindConstFloat4(EEffectParameter_FragmentSpecularViewRate,  pMaterial->SpecularViewInfo().base, pMaterial->SpecularViewInfo().rate, pMaterial->SpecularViewInfo().average, pMaterial->SpecularViewInfo().shadow);
    BindConstColor4(EEffectParameter_FragmentReflectColor,      pMaterial->ReflectColor());
    //............................................................
    // 设置纹理集合

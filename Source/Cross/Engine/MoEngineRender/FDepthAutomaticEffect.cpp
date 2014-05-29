@@ -54,7 +54,7 @@ TResult FDepthAutomaticEffect::DrawRenderable(FRenderRegion* pRegion, FRenderabl
    modelMatrix.Append(renderableMatrix);
    //............................................................
    // 设置常量
-   BindConstMatrix4x4(EEffectParameter_VertexModelMatrix4x4, &modelMatrix);
+   BindConstMatrix4x4(EEffectParameter_VertexModelMatrix, &modelMatrix);
    //............................................................
    // 设定属性集合
    BindAttributeDescriptors(pRenderable);
@@ -80,7 +80,7 @@ TResult FDepthAutomaticEffect::DrawInstanceRenderable(FRenderRegion* pRegion, FI
       SFloatMatrix3d& renderableMatrix = pRenderable->Matrix();
       _modelMatrixs[n].Assign(renderableMatrix);
    }
-   BindConstMatrix4x4(EEffectParameter_VertexModelMatrix4x4, _modelMatrixs, count);
+   BindConstMatrix4x4(EEffectParameter_VertexModelMatrix, _modelMatrixs, count);
    //............................................................
    // 设定属性集合
    BindAttributeDescriptors(pInstanceRenderable);
@@ -110,13 +110,13 @@ TResult FDepthAutomaticEffect::DrawGroup(FRenderRegion* pRegion, TInt offset, TI
    _vpMatrix.Append(pProjection->Matrix());
    //............................................................
    // 设置常量
-   BindConstMatrix4x4(EEffectParameter_VertexViewProjectionMatrix4x4, &_vpMatrix);
-   BindConstPosition3(EEffectParameter_VertexCameraPosition, pCamera->Position());
-   BindConstPosition3(EEffectParameter_FragmentCameraPosition, pCamera->Position());
+   BindConstMatrix4x4(EEffectParameter_VertexViewProjectionMatrix, &_vpMatrix);
+   //BindConstPosition3(EEffectParameter_VertexCameraPosition, pCamera->Position());
+   //BindConstPosition3(EEffectParameter_FragmentCameraPosition, pCamera->Position());
    FDirectionalLight* pDirectionalLight = pRegion->DirectionalLight();
    if(pDirectionalLight != NULL){
-      BindConstVector3(EEffectParameter_VertexLightDirection, pDirectionalLight->Direction());
-      BindConstVector3(EEffectParameter_FragmentLightDirection, pDirectionalLight->Direction());
+      //BindConstVector3(EEffectParameter_VertexLightDirection, pDirectionalLight->Direction());
+      //BindConstVector3(EEffectParameter_FragmentLightDirection, pDirectionalLight->Direction());
    }
    //............................................................
    // 设置材质
@@ -128,7 +128,7 @@ TResult FDepthAutomaticEffect::DrawGroup(FRenderRegion* pRegion, TInt offset, TI
    BindConstColor4(EEffectParameter_FragmentAmbientColor,  pMaterial->AmbientColor());
    BindConstColor4(EEffectParameter_FragmentDiffuseColor,  pMaterial->DiffuseColor());
    BindConstColor4(EEffectParameter_FragmentSpecularColor, pMaterial->SpecularColor());
-   BindConstFloat4(EEffectParameter_FragmentSpecular,      pMaterial->SpecularInfo().base, pMaterial->SpecularInfo().rate, pMaterial->SpecularInfo().average, pMaterial->SpecularInfo().shadow);
+   BindConstFloat4(EEffectParameter_FragmentSpecularRate,  pMaterial->SpecularInfo().base, pMaterial->SpecularInfo().rate, pMaterial->SpecularInfo().average, pMaterial->SpecularInfo().shadow);
    BindConstColor4(EEffectParameter_FragmentReflectColor,  pMaterial->ReflectColor());
    //............................................................
    TResult resultCd = FAutomaticEffect::DrawGroup(pRegion, offset, count);

@@ -55,8 +55,8 @@ TResult FShadowDepthAutomaticEffect::DrawRenderable(FRenderRegion* pRegion, FRen
    matrixMvp.Append(_vpMatrix);
    //............................................................
    // 设置常量
-   BindConstMatrix4x4(EEffectParameter_VertexModelMatrix4x4, &modelViewMatrix);
-   BindConstMatrix4x4(EEffectParameter_VertexModelViewProjectionMatrix4x4, &matrixMvp);
+   BindConstMatrix4x4(EEffectParameter_VertexModelMatrix, &modelViewMatrix);
+   BindConstMatrix4x4(EEffectParameter_VertexModelViewProjectionMatrix, &matrixMvp);
    //............................................................
    // 设定属性集合
    BindAttributeDescriptors(pRenderable);
@@ -87,7 +87,7 @@ TResult FShadowDepthAutomaticEffect::DrawGroup(FRenderRegion* pRegion, TInt offs
    //............................................................
    TFloat lightZnear = pLightProjection->Znear();
    TFloat lightZfar = pLightProjection->Zfar();
-   BindConstFloat4(EEffectParameter_FragmentCamera, 0.0f, 0.0f, lightZnear, 1.0f / lightZfar);
+   //BindConstFloat4(EEffectParameter_FragmentCamera, 0.0f, 0.0f, lightZnear, 1.0f / lightZfar);
    //............................................................
    FAutomaticEffect::DrawGroup(pRegion, offset, count);
    //............................................................

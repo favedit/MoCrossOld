@@ -20,107 +20,91 @@ TResult REffectParameter::Parse(TCharC* pValue, EEffectParameter& parameterCd, E
    }else if(code.Equals("vertexinstance")){
       parameterCd = EEffectParameter_VertexInstance;
       shaderCd = ERenderShader_Vertex;
-      formatCd = ERenderParameterFormat_Float1;
-   }else if(code.Equals("vertexmodelmatrix3x3")){
-      parameterCd = EEffectParameter_VertexModelMatrix3x3;
-      shaderCd = ERenderShader_Vertex;
-      formatCd = ERenderParameterFormat_Float3x3;
-   }else if(code.Equals("vertexmodelmatrix4x4")){
-      parameterCd = EEffectParameter_VertexModelMatrix4x4;
+      formatCd = ERenderParameterFormat_Float4;
+   }else if(code.Equals("vertexmodelmatrix")){
+      parameterCd = EEffectParameter_VertexModelMatrix;
       shaderCd = ERenderShader_Vertex;
       formatCd = ERenderParameterFormat_Float4x4;
-   }else if(code.Equals("vertexviewmatrix4x4")){
-      parameterCd = EEffectParameter_VertexViewMatrix4x4;
+   }else if(code.Equals("vertexviewmatrix")){
+      parameterCd = EEffectParameter_VertexViewMatrix;
       shaderCd = ERenderShader_Vertex;
       formatCd = ERenderParameterFormat_Float4x4;
-   }else if(code.Equals("vertexprojectionmatrix4x4")){
-      parameterCd = EEffectParameter_VertexProjectionMatrix4x4;
+   }else if(code.Equals("vertexprojectionmatrix")){
+      parameterCd = EEffectParameter_VertexProjectionMatrix;
       shaderCd = ERenderShader_Vertex;
       formatCd = ERenderParameterFormat_Float4x4;
-   }else if(code.Equals("vertexviewprojectionmatrix4x4")){
-      parameterCd = EEffectParameter_VertexViewProjectionMatrix4x4;
+   }else if(code.Equals("vertexviewprojectionmatrix")){
+      parameterCd = EEffectParameter_VertexViewProjectionMatrix;
       shaderCd = ERenderShader_Vertex;
       formatCd = ERenderParameterFormat_Float4x4;
-   }else if(code.Equals("vertexmodelviewprojectionmatrix3x3")){
-      parameterCd = EEffectParameter_VertexModelViewProjectionMatrix3x3;
-      shaderCd = ERenderShader_Vertex;
-      formatCd = ERenderParameterFormat_Float3x3;
-   }else if(code.Equals("vertexmodelviewprojectionmatrix4x4")){
-      parameterCd = EEffectParameter_VertexModelViewProjectionMatrix4x4;
+   }else if(code.Equals("vertexmodelviewprojectionmatrix")){
+      parameterCd = EEffectParameter_VertexModelViewProjectionMatrix;
       shaderCd = ERenderShader_Vertex;
       formatCd = ERenderParameterFormat_Float4x4;
-   }else if(code.Equals("vertexbonematrix4x4")){
-      parameterCd = EEffectParameter_VertexBoneMatrix4x4;
+   }else if(code.Equals("vertexbonematrix")){
+      parameterCd = EEffectParameter_VertexBoneMatrix;
       shaderCd = ERenderShader_Vertex;
       formatCd = ERenderParameterFormat_Float4;
    }else if(code.Equals("vertexcameraposition")){
       parameterCd = EEffectParameter_VertexCameraPosition;
       shaderCd = ERenderShader_Vertex;
       formatCd = ERenderParameterFormat_Float4;
-   }else if(code.Equals("vertexcameradirection")){
-      parameterCd = EEffectParameter_VertexCameraDirection;
-      shaderCd = ERenderShader_Vertex;
-      formatCd = ERenderParameterFormat_Float4;
-   }else if(code.Equals("vertexlightmodelmatrix4x4")){
-      parameterCd = EEffectParameter_VertexLightModelMatrix4x4;
-      shaderCd = ERenderShader_Vertex;
-      formatCd = ERenderParameterFormat_Float4x4;
-   }else if(code.Equals("vertexlightmodelviewmatrix4x4")){
-      parameterCd = EEffectParameter_VertexLightModelViewMatrix4x4;
-      shaderCd = ERenderShader_Vertex;
-      formatCd = ERenderParameterFormat_Float4x4;
-   }else if(code.Equals("vertexlightmodelviewprojectrionmatrix4x4")){
-      parameterCd = EEffectParameter_VertexLightModelViewProjectionMatrix4x4;
-      shaderCd = ERenderShader_Vertex;
-      formatCd = ERenderParameterFormat_Float4x4;
-   }else if(code.Equals("vertexlightposition")){
-      parameterCd = EEffectParameter_VertexLightPosition;
-      shaderCd = ERenderShader_Vertex;
-      formatCd = ERenderParameterFormat_Float4;
+   //}else if(code.Equals("vertexcameradirection")){
+   //   parameterCd = EEffectParameter_VertexCameraDirection;
+   //   shaderCd = ERenderShader_Vertex;
+   //   formatCd = ERenderParameterFormat_Float4;
+   //}else if(code.Equals("vertexlightmodelmatrix4x4")){
+   //   parameterCd = EEffectParameter_VertexLightModelMatrix4x4;
+   //   shaderCd = ERenderShader_Vertex;
+   //   formatCd = ERenderParameterFormat_Float4x4;
+   //}else if(code.Equals("vertexlightmodelviewmatrix4x4")){
+   //   parameterCd = EEffectParameter_VertexLightModelViewMatrix4x4;
+   //   shaderCd = ERenderShader_Vertex;
+   //   formatCd = ERenderParameterFormat_Float4x4;
+   //}else if(code.Equals("vertexlightmodelviewprojectrionmatrix4x4")){
+   //   parameterCd = EEffectParameter_VertexLightModelViewProjectionMatrix4x4;
+   //   shaderCd = ERenderShader_Vertex;
+   //   formatCd = ERenderParameterFormat_Float4x4;
+   //}else if(code.Equals("vertexlightposition")){
+   //   parameterCd = EEffectParameter_VertexLightPosition;
+   //   shaderCd = ERenderShader_Vertex;
+   //   formatCd = ERenderParameterFormat_Float4;
    }else if(code.Equals("vertexlightdirection")){
       parameterCd = EEffectParameter_VertexLightDirection;
       shaderCd = ERenderShader_Vertex;
       formatCd = ERenderParameterFormat_Float4;
    }
    //............................................................
-   else if(code.Equals("fragmentcamera")){
-      parameterCd = EEffectParameter_FragmentCamera;
-      shaderCd = ERenderShader_Fragment;
-      formatCd = ERenderParameterFormat_Float4;
-   }else if(code.Equals("fragmentcameraposition")){
+   //else if(code.Equals("fragmentcamera")){
+   //   parameterCd = EEffectParameter_FragmentCamera;
+   //   shaderCd = ERenderShader_Fragment;
+   //   formatCd = ERenderParameterFormat_Float4;
+   else if(code.Equals("fragmentcameraposition")){
       parameterCd = EEffectParameter_FragmentCameraPosition;
       shaderCd = ERenderShader_Fragment;
       formatCd = ERenderParameterFormat_Float4;
-   }else if(code.Equals("fragmentcameradirection")){
-      parameterCd = EEffectParameter_FragmentCameraDirection;
-      shaderCd = ERenderShader_Fragment;
-      formatCd = ERenderParameterFormat_Float4;
-   }else if(code.Equals("fragmentlightmodelmatrix4x4")){
-      parameterCd = EEffectParameter_FragmentLightModelMatrix4x4;
-      shaderCd = ERenderShader_Fragment;
-      formatCd = ERenderParameterFormat_Float4x4;
-   }else if(code.Equals("fragmentlightmodelviewprojectrionmatrix4x4")){
-      parameterCd = EEffectParameter_FragmentLightModelViewProjectrionMatrix4x4;
-      shaderCd = ERenderShader_Fragment;
-      formatCd = ERenderParameterFormat_Float4x4;
-   }else if(code.Equals("fragmentlightposition")){
-      parameterCd = EEffectParameter_FragmentLightPosition;
-      shaderCd = ERenderShader_Fragment;
-      formatCd = ERenderParameterFormat_Float4;
+   //}else if(code.Equals("fragmentcameradirection")){
+   //   parameterCd = EEffectParameter_FragmentCameraDirection;
+   //   shaderCd = ERenderShader_Fragment;
+   //   formatCd = ERenderParameterFormat_Float4;
+   //}else if(code.Equals("fragmentlightmodelmatrix4x4")){
+   //   parameterCd = EEffectParameter_FragmentLightModelMatrix4x4;
+   //   shaderCd = ERenderShader_Fragment;
+   //   formatCd = ERenderParameterFormat_Float4x4;
+   //}else if(code.Equals("fragmentlightmodelviewprojectrionmatrix4x4")){
+   //   parameterCd = EEffectParameter_FragmentLightModelViewProjectrionMatrix4x4;
+   //   shaderCd = ERenderShader_Fragment;
+   //   formatCd = ERenderParameterFormat_Float4x4;
+   //}else if(code.Equals("fragmentlightposition")){
+   //   parameterCd = EEffectParameter_FragmentLightPosition;
+   //   shaderCd = ERenderShader_Fragment;
+   //   formatCd = ERenderParameterFormat_Float4;
    }else if(code.Equals("fragmentlightdirection")){
       parameterCd = EEffectParameter_FragmentLightDirection;
       shaderCd = ERenderShader_Fragment;
       formatCd = ERenderParameterFormat_Float4;
    }else if(code.Equals("fragmentlightdepth")){
       parameterCd = EEffectParameter_FragmentLightDepth;
-      shaderCd = ERenderShader_Fragment;
-      formatCd = ERenderParameterFormat_Float4;
-   }else if(code.Equals("fragmentshadowmaterial")){
-      parameterCd = EEffectParameter_FragmentShadowMaterial;
-      shaderCd = ERenderShader_Fragment;
-      formatCd = ERenderParameterFormat_Float4;
-   }else if(code.Equals("fragmentshadowmaterialinv")){
-      parameterCd = EEffectParameter_FragmentShadowMaterialInv;
       shaderCd = ERenderShader_Fragment;
       formatCd = ERenderParameterFormat_Float4;
    }else if(code.Equals("fragmentcolor")){
@@ -131,10 +115,10 @@ TResult REffectParameter::Parse(TCharC* pValue, EEffectParameter& parameterCd, E
       parameterCd = EEffectParameter_FragmentAlpha;
       shaderCd = ERenderShader_Fragment;
       formatCd = ERenderParameterFormat_Float4;
-   }else if(code.Equals("fragmentvertexcolor")){
-      parameterCd = EEffectParameter_FragmentVertexColor;
-      shaderCd = ERenderShader_Fragment;
-      formatCd = ERenderParameterFormat_Float4;
+   //}else if(code.Equals("fragmentvertexcolor")){
+   //   parameterCd = EEffectParameter_FragmentVertexColor;
+   //   shaderCd = ERenderShader_Fragment;
+   //   formatCd = ERenderParameterFormat_Float4;
    }else if(code.Equals("fragmentambientcolor")){
       parameterCd = EEffectParameter_FragmentAmbientColor;
       shaderCd = ERenderShader_Fragment;
@@ -151,20 +135,28 @@ TResult REffectParameter::Parse(TCharC* pValue, EEffectParameter& parameterCd, E
       parameterCd = EEffectParameter_FragmentSpecularColor;
       shaderCd = ERenderShader_Fragment;
       formatCd = ERenderParameterFormat_Float4;
-   }else if(code.Equals("fragmentspecular")){
-      parameterCd = EEffectParameter_FragmentSpecular;
+   }else if(code.Equals("fragmentspecularrate")){
+      parameterCd = EEffectParameter_FragmentSpecularRate;
       shaderCd = ERenderShader_Fragment;
       formatCd = ERenderParameterFormat_Float4;
    }else if(code.Equals("fragmentspecularviewcolor")){
       parameterCd = EEffectParameter_FragmentSpecularViewColor;
       shaderCd = ERenderShader_Fragment;
       formatCd = ERenderParameterFormat_Float4;
-   }else if(code.Equals("fragmentspecularview")){
-      parameterCd = EEffectParameter_FragmentSpecularView;
+   }else if(code.Equals("fragmentspecularviewrate")){
+      parameterCd = EEffectParameter_FragmentSpecularViewRate;
       shaderCd = ERenderShader_Fragment;
       formatCd = ERenderParameterFormat_Float4;
    }else if(code.Equals("fragmentreflectcolor")){
       parameterCd = EEffectParameter_FragmentReflectColor;
+      shaderCd = ERenderShader_Fragment;
+      formatCd = ERenderParameterFormat_Float4;
+   }else if(code.Equals("fragmentshadowmaterial")){
+      parameterCd = EEffectParameter_FragmentShadowMaterial;
+      shaderCd = ERenderShader_Fragment;
+      formatCd = ERenderParameterFormat_Float4;
+   }else if(code.Equals("fragmentshadowmaterialinv")){
+      parameterCd = EEffectParameter_FragmentShadowMaterialInv;
       shaderCd = ERenderShader_Fragment;
       formatCd = ERenderParameterFormat_Float4;
    }else{
@@ -184,51 +176,42 @@ TCharC* REffectParameter::Format(EEffectParameter parameterCd){
    switch(parameterCd){
       case EEffectParameter_VertexInstance:
          return "VertexInstance";
-      case EEffectParameter_VertexModelMatrix3x3:
-         return "VertexModelMatrix3x3";
-      case EEffectParameter_VertexModelMatrix4x4:
-         return "VertexModelMatrix4x4";
-      case EEffectParameter_VertexViewMatrix4x4:
-         return "VertexViewMatrix4x4";
-      case EEffectParameter_VertexProjectionMatrix4x4:
-         return "VertexProjectionMatrix4x4";
-      case EEffectParameter_VertexViewProjectionMatrix4x4:
-         return "VertexViewProjectionMatrix4x4";
-      case EEffectParameter_VertexModelViewProjectionMatrix3x3:
-         return "VertexModelViewProjectionMatrix3x3";
-      case EEffectParameter_VertexModelViewProjectionMatrix4x4:
-         return "VertexModelViewProjectionMatrix4x4";
-      case EEffectParameter_VertexBoneMatrix4x4:
-         return "VertexBoneMatrix4x4";
+      case EEffectParameter_VertexModelMatrix:
+         return "VertexModelMatrix";
+      case EEffectParameter_VertexViewMatrix:
+         return "VertexViewMatrix";
+      case EEffectParameter_VertexProjectionMatrix:
+         return "VertexProjectionMatrix";
+      case EEffectParameter_VertexViewProjectionMatrix:
+         return "VertexViewProjectionMatrix";
+      case EEffectParameter_VertexModelViewProjectionMatrix:
+         return "VertexModelViewProjectionMatrix";
+      case EEffectParameter_VertexBoneMatrix:
+         return "VertexBoneMatrix";
       case EEffectParameter_VertexCameraPosition:
          return "VertexCameraPosition";
-      case EEffectParameter_VertexCameraDirection:
-         return "VertexCameraDirection";
-      case EEffectParameter_VertexLightPosition:
-         return "VertexLightPosition";
+   //   case EEffectParameter_VertexCameraDirection:
+   //      return "VertexCameraDirection";
+   //   case EEffectParameter_VertexLightPosition:
+   //      return "VertexLightPosition";
       case EEffectParameter_VertexLightDirection:
          return "VertexLightDirection";
       //............................................................
       case EEffectParameter_FragmentCameraPosition:
          return "FragmentCameraPosition";
-      case EEffectParameter_FragmentCameraDirection:
-         return "FragmentCameraDirection";
-      case EEffectParameter_FragmentLightPosition:
-         return "FragmentLightPosition";
+   //   case EEffectParameter_FragmentCameraDirection:
+   //      return "FragmentCameraDirection";
+   //   case EEffectParameter_FragmentLightPosition:
+   //      return "FragmentLightPosition";
       case EEffectParameter_FragmentLightDirection:
          return "FragmentLightDirection";
       case EEffectParameter_FragmentLightDepth:
          return "FragmentLightDepth";
-      case EEffectParameter_FragmentShadowMaterial:
-         return "FragmentShadowMaterial";
-      case EEffectParameter_FragmentShadowMaterialInv:
-         return "FragmentShadowMaterialInv";
+      //............................................................
       case EEffectParameter_FragmentColor:
          return "FragmentColor";
       case EEffectParameter_FragmentAlpha:
          return "FragmentAlpha";
-      case EEffectParameter_FragmentVertexColor:
-         return "FragmentVertexColor";
       case EEffectParameter_FragmentAmbientColor:
          return "FragmentAmbientColor";
       case EEffectParameter_FragmentDiffuseColor:
@@ -237,14 +220,18 @@ TCharC* REffectParameter::Format(EEffectParameter parameterCd){
          return "FragmentDiffuseViewColor";
       case EEffectParameter_FragmentSpecularColor:
          return "FragmentSpecularColor";
-      case EEffectParameter_FragmentSpecular:
-         return "FragmentSpecular";
+      case EEffectParameter_FragmentSpecularRate:
+         return "FragmentSpecularRate";
       case EEffectParameter_FragmentSpecularViewColor:
          return "FragmentSpecularViewColor";
-      case EEffectParameter_FragmentSpecularView:
-         return "FragmentSpecularView";
+      case EEffectParameter_FragmentSpecularViewRate:
+         return "FragmentSpecularViewRate";
       case EEffectParameter_FragmentReflectColor:
          return "ReflectColor";
+      case EEffectParameter_FragmentShadowMaterial:
+         return "FragmentShadowMaterial";
+      case EEffectParameter_FragmentShadowMaterialInv:
+         return "FragmentShadowMaterialInv";
    }
    return "Unknown";
 }

@@ -2,6 +2,9 @@
    <Version label='alpha 0.1' />
    <!-- ------------------------------------------------------------ -->
    <Source name='declare'><![CDATA[
+uniform vec4 vc_camera_position;
+uniform vec4 vc_light_direction;
+
 <shader:true source='vertex.attribute.normal'>
 attribute vec3 va_normal;
 <shader:true source='vertex.attribute.normal.full'>
@@ -21,7 +24,7 @@ varying vec3 v_light_ts;
    <!-- ------------------------------------------------------------ -->
    <Source name='main'><![CDATA[
 <shader:true source='support.instance'>
-   mat3 modelMat3 = mat3(modelMat4);
+   mat3 modelMat3 = mat3(modelMatrix);
 </shader:true>
 <shader:false source='support.instance'>
    mat3 modelMat3 = mat3(vc_model_matrix);
@@ -29,18 +32,12 @@ varying vec3 v_light_ts;
 <shader:true source='vertex.attribute.normal'>
    v_normal = normalize((va_normal.xyz * 2.0 - 1.0) * modelMat3);
 <shader:true source='support.dump'>
-<shader:true source='support.instance'>
    vec3 binormal = normalize((va_binormal.xyz * 2.0 - 1.0) * modelMat3);
    vec3 tangent = normalize((va_tangent.xyz * 2.0 - 1.0) * modelMat3);
-</shader:true>
-<shader:false source='support.instance'>
-   vec3 binormal = normalize(va_binormal * vc_model_mat3);
-   vec3 tangent = normalize(va_tangent * vc_model_mat3);
-</shader:false>
    mat3 matrixTs = mat3(tangent, binormal, normal);
-   vec3 cameraDirection = vc_camera_position - v_model_position.xyz;
+   vec3 cameraDirection = vc_camera_position.xyz - modelPosition.xyz;
    v_camera_ts = normalize(cameraDirection * matrixTs);
-   v_light_ts = normalize(vc_light_direction * matrixTs);
+   v_light_ts = normalize(vc_light_direction.xyz * matrixTs);
 </shader:true>
 </shader:true>
    ]]></Source>

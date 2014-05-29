@@ -1,34 +1,37 @@
 <Configuration>
    <Version label='alpha 0.1' />
    <!-- ------------------------------------------------------------ -->
-   <!-- ------------------------------------------------------------ -->
    <Source name='declare'><![CDATA[
-<shader:true source='support.instance'>
-uniform mat4 vc_model_matrix[<shader:write source='instance.count'/>];
-</shader:true>
 <shader:false source='support.instance'>
 uniform mat4 vc_model_matrix;
 </shader:false>
+<shader:true source='support.instance'>
+uniform mat4 vc_model_matrix[<shader:write source='instance.count'/>];
+</shader:true>
+uniform mat4 vc_view_matrix;
+uniform mat4 vc_projection_matrix;
+uniform mat4 vc_view_projection_matrix;
 
 <shader:true source='support.instance'>
 attribute float va_instance;
 </shader:true>
-attribute vec4 va_position;
+attribute vec3 va_position;
+
+varying vec4 v_model_position;
    ]]></Source>
    <!-- ------------------------------------------------------------ -->
    <Source name='main'><![CDATA[
-<shader:true source='support.instance'>
-   mat4 modelMat4 = vc_model_matrix[int(va_instance)];
-   vec4 modelPosition = va_position * modelMat4;
-</shader:true>
+   // Calculate position
+   vec4 position = vec4(va_position.xyz, 1.0);
 <shader:false source='support.instance'>
-   vec4 modelPosition = va_position * vc_model_matrix;
+   vec4 modelPosition = position * vc_model_matrix;
 </shader:false>
-   modelPosition.w = 1.0;
+<shader:true source='support.instance'>
+   mat4 modelMatrix = vc_model_matrix[int(va_instance)];
+   vec4 modelPosition = position * modelMatrix;
+</shader:true>
+   gl_Position = modelPosition * vc_view_projection_matrix;
    v_model_position = modelPosition;
-   // Calculate projection position
-   vec4 viewPosition = modelPosition * vc_view_matrix;
-   gl_Position = viewPosition * vc_projection_matrix;
    ]]></Source>
    <!-- ------------------------------------------------------------ -->
 </Configuration>

@@ -483,7 +483,7 @@ TResult FPoRenderDevice::BindConst(ERenderShader shaderCd, TInt slot, ERenderPar
       case ERenderParameterFormat_Float1:{
          // 检查长度
          if(length % 4 != 0){
-            MO_ERROR("Length is invalid. (length=%d)", length);
+            MO_FATAL("Length is invalid. (length=%d)", length);
             return EFailure;
          }
          // 修改数据
@@ -496,7 +496,7 @@ TResult FPoRenderDevice::BindConst(ERenderShader shaderCd, TInt slot, ERenderPar
       case ERenderParameterFormat_Float2:{
          // 检查长度
          if(length % 8 != 0){
-            MO_ERROR("Length is invalid. (length=%d)", length);
+            MO_FATAL("Length is invalid. (length=%d)", length);
             return EFailure;
          }
          // 修改数据
@@ -509,7 +509,7 @@ TResult FPoRenderDevice::BindConst(ERenderShader shaderCd, TInt slot, ERenderPar
       case ERenderParameterFormat_Float3:{
          // 检查长度
          if(length % 12 != 0){
-            MO_ERROR("Length is invalid. (length=d)", length);
+            MO_FATAL("Length is invalid. (length=d)", length);
             return EFailure;
          }
          // 修改数据
@@ -522,7 +522,7 @@ TResult FPoRenderDevice::BindConst(ERenderShader shaderCd, TInt slot, ERenderPar
       case ERenderParameterFormat_Float4:{
          // 检查长度
          if(length % 16 != 0){
-            MO_ERROR("Length is invalid. (length=%d)", length);
+            MO_FATAL("Length is invalid. (length=%d)", length);
             return EFailure;
          }
          // 修改数据
@@ -535,7 +535,7 @@ TResult FPoRenderDevice::BindConst(ERenderShader shaderCd, TInt slot, ERenderPar
       case ERenderParameterFormat_Float3x3:{
          // 检查长度
          if(length % 36 != 0){
-            MO_ERROR("Length is invalid. (length=%d)", length);
+            MO_FATAL("Length is invalid. (length=%d)", length);
             return EFailure;
          }
          // 修改数据
@@ -548,7 +548,7 @@ TResult FPoRenderDevice::BindConst(ERenderShader shaderCd, TInt slot, ERenderPar
       case ERenderParameterFormat_Float4x3:{
          // 检查长度
          if(length % 48 != 0){
-            MO_ERROR("Length is invalid. (length=%d)", length);
+            MO_FATAL("Length is invalid. (length=%d)", length);
             return EFailure;
          }
          // 修改数据
@@ -562,7 +562,7 @@ TResult FPoRenderDevice::BindConst(ERenderShader shaderCd, TInt slot, ERenderPar
       case ERenderParameterFormat_Float4x4:{
          // 检查长度
          if(length % 64 != 0){
-            MO_ERROR("Length is invalid. (length=%d)", length);
+            MO_FATAL("Length is invalid. (length=%d)", length);
             return EFailure;
          }
          // 修改数据
