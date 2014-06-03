@@ -9,6 +9,10 @@ MO_CLASS_IMPLEMENT_INHERITS(FPoRenderLayout, FRenderLayout);
 //============================================================
 FPoRenderLayout::FPoRenderLayout(){
    _count = 0;
+   RTypes<TInt>::Clear(_slots, MO_RENDER_ATTRIBUTE_MAXCNT);
+   RTypes<FRenderVertexBuffer*>::Clear(_pBuffers, MO_RENDER_ATTRIBUTE_MAXCNT);
+   RTypes<TInt>::Clear(_offsets, MO_RENDER_ATTRIBUTE_MAXCNT);
+   RTypes<ERenderAttributeFormat>::Clear(_formats, MO_RENDER_ATTRIBUTE_MAXCNT);
 }
 
 //============================================================
