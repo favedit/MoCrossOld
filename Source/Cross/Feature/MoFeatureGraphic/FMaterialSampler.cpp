@@ -2,24 +2,24 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FTexture, FGraphicInstance);
+MO_CLASS_IMPLEMENT_INHERITS(FMaterialSampler, FInstance);
 
 //============================================================
 // <T>构造纹理。</T>
 //============================================================
-FTexture::FTexture(){
+FMaterialSampler::FMaterialSampler(){
 }
 
 //============================================================
 // <T>析构纹理。</T>
 //============================================================
-FTexture::~FTexture(){
+FMaterialSampler::~FMaterialSampler(){
 }
 
 //============================================================
-// <T>析构纹理。</T>
+// <T>释放处理。</T>
 //============================================================
-void FTexture::Free(){
-}
+//void FMaterialSampler::Free(){
+//}
 
 MO_NAMESPACE_END

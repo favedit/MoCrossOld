@@ -1254,30 +1254,20 @@ typedef MO_FG_DECLARE GPtrLooper<FRenderProgram> GRenderProgramPtrLooper;
 //============================================================
 // <T>渲染纹理。</T>
 //============================================================
-class MO_FG_DECLARE FRenderTexture : public FTexture
+class MO_FG_DECLARE FRenderTexture : public FRenderInstance
 {
-   MO_CLASS_DECLARE_INHERITS(FRenderTexture, FTexture);
+   MO_CLASS_DECLARE_INHERITS(FRenderTexture, FRenderInstance);
 protected:
-   FRenderDevice* _pDevice;
    ERenderTexture _textureCd;
    ERenderTextureFormat _formatCd;
    ERenderTextureFilter _filterCd;
    ERenderTextureWrap _wrapCd;
    FBytes* _pData;
+   SIntSize2 _size;
 public:
    FRenderTexture();
    MO_ABSTRACT ~FRenderTexture();
 public:
-   //------------------------------------------------------------
-   // <T>获得设备。</T>
-   MO_INLINE FRenderDevice* Device(){
-      return _pDevice;
-   }
-   //------------------------------------------------------------
-   // <T>设置设备。</T>
-   MO_INLINE void SetDevice(FRenderDevice* pDevice){
-      _pDevice = pDevice;
-   }
    //------------------------------------------------------------
    // <T>获得纹理类型。</T>
    MO_INLINE ERenderTexture TextureCd(){
@@ -1312,6 +1302,11 @@ public:
    // <T>设置纹理展开。</T>
    MO_INLINE void SetWrapCd(ERenderTextureWrap wrapCd){
       _wrapCd = wrapCd;
+   }
+   //------------------------------------------------------------
+   // <T>获得大小。</T>
+   MO_INLINE SIntSize2& Size(){
+      return _size;
    }
 public:
    MO_ABSTRACT TResult OnSetup();

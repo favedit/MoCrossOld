@@ -109,7 +109,8 @@ TResult FPoRenderTarget::OnSetup(){
    TInt textureCount = _pTextures->Count();
    for(TInt n = 0; n < textureCount; n++){
       FRenderTexture* pTexture = _pTextures->Get(n);
-      GLuint textureId = pTexture->GraphicHandle().data.uint32;
+      FPoRenderFlatTexture* pFlatTexture = pTexture->Convert<FPoRenderFlatTexture>();
+      GLuint textureId = pFlatTexture->TextureId();
       // …Ë÷√–≈œ¢
       glBindTexture(GL_TEXTURE_2D, textureId);
       //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

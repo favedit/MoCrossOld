@@ -2,7 +2,7 @@
 
 MO_NAMESPACE_BEGIN
 
-MO_CLASS_IMPLEMENT_INHERITS(FRenderTexture, FTexture);
+MO_CLASS_IMPLEMENT_INHERITS(FRenderTexture, FRenderInstance);
 
 //============================================================
 // <T>构造渲染纹理。</T>
@@ -29,8 +29,7 @@ FRenderTexture::~FRenderTexture(){
 // @return 处理结果
 //============================================================
 TResult FRenderTexture::OnSetup(){
-   TResult result = FTexture::OnSetup();
-   _graphicHandle.instancePtr = this;
+   TResult result = FRenderInstance::OnSetup();
    return result;
 }
 

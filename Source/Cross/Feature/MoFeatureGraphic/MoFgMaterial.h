@@ -11,31 +11,49 @@ MO_NAMESPACE_BEGIN
 //============================================================
 // <T>纹理对象。</T>
 //============================================================
-class MO_FG_DECLARE FTexture : public FGraphicInstance
+class MO_FG_DECLARE FMaterialSampler : public FInstance
 {
-   MO_CLASS_DECLARE_INHERITS(FTexture, FGraphicInstance);
+   MO_CLASS_DECLARE_INHERITS(FMaterialSampler, FInstance);
 protected:
-   TGraphicHandle _graphicHandle;
-   SIntSize2 _size;
+   // 代码
+   TString _code;
+   // 图元对象
+   GGraphicInstancePtr _graphicsObject;
 public:
-   FTexture();
-   MO_ABSTRACT ~FTexture();
+   FMaterialSampler();
+   MO_ABSTRACT ~FMaterialSampler();
 public:
    //------------------------------------------------------------
-   // <T>获得句柄。</T>
-   MO_INLINE TGraphicHandle& GraphicHandle(){
-      return _graphicHandle;
+   // <T>获得代码。</T>
+   MO_INLINE TCharC* Code(){
+      return _code;
    }
    //------------------------------------------------------------
-   // <T>获得大小。</T>
-   MO_INLINE SIntSize2& Size(){
-      return _size;
+   // <T>设置代码。</T>
+   MO_INLINE void SetCode(TCharC* pCode){
+      _code = pCode;
+   }
+   //------------------------------------------------------------
+   // <T>获得图元对象。</T>
+   MO_INLINE FGraphicInstance* GraphicsObject(){
+      return _graphicsObject;
+   }
+   //------------------------------------------------------------
+   // <T>获得图元对象。</T>
+   template <class T>
+   MO_INLINE T* GraphicsObject(){
+      return _graphicsObject->Convert<T>();
+   }
+   //------------------------------------------------------------
+   // <T>设置图元对象。</T>
+   MO_INLINE void SetGraphicsObject(FGraphicInstance* pGraphicsObject){
+      _graphicsObject = pGraphicsObject;
    }
 public:
-   MO_ABSTRACT void Free();
+   //MO_ABSTRACT void Free();
 };
 //------------------------------------------------------------
-typedef MO_FG_DECLARE FObjects<FTexture*> FTextureCollection;
+typedef MO_FG_DECLARE GPtrs<FMaterialSampler> GMaterialSamplerPtrs;
 
 //============================================================
 // <T>材质颜色信息。</T>

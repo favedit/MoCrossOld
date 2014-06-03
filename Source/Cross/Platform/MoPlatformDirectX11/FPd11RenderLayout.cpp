@@ -10,6 +10,9 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderLayout, FRenderLayout);
 FPd11RenderLayout::FPd11RenderLayout(){
    _count = 0;
    MO_CLEAR(_piInputLayout);
+   RTypes<ID3D11Buffer*>::Clear(_piBuffer, MO_RENDER_ATTRIBUTE_MAXCNT);
+   RTypes<UINT>::Clear(_strides, MO_RENDER_ATTRIBUTE_MAXCNT);
+   RTypes<UINT>::Clear(_offsets, MO_RENDER_ATTRIBUTE_MAXCNT);
 }
 
 //============================================================

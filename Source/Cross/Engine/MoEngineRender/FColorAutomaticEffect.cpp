@@ -40,14 +40,14 @@ TResult FColorAutomaticEffect::BindDescriptors(){
    //............................................................
    //// 相机参数
    //RegisterParameter("FragmentCamera",                             EEffectParameter_FragmentCamera);
-   RegisterParameter("FragmentCameraPosition",                     EEffectParameter_FragmentCameraPosition);
+   RegisterParameter("FragmentCameraPosition",    EEffectParameter_FragmentCameraPosition);
    //RegisterParameter("FragmentCameraDirection",                    EEffectParameter_FragmentCameraDirection);
    //// 光源参数
    //RegisterParameter("FragmentLightModelMatrix4x4",                EEffectParameter_FragmentLightModelMatrix4x4);
    //RegisterParameter("FragmentLightModelViewProjectrionMatrix4x4", EEffectParameter_FragmentLightModelViewProjectrionMatrix4x4);
    //RegisterParameter("FragmentLightPosition",                      EEffectParameter_FragmentLightPosition);
-   RegisterParameter("FragmentLightDirection",                     EEffectParameter_FragmentLightDirection);
-   RegisterParameter("FragmentLightDepth",                         EEffectParameter_FragmentLightDepth);
+   RegisterParameter("FragmentLightDirection",    EEffectParameter_FragmentLightDirection);
+   RegisterParameter("FragmentLightDepth",        EEffectParameter_FragmentLightDepth);
    // 材质参数
    RegisterParameter("FragmentColor",             EEffectParameter_FragmentColor);
    RegisterParameter("FragmentAlpha",             EEffectParameter_FragmentAlpha);

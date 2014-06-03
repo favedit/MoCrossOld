@@ -790,7 +790,7 @@ TResult FPd11RenderDevice::BindTexture(TInt slot, TInt index, FRenderTexture* pT
    ERenderTexture textureCd = pTexture->TextureCd();
    switch (textureCd){
       case ERenderTexture_Flat2d:{
-         FPd11RenderFlatTexture* pFlatTexture = (FPd11RenderFlatTexture*)pTexture;
+         FPd11RenderFlatTexture* pFlatTexture = pTexture->Convert<FPd11RenderFlatTexture>();
          ID3D11ShaderResourceView* piTextureView = pFlatTexture->NativeView();
          ID3D11SamplerState* piState = pFlatTexture->NativeState();
          _piContext->PSSetShaderResources(slot, 1, &piTextureView);
@@ -799,7 +799,7 @@ TResult FPd11RenderDevice::BindTexture(TInt slot, TInt index, FRenderTexture* pT
          break;
       }
       case ERenderTexture_Cube:{
-         FPd11RenderCubeTexture* pCubeTexture = (FPd11RenderCubeTexture*)pTexture;
+         FPd11RenderCubeTexture* pCubeTexture = pTexture->Convert<FPd11RenderCubeTexture>();
          ID3D11ShaderResourceView* piTextureView = pCubeTexture->NativeView();
          ID3D11SamplerState* piState = pCubeTexture->NativeState();
          _piContext->PSSetShaderResources(slot, 1, &piTextureView);

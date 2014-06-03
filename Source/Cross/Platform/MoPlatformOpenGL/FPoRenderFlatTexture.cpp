@@ -25,7 +25,6 @@ FPoRenderFlatTexture::~FPoRenderFlatTexture(){
 TResult FPoRenderFlatTexture::OnSetup(){
    FRenderFlatTexture::OnSetup();
    glGenTextures(1, &_textureId);
-   _graphicHandle.data.uint32 = _textureId;
    MO_FATAL_CHECK(_textureId != 0, return EFailure,
          "Generate flat texture id failure. (texture_id=%d)", _textureId);
    glBindTexture(GL_TEXTURE_2D, _textureId);
