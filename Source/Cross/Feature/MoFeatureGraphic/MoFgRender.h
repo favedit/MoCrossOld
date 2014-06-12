@@ -55,6 +55,7 @@ struct MO_FG_DECLARE FRenderCapability : FInstance
    MO_CLASS_DECLARE_INHERITS(FRenderCapability, FInstance);
 protected:
    TString _code;
+   TString _label;
    TString _vendor;
    TString _version;
    TString _shaderVertexVersion;
@@ -85,6 +86,16 @@ public:
    // <T>设置代码。</T>
    MO_INLINE void SetCode(TCharC* pCode){
       _code = pCode;
+   }
+   //------------------------------------------------------------
+   // <T>获得标签。</T>
+   MO_INLINE TCharC* Label(){
+      return _label;
+   }
+   //------------------------------------------------------------
+   // <T>设置标签。</T>
+   MO_INLINE void SetLabel(TCharC* pLabel){
+      _code = pLabel;
    }
    //------------------------------------------------------------
    // <T>获得提供商。</T>

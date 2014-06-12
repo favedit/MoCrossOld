@@ -10,7 +10,8 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd11RenderDevice, FPdxRenderDevice);
 FPd11RenderDevice::FPd11RenderDevice(){
    // 初始化能力描述
    _pCapability = MO_CREATE(FRenderCapability);
-   _pCapability->SetCode("directx11");
+   _pCapability->SetCode("dx11");
+   _pCapability->SetLabel("DirectX 11.0");
    _pCapability->SetShaderVertexVersion("vs_5_0");
    _pCapability->SetShaderFragmentVersion("ps_5_0");
    // 初始化纹理数据

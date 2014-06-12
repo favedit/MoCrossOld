@@ -16,8 +16,11 @@ public:
    FDataStream();
    MO_ABSTRACT ~FDataStream();
 public:
+   void WriteByte2(TByte value1 = 0, TByte value2 = 0);
+   void WriteByte3(TByte value1 = 0, TByte value2 = 0, TByte value3 = 0);
    void WriteByte4(TByte value1 = 0, TByte value2 = 0, TByte value3 = 0, TByte value4 = 0);
    void WriteFloat2(TFloat value1 = 0.0f, TFloat value2 = 0.0f);
+   void WriteFloat3(TFloat value1 = 0.0f, TFloat value2 = 0.0f, TFloat value3 = 0.0f);
    void WriteFloat4(TFloat value1 = 0.0f, TFloat value2 = 0.0f, TFloat value3 = 0.0f, TFloat value4 = 0.0f);
 };
 

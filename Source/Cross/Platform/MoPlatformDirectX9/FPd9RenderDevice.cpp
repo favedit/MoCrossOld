@@ -10,7 +10,8 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderDevice, FPdxRenderDevice);
 FPd9RenderDevice::FPd9RenderDevice(){
    // 初始化能力描述
    _pCapability = MO_CREATE(FRenderCapability);
-   _pCapability->SetCode("directx9");
+   _pCapability->SetCode("dx9");
+   _pCapability->SetLabel("DirectX 9.0");
    // 初始化纹理数据
    //_optionTexture = EFalse;
    //_textureLimit = 0;

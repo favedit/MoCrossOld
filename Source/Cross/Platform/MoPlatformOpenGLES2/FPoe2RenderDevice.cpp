@@ -8,7 +8,8 @@ MO_CLASS_IMPLEMENT_INHERITS(FPoe2RenderDevice, FPoRenderDevice);
 // <T>构造舞台对象。</T>
 //============================================================
 FPoe2RenderDevice::FPoe2RenderDevice(){
-   _pCapability->SetCode("opengles2");
+   _pCapability->SetCode("gles2");
+   _pCapability->SetLabel("OpenGL ES 2.0");
 }
 
 //============================================================
