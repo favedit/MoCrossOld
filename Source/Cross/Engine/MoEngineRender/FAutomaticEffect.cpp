@@ -212,7 +212,7 @@ TResult FAutomaticEffect::BuildContext(SEffectContext* pContext){
    }
    // 支持法线
    TBool attributeNormal = pRenderable->AttributeContains(MO_ER_ATTRIBUTE_NORMAL);
-   _dynamicDescriptor.supportVertexNormal = (_dynamicDescriptor.supportVertexCoord && attributeNormal);
+   _dynamicDescriptor.supportVertexNormal = (_descriptor.supportVertexNormal && attributeNormal);
    if(_dynamicDescriptor.supportVertexNormal){
       code.Append("|AN");
       if(pTemplateContext){
@@ -223,7 +223,7 @@ TResult FAutomaticEffect::BuildContext(SEffectContext* pContext){
    TBool attributeBinormal = pRenderable->AttributeContains(MO_ER_ATTRIBUTE_BINORMAL);
    TBool attributeTangent = pRenderable->AttributeContains(MO_ER_ATTRIBUTE_TANGENT);
    TBool attributeNormalFull = (attributeNormal && attributeBinormal && attributeTangent);
-   _dynamicDescriptor.supportVertexNormalFull = (_dynamicDescriptor.supportVertexCoord && attributeNormalFull);
+   _dynamicDescriptor.supportVertexNormalFull = (_descriptor.supportVertexNormalFull && attributeNormalFull);
    if(_dynamicDescriptor.supportVertexNormalFull){
       code.Append("|AF");
       if(pTemplateContext){

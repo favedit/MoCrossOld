@@ -206,8 +206,8 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    //............................................................
    // 激活舞台
    //RInstance3dManager::Instance().TemplateConsole()->Alloc("pvw.sc.courtyard.item.02.022");
-   FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.show.item.001");
-   //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.001");
+   //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.show.item.001");
+   FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.001");
    //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.002");
    //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.003");
    //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.house.01.scene");

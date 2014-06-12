@@ -70,7 +70,6 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
    //............................................................
    // 建立渲染信息
    if(pRenderable != NULL){
-      SRenderableDescriptor& descriptor = pRenderable->Descriptor();
       SEffectContext effectContext;
       effectContext.renderablePtr = pRenderable;
       effectContext.contextPtr = context;
@@ -95,6 +94,7 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
    }
    //............................................................
    // 构建处理
+   pRenderable->Track();
    pEffect->Build();
    return pEffect;
 }
