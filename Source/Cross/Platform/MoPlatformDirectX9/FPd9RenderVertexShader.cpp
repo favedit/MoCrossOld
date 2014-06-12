@@ -10,6 +10,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderVertexShader, FRenderVertexShader);
 FPd9RenderVertexShader::FPd9RenderVertexShader(){
    _pBuffer = MO_CREATE(FPd9RenderShaderBuffer);
    _pBuffer->SetName("VertexBuffer");
+   _pBuffer->SetLinker("VertexBuffer");
    MO_CLEAR(_piData);
    MO_CLEAR(_piShader);
    MO_CLEAR(_piTable);

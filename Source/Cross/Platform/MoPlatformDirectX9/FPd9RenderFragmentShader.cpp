@@ -10,6 +10,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderFragmentShader, FRenderFragmentShader);
 FPd9RenderFragmentShader::FPd9RenderFragmentShader(){
    _pBuffer = MO_CREATE(FPd9RenderShaderBuffer);
    _pBuffer->SetName("FragmentBuffer");
+   _pBuffer->SetLinker("FragmentBuffer");
    MO_CLEAR(_piData);
    MO_CLEAR(_piShader);
    MO_CLEAR(_piTable);

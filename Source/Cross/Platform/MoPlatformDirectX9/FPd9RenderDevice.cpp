@@ -519,7 +519,6 @@ TResult FPd9RenderDevice::BindConst(ERenderShader shaderCd, TInt slot, ERenderPa
 // @return 处理结果
 //============================================================
 TResult FPd9RenderDevice::BindConstBuffer(FRenderProgramBuffer* pBuffer){
-   MO_FATAL_UNSUPPORT();
    return ESuccess;
 }
 

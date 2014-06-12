@@ -70,7 +70,7 @@ TResult FPd9RenderLayout::OnSetup(){
       //Push(pElement);
       //............................................................
       // ÉèÖÃ»º³åÐÅÏ¢
-      if(pAttribute != NULL){
+      if(pRenderableAttribute != NULL){
          FPd9RenderVertexBuffer* pVertexBuffer = pRenderableAttribute->GraphicsObject<FPd9RenderVertexBuffer>();
          _total = pVertexBuffer->Count();
          _piBuffer[index] = pVertexBuffer->NativeBuffer();

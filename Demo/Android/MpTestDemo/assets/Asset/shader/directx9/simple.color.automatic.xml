@@ -14,27 +14,26 @@
    <Specular  name='lightmap'    value='N'/>
    <Specular  name='fog'         value='N'/>
    <!-- ------------------------------------------------------------ -->
-   <Parameter name='vc_model_mat4'          linker='VertexModelMatrix4x4'/>
-   <Parameter name='vc_view_mat4'           linker='VertexViewMatrix4x4'/>
-   <Parameter name='vc_projection_mat4'     linker='VertexProjectionMatrix4x4'/>
-   <Parameter name='vc_mvp_mat4'            linker='VertexModelViewProjectionMatrix4x4'/>
-   <Parameter name='vc_camera_position'     linker='VertexCameraPosition'/>
-   <Parameter name='vc_light_mv_mat4'       linker='VertexLightModelMatrix4x4'/>
-   <Parameter name='vc_light_mvp_mat4'      linker='VertexLightModelViewProjectrionMatrix4x4'/>
-   <Parameter name='vc_light_direction'     linker='VertexLightDirection'/>
+   <Parameter name='vc_model_mat4'          linker='VertexModelMatrix'/>
+   <Parameter name='vc_view_mat4'           linker='VertexViewMatrix'/>
+   <Parameter name='vc_projection_mat4'     linker='VertexProjectionMatrix'/>
+   <Parameter name='vc_mvp_mat4'            linker='VertexModelViewProjectionMatrix'/>
+   <!--<Parameter name='vc_camera_position'     linker='VertexCameraPosition'/> -->
+   <!--<Parameter name='vc_light_mv_mat4'       linker='VertexLightModelMatrix'/> -->
+   <!--<Parameter name='vc_light_mvp_mat4'      linker='VertexLightModelViewProjectrionMatrix'/> -->
+   <!--<Parameter name='vc_light_direction'     linker='VertexLightDirection'/> -->
    <Parameter name='fc_camera_position'     linker='FragmentCameraPosition'/>
    <Parameter name='fc_light_direction'     linker='FragmentLightDirection'/>
-   <Parameter name='fc_light_depth'         linker='FragmentLightDepth'/>
+   <!--<Parameter name='fc_light_depth'         linker='FragmentLightDepth'/> -->
    <Parameter name='fc_color'               linker='FragmentColor'/>
    <Parameter name='fc_alpha'               linker='FragmentAlpha'/>
-   <Parameter name='fc_vertex_color'        linker='FragmentVertexColor'/>
    <Parameter name='fc_ambient_color'       linker='FragmentAmbientColor'/>
    <Parameter name='fc_diffuse_color'       linker='FragmentDiffuseColor'/>
    <Parameter name='fc_diffuse_view_color'  linker='FragmentDiffuseViewColor'/>
    <Parameter name='fc_specular_color'      linker='FragmentSpecularColor'/>
-   <Parameter name='fc_specular'            linker='FragmentSpecular'/>
+   <Parameter name='fc_specular'            linker='FragmentSpecularRate'/>
    <Parameter name='fc_specular_view_color' linker='FragmentSpecularViewColor'/>
-   <Parameter name='fc_specular_view'       linker='FragmentSpecularView'/>
+   <Parameter name='fc_specular_view'       linker='FragmentSpecularViewRate'/>
    <Parameter name='fc_reflect_color'       linker='FragmentReflectColor'/>
    <!-- ------------------------------------------------------------ -->
    <Attribute name='POSITION'               linker='Position'/>

@@ -8,14 +8,12 @@ MO_CLASS_IMPLEMENT_INHERITS(FPd9RenderShaderBuffer, FRenderProgramBuffer);
 // <T>ππ‘Ï‰÷»æ∆˜ª∫≥Â°£</T>
 //============================================================
 FPd9RenderShaderBuffer::FPd9RenderShaderBuffer(){
-   //MO_CLEAR(_piBuffer);
 }
 
 //============================================================
 // <T>Œˆππ‰÷»æ∆˜ª∫≥Â°£</T>
 //============================================================
 FPd9RenderShaderBuffer::~FPd9RenderShaderBuffer(){
-   //MO_RELEASE(_piBuffer);
 }
 
 //============================================================

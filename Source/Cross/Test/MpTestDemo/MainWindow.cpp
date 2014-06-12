@@ -1,3 +1,6 @@
+#define MO_RENDER_DX9
+//#define MO_RENDER_DX11
+
 #include <ft2build.h>
 #include FT_FREETYPE_H 
 #include <MoFeatureLogger.h>
@@ -5,10 +8,18 @@
 #include <MoEngine.h>
 #include <MoEngineFace.h>
 #include <MoEngineRender.h>
-//#include <MoPlatformDirectX9.h>
-//#include <MoPlatformDirectX10.h>
-//#include <MoPlatformDirectX11.h>
+#ifdef MO_RENDER_DX9
+#include <MoPlatformDirectX9.h>
+#endif // MO_RENDER_DX9
+#ifdef MO_RENDER_DX10
+#include <MoPlatformDirectX10.h>
+#endif // MO_RENDER_DX10
+#ifdef MO_RENDER_DX11
+#include <MoPlatformDirectX11.h>
+#endif // MO_RENDER_DX11
+#ifdef MO_RENDER_GLES2
 #include <MoPlatformOpenGLES2.h>
+#endif // MO_RENDER_GLES2
 #include <MoPlatformWindows.h>
 #include <MoGameEngine.h>
 #include "MoTestLogic.h"
@@ -133,10 +144,18 @@ MO_EXTERN_C{
 TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine, TInt nCmdShow){
    // 初始化处理
    MoGameEngineInitialize();
-   //MoEngineDirectX9();
-   //MoEngineDirectX10();
-   //MoEngineDirectX11();
+#ifdef MO_RENDER_DX9
+   MoEngineDirectX9();
+#endif // MO_RENDER_DX9
+#ifdef MO_RENDER_DX10
+   MoEngineDirectX10();
+#endif // MO_RENDER_DX10
+#ifdef MO_RENDER_DX11
+   MoEngineDirectX11();
+#endif // MO_RENDER_DX11
+#ifdef MO_RENDER_GLES2
    MoEngineOpenGLES2();
+#endif // MO_RENDER_GLES2
    RFeatureManager::Instance().Construct();
    //............................................................
    // 设置信息
@@ -169,14 +188,22 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    //............................................................
    // 创建窗口
    SIntSize2 screenSize(1200, 800);
-   //FRenderWindow* pWindow = MO_CREATE(FRenderDirectXWindow);
+#if defined(MO_RENDER_DX9) | defined(MO_RENDER_DX10) | defined(MO_RENDER_DX11)
+   FRenderWindow* pWindow = MO_CREATE(FRenderDirectXWindow);
+#endif // MO_RENDER_DIRECTX
+#ifdef MO_RENDER_GLES2
    FRenderWindow* pWindow = MO_CREATE(FRenderOpenGLWindow);
+#endif // MO_RENDER_GLES2
    pWindow->Size().Assign(screenSize);
    pWindow->Setup();
    // 初始化渲染设备
-   //FPdxRenderDevice* pRenderDevice = (FPdxRenderDevice*)RDeviceManager::Instance().Find<FRenderDevice>();
-   //pRenderDevice->SetWindowHandle(pWindow->Handle());
+#if defined(MO_RENDER_DX9) | defined(MO_RENDER_DX10) | defined(MO_RENDER_DX11)
+   FPdxRenderDevice* pRenderDevice = (FPdxRenderDevice*)RDeviceManager::Instance().Find<FRenderDevice>();
+   pRenderDevice->SetWindowHandle(pWindow->Handle());
+#endif // MO_RENDER_DIRECTX
+#ifdef MO_RENDER_GLES2
    FRenderDevice* pRenderDevice = RDeviceManager::Instance().Find<FRenderDevice>();
+#endif // MO_RENDER_GLES2
    pRenderDevice->Setup();
    // 初始化舞台
    MoGameEngineStartup();
