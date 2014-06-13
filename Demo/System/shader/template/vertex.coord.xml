@@ -1,0 +1,20 @@
+<Configuration>
+   <Version label='alpha 0.1' />
+   <!-- ------------------------------------------------------------ -->
+   <Source name='declare'><![CDATA[
+<shader:true source='vertex.attribute.coord'>
+attribute vec2 va_coord;
+</shader:true>
+
+<shader:true source='vertex.attribute.coord'>
+varying vec2 v_coord;
+</shader:true>
+   ]]></Source>
+   <!-- ------------------------------------------------------------ -->
+   <Source name='main'><![CDATA[
+<shader:true source='vertex.attribute.coord'>
+   v_coord = va_coord;
+</shader:true>
+   ]]></Source>
+   <!-- ------------------------------------------------------------ -->
+</Configuration>

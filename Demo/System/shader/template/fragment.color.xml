@@ -1,0 +1,32 @@
+<Configuration>
+   <Version label='alpha 0.1' />
+   <!-- ------------------------------------------------------------ -->
+   <Source name='declare'><![CDATA[
+uniform vec4 fc_color;
+uniform vec4 fc_alpha;
+
+<shader:true source='vertex.attribute.color'>
+uniform vec4 fc_vertex_color;
+</shader:true>
+
+<shader:true source='vertex.attribute.color'>
+varying vec4 v_color;
+</shader:true>
+   ]]></Source>
+   <!-- ------------------------------------------------------------ -->
+   <Source name='main'><![CDATA[
+   //............................................................
+   // Calculate color
+<shader:true source='vertex.attribute.color'>
+   vec4 vertexColor = min(v_color, fc_color.y) - fc_color.x;
+   vertexColor = vertexColor / (fc_color.y - fc_color.x);
+   vertexColor = (vertexColor - fc_color.w) * fc_color.z;
+   vertexColor += 1.0;
+   result.rgb *= vertexColor.rgb;
+</shader:true>
+<shader:true source='support.alpha'>
+   result.a = color.a * fc_alpha.z;
+</shader:true>
+   ]]></Source>
+   <!-- ------------------------------------------------------------ -->
+</Configuration>
