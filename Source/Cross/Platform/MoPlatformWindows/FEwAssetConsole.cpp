@@ -22,18 +22,27 @@ FEwAssetConsole::~FEwAssetConsole(){
 // @return 处理结果
 //============================================================
 TResult FEwAssetConsole::Setup(){
-   // 获得参数
-   TCharC* pHomePath = RApplication::Instance().Parameters()->FindValue("-home");
-   SetDirectory(pHomePath);
-   // 注册路径
+   // 获得应用路径
+   TCharC* pApplicationPath = RApplication::Instance().Parameters()->FindValue("-application");
+   SetDirectory(pApplicationPath);
+   // 注册资源路径
    TFsPath path;
-   path.AssignFormat("%s/Asset", pHomePath);
+   path.AssignFormat("%s/Asset", pApplicationPath);
    path.Replace('\\', '/');
    RegisterSpace("asset", path);
-   // 注册路径
-   path.AssignFormat("%s/Script", pHomePath);
+   // 注册脚本路径
+   path.AssignFormat("%s/Script", pApplicationPath);
    path.Replace('\\', '/');
    RegisterSpace("script", path);
+   //............................................................
+   // 注册渲染器路径
+   TCharC* pSystemPath = RApplication::Instance().Parameters()->FindValue("-system");
+   if(pSystemPath == NULL){
+      pSystemPath = pApplicationPath;
+   }
+   path.AssignFormat("%s/Shader", pSystemPath);
+   path.Replace('\\', '/');
+   RegisterSpace("shader", path);
    return ESuccess;
 }
 

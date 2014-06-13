@@ -39,6 +39,7 @@ MO_NAMESPACE_BEGIN
 //============================================================
 class MO_PD9_DECLARE RDirectX9{
 public:
+   static D3DBLEND ConvertBlendMode(ERenderBlendMode blendCd);
    //static D3D9_FILL_MODE ConvertFillMode(ERenderFillMode fillCd);
    //static D3D9_CULL_MODE ConvertCullMode(ERenderCullMode cullCd);
    //static DXGI_FORMAT ConvertIndexStride(ERenderIndexStride strideCd);

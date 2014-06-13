@@ -1,7 +1,24 @@
 #include "MoPd9Core.h"
 
 MO_NAMESPACE_BEGIN
+
+//============================================================
+// <T>转换变换模式类型。</T>
 //
+// @param blendCd 变换模式
+// @return 处理结果
+//============================================================
+D3DBLEND RDirectX9::ConvertBlendMode(ERenderBlendMode blendCd){
+   switch(blendCd){
+      case ERenderBlendMode_SourceAlpha:
+         return D3DBLEND_ONE;
+      case ERenderBlendMode_OneMinusSourceAlpha:
+         return D3DBLEND_INVSRCALPHA;
+   }
+   MO_STATIC_FATAL("Convert blend mode failure. (blend=%d)", blendCd);
+   return D3DBLEND_ONE;
+}
+
 ////============================================================
 //// <T>转换填充模式类型。</T>
 ////

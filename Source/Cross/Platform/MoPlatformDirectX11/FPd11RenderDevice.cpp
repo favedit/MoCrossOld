@@ -268,6 +268,8 @@ TResult FPd11RenderDevice::Setup(){
    _piContext->RSSetViewports(1, &viewport);
    //............................................................
    D3D11_BLEND_DESC blendDescriptor = {0};
+   blendDescriptor.AlphaToCoverageEnable = EFalse;
+   blendDescriptor.IndependentBlendEnable = EFalse;
    blendDescriptor.RenderTarget[0].BlendEnable = EFalse;
    dxResult = _piDevice->CreateBlendState(&blendDescriptor, &_piBlendDisableState);
    if(FAILED(dxResult)){
@@ -557,12 +559,13 @@ TResult FPd11RenderDevice::SetCullingMode(TBool cull, ERenderCullMode cullCd){
 //============================================================
 TResult FPd11RenderDevice::SetBlendFactors(TBool blend, ERenderBlendMode sourceCd, ERenderBlendMode targetCd){
    TFloat blendFactors[4] = {0};
-   if(blend == ETrue){
-      //_piContext->OMSetBlendState(_piBlendEnableState, blendFactors, 0XFFFFFFFF);
+   if(blend){
+      _piContext->OMSetBlendState(_piBlendEnableState, blendFactors, 0XFFFFFFFF);
    }else{
+      _piContext->OMSetBlendState(NULL, blendFactors, 0XFFFFFFFF);
       //_piContext->OMSetBlendState(_piBlendDisableState, blendFactors, 0XFFFFFFFF);
    }
-   _piContext->OMSetBlendState(_piBlendEnableState, blendFactors, 0XFFFFFFFF);
+   //_piContext->OMSetBlendState(_piBlendEnableState, blendFactors, 0XFFFFFFFF);
    //// ÉèÖÃ¿ª¹Ø
    //if(_statusBlend != blend){
    //   if(blend){

@@ -20,8 +20,6 @@ class MO_PD11_DECLARE FPd11RenderLayout : public FRenderLayout
    MO_CLASS_DECLARE_INHERITS(FPd11RenderLayout, FRenderLayout);
 protected:
    TInt _count;
-   MO_D3D11_INPUT_ELEMENT_DESC_ARRAY _inputElements;
-   ID3D11InputLayout* _piInputLayout;
    ID3D11Buffer* _piBuffer[MO_RENDER_ATTRIBUTE_MAXCNT];
    UINT _strides[MO_RENDER_ATTRIBUTE_MAXCNT];
    UINT _offsets[MO_RENDER_ATTRIBUTE_MAXCNT];
@@ -29,11 +27,6 @@ public:
    FPd11RenderLayout();
    MO_ABSTRACT ~FPd11RenderLayout();
 public:
-   //------------------------------------------------------------
-   // <T>获得本地输入层次。</T>
-   MO_INLINE ID3D11InputLayout* NativeInputLayout(){
-      return _piInputLayout;
-   }
    //------------------------------------------------------------
    // <T>获得总数。</T>
    MO_INLINE TInt Count(){

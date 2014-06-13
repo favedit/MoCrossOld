@@ -61,7 +61,7 @@ FEffect* FEffectConsole::Build(TCharC* pName, FRenderable* pRenderable){
    //............................................................
    // ´ò¿ªÄ£°å
    TFsPath path;
-   path.AssignFormat("asset:/shader/%s/%s.xml", pDeviceCode, pName);
+   path.AssignFormat("shader:/%s/%s.xml", pDeviceCode, pName);
    FTemplate* pTemplate = RTemplateManager::Instance().Load(context, path);
    FXmlNode* pTemplateConfig = pTemplate->Config();
    //pEffect->LoadConfig(context->MergeConfig());

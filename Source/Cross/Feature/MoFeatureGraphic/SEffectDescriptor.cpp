@@ -90,4 +90,16 @@ TResult SEffectDescriptor::LoadConfig(FXmlNode* pConfig){
    return ESuccess;
 }
 
+//============================================================
+// <T>跟踪信息。</T>
+//
+// @return 处理结果
+//============================================================
+TResult SEffectDescriptor::Track(){
+   TFsDump dump;
+   dump.AppendFormat("blend_mode:%d", optionBlendMode);
+   MO_DEBUG(dump);
+   return ESuccess;
+}
+
 MO_NAMESPACE_END

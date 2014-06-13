@@ -1,5 +1,8 @@
-#define MO_RENDER_DX9
-//#define MO_RENDER_DX11
+//#define MO_RENDER_DX9
+//#define MO_RENDER_DX10
+#define MO_RENDER_DX11
+//#define MO_RENDER_GLES2
+//#define MO_RENDER_GLES3
 
 #include <ft2build.h>
 #include FT_FREETYPE_H 
@@ -234,7 +237,8 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    // 激活舞台
    //RInstance3dManager::Instance().TemplateConsole()->Alloc("pvw.sc.courtyard.item.02.022");
    //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.show.item.001");
-   FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.001");
+   FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.show.item.009");
+   //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.001");
    //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.002");
    //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.car.01.003");
    //FGameScene* pScene = RGameSceneManager::Instance().Load("pvw.sc.house.01.scene");

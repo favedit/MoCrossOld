@@ -84,6 +84,7 @@ public:
    SEffectDescriptor();
 public:
    TResult LoadConfig(FXmlNode* pConfig);
+   TResult Track();
 };
 
 //============================================================

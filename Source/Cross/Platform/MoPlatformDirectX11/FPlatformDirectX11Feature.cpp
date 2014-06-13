@@ -79,7 +79,7 @@ TResult FPlatformDirectX11Feature::Shutdown(){
 TResult FPlatformDirectX11Feature::Dispose(){
    TResult resultCd = FFeature::Dispose();
    // ×¢ÏúÉè±¸
-   //RDeviceManager::Instance().Unregister(FRenderDevice::Class());
+   RDeviceManager::Instance().Unregister(FRenderDevice::Class());
    return resultCd;
 }
 

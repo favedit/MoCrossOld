@@ -328,31 +328,26 @@ TResult FPd9RenderDevice::SetCullingMode(TBool cull, ERenderCullMode cullCd){
 // @return 处理结果
 //============================================================
 TResult FPd9RenderDevice::SetBlendFactors(TBool blend, ERenderBlendMode sourceCd, ERenderBlendMode targetCd){
-   TFloat blendFactors[4] = {0};
-   if(blend == ETrue){
-      //_piDevice->OMSetBlendState(_piBlendEnableState, blendFactors, 0XFFFFFFFF);
-   }else{
-      //_piDevice->OMSetBlendState(_piBlendDisableState, blendFactors, 0XFFFFFFFF);
+   // 设置开关
+   if(_statusBlend != blend){
+      if(blend){
+         _piDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, ETrue);
+         _piDevice->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
+      }else{
+         _piDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, EFalse);
+      }
+      _statusBlend = blend;
+      _statistics->UpdateOptionBlendCount();
    }
-   //_piDevice->OMSetBlendState(_piBlendEnableState, blendFactors, 0XFFFFFFFF);
-   //// 设置开关
-   //if(_statusBlend != blend){
-   //   if(blend){
-   //      glEnable(GL_BLEND);
-   //   }else{
-   //      glDisable(GL_BLEND);
-   //   }
-   //   _statusBlend = blend;
-   //   _statistics->UpdateOptionBlendCount();
-   //}
-   //// 设置效果
-   //if(blend && ((_blendSourceCd != sourceCd) || (_blendTargetCd != targetCd))){
-   //   GLenum source = ConvertBlendFactors(sourceCd);
-   //   GLenum target = ConvertBlendFactors(targetCd);
-   //   glBlendFunc(source, target);
-   //   _blendSourceCd = sourceCd;
-   //   _blendTargetCd = targetCd;
-   //}
+   // 设置效果
+   if(blend && ((_blendSourceCd != sourceCd) || (_blendTargetCd != targetCd))){
+      D3DBLEND source = RDirectX9::ConvertBlendMode(sourceCd);
+      _piDevice->SetRenderState(D3DRS_SRCBLEND, source);
+      D3DBLEND target = RDirectX9::ConvertBlendMode(targetCd);
+      _piDevice->SetRenderState(D3DRS_DESTBLEND, target);
+      _blendSourceCd = sourceCd;
+      _blendTargetCd = targetCd;
+   }
    return ETrue;
 }
 

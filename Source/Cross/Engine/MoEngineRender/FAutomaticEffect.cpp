@@ -250,8 +250,9 @@ TResult FAutomaticEffect::BuildContext(SEffectContext* pContext){
    //............................................................
    // 支持透明技术
    TBool samplerDiffuse  = pRenderable->SamplerContains(MO_ER_SAMPLER_DIFFUSE);
-   TBool samplerAlpha  = pRenderable->SamplerContains(MO_ER_SAMPLER_ALPHA);
-   _dynamicDescriptor.supportAlpha = (_descriptor.supportAlpha && samplerAlpha);
+   //TBool samplerAlpha  = pRenderable->SamplerContains(MO_ER_SAMPLER_ALPHA);
+   //_dynamicDescriptor.supportAlpha = (_descriptor.supportAlpha && samplerAlpha);
+   _dynamicDescriptor.supportAlpha = _descriptor.supportAlpha;
    if(_dynamicDescriptor.supportAlpha){
       code.Append("|RA");
       if(pTemplateContext){
@@ -286,6 +287,7 @@ TResult FAutomaticEffect::BuildContext(SEffectContext* pContext){
       if(samplerNormal){
          code.Append("|TDD");
          if(pTemplateContext){
+            pTemplateContext->DefineBool("support.dump", ETrue);
             pTemplateContext->DefineBool("support.diffuse.dump", ETrue);
          }
       }else if(_dynamicDescriptor.supportVertexNormal){
@@ -304,6 +306,7 @@ TResult FAutomaticEffect::BuildContext(SEffectContext* pContext){
       if(samplerNormal){
          code.Append("|TDVD");
          if(pTemplateContext){
+            pTemplateContext->DefineBool("support.dump", ETrue);
             pTemplateContext->DefineBool("support.diffuse.view.dump", ETrue);
          }
       }else if(_dynamicDescriptor.supportVertexNormal){
@@ -378,6 +381,7 @@ TResult FAutomaticEffect::BuildContext(SEffectContext* pContext){
    if(_dynamicDescriptor.supportLight){
       code.Append("|TL");
       if(pTemplateContext){
+         pTemplateContext->DefineBool("support.sampler.light", ETrue);
          pTemplateContext->DefineBool("support.light", ETrue);
       }
    }
@@ -387,6 +391,7 @@ TResult FAutomaticEffect::BuildContext(SEffectContext* pContext){
    if(_dynamicDescriptor.supportReflect){
       code.Append("|TRL");
       if(pTemplateContext){
+         pTemplateContext->DefineBool("support.sampler.light", ETrue);
          pTemplateContext->DefineBool("support.reflect", ETrue);
       }
    }
@@ -396,6 +401,7 @@ TResult FAutomaticEffect::BuildContext(SEffectContext* pContext){
    if(_dynamicDescriptor.supportRefract){
       code.Append("|TRF");
       if(pTemplateContext){
+         pTemplateContext->DefineBool("support.sampler.light", ETrue);
          pTemplateContext->DefineBool("support.refract", ETrue);
       }
    }
@@ -405,6 +411,7 @@ TResult FAutomaticEffect::BuildContext(SEffectContext* pContext){
    if(_dynamicDescriptor.supportEmissive){
       code.Append("|TLE");
       if(pTemplateContext){
+         pTemplateContext->DefineBool("support.sampler.light", ETrue);
          pTemplateContext->DefineBool("support.emissive", ETrue);
       }
    }
@@ -780,7 +787,8 @@ TResult FAutomaticEffect::DrawGroup(FRenderRegion* pRegion, TInt offset, TInt co
    if(!instanceDraw){
       for(TInt n = 0; n < count; n++){
          FRenderable* pRenderable = pRenderables->Get(offset + n);
-         SetMaterialOption(pRenderable->Material());
+         FMaterial* pMaterial = pRenderable->Material();
+         SetMaterialOption(pMaterial);
          DrawRenderable(pRegion, pRenderable);
       }
    }

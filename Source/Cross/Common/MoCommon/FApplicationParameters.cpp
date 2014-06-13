@@ -24,6 +24,7 @@ FApplicationParameters::~FApplicationParameters(){
 //============================================================
 TResult FApplicationParameters::Setup(TCharC* pCommandLine){
    // ¼ì²é²ÎÊý
+
    if(pCommandLine == NULL){
       return ENull;
    }
