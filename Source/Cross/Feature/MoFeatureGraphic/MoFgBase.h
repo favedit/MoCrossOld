@@ -423,7 +423,6 @@ protected:
    TInt _offset;
    // 图元对象
    GGraphicInstancePtr _graphicsObject;
-   //TInt _slot;
 public:
    FRenderableAttribute();
    MO_ABSTRACT ~FRenderableAttribute();
@@ -484,16 +483,6 @@ public:
    MO_INLINE void SetGraphicsObject(FGraphicInstance* pGraphicsObject){
       _graphicsObject = pGraphicsObject;
    }
-   ////------------------------------------------------------------
-   //// <T>获得插槽。</T>
-   //MO_INLINE TInt Slot(){
-   //   return _slot;
-   //}
-   ////------------------------------------------------------------
-   //// <T>设置插槽。</T>
-   //MO_INLINE void SetSlot(TInt slot){
-   //   _slot = slot;
-   //}
 public:
    TBool CheckValid();
 };
