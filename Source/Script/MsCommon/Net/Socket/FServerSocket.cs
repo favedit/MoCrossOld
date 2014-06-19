@@ -1,0 +1,103 @@
+using MS.Common.System;
+using System;
+using System.Net;
+using System.Net.Sockets;
+
+namespace MS.Common.Net.Sockets
+{
+   //============================================================
+   // <T>端口服务。</T>
+   //============================================================
+   public class FServerSocket : FSocket
+   {
+      // 日志输出接口
+      private static ILogger _logger = RLogger.Find(typeof(FServerSocket));
+
+      protected int _backlog = 64;
+
+      //============================================================
+      // <T>构造端口服务的实例。</T>
+      //============================================================
+      public FServerSocket() {
+         _host = "127.0.0.1";
+      }
+
+      //============================================================
+      // <T>构造端口服务的实例。</T>
+      //
+      // @param port 端口
+      //============================================================
+      public FServerSocket(int port) {
+         _host = "127.0.0.1";
+         _port = port;
+      }
+
+      //============================================================
+      // <T>启动端口服务。</T>
+      //============================================================
+      public void Startup() {
+         _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+         //IPAddress ipAddress = IPAddress.Parse(_host);
+         IPAddress ipAddress = IPAddress.Any;
+         IPEndPoint ipPoint = new IPEndPoint(ipAddress, _port);
+         _socket.Bind(ipPoint);
+         // _socket.Blocking = false;
+         _socket.Listen(_backlog);
+         //_socket.Blocking = false;
+         //BeginAccept(_socket, null);
+      }
+
+      //============================================================
+      // <T>接收一个网络链接。</T>
+      //============================================================
+      public FSocket Accept() {
+         //SocketAsyncEventArgs args = new SocketAsyncEventArgs();
+         //args.Completed += args_Completed;
+         //_socket.AcceptAsync(args);
+         FSocket socket = null;
+         try {
+            Socket nativeSocket = _socket.Accept();
+            socket = new FSocket(nativeSocket);
+         }catch(Exception e){
+            _logger.Error(this, "Disconnect", e);
+         }
+         return socket;
+      }
+
+      void args_Completed(object sender, SocketAsyncEventArgs e) {
+         //FSocket socket = new FSocket(e.AcceptSocket);
+         //throw new NotImplementedException();
+      }
+
+      //============================================================
+      private void BeginAccept(Socket listener, SocketAsyncEventArgs args) {
+         if (null == args) {
+            args = new SocketAsyncEventArgs();
+            args.Completed += new EventHandler<SocketAsyncEventArgs>(EndAccept);
+         }
+         args.AcceptSocket = null;
+         if (!listener.AcceptAsync(args)) {
+            EndAccept(listener, args);
+         }
+      }
+
+      //============================================================
+      private void EndAccept(object sender, SocketAsyncEventArgs e) {
+         if (e.SocketError == SocketError.OperationAborted) {
+            e.Dispose();
+            return;
+         }
+         Socket listener = (Socket)sender;
+         Socket client = e.AcceptSocket;
+         BeginAccept(listener, e);
+         client.Close();
+      }
+
+      //============================================================
+      // <T>关闭网络服务。</T>
+      //============================================================
+      public void Shutdown() {
+         Disconnect();
+      }
+   }
+}
