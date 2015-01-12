@@ -29,7 +29,7 @@ TResult FEnumeratorConsole::Register(FEnumerator* pEnumerator){
    // 检查重复
    FEnumerator* pFind = _enumerators.Find(pName);
    if(pFind != NULL){
-      MO_FATAL("Duplicate enumerator. (name=%s)", pName);
+      MO_FATAL(TC("Duplicate enumerator. (name=%s)"), pName);
       return EDuplicate;
    }
    // 设置内容
@@ -50,7 +50,7 @@ TResult FEnumeratorConsole::Unrgister(FEnumerator* pEnumerator){
    // 检查存在性
    FEnumerator* pFind = _enumerators.Find(pName);
    if(pFind == NULL){
-      MO_FATAL("Not exists enumerator. (name=%s)", pName);
+      MO_FATAL(TC("Not exists enumerator. (name=%s)"), pName);
       return ENotExists;
    }
    // 设置内容

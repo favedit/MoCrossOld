@@ -223,24 +223,24 @@ public:
    //------------------------------------------------------------
    // <T>创建类实例。</T>
    MO_OVERRIDE FInstance* InstanceCreate(){
-      MO_FATAL("Abstract class disable instance create");
+      MO_FATAL(TC("Abstract class disable instance create"));
       return NULL;
    }
    //------------------------------------------------------------
    // <T>收集类实例。</T>
    MO_OVERRIDE FInstance* InstanceAlloc(){
-      MO_FATAL("Abstract class disable instance alloc");
+      MO_FATAL(TC("Abstract class disable instance alloc"));
       return NULL;
    }
    //------------------------------------------------------------
    // <T>释放类实例。</T>
    MO_OVERRIDE void InstanceFree(FInstance* pInstance){
-      MO_FATAL("Abstract class disable instance free");
+      MO_FATAL(TC("Abstract class disable instance free"));
    }
    //------------------------------------------------------------
    // <T>删除类实例。</T>
    MO_OVERRIDE void InstanceDelete(FInstance* pInstance){
-      MO_FATAL("Abstract class disable instance delete");
+      MO_FATAL(TC("Abstract class disable instance delete"));
    }
 };
 

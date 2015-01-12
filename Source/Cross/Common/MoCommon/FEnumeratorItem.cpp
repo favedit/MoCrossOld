@@ -24,9 +24,9 @@ FEnumeratorItem::~FEnumeratorItem(){
 // @return 处理结果
 //============================================================
 TResult FEnumeratorItem::Dump(MString* pDump){
-   pDump->AppendFormat("%4d=%s", _code, (TCharC*)_name);
+   pDump->AppendFormat(TC("%4d=%s"), _code, (TCharC*)_name);
    if(!_description.IsEmpty()){
-      pDump->AppendFormat(" [%s]", (TCharC*)_description);
+      pDump->AppendFormat(TC(" [%s]"), (TCharC*)_description);
    }
    return ESuccess;
 }

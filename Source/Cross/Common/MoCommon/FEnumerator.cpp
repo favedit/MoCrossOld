@@ -68,7 +68,7 @@ FEnumeratorItem* FEnumerator::FindByName(TCharC* pName){
 TInt FEnumerator::Parse(TCharC* pName){
    MO_CHECK(pName, return -1);
    FEnumeratorItem* pItem = FindByName(pName);
-   MO_FATAL_CHECK(pItem, return -1, "Parse enum code failure. (enum=%s, name=%s)", (TCharC*)_name, pName);
+   MO_FATAL_CHECK(pItem, return -1, TC("Parse enum code failure. (enum=%s, name=%s)"), (TCharC*)_name, pName);
    TInt code = pItem->Code();
    return code;
 }
@@ -99,7 +99,7 @@ TInt FEnumerator::Parse(TCharC* pName, TInt defaultValue){
 TCharC* FEnumerator::Format(TInt code){
    MO_CHECK(code >= 0, return NULL);
    FEnumeratorItem* pItem = FindByCode(code);
-   MO_FATAL_CHECK(pItem, return NULL, "Parse enum name failure. (enum=%s, code=%d)", (TCharC*)_name, code);
+   MO_FATAL_CHECK(pItem, return NULL, TC("Parse enum name failure. (enum=%s, code=%d)"), (TCharC*)_name, code);
    TCharC* pName = pItem->Name();
    return pName;
 }
@@ -131,7 +131,7 @@ TResult FEnumerator::Register(FEnumeratorItem* pItem){
    MO_CHECK(pItem, return ENull);
    // 检查重复
    if(_items.Contains(pItem)){
-      MO_FATAL("Duplicate item in enumerator. (enum=%s, name=%s)", (TCharC*)_name, pItem->Name());
+      MO_FATAL(TC("Duplicate item in enumerator. (enum=%s, name=%s)"), (TCharC*)_name, pItem->Name());
       return EDuplicate;
    }
    // 设置内容
@@ -170,7 +170,7 @@ TResult FEnumerator::Unrgister(FEnumeratorItem* pItem){
    MO_CHECK(pItem, return ENull);
    // 检查存在性
    if(!_items.Contains(pItem)){
-      MO_FATAL("Not exists item in enumerator. (enum=%s, name=%s)", (TCharC*)_name, pItem->Name());
+      MO_FATAL(TC("Not exists item in enumerator. (enum=%s, name=%s)"), (TCharC*)_name, pItem->Name());
       return ENotExists;
    }
    // 设置内容

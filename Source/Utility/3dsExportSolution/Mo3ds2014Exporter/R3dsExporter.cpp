@@ -83,20 +83,26 @@ void R3dsExporter::StoreGameMatrix(FXmlNode* pNode, TCharC* pName, GMatrix& matr
 //============================================================
 void R3dsExporter::StoreGameMatrixSimple(FXmlNode* pNode, GMatrix& matrix){
    // 保存位移变换
-   Point3 translation = matrix.Translation();
+   Point3& translation = matrix.Translation();
    pNode->SetFloat(TC("tx"), translation.x);
    pNode->SetFloat(TC("ty"), translation.y);
    pNode->SetFloat(TC("tz"), translation.z);
+   // 保存四元数旋转信息
+   Quat& rotation = matrix.Rotation();
+   pNode->SetFloat(TC("qx"), rotation.x);
+   pNode->SetFloat(TC("qy"), rotation.y);
+   pNode->SetFloat(TC("qz"), rotation.z);
+   pNode->SetFloat(TC("qw"), rotation.w);
    // 保存欧拉角旋转信息
    TFloat rx;
    TFloat ry;
    TFloat rz;
-   matrix.Rotation().GetEuler(&rx, &ry, &rz);
+   rotation.GetEuler(&rx, &ry, &rz);
    pNode->SetFloat(TC("rx"), rx * 180 / 3.1415926f);
    pNode->SetFloat(TC("ry"), ry * 180 / 3.1415926f);
    pNode->SetFloat(TC("rz"), rz * 180 / 3.1415926f);
    // 保存缩放信息
-   Point3 scaling = matrix.Scaling();
+   Point3& scaling = matrix.Scaling();
    pNode->SetFloat(TC("sx"), scaling.x);
    pNode->SetFloat(TC("sy"), scaling.y);
    pNode->SetFloat(TC("sz"), scaling.z);

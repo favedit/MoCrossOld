@@ -73,9 +73,9 @@ TResult FNetClientSocket::Connect(){
    }
 #ifdef _UNICODE
    TFsCode8 host;
-   host.Assign8(_host);
+   host.Assign16(_host);
    if(_host.IsNotEmpty()){
-      address.sin_addr.s_addr = inet_addr((TCharC*)host);
+      address.sin_addr.s_addr = inet_addr((TChar8C*)host);
    }
 #else
    if(_host.IsNotEmpty()){

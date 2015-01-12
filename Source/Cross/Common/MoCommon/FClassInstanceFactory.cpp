@@ -88,7 +88,7 @@ FInstance* FClassInstanceFactory::Find(TCharC* pName){
 FInstance* FClassInstanceFactory::Get(TCharC* pName){
    MO_CHECK(pName, return NULL);
    FInstance* pInstance = Find(pName);
-   MO_FATAL_CHECK(pInstance, return NULL, "Can't find insance. (name=%s)", pName);
+   MO_FATAL_CHECK(pInstance, return NULL, TC("Can't find insance. (name=%s)"), pName);
    return pInstance;
 }
 
