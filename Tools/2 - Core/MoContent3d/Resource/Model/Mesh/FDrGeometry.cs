@@ -1313,7 +1313,7 @@ namespace MO.Content3d.Resource.Model.Mesh
                stream.WriteUint8((byte)offset);
                offset += vertexStride;
             }
-            if ((_optionNormalFull == EDrFlag.Yes) && (_binormalList.IsEmpty)) {
+            if ((_optionNormalFull == EDrFlag.Yes) && !_binormalList.IsEmpty) {
                streamCount++;
                flags |= EDrVertex.Binormal;
                int vertexStride = sizeof(byte) * 4;
@@ -1324,7 +1324,7 @@ namespace MO.Content3d.Resource.Model.Mesh
                stream.WriteUint8((byte)offset);
                offset += vertexStride;
             }
-            if ((_optionNormalFull == EDrFlag.Yes) && (_tangentList.IsEmpty)) {
+            if ((_optionNormalFull == EDrFlag.Yes) && !_tangentList.IsEmpty) {
                streamCount++;
                flags |= EDrVertex.Tangent;
                int vertexStride = sizeof(byte) * 4;
