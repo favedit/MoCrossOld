@@ -269,13 +269,18 @@ void R3dsExporter::SerializeMatrix(IDataOutput* pOutput, GMatrix& matrix){
    pOutput->WriteFloat(translation.y);
    pOutput->WriteFloat(translation.z);
    // 保存欧拉角旋转信息
+   Quat& rotation = matrix.Rotation();
    TFloat rx;
    TFloat ry;
    TFloat rz;
-   matrix.Rotation().GetEuler(&rx, &ry, &rz);
+   rotation.GetEuler(&rx, &ry, &rz);
    pOutput->WriteFloat(rx * 180 / 3.1415926f);
    pOutput->WriteFloat(ry * 180 / 3.1415926f);
    pOutput->WriteFloat(rz * 180 / 3.1415926f);
+   pOutput->WriteFloat(rotation.x);
+   pOutput->WriteFloat(rotation.y);
+   pOutput->WriteFloat(rotation.z);
+   pOutput->WriteFloat(rotation.w);
    // 保存缩放信息
    Point3 scaling = matrix.Scaling();
    pOutput->WriteFloat(scaling.x);
