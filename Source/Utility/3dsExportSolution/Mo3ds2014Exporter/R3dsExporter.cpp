@@ -249,11 +249,15 @@ TBool R3dsExporter::StoreProperties(FXmlNode* pNode, TCharC* pName, IPropertyCon
    int count = piContainer->GetNumberOfProperties();
    if(count > 0){
       FXmlNode* pPropertiesNode = pNode->CreateNode(TC("Properties"));
+      pPropertiesNode->SetInt(TC("count"), count);
       for(TInt32 n = 0; n < count; n++){
          IGameProperty* piProperty = piContainer->GetProperty(n);
          FXmlNode* pPropertyNode = pPropertiesNode->CreateNode(TC("Property"));
-         pPropertyNode->Set(TC("name"), piProperty->GetName());
-         StoreProperty(pPropertyNode, TC("value"), piProperty);
+         pPropertyNode->SetInt(TC("index"), n);
+         if (piProperty != NULL){
+            pPropertyNode->Set(TC("name"), piProperty->GetName());
+            StoreProperty(pPropertyNode, TC("value"), piProperty);
+         }
       }
    }
    return ETrue;
