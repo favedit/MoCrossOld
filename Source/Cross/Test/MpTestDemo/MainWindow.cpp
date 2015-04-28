@@ -163,10 +163,10 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    //............................................................
    // 设置信息
    RApplication::Instance().Parameters()->Setup(lpszCmdLine);
-   //FApplicationParameter* pApplicationParameter = MO_CREATE(FApplicationParameter);
-   //pApplicationParameter->SetName("-home");
-   //pApplicationParameter->SetValue("E:/ZW-MoCross/Demo/Android/MpTestDemo/assets");
-   //RApplication::Instance().Parameters()->Parameters()->Push(pApplicationParameter);
+   FApplicationParameter* pApplicationParameter = MO_CREATE(FApplicationParameter);
+   pApplicationParameter->SetName("-home");
+   pApplicationParameter->SetValue("E:/Microbject/MoCross/Demo/Android/MpTestDemo/assets");
+   RApplication::Instance().Parameters()->Parameters()->Push(pApplicationParameter);
    RApplication::Instance().SetHinstance(hInstance);
    RApplication::Instance().SetCommandShow(nCmdShow);
    RAssetManager::Instance().Setup();
@@ -180,14 +180,14 @@ TInt WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszCmdLine,
    //pWriter->Open();
    //RLoggerFeature::Instance().NetLoggerConsole()->Register(pWriter);
    // 注册环境信息
-   //TCharC* pHomePath = RApplication::Instance().Parameters()->FindValue("-home");
-   //TCharC* pConfigName = RApplication::Instance().Parameters()->FindValue("-config");
-   //TFsPath configFileName;
-   //configFileName.AppendFormat("%s\\%s.xml", pHomePath, pConfigName);
-   //GPtr<FXmlParser> xmlParser = FXmlParser::InstanceCreate();
-   //GPtr<FXmlNode> configNode = xmlParser->LoadNodeFile(configFileName);
-   //RConfigurationManager::Instance().LoadConfiguration(configFileName);
-   //REnvironmentManager::Instance().Register("home", pHomePath);
+   TCharC* pHomePath = RApplication::Instance().Parameters()->FindValue("-home");
+   TCharC* pConfigName = RApplication::Instance().Parameters()->FindValue("-config");
+   TFsPath configFileName;
+   configFileName.AppendFormat("%s\\%s.xml", pHomePath, pConfigName);
+   GPtr<FXmlParser> xmlParser = FXmlParser::InstanceCreate();
+   GPtr<FXmlNode> configNode = xmlParser->LoadNodeFile(configFileName);
+   RConfigurationManager::Instance().LoadConfiguration(configFileName);
+   REnvironmentManager::Instance().Register("home", pHomePath);
    //............................................................
    // 创建窗口
    SIntSize2 screenSize(1200, 800);

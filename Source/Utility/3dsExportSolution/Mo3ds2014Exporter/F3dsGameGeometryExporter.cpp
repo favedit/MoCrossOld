@@ -215,9 +215,13 @@ TBool F3dsGeometryExporter::Serialize(IDataOutput* pOutput){
    pOutput->WriteInt32(faceCount);
    for(TInt32 n = 0; n < faceCount; n++){
       FaceEx* pFace = _piSubMesh->GetFace(n);
-	   pOutput->WriteInt32(pFace->meshFaceIndex);
+      IGameMaterial* piMaterial = _piSubMesh->GetMaterialFromFace(pFace);
+      TInt32 materialIndex = (TInt32)_materials.IndexOf(piMaterial);
+      // 输出面信息
+      pOutput->WriteInt32(pFace->meshFaceIndex);
 	   pOutput->WriteInt32(pFace->flags);
-	   pOutput->WriteInt32(pFace->matID);
+      //pOutput->WriteInt32(pFace->matID);
+      pOutput->WriteInt32(materialIndex);
       pOutput->WriteInt32(pFace->smGrp);
       // 存储三角面的顶点索引
       if(vertexCount > 0){
@@ -757,68 +761,66 @@ TBool F3dsGeometryExporter::ConvertFile(FXmlNode* pConfig){
    //    }
    // }
    // 获得关联材质列表
-   TFixVector<IGameMaterial*, 256> materials;
    if(faceCount > 0){
       for(TInt32 n = 0; n < faceCount; n++){
          FaceEx* pFace = _piSubMesh->GetFace(n);
          IGameMaterial* piMaterial = _piSubMesh->GetMaterialFromFace(pFace);
          if(NULL != piMaterial){
-            if(!materials.Contains(piMaterial)){
-               materials.Push(piMaterial);
+            if(!_materials.Contains(piMaterial)){
+               _materials.Push(piMaterial);
             }
          }
       }
    }
-   if(!materials.IsEmpty()){
+   if (!_materials.IsEmpty()){
       FXmlNode* pMaterialsNode = pConfig->CreateNode(TC("MaterialCollection"));
-      TInt32 materialCount = (TInt32)materials.Count();
+      TInt32 materialCount = (TInt32)_materials.Count();
       pMaterialsNode->SetInt(TC("count"), materialCount);
       for(TInt32 n = 0; n < materialCount; n++){
-         IGameMaterial* piMaterial = materials[n];
+         IGameMaterial* piMaterial = _materials[n];
          FXmlNode* pMaterialNode = pMaterialsNode->CreateNode(TC("Material"));
          pMaterialNode->SetInt(TC("id"), _pExporter->GameMaterials()->IndexOf(piMaterial));
+         pMaterialNode->SetInt(TC("material_id"), piMaterial->GetMaterialID(0));
          pMaterialNode->Set(TC("name"), piMaterial->GetMaterialName());
       }
    }
    //------------------------------------------------------------
-   if(ETrue){return ETrue;}
-   //------------------------------------------------------------
-   // 存储顶点坐标 (Vertex)
-   if(vertexCount > 0){
-      FXmlNode* pVertexListNode = pConfig->CreateNode(TC("VertexCollection"));
-      pVertexListNode->SetInt(TC("count"), vertexCount);
-      for(TInt32 n = 0; n < vertexCount; n++){
-         FXmlNode* pVertexNode = pVertexListNode->CreateNode(TC("Vertex"));
-         Point3 point;
-         if(_piSubMesh->GetVertex(n, point)){
-            R3dsExporter::StorePoint3(pVertexNode, point);
-         }
-      }
-   }
-   // 顶点颜色 (Color)
-   if(colorCount > 0){
-      FXmlNode* pColorListNode = pConfig->CreateNode(TC("ColorCollection"));
-      pColorListNode->SetInt(TC("count"), colorCount);
-      for(TInt32 n = 0; n < colorCount; n++){
-         FXmlNode* pColorNode = pColorListNode->CreateNode(TC("Color"));
-         Point3 point;
-         if(_piSubMesh->GetColorVertex(n, point)){
-            R3dsExporter::StorePoint3(pColorNode, point);
-         }
-      }
-   }
-   // 存储贴图坐标 (Coord)
-   if(coordCount > 0){
-      FXmlNode* pCoordListNode = pConfig->CreateNode(TC("CoordCollection"));
-      pCoordListNode->SetInt(TC("count"), coordCount);
-      for(TInt32 n = 0; n < coordCount; n++){
-         FXmlNode* pCoordNode = pCoordListNode->CreateNode(TC("Coord"));
-         Point2 point;
-         if(_piSubMesh->GetTexVertex(n, point)){
-            R3dsExporter::StorePoint2(pCoordNode, point);
-         }
-      }
-   }
+   //// 存储顶点坐标 (Vertex)
+   //if(vertexCount > 0){
+   //   FXmlNode* pVertexListNode = pConfig->CreateNode(TC("VertexCollection"));
+   //   pVertexListNode->SetInt(TC("count"), vertexCount);
+   //   for(TInt32 n = 0; n < vertexCount; n++){
+   //      FXmlNode* pVertexNode = pVertexListNode->CreateNode(TC("Vertex"));
+   //      Point3 point;
+   //      if(_piSubMesh->GetVertex(n, point)){
+   //         R3dsExporter::StorePoint3(pVertexNode, point);
+   //      }
+   //   }
+   //}
+   //// 顶点颜色 (Color)
+   //if(colorCount > 0){
+   //   FXmlNode* pColorListNode = pConfig->CreateNode(TC("ColorCollection"));
+   //   pColorListNode->SetInt(TC("count"), colorCount);
+   //   for(TInt32 n = 0; n < colorCount; n++){
+   //      FXmlNode* pColorNode = pColorListNode->CreateNode(TC("Color"));
+   //      Point3 point;
+   //      if(_piSubMesh->GetColorVertex(n, point)){
+   //         R3dsExporter::StorePoint3(pColorNode, point);
+   //      }
+   //   }
+   //}
+   //// 存储贴图坐标 (Coord)
+   //if(coordCount > 0){
+   //   FXmlNode* pCoordListNode = pConfig->CreateNode(TC("CoordCollection"));
+   //   pCoordListNode->SetInt(TC("count"), coordCount);
+   //   for(TInt32 n = 0; n < coordCount; n++){
+   //      FXmlNode* pCoordNode = pCoordListNode->CreateNode(TC("Coord"));
+   //      Point2 point;
+   //      if(_piSubMesh->GetTexVertex(n, point)){
+   //         R3dsExporter::StorePoint2(pCoordNode, point);
+   //      }
+   //   }
+   //}
    //// 存储法线内容 (Normal)
    //if(normalCount > 0){
    //   FXmlNode* pNormalListNode = pConfig->CreateNode("NormalCollection");
@@ -928,8 +930,8 @@ TBool F3dsGeometryExporter::ConvertFile(FXmlNode* pConfig){
    //   ConvertSkin(pSkinNode, piSkin);
    //}
    // 计算网格顶点动画
-   FXmlNode* pTrackNode = pConfig->CreateNode(TC("Track"));
-   ConvertTrack(pTrackNode);
+   //FXmlNode* pTrackNode = pConfig->CreateNode(TC("Track"));
+   //ConvertTrack(pTrackNode);
    return ETrue;
 }
 

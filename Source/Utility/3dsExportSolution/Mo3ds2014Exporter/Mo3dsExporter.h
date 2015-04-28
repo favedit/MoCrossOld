@@ -149,6 +149,7 @@ protected:
    F3dsGameExporter* _pExporter;
    IGameNode* _piNode;
 	IGameMesh* _piSubMesh;
+   TFixVector<IGameMaterial*, 256> _materials;
 public:
    F3dsGeometryExporter(F3dsGameExporter* pExporter, IGameNode* piNode, IGameMesh* piSubMesh);
    MO_ABSTRACT ~F3dsGeometryExporter();
