@@ -974,7 +974,7 @@ namespace MO.Content3d.Resource.Model.Mesh
          // 读取属性
          _valid = config.GetBoolean("valid");
          _name = config.Get("name");
-         _materialName = config.Get("material").Replace('/', '\\');
+         _materialName = config.Get("material", "").Replace('/', '\\');
          // 获得材质对象
          _material = RContent3dManager.MaterialConsole.FindGroup(_materialName);
          if(null == _material) {

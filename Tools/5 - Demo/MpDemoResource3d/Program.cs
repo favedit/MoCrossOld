@@ -27,7 +27,7 @@ namespace Mp3d.Resource.Editor
          RMoCommon.Initialize();
          RMoCore.Initialize();
          // 加载环境文件
-         string environmentFileName = RSystem.Location(@"\..\Configuration\environment.demo.xml");
+         string environmentFileName = RSystem.Location(@"\..\Configuration\environment.eai.xml");
          RMoCommon.LoadEnvironment(environmentFileName);
          //............................................................
          // 加载配置文件
