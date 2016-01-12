@@ -23,7 +23,7 @@ TBool FSharedNetQueue::PushMessage(TNetMessage* pMessage){
    TInt length;
    TByte buffer[MO_NETMESSAGE_MAXLENGTH];
    if(!pMessage->Serialize(buffer, MO_NETMESSAGE_MAXLENGTH, &length)){
-      MO_FATAL("Message serialize failure.");
+      MO_FATAL(TC("Message serialize failure."));
       return EFalse;
    }
    // 将数据放入管道
@@ -42,7 +42,7 @@ TBool FSharedNetQueue::PushRouter(TNetRouter* pRouter){
    TInt length;
    TByte buffer[MO_NETMESSAGE_MAXLENGTH];
    if(!pRouter->Serialize(buffer, MO_NETMESSAGE_MAXLENGTH, &length)){
-      MO_FATAL("Router serialize failure.");
+      MO_FATAL(TC("Router serialize failure."));
       return EFalse;
    }
    // 将数据放入管道
@@ -61,23 +61,23 @@ TBool FSharedNetQueue::PushTransfer(TNetTransfer* pTransfer){
    TInt length = 0;
    TByte buffer[MO_NETMESSAGE_MAXLENGTH];
    if(!pTransfer->Serialize(buffer, MO_NETMESSAGE_MAXLENGTH, &length)){
-      MO_FATAL("Transfer serialize failure. (message_code=%d)", pTransfer->MessageHead().Code());
+      MO_FATAL(TC("Transfer serialize failure. (message_code=%d)"), pTransfer->MessageHead().Code());
       return EFalse;
    }
    if(length <= 0){
-      MO_FATAL("Transfer serialize failure. (message_code=%d, length=%d)", pTransfer->MessageHead().Code(), length);
+      MO_FATAL(TC("Transfer serialize failure. (message_code=%d, length=%d)"), pTransfer->MessageHead().Code(), length);
       return EFalse;
    }
    // 消息检查
    TInt blockLength = *(TInt32*)(TAny*)buffer;
    if(blockLength > MO_NETMESSAGE_MAXLENGTH){
-      MO_FATAL("Write message length is error. (memory=0x%08X, block_length=%d)", buffer, blockLength);
+      MO_FATAL(TC("Write message length is error. (memory=0x%08X, block_length=%d)"), buffer, blockLength);
    }
    if(length > MO_NETMESSAGE_MAXLENGTH){
-      MO_FATAL("Write data length is error. (memory=0x%08X, data_length=%d)", buffer, length);
+      MO_FATAL(TC("Write data length is error. (memory=0x%08X, data_length=%d)"), buffer, length);
    }
    if(blockLength != length){
-      MO_FATAL("Write data length is not equals. (memory=0x%08X, block_length=%d, data_length=%d)", buffer, blockLength, length);
+      MO_FATAL(TC("Write data length is not equals. (memory=0x%08X, block_length=%d, data_length=%d)"), buffer, blockLength, length);
    }
    // 将数据放入管道
    return Push(buffer, length);
@@ -95,23 +95,23 @@ TBool FSharedNetQueue::TryPushTransfer(TNetTransfer* pTransfer){
    TInt length = 0;
    TByte buffer[MO_NETMESSAGE_MAXLENGTH];
    if(!pTransfer->Serialize(buffer, MO_NETMESSAGE_MAXLENGTH, &length)){
-      MO_WARN("Transfer serialize failure. (message_code=%d)", pTransfer->MessageHead().Code());
+      MO_WARN(TC("Transfer serialize failure. (message_code=%d)"), pTransfer->MessageHead().Code());
       return EFalse;
    }
    if(length <= 0){
-      MO_WARN("Transfer serialize failure. (message_code=%d, length=%d)", pTransfer->MessageHead().Code(), length);
+      MO_WARN(TC("Transfer serialize failure. (message_code=%d, length=%d)"), pTransfer->MessageHead().Code(), length);
       return EFalse;
    }
    // 消息检查
    TInt blockLength = *(TInt32*)(TAny*)buffer;
    if(blockLength > MO_NETMESSAGE_MAXLENGTH){
-      MO_WARN("Write message length is error. (memory=0x%08X, block_length=%d)", buffer, blockLength);
+      MO_WARN(TC("Write message length is error. (memory=0x%08X, block_length=%d)"), buffer, blockLength);
    }
    if(length > MO_NETMESSAGE_MAXLENGTH){
-      MO_WARN("Write data length is error. (memory=0x%08X, data_length=%d)", buffer, length);
+      MO_WARN(TC("Write data length is error. (memory=0x%08X, data_length=%d)"), buffer, length);
    }
    if(blockLength != length){
-      MO_WARN("Write data length is not equals. (memory=0x%08X, block_length=%d, data_length=%d)", buffer, blockLength, length);
+      MO_WARN(TC("Write data length is not equals. (memory=0x%08X, block_length=%d, data_length=%d)"), buffer, blockLength, length);
    }
    // 将数据放入管道
    return TryPush(buffer, length);

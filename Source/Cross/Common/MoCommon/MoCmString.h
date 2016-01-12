@@ -41,7 +41,7 @@ MO_NAMESPACE_BEGIN
 #define TFixString        TFixString8
 #define FStrings          FString8s
 #define FProperties       FProperties8
-#define TFixStringToken8  TFixStringToken8
+#define TFixStringToken   TFixStringToken8
 #define TFsStringToken    TFsStringToken8
 #define MO_BCD_TFIXSTRING MO_BCD_TFIXSTRING8
 #else
@@ -57,6 +57,8 @@ MO_NAMESPACE_BEGIN
 #define TFixString        TFixString16
 #define FStrings          FString16s
 #define FProperties       FProperties16
+#define TFixStringToken   TFixStringToken16
+#define TFsStringToken    TFsStringToken16
 #define MO_BCD_TFIXSTRING MO_BCD_TFIXSTRING16
 #else
 #define TStringPtrC       TString32PtrC
@@ -70,6 +72,8 @@ MO_NAMESPACE_BEGIN
 #define TFixString        TFixString32
 #define FStrings          FString32s
 #define FProperties       FProperties32
+#define TFixStringToken   TFixStringToken32
+#define TFsStringToken    TFsStringToken32
 #define MO_BCD_TFIXSTRING MO_BCD_TFIXSTRING32
 #endif // _MO_WINDOWS
 #endif // _UNICODE

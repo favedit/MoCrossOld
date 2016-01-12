@@ -30,7 +30,7 @@ TResult FNetIocpTransferService::OnStartup(){
    pServerThread->SetService(this);
    //pServerThread->SetHost(_config.hosts[n]);
    SNetHost host;
-   host.host = "*";
+   host.host = TC("*");
    host.port = 900;
    pServerThread->SetHost(host);
    _pServerThreads->Push(pServerThread);
@@ -70,7 +70,7 @@ TBool FNetIocpTransferService::AddSockets(TFsNetSocketInfoVector& infos){
       if(limitSocketCount > 0){
          TInt socketCount = _pSocketsModule->Pool()->UsingCount();
          if(socketCount + 1 > limitSocketCount){
-            MO_WARN("Socket pool is full. (count=%d, limit=%d)", socketCount, limitSocketCount);
+            MO_WARN(TC("Socket pool is full. (count=%d, limit=%d)"), socketCount, limitSocketCount);
             SendLimitNotify(info);
             continue;
          }
@@ -91,7 +91,7 @@ TBool FNetIocpTransferService::AddSockets(TFsNetSocketInfoVector& infos){
       pSocket->SetSendPool(_pSendPool);
       // ¹ØÁªÁ´½Ó
       _pSocketsModule->OpenSocket(pSocket);
-      MO_DEBUG_INFO("Add net socket. (socket=0x%08X, poll=0x%04X(%d), host=%s:%d, handle=%d, index=%d:%d)",
+      MO_DEBUG_INFO(TC("Add net socket. (socket=0x%08X, poll=0x%04X(%d), host=%s:%d, handle=%d, index=%d:%d)"),
          pSocket,
          pSocket->ReceivePool()->Handle(), pSocket->ReceivePool()->Count(),
          info.host, info.port, info.handle, pSocket->Index(), pSocket->Serial());

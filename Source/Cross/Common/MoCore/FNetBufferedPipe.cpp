@@ -72,13 +72,13 @@ TBool FNetBufferedPipe::WriteMessage(TNetMessage* pMessage){
    TInt length = 0;
    TByte buffer[MO_NETMESSAGE_MAXLENGTH];
    if(!pMessage->SerializeMessage(buffer, MO_NETMESSAGE_MAXLENGTH, &length)){
-      MO_ERROR("Serialize message failure.");
+      MO_ERROR(TC("Serialize message failure."));
       return EFalse;
    }
    // 尝试写入数据
    TInt lengthWrite = 0;
    if(EStreamResult_Success != FBufferedPipe::Write(buffer, length, &lengthWrite)){
-      MO_ERROR("Write message failure. (length=%d)", length);
+      MO_ERROR(TC("Write message failure. (length=%d)"), length);
       return EFalse;
    }
    return ETrue;
@@ -96,13 +96,13 @@ TBool FNetBufferedPipe::WriteMessageCompress(TNetMessage* pMessage){
    TInt length = 0;
    TByte buffer[MO_NETMESSAGE_MAXLENGTH];
    if(!pMessage->CompressMessage(buffer, MO_NETMESSAGE_MAXLENGTH, &length)){
-      MO_ERROR("Serialize message failure.");
+      MO_ERROR(TC("Serialize message failure."));
       return EFalse;
    }
    // 尝试写入数据
    TInt lengthWrite = 0;
    if(EStreamResult_Success != FBufferedPipe::Write(buffer, length, &lengthWrite)){
-      MO_ERROR("Write message failure. (length=%d)", length);
+      MO_ERROR(TC("Write message failure. (length=%d)"), length);
       return EFalse;
    }
    return ETrue;
@@ -120,13 +120,13 @@ TBool FNetBufferedPipe::WriteRouter(TNetRouter* pRouter){
    TInt length = 0;
    TByte buffer[MO_NETMESSAGE_MAXLENGTH];
    if(!pRouter->SerializeRouter(buffer, MO_NETMESSAGE_MAXLENGTH, &length)){
-      MO_ERROR("Serialize router failure.");
+      MO_ERROR(TC("Serialize router failure."));
       return EFalse;
    }
    // 尝试写入数据
    TInt lengthWrite = 0;
    if(EStreamResult_Success != FBufferedPipe::Write(buffer, length, &lengthWrite)){
-      MO_ERROR("Write router failure. (length=%d)", length);
+      MO_ERROR(TC("Write router failure. (length=%d)"), length);
       return EFalse;
    }
    return ETrue;
@@ -144,13 +144,13 @@ TBool FNetBufferedPipe::WriteRouterCompress(TNetRouter* pRouter){
    TInt length = 0;
    TByte buffer[MO_NETMESSAGE_MAXLENGTH];
    if(!pRouter->SerializeRouter(buffer, MO_NETMESSAGE_MAXLENGTH, &length)){
-      MO_ERROR("Serialize router failure.");
+      MO_ERROR(TC("Serialize router failure."));
       return EFalse;
    }
    // 尝试写入数据
    TInt lengthWrite = 0;
    if(EStreamResult_Success != FBufferedPipe::Write(buffer, length, &lengthWrite)){
-      MO_ERROR("Write router failure. (length=%d)", length);
+      MO_ERROR(TC("Write router failure. (length=%d)"), length);
       return EFalse;
    }
    return ETrue;

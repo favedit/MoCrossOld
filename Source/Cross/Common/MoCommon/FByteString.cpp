@@ -410,7 +410,7 @@ TInt FByteString::ReadLine(TChar* pValue, TInt capacity){
 TInt FByteString::ReadLine(MString* pValue){
    MO_CHECK(pValue, return ENull);
    TChar* pData = pValue->Memory();
-   TInt dataSize = pValue->Size();
+   TInt dataSize = pValue->Capacity();
    TCharC* pReader = (TCharC*)(_pMemory + _position);
    TInt length = RChars::IndexOf(pReader, dataSize, '\n');
    if(length > 0){

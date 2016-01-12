@@ -8,7 +8,7 @@ MO_NAMESPACE_BEGIN
 // @return 当前对象指针。
 //============================================================
 FNetClientBufferedSocketModule::FNetClientBufferedSocketModule(){
-   _name = "Module.NetClientSockets";
+   _name = TC("Module.NetClientSockets");
 }
 
 //============================================================

@@ -10,7 +10,7 @@ MO_NAMESPACE_BEGIN
 //============================================================
 FNetBufferedSocketModule::FNetBufferedSocketModule(){
    // 初始化所有对象
-   _name = "Module.NetSockets";
+   _name = TC("Module.NetSockets");
    _socketCount = 0;
    _socketCapacity = 1024 * 1024 * 4;
    _socketReceiveBuffer = 1024 * 64;
@@ -44,23 +44,23 @@ FNetBufferedSocketModule::~FNetBufferedSocketModule(){
 TResult FNetBufferedSocketModule::OnLoadConfig(FXmlNode* pConfig){
    // 读取设置
    TXmlNodeIteratorC iterator = pConfig->NodeIteratorC();
-   while(iterator.Next("Property")){
+   while(iterator.Next(TC("Property"))){
       FXmlNode* pNode = *iterator;
-      if(pNode->IsAttribute("name", "socket_count")){
+      if(pNode->IsAttribute(TC("name"), TC("socket_count"))){
          _socketCount = pNode->TextAsInt();
-         MO_DEBUG("Load module(%s) property. (socket_count=%d)", (TCharC*)_name, _socketCount);
-      }else if(pNode->IsAttribute("name", "socket_capacity")){
+         MO_DEBUG(TC("Load module(%s) property. (socket_count=%d)"), (TCharC*)_name, _socketCount);
+      }else if(pNode->IsAttribute(TC("name"), TC("socket_capacity"))){
          _socketCapacity = pNode->TextAsInt();
-         MO_DEBUG("Load module(%s) property. (socket_capacity=%d)", (TCharC*)_name, _socketCapacity);
-      }else if(pNode->IsAttribute("name", "socket_receive_buffer")){
+         MO_DEBUG(TC("Load module(%s) property. (socket_capacity=%d)"), (TCharC*)_name, _socketCapacity);
+      }else if(pNode->IsAttribute(TC("name"), TC("socket_receive_buffer"))){
          _socketReceiveBuffer = pNode->TextAsInt();
-         MO_DEBUG("Load module(%s) property. (socket_receive_buffer=%d)", (TCharC*)_name, _socketReceiveBuffer);
-      }else if(pNode->IsAttribute("name", "socket_send_buffer")){
+         MO_DEBUG(TC("Load module(%s) property. (socket_receive_buffer=%d)"), (TCharC*)_name, _socketReceiveBuffer);
+      }else if(pNode->IsAttribute(TC("name"), TC("socket_send_buffer"))){
          _socketSendBuffer = pNode->TextAsInt();
-         MO_DEBUG("Load module(%s) property. (socket_send_buffer=%d)", (TCharC*)_name, _socketSendBuffer);
-      }else if(pNode->IsAttribute("name", "block_capacity")){
+         MO_DEBUG(TC("Load module(%s) property. (socket_send_buffer=%d)"), (TCharC*)_name, _socketSendBuffer);
+      }else if(pNode->IsAttribute(TC("name"), TC("block_capacity"))){
          _blockCapacity = pNode->TextAsInt();
-         MO_DEBUG("Load module(%s) property. (block_capacity=%d)", (TCharC*)_name, _blockCapacity);
+         MO_DEBUG(TC("Load module(%s) property. (block_capacity=%d)"), (TCharC*)_name, _blockCapacity);
       }
    }
    return ESuccess;
@@ -117,7 +117,7 @@ FNetBufferedSocket* FNetBufferedSocketModule::LinkHandle(TUint32 handle){
          _pHandles->Set(handle, pSocket);
          _sectionSet.Leave();
       }else{
-         MO_ERROR("Alloc socket failure. (count=%d, useing_count=%d, free_count=%d)",
+         MO_ERROR(TC("Alloc socket failure. (count=%d, useing_count=%d, free_count=%d)"),
                _pPool->Count(), _pPool->UsingCount(), _pPool->FreeCount());
       }
    }
@@ -241,7 +241,7 @@ TResult FNetBufferedSocketModule::StatisticsRefresh(){
    TInt count = _pPool->Count();
    TInt usingCount = _pPool->UsingCount();
    TInt freeCount = _pPool->FreeCount();
-   MO_INFO("Buffered socket statistics. (name=%s, count=%d, using_count=%d, free_count=%d)", (TCharC*)_name, count, usingCount, freeCount);
+   MO_INFO(TC("Buffered socket statistics. (name=%s, count=%d, using_count=%d, free_count=%d)"), (TCharC*)_name, count, usingCount, freeCount);
    // 检查端口，查看是否有非法信息
    TDateTime current = RDateTime::Current();
    TListIteratorC<FNetBufferedSocket*> iterator = _pPool->UsingItems()->IteratorC();
@@ -252,14 +252,14 @@ TResult FNetBufferedSocketModule::StatisticsRefresh(){
       if(_sendTimeout > 0){
          TTimeTick sendTick = current - pInfo->sendDateTime;
          if(sendTick > _sendTimeout){
-            MO_WARN("   Socket send timeout. (socket=0x%08X, send_timeout=%d, send_tick=%d)", pSocket, _sendTimeout, sendTick);
+            MO_WARN(TC("   Socket send timeout. (socket=0x%08X, send_timeout=%d, send_tick=%d)"), pSocket, _sendTimeout, sendTick);
          }
       }
       // 检查接收超时
       if(_receiveTimeout > 0){
          TTimeTick receiveTick = current - pInfo->receiveDateTime;
          if(receiveTick > _receiveTimeout){
-            MO_WARN("   Socket receive timeout. (socket=0x%08X, send_timeout=%d, send_tick=%d)", pSocket, _receiveTimeout, receiveTick);
+            MO_WARN(TC("   Socket receive timeout. (socket=0x%08X, send_timeout=%d, send_tick=%d)"), pSocket, _receiveTimeout, receiveTick);
          }
       }
    }

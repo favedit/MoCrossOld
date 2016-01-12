@@ -194,7 +194,7 @@ TBool TNetRouter::UnserializeRouter(TAnyC* pMemory, TInt size, TInt* length){
    // 验证哈希
    TNetHash hash = CalculateHash(messageSerial, messageTick, pData, dataLength);
    if(_netHead.Hash() != hash){
-      MO_ERROR("Unserialize router invalid hash. (head_hash=0x%08X, data_hash=0x%08X)",
+      MO_ERROR(TC("Unserialize router invalid hash. (head_hash=0x%08X, data_hash=0x%08X)"),
             _netHead.Hash(), hash);
       return EFalse;
    }
@@ -271,7 +271,7 @@ TCharC* TNetRouter::DumpRouter(TChar* pDump, TSize capacity){
          targetDump.Append(',');
       }
       SNetTarget& netTarget = targets[n];
-      targetDump.AppendFormat("(%02X-%02X-%08X)",
+      targetDump.AppendFormat(TC("(%02X-%02X-%08X)"),
             netTarget.GroupId(), netTarget.ServerId(), netTarget.ObjectHandle());
    }
    // 生成数据信息

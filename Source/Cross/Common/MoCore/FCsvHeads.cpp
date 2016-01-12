@@ -57,7 +57,7 @@ FCsvHead* FCsvHeads::Insert(TCharC* pName){
 //============================================================
 void FCsvHeads::SaveToFile(TDataOutput& out){
    FDictionary<FCsvHead*>::TIteratorC it = _pHeads->IteratorC();
-   TString head = "@head.name\n";
+   TString head = TC("@head.name\n");
    TBool showLabel = EFalse;
    TBool showDescription = EFalse;
    TInt count = 0;
@@ -70,19 +70,18 @@ void FCsvHeads::SaveToFile(TDataOutput& out){
       }else{
          head.Append('\n');
       }
-
-      TInt labelLength = strlen(pHead->Label());
+      TInt labelLength = RString::Length(pHead->Label());
       if(labelLength){
          showLabel = ETrue;
       }
-      TInt desLength = strlen(pHead->Description());
+      TInt desLength = RString::Length(pHead->Description());
       if(desLength){
          showDescription= ETrue;
       }
       ++count;
    }
    if(showLabel){
-      head.Append("@head.label\n");
+      head.Append(TC("@head.label\n"));
       count = 0;
       it.Reset();
       while(it.Next()){
@@ -96,7 +95,7 @@ void FCsvHeads::SaveToFile(TDataOutput& out){
       }
    }
    if(showDescription){
-      head.Append("@head.description\n");
+      head.Append(TC("@head.description\n"));
       count = 0;
       it.Reset();
       while(it.Next()){

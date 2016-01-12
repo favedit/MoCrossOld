@@ -22,30 +22,30 @@ ENetProtocol REnumNetProtocol::Parse(TCharC* pValue){
    // 获得枚举值
    TFsText text = pValue;
    // 判断是否位置
-   if(text.Equals("Unknown")){
+   if(text.Equals(TC("Unknown"))){
       return ENetProtocol_Unknown;
    }
    // 判断是否数据
-   if(text.Equals("Data")){
+   if(text.Equals(TC("Data"))){
       return ENetProtocol_Data;
    }
    // 判断是否消息
-   if(text.Equals("Message")){
+   if(text.Equals(TC("Message"))){
       return ENetProtocol_Message;
    }
    // 判断是否路由
-   if(text.Equals("Router")){
+   if(text.Equals(TC("Router"))){
       return ENetProtocol_Router;
    }
    // 判断是否传输
-   if(text.Equals("Transfer")){
+   if(text.Equals(TC("Transfer"))){
       return ENetProtocol_Transfer;
    }
    // 判断是否数据包
-   if(text.Equals("Package")){
+   if(text.Equals(TC("Package"))){
       return ENetProtocol_Package;
    }
-   MO_STATIC_FATAL("Unknown enum value. (enum=ENetProtocol, value=%s)", pValue);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=ENetProtocol, value=%s)"), pValue);
    return (ENetProtocol)0;
 }
 
@@ -57,7 +57,7 @@ ENetProtocol REnumNetProtocol::Parse(TCharC* pValue){
 //============================================================
 ENetProtocol REnumNetProtocol::ParseCode(TCharC* pCode){
    TFsText text = pCode;
-   MO_STATIC_FATAL("Unknown enum value. (enum=ENetProtocol, code=%s)", pCode);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=ENetProtocol, code=%s)"), pCode);
    return (ENetProtocol)0;
 }
 
@@ -68,7 +68,7 @@ ENetProtocol REnumNetProtocol::ParseCode(TCharC* pCode){
 // @return 代码
 //============================================================
 TCharC* REnumNetProtocol::ToCode(ENetProtocol value){
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -80,29 +80,29 @@ TCharC* REnumNetProtocol::ToCode(ENetProtocol value){
 TCharC* REnumNetProtocol::ToString(ENetProtocol value){
    // 获得位置
    if(ENetProtocol_Unknown == value){
-      return "Unknown";
+      return TC("Unknown");
    }
    // 获得数据
    if(ENetProtocol_Data == value){
-      return "Data";
+      return TC("Data");
    }
    // 获得消息
    if(ENetProtocol_Message == value){
-      return "Message";
+      return TC("Message");
    }
    // 获得路由
    if(ENetProtocol_Router == value){
-      return "Router";
+      return TC("Router");
    }
    // 获得传输
    if(ENetProtocol_Transfer == value){
-      return "Transfer";
+      return TC("Transfer");
    }
    // 获得数据包
    if(ENetProtocol_Package == value){
-      return "Package";
+      return TC("Package");
    }
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -134,27 +134,27 @@ void TNetSignSet::Parse(TCharC* pValue){
    TInt count = token.Count();
    for(TInt n = 0; n < count; n ++){
       TFsCode code = token.Get(n);
-      if(code.Equals("Unknown")){
+      if(code.Equals(TC("Unknown"))){
          SetBit(ENetSign_Unknown);
          continue;
       }
-      if(code.Equals("Valid")){
+      if(code.Equals(TC("Valid"))){
          SetBit(ENetSign_Valid);
          continue;
       }
-      if(code.Equals("Client")){
+      if(code.Equals(TC("Client"))){
          SetBit(ENetSign_Client);
          continue;
       }
-      if(code.Equals("Debug")){
+      if(code.Equals(TC("Debug"))){
          SetBit(ENetSign_Debug);
          continue;
       }
-      if(code.Equals("Analysis")){
+      if(code.Equals(TC("Analysis"))){
          SetBit(ENetSign_Analysis);
          continue;
       }
-      if(code.Equals("Track")){
+      if(code.Equals(TC("Track"))){
          SetBit(ENetSign_Track);
          continue;
       }
@@ -172,27 +172,27 @@ void TNetSignSet::ParseValue(TCharC* pValue){
    TInt count = token.Count();
    for(TInt n = 0; n < count; n ++){
       TFsCode code = token.Get(n);
-      if(code.Equals("0")){
+      if(code.Equals(TC("0"))){
          SetBit(ENetSign_Unknown);
          continue;
       }
-      if(code.Equals("1")){
+      if(code.Equals(TC("1"))){
          SetBit(ENetSign_Valid);
          continue;
       }
-      if(code.Equals("2")){
+      if(code.Equals(TC("2"))){
          SetBit(ENetSign_Client);
          continue;
       }
-      if(code.Equals("3")){
+      if(code.Equals(TC("3"))){
          SetBit(ENetSign_Debug);
          continue;
       }
-      if(code.Equals("4")){
+      if(code.Equals(TC("4"))){
          SetBit(ENetSign_Analysis);
          continue;
       }
-      if(code.Equals("5")){
+      if(code.Equals(TC("5"))){
          SetBit(ENetSign_Track);
          continue;
       }
@@ -208,12 +208,12 @@ void TNetSignSet::ParseValue(TCharC* pValue){
 //============================================================
 TChar* TNetSignSet::ToString(TChar* pValue, TSize capacity){
    TStringRefer text(pValue, capacity);
-   text.Append(GetBit(ENetSign_Unknown) ? "" : "_");
-   text.Append(GetBit(ENetSign_Valid) ? "" : "_");
-   text.Append(GetBit(ENetSign_Client) ? "" : "_");
-   text.Append(GetBit(ENetSign_Debug) ? "" : "_");
-   text.Append(GetBit(ENetSign_Analysis) ? "" : "_");
-   text.Append(GetBit(ENetSign_Track) ? "" : "_");
+   text.Append(GetBit(ENetSign_Unknown) ? TC("") : TC("_"));
+   text.Append(GetBit(ENetSign_Valid) ? TC("") : TC("_"));
+   text.Append(GetBit(ENetSign_Client) ? TC("") : TC("_"));
+   text.Append(GetBit(ENetSign_Debug) ? TC("") : TC("_"));
+   text.Append(GetBit(ENetSign_Analysis) ? TC("") : TC("_"));
+   text.Append(GetBit(ENetSign_Track) ? TC("") : TC("_"));
    return pValue;
 }
 
@@ -242,30 +242,30 @@ ENetSign REnumNetSign::Parse(TCharC* pValue){
    // 获得枚举值
    TFsText text = pValue;
    // 判断是否未知
-   if(text.Equals("Unknown")){
+   if(text.Equals(TC("Unknown"))){
       return ENetSign_Unknown;
    }
    // 判断是否有效
-   if(text.Equals("Valid")){
+   if(text.Equals(TC("Valid"))){
       return ENetSign_Valid;
    }
    // 判断是否客户
-   if(text.Equals("Client")){
+   if(text.Equals(TC("Client"))){
       return ENetSign_Client;
    }
    // 判断是否调试
-   if(text.Equals("Debug")){
+   if(text.Equals(TC("Debug"))){
       return ENetSign_Debug;
    }
    // 判断是否分析
-   if(text.Equals("Analysis")){
+   if(text.Equals(TC("Analysis"))){
       return ENetSign_Analysis;
    }
    // 判断是否跟踪
-   if(text.Equals("Track")){
+   if(text.Equals(TC("Track"))){
       return ENetSign_Track;
    }
-   MO_STATIC_FATAL("Unknown enum value. (enum=ENetSign, value=%s)", pValue);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=ENetSign, value=%s)"), pValue);
    return (ENetSign)0;
 }
 
@@ -277,7 +277,7 @@ ENetSign REnumNetSign::Parse(TCharC* pValue){
 //============================================================
 ENetSign REnumNetSign::ParseCode(TCharC* pCode){
    TFsText text = pCode;
-   MO_STATIC_FATAL("Unknown enum value. (enum=ENetSign, code=%s)", pCode);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=ENetSign, code=%s)"), pCode);
    return (ENetSign)0;
 }
 
@@ -288,7 +288,7 @@ ENetSign REnumNetSign::ParseCode(TCharC* pCode){
 // @return 代码
 //============================================================
 TCharC* REnumNetSign::ToCode(ENetSign value){
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -300,29 +300,29 @@ TCharC* REnumNetSign::ToCode(ENetSign value){
 TCharC* REnumNetSign::ToString(ENetSign value){
    // 获得未知
    if(ENetSign_Unknown == value){
-      return "Unknown";
+      return TC("Unknown");
    }
    // 获得有效
    if(ENetSign_Valid == value){
-      return "Valid";
+      return TC("Valid");
    }
    // 获得客户
    if(ENetSign_Client == value){
-      return "Client";
+      return TC("Client");
    }
    // 获得调试
    if(ENetSign_Debug == value){
-      return "Debug";
+      return TC("Debug");
    }
    // 获得分析
    if(ENetSign_Analysis == value){
-      return "Analysis";
+      return TC("Analysis");
    }
    // 获得跟踪
    if(ENetSign_Track == value){
-      return "Track";
+      return TC("Track");
    }
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -339,22 +339,22 @@ ENetMessage REnumNetMessage::Parse(TCharC* pValue){
    // 获得枚举值
    TFsText text = pValue;
    // 判断是否未知
-   if(text.Equals("Unknown")){
+   if(text.Equals(TC("Unknown"))){
       return ENetMessage_Unknown;
    }
    // 判断是否请求
-   if(text.Equals("Request")){
+   if(text.Equals(TC("Request"))){
       return ENetMessage_Request;
    }
    // 判断是否应答
-   if(text.Equals("Response")){
+   if(text.Equals(TC("Response"))){
       return ENetMessage_Response;
    }
    // 判断是否通知
-   if(text.Equals("Notify")){
+   if(text.Equals(TC("Notify"))){
       return ENetMessage_Notify;
    }
-   MO_STATIC_FATAL("Unknown enum value. (enum=ENetMessage, value=%s)", pValue);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=ENetMessage, value=%s)"), pValue);
    return (ENetMessage)0;
 }
 
@@ -366,7 +366,7 @@ ENetMessage REnumNetMessage::Parse(TCharC* pValue){
 //============================================================
 ENetMessage REnumNetMessage::ParseCode(TCharC* pCode){
    TFsText text = pCode;
-   MO_STATIC_FATAL("Unknown enum value. (enum=ENetMessage, code=%s)", pCode);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=ENetMessage, code=%s)"), pCode);
    return (ENetMessage)0;
 }
 
@@ -377,7 +377,7 @@ ENetMessage REnumNetMessage::ParseCode(TCharC* pCode){
 // @return 代码
 //============================================================
 TCharC* REnumNetMessage::ToCode(ENetMessage value){
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -389,21 +389,21 @@ TCharC* REnumNetMessage::ToCode(ENetMessage value){
 TCharC* REnumNetMessage::ToString(ENetMessage value){
    // 获得未知
    if(ENetMessage_Unknown == value){
-      return "Unknown";
+      return TC("Unknown");
    }
    // 获得请求
    if(ENetMessage_Request == value){
-      return "Request";
+      return TC("Request");
    }
    // 获得应答
    if(ENetMessage_Response == value){
-      return "Response";
+      return TC("Response");
    }
    // 获得通知
    if(ENetMessage_Notify == value){
-      return "Notify";
+      return TC("Notify");
    }
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -435,19 +435,19 @@ void TNetMessageSignSet::Parse(TCharC* pValue){
    TInt count = token.Count();
    for(TInt n = 0; n < count; n ++){
       TFsCode code = token.Get(n);
-      if(code.Equals("Unknown")){
+      if(code.Equals(TC("Unknown"))){
          SetBit(ENetMessageSign_Unknown);
          continue;
       }
-      if(code.Equals("Tcp")){
+      if(code.Equals(TC("Tcp"))){
          SetBit(ENetMessageSign_Tcp);
          continue;
       }
-      if(code.Equals("Udp")){
+      if(code.Equals(TC("Udp"))){
          SetBit(ENetMessageSign_Udp);
          continue;
       }
-      if(code.Equals("Thread")){
+      if(code.Equals(TC("Thread"))){
          SetBit(ENetMessageSign_Thread);
          continue;
       }
@@ -465,19 +465,19 @@ void TNetMessageSignSet::ParseValue(TCharC* pValue){
    TInt count = token.Count();
    for(TInt n = 0; n < count; n ++){
       TFsCode code = token.Get(n);
-      if(code.Equals("0")){
+      if(code.Equals(TC("0"))){
          SetBit(ENetMessageSign_Unknown);
          continue;
       }
-      if(code.Equals("1")){
+      if(code.Equals(TC("1"))){
          SetBit(ENetMessageSign_Tcp);
          continue;
       }
-      if(code.Equals("2")){
+      if(code.Equals(TC("2"))){
          SetBit(ENetMessageSign_Udp);
          continue;
       }
-      if(code.Equals("3")){
+      if(code.Equals(TC("3"))){
          SetBit(ENetMessageSign_Thread);
          continue;
       }
@@ -493,10 +493,10 @@ void TNetMessageSignSet::ParseValue(TCharC* pValue){
 //============================================================
 TChar* TNetMessageSignSet::ToString(TChar* pValue, TSize capacity){
    TStringRefer text(pValue, capacity);
-   text.Append(GetBit(ENetMessageSign_Unknown) ? "" : "_");
-   text.Append(GetBit(ENetMessageSign_Tcp) ? "" : "_");
-   text.Append(GetBit(ENetMessageSign_Udp) ? "" : "_");
-   text.Append(GetBit(ENetMessageSign_Thread) ? "" : "_");
+   text.Append(GetBit(ENetMessageSign_Unknown) ? TC("") : TC("_"));
+   text.Append(GetBit(ENetMessageSign_Tcp) ? TC("") : TC("_"));
+   text.Append(GetBit(ENetMessageSign_Udp) ? TC("") : TC("_"));
+   text.Append(GetBit(ENetMessageSign_Thread) ? TC("") : TC("_"));
    return pValue;
 }
 
@@ -525,22 +525,22 @@ ENetMessageSign REnumNetMessageSign::Parse(TCharC* pValue){
    // 获得枚举值
    TFsText text = pValue;
    // 判断是否未知
-   if(text.Equals("Unknown")){
+   if(text.Equals(TC("Unknown"))){
       return ENetMessageSign_Unknown;
    }
    // 判断是否TCP支持
-   if(text.Equals("Tcp")){
+   if(text.Equals(TC("Tcp"))){
       return ENetMessageSign_Tcp;
    }
    // 判断是否UDP支持
-   if(text.Equals("Udp")){
+   if(text.Equals(TC("Udp"))){
       return ENetMessageSign_Udp;
    }
    // 判断是否线程支持
-   if(text.Equals("Thread")){
+   if(text.Equals(TC("Thread"))){
       return ENetMessageSign_Thread;
    }
-   MO_STATIC_FATAL("Unknown enum value. (enum=ENetMessageSign, value=%s)", pValue);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=ENetMessageSign, value=%s)"), pValue);
    return (ENetMessageSign)0;
 }
 
@@ -552,7 +552,7 @@ ENetMessageSign REnumNetMessageSign::Parse(TCharC* pValue){
 //============================================================
 ENetMessageSign REnumNetMessageSign::ParseCode(TCharC* pCode){
    TFsText text = pCode;
-   MO_STATIC_FATAL("Unknown enum value. (enum=ENetMessageSign, code=%s)", pCode);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=ENetMessageSign, code=%s)"), pCode);
    return (ENetMessageSign)0;
 }
 
@@ -563,7 +563,7 @@ ENetMessageSign REnumNetMessageSign::ParseCode(TCharC* pCode){
 // @return 代码
 //============================================================
 TCharC* REnumNetMessageSign::ToCode(ENetMessageSign value){
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -575,21 +575,21 @@ TCharC* REnumNetMessageSign::ToCode(ENetMessageSign value){
 TCharC* REnumNetMessageSign::ToString(ENetMessageSign value){
    // 获得未知
    if(ENetMessageSign_Unknown == value){
-      return "Unknown";
+      return TC("Unknown");
    }
    // 获得TCP支持
    if(ENetMessageSign_Tcp == value){
-      return "Tcp";
+      return TC("Tcp");
    }
    // 获得UDP支持
    if(ENetMessageSign_Udp == value){
-      return "Udp";
+      return TC("Udp");
    }
    // 获得线程支持
    if(ENetMessageSign_Thread == value){
-      return "Thread";
+      return TC("Thread");
    }
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -606,18 +606,18 @@ ENetMessageService REnumNetMessageService::Parse(TCharC* pValue){
    // 获得枚举值
    TFsText text = pValue;
    // 判断是否逻辑
-   if(text.Equals("Logic")){
+   if(text.Equals(TC("Logic"))){
       return ENetMessageService_Logic;
    }
    // 判断是否登录
-   if(text.Equals("Login")){
+   if(text.Equals(TC("Login"))){
       return ENetMessageService_Login;
    }
    // 判断是否刷新
-   if(text.Equals("Refresh")){
+   if(text.Equals(TC("Refresh"))){
       return ENetMessageService_Refresh;
    }
-   MO_STATIC_FATAL("Unknown enum value. (enum=ENetMessageService, value=%s)", pValue);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=ENetMessageService, value=%s)"), pValue);
    return (ENetMessageService)0;
 }
 
@@ -629,7 +629,7 @@ ENetMessageService REnumNetMessageService::Parse(TCharC* pValue){
 //============================================================
 ENetMessageService REnumNetMessageService::ParseCode(TCharC* pCode){
    TFsText text = pCode;
-   MO_STATIC_FATAL("Unknown enum value. (enum=ENetMessageService, code=%s)", pCode);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=ENetMessageService, code=%s)"), pCode);
    return (ENetMessageService)0;
 }
 
@@ -640,7 +640,7 @@ ENetMessageService REnumNetMessageService::ParseCode(TCharC* pCode){
 // @return 代码
 //============================================================
 TCharC* REnumNetMessageService::ToCode(ENetMessageService value){
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -652,17 +652,17 @@ TCharC* REnumNetMessageService::ToCode(ENetMessageService value){
 TCharC* REnumNetMessageService::ToString(ENetMessageService value){
    // 获得逻辑
    if(ENetMessageService_Logic == value){
-      return "Logic";
+      return TC("Logic");
    }
    // 获得登录
    if(ENetMessageService_Login == value){
-      return "Login";
+      return TC("Login");
    }
    // 获得刷新
    if(ENetMessageService_Refresh == value){
-      return "Refresh";
+      return TC("Refresh");
    }
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -679,82 +679,82 @@ ENetTerminal REnumNetTerminal::Parse(TCharC* pValue){
    // 获得枚举值
    TFsText text = pValue;
    // 判断是否未知
-   if(text.Equals("Unknown")){
+   if(text.Equals(TC("Unknown"))){
       return ENetTerminal_Unknown;
    }
    // 判断是否客户端
-   if(text.Equals("Client")){
+   if(text.Equals(TC("Client"))){
       return ENetTerminal_Client;
    }
    // 判断是否服务器传输
-   if(text.Equals("ServerTransfer")){
+   if(text.Equals(TC("ServerTransfer"))){
       return ENetTerminal_ServerTransfer;
    }
    // 判断是否全局传输
-   if(text.Equals("GlobalTransfer")){
+   if(text.Equals(TC("GlobalTransfer"))){
       return ENetTerminal_GlobalTransfer;
    }
    // 判断是否全局代理
-   if(text.Equals("GlobalProxy")){
+   if(text.Equals(TC("GlobalProxy"))){
       return ENetTerminal_GlobalProxy;
    }
    // 判断是否全局主域
-   if(text.Equals("GlobalDomain")){
+   if(text.Equals(TC("GlobalDomain"))){
       return ENetTerminal_GlobalDomain;
    }
    // 判断是否全局登陆
-   if(text.Equals("GlobalLogin")){
+   if(text.Equals(TC("GlobalLogin"))){
       return ENetTerminal_GlobalLogin;
    }
    // 判断是否全局网关
-   if(text.Equals("GlobalGate")){
+   if(text.Equals(TC("GlobalGate"))){
       return ENetTerminal_GlobalGate;
    }
    // 判断是否全局存储
-   if(text.Equals("GlobalStorage")){
+   if(text.Equals(TC("GlobalStorage"))){
       return ENetTerminal_GlobalStorage;
    }
    // 判断是否游戏代理
-   if(text.Equals("GameProxy")){
+   if(text.Equals(TC("GameProxy"))){
       return ENetTerminal_GameProxy;
    }
    // 判断是否游戏主域
-   if(text.Equals("GameDomain")){
+   if(text.Equals(TC("GameDomain"))){
       return ENetTerminal_GameDomain;
    }
    // 判断是否游戏网关
-   if(text.Equals("GameGate")){
+   if(text.Equals(TC("GameGate"))){
       return ENetTerminal_GameGate;
    }
    // 判断是否游戏登录
-   if(text.Equals("GameLogin")){
+   if(text.Equals(TC("GameLogin"))){
       return ENetTerminal_GameLogin;
    }
    // 判断是否游戏场景
-   if(text.Equals("GameScene")){
+   if(text.Equals(TC("GameScene"))){
       return ENetTerminal_GameScene;
    }
    // 判断是否游戏战斗
-   if(text.Equals("GameBattle")){
+   if(text.Equals(TC("GameBattle"))){
       return ENetTerminal_GameBattle;
    }
    // 判断是否游戏存储
-   if(text.Equals("GameStorage")){
+   if(text.Equals(TC("GameStorage"))){
       return ENetTerminal_GameStorage;
    }
    // 判断是否游戏聊天
-   if(text.Equals("GameChat")){
+   if(text.Equals(TC("GameChat"))){
       return ENetTerminal_GameChat;
    }
    // 判断是否游戏日志
-   if(text.Equals("GameLogger")){
+   if(text.Equals(TC("GameLogger"))){
       return ENetTerminal_GameLogger;
    }
    // 判断是否外网对接服务器
-   if(text.Equals("GameWebInterface")){
+   if(text.Equals(TC("GameWebInterface"))){
       return ENetTerminal_GameWebInterface;
    }
-   MO_STATIC_FATAL("Unknown enum value. (enum=ENetTerminal, value=%s)", pValue);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=ENetTerminal, value=%s)"), pValue);
    return (ENetTerminal)0;
 }
 
@@ -767,82 +767,82 @@ ENetTerminal REnumNetTerminal::Parse(TCharC* pValue){
 ENetTerminal REnumNetTerminal::ParseCode(TCharC* pCode){
    TFsText text = pCode;
    // 判断是否未知
-   if(text.Equals("UNK")){
+   if(text.Equals(TC("UNK"))){
       return ENetTerminal_Unknown;
    }
    // 判断是否客户端
-   if(text.Equals("CLT")){
+   if(text.Equals(TC("CLT"))){
       return ENetTerminal_Client;
    }
    // 判断是否服务器传输
-   if(text.Equals("STS")){
+   if(text.Equals(TC("STS"))){
       return ENetTerminal_ServerTransfer;
    }
    // 判断是否全局传输
-   if(text.Equals("ATS")){
+   if(text.Equals(TC("ATS"))){
       return ENetTerminal_GlobalTransfer;
    }
    // 判断是否全局代理
-   if(text.Equals("APX")){
+   if(text.Equals(TC("APX"))){
       return ENetTerminal_GlobalProxy;
    }
    // 判断是否全局主域
-   if(text.Equals("ADM")){
+   if(text.Equals(TC("ADM"))){
       return ENetTerminal_GlobalDomain;
    }
    // 判断是否全局登陆
-   if(text.Equals("ALG")){
+   if(text.Equals(TC("ALG"))){
       return ENetTerminal_GlobalLogin;
    }
    // 判断是否全局网关
-   if(text.Equals("AGT")){
+   if(text.Equals(TC("AGT"))){
       return ENetTerminal_GlobalGate;
    }
    // 判断是否全局存储
-   if(text.Equals("ASR")){
+   if(text.Equals(TC("ASR"))){
       return ENetTerminal_GlobalStorage;
    }
    // 判断是否游戏代理
-   if(text.Equals("GPX")){
+   if(text.Equals(TC("GPX"))){
       return ENetTerminal_GameProxy;
    }
    // 判断是否游戏主域
-   if(text.Equals("GDM")){
+   if(text.Equals(TC("GDM"))){
       return ENetTerminal_GameDomain;
    }
    // 判断是否游戏网关
-   if(text.Equals("GGT")){
+   if(text.Equals(TC("GGT"))){
       return ENetTerminal_GameGate;
    }
    // 判断是否游戏登录
-   if(text.Equals("GLG")){
+   if(text.Equals(TC("GLG"))){
       return ENetTerminal_GameLogin;
    }
    // 判断是否游戏场景
-   if(text.Equals("GSC")){
+   if(text.Equals(TC("GSC"))){
       return ENetTerminal_GameScene;
    }
    // 判断是否游戏战斗
-   if(text.Equals("GBT")){
+   if(text.Equals(TC("GBT"))){
       return ENetTerminal_GameBattle;
    }
    // 判断是否游戏存储
-   if(text.Equals("GSR")){
+   if(text.Equals(TC("GSR"))){
       return ENetTerminal_GameStorage;
    }
    // 判断是否游戏聊天
-   if(text.Equals("GCT")){
+   if(text.Equals(TC("GCT"))){
       return ENetTerminal_GameChat;
    }
    // 判断是否游戏日志
-   if(text.Equals("GLO")){
+   if(text.Equals(TC("GLO"))){
       return ENetTerminal_GameLogger;
    }
    // 判断是否外网对接服务器
-   if(text.Equals("GWI")){
+   if(text.Equals(TC("GWI"))){
       return ENetTerminal_GameWebInterface;
    }
-   MO_STATIC_FATAL("Unknown enum value. (enum=ENetTerminal, code=%s)", pCode);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=ENetTerminal, code=%s)"), pCode);
    return (ENetTerminal)0;
 }
 
@@ -855,81 +855,81 @@ ENetTerminal REnumNetTerminal::ParseCode(TCharC* pCode){
 TCharC* REnumNetTerminal::ToCode(ENetTerminal value){
    // 获得未知
    if(ENetTerminal_Unknown == value){
-      return "UNK";
+      return TC("UNK");
    }
    // 获得客户端
    if(ENetTerminal_Client == value){
-      return "CLT";
+      return TC("CLT");
    }
    // 获得服务器传输
    if(ENetTerminal_ServerTransfer == value){
-      return "STS";
+      return TC("STS");
    }
    // 获得全局传输
    if(ENetTerminal_GlobalTransfer == value){
-      return "ATS";
+      return TC("ATS");
    }
    // 获得全局代理
    if(ENetTerminal_GlobalProxy == value){
-      return "APX";
+      return TC("APX");
    }
    // 获得全局主域
    if(ENetTerminal_GlobalDomain == value){
-      return "ADM";
+      return TC("ADM");
    }
    // 获得全局登陆
    if(ENetTerminal_GlobalLogin == value){
-      return "ALG";
+      return TC("ALG");
    }
    // 获得全局网关
    if(ENetTerminal_GlobalGate == value){
-      return "AGT";
+      return TC("AGT");
    }
    // 获得全局存储
    if(ENetTerminal_GlobalStorage == value){
-      return "ASR";
+      return TC("ASR");
    }
    // 获得游戏代理
    if(ENetTerminal_GameProxy == value){
-      return "GPX";
+      return TC("GPX");
    }
    // 获得游戏主域
    if(ENetTerminal_GameDomain == value){
-      return "GDM";
+      return TC("GDM");
    }
    // 获得游戏网关
    if(ENetTerminal_GameGate == value){
-      return "GGT";
+      return TC("GGT");
    }
    // 获得游戏登录
    if(ENetTerminal_GameLogin == value){
-      return "GLG";
+      return TC("GLG");
    }
    // 获得游戏场景
    if(ENetTerminal_GameScene == value){
-      return "GSC";
+      return TC("GSC");
    }
    // 获得游戏战斗
    if(ENetTerminal_GameBattle == value){
-      return "GBT";
+      return TC("GBT");
    }
    // 获得游戏存储
    if(ENetTerminal_GameStorage == value){
-      return "GSR";
+      return TC("GSR");
    }
    // 获得游戏聊天
    if(ENetTerminal_GameChat == value){
-      return "GCT";
+      return TC("GCT");
    }
    // 获得游戏日志
    if(ENetTerminal_GameLogger == value){
-      return "GLO";
+      return TC("GLO");
    }
    // 获得外网对接服务器
    if(ENetTerminal_GameWebInterface == value){
-      return "GWI";
+      return TC("GWI");
    }
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -941,81 +941,81 @@ TCharC* REnumNetTerminal::ToCode(ENetTerminal value){
 TCharC* REnumNetTerminal::ToString(ENetTerminal value){
    // 获得未知
    if(ENetTerminal_Unknown == value){
-      return "Unknown";
+      return TC("Unknown");
    }
    // 获得客户端
    if(ENetTerminal_Client == value){
-      return "Client";
+      return TC("Client");
    }
    // 获得服务器传输
    if(ENetTerminal_ServerTransfer == value){
-      return "ServerTransfer";
+      return TC("ServerTransfer");
    }
    // 获得全局传输
    if(ENetTerminal_GlobalTransfer == value){
-      return "GlobalTransfer";
+      return TC("GlobalTransfer");
    }
    // 获得全局代理
    if(ENetTerminal_GlobalProxy == value){
-      return "GlobalProxy";
+      return TC("GlobalProxy");
    }
    // 获得全局主域
    if(ENetTerminal_GlobalDomain == value){
-      return "GlobalDomain";
+      return TC("GlobalDomain");
    }
    // 获得全局登陆
    if(ENetTerminal_GlobalLogin == value){
-      return "GlobalLogin";
+      return TC("GlobalLogin");
    }
    // 获得全局网关
    if(ENetTerminal_GlobalGate == value){
-      return "GlobalGate";
+      return TC("GlobalGate");
    }
    // 获得全局存储
    if(ENetTerminal_GlobalStorage == value){
-      return "GlobalStorage";
+      return TC("GlobalStorage");
    }
    // 获得游戏代理
    if(ENetTerminal_GameProxy == value){
-      return "GameProxy";
+      return TC("GameProxy");
    }
    // 获得游戏主域
    if(ENetTerminal_GameDomain == value){
-      return "GameDomain";
+      return TC("GameDomain");
    }
    // 获得游戏网关
    if(ENetTerminal_GameGate == value){
-      return "GameGate";
+      return TC("GameGate");
    }
    // 获得游戏登录
    if(ENetTerminal_GameLogin == value){
-      return "GameLogin";
+      return TC("GameLogin");
    }
    // 获得游戏场景
    if(ENetTerminal_GameScene == value){
-      return "GameScene";
+      return TC("GameScene");
    }
    // 获得游戏战斗
    if(ENetTerminal_GameBattle == value){
-      return "GameBattle";
+      return TC("GameBattle");
    }
    // 获得游戏存储
    if(ENetTerminal_GameStorage == value){
-      return "GameStorage";
+      return TC("GameStorage");
    }
    // 获得游戏聊天
    if(ENetTerminal_GameChat == value){
-      return "GameChat";
+      return TC("GameChat");
    }
    // 获得游戏日志
    if(ENetTerminal_GameLogger == value){
-      return "GameLogger";
+      return TC("GameLogger");
    }
    // 获得外网对接服务器
    if(ENetTerminal_GameWebInterface == value){
-      return "GameWebInterface";
+      return TC("GameWebInterface");
    }
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -1047,11 +1047,11 @@ void TNetRouterFlagSet::Parse(TCharC* pValue){
    TInt count = token.Count();
    for(TInt n = 0; n < count; n ++){
       TFsCode code = token.Get(n);
-      if(code.Equals("Valid")){
+      if(code.Equals(TC("Valid"))){
          SetBit(ENetRouterFlag_Valid);
          continue;
       }
-      if(code.Equals("Disconnect")){
+      if(code.Equals(TC("Disconnect"))){
          SetBit(ENetRouterFlag_Disconnect);
          continue;
       }
@@ -1069,11 +1069,11 @@ void TNetRouterFlagSet::ParseValue(TCharC* pValue){
    TInt count = token.Count();
    for(TInt n = 0; n < count; n ++){
       TFsCode code = token.Get(n);
-      if(code.Equals("0")){
+      if(code.Equals(TC("0"))){
          SetBit(ENetRouterFlag_Valid);
          continue;
       }
-      if(code.Equals("1")){
+      if(code.Equals(TC("1"))){
          SetBit(ENetRouterFlag_Disconnect);
          continue;
       }
@@ -1089,8 +1089,8 @@ void TNetRouterFlagSet::ParseValue(TCharC* pValue){
 //============================================================
 TChar* TNetRouterFlagSet::ToString(TChar* pValue, TSize capacity){
    TStringRefer text(pValue, capacity);
-   text.Append(GetBit(ENetRouterFlag_Valid) ? "" : "_");
-   text.Append(GetBit(ENetRouterFlag_Disconnect) ? "" : "_");
+   text.Append(GetBit(ENetRouterFlag_Valid) ? TC("") : TC("_"));
+   text.Append(GetBit(ENetRouterFlag_Disconnect) ? TC("") : TC("_"));
    return pValue;
 }
 
@@ -1119,14 +1119,14 @@ ENetRouterFlag REnumNetRouterFlag::Parse(TCharC* pValue){
    // 获得枚举值
    TFsText text = pValue;
    // 判断是否有效
-   if(text.Equals("Valid")){
+   if(text.Equals(TC("Valid"))){
       return ENetRouterFlag_Valid;
    }
    // 判断是否断开链接
-   if(text.Equals("Disconnect")){
+   if(text.Equals(TC("Disconnect"))){
       return ENetRouterFlag_Disconnect;
    }
-   MO_STATIC_FATAL("Unknown enum value. (enum=ENetRouterFlag, value=%s)", pValue);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=ENetRouterFlag, value=%s)"), pValue);
    return (ENetRouterFlag)0;
 }
 
@@ -1138,7 +1138,7 @@ ENetRouterFlag REnumNetRouterFlag::Parse(TCharC* pValue){
 //============================================================
 ENetRouterFlag REnumNetRouterFlag::ParseCode(TCharC* pCode){
    TFsText text = pCode;
-   MO_STATIC_FATAL("Unknown enum value. (enum=ENetRouterFlag, code=%s)", pCode);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=ENetRouterFlag, code=%s)"), pCode);
    return (ENetRouterFlag)0;
 }
 
@@ -1149,7 +1149,7 @@ ENetRouterFlag REnumNetRouterFlag::ParseCode(TCharC* pCode){
 // @return 代码
 //============================================================
 TCharC* REnumNetRouterFlag::ToCode(ENetRouterFlag value){
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -1161,13 +1161,13 @@ TCharC* REnumNetRouterFlag::ToCode(ENetRouterFlag value){
 TCharC* REnumNetRouterFlag::ToString(ENetRouterFlag value){
    // 获得有效
    if(ENetRouterFlag_Valid == value){
-      return "Valid";
+      return TC("Valid");
    }
    // 获得断开链接
    if(ENetRouterFlag_Disconnect == value){
-      return "Disconnect";
+      return TC("Disconnect");
    }
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -1184,14 +1184,14 @@ ECrAllocMode REnumCrAllocMode::Parse(TCharC* pValue){
    // 获得枚举值
    TFsText text = pValue;
    // 判断是否动态创建
-   if(text.Equals("Create")){
+   if(text.Equals(TC("Create"))){
       return ECrAllocMode_Create;
    }
    // 判断是否静态链接
-   if(text.Equals("Link")){
+   if(text.Equals(TC("Link"))){
       return ECrAllocMode_Link;
    }
-   MO_STATIC_FATAL("Unknown enum value. (enum=ECrAllocMode, value=%s)", pValue);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=ECrAllocMode, value=%s)"), pValue);
    return (ECrAllocMode)0;
 }
 
@@ -1203,7 +1203,7 @@ ECrAllocMode REnumCrAllocMode::Parse(TCharC* pValue){
 //============================================================
 ECrAllocMode REnumCrAllocMode::ParseCode(TCharC* pCode){
    TFsText text = pCode;
-   MO_STATIC_FATAL("Unknown enum value. (enum=ECrAllocMode, code=%s)", pCode);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=ECrAllocMode, code=%s)"), pCode);
    return (ECrAllocMode)0;
 }
 
@@ -1214,7 +1214,7 @@ ECrAllocMode REnumCrAllocMode::ParseCode(TCharC* pCode){
 // @return 代码
 //============================================================
 TCharC* REnumCrAllocMode::ToCode(ECrAllocMode value){
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -1226,13 +1226,13 @@ TCharC* REnumCrAllocMode::ToCode(ECrAllocMode value){
 TCharC* REnumCrAllocMode::ToString(ECrAllocMode value){
    // 获得动态创建
    if(ECrAllocMode_Create == value){
-      return "Create";
+      return TC("Create");
    }
    // 获得静态链接
    if(ECrAllocMode_Link == value){
-      return "Link";
+      return TC("Link");
    }
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -1249,22 +1249,22 @@ EGmObjectStatus REnumGmObjectStatus::Parse(TCharC* pValue){
    // 获得枚举值
    TFsText text = pValue;
    // 判断是否未知
-   if(text.Equals("Unknown")){
+   if(text.Equals(TC("Unknown"))){
       return EGmObjectStatus_Unknown;
    }
    // 判断是否有效
-   if(text.Equals("Valid")){
+   if(text.Equals(TC("Valid"))){
       return EGmObjectStatus_Valid;
    }
    // 判断是否激活
-   if(text.Equals("Active")){
+   if(text.Equals(TC("Active"))){
       return EGmObjectStatus_Active;
    }
    // 判断是否冻结
-   if(text.Equals("Frozen")){
+   if(text.Equals(TC("Frozen"))){
       return EGmObjectStatus_Frozen;
    }
-   MO_STATIC_FATAL("Unknown enum value. (enum=EGmObjectStatus, value=%s)", pValue);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=EGmObjectStatus, value=%s)"), pValue);
    return (EGmObjectStatus)0;
 }
 
@@ -1276,7 +1276,7 @@ EGmObjectStatus REnumGmObjectStatus::Parse(TCharC* pValue){
 //============================================================
 EGmObjectStatus REnumGmObjectStatus::ParseCode(TCharC* pCode){
    TFsText text = pCode;
-   MO_STATIC_FATAL("Unknown enum value. (enum=EGmObjectStatus, code=%s)", pCode);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=EGmObjectStatus, code=%s)"), pCode);
    return (EGmObjectStatus)0;
 }
 
@@ -1287,7 +1287,7 @@ EGmObjectStatus REnumGmObjectStatus::ParseCode(TCharC* pCode){
 // @return 代码
 //============================================================
 TCharC* REnumGmObjectStatus::ToCode(EGmObjectStatus value){
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -1299,21 +1299,21 @@ TCharC* REnumGmObjectStatus::ToCode(EGmObjectStatus value){
 TCharC* REnumGmObjectStatus::ToString(EGmObjectStatus value){
    // 获得未知
    if(EGmObjectStatus_Unknown == value){
-      return "Unknown";
+      return TC("Unknown");
    }
    // 获得有效
    if(EGmObjectStatus_Valid == value){
-      return "Valid";
+      return TC("Valid");
    }
    // 获得激活
    if(EGmObjectStatus_Active == value){
-      return "Active";
+      return TC("Active");
    }
    // 获得冻结
    if(EGmObjectStatus_Frozen == value){
-      return "Frozen";
+      return TC("Frozen");
    }
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -1330,30 +1330,30 @@ EGmObjectChange REnumGmObjectChange::Parse(TCharC* pValue){
    // 获得枚举值
    TFsText text = pValue;
    // 判断是否未知
-   if(text.Equals("Unknown")){
+   if(text.Equals(TC("Unknown"))){
       return EGmObjectChange_Unknown;
    }
    // 判断是否未更改
-   if(text.Equals("Unchanged")){
+   if(text.Equals(TC("Unchanged"))){
       return EGmObjectChange_Unchanged;
    }
    // 判断是否创建
-   if(text.Equals("Create")){
+   if(text.Equals(TC("Create"))){
       return EGmObjectChange_Create;
    }
    // 判断是否删除
-   if(text.Equals("Delete")){
+   if(text.Equals(TC("Delete"))){
       return EGmObjectChange_Delete;
    }
    // 判断是否更改
-   if(text.Equals("Change")){
+   if(text.Equals(TC("Change"))){
       return EGmObjectChange_Change;
    }
    // 判断是否获得
-   if(text.Equals("Receive")){
+   if(text.Equals(TC("Receive"))){
       return EGmObjectChange_Receive;
    }
-   MO_STATIC_FATAL("Unknown enum value. (enum=EGmObjectChange, value=%s)", pValue);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=EGmObjectChange, value=%s)"), pValue);
    return (EGmObjectChange)0;
 }
 
@@ -1365,7 +1365,7 @@ EGmObjectChange REnumGmObjectChange::Parse(TCharC* pValue){
 //============================================================
 EGmObjectChange REnumGmObjectChange::ParseCode(TCharC* pCode){
    TFsText text = pCode;
-   MO_STATIC_FATAL("Unknown enum value. (enum=EGmObjectChange, code=%s)", pCode);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=EGmObjectChange, code=%s)"), pCode);
    return (EGmObjectChange)0;
 }
 
@@ -1376,7 +1376,7 @@ EGmObjectChange REnumGmObjectChange::ParseCode(TCharC* pCode){
 // @return 代码
 //============================================================
 TCharC* REnumGmObjectChange::ToCode(EGmObjectChange value){
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -1388,29 +1388,29 @@ TCharC* REnumGmObjectChange::ToCode(EGmObjectChange value){
 TCharC* REnumGmObjectChange::ToString(EGmObjectChange value){
    // 获得未知
    if(EGmObjectChange_Unknown == value){
-      return "Unknown";
+      return TC("Unknown");
    }
    // 获得未更改
    if(EGmObjectChange_Unchanged == value){
-      return "Unchanged";
+      return TC("Unchanged");
    }
    // 获得创建
    if(EGmObjectChange_Create == value){
-      return "Create";
+      return TC("Create");
    }
    // 获得删除
    if(EGmObjectChange_Delete == value){
-      return "Delete";
+      return TC("Delete");
    }
    // 获得更改
    if(EGmObjectChange_Change == value){
-      return "Change";
+      return TC("Change");
    }
    // 获得获得
    if(EGmObjectChange_Receive == value){
-      return "Receive";
+      return TC("Receive");
    }
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -1442,15 +1442,15 @@ void TGmObjectFlagSet::Parse(TCharC* pValue){
    TInt count = token.Count();
    for(TInt n = 0; n < count; n ++){
       TFsCode code = token.Get(n);
-      if(code.Equals("Create")){
+      if(code.Equals(TC("Create"))){
          SetBit(EGmObjectFlag_Create);
          continue;
       }
-      if(code.Equals("Valid")){
+      if(code.Equals(TC("Valid"))){
          SetBit(EGmObjectFlag_Valid);
          continue;
       }
-      if(code.Equals("Lock")){
+      if(code.Equals(TC("Lock"))){
          SetBit(EGmObjectFlag_Lock);
          continue;
       }
@@ -1468,15 +1468,15 @@ void TGmObjectFlagSet::ParseValue(TCharC* pValue){
    TInt count = token.Count();
    for(TInt n = 0; n < count; n ++){
       TFsCode code = token.Get(n);
-      if(code.Equals("0")){
+      if(code.Equals(TC("0"))){
          SetBit(EGmObjectFlag_Create);
          continue;
       }
-      if(code.Equals("1")){
+      if(code.Equals(TC("1"))){
          SetBit(EGmObjectFlag_Valid);
          continue;
       }
-      if(code.Equals("2")){
+      if(code.Equals(TC("2"))){
          SetBit(EGmObjectFlag_Lock);
          continue;
       }
@@ -1492,9 +1492,9 @@ void TGmObjectFlagSet::ParseValue(TCharC* pValue){
 //============================================================
 TChar* TGmObjectFlagSet::ToString(TChar* pValue, TSize capacity){
    TStringRefer text(pValue, capacity);
-   text.Append(GetBit(EGmObjectFlag_Create) ? "C" : "_");
-   text.Append(GetBit(EGmObjectFlag_Valid) ? "V" : "_");
-   text.Append(GetBit(EGmObjectFlag_Lock) ? "L" : "_");
+   text.Append(GetBit(EGmObjectFlag_Create) ? TC("C") : TC("_"));
+   text.Append(GetBit(EGmObjectFlag_Valid) ? TC("V") : TC("_"));
+   text.Append(GetBit(EGmObjectFlag_Lock) ? TC("L") : TC("_"));
    return pValue;
 }
 
@@ -1523,18 +1523,18 @@ EGmObjectFlag REnumGmObjectFlag::Parse(TCharC* pValue){
    // 获得枚举值
    TFsText text = pValue;
    // 判断是否创建
-   if(text.Equals("Create")){
+   if(text.Equals(TC("Create"))){
       return EGmObjectFlag_Create;
    }
    // 判断是否有效
-   if(text.Equals("Valid")){
+   if(text.Equals(TC("Valid"))){
       return EGmObjectFlag_Valid;
    }
    // 判断是否锁定
-   if(text.Equals("Lock")){
+   if(text.Equals(TC("Lock"))){
       return EGmObjectFlag_Lock;
    }
-   MO_STATIC_FATAL("Unknown enum value. (enum=EGmObjectFlag, value=%s)", pValue);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=EGmObjectFlag, value=%s)"), pValue);
    return (EGmObjectFlag)0;
 }
 
@@ -1546,7 +1546,7 @@ EGmObjectFlag REnumGmObjectFlag::Parse(TCharC* pValue){
 //============================================================
 EGmObjectFlag REnumGmObjectFlag::ParseCode(TCharC* pCode){
    TFsText text = pCode;
-   MO_STATIC_FATAL("Unknown enum value. (enum=EGmObjectFlag, code=%s)", pCode);
+   MO_STATIC_FATAL(TC("Unknown enum value. (enum=EGmObjectFlag, code=%s)"), pCode);
    return (EGmObjectFlag)0;
 }
 
@@ -1557,7 +1557,7 @@ EGmObjectFlag REnumGmObjectFlag::ParseCode(TCharC* pCode){
 // @return 代码
 //============================================================
 TCharC* REnumGmObjectFlag::ToCode(EGmObjectFlag value){
-   return "Unknown";
+   return TC("Unknown");
 }
 
 //============================================================
@@ -1569,17 +1569,17 @@ TCharC* REnumGmObjectFlag::ToCode(EGmObjectFlag value){
 TCharC* REnumGmObjectFlag::ToString(EGmObjectFlag value){
    // 获得创建
    if(EGmObjectFlag_Create == value){
-      return "Create";
+      return TC("Create");
    }
    // 获得有效
    if(EGmObjectFlag_Valid == value){
-      return "Valid";
+      return TC("Valid");
    }
    // 获得锁定
    if(EGmObjectFlag_Lock == value){
-      return "Lock";
+      return TC("Lock");
    }
-   return "Unknown";
+   return TC("Unknown");
 }
 
 MO_NAMESPACE_END

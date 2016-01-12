@@ -11,8 +11,8 @@ MO_NAMESPACE_BEGIN
 // @return 线程实例
 //============================================================
 FNetTransferServerThread::FNetTransferServerThread(){
-   _code = "STV";
-   _name = "Thread.Transfer.Server";
+   _code = TC("STV");
+   _name = TC("Thread.Transfer.Server");
    _pServerSocket = MO_CREATE(FNetServerSocket);
    _pCatcher = MO_CREATE(FNetTransferCatcher);
    MO_CLEAR(_pService);
@@ -75,7 +75,7 @@ TResult FNetTransferServerThread::Process(){
    _pServerSocket->SetPort(_host.port);
    _pServerSocket->Connect();
    _pServerSocket->SetNonBlock();
-   MO_DEBUG("Create tcp server. (host=%s:%d, handle=%d)",
+   MO_DEBUG(TC("Create tcp server. (host=%s:%d, handle=%d)"),
          (TCharC*)_host.host, _host.port, _pServerSocket->Handle());
    // 设置信息
    TFsNetSocketInfoVector infos;

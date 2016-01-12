@@ -87,7 +87,7 @@ TInt FNetBufferedSocket::DoBufferReceive(){
          break;
       }else if(length > 0){
          // 接收数据包
-         MO_DEBUG("Receive socket data. (handle=%d, host=%s:%d, length=%d)",
+         MO_DEBUG(TC("Receive socket data. (handle=%d, host=%s:%d, length=%d)"),
                _info.handle, _info.host, _info.port, length);
          // TChar dump[MO_DUMP_MAXLENGTH];
          // MO_DEBUG("Receive socket data. (handle=%d, host=%s:%d, length=%d)\n%s",
@@ -96,7 +96,7 @@ TInt FNetBufferedSocket::DoBufferReceive(){
          // 写入链接的输入管道
          TInt lengthWrite;
          if(EStreamResult_Success != _pInputPipe->Write(buffer, length, &lengthWrite)){
-            MO_ERROR("Socket input queue is full. (length=%d, remain=%d)", length, _pInputPipe->Length());
+            MO_ERROR(TC("Socket input queue is full. (length=%d, remain=%d)"), length, _pInputPipe->Length());
          }
          result += length;
          break;
@@ -112,7 +112,7 @@ TInt FNetBufferedSocket::DoBufferReceive(){
             break;
          }else{
             // 例外情况，关闭链接
-            MO_ERROR("Receive socket data unknown error. (handle=%d, host=%s:%d, length=%d, code=%d)",
+            MO_ERROR(TC("Receive socket data unknown error. (handle=%d, host=%s:%d, length=%d, code=%d)"),
                   _info.handle, _info.host, _info.port, length, code);
             result = -1;
             break;
@@ -155,12 +155,12 @@ TInt FNetBufferedSocket::DoBufferSend(){
          result = -1;
          break;
       }else if(length > 0){
-         MO_DEBUG("Send socket buffer data. (handle=%d, host=%s:%d, peekLength=%d, sendLength=%d)",
+         MO_DEBUG(TC("Send socket buffer data. (handle=%d, host=%s:%d, peekLength=%d, sendLength=%d)"),
                _info.handle, _info.host, _info.port, lengthPeek, length);
          // 将已经发送的数据部分移出发送管道
          TInt lengthSend = 0;
          if(EStreamResult_Success != _pOutputPipe->Read(buffer, length, &lengthSend)){
-            MO_ERROR("Socket send buffer failure. (capacity=%d, length=%d)", _pOutputPipe->Length(), length);
+            MO_ERROR(TC("Socket send buffer failure. (capacity=%d, length=%d)"), _pOutputPipe->Length(), length);
             result = -1;
             break;
          }
@@ -182,7 +182,7 @@ TInt FNetBufferedSocket::DoBufferSend(){
             break;
          }else{
             // 例外情况，关闭链接
-            MO_ERROR("Send socket data unknown error. (handle=%d, host=%s:%d, length=%d, code=%d)",
+            MO_ERROR(TC("Send socket data unknown error. (handle=%d, host=%s:%d, length=%d, code=%d)"),
                   _info.handle, _info.host, _info.port, length, code);
             result = -1;
             break;

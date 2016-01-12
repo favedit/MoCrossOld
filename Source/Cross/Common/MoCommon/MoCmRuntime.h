@@ -236,6 +236,8 @@
 #define MO_TYPE_DELETE(P)            if(P){delete P;P=NULL;}
 /// @define 释放一个接口的实例
 #define MO_RELEASE(P)                if(P){P->Release();P=NULL;}
+#define MO_DESPOSE(P)                if(P){P->Despose();P=NULL;}
+#define MO_DESTORY(P)                if(P){P->Destroy();P=NULL;}
 
 //------------------------------------------------------------
 /// @define 为调用函数设置一个内存陷阱，当离开时，如果发生内存泄露，马上产生例外

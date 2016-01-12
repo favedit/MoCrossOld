@@ -6,7 +6,7 @@ MO_NAMESPACE_BEGIN
 // <T>构造网络消息陷阱扑捉器。</T>
 //============================================================
 FNetTransferCatcher::FNetTransferCatcher(){
-   _name = "transfer.trap.catcher";
+   _name = TC("transfer.trap.catcher");
 }
 
 //============================================================

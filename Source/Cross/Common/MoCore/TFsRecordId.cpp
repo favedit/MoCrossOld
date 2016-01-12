@@ -77,7 +77,7 @@ TCharC* TFsRecordId::Pack(){
 
 //============================================================
 TCharC* TFsRecordId::Format(){
-   AssignFormat("%08X - %ld", _value, _value);
+   AssignFormat(TC("%08X - %ld"), _value, _value);
    return MemoryC();
 }
 

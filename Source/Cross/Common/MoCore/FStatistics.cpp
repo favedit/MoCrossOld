@@ -89,7 +89,7 @@ TResult FStatistics::Reset(){
 TResult FStatistics::Dump(MString* pDump){
    MO_ASSERT(pDump);
    TTimeTick averageSpan = AverageTick();
-   pDump->AppendFormat("%-40s: count=%6d, span=%6lld (%6lld ~ %6lld), average_span=%6lld, count_span=%8lld",
+   pDump->AppendFormat(TC("%-40s: count=%6d, span=%6lld (%6lld ~ %6lld), average_span=%6lld, count_span=%8lld"),
          (TCharC*)_name, _count, _currentSpan, _minSpan, _maxSpan, averageSpan, _countSpan);
    return ESuccess;
 }

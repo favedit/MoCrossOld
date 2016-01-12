@@ -8,7 +8,7 @@ MO_NAMESPACE_BEGIN
 // @return Ö´ÐÐ½á¹û
 //============================================================
 FNetSocketLinkerModule::FNetSocketLinkerModule(){
-   _name = "Module.NetSocket.Linker";
+   _name = TC("Module.NetSocket.Linker");
 }
 
 //============================================================

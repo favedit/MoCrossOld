@@ -49,14 +49,14 @@ void FNetBufferedQueueConnection::Dump(){
    // 输出输入管道信息
    SQueueInfo inputInfo;
    _pInputQueue->FetchInfo(&inputInfo);
-   MO_INFO("Dump input queue info.  (length=%8d:%8d, push=%8lld:%24s, pop=%8lld:%24s)",
+   MO_INFO(TC("Dump input queue info.  (length=%8d:%8d, push=%8lld:%24s, pop=%8lld:%24s)"),
          inputInfo.count, inputInfo.length,
          inputInfo.countPush, RInt::FormatCapacity(inputInfo.lengthPush, TFsCode(), TFsCode::Size()),
          inputInfo.countPop, RInt::FormatCapacity(inputInfo.lengthPop, TFsCode(), TFsCode::Size()));
    // 输出输出管道信息
    SQueueInfo outputInfo;
    _pOutputQueue->FetchInfo(&outputInfo);
-   MO_INFO("Dump output queue info. (length=%8d:%8d, push=%8lld:%24s, pop=%8lld:%24s)",
+   MO_INFO(TC("Dump output queue info. (length=%8d:%8d, push=%8lld:%24s, pop=%8lld:%24s)"),
          outputInfo.count, outputInfo.length,
          outputInfo.countPush, RInt::FormatCapacity(outputInfo.lengthPush, TFsCode(), TFsCode::Size()),
          outputInfo.countPop, RInt::FormatCapacity(outputInfo.lengthPop, TFsCode(), TFsCode::Size()));

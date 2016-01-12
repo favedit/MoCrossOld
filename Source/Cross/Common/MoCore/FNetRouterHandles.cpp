@@ -27,10 +27,10 @@ TBool FNetRouterHandles::Process(FObject* pSender, TNetRouter* pRouter){
          FNetRouterHandle* pHandle = *iterator;
          result = pHandle->Process(pSender, pRouter);
          if(result){
-            MO_DEBUG("Process router hanle success. (message=%s, invoker=%s)",
+            MO_DEBUG(TC("Process router hanle success. (message=%s, invoker=%s)"),
                   pRouter->MessageInfo()->Name(), pHandle->InvokerName());
          }else{
-            MO_ERROR("Process router hanle failure. (message=%s, invoker=%s)",
+            MO_ERROR(TC("Process router hanle failure. (message=%s, invoker=%s)"),
                   pRouter->MessageInfo()->Name(), pHandle->InvokerName());
          }
       }

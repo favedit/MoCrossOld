@@ -358,7 +358,7 @@ public:
 public:
    //------------------------------------------------------------
    // <T>获得容纳长度。</T>
-   MO_INLINE static TInt Size(){
+   static MO_INLINE TInt Size(){
       return S;
    }
 };
@@ -380,14 +380,18 @@ public: \
    MO_ABSTRACT ~C(){ \
    } \
 public: \
-   void operator=(TChar16C* pValue){ \
-   Assign(pValue); \
+   MO_INLINE void operator=(TChar16C* pValue){ \
+      Assign(pValue); \
    } \
-   void operator=(const C& value){ \
+   MO_INLINE void operator=(const C& value){ \
       Assign(value.MemoryC(), value.Length()); \
    } \
-   void operator=(const TString16PtrC& value){ \
+   MO_INLINE void operator=(const TString16PtrC& value){ \
       Assign(value.MemoryC(), value.Length()); \
+   } \
+public: \
+   static MO_INLINE TInt Size(){ \
+      return P::Size(); \
    } \
 };
 //------------------------------------------------------------
@@ -922,6 +926,7 @@ public:
 public:
    static TBool AllocCopy(TChar16C* pValues, TChar16** ppTarget);
    static TBool AllocFree(TChar16* pTarget);
+   static TInt SafeCopy(TChar16* pTarget, TSize size, TChar8C* pValue);
    static TInt SafeCopy(TChar16* pTarget, TSize size, TChar16C* pValue);
    static TInt ForceCopy(TChar16* pTarget, TSize size, TChar16C* pValue);
    static TInt ReplaceAll(TChar16* pValues, TChar16* pSource, TChar16* pTarget, TChar16* pBuffer, TInt bufferLength);

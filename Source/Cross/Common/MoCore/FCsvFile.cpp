@@ -8,7 +8,7 @@ MO_NAMESPACE_BEGIN
 //============================================================
 FCsvFile::FCsvFile(){
    _pSegments = MO_CREATE(FCsvSegmentDictionary);
-   _pDefaultSegment = AddSegment("default");
+   _pDefaultSegment = AddSegment(TC("default"));
 }
 
 //============================================================
@@ -75,8 +75,8 @@ void FCsvFile::Clear(){
       MO_DELETE(pSegment);
    }
    _pDefaultSegment = MO_CREATE(FCsvSegment);
-   _pDefaultSegment->SetName("default");
-   _pSegments->Set("default", _pDefaultSegment);
+   _pDefaultSegment->SetName(TC("default"));
+   _pSegments->Set(TC("default"), _pDefaultSegment);
    MO_CLEAR(_pCurrentSegment);
 }
 
@@ -91,14 +91,14 @@ TBool FCsvFile::LoadFile(TCharC* pFileName){
    Clear();
    FFileString* pFile = MO_CREATE(FFileString, pFileName);
    TFsName segmentName;
-   TInt segmentStart = pFile->Find("@segment.start");
+   TInt segmentStart = pFile->Find(TC("@segment.start"));
    if(ENotFound == segmentStart){
-      TInt headsStart = pFile->Find("@head", segmentStart);
-      TInt headsEnd =  pFile->Find("@data", headsStart);
+      TInt headsStart = pFile->Find(TC("@head"), segmentStart);
+      TInt headsEnd =  pFile->Find(TC("@data"), headsStart);
       TInt linesStart = headsEnd + strlen("@data") + 1;
-      TInt linesEnd = pFile->Find("@footer.name", linesStart);
+      TInt linesEnd = pFile->Find(TC("@footer.name"), linesStart);
       TInt footerStart = linesEnd;
-      TInt footerEnd =  pFile->Find("@segment.end", footerStart);
+      TInt footerEnd =  pFile->Find(TC("@segment.end"), footerStart);
       TString headsString = pFile->SubStrC(headsStart, headsEnd); 
       _pDefaultSegment->Heads()->Parse(headsString);
       TString linesString = pFile->SubStrC(linesStart, linesEnd);
@@ -118,12 +118,12 @@ TBool FCsvFile::LoadFile(TCharC* pFileName){
             pSegment = MO_CREATE(FCsvSegment);
             pSegment->SetName((TCharC*)segmentName);
          }
-         TInt headsStart = pFile->Find("@head", segmentStart);
-         TInt headsEnd =  pFile->Find("@data", headsStart);
+         TInt headsStart = pFile->Find(TC("@head"), segmentStart);
+         TInt headsEnd =  pFile->Find(TC("@data"), headsStart);
          TInt linesStart = headsEnd + strlen("@data") + 1;
-         TInt linesEnd = pFile->Find("@footer.name", linesStart);
+         TInt linesEnd = pFile->Find(TC("@footer.name"), linesStart);
          TInt footerStart = linesEnd;
-         TInt footerEnd =  pFile->Find("@segment.end", footerStart);
+         TInt footerEnd =  pFile->Find(TC("@segment.end"), footerStart);
          TString headsString = pFile->SubStrC(headsStart, headsEnd); 
          pSegment->Heads()->Parse(headsString);
          TString linesString = pFile->SubStrC(linesStart, linesEnd);
@@ -133,7 +133,7 @@ TBool FCsvFile::LoadFile(TCharC* pFileName){
          if(!isDefault){
             _pSegments->Set((TCharC*)segmentName, pSegment);
          }
-         segmentStart = pFile->Find("@segment.start", footerEnd);
+         segmentStart = pFile->Find(TC("@segment.start"), footerEnd);
       }
    }
    return ETrue;
@@ -160,7 +160,7 @@ TBool FCsvFile::SaveFile(TCharC* pFileName){
       FCsvSegment* pSegment = it.Value();
       pSegment->Store(outFile, saveSegmentHead);
       if(count != segmentCount -1){
-         TFsName endSegment = "\n";
+         TFsName endSegment = TC("\n");
          outFile.Write((TCharC*)endSegment, endSegment.Length());
       }
       count++;

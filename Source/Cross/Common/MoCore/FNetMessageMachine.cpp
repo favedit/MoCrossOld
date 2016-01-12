@@ -84,7 +84,7 @@ TBool FNetMessageMachine::ProcessMessage(){
       }else{
          // 未处理消息
          TChar dump[MO_FS_DUMP_LENGTH];
-         MO_ERROR("Unknown message. (%s)", message.Dump(dump, MO_FS_DUMP_LENGTH));
+         MO_ERROR(TC("Unknown message. (%s)"), message.Dump(dump, MO_FS_DUMP_LENGTH));
       }
       return ETrue;
    }

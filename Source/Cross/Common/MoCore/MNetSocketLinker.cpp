@@ -21,7 +21,7 @@ MNetSocketLinker::~MNetSocketLinker(){
 // @return 处理结果
 //============================================================
 TBool MNetSocketLinker::OnSocketConnect(){
-   MO_DEBUG("Socket linker connected. (type=%s)", SocketName());
+   MO_DEBUG(TC("Socket linker connected. (type=%s)"), SocketName());
    return ETrue;
 }
 
@@ -31,7 +31,7 @@ TBool MNetSocketLinker::OnSocketConnect(){
 // @return 处理结果
 //============================================================
 TBool MNetSocketLinker::OnSocketDisconnect(){
-   MO_DEBUG("Socket linker disconnected. (type=%s)", SocketName());
+   MO_DEBUG(TC("Socket linker disconnected. (type=%s)"), SocketName());
    return ETrue;
 }
 
@@ -41,7 +41,7 @@ TBool MNetSocketLinker::OnSocketDisconnect(){
 // @return 名称
 //============================================================
 TCharC* MNetSocketLinker::SocketName(){
-   return "SocketLinker";
+   return TC("SocketLinker");
 }
 
 //============================================================

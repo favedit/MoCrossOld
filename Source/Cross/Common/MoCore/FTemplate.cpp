@@ -76,7 +76,7 @@ TResult FTemplate::Parse(FTemplateContext* pContext, TCharC* pPartName){
    // 查找来源
    FTemplateSource* pTemplateSource = NULL;
    if(pPartName == NULL){
-      pTemplateSource = _pSources->Get("default");
+      pTemplateSource = _pSources->Get(TC("default"));
    }else{
       pTemplateSource = _pSources->Get(pPartName);
    }
@@ -108,18 +108,18 @@ TResult FTemplate::AdjustConfigNodes(FTemplateContext* pContext){
 // <T>跟踪信息。</T>
 //============================================================
 void TrackTag(MString* pResult, FTemplateTag* pTag, TInt level){
-   pResult->AppendRepeat("   ", level);
-   pResult->AppendFormat("[%s]", pTag->Name());
+   pResult->AppendRepeat(TC("   "), level);
+   pResult->AppendFormat(TC("[%s]"), pTag->Name());
    FTemplateTagCollection* pChildren = pTag->Children();
    if(pChildren != NULL){
       TInt count = pChildren->Count();
-      pResult->AppendFormat(":%d\n", count);
+      pResult->AppendFormat(TC(":%d\n"), count);
       for(TInt n = 0; n < count; n++){
          FTemplateTag* pChildTag = pChildren->Get(n);
          TrackTag(pResult, pChildTag, level + 1);
       }
    }else{
-      pResult->Append("\n");
+      pResult->Append(TC("\n"));
    }
 }
 
@@ -135,7 +135,7 @@ TResult FTemplate::Track(){
       FTemplateSource* pTemplateSource = *iterator;
       TrackTag(pResult, pTemplateSource->RootTag(), 0);
    }
-   MO_DEBUG("Dump template info:\n%s", pResult->MemoryC());
+   MO_DEBUG(TC("Dump template info:\n%s"), pResult->MemoryC());
    MO_DELETE(pResult);
    return ESuccess;
 }

@@ -8,7 +8,7 @@ MO_NAMESPACE_BEGIN
 // @return 当前对象指针。
 //============================================================
 FNetBufferedClientQueueModule::FNetBufferedClientQueueModule(){
-   _name = "Module.NetClientQueue";
+   _name = TC("Module.NetClientQueue");
 }
 
 //============================================================

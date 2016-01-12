@@ -51,12 +51,12 @@ ETemplateTagResult FTemplateTagInclude::OnEnd(FTemplateContext* pContext){
 // @return 处理结果
 //============================================================
 TResult FTemplateTagInclude::SetAttribute(TCharC* pName, TCharC* pValue){
-   if(RString::Equals(pName, "source")){
+   if(RString::Equals(pName, TC("source"))){
       _source = pValue;
-   }else if(RString::Equals(pName, "segment")){
+   }else if(RString::Equals(pName, TC("segment"))){
       _segment = pValue;
    }else{
-      MO_FATAL("Unknown attribute. (name=%s, value=%s)", pName, pValue);
+      MO_FATAL(TC("Unknown attribute. (name=%s, value=%s)"), pName, pValue);
    }
    return ESuccess;
 }

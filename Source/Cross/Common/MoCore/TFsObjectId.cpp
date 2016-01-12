@@ -111,7 +111,7 @@ TCharC* TFsObjectId::Pack(){
 // @return ×Ö·û´®
 //============================================================
 TCharC* TFsObjectId::Format(){
-   AssignFormat("%02X-%02X-%04X(%d)",
+   AssignFormat(TC("%02X-%02X-%04X(%d)"),
          _value.data.items.type, _value.data.items.group, _value.data.items.index,
          _value.Handle());
    return MemoryC();

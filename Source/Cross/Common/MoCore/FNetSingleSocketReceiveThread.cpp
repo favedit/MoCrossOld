@@ -54,7 +54,7 @@ TResult FNetSingleSocketReceiveThread::Process(){
          ReceiveData(_pSocket);
       }else if(length < 0){
          // 链接关闭处理
-         MO_INFO("Epoll socket receive disconnect. (socket=0x%08X, length=%d)", _pSocket, length);
+         MO_INFO(TC("Epoll socket receive disconnect. (socket=0x%08X, length=%d)"), _pSocket, length);
          _pService->CloseSocketWithNotify(_pSocket);
          break;
       }

@@ -443,7 +443,7 @@ public:
    }
    //------------------------------------------------------------
    MO_INLINE TFloat Absolute() const{
-      return sqrt((x * x) + (y * y));
+      return (TFloat)sqrt((x * x) + (y * y));
    }
    //------------------------------------------------------------
    MO_INLINE void Normalize(){
@@ -459,7 +459,7 @@ public:
       TFloat result = (x * value.x) + (y * value.y);
       result /= Absolute();
       result /= value.Absolute();
-      return acos(result);
+      return (TFloat)acos(result);
    }
    //------------------------------------------------------------
    // <T>重置数据。</T>
@@ -1194,7 +1194,7 @@ public:
    //------------------------------------------------------------
    // <T>获得绝对值。</T>
    MO_INLINE TFloat Absolute() const{
-      return sqrt((x * x) + (y * y) + (z * z));
+      return (TFloat)sqrt((x * x) + (y * y) + (z * z));
    }
    //------------------------------------------------------------
    // <T>单位化处理。</T>
@@ -1238,7 +1238,7 @@ public:
       TFloat result = (x * value.x) + (y * value.y) + (z * value.z);
       result /= Absolute();
       result /= value.Absolute();
-      return acos(result);
+      return (TFloat)acos(result);
    }
    //------------------------------------------------------------
    // <T>重置数据。</T>
@@ -2091,7 +2091,7 @@ public:
    //------------------------------------------------------------
    // <T>获得绝对值。</T>
    MO_INLINE TFloat Absolute() const{
-      return sqrt((x * x) + (y * y) + (z * z) + (w * w));
+      return (TFloat)sqrt((x * x) + (y * y) + (z * z) + (w * w));
    }
    //------------------------------------------------------------
    // <T>单位化处理。</T>
@@ -2118,7 +2118,7 @@ public:
       TFloat result = (x * value.x) + (y * value.y) + (z * value.z) + (w * value.w);
       result /= Absolute();
       result /= value.Absolute();
-      return acos(result);
+      return (TFloat)acos(result);
    }
    //------------------------------------------------------------
    // <T>重置数据。</T>

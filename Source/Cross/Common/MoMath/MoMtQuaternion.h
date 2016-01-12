@@ -155,7 +155,7 @@ public:
    //------------------------------------------------------------
    // <T>获得绝对值。</T>
    MO_INLINE TFloat Absolute(){
-      return sqrt((x * x) + (y * y) + (z * z) + (w * w));
+      return (TFloat)sqrt((x * x) + (y * y) + (z * z) + (w * w));
    }
    //------------------------------------------------------------
    MO_INLINE void Normalize(){

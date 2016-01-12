@@ -43,7 +43,7 @@ TResult FServer::Dispose(){
 // @return 处理结果
 //============================================================
 TResult FServer::Initialize(){
-   MO_INFO("Server '%s' initialize.", (TCharC*)_name);
+   MO_INFO(TC("Server '%s' initialize."), (TCharC*)_name);
    OnConstruct();
    return ESuccess;
 }
@@ -54,7 +54,7 @@ TResult FServer::Initialize(){
 // @return 处理结果
 //============================================================
 TResult FServer::Release(){
-   MO_INFO("Server '%s' release.", (TCharC*)_name);
+   MO_INFO(TC("Server '%s' release."), (TCharC*)_name);
    return ESuccess;
 }
 
@@ -256,7 +256,7 @@ TResult FServer::OnDestory(){
 // @return 处理结果
 //============================================================
 TResult FServer::DoStatus(TInt status){
-   MO_INFO("Server '%s' status event. (status=%d).", (TCharC*)_name, status);
+   MO_INFO(TC("Server '%s' status event. (status=%d)."), (TCharC*)_name, status);
    return OnStatus(status);
 }
 
@@ -268,7 +268,7 @@ TResult FServer::DoStatus(TInt status){
 // @return 处理结果
 //============================================================
 TResult FServer::DoCommand(EServerCommand command){
-   MO_INFO("Server '%s' command event. (command=%d).", (TCharC*)_name, command);
+   MO_INFO(TC("Server '%s' command event. (command=%d)."), (TCharC*)_name, command);
    TBool result = OnCommand(command);
    // 处理命令
    if(result){
@@ -295,7 +295,7 @@ TResult FServer::DoCommand(EServerCommand command){
 // @return 处理结果
 //============================================================
 TResult FServer::Startup(){
-   MO_INFO("Server '%s' startup.", (TCharC*)_name);
+   MO_INFO(TC("Server '%s' startup."), (TCharC*)_name);
    _stop = EFalse;
    return OnStartup();
 }
@@ -307,22 +307,22 @@ TResult FServer::Startup(){
 //============================================================
 TResult FServer::Launch(){
    // 构造
-   MO_INFO("'%s' server construct.", (TCharC*)_name);
+   MO_INFO(TC("'%s' server construct."), (TCharC*)_name);
    OnConstruct();
    // 加载所有设置
-   MO_INFO("'%s' server load config.", (TCharC*)_name);
+   MO_INFO(TC("'%s' server load config."), (TCharC*)_name);
    OnLoadConfig();
    // 初始化
-   MO_INFO("'%s' server initialize.", (TCharC*)_name);
+   MO_INFO(TC("'%s' server initialize."), (TCharC*)_name);
    OnInitialize();
    // 加载所有模块
-   MO_INFO("'%s' server load modules.", (TCharC*)_name);
+   MO_INFO(TC("'%s' server load modules."), (TCharC*)_name);
    OnLoadModules();
    // 加载所有监视器
-   MO_INFO("'%s' server load monitors.", (TCharC*)_name);
+   MO_INFO(TC("'%s' server load monitors."), (TCharC*)_name);
    OnLoadMonitors();
    // 加载所有服务
-   MO_INFO("'%s' server load services.", (TCharC*)_name);
+   MO_INFO(TC("'%s' server load services."), (TCharC*)_name);
    OnLoadServices();
    return ESuccess;
 }
@@ -333,7 +333,7 @@ TResult FServer::Launch(){
 // @return 处理结果
 //============================================================
 TResult FServer::Process(){
-   MO_INFO("Server '%s' process.", (TCharC*)_name);
+   MO_INFO(TC("Server '%s' process."), (TCharC*)_name);
    return OnProcess();
 }
 
@@ -343,7 +343,7 @@ TResult FServer::Process(){
 // @return 处理结果
 //============================================================
 TResult FServer::Reload(){
-   MO_INFO("Server '%s' reload.", (TCharC*)_name);
+   MO_INFO(TC("Server '%s' reload."), (TCharC*)_name);
    return OnReload();
 }
 
@@ -353,7 +353,7 @@ TResult FServer::Reload(){
 // @return 处理结果
 //============================================================
 TResult FServer::Unload(){
-   MO_INFO("Server '%s' unload.", (TCharC*)_name);
+   MO_INFO(TC("Server '%s' unload."), (TCharC*)_name);
    return OnUnload();
 }
 
@@ -363,7 +363,7 @@ TResult FServer::Unload(){
 // @return 处理结果
 //============================================================
 TResult FServer::Suspend(){
-   MO_INFO("Server '%s' suspend.", (TCharC*)_name);
+   MO_INFO(TC("Server '%s' suspend."), (TCharC*)_name);
    return OnSuspend();
 }
 
@@ -373,7 +373,7 @@ TResult FServer::Suspend(){
 // @return 处理结果
 //============================================================
 TResult FServer::Resume(){
-   MO_INFO("Server '%s' resume.", (TCharC*)_name);
+   MO_INFO(TC("Server '%s' resume."), (TCharC*)_name);
    return OnResume();
 }
 
@@ -383,7 +383,7 @@ TResult FServer::Resume(){
 // @return 处理结果
 //============================================================
 TResult FServer::Shutdown(){
-   MO_INFO("Server '%s' shutdown.", (TCharC*)_name);
+   MO_INFO(TC("Server '%s' shutdown."), (TCharC*)_name);
    _stop = ETrue;
    return OnShutdown();
 }
@@ -394,7 +394,7 @@ TResult FServer::Shutdown(){
 // @return 处理结果
 //============================================================
 TResult FServer::Destory(){
-   MO_INFO("Server '%s' destory.", (TCharC*)_name);
+   MO_INFO(TC("Server '%s' destory."), (TCharC*)_name);
    return OnDestory();
 }
 

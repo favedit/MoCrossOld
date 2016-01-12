@@ -274,8 +274,7 @@ TBool TNetTransfer::Unserialize(TAnyC* pMemory, TInt size, TInt* length){
    // 验证哈希
    TNetHash hash = CalculateHash(messageSerial, messageTick, pData, dataLength);
    if(_netHead.Hash() != hash){
-      MO_ERROR("Unserialize transfer invalid hash. (head_hash=0x%08X, data_hash=0x%08X)",
-            _netHead.Hash(), hash);
+      MO_ERROR(TC("Unserialize transfer invalid hash. (head_hash=0x%08X, data_hash=0x%08X)"), _netHead.Hash(), hash);
       return EFalse;
    }
    // 设置返回
@@ -285,7 +284,7 @@ TBool TNetTransfer::Unserialize(TAnyC* pMemory, TInt size, TInt* length){
    _dataLength = dataLength;
    // 设置反序列化后大小
    if(capacity != size){
-      MO_ERROR("Unserialize transfer invalid length. (size=%d, length=%d)", size, capacity);
+      MO_ERROR(TC("Unserialize transfer invalid length. (size=%d, length=%d)"), size, capacity);
       return EFalse;
    }
    *length = capacity;
@@ -334,7 +333,7 @@ TCharC* TNetTransfer::DumpTransfer(TChar* pDump, TSize capacity){
          targetDump.Append(',');
       }
       SNetTarget& netTarget = targets[n];
-      targetDump.AppendFormat("(%02X-%02X-%08X)",
+      targetDump.AppendFormat(TC("(%02X-%02X-%08X)"),
             netTarget.GroupId(), netTarget.ServerId(), netTarget.ObjectHandle());
    }
    // 获取路由信息
@@ -347,14 +346,14 @@ TCharC* TNetTransfer::DumpTransfer(TChar* pDump, TSize capacity){
    TCharC* pDataTrack = RNetMessageFactory::DumpData(this, &dataTrack);
    // 生成信息
    MO_LIB_STRING_FORMAT(pDump, capacity,
-         "[ %s ] - 0x%08X:%d\n"
+      TC("[ %s ] - 0x%08X:%d\n"
          "--------------------------------------------------------------------------------\n"
          "-- Net      : length=0x%04X(%d), protocol=%d, hash=0x%04X\n"
          "-- Message  : code=(%02X:%04X), command=%d, sender=%s(0x%02X), target=%s(0x%02X)\n"
          "-- Router   : orgin=%s(%02X-%02X-%08X), source=%s(%02X-%02X-%08X), target=%s(%02X-%02X-%08X), targets=%" MO_FMT_INT "[%s]\n"
          "-- Transfer : handle=%d, port=%d, index=%d, serial=%d\n"
          "--------------------------------------------------------------------------------\n"
-         "%s",
+         "%s"),
          pName, sessionId, sessionId,
          length, length, protocol, hash,
          type, code, command, pSourceType, sourceType, pTargetType, targetType,
@@ -409,7 +408,7 @@ TCharC* TNetTransfer::DumpSimple(TChar* pDump, TSize capacity){
          targetDump.Append(',');
       }
       SNetTarget& netTarget = targets[n];
-      targetDump.AppendFormat("(%02X-%02X-%08X)",
+      targetDump.AppendFormat(TC("(%02X-%02X-%08X)"),
             netTarget.GroupId(), netTarget.ServerId(), netTarget.ObjectHandle());
    }
    // 获取路由信息
@@ -419,12 +418,12 @@ TCharC* TNetTransfer::DumpSimple(TChar* pDump, TSize capacity){
    TUint16 serial = _transferHead.Socket().Serial();
    // 生成信息
    MO_LIB_STRING_FORMAT(pDump, capacity,
-         "[ %s ] - 0x%08X:%d\n"
+      TC("[ %s ] - 0x%08X:%d\n"
          "--------------------------------------------------------------------------------\n"
          "-- Net      : length=0x%04X(%d), protocol=%d, hash=0x%04X\n"
          "-- Message  : code=(%02X:%04X), command=%d, sender=%s(0x%02X), target=%s(0x%02X)\n"
          "-- Router   : orgin=%s(%02X-%02X-%08X), source=%s(%02X-%02X-%08X), target=%s(%02X-%02X-%08X), targets=%" MO_FMT_INT "[%s]\n"
-         "-- Transfer : handle=%d, port=%d, index=%d, serial=%d\n",
+         "-- Transfer : handle=%d, port=%d, index=%d, serial=%d\n"),
          pName, sessionId, sessionId,
          length, length, protocol, hash,
          type, code, command, pSourceType, sourceType, pTargetType, targetType,

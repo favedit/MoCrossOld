@@ -43,7 +43,7 @@ void TFsResourceId::SetValue(TResourceId value){
 
 //============================================================
 TCharC* TFsResourceId::Format(){
-   this->AssignFormat("%01d-%04d-%04d",
+   this->AssignFormat(TC("%01d-%04d-%04d"),
          _value / 100000000, (_value / 10000) % 10000, _value % 10000);
    return this->MemoryC();
 }

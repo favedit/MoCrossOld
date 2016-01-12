@@ -38,13 +38,13 @@ TResult SFloat4::Unserialize(IDataInput* pInput){
 // @param pValue 字符串
 // @return 是否解析成功
 //============================================================
-TBool SFloat4::Parse(TCharC* pValue){
+TResult SFloat4::Parse(TCharC* pValue){
    // 检查长度
    TStringRefer value(pValue);
    TInt length = value.Length();
    if(length == 0){
       MO_ERROR(TC("It is invalid length."));
-      return EFalse;
+      return EFailure;
    }
    TFsText temp;
    TInt begin = 0;
@@ -52,7 +52,7 @@ TBool SFloat4::Parse(TCharC* pValue){
    TInt index = value.IndexOf(',', begin);
    if(ENotFound  == index){
       MO_ERROR(TC("Splite value failure."));
-      return EFalse;
+      return EFailure;
    }
    temp.Assign(value.SubStrC(begin, index));
    data[0] = RFloat::Parse(temp.MemoryC());
@@ -61,7 +61,7 @@ TBool SFloat4::Parse(TCharC* pValue){
    index = value.IndexOf(',', begin);
    if(ENotFound  == index){
       MO_ERROR(TC("Splite value failure."));
-      return EFalse;
+      return EFailure;
    }
    temp.Assign(value.SubStrC(begin, index));
    data[1] = RFloat::Parse(temp.MemoryC());
@@ -70,14 +70,14 @@ TBool SFloat4::Parse(TCharC* pValue){
    index = value.IndexOf(',', begin);
    if(ENotFound  == index){
       MO_ERROR(TC("Splite value failure."));
-      return EFalse;
+      return EFailure;
    }
    temp.Assign(value.SubStrC(begin, index));
    data[2] = RFloat::Parse(temp.MemoryC());
    // 解析内容4
    temp.Assign(value.SubStrC(index + 1, length));
    data[3] = RFloat::Parse(temp.MemoryC());
-   return ETrue;
+   return ESuccess;
 }
 
 //============================================================

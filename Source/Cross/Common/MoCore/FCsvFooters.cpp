@@ -56,7 +56,7 @@ FCsvFooter* FCsvFooters::Insert(TCharC* pName, TInt index){
 //============================================================
 void FCsvFooters::Store(TDataOutput& out){
    FDictionary<FCsvFooter*>::TIteratorC it = _pFooters->IteratorC();
-   TString foot = "@footer.name\n";
+   TString foot = TC("@footer.name\n");
    TBool showLabel = EFalse;
    TBool showDescription = EFalse;
    TInt count = 0;
@@ -70,18 +70,18 @@ void FCsvFooters::Store(TDataOutput& out){
          foot.Append('\n');
       }
 
-      TInt labelLength = strlen(pFoot->Label());
+      TInt labelLength = RString::Length(pFoot->Label());
       if(labelLength){
          showLabel = ETrue;
       }
-      TInt desLength = strlen(pFoot->Description());
+      TInt desLength = RString::Length(pFoot->Description());
       if(desLength){
          showDescription= ETrue;
       }
       ++count;
    }
    if(showLabel){
-      foot.Append("@footer.label\n");
+      foot.Append(TC("@footer.label\n"));
       count = 0;
       it.Reset();
       while(it.Next()){
@@ -95,7 +95,7 @@ void FCsvFooters::Store(TDataOutput& out){
       }
    }
    if(showDescription){
-      foot.Append("@head.description\n");
+      foot.Append(TC("@head.description\n"));
       count = 0;
       it.Reset();
       while(it.Next()){

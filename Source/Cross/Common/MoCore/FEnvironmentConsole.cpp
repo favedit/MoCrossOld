@@ -91,7 +91,7 @@ void FEnvironmentConsole::Register(TCharC* pName, TCharC* pValue){
    }
    // 设置内容
    pEnvironment->SetValue(pValue);
-   MO_DEBUG("Register environment. (name=%s, value=%s)", pName, pValue);
+   MO_DEBUG(TC("Register environment. (name=%s, value=%s)"), pName, pValue);
 }
 
 //============================================================

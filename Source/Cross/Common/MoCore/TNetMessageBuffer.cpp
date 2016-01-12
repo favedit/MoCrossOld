@@ -93,7 +93,7 @@ TBool TNetMessageBuffer::Unserialize(TAnyC* pMemory, TInt size, TInt* length){
    // 检查哈希
    TNetHash hash = CalculateHash(messageSerial, messageTick, pData, dataLength);
    if(_netHead.Hash() != hash){
-      MO_WARN("Unserialize message invalid hash. (head_hash=0x%08X, data_hash=0x%08X)",
+      MO_WARN(TC("Unserialize message invalid hash. (head_hash=0x%08X, data_hash=0x%08X)"),
             _netHead.Hash(), hash);
       return EFalse;
    }
@@ -136,7 +136,7 @@ TBool TNetMessageBuffer::UnserializeMask(TAnyC* pMemory, TInt size, TInt* length
    // 检查哈希
    TNetHash hash = CalculateHash(messageSerial, messageTick, buffer, dataLength);
    if(netHash != hash){
-      MO_WARN("Unserialize message invalid hash. (head_hash=0x%08X, data_hash=0x%08X)", netHash, hash);
+      MO_WARN(TC("Unserialize message invalid hash. (head_hash=0x%08X, data_hash=0x%08X)"), netHash, hash);
       return EFalse;
    }
    // 设置数据
@@ -240,7 +240,7 @@ TBool TNetMessageBuffer::Uncompress(TAnyC* pMemory, TInt size, TInt* pLength, TB
       // 解压缩数据
       TInt length = 0;
       if(!RCompress::Inflate(_buffer, MO_NETMESSAGE_MAXLENGTH, pData, dataLength, &length)){
-         MO_WARN("Inflate message failure. (data_ptr=0x%08X, data_length=0x%08X)", pData, dataLength);
+         MO_WARN(TC("Inflate message failure. (data_ptr=0x%08X, data_length=0x%08X)"), pData, dataLength);
          return EFalse;
       }
       _dataLength = length;
@@ -256,7 +256,7 @@ TBool TNetMessageBuffer::Uncompress(TAnyC* pMemory, TInt size, TInt* pLength, TB
    if(checked){
       TNetHash hash = CalculateHash(messageSerial, messageTick, _buffer, _dataLength);
       if(netHash != hash){
-         MO_WARN("Unserialize message invalid hash. (head_hash=0x%08X, data_hash=0x%08X)", netHash, hash);
+         MO_WARN(TC("Unserialize message invalid hash. (head_hash=0x%08X, data_hash=0x%08X)"), netHash, hash);
          return EFalse;
       }
    }
@@ -289,12 +289,12 @@ TCharC* TNetMessageBuffer::Dump(TChar* pDump, TSize capacity){
    // 生成信息
    TCharC* pName = RNetMessageFactory::CodeName(code);
    MO_LIB_STRING_FORMAT(pDump, capacity,
-         "[ %s ]\n"
+      TC("[ %s ]\n"
          "--------------------------------------------------------------------------------\n"
          "-- Net     : length=0x%04X(%d), protocol=%d, hash=0x%08X\n"
          "-- Message : code=(%02X:%04X), command=%d, source=%s(0x%04X), target=%s(0x%04X)\n"
          "--------------------------------------------------------------------------------\n"
-         "%s",
+         "%s"),
          pName,
          length, length, protocol, hash,
          type, code, (TUint8)command, pSourceTerminal, sourceTerminal, pTargetTerminal, targetTerminal,

@@ -103,9 +103,9 @@ TResult FAssetConsole::ParsePath(MString* pResult, TCharC* pPath){
       TFsName spaceName = path.LeftStrC(splitIndex);
       TFsPath subPath = path.MidStrC(splitIndex + 1);
       TCharC* pDirectory = ParseSpace(spaceName);
-      MO_FATAL_CHECK(pDirectory, return ENull, "Parse space failure. (space=%s)", (TCharC*)spaceName);
+      MO_FATAL_CHECK(pDirectory, return ENull, TC("Parse space failure. (space=%s)"), (TCharC*)spaceName);
       pResult->Append(pDirectory);
-      if(!subPath.StartsWith("/")){
+      if(!subPath.StartsWith(TC("/"))){
          pResult->Append('/');
       }
       pResult->Append(subPath);

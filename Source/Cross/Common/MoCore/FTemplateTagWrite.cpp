@@ -39,7 +39,7 @@ ETemplateTagResult FTemplateTagWrite::OnBegin(FTemplateContext* pContext){
 // @return 处理结果
 //============================================================
 TResult FTemplateTagWrite::SetAttribute(TCharC* pName, TCharC* pValue){
-   if(RString::Equals(pName, "source")){
+   if(RString::Equals(pName, TC("source"))){
       _source = pValue;
    }
    return ESuccess;

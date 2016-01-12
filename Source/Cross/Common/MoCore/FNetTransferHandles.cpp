@@ -106,7 +106,7 @@ TBool FNetTransferHandles::Process(FObject* pSender, TNetTransfer* pTransfer){
       TListIteratorC<FNetRouterHandle*> iterator = _pRouterProcessors->IteratorC();
       while(iterator.Next()){
          FNetRouterHandle* pHandle = *iterator;
-         MO_DEBUG("Process router handle. (invoker=%s)", pHandle->InvokerName());
+         MO_DEBUG(TC("Process router handle. (invoker=%s)"), pHandle->InvokerName());
          TBool processResult = ProcessRouter(pHandle, pSender, pTransfer);
          if(!processResult){
             result = EFalse;
@@ -119,7 +119,7 @@ TBool FNetTransferHandles::Process(FObject* pSender, TNetTransfer* pTransfer){
       TListIteratorC<FNetTransferHandle*> iterator = _pTransferProcessors->IteratorC();
       while(iterator.Next()){
          FNetTransferHandle* pHandle = *iterator;
-         MO_DEBUG("Process transfer handle. (invoker=%s)", pHandle->InvokerName());
+         MO_DEBUG(TC("Process transfer handle. (invoker=%s)"), pHandle->InvokerName());
          TBool processResult = ProcessTransfer(pHandle, pSender, pTransfer);
          if(!processResult){
             result = EFalse;

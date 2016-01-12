@@ -44,7 +44,7 @@ public:
       // 检查长度
       TInt length = *(TUint16*)pPtr;
       if(this->_length > S){
-         MO_ERROR("Unserialize net types not enough memory. (size=%d, length=%d)", S, this->_length);
+         MO_ERROR(TC("Unserialize net types not enough memory. (size=%d, length=%d)"), S, this->_length);
          return -1;
       }
       this->_length = length;
@@ -72,7 +72,7 @@ public:
    // <T>跟踪内部数据。</T>
    TCharC* Track(MString* pTrack){
       MO_ASSERT(pTrack);
-      pTrack->AppendFormat("[length=%d]", this->_length);
+      pTrack->AppendFormat(TC("[length=%d]"), this->_length);
       return pTrack->MemoryC();
    }
 };
@@ -177,7 +177,7 @@ public:
       }
       // 检查长度
       if(this->_length + length >= S){
-         MO_FATAL("Append string length invalid. (length=%d, size=%d, value=%d:%s)", this->_length, S, length, pValue);
+         MO_FATAL(TC("Append string length invalid. (length=%d, size=%d, value=%d:%s)"), this->_length, S, length, pValue);
          length = S - this->_length - 1;
       }
       // 复制数据
@@ -196,9 +196,9 @@ public:
       va_start(params, pFormat);
       // 输出日志信息
    #ifdef _MO_WINDOWS
-      TInt length = _vscprintf(pFormat, params);
+      TInt length = MO_LIB_STRING_FORMAT_LENGTH(pFormat, params);
       MO_ASSERT_RANGE(this->_length + length + 1, 0, S);
-      length = vsprintf_s((TChar*)_memory + _length, length + 1, pFormat, params);
+      length = MO_LIB_STRING_FORMAT((TChar*)_memory + _length, length + 1, pFormat, params);
       this->_length += length;
    #else
       TChar buffer[MO_FS_SPRINT_LENGTH];
@@ -212,9 +212,9 @@ public:
    // 追加一个格式字符串
    void AppendFormat(TCharC* pFormat, va_list& params){
 #ifdef _MO_WINDOWS
-      TInt length = _vscprintf(pFormat, params);
+      TInt length = MO_LIB_STRING_FORMAT_LENGTH(pFormat, params);
       MO_ASSERT_RANGE(this->_length + length + 1, 0, S);
-      length = vsprintf_s((TChar*)_memory + _length, length + 1, pFormat, params);
+      length = MO_LIB_STRING_FORMAT((TChar*)_memory + _length, length + 1, pFormat, params);
       this->_length += length;
 #else
       TChar buffer[MO_FS_SPRINT_LENGTH];
@@ -230,7 +230,7 @@ public:
       if(NULL != pValue){
          length = RTypes<TChar>::IndexOf(pValue, 0);
          if(length >= S){
-            MO_FATAL("Set string length invalid. (size=%d, value=%d:%s)", S, length, pValue);
+            MO_FATAL(TC("Set string length invalid. (size=%d, value=%d:%s)"), S, length, pValue);
             length = S - 1;
          }
          if(length > 0){
@@ -257,7 +257,7 @@ public:
       TInt length = *(TUint16*)pPtr;
       // 检查长度
       if(length >= S){
-         MO_ERROR("Unserialize net string not enough memory. (size=%d, length=%d)", S, length);
+         MO_ERROR(TC("Unserialize net string not enough memory. (size=%d, length=%d)"), S, length);
          return -1;
       }
       this->_length = length;
@@ -276,9 +276,9 @@ public:
       MO_ASSERT(capacity > this->_length + 1);
       TStringRefer refer(pValue, capacity);
       if(this->_length > 0){
-         refer.AppendFormat("%d:\"%s\"", this->_length, this->_memory);
+         refer.AppendFormat(TC("%d:\"%s\""), this->_length, this->_memory);
       }else{
-         refer.Append("0:\"\"");
+         refer.Append(TC("0:\"\""));
       }
       return pValue;
    }

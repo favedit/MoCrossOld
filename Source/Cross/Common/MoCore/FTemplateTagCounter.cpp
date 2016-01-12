@@ -31,16 +31,16 @@ ETemplateTagResult FTemplateTagCounter::OnBegin(FTemplateContext* pContext){
       // 计算数据
       TInt source = RInt::Parse(pSource);
       TInt value = RInt::Parse(_value);
-      if(RString::Equals((TCharC*)_operator, "add")){
+      if(RString::Equals((TCharC*)_operator, TC("add"))){
          source += value;
-      }else if(RString::Equals((TCharC*)_operator, "sub")){
+      }else if(RString::Equals((TCharC*)_operator, TC("sub"))){
          source -= value;
-      }else if(RString::Equals((TCharC*)_operator, "mul")){
+      }else if(RString::Equals((TCharC*)_operator, TC("mul"))){
          source *= value;
-      }else if(RString::Equals((TCharC*)_operator, "div")){
+      }else if(RString::Equals((TCharC*)_operator, TC("div"))){
          source /= value;
       }else{
-         MO_FATAL("Unknown operator. (operator=%s)", (TCharC*)_operator);
+         MO_FATAL(TC("Unknown operator. (operator=%s)"), (TCharC*)_operator);
       }
       // 写入内容
       TFsText sourceValue;
@@ -74,13 +74,13 @@ ETemplateTagResult FTemplateTagCounter::OnEnd(FTemplateContext* pContext){
 // @return 处理结果
 //============================================================
 TResult FTemplateTagCounter::SetAttribute(TCharC* pName, TCharC* pValue){
-   if(RString::Equals(pName, "source")){
+   if(RString::Equals(pName, TC("source"))){
       _source = pValue;
-   }else if(RString::Equals(pName, "operator")){
+   }else if(RString::Equals(pName, TC("operator"))){
       _operator = pValue;
-   }else if(RString::Equals(pName, "value")){
+   }else if(RString::Equals(pName, TC("value"))){
       _value = pValue;
-   }else if(RString::Equals(pName, "define")){
+   }else if(RString::Equals(pName, TC("define"))){
       _define = pValue;
    }
    return ESuccess;

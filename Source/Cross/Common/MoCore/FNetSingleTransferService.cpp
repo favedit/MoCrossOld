@@ -61,7 +61,7 @@ FNetBufferedSocket* FNetSingleTransferService::InnerAddSocket(SNetSocketInfo& in
    if(limitSocketCount > 0){
       TInt socketCount = _pSocketsModule->Pool()->UsingCount();
       if(socketCount + 1 > limitSocketCount){
-         MO_WARN("Socket pool is full. (count=%d, limit=%d)", socketCount, limitSocketCount);
+         MO_WARN(TC("Socket pool is full. (count=%d, limit=%d)"), socketCount, limitSocketCount);
          SendLimitNotify(info);
          return NULL;
       }
@@ -77,7 +77,7 @@ FNetBufferedSocket* FNetSingleTransferService::InnerAddSocket(SNetSocketInfo& in
    pSocket->SetInfo(&info);
    // 关联链接
    _pSocketsModule->OpenSocket(pSocket);
-   MO_DEBUG_INFO("Add net socket. (socket=0x%08X, host=%s:%d, handle=%d, index=%d:%d)",
+   MO_DEBUG_INFO(TC("Add net socket. (socket=0x%08X, host=%s:%d, handle=%d, index=%d:%d)"),
          pSocket, info.host, info.port, info.handle, pSocket->Index(), pSocket->Serial());
    // 启动接收线程
    FNetSingleSocketReceiveThread* pReceiveThread = MO_CREATE(FNetSingleSocketReceiveThread);

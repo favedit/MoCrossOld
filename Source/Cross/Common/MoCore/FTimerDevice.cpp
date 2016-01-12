@@ -8,7 +8,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FTimerDevice, FDevice);
 // <T>构造时间设备。</T>
 //============================================================
 FTimerDevice::FTimerDevice(){
-   _name = "timer.device";
+   _name = TC("timer.device");
    _frameCount = 0;
    _startTick = 0;
    _currentTick = 0;

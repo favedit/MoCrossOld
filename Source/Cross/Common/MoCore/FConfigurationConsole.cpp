@@ -1,10 +1,10 @@
 #include <MoCmSystem.h>
 #include "MoCrConfigruation.h"
 
-#define MO_TAG_INCLUDE   "Include"
-#define MO_TAG_COMPONENT "Component"
-#define MO_PTY_FILE      "file"
-#define MO_PTY_NAME      "name"
+#define MO_TAG_INCLUDE   TC("Include")
+#define MO_TAG_COMPONENT TC("Component")
+#define MO_PTY_FILE      TC("file")
+#define MO_PTY_NAME      TC("name")
 
 MO_NAMESPACE_BEGIN
 
@@ -80,7 +80,7 @@ TBool FConfigurationConsole::LoadFile(TCharC* pFileName){
             // 加载组件设置
             TCharC* pName = iterator->Get(MO_PTY_NAME);
             if(_pNodes->Contains(pName)){
-               MO_FATAL("Duplicate component define. (file=%s, name=%s)", pFileName, pName);
+               MO_FATAL(TC("Duplicate component define. (file=%s, name=%s)"), pFileName, pName);
                return EFalse;
             }
             _pNodes->Set(pName, *iterator);
@@ -127,7 +127,7 @@ TBool FConfigurationConsole::LoadConfiguration(TCharC* pFileName){
          MO_ASSERT(pName);
          FXmlNode* pConfig = _pNodes->Find(pName);
          if(pConfig != NULL){
-            MO_DEBUG("Load component config. (name=%s)", pName);
+            MO_DEBUG(TC("Load component config. (name=%s)"), pName);
             pConfiguration->LoadConfig(pConfig);
          }
       }

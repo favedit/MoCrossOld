@@ -166,7 +166,7 @@ void FCsvLine::Parse(TCharC* pLine){
             dummy = 0;
             cellEnd = pos;
             if(cellEnd == cellStart){
-               _pCells->Push("");
+               _pCells->Push(TC(""));
             }else{
                TString cellText = line.SubStrC(cellStart, cellEnd);
                TInt cellTextLen = cellText.Length();
@@ -186,7 +186,7 @@ void FCsvLine::Parse(TCharC* pLine){
          dummy %= 2;
          MO_ASSERT(0 == dummy);
          if(cellEnd == cellStart){
-            _pCells->Push("");
+            _pCells->Push(TC(""));
          }else{
             TString cellText = line.SubStrC(cellStart, cellEnd);
             TInt cellTextLen = cellText.Length();

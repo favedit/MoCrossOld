@@ -131,7 +131,7 @@ TBool FNetMessageConnection::ProcessTcpReceive(){
       return EFalse;
    }
    if(received > 0){
-      MO_DEBUG("Receive socket tcp data. (length=%d)", received);
+      MO_DEBUG(TC("Receive socket tcp data. (length=%d)"), received);
       TBool result = _pInputPipe->TryWrite(buffer, received);
       if(!result){
          // 舍弃已经接收的消息
@@ -139,7 +139,7 @@ TBool FNetMessageConnection::ProcessTcpReceive(){
          // 重新写入数据
          result = _pInputPipe->TryWrite(buffer, received);
          if(!result){
-            MO_FATAL("Input pipe buffer is full.");
+            MO_FATAL(TC("Input pipe buffer is full."));
          }
       }
    }
@@ -166,13 +166,13 @@ TBool FNetMessageConnection::ProcessTcpReceive(){
    TByte readBuffer[MO_NETMESSAGE_MAXLENGTH];
    TInt readed = _pInputPipe->Read(readBuffer, size);
    if(readed <= 0){
-      MO_ERROR("Read pipe failure. (size=%d)", size);
+      MO_ERROR(TC("Read pipe failure. (size=%d)"), size);
       return EFalse;
    }
    // 获得网络头信息
    SNetHead* pHead = (SNetHead*)readBuffer;
    if(ENetProtocol_Message != pHead->protocol){
-      MO_FATAL("Unknown net head protocol. (protocol=%d)", pHead->protocol);
+      MO_FATAL(TC("Unknown net head protocol. (protocol=%d)"), pHead->protocol);
       return EFalse;
    }
    // 存储消息
@@ -201,7 +201,7 @@ TBool FNetMessageConnection::ProcessUdpReceive(){
    if(0 == received){
       return EFalse;
    }
-   MO_DEBUG("Receive socket udp data. (length=%d)", received);
+   MO_DEBUG(TC("Receive socket udp data. (length=%d)"), received);
    // 测试消息管道是否能放下该消息
    TInt remain = _pInputUdpQueue->Reamin();
    if(remain < received){
@@ -211,7 +211,7 @@ TBool FNetMessageConnection::ProcessUdpReceive(){
    // 获得网络头信息
    SNetHead* pHead = (SNetHead*)buffer;
    if(ENetProtocol_Message != pHead->protocol){
-      MO_FATAL("Unknown net head protocol. (protocol=%d)", pHead->protocol);
+      MO_FATAL(TC("Unknown net head protocol. (protocol=%d)"), pHead->protocol);
       return EFalse;
    }
    // 存储消息
@@ -248,7 +248,7 @@ TBool FNetMessageConnection::PushMessage(TNetMessage* pMessage){
 #ifdef _MO_DEBUG
       TChar dump[MO_FS_DUMP_LENGTH];
       TChar format[MO_FS_DUMP_LENGTH];
-      MO_STATIC_DEBUG("Send tcp net message.\n%s%s",
+      MO_STATIC_DEBUG(TC("Send tcp net message.\n%s%s"),
             pMessage->Dump(dump, MO_FS_DUMP_LENGTH),
             pMessage->DumpMemory(format, MO_FS_DUMP_LENGTH));
 #endif
@@ -282,7 +282,7 @@ TBool FNetMessageConnection::PushUdpMessage(TNetMessage* pMessage){
 #ifdef _MO_DEBUG
       TChar dump[MO_FS_DUMP_LENGTH];
       TChar format[MO_FS_DUMP_LENGTH];
-      MO_STATIC_DEBUG("Send udp net message.\n%s%s",
+      MO_STATIC_DEBUG(TC("Send udp net message.\n%s%s"),
             pMessage->Dump(dump, MO_FS_DUMP_LENGTH),
             pMessage->DumpMemory(format, MO_FS_DUMP_LENGTH));
 #endif
@@ -316,7 +316,7 @@ TBool FNetMessageConnection::PopupMessage(TNetMessage* pMessage){
          // 输出消息信息
          TChar dump[MO_FS_DUMP_LENGTH];
          TChar format[MO_FS_DUMP_LENGTH];
-         MO_DEBUG("Receive net message.\n%s%s",
+         MO_DEBUG(TC("Receive net message.\n%s%s"),
                pMessage->Dump(dump, MO_FS_DUMP_LENGTH),
                pMessage->DumpMemory(format, MO_FS_DUMP_LENGTH));
 #endif
@@ -345,7 +345,7 @@ TBool FNetMessageConnection::PopupUdpMessage(TNetMessage* pMessage){
          // 输出消息信息
          TChar dump[MO_FS_DUMP_LENGTH];
          TChar format[MO_FS_DUMP_LENGTH];
-         MO_DEBUG("Receive net message.\n%s%s",
+         MO_DEBUG(TC("Receive net message.\n%s%s"),
                pMessage->Dump(dump, MO_FS_DUMP_LENGTH),
                pMessage->DumpMemory(format, MO_FS_DUMP_LENGTH));
 #endif
@@ -376,7 +376,7 @@ TBool FNetMessageConnection::WaitMessage(TNetMessage* pMessage){
             // 输出消息信息
             TChar dump[MO_FS_DUMP_LENGTH];
             TChar format[MO_FS_DUMP_LENGTH];
-            MO_DEBUG("Receive net message.\n%s%s",
+            MO_DEBUG(TC("Receive net message.\n%s%s"),
                   pMessage->Dump(dump, MO_FS_DUMP_LENGTH),
                   pMessage->DumpMemory(format, MO_FS_DUMP_LENGTH));
 #endif
@@ -411,7 +411,7 @@ TBool FNetMessageConnection::ProcessWaitMessage(TNetMessage* pMessage){
             // 输出消息信息
             TChar dump[MO_FS_DUMP_LENGTH];
             TChar format[MO_FS_DUMP_LENGTH];
-            MO_DEBUG("Receive net message.\n%s%s",
+            MO_DEBUG(TC("Receive net message.\n%s%s"),
                   pMessage->Dump(dump, MO_FS_DUMP_LENGTH),
                   pMessage->DumpMemory(format, MO_FS_DUMP_LENGTH));
 #endif

@@ -10,7 +10,7 @@ MO_NAMESPACE_BEGIN
 // @return 当前实例指针
 //============================================================
 FSharedNetQueueStorage::FSharedNetQueueStorage(){
-   _name = "Storage.NetQueue";
+   _name = TC("Storage.NetQueue");
    // 初始化所有对象
    _capacity = 0;
    _blockCapacity = 0;
@@ -34,16 +34,16 @@ FSharedNetQueueStorage::~FSharedNetQueueStorage(){
 TResult FSharedNetQueueStorage::LoadConfig(FXmlNode* pConfig){
    // 加载设置信息
    TXmlNodeIteratorC iterator = pConfig->NodeIteratorC();
-   while(iterator.Next("Property")){
+   while(iterator.Next(TC("Property"))){
       FXmlNode* pNode = *iterator;
-      if(pNode->IsAttribute("name", "capacity")){
+      if(pNode->IsAttribute(TC("name"), TC("capacity"))){
          _capacity = pNode->TextAsInt();
          MO_ASSERT(_capacity > 0);
-         MO_DEBUG("Load module(%s) property. (capacity=%d)", (TCharC*)_name, _capacity);
-      }else if(pNode->IsAttribute("name", "block_capacity")){
+         MO_DEBUG(TC("Load module(%s) property. (capacity=%d)"), (TCharC*)_name, _capacity);
+      }else if(pNode->IsAttribute(TC("name"), TC("block_capacity"))){
          _blockCapacity = pNode->TextAsInt();
          MO_ASSERT(_blockCapacity > 0);
-         MO_DEBUG("Load module(%s) property. (output_capacity=%d)", (TCharC*)_name, _blockCapacity);
+         MO_DEBUG(TC("Load module(%s) property. (output_capacity=%d)"), (TCharC*)_name, _blockCapacity);
       }
    }
    // 收集一个收集器

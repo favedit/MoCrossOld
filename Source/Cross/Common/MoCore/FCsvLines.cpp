@@ -63,7 +63,7 @@ FCsvLine* FCsvLines::Insert(TInt index){
 // @param out ÎÄ¼þÁ÷¡£
 //============================================================
 void FCsvLines::Store(TDataOutput& out){
-   TString dataBegin("@data\n");
+   TString dataBegin(TC("@data\n"));
    out.Write((TCharC*)dataBegin, dataBegin.Length());
    TInt count = _pLines->Count();
    for(TInt n =0; n < count; n++){
@@ -71,7 +71,7 @@ void FCsvLines::Store(TDataOutput& out){
       pLine->Store(out);
    }
    TString check;
-   check.AppendFormat("@check data.row=%d\n", count);
+   check.AppendFormat(TC("@check data.row=%d\n"), count);
    out.Write((TCharC*)check, check.Length());
 }
 
@@ -82,7 +82,7 @@ void FCsvLines::Store(TDataOutput& out){
 //============================================================
 void FCsvLines::Parse(TCharC* pValue){
    TStringRefer temp = pValue;
-   TInt linesEnd = temp.Find("@check data.row=");
+   TInt linesEnd = temp.Find(TC("@check data.row="));
    MO_ASSERT(ENotFound != linesEnd);
    TInt rowCountStart = temp.IndexOf('=', linesEnd);
    TInt rowCountEnd = temp.IndexOf('\n', rowCountStart);

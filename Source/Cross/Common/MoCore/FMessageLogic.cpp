@@ -30,7 +30,7 @@ TBool FMessageLogic::OnUnknownRouter(TNetRouter* pRouter){
    // 未知消息
    TChar dump[MO_FS_DUMP_LENGTH];
    TChar format[MO_FS_DUMP_LENGTH];
-   MO_ERROR("Unknown message. (%s)\n%s",
+   MO_ERROR(TC("Unknown message. (%s)\n%s"),
          pRouter->Dump(dump, MO_FS_DUMP_LENGTH),
          pRouter->DumpMemory(format, MO_FS_DUMP_LENGTH));
    return EFalse;
@@ -94,7 +94,7 @@ TBool FMessageLogic::DispatchTransfer(TNetTransfer* pTransfer){
    // 日志处理 (没有消息统计器的时候才输出，否则又消息统计器统计)
    if(NULL == pStatistics){
       if(span >= MO_NET_MESSAGE_SLOW_TICK){
-         MO_WARN("Dispatch messge slow. plase check logic. (message=%s, tick=%ld)", pTransfer->MessageHead().CodeName(), span);
+         MO_WARN(TC("Dispatch messge slow. plase check logic. (message=%s, tick=%ld)"), pTransfer->MessageHead().CodeName(), span);
       }
    }
    return result;

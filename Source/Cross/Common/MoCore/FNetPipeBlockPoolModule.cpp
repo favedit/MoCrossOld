@@ -6,7 +6,7 @@ MO_NAMESPACE_BEGIN
 // <T>构造数据队列分块缓冲池模块。</T>
 //============================================================
 FNetPipeBlockPoolModule::FNetPipeBlockPoolModule(){
-   _name = "Module.NetPipe.Pool";
+   _name = TC("Module.NetPipe.Pool");
    _blockLimit = 0;
    _pAllocators = MO_CREATE(FBufferedPipeBlockAllocatorVector);
 }
@@ -28,16 +28,16 @@ TResult FNetPipeBlockPoolModule::LoadConfig(FXmlNode* pConfig){
    TXmlNodeIteratorC iterator = pConfig->NodeIteratorC();
    while(iterator.Next()){
       FXmlNode* pNode = *iterator;
-      if(pNode->IsAttribute("name", "block_limit")){
+      if(pNode->IsAttribute(TC("name"), TC("block_limit"))){
          // 加载分块限制
          _blockLimit = pNode->TextAsInt();
          MO_ASSERT(_blockLimit > 0);
-         MO_DEBUG("Load module(%s) property. (block_limit=%d)", (TCharC*)_name, _blockLimit);
-      }else if(pNode->IsName("Allocator")){
+         MO_DEBUG(TC("Load module(%s) property. (block_limit=%d)"), (TCharC*)_name, _blockLimit);
+      }else if(pNode->IsName(TC("Allocator"))){
          // 获得属性
-         TInt blockCapacity = pNode->GetAsInt("block_capacity");
+         TInt blockCapacity = pNode->GetAsInt(TC("block_capacity"));
          MO_ASSERT(blockCapacity > 0);
-         TInt blockLimit = pNode->GetAsInt("block_limit");
+         TInt blockLimit = pNode->GetAsInt(TC("block_limit"));
          MO_ASSERT(blockLimit > 0);
          // 创建对象
          FBufferedPipeBlockAllocator* pAlloc = MO_CREATE(FBufferedPipeBlockAllocator);
@@ -82,7 +82,7 @@ void FNetPipeBlockPoolModule::Free(FBufferedPipeBlockAllocator* pPool){
       _pAllocators->Remove(pPool);
       MO_DELETE(pPool);
    }else{
-      MO_FATAL("Free pool object is not exists.");
+      MO_FATAL(TC("Free pool object is not exists."));
    }
 }
 
@@ -98,7 +98,7 @@ TResult FNetPipeBlockPoolModule::StatisticsRefresh(){
       FBufferedPipeBlockAllocator* pAllocator = _pAllocators->Get(n);
       pAllocator->Track(&dump);
    }
-   MO_INFO("Pipe block pool statistics.%s", (TCharC*)dump);
+   MO_INFO(TC("Pipe block pool statistics.%s"), (TCharC*)dump);
    return ESuccess;
 }
 

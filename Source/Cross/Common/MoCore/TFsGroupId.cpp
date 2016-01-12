@@ -49,7 +49,7 @@ void TFsGroupId::SetValue(SGroupId value){
 
 //============================================================
 TCharC* TFsGroupId::Format(){
-   AssignFormat("%02X:%02X-%02X:%02X",
+   AssignFormat(TC("%02X:%02X-%02X:%02X"),
          _value.data.items.groupType, _value.data.items.groupId,
          _value.data.items.itemType, _value.data.items.itemId);
    return MemoryC();

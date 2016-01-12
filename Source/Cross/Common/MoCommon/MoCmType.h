@@ -2339,13 +2339,13 @@ public:
    MO_INLINE void Assign(const T* pMemory, TInt length){
       if(NULL != pMemory){
          if((_length < 0) || (_length > S) || (length < 0) || (length > S)){
-            MO_FATAL("Assign range is invalid. (current=%d, assign=%d, size=%d)", _length, length, S);
+            MO_FATAL(TC("Assign range is invalid. (current=%d, assign=%d, size=%d)"), _length, length, S);
          }else{
             MO_LIB_TYPES_COPY(T, (T*)_memory, S, pMemory, length);
             _length = length;
          }
       }else{
-         MO_FATAL("Assign memory is null.");
+         MO_FATAL(TC("Assign memory is null."));
       }
    }
    //------------------------------------------------------------
@@ -2358,20 +2358,20 @@ public:
    MO_INLINE void Append(const T* pMemory, TInt length){
       // 检查自身对象合法性
       if((_length < 0) || (_length > S) || (_length < 0) || (_length > S)){
-         MO_FATAL("This is invalid. (length=%d, size=%d)", _length, S);
+         MO_FATAL(TC("This is invalid. (length=%d, size=%d)"), _length, S);
          return;
       }
       // 追加外部数据
       if(NULL != pMemory){
          if((length < 0) || (_length + length > S)){
-            MO_FATAL("Append range is invalid. (current=%d, assign=%d, size=%d)", _length, length, S);
+            MO_FATAL(TC("Append range is invalid. (current=%d, assign=%d, size=%d)"), _length, length, S);
          }else{
             T* pTarget = (T*)_memory;
             MO_LIB_TYPES_COPY(T, pTarget + _length, S - _length, pMemory, length);
             _length += length;
          }
       }else{
-         MO_FATAL("Append memory is null.");
+         MO_FATAL(TC("Append memory is null."));
       }
    }
    //------------------------------------------------------------
@@ -2385,7 +2385,7 @@ public:
       T* pMemory = (T*)_memory;
       if((_length < 0) || (_length >= S)){
          T& value = pMemory[S - 1];
-         MO_FATAL("Alloc memory full. (length=%d, size=%d)", _length, S);
+         MO_FATAL(TC("Alloc memory full. (length=%d, size=%d)"), _length, S);
          return value;
       }else{
          T& value = pMemory[_length++];
@@ -2399,7 +2399,7 @@ public:
       T* pMemory = (T*)_memory;
       if((_length < 0) || (_length > S) || (index < 0) || (index >= S)){
          T& value = pMemory[S - 1];
-         MO_FATAL("Alloc index memory invalid. (index=%d, length=%d, size=%d)", index, _length, S);
+         MO_FATAL(TC("Alloc index memory invalid. (index=%d, length=%d, size=%d)"), index, _length, S);
          return value;
       }else{
          T& value = pMemory[index++];
@@ -2414,7 +2414,7 @@ public:
    // <T>推入一个数值到尾部。</T>
    MO_INLINE void Push(T& value){
       if((_length < 0) || (_length >= S)){
-         MO_FATAL("Push memory full. (length=%d, size=%d)", _length, S);
+         MO_FATAL(TC("Push memory full. (length=%d, size=%d)"), _length, S);
       }else{
          T* pMemory = (T*)_memory;
          MO_LIB_TYPE_COPY(T, pMemory + _length, &value);
@@ -2426,7 +2426,7 @@ public:
    MO_INLINE TBool Delete(TInt index, T* pValue = NULL){
       // 检查参数
       if((_length < 0) || (_length >= S) || (index < 0) || (index >= _length)){
-         MO_FATAL("Delete index is invalid. (index=%d, length=%d, size=%d)", index, _length, S);
+         MO_FATAL(TC("Delete index is invalid. (index=%d, length=%d, size=%d)"), index, _length, S);
          return EFalse;
       }
       // 复制数据

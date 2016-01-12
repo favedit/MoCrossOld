@@ -168,7 +168,7 @@ public:
    //------------------------------------------------------------
    TCharC* ToDisplay(TChar* pText, TSize capacity){
       TStringRefer text(pText, capacity);
-      text.AssignFormat("%02X:%02X-%02X:%02X",
+      text.AssignFormat(TC("%02X:%02X-%02X:%02X"),
             data.items.groupType, data.items.groupId,
             data.items.itemType, data.items.itemId);
       return pText;
@@ -299,7 +299,7 @@ public:
    //------------------------------------------------------------
    TCharC* ToDisplay(TChar* pText, TSize capacity){
       TStringRefer text(pText, capacity);
-      text.AssignFormat("%02X-%02X-%04X(%d)",
+      text.AssignFormat(TC("%02X-%02X-%04X(%d)"),
             data.items.type,
             data.items.group,
             data.items.index,
@@ -578,7 +578,7 @@ public:
    //------------------------------------------------------------
    TCharC* ToDisplay(TChar* pText, TSize capacity){
       TStringRefer text(pText, capacity);
-      text.AssignFormat("%02X:%02X-%02X:%02X %02X-%02X-%04X",
+      text.AssignFormat(TC("%02X:%02X-%02X:%02X %02X-%02X-%04X"),
             data.items.groupId.items.groupType, data.items.groupId.items.groupId,
             data.items.groupId.items.itemType, data.items.groupId.items.itemId,
             data.items.objectId.items.type, data.items.objectId.items.group,

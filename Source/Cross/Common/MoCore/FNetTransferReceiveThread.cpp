@@ -22,8 +22,8 @@ MO_NAMESPACE_BEGIN
 // @return 线程实例
 //============================================================
 FNetTransferReceiveThread::FNetTransferReceiveThread(){
-   _code = "STR";
-   _name = "Thread.Transfer.Receive";
+   _code = TC("STR");
+   _name = TC("Thread.Transfer.Receive");
    MO_CLEAR(_pService);
    MO_CLEAR(_pCommander);
    MO_CLEAR(_pInputQueue);
@@ -103,7 +103,7 @@ TInt FNetTransferReceiveThread::ReceiveMessage(FNetBufferedSocket* pSocket, TByt
    if(!unserializeResult){
       TChar dump[MO_FS_DUMP_LENGTH];
       TInt dumpSize = MO_LIB_MIN(size, MO_NETMESSAGE_BYTEDUMP_MAXLENGTH);
-      MO_ERROR("Receive message unserial failure. (host=%s:%d, handle=%d, index=%d:%d, size=%d)\n%s",
+      MO_ERROR(TC("Receive message unserial failure. (host=%s:%d, handle=%d, index=%d:%d, size=%d)\n%s"),
             pHost, port, handle, index, serial, size,
             RByte::Dump(pBuffer, dumpSize, dump, MO_FS_DUMP_LENGTH));
       _pCommander->SendInvalidUnserialNotify(pSocket);
@@ -115,7 +115,7 @@ TInt FNetTransferReceiveThread::ReceiveMessage(FNetBufferedSocket* pSocket, TByt
    if(NULL == pMessageInfo){
       TChar dump[MO_FS_DUMP_LENGTH];
       TInt dumpSize = MO_LIB_MIN(size, MO_NETMESSAGE_BYTEDUMP_MAXLENGTH);
-      MO_ERROR("Receive message unknown failure. (host=%s:%d, handle=%d, index=%d:%d, code=%d)\n%s",
+      MO_ERROR(TC("Receive message unknown failure. (host=%s:%d, handle=%d, index=%d:%d, code=%d)\n%s"),
             pHost, port, handle, index, serial, code,
             RByte::Dump(pBuffer, dumpSize, dump, MO_FS_DUMP_LENGTH));
       _pCommander->SendInvalidUnknownNotify(pSocket);
@@ -126,7 +126,7 @@ TInt FNetTransferReceiveThread::ReceiveMessage(FNetBufferedSocket* pSocket, TByt
    if(pMessageInfo->Version() != version){
       TChar dump[MO_FS_DUMP_LENGTH];
       TInt dumpSize = MO_LIB_MIN(size, MO_NETMESSAGE_BYTEDUMP_MAXLENGTH);
-      MO_ERROR("Receive message version failure. (name=%s, receive_version=0x%04X, local_version=0x%04X)\n%s",
+      MO_ERROR(TC("Receive message version failure. (name=%s, receive_version=0x%04X, local_version=0x%04X)\n%s"),
             pMessageInfo->Name(), version, pMessageInfo->Version(),
             RByte::Dump(pBuffer, dumpSize, dump, MO_FS_DUMP_LENGTH));
       _pCommander->SendInvalidVersionNotify(pSocket);
@@ -140,7 +140,7 @@ TInt FNetTransferReceiveThread::ReceiveMessage(FNetBufferedSocket* pSocket, TByt
          message.Dump(dump, MO_FS_DUMP_LENGTH);
          TChar format[MO_FS_DUMP_LENGTH];
          message.DumpMemory(format, MO_FS_DUMP_LENGTH);
-         MO_ERROR("Receive message serial failure. (name=%s, receive_serial=%d, socket_serial=%d)\n%s",
+         MO_ERROR(TC("Receive message serial failure. (name=%s, receive_serial=%d, socket_serial=%d)\n%s"),
                pMessageInfo->Name(), messageSerial, receiveSerial, dump, format);
          _pCommander->SendInvalidUnknownNotify(pSocket);
          return EFailure;
@@ -174,12 +174,12 @@ TInt FNetTransferReceiveThread::ReceiveMessage(FNetBufferedSocket* pSocket, TByt
       message.Dump(dump, MO_FS_DUMP_LENGTH);
       TChar format[MO_FS_DUMP_LENGTH];
       message.DumpMemory(format, MO_FS_DUMP_LENGTH);
-      MO_DEBUG("Receive message full failure. (host=%s:%d, handle=%d:%d:%d)\n%s%s",
+      MO_DEBUG(TC("Receive message full failure. (host=%s:%d, handle=%d:%d:%d)\n%s%s"),
             pHost, port, handle, index, serial, dump, format);
       _pCommander->SendInvalidFullNotify(pSocket);
       return EWarn;
    }
-   MO_DEBUG("Receive tcp message. (host=%s:%d, handle=%d:%d:%d, length=%d)",
+   MO_DEBUG(TC("Receive tcp message. (host=%s:%d, handle=%d:%d:%d, length=%d)"),
          pHost, port, handle, index, serial, length);
    return ESuccess;
 }
@@ -206,7 +206,7 @@ TInt FNetTransferReceiveThread::ReceiveRouter(FNetBufferedSocket* pSocket, TByte
    if(!router.Unserialize(pBuffer, size, &length)){
       TChar dump[MO_FS_DUMP_LENGTH];
       TInt dumpSize = MO_LIB_MIN(size, MO_NETMESSAGE_BYTEDUMP_MAXLENGTH);
-      MO_ERROR("Unserial router failure. (host=%s:%d, handle=%d, index=%d:%d, size=%d)\n%s",
+      MO_ERROR(TC("Unserial router failure. (host=%s:%d, handle=%d, index=%d:%d, size=%d)\n%s"),
             pHost, port, handle, index, serial, size,
             RByte::Dump(pBuffer, dumpSize, dump, MO_FS_DUMP_LENGTH));
       _pCommander->SendInvalidUnserialNotify(pSocket);
@@ -222,14 +222,14 @@ TInt FNetTransferReceiveThread::ReceiveRouter(FNetBufferedSocket* pSocket, TByte
    if(!_pInputQueue->PushTransfer(&transfer)){
       TChar dump[MO_FS_DUMP_LENGTH];
       TChar format[MO_FS_DUMP_LENGTH];
-      MO_ERROR("Receive router failure. (host=%s:%d, handle=%d, index=%d:%d)\n%s%s",
+      MO_ERROR(TC("Receive router failure. (host=%s:%d, handle=%d, index=%d:%d)\n%s%s"),
             pHost, port, handle, index, serial,
             transfer.Dump(dump, MO_FS_DUMP_LENGTH),
             transfer.DumpMemory(format, MO_FS_DUMP_LENGTH));
       _pCommander->SendInvalidFullNotify(pSocket);
       return EFailure;
    }
-   MO_DEBUG("Receive tcp router. (socket=0x%08X, host=%s:%d, handle=%d, index=%d:%d, length=%d)",
+   MO_DEBUG(TC("Receive tcp router. (socket=0x%08X, host=%s:%d, handle=%d, index=%d:%d, length=%d)"),
          pSocket, pHost, port, handle, index, serial, length);
    return ESuccess;
 }
@@ -247,7 +247,7 @@ TInt FNetTransferReceiveThread::ReceiveFirstData(FNetBufferedSocket* pSocket){
    TByte buffer[MO_FS_TEXT_LENGTH];
    RBytes::Clear(buffer, MO_FS_TEXT_LENGTH);
    if(EStreamResult_Success == pPipe->Peek(buffer, MO_FS_TEXT_LENGTH, &lengthPeek)){
-      TCharC* pBuffer = (TCharC*)buffer;
+      TChar8C* pBuffer = (TChar8C*)buffer;
       // 测试TGW协议
       TInt tgwLength = RString8::Length(MO_NET_RECEIVE_TGW_STR);
       if(RTypes<TChar8>::Equals(pBuffer, MO_NET_RECEIVE_TGW_STR, tgwLength)){
@@ -257,7 +257,7 @@ TInt FNetTransferReceiveThread::ReceiveFirstData(FNetBufferedSocket* pSocket){
          EStreamResult resultCd = pPipe->Read(buffer, receiveLength, &lengthRead);
          if(EStreamResult_Success != resultCd){
             TChar dump[MO_FS_DUMP_LENGTH];
-            MO_ERROR("Read pipe tgw data failure. (peek_length=%d, receive_length=%d, result_cd=%d)\n%s",
+            MO_ERROR(TC("Read pipe tgw data failure. (peek_length=%d, receive_length=%d, result_cd=%d)\n%s"),
                   lengthPeek, receiveLength, (TCharC*)buffer, resultCd,
                   RByte::Dump(buffer, lengthPeek, dump, MO_FS_DUMP_LENGTH));
          }
@@ -271,10 +271,10 @@ TInt FNetTransferReceiveThread::ReceiveFirstData(FNetBufferedSocket* pSocket){
             // 读取权限数据
             TInt lengthRead = 0;
             if(EStreamResult_Success == pPipe->Read(buffer, receiveLength, &lengthRead)){
-               MO_DEBUG("Receive and send security data success. (socket=0x%08X, host=%s:%d, handle=%d)",
+               MO_DEBUG(TC("Receive and send security data success. (socket=0x%08X, host=%s:%d, handle=%d)"),
                      pSocket, pSocket->Host(), pSocket->Port(), pSocket->Handle());
             }else{
-               MO_ERROR("Receive and read security data failue. (socket=0x%08X, host=%s:%d, handle=%d)",
+               MO_ERROR(TC("Receive and read security data failue. (socket=0x%08X, host=%s:%d, handle=%d)"),
                      pSocket, pSocket->Host(), pSocket->Port(), pSocket->Handle());
             }
             // 发送权限数据
@@ -283,7 +283,7 @@ TInt FNetTransferReceiveThread::ReceiveFirstData(FNetBufferedSocket* pSocket){
             TInt lengthWrite = 0;
             TInt sendLength = RString8::Length(pSendInfo) + 1;
             if(EStreamResult_Success != pOutputPipe->Write(pSendInfo, sendLength, &lengthWrite)){
-               MO_INFO("Receive and send security data failue. (socket=0x%08X, host=%s:%d, handle=%d)",
+               MO_INFO(TC("Receive and send security data failue. (socket=0x%08X, host=%s:%d, handle=%d)"),
                      pSocket, pSocket->Host(), pSocket->Port(), pSocket->Handle());
             }
          }
@@ -330,7 +330,7 @@ TInt FNetTransferReceiveThread::ReceiveData(FNetBufferedSocket* pSocket){
          TByte buffer[MO_NETMESSAGE_BYTEDUMP_MAXLENGTH];
          TInt peekSize = MO_LIB_MIN(length, MO_NETMESSAGE_BYTEDUMP_MAXLENGTH);
          pPipe->Peek(buffer, peekSize, &lengthPeek);
-         MO_ERROR("Invalid net socket data. (length=%d, size=%d, peek_size=%d)\n%s",
+         MO_ERROR(TC("Invalid net socket data. (length=%d, size=%d, peek_size=%d)\n%s"),
                length, size, peekSize,
                RByte::Dump(buffer, peekSize, dump, MO_FS_DUMP_LENGTH));
          _pService->CloseSocketWithNotify(pSocket);
@@ -342,19 +342,19 @@ TInt FNetTransferReceiveThread::ReceiveData(FNetBufferedSocket* pSocket){
       }
       // 测试全局管道是否能放下该消息
       if(!_pInputQueue->TestPushAble(size)){
-         MO_ERROR("Server input queue is full. (message_size=%d)", size);
+         MO_ERROR(TC("Server input queue is full. (message_size=%d)"), size);
          break;
       }
       // 获得消息数据，写入全局管道
       TInt lengthRead;
       if(EStreamResult_Success != pPipe->Read(buffer, size, &lengthRead)){
-         MO_ERROR("Socket pipe try read failure. (size=%d)", size);
+         MO_ERROR(TC("Socket pipe try read failure. (size=%d)"), size);
          continue;
       }
       // 获得网络头信息
       SNetHead* pHead = (SNetHead*)buffer;
       if(pHead->length != size){
-         MO_ERROR("Socket net head data is invalid. (head_length=%d, size=%d)", pHead->length, size);
+         MO_ERROR(TC("Socket net head data is invalid. (head_length=%d, size=%d)"), pHead->length, size);
          _pService->CloseSocketWithNotify(pSocket);
          break;
       }
@@ -364,7 +364,7 @@ TInt FNetTransferReceiveThread::ReceiveData(FNetBufferedSocket* pSocket){
             TInt receiveResult = ReceiveMessage(pSocket, buffer, size);
             loop++;
             if(EFailure == receiveResult){
-               MO_ERROR("Receive message failure. (socket=0x%08X, receive_result=%d)", pSocket, receiveResult);
+               MO_ERROR(TC("Receive message failure. (socket=0x%08X, receive_result=%d)"), pSocket, receiveResult);
                _pService->CloseSocketWithNotify(pSocket);
                continueCd = EFalse;
             }
@@ -378,7 +378,7 @@ TInt FNetTransferReceiveThread::ReceiveData(FNetBufferedSocket* pSocket){
          }
          default:{
             // 未知格式
-            MO_ERROR("Unsupport package mode. (protocol=%d)", pHead->protocol);
+            MO_ERROR(TC("Unsupport package mode. (protocol=%d)"), pHead->protocol);
             _pService->CloseSocketWithNotify(pSocket);
             continueCd = EFalse;
             break;

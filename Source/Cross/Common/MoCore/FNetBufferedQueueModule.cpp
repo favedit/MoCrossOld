@@ -9,7 +9,7 @@ MO_NAMESPACE_BEGIN
 // @return 当前实例指针
 //============================================================
 FNetBufferedQueueModule::FNetBufferedQueueModule(){
-   _name = "Module.NetQueue";
+   _name = TC("Module.NetQueue");
    // 初始化所有对象
    _pStorage = MO_CREATE(FSharedNetQueueStorage);
 }

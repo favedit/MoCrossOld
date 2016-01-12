@@ -72,10 +72,10 @@ TResult SIntPadding::Unserialize16(IDataInput* pInput){
 //============================================================
 TResult SIntPadding::Serialize(IDataOutput* pOutput){
    MO_CHECK(pOutput, return ENull);
-   pOutput->WriteInt32(left);
-   pOutput->WriteInt32(top);
-   pOutput->WriteInt32(right);
-   pOutput->WriteInt32(bottom);
+   pOutput->WriteInt32((TInt32)left);
+   pOutput->WriteInt32((TInt32)top);
+   pOutput->WriteInt32((TInt32)right);
+   pOutput->WriteInt32((TInt32)bottom);
    return ESuccess;
 }
 

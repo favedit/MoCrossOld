@@ -19,8 +19,8 @@ MO_NAMESPACE_BEGIN
 // @return 线程实例
 //============================================================
 FNetTransferSendThread::FNetTransferSendThread(){
-   _code = "STS";
-   _name = "Thread.Transfer.Send";
+   _code = TC("STS");
+   _name = TC("Thread.Transfer.Send");
    MO_CLEAR(_pService);
    MO_CLEAR(_pSocketsModule);
    MO_CLEAR(_pOutputQueue);
@@ -80,9 +80,9 @@ TInt FNetTransferSendThread::SendTcpMessage(FNetBufferedSocket* pSocket, TNetMes
    // 检查数据大小
    TInt capacity = pMessage->Capacity();
    if(0 == capacity){
-      MO_WARN("Empty tcp message.\n%s%s",
-            pMessage->DumpMessage((TChar*)dump, dump.Size()),
-            pMessage->DumpMessageMemory((TChar*)format, format.Size()));
+      MO_WARN(TC("Empty tcp message.\n%s%s"),
+            pMessage->DumpMessage((TChar*)dump, TFsDump::Size()),
+            pMessage->DumpMessageMemory((TChar*)format, TFsDump::Size()));
       return 0;
    }
    // 将消息写入链接的输出管道（TCP发送数据）
@@ -95,28 +95,28 @@ TInt FNetTransferSendThread::SendTcpMessage(FNetBufferedSocket* pSocket, TNetMes
    if(!result){
       // 链接发送区满，抛弃要发送的消息
 #ifdef _MO_DEBUG
-      MO_WARN("Socket output buffer is full. (length=%d, host=%s:%d#%d)\n%s%s",
+      MO_WARN(TC("Socket output buffer is full. (length=%d, host=%s:%d#%d)\n%s%s"),
             pSocket->OutputPipe()->Length(), pSocket->Host(), pSocket->Port(), pSocket->Serial(),
-            pMessage->DumpMessage((TChar*)dump, dump.Size()),
-            pMessage->DumpMessageMemory((TChar*)format, format.Size()));
+            pMessage->DumpMessage((TChar*)dump, dump.Capacity()),
+            pMessage->DumpMessageMemory((TChar*)format, dump.Capacity()));
 #else
       TInt code = pMessage->MessageHead().Code();
       TNetMessageInfo* pInfo = RNetMessageFactory::CodeInfo(code);
       if(NULL != pInfo){
-         MO_WARN("Socket output buffer is full. (length=%d, host=%s:%d#%d, message=%s)",
+         MO_WARN(TC("Socket output buffer is full. (length=%d, host=%s:%d#%d, message=%s)"),
                pSocket->OutputPipe()->Length(), pSocket->Host(), pSocket->Port(), pSocket->Serial(), pInfo->Name());
       }else{
-         MO_WARN("Socket output buffer is full. (length=%d, host=%s:%d#%d, message=unknown)",
+         MO_WARN(TC("Socket output buffer is full. (length=%d, host=%s:%d#%d, message=unknown)"),
                pSocket->OutputPipe()->Length(), pSocket->Host(), pSocket->Port(), pSocket->Serial());
       }
 #endif
       return 0;
    }
    // 正常发送消息
-   MO_DEBUG("Send tcp message to target. (host=%s:%d#%d)\nServer =>> %s%s",
+   MO_DEBUG(TC("Send tcp message to target. (host=%s:%d#%d)\nServer =>> %s%s"),
          pSocket->Host(), pSocket->Port(), pSocket->Serial(),
-         pMessage->DumpMessage((TChar*)dump, dump.Size()),
-         pMessage->DumpMessageMemory((TChar*)format, format.Size()));
+         pMessage->DumpMessage((TChar*)dump, dump.Capacity()),
+         pMessage->DumpMessageMemory((TChar*)format, dump.Capacity()));
    return capacity;
 }
 
@@ -135,7 +135,7 @@ TInt FNetTransferSendThread::SendTcpRouter(FNetBufferedSocket* pSocket, TNetRout
    // 检查数据大小
    TInt capacity = pRouter->Capacity();
    if(0 == capacity){
-      MO_WARN("Empty tcp router.\n%s%s",
+      MO_WARN(TC("Empty tcp router.\n%s%s"),
             pRouter->DumpRouter((TChar*)dump, dump.Size()),
             pRouter->DumpRouterMemory((TChar*)format, format.Size()));
       return 0;
@@ -145,10 +145,10 @@ TInt FNetTransferSendThread::SendTcpRouter(FNetBufferedSocket* pSocket, TNetRout
       TInt code = pRouter->MessageHead().Code();
       TNetMessageInfo* pInfo = RNetMessageFactory::CodeInfo(code);
       if(NULL != pInfo){
-         MO_WARN("Socket output buffer is full. (length=%d, host=%s:%d#%d, message=%s)",
+         MO_WARN(TC("Socket output buffer is full. (length=%d, host=%s:%d#%d, message=%s)"),
                pSocket->OutputPipe()->Length(), pSocket->Host(), pSocket->Port(), pSocket->Serial(), pInfo->Name());
       }else{
-         MO_WARN("Socket output buffer is full. (length=%d, host=%s:%d#%d, message=unknown)",
+         MO_WARN(TC("Socket output buffer is full. (length=%d, host=%s:%d#%d, message=unknown)"),
                pSocket->OutputPipe()->Length(), pSocket->Host(), pSocket->Port(), pSocket->Serial());
       }
       // 链接发送区满，抛弃要发送的消息
@@ -160,7 +160,7 @@ TInt FNetTransferSendThread::SendTcpRouter(FNetBufferedSocket* pSocket, TNetRout
       return 0;
    }
    // 正常发送消息
-   MO_DEBUG("Send tcp router to target. (host=%s:%d:%d)\nServer =>> %s%s",
+   MO_DEBUG(TC("Send tcp router to target. (host=%s:%d:%d)\nServer =>> %s%s"),
          pSocket->Host(), pSocket->Port(), pSocket->Serial(),
          pRouter->DumpRouter((TChar*)dump, dump.Size()),
          pRouter->DumpRouterMemory((TChar*)format, format.Size()));
@@ -183,7 +183,7 @@ TInt FNetTransferSendThread::SendUdpMessage(FNetBufferedSocket* pSocket, TNetMes
    TInt length;
    TByte buffer[MO_NETMESSAGE_MAXLENGTH];
    if(!pMessage->Serialize(buffer, MO_NETMESSAGE_MAXLENGTH, &length)){
-      MO_ERROR("Serial udp message failure.\n%s%s",
+      MO_ERROR(TC("Serial udp message failure.\n%s%s"),
             pMessage->DumpMessage((TChar*)dump, dump.Size()),
             pMessage->DumpMemory((TChar*)format, format.Size()));
       return 0;
@@ -234,8 +234,8 @@ TInt FNetTransferSendThread::ProcessTarget(TNetTransfer* pTransfer){
    TNetMessageInfo* pInfo = pTransfer->MessageInfo();
    if(NULL == pInfo){
       // 非法的消息
-      MO_WARN("Invalid message code. (code=%d)\n%s", headMessage.Code(),
-            pTransfer->DumpMemory((TChar*)format, format.Size()));
+      MO_WARN(TC("Invalid message code. (code=%d)\n%s"), headMessage.Code(),
+            pTransfer->DumpMemory((TChar*)format, MO_FS_DUMP_LENGTH));
       return 0;
    }
    TBool udpMessage = pInfo->IsUdpSupport();
@@ -246,14 +246,14 @@ TInt FNetTransferSendThread::ProcessTarget(TNetTransfer* pTransfer){
    if(NULL == pSocket){
       if(!udpMessage){
          // 链接不存在或以关闭，抛弃要发送的消息
-         MO_DEBUG("Socket is not found. (index=0x%04X:%d, message=%s)", index, index, pInfo->Name());
+         MO_DEBUG(TC("Socket is not found. (index=0x%04X:%d, message=%s)"), index, index, pInfo->Name());
       }
       return 0;
    }
    // 检查链接是否关闭
    if(!pSocket->IsConnected()){
       // 链接已经关闭，抛弃要发送的消息
-      MO_DEBUG("Socket is allready shutdown. (index=0x%04X:%d, message=%s:%08X)",
+      MO_DEBUG(TC("Socket is allready shutdown. (index=0x%04X:%d, message=%s:%08X)"),
             index, index, pInfo->Name(), messageCode);
       return 0;
    }
@@ -264,7 +264,7 @@ TInt FNetTransferSendThread::ProcessTarget(TNetTransfer* pTransfer){
    TUint16 socketSerial = pSocket->Serial();
    if(!udpSupport && (socketSerial != serial)){
       // 链接不存在或以关闭，抛弃要发送的消息
-      MO_DEBUG("Socket flag is different. (socket=0x%08X(%d), index=%d, socket_serial=%d, message_serial=%d, message=%s:%08X)",
+      MO_DEBUG(TC("Socket flag is different. (socket=0x%08X(%d), index=%d, socket_serial=%d, message_serial=%d, message=%s:%08X)"),
             pSocket, pSocket->Index(), index, socketSerial, serial, pInfo->Name(), messageCode);
       return 0;
    }

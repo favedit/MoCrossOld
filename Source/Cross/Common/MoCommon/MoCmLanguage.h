@@ -102,7 +102,7 @@ public:
 public:
    static TInt Parse8(TChar8C* pValue);
    static TInt Parse16(TChar16C* pValue);
-   static TInt Parse32(TChar16C* pValue);
+   static TInt Parse32(TChar32C* pValue);
    static TInt Parse(TCharC* pValue);
    static TInt ParseNvl(TCharC* pValue);
 public:

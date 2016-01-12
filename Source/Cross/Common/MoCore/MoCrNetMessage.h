@@ -174,14 +174,14 @@ public:
    // <T>获得显示字符串。</T>
    TCharC* ToDisplay(TChar* pValue, TSize capacity){
       TStringRefer refer(pValue, capacity);
-      refer.AssignFormat("%04X:%04X", Data.items.index, Data.items.serial);
+      refer.AssignFormat(TC("%04X:%04X"), Data.items.index, Data.items.serial);
       return pValue;
    }
    //------------------------------------------------------------
    // <T>获得跟踪字符串。</T>
    TCharC* Track(TChar* pTrack, TSize capacity, TInt level){
       TStringRefer track(pTrack, capacity);
-      track.AppendFormat("%d:%d", Data.items.index, Data.items.serial);
+      track.AppendFormat(TC("%d:%d"), Data.items.index, Data.items.serial);
       return pTrack;
    }
 };
@@ -430,7 +430,7 @@ public:
    // <T>显示内容。</T>
    TCharC* ToDisplay(TChar* pValue, TSize capacity){
       TStringRefer refer(pValue, capacity);
-      refer.AppendFormat("(%d)-(%d,%d)-(%d,%d)",
+      refer.AppendFormat(TC("(%d)-(%d,%d)-(%d,%d)"),
             Data.Items.GroupId, Data.Items.ServerType, Data.Items.ServerId,
             Data.Items.ObjectIndex, Data.Items.ObjectSerial);
       return pValue;
@@ -439,7 +439,7 @@ public:
    // <T>跟踪内容。</T>
    TCharC* Track(TChar* pTrack, TSize capacity){
       TStringRefer track(pTrack, capacity);
-      track.AppendFormat("(%d)-(%d,%d)-(%d,%d)",
+      track.AppendFormat(TC("(%d)-(%d,%d)-(%d,%d)"),
             Data.Items.GroupId, Data.Items.ServerType, Data.Items.ServerId,
             Data.Items.ObjectIndex, Data.Items.ObjectSerial);
       return pTrack;
@@ -596,7 +596,7 @@ public:
       // 获得总数
       _count = *(TUint16*)pPtr;
       if(_count > MO_NETMESSAGE_MAXTARGET){
-         MO_DEBUG_FATAL("Unserialize net targets not enough memory. (size=%d, count=%d)", MO_NETMESSAGE_MAXTARGET, this->_count);
+         MO_DEBUG_FATAL(TC("Unserialize net targets not enough memory. (size=%d, count=%d)"), MO_NETMESSAGE_MAXTARGET, this->_count);
          return -1;
       }
       // 复制数据

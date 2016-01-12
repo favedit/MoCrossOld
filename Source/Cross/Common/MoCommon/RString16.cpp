@@ -129,35 +129,65 @@ THashCode RString16::MakeNocaseHashCode(TChar16C* pValue){
 //   RTypeMemory<TChar16>::Free(pValues);
 //   return ETrue;
 //}
+
+//============================================================
+// <T>安全复制字符串到目标字符串。</T>
+// <P>如果目标字符串或值字符串为空，则不进行复制。</P>
+// <P>如果目标字符串长度不足，则只复制能复制的部分数据。</P>
+// <P>复制后，末尾字符总是留空。</P>
 //
-////============================================================
-//// <T>安全复制字符串到目标字符串。</T>
-//// <P>如果目标字符串或值字符串为空，则不进行复制。</P>
-//// <P>如果目标字符串长度不足，则只复制能复制的部分数据。</P>
-//// <P>复制后，末尾字符总是留空。</P>
-////
-//// @param pTarget 目标字符串指针
-//// @param size 目标字符窜长度
-//// @param pValue 值字符串指针
-//// @return 复制长度
-////============================================================
-//TInt RString16::SafeCopy(TChar16* pTarget, TSize size, TChar16C* pValue){
-//   if((NULL != pTarget) && (size > 0) && (NULL != pValue)){
-//      TSize length = wcslen(pValue);
-//      if(length > 0){
-//         if(length >= size){
-//            length = size - 1;
-//         }
-//         memcpy(pTarget, pValue, length);
-//         pTarget[length] = 0;
-//      }else{
-//         pTarget[0] = 0;
-//      }
-//      return length;
-//   }
-//   return 0;
-//}
+// @param pTarget 目标字符串指针
+// @param size 目标字符窜长度
+// @param pValue 值字符串指针
+// @return 复制长度
+//============================================================
+TInt RString16::SafeCopy(TChar16* pTarget, TSize size, TChar8C* pValue){
+   if((NULL != pTarget) && (size > 0) && (NULL != pValue)){
+      TSize length = strlen(pValue);
+      if(length > 0){
+         if(length >= size){
+            length = size - 1;
+         }
+         for(TInt n = 0; n < length; n++){
+            *pTarget++ = *pValue++;
+         }
+         *pTarget = 0;
+      }else{
+         pTarget[0] = 0;
+      }
+      return length;
+   }
+   return 0;
+}
+
+//============================================================
+// <T>安全复制字符串到目标字符串。</T>
+// <P>如果目标字符串或值字符串为空，则不进行复制。</P>
+// <P>如果目标字符串长度不足，则只复制能复制的部分数据。</P>
+// <P>复制后，末尾字符总是留空。</P>
 //
+// @param pTarget 目标字符串指针
+// @param size 目标字符窜长度
+// @param pValue 值字符串指针
+// @return 复制长度
+//============================================================
+TInt RString16::SafeCopy(TChar16* pTarget, TSize size, TChar16C* pValue){
+   if((NULL != pTarget) && (size > 0) && (NULL != pValue)){
+      TSize length = wcslen(pValue);
+      if(length > 0){
+         if(length >= size){
+            length = size - 1;
+         }
+         memcpy(pTarget, pValue, length);
+         pTarget[length] = 0;
+      }else{
+         pTarget[0] = 0;
+      }
+      return length;
+   }
+   return 0;
+}
+
 ////============================================================
 //// <T>强制复制字符串到目标字符串。</T>
 //// <P>如果目标字符串为空，产生例外。</P>

@@ -31,7 +31,7 @@ ETemplateTagResult FTemplateTagTrue::OnBegin(FTemplateContext* pContext){
    TChar spliter = 0;
    TInt position = 0;
    while(position < length){
-      TInt find = RChars::IndexsOf((TCharC*)_source + position, "|&");
+      TInt find = RChars::IndexsOf((TCharC*)_source + position, TC("|&"));
       if(find != ENotFound){
          spliter = _source.Get(position + find);
          value = _source.SubStrC(position, position + find);
@@ -83,7 +83,7 @@ ETemplateTagResult FTemplateTagTrue::OnEnd(FTemplateContext* pContext){
 // @return 处理结果
 //============================================================
 TResult FTemplateTagTrue::SetAttribute(TCharC* pName, TCharC* pValue){
-   if(RString::Equals(pName, "source")){
+   if(RString::Equals(pName, TC("source"))){
       _source = pValue;
    }
    return ESuccess;

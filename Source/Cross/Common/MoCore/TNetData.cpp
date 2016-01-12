@@ -217,9 +217,9 @@ TCharC* TNetData::Dump(TChar* pDump, TSize capacity){
    DumpData(dataTrack.Memory(), dataTrack.Size());
    // 生成信息
    MO_LIB_STRING_FORMAT(pDump, capacity,
-         "Net     : length=0x%04X(%d), protocol=%d, hash=0x%08X\n"
+      TC("Net     : length=0x%04X(%d), protocol=%d, hash=0x%08X\n"
          "--------------------------------------------------------------------------------\n"
-         "%s",
+         "%s"),
          length, length, protocol, hash,
          (TCharC*)dataTrack);
    return pDump;

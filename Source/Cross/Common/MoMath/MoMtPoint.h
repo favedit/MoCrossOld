@@ -265,7 +265,7 @@ public:
    //------------------------------------------------------------
    // <T>获得绝对值。</T>
    MO_INLINE TFloat Absolute(){
-      return sqrt((x * x) + (y * y));
+      return (TFloat)sqrt((x * x) + (y * y));
    }
    //------------------------------------------------------------
    // <T>单位化处理。</T>
@@ -281,7 +281,7 @@ public:
    MO_INLINE TFloat Distance(const SFloatPoint2& value){
       TFloat cx = x - value.x;
       TFloat cy = y - value.y;
-      return sqrt((cx * cx) + (cy * cy));
+      return (TFloat)sqrt((cx * cx) + (cy * cy));
    }
    //------------------------------------------------------------
    // <T>重置数据。</T>
@@ -940,7 +940,7 @@ public:
    //------------------------------------------------------------
    // <T>获得绝对值。</T>
    MO_INLINE TFloat Absolute(){
-      return sqrt((x * x) + (y * y) + (z * z));
+      return (TFloat)sqrt((x * x) + (y * y) + (z * z));
    }
    //------------------------------------------------------------
    // <T>单位化处理。</T>
@@ -958,7 +958,7 @@ public:
       TFloat cx = x - value.x;
       TFloat cy = y - value.y;
       TFloat cz = z - value.z;
-      return sqrt((cx * cx) + (cy * cy) + (cz * cz));
+      return (TFloat)sqrt((cx * cx) + (cy * cy) + (cz * cz));
    }
    //------------------------------------------------------------
    // <T>重置数据。</T>
@@ -1710,7 +1710,7 @@ public:
    //------------------------------------------------------------
    // <T>获得绝对值。</T>
    TFloat Absolute(){
-      return sqrt((x * x) + (y * y) + (z * z) + (w * w));
+      return (TFloat)sqrt((x * x) + (y * y) + (z * z) + (w * w));
    }
    //------------------------------------------------------------
    // <T>单位化处理。</T>
@@ -1730,7 +1730,7 @@ public:
       TFloat cy = y - value.y;
       TFloat cz = z - value.z;
       TFloat cw = w - value.w;
-      return sqrt((cx * cx) + (cy * cy) + (cz * cz) + (cw * cw));
+      return (TFloat)sqrt((cx * cx) + (cy * cy) + (cz * cz) + (cw * cw));
    }
    //------------------------------------------------------------
    // <T>重置数据。</T>

@@ -132,7 +132,7 @@ TBool TNetMessage::UnserializeMessage(TAnyC* pMemory, TInt size, TInt* length){
    // 计算哈希
    TNetHash hash = CalculateHash(messageSerial, messageTick, pData, dataLength);
    if(_netHead.Hash() != hash){
-      MO_ERROR("Unserial message invalid hash. (head_hash=0x%08X, data_hash=0x%08X)",
+      MO_ERROR(TC("Unserial message invalid hash. (head_hash=0x%08X, data_hash=0x%08X)"),
             _netHead.Hash(), hash);
       return EFalse;
    }
@@ -237,12 +237,12 @@ TCharC* TNetMessage::DumpMessage(TChar* pDump, TSize capacity){
    // 生成信息
    TCharC* pName = RNetMessageFactory::CodeName(code);
    MO_LIB_STRING_FORMAT(pDump, capacity,
-         "[ %s ]\n"
+      TC("[ %s ]\n"
          "--------------------------------------------------------------------------------\n"
          "-- Net     : length=0x%04X(%d), protocol=%d, hash=0x%08X\n"
          "-- Message : code=(%02X:%04X), command=%d, source=%s(0x%04X), target=%s(0x%04X)\n"
          "--------------------------------------------------------------------------------\n"
-         "%s",
+         "%s"),
          pName,
          length, length, protocol, hash,
          type, code, (TUint8)command, pSourceTerminal, sourceTerminal, pTargetTerminal, targetTerminal,

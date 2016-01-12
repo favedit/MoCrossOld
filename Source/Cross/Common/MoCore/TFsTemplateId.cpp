@@ -77,7 +77,7 @@ TCharC* TFsTemplateId::Pack(){
 
 //============================================================
 TCharC* TFsTemplateId::Format(){
-   this->AssignFormat("%02X-%06X(%d)",
+   this->AssignFormat(TC("%02X-%06X(%d)"),
          (_value >> 24) % 0x000000FF, (_value % 0x00FFFFFF), _value);
    return this->MemoryC();
 }

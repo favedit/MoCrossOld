@@ -72,10 +72,10 @@ TResult SIntRectangle::Unserialize16(IDataInput* pInput){
 //============================================================
 TResult SIntRectangle::Serialize(IDataOutput* pOutput){
    MO_CHECK(pOutput, return ENull);
-   pOutput->WriteInt32(left);
-   pOutput->WriteInt32(top);
-   pOutput->WriteInt32(width);
-   pOutput->WriteInt32(height);
+   pOutput->WriteInt32((TInt32)left);
+   pOutput->WriteInt32((TInt32)top);
+   pOutput->WriteInt32((TInt32)width);
+   pOutput->WriteInt32((TInt32)height);
    return ESuccess;
 }
 

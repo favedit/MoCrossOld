@@ -8,7 +8,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FFeatureConsole, FConsole);
 // <T>构造功能控制台。</T>
 //============================================================
 FFeatureConsole::FFeatureConsole(){
-   _name = "Feature.Console";
+   _name = TC("Feature.Console");
    _pClasses = MO_CREATE(FClassCollection);
 }
 

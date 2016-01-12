@@ -91,7 +91,7 @@ TCharC* FTemplateContext::GetDefineAsString(TCharC* pName, TCharC* pDefaultValue
 // @param value ÄÚÈÝ
 //============================================================
 void FTemplateContext::DefineBool(TCharC* pName, TBool value){
-   MO_INFO("Template define bool value. (name=%s, value=%d)", pName, value);
+   MO_INFO(TC("Template define bool value. (name=%s, value=%d)"), pName, value);
    _config->SetBool(pName, value);
 }
 
@@ -102,7 +102,7 @@ void FTemplateContext::DefineBool(TCharC* pName, TBool value){
 // @param value ÄÚÈÝ
 //============================================================
 void FTemplateContext::DefineInt(TCharC* pName, TInt value){
-   MO_INFO("Template define int value. (name=%s, value=%d)", pName, value);
+   MO_INFO(TC("Template define int value. (name=%s, value=%d)"), pName, value);
    _config->SetInt(pName, value);
 }
 
@@ -113,7 +113,7 @@ void FTemplateContext::DefineInt(TCharC* pName, TInt value){
 // @param pValue ×Ö·û´®
 //============================================================
 void FTemplateContext::DefineString(TCharC* pName, TCharC* pValue){
-   MO_INFO("Template define string value. (name=%s, value=%s)", pName, pValue);
+   MO_INFO(TC("Template define string value. (name=%s, value=%s)"), pName, pValue);
    _config->Set(pName, pValue);
 }
 

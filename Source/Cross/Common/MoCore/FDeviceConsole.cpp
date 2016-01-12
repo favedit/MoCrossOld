@@ -100,7 +100,7 @@ FDevice* FDeviceConsole::Unregister(FClass* pClass){
 // @return 处理结果
 //============================================================
 TResult FDeviceConsole::Suspend(){
-   MO_INFO("Device suspend.");
+   MO_INFO(TC("Device suspend."));
    // 挂起处理
    _statusPause = ETrue;
    // 所有设备暂停
@@ -118,7 +118,7 @@ TResult FDeviceConsole::Suspend(){
 // @return 处理结果
 //============================================================
 TResult FDeviceConsole::Resume(){
-   MO_INFO("Device resume.");
+   MO_INFO(TC("Device resume."));
    // 所有设备恢复
    TInt count = _devices.Count();
    for(TInt n = 0; n < count; n++){

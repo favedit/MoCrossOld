@@ -181,12 +181,12 @@ TBool SFloatMatrix3d::Invert(){
 // <T>强制更新数据。</T>
 //============================================================
 void SFloatMatrix3d::UpdateForce(){
-   TFloat rsx = sin(rx);
-   TFloat rcx = cos(rx);
-   TFloat rsy = sin(ry);
-   TFloat rcy = cos(ry);
-   TFloat rsz = sin(rz);
-   TFloat rcz = cos(rz);
+   TFloat rsx = (TFloat)sin(rx);
+   TFloat rcx = (TFloat)cos(rx);
+   TFloat rsy = (TFloat)sin(ry);
+   TFloat rcy = (TFloat)cos(ry);
+   TFloat rsz = (TFloat)sin(rz);
+   TFloat rcz = (TFloat)cos(rz);
    data[0][0] = rcy * rcz * sx;
    data[0][1] = rcy * rsz * sx;
    data[0][2] = -rsy * sx;
@@ -269,8 +269,8 @@ void SFloatMatrix3d::Translate(TFloat x, TFloat y, TFloat z){
 //============================================================
 void SFloatMatrix3d::RotationX(TFloat value){
    // 计算旋转
-   TFloat rs = sin(value);
-   TFloat rc = cos(value);
+   TFloat rs = (TFloat)sin(value);
+   TFloat rc = (TFloat)cos(value);
    // 追加内容
    TFloat data[4][4];
    data[0][0] = 1;
@@ -303,8 +303,8 @@ void SFloatMatrix3d::RotationX(TFloat value){
 //============================================================
 void SFloatMatrix3d::RotationY(TFloat value){
    // 计算旋转
-   TFloat rs = sin(value);
-   TFloat rc = cos(value);
+   TFloat rs = (TFloat)sin(value);
+   TFloat rc = (TFloat)cos(value);
    // 追加内容
    TFloat data[4][4];
    data[0][0] = rc;
@@ -337,8 +337,8 @@ void SFloatMatrix3d::RotationY(TFloat value){
 //============================================================
 void SFloatMatrix3d::RotationZ(TFloat value){
    // 计算旋转
-   TFloat rs = sin(value);
-   TFloat rc = cos(value);
+   TFloat rs = (TFloat)sin(value);
+   TFloat rc = (TFloat)cos(value);
    // 追加内容
    TFloat data[4][4];
    data[0][0] = rc;
@@ -373,12 +373,12 @@ void SFloatMatrix3d::RotationZ(TFloat value){
 //============================================================
 void SFloatMatrix3d::Rotation(TFloat x, TFloat y, TFloat z){
    // 计算旋转
-   TFloat rsx = sin(x);
-   TFloat rcx = cos(x);
-   TFloat rsy = sin(y);
-   TFloat rcy = cos(y);
-   TFloat rsz = sin(z);
-   TFloat rcz = cos(z);
+   TFloat rsx = (TFloat)sin(x);
+   TFloat rcx = (TFloat)cos(x);
+   TFloat rsy = (TFloat)sin(y);
+   TFloat rcy = (TFloat)cos(y);
+   TFloat rsz = (TFloat)sin(z);
+   TFloat rcz = (TFloat)cos(z);
    // 追加内容
    TFloat data[4][4];
    data[0][0] = rcy * rcz;

@@ -247,8 +247,8 @@ public:
    TBool Create(TCharC* pFileName);
    TBool Open(TCharC* pFileName);
    TBool Seek(TInt position);
-   MO_OVERRIDE( TInt Read(TAny* pData, TSize size) );
-   MO_OVERRIDE( TInt Write(TAnyC* pData, TSize size) );
+   MO_OVERRIDE TInt Read(TAny* pData, TSize size);
+   MO_OVERRIDE TInt Write(TAnyC* pData, TSize size);
    TBool Close();
 };
 #endif // _WINDOWS

@@ -11,7 +11,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FTemplateConsole, FConsole);
 FTemplateConsole::FTemplateConsole(){
    _pParser = MO_CREATE(FTemplateParser);
    _pTemplates = MO_CREATE(FTemplateDictionary);
-   _pParser->SetSpace("shader");
+   _pParser->SetSpace(TC("shader"));
 }
 
 //============================================================
@@ -42,7 +42,7 @@ FTemplate* FTemplateConsole::Load(FTemplateContext* pContext, TCharC* pTemplateN
    TStringBuffer source;
    TResult result = RAssetManager::Instance().OpenAssetString(&source, pTemplateName);
    if(result != ESuccess){
-      MO_FATAL("Open template failure. (name=%s)", pTemplateName);
+      MO_FATAL(TC("Open template failure. (name=%s)"), pTemplateName);
       return NULL;
    }
    TCharC* pSpace = pContext->Space();
@@ -57,13 +57,13 @@ FTemplate* FTemplateConsole::Load(FTemplateContext* pContext, TCharC* pTemplateN
    TXmlNodeIteratorC iterator = pConfig->NodeIteratorC();
    while(iterator.Next()){
       FXmlNode* pNode = *iterator;
-      if(pNode->IsName("Source")){
+      if(pNode->IsName(TC("Source"))){
          // 处理包含情况
-         if(pNode->Contains("include")){
+         if(pNode->Contains(TC("include"))){
          }else{
             //............................................................
             // 解析内容
-            TCharC* pName = pNode->Get("name", "default");
+            TCharC* pName = pNode->Get(TC("name"), TC("default"));
             TCharC* pSource = pNode->Text();
             // 创建构建器
             GPtr<FTemplateBuilder> builder = FTemplateBuilder::InstanceCreate();
@@ -76,7 +76,7 @@ FTemplate* FTemplateConsole::Load(FTemplateContext* pContext, TCharC* pTemplateN
             parser->SetSpace(pSpace);
             // 解析内容
             FTemplateSource* pTemplateSource = parser->Load(pSource);
-            MO_FATAL_CHECK(pTemplateSource, return NULL, "Build template failure.");
+            MO_FATAL_CHECK(pTemplateSource, return NULL, TC("Build template failure."));
             pTemplate->Sources()->Set(pName, pTemplateSource);
          }
       }

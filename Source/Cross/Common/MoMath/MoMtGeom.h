@@ -338,6 +338,17 @@ public:
    }
 public:
    //------------------------------------------------------------
+   // <T>判断是否相等。</T>
+   MO_INLINE TBool operator==(const SFloatColor4& value){
+      return (red == value.red) && (green == value.green) && (blue == value.blue) && (alpha == value.alpha);
+   }
+   //------------------------------------------------------------
+   // <T>判断是否不相等。</T>
+   MO_INLINE TBool operator!=(const SFloatColor4& value){
+      return (red != value.red) || (green != value.green) || (blue != value.blue) || (alpha != value.alpha);
+   }
+public:
+   //------------------------------------------------------------
    // <T>设置颜色。</T>
    MO_INLINE void Set(TFloat redValue = 0.0f, TFloat greenValue = 0.0f, TFloat blueValue = 0.0f, TFloat alphaValue = 1.0f){
       red = redValue;

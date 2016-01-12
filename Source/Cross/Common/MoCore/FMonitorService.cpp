@@ -7,7 +7,7 @@ MO_NAMESPACE_BEGIN
 // <T>构造监视器服务。</T>
 //============================================================
 FMonitorService::FMonitorService(){
-   _name = "Service.Monitor";
+   _name = TC("Service.Monitor");
    _pMachine = MO_CREATE(FMonitorMachine);
 }
 
@@ -96,12 +96,12 @@ TResult FMonitorService::StatisticsRefresh(){
       FMonitor* pMonitor = (FMonitor*)*iterator;
       if(NULL != pMonitor){
          TSpeedStatistics& statistics = pMonitor->Statistics();
-         dump.AppendFormat("\n   " MO_FMT_OBJECT_NAME " count=%8d, tick=(%8d - %-8d) - %8d (failure=%16lld, slow=%16lld)",
+         dump.AppendFormat(TC("\n   ") MO_FMT_OBJECT_NAME TC(" count=%8d, tick=(%8d - %-8d) - %8d (failure=%16lld, slow=%16lld)"),
                pMonitor->Name(), statistics.Count(), statistics.MinTick(), statistics.MaxTick(),
                statistics.AverageTick(), statistics.FailureCount(), statistics.SlowCount());
       }
    }
-   MO_INFO("Monitor statistics. (count=%d)%s", _pMachine->Monitors()->Count(), (TCharC*)dump);
+   MO_INFO(TC("Monitor statistics. (count=%d)%s"), _pMachine->Monitors()->Count(), (TCharC*)dump);
    return ESuccess;
 }
 

@@ -27,12 +27,12 @@ TBool FSharedNetPipe::TryWriteMessage(TNetMessage* pMessage){
    TInt length;
    TByte buffer[MO_NETMESSAGE_MAXLENGTH];
    if(!pMessage->SerializeMessage(buffer, MO_NETMESSAGE_MAXLENGTH, &length)){
-      MO_ERROR("Serialize message failure.");
+      MO_ERROR(TC("Serialize message failure."));
       return EFalse;
    }
    // 尝试写入数据
    if(!TryWrite(buffer, length)){
-      MO_ERROR("Write message failure. (length=%d)", length);
+      MO_ERROR(TC("Write message failure. (length=%d)"), length);
       return EFalse;
    }
    return ETrue;
@@ -50,12 +50,12 @@ TBool FSharedNetPipe::TryWriteMessageCompress(TNetMessage* pMessage){
    TInt length;
    TByte buffer[MO_NETMESSAGE_MAXLENGTH];
    if(!pMessage->CompressMessage(buffer, MO_NETMESSAGE_MAXLENGTH, &length)){
-      MO_ERROR("Serialize message failure.");
+      MO_ERROR(TC("Serialize message failure."));
       return EFalse;
    }
    // 尝试写入数据
    if(!TryWrite(buffer, length)){
-      MO_ERROR("Write message failure. (length=%d)", length);
+      MO_ERROR(TC("Write message failure. (length=%d)"), length);
       return EFalse;
    }
    return ETrue;
@@ -73,12 +73,12 @@ TBool FSharedNetPipe::TryWriteRouter(TNetRouter* pRouter){
    TInt length;
    TByte buffer[MO_NETMESSAGE_MAXLENGTH];
    if(!pRouter->SerializeRouter(buffer, MO_NETMESSAGE_MAXLENGTH, &length)){
-      MO_ERROR("Serialize router failure.");
+      MO_ERROR(TC("Serialize router failure."));
       return EFalse;
    }
    // 尝试写入数据
    if(!TryWrite(buffer, length)){
-      MO_ERROR("Write router failure. (length=%d)", length);
+      MO_ERROR(TC("Write router failure. (length=%d)"), length);
       return EFalse;
    }
    return ETrue;
@@ -96,12 +96,12 @@ TBool FSharedNetPipe::TryWriteRouterCompress(TNetRouter* pRouter){
    TInt length;
    TByte buffer[MO_NETMESSAGE_MAXLENGTH];
    if(!pRouter->SerializeRouter(buffer, MO_NETMESSAGE_MAXLENGTH, &length)){
-      MO_ERROR("Serialize router failure.");
+      MO_ERROR(TC("Serialize router failure."));
       return EFalse;
    }
    // 尝试写入数据
    if(!TryWrite(buffer, length)){
-      MO_ERROR("Write router failure. (length=%d)", length);
+      MO_ERROR(TC("Write router failure. (length=%d)"), length);
       return EFalse;
    }
    return ETrue;

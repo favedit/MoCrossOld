@@ -27,10 +27,10 @@ TBool FNetMessageHandles::Process(FObject* pSender, TNetMessage* pMessage){
          FNetMessageHandle* pHandle = *iterator;
          result = pHandle->Process(pSender, pMessage);
          if(result){
-            MO_DEBUG("Process message hanle success. (message=%s, invoker=%s)",
+            MO_DEBUG(TC("Process message hanle success. (message=%s, invoker=%s)"),
                   pMessage->MessageInfo()->Name(), pHandle->InvokerName());
          }else{
-            MO_ERROR("Process message hanle failure. (message=%s, invoker=%s)",
+            MO_ERROR(TC("Process message hanle failure. (message=%s, invoker=%s)"),
                   pMessage->MessageInfo()->Name(), pHandle->InvokerName());
          }
       }

@@ -358,7 +358,7 @@ public:
 public:
    //------------------------------------------------------------
    // <T>获得容纳长度。</T>
-   MO_INLINE static TInt Size(){
+   static MO_INLINE TInt Size(){
       return S;
    }
 };
@@ -380,14 +380,18 @@ public: \
    MO_ABSTRACT ~C(){ \
    } \
 public: \
-   void operator=(TChar32C* pValue){ \
-   Assign(pValue); \
+   MO_INLINE void operator=(TChar32C* pValue){ \
+      Assign(pValue); \
    } \
-   void operator=(const C& value){ \
+   MO_INLINE void operator=(const C& value){ \
       Assign(value.MemoryC(), value.Length()); \
    } \
-   void operator=(const TString32PtrC& value){ \
+   MO_INLINE void operator=(const TString32PtrC& value){ \
       Assign(value.MemoryC(), value.Length()); \
+   } \
+public: \
+   static MO_INLINE TInt Size(){ \
+      return P::Size(); \
    } \
 };
 //------------------------------------------------------------

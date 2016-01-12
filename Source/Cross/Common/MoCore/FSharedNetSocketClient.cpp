@@ -106,7 +106,7 @@ void FSharedNetSocketClient::Unlink(){
 //============================================================
 TCharC* FSharedNetSocketClient::DumpSocket(TChar* pDump, TSize capacity){
    TStringRefer dump(pDump, capacity);
-   dump.AppendFormat("host=%s:%d, socket=%d:%d",
+   dump.AppendFormat(TC("host=%s:%d, socket=%d:%d"),
          (TCharC*)_gClient->host, _gClient->port,
          _gClient->socketTarget.Index(), _gClient->socketTarget.Serial());
    return (TCharC*)dump;

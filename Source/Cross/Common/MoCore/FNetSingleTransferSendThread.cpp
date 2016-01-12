@@ -71,7 +71,7 @@ TResult FNetSingleTransferSendThread::Process(){
                ProcessTarget(&transfer);
             }
          }else{
-            MO_ERROR("Router unserialize failure. (length=%d)", length);
+            MO_ERROR(TC("Router unserialize failure. (length=%d)"), length);
          }
       }
       // 未读取到数据和未发送数据的情况下，休眠处理

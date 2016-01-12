@@ -28,7 +28,7 @@ TResult FNetSingleTransferServerThread::Process(){
    _pServerSocket->SetHost(_host.host);
    _pServerSocket->SetPort(_host.port);
    _pServerSocket->Connect();
-   MO_DEBUG("Create tcp server. (host=%s:%d, handle=%d)", (TCharC*)_host.host, _host.port, _pServerSocket->Handle());
+   MO_DEBUG(TC("Create tcp server. (host=%s:%d, handle=%d)"), (TCharC*)_host.host, _host.port, _pServerSocket->Handle());
    // 安装扑捉器
    _pCatcher->Install();
    // 监听输入端口

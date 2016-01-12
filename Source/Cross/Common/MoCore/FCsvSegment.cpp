@@ -6,7 +6,7 @@ MO_NAMESPACE_BEGIN
 // <T>创建一个标表段。</T>
 //============================================================
 FCsvSegment::FCsvSegment(){
-   _name = "default";
+   _name = TC("default");
    _pHeads = MO_CREATE(FCsvHeads);
    _pLines = MO_CREATE(FCsvLines, _pHeads);
    _pFooters = MO_CREATE(FCsvFooters);
@@ -104,7 +104,7 @@ void FCsvSegment::SetName(TCharC* pName) {
 void FCsvSegment::Store(TDataOutput& out, TBool saveHead){
    if(saveHead){
       TString segmentBegin;
-      segmentBegin.Append("@segment.start ");
+      segmentBegin.Append(TC("@segment.start "));
       segmentBegin.Append(_name);
       segmentBegin.Append('\n');
       out.Write((TCharC*)segmentBegin, segmentBegin.Length());
@@ -114,7 +114,7 @@ void FCsvSegment::Store(TDataOutput& out, TBool saveHead){
    _pFooters->Store(out);
    if(saveHead){
       TString segmentEnd;
-      segmentEnd.Append("@segment.end\n");
+      segmentEnd.Append(TC("@segment.end\n"));
       out.Write((TCharC*)segmentEnd, segmentEnd.Length());
    }
 }

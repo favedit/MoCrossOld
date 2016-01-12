@@ -111,7 +111,7 @@ public:
    TResult Serialize(IDataOutput* pOutput);
    TResult Unserialize(IDataInput* pInput);
 public:
-   TBool Parse(TCharC* pValue);
+   TResult Parse(TCharC* pValue);
    TCharC* Format(TChar* pBuffer, TInt capacity);
    TCharC* ToString(TChar* pBuffer, TInt capacity);
 };

@@ -8,7 +8,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FTemplateTagText, FTemplateTag);
 // <T>构造模板文本标签。</T>
 //============================================================
 FTemplateTagText::FTemplateTagText(){
-   _name = "text";
+   _name = TC("text");
 }
 
 //============================================================

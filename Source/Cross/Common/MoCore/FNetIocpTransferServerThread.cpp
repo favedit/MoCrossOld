@@ -29,7 +29,7 @@ TResult FNetIocpTransferServerThread::Process(){
    _pServerSocket->SetPort(_host.port);
    _pServerSocket->Connect();
    _pServerSocket->SetNonBlock();
-   MO_DEBUG("Create tcp server. (host=%s:%d, handle=%d)", (TCharC*)_host.host, _host.port, _pServerSocket->Handle());
+   MO_DEBUG(TC("Create tcp server. (host=%s:%d, handle=%d)"), (TCharC*)_host.host, _host.port, _pServerSocket->Handle());
    // …Ë÷√–≈œ¢
    TFsNetSocketInfoVector infos;
    TInt infoSize = infos.Size();

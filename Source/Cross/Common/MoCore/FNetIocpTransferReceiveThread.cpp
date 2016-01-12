@@ -46,7 +46,7 @@ TResult FNetIocpTransferReceiveThread::Process(){
    //............................................................
    while(!IsStop()){
       // 获取链接事件列表
-      TUint32 transdBytes = 0;
+	  DWORD transdBytes = 0;
       PULONG_PTR completionKey = 0;
       OVERLAPPED* pOverlap= NULL;
       TBool result = GetQueuedCompletionStatus(pHandle, &transdBytes, (PULONG_PTR)&completionKey, &pOverlap, INFINITE);

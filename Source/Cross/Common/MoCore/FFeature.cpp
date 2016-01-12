@@ -8,7 +8,7 @@ MO_CLASS_IMPLEMENT_INHERITS(FFeature, FConsole);
 // <T>构造功能。</T>
 //============================================================
 FFeature::FFeature(){
-   _name = "Feature";
+   _name = TC("Feature");
 }
 
 //============================================================
@@ -23,7 +23,7 @@ FFeature::~FFeature(){
 // @return 处理结果
 //============================================================
 TResult FFeature::Startup(){
-   MO_INFO("Feature startup. (name=%s)", (TCharC*)_name);
+   MO_INFO(TC("Feature startup. (name=%s)"), (TCharC*)_name);
    return ESuccess;
 }
 
@@ -33,7 +33,7 @@ TResult FFeature::Startup(){
 // @return 处理结果
 //============================================================
 TResult FFeature::Suspend(){
-   MO_INFO("Feature suspend. (name=%s)", (TCharC*)_name);
+   MO_INFO(TC("Feature suspend. (name=%s)"), (TCharC*)_name);
    return ESuccess;
 }
 
@@ -43,7 +43,7 @@ TResult FFeature::Suspend(){
 // @return 处理结果
 //============================================================
 TResult FFeature::Resume(){
-   MO_INFO("Feature resume. (name=%s)", (TCharC*)_name);
+   MO_INFO(TC("Feature resume. (name=%s)"), (TCharC*)_name);
    return ESuccess;
 }
 
@@ -53,7 +53,7 @@ TResult FFeature::Resume(){
 // @return 处理结果
 //============================================================
 TResult FFeature::Shutdown(){
-   MO_INFO("Feature shutdown. (name=%s)", (TCharC*)_name);
+   MO_INFO(TC("Feature shutdown. (name=%s)"), (TCharC*)_name);
    return ESuccess;
 }
 

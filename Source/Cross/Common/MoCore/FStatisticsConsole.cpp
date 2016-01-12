@@ -183,7 +183,7 @@ TResult FStatisticsConsole::StartupMonitor(){
 // @return 处理结果
 //============================================================
 TResult FStatisticsConsole::TriggerRefresh(TTimeTick currentTick){
-   MO_INFO("Statistics begin: ------------------------------------------------------------");
+   MO_INFO(TC("Statistics begin: ------------------------------------------------------------"));
    // 内存统计
    RSystem::Dump();
    // 内存存储统计
@@ -198,7 +198,7 @@ TResult FStatisticsConsole::TriggerRefresh(TTimeTick currentTick){
    while(iterator.Next()){
       iterator->StatisticsRefresh();
    }
-   MO_INFO("Statistics end:   ------------------------------------------------------------");
+   MO_INFO(TC("Statistics end:   ------------------------------------------------------------"));
    return ESuccess;
 }
 
@@ -222,14 +222,14 @@ TResult FStatisticsConsole::Reset(){
 // @return 处理结果
 //============================================================
 TResult FStatisticsConsole::Track(){
-   MO_INFO("Statistics begin: ------------------------------------------------------------");
+   MO_INFO(TC("Statistics begin: ------------------------------------------------------------"));
    // 统计器集合
    FStatisticsDictionary::TIteratorC iterator = _pStatisticsDictionary->IteratorC();
    while(iterator.Next()){
       FStatistics* pStatistics = *iterator;
       pStatistics->Track();
    }
-   MO_INFO("Statistics end:   ------------------------------------------------------------");
+   MO_INFO(TC("Statistics end:   ------------------------------------------------------------"));
    return ESuccess;
 }
 

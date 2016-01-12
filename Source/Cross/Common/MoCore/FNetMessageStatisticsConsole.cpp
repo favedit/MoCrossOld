@@ -58,7 +58,7 @@ TResult FNetMessageStatisticsConsole::StatisticsRefresh(){
       FNetMessageStatisticsMachine* pMachine = *iterator;
       pMachine->Dump(dump);
    }
-   MO_INFO("Message statistics.%s", (TCharC*)dump);
+   MO_INFO(TC("Message statistics.%s"), (TCharC*)dump);
    // 消息队列统计
    if(RNetQueueModule::IsValid()){
       RNetQueueModule::Instance().Connection()->Dump();

@@ -118,7 +118,7 @@ public:
    // <T>获得显示信息。</T>
    TCharC* ToDisplay(TChar* pText, TSize capacity){
       TStringRefer text(pText, capacity);
-      text.AssignFormat("%04X:%04X", data.items.groupId, data.items.itemId);
+      text.AssignFormat(TC("%04X:%04X"), data.items.groupId, data.items.itemId);
       return pText;
    }
 };

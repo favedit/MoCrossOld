@@ -453,7 +453,7 @@ public:
          pItem = _pFreeItems->Shift();
          _pUsingItems->Push(pItem);
       }else{
-         MO_FATAL("Free item is empty. alloc item failure. (total=%d, used=%d, free=%d)",
+         MO_FATAL(TC("Free item is empty. alloc item failure. (total=%d, used=%d, free=%d)"),
                _pItems->Count(), _pUsingItems->Count(), _pFreeItems->Count());
       }
       return pItem;
@@ -466,7 +466,7 @@ public:
          pItem = _pFreeItems->Pop();
          _pUsingItems->Push(pItem);
       }else{
-         MO_FATAL("Free item is empty. alloc item failure. (total=%d, used=%d, free=%d)",
+         MO_FATAL(TC("Free item is empty. alloc item failure. (total=%d, used=%d, free=%d)"),
                _pItems->Count(), _pUsingItems->Count(), _pFreeItems->Count());
       }
       return pItem;
@@ -476,7 +476,7 @@ public:
    void FreeFirst(T pItem){
       MO_ASSERT(pItem);
       if(!_pUsingItems->Contains(pItem)){
-         MO_FATAL("Free item is not exists collection. (total=%d, used=%d, free=%d)",
+         MO_FATAL(TC("Free item is not exists collection. (total=%d, used=%d, free=%d)"),
                _pItems->Count(), _pUsingItems->Count(), _pFreeItems->Count());
       }
       _pUsingItems->Remove(pItem);
@@ -487,7 +487,7 @@ public:
    void FreeLast(T pItem){
       MO_ASSERT(pItem);
       if(!_pUsingItems->Contains(pItem)){
-         MO_FATAL("Free item is not exists collection. (total=%d, used=%d, free=%d)",
+         MO_FATAL(TC("Free item is not exists collection. (total=%d, used=%d, free=%d)"),
                _pItems->Count(), _pUsingItems->Count(), _pFreeItems->Count());
       }
       _pUsingItems->Remove(pItem);

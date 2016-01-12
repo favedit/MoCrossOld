@@ -81,7 +81,7 @@ TCharC* TFsUniqueId::Pack(){
 
 //============================================================
 TCharC* TFsUniqueId::Format(){
-   this->AssignFormat("%02X:%02X-%02X:%02X %02X-%02X-%04X",
+   this->AssignFormat(TC("%02X:%02X-%02X:%02X %02X-%02X-%04X"),
          _value.data.items.groupId.items.groupType, _value.data.items.groupId.items.groupId,
          _value.data.items.groupId.items.itemType, _value.data.items.groupId.items.itemId,
          _value.data.items.objectId.items.type, _value.data.items.objectId.items.group,
