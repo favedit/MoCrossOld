@@ -1,4 +1,4 @@
-#include "MoFbxCore.h"
+#include "MoFbxParser.h"
 
 MO_NAMESPACE_BEGIN;
 

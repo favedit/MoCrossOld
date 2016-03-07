@@ -51,11 +51,13 @@ void ProcessNode(FbxNode* pNode){
 // @return 类名
 //============================================================
 TInt32 main(TChar** pArguments, TInt count){
+   TString fileName = TC("D:/Resource/xiong/xiong.fbx");
+   //TString targetFileName = TC("D:/Microbject/MoCloud3d/Script/source/ar3/model/xiong.model");
+   //TString targetConfigName = TC("D:/Microbject/MoCloud3d/Script/source/ar3/model/xiong.xml");
+   TString targetFileName = TC("D:/Microbject/MoTypeScript/Script/res/model/xiong.model");
+   TString targetConfigName = TC("D:/Microbject/MoTypeScript/Script/res/model/xiong.xml");
+   // 初始化处理
    MoInitialize();
-   TString fileName = TC("D:/Resource/xiong/data.FBX");
-   TString targetFileName = TC("D:/Resource/xiong/data.m3x");
-   //TString8 fileName = "Help";
-   //printf("%s\n", fileName.MemoryC());
    // 创建管理器
    FFbxManager* pManager = MO_CREATE(FFbxManager);
    pManager->Setup();
@@ -64,10 +66,14 @@ TInt32 main(TChar** pArguments, TInt count){
    pScene->SetManager(pManager);
    pScene->Setup();
    pScene->LoadFile(fileName);
-   pScene->SaveFile(targetFileName);
+   // 存储资源
+   FFbxResModel* pModel = MO_CREATE(FFbxResModel);
+   pScene->Store(pModel);
+   pModel->SaveFile(targetFileName);
+   pModel->SaveConfigFile(targetConfigName);
+   // 释放处理
    MO_DELETE(pScene);
    MO_DELETE(pManager);
-   // 释放处理
    MoRelease();
    //getchar();
    return 0;

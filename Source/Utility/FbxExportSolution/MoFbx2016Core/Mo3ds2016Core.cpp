@@ -11,7 +11,7 @@
 //============================================================
 
 #include "MoFbxDefine.h"
-#include "MoFbxExport.h"
+#include "MoFbxParser.h"
 
 MO_NAMESPACE_INCLUDE;
 

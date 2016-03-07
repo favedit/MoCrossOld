@@ -1,55 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Common">
+    <Filter Include="1-Common">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Export">
+    <Filter Include="2-Resource">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Core">
+    <Filter Include="3-Parser">
       <UniqueIdentifier>{f1e10684-b339-4bf0-8156-36e902a92660}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="F3dsSceneExport.cpp">
-      <Filter>Export</Filter>
-    </ClCompile>
     <ClCompile Include="Mo3ds2016Core.cpp" />
-    <ClCompile Include="F3dsExporter.cpp">
-      <Filter>Export</Filter>
-    </ClCompile>
-    <ClCompile Include="F3dsGameExporter.cpp">
-      <Filter>Export</Filter>
-    </ClCompile>
-    <ClCompile Include="F3dsGameGeometryExporter.cpp">
-      <Filter>Export</Filter>
-    </ClCompile>
-    <ClCompile Include="F3dsGameTrackExporter.cpp">
-      <Filter>Export</Filter>
-    </ClCompile>
     <ClCompile Include="FFbxMesh.cpp">
-      <Filter>Core</Filter>
+      <Filter>3-Parser</Filter>
     </ClCompile>
     <ClCompile Include="FFbxScene.cpp">
-      <Filter>Core</Filter>
+      <Filter>3-Parser</Filter>
     </ClCompile>
     <ClCompile Include="FFbxManager.cpp">
-      <Filter>Core</Filter>
+      <Filter>3-Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="RFbxEnum.cpp">
+      <Filter>3-Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="FFbxResStream.cpp">
+      <Filter>2-Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="FFbxResource.cpp">
+      <Filter>2-Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="FFbxResModel.cpp">
+      <Filter>2-Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="F3dsGameTrackExporter.cpp">
+      <Filter>3-Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="F3dsExporter.cpp">
+      <Filter>3-Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="F3dsGameExporter.cpp">
+      <Filter>3-Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="F3dsGameGeometryExporter.cpp">
+      <Filter>3-Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="FFbxResourceObject.cpp">
+      <Filter>2-Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="FFbxResourceComponent.cpp">
+      <Filter>2-Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="FFbxResModelMesh.cpp">
+      <Filter>2-Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MoFbxDefine.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="MoFbxExport.h">
-      <Filter>Export</Filter>
+      <Filter>1-Common</Filter>
     </ClInclude>
     <ClInclude Include="MoFbx2016Core.h" />
-    <ClInclude Include="MoFbxCore.h">
-      <Filter>Core</Filter>
+    <ClInclude Include="MoFbxResource.h">
+      <Filter>2-Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="MoFbxParser.h">
+      <Filter>3-Parser</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

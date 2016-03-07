@@ -72,7 +72,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)..\..\..\..\Build\Debug_x64\</OutDir>
-    <IncludePath>$(ProjectDir)..\..\..\Reference\FbxSdk-2016\Include;$(ProjectDir)..\..\..\Cross\Common\MoCommon;$(ProjectDir)..\..\..\Cross\Common\MoMath;$(ProjectDir)..\MoFbx2016Core;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\..\..\Reference\FbxSdk-2016\Include;$(ProjectDir)..\..\..\Cross\Common\MoCommon;$(ProjectDir)..\..\..\Cross\Common\MoCore;$(ProjectDir)..\..\..\Cross\Common\MoMath;$(ProjectDir)..\..\..\Cross\Feature\MoFeatureResource;$(ProjectDir)..\MoFbx2016Core;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)..\..\..\Reference\FbxSdk-2016\Library\x64-debug;$(ProjectDir)..\..\..\..\Build\Debug_x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -103,7 +103,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X64;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X64;_MO_UNICODE;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Optimization>Disabled</Optimization>
       <WarningLevel>Level3</WarningLevel>
       <OmitFramePointers>false</OmitFramePointers>

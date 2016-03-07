@@ -1,12 +1,37 @@
 #pragma once
 
 #include "MoFbxDefine.h"
+#include "MoFbxResource.h"
 
 MO_NAMESPACE_BEGIN;
 
 class FFbxMesh;
 class FFbxScene;
 class FFbxManager;
+
+//============================================================
+// <T>FBX枚举。</T>
+//============================================================
+enum EFbxVertexAttribute{
+   EFbxVertexAttribute_Position,
+   EFbxVertexAttribute_Color,
+   EFbxVertexAttribute_Normal,
+   EFbxVertexAttribute_Binormal,
+   EFbxVertexAttribute_Tangent,
+   EFbxVertexAttribute_Coord1,
+   EFbxVertexAttribute_Coord2,
+   EFbxVertexAttribute_Coord3,
+   EFbxVertexAttribute_Coord4,
+   EFbxVertexAttribute_Count,
+};
+
+//============================================================
+// <T>FBX枚举。</T>
+//============================================================
+class RFbxEnum{
+public:
+   static TCharC* ParseName(FbxNodeAttribute::EType typeCd);
+};
 
 //============================================================
 // <T>FBX版本号。</T>
@@ -31,58 +56,92 @@ public:
    SFbxVertex(){
    }
 };
+//............................................................
+typedef FObjects<SFbxVertex*> FFbxVertexs;
+
+//============================================================
+// <T>FBX面信息。</T>
+//============================================================
+struct SFbxFace{
+public:
+   TInt corners[3];
+public:
+   SFbxFace(){
+   }
+};
+//............................................................
+typedef FObjects<SFbxFace*> FFbxFaces;
 
 //============================================================
 // <T>FBX网格。</T>
 //============================================================
 class MO_FBX_DECLARE FFbxMesh : public FObject {
 protected:
+   TString _code;
    FFbxScene* _pScene;
    FbxNode* _pFbxNode;
    FbxMesh* _pFbxMesh;
-   FObjects<SFbxVertex*>* _pVertexs;
+   TInt _vertexAttributeCount;
+   TBool _vertexAttributes[EFbxVertexAttribute_Count];
+   FFbxVertexs* _pVertexs;
+   FFbxFaces* _pFaces;
 public:
    FFbxMesh();
    MO_ABSTRACT ~FFbxMesh();
 public:
+   MO_SOURCE_GETTER(TCharC*, Code, _code);
    MO_SOURCE_GETSET(FFbxScene*, Scene, _pScene);
    MO_SOURCE_GETSET(FbxNode*, NodeHandle, _pFbxNode);
    MO_SOURCE_GETTER(FbxMesh*, MeshHandle, _pFbxMesh);
+   MO_SOURCE_GETTER(FFbxVertexs*, Vertexs, _pVertexs);
+   MO_SOURCE_GETTER(FFbxFaces*, Faces, _pFaces);
 public:
    TResult Setup();
 public:
+   MO_INLINE TBool ContainsAttribute(EFbxVertexAttribute attributeCd){
+      return _vertexAttributes[attributeCd];
+   }
+public:
+   TResult ReadVertexPosition(TInt vertexIndex, SFloatPoint3* pPosition);
    TResult ReadVertexColor(TInt vertexIndex, TInt vertexCounter, SFloatColor4* pColor);
    TResult ReadVertexNormal(TInt vertexIndex, TInt vertexCounter, SFloatVector3* pNormal);
    TResult ReadVertexBinormal(TInt vertexIndex, TInt vertexCounter, SFloatVector3* pBinormal);
    TResult ReadVertexTangent(TInt vertexIndex, TInt vertexCounter, SFloatVector3* pTangent);
+   TResult ReadVertexCoord(TInt layer, TInt vertexIndex, TInt vertexCounter, SFloatPoint2* pCoord);
    SFbxVertex* SyncVertex(SFloatPoint3* pPosition, SFloatColor4* pColor, SFloatVector3* pNormal, SFloatPoint2* pCoord);
    TResult Serialize(IDataOutput* pOutput);
+public:
+   TResult Store(FFbxResModelMesh* pResMesh);
 };
+//............................................................
+typedef FObjects<FFbxMesh*> FFbxMeshs;
 
 //============================================================
 // <T>FBX场景。</T>
 //============================================================
 class MO_FBX_DECLARE FFbxScene : public FObject{
 protected:
+   TString _code;
    FFbxManager* _pManager;
    FbxScene* _pFbxScene;
-   FObjects<FFbxMesh*>* _pMeshs;
+   FFbxMeshs* _pMeshs;
 public:
    FFbxScene();
    MO_ABSTRACT ~FFbxScene();
 public:
+   MO_SOURCE_GETTER(TCharC*, Code, _code);
    MO_SOURCE_GETSET(FFbxManager*, Manager, _pManager);
    MO_SOURCE_GETTER(FbxScene*, FbxScene, _pFbxScene);
+   MO_SOURCE_GETTER(FFbxMeshs*, Meshs, _pMeshs);
 public:
    TResult Setup();
 public:
    TResult ProcessMesh(FbxNode* pFbxNode);
    TResult ProcessNode(FbxNode* pFbxNode);
 public:
-   TResult Serialize(IDataOutput* pOutput);
+   TResult Store(FFbxResModel* pResModel);
 public:
    TResult LoadFile(TCharC* pFileName);
-   TResult SaveFile(TCharC* pFileName);
 };
 
 //============================================================

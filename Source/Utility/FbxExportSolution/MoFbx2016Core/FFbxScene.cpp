@@ -1,4 +1,4 @@
-#include "MoFbxCore.h"
+#include "MoFbxParser.h"
 
 MO_NAMESPACE_BEGIN;
 
@@ -8,15 +8,13 @@ MO_NAMESPACE_BEGIN;
 FFbxScene::FFbxScene() {
    MO_CLEAR(_pManager);
    MO_CLEAR(_pFbxScene);
-   _pMeshs = MO_CREATE(FObjects<FFbxMesh*>);
+   _pMeshs = MO_CREATE(FFbxMeshs);
 }
 
 //============================================================
 // <T>析构FBX场景。</T>
 //============================================================
 FFbxScene::~FFbxScene() {
-   MO_DESTORY(_pFbxScene);
-   MO_CLEAR(_pManager);
    // 释放所有网格
    if(_pMeshs != NULL){
       TInt count = _pMeshs->Count();
@@ -26,6 +24,8 @@ FFbxScene::~FFbxScene() {
       }
       MO_DELETE(_pMeshs);
    }
+   MO_DESTORY(_pFbxScene);
+   MO_CLEAR(_pManager);
 }
 
 //============================================================
@@ -59,26 +59,31 @@ TResult FFbxScene::ProcessMesh(FbxNode * pFbxNode){
 // <T>节点处理。</T>
 //============================================================
 TResult FFbxScene::ProcessNode(FbxNode * pFbxNode){
-   // 处理当前结点
-   TChar8C* pName = pFbxNode->GetName();
-   printf("%s\n", pName);
+   // 处理结点信息
+   TString name;
+   name.Assign8(pFbxNode->GetName());
+   FbxNodeAttribute::EType typeCd = FbxNodeAttribute::eUnknown;
+   TCharC* pTypeName = NULL;
    FbxNodeAttribute* pFbxNodeAttribute = pFbxNode->GetNodeAttribute();
    if(pFbxNodeAttribute != NULL){
-      FbxNodeAttribute::EType typeCd = pFbxNodeAttribute->GetAttributeType();
-      switch(typeCd){
-         case FbxNodeAttribute::eMesh:
-            ProcessMesh(pFbxNode);
-            break;
-         case FbxNodeAttribute::eSkeleton:
-            //ProcessSkeleton(pFbxNode);
-            break;
-         case FbxNodeAttribute::eLight:
-            //ProcessLight(pFbxNode);
-            break;
-         case FbxNodeAttribute::eCamera:
-            //ProcessCamera(pFbxNode);
-            break;
-      }
+      typeCd = pFbxNodeAttribute->GetAttributeType();
+      pTypeName = RFbxEnum::ParseName(typeCd);
+   }
+   MO_DEBUG(TC("Process node. (name=%s, type=%d[%s])"), (TCharC*)name, typeCd, pTypeName);
+   // 处理结点类型
+   switch(typeCd){
+      case FbxNodeAttribute::eMesh:
+         ProcessMesh(pFbxNode);
+         break;
+      case FbxNodeAttribute::eSkeleton:
+         //ProcessSkeleton(pFbxNode);
+         break;
+      case FbxNodeAttribute::eLight:
+         //ProcessLight(pFbxNode);
+         break;
+      case FbxNodeAttribute::eCamera:
+         //ProcessCamera(pFbxNode);
+         break;
    }
    // 处理子结点集合
    TInt nodeCount = pFbxNode->GetChildCount();
@@ -95,16 +100,19 @@ TResult FFbxScene::ProcessNode(FbxNode * pFbxNode){
 // @param pOutput 输出流
 // @return 处理结果
 //============================================================
-TResult FFbxScene::Serialize(IDataOutput* pOutput){
-   MO_ASSERT_POINTER(pOutput);
-   // 写入网格集合
-   TInt count = _pMeshs->Count();
-   pOutput->WriteInt32((TInt32)count);
-   for(TInt n = 0; n < count; n++){
-      FFbxMesh* pMesh = _pMeshs->Get(n);
-      pMesh->Serialize(pOutput);
+TResult FFbxScene::Store(FFbxResModel* pResModel){
+   MO_ASSERT_POINTER(pResModel);
+   // 设置属性
+   pResModel->SetCode(_code);
+   // 设置网格集合
+   TInt meshCount = _pMeshs->Count();
+   for(TInt n = 0; n < meshCount; n++){
+      FFbxMesh* pFbxMesh = _pMeshs->Get(n);
+      // 创建网格
+      FFbxResModelMesh* pResMesh = MO_CREATE(FFbxResModelMesh);
+      pFbxMesh->Store(pResMesh);
+      pResModel->Meshs()->Push(pResMesh);
    }
-   MO_DELETE(_pMeshs);
    return ESuccess;
 }
 
@@ -116,6 +124,9 @@ TResult FFbxScene::Serialize(IDataOutput* pOutput){
 //============================================================
 TResult FFbxScene::LoadFile(TCharC* pFileName){
    MO_ASSERT_POINTER(pFileName);
+   // 设置名称
+   TFileInfo fileInfo = pFileName;
+   _code = fileInfo.Code();
    // 获得参数
    FbxManager* pFbxManager = _pManager->FbxManager();
    FbxIOSettings* pFbxIoSettings = _pManager->FbxIoSettings();
@@ -147,21 +158,6 @@ TResult FFbxScene::LoadFile(TCharC* pFileName){
    // 处理节点
    FbxNode* pRootNode = _pFbxScene->GetRootNode();
    ProcessNode(pRootNode);
-   return ESuccess;
-}
-
-//============================================================
-// <T>存储文件。</T>
-//
-// @param pFileName 文件名称
-// @return 处理结果
-//============================================================
-TResult FFbxScene::SaveFile(TCharC* pFileName){
-   MO_ASSERT_POINTER(pFileName);
-   FByteFile* pFile = MO_CREATE(FByteFile);
-   pFile->EnsureSize(1024 * 1024);
-   Serialize(pFile);
-   MO_DELETE(pFile);
    return ESuccess;
 }
 

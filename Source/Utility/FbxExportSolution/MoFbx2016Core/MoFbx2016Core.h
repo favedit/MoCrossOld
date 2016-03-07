@@ -1,4 +1,5 @@
 #pragma once
 
 #include <fbxsdk.h>
-#include "MoFbxCore.h"
+#include "MoFbxParser.h"
+#include "MoFbxResource.h"

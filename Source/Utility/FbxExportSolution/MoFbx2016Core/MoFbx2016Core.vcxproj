@@ -68,7 +68,7 @@
     <OutDir>$(ProjectDir)..\..\..\..\Build\Debug_x64\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)..\..\..\Reference\FbxSdk-2016\Include;$(ProjectDir)..\..\..\Cross\Common\MoCommon;$(ProjectDir)..\..\..\Cross\Common\MoMath;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\..\..\Reference\FbxSdk-2016\Include;$(ProjectDir)..\..\..\Cross\Common\MoCommon;$(ProjectDir)..\..\..\Cross\Common\MoCore;$(ProjectDir)..\..\..\Cross\Common\MoMath;$(ProjectDir)..\..\..\Cross\Feature\MoFeatureResource;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)..\..\..\Reference\FbxSdk-2016\Library\x64-debug;$(ProjectDir)..\..\..\..\Build\Debug_x64;$(LibraryPath)</LibraryPath>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
@@ -104,7 +104,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X64;_MO_DEBUG;_MO_FBX_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X64;_MO_UNICODE;_MO_FBX_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <OmitFramePointers>false</OmitFramePointers>
       <MinimalRebuild>true</MinimalRebuild>
@@ -113,7 +113,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libfbxsdk.lib;MoCommonD.lib;MoMathD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libfbxsdk.lib;MoCommonD.lib;MoMathD.lib;MoFeatureResourceD.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Link />
     <Link>
@@ -130,17 +130,23 @@
     <ClCompile Include="F3dsGameExporter.cpp" />
     <ClCompile Include="F3dsGameGeometryExporter.cpp" />
     <ClCompile Include="F3dsGameTrackExporter.cpp" />
-    <ClCompile Include="F3dsSceneExport.cpp" />
     <ClCompile Include="FFbxManager.cpp" />
     <ClCompile Include="FFbxMesh.cpp" />
+    <ClCompile Include="FFbxResModel.cpp" />
+    <ClCompile Include="FFbxResource.cpp" />
+    <ClCompile Include="FFbxResourceComponent.cpp" />
+    <ClCompile Include="FFbxResourceObject.cpp" />
     <ClCompile Include="FFbxScene.cpp" />
+    <ClCompile Include="FFbxResModelMesh.cpp" />
+    <ClCompile Include="FFbxResStream.cpp" />
     <ClCompile Include="Mo3ds2016Core.cpp" />
+    <ClCompile Include="RFbxEnum.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MoFbxCore.h" />
+    <ClInclude Include="MoFbxParser.h" />
     <ClInclude Include="MoFbx2016Core.h" />
     <ClInclude Include="MoFbxDefine.h" />
-    <ClInclude Include="MoFbxExport.h" />
+    <ClInclude Include="MoFbxResource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
