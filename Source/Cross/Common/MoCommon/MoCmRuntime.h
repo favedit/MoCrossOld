@@ -474,6 +474,28 @@ protected: \
 #define MO_CHECK_POINTER(R, P)        if((R) == NULL){MO_STATIC_FATAL(TC("Check pointer is null. (pointer=%s)"), TC(#R)); P;}
 
 //============================================================
+// <T>代码定义</T>
+//============================================================
+/// @define 自动获得函数
+#define MO_SOURCE_GETTER(T, N, V) \
+   MO_INLINE T N() { \
+      return V; \
+   } \
+/// @define 自动设置函数
+#define MO_SOURCE_SETTER(T, N, V) \
+   MO_INLINE void Set##N(T value) { \
+      V = value; \
+   }
+/// @define 自动获得设置函数
+#define MO_SOURCE_GETSET(T, N, V) \
+   MO_INLINE T N() { \
+      return V; \
+   } \
+   MO_INLINE void Set##N(T value) { \
+      V = value; \
+   }
+
+//============================================================
 // <T>基本常量定义</T>
 //============================================================
 /// @define 内存块默认收集大小

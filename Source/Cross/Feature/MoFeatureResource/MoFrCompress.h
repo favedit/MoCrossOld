@@ -1,4 +1,4 @@
-#ifndef __MO_FR_COMPRESS_H__
+﻿#ifndef __MO_FR_COMPRESS_H__
 #define __MO_FR_COMPRESS_H__
 //************************************************************
 

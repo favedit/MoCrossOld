@@ -26,8 +26,8 @@ FRs3dModelConsole::~FRs3dModelConsole(){
 // @return 资源对象
 //============================================================
 FRs3dModel* FRs3dModelConsole::Load(TCharC* pName){
-   FAssetStream* pStream = RAssetManager::Instance().OpenAssetStreamFormat("asset:/model/%s.ser", pName);
-   MO_ERROR_CHECK(pStream, return NULL, "Open model stream failure. (resource_id=%s)", pName);
+   FAssetStream* pStream = RAssetManager::Instance().OpenAssetStreamFormat(TC("asset:/model/%s.ser"), pName);
+   MO_ERROR_CHECK(pStream, return NULL, TC("Open model stream failure. (resource_id=%s)"), pName);
    // 创建纹理
    FRs3dModel* pModel = MO_CREATE(FRs3dModel);
    pModel->Unserialize(pStream);

@@ -25,7 +25,7 @@ FRs3dSkeleton::~FRs3dSkeleton(){
 // @return 骨头对象
 //============================================================
 FRs3dBone* FRs3dSkeleton::Find(TInt boneId){
-   return _pBones->Find(boneId);
+   return _pBones->Find((TBoneId)boneId);
 }
 
 //============================================================
@@ -34,7 +34,7 @@ FRs3dBone* FRs3dSkeleton::Find(TInt boneId){
 // @param pBone 骨头
 //============================================================
 void FRs3dSkeleton::PushBone(FRs3dBone* pBone){
-   TInt boneId = pBone->Id();
+   TBoneId boneId = (TBoneId)pBone->Id();
    _pBones->Set(boneId, pBone);
 }
 

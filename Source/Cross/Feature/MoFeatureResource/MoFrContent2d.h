@@ -1,4 +1,4 @@
-#ifndef __MO_FR_CONTENT2D_H__
+﻿#ifndef __MO_FR_CONTENT2D_H__
 #define __MO_FR_CONTENT2D_H__
 //************************************************************
 
@@ -266,12 +266,12 @@ public:
    }
    //------------------------------------------------------------
    // <T>获得动画方向。</T>
-   MO_INLINE TInt8 DirectionCd(){
+   MO_INLINE TInt DirectionCd(){
       return _directionCd;
    }
    //------------------------------------------------------------
    // <T>设置动画方向。</T>
-   MO_INLINE void SetDirectionCd(TInt8 directionCd){
+   MO_INLINE void SetDirectionCd(TInt directionCd){
       _directionCd = directionCd;
    }
    //------------------------------------------------------------
@@ -286,22 +286,22 @@ public:
    }
    //------------------------------------------------------------
    // <T>获得翻转类型。</T>
-   MO_INLINE TInt8 ReverseCd(){
+   MO_INLINE TInt ReverseCd(){
       return _reverseCd;
    }
    //------------------------------------------------------------
    // <T>设置翻转类型。</T>
-   MO_INLINE void SetReverseCd(TInt8 reverseCd){
+   MO_INLINE void SetReverseCd(TInt reverseCd){
       _reverseCd = reverseCd;
    }
    //------------------------------------------------------------
    // <T>获得翻转方向。</T>
-   MO_INLINE TInt8 ReverseDirection(){
+   MO_INLINE TInt ReverseDirection(){
       return _reverseDirection;
    }
    //------------------------------------------------------------
    // <T>设置翻转方向。</T>
-   MO_INLINE void SetReverseDirection(TInt8 reverseDirection){
+   MO_INLINE void SetReverseDirection(TInt reverseDirection){
       _reverseDirection = reverseDirection;
    }
    //------------------------------------------------------------

@@ -19,6 +19,26 @@ class FContentConsole;
 //============================================================
 // <T>内容。</T>
 //============================================================
+class MO_FR_DECLARE FContentObject : public FInstance
+{
+   MO_CLASS_DECLARE_INHERITS(FContentObject, FInstance);
+protected:
+   TString _typeName;
+   TInt _version;
+public:
+   FContentObject();
+   MO_ABSTRACT ~FContentObject();
+public:
+   MO_SOURCE_GETSET(TCharC*, TypeName, _typeName);
+   MO_SOURCE_GETSET(TInt, Version, _version);
+public:
+   //MO_ABSTRACT TResult Serialize(IDataOutput* pOutput);
+   //MO_ABSTRACT TResult Unserialize(IDataInput* pInput);
+};
+
+//============================================================
+// <T>内容。</T>
+//============================================================
 class MO_FR_DECLARE FContent : public FInstance
 {
    MO_CLASS_DECLARE_INHERITS(FContent, FInstance);
@@ -32,46 +52,10 @@ public:
    FContent();
    MO_ABSTRACT ~FContent();
 public:
-   //------------------------------------------------------------
-   // <T>获得类型名称。</T>
-   MO_INLINE TCharC* TypeName(){
-      return _typeName;
-   }
-   //------------------------------------------------------------
-   // <T>设置类型名称。</T>
-   MO_INLINE void SetTypeName(TCharC* pTypeName){
-      _typeName = pTypeName;
-   }
-   //------------------------------------------------------------
-   // <T>获得名称。</T>
-   MO_INLINE TCharC* Name(){
-      return _name;
-   }
-   //------------------------------------------------------------
-   // <T>设置名称。</T>
-   MO_INLINE void SetName(TCharC* pName){
-      _name = pName;
-   }
-   //------------------------------------------------------------
-   // <T>获得超时时长。</T>
-   MO_INLINE TTimeSpan TimeoutSpan(){
-      return _timeoutSpan;
-   }
-   //------------------------------------------------------------
-   // <T>设置超时时长。</T>
-   MO_INLINE void SetTimeoutSpan(TTimeSpan timeoutSpan){
-      _timeoutSpan = timeoutSpan;
-   }
-   //------------------------------------------------------------
-   // <T>获得更新时刻。</T>
-   MO_INLINE TTimeTick UpdateTick(){
-      return _updateTick;
-   }
-   //------------------------------------------------------------
-   // <T>设置更新时刻。</T>
-   MO_INLINE void SetUpdateTick(TTimeTick updateTick){
-      _updateTick = updateTick;
-   }
+   MO_SOURCE_GETSET(TCharC*, TypeName, _typeName);
+   MO_SOURCE_GETSET(TCharC*, Name, _name);
+   MO_SOURCE_GETSET(TTimeSpan, TimeoutSpan, _timeoutSpan);
+   MO_SOURCE_GETSET(TTimeTick, UpdateTick, _updateTick);
 public:
    MO_ABSTRACT TBool TestReady();
    MO_ABSTRACT TBool TestValid();

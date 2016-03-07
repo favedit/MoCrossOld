@@ -58,9 +58,9 @@ FResource2d* FResourceConsole::Find(TResourceId resourceId){
    }
    //............................................................
    // 打开数据
-   FAssetStream* pStream = RAssetManager::Instance().OpenAssetStreamFormat("/rs/%d.ser", resourceId);
+   FAssetStream* pStream = RAssetManager::Instance().OpenAssetStreamFormat(TC("/rs/%d.ser"), resourceId);
    MO_ERROR_CHECK(pStream, return NULL,
-      "Open resource asset failure. (resource_id=%d)", resourceId);
+      TC("Open resource asset failure. (resource_id=%d)"), resourceId);
    // 创建资源
    TResourceType typeCd = pStream->ReadInt8();
    pResource = CreateResource(typeCd);

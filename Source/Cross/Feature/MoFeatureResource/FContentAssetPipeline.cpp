@@ -27,7 +27,7 @@ TResult FContentAssetPipeline::Process(FContentLoader* pLoader){
    MO_CHECK(pAssetName, return ENull);
    // 打开资源
    GAssetStreamPtr stream = RAssetManager::Instance().OpenAssetStream(pAssetName);
-   MO_ERROR_CHECK(stream.IsValid(), return EFailure, "Open stream failure. (asset=%s)", pAssetName);
+   MO_ERROR_CHECK(stream.IsValid(), return EFailure, TC("Open stream failure. (asset=%s)"), pAssetName);
    // 读取数据
    FContent* pContent = pLoader->Content();
    pContent->Unserialize(stream);

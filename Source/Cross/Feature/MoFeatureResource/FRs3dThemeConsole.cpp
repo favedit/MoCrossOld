@@ -49,7 +49,7 @@ TResult FRs3dThemeConsole::Unserialize(IDataInput* pInput){
       pMaterial->Unserialize(pInput);
       materials.Set(pMaterial->Name(), pMaterial);
    }
-   MO_DEBUG("Unserial theme material success. (material_count=%d)", count);
+   MO_DEBUG(TC("Unserial theme material success. (material_count=%d)"), count);
    return ESuccess;
 }
 
@@ -61,7 +61,7 @@ TResult FRs3dThemeConsole::Unserialize(IDataInput* pInput){
 //============================================================
 TResult FRs3dThemeConsole::Open(TCharC* pCode){
    FAssetStream* pStream = RAssetManager::Instance().OpenAssetStream(pCode);
-   MO_ERROR_CHECK(pStream, return EFailure, "Open theme failure. (code=%s)", pCode);
+   MO_ERROR_CHECK(pStream, return EFailure, TC("Open theme failure. (code=%s)"), pCode);
    Unserialize(pStream);
    RAssetManager::Instance().CloseAssetStream(pStream);
    return ESuccess;

@@ -28,6 +28,42 @@ typedef TInt32 TBoneId;
 typedef MO_FR_DECLARE FVector<TBoneId> FBoneIds;
 
 //============================================================
+// <T>资源数据流。</T>
+//============================================================
+class MO_FR_DECLARE FRs3dStream : public FObject{
+protected:
+   // 代码
+   TString _code;
+   // 索引
+   TInt _index;
+   // 元素类型
+   TInt _elementDataCd;
+   // 元素个数
+   TInt _elementCount;
+   // 数据宽度
+   TInt _dataStride;
+   // 数据个数
+   TInt _dataCount;
+   // 数据长度
+   FByteStream* _pData;
+public:
+   FRs3dStream();
+   MO_ABSTRACT ~FRs3dStream();
+public:
+   MO_SOURCE_GETSET(TCharC*, Code, _code);
+   MO_SOURCE_GETSET(TInt, Index, _index);
+   MO_SOURCE_GETSET(TInt, ElementDataCd, _elementDataCd);
+   MO_SOURCE_GETSET(TInt, ElementCount, _elementCount);
+   MO_SOURCE_GETSET(TInt, DataStride, _dataStride);
+   MO_SOURCE_GETSET(TInt, DataCount, _dataCount);
+   MO_SOURCE_GETTER(FByteStream*, Data, _pData);
+public:
+   MO_ABSTRACT TResult Serialize(IDataOutput* pOutput);
+};
+//............................................................
+typedef FObjects<FRs3dStream*> FRs3dStreams;
+
+//============================================================
 // <T>资源3D帧信息。</T>
 //============================================================
 struct MO_FR_DECLARE SRs3dFrameInfo{
@@ -591,25 +627,14 @@ public:
    FRs3dModel();
    MO_ABSTRACT ~FRs3dModel();
 public:
-   //------------------------------------------------------------
-   // <T>获得骨骼。</T>
-   MO_INLINE FRs3dSkeleton* Skeleton(){
-      return _pSkeleton;
-   }
-   //------------------------------------------------------------
-   // <T>获得几何体集合。</T>
-   MO_INLINE GRs3dGeometryPtrs& Geometrys(){
-      return _geometrys;
-   }
+   MO_SOURCE_GETTER(FRs3dSkeleton*, Skeleton, _pSkeleton);
+   MO_SOURCE_GETTER(GRs3dGeometryPtrs&, Geometrys, _geometrys);
+   MO_SOURCE_GETTER(FRs3dAnimation*, Animation, _pAnimation);
+public:
    //------------------------------------------------------------
    // <T>根据索引获得几何体。</T>
    MO_INLINE FRs3dGeometry* Geometry(TInt index){
       return _geometrys.Get(index);
-   }
-   //------------------------------------------------------------
-   // <T>获得动画。</T>
-   MO_INLINE FRs3dAnimation* Animation(){
-      return _pAnimation;
    }
 public:
    MO_ABSTRACT TResult Unserialize(IDataInput* pInput);

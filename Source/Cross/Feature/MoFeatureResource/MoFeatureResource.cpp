@@ -6,7 +6,7 @@ MO_NAMESPACE_BEGIN
 // <T>初始化资源功能处理。</T>
 //============================================================
 void MoFeatureResourceInitialize(){
-   MO_STATIC_INFO("Feature resource initialize.");
+   MO_STATIC_INFO(TC("Feature resource initialize."));
    RLoaderManager::Create();
    RContentManager::Create();
 }
@@ -15,7 +15,7 @@ void MoFeatureResourceInitialize(){
 // <T>启动资源功能处理。</T>
 //============================================================
 void MoFeatureResourceStartup(){
-   MO_STATIC_INFO("Feature resource startup.");
+   MO_STATIC_INFO(TC("Feature resource startup."));
    RLoaderManager::Instance().Startup();
 }
 
@@ -23,7 +23,7 @@ void MoFeatureResourceStartup(){
 // <T>关闭资源功能处理。</T>
 //============================================================
 void MoFeatureResourceShutdown(){
-   MO_STATIC_INFO("Feature resource shutdown.");
+   MO_STATIC_INFO(TC("Feature resource shutdown."));
    RLoaderManager::Instance().Shutdown();
 }
 
@@ -31,7 +31,7 @@ void MoFeatureResourceShutdown(){
 // <T>释放资源功能处理。</T>
 //============================================================
 void MoFeatureResourceRelease(){
-   MO_STATIC_INFO("Feature resource release.");
+   MO_STATIC_INFO(TC("Feature resource release."));
    RLoaderManager::Destroy();
    RContentManager::Destroy();
 }

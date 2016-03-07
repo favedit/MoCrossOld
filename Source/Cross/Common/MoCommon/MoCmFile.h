@@ -62,6 +62,7 @@ protected:
    TFsName _driver;
    TFsName _extension;
    TFsPath _path;
+   TFsName _code;
    TFsName _name;
 	TFsFileName _fullName;
 public:
@@ -76,42 +77,19 @@ public:
       Parse(_fileName);
    }
 public:
-   //------------------------------------------------------------
-   // <T>获得文件名称。</T>
-   MO_INLINE TCharC* FileName(){
-      return _fileName.MemoryC();
-   }
+   MO_SOURCE_GETTER(TCharC*, FileName, _fileName);
+   MO_SOURCE_GETTER(TCharC*, Driver, _driver);
+   MO_SOURCE_GETTER(TCharC*, Path, _path);
+   MO_SOURCE_GETTER(TCharC*, Code, _code);
+   MO_SOURCE_GETTER(TCharC*, Name, _name);
+   MO_SOURCE_GETTER(TCharC*, Extension, _extension);
+   MO_SOURCE_GETTER(TCharC*, FullName, _fullName);
+public:
    //------------------------------------------------------------
    // <T>设置文件名称。</T>
    MO_INLINE TResult SetFileName(TCharC* pFileName){
       _fileName.Assign(pFileName);
       return Parse(_fileName);
-   }
-public:
-   //------------------------------------------------------------
-   // <T>获得驱动名称。</T>
-   MO_INLINE TCharC* Driver(){
-      return _driver.MemoryC();
-   }
-   //------------------------------------------------------------
-   // <T>获得路径名称。</T>
-   MO_INLINE TCharC* Path(){
-      return _path.MemoryC();
-   }
-   //------------------------------------------------------------
-   // <T>获得名称。</T>
-   MO_INLINE TCharC* Name(){
-      return _name.MemoryC();
-   }
-   //------------------------------------------------------------
-   // <T>获得扩展名称。</T>
-   MO_INLINE TCharC* Extension(){
-      return _extension.MemoryC();
-   }
-   //------------------------------------------------------------
-   // <T>获得全名称。</T>
-   MO_INLINE TCharC* FullName(){
-	   return (TCharC*)_fullName;
    }
 public:
    TInt Size();

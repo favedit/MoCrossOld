@@ -28,8 +28,8 @@ FRs3dTemplateConsole::~FRs3dTemplateConsole(){
 // @return 资源对象
 //============================================================
 FRs3dTemplate* FRs3dTemplateConsole::Load(TCharC* pName){
-   FAssetStream* pStream = RAssetManager::Instance().OpenAssetStreamFormat("asset:/template/%s.ser", pName);
-   MO_ERROR_CHECK(pStream, return NULL, "Open template stream failure. (resource=%s)", pName);
+   FAssetStream* pStream = RAssetManager::Instance().OpenAssetStreamFormat(TC("asset:/template/%s.ser"), pName);
+   MO_ERROR_CHECK(pStream, return NULL, TC("Open template stream failure. (resource=%s)"), pName);
    // 创建纹理
    FRs3dTemplate* pTemplate = MO_CREATE(FRs3dTemplate);
    pTemplate->Unserialize(pStream);

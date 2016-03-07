@@ -25,11 +25,11 @@ FRs3dTextureConsole::~FRs3dTextureConsole(){
 FRs3dTexture* FRs3dTextureConsole::Load(TCharC* pName){
    MO_CHECK(pName, return NULL);
    TFsPath path;
-   path.AppendFormat("asset:/texture/%s.ser", pName);
+   path.AppendFormat(TC("asset:/texture/%s.ser"), pName);
    // 创建纹理
    FRs3dTexture* pTexture = FRs3dTexture::InstanceCreate();
    FAssetStream* pStream = RAssetManager::Instance().OpenAssetStream(path);
-   MO_ERROR_CHECK(pStream, return NULL, "Open texture stream failure. (resource=%s)", pName);
+   MO_ERROR_CHECK(pStream, return NULL, TC("Open texture stream failure. (resource=%s)"), pName);
    // 创建纹理
    pTexture->Unserialize(pStream);
    // 释放资源

@@ -51,7 +51,7 @@ TResult FRs3dModel::Unserialize(IDataInput* pInput){
       FRs3dBone* pBone = _pSkeleton->Find(boneId);
       pBone->SetTrack(pTrack);
    }
-   MO_DEBUG("Unserialize model success. (code=%d, geometry_count=%d, track_count=%d)",
+   MO_DEBUG(TC("Unserialize model success. (code=%d, geometry_count=%d, track_count=%d)"),
          _code, geometryCount, trackCount);
    return ESuccess;
 }

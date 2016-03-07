@@ -5,9 +5,17 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
@@ -34,7 +42,9 @@
     <ClCompile Include="..\FAnimationResource.cpp" />
     <ClCompile Include="..\FContentAssetPipeline.cpp" />
     <ClCompile Include="..\FContentConsole.cpp" />
+    <ClCompile Include="..\FContentObject.cpp" />
     <ClCompile Include="..\FContentPipeline.cpp" />
+    <ClCompile Include="..\FRs3dStream.cpp" />
     <ClCompile Include="..\FGroundResource.cpp" />
     <ClCompile Include="..\FLoader.cpp" />
     <ClCompile Include="..\FLoaderConsole.cpp" />
@@ -96,16 +106,31 @@
     <ProjectGuid>{CFFE3B19-C7EA-44A2-9078-60EB443AF9D5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>MoFeatureResource</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>false</CLRSupport>
     <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -118,7 +143,13 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -127,7 +158,14 @@
     <OutDir>$(ProjectDir)..\..\..\..\..\Build\Debug_x86\</OutDir>
     <TargetName>$(ProjectName)D</TargetName>
     <IncludePath>$(ProjectDir)..\..\..\..\Reference\Include\Windows-x86;$(ProjectDir)..\..\..\..\Library\LibLzma;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\..\..\..\Reference\Library\Windows-x86;$(ProjectDir)..\..\..\..\..\Build\Debug_x86\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)..\..\..\..\Reference\Library\Windows-x86;$(ProjectDir)..\..\..\..\..\Build\Debug_x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>$(ProjectName)D</TargetName>
+    <IncludePath>$(ProjectDir)..\..\..\..\Reference\Include\Windows-x86;$(ProjectDir)..\..\..\..\Library\LibLzma;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\..\Reference\Library\Windows-x86;$(ProjectDir)..\..\..\..\..\Build\Debug_x64;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)..\..\..\..\..\Build\Debug_x64\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -135,18 +173,42 @@
     <IncludePath>$(ProjectDir)..\..\..\..\Reference\Include\Windows-x86;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)..\..\..\..\Reference\Library\Windows-x86;$(ProjectDir)..\..\..\..\..\Build\Release_x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(ProjectDir)..\..\..\..\Reference\Include\Windows-x86;$(ProjectDir)..\..\..\Common\MoCommon;$(ProjectDir)..\..\..\Common\MoCore;$(ProjectDir)..\..\..\Common\MoMath;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\..\..\..\Reference\Library\Windows-x86;$(ProjectDir)..\..\..\..\..\Build\Release_x86\;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_FR_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_UNICODE;_MO_FR_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4251;4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>LibLzmaD.lib;LibJpegD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>MoCommonD.lib;MoCoreD.lib;MoMathD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/NODEFAULTLIB:MSVCRT %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X64;_MO_UNICODE;_MO_FR_EXPORTS;_MO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251;4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>LibLzmaD.lib;MoCommonD.lib;MoCoreD.lib;MoMathD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:MSVCRT %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
@@ -155,6 +217,24 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_MO_WINDOWS;_MO_X86;_MO_FR_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251;4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>LibLzma.lib;LibJpeg.lib;MoCommon.lib;MoCore.lib;MoMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>

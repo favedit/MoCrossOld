@@ -22,8 +22,8 @@ FRs3dSceneConsole::~FRs3dSceneConsole(){
 //============================================================
 FRs3dScene* FRs3dSceneConsole::Load(TCharC* pName){
    MO_CHECK(pName, return NULL);
-   FAssetStream* pStream = RAssetManager::Instance().OpenAssetStreamFormat("asset:scene/%s.ser", pName);
-   MO_ERROR_CHECK(pStream, return NULL, "Open scene stream failure. (resource=%s)", pName);
+   FAssetStream* pStream = RAssetManager::Instance().OpenAssetStreamFormat(TC("asset:scene/%s.ser"), pName);
+   MO_ERROR_CHECK(pStream, return NULL, TC("Open scene stream failure. (resource=%s)"), pName);
    // ´´½¨ÎÆÀí
    FRs3dScene* pScene = FRs3dScene::InstanceCreate();
    pScene->Unserialize(pStream);

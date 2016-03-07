@@ -42,7 +42,7 @@ TResult FRs3dTemplate::Unserialize(IDataInput* pInput){
       MO_CHECK(pRsModel, return ENull);
       _pModels->PushUnique(pRsModel);
    }
-   MO_DEBUG("Unserialize template success. (code=%d, renderable_count=%d)",
+   MO_DEBUG(TC("Unserialize template success. (code=%d, renderable_count=%d)"),
          _code, renderableCount);
    return ESuccess;
 }

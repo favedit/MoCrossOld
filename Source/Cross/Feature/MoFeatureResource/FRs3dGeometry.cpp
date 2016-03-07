@@ -49,7 +49,7 @@ TResult FRs3dGeometry::Unserialize(IDataInput* pInput){
    }
    // ¶ÁÈ¡¸ú×Ù
    _pTrack->Unserialize(pInput);
-   MO_DEBUG("Unserialize geometry success. (vertex=%d, index=%d, bone=%d, frame=%d)",
+   MO_DEBUG(TC("Unserialize geometry success. (vertex=%d, index=%d, bone=%d, frame=%d)"),
          _vertexBuffer->Count(), _indexBuffer->Count(), boneCount, _pTrack->Frames().Count());
    return ESuccess;
 }

@@ -133,9 +133,13 @@ TResult TFileInfo::Parse(TCharC* pFileName){
 	}
    // 取扩展名
    TInt extensionStart = _name.LastIndexOf('.');
-   if(ENotFound != extensionStart){
+   if(extensionStart != ENotFound){
+      _code = _name.LeftStrC(extensionStart);
       _extension = _name.RightStrC(_name.Length() - extensionStart - 1);
+   }else{
+      _code = _name;
    }
+   // 获得全名称
 	_fullName.Clear();
 	if(!_driver.IsEmpty()){
 		_fullName.Assign(_driver);

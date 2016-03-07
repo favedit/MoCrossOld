@@ -557,6 +557,70 @@ void FXmlNode::SetDateTime(TCharC* pName, TDateTime value){
 }
 
 //============================================================
+// <T>根据属性名称，设置属性内容。</T>
+//
+// @param pName 属性名称
+// @param pValue 属性内容
+//============================================================
+TResult FXmlNode::SetNvl(TCharC* pName, TCharC* pValue){
+   if(pValue != NULL){
+      TInt length = RString::Length(pValue);
+      if(length > 0){
+         return Set(pName, pValue);
+      }
+   }
+   return EFailure;
+}
+
+//============================================================
+// <T>根据属性名称，设置属性内容。</T>
+//
+// @param pName 属性名称
+// @param value 属性内容
+//============================================================
+void FXmlNode::SetBoolNvl(TCharC* pName, TBool value){
+   if(value){
+      SetInt(pName, value);
+   }
+}
+
+//============================================================
+// <T>根据属性名称，设置属性内容。</T>
+//
+// @param pName 属性名称
+// @param value 属性内容
+//============================================================
+void FXmlNode::SetIntNvl(TCharC* pName, TInt value){
+   if(value != 0.0f){
+      SetInt(pName, value);
+   }
+}
+
+//============================================================
+// <T>根据属性名称，设置属性内容。</T>
+//
+// @param pName 属性名称
+// @param value 属性内容
+//============================================================
+void FXmlNode::SetFloatNvl(TCharC* pName, TFloat value){
+   if(value != 0.0f){
+      SetFloat(pName, value);
+   }
+}
+
+//============================================================
+// <T>根据属性名称，设置属性内容。</T>
+//
+// @param pName 属性名称
+// @param value 属性内容
+//============================================================
+void FXmlNode::SetDateTimeNvl(TCharC* pName, TDateTime value){
+   if(value != 0){
+      SetDateTime(pName, value);
+   }
+}
+
+//============================================================
 // <T>判断是否存在节点。</T>
 //
 // @return

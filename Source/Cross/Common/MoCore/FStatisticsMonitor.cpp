@@ -22,8 +22,8 @@ FStatisticsMonitor::~FStatisticsMonitor(){
 // @return 处理结果
 //============================================================
 TResult FStatisticsMonitor::Process(){
-   TInt result = ESuccess;
-   if(NULL != _pConsole){
+   TResult result = ESuccess;
+   if(_pConsole != NULL){
       result = _pConsole->TriggerRefresh(_currentTimeTick);
    }
    return result;

@@ -138,6 +138,11 @@ public:
    void SetInt(TCharC* pName, TInt value);
    void SetFloat(TCharC* pName, TFloat value);
    void SetDateTime(TCharC* pName, TDateTime value);
+   TResult SetNvl(TCharC* pName, TCharC* pValue);
+   void SetBoolNvl(TCharC* pName, TBool value);
+   void SetIntNvl(TCharC* pName, TInt value);
+   void SetFloatNvl(TCharC* pName, TFloat value);
+   void SetDateTimeNvl(TCharC* pName, TDateTime value);
    //------------------------------------------------------------
    TBool HasNode();
    TBool ContainsNode(TCharC* pName);

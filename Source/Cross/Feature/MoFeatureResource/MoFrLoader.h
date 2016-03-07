@@ -1,4 +1,4 @@
-#ifndef __MO_FR_LOADER_H__
+﻿#ifndef __MO_FR_LOADER_H__
 #define __MO_FR_LOADER_H__
 //************************************************************
 
