@@ -516,38 +516,38 @@ TResult FFbxMesh::Store(FFbxResModelMesh* pResMesh){
    }
    pResMesh->VertexStreams()->Push(pPositionStream);
    // 写入顶点法线数据流
-   if(ContainsAttribute(EFbxVertexAttribute_Normal)){
-      FFbxResStream* pNormalStream = MO_CREATE(FFbxResStream);
-      pNormalStream->SetCode(TC("normal"));
-      pNormalStream->SetDataCount(vertexCount);
-      pNormalStream->SetDataStride(sizeof(TByte) * 4);
-      pNormalStream->SetElementCount(4);
-      pNormalStream->SetElementDataCd(EFbxData_Uint8);
-      FByteStream* pNormalData = pNormalStream->Data();
-      for(TInt vertexIndex = 0; vertexIndex < vertexCount; vertexIndex++){
-         SFbxVertex* pVertex = pVertexs->Get(vertexIndex);
-         SFloatVector3& normal = pVertex->normal;
-         pNormalData->WriteUint8((TUint8)normal.x);
-         pNormalData->WriteUint8((TUint8)normal.y);
-         pNormalData->WriteUint8((TUint8)normal.z);
-      }
-      // _pStreams->Push(pPositionStream);
-   }
+   //if(ContainsAttribute(EFbxVertexAttribute_Normal)){
+   //   FFbxResStream* pNormalStream = MO_CREATE(FFbxResStream);
+   //   pNormalStream->SetCode(TC("normal"));
+   //   pNormalStream->SetDataCount(vertexCount);
+   //   pNormalStream->SetDataStride(sizeof(TByte) * 3);
+   //   pNormalStream->SetElementCount(3);
+   //   pNormalStream->SetElementDataCd(EFbxData_Uint8);
+   //   FByteStream* pNormalData = pNormalStream->Data();
+   //   for(TInt vertexIndex = 0; vertexIndex < vertexCount; vertexIndex++){
+   //      SFbxVertex* pVertex = pVertexs->Get(vertexIndex);
+   //      SFloatVector3& normal = pVertex->normal;
+   //      pNormalData->WriteUint8((TUint8)normal.x);
+   //      pNormalData->WriteUint8((TUint8)normal.y);
+   //      pNormalData->WriteUint8((TUint8)normal.z);
+   //   }
+   //   // _pStreams->Push(pPositionStream);
+   //}
    //............................................................
    // 写入面索引数据流
    FFbxResStream* pIndexStream = MO_CREATE(FFbxResStream);
    FByteStream* pIndexData = pIndexStream->Data();
-   pIndexStream->SetCode(TC("index32"));
+   pIndexStream->SetCode(TC("index16"));
    pIndexStream->SetDataCount(faceCount);
-   pIndexStream->SetDataStride(sizeof(TUint32) * 3);
+   pIndexStream->SetDataStride(sizeof(TUint16) * 3);
    pIndexStream->SetElementCount(3);
-   pIndexStream->SetElementDataCd(EFbxData_Float32);
+   pIndexStream->SetElementDataCd(EFbxData_Uint16);
    for(TInt faceIndex = 0; faceIndex < faceCount; faceIndex++){
       SFbxFace* pFace = pFaces->Get(faceIndex);
       TInt* pCorners = pFace->corners;
-      pIndexData->WriteUint32((TUint32)pCorners[0]);
-      pIndexData->WriteUint32((TUint32)pCorners[1]);
-      pIndexData->WriteUint32((TUint32)pCorners[2]);
+      pIndexData->WriteUint16((TUint16)pCorners[0]);
+      pIndexData->WriteUint16((TUint16)pCorners[1]);
+      pIndexData->WriteUint16((TUint16)pCorners[2]);
    }
    pResMesh->IndexStreams()->Push(pIndexStream);
    return ESuccess;

@@ -9,6 +9,7 @@ MO_NAMESPACE_BEGIN;
 //============================================================
 enum EFbxData{
    EFbxData_Unknown,
+   EFbxData_Boolean,
    EFbxData_Int8,
    EFbxData_Int16,
    EFbxData_Int32,
@@ -20,7 +21,13 @@ enum EFbxData{
    EFbxData_Float16,
    EFbxData_Float32,
    EFbxData_Float64,
-   EFbxData_String
+   EFbxData_String,
+   EFbxData_Array,
+   EFbxData_Struct,
+   EFbxData_Structs,
+   EFbxData_Object,
+   EFbxData_Objects,
+   EFbxData_Dictionary
 };
 
 //============================================================

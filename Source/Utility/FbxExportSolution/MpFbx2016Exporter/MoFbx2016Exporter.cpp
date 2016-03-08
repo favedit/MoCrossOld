@@ -75,6 +75,6 @@ TInt32 main(TChar** pArguments, TInt count){
    MO_DELETE(pScene);
    MO_DELETE(pManager);
    MoRelease();
-   //getchar();
+   // getchar();
    return 0;
 }

@@ -23,7 +23,7 @@ FFbxResourceObject::~FFbxResourceObject() {
 //============================================================
 TResult FFbxResourceObject::Serialize(IDataOutput * pOutput){
    pOutput->WriteString(_typeName);
-   pOutput->WriteUint32(_version);
+   pOutput->WriteInt32((TInt32)_version);
    return ESuccess;
 }
 
